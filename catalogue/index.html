@@ -120,7 +120,7 @@ section[id]{scroll-margin-top:92px}
 .hero .sub{max-width:56ch;font-size:clamp(1.02rem,1.6vw,1.2rem)}
 .shot{display:grid;gap:16px;margin-top:clamp(44px,6vw,68px);grid-template-columns:1fr}
 @media (min-width:900px){.shot{grid-template-columns:.62fr 1fr}}
-.shot-card{border-radius:var(--r);overflow:hidden;position:relative;min-height:300px;padding:20px;display:flex;flex-direction:column;isolation:isolate;background:var(--cream-3)}
+.shot-card{border-radius:var(--r);overflow:hidden;position:relative;min-height:clamp(360px,37vw,545px);padding:20px;display:flex;flex-direction:column;isolation:isolate;background:var(--cream-3)}
 .shot-card > *:not(.paint){position:relative;z-index:2}
 .shot-a{justify-content:flex-end}
 .shot-b{justify-content:center;align-items:center;padding:clamp(22px,3vw,34px)}
@@ -359,6 +359,102 @@ section[id]{scroll-margin-top:92px}
 .badge-float b{font-size:1.05rem;font-weight:700;letter-spacing:-.035em;display:block;line-height:1}
 .badge-float u{text-decoration:none;font-size:.66rem;color:var(--green);font-weight:600}
 
+/* ══════════ ÉTUDE DE CAS ══════════ */
+.story{background:var(--cream-2);border-radius:var(--r);overflow:hidden;display:grid;grid-template-columns:1fr}
+@media (min-width:900px){.story{grid-template-columns:.9fr 1.15fr .95fr}}
+.story-img{position:relative;min-height:270px;overflow:hidden;display:flex;align-items:flex-end;padding:22px;isolation:isolate}
+.story-img > *:not(.paint){position:relative;z-index:2}
+.story-img .who{display:flex;align-items:center;gap:10px;color:#fff;font-size:1.25rem;font-weight:700;letter-spacing:-.035em;
+  text-shadow:0 1px 12px rgba(0,0,0,.45)}
+.story-img .who span{width:26px;height:26px;border-radius:7px;background:rgba(255,255,255,.92);display:grid;place-items:center;
+  color:var(--ink);font-size:9px;font-weight:800;letter-spacing:-.02em}
+.story-mid{padding:clamp(24px,3vw,34px);display:flex;flex-direction:column;gap:14px}
+.story-mid h3{max-width:16ch}
+.story-mid .kpi-big{margin-top:auto;display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-top:22px}
+.story-mid .kpi-big b{font-size:clamp(1.9rem,3.6vw,2.6rem);font-weight:600;letter-spacing:-.05em;line-height:1}
+.story-mid .kpi-big em{font-style:normal;font-size:.85rem;color:var(--ink-2);line-height:1.35;max-width:18ch}
+.story-mid .more{margin-left:auto;display:inline-flex;align-items:center;gap:7px;background:#fff;border-radius:100px;
+  padding:11px 19px;font-size:.88rem;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 18px -10px rgba(0,0,0,.3);
+  transition:transform .2s var(--ease)}
+.story-mid .more:hover{transform:translateY(-2px)}
+.story-side{padding:clamp(24px,3vw,34px);border-top:1px solid var(--cream-3);display:flex;flex-direction:column;gap:16px}
+@media (min-width:900px){.story-side{border-top:0;border-left:1px solid var(--cream-3)}}
+.story-side .p{display:flex;align-items:center;gap:12px}
+.story-side .p .ph{width:52px;height:52px;border-radius:10px;flex:none;display:grid;place-items:center;color:#fff;
+  font-weight:700;font-size:1rem;background:linear-gradient(140deg,var(--c-pao),var(--c-sav))}
+.story-side .p b{display:block;font-weight:600;letter-spacing:-.022em;font-size:.98rem}
+.story-side .p span{font-size:.85rem;color:var(--ink-2)}
+.story-side q{display:block;margin-top:auto;font-size:.93rem;line-height:1.55;color:var(--ink-2);quotes:'«\00a0' '\00a0»'}
+
+/* ══════════ CONFORMITÉ ══════════ */
+.compl{display:grid;gap:13px;grid-template-columns:repeat(2,1fr)}
+@media (min-width:1000px){.compl{grid-template-columns:repeat(4,1fr)}}
+.cmp{background:var(--char-2);border-radius:var(--r);padding:24px;min-height:270px;display:flex;flex-direction:column;
+  transition:background .25s,transform .28s var(--ease)}
+.cmp:hover{background:var(--char-3);transform:translateY(-4px)}
+.cmp .ic{width:34px;height:34px;color:var(--on-char)}
+.cmp h4{margin-top:auto;padding-top:20px;color:var(--on-char);font-size:1.15rem}
+.cmp p{margin-top:9px;font-size:.87rem;line-height:1.5;color:var(--on-char-2)}
+.badges{margin-top:16px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.bg-track{display:flex;gap:12px;width:max-content;animation:mq 38s linear infinite}
+.badges:hover .bg-track{animation-play-state:paused}
+.bdg{display:flex;align-items:center;gap:9px;padding:12px 18px;border-radius:100px;background:var(--char-2);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--on-char-2);white-space:nowrap}
+.bdg i{width:15px;height:15px;border-radius:50%;background:rgba(61,201,139,.16);color:#3DC98B;display:grid;place-items:center;flex:none;font-style:normal}
+@media (prefers-reduced-motion:reduce){.bg-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}}
+
+/* ══════════ FAQ : bouton rond ══════════ */
+.faq .sign{width:34px;height:34px;border-radius:50%;background:transparent;border:1px solid var(--line);margin-top:-4px;
+  transition:background .22s,border-color .22s,transform .28s var(--ease)}
+.faq .sign::before{width:12px;height:1.6px}
+.faq .sign::after{width:1.6px;height:12px}
+.faq details[open] .sign{background:var(--char);border-color:var(--char);transform:rotate(45deg)}
+.faq details[open] .sign::before,.faq details[open] .sign::after{background:#fff;opacity:1}
+.faq details[open] .sign::after{opacity:1}
+
+/* ══════════ CTA PEINT ══════════ */
+.cta-paint{position:relative;border-radius:var(--r);overflow:hidden;isolation:isolate;
+  min-height:clamp(300px,32vw,430px);display:grid;place-items:center;text-align:center;padding:clamp(34px,5vw,64px)}
+.cta-paint > *:not(.paint){position:relative;z-index:2}
+.cta-paint::after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(72% 84% at 50% 50%,rgba(26,26,26,.52) 0%,rgba(26,26,26,.34) 58%,rgba(26,26,26,.24) 100%)}
+.cta-in{display:flex;flex-direction:column;align-items:center;gap:22px}
+.cta-in h2{color:#fff;max-width:15ch;text-shadow:0 2px 24px rgba(0,0,0,.32)}
+.cta-in .btn-white{background:#fff;color:var(--ink)}
+.cta-in .btn-white:hover{background:var(--cream);transform:translateY(-2px)}
+.cta-in small{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+
+/* ══════════ FOOTER ══════════ */
+.foot{background:var(--cream);padding:clamp(48px,6vw,76px) 0 34px}
+.foot-top{display:grid;gap:clamp(30px,4vw,54px);grid-template-columns:1fr}
+@media (min-width:900px){.foot-top{grid-template-columns:1.15fr .85fr}}
+.news{background:var(--cream-2);border-radius:var(--r);padding:clamp(26px,3.2vw,34px)}
+.news h3{margin-bottom:9px}
+.news p{font-size:.92rem;line-height:1.5;color:var(--ink-2);max-width:44ch;margin-bottom:18px}
+.news form{display:flex;gap:9px;flex-wrap:wrap}
+.news input[type=email]{flex:1;min-width:180px;padding:13px 16px;border-radius:100px;border:1px solid var(--line);
+  background:#fff;font-family:inherit;font-size:.92rem;color:var(--ink)}
+.news input[type=email]::placeholder{color:var(--ink-3)}
+.news input[type=email]:focus{outline:2px solid var(--red);outline-offset:1px;border-color:transparent}
+.news .agree{display:flex;align-items:flex-start;gap:9px;margin-top:14px;font-size:.79rem;line-height:1.45;color:var(--ink-2)}
+.news .agree input{margin-top:2px;accent-color:var(--red);width:15px;height:15px;flex:none}
+.news .agree a{text-decoration:underline;text-underline-offset:2px}
+.foot-cols{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.foot-cols h4{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:14px}
+.foot-cols ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.foot-cols a{font-size:.93rem;color:var(--ink-2);transition:color .16s}
+.foot-cols a:hover{color:var(--ink)}
+.socials{display:flex;gap:12px;margin-top:22px}
+.socials a{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:var(--ink-2);
+  border:1px solid var(--line);transition:all .18s}
+.socials a:hover{color:var(--ink);border-color:var(--ink);transform:translateY(-2px)}
+.foot-bot{margin-top:clamp(34px,4vw,52px);padding-top:22px;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;font-size:.83rem;color:var(--ink-3)}
+.foot-bot nav{display:flex;gap:18px;margin-left:auto;flex-wrap:wrap}
+.foot-bot a:hover{color:var(--ink)}
+
 .notes{background:var(--cream-2);padding:34px 0}
 .notes-in{display:flex;gap:14px;align-items:flex-start;font-size:.85rem;line-height:1.6;color:var(--ink-2);max-width:86ch}
 .notes-in svg{flex:none;margin-top:2px;color:var(--ink-3)}
@@ -372,7 +468,7 @@ section[id]{scroll-margin-top:92px}
     <a class="brand" href="/" aria-label="Onlineformapro, accueil"><b><i>O</i>nline</b><span>FORMAPRO</span></a>
     <nav class="nav-links" aria-label="Navigation principale">
       <a href="#">LMS</a><a href="#pour-qui">Pour qui</a><a href="#produit">Le produit</a>
-      <a href="#domaines" aria-current="page">Catalogue</a><a href="#faq">FAQ</a>
+      <a href="#domaines" aria-current="page">Catalogue</a><a href="#conformite">Conformité</a><a href="#faq">FAQ</a>
     </nav>
     <div class="nav-cta"><a class="btn btn-dark" href="#demo">Demander une démo<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
   </div>
@@ -649,14 +745,69 @@ section[id]{scroll-margin-top:92px}
   </div>
 </section>
 
-<!-- ═══ TÉMOIGNAGE ═══ -->
+<!-- ═══ ÉTUDE DE CAS ═══ -->
 <section id="temoignage">
   <div class="wrap">
-    <figure class="quote rv">
+    <div class="head rv">
       <span class="eyebrow" style="--d:var(--dot-5)">Ils l'ont fait</span>
-      <blockquote>« Nos collaborateurs disposent d'un environnement de formation individualisé et tutoré accessible 24h/24. »</blockquote>
-      <figcaption><span class="ava">IP</span><span><b>Isabelle Provillard</b>Chef de projet ingénierie de formation, SNCF</span></figcaption>
-    </figure>
+      <h2>Des résultats chez de vrais clients.</h2>
+      <p class="sub">De l'organisme de formation régional au grand compte national, voilà ce qu'en disent ceux qui diffusent nos contenus.</p>
+      <a class="btn btn-dark" href="#" style="margin-top:6px">Voir toutes les références<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <article class="story rv">
+      <div class="story-img"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice"><defs><filter id="ps" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.009 0.016" numOctaves="4" seed="41" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="120" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#ps)"><rect x="-260" y="-320" width="1120" height="1440" fill="#A8AE9C"/><ellipse cx="200" cy="240" rx="300" ry="240" fill="#8FA88F"/><ellipse cx="450" cy="520" rx="300" ry="250" fill="#C6C3A2"/><ellipse cx="120" cy="690" rx="280" ry="190" fill="#75876F"/></g></svg></span><span class="who"><span>OF</span>SNCF</span></div>
+      <div class="story-mid">
+        <h3>Un dispositif bureautique ouvert à toute heure</h3>
+        <p class="sub" style="font-size:.95rem">Onlineformapro a accompagné la SNCF dans la mise en place de son dispositif de formation bureautique en digital learning, avec un environnement individualisé et tutoré.</p>
+        <div class="kpi-big">
+          <b>24h/24</b><em>accès à la formation, en autonomie</em>
+          <a class="more" href="#">Lire le cas<svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+      <div class="story-side">
+        <div class="p"><span class="ph">IP</span><span><b>Isabelle Provillard</b><span>Chef de projet ingénierie de formation, SNCF</span></span></div>
+        <q>Onlineformapro a su accompagner SNCF dans la mise en place de son dispositif de formation bureautique digital learning. Nos collaborateurs disposent d'un environnement de formation individualisé et tutoré accessible 24h/24.</q>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ═══ CONFORMITÉ ═══ -->
+<section class="on-char" id="conformite">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow" style="--d:var(--dot-3)">Conformité</span>
+      <h2>Ce que votre acheteur vérifiera.</h2>
+      <p class="sub">Certification, protection des données, interopérabilité et pérennité de l'éditeur : les quatre lignes que remplit tout dossier d'achat, en entreprise comme sur marché public.</p>
+    </div>
+    <div class="compl">
+      <article class="cmp rv">
+        <svg class="ic" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 3l11 4.5v8c0 6.5-4.6 11.2-11 13.5-6.4-2.3-11-7-11-13.5v-8L16 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m11 16 3.5 3.5L21 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h4>Certifié Qualiopi</h4>
+        <p>Onlineformapro est un organisme de formation certifié Qualiopi. Vos contenus viennent d'un prestataire soumis aux mêmes audits que vous.</p>
+      </article>
+      <article class="cmp rv">
+        <svg class="ic" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="6" y="14" width="20" height="14" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 14V9.5a5 5 0 0 1 10 0V14" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="21" r="2" fill="currentColor"/></svg>
+        <h4>Conforme RGPD</h4>
+        <p>Traitement des données des apprenants conforme au règlement européen, avec les engagements contractuels attendus par un délégué à la protection des données.</p>
+      </article>
+      <article class="cmp rv">
+        <svg class="ic" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M11 11 5 16l6 5M21 11l6 5-6 5M18.5 6.5l-5 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h4>SCORM, AICC, xAPI</h4>
+        <p>Les modules s'intègrent à la plateforme que vous utilisez déjà et remontent la progression au format que vos outils savent lire.</p>
+      </article>
+      <article class="cmp rv">
+        <svg class="ic" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="12.5" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 16h25M16 3.5c3.5 3.6 3.5 21 0 25M16 3.5c-3.5 3.6-3.5 21 0 25" stroke="currentColor" stroke-width="1.5"/></svg>
+        <h4>Édité en France</h4>
+        <p>Contenus conçus et maintenus à Vesoul depuis 1999, par une société cotée. Sur marché public, la pérennité du fournisseur est une ligne de notation.</p>
+      </article>
+    </div>
+    <div class="badges rv">
+      <div class="bg-track">
+        <span class="bdg"><i>&#10003;</i>Éligible CPF</span><span class="bdg"><i>&#10003;</i>Finançable OPCO</span><span class="bdg"><i>&#10003;</i>SCORM 1.2</span><span class="bdg"><i>&#10003;</i>SCORM 2004</span><span class="bdg"><i>&#10003;</i>AICC</span><span class="bdg"><i>&#10003;</i>xAPI</span><span class="bdg"><i>&#10003;</i>Annuaire LDAP</span><span class="bdg"><i>&#10003;</i>Connecteur SIRH</span><span class="bdg"><i>&#10003;</i>Critère 3 Qualiopi</span>
+        <span class="bdg" aria-hidden="true"><i>&#10003;</i>Éligible CPF</span><span class="bdg" aria-hidden="true"><i>&#10003;</i>Finançable OPCO</span><span class="bdg" aria-hidden="true"><i>&#10003;</i>SCORM 1.2</span><span class="bdg" aria-hidden="true"><i>&#10003;</i>SCORM 2004</span><span class="bdg" aria-hidden="true"><i>&#10003;</i>AICC</span><span class="bdg" aria-hidden="true"><i>&#10003;</i>xAPI</span><span class="bdg" aria-hidden="true"><i>&#10003;</i>Annuaire LDAP</span><span class="bdg" aria-hidden="true"><i>&#10003;</i>Connecteur SIRH</span><span class="bdg" aria-hidden="true"><i>&#10003;</i>Critère 3 Qualiopi</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -675,18 +826,55 @@ section[id]{scroll-margin-top:92px}
 </section>
 
 <!-- ═══ CTA ═══ -->
-<section class="on-char final" id="demo">
-  <div class="narrow final-in">
-    <span class="eyebrow rv" style="--d:var(--dot-2)">Démonstration</span>
-    <h2 class="rv">Regardez le catalogue avant de décider.</h2>
-    <p class="sub rv">Dites-nous vos domaines et votre plateforme. Nous ouvrons un accès de démonstration aux modules concernés.</p>
-    <div class="acts acts-c rv">
-      <a class="btn btn-primary" href="#">Demander une démo gratuite<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <a class="btn btn-line" href="#">Parler à un conseiller</a>
+<section id="demo" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="cta-paint rv"><span class="paint" aria-hidden="true"><svg viewBox="0 0 1100 500" preserveAspectRatio="xMidYMid slice"><defs><filter id="pcta" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.007 0.013" numOctaves="4" seed="67" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="145" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#pcta)"><rect x="-420" y="-300" width="1940" height="1100" fill="#9DB08F"/><ellipse cx="520" cy="-40" rx="760" ry="260" fill="#E3E8D6"/><ellipse cx="180" cy="150" rx="330" ry="190" fill="#C4D0B4"/><ellipse cx="900" cy="200" rx="320" ry="210" fill="#8CA383"/><ellipse cx="240" cy="430" rx="420" ry="220" fill="#5E7358"/><ellipse cx="820" cy="470" rx="400" ry="200" fill="#4E6349"/><ellipse cx="560" cy="300" rx="260" ry="150" fill="#A9BC9B"/></g></svg></span>
+      <div class="cta-in">
+        <h2>Prêt à arrêter de produire ?</h2>
+        <p class="sub" style="color:rgba(255,255,255,.9);max-width:48ch">Dites-nous vos domaines et votre plateforme. Nous ouvrons un accès de démonstration aux modules concernés.</p>
+        <a class="btn btn-white" href="#">Demander une démo gratuite<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <small>Réponse sous 48 h ouvrées &middot; Sans engagement</small>
+      </div>
     </div>
-    <small class="rv">Réponse sous 48 h ouvrées · Sans engagement</small>
   </div>
 </section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="news rv">
+        <h3>Restez au courant</h3>
+        <p>Nouveaux modules, évolutions réglementaires et pratiques du digital learning. Une lettre par mois, désinscription en un clic.</p>
+        <form onsubmit="return false">
+          <label class="sr" for="nl" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Adresse e-mail</label>
+          <input id="nl" type="email" placeholder="prenom@organisme.fr" autocomplete="email">
+          <button class="btn btn-dark" type="submit">S'inscrire</button>
+        </form>
+        <label class="agree"><input type="checkbox"> En m'inscrivant, j'accepte les <a href="#">conditions d'utilisation</a> et la <a href="#">politique de confidentialité</a>.</label>
+      </div>
+      <div class="foot-cols rv">
+        <div>
+          <h4>Produit</h4>
+          <ul><li><a href="#domaines">Catalogue e-learning</a></li><li><a href="#">Plateforme LMS</a></li><li><a href="#">Outil auteur</a></li><li><a href="#">Intelligence artificielle</a></li><li><a href="#conformite">Conformité</a></li><li><a href="#faq">Questions fréquentes</a></li></ul>
+        </div>
+        <div>
+          <h4>Société</h4>
+          <ul><li><a href="#">Qui sommes-nous</a></li><li><a href="#temoignage">Références</a></li><li><a href="#">Blog</a></li><li><a href="#">Nous contacter</a></li><li><a href="#">Espace client</a></li><li><a href="#">Recrutement</a></li></ul>
+          <div class="socials">
+            <a href="#" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M3.4 5.5H1.1V14h2.3V5.5ZM2.25 4.5a1.34 1.34 0 1 0 0-2.68 1.34 1.34 0 0 0 0 2.68ZM14.9 14h-2.3V9.9c0-1.1-.4-1.8-1.35-1.8-.73 0-1.17.5-1.36.98-.7.17-.09.4-.09.65V14H7.5s.03-7.7 0-8.5h2.3v1.2c.3-.47.85-1.14 2.06-1.14 1.5 0 2.63.98 2.63 3.1V14Z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M15.3 4.8a1.9 1.9 0 0 0-1.35-1.36C12.75 3.1 8 3.1 8 3.1s-4.75 0-5.95.34A1.9 1.9 0 0 0 .7 4.8C.36 6 .36 8 .36 8s0 2 .34 3.2a1.9 1.9 0 0 0 1.35 1.36c1.2.34 5.95.34 5.95.34s4.75 0 5.95-.34a1.9 1.9 0 0 0 1.35-1.36c.34-1.2.34-3.2.34-3.2s0-2-.34-3.2ZM6.5 10.3V5.7L10.4 8l-3.9 2.3Z"/></svg></a>
+            <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M9.5 6.9 14.9 1h-1.3L8.9 6.1 5.2 1H1l5.7 8L1 15h1.3l4.9-5.4L11.1 15h4.2L9.5 6.9Zm-1.7 2-.6-.8L2.7 2h2l3.6 5 .6.8 4.7 6.4h-2L7.8 8.9Z"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>&copy; 2026 Onlineformapro &middot; Vesoul, France</span>
+      <nav><a href="#">Mentions légales</a><a href="#">Confidentialité</a><a href="#">Accessibilité</a><a href="#">Plan du site</a></nav>
+    </div>
+  </div>
+</footer>
 
 <div class="notes">
   <div class="wrap notes-in">
