@@ -455,6 +455,50 @@ section[id]{scroll-margin-top:92px}
 .foot-bot nav{display:flex;gap:18px;margin-left:auto;flex-wrap:wrap}
 .foot-bot a:hover{color:var(--ink)}
 
+/* le bloc regroupe les trois colonnes et la phrase de synthese */
+.versus .panel{background:var(--char-2);border-radius:var(--r);padding:clamp(22px,3vw,32px);margin-top:clamp(34px,4.5vw,50px)}
+.versus .split{margin-top:0;gap:13px}
+.versus .sp{background:rgba(255,255,255,.045)}
+.versus .sp.us{background:var(--red)}
+.versus .geo{margin:22px auto 0;padding-top:22px;border-top:1px solid var(--line-char);text-align:center;font-size:.97rem}
+
+/* ══════════ SEGMENTS À ONGLETS ══════════ */
+.stage-head{display:grid;gap:20px;grid-template-columns:1fr;align-items:end;margin-bottom:clamp(28px,3.5vw,40px)}
+@media (min-width:900px){.stage-head{grid-template-columns:1.12fr .88fr;gap:clamp(30px,5vw,70px)}}
+.stage-head h2{max-width:19ch;margin-top:16px}
+.stage-head .sub{max-width:44ch;padding-bottom:6px}
+.stage-bar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:clamp(20px,2.6vw,30px)}
+.stage-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.stg{font-family:inherit;font-size:.89rem;font-weight:600;letter-spacing:-.012em;padding:11px 21px;border-radius:100px;
+  border:1px solid var(--line);background:transparent;color:var(--ink-2);cursor:pointer;transition:all .22s var(--ease)}
+.stg:hover{border-color:var(--ink-3);color:var(--ink)}
+.stg[aria-selected="true"]{background:var(--char);border-color:var(--char);color:var(--cream)}
+.stage-prog{margin-left:auto;display:flex;align-items:center;gap:13px}
+.stage-line{width:74px;height:3px;border-radius:2px;background:var(--cream-3);overflow:hidden}
+.stage-line u{display:block;height:100%;width:33.333%;background:var(--char);border-radius:2px;
+  transition:transform .45s var(--ease)}
+.stage-prog em{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+
+.stage-panel{display:grid;gap:0;grid-template-columns:1fr;background:var(--cream-2);border-radius:var(--r);overflow:hidden}
+@media (min-width:960px){.stage-panel{grid-template-columns:1fr .92fr .92fr}}
+.stage-panel[hidden]{display:none}
+.stage-panel.enter{animation:panelIn .45s var(--ease)}
+@keyframes panelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.stage-panel.enter{animation:none}}
+.sp-txt{padding:clamp(26px,3.2vw,36px);display:flex;flex-direction:column;gap:12px;min-height:330px}
+.sp-txt .lbl{font-size:.87rem;color:var(--ink-2)}
+.sp-txt h3{max-width:14ch}
+.sp-txt .sp-end{margin-top:auto;padding-top:24px;font-size:.94rem;line-height:1.5;color:var(--ink-2)}
+.sp-img{position:relative;min-height:250px;overflow:hidden;isolation:isolate;display:flex;align-items:flex-end;padding:20px}
+.sp-img > *:not(.paint){position:relative;z-index:2}
+.sp-img .tagline{color:#fff;font-size:.95rem;font-weight:600;letter-spacing:-.02em;text-shadow:0 1px 10px rgba(0,0,0,.5)}
+.sp-dark{background:var(--char);color:var(--on-char);padding:clamp(26px,3.2vw,34px);display:flex;flex-direction:column;gap:13px}
+.sp-dark .cap{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--on-char-3)}
+.sp-dark ul{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.sp-dark li{display:grid;grid-template-columns:auto 1fr;gap:10px;font-size:.92rem;line-height:1.45;color:var(--on-char)}
+.sp-dark li svg{margin-top:4px;flex:none;color:var(--red)}
+.sp-dark .why{margin-top:auto;padding-top:20px;font-size:.88rem;line-height:1.5;color:var(--on-char-2);border-top:1px solid var(--line-char)}
+
 .notes{background:var(--cream-2);padding:34px 0}
 .notes-in{display:flex;gap:14px;align-items:flex-start;font-size:.85rem;line-height:1.6;color:var(--ink-2);max-width:86ch}
 .notes-in svg{flex:none;margin-top:2px;color:var(--ink-3)}
@@ -477,9 +521,9 @@ section[id]{scroll-margin-top:92px}
 <!-- ═══ HERO ═══ -->
 <section class="hero" id="hero">
   <div class="wrap hero-in">
-    <span class="trust rv"><span class="stars" aria-hidden="true">★★★★★</span> SNCF, Bouygues Télécom, Banque Populaire et le Ministère de l'Agriculture forment avec nos contenus</span>
+    <span class="trust rv"><span class="stars" aria-hidden="true">★★★★★</span> Ils forment avec nos contenus depuis 1999</span>
     <h1 class="rv">Arrêtez de produire vos contenus. Commencez à former.</h1>
-    <p class="sub rv">6 000 heures de modules e-learning prêtes à diffuser, dans votre plateforme ou dans la nôtre. Conçues par un organisme de formation français, pas par un éditeur de logiciel.</p>
+    <p class="sub rv">6 000 heures de modules e-learning prêtes à diffuser dans votre plateforme, ou dans la nôtre. Nous nous en servons nous-mêmes, tous les jours.</p>
     <div class="acts acts-c rv">
       <a class="btn btn-primary" href="#demo">Demander une démo gratuite<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <a class="btn btn-line" href="#domaines">Parcourir le catalogue</a>
@@ -539,59 +583,82 @@ section[id]{scroll-margin-top:92px}
 <section class="on-char" id="difference">
   <div class="wrap">
     <div class="versus">
-      <p class="lead rv">Un fournisseur de contenu vous laisse trouver la plateforme. Un éditeur de LMS vous laisse trouver le contenu. <u>Nous faisons les deux — et nous formons nous-mêmes avec.</u></p>
-      <div class="split">
+      <p class="lead rv">Ni un catalogue nu, <u>ni une plateforme vide.</u></p>
+      <p class="sub rv" style="margin:18px auto 0;text-align:center">Les deux moitiés du problème sont vendues séparément. Nous livrons les deux, et vous ne prenez que celle qui vous manque.</p>
+      <div class="panel rv">
+        <div class="split">
         <div class="sp rv"><em>Un catalogue seul</em><p>Vous achetez des modules, puis vous cherchez où les héberger, comment les suivre et qui les anime.</p></div>
         <div class="sp rv"><em>Un LMS seul</em><p>Vous achetez une plateforme vide, puis vous financez la production de tout ce que vos apprenants y trouveront.</p></div>
         <div class="sp us rv"><em>Onlineformapro</em><p>Les deux, séparément ou ensemble. Et nous sommes un organisme certifié Qualiopi qui passe les mêmes audits que vous.</p></div>
       </div>
       <p class="geo rv"><strong>Onlineformapro permet aux organismes de formation et aux entreprises d'intégrer un catalogue de 6 000 heures de modules e-learning directement dans leur propre plateforme LMS</strong>, aux normes SCORM, AICC et xAPI. Les contenus sont produits et maintenus en France depuis 1999.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ AUDIENCES ═══ -->
+<!-- ═══ SEGMENTS ═══ -->
 <section id="pour-qui">
   <div class="wrap">
-    <div class="head rv">
-      <span class="eyebrow" style="--d:var(--dot-2)">Pour qui</span>
-      <h2>Trois usages, un même catalogue.</h2>
-      <p class="sub">Ce que vous en faites dépend de votre métier. L'offre s'ajuste, pas l'inverse.</p>
+    <div class="stage-head rv">
+      <div>
+        <span class="eyebrow" style="--d:var(--dot-2)">Pour qui</span>
+        <h2>Le même catalogue, à votre échelle.</h2>
+      </div>
+      <p class="sub">Que vous équipiez trente collaborateurs, que vous vendiez de la formation ou que vous achetiez sur marché public, ce que vous en faites change — pas ce qu'il contient.</p>
     </div>
-    <div class="auds">
-      <article class="aud rv" style="--ac:var(--c-pao)">
-        <span class="ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18" stroke="currentColor" stroke-width="1.7"/></svg></span>
-        <h3>Entreprise</h3>
-        <p>Vous devez couvrir un plan de développement des compétences sans équipe de production interne.</p>
-        <ul>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Modules éligibles CPF et mobilisables sur budget OPCO</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Entretiens professionnels outillés par domaine</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Déploiement sur parc verrouillé, sans droits administrateur</li>
-        </ul>
-        <span class="go">Voir l'offre entreprise<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </article>
-      <article class="aud rv" style="--ac:var(--c-lan)">
-        <span class="ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6.5C5.5 5 8.5 5 12 6.8 15.5 5 18.5 5 21 6.5v12c-2.5-1.5-5.5-1.5-9 .3-3.5-1.8-6.5-1.8-9-.3v-12Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
-        <h3>Organisme de formation</h3>
-        <p>Vous voulez élargir votre catalogue commercial sans recruter de concepteur pédagogique.</p>
-        <ul>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Modules diffusés à votre charte, dans votre environnement</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Complément direct de votre présentiel en blended learning</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Conçu par un OF certifié Qualiopi, pour des OF certifiés Qualiopi</li>
-        </ul>
-        <span class="go">Voir l'offre organisme<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </article>
-      <article class="aud rv" style="--ac:var(--c-sav)">
-        <span class="ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20V9l8-5 8 5v11" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M3 20h18M9.5 20v-6h5v6" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
-        <h3>Public &amp; enseignement</h3>
-        <p>Vous achetez sur marché public et devez justifier conformité et pérennité du fournisseur.</p>
-        <ul>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Éditeur français depuis 1999, société cotée</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Conforme RGPD, interfaçable SIRH et annuaire LDAP</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Savoirs de base et remise à niveau pour vos publics éloignés</li>
-        </ul>
-        <span class="go">Voir l'offre secteur public<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </article>
+
+    <div class="stage-bar rv">
+      <div class="stage-tabs" role="tablist" aria-label="Segments">
+        <button class="stg" type="button" role="tab" aria-selected="true"  aria-controls="pan-0" id="tab-0">Entreprise</button>
+        <button class="stg" type="button" role="tab" aria-selected="false" aria-controls="pan-1" id="tab-1">Organisme de formation</button>
+        <button class="stg" type="button" role="tab" aria-selected="false" aria-controls="pan-2" id="tab-2">Public &amp; enseignement</button>
+      </div>
+      <div class="stage-prog" aria-hidden="true"><span class="stage-line"><u id="stgline"></u></span><em id="stgnum">1/3</em></div>
+    </div>
+
+    <div class="rv">
+      <div class="stage-panel enter" id="pan-0" role="tabpanel" aria-labelledby="tab-0">
+        <div class="sp-txt">
+          <span class="lbl">Entreprise</span>
+          <h3>Former sans rien produire</h3>
+          <p class="sp-end">Votre plan de développement des compétences est à couvrir cette année, sans équipe de production interne ni budget de conception. Le catalogue existe déjà : vous sélectionnez, vous ouvrez les accès.</p>
+        </div>
+        <div class="sp-img"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="sg1" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="13" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="115" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#sg1)"><rect x="-260" y="-300" width="1120" height="1300" fill="#B0B7A6"/><ellipse cx="180" cy="180" rx="300" ry="220" fill="#9FB0C0"/><ellipse cx="450" cy="430" rx="290" ry="240" fill="#CBB58C"/><ellipse cx="200" cy="620" rx="320" ry="190" fill="#7E8E74"/></g></svg></span><span class="tagline">De 30 à 5 000 collaborateurs</span></div>
+        <div class="sp-dark">
+          <span class="cap">Ce qui compte pour vous</span>
+          <ul><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Modules éligibles CPF, mobilisables sur budget OPCO</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Entretiens professionnels outillés par domaine</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Déploiement sur parc verrouillé, sans droits administrateur</li></ul>
+          <p class="why">Le délai de mise en service tient à la sélection des contenus, pas à leur fabrication.</p>
+        </div>
+      </div>
+
+      <div class="stage-panel" id="pan-1" role="tabpanel" aria-labelledby="tab-1" hidden>
+        <div class="sp-txt">
+          <span class="lbl">Organisme de formation</span>
+          <h3>Élargir sans recruter</h3>
+          <p class="sp-end">Vous vendez de la formation et vos clients demandent des domaines que vous ne couvrez pas. Douze s'ajoutent à votre catalogue commercial sans ouvrir de ligne de production.</p>
+        </div>
+        <div class="sp-img"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="sg2" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="29" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="115" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#sg2)"><rect x="-260" y="-300" width="1120" height="1300" fill="#A5AC96"/><ellipse cx="420" cy="190" rx="290" ry="210" fill="#C6CBA8"/><ellipse cx="150" cy="470" rx="300" ry="250" fill="#8B9A82"/><ellipse cx="470" cy="630" rx="280" ry="190" fill="#DCD3B4"/></g></svg></span><span class="tagline">Votre catalogue, élargi</span></div>
+        <div class="sp-dark">
+          <span class="cap">Ce qui compte pour vous</span>
+          <ul><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Modules diffusés à votre charte, dans votre environnement</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Complément direct de votre présentiel en blended learning</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Preuves de suivi au format attendu par vos financeurs</li></ul>
+          <p class="why">Nous sommes nous-mêmes un organisme certifié Qualiopi : nos contenus passent les audits que vous passez.</p>
+        </div>
+      </div>
+
+      <div class="stage-panel" id="pan-2" role="tabpanel" aria-labelledby="tab-2" hidden>
+        <div class="sp-txt">
+          <span class="lbl">Public &amp; enseignement</span>
+          <h3>Acheter sans exposition</h3>
+          <p class="sp-end">Vous achetez sur marché public ou accord-cadre, et chaque ligne du dossier devra être justifiée devant un contrôle. La conformité et la pérennité du fournisseur y pèsent autant que le contenu.</p>
+        </div>
+        <div class="sp-img"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="sg3" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="47" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="115" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#sg3)"><rect x="-260" y="-300" width="1120" height="1300" fill="#A3A9AC"/><ellipse cx="200" cy="230" rx="300" ry="230" fill="#8498AA"/><ellipse cx="460" cy="520" rx="300" ry="240" fill="#C2C7C1"/><ellipse cx="130" cy="660" rx="270" ry="180" fill="#6F8088"/></g></svg></span><span class="tagline">Collectivités, hôpitaux, universités</span></div>
+        <div class="sp-dark">
+          <span class="cap">Ce qui compte pour vous</span>
+          <ul><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Éditeur français depuis 1999, société cotée</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Conforme RGPD, interfaçable SIRH et annuaire LDAP</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Savoirs de base et remise à niveau pour publics éloignés</li></ul>
+          <p class="why">Sur marché public, la pérennité du fournisseur est une ligne de notation, pas un argument commercial.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -999,6 +1066,25 @@ section[id]{scroll-margin-top:92px}
       });
     }, { threshold: 0.4 });
     o.observe(el);
+  });
+
+
+  /* ── segments à onglets ── */
+  var stg = document.querySelectorAll('.stg');
+  var pans = document.querySelectorAll('.stage-panel');
+  var line = document.getElementById('stgline');
+  var num = document.getElementById('stgnum');
+  stg.forEach(function(btn, i){
+    btn.addEventListener('click', function(){
+      stg.forEach(function(b, k){ b.setAttribute('aria-selected', String(k === i)); });
+      pans.forEach(function(p, k){
+        p.hidden = k !== i;
+        p.classList.remove('enter');
+        if (k === i) { void p.offsetWidth; p.classList.add('enter'); }
+      });
+      if (line) line.style.transform = 'translateX(' + (i * 100) + '%)';
+      if (num) num.textContent = (i + 1) + '/3';
+    });
   });
 
   /* ── onglets du catalogue ── */
