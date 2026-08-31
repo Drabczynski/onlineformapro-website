@@ -1,0 +1,774 @@
+<title>Catalogue e-learning Onlineformapro</title>
+<meta name="description" content="6 000 heures de contenu e-learning prêtes à diffuser dans votre LMS. 12 domaines, normes SCORM, AICC et xAPI, modules éligibles CPF.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+<style>
+:root{
+  /* ── palette Payflow ── */
+  --cream:#F7F7F2;
+  --cream-2:#EDEDE6;
+  --cream-3:#E3E3DA;
+  --char:#1A1A1A;
+  --char-2:#242424;
+  --char-3:#2E2E2E;
+  --ink:#121212;
+  --ink-2:#5C5C55;
+  --ink-3:#8A8A82;
+  --on-char:#F4F4EF;
+  --on-char-2:#9E9E96;
+  --on-char-3:#6E6E67;
+  --line:#DCDCD3;
+  --line-char:#333330;
+
+  /* accent unique : le rouge de marque, à la place du noir de Payflow */
+  --red:#E01A4F;
+  --red-deep:#B31240;
+
+  /* pastilles de kicker */
+  --dot-1:#2C6FE0; --dot-2:#E8590C; --dot-3:#12A594; --dot-4:#9457C4; --dot-5:#E01A4F;
+
+  /* domaines */
+  --c-bur:#E8590C; --c-inf:#0E96BC; --c-cog:#6EA912; --c-san:#E01A4F;
+  --c-lan:#0E9384; --c-sav:#6D5BD0; --c-ori:#9457C4; --c-pre:#E0459E;
+  --c-ter:#D2691E; --c-cao:#B82B85; --c-pao:#2C6FE0; --c-dev:#1D4FB8;
+
+  --sans:"Plus Jakarta Sans",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  --r:22px;
+  --r-sm:14px;
+  --max:1240px;
+  --pad:clamp(20px,5vw,44px);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16.5px;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  letter-spacing:-.006em;
+}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--red);outline-offset:4px;border-radius:6px}
+
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--pad)}
+.narrow{max-width:820px;margin:0 auto;padding-inline:var(--pad)}
+
+/* ══ typographie ══ */
+h1,h2,h3,h4{margin:0;font-weight:600;letter-spacing:-.035em;text-wrap:balance}
+h1{font-size:clamp(2.25rem,5vw,3.95rem);line-height:1.03}
+h2{font-size:clamp(2.05rem,4.6vw,3.5rem);line-height:1.03}
+h3{font-size:clamp(1.35rem,2.4vw,1.85rem);line-height:1.12;letter-spacing:-.03em}
+h4{font-size:1.12rem;line-height:1.25;letter-spacing:-.024em}
+p{margin:0}
+.sub{font-size:clamp(1rem,1.5vw,1.14rem);line-height:1.5;color:var(--ink-2);max-width:56ch}
+.on-char .sub{color:var(--on-char-2)}
+strong{font-weight:600}
+
+/* eyebrow : point coloré + mono capitales */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-2);
+}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--d,var(--dot-1));flex:none}
+.on-char .eyebrow{color:var(--on-char-2)}
+
+/* pilule de confiance */
+.trust{
+  display:inline-flex;align-items:center;gap:10px;padding:7px 16px 7px 8px;
+  border-radius:100px;background:var(--cream-2);font-size:.88rem;font-weight:500;color:var(--ink-2);
+}
+.trust i{
+  width:26px;height:26px;border-radius:50%;background:var(--char);color:#fff;flex:none;
+  display:grid;place-items:center;font-style:normal;font-weight:700;font-size:11px;
+}
+.on-char .trust{background:var(--char-2);color:var(--on-char-2)}
+.on-char .trust i{background:var(--red);color:#fff}
+
+/* ══ boutons ══ */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);
+  font-size:.95rem;font-weight:600;letter-spacing:-.012em;padding:13px 22px;
+  border-radius:100px;border:1px solid transparent;cursor:pointer;white-space:nowrap;
+  transition:transform .22s var(--ease),background .2s,color .2s,border-color .2s,box-shadow .22s;
+}
+.btn .chev{transition:transform .22s var(--ease);opacity:.75}
+.btn:hover .chev{transform:translateX(3px)}
+.btn-primary{background:var(--red);color:#fff}
+.btn-primary:hover{background:var(--red-deep);transform:translateY(-2px);box-shadow:0 10px 26px -12px rgba(224,26,79,.8)}
+.btn-dark{background:var(--char);color:var(--cream)}
+.btn-dark:hover{background:#000;transform:translateY(-2px)}
+.btn-line{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-line:hover{border-color:var(--ink);transform:translateY(-2px)}
+.on-char .btn-line{color:var(--on-char);border-color:var(--line-char)}
+.on-char .btn-line:hover{border-color:var(--on-char-2);background:rgba(255,255,255,.05)}
+
+/* ══ reveal ══ */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+
+/* ══ nav : barre pleine largeur → pilule flottante ══ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:80;padding:0 var(--pad);transition:padding .45s var(--ease)}
+.nav.float{padding-top:14px}
+.nav-in{
+  max-width:var(--max);margin:0 auto;height:70px;display:flex;align-items:center;gap:clamp(12px,2.4vw,30px);
+  background:transparent;border-radius:0;padding:0;
+  transition:max-width .45s var(--ease),background .35s,border-radius .45s var(--ease),
+             padding .45s var(--ease),box-shadow .35s,height .35s var(--ease);
+}
+.nav.float .nav-in{
+  max-width:min(830px,100%);height:58px;background:rgba(247,247,242,.86);
+  backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);
+  border-radius:100px;padding:0 6px 0 22px;box-shadow:0 1px 2px rgba(0,0,0,.05),0 12px 30px -14px rgba(0,0,0,.22);
+}
+.brand{display:flex;flex-direction:column;line-height:.84;flex:none}
+.brand b{font-size:1.32rem;font-weight:700;letter-spacing:-.045em}
+.brand b i{color:var(--red);font-style:normal}
+.brand span{font-size:.53rem;font-weight:500;letter-spacing:.36em;color:var(--ink-2);padding-left:1px}
+.nav-links{display:none;align-items:center;gap:clamp(14px,1.9vw,26px);margin-left:auto}
+@media (min-width:1000px){.nav-links{display:flex}}
+.nav-links a{font-size:.9rem;font-weight:500;color:var(--ink-2);transition:color .16s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a[aria-current]{color:var(--ink);font-weight:600}
+.nav-cta{margin-left:auto}
+@media (min-width:1000px){.nav-cta{margin-left:14px}}
+.nav-cta .btn{padding:10px 18px;font-size:.88rem}
+
+/* ══ sections ══ */
+section{padding:clamp(72px,10vw,140px) 0;position:relative}
+section[id]{scroll-margin-top:92px}
+.on-char{background:var(--char);color:var(--on-char)}
+.on-char h1,.on-char h2,.on-char h3,.on-char h4{color:var(--on-char)}
+.on-cream2{background:var(--cream-2)}
+
+/* en-tête de section CENTRÉ — le geste Payflow */
+.head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;margin-bottom:clamp(44px,6vw,72px)}
+.head h2{max-width:17ch}
+.head .sub{max-width:52ch}
+.head-left{align-items:flex-start;text-align:left}
+.head-left h2,.head-left .sub{max-width:20ch}
+.head-left .sub{max-width:46ch}
+
+/* ══ hero ══ */
+.hero{padding-top:clamp(120px,15vw,180px);padding-bottom:0;text-align:center}
+.hero-in{display:flex;flex-direction:column;align-items:center;gap:22px}
+.hero h1{max-width:26ch}
+.hero .sub{max-width:54ch;font-size:clamp(1.02rem,1.6vw,1.2rem)}
+.hero-acts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:6px}
+
+/* visuel produit */
+.shot{display:grid;gap:16px;margin-top:clamp(44px,6vw,72px);grid-template-columns:1fr}
+@media (min-width:900px){.shot{grid-template-columns:.62fr 1fr}}
+.shot-card{
+  border-radius:var(--r);overflow:hidden;position:relative;background:var(--cream-2);
+  min-height:300px;padding:20px;display:flex;flex-direction:column;
+}
+.shot-a{background:linear-gradient(150deg,#C9C4B6 0%,#A8A296 45%,#8E8A80 100%);justify-content:flex-end}
+.shot-b{background:linear-gradient(160deg,#DCD9CB 0%,#C2BCA8 100%);justify-content:center;align-items:center;padding:26px}
+
+/* mini-UI LMS */
+.ui{background:#fff;border-radius:var(--r-sm);box-shadow:0 2px 6px rgba(0,0,0,.07),0 22px 44px -22px rgba(0,0,0,.4);padding:16px 17px;width:100%;text-align:left}
+.ui-head{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+.ui-head b{font-size:.98rem;font-weight:600;letter-spacing:-.02em}
+.ui-head span{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-left:auto}
+.ui-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.kpi{background:var(--cream);border-radius:9px;padding:9px 10px}
+.kpi em{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-style:normal;margin-bottom:3px}
+.kpi b{font-size:1.02rem;font-weight:700;letter-spacing:-.03em;display:block;line-height:1.1}
+.kpi i{font-style:normal;font-size:9px;color:#12A594;font-weight:600}
+.row{display:grid;grid-template-columns:auto 1fr auto auto;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--cream-2);font-size:.79rem}
+.row:first-of-type{border-top:0}
+.row .av{width:22px;height:22px;border-radius:6px;background:var(--cr,var(--c-bur));display:grid;place-items:center;color:#fff;font-size:8.5px;font-weight:700}
+.row .nm{font-weight:600;letter-spacing:-.015em;line-height:1.2}
+.row .nm em{display:block;font-style:normal;font-size:.68rem;color:var(--ink-3);font-weight:400}
+.row .bar{width:52px;height:4px;border-radius:3px;background:var(--cream-2);overflow:hidden}
+.row .bar u{display:block;height:100%;background:var(--char);border-radius:3px}
+.row .pc{font-family:var(--mono);font-size:9.5px;color:var(--ink-2);font-variant-numeric:tabular-nums;min-width:30px;text-align:right}
+.tagpop{
+  position:absolute;left:16px;bottom:16px;background:#fff;border-radius:12px;padding:12px 14px;
+  box-shadow:0 2px 6px rgba(0,0,0,.08),0 20px 40px -20px rgba(0,0,0,.45);width:min(270px,84%);text-align:left;
+}
+.tagpop em{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-style:normal;margin-bottom:8px}
+.tagpop .l{display:flex;align-items:center;gap:8px;font-size:.76rem;padding:4px 0}
+.tagpop .l b{font-weight:600;letter-spacing:-.015em}
+.tagpop .l span{margin-left:auto;font-family:var(--mono);font-size:9px;color:#12A594;font-weight:500}
+.tagpop .dotc{width:7px;height:7px;border-radius:50%;background:var(--cr,var(--c-lan));flex:none}
+
+/* ══ marquee entre filets pointillés ══ */
+.logos{padding:clamp(48px,6vw,70px) 0}
+.logos-lab{display:flex;align-items:center;gap:22px;margin-bottom:30px}
+.logos-lab::before,.logos-lab::after{content:"";flex:1;border-top:1px dashed var(--line)}
+.logos-lab span{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap}
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.mq-track{display:flex;gap:58px;width:max-content;animation:mq 44s linear infinite;align-items:center}
+.marquee:hover .mq-track{animation-play-state:paused}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mq-track span{font-size:1.32rem;font-weight:700;letter-spacing:-.035em;color:var(--ink-3);white-space:nowrap;opacity:.7}
+@media (prefers-reduced-motion:reduce){.mq-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center;gap:18px 36px}}
+
+/* ══ tuiles de stats ══ */
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media (min-width:860px){.tiles{grid-template-columns:repeat(4,1fr)}}
+.tile{
+  background:var(--cream-2);border-radius:var(--r);padding:clamp(28px,4vw,44px) 20px;
+  text-align:center;display:flex;flex-direction:column;gap:8px;
+  transition:background .3s,transform .3s var(--ease);
+}
+.tile:hover{background:var(--cream-3);transform:translateY(-3px)}
+.tile b{font-size:clamp(2.1rem,4.4vw,3.05rem);font-weight:600;letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
+.tile b u{text-decoration:none;color:var(--red)}
+.tile > span{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);line-height:1.4}
+
+/* ══ bloc réponse (GEO) ══ */
+.answer{max-width:900px;margin:0 auto}
+.answer > p{font-size:clamp(1.08rem,1.9vw,1.32rem);line-height:1.5;text-align:center;letter-spacing:-.022em;max-width:62ch;margin:0 auto}
+.facts{display:grid;gap:12px;margin-top:clamp(38px,5vw,58px);grid-template-columns:1fr}
+@media (min-width:720px){.facts{grid-template-columns:1fr 1fr}}
+.fact{background:var(--char-2);border-radius:var(--r);padding:24px 26px 26px;transition:background .3s,transform .3s var(--ease)}
+.fact:hover{background:var(--char-3);transform:translateY(-3px)}
+.fact h4{margin-bottom:8px}
+.fact p{font-size:.95rem;line-height:1.55;color:var(--on-char-2)}
+
+/* ══ deux voies ══ */
+.paths{display:grid;gap:16px}
+@media (min-width:940px){.paths{grid-template-columns:1fr 1fr}}
+.path{border-radius:var(--r);padding:clamp(28px,3.6vw,40px);display:flex;flex-direction:column;gap:14px;transition:transform .32s var(--ease),background .3s}
+.path:hover{transform:translateY(-4px)}
+.path-a{background:var(--cream-2)}
+.path-a:hover{background:var(--cream-3)}
+.path-b{background:var(--char);color:var(--on-char)}
+.path-b:hover{background:#000}
+.path-b h3{color:var(--on-char)}
+.path .eyebrow{margin-bottom:2px}
+.path > p{font-size:.99rem;line-height:1.55;color:var(--ink-2)}
+.path-b > p{color:var(--on-char-2)}
+.path ul{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:10px}
+.path li{display:grid;grid-template-columns:auto 1fr;gap:11px;font-size:.94rem;line-height:1.45;align-items:start}
+.path li svg{margin-top:4px;flex:none;color:var(--red)}
+.path-foot{margin-top:auto;padding-top:22px}
+.chip{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:100px;background:rgba(0,0,0,.06);color:var(--ink-2)}
+.path-b .chip{background:rgba(255,255,255,.09);color:var(--on-char-2)}
+
+/* ══ onglets + domaines ══ */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:clamp(30px,4vw,44px)}
+.tab{
+  font-family:var(--sans);font-size:.89rem;font-weight:600;letter-spacing:-.012em;
+  padding:10px 20px;border-radius:100px;border:1px solid var(--line);
+  background:transparent;color:var(--ink-2);cursor:pointer;transition:all .2s var(--ease);
+}
+.tab:hover{border-color:var(--ink-3);color:var(--ink)}
+.tab[aria-pressed="true"]{background:var(--char);border-color:var(--char);color:var(--cream)}
+.doms{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(268px,1fr))}
+.dom{
+  background:var(--cream-2);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .32s var(--ease),background .3s;
+}
+.dom:hover{transform:translateY(-5px);background:var(--cream-3)}
+.dom[hidden]{display:none}
+.dom-top{height:118px;position:relative;overflow:hidden;background:var(--c);display:flex;align-items:flex-end;padding:12px}
+.dom-top::after{content:"";position:absolute;inset:0;background:linear-gradient(145deg,rgba(255,255,255,.16),rgba(0,0,0,.24))}
+.dom-glyph{position:absolute;right:-12px;bottom:-20px;opacity:.24;color:#fff;transition:transform .45s var(--ease)}
+.dom:hover .dom-glyph{transform:scale(1.09) rotate(-4deg)}
+.cpf{
+  position:relative;z-index:2;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;padding:5px 10px;border-radius:100px;background:#fff;color:var(--ink);
+}
+.dom-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:7px;flex:1}
+.dom-body h4{letter-spacing:-.028em}
+.dom-body p{font-size:.88rem;line-height:1.45;color:var(--ink-2)}
+.dom-meta{
+  margin-top:auto;padding-top:14px;display:flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);
+}
+.dom-meta .go{margin-left:auto;color:var(--ink);transition:transform .22s var(--ease)}
+.dom:hover .dom-meta .go{transform:translateX(4px)}
+
+/* ══ how it works : sommaire sticky + étapes ══ */
+.how{display:grid;gap:clamp(28px,4vw,54px)}
+@media (min-width:1000px){.how{grid-template-columns:230px 1fr}}
+.how-side{display:none}
+@media (min-width:1000px){
+  .how-side{display:block;position:sticky;top:110px;align-self:start}
+}
+.how-side ol{list-style:none;margin:0;padding:0}
+.how-side li{
+  display:flex;align-items:center;gap:10px;padding:13px 0;border-bottom:1px solid var(--line-char);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--on-char-3);transition:color .3s;
+}
+.how-side li::after{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;margin-left:auto;opacity:.45;transition:opacity .3s,background .3s}
+.how-side li.on{color:var(--on-char)}
+.how-side li.on::after{background:var(--red);opacity:1}
+.steps{display:grid;gap:14px}
+.step{
+  background:var(--char-2);border-radius:var(--r);padding:clamp(24px,3.2vw,34px);
+  display:grid;gap:22px;grid-template-columns:1fr;transition:background .3s;
+}
+@media (min-width:780px){.step{grid-template-columns:1fr .92fr;gap:30px;align-items:center}}
+.step:hover{background:var(--char-3)}
+.step-n{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--on-char-3);display:block;margin-bottom:14px}
+.step h3{margin-bottom:12px}
+.step h3 em{font-style:normal;color:var(--on-char-3)}
+.step p{font-size:.95rem;line-height:1.58;color:var(--on-char-2)}
+.step-vis{background:var(--char);border-radius:var(--r-sm);padding:18px;min-height:150px;display:flex;flex-direction:column;justify-content:center;gap:8px}
+.lesson{display:grid;grid-template-columns:auto 1fr auto;gap:11px;align-items:center;padding:9px 11px;border-radius:9px;background:rgba(255,255,255,.045);transition:background .2s}
+.lesson:hover{background:rgba(255,255,255,.08)}
+.lesson u{text-decoration:none;font-family:var(--mono);font-size:9.5px;color:var(--red);font-weight:700}
+.lesson b{font-size:.83rem;font-weight:500;letter-spacing:-.015em;color:var(--on-char);line-height:1.25}
+.lesson b em{display:block;font-style:normal;font-size:.71rem;color:var(--on-char-3);margin-top:1px}
+.lesson i{font-style:normal;font-family:var(--mono);font-size:9px;color:var(--on-char-3)}
+.norm-chip{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:9px;background:rgba(255,255,255,.045);font-size:.82rem;color:var(--on-char-2)}
+.norm-chip b{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--on-char);font-weight:500}
+.norm-chip .ok{margin-left:auto;color:#3DC98B;font-size:.72rem;font-family:var(--mono)}
+
+/* ══ témoignage ══ */
+.quote{text-align:center;max-width:880px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:26px}
+.quote blockquote{margin:0;font-size:clamp(1.35rem,3vw,2.15rem);line-height:1.24;letter-spacing:-.032em;font-weight:600;text-wrap:balance}
+.quote figcaption{display:flex;align-items:center;gap:12px;font-size:.92rem;color:var(--ink-2)}
+.quote .ava{width:42px;height:42px;border-radius:50%;background:linear-gradient(140deg,var(--c-pao),var(--c-sav));display:grid;place-items:center;color:#fff;font-weight:700;font-size:.85rem;flex:none}
+.quote figcaption b{display:block;color:var(--ink);font-weight:600;letter-spacing:-.02em}
+
+/* ══ faq ══ */
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{
+  display:flex;align-items:flex-start;gap:18px;padding:22px 0;cursor:pointer;list-style:none;
+  font-size:clamp(1.02rem,1.8vw,1.2rem);font-weight:600;letter-spacing:-.028em;line-height:1.3;
+  transition:opacity .18s;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{opacity:.62}
+.faq .sign{margin-left:auto;flex:none;width:22px;height:22px;position:relative;margin-top:2px;transition:transform .3s var(--ease)}
+.faq .sign::before,.faq .sign::after{content:"";position:absolute;background:var(--ink);border-radius:2px;top:50%;left:50%;transform:translate(-50%,-50%)}
+.faq .sign::before{width:13px;height:1.8px}
+.faq .sign::after{width:1.8px;height:13px;transition:opacity .24s}
+.faq details[open] .sign{transform:rotate(90deg)}
+.faq details[open] .sign::after{opacity:0}
+.faq-a{padding:0 44px 24px 0;font-size:.98rem;line-height:1.62;color:var(--ink-2)}
+
+/* ══ cta final ══ */
+.final{text-align:center}
+.final-in{display:flex;flex-direction:column;align-items:center;gap:20px}
+.final h2{max-width:15ch}
+.final .sub{max-width:50ch}
+.final small{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--on-char-3);margin-top:4px}
+
+/* ══ notes ══ */
+.notes{background:var(--cream-2);padding:34px 0}
+.notes-in{display:flex;gap:14px;align-items:flex-start;font-size:.85rem;line-height:1.6;color:var(--ink-2);max-width:86ch}
+.notes-in svg{flex:none;margin-top:2px;color:var(--ink-3)}
+.notes-in b{display:block;color:var(--ink);font-weight:600;margin-bottom:4px;letter-spacing:-.02em}
+</style>
+
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="#" aria-label="Onlineformapro, accueil"><b><i>O</i>nline</b><span>FORMAPRO</span></a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="#">LMS</a><a href="#">Solutions</a><a href="#">IA</a>
+      <a href="#reponse" aria-current="page">Catalogue</a>
+      <a href="#comment">Comment ça marche</a><a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-cta"><a class="btn btn-dark" href="#demo">Nous contacter<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  </div>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero">
+  <div class="wrap hero-in">
+    <span class="trust rv"><i>OF</i> Utilisé par des organismes de formation et des grands comptes depuis 1999</span>
+    <h1 class="rv">Arrêtez de produire vos contenus. Commencez à former.</h1>
+    <p class="sub rv">6 000 heures de modules e-learning prêtes à diffuser dans votre LMS. Douze domaines, normes SCORM, AICC et xAPI, une partie éligible au CPF.</p>
+    <div class="hero-acts rv">
+      <a class="btn btn-primary" href="#demo">Accéder au catalogue<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn btn-line" href="#domaines">Voir les 12 domaines</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="shot rv">
+      <div class="shot-card shot-a">
+        <div class="tagpop">
+          <em>Formats disponibles</em>
+          <span class="l" style="--cr:var(--c-lan)"><span class="dotc"></span><b>SCORM 1.2</b><span>Prêt</span></span>
+          <span class="l" style="--cr:var(--c-pao)"><span class="dotc"></span><b>SCORM 2004</b><span>Prêt</span></span>
+          <span class="l" style="--cr:var(--c-bur)"><span class="dotc"></span><b>AICC · xAPI</b><span>Prêt</span></span>
+        </div>
+      </div>
+      <div class="shot-card shot-b">
+        <div class="ui">
+          <div class="ui-head"><b>Suivi des parcours</b><span>Mars 2026</span></div>
+          <div class="ui-kpis">
+            <div class="kpi"><em>Inscrits</em><b>1 284</b><i>+18 % ce mois</i></div>
+            <div class="kpi"><em>Complétion</em><b>78 %</b><i>+6 pts</i></div>
+            <div class="kpi"><em>Heures suivies</em><b>9 410</b><i>+1 220</i></div>
+          </div>
+          <div class="row" style="--cr:var(--c-bur)"><span class="av">BU</span><span class="nm">Excel · Tableaux croisés<em>Bureautique · 4 leçons</em></span><span class="bar"><u style="width:86%"></u></span><span class="pc">86 %</span></div>
+          <div class="row" style="--cr:var(--c-lan)"><span class="av">LA</span><span class="nm">Anglais professionnel A2<em>Langues · 6 leçons</em></span><span class="bar"><u style="width:64%"></u></span><span class="pc">64 %</span></div>
+          <div class="row" style="--cr:var(--c-pre)"><span class="av">PR</span><span class="nm">Gestes qui sauvent<em>Prévention · 5 leçons</em></span><span class="bar"><u style="width:41%"></u></span><span class="pc">41 %</span></div>
+          <div class="row" style="--cr:var(--c-sav)"><span class="av">SB</span><span class="nm">Français · remise à niveau<em>Savoirs de base · 7 leçons</em></span><span class="bar"><u style="width:93%"></u></span><span class="pc">93 %</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LOGOS ═══ -->
+<div class="logos">
+  <div class="wrap">
+    <div class="logos-lab rv"><span>Ils diffusent nos contenus</span></div>
+    <div class="marquee rv">
+      <div class="mq-track">
+        <span>SNCF</span><span>Ministère de l'Agriculture</span><span>Banque Populaire</span><span>Bouygues Télécom</span><span>STMicroelectronics</span><span>Fiducial Informatique</span><span>Groupe ESC Amiens</span><span>Maison de la Formation</span><span>ESTC Marseille</span>
+        <span aria-hidden="true">SNCF</span><span aria-hidden="true">Ministère de l'Agriculture</span><span aria-hidden="true">Banque Populaire</span><span aria-hidden="true">Bouygues Télécom</span><span aria-hidden="true">STMicroelectronics</span><span aria-hidden="true">Fiducial Informatique</span><span aria-hidden="true">Groupe ESC Amiens</span><span aria-hidden="true">Maison de la Formation</span><span aria-hidden="true">ESTC Marseille</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TUILES ═══ -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="tiles">
+      <div class="tile rv"><b><span class="num" data-to="6000">0</span><u>h</u></b><span>de contenu au catalogue</span></div>
+      <div class="tile rv"><b><span class="num" data-to="12">0</span></b><span>domaines couverts</span></div>
+      <div class="tile rv"><b><span class="num" data-to="3">0</span></b><span>normes supportées</span></div>
+      <div class="tile rv"><b>1999</b><span>année de création</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RÉPONSE GEO ═══ -->
+<section class="on-char" id="reponse">
+  <div class="wrap">
+    <div class="head rv"><span class="eyebrow" style="--d:var(--dot-1)">Le catalogue</span><h2>Ce que vous intégrez, exactement.</h2></div>
+    <div class="answer">
+      <p class="rv"><strong>Onlineformapro permet aux organismes de formation et aux entreprises d'intégrer un catalogue de 6 000 heures de modules e-learning directement dans leur propre plateforme LMS</strong>, aux normes SCORM, AICC et xAPI. Les contenus sont produits et maintenus en France depuis 1999, et une partie du catalogue est éligible au financement CPF.</p>
+      <div class="facts">
+        <div class="fact rv"><h4>Compatibilité LMS</h4><p>Les modules s'intègrent dans n'importe quel LMS du marché grâce aux normes SCORM 1.2, SCORM 2004, AICC et xAPI. Aucune migration de plateforme n'est nécessaire.</p></div>
+        <div class="fact rv"><h4>Étendue du catalogue</h4><p>12 domaines : bureautique, bases informatiques, langues, savoirs de base, santé, prévention, tertiaire, CAO-DAO, PAO, développement web, orientation, entraînement cognitif.</p></div>
+        <div class="fact rv"><h4>Traçabilité et preuves</h4><p>Chaque parcours remonte progression, temps passé et résultats d'évaluation vers votre LMS — les données que réclament les financeurs et les auditeurs Qualiopi.</p></div>
+        <div class="fact rv"><h4>Aucune installation</h4><p>Les simulations logicielles fonctionnent dans le navigateur, sans installation sur le poste de l'apprenant et en faible bande passante. Compatible parc informatique verrouillé.</p></div>
+        <div class="fact rv"><h4>Granularité</h4><p>Chaque module dure environ une heure et se compose de 4 à 7 leçons, chacune portant un objectif pédagogique explicite. Le contenu s'assemble à la carte dans vos parcours.</p></div>
+        <div class="fact rv"><h4>Financement</h4><p>Une partie du catalogue est éligible au CPF, mobilisable dans le cadre du plan de développement des compétences et des dispositifs OPCO.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DEUX VOIES ═══ -->
+<section id="usages">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow" style="--d:var(--dot-2)">Deux façons de l'utiliser</span>
+      <h2>Vous gardez votre LMS. Ou vous prenez le nôtre.</h2>
+      <p class="sub">Les fournisseurs de contenu vous laissent trouver la plateforme. Les éditeurs de LMS vous laissent trouver le contenu. Nous faisons les deux — vous ne prenez que ce dont vous avez besoin.</p>
+    </div>
+    <div class="paths">
+      <article class="path path-a rv">
+        <span class="eyebrow" style="--d:var(--dot-3)">Voie 1 · Contenu seul</span>
+        <h3>Le catalogue dans votre LMS</h3>
+        <p>Vous avez déjà une plateforme et vous ne comptez pas en changer. Vous récupérez les modules au format SCORM, AICC ou xAPI et vous les déposez dans votre environnement existant.</p>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Compatible Moodle, 360Learning, Rise&nbsp;Up, Syfadis, Cornerstone et tout LMS aux normes</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Sélection à la carte, par domaine ou par module</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Vos habilitations, votre charte, vos parcours — rien ne change côté apprenant</li>
+        </ul>
+        <div class="path-foot"><span class="chip">Entreprise ou OF déjà équipé</span></div>
+      </article>
+      <article class="path path-b rv">
+        <span class="eyebrow" style="--d:var(--dot-5)">Voie 2 · Solution complète</span>
+        <h3>Le catalogue et la plateforme</h3>
+        <p>Vous partez de zéro, ou votre plateforme actuelle vous coûte plus qu'elle ne vous rapporte. Vous obtenez le catalogue, le LMS OnlineManager, l'espace apprenant et le coach IA dans un seul contrat.</p>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Un seul interlocuteur pour la plateforme et le contenu</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Lisy, le coach IA, relance les apprenants inactifs et génère des évaluations</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>FastFormation pour produire vos propres modules à côté du catalogue</li>
+        </ul>
+        <div class="path-foot"><span class="chip">Projet neuf ou remplacement</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DOMAINES ═══ -->
+<section class="on-cream2" id="domaines">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow" style="--d:var(--dot-4)">Le catalogue</span>
+      <h2>Douze domaines de compétences.</h2>
+      <p class="sub">Contenus conçus, produits et maintenus par Onlineformapro. Sélection à la carte, par domaine ou module.</p>
+    </div>
+    <div class="tabs rv" role="group" aria-label="Filtrer les domaines">
+      <button class="tab" type="button" data-f="all" aria-pressed="true">Tous</button>
+      <button class="tab" type="button" data-f="cpf" aria-pressed="false">Éligible CPF</button>
+      <button class="tab" type="button" data-f="num" aria-pressed="false">Numérique &amp; création</button>
+      <button class="tab" type="button" data-f="fond" aria-pressed="false">Compétences fondamentales</button>
+      <button class="tab" type="button" data-f="met" aria-pressed="false">Métiers &amp; prévention</button>
+    </div>
+    <div class="doms" id="doms">
+      <a class="dom rv" href="#" data-tags="cpf num" style="--c:var(--c-bur)"><div class="dom-top"><span class="cpf">Éligible CPF</span><svg class="dom-glyph" width="118" height="118" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 4h9l3 3v13H4z" stroke="currentColor" stroke-width="1.3"/><path d="M13 4v3h3M7 11h6M7 14h6M7 17h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div><div class="dom-body"><h4>Bureautique</h4><p>Des modules de formation pour tous les logiciels principaux de la suite Microsoft Office.</p><span class="dom-meta">Word · Excel · PowerPoint<span class="go">&rarr;</span></span></div></a>
+
+      <a class="dom rv" href="#" data-tags="cpf num" style="--c:var(--c-inf)"><div class="dom-top"><span class="cpf">Éligible CPF</span><svg class="dom-glyph" width="118" height="118" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M8 20h8M12 16.5V20" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div><div class="dom-body"><h4>Bases informatiques</h4><p>Se familiariser avec les éléments de l'ordinateur, le système d'exploitation Windows et la messagerie.</p><span class="dom-meta">Windows · Messagerie<span class="go">&rarr;</span></span></div></a>
+
+      <a class="dom rv" href="#" data-tags="fond" style="--c:var(--c-cog)"><div class="dom-top"><svg class="dom-glyph" width="118" height="118" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a4 4 0 0 0-4 4 3.5 3.5 0 0 0-1 6.8V17a3 3 0 0 0 5 2.2 3 3 0 0 0 5-2.2v-3.2A3.5 3.5 0 0 0 16 7a4 4 0 0 0-4-4Z" stroke="currentColor" stroke-width="1.3"/><path d="M12 3v17" stroke="currentColor" stroke-width="1.3"/></svg></div><div class="dom-body"><h4>Entraînement cognitif</h4><p>Des modules ludiques pour exercer la mémoire, la concentration, la fluidité verbale, le raisonnement logique.</p><span class="dom-meta">Mémoire · Logique<span class="go">&rarr;</span></span></div></a>
+
+      <a class="dom rv" href="#" data-tags="cpf met" style="--c:var(--c-san)"><div class="dom-top"><span class="cpf">Éligible CPF</span><svg class="dom-glyph" width="118" height="118" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div><div class="dom-body"><h4>Santé</h4><p>Mettez toutes les chances de votre côté afin d'intégrer les écoles paramédicales.</p><span class="dom-meta">Concours paramédicaux<span class="go">&rarr;</span></span></div></a>
+
+      <a class="dom rv" href="#" data-tags="cpf fond" style="--c:var(--c-lan)"><div class="dom-top"><span class="cpf">Éligible CPF</span><svg class="dom-glyph" width="118" height="118" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.3"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15 0 18M12 3c-2.5 2.6-2.5 15 0 18" stroke="currentColor" stroke-width="1.3"/></svg></div><div class="dom-body"><h4>Langues</h4><p>Nos méthodes d'apprentissage des langues anglaise, espagnole et allemande.</p><span class="dom-meta">Anglais · Espagnol · Allemand<span class="go">&rarr;</span></span></div></a>
+
+      <a class="dom rv" href="#" data-tags="cpf fond" style="--c:var(--c-sav)"><div class="dom-top"><span class="cpf">Éligible CPF</span><svg class="dom-glyph" width="118" height="118" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6.5C5.5 5 8.5 5 12 6.8 15.5 5 18.5 5 21 6.5v12c-2.5-1.5-5.5-1.5-9 .3-3.5-1.8-6.5-1.8-9-.3v-12Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M12 6.8v12" stroke="currentColor" stroke-width="1.3"/></svg></div><div class="dom-body"><h4>Savoirs de base</h4><p>Des parcours adaptés à chacun sur les compétences de base en maths et en français.</p><span class="dom-meta">Maths · Français<span class="go">&rarr;</span></span></div></a>
+
+      <a class="dom rv" href="#" data-tags="fond" style="--c:var(--c-ori)"><div class="dom-top"><svg class="dom-glyph" width="118" height="118" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.3"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div><div class="dom-body"><h4>Orientation</h4><p>Outils de mise en adéquation des carrières avec les choix vocationnels.</p><span class="dom-meta">Bilan · Projet professionnel<span class="go">&rarr;</span></span></div></a>
+
+      <a class="dom rv" href="#" data-tags="met" style="--c:var(--c-pre)"><div class="dom-top"><svg class="dom-glyph" width="118" height="118" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7.5 3v6c0 4.5-3.2 7.6-7.5 9-4.3-1.4-7.5-4.5-7.5-9V6L12 3Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M12 9v5M9.5 11.5h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div><div class="dom-body"><h4>Prévention</h4><p>Les gestes qui sauvent, la sécurisation des situations de travail, les risques professionnels.</p><span class="dom-meta">SST · Risques professionnels<span class="go">&rarr;</span></span></div></a>
+
+      <a class="dom rv" href="#" data-tags="cpf met" style="--c:var(--c-ter)"><div class="dom-top"><span class="cpf">Éligible CPF</span><svg class="dom-glyph" width="118" height="118" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="7" width="19" height="13" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M9 7V5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 5v2M2.5 12h19" stroke="currentColor" stroke-width="1.3"/></svg></div><div class="dom-body"><h4>Tertiaire</h4><p>Des contenus au service du développement des compétences des collaborateurs.</p><span class="dom-meta">Secrétariat · Comptabilité · Gestion<span class="go">&rarr;</span></span></div></a>
+
+      <a class="dom rv" href="#" data-tags="cpf num" style="--c:var(--c-cao)"><div class="dom-top"><span class="cpf">Éligible CPF</span><svg class="dom-glyph" width="118" height="118" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20V8l8-5 8 5v12" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M4 20h16M9 20v-6h6v6M12 3v5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div><div class="dom-body"><h4>CAO-DAO</h4><p>Nos formations AutoCAD et Revit pour apprendre à créer vos plans 2D ou 3D.</p><span class="dom-meta">AutoCAD · Revit<span class="go">&rarr;</span></span></div></a>
+
+      <a class="dom rv" href="#" data-tags="cpf num" style="--c:var(--c-pao)"><div class="dom-top"><span class="cpf">Éligible CPF</span><svg class="dom-glyph" width="118" height="118" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 0 0 0 18c1.4 0 2-.9 2-1.8 0-1.4-1.2-1.7-1.2-2.7 0-.8.7-1.5 1.6-1.5H16a5 5 0 0 0 5-5c0-3.9-4-7-9-7Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="8" cy="10" r="1.1" fill="currentColor"/><circle cx="12" cy="7.5" r="1.1" fill="currentColor"/><circle cx="16" cy="10" r="1.1" fill="currentColor"/></svg></div><div class="dom-body"><h4>PAO</h4><p>Préparer des documents destinés à l'impression ou à la publication en ligne : flyers, logos, sites.</p><span class="dom-meta">Photoshop · Illustrator · InDesign<span class="go">&rarr;</span></span></div></a>
+
+      <a class="dom rv" href="#" data-tags="num" style="--c:var(--c-dev)"><div class="dom-top"><svg class="dom-glyph" width="118" height="118" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="dom-body"><h4>Développement</h4><p>Les langages de développement les plus utilisés pour réaliser vos projets web.</p><span class="dom-meta">HTML · CSS · JavaScript · PHP<span class="go">&rarr;</span></span></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COMMENT ÇA MARCHE ═══ -->
+<section class="on-char" id="comment">
+  <div class="wrap">
+    <div class="head head-left rv" style="margin-bottom:clamp(34px,4vw,52px)">
+      <span class="eyebrow" style="--d:var(--dot-3)">Comment ça marche</span>
+      <h2>Quatre étapes du catalogue à vos apprenants.</h2>
+      <p class="sub">De la sélection des modules aux preuves de réalisation, sans production interne ni changement de plateforme.</p>
+    </div>
+    <div class="how">
+      <aside class="how-side" aria-hidden="true">
+        <ol>
+          <li data-s="0" class="on">Sélection</li>
+          <li data-s="1">Intégration</li>
+          <li data-s="2">Diffusion</li>
+          <li data-s="3">Preuves</li>
+        </ol>
+      </aside>
+      <div class="steps">
+        <article class="step rv" data-step="0">
+          <div>
+            <span class="step-n">01</span>
+            <h3>Vous choisissez <em>ce dont vous avez besoin.</em></h3>
+            <p>Domaine complet ou module par module. Chaque module dure environ une heure et se décompose en 4 à 7 leçons, chacune portant un objectif pédagogique explicite — donc chaque leçon est adressable seule dans vos parcours.</p>
+          </div>
+          <div class="step-vis">
+            <div class="lesson"><u>L1</u><b>Créer et nommer un tableau<em>Structurer une plage de données</em></b><i>9 min</i></div>
+            <div class="lesson"><u>L2</u><b>Trier et filtrer<em>Isoler une sous-population</em></b><i>11 min</i></div>
+            <div class="lesson"><u>L3</u><b>Construire un tableau croisé<em>Produire une synthèse</em></b><i>14 min</i></div>
+            <div class="lesson"><u>L4</u><b>Exercice de synthèse<em>Évaluation des acquis</em></b><i>16 min</i></div>
+          </div>
+        </article>
+        <article class="step rv" data-step="1">
+          <div>
+            <span class="step-n">02</span>
+            <h3>Vous les déposez <em>dans votre LMS.</em></h3>
+            <p>Toutes les productions respectent SCORM 1.2, SCORM 2004, AICC et xAPI. Elles s'intègrent à n'importe quelle plateforme du marché. Pas de migration, pas de double connexion pour l'apprenant, pas de projet d'intégration.</p>
+          </div>
+          <div class="step-vis">
+            <span class="norm-chip"><b>SCORM 1.2</b><span class="ok">Compatible</span></span>
+            <span class="norm-chip"><b>SCORM 2004</b><span class="ok">Compatible</span></span>
+            <span class="norm-chip"><b>AICC</b><span class="ok">Compatible</span></span>
+            <span class="norm-chip"><b>xAPI (Tin Can)</b><span class="ok">Compatible</span></span>
+            <span class="norm-chip"><b>SIRH · LDAP</b><span class="ok">Interfaçable</span></span>
+          </div>
+        </article>
+        <article class="step rv" data-step="2">
+          <div>
+            <span class="step-n">03</span>
+            <h3>Vos apprenants <em>manipulent, ils ne regardent pas.</em></h3>
+            <p>La simulation logicielle reproduit l'interface réelle du logiciel dans le navigateur, sans installation sur le poste et en faible bande passante — donc déployable sur un parc verrouillé. L'apprenant est actif à chaque phase et joint son tuteur d'un clic.</p>
+          </div>
+          <div class="step-vis">
+            <span class="norm-chip"><b>Aucune installation</b><span class="ok">Navigateur</span></span>
+            <span class="norm-chip"><b>Faible bande passante</b><span class="ok">Réseau contraint</span></span>
+            <span class="norm-chip"><b>Parc verrouillé</b><span class="ok">Sans droits admin</span></span>
+            <span class="norm-chip"><b>Tuteur joignable</b><span class="ok">En un clic</span></span>
+          </div>
+        </article>
+        <article class="step rv" data-step="3">
+          <div>
+            <span class="step-n">04</span>
+            <h3>Vous sortez <em>vos preuves d'audit.</em></h3>
+            <p>Progression, temps de connexion et résultats d'évaluation remontent dans votre LMS leçon par leçon. Ce sont les données attendues par vos financeurs et par un auditeur Qualiopi, en particulier au titre du critère 3 sur l'accompagnement des bénéficiaires.</p>
+          </div>
+          <div class="step-vis">
+            <span class="norm-chip"><b>Progression</b><span class="ok">Leçon par leçon</span></span>
+            <span class="norm-chip"><b>Temps de connexion</b><span class="ok">Horodaté</span></span>
+            <span class="norm-chip"><b>Résultats d'évaluation</b><span class="ok">Exportables</span></span>
+            <span class="norm-chip"><b>Critère 3 Qualiopi</b><span class="ok">Documenté</span></span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TÉMOIGNAGE ═══ -->
+<section id="preuve">
+  <div class="wrap">
+    <figure class="quote rv">
+      <span class="eyebrow" style="--d:var(--dot-5)">Ils l'ont fait</span>
+      <blockquote>« Onlineformapro a su accompagner SNCF dans la mise en place de son dispositif de formation bureautique digital learning. Nos collaborateurs disposent d'un environnement de formation individualisé et tutoré accessible 24h/24. »</blockquote>
+      <figcaption><span class="ava">IP</span><span><b>Isabelle Provillard</b>Chef de projet ingénierie de formation, SNCF</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="on-cream2" id="faq">
+  <div class="narrow">
+    <div class="head rv"><span class="eyebrow" style="--d:var(--dot-1)">Questions fréquentes</span><h2>Ce qu'on nous demande avant de signer.</h2></div>
+    <div class="faq rv">
+      <details open><summary>Le catalogue est-il compatible avec mon LMS actuel ?<span class="sign" aria-hidden="true"></span></summary><div class="faq-a">Oui. Toutes les productions d'Onlineformapro respectent les normes SCORM 1.2, SCORM 2004, AICC et xAPI. Elles s'intègrent donc à n'importe quelle plateforme LMS du marché, y compris Moodle, 360Learning, Rise Up, Syfadis ou Cornerstone. Vous n'avez pas à changer de plateforme pour utiliser le catalogue.</div></details>
+      <details><summary>Que contient exactement le catalogue ?<span class="sign" aria-hidden="true"></span></summary><div class="faq-a">Plus de 6 000 heures de modules e-learning répartis en 12 domaines : bureautique, bases informatiques, entraînement cognitif, santé, langues, savoirs de base, orientation, prévention, tertiaire, CAO-DAO, PAO et développement web. Chaque module dure environ une heure et se décompose en 4 à 7 leçons.</div></details>
+      <details><summary>Les modules sont-ils éligibles au CPF ?<span class="sign" aria-hidden="true"></span></summary><div class="faq-a">Une partie du catalogue est éligible au financement CPF, signalée par un badge sur chaque domaine concerné. Les contenus sont également mobilisables dans le cadre du plan de développement des compétences et des dispositifs financés par les OPCO.</div></details>
+      <details><summary>Faut-il installer un logiciel sur le poste des apprenants ?<span class="sign" aria-hidden="true"></span></summary><div class="faq-a">Non. La technologie de simulation logicielle reproduit l'interface du logiciel directement dans le navigateur. Aucune installation n'est requise sur le poste de l'apprenant et la consommation de bande passante reste faible, ce qui rend le déploiement possible sur un parc informatique verrouillé ou sur des connexions limitées.</div></details>
+      <details><summary>Peut-on n'acheter qu'une partie du catalogue ?<span class="sign" aria-hidden="true"></span></summary><div class="faq-a">Oui. La sélection se fait à la carte, par domaine ou module par module. Vous pouvez également souscrire au catalogue complet, avec ou sans la plateforme LMS OnlineManager.</div></details>
+      <details><summary>Quelles preuves le catalogue fournit-il pour un audit Qualiopi ?<span class="sign" aria-hidden="true"></span></summary><div class="faq-a">Les modules remontent la progression, le temps passé et les résultats d'évaluation vers votre LMS via SCORM ou xAPI. Ces données alimentent les preuves de réalisation et de suivi attendues par les financeurs et par un auditeur Qualiopi, en particulier au titre du critère 3 sur l'adaptation et l'accompagnement des bénéficiaires.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA FINAL ═══ -->
+<section class="on-char final" id="demo">
+  <div class="narrow final-in">
+    <span class="eyebrow rv" style="--d:var(--dot-2)">Accès catalogue</span>
+    <h2 class="rv">Ouvrez le catalogue avant de décider.</h2>
+    <p class="sub rv">Dites-nous quels domaines vous intéressent et sur quelle plateforme vous travaillez. Nous vous ouvrons un accès de démonstration aux modules concernés.</p>
+    <div class="hero-acts rv">
+      <a class="btn btn-primary" href="#">Demander l'accès<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn btn-line" href="#">Parler à un conseiller</a>
+    </div>
+    <small class="rv">Réponse sous 48 h ouvrées · Sans engagement</small>
+  </div>
+</section>
+
+<div class="notes">
+  <div class="wrap notes-in">
+    <svg width="17" height="17" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.6" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.2v4M8 4.9v.9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    <div><b>Maquette de travail — à valider avant mise en ligne</b>
+    Thème repris du template Payflow (crème, charbon, en-têtes centrés, nav en pilule flottante), avec le rouge Onlineformapro comme unique accent, à la place du noir de Payflow. Police d'approche : Plus Jakarta Sans — à remplacer par celle de votre charte. Les chiffres, références clients et éligibilités CPF proviennent de sources publiques et de la page actuelle : à confirmer en interne. La page publique annonce « 9 rubriques » et en affiche 12 ; cette maquette retient 12.</div>
+  </div>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {"@type":"Organization","@id":"https://www.onlineformapro.com/#organization","name":"Onlineformapro","url":"https://www.onlineformapro.com/","foundingDate":"1999","address":{"@type":"PostalAddress","addressLocality":"Vesoul","postalCode":"70000","addressCountry":"FR"}},
+    {"@type":"WebPage","name":"Catalogue e-learning : 6 000 h de modules SCORM","description":"6 000 heures de contenu e-learning prêtes à diffuser dans votre LMS. 12 domaines, normes SCORM, AICC et xAPI, modules éligibles CPF.","isPartOf":{"@id":"https://www.onlineformapro.com/#organization"},"inLanguage":"fr-FR"},
+    {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.onlineformapro.com/"},{"@type":"ListItem","position":2,"name":"Catalogue e-learning"}]},
+    {"@type":"ItemList","name":"Domaines du catalogue e-learning Onlineformapro","numberOfItems":12,"itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Bureautique"},{"@type":"ListItem","position":2,"name":"Bases informatiques"},
+      {"@type":"ListItem","position":3,"name":"Entraînement cognitif"},{"@type":"ListItem","position":4,"name":"Santé"},
+      {"@type":"ListItem","position":5,"name":"Langues"},{"@type":"ListItem","position":6,"name":"Savoirs de base"},
+      {"@type":"ListItem","position":7,"name":"Orientation"},{"@type":"ListItem","position":8,"name":"Prévention"},
+      {"@type":"ListItem","position":9,"name":"Tertiaire"},{"@type":"ListItem","position":10,"name":"CAO-DAO"},
+      {"@type":"ListItem","position":11,"name":"PAO"},{"@type":"ListItem","position":12,"name":"Développement web"}]},
+    {"@type":"FAQPage","mainEntity":[
+      {"@type":"Question","name":"Le catalogue est-il compatible avec mon LMS actuel ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Toutes les productions d'Onlineformapro respectent les normes SCORM 1.2, SCORM 2004, AICC et xAPI. Elles s'intègrent donc à n'importe quelle plateforme LMS du marché."}},
+      {"@type":"Question","name":"Que contient exactement le catalogue ?","acceptedAnswer":{"@type":"Answer","text":"Plus de 6 000 heures de modules e-learning répartis en 12 domaines. Chaque module dure environ une heure et se décompose en 4 à 7 leçons."}},
+      {"@type":"Question","name":"Les modules sont-ils éligibles au CPF ?","acceptedAnswer":{"@type":"Answer","text":"Une partie du catalogue est éligible au financement CPF, mobilisable aussi dans le plan de développement des compétences et les dispositifs OPCO."}},
+      {"@type":"Question","name":"Faut-il installer un logiciel sur le poste des apprenants ?","acceptedAnswer":{"@type":"Answer","text":"Non. La simulation logicielle fonctionne dans le navigateur, sans installation sur le poste de l'apprenant et en faible bande passante."}},
+      {"@type":"Question","name":"Peut-on n'acheter qu'une partie du catalogue ?","acceptedAnswer":{"@type":"Answer","text":"Oui. La sélection se fait à la carte, par domaine ou module par module, avec ou sans la plateforme LMS OnlineManager."}},
+      {"@type":"Question","name":"Quelles preuves le catalogue fournit-il pour un audit Qualiopi ?","acceptedAnswer":{"@type":"Answer","text":"Les modules remontent la progression, le temps passé et les résultats d'évaluation vers votre LMS via SCORM ou xAPI, alimentant les preuves de réalisation attendues par les financeurs et les auditeurs."}}]}
+  ]
+}
+</script>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* nav : barre pleine largeur → pilule flottante */
+  var nav = document.getElementById('nav');
+  var onScroll = function(){ nav.classList.toggle('float', window.scrollY > 40); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* révélations au scroll, décalées par groupe */
+  var items = document.querySelectorAll('.rv');
+  if (reduce || !('IntersectionObserver' in window)) {
+    items.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var g = new Map();
+    items.forEach(function(el){
+      var p = el.parentElement;
+      var i = g.get(p) || 0;
+      el.style.transitionDelay = Math.min(i * 65, 390) + 'ms';
+      g.set(p, i + 1);
+    });
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
+    items.forEach(function(el){ io.observe(el); });
+  }
+
+  /* compteurs */
+  document.querySelectorAll('.num').forEach(function(el){
+    var to = parseInt(el.dataset.to, 10);
+    var fmt = function(n){ return n.toLocaleString('fr-FR'); };
+    if (reduce || !('IntersectionObserver' in window)) { el.textContent = fmt(to); return; }
+    var done = false;
+    var o = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (!e.isIntersecting || done) return;
+        done = true; o.disconnect();
+        var t0 = null, dur = 1400;
+        var tick = function(t){
+          if (t0 === null) t0 = t;
+          var p = Math.min((t - t0) / dur, 1);
+          el.textContent = fmt(Math.round(to * (1 - Math.pow(1 - p, 3))));
+          if (p < 1) requestAnimationFrame(tick); else el.textContent = fmt(to);
+        };
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.45 });
+    o.observe(el);
+  });
+
+  /* onglets de domaines */
+  var tabs = document.querySelectorAll('.tab');
+  var doms = document.querySelectorAll('.dom');
+  tabs.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var f = btn.dataset.f;
+      tabs.forEach(function(b){ b.setAttribute('aria-pressed', String(b === btn)); });
+      doms.forEach(function(d){
+        d.hidden = !(f === 'all' || (d.dataset.tags || '').split(' ').indexOf(f) !== -1);
+      });
+    });
+  });
+
+  /* sommaire latéral : point actif suivant l'étape visible */
+  var sideItems = document.querySelectorAll('.how-side li');
+  var steps = document.querySelectorAll('.step[data-step]');
+  if (sideItems.length && steps.length && 'IntersectionObserver' in window) {
+    var so = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var i = e.target.dataset.step;
+        sideItems.forEach(function(li){ li.classList.toggle('on', li.dataset.s === i); });
+      });
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+    steps.forEach(function(s){ so.observe(s); });
+  }
+})();
+</script>
