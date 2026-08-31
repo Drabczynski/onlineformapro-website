@@ -11,9 +11,9 @@ tel quel dans n'importe quel navigateur.
 Si le navigateur bloque le chargement des polices en `file://`, servir le dossier :
 
 ```bash
-npx serve prototypes/catalogue     # puis http://localhost:3000
+npx serve catalogue     # puis http://localhost:3000
 # ou
-python3 -m http.server 8000 -d prototypes/catalogue
+python3 -m http.server 8000 -d catalogue
 ```
 
 ## Ce qu'elle contient

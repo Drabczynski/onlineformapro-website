@@ -1,11 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
-    { "source": "/catalogue", "destination": "/prototypes/catalogue/index.html" },
-    { "source": "/cadrage", "destination": "/docs/cadrage-onlineformapro.html" }
-  ],
   "headers": [
     {
       "source": "/(.*)",
