@@ -120,10 +120,11 @@ section[id]{scroll-margin-top:92px}
 .hero .sub{max-width:56ch;font-size:clamp(1.02rem,1.6vw,1.2rem)}
 .shot{display:grid;gap:16px;margin-top:clamp(44px,6vw,68px);grid-template-columns:1fr}
 @media (min-width:900px){.shot{grid-template-columns:.62fr 1fr}}
-.shot-card{border-radius:var(--r);overflow:hidden;position:relative;min-height:300px;padding:20px;display:flex;flex-direction:column}
-.shot-a{background:linear-gradient(150deg,#C9C4B6,#A8A296 45%,#8E8A80);justify-content:flex-end}
-.shot-b{background:linear-gradient(160deg,#DCD9CB,#C2BCA8);justify-content:center;align-items:center;padding:26px}
-.ui{background:#fff;border-radius:var(--r-sm);box-shadow:0 2px 6px rgba(0,0,0,.07),0 22px 44px -22px rgba(0,0,0,.4);padding:16px 17px;width:100%;text-align:left}
+.shot-card{border-radius:var(--r);overflow:hidden;position:relative;min-height:300px;padding:20px;display:flex;flex-direction:column;isolation:isolate;background:var(--cream-3)}
+.shot-card > *:not(.paint){position:relative;z-index:2}
+.shot-a{justify-content:flex-end}
+.shot-b{justify-content:center;align-items:center;padding:clamp(22px,3vw,34px)}
+.ui{background:#fff;color:var(--ink);border-radius:var(--r-sm);box-shadow:0 1px 2px rgba(0,0,0,.16),0 10px 20px -8px rgba(0,0,0,.3),0 34px 60px -28px rgba(0,0,0,.6);padding:16px 17px;width:100%;text-align:left}
 .ui-head{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
 .ui-head b{font-size:.98rem;font-weight:600;letter-spacing:-.02em}
 .ui-head > span{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-left:auto}
@@ -140,8 +141,8 @@ section[id]{scroll-margin-top:92px}
 .row .bar{width:52px;height:4px;border-radius:3px;background:var(--cream-2);overflow:hidden}
 .row .bar u{display:block;height:100%;background:var(--char);border-radius:3px}
 .row .pc{font-family:var(--mono);font-size:9.5px;color:var(--ink-2);font-variant-numeric:tabular-nums;min-width:30px;text-align:right}
-.tagpop{position:absolute;left:16px;bottom:16px;background:#fff;border-radius:12px;padding:12px 14px;
-  box-shadow:0 2px 6px rgba(0,0,0,.08),0 20px 40px -20px rgba(0,0,0,.45);width:min(270px,84%);text-align:left}
+.tagpop{position:absolute;left:16px;bottom:16px;z-index:3;background:#fff;color:var(--ink);border-radius:12px;padding:12px 14px;
+  box-shadow:0 1px 2px rgba(0,0,0,.14),0 18px 36px -16px rgba(0,0,0,.6);width:min(270px,84%);text-align:left}
 .tagpop em{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-style:normal;margin-bottom:8px}
 .tagpop .l{display:flex;align-items:center;gap:8px;font-size:.76rem;padding:4px 0}
 .tagpop .l b{font-weight:600;letter-spacing:-.015em}
@@ -200,36 +201,6 @@ section[id]{scroll-margin-top:92px}
 .aud .go svg{transition:transform .2s var(--ease)}
 .aud:hover .go svg{transform:translateX(4px)}
 
-/* ══ étapes ══ */
-.how{display:grid;gap:clamp(26px,4vw,52px)}
-@media (min-width:1000px){.how{grid-template-columns:230px 1fr}}
-.how-side{display:none}
-@media (min-width:1000px){.how-side{display:block;position:sticky;top:110px;align-self:start}}
-.how-side ol{list-style:none;margin:0;padding:0}
-.how-side li{display:flex;align-items:center;gap:10px;padding:13px 0;border-bottom:1px solid var(--line-char);
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--on-char-3);transition:color .3s}
-.how-side li::after{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;margin-left:auto;opacity:.45;transition:opacity .3s,background .3s}
-.how-side li.on{color:var(--on-char)}
-.how-side li.on::after{background:var(--red);opacity:1}
-.steps{display:grid;gap:13px}
-.step{background:var(--char-2);border-radius:var(--r);padding:clamp(24px,3.2vw,34px);display:grid;gap:22px;grid-template-columns:1fr;transition:background .25s}
-@media (min-width:780px){.step{grid-template-columns:1fr .9fr;gap:30px;align-items:center}}
-.step:hover{background:var(--char-3)}
-.step-n{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--on-char-3);display:block;margin-bottom:13px}
-.step h3{margin-bottom:11px}
-.step h3 em{font-style:normal;color:var(--on-char-3)}
-.step p{font-size:.95rem;line-height:1.58;color:var(--on-char-2)}
-.step-vis{background:var(--char);border-radius:var(--r-sm);padding:17px;min-height:148px;display:flex;flex-direction:column;justify-content:center;gap:7px}
-.lesson{display:grid;grid-template-columns:auto 1fr auto;gap:11px;align-items:center;padding:9px 11px;border-radius:9px;background:rgba(255,255,255,.045);transition:background .2s}
-.lesson:hover{background:rgba(255,255,255,.08)}
-.lesson u{text-decoration:none;font-family:var(--mono);font-size:9.5px;color:var(--red);font-weight:700}
-.lesson b{font-size:.83rem;font-weight:500;letter-spacing:-.015em;color:var(--on-char);line-height:1.25}
-.lesson b em{display:block;font-style:normal;font-size:.71rem;color:var(--on-char-3);margin-top:1px}
-.lesson i{font-style:normal;font-family:var(--mono);font-size:9px;color:var(--on-char-3)}
-.chip-row{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:9px;background:rgba(255,255,255,.045);font-size:.82rem;color:var(--on-char-2)}
-.chip-row b{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--on-char);font-weight:500}
-.chip-row .ok{margin-left:auto;color:#3DC98B;font-size:.72rem;font-family:var(--mono)}
-
 /* ══ domaines ══ */
 .tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:clamp(28px,4vw,42px)}
 .tab{font-size:.89rem;font-weight:600;letter-spacing:-.012em;padding:10px 20px;border-radius:100px;
@@ -282,6 +253,112 @@ section[id]{scroll-margin-top:92px}
 .final .sub{max-width:52ch}
 .final small{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--on-char-3);margin-top:4px}
 
+
+/* ══════════ CARTES PRODUIT (fond peint + interface flottante) ══════════ */
+.feats{display:grid;gap:14px;grid-template-columns:1fr}
+@media (min-width:940px){
+  .feats{grid-template-columns:1fr 1fr;grid-auto-rows:min-content}
+  .f-tall{grid-row:span 2}
+}
+.feat{position:relative;border-radius:var(--r);overflow:hidden;background:var(--char-2);
+  display:flex;flex-direction:column;min-height:330px;isolation:isolate}
+.f-tall{min-height:680px}
+.f-wide{grid-column:1/-1;min-height:400px}
+@media (min-width:940px){.f-wide{display:grid;grid-template-columns:.82fr 1.18fr;align-items:center;gap:20px}}
+
+/* la peinture de fond */
+.paint{position:absolute;inset:0;z-index:0}
+.paint svg{width:100%;height:100%;display:block}
+.feat::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(26,26,26,.80) 0%,rgba(26,26,26,.44) 32%,rgba(26,26,26,.22) 100%)}
+.f-wide::after{background:linear-gradient(100deg,rgba(26,26,26,.90) 0%,rgba(26,26,26,.66) 44%,rgba(26,26,26,.26) 100%)}
+.feat > *:not(.paint){position:relative;z-index:2}
+.feat-txt{padding:clamp(24px,3.2vw,34px) clamp(24px,3.2vw,34px) 0}
+.f-wide .feat-txt{padding:clamp(26px,3.4vw,38px);align-self:center}
+.feat-txt h3{color:#fff;margin-bottom:10px}
+.feat-txt p{font-size:.96rem;line-height:1.52;color:rgba(244,244,239,.72);max-width:44ch}
+.feat-vis{flex:1;display:flex;align-items:flex-end;justify-content:center;padding:clamp(20px,3vw,30px);min-height:0}
+.f-wide .feat-vis{align-items:center;padding:clamp(20px,3vw,32px)}
+
+/* surface d'interface flottante, ombre marquée comme sur la référence */
+.card-ui{background:#fff;color:var(--ink);border-radius:15px;width:100%;
+  box-shadow:0 1px 2px rgba(0,0,0,.16),0 10px 20px -8px rgba(0,0,0,.34),0 34px 60px -28px rgba(0,0,0,.62)}
+.card-ui.dk{background:#141414;color:var(--on-char);box-shadow:0 1px 2px rgba(0,0,0,.5),0 30px 60px -26px rgba(0,0,0,.8)}
+.cu-h{display:flex;align-items:center;gap:9px;padding:13px 15px;border-bottom:1px solid #EFEFE9}
+.card-ui.dk .cu-h{border-bottom-color:#262626}
+.cu-h .mark{width:24px;height:24px;border-radius:7px;background:var(--red);display:grid;place-items:center;color:#fff;font-size:9.5px;font-weight:800;flex:none;letter-spacing:-.03em}
+.cu-h b{font-size:.9rem;font-weight:600;letter-spacing:-.022em}
+.cu-h .meta{margin-left:auto;font-family:var(--mono);font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
+.card-ui.dk .cu-h .meta{color:var(--on-char-3)}
+.cu-b{padding:14px 15px}
+
+/* lecteur de module */
+.player{position:relative;border-radius:10px;overflow:hidden;background:#0E0E0E;aspect-ratio:16/10;margin-bottom:12px;display:grid;place-items:center}
+.player .sim{position:absolute;inset:9px;border-radius:6px;background:#F7F7F2;display:flex;flex-direction:column;overflow:hidden}
+.sim-bar{height:17px;background:#E6E6DE;display:flex;align-items:center;gap:3px;padding:0 6px;flex:none}
+.sim-bar i{width:5px;height:5px;border-radius:50%;background:#C3C3B8;font-style:normal}
+.sim-bar u{margin-left:6px;text-decoration:none;font-size:6.5px;color:#8A8A80;font-family:var(--mono)}
+.sim-grid{flex:1;display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:1fr;gap:1px;background:#DCDCD2;padding:1px}
+.sim-grid span{background:#fff}
+.sim-grid span.hl{background:#FDE7EE;box-shadow:inset 0 0 0 1.2px var(--red)}
+.sim-grid span.dim{background:#F4F4EE}
+.player .cursor{position:absolute;z-index:3;left:56%;top:52%;width:13px;height:13px}
+.player .halo{position:absolute;z-index:2;left:56%;top:52%;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;
+  border:1.5px solid rgba(224,26,79,.85);animation:pulse 2.4s var(--ease) infinite}
+@keyframes pulse{0%{transform:scale(.45);opacity:0}45%{opacity:.85}100%{transform:scale(1.35);opacity:0}}
+@media (prefers-reduced-motion:reduce){.player .halo{animation:none;opacity:.5;transform:scale(.9)}}
+.prog{display:flex;align-items:center;gap:10px;margin-bottom:11px}
+.prog .track{flex:1;height:5px;border-radius:4px;background:#EDEDE6;overflow:hidden}
+.prog .track u{display:block;height:100%;background:var(--red);border-radius:4px}
+.prog em{font-style:normal;font-family:var(--mono);font-size:9.5px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.les{display:grid;grid-template-columns:auto 1fr auto;gap:9px;align-items:center;padding:7px 0;border-top:1px solid #F1F1EA;font-size:.79rem}
+.les:first-of-type{border-top:0}
+.les .tick{width:15px;height:15px;border-radius:50%;display:grid;place-items:center;flex:none;background:#E7F3EC;color:var(--green)}
+.les .tick.now{background:var(--red);color:#fff}
+.les .tick.todo{background:#EFEFE8;color:#B4B4A9}
+.les b{font-weight:600;letter-spacing:-.018em;color:var(--ink)}
+.les b em{display:block;font-style:normal;font-size:.68rem;color:var(--ink-3);font-weight:400;margin-top:1px}
+.les i{font-style:normal;font-family:var(--mono);font-size:8.5px;color:var(--ink-3)}
+
+/* export scorm */
+.pkg{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;background:#F7F7F2;margin-bottom:7px}
+.pkg .fmt{font-family:var(--mono);font-size:9px;font-weight:700;padding:3px 7px;border-radius:5px;background:#fff;color:var(--ink);letter-spacing:.04em;flex:none;box-shadow:0 1px 2px rgba(0,0,0,.07)}
+.pkg span{font-size:.79rem;color:var(--ink-2)}
+.pkg .ok{margin-left:auto;font-family:var(--mono);font-size:8.5px;color:var(--green);display:flex;align-items:center;gap:4px}
+.dlbtn{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:11px;padding:10px;border-radius:9px;background:var(--char);color:#fff;font-size:.82rem;font-weight:600}
+
+/* suivi apprenants */
+.lrn{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:8px 0;border-top:1px solid #F1F1EA;font-size:.79rem}
+.lrn:first-of-type{border-top:0}
+.lrn .ph{width:27px;height:27px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;font-size:8.5px;font-weight:700;background:var(--pc,var(--c-pao))}
+.lrn b{font-weight:600;letter-spacing:-.018em;color:var(--ink);display:block}
+.lrn b em{display:block;font-style:normal;font-size:.68rem;color:var(--ink-3);font-weight:400}
+.lrn .st{font-family:var(--mono);font-size:8.5px;padding:3px 8px;border-radius:100px;white-space:nowrap}
+.st.done{background:#E7F3EC;color:var(--green)}
+.st.run{background:#FDE7EE;color:var(--red-deep)}
+.st.wait{background:#F1F1EA;color:var(--ink-3)}
+
+/* preuves d'audit */
+.audit{display:grid;gap:12px;grid-template-columns:1fr}
+@media (min-width:560px){.audit{grid-template-columns:1.05fr .95fr}}
+.chartbox{padding:13px 15px 11px}
+.chartbox .lab{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:11px}
+.bars{display:flex;align-items:flex-end;gap:5px;height:76px}
+.bars span{flex:1;background:#E4E4DC;border-radius:3px 3px 0 0;position:relative}
+.bars span.on{background:var(--char)}
+.bars span.pk{background:var(--red)}
+.axis{display:flex;justify-content:space-between;margin-top:6px;font-family:var(--mono);font-size:7.5px;color:var(--ink-3)}
+.evid{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;padding:8px 0;border-top:1px solid #F1F1EA;font-size:.76rem}
+.evid:first-of-type{border-top:0}
+.evid .dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex:none}
+.evid b{font-weight:600;color:var(--ink);letter-spacing:-.015em}
+.evid i{font-style:normal;font-family:var(--mono);font-size:8.5px;color:var(--ink-3)}
+.badge-float{position:absolute;z-index:3;background:#fff;border-radius:11px;padding:9px 12px;
+  box-shadow:0 1px 2px rgba(0,0,0,.14),0 16px 32px -14px rgba(0,0,0,.55)}
+.badge-float em{display:block;font-style:normal;font-family:var(--mono);font-size:7.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:3px}
+.badge-float b{font-size:1.05rem;font-weight:700;letter-spacing:-.035em;display:block;line-height:1}
+.badge-float u{text-decoration:none;font-size:.66rem;color:var(--green);font-weight:600}
+
 .notes{background:var(--cream-2);padding:34px 0}
 .notes-in{display:flex;gap:14px;align-items:flex-start;font-size:.85rem;line-height:1.6;color:var(--ink-2);max-width:86ch}
 .notes-in svg{flex:none;margin-top:2px;color:var(--ink-3)}
@@ -294,7 +371,7 @@ section[id]{scroll-margin-top:92px}
   <div class="nav-in">
     <a class="brand" href="/" aria-label="Onlineformapro, accueil"><b><i>O</i>nline</b><span>FORMAPRO</span></a>
     <nav class="nav-links" aria-label="Navigation principale">
-      <a href="#">LMS</a><a href="#pour-qui">Pour qui</a><a href="#etapes">Comment ça marche</a>
+      <a href="#">LMS</a><a href="#pour-qui">Pour qui</a><a href="#produit">Le produit</a>
       <a href="#domaines" aria-current="page">Catalogue</a><a href="#faq">FAQ</a>
     </nav>
     <div class="nav-cta"><a class="btn btn-dark" href="#demo">Demander une démo<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
@@ -314,7 +391,7 @@ section[id]{scroll-margin-top:92px}
   </div>
   <div class="wrap">
     <div class="shot rv">
-      <div class="shot-card shot-a">
+      <div class="shot-card shot-a"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice"><defs><filter id="ph1" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="3" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="115" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#ph1)"><rect x="-260" y="-320" width="1120" height="1440" fill="#BEB8A2"/><ellipse cx="180" cy="200" rx="300" ry="240" fill="#9BAAB9"/><ellipse cx="460" cy="470" rx="290" ry="250" fill="#CDAE83"/><ellipse cx="230" cy="690" rx="330" ry="200" fill="#839072"/><ellipse cx="510" cy="130" rx="180" ry="150" fill="#E0D9C4"/></g></svg></span>
         <div class="tagpop">
           <em>Export du module</em>
           <span class="l" style="--cr:var(--c-lan)"><span class="dotc"></span><b>SCORM 1.2</b><span>Prêt</span></span>
@@ -322,7 +399,7 @@ section[id]{scroll-margin-top:92px}
           <span class="l" style="--cr:var(--c-bur)"><span class="dotc"></span><b>AICC · xAPI</b><span>Prêt</span></span>
         </div>
       </div>
-      <div class="shot-card shot-b">
+      <div class="shot-card shot-b"><span class="paint" aria-hidden="true"><svg viewBox="0 0 900 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="ph2" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.014" numOctaves="4" seed="19" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="125" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="6"/></filter></defs><g filter="url(#ph2)"><rect x="-380" y="-300" width="1660" height="1300" fill="#C6C0A8"/><ellipse cx="640" cy="180" rx="380" ry="240" fill="#AFBCC6"/><ellipse cx="220" cy="420" rx="360" ry="270" fill="#D6C49A"/><ellipse cx="700" cy="600" rx="380" ry="220" fill="#93A084"/></g></svg></span>
         <div class="ui">
           <div class="ui-head"><b>Suivi des parcours</b><span>Mars 2026</span></div>
           <div class="ui-kpis">
@@ -423,68 +500,120 @@ section[id]{scroll-margin-top:92px}
   </div>
 </section>
 
-<!-- ═══ ÉTAPES ═══ -->
-<section class="on-char" id="etapes">
+<!-- ═══ PRODUIT ═══ -->
+<section class="on-char" id="produit">
   <div class="wrap">
-    <div class="head head-left rv" style="margin-bottom:clamp(32px,4vw,50px)">
-      <span class="eyebrow" style="--d:var(--dot-3)">Comment ça marche</span>
+    <div class="head rv">
+      <span class="eyebrow" style="--d:var(--dot-3)">Le produit</span>
       <h2>Du catalogue à vos preuves d'audit.</h2>
-      <p class="sub">Quatre étapes, aucune production interne, aucun changement de plateforme.</p>
+      <p class="sub">Quatre moments, aucune production interne, aucun changement de plateforme.</p>
     </div>
-    <div class="how">
-      <aside class="how-side" aria-hidden="true">
-        <ol><li data-s="0" class="on">Choisir</li><li data-s="1">Intégrer</li><li data-s="2">Diffuser</li><li data-s="3">Prouver</li></ol>
-      </aside>
-      <div class="steps">
-        <article class="step rv" data-step="0">
-          <div><span class="step-n">01 — Choisir</span>
-            <h3>Vous prenez <em>la leçon, pas le rayon.</em></h3>
-            <p>Un module dure environ une heure et se décompose en 4 à 7 leçons, chacune portant un objectif pédagogique explicite. Chaque leçon est adressable seule : vous composez vos parcours à la carte plutôt que d'imposer un bloc entier.</p>
+    <div class="feats">
+
+      <article class="feat f-tall rv">
+        <span class="paint" aria-hidden="true"><svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice"><defs><filter id="pa" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.009 0.016" numOctaves="4" seed="11" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="120" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#pa)"><rect x="-260" y="-320" width="1120" height="1440" fill="#B4AF9A"/><ellipse cx="170" cy="170" rx="300" ry="230" fill="#8CA0B6"/><ellipse cx="460" cy="430" rx="290" ry="250" fill="#C7A87E"/><ellipse cx="210" cy="650" rx="330" ry="210" fill="#7A8A6C"/><ellipse cx="500" cy="110" rx="190" ry="150" fill="#DBD4BF"/></g></svg></span>
+        <div class="feat-txt">
+          <h3>Choisir</h3>
+          <p>Un module dure environ une heure et se décompose en 4 à 7 leçons, chacune portant un objectif explicite. Vous composez vos parcours leçon par leçon, pas par blocs entiers.</p>
+        </div>
+        <div class="feat-vis">
+          <div class="card-ui">
+            <div class="cu-h"><span class="mark">OF</span><b>Excel · Tableaux croisés</b><span class="meta">Module 1 h</span></div>
+            <div class="cu-b">
+              <div class="player">
+                <span class="sim">
+                  <span class="sim-bar"><i></i><i></i><i></i><u>classeur-ventes.xlsx</u></span>
+                  <span class="sim-grid">
+                    <span class="dim"></span><span></span><span></span><span></span><span></span><span></span>
+                    <span class="dim"></span><span></span><span class="hl"></span><span></span><span></span><span></span>
+                    <span class="dim"></span><span></span><span></span><span></span><span></span><span></span>
+                    <span class="dim"></span><span></span><span></span><span></span><span></span><span></span>
+                  </span>
+                </span>
+                <span class="halo"></span>
+                <svg class="cursor" viewBox="0 0 16 16" fill="none"><path d="M3 2l9 5.5-4 1L6 13z" fill="#fff" stroke="#1A1A1A" stroke-width="1.1" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="prog"><span class="track"><u style="width:62%"></u></span><em>3 / 5 leçons</em></div>
+              <div class="les"><span class="tick"><svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Créer et nommer un tableau<em>Structurer une plage de données</em></b><i>9 min</i></div>
+              <div class="les"><span class="tick"><svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Trier et filtrer<em>Isoler une sous-population</em></b><i>11 min</i></div>
+              <div class="les"><span class="tick now"><svg width="8" height="8" viewBox="0 0 16 16" fill="currentColor"><path d="M4 3l9 5-9 5z"/></svg></span><b>Construire un tableau croisé<em>Produire une synthèse</em></b><i>14 min</i></div>
+              <div class="les"><span class="tick todo"><svg width="8" height="8" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg></span><b>Mettre en forme et diffuser<em>Rendre le résultat lisible</em></b><i>10 min</i></div>
+              <div class="les"><span class="tick todo"><svg width="8" height="8" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg></span><b>Exercice de synthèse<em>Évaluation des acquis</em></b><i>16 min</i></div>
+            </div>
           </div>
-          <div class="step-vis">
-            <div class="lesson"><u>L1</u><b>Créer et nommer un tableau<em>Structurer une plage de données</em></b><i>9 min</i></div>
-            <div class="lesson"><u>L2</u><b>Trier et filtrer<em>Isoler une sous-population</em></b><i>11 min</i></div>
-            <div class="lesson"><u>L3</u><b>Construire un tableau croisé<em>Produire une synthèse</em></b><i>14 min</i></div>
-            <div class="lesson"><u>L4</u><b>Exercice de synthèse<em>Évaluation des acquis</em></b><i>16 min</i></div>
+        </div>
+      </article>
+
+      <article class="feat rv">
+        <span class="paint" aria-hidden="true"><svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice"><defs><filter id="pb" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.011 0.018" numOctaves="4" seed="23" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="100" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#pb)"><rect x="-260" y="-320" width="1120" height="1440" fill="#A9A894"/><ellipse cx="430" cy="200" rx="290" ry="220" fill="#C2C4A8"/><ellipse cx="150" cy="480" rx="300" ry="260" fill="#8E9C86"/><ellipse cx="480" cy="660" rx="280" ry="200" fill="#D9CDAE"/></g></svg></span>
+        <div class="feat-txt">
+          <h3>Intégrer</h3>
+          <p>Le module sort au format attendu par la plateforme que vous utilisez déjà. Pas de migration, pas de seconde connexion pour l'apprenant.</p>
+        </div>
+        <div class="feat-vis">
+          <div class="card-ui">
+            <div class="cu-h"><span class="mark">OF</span><b>Export du module</b><span class="meta">4,2 Mo</span></div>
+            <div class="cu-b">
+              <div class="pkg"><span class="fmt">SCORM 1.2</span><span>Moodle, Cornerstone…</span><span class="ok">Prêt</span></div>
+              <div class="pkg"><span class="fmt">SCORM 2004</span><span>Séquencement avancé</span><span class="ok">Prêt</span></div>
+              <div class="pkg"><span class="fmt">AICC</span><span>Plateformes historiques</span><span class="ok">Prêt</span></div>
+              <div class="pkg"><span class="fmt">xAPI</span><span>Learning Record Store</span><span class="ok">Prêt</span></div>
+              <div class="dlbtn"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M8 2v9m0 0 3.5-3.5M8 11 4.5 7.5M2.5 13.5h11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Télécharger le paquet</div>
+            </div>
           </div>
-        </article>
-        <article class="step rv" data-step="1">
-          <div><span class="step-n">02 — Intégrer</span>
-            <h3>Vous gardez <em>votre plateforme.</em></h3>
-            <p>Les modules sortent aux normes SCORM 1.2, SCORM 2004, AICC et xAPI. Ils se déposent dans le LMS que vous utilisez déjà — Moodle, 360Learning, Rise Up, Syfadis, Cornerstone. Pas de migration, pas de seconde connexion pour l'apprenant.</p>
+        </div>
+      </article>
+
+      <article class="feat rv">
+        <span class="paint" aria-hidden="true"><svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice"><defs><filter id="pc" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="37" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="110" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#pc)"><rect x="-260" y="-320" width="1120" height="1440" fill="#9FA6A8"/><ellipse cx="200" cy="240" rx="300" ry="240" fill="#7E94A6"/><ellipse cx="470" cy="540" rx="300" ry="250" fill="#BFC5C0"/><ellipse cx="120" cy="700" rx="280" ry="190" fill="#6E7F86"/></g></svg></span>
+        <div class="feat-txt">
+          <h3>Diffuser</h3>
+          <p>La simulation reproduit l'interface du logiciel dans le navigateur : rien à installer sur les postes, très peu de bande passante. Un parc verrouillé ne bloque plus le déploiement.</p>
+        </div>
+        <div class="feat-vis">
+          <div class="card-ui">
+            <div class="cu-h"><span class="mark">OF</span><b>Session · Promotion 12</b><span class="meta">Aujourd'hui</span></div>
+            <div class="cu-b">
+              <div class="lrn" style="--pc:var(--c-pao)"><span class="ph">MD</span><b>M. Diallo<em>Excel · leçon 3</em></b><span class="st run">En cours</span></div>
+              <div class="lrn" style="--pc:var(--c-lan)"><span class="ph">CL</span><b>C. Lambert<em>Anglais A2 · leçon 6</em></b><span class="st done">Terminé</span></div>
+              <div class="lrn" style="--pc:var(--c-sav)"><span class="ph">SB</span><b>S. Bouchard<em>Français · leçon 2</em></b><span class="st run">En cours</span></div>
+              <div class="lrn" style="--pc:var(--c-pre)"><span class="ph">AR</span><b>A. Roux<em>Prévention · leçon 1</em></b><span class="st wait">À démarrer</span></div>
+              <div class="lrn" style="--pc:var(--c-ter)"><span class="ph">YN</span><b>Y. Nguyen<em>Comptabilité · leçon 4</em></b><span class="st done">Terminé</span></div>
+            </div>
           </div>
-          <div class="step-vis">
-            <span class="chip-row"><b>SCORM 1.2 · 2004</b><span class="ok">Compatible</span></span>
-            <span class="chip-row"><b>AICC · xAPI</b><span class="ok">Compatible</span></span>
-            <span class="chip-row"><b>SIRH · annuaire LDAP</b><span class="ok">Interfaçable</span></span>
-            <span class="chip-row"><b>RGPD</b><span class="ok">Conforme</span></span>
+        </div>
+      </article>
+
+      <article class="feat f-wide rv">
+        <span class="paint" aria-hidden="true"><svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice"><defs><filter id="pd" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.015" numOctaves="4" seed="5" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="130" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#pd)"><rect x="-260" y="-320" width="1120" height="1440" fill="#BCB49B"/><ellipse cx="120" cy="260" rx="320" ry="250" fill="#D2BC90"/><ellipse cx="470" cy="180" rx="280" ry="220" fill="#A9B7C4"/><ellipse cx="380" cy="660" rx="340" ry="220" fill="#8B9578"/></g></svg></span>
+        <div class="feat-txt">
+          <h3>Prouver</h3>
+          <p>Progression, temps de connexion et résultats remontent leçon par leçon dans votre LMS. Ce sont les pièces que réclament vos financeurs et un audit Qualiopi, au titre du critère 3.</p>
+        </div>
+        <div class="feat-vis">
+          <div class="audit" style="width:100%">
+            <div class="card-ui">
+              <div class="cu-h"><span class="mark">OF</span><b>Heures suivies</b><span class="meta">30 jours</span></div>
+              <div class="chartbox">
+                <div class="lab">Volume horaire par semaine</div>
+                <div class="bars"><span style="height:38%"></span><span style="height:52%"></span><span style="height:44%"></span><span style="height:67%"></span><span class="on" style="height:74%"></span><span class="pk" style="height:96%"></span><span class="on" style="height:81%"></span></div>
+                <div class="axis"><span>S1</span><span>S2</span><span>S3</span><span>S4</span><span>S5</span><span>S6</span><span>S7</span></div>
+              </div>
+            </div>
+            <div class="card-ui">
+              <div class="cu-h"><span class="mark">OF</span><b>Preuves exportables</b><span class="meta">Critère 3</span></div>
+              <div class="cu-b">
+                <div class="evid"><span class="dot"></span><b>Progression par leçon</b><i>CSV</i></div>
+                <div class="evid"><span class="dot"></span><b>Temps de connexion horodaté</b><i>CSV</i></div>
+                <div class="evid"><span class="dot"></span><b>Résultats d'évaluation</b><i>CSV</i></div>
+                <div class="evid"><span class="dot"></span><b>Attestations de suivi</b><i>PDF</i></div>
+                <div class="dlbtn"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M8 2v9m0 0 3.5-3.5M8 11 4.5 7.5M2.5 13.5h11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Exporter le dossier</div>
+              </div>
+            </div>
           </div>
-        </article>
-        <article class="step rv" data-step="2">
-          <div><span class="step-n">03 — Diffuser</span>
-            <h3>Vos apprenants <em>manipulent, ils ne regardent pas.</em></h3>
-            <p>La simulation reproduit l'interface réelle du logiciel dans le navigateur : rien à installer sur les postes, très peu de bande passante consommée. Un parc verrouillé ou une connexion faible ne bloquent plus le déploiement. Et le tuteur reste joignable d'un clic depuis le module.</p>
-          </div>
-          <div class="step-vis">
-            <span class="chip-row"><b>Installation poste</b><span class="ok">Aucune</span></span>
-            <span class="chip-row"><b>Droits administrateur</b><span class="ok">Non requis</span></span>
-            <span class="chip-row"><b>Bande passante</b><span class="ok">Faible</span></span>
-            <span class="chip-row"><b>Tuteur</b><span class="ok">En un clic</span></span>
-          </div>
-        </article>
-        <article class="step rv" data-step="3">
-          <div><span class="step-n">04 — Prouver</span>
-            <h3>Vous sortez <em>ce que l'auditeur demande.</em></h3>
-            <p>Progression, temps de connexion et résultats d'évaluation remontent leçon par leçon dans votre LMS. Ce sont exactement les pièces réclamées par vos financeurs et par un audit Qualiopi, notamment au titre du critère 3 sur l'accompagnement des bénéficiaires.</p>
-          </div>
-          <div class="step-vis">
-            <span class="chip-row"><b>Progression</b><span class="ok">Leçon par leçon</span></span>
-            <span class="chip-row"><b>Temps de connexion</b><span class="ok">Horodaté</span></span>
-            <span class="chip-row"><b>Résultats</b><span class="ok">Exportables</span></span>
-            <span class="chip-row"><b>Critère 3 Qualiopi</b><span class="ok">Documenté</span></span>
-          </div>
-        </article>
-      </div>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
@@ -697,19 +826,6 @@ section[id]{scroll-margin-top:92px}
     });
   });
 
-  /* ── sommaire latéral : point actif suivant l'étape lue ── */
-  var side = document.querySelectorAll('.how-side li');
-  var steps = document.querySelectorAll('.step[data-step]');
-  if (side.length && steps.length && 'IntersectionObserver' in window) {
-    var so = new IntersectionObserver(function(es){
-      es.forEach(function(e){
-        if (!e.isIntersecting) return;
-        var i = e.target.dataset.step;
-        side.forEach(function(li){ li.classList.toggle('on', li.dataset.s === i); });
-      });
-    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
-    steps.forEach(function(s){ so.observe(s); });
-  }
 })();
 </script>
 </body>
