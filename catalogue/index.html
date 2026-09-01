@@ -270,7 +270,7 @@ section[id]{scroll-margin-top:92px}
 }
 .feat{position:relative;border-radius:var(--r);overflow:hidden;background:var(--char-2);
   display:flex;flex-direction:column;min-height:330px;isolation:isolate}
-.f-tall{min-height:680px}
+.f-tall{min-height:0}
 .f-wide{grid-column:1/-1;min-height:400px}
 @media (min-width:940px){.f-wide{display:grid;grid-template-columns:.82fr 1.18fr;align-items:center;gap:20px}}
 
@@ -333,7 +333,6 @@ section[id]{scroll-margin-top:92px}
 .pkg .fmt{font-family:var(--mono);font-size:9px;font-weight:700;padding:3px 7px;border-radius:5px;background:#fff;color:var(--ink);letter-spacing:.04em;flex:none;box-shadow:0 1px 2px rgba(0,0,0,.07)}
 .pkg span{font-size:.79rem;color:var(--ink-2)}
 .pkg .ok{margin-left:auto;font-family:var(--mono);font-size:8.5px;color:var(--green);display:flex;align-items:center;gap:4px}
-.dlbtn{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:11px;padding:10px;border-radius:9px;background:var(--char);color:#fff;font-size:.82rem;font-weight:600}
 
 /* suivi apprenants */
 .lrn{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:8px 0;border-top:1px solid #F1F1F1;font-size:.79rem}
@@ -352,15 +351,6 @@ section[id]{scroll-margin-top:92px}
 .st.wait{background:#F1F1F1;color:var(--ink-3)}
 
 /* preuves d'audit */
-.audit{display:grid;gap:12px;grid-template-columns:1fr}
-@media (min-width:560px){.audit{grid-template-columns:1.05fr .95fr}}
-.chartbox{padding:13px 15px 11px}
-.chartbox .lab{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:11px}
-.bars{display:flex;align-items:flex-end;gap:5px;height:76px}
-.bars span{flex:1;background:#E4E4E4;border-radius:3px 3px 0 0;position:relative}
-.bars span.on{background:var(--char)}
-.bars span.pk{background:var(--red)}
-.axis{display:flex;justify-content:space-between;margin-top:6px;font-family:var(--mono);font-size:7.5px;color:var(--ink-3)}
 .evid{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;padding:8px 0;border-top:1px solid #F1F1F1;font-size:.76rem}
 .evid:first-of-type{border-top:0}
 .evid .dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex:none}
@@ -650,9 +640,19 @@ section[id]{scroll-margin-top:92px}
   filter:brightness(0) invert(1);opacity:.95}
 
 
-/* visuel posé comme les surfaces d'interface : même ombre, mêmes angles */
-.shotimg{width:100%;max-width:420px;height:auto;border-radius:15px;display:block;
-  box-shadow:0 1px 2px rgba(0,0,0,.16),0 10px 20px -8px rgba(0,0,0,.34),0 34px 60px -28px rgba(0,0,0,.62)}
+/* visuel plein bord : touche le bas et les deux flancs de l'encart, sans ombre */
+.feat-vis.bleed{padding:clamp(18px,2.4vw,26px) 0 0;align-items:flex-end;overflow:hidden}
+.bleed-img{width:100%;height:auto;max-width:none;display:block;border-radius:0;box-shadow:none;margin-top:auto}
+/* en colonne unique le visuel garde son cadrage d'origine ; à partir de la grille
+   deux colonnes, il remplit la place que lui laisse l'encart */
+@media (min-width:940px){
+  .feat-vis.bleed.fill{padding:0;min-height:clamp(210px,25vw,340px)}
+  .feat-vis.bleed.fill .bleed-img{position:absolute;inset:0;height:100%;
+    object-fit:cover;object-position:center bottom;margin:0}
+  .f-wide .feat-vis.bleed{padding:0;align-self:stretch;align-items:stretch;min-height:clamp(230px,22vw,320px)}
+  .f-wide .feat-vis.bleed .bleed-img{position:absolute;inset:0;height:100%;
+    object-fit:cover;object-position:center;margin:0}
+}
 .notes{background:var(--cream-2);padding:34px 0}
 .notes-in{display:flex;gap:14px;align-items:flex-start;font-size:.85rem;line-height:1.6;color:var(--ink-2);max-width:86ch}
 .notes-in svg{flex:none;margin-top:2px;color:var(--ink-3)}
@@ -721,37 +721,13 @@ section[id]{scroll-margin-top:92px}
     </div>
     <div class="feats">
 
-      <article class="feat f-tall rv">
-        <span class="paint" aria-hidden="true"><svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice"><defs><filter id="pa" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.009 0.016" numOctaves="4" seed="11" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="120" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#pa)"><rect x="-260" y="-320" width="1120" height="1440" fill="#B4AF9A"/><ellipse cx="170" cy="170" rx="300" ry="230" fill="#8CA0B6"/><ellipse cx="460" cy="430" rx="290" ry="250" fill="#C7A87E"/><ellipse cx="210" cy="650" rx="330" ry="210" fill="#7A8A6C"/><ellipse cx="500" cy="110" rx="190" ry="150" fill="#DBD4BF"/></g></svg></span>
+      <article class="feat f-tall rv"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice"><defs><filter id="pa" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.009 0.016" numOctaves="4" seed="11" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="120" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#pa)"><rect x="-260" y="-320" width="1120" height="1440" fill="#B4AF9A"/><ellipse cx="170" cy="170" rx="300" ry="230" fill="#8CA0B6"/><ellipse cx="460" cy="430" rx="290" ry="250" fill="#C7A87E"/><ellipse cx="210" cy="650" rx="330" ry="210" fill="#7A8A6C"/><ellipse cx="500" cy="110" rx="190" ry="150" fill="#DBD4BF"/></g></svg></span>
         <div class="feat-txt">
           <h3>Choisir</h3>
           <p>Un module dure environ une heure et se décompose en 4 à 7 leçons, chacune portant un objectif explicite. Vous composez vos parcours leçon par leçon, pas par blocs entiers.</p>
         </div>
-        <div class="feat-vis">
-          <div class="card-ui">
-            <div class="cu-h"><span class="mark">OF</span><b>Excel · Tableaux croisés</b><span class="meta">Module 1 h</span></div>
-            <div class="cu-b">
-              <div class="player">
-                <span class="sim">
-                  <span class="sim-bar"><i></i><i></i><i></i><u>classeur-ventes.xlsx</u></span>
-                  <span class="sim-grid">
-                    <span class="dim"></span><span></span><span></span><span></span><span></span><span></span>
-                    <span class="dim"></span><span></span><span class="hl"></span><span></span><span></span><span></span>
-                    <span class="dim"></span><span></span><span></span><span></span><span></span><span></span>
-                    <span class="dim"></span><span></span><span></span><span></span><span></span><span></span>
-                  </span>
-                </span>
-                <span class="halo"></span>
-                <svg class="cursor" viewBox="0 0 16 16" fill="none"><path d="M3 2l9 5.5-4 1L6 13z" fill="#fff" stroke="#1A1A1A" stroke-width="1.1" stroke-linejoin="round"/></svg>
-              </div>
-              <div class="prog"><span class="track"><u style="width:62%"></u></span><em>3 / 5 leçons</em></div>
-              <div class="les"><span class="tick"><svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Créer et nommer un tableau<em>Structurer une plage de données</em></b><i>9 min</i></div>
-              <div class="les"><span class="tick"><svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Trier et filtrer<em>Isoler une sous-population</em></b><i>11 min</i></div>
-              <div class="les"><span class="tick now"><svg width="8" height="8" viewBox="0 0 16 16" fill="currentColor"><path d="M4 3l9 5-9 5z"/></svg></span><b>Construire un tableau croisé<em>Produire une synthèse</em></b><i>14 min</i></div>
-              <div class="les"><span class="tick todo"><svg width="8" height="8" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg></span><b>Mettre en forme et diffuser<em>Rendre le résultat lisible</em></b><i>10 min</i></div>
-              <div class="les"><span class="tick todo"><svg width="8" height="8" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg></span><b>Exercice de synthèse<em>Évaluation des acquis</em></b><i>16 min</i></div>
-            </div>
-          </div>
+        <div class="feat-vis bleed fill">
+          <img class="bleed-img" src="img/catalogue2.png" alt="Affectation de modules e-learning à un groupe d'apprenants depuis le catalogue Onlineformapro" width="426" height="801" loading="lazy" decoding="async">
         </div>
       </article>
 
@@ -761,7 +737,7 @@ section[id]{scroll-margin-top:92px}
           <h3>Intégrer</h3>
           <p>Le module sort au format attendu par la plateforme que vous utilisez déjà. Pas de migration, pas de seconde connexion pour l'apprenant.</p>
         </div>
-        <div class="feat-vis"><img class="shotimg" src="img/integrer.png" alt="Document Word ouvert avec les logos Office, Windows 11 et Excel autour" width="427" height="294" loading="lazy" decoding="async"></div>
+        <div class="feat-vis bleed"><img class="bleed-img" src="img/integrer.png" alt="Document Word ouvert avec les logos Office, Windows 11 et Excel autour" width="427" height="294" loading="lazy" decoding="async"></div>
       </article>
 
       <article class="feat rv">
@@ -790,27 +766,8 @@ section[id]{scroll-margin-top:92px}
           <h3>Prouver</h3>
           <p>Progression, temps de connexion et résultats remontent leçon par leçon dans votre LMS. Ce sont les pièces que réclament vos financeurs et un audit Qualiopi, au titre du critère 3.</p>
         </div>
-        <div class="feat-vis">
-          <div class="audit" style="width:100%">
-            <div class="card-ui">
-              <div class="cu-h"><span class="mark">OF</span><b>Heures suivies</b><span class="meta">30 jours</span></div>
-              <div class="chartbox">
-                <div class="lab">Volume horaire par semaine</div>
-                <div class="bars"><span style="height:38%"></span><span style="height:52%"></span><span style="height:44%"></span><span style="height:67%"></span><span class="on" style="height:74%"></span><span class="pk" style="height:96%"></span><span class="on" style="height:81%"></span></div>
-                <div class="axis"><span>S1</span><span>S2</span><span>S3</span><span>S4</span><span>S5</span><span>S6</span><span>S7</span></div>
-              </div>
-            </div>
-            <div class="card-ui">
-              <div class="cu-h"><span class="mark">OF</span><b>Preuves exportables</b><span class="meta">Critère 3</span></div>
-              <div class="cu-b">
-                <div class="evid"><span class="dot"></span><b>Progression par leçon</b><i>CSV</i></div>
-                <div class="evid"><span class="dot"></span><b>Temps de connexion horodaté</b><i>CSV</i></div>
-                <div class="evid"><span class="dot"></span><b>Résultats d'évaluation</b><i>CSV</i></div>
-                <div class="evid"><span class="dot"></span><b>Attestations de suivi</b><i>PDF</i></div>
-                <div class="dlbtn"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M8 2v9m0 0 3.5-3.5M8 11 4.5 7.5M2.5 13.5h11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Exporter le dossier</div>
-              </div>
-            </div>
-          </div>
+        <div class="feat-vis bleed">
+          <img class="bleed-img" src="img/stats.png" alt="Tableau de bord Onlineformapro : modules les plus suivis, thèmes de formation et périodes d'activité des apprenants" width="540" height="324" loading="lazy" decoding="async">
         </div>
       </article>
 
