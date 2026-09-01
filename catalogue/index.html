@@ -118,7 +118,7 @@ section[id]{scroll-margin-top:92px}
 .hero{padding-top:clamp(116px,14vw,172px);padding-bottom:0;text-align:center}
 .hero-in{display:flex;flex-direction:column;align-items:center;gap:21px}
 /* hauteur plafonnee a la moitie de la source : au-dela, le logo pixellise */
-.hero-logo{height:clamp(42px,4.4vw,56px);width:auto;display:block;margin-bottom:-4px}
+.hero-logo{height:clamp(42px,4.4vw,56px);width:auto;display:block;margin-bottom:clamp(12px,1.6vw,20px)}
 .hero h1{max-width:26ch}
 .hero .sub{max-width:56ch;font-size:clamp(1.02rem,1.6vw,1.2rem)}
 .hero .geo-lead{max-width:68ch;font-size:clamp(.99rem,1.4vw,1.08rem);line-height:1.55}
@@ -511,9 +511,9 @@ section[id]{scroll-margin-top:92px}
 .sp-txt .lbl{font-size:.87rem;color:var(--ink-2)}
 .sp-txt h3{max-width:20ch}
 .sp-txt .sp-end{margin-top:auto;padding-top:24px;font-size:.94rem;line-height:1.5;color:var(--ink-2)}
-.sp-img{background:var(--cream-2);border-radius:var(--r);padding:clamp(14px,1.6vw,20px);display:flex}
-.sp-frame{position:relative;flex:1;border-radius:16px;overflow:hidden;isolation:isolate;
-  display:flex;align-items:flex-end;padding:18px;min-height:250px}
+.sp-img{background:var(--cream-2);border-radius:var(--r);padding:0;overflow:hidden;display:flex}
+.sp-frame{position:relative;flex:1;border-radius:0;overflow:hidden;isolation:isolate;
+  display:flex;align-items:flex-end;padding:22px;min-height:250px}
 .sp-frame > *:not(.paint){position:relative;z-index:2}
 .sp-frame .tagline{color:#fff;font-size:.94rem;font-weight:600;letter-spacing:-.02em;text-shadow:0 1px 12px rgba(0,0,0,.55)}
 .sp-photo{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
@@ -714,7 +714,7 @@ section[id]{scroll-margin-top:92px}
     <div class="head rv">
       <span class="eyebrow" style="--d:var(--dot-3)">Le produit</span>
       <h2>Nos modules e‑learning, en pratique.</h2>
-      <p class="sub">De la sélection des leçons à l'export des preuves de suivi.</p>
+      <p class="sub">De la sélection des modules à l'export des preuves de suivi.</p>
     </div>
     <div class="feats">
 
@@ -739,7 +739,7 @@ section[id]{scroll-margin-top:92px}
         <img class="paint shot-bg" src="img/marqueblanche.png" alt="Une même plateforme e-learning déclinée aux couleurs de plusieurs organismes de formation" width="425" height="545" loading="lazy" decoding="async">
         <div class="feat-txt">
           <h3>En marque blanche</h3>
-          <p>Vos apprenants voient votre logo, vos couleurs et votre adresse. Rien n'indique que le contenu vient d'ailleurs : la plateforme et les modules portent votre identité, pas la nôtre.</p>
+          <p>Vos apprenants voient votre logo, vos couleurs et votre adresse. La plateforme et les modules portent votre identité, pas la nôtre.</p>
         </div>
       </article>
 
@@ -869,7 +869,7 @@ section[id]{scroll-margin-top:92px}
         <span class="eyebrow" style="--d:var(--dot-2)">Pour qui</span>
         <h2>Pour les organismes de formation.</h2>
       </div>
-      <p class="sub">Vous formez des apprenants&nbsp;: le catalogue complète vos parcours, à votre charte, prêt à diffuser. Entreprises et acheteurs publics s'en servent aussi, autrement.</p>
+      <p class="sub">Vous formez des apprenants&nbsp;: le catalogue complète vos parcours, à votre charte, prêt à diffuser.</p>
     </div>
 
     <div class="stage-bar rv">
@@ -885,10 +885,10 @@ section[id]{scroll-margin-top:92px}
       <div class="stage-panel enter" id="pan-0" role="tabpanel" aria-labelledby="tab-0">
         <div class="sp-txt">
           <span class="lbl">Organisme de formation</span>
-          <h3>Plus de domaines pour vos apprenants</h3>
-          <p class="sp-end">Vos apprenants ont besoin de bureautique, de langues, de prévention, de compétences de base. Quinze domaines s'ajoutent à vos parcours, à votre charte, prêts à diffuser.</p>
+          <h3>Apprendre en faisant, pas en regardant</h3>
+          <p class="sp-end">Les modules mettent l'apprenant en situation : il manipule, il essaie, il recommence. Quinze domaines à ajouter à vos parcours, à votre charte, prêts à diffuser.</p>
         </div>
-        <div class="sp-img"><div class="sp-frame photo"><img class="paint sp-photo" src="img/votre_catalogue_elargi.png" alt="Formatrice et apprenant devant un ordinateur portable pendant une session de formation" width="352" height="527" loading="lazy" decoding="async"><span class="tagline">Votre catalogue, élargi</span></div></div>
+        <div class="sp-img"><div class="sp-frame photo"><img class="paint sp-photo" src="img/votre_catalogue_elargi.png" alt="Formatrice et apprenant devant un ordinateur portable pendant une session de formation" width="352" height="527" loading="lazy" decoding="async"><span class="tagline">CFA, réseaux, organismes indépendants</span></div></div>
         <div class="sp-dark">
           <span class="cap"><i>OF</i>Ce qui compte pour vous</span>
           <ul><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Modules diffusés à votre charte, dans votre environnement</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Complément direct de votre présentiel en blended learning</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Preuves de suivi au format attendu par vos financeurs</li></ul>
@@ -947,7 +947,7 @@ section[id]{scroll-margin-top:92px}
     <div class="head rv">
       <span class="eyebrow" style="--d:var(--dot-5)">Tutorat</span>
       <h2>Vos apprenants ne restent pas seuls devant l'écran.</h2>
-      <p class="sub">Nos modules ne partent pas seuls. Nos tuteurs accompagnent vos apprenants pendant toute la durée du parcours, en direct ou en différé.</p>
+      <p class="sub">Le tutorat est une option de notre catalogue. Quand vous l'activez, nos tuteurs prennent le relais auprès de vos apprenants sur toute la durée du parcours, en direct ou en différé.</p>
     </div>
 
     <div class="tut">
