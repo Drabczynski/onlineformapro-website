@@ -103,12 +103,12 @@ strong{font-weight:600}
 @media (min-width:1000px){.nav-cta{margin-left:14px}}
 .nav-cta .btn{padding:10px 18px;font-size:.88rem}
 
-section{padding:clamp(66px,9vw,124px) 0;position:relative}
+section{padding:clamp(46px,6vw,82px) 0;position:relative}
 section[id]{scroll-margin-top:92px}
 .on-char{background:var(--char);color:var(--on-char)}
 .on-char h1,.on-char h2,.on-char h3,.on-char h4{color:var(--on-char)}
 .on-cream2{background:var(--cream-2)}
-.head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:17px;margin-bottom:clamp(40px,5.5vw,66px)}
+.head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;margin-bottom:clamp(30px,4vw,46px)}
 .head h2{max-width:18ch}
 .head .sub{max-width:54ch}
 .head-left{align-items:flex-start;text-align:left}
@@ -466,7 +466,7 @@ section[id]{scroll-margin-top:92px}
 .versus .geo{margin:22px auto 0;padding-top:22px;border-top:1px solid var(--line-char);text-align:center;font-size:.97rem}
 
 /* ══════════ SEGMENTS À ONGLETS ══════════ */
-.stage-head{display:grid;gap:20px;grid-template-columns:1fr;align-items:end;margin-bottom:clamp(28px,3.5vw,40px)}
+.stage-head{display:grid;gap:18px;grid-template-columns:1fr;align-items:end;margin-bottom:clamp(22px,2.8vw,32px)}
 @media (min-width:900px){.stage-head{grid-template-columns:1.12fr .88fr;gap:clamp(30px,5vw,70px)}}
 .stage-head h2{max-width:19ch;margin-top:16px}
 .stage-head .sub{max-width:44ch;padding-bottom:6px}
@@ -515,7 +515,7 @@ section[id]{scroll-margin-top:92px}
   opacity:.4;transition:opacity .35s,transform .35s var(--ease),background .35s}
 .wk-side li.on{color:var(--on-char)}
 .wk-side li.on::after{background:var(--on-char);opacity:1;transform:scale(1.5)}
-.wk-head{margin-bottom:clamp(30px,4vw,54px)}
+.wk-head{margin-bottom:clamp(24px,3vw,40px)}
 .wk-head h2{max-width:19ch;margin:16px 0 0}
 .wk-head .sub{margin-top:16px;max-width:50ch}
 .wk-steps{display:grid;gap:14px}
@@ -538,7 +538,7 @@ section[id]{scroll-margin-top:92px}
 .wk-vis.flat{background:var(--char)}
 
 /* ══════════ RETOURS ══════════ */
-.rev-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;margin-bottom:clamp(36px,5vw,58px)}
+.rev-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;margin-bottom:clamp(28px,3.6vw,44px)}
 .pill-h{display:inline-flex;align-items:center;gap:9px;padding:9px 18px;border-radius:100px;background:var(--paper,#fff);
   border:1px solid var(--line);font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
 .pill-h svg{color:var(--red);flex:none}
@@ -551,8 +551,8 @@ section[id]{scroll-margin-top:92px}
 .rev-who span{font-size:.87rem;color:var(--ink-2)}
 
 .rev-rail{overflow:hidden;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent)}
 .rev-track{display:flex;gap:16px;width:max-content;animation:mq 58s linear infinite}
 .rev-rail:hover .rev-track,.rev-rail:focus-within .rev-track{animation-play-state:paused}
 @media (prefers-reduced-motion:reduce){
@@ -583,6 +583,44 @@ section[id]{scroll-margin-top:92px}
   padding-top:clamp(20px,2.6vw,30px);padding-bottom:clamp(20px,2.6vw,28px);font-size:.83rem;color:var(--ink-3)}
 .wm-bot nav{display:flex;gap:18px;margin-left:auto;flex-wrap:wrap}
 .wm-bot a:hover{color:var(--ink)}
+
+/* deux rangées défilant en sens inverse */
+.rev-rail + .rev-rail{margin-top:16px}
+.rev-track.back{animation-direction:reverse}
+
+/* ══════════ ÉTUDES DE CAS EMPILÉES ══════════ */
+.stories{display:grid;gap:16px}
+.story{background:var(--cream-2);border-radius:var(--r);overflow:hidden;display:grid;grid-template-columns:1fr;
+  position:sticky;box-shadow:0 -1px 0 var(--line)}
+@media (min-width:940px){.story{grid-template-columns:.82fr 1.1fr .92fr}}
+.story-img{position:relative;min-height:250px;overflow:hidden;display:flex;align-items:flex-end;padding:22px;isolation:isolate}
+.story-img > *:not(.paint){position:relative;z-index:2}
+.story-img .who{display:flex;align-items:center;gap:10px;color:#fff;font-size:1.22rem;font-weight:700;
+  letter-spacing:-.035em;text-shadow:0 1px 12px rgba(0,0,0,.5)}
+.story-img .who span{width:26px;height:26px;border-radius:7px;background:rgba(255,255,255,.92);display:grid;
+  place-items:center;color:var(--ink);font-size:9px;font-weight:800;letter-spacing:-.02em}
+.story-mid{padding:clamp(24px,3vw,34px);display:flex;flex-direction:column;gap:12px;min-height:280px}
+.story-mid h3{max-width:17ch}
+.story-mid > p{font-size:.94rem;line-height:1.52;color:var(--ink-2);max-width:40ch}
+.story-foot{margin-top:auto;display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-top:26px}
+.story-foot b{font-size:clamp(1.8rem,3.4vw,2.5rem);font-weight:600;letter-spacing:-.05em;line-height:1}
+.story-foot em{font-style:normal;font-size:.83rem;color:var(--ink-2);line-height:1.35;max-width:17ch}
+.story-foot .more{margin-left:auto;display:inline-flex;align-items:center;gap:7px;background:#fff;border-radius:100px;
+  padding:11px 19px;font-size:.88rem;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 18px -10px rgba(0,0,0,.3);
+  transition:transform .2s var(--ease)}
+.story-foot .more:hover{transform:translateY(-2px)}
+.story-side{padding:clamp(24px,3vw,34px);display:flex;flex-direction:column;gap:14px;
+  border-top:1px dashed var(--line)}
+@media (min-width:940px){.story-side{border-top:0;border-left:1px dashed var(--line)}}
+.story-side .p{display:flex;align-items:flex-start;gap:12px}
+.story-side .p .ph{width:64px;height:64px;border-radius:10px;flex:none;display:grid;place-items:center;color:#fff;
+  font-weight:700;font-size:1.05rem;background:linear-gradient(140deg,#B9BCC4,#8E939C)}
+.story-side .p b{display:block;font-weight:600;letter-spacing:-.022em;font-size:.96rem}
+.story-side .p span{font-size:.84rem;color:var(--ink-2);line-height:1.35}
+.story-side q{display:block;margin-top:auto;font-size:.92rem;line-height:1.55;color:var(--ink-2);quotes:'«\00a0' '\00a0»'}
+.story-side .tags{margin-top:auto;display:flex;flex-wrap:wrap;gap:7px}
+.story-side .tags span{font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
+  padding:6px 11px;border-radius:100px;background:var(--cream-3);color:var(--ink-2)}
 
 .notes{background:var(--cream-2);padding:34px 0}
 .notes-in{display:flex;gap:14px;align-items:flex-start;font-size:.85rem;line-height:1.6;color:var(--ink-2);max-width:86ch}
@@ -878,18 +916,18 @@ section[id]{scroll-margin-top:92px}
       <button class="tab" type="button" data-f="met" aria-pressed="false">Métiers &amp; prévention</button>
     </div>
     <div class="doms" id="doms">
-      <a class="dom rv" href="#" data-tags="cpf num"><div class="dom-top"><span class="cpf">Éligible CPF</span><svg class="dom-glyph" width="116" height="116" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 4h9l3 3v13H4z" stroke="currentColor" stroke-width="1.3"/><path d="M13 4v3h3M7 11h6M7 14h6M7 17h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div><div class="dom-body"><h4>Bureautique</h4><p>Toute la suite Microsoft Office, d'Office 2016 à Office 2024.</p><span class="dom-meta">Word · Excel · PowerPoint<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="cpf num"><div class="dom-top"><span class="cpf">Éligible CPF</span><svg class="dom-glyph" width="116" height="116" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M8 20h8M12 16.5V20" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div><div class="dom-body"><h4>Bases informatiques</h4><p>L'ordinateur, Windows et la messagerie pour les publics débutants.</p><span class="dom-meta">Windows · Messagerie<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="fond"><div class="dom-top"><svg class="dom-glyph" width="116" height="116" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a4 4 0 0 0-4 4 3.5 3.5 0 0 0-1 6.8V17a3 3 0 0 0 5 2.2 3 3 0 0 0 5-2.2v-3.2A3.5 3.5 0 0 0 16 7a4 4 0 0 0-4-4Z" stroke="currentColor" stroke-width="1.3"/><path d="M12 3v17" stroke="currentColor" stroke-width="1.3"/></svg></div><div class="dom-body"><h4>Entraînement cognitif</h4><p>Mémoire, concentration, fluidité verbale et raisonnement logique.</p><span class="dom-meta">Mémoire · Logique<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="cpf met"><div class="dom-top"><span class="cpf">Éligible CPF</span><svg class="dom-glyph" width="116" height="116" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div><div class="dom-body"><h4>Santé</h4><p>Préparation aux concours d'entrée des écoles paramédicales.</p><span class="dom-meta">Concours paramédicaux<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="cpf fond"><div class="dom-top"><span class="cpf">Éligible CPF</span><svg class="dom-glyph" width="116" height="116" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.3"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15 0 18M12 3c-2.5 2.6-2.5 15 0 18" stroke="currentColor" stroke-width="1.3"/></svg></div><div class="dom-body"><h4>Langues</h4><p>Anglais, espagnol et allemand, du débutant au professionnel.</p><span class="dom-meta">Anglais · Espagnol · Allemand<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="cpf fond"><div class="dom-top"><span class="cpf">Éligible CPF</span><svg class="dom-glyph" width="116" height="116" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6.5C5.5 5 8.5 5 12 6.8 15.5 5 18.5 5 21 6.5v12c-2.5-1.5-5.5-1.5-9 .3-3.5-1.8-6.5-1.8-9-.3v-12Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M12 6.8v12" stroke="currentColor" stroke-width="1.3"/></svg></div><div class="dom-body"><h4>Savoirs de base</h4><p>Maths et français, en remise à niveau adaptée à chaque profil.</p><span class="dom-meta">Maths · Français<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="fond"><div class="dom-top"><svg class="dom-glyph" width="116" height="116" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.3"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div><div class="dom-body"><h4>Orientation</h4><p>Mise en adéquation des carrières avec les choix vocationnels.</p><span class="dom-meta">Bilan · Projet professionnel<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="met"><div class="dom-top"><svg class="dom-glyph" width="116" height="116" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7.5 3v6c0 4.5-3.2 7.6-7.5 9-4.3-1.4-7.5-4.5-7.5-9V6L12 3Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M12 9v5M9.5 11.5h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div><div class="dom-body"><h4>Prévention</h4><p>Gestes qui sauvent, sécurité au travail et risques professionnels.</p><span class="dom-meta">SST · Risques professionnels<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="cpf met"><div class="dom-top"><span class="cpf">Éligible CPF</span><svg class="dom-glyph" width="116" height="116" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="7" width="19" height="13" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M9 7V5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 5v2M2.5 12h19" stroke="currentColor" stroke-width="1.3"/></svg></div><div class="dom-body"><h4>Tertiaire</h4><p>Secrétariat, comptabilité et gestion pour les fonctions support.</p><span class="dom-meta">Secrétariat · Comptabilité<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="cpf num"><div class="dom-top"><span class="cpf">Éligible CPF</span><svg class="dom-glyph" width="116" height="116" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20V8l8-5 8 5v12" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M4 20h16M9 20v-6h6v6M12 3v5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div><div class="dom-body"><h4>CAO-DAO</h4><p>AutoCAD et Revit, pour concevoir des plans en 2D et en 3D.</p><span class="dom-meta">AutoCAD · Revit<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="cpf num"><div class="dom-top"><span class="cpf">Éligible CPF</span><svg class="dom-glyph" width="116" height="116" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 0 0 0 18c1.4 0 2-.9 2-1.8 0-1.4-1.2-1.7-1.2-2.7 0-.8.7-1.5 1.6-1.5H16a5 5 0 0 0 5-5c0-3.9-4-7-9-7Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="8" cy="10" r="1.1" fill="currentColor"/><circle cx="12" cy="7.5" r="1.1" fill="currentColor"/><circle cx="16" cy="10" r="1.1" fill="currentColor"/></svg></div><div class="dom-body"><h4>PAO</h4><p>Flyers, logos et publications, pour l'impression comme pour le web.</p><span class="dom-meta">Photoshop · Illustrator<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="num"><div class="dom-top"><svg class="dom-glyph" width="116" height="116" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="dom-body"><h4>Développement</h4><p>Les langages web les plus demandés, du front au back.</p><span class="dom-meta">HTML · CSS · JavaScript · PHP<span class="go">&rarr;</span></span></div></a>
+      <a class="dom rv" href="#" data-tags="cpf num"><div class="dom-top"></div><div class="dom-body"><h4>Bureautique</h4><p>Toute la suite Microsoft Office, d'Office 2016 à Office 2024.</p><span class="dom-meta">Word · Excel · PowerPoint<span class="go">&rarr;</span></span></div></a>
+      <a class="dom rv" href="#" data-tags="cpf num"><div class="dom-top"></div><div class="dom-body"><h4>Bases informatiques</h4><p>L'ordinateur, Windows et la messagerie pour les publics débutants.</p><span class="dom-meta">Windows · Messagerie<span class="go">&rarr;</span></span></div></a>
+      <a class="dom rv" href="#" data-tags="fond"><div class="dom-top"></div><div class="dom-body"><h4>Entraînement cognitif</h4><p>Mémoire, concentration, fluidité verbale et raisonnement logique.</p><span class="dom-meta">Mémoire · Logique<span class="go">&rarr;</span></span></div></a>
+      <a class="dom rv" href="#" data-tags="cpf met"><div class="dom-top"></div><div class="dom-body"><h4>Santé</h4><p>Préparation aux concours d'entrée des écoles paramédicales.</p><span class="dom-meta">Concours paramédicaux<span class="go">&rarr;</span></span></div></a>
+      <a class="dom rv" href="#" data-tags="cpf fond"><div class="dom-top"></div><div class="dom-body"><h4>Langues</h4><p>Anglais, espagnol et allemand, du débutant au professionnel.</p><span class="dom-meta">Anglais · Espagnol · Allemand<span class="go">&rarr;</span></span></div></a>
+      <a class="dom rv" href="#" data-tags="cpf fond"><div class="dom-top"></div><div class="dom-body"><h4>Savoirs de base</h4><p>Maths et français, en remise à niveau adaptée à chaque profil.</p><span class="dom-meta">Maths · Français<span class="go">&rarr;</span></span></div></a>
+      <a class="dom rv" href="#" data-tags="fond"><div class="dom-top"></div><div class="dom-body"><h4>Orientation</h4><p>Mise en adéquation des carrières avec les choix vocationnels.</p><span class="dom-meta">Bilan · Projet professionnel<span class="go">&rarr;</span></span></div></a>
+      <a class="dom rv" href="#" data-tags="met"><div class="dom-top"></div><div class="dom-body"><h4>Prévention</h4><p>Gestes qui sauvent, sécurité au travail et risques professionnels.</p><span class="dom-meta">SST · Risques professionnels<span class="go">&rarr;</span></span></div></a>
+      <a class="dom rv" href="#" data-tags="cpf met"><div class="dom-top"></div><div class="dom-body"><h4>Tertiaire</h4><p>Secrétariat, comptabilité et gestion pour les fonctions support.</p><span class="dom-meta">Secrétariat · Comptabilité<span class="go">&rarr;</span></span></div></a>
+      <a class="dom rv" href="#" data-tags="cpf num"><div class="dom-top"></div><div class="dom-body"><h4>CAO-DAO</h4><p>AutoCAD et Revit, pour concevoir des plans en 2D et en 3D.</p><span class="dom-meta">AutoCAD · Revit<span class="go">&rarr;</span></span></div></a>
+      <a class="dom rv" href="#" data-tags="cpf num"><div class="dom-top"></div><div class="dom-body"><h4>PAO</h4><p>Flyers, logos et publications, pour l'impression comme pour le web.</p><span class="dom-meta">Photoshop · Illustrator<span class="go">&rarr;</span></span></div></a>
+      <a class="dom rv" href="#" data-tags="num"><div class="dom-top"></div><div class="dom-body"><h4>Développement</h4><p>Les langages web les plus demandés, du front au back.</p><span class="dom-meta">HTML · CSS · JavaScript · PHP<span class="go">&rarr;</span></span></div></a>
     </div>
   </div>
 </section>
@@ -964,18 +1002,13 @@ section[id]{scroll-margin-top:92px}
 <section id="retours">
   <div class="wrap">
     <div class="rev-head rv">
-      <span class="pill-h"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13.5S1.8 9.8 1.8 5.9A3.4 3.4 0 0 1 8 4a3.4 3.4 0 0 1 6.2 1.9c0 3.9-6.2 7.6-6.2 7.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg> Ils forment avec nos contenus</span>
-      <blockquote class="rev-lead">« Nos collaborateurs disposent d'un environnement de formation individualisé et tutoré accessible 24h/24. »</blockquote>
-      <div class="rev-who">
-        <span class="av">IP</span>
-        <b>Isabelle Provillard</b>
-        <span>Chef de projet ingénierie de formation, SNCF</span>
-      </div>
+      <span class="pill-h"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13.5S1.8 9.8 1.8 5.9A3.4 3.4 0 0 1 8 4a3.4 3.4 0 0 1 6.2 1.9c0 3.9-6.2 7.6-6.2 7.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg> Références</span>
+      <h2>Ils forment avec notre contenu e-learning.</h2>
+      <p class="sub">1 300 organismes de formation, entreprises et institutions diffusent nos modules, du réseau régional au groupe national.</p>
     </div>
   </div>
-  <div class="rev-rail rv" aria-label="Références clients">
-    <div class="rev-track"><article class="rev-card"><span class="dom">Bureautique</span><p>Dispositif de formation bureautique en digital learning, avec environnement individualisé et tutoré accessible en continu.</p><div class="sig" style="--ac:var(--c-pao)"><span class="av">SN</span><span><b>SNCF</b><span>Transport ferroviaire</span></span></div></article><article class="rev-card"><span class="dom">Secteur public</span><p>Contenus déployés dans le cadre de la formation continue des agents.</p><div class="sig" style="--ac:var(--c-lan)"><span class="av">MA</span><span><b>Ministère de l'Agriculture</b><span>Administration centrale</span></span></div></article><article class="rev-card"><span class="dom">Bancaire</span><p>Modules diffusés auprès des collaborateurs du réseau.</p><div class="sig" style="--ac:var(--c-cao)"><span class="av">BP</span><span><b>Banque Populaire</b><span>Banque et assurance</span></span></div></article><article class="rev-card"><span class="dom">Télécoms</span><p>Parcours de montée en compétences pour les équipes internes.</p><div class="sig" style="--ac:var(--c-bur)"><span class="av">BT</span><span><b>Bouygues Télécom</b><span>Opérateur télécom</span></span></div></article><article class="rev-card"><span class="dom">Industrie</span><p>Formation des équipes sur les outils numériques du poste de travail.</p><div class="sig" style="--ac:var(--c-inf)"><span class="av">ST</span><span><b>STMicroelectronics</b><span>Semi-conducteurs</span></span></div></article><article class="rev-card"><span class="dom">Enseignement supérieur</span><p>Plateforme et contenus au service des parcours étudiants.</p><div class="sig" style="--ac:var(--c-sav)"><span class="av">EA</span><span><b>Groupe ESC Amiens</b><span>École de commerce</span></span></div></article><article class="rev-card"><span class="dom">Organisme de formation</span><p>Élargissement du catalogue commercial sans production interne.</p><div class="sig" style="--ac:var(--c-ter)"><span class="av">MF</span><span><b>Maison de la Formation</b><span>Organisme de formation, Poitiers</span></span></div></article><article class="rev-card"><span class="dom">Santé</span><p>Préparation aux concours d'entrée des écoles paramédicales.</p><div class="sig" style="--ac:var(--c-san)"><span class="av">EM</span><span><b>ESTC Marseille</b><span>Enseignement paramédical</span></span></div></article><article class="rev-card"><span class="dom">Numérique</span><p>Accompagnement à la digitalisation des dispositifs de formation.</p><div class="sig" style="--ac:var(--c-dev)"><span class="av">FI</span><span><b>Fiducial Informatique</b><span>Services informatiques</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="dom">Bureautique</span><p>Dispositif de formation bureautique en digital learning, avec environnement individualisé et tutoré accessible en continu.</p><div class="sig" style="--ac:var(--c-pao)"><span class="av">SN</span><span><b>SNCF</b><span>Transport ferroviaire</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="dom">Secteur public</span><p>Contenus déployés dans le cadre de la formation continue des agents.</p><div class="sig" style="--ac:var(--c-lan)"><span class="av">MA</span><span><b>Ministère de l'Agriculture</b><span>Administration centrale</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="dom">Bancaire</span><p>Modules diffusés auprès des collaborateurs du réseau.</p><div class="sig" style="--ac:var(--c-cao)"><span class="av">BP</span><span><b>Banque Populaire</b><span>Banque et assurance</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="dom">Télécoms</span><p>Parcours de montée en compétences pour les équipes internes.</p><div class="sig" style="--ac:var(--c-bur)"><span class="av">BT</span><span><b>Bouygues Télécom</b><span>Opérateur télécom</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="dom">Industrie</span><p>Formation des équipes sur les outils numériques du poste de travail.</p><div class="sig" style="--ac:var(--c-inf)"><span class="av">ST</span><span><b>STMicroelectronics</b><span>Semi-conducteurs</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="dom">Enseignement supérieur</span><p>Plateforme et contenus au service des parcours étudiants.</p><div class="sig" style="--ac:var(--c-sav)"><span class="av">EA</span><span><b>Groupe ESC Amiens</b><span>École de commerce</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="dom">Organisme de formation</span><p>Élargissement du catalogue commercial sans production interne.</p><div class="sig" style="--ac:var(--c-ter)"><span class="av">MF</span><span><b>Maison de la Formation</b><span>Organisme de formation, Poitiers</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="dom">Santé</span><p>Préparation aux concours d'entrée des écoles paramédicales.</p><div class="sig" style="--ac:var(--c-san)"><span class="av">EM</span><span><b>ESTC Marseille</b><span>Enseignement paramédical</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="dom">Numérique</span><p>Accompagnement à la digitalisation des dispositifs de formation.</p><div class="sig" style="--ac:var(--c-dev)"><span class="av">FI</span><span><b>Fiducial Informatique</b><span>Services informatiques</span></span></div></article></div>
-  </div>
+  <div class="rev-rail rv" aria-label="Références clients"><div class="rev-track"><article class="rev-card"><span class="dom">Bureautique</span><p>Dispositif de formation bureautique en digital learning, avec environnement individualisé et tutoré.</p><div class="sig" style="--ac:#7C8794"><span class="av">SN</span><span><b>SNCF</b><span>Transport ferroviaire</span></span></div></article><article class="rev-card"><span class="dom">Secteur public</span><p>Contenus déployés dans le cadre de la formation continue des agents.</p><div class="sig" style="--ac:#7C8794"><span class="av">MA</span><span><b>Ministère de l'Agriculture</b><span>Administration centrale</span></span></div></article><article class="rev-card"><span class="dom">Bancaire</span><p>Modules diffusés auprès des collaborateurs du réseau.</p><div class="sig" style="--ac:#7C8794"><span class="av">BP</span><span><b>Banque Populaire</b><span>Banque et assurance</span></span></div></article><article class="rev-card"><span class="dom">Télécoms</span><p>Parcours de montée en compétences pour les équipes internes.</p><div class="sig" style="--ac:#7C8794"><span class="av">BT</span><span><b>Bouygues Télécom</b><span>Opérateur télécom</span></span></div></article><article class="rev-card"><span class="dom">Industrie</span><p>Formation des équipes sur les outils numériques du poste de travail.</p><div class="sig" style="--ac:#7C8794"><span class="av">ST</span><span><b>STMicroelectronics</b><span>Semi-conducteurs</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="dom">Bureautique</span><p>Dispositif de formation bureautique en digital learning, avec environnement individualisé et tutoré.</p><div class="sig" style="--ac:#7C8794"><span class="av">SN</span><span><b>SNCF</b><span>Transport ferroviaire</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="dom">Secteur public</span><p>Contenus déployés dans le cadre de la formation continue des agents.</p><div class="sig" style="--ac:#7C8794"><span class="av">MA</span><span><b>Ministère de l'Agriculture</b><span>Administration centrale</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="dom">Bancaire</span><p>Modules diffusés auprès des collaborateurs du réseau.</p><div class="sig" style="--ac:#7C8794"><span class="av">BP</span><span><b>Banque Populaire</b><span>Banque et assurance</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="dom">Télécoms</span><p>Parcours de montée en compétences pour les équipes internes.</p><div class="sig" style="--ac:#7C8794"><span class="av">BT</span><span><b>Bouygues Télécom</b><span>Opérateur télécom</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="dom">Industrie</span><p>Formation des équipes sur les outils numériques du poste de travail.</p><div class="sig" style="--ac:#7C8794"><span class="av">ST</span><span><b>STMicroelectronics</b><span>Semi-conducteurs</span></span></div></article></div></div>
+  <div class="rev-rail rv" aria-label="Références clients"><div class="rev-track back"><article class="rev-card"><span class="dom">Enseignement supérieur</span><p>Plateforme et contenus au service des parcours étudiants.</p><div class="sig" style="--ac:#7C8794"><span class="av">EA</span><span><b>Groupe ESC Amiens</b><span>École de commerce</span></span></div></article><article class="rev-card"><span class="dom">Organisme de formation</span><p>Élargissement du catalogue commercial sans production interne.</p><div class="sig" style="--ac:#7C8794"><span class="av">MF</span><span><b>Maison de la Formation</b><span>Organisme de formation, Poitiers</span></span></div></article><article class="rev-card"><span class="dom">Santé</span><p>Préparation aux concours d'entrée des écoles paramédicales.</p><div class="sig" style="--ac:#7C8794"><span class="av">EM</span><span><b>ESTC Marseille</b><span>Enseignement paramédical</span></span></div></article><article class="rev-card"><span class="dom">Numérique</span><p>Accompagnement à la digitalisation des dispositifs de formation.</p><div class="sig" style="--ac:#7C8794"><span class="av">FI</span><span><b>Fiducial Informatique</b><span>Services informatiques</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="dom">Enseignement supérieur</span><p>Plateforme et contenus au service des parcours étudiants.</p><div class="sig" style="--ac:#7C8794"><span class="av">EA</span><span><b>Groupe ESC Amiens</b><span>École de commerce</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="dom">Organisme de formation</span><p>Élargissement du catalogue commercial sans production interne.</p><div class="sig" style="--ac:#7C8794"><span class="av">MF</span><span><b>Maison de la Formation</b><span>Organisme de formation, Poitiers</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="dom">Santé</span><p>Préparation aux concours d'entrée des écoles paramédicales.</p><div class="sig" style="--ac:#7C8794"><span class="av">EM</span><span><b>ESTC Marseille</b><span>Enseignement paramédical</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="dom">Numérique</span><p>Accompagnement à la digitalisation des dispositifs de formation.</p><div class="sig" style="--ac:#7C8794"><span class="av">FI</span><span><b>Fiducial Informatique</b><span>Services informatiques</span></span></div></article></div></div>
   <div class="wrap"><p class="rev-note rv">Références publiques &mdash; verbatims clients à collecter avant mise en ligne.</p></div>
 </section>
 
@@ -983,26 +1016,40 @@ section[id]{scroll-margin-top:92px}
 <section id="temoignage">
   <div class="wrap">
     <div class="head rv">
-      <span class="eyebrow" style="--d:var(--dot-5)">Ils l'ont fait</span>
+      <span class="eyebrow" style="--d:var(--dot-5)">Études de cas</span>
       <h2>Ils diffusent notre contenu e-learning.</h2>
-      <p class="sub">De l'organisme de formation régional au grand compte national, voilà qui diffuse notre contenu e-learning.</p>
-      <a class="btn btn-dark" href="#" style="margin-top:6px">Voir toutes les références<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <p class="sub">De l'organisme de formation régional au grand compte national.</p>
+      <a class="btn btn-dark" href="#">Voir toutes les références<svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
-    <article class="story rv">
-      <div class="story-img"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice"><defs><filter id="ps" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.009 0.016" numOctaves="4" seed="41" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="120" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#ps)"><rect x="-260" y="-320" width="1120" height="1440" fill="#A8AE9C"/><ellipse cx="200" cy="240" rx="300" ry="240" fill="#8FA88F"/><ellipse cx="450" cy="520" rx="300" ry="250" fill="#C6C3A2"/><ellipse cx="120" cy="690" rx="280" ry="190" fill="#75876F"/></g></svg></span><span class="who"><span>OF</span>SNCF</span></div>
-      <div class="story-mid">
-        <h3>Un dispositif bureautique ouvert à toute heure</h3>
-        <p class="sub" style="font-size:.95rem">Onlineformapro a accompagné la SNCF dans la mise en place de son dispositif de formation bureautique en digital learning, avec un environnement individualisé et tutoré.</p>
-        <div class="kpi-big">
-          <b>24h/24</b><em>accès à la formation, en autonomie</em>
-          <a class="more" href="#">Lire le cas<svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <div class="stories">
+      <article class="story rv" style="top:96px">
+        <div class="story-img"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="st1" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="41" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="118" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#st1)"><rect x="-260" y="-300" width="1120" height="1300" fill="#A8AE9C"/><ellipse cx="200" cy="220" rx="300" ry="240" fill="#8FA88F"/><ellipse cx="450" cy="500" rx="300" ry="250" fill="#C6C3A2"/><ellipse cx="120" cy="670" rx="280" ry="190" fill="#75876F"/></g></svg></span><span class="who"><span>OF</span>SNCF</span></div>
+        <div class="story-mid">
+          <h3>Un dispositif bureautique ouvert à toute heure</h3>
+          <p>Onlineformapro a accompagné la SNCF dans la mise en place de son dispositif de formation bureautique en digital learning, avec un environnement individualisé et tutoré.</p>
+          <div class="story-foot"><b>24h/24</b><em>accès à la formation, en autonomie</em><a class="more" href="#">Lire le cas<svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
         </div>
-      </div>
-      <div class="story-side">
-        <div class="p"><span class="ph">IP</span><span><b>Isabelle Provillard</b><span>Chef de projet ingénierie de formation, SNCF</span></span></div>
-        <q>Onlineformapro a su accompagner SNCF dans la mise en place de son dispositif de formation bureautique digital learning. Nos collaborateurs disposent d'un environnement de formation individualisé et tutoré accessible 24h/24.</q>
-      </div>
-    </article>
+        <div class="story-side"><div class="p"><span class="ph">IP</span><span><b>Isabelle Provillard</b><span>Chef de projet ingénierie de formation, SNCF</span></span></div><q>Nos collaborateurs disposent d'un environnement de formation individualisé et tutoré accessible 24h/24.</q></div>
+      </article>
+      <article class="story rv" style="top:120px">
+        <div class="story-img"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="st2" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="59" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="118" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#st2)"><rect x="-260" y="-300" width="1120" height="1300" fill="#A3AAB2"/><ellipse cx="430" cy="200" rx="300" ry="230" fill="#8896A6"/><ellipse cx="160" cy="480" rx="310" ry="250" fill="#BEC4C6"/><ellipse cx="470" cy="650" rx="290" ry="190" fill="#6E7C86"/></g></svg></span><span class="who"><span>OF</span>Ministère de l'Agriculture</span></div>
+        <div class="story-mid">
+          <h3>La formation continue des agents, à distance</h3>
+          <p>Contenus déployés dans le cadre de la formation continue des agents, sur les compétences numériques du poste de travail.</p>
+          <div class="story-foot"><a class="more" href="#">Lire le cas<svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+        <div class="story-side"><div class="p"><span class="ph">MA</span><span><b>Administration centrale</b><span>Formation continue des agents</span></span></div><div class="tags"><span>Bureautique</span><span>Bases informatiques</span><span>Tertiaire</span></div></div>
+      </article>
+      <article class="story rv" style="top:144px">
+        <div class="story-img"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="st3" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="73" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="118" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#st3)"><rect x="-260" y="-300" width="1120" height="1300" fill="#B3AE99"/><ellipse cx="190" cy="250" rx="310" ry="240" fill="#CBB88E"/><ellipse cx="470" cy="510" rx="290" ry="250" fill="#9AA88C"/><ellipse cx="140" cy="690" rx="280" ry="180" fill="#87907A"/></g></svg></span><span class="who"><span>OF</span>Maison de la Formation</span></div>
+        <div class="story-mid">
+          <h3>Un catalogue élargi sans recruter</h3>
+          <p>Organisme de formation à Poitiers : douze domaines ajoutés au catalogue commercial, sans ouvrir de ligne de production interne.</p>
+          <div class="story-foot"><a class="more" href="#">Lire le cas<svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+        <div class="story-side"><div class="p"><span class="ph">MF</span><span><b>Organisme de formation</b><span>Poitiers</span></span></div><div class="tags"><span>Savoirs de base</span><span>Langues</span><span>Prévention</span><span>Santé</span></div></div>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -1064,7 +1111,7 @@ section[id]{scroll-margin-top:92px}
   <div class="wrap">
     <div class="cta-paint rv"><span class="paint" aria-hidden="true"><svg viewBox="0 0 1100 500" preserveAspectRatio="xMidYMid slice"><defs><filter id="pcta" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.007 0.013" numOctaves="4" seed="67" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="145" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#pcta)"><rect x="-420" y="-300" width="1940" height="1100" fill="#9DB08F"/><ellipse cx="520" cy="-40" rx="760" ry="260" fill="#E3E8D6"/><ellipse cx="180" cy="150" rx="330" ry="190" fill="#C4D0B4"/><ellipse cx="900" cy="200" rx="320" ry="210" fill="#8CA383"/><ellipse cx="240" cy="430" rx="420" ry="220" fill="#5E7358"/><ellipse cx="820" cy="470" rx="400" ry="200" fill="#4E6349"/><ellipse cx="560" cy="300" rx="260" ry="150" fill="#A9BC9B"/></g></svg></span>
       <div class="cta-in">
-        <h2>Ouvrez le catalogue e-learning.</h2>
+        <h2>Testez notre catalogue e-learning.</h2>
         <p class="sub" style="color:rgba(255,255,255,.9);max-width:48ch">Dites-nous vos domaines et votre plateforme. Nous ouvrons un accès de démonstration aux modules concernés.</p>
         <a class="btn btn-white" href="#">Demander une démo gratuite<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <small>Réponse sous 48 h ouvrées &middot; Sans engagement</small>
