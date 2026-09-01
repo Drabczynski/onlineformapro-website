@@ -117,6 +117,8 @@ section[id]{scroll-margin-top:92px}
 /* ══ hero ══ */
 .hero{padding-top:clamp(116px,14vw,172px);padding-bottom:0;text-align:center}
 .hero-in{display:flex;flex-direction:column;align-items:center;gap:21px}
+/* hauteur plafonnee a la moitie de la source : au-dela, le logo pixellise */
+.hero-logo{height:clamp(42px,4.4vw,56px);width:auto;display:block;margin-bottom:-4px}
 .hero h1{max-width:26ch}
 .hero .sub{max-width:56ch;font-size:clamp(1.02rem,1.6vw,1.2rem)}
 .hero .geo-lead{max-width:68ch;font-size:clamp(.99rem,1.4vw,1.08rem);line-height:1.55}
@@ -124,8 +126,9 @@ section[id]{scroll-margin-top:92px}
 @media (min-width:900px){.shot{grid-template-columns:.62fr 1fr}}
 .shot-card{border-radius:var(--r);overflow:hidden;position:relative;min-height:clamp(360px,37vw,545px);padding:20px;display:flex;flex-direction:column;isolation:isolate;background:var(--cream-3)}
 .shot-card > *:not(.paint){position:relative;z-index:2}
-.shot-a{justify-content:flex-end}
-.shot-b{padding:0;align-items:stretch;justify-content:stretch}
+
+.shot-a,.shot-b{padding:0;align-items:stretch;justify-content:stretch}
+.shot-card img{width:100%;height:100%;object-fit:cover;display:block}
 .ui{background:#fff;color:var(--ink);border-radius:var(--r-sm);box-shadow:0 1px 2px rgba(0,0,0,.16),0 10px 20px -8px rgba(0,0,0,.3),0 34px 60px -28px rgba(0,0,0,.6);padding:16px 17px;width:100%;text-align:left}
 .ui-head{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
 .ui-head b{font-size:.98rem;font-weight:600;letter-spacing:-.02em}
@@ -641,13 +644,6 @@ section[id]{scroll-margin-top:92px}
 .story-img .who img{height:30px;width:auto;max-width:150px;object-fit:contain;display:block;
   filter:brightness(0) invert(1);opacity:.95}
 
-/* vidéo du hero, posée sur la peinture comme les autres surfaces */
-.vidframe{position:relative;width:100%;height:100%;min-height:inherit;overflow:hidden;background:var(--cream-3)}
-.vidframe video{width:100%;height:100%;object-fit:cover;display:block}
-/* lecture automatique retirée pour qui a demandé à limiter les animations */
-@media (prefers-reduced-motion:reduce){.vidframe video{display:none}
-  .vidframe::after{content:"Vidéo de présentation";position:absolute;inset:0;display:grid;place-items:center;
-    font-size:.86rem;color:var(--ink-2)}}
 
 .notes{background:var(--cream-2);padding:34px 0}
 .notes-in{display:flex;gap:14px;align-items:flex-start;font-size:.85rem;line-height:1.6;color:var(--ink-2);max-width:86ch}
@@ -671,6 +667,7 @@ section[id]{scroll-margin-top:92px}
 <!-- ═══ HERO ═══ -->
 <section class="hero" id="hero">
   <div class="wrap hero-in">
+    <img class="hero-logo rv" src="img/logo.svg" alt="Onlineformapro" width="139" height="57">
     <span class="trust rv"><span class="stars" aria-hidden="true">★★★★★</span> 1 300 organismes de formation nous font confiance</span>
     <h1 class="rv">6 000 heures de contenu e-learning pour les organismes de formation.</h1>
     <p class="sub rv geo-lead"><strong>Onlineformapro permet aux organismes de formation et aux entreprises d'intégrer un catalogue de 6 000 heures de modules e-learning directement dans leur propre plateforme LMS</strong>, aux normes SCORM, AICC et xAPI. Les contenus sont produits et maintenus en France depuis 1999.</p>
@@ -681,16 +678,8 @@ section[id]{scroll-margin-top:92px}
   </div>
   <div class="wrap">
     <div class="shot rv">
-      <div class="shot-card shot-a"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice"><defs><filter id="ph1" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="3" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="115" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#ph1)"><rect x="-260" y="-320" width="1120" height="1440" fill="#BEB8A2"/><ellipse cx="180" cy="200" rx="300" ry="240" fill="#9BAAB9"/><ellipse cx="460" cy="470" rx="290" ry="250" fill="#CDAE83"/><ellipse cx="230" cy="690" rx="330" ry="200" fill="#839072"/><ellipse cx="510" cy="130" rx="180" ry="150" fill="#E0D9C4"/></g></svg></span>
-        <div class="tagpop">
-          <em>Export du module</em>
-          <span class="l" style="--cr:var(--c-lan)"><span class="dotc"></span><b>SCORM 1.2</b><span>Prêt</span></span>
-          <span class="l" style="--cr:var(--c-pao)"><span class="dotc"></span><b>SCORM 2004</b><span>Prêt</span></span>
-          <span class="l" style="--cr:var(--c-bur)"><span class="dotc"></span><b>AICC · xAPI</b><span>Prêt</span></span>
-        </div>
-      </div>
-      <div class="shot-card shot-b"><span class="paint" aria-hidden="true"><svg viewBox="0 0 900 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="ph2" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.014" numOctaves="4" seed="19" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="125" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="6"/></filter></defs><g filter="url(#ph2)"><rect x="-380" y="-300" width="1660" height="1300" fill="#C6C0A8"/><ellipse cx="640" cy="180" rx="380" ry="240" fill="#AFBCC6"/><ellipse cx="220" cy="420" rx="360" ry="270" fill="#D6C49A"/><ellipse cx="700" cy="600" rx="380" ry="220" fill="#93A084"/></g></svg></span><div class="vidframe"><video autoplay muted loop playsinline preload="metadata" aria-label="Présentation de la plateforme Onlineformapro"><source src="video/Onlineformapro_1.mp4" type="video/mp4"></video></div></div>
-      </div>
+      <div class="shot-card shot-a"><img src="img/apprenants-formation-e-learning.png" alt="Trois personnes suivent une formation e-learning ensemble devant un ordinateur portable" width="435" height="545" fetchpriority="high" decoding="async"></div>
+      <div class="shot-card shot-b"><img src="img/catalogue-modules-e-learning.png" alt="Modules du catalogue e-learning : PowerPoint, Excel, AutoCAD, Photoshop et Windows" width="703" height="545" fetchpriority="high" decoding="async"></div>
     </div>
   </div>
 </section>
