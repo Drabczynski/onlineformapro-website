@@ -641,6 +641,16 @@ section[id]{scroll-margin-top:92px}
 .story-img .who img{height:30px;width:auto;max-width:150px;object-fit:contain;display:block;
   filter:brightness(0) invert(1);opacity:.95}
 
+/* vidéo du hero, posée sur la peinture comme les autres surfaces */
+.vidframe{position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;
+  background:var(--cream-3);
+  box-shadow:0 1px 2px rgba(0,0,0,.16),0 10px 20px -8px rgba(0,0,0,.3),0 34px 60px -28px rgba(0,0,0,.6)}
+.vidframe video{width:100%;height:100%;object-fit:cover;display:block}
+/* lecture automatique retirée pour qui a demandé à limiter les animations */
+@media (prefers-reduced-motion:reduce){.vidframe video{display:none}
+  .vidframe::after{content:"Vidéo de présentation";position:absolute;inset:0;display:grid;place-items:center;
+    font-size:.86rem;color:var(--ink-2)}}
+
 .notes{background:var(--cream-2);padding:34px 0}
 .notes-in{display:flex;gap:14px;align-items:flex-start;font-size:.85rem;line-height:1.6;color:var(--ink-2);max-width:86ch}
 .notes-in svg{flex:none;margin-top:2px;color:var(--ink-3)}
@@ -681,19 +691,7 @@ section[id]{scroll-margin-top:92px}
           <span class="l" style="--cr:var(--c-bur)"><span class="dotc"></span><b>AICC · xAPI</b><span>Prêt</span></span>
         </div>
       </div>
-      <div class="shot-card shot-b"><span class="paint" aria-hidden="true"><svg viewBox="0 0 900 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="ph2" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.014" numOctaves="4" seed="19" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="125" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="6"/></filter></defs><g filter="url(#ph2)"><rect x="-380" y="-300" width="1660" height="1300" fill="#C6C0A8"/><ellipse cx="640" cy="180" rx="380" ry="240" fill="#AFBCC6"/><ellipse cx="220" cy="420" rx="360" ry="270" fill="#D6C49A"/><ellipse cx="700" cy="600" rx="380" ry="220" fill="#93A084"/></g></svg></span>
-        <div class="ui">
-          <div class="ui-head"><b>Suivi des parcours</b><span>Mars 2026</span></div>
-          <div class="ui-kpis">
-            <div class="kpi"><em>Inscrits</em><b>1 284</b><i>+18 % ce mois</i></div>
-            <div class="kpi"><em>Complétion</em><b>78 %</b><i>+6 pts</i></div>
-            <div class="kpi"><em>Heures suivies</em><b>9 410</b><i>+1 220</i></div>
-          </div>
-          <div class="row" style="--cr:var(--c-bur)"><span class="av">BU</span><span class="nm">Excel · Tableaux croisés<em>Bureautique · 4 leçons</em></span><span class="bar"><u style="width:86%"></u></span><span class="pc">86 %</span></div>
-          <div class="row" style="--cr:var(--c-lan)"><span class="av">LA</span><span class="nm">Anglais professionnel A2<em>Langues · 6 leçons</em></span><span class="bar"><u style="width:64%"></u></span><span class="pc">64 %</span></div>
-          <div class="row" style="--cr:var(--c-pre)"><span class="av">PR</span><span class="nm">Gestes qui sauvent<em>Prévention · 5 leçons</em></span><span class="bar"><u style="width:41%"></u></span><span class="pc">41 %</span></div>
-          <div class="row" style="--cr:var(--c-sav)"><span class="av">SB</span><span class="nm">Français · remise à niveau<em>Savoirs de base · 7 leçons</em></span><span class="bar"><u style="width:93%"></u></span><span class="pc">93 %</span></div>
-        </div>
+      <div class="shot-card shot-b"><span class="paint" aria-hidden="true"><svg viewBox="0 0 900 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="ph2" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.014" numOctaves="4" seed="19" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="125" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="6"/></filter></defs><g filter="url(#ph2)"><rect x="-380" y="-300" width="1660" height="1300" fill="#C6C0A8"/><ellipse cx="640" cy="180" rx="380" ry="240" fill="#AFBCC6"/><ellipse cx="220" cy="420" rx="360" ry="270" fill="#D6C49A"/><ellipse cx="700" cy="600" rx="380" ry="220" fill="#93A084"/></g></svg></span><div class="vidframe"><video autoplay muted loop playsinline preload="metadata" aria-label="Présentation de la plateforme Onlineformapro"><source src="video/Onlineformapro_1.mp4" type="video/mp4"></video></div></div>
       </div>
     </div>
   </div>

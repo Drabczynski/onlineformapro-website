@@ -12,7 +12,7 @@
  *
  *   node tools/build-apercu.mjs catalogue/index.html sortie.html
  */
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, statSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 
 const [src = 'catalogue/index.html', out = 'apercu.html'] = process.argv.slice(2);
@@ -20,7 +20,9 @@ const html = readFileSync(src, 'utf8');
 const base = dirname(resolve(src));
 
 const TYPES = { svg: 'image/svg+xml', png: 'image/png', jpg: 'image/jpeg',
-                jpeg: 'image/jpeg', webp: 'image/webp', avif: 'image/avif' };
+                jpeg: 'image/jpeg', webp: 'image/webp', avif: 'image/avif',
+                mp4: 'video/mp4', webm: 'video/webm' };
+const PLAFOND = 15 * 1024 * 1024;   // marge sous la limite de publication
 
 // 1. retirer l'enveloppe fournie par l'hôte
 const i = html.indexOf('<title>');
@@ -32,19 +34,36 @@ if (i < 0 || j < 0 || k < 0) {
 }
 let page = html.slice(i, j) + html.slice(j, k);
 
-// 2. remplacer les vidéos locales par leur image d'attente
-//    (l'aperçu refuse les médias distants et plafonne à 16 Mo)
-let videos = 0, sansPoster = [];
+// 2. les vidéos : encodées si le budget le permet, sinon remplacées par
+//    leur image d'attente (l'aperçu refuse les médias distants)
+const pesee = [...page.matchAll(/<source src="(?!https?:|data:)([^"]+\.(?:mp4|webm))"/gi)]
+  .map(m => resolve(base, m[1]))
+  .filter(existsSync)
+  .reduce((n, f) => n + statSync(f).size, 0);
+const budgetOk = pesee * 4 / 3 < PLAFOND * 0.8;   // base64 pèse un tiers de plus
+
+let encodees = 0, substituees = 0, sansPoster = [];
+if (budgetOk && pesee) {
+  page = page.replace(/<source src="(?!https?:|data:)([^"]+\.(?:mp4|webm))"/gi, (whole, rel) => {
+    const file = resolve(base, rel);
+    if (!existsSync(file)) return whole;
+    const ext = rel.split('.').pop().toLowerCase();
+    encodees++;
+    return `<source src="data:${TYPES[ext]};base64,${readFileSync(file).toString('base64')}"`;
+  });
+  console.log(`${encodees} vidéo(s) encodée(s) — ${(pesee / 1048576).toFixed(1)} Mo de source.`);
+} else if (pesee) {
 page = page.replace(/<video\b([^>]*)>([\s\S]*?)<\/video>/gi, (whole, attrs) => {
   const local = /(?:src|poster)="(?!https?:|data:)/.test(whole);
   if (!local) return whole;
-  videos++;
+  substituees++;
   const poster = (attrs.match(/poster="([^"]+)"/) || [])[1];
   if (!poster) { sansPoster.push((attrs.match(/class="([^"]+)"/) || [])[1] || 'sans classe'); return whole; }
   const cls = (attrs.match(/class="([^"]+)"/) || [])[1];
   const alt = (attrs.match(/data-alt="([^"]+)"/) || [])[1] || '';
   return `<img src="${poster}"${cls ? ` class="${cls}"` : ''} alt="${alt}">`;
-});
+  });
+}
 
 // 3. encoder les images locales
 let inlined = 0, manquantes = [];
@@ -62,6 +81,6 @@ writeFileSync(out, page);
 const ko = (Buffer.byteLength(page) / 1024).toFixed(1);
 console.log(`${out} — ${ko} Ko, ${inlined} image(s) encodée(s)`);
 if (manquantes.length) console.warn('Introuvables :', manquantes.join(', '));
-if (videos) console.log(`${videos} vidéo(s) remplacée(s) par leur image d'attente — l'aperçu ne peut pas les porter.`);
+if (substituees) console.log(`${substituees} vidéo(s) remplacée(s) par leur image d'attente : trop lourde(s) pour l'aperçu.`);
 if (sansPoster.length) console.warn("Vidéo(s) sans image d'attente, laissée(s) telle(s) quelle(s) et donc absente(s) de l'aperçu :", sansPoster.join(', '));
 if (ko > 16000) console.warn('Au-delà de la limite de 16 Mo de la publication.');
