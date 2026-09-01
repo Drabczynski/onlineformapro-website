@@ -482,25 +482,34 @@ section[id]{scroll-margin-top:92px}
   transition:transform .45s var(--ease)}
 .stage-prog em{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--ink-2);font-variant-numeric:tabular-nums}
 
-.stage-panel{display:grid;gap:0;grid-template-columns:1fr;background:var(--cream-2);border-radius:var(--r);overflow:hidden}
-@media (min-width:960px){.stage-panel{grid-template-columns:1fr .92fr .92fr}}
+.stage-panel{display:grid;gap:14px;grid-template-columns:1fr}
+@media (min-width:960px){.stage-panel{grid-template-columns:1.06fr .94fr .92fr}}
 .stage-panel[hidden]{display:none}
 .stage-panel.enter{animation:panelIn .45s var(--ease)}
 @keyframes panelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.stage-panel.enter{animation:none}}
-.sp-txt{padding:clamp(26px,3.2vw,36px);display:flex;flex-direction:column;gap:12px;min-height:330px}
+.sp-txt{background:var(--cream-2);border-radius:var(--r);padding:clamp(26px,3.2vw,36px);
+  display:flex;flex-direction:column;gap:12px;min-height:clamp(330px,38vw,530px)}
 .sp-txt .lbl{font-size:.87rem;color:var(--ink-2)}
 .sp-txt h3{max-width:14ch}
 .sp-txt .sp-end{margin-top:auto;padding-top:24px;font-size:.94rem;line-height:1.5;color:var(--ink-2)}
-.sp-img{position:relative;min-height:250px;overflow:hidden;isolation:isolate;display:flex;align-items:flex-end;padding:20px}
-.sp-img > *:not(.paint){position:relative;z-index:2}
-.sp-img .tagline{color:#fff;font-size:.95rem;font-weight:600;letter-spacing:-.02em;text-shadow:0 1px 10px rgba(0,0,0,.5)}
-.sp-dark{background:var(--char);color:var(--on-char);padding:clamp(26px,3.2vw,34px);display:flex;flex-direction:column;gap:13px}
-.sp-dark .cap{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--on-char-3)}
-.sp-dark ul{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.sp-img{background:var(--cream-2);border-radius:var(--r);padding:clamp(14px,1.6vw,20px);display:flex}
+.sp-frame{position:relative;flex:1;border-radius:16px;overflow:hidden;isolation:isolate;
+  display:flex;align-items:flex-end;padding:18px;min-height:250px}
+.sp-frame > *:not(.paint){position:relative;z-index:2}
+.sp-frame .tagline{color:#fff;font-size:.94rem;font-weight:600;letter-spacing:-.02em;text-shadow:0 1px 12px rgba(0,0,0,.55)}
+.sp-dark{background:var(--char);color:var(--on-char);border-radius:var(--r);
+  padding:clamp(26px,3.2vw,34px);display:flex;flex-direction:column;gap:13px;
+  background-image:radial-gradient(rgba(255,255,255,.055) 1px,transparent 1px);background-size:16px 16px}
+.sp-dark .cap{display:flex;align-items:center;gap:9px;font-size:.98rem;font-weight:600;letter-spacing:-.022em;color:var(--on-char-2)}
+.sp-dark .cap i{width:22px;height:22px;border-radius:6px;background:rgba(255,255,255,.14);display:grid;place-items:center;
+  font-style:normal;font-size:8.5px;font-weight:800;color:var(--on-char);flex:none}
+.sp-dark ul{list-style:none;margin:auto 0 0;padding:0;display:grid;gap:11px}
 .sp-dark li{display:grid;grid-template-columns:auto 1fr;gap:10px;font-size:.92rem;line-height:1.45;color:var(--on-char)}
 .sp-dark li svg{margin-top:4px;flex:none;color:var(--red)}
-.sp-dark .why{margin-top:auto;padding-top:20px;font-size:.88rem;line-height:1.5;color:var(--on-char-2);border-top:1px solid var(--line-char)}
+.sp-dark blockquote{margin:auto 0 0;font-size:.99rem;line-height:1.5;font-weight:600;letter-spacing:-.018em;color:var(--on-char)}
+.sp-dark .sign{margin-top:14px;font-size:.85rem;color:var(--on-char-3)}
+.sp-dark .why{margin-top:16px;padding-top:16px;font-size:.86rem;line-height:1.5;color:var(--on-char-3);border-top:1px solid var(--line-char)}
 
 /* ══════════ MISE EN ŒUVRE (sommaire latéral + étapes) ══════════ */
 .wk{display:grid;gap:clamp(26px,4vw,56px);grid-template-columns:1fr}
@@ -959,11 +968,11 @@ section[id]{scroll-margin-top:92px}
           <h3>Former sans rien produire</h3>
           <p class="sp-end">Votre plan de développement des compétences est à couvrir cette année, sans équipe de production interne ni budget de conception. Le catalogue existe déjà : vous sélectionnez, vous ouvrez les accès.</p>
         </div>
-        <div class="sp-img"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="sg1" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="13" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="115" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#sg1)"><rect x="-260" y="-300" width="1120" height="1300" fill="#B0B7A6"/><ellipse cx="180" cy="180" rx="300" ry="220" fill="#9FB0C0"/><ellipse cx="450" cy="430" rx="290" ry="240" fill="#CBB58C"/><ellipse cx="200" cy="620" rx="320" ry="190" fill="#7E8E74"/></g></svg></span><span class="tagline">De 30 à 5 000 collaborateurs</span></div>
+        <div class="sp-img"><div class="sp-frame"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="sg1" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="13" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="115" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#sg1)"><rect x="-260" y="-300" width="1120" height="1300" fill="#B0B7A6"/><ellipse cx="180" cy="180" rx="300" ry="220" fill="#9FB0C0"/><ellipse cx="450" cy="430" rx="290" ry="240" fill="#CBB58C"/><ellipse cx="200" cy="620" rx="320" ry="190" fill="#7E8E74"/></g></svg></span><span class="tagline">De 30 à 5 000 collaborateurs</span></div></div>
         <div class="sp-dark">
-          <span class="cap">Ce qui compte pour vous</span>
-          <ul><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Modules éligibles CPF, mobilisables sur budget OPCO</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Entretiens professionnels outillés par domaine</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Déploiement sur parc verrouillé, sans droits administrateur</li></ul>
-          <p class="why">Le délai de mise en service tient à la sélection des contenus, pas à leur fabrication.</p>
+          <span class="cap"><i>OF</i>SNCF</span>
+          <blockquote>« Nos collaborateurs disposent d'un environnement de formation individualisé et tutoré accessible 24h/24. »</blockquote>
+          <p class="sign">Isabelle Provillard &mdash; Chef de projet ingénierie de formation</p>
         </div>
       </div>
 
@@ -973,9 +982,9 @@ section[id]{scroll-margin-top:92px}
           <h3>Élargir sans recruter</h3>
           <p class="sp-end">Vous vendez de la formation et vos clients demandent des domaines que vous ne couvrez pas. Douze s'ajoutent à votre catalogue commercial sans ouvrir de ligne de production.</p>
         </div>
-        <div class="sp-img"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="sg2" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="29" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="115" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#sg2)"><rect x="-260" y="-300" width="1120" height="1300" fill="#A5AC96"/><ellipse cx="420" cy="190" rx="290" ry="210" fill="#C6CBA8"/><ellipse cx="150" cy="470" rx="300" ry="250" fill="#8B9A82"/><ellipse cx="470" cy="630" rx="280" ry="190" fill="#DCD3B4"/></g></svg></span><span class="tagline">Votre catalogue, élargi</span></div>
+        <div class="sp-img"><div class="sp-frame"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="sg2" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="29" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="115" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#sg2)"><rect x="-260" y="-300" width="1120" height="1300" fill="#A5AC96"/><ellipse cx="420" cy="190" rx="290" ry="210" fill="#C6CBA8"/><ellipse cx="150" cy="470" rx="300" ry="250" fill="#8B9A82"/><ellipse cx="470" cy="630" rx="280" ry="190" fill="#DCD3B4"/></g></svg></span><span class="tagline">Votre catalogue, élargi</span></div></div>
         <div class="sp-dark">
-          <span class="cap">Ce qui compte pour vous</span>
+          <span class="cap"><i>OF</i>Ce qui compte pour vous</span>
           <ul><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Modules diffusés à votre charte, dans votre environnement</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Complément direct de votre présentiel en blended learning</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Preuves de suivi au format attendu par vos financeurs</li></ul>
           <p class="why">Nous sommes nous-mêmes un organisme certifié Qualiopi : nos contenus passent les audits que vous passez.</p>
         </div>
@@ -987,9 +996,9 @@ section[id]{scroll-margin-top:92px}
           <h3>Acheter sans exposition</h3>
           <p class="sp-end">Vous achetez sur marché public ou accord-cadre, et chaque ligne du dossier devra être justifiée devant un contrôle. La conformité et la pérennité du fournisseur y pèsent autant que le contenu.</p>
         </div>
-        <div class="sp-img"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="sg3" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="47" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="115" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#sg3)"><rect x="-260" y="-300" width="1120" height="1300" fill="#A3A9AC"/><ellipse cx="200" cy="230" rx="300" ry="230" fill="#8498AA"/><ellipse cx="460" cy="520" rx="300" ry="240" fill="#C2C7C1"/><ellipse cx="130" cy="660" rx="270" ry="180" fill="#6F8088"/></g></svg></span><span class="tagline">Collectivités, hôpitaux, universités</span></div>
+        <div class="sp-img"><div class="sp-frame"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="sg3" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="47" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="115" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#sg3)"><rect x="-260" y="-300" width="1120" height="1300" fill="#A3A9AC"/><ellipse cx="200" cy="230" rx="300" ry="230" fill="#8498AA"/><ellipse cx="460" cy="520" rx="300" ry="240" fill="#C2C7C1"/><ellipse cx="130" cy="660" rx="270" ry="180" fill="#6F8088"/></g></svg></span><span class="tagline">Collectivités, hôpitaux, universités</span></div></div>
         <div class="sp-dark">
-          <span class="cap">Ce qui compte pour vous</span>
+          <span class="cap"><i>OF</i>Ce qui compte pour vous</span>
           <ul><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Éditeur français depuis 1999, société cotée</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Conforme RGPD, interfaçable SIRH et annuaire LDAP</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Savoirs de base et remise à niveau pour publics éloignés</li></ul>
           <p class="why">Sur marché public, la pérennité du fournisseur est une ligne de notation, pas un argument commercial.</p>
         </div>
