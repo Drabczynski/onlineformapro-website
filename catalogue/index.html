@@ -86,7 +86,7 @@ strong{font-weight:600}
 .nav.float{padding-top:14px}
 .nav-in{max-width:var(--max);margin:0 auto;height:70px;display:flex;align-items:center;gap:clamp(12px,2.4vw,30px);
   transition:max-width .4s var(--ease),background .3s,border-radius .4s var(--ease),padding .4s var(--ease),box-shadow .3s,height .3s var(--ease)}
-.nav.float .nav-in{max-width:min(910px,100%);height:58px;background:rgba(247,247,242,.86);
+.nav.float .nav-in{max-width:min(910px,100%);height:58px;background:rgba(255,255,255,.88);
   backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);
   border-radius:100px;padding:0 6px 0 22px;box-shadow:0 1px 2px rgba(0,0,0,.05),0 12px 30px -14px rgba(0,0,0,.22)}
 .brand{display:flex;align-items:center;flex:none}
@@ -109,11 +109,7 @@ section[id]{scroll-margin-top:92px}
 .on-char h1,.on-char h2,.on-char h3,.on-char h4{color:var(--on-char)}
 .on-cream2{background:var(--cream-2)}
 .head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;margin-bottom:clamp(30px,4vw,46px)}
-.head h2{max-width:18ch}
-/* la coupure sémantique tombe après les deux-points */
-#conformite .head h2{max-width:22ch}
-#faq .head h2{max-width:24ch}
-#tutorat .head h2{max-width:26ch}
+.head h2{max-width:22ch}
 .head .sub{max-width:54ch}
 .head-left{align-items:flex-start;text-align:left}
 .head-left h2{max-width:20ch}.head-left .sub{max-width:48ch}
@@ -265,7 +261,7 @@ section[id]{scroll-margin-top:92px}
   .feats{grid-template-columns:1fr 1fr;grid-auto-rows:min-content}
 }
 .feat{position:relative;border-radius:var(--r);overflow:hidden;background:var(--char-2);
-  display:flex;flex-direction:column;min-height:330px;isolation:isolate}
+  display:flex;flex-direction:column;min-height:420px;isolation:isolate}
 .f-wide{grid-column:1/-1;min-height:400px}
 @media (min-width:940px){.f-wide{display:grid;grid-template-columns:.82fr 1.18fr;align-items:center;gap:20px}}
 
@@ -276,11 +272,11 @@ section[id]{scroll-margin-top:92px}
   background:linear-gradient(180deg,rgba(26,26,26,.80) 0%,rgba(26,26,26,.44) 32%,rgba(26,26,26,.22) 100%)}
 .f-wide::after{background:linear-gradient(100deg,rgba(26,26,26,.90) 0%,rgba(26,26,26,.66) 44%,rgba(26,26,26,.26) 100%)}
 .feat > *:not(.paint){position:relative;z-index:2}
-.feat-txt{padding:clamp(24px,3.2vw,34px) clamp(24px,3.2vw,34px) 0}
+.feat-txt{padding:clamp(30px,3.8vw,44px) clamp(28px,3.4vw,38px) 0}
 .f-wide .feat-txt{padding:clamp(26px,3.4vw,38px);align-self:center}
 .feat-txt h3{color:#fff;margin-bottom:10px}
 .feat-txt p{font-size:.96rem;line-height:1.52;color:rgba(244,244,239,.72);max-width:44ch}
-.feat-vis{flex:1;display:flex;align-items:flex-end;justify-content:center;padding:clamp(20px,3vw,30px);min-height:0}
+.feat-vis{flex:1;display:flex;align-items:flex-end;justify-content:center;padding:clamp(26px,3.6vw,40px);min-height:0}
 .f-wide .feat-vis{align-items:center;padding:clamp(20px,3vw,32px)}
 
 /* surface d'interface flottante, ombre marquée comme sur la référence */
@@ -367,16 +363,6 @@ section[id]{scroll-margin-top:92px}
   border-top:1px solid var(--cream-3)}
 .tut-ch li{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.1em;
   text-transform:uppercase;padding:6px 11px;border-radius:100px;background:#fff;color:var(--ink-2)}
-/* la carte d'affectation prend toute la largeur */
-.tut-w{grid-column:1/-1;gap:clamp(20px,3vw,34px)}
-@media (min-width:820px){.tut-w{display:grid;grid-template-columns:.85fr 1.15fr;align-items:center}}
-.tut-w-txt{display:flex;flex-direction:column;gap:11px;align-items:flex-start}
-.tut-w-txt h3{font-size:clamp(1.25rem,2.2vw,1.6rem);max-width:16ch}
-.tut-w-txt p{font-size:.9rem;line-height:1.5;color:var(--ink-2);max-width:34ch}
-.tut-aff{list-style:none;margin:0;padding:0;display:grid;gap:11px}
-@media (min-width:620px){.tut-aff{grid-template-columns:1fr 1fr;gap:11px 22px}}
-.tut-aff li{display:flex;align-items:flex-start;gap:10px;font-size:.92rem;line-height:1.45;color:var(--ink)}
-.tut-aff svg{flex:none;margin-top:3px;color:var(--green)}
 
 /* ══════════ CONFORMITÉ ══════════ */
 .compl{display:grid;gap:13px;grid-template-columns:repeat(2,1fr)}
@@ -530,6 +516,9 @@ section[id]{scroll-margin-top:92px}
   display:flex;align-items:flex-end;padding:18px;min-height:250px}
 .sp-frame > *:not(.paint){position:relative;z-index:2}
 .sp-frame .tagline{color:#fff;font-size:.94rem;font-weight:600;letter-spacing:-.02em;text-shadow:0 1px 12px rgba(0,0,0,.55)}
+.sp-photo{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
+.sp-frame.photo::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(0deg,rgba(16,16,16,.74) 0%,rgba(16,16,16,.20) 38%,rgba(16,16,16,0) 64%)}
 .sp-dark{background:var(--char);color:var(--on-char);border-radius:var(--r);
   padding:clamp(26px,3.2vw,34px);display:flex;flex-direction:column;gap:13px;
   background-image:radial-gradient(rgba(255,255,255,.055) 1px,transparent 1px);background-size:16px 16px}
@@ -640,10 +629,10 @@ section[id]{scroll-margin-top:92px}
 
 
 /* visuel plein bord : touche le bas et les deux flancs de l'encart, sans ombre */
-.feat-vis.bleed{padding:clamp(18px,2.4vw,26px) 0 0;align-items:flex-end;overflow:hidden}
+.feat-vis.bleed{padding:clamp(28px,3.4vw,44px) 0 0;align-items:flex-end;overflow:hidden}
 .bleed-img{width:100%;height:auto;max-width:none;display:block;border-radius:0;box-shadow:none;margin-top:auto}
 /* plaque dont la capture EST le fond : le texte se pose dessus */
-.f-shot .shot-bg{width:100%;height:100%;object-fit:cover;object-position:center 81%;display:block}
+.f-shot .shot-bg{width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block}
 .f-shot-c .shot-bg{object-position:center}
 /* le voile suit le bloc de texte, pas la hauteur de la plaque : il reste
    lisible quel que soit le nombre de lignes */
@@ -685,7 +674,7 @@ section[id]{scroll-margin-top:92px}
   <div class="wrap hero-in">
     <img class="hero-logo rv" src="img/logo.svg" alt="Onlineformapro" width="139" height="57">
     <span class="trust rv"><span class="stars" aria-hidden="true">★★★★★</span> 1 300 organismes de formation nous font confiance</span>
-    <h1 class="rv">6 000 heures de contenu e-learning pour les organismes de formation.</h1>
+    <h1 class="rv">6 000 heures de contenu e‑learning pour les organismes de formation.</h1>
     <p class="sub rv geo-lead"><strong>Onlineformapro permet aux organismes de formation et aux entreprises d'intégrer un catalogue de 6 000 heures de modules e-learning directement dans leur propre plateforme LMS</strong>, aux normes SCORM, AICC et xAPI. Les contenus sont produits et maintenus en France depuis 1999.</p>
     <div class="acts acts-c rv">
       <a class="btn btn-primary" href="#demo">Demander une démo gratuite<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -724,7 +713,7 @@ section[id]{scroll-margin-top:92px}
   <div class="wrap">
     <div class="head rv">
       <span class="eyebrow" style="--d:var(--dot-3)">Le produit</span>
-      <h2>Du module e-learning à vos preuves Qualiopi.</h2>
+      <h2>Nos modules e‑learning, en pratique.</h2>
       <p class="sub">De la sélection des leçons à l'export des preuves de suivi.</p>
     </div>
     <div class="feats">
@@ -732,7 +721,7 @@ section[id]{scroll-margin-top:92px}
       <article class="feat f-shot rv">
         <img class="paint shot-bg" src="img/catalogue2.png" alt="Affectation de modules e-learning à un groupe d'apprenants depuis le catalogue Onlineformapro" width="426" height="801" loading="lazy" decoding="async">
         <div class="feat-txt">
-          <h3>Choisir</h3>
+          <h3>Leçon par leçon</h3>
           <p>Un module dure environ une heure et se décompose en 4 à 7 leçons, chacune portant un objectif explicite. Vous composez vos parcours leçon par leçon, pas par blocs entiers.</p>
         </div>
       </article>
@@ -740,7 +729,7 @@ section[id]{scroll-margin-top:92px}
       <article class="feat rv">
         <span class="paint" aria-hidden="true"><svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice"><defs><filter id="pb" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.011 0.018" numOctaves="4" seed="23" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="100" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#pb)"><rect x="-260" y="-320" width="1120" height="1440" fill="#A9A894"/><ellipse cx="430" cy="200" rx="290" ry="220" fill="#C2C4A8"/><ellipse cx="150" cy="480" rx="300" ry="260" fill="#8E9C86"/><ellipse cx="480" cy="660" rx="280" ry="200" fill="#D9CDAE"/></g></svg></span>
         <div class="feat-txt">
-          <h3>Intégrer</h3>
+          <h3>Au format de votre LMS</h3>
           <p>Le module sort au format attendu par la plateforme que vous utilisez déjà. Pas de migration, pas de seconde connexion pour l'apprenant.</p>
         </div>
         <div class="feat-vis bleed"><img class="bleed-img" src="img/integrer.png" alt="Document Word ouvert avec les logos Office, Windows 11 et Excel autour" width="427" height="236" loading="lazy" decoding="async"></div>
@@ -757,7 +746,7 @@ section[id]{scroll-margin-top:92px}
       <article class="feat rv">
         <span class="paint" aria-hidden="true"><svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice"><defs><filter id="pc" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="37" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="110" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#pc)"><rect x="-260" y="-320" width="1120" height="1440" fill="#9FA6A8"/><ellipse cx="200" cy="240" rx="300" ry="240" fill="#7E94A6"/><ellipse cx="470" cy="540" rx="300" ry="250" fill="#BFC5C0"/><ellipse cx="120" cy="700" rx="280" ry="190" fill="#6E7F86"/></g></svg></span>
         <div class="feat-txt">
-          <h3>Diffuser</h3>
+          <h3>Sans rien installer</h3>
           <p>La simulation reproduit l'interface du logiciel dans le navigateur : rien à installer sur les postes, très peu de bande passante. Un parc verrouillé ne bloque plus le déploiement.</p>
         </div>
         <div class="feat-vis">
@@ -777,7 +766,7 @@ section[id]{scroll-margin-top:92px}
       <article class="feat f-wide rv">
         <span class="paint" aria-hidden="true"><svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice"><defs><filter id="pd" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.015" numOctaves="4" seed="5" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="130" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#pd)"><rect x="-260" y="-320" width="1120" height="1440" fill="#BCB49B"/><ellipse cx="120" cy="260" rx="320" ry="250" fill="#D2BC90"/><ellipse cx="470" cy="180" rx="280" ry="220" fill="#A9B7C4"/><ellipse cx="380" cy="660" rx="340" ry="220" fill="#8B9578"/></g></svg></span>
         <div class="feat-txt">
-          <h3>Prouver</h3>
+          <h3>Suivi et preuves</h3>
           <p>Progression, temps de connexion et résultats remontent leçon par leçon dans votre LMS. Ce sont les pièces que réclament vos financeurs et un audit Qualiopi, au titre du critère 3.</p>
         </div>
         <div class="feat-vis bleed">
@@ -799,7 +788,7 @@ section[id]{scroll-margin-top:92px}
       <div>
         <div class="wk-head rv">
           <span class="eyebrow" style="--d:var(--dot-1)">Mise en œuvre</span>
-          <h2>Déployer nos modules e-learning en trois étapes.</h2>
+          <h2>Déployer nos modules e‑learning en trois étapes.</h2>
           <p class="sub">Pas de cahier des charges, pas de chantier d'intégration. Le contenu existe&nbsp;: reste à choisir lequel et à ouvrir les accès.</p>
         </div>
         <div class="wk-steps">
@@ -842,7 +831,7 @@ section[id]{scroll-margin-top:92px}
   <div class="wrap">
     <div class="head rv">
       <span class="eyebrow" style="--d:var(--dot-4)">Catalogue e-learning</span>
-      <h2>Quinze domaines de formation e-learning.</h2>
+      <h2>Quinze domaines de formation e‑learning.</h2>
     </div>
     <div class="tabs rv" role="group" aria-label="Filtrer les domaines">
       <button class="tab" type="button" data-f="all" aria-pressed="true">Tous</button>
@@ -853,21 +842,21 @@ section[id]{scroll-margin-top:92px}
       <button class="tab" type="button" data-f="prev" aria-pressed="false">Prévention</button>
     </div>
     <div class="doms" id="doms">
-      <article class="dom rv" data-tags="cert"><div class="dom-top"><img src="img/rncp.png" alt="Remise d'un titre professionnel" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Titres professionnels</h4><p>Accédez aux parcours certifiants reconnus par l'État pour valider vos compétences.</p><span class="dom-meta">RNCP · Parcours certifiants</span></div></article>
-      <article class="dom rv" data-tags="num"><div class="dom-top"><img src="img/bases-informatiques.png" alt="Écran d'accueil de Windows" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Bases informatiques</h4><p>Maîtrisez les fondamentaux de l'outil informatique et l'environnement web.</p><span class="dom-meta">Windows · Web · Messagerie</span></div></article>
-      <article class="dom rv" data-tags="num"><div class="dom-top"><img src="img/office.png" alt="Apprenant devant un ordinateur portable, entouré des icônes de la suite Office" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Bureautique Microsoft Office</h4><p>Devenez expert sur Word, Excel, PowerPoint et Outlook pour votre quotidien professionnel.</p><span class="dom-meta">Word · Excel · PowerPoint · Outlook</span></div></article>
-      <article class="dom rv" data-tags="num"><div class="dom-top"><img src="img/autocad.png" alt="Rendu architectural d'une maison contemporaine" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>CAO-DAO, architecture et design</h4><p>Développez vos compétences en modélisation et conception assistée par ordinateur.</p><span class="dom-meta">AutoCAD · Revit</span></div></article>
-      <article class="dom rv" data-tags="cert"><div class="dom-top"><img src="img/clea.png" alt="Visuel du certificat CléA" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>CléA</h4><p>Acquérez le socle de connaissances et de compétences professionnelles essentiel.</p><span class="dom-meta">Socle de compétences</span></div></article>
-      <article class="dom rv" data-tags="fond"><div class="dom-top"><img src="img/competences-de-base.png" alt="Visuel du module Français langue étrangère" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Compétences de base</h4><p>Renforcez vos acquis fondamentaux pour sécuriser votre parcours professionnel.</p><span class="dom-meta">Maths · Français · FLE</span></div></article>
-      <article class="dom rv" data-tags="num"><div class="dom-top"><img src="img/developpement-web.png" alt="Écran affichant du code source et les logos HTML et CSS" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Développement web</h4><p>Apprenez à coder, concevoir et maintenir des applications web modernes.</p><span class="dom-meta">HTML · CSS · JavaScript · PHP</span></div></article>
-      <article class="dom rv" data-tags="met"><div class="dom-top"><img src="img/entreprise.png" alt="Collaborateurs en réunion de travail" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Entreprise</h4><p>Développez vos compétences en gestion, ressources humaines et culture d'entreprise.</p><span class="dom-meta">Gestion · Ressources humaines</span></div></article>
-      <article class="dom rv" data-tags="met"><div class="dom-top"><img src="img/immobilier.png" alt="Façade d'un immeuble d'habitation" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Immobilier</h4><p>Maîtrisez les réglementations, la gestion et les pratiques du secteur immobilier.</p><span class="dom-meta">Réglementation · Gestion locative</span></div></article>
-      <article class="dom rv" data-tags="fond"><div class="dom-top"><img src="img/langues.png" alt="Visuel du module Reflex'English" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Langues</h4><p>Améliorez votre niveau en langues étrangères pour dynamiser votre carrière.</p><span class="dom-meta">Anglais · Espagnol · Allemand</span></div></article>
-      <article class="dom rv" data-tags="met"><div class="dom-top"><img src="img/management.png" alt="Équipe en réunion autour d'une table" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Management</h4><p>Perfectionnez vos pratiques managériales, votre leadership et la gestion d'équipe.</p><span class="dom-meta">Leadership · Gestion d'équipe</span></div></article>
-      <article class="dom rv" data-tags="met"><div class="dom-top"><img src="img/marketing.png" alt="Visuel illustrant le marketing digital" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Marketing, commerce et webmarketing</h4><p>Boostez vos ventes, maîtrisez les stratégies digitales et fidélisez vos clients.</p><span class="dom-meta">Vente · Stratégie digitale</span></div></article>
-      <article class="dom rv" data-tags="num"><div class="dom-top"><img src="img/pao.png" alt="Logos des logiciels de création graphique Adobe" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>PAO, publication assistée par ordinateur</h4><p>Créez des supports de communication visuelle professionnels et percutants.</p><span class="dom-meta">Photoshop · Illustrator · InDesign</span></div></article>
-      <article class="dom rv" data-tags="prev"><div class="dom-top"><img src="img/sante.png" alt="Ouvriers équipés de casques et de gilets sur un chantier" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Prévention et sécurité</h4><p>Formez-vous aux normes, gestes qui sauvent et bonnes pratiques de sécurité.</p><span class="dom-meta">SST · Risques professionnels</span></div></article>
-      <article class="dom rv" data-tags="num"><div class="dom-top"><img src="img/reseaux.avif" alt="Baie de serveurs réseau" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Réseaux et administration réseau</h4><p>Gérez, optimisez et sécurisez les infrastructures informatiques d'entreprise.</p><span class="dom-meta">Infrastructure · Sécurité</span></div></article>
+      <article class="dom rv" data-tags="cert"><div class="dom-top"><img src="img/rncp.png" alt="Remise d'un titre professionnel" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Titres professionnels</h4><p>Les parcours certifiants inscrits au RNCP, pour les apprenants que vous menez jusqu'au titre.</p><span class="dom-meta">RNCP · Parcours certifiants</span></div></article>
+      <article class="dom rv" data-tags="num"><div class="dom-top"><img src="img/bases-informatiques.png" alt="Écran d'accueil de Windows" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Bases informatiques</h4><p>Le socle numérique : poste de travail, navigation, messagerie. Le prérequis de la plupart de vos parcours.</p><span class="dom-meta">Windows · Web · Messagerie</span></div></article>
+      <article class="dom rv" data-tags="num"><div class="dom-top"><img src="img/office.png" alt="Apprenant devant un ordinateur portable, entouré des icônes de la suite Office" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Bureautique Microsoft Office</h4><p>Word, Excel, PowerPoint et Outlook, de l'initiation au perfectionnement, en versions 2016 à 2024.</p><span class="dom-meta">Word · Excel · PowerPoint · Outlook</span></div></article>
+      <article class="dom rv" data-tags="num"><div class="dom-top"><img src="img/autocad.png" alt="Rendu architectural d'une maison contemporaine" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>CAO-DAO, architecture et design</h4><p>AutoCAD et Revit, pour vos publics du bâtiment et des bureaux d'études.</p><span class="dom-meta">AutoCAD · Revit</span></div></article>
+      <article class="dom rv" data-tags="cert"><div class="dom-top"><img src="img/clea.png" alt="Visuel du certificat CléA" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>CléA</h4><p>Le socle CléA au complet, pour vos parcours de remise à niveau et vos publics en insertion.</p><span class="dom-meta">Socle de compétences</span></div></article>
+      <article class="dom rv" data-tags="fond"><div class="dom-top"><img src="img/competences-de-base.png" alt="Visuel du module Français langue étrangère" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Compétences de base</h4><p>Maths, français et FLE, pour les remises à niveau comme pour les publics éloignés de l'écrit.</p><span class="dom-meta">Maths · Français · FLE</span></div></article>
+      <article class="dom rv" data-tags="num"><div class="dom-top"><img src="img/developpement-web.png" alt="Écran affichant du code source et les logos HTML et CSS" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Développement web</h4><p>HTML, CSS, JavaScript et PHP, du premier script à l'application maintenue.</p><span class="dom-meta">HTML · CSS · JavaScript · PHP</span></div></article>
+      <article class="dom rv" data-tags="met"><div class="dom-top"><img src="img/entreprise.png" alt="Collaborateurs en réunion de travail" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Entreprise</h4><p>Gestion, ressources humaines et vie de l'entreprise, en complément de vos parcours tertiaires.</p><span class="dom-meta">Gestion · Ressources humaines</span></div></article>
+      <article class="dom rv" data-tags="met"><div class="dom-top"><img src="img/immobilier.png" alt="Façade d'un immeuble d'habitation" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Immobilier</h4><p>Réglementation, gestion locative et pratiques du secteur, pour vos publics de l'immobilier.</p><span class="dom-meta">Réglementation · Gestion locative</span></div></article>
+      <article class="dom rv" data-tags="fond"><div class="dom-top"><img src="img/langues.png" alt="Visuel du module Reflex'English" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Langues</h4><p>Anglais, espagnol et allemand, à intégrer à vos parcours ou à proposer en autonomie.</p><span class="dom-meta">Anglais · Espagnol · Allemand</span></div></article>
+      <article class="dom rv" data-tags="met"><div class="dom-top"><img src="img/management.png" alt="Équipe en réunion autour d'une table" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Management</h4><p>Leadership et gestion d'équipe, pour vos parcours d'encadrants et de managers de proximité.</p><span class="dom-meta">Leadership · Gestion d'équipe</span></div></article>
+      <article class="dom rv" data-tags="met"><div class="dom-top"><img src="img/marketing.png" alt="Visuel illustrant le marketing digital" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Marketing, commerce et webmarketing</h4><p>Vente, relation client et stratégie digitale, pour vos parcours commerciaux.</p><span class="dom-meta">Vente · Stratégie digitale</span></div></article>
+      <article class="dom rv" data-tags="num"><div class="dom-top"><img src="img/pao.png" alt="Logos des logiciels de création graphique Adobe" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>PAO, publication assistée par ordinateur</h4><p>Photoshop, Illustrator et InDesign, de l'initiation au perfectionnement.</p><span class="dom-meta">Photoshop · Illustrator · InDesign</span></div></article>
+      <article class="dom rv" data-tags="prev"><div class="dom-top"><img src="img/sante.png" alt="Ouvriers équipés de casques et de gilets sur un chantier" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Prévention et sécurité</h4><p>SST, gestes qui sauvent et risques professionnels, pour vos formations réglementaires.</p><span class="dom-meta">SST · Risques professionnels</span></div></article>
+      <article class="dom rv" data-tags="num"><div class="dom-top"><img src="img/reseaux.avif" alt="Baie de serveurs réseau" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Réseaux et administration réseau</h4><p>Infrastructure et sécurité, pour vos parcours d'administrateurs et de techniciens.</p><span class="dom-meta">Infrastructure · Sécurité</span></div></article>
     </div>
   </div>
 </section>
@@ -880,7 +869,7 @@ section[id]{scroll-margin-top:92px}
         <span class="eyebrow" style="--d:var(--dot-2)">Pour qui</span>
         <h2>Pour les organismes de formation.</h2>
       </div>
-      <p class="sub">Vous vendez de la formation&nbsp;: le catalogue complète votre offre, à votre charte, sans rien produire en interne. Entreprises et acheteurs publics s'en servent aussi, autrement.</p>
+      <p class="sub">Vous formez des apprenants&nbsp;: le catalogue complète vos parcours, à votre charte, prêt à diffuser. Entreprises et acheteurs publics s'en servent aussi, autrement.</p>
     </div>
 
     <div class="stage-bar rv">
@@ -896,10 +885,10 @@ section[id]{scroll-margin-top:92px}
       <div class="stage-panel enter" id="pan-0" role="tabpanel" aria-labelledby="tab-0">
         <div class="sp-txt">
           <span class="lbl">Organisme de formation</span>
-          <h3>Élargir sans recruter</h3>
-          <p class="sp-end">Vous vendez de la formation et vos clients demandent des domaines que vous ne couvrez pas. Quinze s'ajoutent à votre catalogue commercial sans ouvrir de ligne de production.</p>
+          <h3>Plus de domaines pour vos apprenants</h3>
+          <p class="sp-end">Vos apprenants ont besoin de bureautique, de langues, de prévention, de compétences de base. Quinze domaines s'ajoutent à vos parcours, à votre charte, prêts à diffuser.</p>
         </div>
-        <div class="sp-img"><div class="sp-frame"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="sg2" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="29" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="115" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#sg2)"><rect x="-260" y="-300" width="1120" height="1300" fill="#A5AC96"/><ellipse cx="420" cy="190" rx="290" ry="210" fill="#C6CBA8"/><ellipse cx="150" cy="470" rx="300" ry="250" fill="#8B9A82"/><ellipse cx="470" cy="630" rx="280" ry="190" fill="#DCD3B4"/></g></svg></span><span class="tagline">Votre catalogue, élargi</span></div></div>
+        <div class="sp-img"><div class="sp-frame photo"><img class="paint sp-photo" src="img/votre_catalogue_elargi.png" alt="Formatrice et apprenant devant un ordinateur portable pendant une session de formation" width="352" height="527" loading="lazy" decoding="async"><span class="tagline">Votre catalogue, élargi</span></div></div>
         <div class="sp-dark">
           <span class="cap"><i>OF</i>Ce qui compte pour vous</span>
           <ul><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Modules diffusés à votre charte, dans votre environnement</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Complément direct de votre présentiel en blended learning</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Preuves de suivi au format attendu par vos financeurs</li></ul>
@@ -943,7 +932,7 @@ section[id]{scroll-margin-top:92px}
   <div class="wrap">
     <div class="rev-head rv">
       <span class="pill-h"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13.5S1.8 9.8 1.8 5.9A3.4 3.4 0 0 1 8 4a3.4 3.4 0 0 1 6.2 1.9c0 3.9-6.2 7.6-6.2 7.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg> Références</span>
-      <h2>Ils forment avec notre contenu e-learning.</h2>
+      <h2>Ils forment avec notre contenu e‑learning.</h2>
       <p class="sub">Organismes de formation, entreprises et institutions diffusent nos modules, du réseau régional au groupe national.</p>
     </div>
   </div>
@@ -958,7 +947,7 @@ section[id]{scroll-margin-top:92px}
     <div class="head rv">
       <span class="eyebrow" style="--d:var(--dot-5)">Tutorat</span>
       <h2>Vos apprenants ne restent pas seuls devant l'écran.</h2>
-      <p class="sub">Le suivi et l'accompagnement se pilotent depuis OnlineManager. C'est souvent ce qui sépare un module ouvert d'un module terminé.</p>
+      <p class="sub">Nos modules ne partent pas seuls. Nos tuteurs accompagnent vos apprenants pendant toute la durée du parcours, en direct ou en différé.</p>
     </div>
 
     <div class="tut">
@@ -973,20 +962,6 @@ section[id]{scroll-margin-top:92px}
         <span class="tut-l">En différé</span>
         <b class="tut-big">7j/7 <i>&middot;</i> 24h/24</b>
         <p>Une question posée le dimanche soir trouve sa réponse. Le soutien pédagogique est sans limite d'usage sur toute la durée du parcours.</p>
-      </article>
-
-      <article class="tut-c tut-w rv">
-        <div class="tut-w-txt">
-          <span class="tut-l">Gérer les tuteurs</span>
-          <h3>Vous décidez qui accompagne qui.</h3>
-          <p>Le rattachement se fait depuis votre espace, sans passer par nous.</p>
-        </div>
-        <ul class="tut-aff">
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Un tuteur de spécialité, sur une ou plusieurs formations</span></li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Un tuteur rattaché à un groupe</span></li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Un tuteur rattaché à un apprenant</span></li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>La liste de vos tuteurs, tenue à jour</span></li>
-        </ul>
       </article>
     </div>
   </div>
@@ -1034,7 +1009,7 @@ section[id]{scroll-margin-top:92px}
 <!-- ═══ FAQ ═══ -->
 <section id="faq">
   <div class="narrow">
-    <div class="head rv"><span class="eyebrow" style="--d:var(--dot-1)">Questions fréquentes</span><h2>Questions sur le catalogue e-learning.</h2></div>
+    <div class="head rv"><span class="eyebrow" style="--d:var(--dot-1)">Questions fréquentes</span><h2>Questions sur le catalogue e‑learning.</h2></div>
     <div class="faq rv">
       <details open><summary>Le catalogue est-il compatible avec mon LMS actuel ?<span class="sign" aria-hidden="true"></span></summary><div class="faq-a">Oui, avec n'importe quelle plateforme respectant SCORM 1.2, SCORM 2004, AICC ou xAPI — ce qui couvre la quasi-totalité du marché, Moodle et Cornerstone compris. Vous n'avez pas à changer de LMS.</div></details>
       <details><summary>Combien coûte l'accès au catalogue ?<span class="sign" aria-hidden="true"></span></summary><div class="faq-a">Le tarif dépend du volume de modules retenus et du nombre d'apprenants. Une sélection ciblée sur deux ou trois domaines n'a pas le même coût que le catalogue complet. Nous chiffrons après un échange de trente minutes sur votre périmètre.</div></details>
@@ -1051,7 +1026,7 @@ section[id]{scroll-margin-top:92px}
     <div class="dm-in">
       <div class="dm-side">
         <span class="eyebrow" style="--d:#fff">Démonstration</span>
-        <h2>Testez notre catalogue e-learning.</h2>
+        <h2>Testez notre catalogue e‑learning.</h2>
         <p>Dites-nous vos domaines et la plateforme que vous utilisez. Nous ouvrons un accès de démonstration aux modules concernés, sur vos propres parcours.</p>
         <ul class="dm-pts">
           <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.4 3.2 3.2L13 4.8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Un accès réel aux modules de vos domaines, pas une visite guidée.</span></li>
