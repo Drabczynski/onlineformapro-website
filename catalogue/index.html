@@ -213,24 +213,17 @@ section[id]{scroll-margin-top:92px}
 .tab:hover{border-color:var(--ink-3);color:var(--ink)}
 .tab[aria-pressed="true"]{background:var(--char);border-color:var(--char);color:var(--cream)}
 .doms{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
-.dom{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;
-  transition:transform .28s var(--ease),border-color .25s,box-shadow .25s}
-.dom:hover{transform:translateY(-5px);border-color:transparent;box-shadow:0 2px 4px rgba(0,0,0,.04),0 18px 34px -20px rgba(0,0,0,.3)}
+.dom{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
 /* emplacement d'image : aplat neutre tant que le visuel manque */
 .dom-top{aspect-ratio:400/133;position:relative;overflow:hidden;background:var(--cream-3)}
-.dom-top img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease)}
-.dom:hover .dom-top img{transform:scale(1.04)}
+.dom-top img{width:100%;height:100%;object-fit:cover;display:block}
 
-.dom-glyph{position:absolute;right:-12px;bottom:-20px;opacity:1;color:#CFCFCF;transition:transform .4s var(--ease)}
-.dom:hover .dom-glyph{transform:scale(1.08) rotate(-4deg)}
 .cpf{position:relative;z-index:2;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;
   text-transform:uppercase;padding:5px 10px;border-radius:100px;background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.1)}
 .dom-body{padding:17px 19px 19px;display:flex;flex-direction:column;gap:6px;flex:1}
 .dom-body p{font-size:.87rem;line-height:1.45;color:var(--ink-2)}
 .dom-meta{margin-top:auto;padding-top:13px;display:flex;align-items:center;gap:8px;
   font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
-.dom-meta .go{margin-left:auto;color:var(--ink);transition:transform .2s var(--ease)}
-.dom:hover .dom-meta .go{transform:translateX(4px)}
 
 /* ══ témoignage ══ */
 .quote{text-align:center;max-width:900px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:24px}
@@ -418,15 +411,56 @@ section[id]{scroll-margin-top:92px}
 .faq details[open] .sign::after{opacity:1}
 
 /* ══════════ CTA PEINT ══════════ */
-.cta-paint{position:relative;border-radius:var(--r);overflow:hidden;isolation:isolate;
-  min-height:clamp(300px,32vw,430px);display:grid;place-items:center;text-align:center;padding:clamp(34px,5vw,64px)}
-.cta-paint > *:not(.paint){position:relative;z-index:2}
-.cta-paint::after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(72% 84% at 50% 50%,rgba(26,26,26,.52) 0%,rgba(26,26,26,.34) 58%,rgba(26,26,26,.24) 100%)}
-.cta-in{display:flex;flex-direction:column;align-items:center;gap:22px}
-.cta-in h2{color:#fff;max-width:15ch;text-shadow:0 2px 24px rgba(0,0,0,.32)}
-.cta-in .btn-white{background:#fff;color:var(--ink)}
-.cta-in .btn-white:hover{background:var(--cream);transform:translateY(-2px)}
-.cta-in small{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+
+/* ══════════ FORMULAIRE DE DÉMONSTRATION ══════════ */
+.dm{position:relative;border-radius:var(--r);overflow:hidden;isolation:isolate;
+  display:grid;grid-template-columns:1fr;gap:clamp(28px,3.4vw,46px);
+  padding:clamp(28px,4vw,54px)}
+@media (min-width:960px){.dm{grid-template-columns:1fr 1.02fr;align-items:center}}
+.dm > *:not(.paint){position:relative;z-index:2}
+.dm::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(102deg,rgba(26,26,26,.90) 0%,rgba(26,26,26,.72) 48%,rgba(26,26,26,.52) 100%)}
+
+.dm-side{display:flex;flex-direction:column;gap:20px}
+.dm-side .eyebrow{color:rgba(255,255,255,.78)}
+.dm-side h2{color:#fff;max-width:17ch;text-shadow:0 2px 24px rgba(0,0,0,.3)}
+.dm-side > p{font-size:1rem;line-height:1.55;color:rgba(244,244,239,.82);max-width:46ch}
+.dm-pts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:13px}
+.dm-pts li{display:flex;align-items:flex-start;gap:11px;font-size:.94rem;line-height:1.45;color:rgba(244,244,239,.94)}
+.dm-pts svg{flex:none;margin-top:2px;color:#fff;opacity:.9}
+.dm-side > p.dm-rassure{margin:0;font-family:var(--mono);font-size:10.5px;line-height:1.5;
+  letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);max-width:none}
+
+.dm-form{background:#fff;color:var(--ink);border-radius:var(--r);padding:clamp(20px,2.6vw,30px);
+  display:flex;flex-direction:column;gap:14px;
+  box-shadow:0 1px 2px rgba(0,0,0,.16),0 18px 36px -16px rgba(0,0,0,.42),0 50px 90px -40px rgba(0,0,0,.6)}
+.fr{display:grid;gap:14px;grid-template-columns:1fr}
+@media (min-width:520px){.fr-2{grid-template-columns:1fr 1fr}}
+.fld{display:flex;flex-direction:column;gap:6px;min-width:0}
+.fld label{font-size:.79rem;font-weight:600;letter-spacing:-.008em;color:var(--ink-2)}
+.fld label .req{color:var(--red)}
+.fld input,.fld select,.fld textarea{width:100%;font:inherit;font-size:.93rem;color:var(--ink);
+  background:#fff;border:1px solid var(--line);border-radius:11px;padding:11px 13px;
+  transition:border-color .18s,box-shadow .18s}
+.fld textarea{resize:vertical;min-height:82px;line-height:1.5}
+.fld input::placeholder,.fld textarea::placeholder{color:var(--ink-3)}
+.fld input:hover,.fld select:hover,.fld textarea:hover{border-color:#CFCFCF}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--red);
+  box-shadow:0 0 0 3px rgba(224,26,79,.14)}
+.fld select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:34px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='m3.5 6 4.5 4.5L12.5 6' stroke='%235A5A5A' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 13px center}
+.dm-form .btn{width:100%;justify-content:center;margin-top:4px}
+.dm-legal{margin:0;font-size:.76rem;line-height:1.5;color:var(--ink-3)}
+.dm-legal a{text-decoration:underline;text-underline-offset:2px}
+/* accusé de réception : la maquette n'envoie rien, elle le dit */
+.dm-ok{display:none;flex-direction:column;gap:10px;align-items:flex-start;padding:clamp(26px,3vw,36px) 4px}
+.dm-form.sent .fr,.dm-form.sent .fld,.dm-form.sent .btn,.dm-form.sent .dm-legal{display:none}
+.dm-form.sent .dm-ok{display:flex}
+.dm-ok .tick{width:38px;height:38px;border-radius:50%;background:#E7F3EC;color:var(--green);
+  display:grid;place-items:center;flex:none}
+.dm-ok b{font-size:1.06rem;font-weight:600;letter-spacing:-.026em}
+.dm-ok p{margin:0;font-size:.9rem;line-height:1.5;color:var(--ink-2)}
 
 /* ══════════ FOOTER ══════════ */
 .foot{background:var(--cream);padding:clamp(48px,6vw,76px) 0 0}
@@ -647,8 +681,8 @@ section[id]{scroll-margin-top:92px}
    deux colonnes, il remplit la place que lui laisse l'encart */
 @media (min-width:940px){
   .feat-vis.bleed.fill{padding:0;min-height:clamp(210px,25vw,340px)}
-  .feat-vis.bleed.fill .bleed-img{position:absolute;inset:0;height:100%;
-    object-fit:cover;object-position:center bottom;margin:0}
+  .feat-vis.bleed.fill .bleed-img{position:absolute;left:0;right:0;bottom:0;
+    height:calc(100% - clamp(22px,2.8vw,30px));object-fit:cover;object-position:center bottom;margin:0}
   .f-wide .feat-vis.bleed{padding:0;align-self:stretch;align-items:stretch;min-height:clamp(230px,22vw,320px)}
   .f-wide .feat-vis.bleed .bleed-img{position:absolute;inset:0;height:100%;
     object-fit:cover;object-position:center;margin:0}
@@ -872,21 +906,21 @@ section[id]{scroll-margin-top:92px}
       <button class="tab" type="button" data-f="prev" aria-pressed="false">Prévention</button>
     </div>
     <div class="doms" id="doms">
-      <a class="dom rv" href="#" data-tags="cert"><div class="dom-top"><img src="img/rncp.png" alt="Remise d'un titre professionnel" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Titres professionnels</h4><p>Accédez aux parcours certifiants reconnus par l'État pour valider vos compétences.</p><span class="dom-meta">RNCP · Parcours certifiants<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="num"><div class="dom-top"><img src="img/bases-informatiques.png" alt="Écran d'accueil de Windows" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Bases informatiques</h4><p>Maîtrisez les fondamentaux de l'outil informatique et l'environnement web.</p><span class="dom-meta">Windows · Web · Messagerie<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="num"><div class="dom-top"><img src="img/office.png" alt="Apprenant devant un ordinateur portable, entouré des icônes de la suite Office" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Bureautique Microsoft Office</h4><p>Devenez expert sur Word, Excel, PowerPoint et Outlook pour votre quotidien professionnel.</p><span class="dom-meta">Word · Excel · PowerPoint · Outlook<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="num"><div class="dom-top"><img src="img/autocad.png" alt="Rendu architectural d'une maison contemporaine" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>CAO-DAO, architecture et design</h4><p>Développez vos compétences en modélisation et conception assistée par ordinateur.</p><span class="dom-meta">AutoCAD · Revit<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="cert"><div class="dom-top"><img src="img/clea.png" alt="Visuel du certificat CléA" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>CléA</h4><p>Acquérez le socle de connaissances et de compétences professionnelles essentiel.</p><span class="dom-meta">Socle de compétences<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="fond"><div class="dom-top"><img src="img/competences-de-base.png" alt="Visuel du module Français langue étrangère" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Compétences de base</h4><p>Renforcez vos acquis fondamentaux pour sécuriser votre parcours professionnel.</p><span class="dom-meta">Maths · Français · FLE<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="num"><div class="dom-top"><img src="img/developpement-web.png" alt="Écran affichant du code source et les logos HTML et CSS" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Développement web</h4><p>Apprenez à coder, concevoir et maintenir des applications web modernes.</p><span class="dom-meta">HTML · CSS · JavaScript · PHP<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="met"><div class="dom-top"><img src="img/entreprise.png" alt="Collaborateurs en réunion de travail" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Entreprise</h4><p>Développez vos compétences en gestion, ressources humaines et culture d'entreprise.</p><span class="dom-meta">Gestion · Ressources humaines<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="met"><div class="dom-top"><img src="img/immobilier.png" alt="Façade d'un immeuble d'habitation" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Immobilier</h4><p>Maîtrisez les réglementations, la gestion et les pratiques du secteur immobilier.</p><span class="dom-meta">Réglementation · Gestion locative<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="fond"><div class="dom-top"><img src="img/langues.png" alt="Visuel du module Reflex'English" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Langues</h4><p>Améliorez votre niveau en langues étrangères pour dynamiser votre carrière.</p><span class="dom-meta">Anglais · Espagnol · Allemand<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="met"><div class="dom-top"><img src="img/management.png" alt="Équipe en réunion autour d'une table" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Management</h4><p>Perfectionnez vos pratiques managériales, votre leadership et la gestion d'équipe.</p><span class="dom-meta">Leadership · Gestion d'équipe<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="met"><div class="dom-top"><img src="img/marketing.png" alt="Visuel illustrant le marketing digital" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Marketing, commerce et webmarketing</h4><p>Boostez vos ventes, maîtrisez les stratégies digitales et fidélisez vos clients.</p><span class="dom-meta">Vente · Stratégie digitale<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="num"><div class="dom-top"><img src="img/pao.png" alt="Logos des logiciels de création graphique Adobe" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>PAO, publication assistée par ordinateur</h4><p>Créez des supports de communication visuelle professionnels et percutants.</p><span class="dom-meta">Photoshop · Illustrator · InDesign<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="prev"><div class="dom-top"><img src="img/sante.png" alt="Ouvriers équipés de casques et de gilets sur un chantier" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Prévention et sécurité</h4><p>Formez-vous aux normes, gestes qui sauvent et bonnes pratiques de sécurité.</p><span class="dom-meta">SST · Risques professionnels<span class="go">&rarr;</span></span></div></a>
-      <a class="dom rv" href="#" data-tags="num"><div class="dom-top"><img src="img/reseaux.avif" alt="Baie de serveurs réseau" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Réseaux et administration réseau</h4><p>Gérez, optimisez et sécurisez les infrastructures informatiques d'entreprise.</p><span class="dom-meta">Infrastructure · Sécurité<span class="go">&rarr;</span></span></div></a>
+      <article class="dom rv" data-tags="cert"><div class="dom-top"><img src="img/rncp.png" alt="Remise d'un titre professionnel" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Titres professionnels</h4><p>Accédez aux parcours certifiants reconnus par l'État pour valider vos compétences.</p><span class="dom-meta">RNCP · Parcours certifiants</span></div></article>
+      <article class="dom rv" data-tags="num"><div class="dom-top"><img src="img/bases-informatiques.png" alt="Écran d'accueil de Windows" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Bases informatiques</h4><p>Maîtrisez les fondamentaux de l'outil informatique et l'environnement web.</p><span class="dom-meta">Windows · Web · Messagerie</span></div></article>
+      <article class="dom rv" data-tags="num"><div class="dom-top"><img src="img/office.png" alt="Apprenant devant un ordinateur portable, entouré des icônes de la suite Office" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Bureautique Microsoft Office</h4><p>Devenez expert sur Word, Excel, PowerPoint et Outlook pour votre quotidien professionnel.</p><span class="dom-meta">Word · Excel · PowerPoint · Outlook</span></div></article>
+      <article class="dom rv" data-tags="num"><div class="dom-top"><img src="img/autocad.png" alt="Rendu architectural d'une maison contemporaine" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>CAO-DAO, architecture et design</h4><p>Développez vos compétences en modélisation et conception assistée par ordinateur.</p><span class="dom-meta">AutoCAD · Revit</span></div></article>
+      <article class="dom rv" data-tags="cert"><div class="dom-top"><img src="img/clea.png" alt="Visuel du certificat CléA" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>CléA</h4><p>Acquérez le socle de connaissances et de compétences professionnelles essentiel.</p><span class="dom-meta">Socle de compétences</span></div></article>
+      <article class="dom rv" data-tags="fond"><div class="dom-top"><img src="img/competences-de-base.png" alt="Visuel du module Français langue étrangère" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Compétences de base</h4><p>Renforcez vos acquis fondamentaux pour sécuriser votre parcours professionnel.</p><span class="dom-meta">Maths · Français · FLE</span></div></article>
+      <article class="dom rv" data-tags="num"><div class="dom-top"><img src="img/developpement-web.png" alt="Écran affichant du code source et les logos HTML et CSS" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Développement web</h4><p>Apprenez à coder, concevoir et maintenir des applications web modernes.</p><span class="dom-meta">HTML · CSS · JavaScript · PHP</span></div></article>
+      <article class="dom rv" data-tags="met"><div class="dom-top"><img src="img/entreprise.png" alt="Collaborateurs en réunion de travail" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Entreprise</h4><p>Développez vos compétences en gestion, ressources humaines et culture d'entreprise.</p><span class="dom-meta">Gestion · Ressources humaines</span></div></article>
+      <article class="dom rv" data-tags="met"><div class="dom-top"><img src="img/immobilier.png" alt="Façade d'un immeuble d'habitation" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Immobilier</h4><p>Maîtrisez les réglementations, la gestion et les pratiques du secteur immobilier.</p><span class="dom-meta">Réglementation · Gestion locative</span></div></article>
+      <article class="dom rv" data-tags="fond"><div class="dom-top"><img src="img/langues.png" alt="Visuel du module Reflex'English" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Langues</h4><p>Améliorez votre niveau en langues étrangères pour dynamiser votre carrière.</p><span class="dom-meta">Anglais · Espagnol · Allemand</span></div></article>
+      <article class="dom rv" data-tags="met"><div class="dom-top"><img src="img/management.png" alt="Équipe en réunion autour d'une table" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Management</h4><p>Perfectionnez vos pratiques managériales, votre leadership et la gestion d'équipe.</p><span class="dom-meta">Leadership · Gestion d'équipe</span></div></article>
+      <article class="dom rv" data-tags="met"><div class="dom-top"><img src="img/marketing.png" alt="Visuel illustrant le marketing digital" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Marketing, commerce et webmarketing</h4><p>Boostez vos ventes, maîtrisez les stratégies digitales et fidélisez vos clients.</p><span class="dom-meta">Vente · Stratégie digitale</span></div></article>
+      <article class="dom rv" data-tags="num"><div class="dom-top"><img src="img/pao.png" alt="Logos des logiciels de création graphique Adobe" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>PAO, publication assistée par ordinateur</h4><p>Créez des supports de communication visuelle professionnels et percutants.</p><span class="dom-meta">Photoshop · Illustrator · InDesign</span></div></article>
+      <article class="dom rv" data-tags="prev"><div class="dom-top"><img src="img/sante.png" alt="Ouvriers équipés de casques et de gilets sur un chantier" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Prévention et sécurité</h4><p>Formez-vous aux normes, gestes qui sauvent et bonnes pratiques de sécurité.</p><span class="dom-meta">SST · Risques professionnels</span></div></article>
+      <article class="dom rv" data-tags="num"><div class="dom-top"><img src="img/reseaux.avif" alt="Baie de serveurs réseau" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Réseaux et administration réseau</h4><p>Gérez, optimisez et sécurisez les infrastructures informatiques d'entreprise.</p><span class="dom-meta">Infrastructure · Sécurité</span></div></article>
     </div>
   </div>
 </section>
@@ -966,7 +1000,8 @@ section[id]{scroll-margin-top:92px}
       <p class="sub">Organismes de formation, entreprises et institutions diffusent nos modules, du réseau régional au groupe national.</p>
     </div>
   </div>
-  <div class="rev-rail rv" aria-label="Références clients"><div class="rev-track"><article class="rev-card"><span class="rev-dom">Bureautique</span><img class="logo" src="img/logos/sncf.png" alt="SNCF" loading="lazy" decoding="async"><p>Dispositif de formation bureautique en digital learning, avec environnement individualisé et tutoré.</p><div class="sig"><span><b>SNCF</b><span>Transport ferroviaire</span></span></div></article><article class="rev-card"><span class="rev-dom">Organisme de formation</span><img class="logo" src="img/logos/afpa.png" alt="Afpa" loading="lazy" decoding="async"><p>Contenus intégrés aux parcours de formation professionnelle des adultes.</p><div class="sig"><span><b>Afpa</b><span>Organisme de formation</span></span></div></article><article class="rev-card"><span class="rev-dom">Secteur public</span><img class="logo" src="img/logos/france-travail.png" alt="France Travail" loading="lazy" decoding="async"><p>Ressources mobilisées dans l'accompagnement vers l'emploi et la montée en compétences.</p><div class="sig"><span><b>France Travail</b><span>Service public de l'emploi</span></span></div></article><article class="rev-card"><span class="rev-dom">Entreprise</span><img class="logo" src="img/logos/hello_fresh.png" alt="HelloFresh" loading="lazy" decoding="async"><p>Modules déployés auprès des équipes internes sur les outils du poste de travail.</p><div class="sig"><span><b>HelloFresh</b><span>Agroalimentaire</span></span></div></article><article class="rev-card"><span class="rev-dom">Enseignement</span><img class="logo" src="img/logos/pigier.png" alt="Pigier" loading="lazy" decoding="async"><p>Contenus au service des parcours étudiants et de l'alternance.</p><div class="sig"><span><b>Pigier</b><span>Enseignement privé</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Bureautique</span><img class="logo" src="img/logos/sncf.png" alt="SNCF" loading="lazy" decoding="async"><p>Dispositif de formation bureautique en digital learning, avec environnement individualisé et tutoré.</p><div class="sig"><span><b>SNCF</b><span>Transport ferroviaire</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Organisme de formation</span><img class="logo" src="img/logos/afpa.png" alt="Afpa" loading="lazy" decoding="async"><p>Contenus intégrés aux parcours de formation professionnelle des adultes.</p><div class="sig"><span><b>Afpa</b><span>Organisme de formation</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Secteur public</span><img class="logo" src="img/logos/france-travail.png" alt="France Travail" loading="lazy" decoding="async"><p>Ressources mobilisées dans l'accompagnement vers l'emploi et la montée en compétences.</p><div class="sig"><span><b>France Travail</b><span>Service public de l'emploi</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Entreprise</span><img class="logo" src="img/logos/hello_fresh.png" alt="HelloFresh" loading="lazy" decoding="async"><p>Modules déployés auprès des équipes internes sur les outils du poste de travail.</p><div class="sig"><span><b>HelloFresh</b><span>Agroalimentaire</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Enseignement</span><img class="logo" src="img/logos/pigier.png" alt="Pigier" loading="lazy" decoding="async"><p>Contenus au service des parcours étudiants et de l'alternance.</p><div class="sig"><span><b>Pigier</b><span>Enseignement privé</span></span></div></article><article class="rev-card"><span class="rev-dom">Bureautique</span><img class="logo" src="img/logos/sncf.png" alt="SNCF" loading="lazy" decoding="async"><p>Dispositif de formation bureautique en digital learning, avec environnement individualisé et tutoré.</p><div class="sig"><span><b>SNCF</b><span>Transport ferroviaire</span></span></div></article><article class="rev-card"><span class="rev-dom">Organisme de formation</span><img class="logo" src="img/logos/afpa.png" alt="Afpa" loading="lazy" decoding="async"><p>Contenus intégrés aux parcours de formation professionnelle des adultes.</p><div class="sig"><span><b>Afpa</b><span>Organisme de formation</span></span></div></article><article class="rev-card"><span class="rev-dom">Secteur public</span><img class="logo" src="img/logos/france-travail.png" alt="France Travail" loading="lazy" decoding="async"><p>Ressources mobilisées dans l'accompagnement vers l'emploi et la montée en compétences.</p><div class="sig"><span><b>France Travail</b><span>Service public de l'emploi</span></span></div></article><article class="rev-card"><span class="rev-dom">Entreprise</span><img class="logo" src="img/logos/hello_fresh.png" alt="HelloFresh" loading="lazy" decoding="async"><p>Modules déployés auprès des équipes internes sur les outils du poste de travail.</p><div class="sig"><span><b>HelloFresh</b><span>Agroalimentaire</span></span></div></article><article class="rev-card"><span class="rev-dom">Enseignement</span><img class="logo" src="img/logos/pigier.png" alt="Pigier" loading="lazy" decoding="async"><p>Contenus au service des parcours étudiants et de l'alternance.</p><div class="sig"><span><b>Pigier</b><span>Enseignement privé</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Bureautique</span><img class="logo" src="img/logos/sncf.png" alt="SNCF" loading="lazy" decoding="async"><p>Dispositif de formation bureautique en digital learning, avec environnement individualisé et tutoré.</p><div class="sig"><span><b>SNCF</b><span>Transport ferroviaire</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Organisme de formation</span><img class="logo" src="img/logos/afpa.png" alt="Afpa" loading="lazy" decoding="async"><p>Contenus intégrés aux parcours de formation professionnelle des adultes.</p><div class="sig"><span><b>Afpa</b><span>Organisme de formation</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Secteur public</span><img class="logo" src="img/logos/france-travail.png" alt="France Travail" loading="lazy" decoding="async"><p>Ressources mobilisées dans l'accompagnement vers l'emploi et la montée en compétences.</p><div class="sig"><span><b>France Travail</b><span>Service public de l'emploi</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Entreprise</span><img class="logo" src="img/logos/hello_fresh.png" alt="HelloFresh" loading="lazy" decoding="async"><p>Modules déployés auprès des équipes internes sur les outils du poste de travail.</p><div class="sig"><span><b>HelloFresh</b><span>Agroalimentaire</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Enseignement</span><img class="logo" src="img/logos/pigier.png" alt="Pigier" loading="lazy" decoding="async"><p>Contenus au service des parcours étudiants et de l'alternance.</p><div class="sig"><span><b>Pigier</b><span>Enseignement privé</span></span></div></article></div></div>
+  <div class="rev-rail rv" aria-label="Références clients"><div class="rev-track"><article class="rev-card"><span class="rev-dom">Bureautique</span><img class="logo" src="img/logos/sncf.png" alt="SNCF" loading="lazy" decoding="async"><p>Dispositif de formation bureautique en digital learning, avec environnement individualisé et tutoré.</p><div class="sig"><span><b>SNCF</b><span>Transport ferroviaire</span></span></div></article><article class="rev-card"><span class="rev-dom">Secteur public</span><img class="logo" src="img/logos/france-travail.png" alt="France Travail" loading="lazy" decoding="async"><p>Ressources mobilisées dans l'accompagnement vers l'emploi et la montée en compétences.</p><div class="sig"><span><b>France Travail</b><span>Service public de l'emploi</span></span></div></article><article class="rev-card"><span class="rev-dom">Enseignement</span><img class="logo" src="img/logos/pigier.png" alt="Pigier" loading="lazy" decoding="async"><p>Contenus au service des parcours étudiants et de l'alternance.</p><div class="sig"><span><b>Pigier</b><span>Enseignement privé</span></span></div></article><article class="rev-card"><span class="rev-dom">Organisme de formation</span><img class="logo" src="img/logos/afpa.png" alt="Afpa" loading="lazy" decoding="async"><p>Contenus intégrés aux parcours de formation professionnelle des adultes.</p><div class="sig"><span><b>Afpa</b><span>Organisme de formation</span></span></div></article><article class="rev-card"><span class="rev-dom">Entreprise</span><img class="logo" src="img/logos/hello_fresh.png" alt="HelloFresh" loading="lazy" decoding="async"><p>Modules déployés auprès des équipes internes sur les outils du poste de travail.</p><div class="sig"><span><b>HelloFresh</b><span>Agroalimentaire</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Bureautique</span><img class="logo" src="img/logos/sncf.png" alt="" loading="lazy" decoding="async"><p>Dispositif de formation bureautique en digital learning, avec environnement individualisé et tutoré.</p><div class="sig"><span><b>SNCF</b><span>Transport ferroviaire</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Secteur public</span><img class="logo" src="img/logos/france-travail.png" alt="" loading="lazy" decoding="async"><p>Ressources mobilisées dans l'accompagnement vers l'emploi et la montée en compétences.</p><div class="sig"><span><b>France Travail</b><span>Service public de l'emploi</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Enseignement</span><img class="logo" src="img/logos/pigier.png" alt="" loading="lazy" decoding="async"><p>Contenus au service des parcours étudiants et de l'alternance.</p><div class="sig"><span><b>Pigier</b><span>Enseignement privé</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Organisme de formation</span><img class="logo" src="img/logos/afpa.png" alt="" loading="lazy" decoding="async"><p>Contenus intégrés aux parcours de formation professionnelle des adultes.</p><div class="sig"><span><b>Afpa</b><span>Organisme de formation</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Entreprise</span><img class="logo" src="img/logos/hello_fresh.png" alt="" loading="lazy" decoding="async"><p>Modules déployés auprès des équipes internes sur les outils du poste de travail.</p><div class="sig"><span><b>HelloFresh</b><span>Agroalimentaire</span></span></div></article></div></div>
+  <div class="rev-rail rv" aria-label="Références clients, suite"><div class="rev-track back"><article class="rev-card"><span class="rev-dom">Entreprise</span><img class="logo" src="img/logos/hello_fresh.png" alt="HelloFresh" loading="lazy" decoding="async"><p>Modules déployés auprès des équipes internes sur les outils du poste de travail.</p><div class="sig"><span><b>HelloFresh</b><span>Agroalimentaire</span></span></div></article><article class="rev-card"><span class="rev-dom">Organisme de formation</span><img class="logo" src="img/logos/afpa.png" alt="Afpa" loading="lazy" decoding="async"><p>Contenus intégrés aux parcours de formation professionnelle des adultes.</p><div class="sig"><span><b>Afpa</b><span>Organisme de formation</span></span></div></article><article class="rev-card"><span class="rev-dom">Bureautique</span><img class="logo" src="img/logos/sncf.png" alt="SNCF" loading="lazy" decoding="async"><p>Dispositif de formation bureautique en digital learning, avec environnement individualisé et tutoré.</p><div class="sig"><span><b>SNCF</b><span>Transport ferroviaire</span></span></div></article><article class="rev-card"><span class="rev-dom">Enseignement</span><img class="logo" src="img/logos/pigier.png" alt="Pigier" loading="lazy" decoding="async"><p>Contenus au service des parcours étudiants et de l'alternance.</p><div class="sig"><span><b>Pigier</b><span>Enseignement privé</span></span></div></article><article class="rev-card"><span class="rev-dom">Secteur public</span><img class="logo" src="img/logos/france-travail.png" alt="France Travail" loading="lazy" decoding="async"><p>Ressources mobilisées dans l'accompagnement vers l'emploi et la montée en compétences.</p><div class="sig"><span><b>France Travail</b><span>Service public de l'emploi</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Entreprise</span><img class="logo" src="img/logos/hello_fresh.png" alt="" loading="lazy" decoding="async"><p>Modules déployés auprès des équipes internes sur les outils du poste de travail.</p><div class="sig"><span><b>HelloFresh</b><span>Agroalimentaire</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Organisme de formation</span><img class="logo" src="img/logos/afpa.png" alt="" loading="lazy" decoding="async"><p>Contenus intégrés aux parcours de formation professionnelle des adultes.</p><div class="sig"><span><b>Afpa</b><span>Organisme de formation</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Bureautique</span><img class="logo" src="img/logos/sncf.png" alt="" loading="lazy" decoding="async"><p>Dispositif de formation bureautique en digital learning, avec environnement individualisé et tutoré.</p><div class="sig"><span><b>SNCF</b><span>Transport ferroviaire</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Enseignement</span><img class="logo" src="img/logos/pigier.png" alt="" loading="lazy" decoding="async"><p>Contenus au service des parcours étudiants et de l'alternance.</p><div class="sig"><span><b>Pigier</b><span>Enseignement privé</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Secteur public</span><img class="logo" src="img/logos/france-travail.png" alt="" loading="lazy" decoding="async"><p>Ressources mobilisées dans l'accompagnement vers l'emploi et la montée en compétences.</p><div class="sig"><span><b>France Travail</b><span>Service public de l'emploi</span></span></div></article></div></div>
   <div class="wrap"><p class="rev-note rv">Références publiques &mdash; verbatims clients à collecter avant mise en ligne.</p></div>
 </section>
 
@@ -1067,13 +1102,89 @@ section[id]{scroll-margin-top:92px}
 <!-- ═══ CTA ═══ -->
 <section id="demo" style="padding-bottom:0">
   <div class="wrap">
-    <div class="cta-paint rv"><span class="paint" aria-hidden="true"><svg viewBox="0 0 1100 500" preserveAspectRatio="xMidYMid slice"><defs><filter id="pcta" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.007 0.013" numOctaves="4" seed="67" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="145" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#pcta)"><rect x="-420" y="-300" width="1940" height="1100" fill="#9DB08F"/><ellipse cx="520" cy="-40" rx="760" ry="260" fill="#E3E8D6"/><ellipse cx="180" cy="150" rx="330" ry="190" fill="#C4D0B4"/><ellipse cx="900" cy="200" rx="320" ry="210" fill="#8CA383"/><ellipse cx="240" cy="430" rx="420" ry="220" fill="#5E7358"/><ellipse cx="820" cy="470" rx="400" ry="200" fill="#4E6349"/><ellipse cx="560" cy="300" rx="260" ry="150" fill="#A9BC9B"/></g></svg></span>
-      <div class="cta-in">
+    <div class="dm rv"><span class="paint" aria-hidden="true"><svg viewBox="0 0 1100 500" preserveAspectRatio="xMidYMid slice"><defs><filter id="pcta" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.007 0.013" numOctaves="4" seed="67" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="145" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#pcta)"><rect x="-420" y="-300" width="1940" height="1100" fill="#9DB08F"/><ellipse cx="520" cy="-40" rx="760" ry="260" fill="#E3E8D6"/><ellipse cx="180" cy="150" rx="330" ry="190" fill="#C4D0B4"/><ellipse cx="900" cy="200" rx="320" ry="210" fill="#8CA383"/><ellipse cx="240" cy="430" rx="420" ry="220" fill="#5E7358"/><ellipse cx="820" cy="470" rx="400" ry="200" fill="#4E6349"/><ellipse cx="560" cy="300" rx="260" ry="150" fill="#A9BC9B"/></g></svg></span>
+      <div class="dm-side">
+        <span class="eyebrow" style="--d:#fff">Démonstration</span>
         <h2>Testez notre catalogue e-learning.</h2>
-        <p class="sub" style="color:rgba(255,255,255,.9);max-width:48ch">Dites-nous vos domaines et votre plateforme. Nous ouvrons un accès de démonstration aux modules concernés.</p>
-        <a class="btn btn-white" href="#">Demander une démo gratuite<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <small>Réponse sous 48 h ouvrées &middot; Sans engagement</small>
+        <p>Dites-nous vos domaines et la plateforme que vous utilisez. Nous ouvrons un accès de démonstration aux modules concernés, sur vos propres parcours.</p>
+        <ul class="dm-pts">
+          <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.4 3.2 3.2L13 4.8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Un accès réel aux modules de vos domaines, pas une visite guidée.</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.4 3.2 3.2L13 4.8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Les fichiers SCORM testés sur la plateforme que vous utilisez déjà.</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.4 3.2 3.2L13 4.8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Un interlocuteur qui connaît les obligations d'un organisme de formation.</span></li>
+        </ul>
+        <p class="dm-rassure">Réponse sous 48 h ouvrées &middot; Sans engagement</p>
       </div>
+
+      <form class="dm-form" id="dm-form" novalidate>
+        <div class="fr fr-2">
+          <div class="fld">
+            <label for="f-prenom">Prénom <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-prenom" name="prenom" type="text" autocomplete="given-name" required>
+          </div>
+          <div class="fld">
+            <label for="f-nom">Nom <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-nom" name="nom" type="text" autocomplete="family-name" required>
+          </div>
+        </div>
+        <div class="fr fr-2">
+          <div class="fld">
+            <label for="f-mail">E-mail professionnel <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-mail" name="email" type="email" autocomplete="email" placeholder="prenom@organisme.fr" required>
+          </div>
+          <div class="fld">
+            <label for="f-tel">Téléphone</label>
+            <input id="f-tel" name="telephone" type="tel" autocomplete="tel" placeholder="06 00 00 00 00">
+          </div>
+        </div>
+        <div class="fld">
+          <label for="f-orga">Votre organisme <span class="req" aria-hidden="true">*</span></label>
+          <input id="f-orga" name="organisme" type="text" autocomplete="organization" required>
+        </div>
+        <div class="fr fr-2">
+          <div class="fld">
+            <label for="f-type">Type de structure</label>
+            <select id="f-type" name="structure">
+              <option value="">Sélectionnez</option>
+              <option>Organisme de formation</option>
+              <option>CFA</option>
+              <option>Entreprise</option>
+              <option>Secteur public ou collectivité</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="fld">
+            <label for="f-vol">Apprenants formés par an</label>
+            <select id="f-vol" name="volume">
+              <option value="">Sélectionnez</option>
+              <option>Moins de 100</option>
+              <option>100 à 500</option>
+              <option>500 à 2 000</option>
+              <option>Plus de 2 000</option>
+            </select>
+          </div>
+        </div>
+        <div class="fld">
+          <label for="f-lms">Plateforme de diffusion</label>
+          <select id="f-lms" name="plateforme">
+            <option value="">Sélectionnez</option>
+            <option>J'ai déjà un LMS (Moodle, 360Learning, Rise Up…)</option>
+            <option>Je cherche aussi une plateforme</option>
+            <option>Je diffuse via un portail client</option>
+            <option>Je ne sais pas encore</option>
+          </select>
+        </div>
+        <div class="fld">
+          <label for="f-dom">Les domaines qui vous intéressent</label>
+          <textarea id="f-dom" name="domaines" placeholder="Bureautique, langues, prévention et sécurité, titres professionnels…"></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Demander ma démonstration<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <p class="dm-legal">Vos données servent uniquement à traiter cette demande. Elles sont hébergées en France et ne sont pas cédées. Vous pouvez y accéder, les corriger ou les supprimer à tout moment&nbsp;: voir notre <a href="#">politique de confidentialité</a>.</p>
+        <div class="dm-ok" role="status">
+          <span class="tick"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.4 3.2 3.2L13 4.8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <b>Demande enregistrée.</b>
+          <p>Maquette de démonstration&nbsp;: aucun formulaire n'est envoyé et aucune donnée n'est conservée. Sur le site en production, un conseiller répond sous 48&nbsp;h ouvrées.</p>
+        </div>
+      </form>
     </div>
   </div>
 </section>
@@ -1122,7 +1233,7 @@ section[id]{scroll-margin-top:92px}
   <div class="wrap notes-in">
     <svg width="17" height="17" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.6" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.2v4M8 4.9v.9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
     <div><b>Maquette de travail — à valider avant mise en ligne</b>
-    Le chiffre de 1 300 organismes vient de l'équipe et n'a pas été recoupé. Un seul verbatim client est disponible (SNCF) : les cartes de références portent le dispositif déployé, et deux des trois études de cas restent sans citation. Les logos clients ne s'affichent qu'avec l'accord de citation de chaque organisation. Le logo principal est une image matricielle enveloppée dans du SVG, à remplacer par un tracé vectoriel ; les visuels de domaines sont en 400 px de large, à doubler pour les écrans à haute densité. Police d'approche Plus Jakarta Sans, à remplacer par celle de la charte.</div>
+    Le chiffre de 1 300 organismes vient de l'équipe et n'a pas été recoupé. Un seul verbatim client est disponible (SNCF) : les cartes de références portent le dispositif déployé, et deux des trois études de cas restent sans citation. Les logos clients ne s'affichent qu'avec l'accord de citation de chaque organisation. Le formulaire de démonstration n'est relié à aucun traitement : rien n'est envoyé ni conservé. Les deux rangées de références réutilisent les cinq mêmes organisations, faute d'autres logos validés. Le logo principal est une image matricielle enveloppée dans du SVG, à remplacer par un tracé vectoriel ; les visuels de domaines sont en 400 px de large, à doubler pour les écrans à haute densité. Police d'approche Plus Jakarta Sans, à remplacer par celle de la charte.</div>
   </div>
 </div>
 
@@ -1301,6 +1412,24 @@ section[id]{scroll-margin-top:92px}
       if (num) num.textContent = (i + 1) + '/3';
     });
   });
+
+  /* ── formulaire de démonstration (maquette : rien n'est envoyé) ── */
+  var dmForm = document.getElementById('dm-form');
+  if (dmForm) {
+    dmForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var manque = null;
+      dmForm.querySelectorAll('[required]').forEach(function(ch){
+        var vide = !ch.value.trim() || (ch.type === 'email' && ch.value.indexOf('@') < 1);
+        ch.style.borderColor = vide ? 'var(--red)' : '';
+        if (vide && !manque) manque = ch;
+      });
+      if (manque) { manque.focus(); return; }
+      dmForm.classList.add('sent');
+      dmForm.querySelector('.dm-ok').scrollIntoView({block:'nearest', behavior:'smooth'});
+    });
+    dmForm.addEventListener('input', function(e){ e.target.style.borderColor = ''; });
+  }
 
   /* ── onglets du catalogue ── */
   var tabs = document.querySelectorAll('.tab');
