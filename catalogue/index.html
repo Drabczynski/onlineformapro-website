@@ -110,6 +110,8 @@ section[id]{scroll-margin-top:92px}
 .on-cream2{background:var(--cream-2)}
 .head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;margin-bottom:clamp(30px,4vw,46px)}
 .head h2{max-width:18ch}
+/* la coupure sémantique tombe après les deux-points */
+#conformite .head h2{max-width:22ch}
 .head .sub{max-width:54ch}
 .head-left{align-items:flex-start;text-align:left}
 .head-left h2{max-width:20ch}.head-left .sub{max-width:48ch}
@@ -413,10 +415,12 @@ section[id]{scroll-margin-top:92px}
 /* ══════════ CTA PEINT ══════════ */
 
 /* ══════════ FORMULAIRE DE DÉMONSTRATION ══════════ */
-.dm{position:relative;border-radius:var(--r);overflow:hidden;isolation:isolate;
-  display:grid;grid-template-columns:1fr;gap:clamp(28px,3.4vw,46px);
-  padding:clamp(28px,4vw,54px)}
-@media (min-width:960px){.dm{grid-template-columns:1fr 1.02fr;align-items:center}}
+/* le fond sombre file d'un bord à l'autre, le contenu reste dans le conteneur */
+#demo{padding:0}
+.dm{position:relative;overflow:hidden;isolation:isolate;padding:clamp(46px,6vw,88px) 0}
+.dm-in{max-width:var(--max);margin:0 auto;padding:0 var(--pad);
+  display:grid;grid-template-columns:1fr;gap:clamp(28px,3.4vw,46px)}
+@media (min-width:960px){.dm-in{grid-template-columns:1fr 1.02fr;align-items:center}}
 .dm > *:not(.paint){position:relative;z-index:2}
 .dm::after{content:"";position:absolute;inset:0;z-index:1;
   background:linear-gradient(102deg,rgba(26,26,26,.90) 0%,rgba(26,26,26,.72) 48%,rgba(26,26,26,.52) 100%)}
@@ -569,7 +573,7 @@ section[id]{scroll-margin-top:92px}
 .wk-txt{padding:clamp(26px,3.4vw,38px);display:flex;flex-direction:column;min-height:clamp(300px,32vw,430px)}
 .wk-n{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--on-char-3);margin-bottom:18px}
 .wk-txt h3{font-size:clamp(1.4rem,2.5vw,1.95rem);line-height:1.14;max-width:21ch}
-.wk-txt .desc{margin-top:auto;padding-top:30px;font-size:.99rem;line-height:1.55;max-width:42ch}
+.wk-txt .desc{padding-top:22px;font-size:.99rem;line-height:1.55;max-width:42ch}
 /* texte qui s'éclaircit mot à mot au défilement */
 .wf span{color:var(--on-char-3);transition:color .28s linear}
 .wf span.lit{color:var(--on-char)}
@@ -677,6 +681,11 @@ section[id]{scroll-margin-top:92px}
 /* visuel plein bord : touche le bas et les deux flancs de l'encart, sans ombre */
 .feat-vis.bleed{padding:clamp(18px,2.4vw,26px) 0 0;align-items:flex-end;overflow:hidden}
 .bleed-img{width:100%;height:auto;max-width:none;display:block;border-radius:0;box-shadow:none;margin-top:auto}
+/* plaque dont la capture EST le fond : le texte se pose dessus */
+.f-shot .shot-bg{width:100%;height:100%;object-fit:cover;object-position:center bottom;display:block}
+.f-shot::after{background:linear-gradient(180deg,rgba(14,8,24,.88) 0%,rgba(14,8,24,.62) 15%,rgba(14,8,24,.18) 32%,rgba(14,8,24,0) 46%)}
+.f-shot .feat-txt{padding-bottom:clamp(24px,3.2vw,34px)}
+
 /* en colonne unique le visuel garde son cadrage d'origine ; à partir de la grille
    deux colonnes, il remplit la place que lui laisse l'encart */
 @media (min-width:940px){
@@ -755,13 +764,11 @@ section[id]{scroll-margin-top:92px}
     </div>
     <div class="feats">
 
-      <article class="feat f-tall rv"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice"><defs><filter id="pa" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.009 0.016" numOctaves="4" seed="11" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="120" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#pa)"><rect x="-260" y="-320" width="1120" height="1440" fill="#B4AF9A"/><ellipse cx="170" cy="170" rx="300" ry="230" fill="#8CA0B6"/><ellipse cx="460" cy="430" rx="290" ry="250" fill="#C7A87E"/><ellipse cx="210" cy="650" rx="330" ry="210" fill="#7A8A6C"/><ellipse cx="500" cy="110" rx="190" ry="150" fill="#DBD4BF"/></g></svg></span>
+      <article class="feat f-tall f-shot rv">
+        <img class="paint shot-bg" src="img/catalogue2.png" alt="Affectation de modules e-learning à un groupe d'apprenants depuis le catalogue Onlineformapro" width="426" height="801" loading="lazy" decoding="async">
         <div class="feat-txt">
           <h3>Choisir</h3>
           <p>Un module dure environ une heure et se décompose en 4 à 7 leçons, chacune portant un objectif explicite. Vous composez vos parcours leçon par leçon, pas par blocs entiers.</p>
-        </div>
-        <div class="feat-vis bleed fill">
-          <img class="bleed-img" src="img/catalogue2.png" alt="Affectation de modules e-learning à un groupe d'apprenants depuis le catalogue Onlineformapro" width="426" height="801" loading="lazy" decoding="async">
         </div>
       </article>
 
@@ -771,7 +778,7 @@ section[id]{scroll-margin-top:92px}
           <h3>Intégrer</h3>
           <p>Le module sort au format attendu par la plateforme que vous utilisez déjà. Pas de migration, pas de seconde connexion pour l'apprenant.</p>
         </div>
-        <div class="feat-vis bleed"><img class="bleed-img" src="img/integrer.png" alt="Document Word ouvert avec les logos Office, Windows 11 et Excel autour" width="427" height="294" loading="lazy" decoding="async"></div>
+        <div class="feat-vis bleed"><img class="bleed-img" src="img/integrer.png" alt="Document Word ouvert avec les logos Office, Windows 11 et Excel autour" width="427" height="236" loading="lazy" decoding="async"></div>
       </article>
 
       <article class="feat rv">
@@ -820,14 +827,14 @@ section[id]{scroll-margin-top:92px}
         <div class="wk-head rv">
           <span class="eyebrow" style="--d:var(--dot-1)">Mise en œuvre</span>
           <h2>Intégrer nos modules e-learning à votre LMS en trois étapes.</h2>
-          <p class="sub">Pas de cahier des charges, pas de chantier d'intégration. Le contenu existe : reste à choisir lequel et à ouvrir les accès.</p>
+          <p class="sub">Pas de cahier des charges, pas de chantier d'intégration. Le contenu existe&nbsp;: reste à choisir lequel et à ouvrir les accès.</p>
         </div>
         <div class="wk-steps">
 
           <article class="wkstep rv" data-wstep="0">
             <div class="wk-txt">
               <span class="wk-n">01 — Cadrer</span>
-              <h3 class="wf"><span>Trente</span> <span>minutes</span> <span>d'échange.</span> <span>Pas</span> <span>un</span> <span>audit.</span></h3>
+              <h3 class="wf"><span>Trente</span> <span>minutes</span> <span>d'échange.</span></h3>
               <p class="desc wf"><span>Vous</span> <span>nous</span> <span>dites</span> <span>quels</span> <span>métiers</span> <span>vous</span> <span>formez,</span> <span>sur</span> <span>quelle</span> <span>plateforme</span> <span>et</span> <span>pour</span> <span>combien</span> <span>d'apprenants.</span> <span>Nous</span> <span>vous</span> <span>répondons</span> <span>par</span> <span>une</span> <span>sélection</span> <span>de</span> <span>modules</span> <span>et</span> <span>un</span> <span>chiffrage.</span> <span>Si</span> <span>le</span> <span>catalogue</span> <span>ne</span> <span>couvre</span> <span>pas</span> <span>votre</span> <span>besoin,</span> <span>nous</span> <span>le</span> <span>disons</span> <span>à</span> <span>ce</span> <span>moment-là.</span></p>
             </div>
             <div class="wk-vis"><span class="paint" aria-hidden="true"><svg viewBox="0 0 700 600" preserveAspectRatio="xMidYMid slice"><defs><filter id="wk1" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.009 0.016" numOctaves="4" seed="83" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="118" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#wk1)"><rect x="-300" y="-280" width="1300" height="1160" fill="#B5B39C"/><ellipse cx="220" cy="170" rx="340" ry="220" fill="#9DAEBC"/><ellipse cx="520" cy="400" rx="320" ry="240" fill="#CDB68D"/><ellipse cx="240" cy="560" rx="340" ry="190" fill="#82907A"/></g></svg></span>
@@ -846,7 +853,7 @@ section[id]{scroll-margin-top:92px}
           <article class="wkstep rv" data-wstep="1">
             <div class="wk-txt">
               <span class="wk-n">02 — Déployer</span>
-              <h3 class="wf"><span>Vous</span> <span>déposez.</span> <span>Vos</span> <span>apprenants</span> <span>entrent.</span></h3>
+              <h3 class="wf"><span>Vous</span> <span>importez,</span> <span>vos</span> <span>apprenants</span> <span>se</span> <span>connectent.</span></h3>
               <p class="desc wf"><span>Nous</span> <span>livrons</span> <span>les</span> <span>paquets</span> <span>au</span> <span>format</span> <span>de</span> <span>votre</span> <span>plateforme.</span> <span>Vous</span> <span>les</span> <span>importez,</span> <span>vous</span> <span>rattachez</span> <span>vos</span> <span>groupes,</span> <span>vous</span> <span>ouvrez</span> <span>les</span> <span>accès.</span> <span>Rien</span> <span>à</span> <span>installer</span> <span>sur</span> <span>les</span> <span>postes,</span> <span>aucune</span> <span>seconde</span> <span>connexion</span> <span>à</span> <span>retenir</span> <span>pour</span> <span>l'apprenant.</span></p>
             </div>
             <div class="wk-vis flat">
@@ -931,15 +938,15 @@ section[id]{scroll-margin-top:92px}
     <div class="stage-head rv">
       <div>
         <span class="eyebrow" style="--d:var(--dot-2)">Pour qui</span>
-        <h2>Le même catalogue e-learning, à votre échelle.</h2>
+        <h2>Pensé pour les organismes de formation.</h2>
       </div>
-      <p class="sub">Que vous équipiez trente collaborateurs, que vous vendiez de la formation ou que vous achetiez sur marché public, ce que vous en faites change — pas ce qu'il contient.</p>
+      <p class="sub">Vous vendez de la formation&nbsp;: le catalogue complète votre offre, à votre charte, sans rien produire en interne. Entreprises et acheteurs publics s'en servent aussi, autrement.</p>
     </div>
 
     <div class="stage-bar rv">
       <div class="stage-tabs" role="tablist" aria-label="Segments">
-        <button class="stg" type="button" role="tab" aria-selected="true"  aria-controls="pan-0" id="tab-0">Entreprise</button>
-        <button class="stg" type="button" role="tab" aria-selected="false" aria-controls="pan-1" id="tab-1">Organisme de formation</button>
+        <button class="stg" type="button" role="tab" aria-selected="true"  aria-controls="pan-0" id="tab-0">Organisme de formation</button>
+        <button class="stg" type="button" role="tab" aria-selected="false" aria-controls="pan-1" id="tab-1">Entreprise</button>
         <button class="stg" type="button" role="tab" aria-selected="false" aria-controls="pan-2" id="tab-2">Public &amp; enseignement</button>
       </div>
       <div class="stage-prog" aria-hidden="true"><span class="stage-line"><u id="stgline"></u></span><em id="stgnum">1/3</em></div>
@@ -947,20 +954,6 @@ section[id]{scroll-margin-top:92px}
 
     <div class="rv">
       <div class="stage-panel enter" id="pan-0" role="tabpanel" aria-labelledby="tab-0">
-        <div class="sp-txt">
-          <span class="lbl">Entreprise</span>
-          <h3>Former sans rien produire</h3>
-          <p class="sp-end">Votre plan de développement des compétences est à couvrir cette année, sans équipe de production interne ni budget de conception. Le catalogue existe déjà : vous sélectionnez, vous ouvrez les accès.</p>
-        </div>
-        <div class="sp-img"><div class="sp-frame"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="sg1" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="13" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="115" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#sg1)"><rect x="-260" y="-300" width="1120" height="1300" fill="#B0B7A6"/><ellipse cx="180" cy="180" rx="300" ry="220" fill="#9FB0C0"/><ellipse cx="450" cy="430" rx="290" ry="240" fill="#CBB58C"/><ellipse cx="200" cy="620" rx="320" ry="190" fill="#7E8E74"/></g></svg></span><span class="tagline">De 30 à 5 000 collaborateurs</span></div></div>
-        <div class="sp-dark">
-          <span class="cap"><i>OF</i>SNCF</span>
-          <blockquote>« Nos collaborateurs disposent d'un environnement de formation individualisé et tutoré accessible 24h/24. »</blockquote>
-          <p class="sign">Isabelle Provillard &mdash; Chef de projet ingénierie de formation</p>
-        </div>
-      </div>
-
-      <div class="stage-panel" id="pan-1" role="tabpanel" aria-labelledby="tab-1" hidden>
         <div class="sp-txt">
           <span class="lbl">Organisme de formation</span>
           <h3>Élargir sans recruter</h3>
@@ -971,6 +964,20 @@ section[id]{scroll-margin-top:92px}
           <span class="cap"><i>OF</i>Ce qui compte pour vous</span>
           <ul><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Modules diffusés à votre charte, dans votre environnement</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Complément direct de votre présentiel en blended learning</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Preuves de suivi au format attendu par vos financeurs</li></ul>
           <p class="why">Nous sommes nous-mêmes un organisme certifié Qualiopi : nos contenus passent les audits que vous passez.</p>
+        </div>
+      </div>
+
+      <div class="stage-panel" id="pan-1" role="tabpanel" aria-labelledby="tab-1" hidden>
+        <div class="sp-txt">
+          <span class="lbl">Entreprise</span>
+          <h3>Former sans rien produire</h3>
+          <p class="sp-end">Votre plan de développement des compétences est à couvrir cette année, sans équipe de production interne ni budget de conception. Le catalogue existe déjà : vous sélectionnez, vous ouvrez les accès.</p>
+        </div>
+        <div class="sp-img"><div class="sp-frame"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="sg1" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="13" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="115" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#sg1)"><rect x="-260" y="-300" width="1120" height="1300" fill="#B0B7A6"/><ellipse cx="180" cy="180" rx="300" ry="220" fill="#9FB0C0"/><ellipse cx="450" cy="430" rx="290" ry="240" fill="#CBB58C"/><ellipse cx="200" cy="620" rx="320" ry="190" fill="#7E8E74"/></g></svg></span><span class="tagline">De 30 à 5 000 collaborateurs</span></div></div>
+        <div class="sp-dark">
+          <span class="cap"><i>OF</i>SNCF</span>
+          <blockquote>« Nos collaborateurs disposent d'un environnement de formation individualisé et tutoré accessible 24h/24. »</blockquote>
+          <p class="sign">Isabelle Provillard &mdash; Chef de projet ingénierie de formation</p>
         </div>
       </div>
 
@@ -1010,7 +1017,7 @@ section[id]{scroll-margin-top:92px}
   <div class="wrap">
     <div class="head rv">
       <span class="eyebrow" style="--d:var(--dot-5)">Études de cas</span>
-      <h2>Ils diffusent notre contenu e-learning.</h2>
+      <h2>Ils nous font confiance.</h2>
       <p class="sub">De l'organisme de formation régional au grand compte national.</p>
       <a class="btn btn-dark" href="#">Voir toutes les références<svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
@@ -1051,7 +1058,7 @@ section[id]{scroll-margin-top:92px}
   <div class="wrap">
     <div class="head rv">
       <span class="eyebrow" style="--d:var(--dot-3)">Conformité</span>
-      <h2>Qualiopi, RGPD, SCORM : tout est déjà en règle.</h2>
+      <h2>Qualiopi, RGPD, SCORM&nbsp;: tout est déjà en règle.</h2>
       <p class="sub">Les quatre lignes que vos financeurs et vos auditeurs vous demanderont de justifier. Elles sont déjà couvertes.</p>
     </div>
     <div class="compl">
@@ -1100,9 +1107,9 @@ section[id]{scroll-margin-top:92px}
 </section>
 
 <!-- ═══ CTA ═══ -->
-<section id="demo" style="padding-bottom:0">
-  <div class="wrap">
-    <div class="dm rv"><span class="paint" aria-hidden="true"><svg viewBox="0 0 1100 500" preserveAspectRatio="xMidYMid slice"><defs><filter id="pcta" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.007 0.013" numOctaves="4" seed="67" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="145" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#pcta)"><rect x="-420" y="-300" width="1940" height="1100" fill="#9DB08F"/><ellipse cx="520" cy="-40" rx="760" ry="260" fill="#E3E8D6"/><ellipse cx="180" cy="150" rx="330" ry="190" fill="#C4D0B4"/><ellipse cx="900" cy="200" rx="320" ry="210" fill="#8CA383"/><ellipse cx="240" cy="430" rx="420" ry="220" fill="#5E7358"/><ellipse cx="820" cy="470" rx="400" ry="200" fill="#4E6349"/><ellipse cx="560" cy="300" rx="260" ry="150" fill="#A9BC9B"/></g></svg></span>
+<section id="demo">
+  <div class="dm rv"><span class="paint" aria-hidden="true"><svg viewBox="0 0 1100 500" preserveAspectRatio="xMidYMid slice"><defs><filter id="pcta" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.007 0.013" numOctaves="4" seed="67" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="145" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#pcta)"><rect x="-420" y="-300" width="1940" height="1100" fill="#9DB08F"/><ellipse cx="520" cy="-40" rx="760" ry="260" fill="#E3E8D6"/><ellipse cx="180" cy="150" rx="330" ry="190" fill="#C4D0B4"/><ellipse cx="900" cy="200" rx="320" ry="210" fill="#8CA383"/><ellipse cx="240" cy="430" rx="420" ry="220" fill="#5E7358"/><ellipse cx="820" cy="470" rx="400" ry="200" fill="#4E6349"/><ellipse cx="560" cy="300" rx="260" ry="150" fill="#A9BC9B"/></g></svg></span>
+    <div class="dm-in">
       <div class="dm-side">
         <span class="eyebrow" style="--d:#fff">Démonstration</span>
         <h2>Testez notre catalogue e-learning.</h2>
