@@ -112,6 +112,8 @@ section[id]{scroll-margin-top:92px}
 .head h2{max-width:18ch}
 /* la coupure sémantique tombe après les deux-points */
 #conformite .head h2{max-width:22ch}
+#faq .head h2{max-width:24ch}
+#temoignage .head h2{max-width:26ch}
 .head .sub{max-width:54ch}
 .head-left{align-items:flex-start;text-align:left}
 .head-left h2{max-width:20ch}.head-left .sub{max-width:48ch}
@@ -261,11 +263,9 @@ section[id]{scroll-margin-top:92px}
 .feats{display:grid;gap:14px;grid-template-columns:1fr}
 @media (min-width:940px){
   .feats{grid-template-columns:1fr 1fr;grid-auto-rows:min-content}
-  .f-tall{grid-row:span 2}
 }
 .feat{position:relative;border-radius:var(--r);overflow:hidden;background:var(--char-2);
   display:flex;flex-direction:column;min-height:330px;isolation:isolate}
-.f-tall{min-height:0}
 .f-wide{grid-column:1/-1;min-height:400px}
 @media (min-width:940px){.f-wide{display:grid;grid-template-columns:.82fr 1.18fr;align-items:center;gap:20px}}
 
@@ -529,7 +529,7 @@ section[id]{scroll-margin-top:92px}
 .sp-txt{background:var(--cream-2);border-radius:var(--r);padding:clamp(26px,3.2vw,36px);
   display:flex;flex-direction:column;gap:12px;min-height:clamp(330px,38vw,530px)}
 .sp-txt .lbl{font-size:.87rem;color:var(--ink-2)}
-.sp-txt h3{max-width:14ch}
+.sp-txt h3{max-width:20ch}
 .sp-txt .sp-end{margin-top:auto;padding-top:24px;font-size:.94rem;line-height:1.5;color:var(--ink-2)}
 .sp-img{background:var(--cream-2);border-radius:var(--r);padding:clamp(14px,1.6vw,20px);display:flex}
 .sp-frame{position:relative;flex:1;border-radius:16px;overflow:hidden;isolation:isolate;
@@ -682,9 +682,13 @@ section[id]{scroll-margin-top:92px}
 .feat-vis.bleed{padding:clamp(18px,2.4vw,26px) 0 0;align-items:flex-end;overflow:hidden}
 .bleed-img{width:100%;height:auto;max-width:none;display:block;border-radius:0;box-shadow:none;margin-top:auto}
 /* plaque dont la capture EST le fond : le texte se pose dessus */
-.f-shot .shot-bg{width:100%;height:100%;object-fit:cover;object-position:center bottom;display:block}
-.f-shot::after{background:linear-gradient(180deg,rgba(14,8,24,.88) 0%,rgba(14,8,24,.62) 15%,rgba(14,8,24,.18) 32%,rgba(14,8,24,0) 46%)}
-.f-shot .feat-txt{padding-bottom:clamp(24px,3.2vw,34px)}
+.f-shot .shot-bg{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
+.f-shot-c .shot-bg{object-position:center}
+/* le voile suit le bloc de texte, pas la hauteur de la plaque : il reste
+   lisible quel que soit le nombre de lignes */
+.f-shot::after{background:linear-gradient(180deg,rgba(14,8,24,.52) 0%,rgba(14,8,24,.14) 42%,rgba(14,8,24,0) 62%)}
+.f-shot .feat-txt{padding-bottom:clamp(48px,7vw,76px);
+  background:linear-gradient(180deg,rgba(14,8,24,.90) 0%,rgba(14,8,24,.80) 46%,rgba(14,8,24,.42) 76%,rgba(14,8,24,0) 100%)}
 
 /* en colonne unique le visuel garde son cadrage d'origine ; à partir de la grille
    deux colonnes, il remplit la place que lui laisse l'encart */
@@ -760,11 +764,11 @@ section[id]{scroll-margin-top:92px}
     <div class="head rv">
       <span class="eyebrow" style="--d:var(--dot-3)">Le produit</span>
       <h2>Du module e-learning à vos preuves Qualiopi.</h2>
-      <p class="sub">Quatre moments, aucune production interne, aucun changement de plateforme.</p>
+      <p class="sub">De la sélection des leçons à l'export des preuves de suivi.</p>
     </div>
     <div class="feats">
 
-      <article class="feat f-tall f-shot rv">
+      <article class="feat f-shot rv">
         <img class="paint shot-bg" src="img/catalogue2.png" alt="Affectation de modules e-learning à un groupe d'apprenants depuis le catalogue Onlineformapro" width="426" height="801" loading="lazy" decoding="async">
         <div class="feat-txt">
           <h3>Choisir</h3>
@@ -779,6 +783,14 @@ section[id]{scroll-margin-top:92px}
           <p>Le module sort au format attendu par la plateforme que vous utilisez déjà. Pas de migration, pas de seconde connexion pour l'apprenant.</p>
         </div>
         <div class="feat-vis bleed"><img class="bleed-img" src="img/integrer.png" alt="Document Word ouvert avec les logos Office, Windows 11 et Excel autour" width="427" height="236" loading="lazy" decoding="async"></div>
+      </article>
+
+      <article class="feat f-shot f-shot-c rv">
+        <img class="paint shot-bg" src="img/marqueblanche.png" alt="Une même plateforme e-learning déclinée aux couleurs de plusieurs organismes de formation" width="425" height="545" loading="lazy" decoding="async">
+        <div class="feat-txt">
+          <h3>En marque blanche</h3>
+          <p>Vos apprenants voient votre logo, vos couleurs et votre adresse. Rien n'indique que le contenu vient d'ailleurs : la plateforme et les modules portent votre identité, pas la nôtre.</p>
+        </div>
       </article>
 
       <article class="feat rv">
@@ -826,7 +838,7 @@ section[id]{scroll-margin-top:92px}
       <div>
         <div class="wk-head rv">
           <span class="eyebrow" style="--d:var(--dot-1)">Mise en œuvre</span>
-          <h2>Intégrer nos modules e-learning à votre LMS en trois étapes.</h2>
+          <h2>Déployer nos modules e-learning en trois étapes.</h2>
           <p class="sub">Pas de cahier des charges, pas de chantier d'intégration. Le contenu existe&nbsp;: reste à choisir lequel et à ouvrir les accès.</p>
         </div>
         <div class="wk-steps">
@@ -853,8 +865,8 @@ section[id]{scroll-margin-top:92px}
           <article class="wkstep rv" data-wstep="1">
             <div class="wk-txt">
               <span class="wk-n">02 — Déployer</span>
-              <h3 class="wf"><span>Vous</span> <span>importez,</span> <span>vos</span> <span>apprenants</span> <span>se</span> <span>connectent.</span></h3>
-              <p class="desc wf"><span>Nous</span> <span>livrons</span> <span>les</span> <span>paquets</span> <span>au</span> <span>format</span> <span>de</span> <span>votre</span> <span>plateforme.</span> <span>Vous</span> <span>les</span> <span>importez,</span> <span>vous</span> <span>rattachez</span> <span>vos</span> <span>groupes,</span> <span>vous</span> <span>ouvrez</span> <span>les</span> <span>accès.</span> <span>Rien</span> <span>à</span> <span>installer</span> <span>sur</span> <span>les</span> <span>postes,</span> <span>aucune</span> <span>seconde</span> <span>connexion</span> <span>à</span> <span>retenir</span> <span>pour</span> <span>l'apprenant.</span></p>
+              <h3 class="wf"><span>Sur</span> <span>votre</span> <span>LMS,</span> <span>ou</span> <span>sur</span> <span>le</span> <span>nôtre.</span></h3>
+              <p class="desc wf"><span>Vous</span> <span>avez</span> <span>déjà</span> <span>un</span> <span>LMS</span> <span>:</span> <span>nous</span> <span>livrons</span> <span>les</span> <span>modules</span> <span>en</span> <span>SCORM</span> <span>distant,</span> <span>vous</span> <span>les</span> <span>rattachez</span> <span>à</span> <span>vos</span> <span>groupes</span> <span>et</span> <span>vous</span> <span>ouvrez</span> <span>les</span> <span>accès.</span> <span>Vous</span> <span>n'en</span> <span>avez</span> <span>pas</span> <span>:</span> <span>nous</span> <span>déployons</span> <span>la</span> <span>plateforme</span> <span>et</span> <span>les</span> <span>contenus</span> <span>sous</span> <span>48</span> <span>heures.</span> <span>Dans</span> <span>les</span> <span>deux</span> <span>cas,</span> <span>rien</span> <span>à</span> <span>installer</span> <span>sur</span> <span>les</span> <span>postes.</span></p>
             </div>
             <div class="wk-vis flat">
               <div class="card-ui" style="max-width:340px">
@@ -938,7 +950,7 @@ section[id]{scroll-margin-top:92px}
     <div class="stage-head rv">
       <div>
         <span class="eyebrow" style="--d:var(--dot-2)">Pour qui</span>
-        <h2>Pensé pour les organismes de formation.</h2>
+        <h2>Pour les organismes de formation.</h2>
       </div>
       <p class="sub">Vous vendez de la formation&nbsp;: le catalogue complète votre offre, à votre charte, sans rien produire en interne. Entreprises et acheteurs publics s'en servent aussi, autrement.</p>
     </div>
@@ -1095,7 +1107,7 @@ section[id]{scroll-margin-top:92px}
 <!-- ═══ FAQ ═══ -->
 <section id="faq">
   <div class="narrow">
-    <div class="head rv"><span class="eyebrow" style="--d:var(--dot-1)">Questions fréquentes</span><h2>Questions fréquentes sur le catalogue e-learning.</h2></div>
+    <div class="head rv"><span class="eyebrow" style="--d:var(--dot-1)">Questions fréquentes</span><h2>Questions sur le catalogue e-learning.</h2></div>
     <div class="faq rv">
       <details open><summary>Le catalogue est-il compatible avec mon LMS actuel ?<span class="sign" aria-hidden="true"></span></summary><div class="faq-a">Oui, avec n'importe quelle plateforme respectant SCORM 1.2, SCORM 2004, AICC ou xAPI — ce qui couvre la quasi-totalité du marché, Moodle et Cornerstone compris. Vous n'avez pas à changer de LMS.</div></details>
       <details><summary>Combien coûte l'accès au catalogue ?<span class="sign" aria-hidden="true"></span></summary><div class="faq-a">Le tarif dépend du volume de modules retenus et du nombre d'apprenants. Une sélection ciblée sur deux ou trois domaines n'a pas le même coût que le catalogue complet. Nous chiffrons après un échange de trente minutes sur votre périmètre.</div></details>
