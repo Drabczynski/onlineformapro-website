@@ -86,7 +86,7 @@ strong{font-weight:600}
 .nav.float{padding-top:14px}
 .nav-in{max-width:var(--max);margin:0 auto;height:70px;display:flex;align-items:center;gap:clamp(12px,2.4vw,30px);
   transition:max-width .4s var(--ease),background .3s,border-radius .4s var(--ease),padding .4s var(--ease),box-shadow .3s,height .3s var(--ease)}
-.nav.float .nav-in{max-width:min(830px,100%);height:58px;background:rgba(247,247,242,.86);
+.nav.float .nav-in{max-width:min(910px,100%);height:58px;background:rgba(247,247,242,.86);
   backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);
   border-radius:100px;padding:0 6px 0 22px;box-shadow:0 1px 2px rgba(0,0,0,.05),0 12px 30px -14px rgba(0,0,0,.22)}
 .brand{display:flex;flex-direction:column;line-height:.84;flex:none}
@@ -95,7 +95,7 @@ strong{font-weight:600}
 .brand span{font-size:.53rem;font-weight:500;letter-spacing:.36em;color:var(--ink-2);padding-left:1px}
 .nav-links{display:none;align-items:center;gap:clamp(14px,1.9vw,26px);margin-left:auto}
 @media (min-width:1000px){.nav-links{display:flex}}
-.nav-links a{font-size:.9rem;font-weight:500;color:var(--ink-2);transition:color .16s}
+.nav-links a{font-size:.9rem;font-weight:500;color:var(--ink-2);white-space:nowrap;transition:color .16s}
 .nav-links a:hover{color:var(--ink)}
 .nav-links a[aria-current]{color:var(--ink);font-weight:600}
 .nav-cta{margin-left:auto}
@@ -499,6 +499,41 @@ section[id]{scroll-margin-top:92px}
 .sp-dark li svg{margin-top:4px;flex:none;color:var(--red)}
 .sp-dark .why{margin-top:auto;padding-top:20px;font-size:.88rem;line-height:1.5;color:var(--on-char-2);border-top:1px solid var(--line-char)}
 
+/* ══════════ MISE EN ŒUVRE (sommaire latéral + étapes) ══════════ */
+.wk{display:grid;gap:clamp(26px,4vw,56px);grid-template-columns:1fr}
+@media (min-width:1000px){.wk{grid-template-columns:212px 1fr}}
+.wk-side{display:none}
+@media (min-width:1000px){.wk-side{display:block;position:sticky;top:112px;align-self:start}}
+.wk-side ol{list-style:none;margin:0;padding:0}
+.wk-side li{display:flex;align-items:center;gap:10px;padding:15px 0;border-bottom:1px solid var(--line-char);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--on-char-3);transition:color .35s var(--ease)}
+.wk-side li::after{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;margin-left:auto;
+  opacity:.4;transition:opacity .35s,transform .35s var(--ease),background .35s}
+.wk-side li.on{color:var(--on-char)}
+.wk-side li.on::after{background:var(--on-char);opacity:1;transform:scale(1.5)}
+.wk-head{margin-bottom:clamp(30px,4vw,54px)}
+.wk-head h2{max-width:19ch;margin:16px 0 0}
+.wk-head .sub{margin-top:16px;max-width:50ch}
+.wk-steps{display:grid;gap:14px}
+.wkstep{background:var(--char-2);border-radius:var(--r);overflow:hidden;display:grid;grid-template-columns:1fr;
+  transition:background .3s}
+@media (min-width:820px){.wkstep{grid-template-columns:1fr .95fr}}
+.wkstep:hover{background:#282828}
+.wk-txt{padding:clamp(26px,3.4vw,38px);display:flex;flex-direction:column;min-height:clamp(300px,32vw,430px)}
+.wk-n{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--on-char-3);margin-bottom:18px}
+.wk-txt h3{font-size:clamp(1.4rem,2.5vw,1.95rem);line-height:1.14;max-width:21ch}
+.wk-txt .desc{margin-top:auto;padding-top:30px;font-size:.99rem;line-height:1.55;max-width:42ch}
+/* texte qui s'éclaircit mot à mot au défilement */
+.wf span{color:var(--on-char-3);transition:color .28s linear}
+.wf span.lit{color:var(--on-char)}
+.desc.wf span.lit{color:var(--on-char-2)}
+@media (prefers-reduced-motion:reduce){.wf span{color:var(--on-char)}.desc.wf span{color:var(--on-char-2)}}
+.wk-vis{position:relative;min-height:250px;overflow:hidden;isolation:isolate;display:flex;align-items:center;
+  justify-content:center;padding:clamp(20px,2.6vw,30px)}
+.wk-vis > *:not(.paint){position:relative;z-index:2}
+.wk-vis.flat{background:var(--char)}
+
 .notes{background:var(--cream-2);padding:34px 0}
 .notes-in{display:flex;gap:14px;align-items:flex-start;font-size:.85rem;line-height:1.6;color:var(--ink-2);max-width:86ch}
 .notes-in svg{flex:none;margin-top:2px;color:var(--ink-3)}
@@ -511,7 +546,7 @@ section[id]{scroll-margin-top:92px}
   <div class="nav-in">
     <a class="brand" href="/" aria-label="Onlineformapro, accueil"><b><i>O</i>nline</b><span>FORMAPRO</span></a>
     <nav class="nav-links" aria-label="Navigation principale">
-      <a href="#">LMS</a><a href="#pour-qui">Pour qui</a><a href="#produit">Le produit</a>
+      <a href="#pour-qui">Pour qui</a><a href="#produit">Le produit</a>
       <a href="#domaines" aria-current="page">Catalogue</a><a href="#conformite">Conformité</a><a href="#faq">FAQ</a>
     </nav>
     <div class="nav-cta"><a class="btn btn-dark" href="#demo">Demander une démo<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
@@ -777,6 +812,87 @@ section[id]{scroll-margin-top:92px}
         </div>
       </article>
 
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MISE EN ŒUVRE ═══ -->
+<section class="on-char" id="mise-en-oeuvre">
+  <div class="wrap">
+    <div class="wk">
+      <aside class="wk-side" aria-hidden="true">
+        <ol><li data-w="0" class="on">Cadrer</li><li data-w="1">Déployer</li><li data-w="2">Piloter</li></ol>
+      </aside>
+      <div>
+        <div class="wk-head rv">
+          <span class="eyebrow" style="--d:var(--dot-1)">Mise en œuvre</span>
+          <h2>Trois étapes entre le premier appel et vos premiers inscrits.</h2>
+          <p class="sub">Pas de cahier des charges, pas de chantier d'intégration. Le contenu existe : reste à choisir lequel et à ouvrir les accès.</p>
+        </div>
+        <div class="wk-steps">
+
+          <article class="wkstep rv" data-wstep="0">
+            <div class="wk-txt">
+              <span class="wk-n">01 — Cadrer</span>
+              <h3 class="wf"><span>Trente</span> <span>minutes</span> <span>d'échange.</span> <span>Pas</span> <span>un</span> <span>audit.</span></h3>
+              <p class="desc wf"><span>Vous</span> <span>nous</span> <span>dites</span> <span>quels</span> <span>métiers</span> <span>vous</span> <span>formez,</span> <span>sur</span> <span>quelle</span> <span>plateforme</span> <span>et</span> <span>pour</span> <span>combien</span> <span>d'apprenants.</span> <span>Nous</span> <span>vous</span> <span>répondons</span> <span>par</span> <span>une</span> <span>sélection</span> <span>de</span> <span>modules</span> <span>et</span> <span>un</span> <span>chiffrage.</span> <span>Si</span> <span>le</span> <span>catalogue</span> <span>ne</span> <span>couvre</span> <span>pas</span> <span>votre</span> <span>besoin,</span> <span>nous</span> <span>le</span> <span>disons</span> <span>à</span> <span>ce</span> <span>moment-là.</span></p>
+            </div>
+            <div class="wk-vis"><span class="paint" aria-hidden="true"><svg viewBox="0 0 700 600" preserveAspectRatio="xMidYMid slice"><defs><filter id="wk1" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.009 0.016" numOctaves="4" seed="83" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="118" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#wk1)"><rect x="-300" y="-280" width="1300" height="1160" fill="#B5B39C"/><ellipse cx="220" cy="170" rx="340" ry="220" fill="#9DAEBC"/><ellipse cx="520" cy="400" rx="320" ry="240" fill="#CDB68D"/><ellipse cx="240" cy="560" rx="340" ry="190" fill="#82907A"/></g></svg></span>
+              <div class="card-ui" style="max-width:330px">
+                <div class="cu-h"><span class="mark">OF</span><b>Votre périmètre</b><span class="meta">Brouillon</span></div>
+                <div class="cu-b">
+                  <div class="pkg"><span class="fmt">Métiers</span><span>Tertiaire, bureautique</span><span class="ok">Couvert</span></div>
+                  <div class="pkg"><span class="fmt">LMS</span><span>Moodle 4.x</span><span class="ok">Compatible</span></div>
+                  <div class="pkg"><span class="fmt">Volume</span><span>240 apprenants</span><span class="ok">OK</span></div>
+                  <div class="pkg"><span class="fmt">Financement</span><span>Plan de compétences</span><span class="ok">Éligible</span></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="wkstep rv" data-wstep="1">
+            <div class="wk-txt">
+              <span class="wk-n">02 — Déployer</span>
+              <h3 class="wf"><span>Vous</span> <span>déposez.</span> <span>Vos</span> <span>apprenants</span> <span>entrent.</span></h3>
+              <p class="desc wf"><span>Nous</span> <span>livrons</span> <span>les</span> <span>paquets</span> <span>au</span> <span>format</span> <span>de</span> <span>votre</span> <span>plateforme.</span> <span>Vous</span> <span>les</span> <span>importez,</span> <span>vous</span> <span>rattachez</span> <span>vos</span> <span>groupes,</span> <span>vous</span> <span>ouvrez</span> <span>les</span> <span>accès.</span> <span>Rien</span> <span>à</span> <span>installer</span> <span>sur</span> <span>les</span> <span>postes,</span> <span>aucune</span> <span>seconde</span> <span>connexion</span> <span>à</span> <span>retenir</span> <span>pour</span> <span>l'apprenant.</span></p>
+            </div>
+            <div class="wk-vis flat">
+              <div class="card-ui" style="max-width:340px">
+                <div class="cu-h"><span class="mark">OF</span><b>Import dans le LMS</b><span class="meta">3 min 12 s</span></div>
+                <div class="cu-b">
+                  <div class="les"><span class="tick"><svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Paquet importé<em>48 modules · SCORM 2004</em></b><i>OK</i></div>
+                  <div class="les"><span class="tick"><svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Groupes rattachés<em>Promotion 12 · 240 comptes</em></b><i>OK</i></div>
+                  <div class="les"><span class="tick now"><svg width="8" height="8" viewBox="0 0 16 16" fill="currentColor"><path d="M4 3l9 5-9 5z"/></svg></span><b>Ouverture des accès<em>Envoi des invitations</em></b><i>En cours</i></div>
+                  <div class="prog" style="margin:12px 0 0"><span class="track"><u style="width:82%"></u></span><em>82 %</em></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="wkstep rv" data-wstep="2">
+            <div class="wk-txt">
+              <span class="wk-n">03 — Piloter</span>
+              <h3 class="wf"><span>Vous</span> <span>suivez,</span> <span>vous</span> <span>relancez,</span> <span>vous</span> <span>justifiez.</span></h3>
+              <p class="desc wf"><span>La</span> <span>progression</span> <span>remonte</span> <span>dans</span> <span>vos</span> <span>tableaux</span> <span>de</span> <span>bord</span> <span>au</span> <span>fil</span> <span>de</span> <span>l'eau.</span> <span>Vous</span> <span>voyez</span> <span>qui</span> <span>décroche</span> <span>avant</span> <span>la</span> <span>fin</span> <span>du</span> <span>parcours,</span> <span>et</span> <span>vous</span> <span>sortez</span> <span>les</span> <span>pièces</span> <span>justificatives</span> <span>le</span> <span>jour</span> <span>où</span> <span>un</span> <span>financeur</span> <span>ou</span> <span>un</span> <span>auditeur</span> <span>les</span> <span>demande.</span></p>
+            </div>
+            <div class="wk-vis"><span class="paint" aria-hidden="true"><svg viewBox="0 0 700 600" preserveAspectRatio="xMidYMid slice"><defs><filter id="wk3" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.009 0.016" numOctaves="4" seed="97" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="118" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#wk3)"><rect x="-300" y="-280" width="1300" height="1160" fill="#A9B29B"/><ellipse cx="500" cy="180" rx="330" ry="220" fill="#CBD3B6"/><ellipse cx="180" cy="420" rx="320" ry="240" fill="#8FA189"/><ellipse cx="560" cy="560" rx="320" ry="190" fill="#DCD6BC"/></g></svg></span>
+              <div class="card-ui" style="max-width:330px">
+                <div class="cu-h"><span class="mark">OF</span><b>Tableau de bord</b><span class="meta">Temps réel</span></div>
+                <div class="cu-b">
+                  <div class="ui-kpis" style="margin-bottom:11px">
+                    <div class="kpi"><em>Actifs</em><b>218</b><i>sur 240</i></div>
+                    <div class="kpi"><em>Complétion</em><b>78 %</b><i>+6 pts</i></div>
+                    <div class="kpi"><em>À relancer</em><b>14</b><i>inactifs 15 j</i></div>
+                  </div>
+                  <div class="evid"><span class="dot"></span><b>Attestations de suivi</b><i>PDF</i></div>
+                  <div class="evid"><span class="dot"></span><b>Relevés de connexion</b><i>CSV</i></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1068,6 +1184,52 @@ section[id]{scroll-margin-top:92px}
     o.observe(el);
   });
 
+
+
+  /* ── mise en œuvre : sommaire actif et texte qui s'éclaircit au défilement ── */
+  var wkItems = document.querySelectorAll('.wk-side li');
+  var wkSteps = document.querySelectorAll('.wkstep[data-wstep]');
+  var wfBlocks = [].slice.call(document.querySelectorAll('.wf'));
+
+  if (!reduce && wfBlocks.length) {
+    wfBlocks.forEach(function(bl){ bl._w = [].slice.call(bl.querySelectorAll('span')); });
+    var paintWords = function(){
+      var vh = window.innerHeight;
+      for (var i = 0; i < wfBlocks.length; i++) {
+        var bl = wfBlocks[i], r = bl.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > vh) {
+          // hors écran : tout allumé une fois passé, tout éteint avant
+          if (r.bottom < 0) bl._w.forEach(function(w){ w.classList.add('lit'); });
+          continue;
+        }
+        // le texte s'allume pendant que le bloc traverse le tiers bas de l'écran
+        var p = (vh * 0.86 - r.top) / (r.height + vh * 0.26);
+        p = Math.max(0, Math.min(1, p));
+        var upto = Math.round(p * bl._w.length);
+        for (var k = 0; k < bl._w.length; k++) bl._w[k].classList.toggle('lit', k < upto);
+      }
+    };
+    var wq = false;
+    var onWf = function(){
+      if (wq) return;
+      wq = true;
+      requestAnimationFrame(function(){ wq = false; paintWords(); });
+    };
+    paintWords();
+    window.addEventListener('scroll', onWf, { passive: true });
+    window.addEventListener('resize', onWf, { passive: true });
+  }
+
+  if (wkItems.length && wkSteps.length && 'IntersectionObserver' in window) {
+    var wo = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var i = e.target.dataset.wstep;
+        wkItems.forEach(function(li){ li.classList.toggle('on', li.dataset.w === i); });
+      });
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+    wkSteps.forEach(function(x){ wo.observe(x); });
+  }
 
   /* ── segments à onglets ── */
   var stg = document.querySelectorAll('.stg');
