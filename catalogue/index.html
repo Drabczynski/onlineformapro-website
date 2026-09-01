@@ -209,12 +209,12 @@ section[id]{scroll-margin-top:92px}
   border:1px solid var(--line);background:transparent;color:var(--ink-2);cursor:pointer;transition:all .2s var(--ease);font-family:inherit}
 .tab:hover{border-color:var(--ink-3);color:var(--ink)}
 .tab[aria-pressed="true"]{background:var(--char);border-color:var(--char);color:var(--cream)}
-.doms{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(268px,1fr))}
+.doms{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
 .dom{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;
   transition:transform .28s var(--ease),border-color .25s,box-shadow .25s}
 .dom:hover{transform:translateY(-5px);border-color:transparent;box-shadow:0 2px 4px rgba(0,0,0,.04),0 18px 34px -20px rgba(0,0,0,.3)}
 /* emplacement d'image : aplat neutre tant que le visuel manque */
-.dom-top{height:126px;position:relative;overflow:hidden;background:var(--cream-3)}
+.dom-top{aspect-ratio:400/133;position:relative;overflow:hidden;background:var(--cream-3)}
 .dom-top img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease)}
 .dom:hover .dom-top img{transform:scale(1.04)}
 
