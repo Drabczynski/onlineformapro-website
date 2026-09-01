@@ -113,7 +113,7 @@ section[id]{scroll-margin-top:92px}
 /* la coupure sémantique tombe après les deux-points */
 #conformite .head h2{max-width:22ch}
 #faq .head h2{max-width:24ch}
-#temoignage .head h2{max-width:26ch}
+#tutorat .head h2{max-width:26ch}
 .head .sub{max-width:54ch}
 .head-left{align-items:flex-start;text-align:left}
 .head-left h2{max-width:20ch}.head-left .sub{max-width:48ch}
@@ -351,38 +351,32 @@ section[id]{scroll-margin-top:92px}
 .evid .dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex:none}
 .evid b{font-weight:600;color:var(--ink);letter-spacing:-.015em}
 .evid i{font-style:normal;font-family:var(--mono);font-size:8.5px;color:var(--ink-3)}
-.badge-float{position:absolute;z-index:3;background:#fff;border-radius:11px;padding:9px 12px;
-  box-shadow:0 1px 2px rgba(0,0,0,.14),0 16px 32px -14px rgba(0,0,0,.55)}
-.badge-float em{display:block;font-style:normal;font-family:var(--mono);font-size:7.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:3px}
-.badge-float b{font-size:1.05rem;font-weight:700;letter-spacing:-.035em;display:block;line-height:1}
-.badge-float u{text-decoration:none;font-size:.66rem;color:var(--green);font-weight:600}
 
-/* ══════════ ÉTUDE DE CAS ══════════ */
-.story{background:var(--cream-2);border-radius:var(--r);overflow:hidden;display:grid;grid-template-columns:1fr}
-@media (min-width:900px){.story{grid-template-columns:.9fr 1.15fr .95fr}}
-.story-img{position:relative;min-height:270px;overflow:hidden;display:flex;align-items:flex-end;padding:22px;isolation:isolate}
-.story-img > *:not(.paint){position:relative;z-index:2}
-.story-img .who{display:flex;align-items:center;gap:10px;color:#fff;font-size:1.25rem;font-weight:700;letter-spacing:-.035em;
-  text-shadow:0 1px 12px rgba(0,0,0,.45)}
-.story-img .who span{width:26px;height:26px;border-radius:7px;background:rgba(255,255,255,.92);display:grid;place-items:center;
-  color:var(--ink);font-size:9px;font-weight:800;letter-spacing:-.02em}
-.story-mid{padding:clamp(24px,3vw,34px);display:flex;flex-direction:column;gap:14px}
-.story-mid h3{max-width:16ch}
-.story-mid .kpi-big{margin-top:auto;display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-top:22px}
-.story-mid .kpi-big b{font-size:clamp(1.9rem,3.6vw,2.6rem);font-weight:600;letter-spacing:-.05em;line-height:1}
-.story-mid .kpi-big em{font-style:normal;font-size:.85rem;color:var(--ink-2);line-height:1.35;max-width:18ch}
-.story-mid .more{margin-left:auto;display:inline-flex;align-items:center;gap:7px;background:#fff;border-radius:100px;
-  padding:11px 19px;font-size:.88rem;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 18px -10px rgba(0,0,0,.3);
-  transition:transform .2s var(--ease)}
-.story-mid .more:hover{transform:translateY(-2px)}
-.story-side{padding:clamp(24px,3vw,34px);border-top:1px solid var(--cream-3);display:flex;flex-direction:column;gap:16px}
-@media (min-width:900px){.story-side{border-top:0;border-left:1px solid var(--cream-3)}}
-.story-side .p{display:flex;align-items:center;gap:12px}
-.story-side .p .ph{width:52px;height:52px;border-radius:10px;flex:none;display:grid;place-items:center;color:#fff;
-  font-weight:700;font-size:1rem;background:linear-gradient(140deg,var(--c-pao),var(--c-sav))}
-.story-side .p b{display:block;font-weight:600;letter-spacing:-.022em;font-size:.98rem}
-.story-side .p span{font-size:.85rem;color:var(--ink-2)}
-.story-side q{display:block;margin-top:auto;font-size:.93rem;line-height:1.55;color:var(--ink-2);quotes:'«\00a0' '\00a0»'}
+/* ══════════ TUTORAT ══════════ */
+.tut{display:grid;gap:13px;grid-template-columns:1fr}
+@media (min-width:820px){.tut{grid-template-columns:1fr 1fr}}
+.tut-c{background:var(--cream-2);border-radius:var(--r);padding:clamp(24px,3vw,32px);
+  display:flex;flex-direction:column;gap:13px}
+.tut-l{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3);align-self:flex-start}
+.tut-big{font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:600;letter-spacing:-.048em;
+  line-height:1;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tut-big i{font-style:normal;color:var(--red)}
+.tut-c > p{font-size:.93rem;line-height:1.55;color:var(--ink-2);max-width:40ch}
+.tut-ch{list-style:none;margin:auto 0 0;padding:16px 0 0;display:flex;flex-wrap:wrap;gap:7px;
+  border-top:1px solid var(--cream-3)}
+.tut-ch li{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;padding:6px 11px;border-radius:100px;background:#fff;color:var(--ink-2)}
+/* la carte d'affectation prend toute la largeur */
+.tut-w{grid-column:1/-1;gap:clamp(20px,3vw,34px)}
+@media (min-width:820px){.tut-w{display:grid;grid-template-columns:.85fr 1.15fr;align-items:center}}
+.tut-w-txt{display:flex;flex-direction:column;gap:11px;align-items:flex-start}
+.tut-w-txt h3{font-size:clamp(1.25rem,2.2vw,1.6rem);max-width:16ch}
+.tut-w-txt p{font-size:.9rem;line-height:1.5;color:var(--ink-2);max-width:34ch}
+.tut-aff{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+@media (min-width:620px){.tut-aff{grid-template-columns:1fr 1fr;gap:11px 22px}}
+.tut-aff li{display:flex;align-items:flex-start;gap:10px;font-size:.92rem;line-height:1.45;color:var(--ink)}
+.tut-aff svg{flex:none;margin-top:3px;color:var(--green)}
 
 /* ══════════ CONFORMITÉ ══════════ */
 .compl{display:grid;gap:13px;grid-template-columns:repeat(2,1fr)}
@@ -570,7 +564,7 @@ section[id]{scroll-margin-top:92px}
   transition:background .3s}
 @media (min-width:820px){.wkstep{grid-template-columns:1fr .95fr}}
 .wkstep:hover{background:#282828}
-.wk-txt{padding:clamp(26px,3.4vw,38px);display:flex;flex-direction:column;min-height:clamp(300px,32vw,430px)}
+.wk-txt{padding:clamp(26px,3.4vw,38px);display:flex;flex-direction:column;justify-content:center;min-height:clamp(300px,32vw,430px)}
 .wk-n{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--on-char-3);margin-bottom:18px}
 .wk-txt h3{font-size:clamp(1.4rem,2.5vw,1.95rem);line-height:1.14;max-width:21ch}
 .wk-txt .desc{padding-top:22px;font-size:.99rem;line-height:1.55;max-width:42ch}
@@ -581,6 +575,9 @@ section[id]{scroll-margin-top:92px}
 @media (prefers-reduced-motion:reduce){.wf span{color:var(--on-char)}.desc.wf span{color:var(--on-char-2)}}
 .wk-vis{position:relative;min-height:250px;overflow:hidden;isolation:isolate;display:flex;align-items:center;
   justify-content:center;padding:clamp(20px,2.6vw,30px)}
+/* photo à fond perdu : elle remplit le bloc, sans marge ni ombre */
+.wk-vis.wk-shot{padding:0;background:var(--char-3)}
+.wk-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .wk-vis > *:not(.paint){position:relative;z-index:2}
 .wk-vis.flat{background:var(--char)}
 
@@ -635,54 +632,18 @@ section[id]{scroll-margin-top:92px}
 .rev-rail + .rev-rail{margin-top:16px}
 .rev-track.back{animation-direction:reverse}
 
-/* ══════════ ÉTUDES DE CAS EMPILÉES ══════════ */
-.stories{display:grid;gap:16px}
-.story{background:var(--cream-2);border-radius:var(--r);overflow:hidden;display:grid;grid-template-columns:1fr;
-  position:sticky;box-shadow:0 -1px 0 var(--line)}
-@media (min-width:940px){.story{grid-template-columns:.82fr 1.1fr .92fr}}
-.story-img{position:relative;min-height:250px;overflow:hidden;display:flex;align-items:flex-end;padding:22px;isolation:isolate}
-.story-img > *:not(.paint){position:relative;z-index:2}
-.story-img .who{display:flex;align-items:center;gap:10px;color:#fff;font-size:1.22rem;font-weight:700;
-  letter-spacing:-.035em;text-shadow:0 1px 12px rgba(0,0,0,.5)}
-.story-img .who span{width:26px;height:26px;border-radius:7px;background:rgba(255,255,255,.92);display:grid;
-  place-items:center;color:var(--ink);font-size:9px;font-weight:800;letter-spacing:-.02em}
-.story-mid{padding:clamp(24px,3vw,34px);display:flex;flex-direction:column;gap:12px;min-height:280px}
-.story-mid h3{max-width:17ch}
-.story-mid > p{font-size:.94rem;line-height:1.52;color:var(--ink-2);max-width:40ch}
-.story-foot{margin-top:auto;display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-top:26px}
-.story-foot b{font-size:clamp(1.8rem,3.4vw,2.5rem);font-weight:600;letter-spacing:-.05em;line-height:1}
-.story-foot em{font-style:normal;font-size:.83rem;color:var(--ink-2);line-height:1.35;max-width:17ch}
-.story-foot .more{margin-left:auto;display:inline-flex;align-items:center;gap:7px;background:#fff;border-radius:100px;
-  padding:11px 19px;font-size:.88rem;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 18px -10px rgba(0,0,0,.3);
-  transition:transform .2s var(--ease)}
-.story-foot .more:hover{transform:translateY(-2px)}
-.story-side{padding:clamp(24px,3vw,34px);display:flex;flex-direction:column;gap:14px;
-  border-top:1px dashed var(--line)}
-@media (min-width:940px){.story-side{border-top:0;border-left:1px dashed var(--line)}}
-.story-side .p{display:flex;align-items:flex-start;gap:12px}
-.story-side .p .ph{width:64px;height:64px;border-radius:10px;flex:none;display:grid;place-items:center;color:#fff;
-  font-weight:700;font-size:1.05rem;background:linear-gradient(140deg,#B9BCC4,#8E939C)}
-.story-side .p b{display:block;font-weight:600;letter-spacing:-.022em;font-size:.96rem}
-.story-side .p span{font-size:.84rem;color:var(--ink-2);line-height:1.35}
-.story-side q{display:block;margin-top:auto;font-size:.92rem;line-height:1.55;color:var(--ink-2);quotes:'«\00a0' '\00a0»'}
-.story-side .tags{margin-top:auto;display:flex;flex-wrap:wrap;gap:7px}
-.story-side .tags span{font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
-  padding:6px 11px;border-radius:100px;background:var(--cream-3);color:var(--ink-2)}
-
 /* logos clients : hauteur normalisée, formats très inégaux à l'origine */
 .mq-track img{height:38px;width:auto;max-width:170px;object-fit:contain;display:block;
   filter:grayscale(1);opacity:.62;transition:filter .25s,opacity .25s}
 .marquee:hover .mq-track img{filter:grayscale(0);opacity:1}
 .rev-card .logo{height:30px;width:auto;max-width:135px;object-fit:contain;object-position:left center;display:block;margin-bottom:2px}
-.story-img .who img{height:30px;width:auto;max-width:150px;object-fit:contain;display:block;
-  filter:brightness(0) invert(1);opacity:.95}
 
 
 /* visuel plein bord : touche le bas et les deux flancs de l'encart, sans ombre */
 .feat-vis.bleed{padding:clamp(18px,2.4vw,26px) 0 0;align-items:flex-end;overflow:hidden}
 .bleed-img{width:100%;height:auto;max-width:none;display:block;border-radius:0;box-shadow:none;margin-top:auto}
 /* plaque dont la capture EST le fond : le texte se pose dessus */
-.f-shot .shot-bg{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
+.f-shot .shot-bg{width:100%;height:100%;object-fit:cover;object-position:center 81%;display:block}
 .f-shot-c .shot-bg{object-position:center}
 /* le voile suit le bloc de texte, pas la hauteur de la plaque : il reste
    lisible quel que soit le nombre de lignes */
@@ -849,17 +810,7 @@ section[id]{scroll-margin-top:92px}
               <h3 class="wf"><span>Trente</span> <span>minutes</span> <span>d'échange.</span></h3>
               <p class="desc wf"><span>Vous</span> <span>nous</span> <span>dites</span> <span>quels</span> <span>métiers</span> <span>vous</span> <span>formez,</span> <span>sur</span> <span>quelle</span> <span>plateforme</span> <span>et</span> <span>pour</span> <span>combien</span> <span>d'apprenants.</span> <span>Nous</span> <span>vous</span> <span>répondons</span> <span>par</span> <span>une</span> <span>sélection</span> <span>de</span> <span>modules</span> <span>et</span> <span>un</span> <span>chiffrage.</span> <span>Si</span> <span>le</span> <span>catalogue</span> <span>ne</span> <span>couvre</span> <span>pas</span> <span>votre</span> <span>besoin,</span> <span>nous</span> <span>le</span> <span>disons</span> <span>à</span> <span>ce</span> <span>moment-là.</span></p>
             </div>
-            <div class="wk-vis"><span class="paint" aria-hidden="true"><svg viewBox="0 0 700 600" preserveAspectRatio="xMidYMid slice"><defs><filter id="wk1" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.009 0.016" numOctaves="4" seed="83" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="118" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#wk1)"><rect x="-300" y="-280" width="1300" height="1160" fill="#B5B39C"/><ellipse cx="220" cy="170" rx="340" ry="220" fill="#9DAEBC"/><ellipse cx="520" cy="400" rx="320" ry="240" fill="#CDB68D"/><ellipse cx="240" cy="560" rx="340" ry="190" fill="#82907A"/></g></svg></span>
-              <div class="card-ui" style="max-width:330px">
-                <div class="cu-h"><span class="mark">OF</span><b>Votre périmètre</b><span class="meta">Brouillon</span></div>
-                <div class="cu-b">
-                  <div class="pkg"><span class="fmt">Métiers</span><span>Tertiaire, bureautique</span><span class="ok">Couvert</span></div>
-                  <div class="pkg"><span class="fmt">LMS</span><span>Moodle 4.x</span><span class="ok">Compatible</span></div>
-                  <div class="pkg"><span class="fmt">Volume</span><span>240 apprenants</span><span class="ok">OK</span></div>
-                  <div class="pkg"><span class="fmt">Financement</span><span>Plan de compétences</span><span class="ok">Éligible</span></div>
-                </div>
-              </div>
-            </div>
+            <div class="wk-vis wk-shot"><img class="paint wk-img" src="img/30minutes.png" alt="Conseiller Onlineformapro au téléphone avec un organisme de formation" width="430" height="430" loading="lazy" decoding="async"></div>
           </article>
 
           <article class="wkstep rv" data-wstep="1">
@@ -868,17 +819,7 @@ section[id]{scroll-margin-top:92px}
               <h3 class="wf"><span>Sur</span> <span>votre</span> <span>LMS,</span> <span>ou</span> <span>sur</span> <span>le</span> <span>nôtre.</span></h3>
               <p class="desc wf"><span>Vous</span> <span>avez</span> <span>déjà</span> <span>un</span> <span>LMS</span> <span>:</span> <span>nous</span> <span>livrons</span> <span>les</span> <span>modules</span> <span>en</span> <span>SCORM</span> <span>distant,</span> <span>vous</span> <span>les</span> <span>rattachez</span> <span>à</span> <span>vos</span> <span>groupes</span> <span>et</span> <span>vous</span> <span>ouvrez</span> <span>les</span> <span>accès.</span> <span>Vous</span> <span>n'en</span> <span>avez</span> <span>pas</span> <span>:</span> <span>nous</span> <span>déployons</span> <span>la</span> <span>plateforme</span> <span>et</span> <span>les</span> <span>contenus</span> <span>sous</span> <span>48</span> <span>heures.</span> <span>Dans</span> <span>les</span> <span>deux</span> <span>cas,</span> <span>rien</span> <span>à</span> <span>installer</span> <span>sur</span> <span>les</span> <span>postes.</span></p>
             </div>
-            <div class="wk-vis flat">
-              <div class="card-ui" style="max-width:340px">
-                <div class="cu-h"><span class="mark">OF</span><b>Import dans le LMS</b><span class="meta">3 min 12 s</span></div>
-                <div class="cu-b">
-                  <div class="les"><span class="tick"><svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Paquet importé<em>48 modules · SCORM 2004</em></b><i>OK</i></div>
-                  <div class="les"><span class="tick"><svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Groupes rattachés<em>Promotion 12 · 240 comptes</em></b><i>OK</i></div>
-                  <div class="les"><span class="tick now"><svg width="8" height="8" viewBox="0 0 16 16" fill="currentColor"><path d="M4 3l9 5-9 5z"/></svg></span><b>Ouverture des accès<em>Envoi des invitations</em></b><i>En cours</i></div>
-                  <div class="prog" style="margin:12px 0 0"><span class="track"><u style="width:82%"></u></span><em>82 %</em></div>
-                </div>
-              </div>
-            </div>
+            <div class="wk-vis wk-shot"><img class="paint wk-img" src="img/lms.png" alt="Plateforme e-learning OnlineCompétences consultée sur une tablette" width="430" height="430" loading="lazy" decoding="async"></div>
           </article>
 
           <article class="wkstep rv" data-wstep="2">
@@ -887,20 +828,7 @@ section[id]{scroll-margin-top:92px}
               <h3 class="wf"><span>Vous</span> <span>suivez,</span> <span>vous</span> <span>relancez,</span> <span>vous</span> <span>justifiez.</span></h3>
               <p class="desc wf"><span>La</span> <span>progression</span> <span>remonte</span> <span>dans</span> <span>vos</span> <span>tableaux</span> <span>de</span> <span>bord</span> <span>au</span> <span>fil</span> <span>de</span> <span>l'eau.</span> <span>Vous</span> <span>voyez</span> <span>qui</span> <span>décroche</span> <span>avant</span> <span>la</span> <span>fin</span> <span>du</span> <span>parcours,</span> <span>et</span> <span>vous</span> <span>sortez</span> <span>les</span> <span>pièces</span> <span>justificatives</span> <span>le</span> <span>jour</span> <span>où</span> <span>un</span> <span>financeur</span> <span>ou</span> <span>un</span> <span>auditeur</span> <span>les</span> <span>demande.</span></p>
             </div>
-            <div class="wk-vis"><span class="paint" aria-hidden="true"><svg viewBox="0 0 700 600" preserveAspectRatio="xMidYMid slice"><defs><filter id="wk3" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.009 0.016" numOctaves="4" seed="97" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="118" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#wk3)"><rect x="-300" y="-280" width="1300" height="1160" fill="#A9B29B"/><ellipse cx="500" cy="180" rx="330" ry="220" fill="#CBD3B6"/><ellipse cx="180" cy="420" rx="320" ry="240" fill="#8FA189"/><ellipse cx="560" cy="560" rx="320" ry="190" fill="#DCD6BC"/></g></svg></span>
-              <div class="card-ui" style="max-width:330px">
-                <div class="cu-h"><span class="mark">OF</span><b>Tableau de bord</b><span class="meta">Temps réel</span></div>
-                <div class="cu-b">
-                  <div class="ui-kpis" style="margin-bottom:11px">
-                    <div class="kpi"><em>Actifs</em><b>218</b><i>sur 240</i></div>
-                    <div class="kpi"><em>Complétion</em><b>78 %</b><i>+6 pts</i></div>
-                    <div class="kpi"><em>À relancer</em><b>14</b><i>inactifs 15 j</i></div>
-                  </div>
-                  <div class="evid"><span class="dot"></span><b>Attestations de suivi</b><i>PDF</i></div>
-                  <div class="evid"><span class="dot"></span><b>Relevés de connexion</b><i>CSV</i></div>
-                </div>
-              </div>
-            </div>
+            <div class="wk-vis wk-shot"><img class="paint wk-img" src="img/reporting.png" alt="Tableau de bord de suivi des apprenants affiché sur un ordinateur portable" width="430" height="430" loading="lazy" decoding="async"></div>
           </article>
 
         </div>
@@ -1025,41 +953,40 @@ section[id]{scroll-margin-top:92px}
 </section>
 
 <!-- ═══ ÉTUDE DE CAS ═══ -->
-<section id="temoignage">
+<section id="tutorat">
   <div class="wrap">
     <div class="head rv">
-      <span class="eyebrow" style="--d:var(--dot-5)">Études de cas</span>
-      <h2>Ils nous font confiance.</h2>
-      <p class="sub">De l'organisme de formation régional au grand compte national.</p>
-      <a class="btn btn-dark" href="#">Voir toutes les références<svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <span class="eyebrow" style="--d:var(--dot-5)">Tutorat</span>
+      <h2>Vos apprenants ne restent pas seuls devant l'écran.</h2>
+      <p class="sub">Le suivi et l'accompagnement se pilotent depuis OnlineManager. C'est souvent ce qui sépare un module ouvert d'un module terminé.</p>
     </div>
-    <div class="stories">
-      <article class="story rv" style="top:96px">
-        <div class="story-img"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="st1" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="41" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="118" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#st1)"><rect x="-260" y="-300" width="1120" height="1300" fill="#A8AE9C"/><ellipse cx="200" cy="220" rx="300" ry="240" fill="#8FA88F"/><ellipse cx="450" cy="500" rx="300" ry="250" fill="#C6C3A2"/><ellipse cx="120" cy="670" rx="280" ry="190" fill="#75876F"/></g></svg></span><span class="who"><img src="img/logos/sncf.png" alt="SNCF" loading="lazy"></span></div>
-        <div class="story-mid">
-          <h3>Un dispositif bureautique ouvert à toute heure</h3>
-          <p>Onlineformapro a accompagné la SNCF dans la mise en place de son dispositif de formation bureautique en digital learning, avec un environnement individualisé et tutoré.</p>
-          <div class="story-foot"><b>24h/24</b><em>accès à la formation, en autonomie</em><a class="more" href="#">Lire le cas<svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-        </div>
-        <div class="story-side"><div class="p"><span class="ph">IP</span><span><b>Isabelle Provillard</b><span>Chef de projet ingénierie de formation, SNCF</span></span></div><q>Nos collaborateurs disposent d'un environnement de formation individualisé et tutoré accessible 24h/24.</q></div>
+
+    <div class="tut">
+      <article class="tut-c rv">
+        <span class="tut-l">En direct</span>
+        <b class="tut-big">08h30 <i>&rarr;</i> 17h00</b>
+        <p>Du lundi au vendredi, un tuteur répond pendant que l'apprenant est devant son module.</p>
+        <ul class="tut-ch"><li>Tchat</li><li>Visio</li><li>Téléphone</li><li>E-mail</li></ul>
       </article>
-      <article class="story rv" style="top:120px">
-        <div class="story-img"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="st2" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="59" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="118" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#st2)"><rect x="-260" y="-300" width="1120" height="1300" fill="#A3AAB2"/><ellipse cx="430" cy="200" rx="300" ry="230" fill="#8896A6"/><ellipse cx="160" cy="480" rx="310" ry="250" fill="#BEC4C6"/><ellipse cx="470" cy="650" rx="290" ry="190" fill="#6E7C86"/></g></svg></span><span class="who"><img src="img/logos/afpa.png" alt="Afpa" loading="lazy"></span></div>
-        <div class="story-mid">
-          <h3>Des parcours enrichis sans production interne</h3>
-          <p>Premier organisme de formation professionnelle en France : nos modules complètent ses parcours sur les compétences numériques du poste de travail.</p>
-          <div class="story-foot"><a class="more" href="#">Lire le cas<svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-        </div>
-        <div class="story-side"><div class="p"><span class="ph">AF</span><span><b>Organisme de formation</b><span>Formation professionnelle des adultes</span></span></div><div class="tags"><span>Bureautique</span><span>Tertiaire</span><span>Développement</span></div></div>
+
+      <article class="tut-c rv">
+        <span class="tut-l">En différé</span>
+        <b class="tut-big">7j/7 <i>&middot;</i> 24h/24</b>
+        <p>Une question posée le dimanche soir trouve sa réponse. Le soutien pédagogique est sans limite d'usage sur toute la durée du parcours.</p>
       </article>
-      <article class="story rv" style="top:144px">
-        <div class="story-img"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="st3" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="73" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="118" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#st3)"><rect x="-260" y="-300" width="1120" height="1300" fill="#B3AE99"/><ellipse cx="190" cy="250" rx="310" ry="240" fill="#CBB88E"/><ellipse cx="470" cy="510" rx="290" ry="250" fill="#9AA88C"/><ellipse cx="140" cy="690" rx="280" ry="180" fill="#87907A"/></g></svg></span><span class="who"><img src="img/logos/france-travail.png" alt="France Travail" loading="lazy"></span></div>
-        <div class="story-mid">
-          <h3>Des ressources pour l'accompagnement vers l'emploi</h3>
-          <p>Modules mobilisés dans l'accompagnement des demandeurs d'emploi, sur les savoirs de base et les compétences numériques.</p>
-          <div class="story-foot"><a class="more" href="#">Lire le cas<svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+
+      <article class="tut-c tut-w rv">
+        <div class="tut-w-txt">
+          <span class="tut-l">Gérer les tuteurs</span>
+          <h3>Vous décidez qui accompagne qui.</h3>
+          <p>Le rattachement se fait depuis votre espace, sans passer par nous.</p>
         </div>
-        <div class="story-side"><div class="p"><span class="ph">FT</span><span><b>Service public de l'emploi</b><span>Accompagnement et montée en compétences</span></span></div><div class="tags"><span>Savoirs de base</span><span>Bases informatiques</span><span>Bureautique</span></div></div>
+        <ul class="tut-aff">
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Un tuteur de spécialité, sur une ou plusieurs formations</span></li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Un tuteur rattaché à un groupe</span></li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Un tuteur rattaché à un apprenant</span></li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>La liste de vos tuteurs, tenue à jour</span></li>
+        </ul>
       </article>
     </div>
   </div>
@@ -1229,7 +1156,7 @@ section[id]{scroll-margin-top:92px}
         </div>
         <div>
           <h4>Société</h4>
-          <ul><li><a href="#">Qui sommes-nous</a></li><li><a href="#temoignage">Références</a></li><li><a href="#">Blog</a></li><li><a href="#">Nous contacter</a></li><li><a href="#">Espace client</a></li><li><a href="#">Recrutement</a></li></ul>
+          <ul><li><a href="#">Qui sommes-nous</a></li><li><a href="#retours">Références</a></li><li><a href="#">Blog</a></li><li><a href="#">Nous contacter</a></li><li><a href="#">Espace client</a></li><li><a href="#">Recrutement</a></li></ul>
           <div class="socials">
             <a href="#" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M3.4 5.5H1.1V14h2.3V5.5ZM2.25 4.5a1.34 1.34 0 1 0 0-2.68 1.34 1.34 0 0 0 0 2.68ZM14.9 14h-2.3V9.9c0-1.1-.4-1.8-1.35-1.8-.73 0-1.17.5-1.36.98-.7.17-.09.4-.09.65V14H7.5s.03-7.7 0-8.5h2.3v1.2c.3-.47.85-1.14 2.06-1.14 1.5 0 2.63.98 2.63 3.1V14Z"/></svg></a>
             <a href="#" aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M15.3 4.8a1.9 1.9 0 0 0-1.35-1.36C12.75 3.1 8 3.1 8 3.1s-4.75 0-5.95.34A1.9 1.9 0 0 0 .7 4.8C.36 6 .36 8 .36 8s0 2 .34 3.2a1.9 1.9 0 0 0 1.35 1.36c1.2.34 5.95.34 5.95.34s4.75 0 5.95-.34a1.9 1.9 0 0 0 1.35-1.36c.34-1.2.34-3.2.34-3.2s0-2-.34-3.2ZM6.5 10.3V5.7L10.4 8l-3.9 2.3Z"/></svg></a>
@@ -1252,7 +1179,7 @@ section[id]{scroll-margin-top:92px}
   <div class="wrap notes-in">
     <svg width="17" height="17" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.6" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.2v4M8 4.9v.9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
     <div><b>Maquette de travail — à valider avant mise en ligne</b>
-    Le chiffre de 1 300 organismes vient de l'équipe et n'a pas été recoupé. Un seul verbatim client est disponible (SNCF) : les cartes de références portent le dispositif déployé, et deux des trois études de cas restent sans citation. Les logos clients ne s'affichent qu'avec l'accord de citation de chaque organisation. Le formulaire de démonstration n'est relié à aucun traitement : rien n'est envoyé ni conservé. Les deux rangées de références réutilisent les cinq mêmes organisations, faute d'autres logos validés. Le logo principal est une image matricielle enveloppée dans du SVG, à remplacer par un tracé vectoriel ; les visuels de domaines sont en 400 px de large, à doubler pour les écrans à haute densité. Police d'approche Plus Jakarta Sans, à remplacer par celle de la charte.</div>
+    Le chiffre de 1 300 organismes vient de l'équipe et n'a pas été recoupé. Un seul verbatim client est disponible (SNCF) : les cartes de références portent le dispositif déployé, sans citation. Les horaires et les canaux du tutorat viennent de la documentation produit et sont à confirmer avant mise en ligne. Les logos clients ne s'affichent qu'avec l'accord de citation de chaque organisation. Le formulaire de démonstration n'est relié à aucun traitement : rien n'est envoyé ni conservé. Les deux rangées de références réutilisent les cinq mêmes organisations, faute d'autres logos validés. Le logo principal est une image matricielle enveloppée dans du SVG, à remplacer par un tracé vectoriel ; les visuels de domaines sont en 400 px de large, à doubler pour les écrans à haute densité. Police d'approche Plus Jakarta Sans, à remplacer par celle de la charte.</div>
   </div>
 </div>
 
