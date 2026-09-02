@@ -117,7 +117,20 @@ section[id]{scroll-margin-top:92px}
 .head-left h2{max-width:20ch}.head-left .sub{max-width:48ch}
 
 /* ══ hero ══ */
-.hero{padding-top:clamp(116px,14vw,172px);padding-bottom:0;text-align:center}
+.hero{padding-top:clamp(116px,14vw,172px);padding-bottom:0;text-align:center;
+  position:relative;isolation:isolate}
+/* champ de points en fond de héros : décoratif, jamais cliquable, et effacé
+   là où le texte se pose */
+.hero-fx{position:absolute;top:0;left:0;width:100%;height:100%;display:block;
+  z-index:0;pointer-events:none;opacity:.85;
+  -webkit-mask-image:radial-gradient(50% 33% at 50% 35%,transparent 0%,rgba(0,0,0,.45) 60%,#000 100%),
+    linear-gradient(180deg,transparent 0%,#000 16%,#000 62%,transparent 88%);
+  -webkit-mask-composite:source-in;
+  mask-image:radial-gradient(50% 33% at 50% 35%,transparent 0%,rgba(0,0,0,.45) 60%,#000 100%),
+    linear-gradient(180deg,transparent 0%,#000 16%,#000 62%,transparent 88%);
+  mask-composite:intersect}
+.hero > .wrap{position:relative;z-index:1}
+@media (prefers-reduced-motion:reduce){.hero-fx{opacity:.55}}
 .hero-in{display:flex;flex-direction:column;align-items:center;gap:21px}
 /* hauteur plafonnee a la moitie de la source : au-dela, le logo pixellise */
 .hero-logo{height:clamp(42px,4.4vw,56px);width:auto;display:block;margin-bottom:clamp(12px,1.6vw,20px)}
@@ -667,6 +680,7 @@ section[id]{scroll-margin-top:92px}
 
 <!-- ═══ HERO ═══ -->
 <section class="hero" id="hero">
+  <canvas id="grille" class="hero-fx" aria-hidden="true"></canvas>
   <div class="wrap hero-in">
     <img class="hero-logo rv" src="img/logo.svg" alt="Onlineformapro" width="139" height="57">
     <span class="trust rv"><span class="stars" aria-hidden="true">★★★★★</span> 1 300 organismes de formation nous font confiance</span>
@@ -1444,6 +1458,173 @@ section[id]{scroll-margin-top:92px}
     }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
     wkSteps.forEach(function(x){ wo.observe(x); });
   }
+
+
+  /* ── champ de points du héros (WebGL natif, aucune dépendance) ──
+     Grille de points posée sur une onde, vue en perspective. Les points
+     lointains s'effacent dans le fond crème, les proches sont plus denses.
+     Respiration lente, dérive légère au pointeur. Purement décoratif :
+     si le contexte WebGL manque, le canvas reste vide et le héros ne bouge pas. */
+  (function champDePoints(){
+    var cv = document.getElementById('grille');
+    if (!cv) return;
+    var gl = cv.getContext('webgl', {alpha:true, antialias:true, premultipliedAlpha:false})
+          || cv.getContext('experimental-webgl', {alpha:true, antialias:true});
+    if (!gl) return;
+
+    var SOMMET = [
+      'precision mediump float;',
+      'attribute vec2 aCell;',      // x dans la grille (−1..1), z de profondeur (0..1)
+      'attribute float aSeed;',
+      'uniform float uTime;',
+      'uniform float uPouls;',      // respiration, 0..1
+      'uniform vec2  uPointeur;',
+      'uniform float uRatio;',      // largeur / hauteur du canvas
+      'uniform float uDpr;',
+      'varying float vProf;',       // 0 à l\'horizon, 1 au premier plan
+      'varying float vSeed;',
+      'void main(){',
+      // z = 0 au loin, 1 devant : la distance caméra décroît d\'autant
+      '  float z = aCell.y;',
+      '  float dist = mix(11.0, 1.15, z);',
+      '  float persp = 1.6 / dist;',
+      '  float x = aCell.x * 9.0 + uPointeur.x * 0.55;',
+      // l\'onde : deux sinus croisés, amplitude modulée par la respiration
+      '  float onde = sin(x * 0.42 + uTime * 0.26) * 0.75',
+      '             + sin(x * 0.17 - uTime * 0.17 + z * 5.5) * 0.48;',
+      '  float y = onde * (0.72 + uPouls * 0.46) - 1.05 + uPointeur.y * 0.28;',
+      '  vec2 pos = vec2(x * persp / max(uRatio, 0.0001) * 1.62, y * persp + 0.26);',
+      '  gl_Position = vec4(pos, 0.0, 1.0);',
+      '  vProf = z;',
+      '  vSeed = aSeed;',
+      '  gl_PointSize = clamp(persp * 13.0, 1.0, 7.0) * uDpr;',
+      '}'
+    ].join('\n');
+
+    var FRAG = [
+      'precision mediump float;',
+      'varying float vProf;',
+      'varying float vSeed;',
+      'void main(){',
+      // carré à bords adoucis : la maille se lit comme une trame, pas comme des ronds
+      '  vec2 d = abs(gl_PointCoord - 0.5);',
+      '  float carre = 1.0 - smoothstep(0.30, 0.5, max(d.x, d.y));',
+      '  if (carre <= 0.01) discard;',
+      // encre neutre, teintée par tirage avec les couleurs de la charte
+      '  vec3 encre  = vec3(0.10, 0.10, 0.10);',
+      '  vec3 teinte = vSeed < 0.34 ? vec3(0.07, 0.65, 0.58)',
+      '              : vSeed < 0.62 ? vec3(0.17, 0.44, 0.88)',
+      '              : vSeed < 0.85 ? vec3(0.58, 0.34, 0.77)',
+      '                             : vec3(0.88, 0.10, 0.31);',
+      '  vec3 couleur = mix(encre, teinte, 0.34 + vSeed * 0.46);',
+      // fondu de profondeur : au loin le point se dissout dans le crème
+      '  float fondu = smoothstep(0.0, 0.30, vProf) * (1.0 - smoothstep(0.72, 1.0, vProf));',
+      '  gl_FragColor = vec4(couleur, carre * fondu * (0.46 + vSeed * 0.42));',
+      '}'
+    ].join('\n');
+
+    function compiler(type, src){
+      var sh = gl.createShader(type);
+      gl.shaderSource(sh, src); gl.compileShader(sh);
+      if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) { gl.deleteShader(sh); return null; }
+      return sh;
+    }
+    var vs = compiler(gl.VERTEX_SHADER, SOMMET), fs = compiler(gl.FRAGMENT_SHADER, FRAG);
+    if (!vs || !fs) return;
+    var prog = gl.createProgram();
+    gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+    gl.useProgram(prog);
+
+    // maille : plus resserrée au loin, plus lâche devant
+    var COLS = 132, RANGS = 62, cells = [], seeds = [];
+    for (var r = 0; r < RANGS; r++) {
+      var z = r / (RANGS - 1);
+      var saut = z > 0.72 ? 3 : (z > 0.48 ? 2 : 1);   // l'avant se clairsème
+      for (var c = 0; c < COLS; c += saut) {
+        var jx = (Math.sin(c * 12.9898 + r * 78.233) * 43758.5453) % 1;
+        var jz = (Math.sin(r * 39.346 + c * 11.135) * 24634.6345) % 1;
+        cells.push((c / (COLS - 1)) * 2 - 1 + jx * 0.012, z + jz * 0.006);
+        seeds.push(Math.abs(jx * 0.5 + jz * 0.5 + 0.5) % 1);
+      }
+    }
+    var N = seeds.length;
+    var bufCell = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, bufCell);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(cells), gl.STATIC_DRAW);
+    var aCell = gl.getAttribLocation(prog, 'aCell');
+    gl.enableVertexAttribArray(aCell); gl.vertexAttribPointer(aCell, 2, gl.FLOAT, false, 0, 0);
+
+    var bufSeed = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, bufSeed);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(seeds), gl.STATIC_DRAW);
+    var aSeed = gl.getAttribLocation(prog, 'aSeed');
+    gl.enableVertexAttribArray(aSeed); gl.vertexAttribPointer(aSeed, 1, gl.FLOAT, false, 0, 0);
+
+    var uTime = gl.getUniformLocation(prog, 'uTime'),
+        uPouls = gl.getUniformLocation(prog, 'uPouls'),
+        uPointeur = gl.getUniformLocation(prog, 'uPointeur'),
+        uRatio = gl.getUniformLocation(prog, 'uRatio'),
+        uDpr = gl.getUniformLocation(prog, 'uDpr');
+
+    gl.enable(gl.BLEND);
+    gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+    gl.clearColor(0, 0, 0, 0);
+
+    var dpr = 1;
+    function redimensionner(){
+      dpr = Math.min(window.devicePixelRatio || 1, 2);   // plafond de densité
+      var l = cv.clientWidth, h = cv.clientHeight;
+      if (!l || !h) return false;
+      cv.width = Math.round(l * dpr); cv.height = Math.round(h * dpr);
+      gl.viewport(0, 0, cv.width, cv.height);
+      gl.uniform1f(uRatio, cv.width / cv.height);
+      gl.uniform1f(uDpr, dpr);
+      return true;
+    }
+
+    var px = 0, py = 0, cx = 0, cy = 0;
+    window.addEventListener('pointermove', function(e){
+      px = (e.clientX / window.innerWidth) * 2 - 1;
+      py = (e.clientY / window.innerHeight) * 2 - 1;
+    }, {passive:true});
+
+    var sobre = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+    function dessiner(t){
+      cx += (px - cx) * 0.035; cy += (py - cy) * 0.035;   // dérive douce
+      gl.uniform1f(uTime, t);
+      gl.uniform1f(uPouls, 0.5 + 0.5 * Math.sin(t * 0.42));   // respiration ~15 s
+      gl.uniform2f(uPointeur, cx, cy);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.drawArrays(gl.POINTS, 0, N);
+    }
+
+    var actif = true, debut = 0;
+    function boucle(ms){
+      if (!actif) return;
+      if (!debut) debut = ms;
+      dessiner((ms - debut) / 1000);
+      requestAnimationFrame(boucle);
+    }
+    if (!redimensionner()) return;
+    if (sobre) { dessiner(0); }                 // une seule image, pas d'animation
+    else { requestAnimationFrame(boucle); }
+
+    // on n'anime pas ce qui n'est pas à l'écran
+    if (window.IntersectionObserver) {
+      new IntersectionObserver(function(es){
+        var visible = es[0].isIntersecting;
+        if (visible && !actif && !sobre) { actif = true; debut = 0; requestAnimationFrame(boucle); }
+        actif = visible;
+      }, {rootMargin:'120px'}).observe(cv);
+    }
+    var minuteur;
+    window.addEventListener('resize', function(){
+      clearTimeout(minuteur);
+      minuteur = setTimeout(function(){ if (redimensionner() && sobre) dessiner(0); }, 160);
+    });
+  })();
 
   /* ── formulaire de démonstration (maquette : rien n'est envoyé) ── */
   var dmForm = document.getElementById('dm-form');
