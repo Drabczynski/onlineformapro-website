@@ -571,27 +571,6 @@ section[id]{scroll-margin-top:92px}
 .rev-who b{font-size:.98rem;font-weight:600;letter-spacing:-.022em}
 .rev-who span{font-size:.87rem;color:var(--ink-2)}
 
-.rev-rail{overflow:hidden;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent)}
-.rev-track{display:flex;gap:16px;width:max-content;animation:mq 58s linear infinite}
-.rev-rail:hover .rev-track,.rev-rail:focus-within .rev-track{animation-play-state:paused}
-@media (prefers-reduced-motion:reduce){
-  .rev-rail{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
-  .rev-track{animation:none;width:auto}
-}
-.rev-card{width:min(340px,78vw);flex:none;background:#fff;border-radius:16px;padding:22px 24px 20px;
-  display:flex;flex-direction:column;gap:13px;border:1px solid var(--line);
-  transition:transform .3s var(--ease),box-shadow .3s}
-.rev-card:hover{transform:translateY(-4px);box-shadow:0 2px 4px rgba(0,0,0,.04),0 20px 40px -24px rgba(0,0,0,.32)}
-.rev-card .rev-dom{display:inline-flex;align-self:flex-start;font-family:var(--mono);font-size:9px;font-weight:700;
-  letter-spacing:.11em;text-transform:uppercase;padding:5px 10px;border-radius:100px;background:var(--cream-2);color:var(--ink-2)}
-.rev-card p{font-size:.94rem;line-height:1.5;color:var(--ink);flex:1}
-.rev-card .sig{display:flex;align-items:center;gap:11px;padding-top:14px;border-top:1px solid var(--line)}
-.rev-card .sig .av{width:38px;height:38px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;
-  font-size:.78rem;font-weight:700;background:var(--ac,var(--c-pao))}
-.rev-card .sig b{display:block;font-size:.9rem;font-weight:600;letter-spacing:-.02em}
-.rev-card .sig span{font-size:.8rem;color:var(--ink-2)}
 .rev-note{margin-top:clamp(26px,3.2vw,36px);text-align:center;font-size:.84rem;color:var(--ink-3)}
 
 /* ══════════ BANDEAU DE CLÔTURE ══════════ */
@@ -605,15 +584,11 @@ section[id]{scroll-margin-top:92px}
 .wm-bot nav{display:flex;gap:18px;margin-left:auto;flex-wrap:wrap}
 .wm-bot a:hover{color:var(--ink)}
 
-/* deux rangées défilant en sens inverse */
-.rev-rail + .rev-rail{margin-top:16px}
-.rev-track.back{animation-direction:reverse}
 
 /* logos clients : hauteur normalisée, formats très inégaux à l'origine */
 .mq-track img{height:38px;width:auto;max-width:170px;object-fit:contain;display:block;
   filter:grayscale(1);opacity:.62;transition:filter .25s,opacity .25s}
 .marquee:hover .mq-track img{filter:grayscale(0);opacity:1}
-.rev-card .logo{height:30px;width:auto;max-width:135px;object-fit:contain;object-position:left center;display:block;margin-bottom:2px}
 
 
 /* visuel plein bord : touche le bas et les deux flancs de l'encart, sans ombre */
@@ -642,6 +617,56 @@ section[id]{scroll-margin-top:92px}
 .notes-in{display:flex;gap:14px;align-items:flex-start;font-size:.85rem;line-height:1.6;color:var(--ink-2);max-width:86ch}
 .notes-in svg{flex:none;margin-top:2px;color:var(--ink-3)}
 .notes-in b{display:block;color:var(--ink);font-weight:600;margin-bottom:4px;letter-spacing:-.02em}
+/* ══════════ RÉFÉRENCES ══════════ */
+.rc-tete{display:grid;grid-template-columns:1fr;gap:clamp(26px,3.4vw,48px);
+  align-items:start;margin-bottom:clamp(30px,4vw,48px);position:relative}
+@media (min-width:860px){.rc-tete{grid-template-columns:.82fr 1.18fr;gap:clamp(40px,6vw,86px)}}
+.rc-chiffre{display:flex;flex-direction:column;gap:10px;text-align:center}
+@media (min-width:860px){.rc-chiffre{text-align:right}}
+.rc-chiffre b{font-size:clamp(3.2rem,7vw,5.2rem);font-weight:700;letter-spacing:-.06em;
+  line-height:.94;color:var(--ink)}
+.rc-chiffre b u{text-decoration:none;color:var(--red)}
+.rc-chiffre span{font-size:.94rem;line-height:1.45;color:var(--ink-2);max-width:23ch;
+  margin-inline:auto}
+@media (min-width:860px){.rc-chiffre span{margin-right:0}}
+.rc-mot{display:flex;flex-direction:column;gap:16px}
+.rc-join{display:flex;align-items:center;gap:14px}
+.rc-pile{display:flex;flex:none}
+.rc-pile img{width:42px;height:42px;border-radius:50%;object-fit:contain;object-position:center;
+  background:#fff;border:2px solid var(--cream);padding:5px;display:block}
+.rc-pile img + img{margin-left:-14px}
+.rc-join span{font-size:.92rem;line-height:1.4;color:var(--ink-2)}
+.rc-join span b{display:block;color:var(--ink);font-weight:600;letter-spacing:-.02em;font-size:.98rem}
+.rc-mot p{margin:0;font-size:1rem;line-height:1.55;color:var(--ink-2);max-width:56ch}
+
+.rc-grille{display:grid;gap:14px;grid-template-columns:1fr}
+@media (min-width:620px){.rc-grille{grid-template-columns:1fr 1fr}}
+@media (min-width:1060px){.rc-grille{grid-template-columns:repeat(4,1fr)}}
+.rc{position:relative;overflow:hidden;background:var(--cream-2);border-radius:18px;
+  padding:clamp(20px,2.2vw,26px);display:flex;flex-direction:column;min-height:300px;
+  transition:transform .3s var(--ease),box-shadow .3s}
+/* la tache colorée diffuse du modèle, en très basse intensité */
+.rc::before{content:"";position:absolute;width:150%;height:64%;left:-32%;bottom:-26%;z-index:0;
+  background:radial-gradient(45% 60% at 30% 60%,rgba(148,87,196,.20),transparent 70%),
+    radial-gradient(46% 58% at 72% 46%,rgba(44,111,224,.17),transparent 72%);
+  filter:blur(6px);pointer-events:none}
+.rc > *{position:relative;z-index:1}
+.rc:hover{transform:translateY(-4px);box-shadow:0 2px 4px rgba(0,0,0,.04),0 20px 40px -24px rgba(0,0,0,.3)}
+.rc-logo{width:54px;height:54px;border-radius:50%;background:#fff;flex:none;
+  display:grid;place-items:center;padding:9px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.rc-logo img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block}
+.rc > p{margin:22px 0 0;font-size:.96rem;line-height:1.5;color:var(--ink)}
+.rc-sig{margin-top:auto;padding-top:22px}
+.rc-sig b{display:block;font-size:1.06rem;font-weight:700;letter-spacing:-.032em;color:var(--ink)}
+.rc-sig span{display:block;margin-top:3px;font-size:.86rem;line-height:1.35;color:var(--ink-2)}
+/* la carte d'accent, comme la carte sombre du modèle */
+.rc-dk{background:var(--char);color:var(--on-char)}
+.rc-dk::before{background:radial-gradient(48% 62% at 28% 58%,rgba(224,26,79,.42),transparent 70%),
+  radial-gradient(46% 58% at 74% 44%,rgba(109,91,208,.36),transparent 72%)}
+.rc-dk > p{color:var(--on-char);font-style:italic}
+.rc-dk .rc-sig b{color:#fff}
+.rc-dk .rc-sig span{color:var(--on-char-2)}
+
 /* ══════════ APPEL À L'ACTION INTERMÉDIAIRE ══════════ */
 /* Géométrie calquée sur la référence : panneau 963x375 à r=24, colonne de
    texte à 52 px du bord, carte de 357x272 calée à 51 px du flanc droit.
@@ -706,15 +731,12 @@ section[id]{scroll-margin-top:92px}
   /* les deux plaques à capture ont besoin d'air sous le texte */
   .f-shot .feat-txt{padding-bottom:clamp(60px,16vw,90px)}
   .f-shot{min-height:520px}
-  /* une seule rangée de retours, en plus compact */
-  .rev-rail + .rev-rail{display:none}
-  .rev-card{width:min(260px,72vw);padding:16px 18px 15px;gap:10px;border-radius:14px}
-  .rev-card p{font-size:.85rem;line-height:1.45}
-  .rev-card .logo{height:24px;max-width:104px}
-  .rev-card .sig .av{width:32px;height:32px}
-  .rev-card .sig b{font-size:.84rem}
-  .rev-card .sig span{font-size:.75rem}
-  .rev-card .rev-dom{font-size:8.5px;padding:4px 9px}
+  /* références : cartes plus compactes */
+  .rc{min-height:0;padding:18px 18px 20px}
+  .rc-logo{width:46px;height:46px;padding:8px}
+  .rc > p{margin-top:16px;font-size:.9rem}
+  .rc-sig{padding-top:16px}
+  .rc-sig b{font-size:.98rem}
   /* l'inscription à la lettre d'information n'a pas sa place ici */
   .news{display:none}
 }
@@ -757,7 +779,7 @@ section[id]{scroll-margin-top:92px}
 <div class="logos">
   <div class="wrap">
     <div class="logos-lab rv"><span>Ils diffusent nos contenus</span></div>
-    <div class="marquee rv"><div class="mq-track"><img src="img/logos/sncf.png" alt="SNCF" width="312" height="164" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/afpa.png" alt="Afpa" width="398" height="208" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/france-travail.png" alt="France Travail" width="381" height="171" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/hello_fresh.png" alt="HelloFresh" width="564" height="399" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/pigier.png" alt="Pigier" width="548" height="183" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/sncf.png" alt="" aria-hidden="true" width="312" height="164" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/afpa.png" alt="" aria-hidden="true" width="398" height="208" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/france-travail.png" alt="" aria-hidden="true" width="381" height="171" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/hello_fresh.png" alt="" aria-hidden="true" width="564" height="399" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/pigier.png" alt="" aria-hidden="true" width="548" height="183" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/sncf.png" alt="SNCF" width="312" height="164" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/afpa.png" alt="Afpa" width="398" height="208" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/france-travail.png" alt="France Travail" width="381" height="171" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/hello_fresh.png" alt="HelloFresh" width="564" height="399" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/pigier.png" alt="Pigier" width="548" height="183" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/sncf.png" alt="" aria-hidden="true" width="312" height="164" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/afpa.png" alt="" aria-hidden="true" width="398" height="208" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/france-travail.png" alt="" aria-hidden="true" width="381" height="171" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/hello_fresh.png" alt="" aria-hidden="true" width="564" height="399" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/pigier.png" alt="" aria-hidden="true" width="548" height="183" loading="eager" fetchpriority="low" decoding="async"></div></div>
+    <div class="marquee rv"><div class="mq-track"><img src="img/logos/sncf.png" alt="SNCF" width="312" height="164" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/afpa.png" alt="Afpa" width="398" height="208" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/france-travail.png" alt="France Travail" width="381" height="171" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/hello_fresh.png" alt="HelloFresh" width="449" height="146" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/pigier.png" alt="Pigier" width="548" height="183" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/sncf.png" alt="" aria-hidden="true" width="312" height="164" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/afpa.png" alt="" aria-hidden="true" width="398" height="208" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/france-travail.png" alt="" aria-hidden="true" width="381" height="171" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/hello_fresh.png" alt="" aria-hidden="true" width="449" height="146" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/pigier.png" alt="" aria-hidden="true" width="548" height="183" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/sncf.png" alt="SNCF" width="312" height="164" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/afpa.png" alt="Afpa" width="398" height="208" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/france-travail.png" alt="France Travail" width="381" height="171" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/hello_fresh.png" alt="HelloFresh" width="449" height="146" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/pigier.png" alt="Pigier" width="548" height="183" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/sncf.png" alt="" aria-hidden="true" width="312" height="164" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/afpa.png" alt="" aria-hidden="true" width="398" height="208" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/france-travail.png" alt="" aria-hidden="true" width="381" height="171" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/hello_fresh.png" alt="" aria-hidden="true" width="449" height="146" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/pigier.png" alt="" aria-hidden="true" width="548" height="183" loading="eager" fetchpriority="low" decoding="async"></div></div>
   </div>
 </div>
 
@@ -947,7 +969,7 @@ section[id]{scroll-margin-top:92px}
         </div>
         <h3>Un échange de 15 minutes</h3>
         <p>Choisissez le créneau qui vous arrange.</p>
-        <a class="btn" href="#demo">Réserver un créneau</a>
+        <a class="btn" href="https://calendly.com/a-drabczynski" target="_blank" rel="noopener noreferrer">Réserver un créneau</a>
         <span class="mid-cur" aria-hidden="true">
           <svg width="17" height="20" viewBox="0 0 17 20" fill="none"><path d="M1.5 1.2 15 12.4l-5.9.6-2.6 5.5-5-17.3Z" fill="#141414" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg>
           <b>Conseiller</b>
@@ -989,12 +1011,47 @@ section[id]{scroll-margin-top:92px}
     <div class="rev-head rv">
       <span class="pill-h"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13.5S1.8 9.8 1.8 5.9A3.4 3.4 0 0 1 8 4a3.4 3.4 0 0 1 6.2 1.9c0 3.9-6.2 7.6-6.2 7.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg> Références</span>
       <h2>Ils forment avec notre contenu <span class="nb">e-learning</span>.</h2>
-      <p class="sub">Organismes de formation, entreprises et institutions diffusent nos modules, du réseau régional au groupe national.</p>
     </div>
+
+    <div class="rc-tete rv">
+      <div class="rc-chiffre">
+        <b>1 300<u>+</u></b>
+        <span>organismes de formation diffusent nos modules</span>
+      </div>
+      <div class="rc-mot">
+        <div class="rc-join">
+          <span class="rc-pile" aria-hidden="true"><img src="img/logos/sncf.png" alt="" width="312" height="164" loading="lazy" decoding="async"><img src="img/logos/afpa.png" alt="" width="398" height="208" loading="lazy" decoding="async"><img src="img/logos/france-travail.png" alt="" width="381" height="171" loading="lazy" decoding="async"></span>
+          <span><b>Rejoignez 1 300 organismes</b>de formation, d'entreprises et d'institutions</span>
+        </div>
+        <p>Du réseau régional au groupe national, nos modules sont diffusés dans des parcours conçus et pilotés par nos clients, à leur charte et sur leur plateforme.</p>
+      </div>
+    </div>
+
+    <div class="rc-grille">
+      <article class="rc rc-dk rv">
+        <span class="rc-logo"><img src="img/logos/sncf.png" alt="SNCF" width="312" height="164" loading="lazy" decoding="async"></span>
+        <p>« Nos collaborateurs disposent d'un environnement de formation individualisé et tutoré accessible 24h/24. »</p>
+        <div class="rc-sig"><b>Isabelle Provillard</b><span>Chef de projet ingénierie de formation &middot; SNCF</span></div>
+      </article>
+      <article class="rc rv">
+        <span class="rc-logo"><img src="img/logos/afpa.png" alt="Afpa" width="398" height="208" loading="lazy" decoding="async"></span>
+        <p>Contenus intégrés aux parcours de formation professionnelle des adultes.</p>
+        <div class="rc-sig"><b>Afpa</b><span>Formation professionnelle des adultes</span></div>
+      </article>
+      <article class="rc rv">
+        <span class="rc-logo"><img src="img/logos/france-travail.png" alt="France Travail" width="381" height="171" loading="lazy" decoding="async"></span>
+        <p>Ressources mobilisées dans l'accompagnement vers l'emploi et la montée en compétences.</p>
+        <div class="rc-sig"><b>France Travail</b><span>Service public de l'emploi</span></div>
+      </article>
+      <article class="rc rv">
+        <span class="rc-logo"><img src="img/logos/pigier.png" alt="Pigier" width="548" height="183" loading="lazy" decoding="async"></span>
+        <p>Contenus au service des parcours étudiants et de l'alternance.</p>
+        <div class="rc-sig"><b>Pigier</b><span>Enseignement privé</span></div>
+      </article>
+    </div>
+
+    <p class="rev-note rv">Références publiques &mdash; un seul verbatim client est disponible à ce jour, les autres cartes décrivent le dispositif déployé.</p>
   </div>
-  <div class="rev-rail rv" aria-label="Références clients"><div class="rev-track"><article class="rev-card"><span class="rev-dom">Bureautique</span><img class="logo" src="img/logos/sncf.png" alt="SNCF" width="312" height="164" loading="lazy" decoding="async"><p>Dispositif de formation bureautique en digital learning, avec environnement individualisé et tutoré.</p><div class="sig"><span><b>SNCF</b><span>Transport ferroviaire</span></span></div></article><article class="rev-card"><span class="rev-dom">Secteur public</span><img class="logo" src="img/logos/france-travail.png" alt="France Travail" width="381" height="171" loading="lazy" decoding="async"><p>Ressources mobilisées dans l'accompagnement vers l'emploi et la montée en compétences.</p><div class="sig"><span><b>France Travail</b><span>Service public de l'emploi</span></span></div></article><article class="rev-card"><span class="rev-dom">Enseignement</span><img class="logo" src="img/logos/pigier.png" alt="Pigier" width="548" height="183" loading="lazy" decoding="async"><p>Contenus au service des parcours étudiants et de l'alternance.</p><div class="sig"><span><b>Pigier</b><span>Enseignement privé</span></span></div></article><article class="rev-card"><span class="rev-dom">Organisme de formation</span><img class="logo" src="img/logos/afpa.png" alt="Afpa" width="398" height="208" loading="lazy" decoding="async"><p>Contenus intégrés aux parcours de formation professionnelle des adultes.</p><div class="sig"><span><b>Afpa</b><span>Organisme de formation</span></span></div></article><article class="rev-card"><span class="rev-dom">Entreprise</span><img class="logo" src="img/logos/hello_fresh.png" alt="HelloFresh" width="564" height="399" loading="lazy" decoding="async"><p>Modules déployés auprès des équipes internes sur les outils du poste de travail.</p><div class="sig"><span><b>HelloFresh</b><span>Agroalimentaire</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Bureautique</span><img class="logo" src="img/logos/sncf.png" alt="" width="312" height="164" loading="lazy" decoding="async"><p>Dispositif de formation bureautique en digital learning, avec environnement individualisé et tutoré.</p><div class="sig"><span><b>SNCF</b><span>Transport ferroviaire</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Secteur public</span><img class="logo" src="img/logos/france-travail.png" alt="" width="381" height="171" loading="lazy" decoding="async"><p>Ressources mobilisées dans l'accompagnement vers l'emploi et la montée en compétences.</p><div class="sig"><span><b>France Travail</b><span>Service public de l'emploi</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Enseignement</span><img class="logo" src="img/logos/pigier.png" alt="" width="548" height="183" loading="lazy" decoding="async"><p>Contenus au service des parcours étudiants et de l'alternance.</p><div class="sig"><span><b>Pigier</b><span>Enseignement privé</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Organisme de formation</span><img class="logo" src="img/logos/afpa.png" alt="" width="398" height="208" loading="lazy" decoding="async"><p>Contenus intégrés aux parcours de formation professionnelle des adultes.</p><div class="sig"><span><b>Afpa</b><span>Organisme de formation</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Entreprise</span><img class="logo" src="img/logos/hello_fresh.png" alt="" width="564" height="399" loading="lazy" decoding="async"><p>Modules déployés auprès des équipes internes sur les outils du poste de travail.</p><div class="sig"><span><b>HelloFresh</b><span>Agroalimentaire</span></span></div></article></div></div>
-  <div class="rev-rail rv" aria-label="Références clients, suite"><div class="rev-track back"><article class="rev-card"><span class="rev-dom">Entreprise</span><img class="logo" src="img/logos/hello_fresh.png" alt="HelloFresh" width="564" height="399" loading="lazy" decoding="async"><p>Modules déployés auprès des équipes internes sur les outils du poste de travail.</p><div class="sig"><span><b>HelloFresh</b><span>Agroalimentaire</span></span></div></article><article class="rev-card"><span class="rev-dom">Organisme de formation</span><img class="logo" src="img/logos/afpa.png" alt="Afpa" width="398" height="208" loading="lazy" decoding="async"><p>Contenus intégrés aux parcours de formation professionnelle des adultes.</p><div class="sig"><span><b>Afpa</b><span>Organisme de formation</span></span></div></article><article class="rev-card"><span class="rev-dom">Bureautique</span><img class="logo" src="img/logos/sncf.png" alt="SNCF" width="312" height="164" loading="lazy" decoding="async"><p>Dispositif de formation bureautique en digital learning, avec environnement individualisé et tutoré.</p><div class="sig"><span><b>SNCF</b><span>Transport ferroviaire</span></span></div></article><article class="rev-card"><span class="rev-dom">Enseignement</span><img class="logo" src="img/logos/pigier.png" alt="Pigier" width="548" height="183" loading="lazy" decoding="async"><p>Contenus au service des parcours étudiants et de l'alternance.</p><div class="sig"><span><b>Pigier</b><span>Enseignement privé</span></span></div></article><article class="rev-card"><span class="rev-dom">Secteur public</span><img class="logo" src="img/logos/france-travail.png" alt="France Travail" width="381" height="171" loading="lazy" decoding="async"><p>Ressources mobilisées dans l'accompagnement vers l'emploi et la montée en compétences.</p><div class="sig"><span><b>France Travail</b><span>Service public de l'emploi</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Entreprise</span><img class="logo" src="img/logos/hello_fresh.png" alt="" width="564" height="399" loading="lazy" decoding="async"><p>Modules déployés auprès des équipes internes sur les outils du poste de travail.</p><div class="sig"><span><b>HelloFresh</b><span>Agroalimentaire</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Organisme de formation</span><img class="logo" src="img/logos/afpa.png" alt="" width="398" height="208" loading="lazy" decoding="async"><p>Contenus intégrés aux parcours de formation professionnelle des adultes.</p><div class="sig"><span><b>Afpa</b><span>Organisme de formation</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Bureautique</span><img class="logo" src="img/logos/sncf.png" alt="" width="312" height="164" loading="lazy" decoding="async"><p>Dispositif de formation bureautique en digital learning, avec environnement individualisé et tutoré.</p><div class="sig"><span><b>SNCF</b><span>Transport ferroviaire</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Enseignement</span><img class="logo" src="img/logos/pigier.png" alt="" width="548" height="183" loading="lazy" decoding="async"><p>Contenus au service des parcours étudiants et de l'alternance.</p><div class="sig"><span><b>Pigier</b><span>Enseignement privé</span></span></div></article><article class="rev-card" aria-hidden="true"><span class="rev-dom">Secteur public</span><img class="logo" src="img/logos/france-travail.png" alt="" width="381" height="171" loading="lazy" decoding="async"><p>Ressources mobilisées dans l'accompagnement vers l'emploi et la montée en compétences.</p><div class="sig"><span><b>France Travail</b><span>Service public de l'emploi</span></span></div></article></div></div>
-  <div class="wrap"><p class="rev-note rv">Références publiques &mdash; verbatims clients à collecter avant mise en ligne.</p></div>
 </section>
 
 <!-- ═══ ÉTUDE DE CAS ═══ -->
