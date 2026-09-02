@@ -103,7 +103,7 @@ strong{font-weight:500;color:var(--ink)}
 
 section{padding:clamp(52px,6vw,92px) 0;position:relative}
 /* filet de separation entre rubriques : meme largeur que le contenu */
-section:not(.hero)::before,.foot::before{content:"";position:absolute;top:0;left:50%;
+section:not(.hero):not(#demo)::before,.foot::before{content:"";position:absolute;top:0;left:50%;
   transform:translateX(-50%);height:1px;background:var(--line);
   width:min(100% - var(--pad) * 2, var(--max) - var(--pad) * 2)}
 section[id]{scroll-margin-top:92px}
@@ -212,6 +212,18 @@ section[id]{scroll-margin-top:92px}
 
 /* ══════════ FORMULAIRE DE DÉMONSTRATION ══════════ */
 /* le fond sombre file d'un bord à l'autre, le contenu reste dans le conteneur */
+#demo{position:relative;overflow:hidden}
+/* un voile blanc ramene le degrade dans une plage tonale ou le texte
+   sombre passe partout, quelle que soit la hauteur de la fenetre */
+#demo::before{content:"";position:absolute;inset:0;
+  background:linear-gradient(rgba(255,255,255,.34),rgba(255,255,255,.46)),
+    url(img/gradient_site.png) center/cover no-repeat}
+/* sur fond colore, les gris de la colonne de gauche tombaient
+   entre 1,4:1 et 3,3:1 */
+#demo .dm-side .eyebrow{color:#43403F}
+#demo .dm-side > p{color:#3D3A39}
+#demo .dm-side li svg{color:#43403F}
+#demo > *{position:relative}
 .dm{position:relative}
 .dm-in{max-width:var(--max);margin:0 auto;padding:0 var(--pad);
   display:grid;grid-template-columns:1fr;gap:clamp(28px,3.4vw,46px)}

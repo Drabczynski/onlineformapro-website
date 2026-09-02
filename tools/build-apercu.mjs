@@ -65,16 +65,28 @@ page = page.replace(/<video\b([^>]*)>([\s\S]*?)<\/video>/gi, (whole, attrs) => {
   });
 }
 
-// 3. encoder les images locales
+// 3. encoder les images locales : celles des balises, puis celles
+//    appelees depuis la feuille de style par url(), qui echappaient
+//    au premier passage et manquaient donc a l'apercu
 let inlined = 0, manquantes = [];
+const encoder = rel => {
+  const file = resolve(base, rel);
+  if (!existsSync(file)) { manquantes.push(rel); return null; }
+  const ext = rel.split('.').pop().toLowerCase();
+  inlined++;
+  return `data:${TYPES[ext]};base64,${readFileSync(file).toString('base64')}`;
+};
+
 page = page.replace(/(src|href)="(?!https?:|data:|#|\/\/)([^"]+\.(?:svg|png|jpe?g|webp|avif))"/gi,
   (whole, attr, rel) => {
-    const file = resolve(base, rel);
-    if (!existsSync(file)) { manquantes.push(rel); return whole; }
-    const ext = rel.split('.').pop().toLowerCase();
-    const b64 = readFileSync(file).toString('base64');
-    inlined++;
-    return `${attr}="data:${TYPES[ext]};base64,${b64}"`;
+    const uri = encoder(rel);
+    return uri ? `${attr}="${uri}"` : whole;
+  });
+
+page = page.replace(/url\((['"]?)(?!https?:|data:|#|\/\/)([^)'"]+\.(?:svg|png|jpe?g|webp|avif))\1\)/gi,
+  (whole, q, rel) => {
+    const uri = encoder(rel);
+    return uri ? `url(${uri})` : whole;
   });
 
 writeFileSync(out, page);
