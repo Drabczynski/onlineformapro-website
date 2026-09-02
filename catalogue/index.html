@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Catalogue de contenu e-learning · 6 000 h SCORM | Onlineformapro</title>
-<meta name="description" content="6 000 heures de contenu e-learning prêtes à diffuser dans votre LMS. 12 domaines, normes SCORM, AICC et xAPI, modules éligibles CPF. Éditeur français depuis 1999.">
+<meta name="description" content="6 000 heures de contenu e-learning à diffuser dans votre LMS : 15 domaines, ressources pédagogiques aux normes SCORM, AICC et xAPI. Éditeur français certifié Qualiopi.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap">
@@ -110,6 +110,8 @@ section[id]{scroll-margin-top:92px}
 .on-cream2{background:var(--cream-2)}
 .head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;margin-bottom:clamp(30px,4vw,46px)}
 .head h2{max-width:22ch}
+/* empêche « e-learning » de se couper sur son trait d'union, sans en changer le caractère */
+.nb{white-space:nowrap}
 .head .sub{max-width:54ch}
 .head-left{align-items:flex-start;text-align:left}
 .head-left h2{max-width:20ch}.head-left .sub{max-width:48ch}
@@ -194,17 +196,6 @@ section[id]{scroll-margin-top:92px}
 /* ══ audiences ══ */
 .auds{display:grid;gap:14px;grid-template-columns:1fr}
 @media (min-width:820px){.auds{grid-template-columns:repeat(3,1fr)}}
-.aud{background:var(--cream-2);border-radius:var(--r);padding:clamp(24px,3vw,32px);display:flex;flex-direction:column;gap:11px;
-  transition:transform .28s var(--ease),background .25s}
-.aud:hover{transform:translateY(-4px);background:var(--cream-3)}
-.aud .ico{width:38px;height:38px;border-radius:11px;background:var(--ac);display:grid;place-items:center;color:#fff;margin-bottom:3px}
-.aud p{font-size:.94rem;line-height:1.5;color:var(--ink-2)}
-.aud ul{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:8px}
-.aud li{display:grid;grid-template-columns:auto 1fr;gap:9px;font-size:.9rem;line-height:1.42;align-items:start}
-.aud li svg{margin-top:4px;flex:none;color:var(--ac)}
-.aud .go{margin-top:auto;padding-top:18px;display:flex;align-items:center;gap:7px;font-size:.9rem;font-weight:600;color:var(--red)}
-.aud .go svg{transition:transform .2s var(--ease)}
-.aud:hover .go svg{transform:translateX(4px)}
 
 /* ══ domaines ══ */
 .tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:clamp(28px,4vw,42px)}
@@ -489,29 +480,12 @@ section[id]{scroll-margin-top:92px}
 @media (min-width:900px){.stage-head{grid-template-columns:1.12fr .88fr;gap:clamp(30px,5vw,70px)}}
 .stage-head h2{max-width:19ch;margin-top:16px}
 .stage-head .sub{max-width:44ch;padding-bottom:6px}
-.stage-bar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:clamp(20px,2.6vw,30px)}
-.stage-tabs{display:flex;gap:8px;flex-wrap:wrap}
-.stg{font-family:inherit;font-size:.89rem;font-weight:600;letter-spacing:-.012em;padding:11px 21px;border-radius:100px;
-  border:1px solid var(--line);background:transparent;color:var(--ink-2);cursor:pointer;transition:all .22s var(--ease)}
-.stg:hover{border-color:var(--ink-3);color:var(--ink)}
-.stg[aria-selected="true"]{background:var(--char);border-color:var(--char);color:var(--cream)}
-.stage-prog{margin-left:auto;display:flex;align-items:center;gap:13px}
-.stage-line{width:74px;height:3px;border-radius:2px;background:var(--cream-3);overflow:hidden}
-.stage-line u{display:block;height:100%;width:33.333%;background:var(--char);border-radius:2px;
-  transition:transform .45s var(--ease)}
-.stage-prog em{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--ink-2);font-variant-numeric:tabular-nums}
-
 .stage-panel{display:grid;gap:14px;grid-template-columns:1fr}
 @media (min-width:960px){.stage-panel{grid-template-columns:1.06fr .94fr .92fr}}
-.stage-panel[hidden]{display:none}
-.stage-panel.enter{animation:panelIn .45s var(--ease)}
-@keyframes panelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.stage-panel.enter{animation:none}}
 .sp-txt{background:var(--cream-2);border-radius:var(--r);padding:clamp(26px,3.2vw,36px);
   display:flex;flex-direction:column;gap:12px;min-height:clamp(330px,38vw,530px)}
-.sp-txt .lbl{font-size:.87rem;color:var(--ink-2)}
 .sp-txt h3{max-width:20ch}
-.sp-txt .sp-end{margin-top:auto;padding-top:24px;font-size:.94rem;line-height:1.5;color:var(--ink-2)}
+.sp-txt .sp-end{padding-top:18px;font-size:.94rem;line-height:1.5;color:var(--ink-2)}
 .sp-img{background:var(--cream-2);border-radius:var(--r);padding:0;overflow:hidden;display:flex}
 .sp-frame{position:relative;flex:1;border-radius:0;overflow:hidden;isolation:isolate;
   display:flex;align-items:flex-end;padding:22px;min-height:250px}
@@ -526,7 +500,7 @@ section[id]{scroll-margin-top:92px}
 .sp-dark .cap{display:flex;align-items:center;gap:9px;font-size:.98rem;font-weight:600;letter-spacing:-.022em;color:var(--on-char-2)}
 .sp-dark .cap i{width:22px;height:22px;border-radius:6px;background:rgba(255,255,255,.14);display:grid;place-items:center;
   font-style:normal;font-size:8.5px;font-weight:800;color:var(--on-char);flex:none}
-.sp-dark ul{list-style:none;margin:auto 0 0;padding:0;display:grid;gap:11px}
+.sp-dark ul{list-style:none;margin:18px 0 auto;padding:0;display:grid;gap:11px}
 .sp-dark li{display:grid;grid-template-columns:auto 1fr;gap:10px;font-size:.92rem;line-height:1.45;color:var(--on-char)}
 .sp-dark li svg{margin-top:4px;flex:none;color:var(--red)}
 .sp-dark blockquote{margin:auto 0 0;font-size:.99rem;line-height:1.5;font-weight:600;letter-spacing:-.018em;color:var(--on-char)}
@@ -556,7 +530,7 @@ section[id]{scroll-margin-top:92px}
 .wkstep:hover{background:#282828}
 .wk-txt{padding:clamp(26px,3.4vw,38px);display:flex;flex-direction:column;justify-content:center;min-height:clamp(300px,32vw,430px)}
 .wk-n{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--on-char-3);margin-bottom:18px}
-.wk-txt h3{font-size:clamp(1.4rem,2.5vw,1.95rem);line-height:1.14;max-width:21ch}
+.wk-txt h3{font-size:clamp(1.4rem,2.5vw,1.95rem);line-height:1.14;max-width:25ch}
 .wk-txt .desc{padding-top:22px;font-size:.99rem;line-height:1.55;max-width:42ch}
 /* texte qui s'éclaircit mot à mot au défilement */
 .wf span{color:var(--on-char-3);transition:color .28s linear}
@@ -696,7 +670,7 @@ section[id]{scroll-margin-top:92px}
   <div class="wrap hero-in">
     <img class="hero-logo rv" src="img/logo.svg" alt="Onlineformapro" width="139" height="57">
     <span class="trust rv"><span class="stars" aria-hidden="true">★★★★★</span> 1 300 organismes de formation nous font confiance</span>
-    <h1 class="rv">6 000 heures de contenu e‑learning pour les organismes de formation.</h1>
+    <h1 class="rv">6 000 heures de contenu <span class="nb">e-learning</span> pour les organismes de formation.</h1>
     <p class="sub rv geo-lead"><strong>Onlineformapro permet aux organismes de formation et aux entreprises d'intégrer un catalogue de 6 000 heures de modules e-learning directement dans leur propre plateforme LMS</strong>, aux normes SCORM, AICC et xAPI. Les contenus sont produits et maintenus en France depuis 1999.</p>
     <div class="acts acts-c rv">
       <a class="btn btn-primary" href="#demo">Demander une démo gratuite<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -735,7 +709,7 @@ section[id]{scroll-margin-top:92px}
   <div class="wrap">
     <div class="head rv">
       <span class="eyebrow" style="--d:var(--dot-3)">Le produit</span>
-      <h2>Nos modules e‑learning, en pratique.</h2>
+      <h2>Nos modules <span class="nb">e-learning</span>, en pratique.</h2>
       <p class="sub">De la sélection des modules à l'export des preuves de suivi.</p>
     </div>
     <div class="feats">
@@ -810,7 +784,7 @@ section[id]{scroll-margin-top:92px}
       <div>
         <div class="wk-head rv">
           <span class="eyebrow" style="--d:var(--dot-1)">Mise en œuvre</span>
-          <h2>Déployer nos modules e‑learning en trois étapes.</h2>
+          <h2>Déployer nos modules <span class="nb">e-learning</span> en trois étapes.</h2>
           <p class="sub">Pas de cahier des charges, pas de chantier d'intégration. Le contenu existe&nbsp;: reste à choisir lequel et à ouvrir les accès.</p>
         </div>
         <div class="wk-steps">
@@ -853,7 +827,7 @@ section[id]{scroll-margin-top:92px}
   <div class="wrap">
     <div class="head rv">
       <span class="eyebrow" style="--d:var(--dot-4)">Catalogue e-learning</span>
-      <h2>Quinze domaines de formation e‑learning.</h2>
+      <h2>Quinze domaines de formation <span class="nb">e-learning</span>.</h2>
     </div>
     <div class="tabs rv" role="group" aria-label="Filtrer les domaines">
       <button class="tab" type="button" data-f="all" aria-pressed="true">Tous</button>
@@ -894,56 +868,16 @@ section[id]{scroll-margin-top:92px}
       <p class="sub">Vous formez des apprenants&nbsp;: le catalogue complète vos parcours, à votre charte, prêt à diffuser.</p>
     </div>
 
-    <div class="stage-bar rv">
-      <div class="stage-tabs" role="tablist" aria-label="Segments">
-        <button class="stg" type="button" role="tab" aria-selected="true"  aria-controls="pan-0" id="tab-0">Organisme de formation</button>
-        <button class="stg" type="button" role="tab" aria-selected="false" aria-controls="pan-1" id="tab-1">Entreprise</button>
-        <button class="stg" type="button" role="tab" aria-selected="false" aria-controls="pan-2" id="tab-2">Public &amp; enseignement</button>
+    <div class="stage-panel rv">
+      <div class="sp-txt">
+        <h3>Apprendre en faisant, pas en regardant</h3>
+        <p class="sp-end">Les modules mettent l'apprenant en situation : il manipule, il essaie, il recommence. Quinze domaines à ajouter à vos parcours, à votre charte, prêts à diffuser.</p>
       </div>
-      <div class="stage-prog" aria-hidden="true"><span class="stage-line"><u id="stgline"></u></span><em id="stgnum">1/3</em></div>
-    </div>
-
-    <div class="rv">
-      <div class="stage-panel enter" id="pan-0" role="tabpanel" aria-labelledby="tab-0">
-        <div class="sp-txt">
-          <span class="lbl">Organisme de formation</span>
-          <h3>Apprendre en faisant, pas en regardant</h3>
-          <p class="sp-end">Les modules mettent l'apprenant en situation : il manipule, il essaie, il recommence. Quinze domaines à ajouter à vos parcours, à votre charte, prêts à diffuser.</p>
-        </div>
-        <div class="sp-img"><div class="sp-frame photo"><img class="paint sp-photo" src="img/votre_catalogue_elargi.png" alt="Formatrice et apprenant devant un ordinateur portable pendant une session de formation" width="352" height="527" loading="lazy" decoding="async"><span class="tagline">CFA, réseaux, organismes indépendants</span></div></div>
-        <div class="sp-dark">
-          <span class="cap"><i>OF</i>Ce qui compte pour vous</span>
-          <ul><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Modules diffusés à votre charte, dans votre environnement</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Complément direct de votre présentiel en blended learning</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Preuves de suivi au format attendu par vos financeurs</li></ul>
-          <p class="why">Nous sommes nous-mêmes un organisme certifié Qualiopi : nos contenus passent les audits que vous passez.</p>
-        </div>
-      </div>
-
-      <div class="stage-panel" id="pan-1" role="tabpanel" aria-labelledby="tab-1" hidden>
-        <div class="sp-txt">
-          <span class="lbl">Entreprise</span>
-          <h3>Former sans rien produire</h3>
-          <p class="sp-end">Votre plan de développement des compétences est à couvrir cette année, sans équipe de production interne ni budget de conception. Le catalogue existe déjà : vous sélectionnez, vous ouvrez les accès.</p>
-        </div>
-        <div class="sp-img"><div class="sp-frame"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="sg1" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="13" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="115" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#sg1)"><rect x="-260" y="-300" width="1120" height="1300" fill="#B0B7A6"/><ellipse cx="180" cy="180" rx="300" ry="220" fill="#9FB0C0"/><ellipse cx="450" cy="430" rx="290" ry="240" fill="#CBB58C"/><ellipse cx="200" cy="620" rx="320" ry="190" fill="#7E8E74"/></g></svg></span><span class="tagline">De 30 à 5 000 collaborateurs</span></div></div>
-        <div class="sp-dark">
-          <span class="cap"><i>OF</i>SNCF</span>
-          <blockquote>« Nos collaborateurs disposent d'un environnement de formation individualisé et tutoré accessible 24h/24. »</blockquote>
-          <p class="sign">Isabelle Provillard &mdash; Chef de projet ingénierie de formation</p>
-        </div>
-      </div>
-
-      <div class="stage-panel" id="pan-2" role="tabpanel" aria-labelledby="tab-2" hidden>
-        <div class="sp-txt">
-          <span class="lbl">Public &amp; enseignement</span>
-          <h3>Acheter sans exposition</h3>
-          <p class="sp-end">Vous achetez sur marché public ou accord-cadre, et chaque ligne du dossier devra être justifiée devant un contrôle. La conformité et la pérennité du fournisseur y pèsent autant que le contenu.</p>
-        </div>
-        <div class="sp-img"><div class="sp-frame"><span class="paint" aria-hidden="true"><svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice"><defs><filter id="sg3" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.017" numOctaves="4" seed="47" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="115" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#sg3)"><rect x="-260" y="-300" width="1120" height="1300" fill="#A3A9AC"/><ellipse cx="200" cy="230" rx="300" ry="230" fill="#8498AA"/><ellipse cx="460" cy="520" rx="300" ry="240" fill="#C2C7C1"/><ellipse cx="130" cy="660" rx="270" ry="180" fill="#6F8088"/></g></svg></span><span class="tagline">Collectivités, hôpitaux, universités</span></div></div>
-        <div class="sp-dark">
-          <span class="cap"><i>OF</i>Ce qui compte pour vous</span>
-          <ul><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Éditeur français depuis 1999, société cotée</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Conforme RGPD, interfaçable SIRH et annuaire LDAP</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Savoirs de base et remise à niveau pour publics éloignés</li></ul>
-          <p class="why">Sur marché public, la pérennité du fournisseur est une ligne de notation, pas un argument commercial.</p>
-        </div>
+      <div class="sp-img"><div class="sp-frame photo"><img class="paint sp-photo" src="img/votre_catalogue_elargi.png" alt="Formatrice et apprenant devant un ordinateur portable pendant une session de formation" width="352" height="527" loading="lazy" decoding="async"><span class="tagline">CFA, réseaux, organismes indépendants</span></div></div>
+      <div class="sp-dark">
+        <span class="cap"><i>OF</i>Ce qui compte pour vous</span>
+        <ul><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Modules diffusés à votre charte, dans votre environnement</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Complément direct de votre présentiel en blended learning</li><li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 4.5 6.2 11.5 3 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Preuves de suivi au format attendu par vos financeurs</li></ul>
+        <p class="why">Nous sommes nous-mêmes un organisme certifié Qualiopi : nos contenus passent les audits que vous passez.</p>
       </div>
     </div>
   </div>
@@ -954,7 +888,7 @@ section[id]{scroll-margin-top:92px}
   <div class="wrap">
     <div class="rev-head rv">
       <span class="pill-h"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13.5S1.8 9.8 1.8 5.9A3.4 3.4 0 0 1 8 4a3.4 3.4 0 0 1 6.2 1.9c0 3.9-6.2 7.6-6.2 7.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg> Références</span>
-      <h2>Ils forment avec notre contenu e‑learning.</h2>
+      <h2>Ils forment avec notre contenu <span class="nb">e-learning</span>.</h2>
       <p class="sub">Organismes de formation, entreprises et institutions diffusent nos modules, du réseau régional au groupe national.</p>
     </div>
   </div>
@@ -1031,12 +965,14 @@ section[id]{scroll-margin-top:92px}
 <!-- ═══ FAQ ═══ -->
 <section id="faq">
   <div class="narrow">
-    <div class="head rv"><span class="eyebrow" style="--d:var(--dot-1)">Questions fréquentes</span><h2>Questions sur le catalogue e‑learning.</h2></div>
+    <div class="head rv"><span class="eyebrow" style="--d:var(--dot-1)">Questions fréquentes</span><h2>Questions sur le catalogue <span class="nb">e-learning</span>.</h2></div>
     <div class="faq rv">
       <details open><summary>Le catalogue est-il compatible avec mon LMS actuel ?<span class="sign" aria-hidden="true"></span></summary><div class="faq-a">Oui, avec n'importe quelle plateforme respectant SCORM 1.2, SCORM 2004, AICC ou xAPI — ce qui couvre la quasi-totalité du marché, Moodle et Cornerstone compris. Vous n'avez pas à changer de LMS.</div></details>
       <details><summary>Combien coûte l'accès au catalogue ?<span class="sign" aria-hidden="true"></span></summary><div class="faq-a">Le tarif dépend du volume de modules retenus et du nombre d'apprenants. Une sélection ciblée sur deux ou trois domaines n'a pas le même coût que le catalogue complet. Nous chiffrons après un échange de trente minutes sur votre périmètre.</div></details>
       <details><summary>Peut-on n'acheter qu'une partie du catalogue ?<span class="sign" aria-hidden="true"></span></summary><div class="faq-a">Oui, à la carte : par domaine, ou module par module. Le catalogue complet et la plateforme OnlineManager restent optionnels et se souscrivent séparément.</div></details>
       <details><summary>En combien de temps peut-on démarrer ?<span class="sign" aria-hidden="true"></span></summary><div class="faq-a">Les modules existent déjà : il n'y a pas de phase de production. Le délai se limite à la sélection des contenus, à leur dépôt dans votre plateforme et à l'ouverture des accès.</div></details>
+      <details><summary>En quoi votre catalogue diffère d'une plateforme de contenus généraliste ?<span class="sign" aria-hidden="true"></span></summary><div class="faq-a">Nous ne sommes pas un agrégateur : les modules sont conçus et maintenus par nos équipes, et Onlineformapro est lui-même un organisme de formation certifié Qualiopi. Les ressources pédagogiques que vous diffusez sont celles que nous utilisons pour nos propres apprenants.</div></details>
+      <details><summary>Peut-on combiner présentiel et formation à distance ?<span class="sign" aria-hidden="true"></span></summary><div class="faq-a">Oui. Les modules servent en autonomie complète comme en complément d'une session en salle. En blended learning, ils portent la partie théorique et libèrent le temps du formateur pour la mise en pratique.</div></details>
       <details><summary>Les contenus sont-ils mis à jour ?<span class="sign" aria-hidden="true"></span></summary><div class="faq-a">Oui. Les contenus sont produits et maintenus en interne depuis 1999 ; les modules bureautique suivent les versions successives de la suite Office, jusqu'à Office 2024.</div></details>
     </div>
   </div>
@@ -1048,7 +984,7 @@ section[id]{scroll-margin-top:92px}
     <div class="dm-in">
       <div class="dm-side">
         <span class="eyebrow" style="--d:#fff">Démonstration</span>
-        <h2>Testez notre catalogue e‑learning.</h2>
+        <h2>Testez notre catalogue <span class="nb">e-learning</span>.</h2>
         <p>Dites-nous vos domaines et la plateforme que vous utilisez. Nous ouvrons un accès de démonstration aux modules concernés, sur vos propres parcours.</p>
         <ul class="dm-pts">
           <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.4 3.2 3.2L13 4.8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Un accès réel aux modules de vos domaines, pas une visite guidée.</span></li>
@@ -1176,24 +1112,195 @@ section[id]{scroll-margin-top:92px}
   <div class="wrap notes-in">
     <svg width="17" height="17" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.6" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.2v4M8 4.9v.9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
     <div><b>Maquette de travail — à valider avant mise en ligne</b>
-    Le chiffre de 1 300 organismes vient de l'équipe et n'a pas été recoupé. Un seul verbatim client est disponible (SNCF) : les cartes de références portent le dispositif déployé, sans citation. Les horaires et les canaux du tutorat viennent de la documentation produit et sont à confirmer avant mise en ligne. Les logos clients ne s'affichent qu'avec l'accord de citation de chaque organisation. Le formulaire de démonstration n'est relié à aucun traitement : rien n'est envoyé ni conservé. Les deux rangées de références réutilisent les cinq mêmes organisations, faute d'autres logos validés. Le logo principal est une image matricielle enveloppée dans du SVG, à remplacer par un tracé vectoriel ; les visuels de domaines sont en 400 px de large, à doubler pour les écrans à haute densité. Police d'approche Plus Jakarta Sans, à remplacer par celle de la charte.</div>
+    Le chiffre de 1 300 organismes vient de l'équipe et n'a pas été recoupé. Un seul verbatim client est disponible (SNCF) : les cartes de références portent le dispositif déployé, sans citation. Les horaires et les canaux du tutorat viennent de la documentation produit et sont à confirmer, de même que le fait qu'il s'agisse d'une option facturée. Deux sujets que les concurrents mettent en avant et que la page ne traite pas, faute d'information vérifiée : la prise en charge OPCO et CPF, et la compatibilité LTI en plus de SCORM, AICC et xAPI. Les logos clients ne s'affichent qu'avec l'accord de citation de chaque organisation. Le formulaire de démonstration n'est relié à aucun traitement : rien n'est envoyé ni conservé. Les deux rangées de références réutilisent les cinq mêmes organisations, faute d'autres logos validés. Le logo principal est une image matricielle enveloppée dans du SVG, à remplacer par un tracé vectoriel ; les visuels de domaines sont en 400 px de large, à doubler pour les écrans à haute densité. Police d'approche Plus Jakarta Sans, à remplacer par celle de la charte.</div>
   </div>
 </div>
 
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org",
-  "@graph":[
-    {"@type":"Organization","@id":"https://www.onlineformapro.com/#organization","name":"Onlineformapro","url":"https://www.onlineformapro.com/","foundingDate":"1999","address":{"@type":"PostalAddress","addressLocality":"Vesoul","postalCode":"70000","addressCountry":"FR"}},
-    {"@type":"WebPage","name":"Catalogue e-learning : 6 000 h de modules SCORM","description":"6 000 heures de contenu e-learning prêtes à diffuser dans votre LMS. 12 domaines, normes SCORM, AICC et xAPI, modules éligibles CPF.","isPartOf":{"@id":"https://www.onlineformapro.com/#organization"},"inLanguage":"fr-FR"},
-    {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.onlineformapro.com/"},{"@type":"ListItem","position":2,"name":"Catalogue e-learning"}]},
-    {"@type":"ItemList","name":"Domaines du catalogue e-learning Onlineformapro","numberOfItems":15,"itemListElement":[{"@type":"ListItem","position":1,"name":"Titres professionnels"},{"@type":"ListItem","position":2,"name":"Bases informatiques"},{"@type":"ListItem","position":3,"name":"Bureautique Microsoft Office"},{"@type":"ListItem","position":4,"name":"CAO-DAO, architecture et design"},{"@type":"ListItem","position":5,"name":"CléA"},{"@type":"ListItem","position":6,"name":"Compétences de base"},{"@type":"ListItem","position":7,"name":"Développement web"},{"@type":"ListItem","position":8,"name":"Entreprise"},{"@type":"ListItem","position":9,"name":"Immobilier"},{"@type":"ListItem","position":10,"name":"Langues"},{"@type":"ListItem","position":11,"name":"Management"},{"@type":"ListItem","position":12,"name":"Marketing, commerce et webmarketing"},{"@type":"ListItem","position":13,"name":"PAO, publication assistée par ordinateur"},{"@type":"ListItem","position":14,"name":"Prévention et sécurité"},{"@type":"ListItem","position":15,"name":"Réseaux et administration réseau"}]},
-    {"@type":"FAQPage","mainEntity":[
-      {"@type":"Question","name":"Le catalogue e-learning Onlineformapro est-il compatible avec mon LMS actuel ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Les modules respectent SCORM 1.2, SCORM 2004, AICC et xAPI, et s'intègrent donc à n'importe quelle plateforme LMS du marché, Moodle et Cornerstone compris. Aucun changement de plateforme n'est nécessaire."}},
-      {"@type":"Question","name":"Combien coûte l'accès au catalogue e-learning Onlineformapro ?","acceptedAnswer":{"@type":"Answer","text":"Le tarif dépend du volume de modules retenus et du nombre d'apprenants. Une sélection sur deux ou trois domaines n'a pas le même coût que le catalogue complet ; le chiffrage se fait après un échange sur le périmètre."}},
-      {"@type":"Question","name":"Peut-on n'acheter qu'une partie du catalogue ?","acceptedAnswer":{"@type":"Answer","text":"Oui, à la carte : par domaine ou module par module. Le catalogue complet et la plateforme LMS OnlineManager se souscrivent séparément."}},
-      {"@type":"Question","name":"En combien de temps peut-on démarrer ?","acceptedAnswer":{"@type":"Answer","text":"Les modules existent déjà, il n'y a pas de phase de production. Le délai se limite à la sélection des contenus, à leur dépôt dans la plateforme et à l'ouverture des accès."}},
-      {"@type":"Question","name":"Les contenus e-learning sont-ils mis à jour ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Les contenus sont produits et maintenus en interne depuis 1999 ; les modules bureautique suivent les versions successives de la suite Office, jusqu'à Office 2024."}}]}
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.onlineformapro.com/#organization",
+      "name": "Onlineformapro",
+      "url": "https://www.onlineformapro.com/",
+      "foundingDate": "1999",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Vesoul",
+        "postalCode": "70000",
+        "addressCountry": "FR"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "name": "Catalogue e-learning : 6 000 h de modules SCORM",
+      "description": "6 000 heures de contenu e-learning prêtes à diffuser dans votre LMS. 12 domaines, normes SCORM, AICC et xAPI, modules éligibles CPF.",
+      "isPartOf": {
+        "@id": "https://www.onlineformapro.com/#organization"
+      },
+      "inLanguage": "fr-FR"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://www.onlineformapro.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Catalogue e-learning"
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "name": "Domaines du catalogue e-learning Onlineformapro",
+      "numberOfItems": 15,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Titres professionnels"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Bases informatiques"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Bureautique Microsoft Office"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "CAO-DAO, architecture et design"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "CléA"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "Compétences de base"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "name": "Développement web"
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "name": "Entreprise"
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "name": "Immobilier"
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "name": "Langues"
+        },
+        {
+          "@type": "ListItem",
+          "position": 11,
+          "name": "Management"
+        },
+        {
+          "@type": "ListItem",
+          "position": 12,
+          "name": "Marketing, commerce et webmarketing"
+        },
+        {
+          "@type": "ListItem",
+          "position": 13,
+          "name": "PAO, publication assistée par ordinateur"
+        },
+        {
+          "@type": "ListItem",
+          "position": 14,
+          "name": "Prévention et sécurité"
+        },
+        {
+          "@type": "ListItem",
+          "position": 15,
+          "name": "Réseaux et administration réseau"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Le catalogue e-learning Onlineformapro est-il compatible avec mon LMS actuel ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. Les modules respectent SCORM 1.2, SCORM 2004, AICC et xAPI, et s'intègrent donc à n'importe quelle plateforme LMS du marché, Moodle et Cornerstone compris. Aucun changement de plateforme n'est nécessaire."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Combien coûte l'accès au catalogue e-learning Onlineformapro ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le tarif dépend du volume de modules retenus et du nombre d'apprenants. Une sélection sur deux ou trois domaines n'a pas le même coût que le catalogue complet ; le chiffrage se fait après un échange sur le périmètre."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Peut-on n'acheter qu'une partie du catalogue ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, à la carte : par domaine ou module par module. Le catalogue complet et la plateforme LMS OnlineManager se souscrivent séparément."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "En combien de temps peut-on démarrer ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Les modules existent déjà, il n'y a pas de phase de production. Le délai se limite à la sélection des contenus, à leur dépôt dans la plateforme et à l'ouverture des accès."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "En quoi votre catalogue diffère d'une plateforme de contenus généraliste ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nous ne sommes pas un agrégateur : les modules sont conçus et maintenus par nos équipes, et Onlineformapro est lui-même un organisme de formation certifié Qualiopi. Les ressources pédagogiques que vous diffusez sont celles que nous utilisons pour nos propres apprenants."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Peut-on combiner présentiel et formation à distance ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. Les modules servent en autonomie complète comme en complément d'une session en salle. En blended learning, ils portent la partie théorique et libèrent le temps du formateur pour la mise en pratique."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Les contenus e-learning sont-ils mis à jour ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. Les contenus sont produits et maintenus en interne depuis 1999 ; les modules bureautique suivent les versions successives de la suite Office, jusqu'à Office 2024."
+          }
+        }
+      ]
+    }
   ]
 }
 </script>
@@ -1337,24 +1444,6 @@ section[id]{scroll-margin-top:92px}
     }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
     wkSteps.forEach(function(x){ wo.observe(x); });
   }
-
-  /* ── segments à onglets ── */
-  var stg = document.querySelectorAll('.stg');
-  var pans = document.querySelectorAll('.stage-panel');
-  var line = document.getElementById('stgline');
-  var num = document.getElementById('stgnum');
-  stg.forEach(function(btn, i){
-    btn.addEventListener('click', function(){
-      stg.forEach(function(b, k){ b.setAttribute('aria-selected', String(k === i)); });
-      pans.forEach(function(p, k){
-        p.hidden = k !== i;
-        p.classList.remove('enter');
-        if (k === i) { void p.offsetWidth; p.classList.add('enter'); }
-      });
-      if (line) line.style.transform = 'translateX(' + (i * 100) + '%)';
-      if (num) num.textContent = (i + 1) + '/3';
-    });
-  });
 
   /* ── formulaire de démonstration (maquette : rien n'est envoyé) ── */
   var dmForm = document.getElementById('dm-form');
