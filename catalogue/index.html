@@ -642,6 +642,61 @@ section[id]{scroll-margin-top:92px}
 .notes-in{display:flex;gap:14px;align-items:flex-start;font-size:.85rem;line-height:1.6;color:var(--ink-2);max-width:86ch}
 .notes-in svg{flex:none;margin-top:2px;color:var(--ink-3)}
 .notes-in b{display:block;color:var(--ink);font-weight:600;margin-bottom:4px;letter-spacing:-.02em}
+/* ══════════ APPEL À L'ACTION INTERMÉDIAIRE ══════════ */
+/* Géométrie calquée sur la référence : panneau 963x375 à r=24, colonne de
+   texte à 52 px du bord, carte de 357x272 calée à 51 px du flanc droit.
+   Les proportions sont conservées, les valeurs suivent la largeur. */
+.mid{position:relative;overflow:hidden;border-radius:24px;isolation:isolate;
+  padding:clamp(34px,4.6vw,52px);display:grid;grid-template-columns:1fr;
+  gap:clamp(30px,3.6vw,44px);align-items:center;
+  background:radial-gradient(120% 128% at 18% 8%,#F5B27A 0%,#F6C48F 34%,#EFA267 68%,#E88A4E 100%)}
+@media (min-width:900px){.mid{grid-template-columns:1fr 357px;gap:clamp(36px,5vw,72px)}}
+.mid > *{position:relative;z-index:2}
+/* les deux arcs épais du fond */
+.mid-arcs{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.mid-arcs span{position:absolute;border-radius:50%;border:11px solid rgba(214,106,28,.62)}
+.mid-arcs .a1{width:560px;height:560px;left:24%;top:-390px}
+.mid-arcs .a2{width:500px;height:500px;right:-90px;bottom:-360px}
+@media (max-width:899px){.mid-arcs .a1{left:auto;right:-180px;top:-300px}}
+
+.mid-txt{display:flex;flex-direction:column;align-items:flex-start;gap:0}
+.mid-lab{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:rgba(40,26,14,.62)}
+.mid-txt h2{margin:18px 0 0;font-size:clamp(1.9rem,3.4vw,2.65rem);line-height:1.12;
+  letter-spacing:-.045em;color:#141414;max-width:19ch}
+.mid-txt .btn{margin-top:clamp(24px,2.8vw,34px)}
+.mid-txt .btn-dark{background:#141414;color:#fff;border-radius:11px;padding:13px 24px}
+.mid-txt .btn-dark:hover{background:#000;transform:translateY(-2px)}
+
+/* la carte de prise de rendez-vous */
+.mid-card{background:#F7F7F7;border-radius:16px;padding:24px;display:flex;flex-direction:column;
+  box-shadow:0 1px 2px rgba(90,50,10,.14),0 18px 38px -18px rgba(90,50,10,.42);
+  position:relative}
+.mid-dispo{display:flex;align-items:center;gap:9px;font-size:11px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+.mid-dispo i{width:18px;height:18px;border-radius:50%;background:#141414;flex:none;
+  display:grid;place-items:center}
+.mid-dispo i::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--green)}
+.mid-qui{display:flex;align-items:center;gap:10px;margin-top:20px}
+.mid-qui .av{width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;
+  font-size:.72rem;font-weight:800;letter-spacing:-.02em;color:#fff;background:var(--red)}
+.mid-qui .plus{font-size:1.05rem;color:var(--ink-2);font-weight:500}
+.mid-qui .vous{width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;
+  background:#141414;color:#fff;font-size:.82rem;font-weight:700;letter-spacing:-.02em}
+.mid-card h3{margin:22px 0 0;font-size:1.22rem;letter-spacing:-.03em;color:var(--ink)}
+.mid-card p{margin:6px 0 0;font-size:.94rem;line-height:1.45;color:var(--ink-2)}
+.mid-card .btn{margin-top:22px;width:100%;justify-content:center;border-radius:9px;
+  background:var(--red);color:#fff;padding:12px 20px;font-size:.95rem}
+.mid-card .btn:hover{background:var(--red-deep);transform:translateY(-2px)}
+/* curseur décoratif et son étiquette, posés sur le flanc de la carte */
+.mid-cur{position:absolute;right:-22px;top:88px;display:flex;align-items:flex-start;
+  gap:0;pointer-events:none}
+.mid-cur svg{filter:drop-shadow(0 1px 2px rgba(0,0,0,.3))}
+.mid-cur b{margin:16px 0 0 -4px;background:#141414;color:#fff;border-radius:11px;
+  padding:5px 11px;font-size:10px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  white-space:nowrap}
+@media (max-width:520px){.mid-cur{display:none}}
+
 /* ══════════ AJUSTEMENTS PETIT ÉCRAN ══════════ */
 @media (max-width:719px){
   /* la pastille de confiance tenait sur trois lignes */
@@ -731,8 +786,8 @@ section[id]{scroll-margin-top:92px}
       <article class="feat f-shot rv">
         <img class="paint shot-bg" src="img/catalogue2.png" alt="Affectation de modules e-learning à un groupe d'apprenants depuis le catalogue Onlineformapro" width="426" height="801" loading="lazy" decoding="async">
         <div class="feat-txt">
-          <h3>Leçon par leçon</h3>
-          <p>Un module dure environ une heure et se décompose en 4 à 7 leçons, chacune portant un objectif explicite. Vous composez vos parcours leçon par leçon, pas par blocs entiers.</p>
+          <h3>Module par module</h3>
+          <p>Un module dure environ une heure et porte un objectif explicite. Vous composez vos parcours module par module, sans avoir à prendre un domaine entier.</p>
         </div>
       </article>
 
@@ -763,11 +818,11 @@ section[id]{scroll-margin-top:92px}
           <div class="card-ui">
             <div class="cu-h"><span class="mark">OF</span><b>Session · Promotion 12</b><span class="meta">Aujourd'hui</span></div>
             <div class="cu-b">
-              <div class="lrn" style="--pc:var(--c-pao)"><span class="ph">MD</span><b>M. Diallo<em>Excel · leçon 3</em></b><span class="st run">En cours</span></div>
-              <div class="lrn" style="--pc:var(--c-lan)"><span class="ph">CL</span><b>C. Lambert<em>Anglais A2 · leçon 6</em></b><span class="st done">Terminé</span></div>
-              <div class="lrn" style="--pc:var(--c-sav)"><span class="ph">SB</span><b>S. Bouchard<em>Français · leçon 2</em></b><span class="st run">En cours</span></div>
-              <div class="lrn" style="--pc:var(--c-pre)"><span class="ph">AR</span><b>A. Roux<em>Prévention · leçon 1</em></b><span class="st wait">À démarrer</span></div>
-              <div class="lrn" style="--pc:var(--c-ter)"><span class="ph">YN</span><b>Y. Nguyen<em>Comptabilité · leçon 4</em></b><span class="st done">Terminé</span></div>
+              <div class="lrn" style="--pc:var(--c-pao)"><span class="ph">MD</span><b>M. Diallo<em>Excel · module 3</em></b><span class="st run">En cours</span></div>
+              <div class="lrn" style="--pc:var(--c-lan)"><span class="ph">CL</span><b>C. Lambert<em>Anglais A2 · module 6</em></b><span class="st done">Terminé</span></div>
+              <div class="lrn" style="--pc:var(--c-sav)"><span class="ph">SB</span><b>S. Bouchard<em>Français · module 2</em></b><span class="st run">En cours</span></div>
+              <div class="lrn" style="--pc:var(--c-pre)"><span class="ph">AR</span><b>A. Roux<em>Prévention · module 1</em></b><span class="st wait">À démarrer</span></div>
+              <div class="lrn" style="--pc:var(--c-ter)"><span class="ph">YN</span><b>Y. Nguyen<em>Comptabilité · module 4</em></b><span class="st done">Terminé</span></div>
             </div>
           </div>
         </div>
@@ -777,7 +832,7 @@ section[id]{scroll-margin-top:92px}
         <span class="paint" aria-hidden="true"><svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice"><defs><filter id="pd" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.015" numOctaves="4" seed="5" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="130" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#pd)"><rect x="-260" y="-320" width="1120" height="1440" fill="#BCB49B"/><ellipse cx="120" cy="260" rx="320" ry="250" fill="#D2BC90"/><ellipse cx="470" cy="180" rx="280" ry="220" fill="#A9B7C4"/><ellipse cx="380" cy="660" rx="340" ry="220" fill="#8B9578"/></g></svg></span>
         <div class="feat-txt">
           <h3>Suivi et preuves</h3>
-          <p>Progression, temps de connexion et résultats remontent leçon par leçon dans votre LMS. Ce sont les pièces que réclament vos financeurs et un audit Qualiopi, au titre du critère 3.</p>
+          <p>Progression, temps de connexion et résultats remontent module par module dans votre LMS. Ce sont les pièces que réclament vos financeurs et un audit Qualiopi, au titre du critère 3.</p>
         </div>
         <div class="feat-vis bleed">
           <img class="bleed-img" src="img/stats.png" alt="Tableau de bord Onlineformapro : modules les plus suivis, thèmes de formation et périodes d'activité des apprenants" width="540" height="324" loading="lazy" decoding="async">
@@ -867,6 +922,37 @@ section[id]{scroll-margin-top:92px}
       <article class="dom rv" data-tags="num"><div class="dom-top"><img src="img/pao.png" alt="Logos des logiciels de création graphique Adobe" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>PAO, publication assistée par ordinateur</h4><p>Photoshop, Illustrator et InDesign, de l'initiation au perfectionnement.</p><span class="dom-meta">Photoshop · Illustrator · InDesign</span></div></article>
       <article class="dom rv" data-tags="prev"><div class="dom-top"><img src="img/sante.png" alt="Ouvriers équipés de casques et de gilets sur un chantier" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Prévention et sécurité</h4><p>SST, gestes qui sauvent et risques professionnels, pour vos formations réglementaires.</p><span class="dom-meta">SST · Risques professionnels</span></div></article>
       <article class="dom rv" data-tags="num"><div class="dom-top"><img src="img/reseaux.avif" alt="Baie de serveurs réseau" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Réseaux et administration réseau</h4><p>Infrastructure et sécurité, pour vos parcours d'administrateurs et de techniciens.</p><span class="dom-meta">Infrastructure · Sécurité</span></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ APPEL À L'ACTION INTERMÉDIAIRE ═══ -->
+<section id="echange" style="padding-top:0">
+  <div class="wrap">
+    <div class="mid rv">
+      <span class="mid-arcs" aria-hidden="true"><span class="a1"></span><span class="a2"></span></span>
+
+      <div class="mid-txt">
+        <span class="mid-lab">Parlons de votre catalogue</span>
+        <h2>Prêt à élargir votre offre de formation&nbsp;?</h2>
+        <a class="btn btn-dark" href="#demo">Demander une démo<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+
+      <div class="mid-card">
+        <span class="mid-dispo"><i aria-hidden="true"></i>Disponible cette semaine</span>
+        <div class="mid-qui">
+          <span class="av" aria-hidden="true">OF</span>
+          <span class="plus" aria-hidden="true">+</span>
+          <span class="vous" aria-hidden="true">Vous</span>
+        </div>
+        <h3>Un échange de 15 minutes</h3>
+        <p>Choisissez le créneau qui vous arrange.</p>
+        <a class="btn" href="#demo">Réserver un créneau</a>
+        <span class="mid-cur" aria-hidden="true">
+          <svg width="17" height="20" viewBox="0 0 17 20" fill="none"><path d="M1.5 1.2 15 12.4l-5.9.6-2.6 5.5-5-17.3Z" fill="#141414" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          <b>Conseiller</b>
+        </span>
+      </div>
     </div>
   </div>
 </section>
