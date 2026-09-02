@@ -258,7 +258,6 @@ section[id]{scroll-margin-top:92px}
 .final .sub{max-width:52ch}
 .final small{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--on-char-3);margin-top:4px}
 
-
 /* ══════════ CARTES PRODUIT (fond peint + interface flottante) ══════════ */
 .feats{display:grid;gap:14px;grid-template-columns:1fr}
 @media (min-width:940px){
@@ -559,19 +558,7 @@ section[id]{scroll-margin-top:92px}
 .wk-vis.flat{background:var(--char)}
 
 /* ══════════ RETOURS ══════════ */
-.rev-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;margin-bottom:clamp(28px,3.6vw,44px)}
-.pill-h{display:inline-flex;align-items:center;gap:9px;padding:9px 18px;border-radius:100px;background:var(--paper,#fff);
-  border:1px solid var(--line);font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
-.pill-h svg{color:var(--red);flex:none}
-.rev-lead{margin:0;font-size:clamp(1.4rem,3.2vw,2.3rem);line-height:1.24;letter-spacing:-.034em;font-weight:600;
-  max-width:36ch;text-wrap:balance}
-.rev-who{display:flex;flex-direction:column;align-items:center;gap:9px}
-.rev-who .av{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;
-  font-size:1.02rem;background:linear-gradient(140deg,var(--c-pao),var(--c-sav));box-shadow:0 0 0 4px var(--cream-2)}
-.rev-who b{font-size:.98rem;font-weight:600;letter-spacing:-.022em}
-.rev-who span{font-size:.87rem;color:var(--ink-2)}
 
-.rev-note{margin-top:clamp(26px,3.2vw,36px);text-align:center;font-size:.84rem;color:var(--ink-3)}
 
 /* ══════════ BANDEAU DE CLÔTURE ══════════ */
 .wm{position:relative;overflow:hidden;background:var(--cream);padding:clamp(30px,4vw,46px) 0 0;
@@ -584,12 +571,10 @@ section[id]{scroll-margin-top:92px}
 .wm-bot nav{display:flex;gap:18px;margin-left:auto;flex-wrap:wrap}
 .wm-bot a:hover{color:var(--ink)}
 
-
 /* logos clients : hauteur normalisée, formats très inégaux à l'origine */
 .mq-track img{height:38px;width:auto;max-width:170px;object-fit:contain;display:block;
   filter:grayscale(1);opacity:.62;transition:filter .25s,opacity .25s}
 .marquee:hover .mq-track img{filter:grayscale(0);opacity:1}
-
 
 /* visuel plein bord : touche le bas et les deux flancs de l'encart, sans ombre */
 .feat-vis.bleed{padding:clamp(28px,3.4vw,44px) 0 0;align-items:flex-end;overflow:hidden}
@@ -617,76 +602,6 @@ section[id]{scroll-margin-top:92px}
 .notes-in{display:flex;gap:14px;align-items:flex-start;font-size:.85rem;line-height:1.6;color:var(--ink-2);max-width:86ch}
 .notes-in svg{flex:none;margin-top:2px;color:var(--ink-3)}
 .notes-in b{display:block;color:var(--ink);font-weight:600;margin-bottom:4px;letter-spacing:-.02em}
-/* ══════════ RÉFÉRENCES ══════════ */
-/* Proportions relevées sur la maquette : chiffre à 54 px, avatars de 46 px
-   empilés, quatre cartes blanches de 311 px à 20 px de rayon, gap de 20 px,
-   marge intérieure de 32 px, avatar de 62 px, nom à 21 px. */
-.rc-tete{display:grid;grid-template-columns:1fr;gap:clamp(24px,3vw,40px);
-  align-items:start;margin-bottom:clamp(30px,3.6vw,44px)}
-@media (min-width:860px){.rc-tete{grid-template-columns:.42fr .58fr;gap:clamp(40px,5vw,72px)}}
-.rc-chiffre{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
-.rc-chiffre b{font-size:clamp(3rem,5.4vw,3.9rem);font-weight:600;letter-spacing:-.055em;
-  line-height:.9;color:var(--ink)}
-.rc-chiffre b u{text-decoration:none}
-.rc-chiffre span{font-size:.97rem;line-height:1.45;color:var(--ink-2);max-width:30ch}
-.rc-mot{display:flex;flex-direction:column;gap:22px}
-.rc-join{display:flex;align-items:center;gap:15px}
-.rc-pile{display:flex;flex:none}
-.rc-pile img{width:46px;height:46px;border-radius:50%;object-fit:contain;
-  background:#fff;border:3px solid var(--cream);padding:7px;display:block}
-.rc-pile img + img{margin-left:-15px}
-.rc-join span{font-size:.97rem;line-height:1.5;color:var(--ink-2)}
-.rc-join span b{display:block;color:var(--ink);font-weight:700;letter-spacing:-.022em}
-.rc-mot p{margin:0;font-size:1.02rem;line-height:1.55;color:var(--ink-2);max-width:62ch}
-
-.rc-grille{display:grid;gap:20px;grid-template-columns:1fr}
-@media (min-width:620px){.rc-grille{grid-template-columns:1fr 1fr}}
-@media (min-width:1060px){.rc-grille{grid-template-columns:repeat(4,1fr)}}
-/* cartes blanches sur le fond crème : c'est le contraste de la maquette */
-.rc{position:relative;overflow:hidden;background:#fff;border-radius:20px;
-  padding:32px 30px 30px;display:flex;flex-direction:column;min-height:414px;
-  box-shadow:0 1px 2px rgba(20,20,20,.04),0 14px 32px -20px rgba(20,20,20,.18);
-  transition:transform .3s var(--ease),box-shadow .3s}
-.rc:hover{transform:translateY(-4px);box-shadow:0 2px 5px rgba(20,20,20,.06),0 26px 50px -26px rgba(20,20,20,.3)}
-/* les taches pastel de la maquette, franches et débordantes */
-.rc::before{content:"";position:absolute;z-index:0;pointer-events:none;
-  width:150%;height:66%;left:-42%;bottom:-24%;
-  background:radial-gradient(42% 54% at 34% 62%,rgba(148,87,196,.42),transparent 72%),
-    radial-gradient(40% 50% at 74% 44%,rgba(44,111,224,.34),transparent 74%),
-    radial-gradient(34% 44% at 58% 78%,rgba(224,26,79,.20),transparent 76%);
-  filter:blur(10px)}
-.rc:nth-child(4n+1)::before{transform:scaleX(-1)}
-.rc:nth-child(4n)::before{left:auto;right:-46%;width:150%;
-  background:radial-gradient(40% 52% at 62% 46%,rgba(109,91,208,.40),transparent 72%),
-    radial-gradient(38% 48% at 34% 66%,rgba(14,150,188,.30),transparent 74%),
-    radial-gradient(32% 42% at 74% 74%,rgba(224,69,158,.24),transparent 76%)}
-.rc > *{position:relative;z-index:1}
-.rc-logo{width:62px;height:62px;border-radius:50%;background:#fff;flex:none;
-  display:grid;place-items:center;padding:11px;
-  box-shadow:0 1px 3px rgba(20,20,20,.10),0 6px 16px -8px rgba(20,20,20,.28)}
-.rc-logo img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block}
-.rc-stars{display:flex;gap:2px;margin:26px 0 0;color:#F5A623;font-size:.82rem;letter-spacing:.05em}
-.rc > p{margin:14px 0 0;font-size:1.02rem;line-height:1.55;color:var(--ink);max-width:24ch}
-.rc-sig{margin-top:auto;padding-top:26px}
-.rc-sig b{display:block;font-size:1.3rem;font-weight:700;letter-spacing:-.038em;color:var(--ink)}
-.rc-sig span{display:block;margin-top:5px;font-size:.9rem;line-height:1.35;color:var(--ink-2)}
-/* la carte photo de la maquette */
-.rc-dk{background:var(--char);color:#fff;padding:0;justify-content:flex-end}
-.rc-dk .rc-fond{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;
-  object-position:center 16%}
-.rc-dk::before{content:"";position:absolute;inset:0;z-index:1;width:auto;height:auto;
-  left:0;bottom:0;filter:none;transform:none;
-  background:linear-gradient(180deg,rgba(18,10,24,.30) 0%,rgba(18,10,24,.52) 32%,rgba(18,10,24,.88) 62%,rgba(18,10,24,.96) 100%)}
-.rc-dk .rc-in{position:relative;z-index:2;padding:114px 30px 30px;display:flex;flex-direction:column;
-  height:100%;justify-content:flex-end}
-/* sur la carte photo, tout le bloc se cale en bas d'un seul tenant */
-.rc-dk .rc-stars{margin-top:0}
-.rc-dk .rc-sig{margin-top:0;padding-top:20px}
-.rc-dk .rc-logo{position:absolute;top:32px;left:30px;z-index:2}
-.rc-dk > p{color:#fff;max-width:26ch}
-.rc-dk .rc-sig b{color:#fff}
-.rc-dk .rc-sig span{color:rgba(255,255,255,.74)}
-
 /* ══════════ APPEL À L'ACTION INTERMÉDIAIRE ══════════ */
 /* Géométrie calquée sur la référence : panneau 963x375 à r=24, colonne de
    texte à 52 px du bord, carte de 357x272 calée à 51 px du flanc droit.
@@ -751,12 +666,6 @@ section[id]{scroll-margin-top:92px}
   /* les deux plaques à capture ont besoin d'air sous le texte */
   .f-shot .feat-txt{padding-bottom:clamp(60px,16vw,90px)}
   .f-shot{min-height:520px}
-  /* références : cartes plus compactes */
-  .rc{min-height:0;padding:18px 18px 20px}
-  .rc-logo{width:46px;height:46px;padding:8px}
-  .rc > p{margin-top:16px;font-size:.9rem}
-  .rc-sig{padding-top:16px}
-  .rc-sig b{font-size:.98rem}
   /* l'inscription à la lettre d'information n'a pas sa place ici */
   .news{display:none}
 }
@@ -769,7 +678,7 @@ section[id]{scroll-margin-top:92px}
     <a class="brand" href="/" aria-label="Onlineformapro, accueil"><img src="img/logo.svg" alt="Onlineformapro" width="87" height="36"></a>
     <nav class="nav-links" aria-label="Navigation principale">
       <a href="#pour-qui">Pour qui</a><a href="#produit">Le produit</a>
-      <a href="#domaines" aria-current="page">Catalogue</a><a href="#conformite">Conformité</a><a href="#retours">Retours</a><a href="#faq">FAQ</a>
+      <a href="#domaines" aria-current="page">Catalogue</a><a href="#conformite">Conformité</a><a href="#tutorat">Tutorat</a><a href="#faq">FAQ</a>
     </nav>
     <div class="nav-cta"><a class="btn btn-dark" href="#demo">Demander une démo<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
   </div>
@@ -1025,65 +934,6 @@ section[id]{scroll-margin-top:92px}
   </div>
 </section>
 
-<!-- ═══ RETOURS ═══ -->
-<section id="retours">
-  <div class="wrap">
-    <div class="rev-head rv">
-      <span class="pill-h"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13.5S1.8 9.8 1.8 5.9A3.4 3.4 0 0 1 8 4a3.4 3.4 0 0 1 6.2 1.9c0 3.9-6.2 7.6-6.2 7.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg> Références</span>
-      <h2>Ils forment avec notre contenu <span class="nb">e-learning</span>.</h2>
-    </div>
-
-    <div class="rc-tete rv">
-      <div class="rc-chiffre">
-        <b>1 300<u>+</u></b>
-        <span>organismes de formation, entreprises et institutions diffusent nos modules</span>
-      </div>
-      <div class="rc-mot">
-        <div class="rc-join">
-          <span class="rc-pile" aria-hidden="true"><img src="img/logos/sncf.png" alt="" width="312" height="164" loading="lazy" decoding="async"><img src="img/logos/afpa.png" alt="" width="398" height="208" loading="lazy" decoding="async"><img src="img/logos/france-travail.png" alt="" width="381" height="171" loading="lazy" decoding="async"></span>
-          <span><b>Rejoignez 1 300 organismes</b>qui forment avec nos contenus</span>
-        </div>
-        <p>Du réseau régional au groupe national, nos modules sont diffusés dans des parcours conçus et pilotés par nos clients, à leur charte et sur leur plateforme.</p>
-      </div>
-    </div>
-
-    <div class="rc-grille">
-      <article class="rc rv">
-        <span class="rc-logo"><img src="img/logos/afpa.png" alt="Afpa" width="398" height="208" loading="lazy" decoding="async"></span>
-        <div class="rc-stars" aria-hidden="true">★★★★★</div>
-        <p>Contenus intégrés aux parcours de formation professionnelle des adultes.</p>
-        <div class="rc-sig"><b>Afpa</b><span>Formation professionnelle des adultes</span></div>
-      </article>
-
-      <article class="rc rc-dk rv">
-        <img class="rc-fond" src="img/apprenants-formation-e-learning.png" alt="" width="435" height="545" loading="lazy" decoding="async">
-        <span class="rc-logo"><img src="img/logos/sncf.png" alt="SNCF" width="312" height="164" loading="lazy" decoding="async"></span>
-        <div class="rc-in">
-          <div class="rc-stars" aria-hidden="true">★★★★★</div>
-          <p>« Nos collaborateurs disposent d'un environnement de formation individualisé et tutoré accessible 24h/24. »</p>
-          <div class="rc-sig"><b>Isabelle Provillard</b><span>Chef de projet ingénierie de formation &middot; SNCF</span></div>
-        </div>
-      </article>
-
-      <article class="rc rv">
-        <span class="rc-logo"><img src="img/logos/france-travail.png" alt="France Travail" width="381" height="171" loading="lazy" decoding="async"></span>
-        <div class="rc-stars" aria-hidden="true">★★★★★</div>
-        <p>Ressources mobilisées dans l'accompagnement vers l'emploi et la montée en compétences.</p>
-        <div class="rc-sig"><b>France Travail</b><span>Service public de l'emploi</span></div>
-      </article>
-
-      <article class="rc rv">
-        <span class="rc-logo"><img src="img/logos/pigier.png" alt="Pigier" width="548" height="183" loading="lazy" decoding="async"></span>
-        <div class="rc-stars" aria-hidden="true">★★★★★</div>
-        <p>Contenus au service des parcours étudiants et de l'alternance.</p>
-        <div class="rc-sig"><b>Pigier</b><span>Enseignement privé</span></div>
-      </article>
-    </div>
-
-    <p class="rev-note rv">Références publiques &mdash; un seul verbatim client est disponible à ce jour, les autres cartes décrivent le dispositif déployé.</p>
-  </div>
-</section>
-
 <!-- ═══ ÉTUDE DE CAS ═══ -->
 <section id="tutorat">
   <div class="wrap">
@@ -1276,7 +1126,7 @@ section[id]{scroll-margin-top:92px}
         </div>
         <div>
           <h4>Société</h4>
-          <ul><li><a href="#">Qui sommes-nous</a></li><li><a href="#retours">Références</a></li><li><a href="#">Blog</a></li><li><a href="#">Nous contacter</a></li><li><a href="#">Espace client</a></li><li><a href="#">Recrutement</a></li></ul>
+          <ul><li><a href="#">Qui sommes-nous</a></li><li><a href="#tutorat">Tutorat</a></li><li><a href="#">Blog</a></li><li><a href="#">Nous contacter</a></li><li><a href="#">Espace client</a></li><li><a href="#">Recrutement</a></li></ul>
           <div class="socials">
             <a href="#" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M3.4 5.5H1.1V14h2.3V5.5ZM2.25 4.5a1.34 1.34 0 1 0 0-2.68 1.34 1.34 0 0 0 0 2.68ZM14.9 14h-2.3V9.9c0-1.1-.4-1.8-1.35-1.8-.73 0-1.17.5-1.36.98-.7.17-.09.4-.09.65V14H7.5s.03-7.7 0-8.5h2.3v1.2c.3-.47.85-1.14 2.06-1.14 1.5 0 2.63.98 2.63 3.1V14Z"/></svg></a>
             <a href="#" aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M15.3 4.8a1.9 1.9 0 0 0-1.35-1.36C12.75 3.1 8 3.1 8 3.1s-4.75 0-5.95.34A1.9 1.9 0 0 0 .7 4.8C.36 6 .36 8 .36 8s0 2 .34 3.2a1.9 1.9 0 0 0 1.35 1.36c1.2.34 5.95.34 5.95.34s4.75 0 5.95-.34a1.9 1.9 0 0 0 1.35-1.36c.34-1.2.34-3.2.34-3.2s0-2-.34-3.2ZM6.5 10.3V5.7L10.4 8l-3.9 2.3Z"/></svg></a>
@@ -1299,7 +1149,7 @@ section[id]{scroll-margin-top:92px}
   <div class="wrap notes-in">
     <svg width="17" height="17" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.6" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.2v4M8 4.9v.9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
     <div><b>Maquette de travail — à valider avant mise en ligne</b>
-    Le chiffre de 1 300 organismes vient de l'équipe et n'a pas été recoupé. Un seul verbatim client est disponible (SNCF) : les cartes de références portent le dispositif déployé, sans citation. Les horaires et les canaux du tutorat viennent de la documentation produit et sont à confirmer, de même que le fait qu'il s'agisse d'une option facturée. Deux sujets que les concurrents mettent en avant et que la page ne traite pas, faute d'information vérifiée : la prise en charge OPCO et CPF, et la compatibilité LTI en plus de SCORM, AICC et xAPI. Les logos clients ne s'affichent qu'avec l'accord de citation de chaque organisation. Le formulaire de démonstration n'est relié à aucun traitement : rien n'est envoyé ni conservé. Les deux rangées de références réutilisent les cinq mêmes organisations, faute d'autres logos validés. Le logo principal est une image matricielle enveloppée dans du SVG, à remplacer par un tracé vectoriel ; les visuels de domaines sont en 400 px de large, à doubler pour les écrans à haute densité. Police d'approche Plus Jakarta Sans, à remplacer par celle de la charte.</div>
+    Le chiffre de 1 300 organismes vient de l'équipe et n'a pas été recoupé. La section de références a été retirée : le seul verbatim client disponible, celui de la SNCF, ne figure donc plus nulle part sur la page. Les logos restent visibles dans le bandeau du héros. Les horaires et les canaux du tutorat viennent de la documentation produit et sont à confirmer, de même que le fait qu'il s'agisse d'une option facturée. Deux sujets que les concurrents mettent en avant et que la page ne traite pas, faute d'information vérifiée : la prise en charge OPCO et CPF, et la compatibilité LTI en plus de SCORM, AICC et xAPI. Les logos clients ne s'affichent qu'avec l'accord de citation de chaque organisation. Le formulaire de démonstration n'est relié à aucun traitement : rien n'est envoyé ni conservé. Les deux rangées de références réutilisent les cinq mêmes organisations, faute d'autres logos validés. Le logo principal est une image matricielle enveloppée dans du SVG, à remplacer par un tracé vectoriel ; les visuels de domaines sont en 400 px de large, à doubler pour les écrans à haute densité. Police d'approche Plus Jakarta Sans, à remplacer par celle de la charte.</div>
   </div>
 </div>
 
@@ -1586,7 +1436,6 @@ section[id]{scroll-margin-top:92px}
   });
 
 
-
   /* ── mise en œuvre : sommaire actif et texte qui s'éclaircit au défilement ── */
   var wkItems = document.querySelectorAll('.wk-side li');
   var wkSteps = document.querySelectorAll('.wkstep[data-wstep]');
@@ -1631,7 +1480,6 @@ section[id]{scroll-margin-top:92px}
     }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
     wkSteps.forEach(function(x){ wo.observe(x); });
   }
-
 
   /* ── champ de points du héros (WebGL natif, aucune dépendance) ──
      Grille de points posée sur une onde, vue en perspective. Les points
