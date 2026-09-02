@@ -102,6 +102,10 @@ strong{font-weight:500;color:var(--ink)}
 .nav-cta .btn{padding:9px 16px;font-size:.85rem}
 
 section{padding:clamp(52px,6vw,92px) 0;position:relative}
+/* filet de separation entre rubriques : meme largeur que le contenu */
+section:not(.hero)::before,.foot::before{content:"";position:absolute;top:0;left:50%;
+  transform:translateX(-50%);height:1px;background:var(--line);
+  width:min(100% - var(--pad) * 2, var(--max) - var(--pad) * 2)}
 section[id]{scroll-margin-top:92px}
 .on-char{background:var(--char);color:var(--on-char)}
 .on-char h1,.on-char h2,.on-char h3,.on-char h4{color:var(--on-char)}
@@ -208,8 +212,7 @@ section[id]{scroll-margin-top:92px}
 
 /* ══════════ FORMULAIRE DE DÉMONSTRATION ══════════ */
 /* le fond sombre file d'un bord à l'autre, le contenu reste dans le conteneur */
-#demo{padding:0}
-.dm{position:relative;padding:clamp(52px,6.5vw,96px) 0;border-top:1px solid var(--line)}
+.dm{position:relative}
 .dm-in{max-width:var(--max);margin:0 auto;padding:0 var(--pad);
   display:grid;grid-template-columns:1fr;gap:clamp(28px,3.4vw,46px)}
 @media (min-width:960px){.dm-in{grid-template-columns:1fr 1.02fr;align-items:center}}
@@ -257,7 +260,7 @@ section[id]{scroll-margin-top:92px}
 .dm-ok p{margin:0;font-size:.9rem;line-height:1.5;color:var(--ink-2)}
 
 /* ══════════ FOOTER ══════════ */
-.foot{background:var(--cream);border-top:1px solid var(--line);
+.foot{background:var(--cream);position:relative;
   padding:clamp(40px,4.6vw,64px) 0 clamp(34px,4vw,54px)}
 .foot-in{display:grid;grid-template-columns:1fr;gap:clamp(28px,3.4vw,42px)}
 @media (min-width:900px){
@@ -587,7 +590,7 @@ section[id]{scroll-margin-top:92px}
 </section>
 
 <!-- ═══ APPEL À L'ACTION INTERMÉDIAIRE ═══ -->
-<section id="echange" style="padding-top:0">
+<section id="echange">
   <div class="wrap">
     <div class="mid rv">
             <div class="mid-txt">
