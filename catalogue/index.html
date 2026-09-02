@@ -7,7 +7,7 @@
 <meta name="description" content="6 000 heures de contenu e-learning à diffuser dans votre LMS : 15 domaines, ressources pédagogiques aux normes SCORM, AICC et xAPI. Éditeur français certifié Qualiopi.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,400&display=swap">
 <style>
 :root{
   --cream:#FFFFFF;--cream-2:#F7F7F7;--cream-3:#EFEFEF;
@@ -20,33 +20,32 @@
   --c-bur:#E8590C;--c-inf:#0E96BC;--c-cog:#6EA912;--c-san:#E01A4F;
   --c-lan:#0E9384;--c-sav:#6D5BD0;--c-ori:#9457C4;--c-pre:#E0459E;
   --c-ter:#D2691E;--c-cao:#B82B85;--c-pao:#2C6FE0;--c-dev:#1D4FB8;
-  --sans:"Plus Jakarta Sans",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"Inter",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:var(--sans);
   --r:14px;--r-sm:10px;--max:1240px;--pad:clamp(20px,5vw,44px);
   --ease:cubic-bezier(.16,1,.3,1);
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);
-  font-size:16.5px;line-height:1.6;letter-spacing:-.006em;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  font-size:16px;line-height:1.6;letter-spacing:-.002em;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 img{max-width:100%}
 [hidden]{display:none!important}
 :focus-visible{outline:2px solid var(--red);outline-offset:4px;border-radius:6px}
 .wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--pad)}
 
-h1,h2,h3,h4{margin:0;font-weight:600;letter-spacing:-.035em;text-wrap:balance}
-h1{font-size:clamp(2.25rem,5vw,3.95rem);line-height:1.03}
-h2{font-size:clamp(2rem,4.4vw,3.35rem);line-height:1.04}
-h3{font-size:clamp(1.3rem,2.3vw,1.75rem);line-height:1.13;letter-spacing:-.03em}
-h4{font-size:1.1rem;line-height:1.25;letter-spacing:-.026em}
+h1,h2,h3,h4{margin:0;font-weight:500;letter-spacing:-.018em;text-wrap:balance}
+h1{font-size:clamp(2.2rem,4.6vw,3.7rem);line-height:1.08;letter-spacing:-.026em}
+h2{font-size:clamp(1.6rem,2.7vw,2.35rem);line-height:1.14;letter-spacing:-.022em}
+h3{font-size:clamp(1.1rem,1.6vw,1.32rem);line-height:1.28;letter-spacing:-.012em}
+h4{font-size:1rem;line-height:1.35;letter-spacing:-.008em}
 p{margin:0}
-.sub{font-size:clamp(1rem,1.5vw,1.14rem);line-height:1.52;color:var(--ink-2);max-width:56ch}
+.sub{font-size:clamp(.97rem,1.15vw,1.06rem);line-height:1.6;color:var(--ink-2);max-width:60ch}
 .on-char .sub{color:var(--on-char-2)}
-strong{font-weight:600}
+strong{font-weight:500;color:var(--ink)}
 
-.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11px;
-  font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
-.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--d,var(--dot-1));flex:none}
+.eyebrow{display:inline-flex;align-items:center;font-size:.94rem;font-weight:400;
+  letter-spacing:0;text-transform:none;color:var(--ink-3)}
 .on-char .eyebrow{color:var(--on-char-2)}
 
 /* preuve sociale du hero */
@@ -132,6 +131,11 @@ section[id]{scroll-margin-top:92px}
 /* hauteur plafonnee a la moitie de la source : au-dela, le logo pixellise */
 .hero-logo{height:clamp(42px,4.4vw,56px);width:auto;display:block;margin-bottom:clamp(12px,1.6vw,20px)}
 .hero h1{max-width:26ch}
+/* seconde ligne en gris : la signature typographique du modèle */
+.gris{color:var(--ink-3)}
+/* la coupure forcée ne vaut qu'au-dessus du mobile, où elle laisserait un mot seul */
+.br-d{display:none}
+@media (min-width:640px){.br-d{display:inline}}
 .hero .sub{max-width:56ch;font-size:clamp(1.02rem,1.6vw,1.2rem)}
 .hero .geo-lead{max-width:68ch;font-size:clamp(.99rem,1.4vw,1.08rem);line-height:1.55}
 .shot{display:grid;gap:16px;margin-top:clamp(44px,6vw,68px);grid-template-columns:1fr}
@@ -149,7 +153,7 @@ section[id]{scroll-margin-top:92px}
 .logos{padding:clamp(46px,6vw,68px) 0}
 .logos-lab{display:flex;align-items:center;gap:22px;margin-bottom:28px}
 .logos-lab::before,.logos-lab::after{content:"";flex:1;border-top:1px dashed var(--line)}
-.logos-lab span{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap;text-align:center}
+.logos-lab span{font-size:.9rem;letter-spacing:0;color:var(--ink-3);white-space:nowrap;text-align:center}
 .marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 .mq-track{display:flex;gap:58px;width:max-content;animation:mq 46s linear infinite;align-items:center}
 .marquee:hover .mq-track{animation-play-state:paused}
@@ -171,7 +175,7 @@ section[id]{scroll-margin-top:92px}
 .dom-body{padding:17px 19px 19px;display:flex;flex-direction:column;gap:6px;flex:1}
 .dom-body p{font-size:.87rem;line-height:1.45;color:var(--ink-2)}
 .dom-meta{margin-top:auto;padding-top:13px;display:flex;align-items:center;gap:8px;
-  font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+  font-size:.8rem;letter-spacing:0;color:var(--ink-3)}
 
 /* ══ faq ══ */
 /* deux colonnes : le titre tient la gauche, les questions la droite */
@@ -251,8 +255,8 @@ section[id]{scroll-margin-top:92px}
 .dm-pts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:13px}
 .dm-pts li{display:flex;align-items:flex-start;gap:11px;font-size:.94rem;line-height:1.45;color:var(--ink)}
 .dm-pts svg{flex:none;margin-top:3px;color:var(--ink-3)}
-.dm-side > p.dm-rassure{margin:0;font-family:var(--mono);font-size:10.5px;line-height:1.5;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);max-width:none}
+.dm-side > p.dm-rassure{margin:0;font-size:.86rem;line-height:1.5;
+  letter-spacing:0;color:var(--ink-3);max-width:none}
 
 .dm-form{background:#fff;color:var(--ink);border-radius:var(--r);padding:clamp(20px,2.6vw,30px);
   display:flex;flex-direction:column;gap:14px;
@@ -301,7 +305,7 @@ section[id]{scroll-margin-top:92px}
 .news .agree input{margin-top:2px;accent-color:var(--red);width:15px;height:15px;flex:none}
 .news .agree a{text-decoration:underline;text-underline-offset:2px}
 .foot-cols{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-.foot-cols h4{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;
+.foot-cols h4{font-size:.94rem;font-weight:500;letter-spacing:0;
   color:var(--ink-3);margin-bottom:14px}
 .foot-cols ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
 .foot-cols a{font-size:.93rem;color:var(--ink-2);transition:color .16s}
@@ -349,7 +353,7 @@ section[id]{scroll-margin-top:92px}
 @media (min-width:1000px){.wk-side{display:block;position:sticky;top:112px;align-self:start}}
 .wk-side ol{list-style:none;margin:0;padding:0}
 .wk-side li{display:flex;align-items:center;gap:10px;padding:15px 0;border-bottom:1px solid var(--line-char);
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  font-size:.86rem;letter-spacing:0;
   color:var(--on-char-3);transition:color .35s var(--ease)}
 .wk-side li::after{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;margin-left:auto;
   opacity:.4;transition:opacity .35s,transform .35s var(--ease),background .35s}
@@ -363,7 +367,7 @@ section[id]{scroll-margin-top:92px}
   display:grid;grid-template-columns:1fr}
 @media (min-width:820px){.wkstep{grid-template-columns:1fr .95fr}}
 .wk-txt{padding:clamp(26px,3.4vw,38px);display:flex;flex-direction:column;justify-content:center;min-height:clamp(300px,32vw,430px)}
-.wk-n{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--on-char-3);margin-bottom:18px}
+.wk-n{font-size:.88rem;letter-spacing:0;color:var(--ink-3);margin-bottom:16px}
 .wk-txt h3{font-size:clamp(1.4rem,2.5vw,1.95rem);line-height:1.14;max-width:25ch}
 .wk-txt .desc{padding-top:22px;font-size:.99rem;line-height:1.55;max-width:42ch}
 /* texte qui s'éclaircit mot à mot au défilement */
@@ -426,8 +430,7 @@ section[id]{scroll-margin-top:92px}
 .mid > *{position:relative;z-index:2}
 
 .mid-txt{display:flex;flex-direction:column;align-items:flex-start;gap:0}
-.mid-lab{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.13em;
-  text-transform:uppercase;color:var(--ink-3)}
+.mid-lab{font-size:.94rem;font-weight:400;letter-spacing:0;color:var(--ink-3)}
 .mid-txt h2{margin:18px 0 0;font-size:clamp(1.9rem,3.4vw,2.65rem);line-height:1.12;
   letter-spacing:-.045em;color:var(--ink);max-width:19ch}
 .mid-txt .btn{margin-top:clamp(24px,2.8vw,34px)}
@@ -438,7 +441,7 @@ section[id]{scroll-margin-top:92px}
 .mid-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;
   display:flex;flex-direction:column;position:relative}
 .mid-dispo{display:flex;align-items:center;gap:9px;font-size:11px;font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+  letter-spacing:0;color:var(--ink-2)}
 .mid-dispo i{width:18px;height:18px;border-radius:50%;background:#141414;flex:none;
   display:grid;place-items:center}
 .mid-dispo i::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--green)}
@@ -484,7 +487,7 @@ section[id]{scroll-margin-top:92px}
   <div class="wrap hero-in">
     <img class="hero-logo rv" src="img/logo.svg" alt="Onlineformapro" width="139" height="57">
     <span class="trust rv"><span class="stars" aria-hidden="true">★★★★★</span> 1 300 organismes de formation nous font confiance</span>
-    <h1 class="rv">6 000 heures de contenu <span class="nb">e-learning</span> pour les organismes de formation.</h1>
+    <h1 class="rv">6 000 heures de contenu <span class="nb">e-learning</span><br class="br-d"><span class="gris">pour les organismes de formation.</span></h1>
     <p class="sub rv geo-lead"><strong>Onlineformapro permet aux organismes de formation et aux entreprises d'intégrer un catalogue de 6 000 heures de modules e-learning directement dans leur propre plateforme LMS</strong>, aux normes SCORM, AICC et xAPI. Les contenus sont produits et maintenus en France depuis 1999.</p>
     <div class="acts acts-c rv">
       <a class="btn btn-primary" href="#demo">Demander une démo gratuite<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -846,7 +849,7 @@ section[id]{scroll-margin-top:92px}
   <div class="wrap notes-in">
     <svg width="17" height="17" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.6" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.2v4M8 4.9v.9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
     <div><b>Maquette de travail — à valider avant mise en ligne</b>
-    Le chiffre de 1 300 organismes vient de l'équipe et n'a pas été recoupé. La section de références a été retirée : le seul verbatim client disponible, celui de la SNCF, ne figure donc plus nulle part sur la page. Les logos restent visibles dans le bandeau du héros. Les horaires et les canaux du tutorat viennent de la documentation produit et sont à confirmer, de même que le fait qu'il s'agisse d'une option facturée. Deux sujets que les concurrents mettent en avant et que la page ne traite pas, faute d'information vérifiée : la prise en charge OPCO et CPF, et la compatibilité LTI en plus de SCORM, AICC et xAPI. Les logos clients ne s'affichent qu'avec l'accord de citation de chaque organisation. Le formulaire de démonstration n'est relié à aucun traitement : rien n'est envoyé ni conservé. Les deux rangées de références réutilisent les cinq mêmes organisations, faute d'autres logos validés. Le logo principal est une image matricielle enveloppée dans du SVG, à remplacer par un tracé vectoriel ; les visuels de domaines sont en 400 px de large, à doubler pour les écrans à haute densité. Police d'approche Plus Jakarta Sans, à remplacer par celle de la charte.</div>
+    Le chiffre de 1 300 organismes vient de l'équipe et n'a pas été recoupé. La section de références a été retirée : le seul verbatim client disponible, celui de la SNCF, ne figure donc plus nulle part sur la page. Les logos restent visibles dans le bandeau du héros. Les horaires et les canaux du tutorat viennent de la documentation produit et sont à confirmer, de même que le fait qu'il s'agisse d'une option facturée. Deux sujets que les concurrents mettent en avant et que la page ne traite pas, faute d'information vérifiée : la prise en charge OPCO et CPF, et la compatibilité LTI en plus de SCORM, AICC et xAPI. Les logos clients ne s'affichent qu'avec l'accord de citation de chaque organisation. Le formulaire de démonstration n'est relié à aucun traitement : rien n'est envoyé ni conservé. Les deux rangées de références réutilisent les cinq mêmes organisations, faute d'autres logos validés. Le logo principal est une image matricielle enveloppée dans du SVG, à remplacer par un tracé vectoriel ; les visuels de domaines sont en 400 px de large, à doubler pour les écrans à haute densité. Police Inter, choisie pour se rapprocher du modèle x.ai — à remplacer par celle de la charte.</div>
   </div>
 </div>
 
