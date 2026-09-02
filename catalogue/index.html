@@ -193,24 +193,6 @@ section[id]{scroll-margin-top:92px}
 .faq details[open] .sign::after{opacity:0}
 .faq-a{padding:0 44px 23px 0;font-size:.97rem;line-height:1.6;color:var(--ink-2)}
 
-/* ══════════ CARTES PRODUIT (fond peint + interface flottante) ══════════ */
-.feats{display:grid;gap:14px;grid-template-columns:1fr}
-@media (min-width:940px){
-  .feats{grid-template-columns:1fr 1fr;grid-auto-rows:min-content}
-}
-.feat{position:relative;border-radius:16px;overflow:hidden;background:var(--cream-2);
-  border:1px solid var(--line);display:flex;flex-direction:column;min-height:420px;isolation:isolate}
-.f-wide{grid-column:1/-1;min-height:400px}
-@media (min-width:940px){.f-wide{display:grid;grid-template-columns:.82fr 1.18fr;align-items:center;gap:20px}}
-
-/* la peinture de fond */
-.feat > *:not(.paint){position:relative;z-index:2}
-.feat-txt{padding:clamp(30px,3.8vw,44px) clamp(28px,3.4vw,38px) 0}
-.f-wide .feat-txt{padding:clamp(26px,3.4vw,38px);align-self:center}
-.feat-txt h3{color:var(--ink);margin-bottom:10px}
-.feat-txt p{font-size:.96rem;line-height:1.52;color:var(--ink-2);max-width:44ch}
-.feat-vis{flex:1;display:flex;align-items:flex-end;justify-content:center;padding:clamp(26px,3.6vw,40px);min-height:0}
-.f-wide .feat-vis{align-items:center;padding:clamp(20px,3vw,32px)}
 
 
 /* ══════════ FAQ : bouton rond ══════════ */
@@ -285,7 +267,7 @@ section[id]{scroll-margin-top:92px}
 .foot-rule{display:none}
 @media (min-width:900px){.foot-rule{display:block;align-self:stretch;width:1px;background:var(--line)}}
 .foot-id{display:flex;flex-direction:column;gap:15px;align-items:flex-start}
-.foot-id img{height:30px;width:auto;display:block}
+.foot-id img{height:clamp(38px,4.2vw,50px);width:auto;display:block}
 .foot-id p{margin:0;font-size:.79rem;line-height:1.5;color:var(--ink-3)}
 .foot-cols{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(24px,2.8vw,34px) clamp(18px,2.2vw,30px)}
 @media (min-width:640px){.foot-cols{grid-template-columns:repeat(3,1fr)}}
@@ -311,7 +293,7 @@ section[id]{scroll-margin-top:92px}
 .wk-side li.on{color:var(--on-char)}
 .wk-side li.on::after{background:var(--on-char);opacity:1;transform:scale(1.5)}
 .wk-head{margin-bottom:clamp(24px,3vw,40px)}
-.wk-head h2{max-width:19ch;margin:16px 0 0}
+.wk-head h2{max-width:27ch;margin:14px 0 0}
 .wk-head .sub{margin-top:16px;max-width:50ch}
 .wk-steps{display:grid;gap:14px}
 .wkstep{background:var(--cream-2);border:1px solid var(--line);border-radius:16px;overflow:hidden;
@@ -341,24 +323,6 @@ section[id]{scroll-margin-top:92px}
   filter:grayscale(1);opacity:.62;transition:filter .25s,opacity .25s}
 .marquee:hover .mq-track img{filter:grayscale(0);opacity:1}
 
-/* visuel plein bord : touche le bas et les deux flancs de l'encart, sans ombre */
-.feat-vis.bleed{padding:clamp(28px,3.4vw,44px) 0 0;align-items:flex-end;overflow:hidden}
-.bleed-img{width:100%;height:auto;max-width:none;display:block;border-radius:0;box-shadow:none;margin-top:auto}
-
-/* en colonne unique le visuel garde son cadrage d'origine ; à partir de la grille
-   deux colonnes, il remplit la place que lui laisse l'encart */
-@media (min-width:940px){
-  .feat-vis.bleed.fill{padding:0;min-height:clamp(210px,25vw,340px)}
-  .feat-vis.bleed.fill .bleed-img{position:absolute;left:0;right:0;bottom:0;
-    height:calc(100% - clamp(22px,2.8vw,30px));object-fit:cover;object-position:center bottom;margin:0}
-  .f-wide .feat-vis.bleed{padding:0;align-self:stretch;align-items:stretch;min-height:clamp(230px,22vw,320px)}
-  .f-wide .feat-vis.bleed .bleed-img{position:absolute;inset:0;height:100%;
-    object-fit:cover;object-position:center;margin:0}
-}
-.notes{background:var(--cream-2);padding:34px 0}
-.notes-in{display:flex;gap:14px;align-items:flex-start;font-size:.85rem;line-height:1.6;color:var(--ink-2);max-width:86ch}
-.notes-in svg{flex:none;margin-top:2px;color:var(--ink-3)}
-.notes-in b{display:block;color:var(--ink);font-weight:600;margin-bottom:4px;letter-spacing:-.02em}
 /* ══════════ GRILLE DE FONCTIONNALITÉS ══════════ */
 /* Titre aligné à gauche, trois colonnes d'entrées à icône fine */
 .ft-head{display:flex;flex-direction:column;gap:12px;align-items:flex-start;
@@ -409,7 +373,7 @@ section[id]{scroll-margin-top:92px}
 .mid-card h3{margin:22px 0 0;font-size:1.22rem;letter-spacing:-.03em;color:var(--ink)}
 .mid-card p{margin:6px 0 0;font-size:.94rem;line-height:1.45;color:var(--ink-2)}
 .mid-card .btn{margin-top:22px;width:100%;justify-content:center;border-radius:9px;
-  background:var(--red);color:#fff;padding:12px 20px;font-size:.95rem}
+  background:var(--ink);color:#fff;padding:11px 18px;font-size:.88rem}
 .mid-card .btn:hover{background:#000}
 
 /* ══════════ AJUSTEMENTS PETIT ÉCRAN ══════════ */
@@ -449,81 +413,29 @@ section[id]{scroll-margin-top:92px}
   </div>
 </section>
 
+<!-- BANDEAU DE LOGOS — en attente des nouveaux fichiers clients.
+     Retirer les deux marques de commentaire une fois les images
+     deposees dans catalogue/img/logos/ (voir le README du dossier).
 <div class="logos">
   <div class="wrap">
     <div class="logos-lab rv"><span>Ils diffusent nos contenus</span></div>
     <div class="marquee rv"><div class="mq-track"><img src="img/logos/sncf.png" alt="SNCF" width="312" height="164" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/afpa.png" alt="Afpa" width="398" height="208" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/france-travail.png" alt="France Travail" width="381" height="171" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/hello_fresh.png" alt="HelloFresh" width="449" height="146" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/pigier.png" alt="Pigier" width="548" height="183" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/sncf.png" alt="" aria-hidden="true" width="312" height="164" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/afpa.png" alt="" aria-hidden="true" width="398" height="208" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/france-travail.png" alt="" aria-hidden="true" width="381" height="171" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/hello_fresh.png" alt="" aria-hidden="true" width="449" height="146" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/pigier.png" alt="" aria-hidden="true" width="548" height="183" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/sncf.png" alt="SNCF" width="312" height="164" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/afpa.png" alt="Afpa" width="398" height="208" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/france-travail.png" alt="France Travail" width="381" height="171" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/hello_fresh.png" alt="HelloFresh" width="449" height="146" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/pigier.png" alt="Pigier" width="548" height="183" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/sncf.png" alt="" aria-hidden="true" width="312" height="164" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/afpa.png" alt="" aria-hidden="true" width="398" height="208" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/france-travail.png" alt="" aria-hidden="true" width="381" height="171" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/hello_fresh.png" alt="" aria-hidden="true" width="449" height="146" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/pigier.png" alt="" aria-hidden="true" width="548" height="183" loading="eager" fetchpriority="low" decoding="async"></div></div>
   </div>
 </div>
+-->
 
-<!-- ═══ PRODUIT ═══ -->
+<!-- ═══ LE PRODUIT, ÉTAPE PAR ÉTAPE ═══ -->
 <section class="on-char" id="produit">
-  <div class="wrap">
-    <div class="head rv">
-      <span class="eyebrow">Le produit</span>
-      <h2>Nos modules <span class="nb">e-learning</span>, en pratique.</h2>
-      <p class="sub">De la sélection des modules à l'export des preuves de suivi.</p>
-    </div>
-    <div class="feats">
-
-      <article class="feat rv">
-        <div class="feat-txt">
-          <h3>Module par module</h3>
-          <p>Un module dure environ une heure et porte un objectif explicite. Vous composez vos parcours module par module, sans avoir à prendre un domaine entier.</p>
-        </div>
-        <div class="feat-vis bleed fill"><img class="bleed-img" src="img/catalogue2.png" alt="Affectation de modules e-learning à un groupe d'apprenants depuis le catalogue Onlineformapro" width="426" height="801" loading="lazy" decoding="async"></div>
-      </article>
-
-      <article class="feat rv">
-        <div class="feat-txt">
-          <h3>Au format de votre LMS</h3>
-          <p>Le module sort au format attendu par la plateforme que vous utilisez déjà. Pas de migration, pas de seconde connexion pour l'apprenant.</p>
-        </div>
-        <div class="feat-vis bleed"><img class="bleed-img" src="img/integrer.png" alt="Document Word ouvert avec les logos Office, Windows 11 et Excel autour" width="427" height="236" loading="lazy" decoding="async"></div>
-      </article>
-
-      <article class="feat rv">
-        <div class="feat-txt">
-          <h3>Maintenu à notre charge</h3>
-          <p>Quand une version de logiciel change ou qu'une réglementation évolue, nous reprenons le module. Vous ne financez pas deux fois la production d'un contenu que vous avez déjà acheté.</p>
-        </div>
-        <div class="feat-vis bleed fill"><img class="bleed-img" src="img/catalogue-modules-e-learning.png" alt="Modules e-learning du catalogue Onlineformapro : Word, Excel, PowerPoint et outils de création graphique" width="703" height="545" loading="lazy" decoding="async"></div>
-      </article>
-
-      <article class="feat rv">
-        <div class="feat-txt">
-          <h3>Le logiciel en simulation</h3>
-          <p>L'apprenant travaille dans une reproduction de l'interface, directement dans son navigateur. Rien à installer sur les postes, très peu de bande passante&nbsp;: un parc verrouillé ne bloque plus le déploiement.</p>
-        </div>
-        <div class="feat-vis bleed"><img class="bleed-img" src="img/interactif.png" alt="Simulation de PowerPoint dans le navigateur, avec la feuille de données Excel et le curseur de l'apprenant" width="591" height="415" loading="lazy" decoding="async"></div>
-      </article>
-
-      <article class="feat f-wide rv">
-        <div class="feat-txt">
-          <h3>Suivi et preuves</h3>
-          <p>Progression, temps de connexion et résultats remontent module par module dans votre LMS. Ce sont les pièces que réclament vos financeurs et un audit Qualiopi, au titre du critère 3.</p>
-        </div>
-        <div class="feat-vis bleed">
-          <img class="bleed-img" src="img/stats.png" alt="Tableau de bord Onlineformapro : modules les plus suivis, thèmes de formation et périodes d'activité des apprenants" width="540" height="324" loading="lazy" decoding="async">
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══ MISE EN ŒUVRE ═══ -->
-<section class="on-char" id="mise-en-oeuvre">
   <div class="wrap">
     <div class="wk">
       <aside class="wk-side" aria-hidden="true">
-        <ol><li data-w="0" class="on">Cadrer</li><li data-w="1">Déployer</li><li data-w="2">Piloter</li></ol>
+        <ol><li data-w="0" class="on">Cadrer</li><li data-w="1">Choisir</li><li data-w="2">Déployer</li><li data-w="3">Former</li><li data-w="4">Piloter</li><li data-w="5">Maintenir</li></ol>
       </aside>
       <div>
         <div class="wk-head rv">
-          <span class="eyebrow">Mise en œuvre</span>
-          <h2>Déployer nos modules <span class="nb">e-learning</span> en trois étapes.</h2>
-          <p class="sub">Le contenu existe&nbsp;: reste à choisir lequel et à ouvrir les accès.</p>
+          <span class="eyebrow">Le produit</span>
+          <h2>Nos modules <span class="nb">e-learning</span>, du cadrage aux preuves de suivi.</h2>
+          <p class="sub">Le contenu existe déjà&nbsp;: reste à choisir lequel, ouvrir les accès et sortir les preuves.</p>
         </div>
         <div class="wk-steps">
 
@@ -538,20 +450,47 @@ section[id]{scroll-margin-top:92px}
 
           <article class="wkstep rv" data-wstep="1">
             <div class="wk-txt">
-              <span class="wk-n">02 — Déployer</span>
+              <span class="wk-n">02 — Choisir</span>
+              <h3 class="wf"><span>Module</span> <span>par</span> <span>module.</span></h3>
+              <p class="desc wf"><span>Un</span> <span>module</span> <span>dure</span> <span>environ</span> <span>une</span> <span>heure</span> <span>et</span> <span>porte</span> <span>un</span> <span>objectif</span> <span>explicite.</span> <span>Vous</span> <span>composez</span> <span>vos</span> <span>parcours</span> <span>module</span> <span>par</span> <span>module,</span> <span>sans</span> <span>avoir</span> <span>à</span> <span>prendre</span> <span>un</span> <span>domaine</span> <span>entier.</span></p>
+            </div>
+            <div class="wk-vis wk-shot"><img class="paint wk-img" style="object-position:right center" src="img/catalogue2.png" alt="Affectation de modules e-learning à un groupe d'apprenants depuis le catalogue Onlineformapro" width="426" height="801" loading="lazy" decoding="async"></div>
+          </article>
+
+          <article class="wkstep rv" data-wstep="2">
+            <div class="wk-txt">
+              <span class="wk-n">03 — Déployer</span>
               <h3 class="wf"><span>Sur</span> <span>votre</span> <span>LMS,</span> <span>en</span> <span>SCORM</span> <span>distant.</span></h3>
               <p class="desc wf"><span>Nous</span> <span>livrons</span> <span>les</span> <span>modules</span> <span>en</span> <span>SCORM</span> <span>distant&nbsp;:</span> <span>vous</span> <span>les</span> <span>rattachez</span> <span>à</span> <span>vos</span> <span>groupes,</span> <span>vous</span> <span>ouvrez</span> <span>les</span> <span>accès,</span> <span>et</span> <span>vos</span> <span>apprenants</span> <span>restent</span> <span>dans</span> <span>la</span> <span>plateforme</span> <span>qu'ils</span> <span>connaissent</span> <span>déjà.</span> <span>Rien</span> <span>à</span> <span>installer</span> <span>sur</span> <span>les</span> <span>postes,</span> <span>rien</span> <span>à</span> <span>héberger</span> <span>de</span> <span>votre</span> <span>côté.</span></p>
             </div>
             <div class="wk-vis wk-shot"><img class="paint wk-img" src="img/lms.png" alt="Module e-learning du catalogue consulté sur une tablette" width="430" height="430" loading="lazy" decoding="async"></div>
           </article>
 
-          <article class="wkstep rv" data-wstep="2">
+          <article class="wkstep rv" data-wstep="3">
             <div class="wk-txt">
-              <span class="wk-n">03 — Piloter</span>
+              <span class="wk-n">04 — Former</span>
+              <h3 class="wf"><span>Le</span> <span>logiciel</span> <span>en</span> <span>simulation.</span></h3>
+              <p class="desc wf"><span>L'apprenant</span> <span>travaille</span> <span>dans</span> <span>une</span> <span>reproduction</span> <span>de</span> <span>l'interface,</span> <span>directement</span> <span>dans</span> <span>son</span> <span>navigateur.</span> <span>Rien</span> <span>à</span> <span>installer</span> <span>sur</span> <span>les</span> <span>postes,</span> <span>très</span> <span>peu</span> <span>de</span> <span>bande</span> <span>passante&nbsp;:</span> <span>un</span> <span>parc</span> <span>verrouillé</span> <span>ne</span> <span>bloque</span> <span>plus</span> <span>le</span> <span>déploiement.</span></p>
+            </div>
+            <div class="wk-vis wk-shot"><img class="paint wk-img" src="img/interactif.png" alt="Simulation de PowerPoint dans le navigateur, avec la feuille de données Excel et le curseur de l'apprenant" width="591" height="415" loading="lazy" decoding="async"></div>
+          </article>
+
+          <article class="wkstep rv" data-wstep="4">
+            <div class="wk-txt">
+              <span class="wk-n">05 — Piloter</span>
               <h3 class="wf"><span>Vous</span> <span>suivez,</span> <span>vous</span> <span>relancez,</span> <span>vous</span> <span>justifiez.</span></h3>
-              <p class="desc wf"><span>La</span> <span>progression</span> <span>remonte</span> <span>dans</span> <span>vos</span> <span>tableaux</span> <span>de</span> <span>bord</span> <span>au</span> <span>fil</span> <span>de</span> <span>l'eau.</span> <span>Vous</span> <span>voyez</span> <span>qui</span> <span>décroche</span> <span>avant</span> <span>la</span> <span>fin</span> <span>du</span> <span>parcours,</span> <span>et</span> <span>vous</span> <span>sortez</span> <span>les</span> <span>pièces</span> <span>justificatives</span> <span>le</span> <span>jour</span> <span>où</span> <span>un</span> <span>financeur</span> <span>ou</span> <span>un</span> <span>auditeur</span> <span>les</span> <span>demande.</span></p>
+              <p class="desc wf"><span>La</span> <span>progression</span> <span>remonte</span> <span>module</span> <span>par</span> <span>module</span> <span>dans</span> <span>vos</span> <span>tableaux</span> <span>de</span> <span>bord,</span> <span>au</span> <span>fil</span> <span>de</span> <span>l'eau.</span> <span>Vous</span> <span>voyez</span> <span>qui</span> <span>décroche</span> <span>avant</span> <span>la</span> <span>fin</span> <span>du</span> <span>parcours,</span> <span>et</span> <span>vous</span> <span>sortez</span> <span>les</span> <span>pièces</span> <span>que</span> <span>réclament</span> <span>vos</span> <span>financeurs</span> <span>et</span> <span>un</span> <span>audit</span> <span>Qualiopi,</span> <span>au</span> <span>titre</span> <span>du</span> <span>critère</span> <span>3.</span></p>
             </div>
             <div class="wk-vis wk-shot"><img class="paint wk-img" src="img/reporting.png" alt="Tableau de bord de suivi des apprenants affiché sur un ordinateur portable" width="430" height="430" loading="lazy" decoding="async"></div>
+          </article>
+
+          <article class="wkstep rv" data-wstep="5">
+            <div class="wk-txt">
+              <span class="wk-n">06 — Maintenir</span>
+              <h3 class="wf"><span>Maintenu</span> <span>à</span> <span>notre</span> <span>charge.</span></h3>
+              <p class="desc wf"><span>Quand</span> <span>une</span> <span>version</span> <span>de</span> <span>logiciel</span> <span>change</span> <span>ou</span> <span>qu'une</span> <span>réglementation</span> <span>évolue,</span> <span>nous</span> <span>reprenons</span> <span>le</span> <span>module.</span> <span>Vous</span> <span>ne</span> <span>financez</span> <span>pas</span> <span>deux</span> <span>fois</span> <span>la</span> <span>production</span> <span>d'un</span> <span>contenu</span> <span>que</span> <span>vous</span> <span>avez</span> <span>déjà</span> <span>acheté.</span></p>
+            </div>
+            <div class="wk-vis wk-shot"><img class="paint wk-img" src="img/catalogue-modules-e-learning.png" alt="Modules e-learning du catalogue Onlineformapro : Word, Excel, PowerPoint et outils de création graphique" width="703" height="545" loading="lazy" decoding="async"></div>
           </article>
 
         </div>
@@ -583,31 +522,6 @@ section[id]{scroll-margin-top:92px}
       <article class="dom rv"><div class="dom-top"><img src="img/pao.png" alt="Logos des logiciels de création graphique Adobe" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>PAO, publication assistée par ordinateur</h4><p>Photoshop, Illustrator et InDesign, de l'initiation au perfectionnement.</p><span class="dom-meta">Photoshop · Illustrator · InDesign</span></div></article>
       <article class="dom rv"><div class="dom-top"><img src="img/sante.png" alt="Ouvriers équipés de casques et de gilets sur un chantier" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Prévention et sécurité</h4><p>SST, gestes qui sauvent et risques professionnels, pour vos formations réglementaires.</p><span class="dom-meta">SST · Risques professionnels</span></div></article>
       <article class="dom rv"><div class="dom-top"><img src="img/reseaux.avif" alt="Baie de serveurs réseau" width="400" height="133" loading="lazy" decoding="async"></div><div class="dom-body"><h4>Réseaux et administration réseau</h4><p>Infrastructure et sécurité, pour vos parcours d'administrateurs et de techniciens.</p><span class="dom-meta">Infrastructure · Sécurité</span></div></article>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ APPEL À L'ACTION INTERMÉDIAIRE ═══ -->
-<section id="echange" style="padding-top:0">
-  <div class="wrap">
-    <div class="mid rv">
-            <div class="mid-txt">
-        <span class="mid-lab">Parlons de votre catalogue</span>
-        <h2>Prêt à élargir votre offre de formation&nbsp;?</h2>
-        <a class="btn btn-dark" href="#demo">Demander une démo<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      </div>
-
-      <div class="mid-card">
-        <span class="mid-dispo"><i aria-hidden="true"></i>Disponible cette semaine</span>
-        <div class="mid-qui">
-          <img class="av" src="img/alan-drabczynski.jpg" alt="Alan Drabczynski" width="400" height="400" loading="lazy" decoding="async">
-          <span class="plus" aria-hidden="true">+</span>
-          <span class="vous" aria-hidden="true">Vous</span>
-        </div>
-        <h3>Un échange de 30 minutes</h3>
-        <p>Choisissez le créneau qui vous arrange.</p>
-        <a class="btn" href="https://calendly.com/a-drabczynski" target="_blank" rel="noopener noreferrer">Réserver un créneau</a>
-            </div>
     </div>
   </div>
 </section>
@@ -668,6 +582,31 @@ section[id]{scroll-margin-top:92px}
         <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13.2 7.2a5.2 5.2 0 1 0-.5 3.3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M13.4 3.4v3.9h-3.9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <div><b>Mises à jour continues</b><span>Les modules bureautique suivent les versions d'Office</span></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ APPEL À L'ACTION INTERMÉDIAIRE ═══ -->
+<section id="echange" style="padding-top:0">
+  <div class="wrap">
+    <div class="mid rv">
+            <div class="mid-txt">
+        <span class="mid-lab">Parlons de votre catalogue</span>
+        <h2>Prêt à élargir votre offre de formation&nbsp;?</h2>
+        <a class="btn btn-dark" href="#demo">Demander une démo<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+
+      <div class="mid-card">
+        <span class="mid-dispo"><i aria-hidden="true"></i>Disponible cette semaine</span>
+        <div class="mid-qui">
+          <img class="av" src="img/alan-drabczynski.jpg" alt="Alan Drabczynski" width="400" height="400" loading="lazy" decoding="async">
+          <span class="plus" aria-hidden="true">+</span>
+          <span class="vous" aria-hidden="true">Vous</span>
+        </div>
+        <h3>Un échange de 30 minutes</h3>
+        <p>Choisissez le créneau qui vous arrange.</p>
+        <a class="btn" href="https://calendly.com/a-drabczynski" target="_blank" rel="noopener noreferrer">Réserver un créneau</a>
+            </div>
     </div>
   </div>
 </section>
@@ -833,13 +772,7 @@ section[id]{scroll-margin-top:92px}
   </div>
 </footer>
 
-<div class="notes">
-  <div class="wrap notes-in">
-    <svg width="17" height="17" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.6" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.2v4M8 4.9v.9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-    <div><b>Maquette de travail — à valider avant mise en ligne</b>
-    Le chiffre de 1 300 organismes vient de l'équipe et n'a pas été recoupé. La section de références a été retirée : le seul verbatim client disponible, celui de la SNCF, ne figure donc plus nulle part sur la page. Les logos restent visibles dans le bandeau du héros. Deux sujets que les concurrents mettent en avant et que la page ne traite pas, faute d'information vérifiée : la prise en charge OPCO et CPF, et la compatibilité LTI en plus de SCORM, AICC et xAPI. Les logos clients ne s'affichent qu'avec l'accord de citation de chaque organisation. Le formulaire de démonstration n'est relié à aucun traitement : rien n'est envoyé ni conservé. Le pied de page reprend la structure de la référence : tous ses liens pointent vers « # », et l'inscription à la lettre d'information a disparu avec l'ancien pied de page. Les deux rangées de références réutilisent les cinq mêmes organisations, faute d'autres logos validés. Le logo principal est une image matricielle enveloppée dans du SVG, à remplacer par un tracé vectoriel ; les visuels de domaines sont en 400 px de large, à doubler pour les écrans à haute densité. Police Inter, choisie pour se rapprocher du modèle x.ai — à remplacer par celle de la charte.</div>
-  </div>
-</div>
+
 
 <script type="application/ld+json">
 {
