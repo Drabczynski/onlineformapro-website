@@ -618,54 +618,74 @@ section[id]{scroll-margin-top:92px}
 .notes-in svg{flex:none;margin-top:2px;color:var(--ink-3)}
 .notes-in b{display:block;color:var(--ink);font-weight:600;margin-bottom:4px;letter-spacing:-.02em}
 /* ══════════ RÉFÉRENCES ══════════ */
-.rc-tete{display:grid;grid-template-columns:1fr;gap:clamp(26px,3.4vw,48px);
-  align-items:start;margin-bottom:clamp(30px,4vw,48px);position:relative}
-@media (min-width:860px){.rc-tete{grid-template-columns:.82fr 1.18fr;gap:clamp(40px,6vw,86px)}}
-.rc-chiffre{display:flex;flex-direction:column;gap:10px;text-align:center}
-@media (min-width:860px){.rc-chiffre{text-align:right}}
-.rc-chiffre b{font-size:clamp(3.2rem,7vw,5.2rem);font-weight:700;letter-spacing:-.06em;
-  line-height:.94;color:var(--ink)}
-.rc-chiffre b u{text-decoration:none;color:var(--red)}
-.rc-chiffre span{font-size:.94rem;line-height:1.45;color:var(--ink-2);max-width:23ch;
-  margin-inline:auto}
-@media (min-width:860px){.rc-chiffre span{margin-right:0}}
-.rc-mot{display:flex;flex-direction:column;gap:16px}
-.rc-join{display:flex;align-items:center;gap:14px}
+/* Proportions relevées sur la maquette : chiffre à 54 px, avatars de 46 px
+   empilés, quatre cartes blanches de 311 px à 20 px de rayon, gap de 20 px,
+   marge intérieure de 32 px, avatar de 62 px, nom à 21 px. */
+.rc-tete{display:grid;grid-template-columns:1fr;gap:clamp(24px,3vw,40px);
+  align-items:start;margin-bottom:clamp(30px,3.6vw,44px)}
+@media (min-width:860px){.rc-tete{grid-template-columns:.42fr .58fr;gap:clamp(40px,5vw,72px)}}
+.rc-chiffre{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.rc-chiffre b{font-size:clamp(3rem,5.4vw,3.9rem);font-weight:600;letter-spacing:-.055em;
+  line-height:.9;color:var(--ink)}
+.rc-chiffre b u{text-decoration:none}
+.rc-chiffre span{font-size:.97rem;line-height:1.45;color:var(--ink-2);max-width:30ch}
+.rc-mot{display:flex;flex-direction:column;gap:22px}
+.rc-join{display:flex;align-items:center;gap:15px}
 .rc-pile{display:flex;flex:none}
-.rc-pile img{width:42px;height:42px;border-radius:50%;object-fit:contain;object-position:center;
-  background:#fff;border:2px solid var(--cream);padding:5px;display:block}
-.rc-pile img + img{margin-left:-14px}
-.rc-join span{font-size:.92rem;line-height:1.4;color:var(--ink-2)}
-.rc-join span b{display:block;color:var(--ink);font-weight:600;letter-spacing:-.02em;font-size:.98rem}
-.rc-mot p{margin:0;font-size:1rem;line-height:1.55;color:var(--ink-2);max-width:56ch}
+.rc-pile img{width:46px;height:46px;border-radius:50%;object-fit:contain;
+  background:#fff;border:3px solid var(--cream);padding:7px;display:block}
+.rc-pile img + img{margin-left:-15px}
+.rc-join span{font-size:.97rem;line-height:1.5;color:var(--ink-2)}
+.rc-join span b{display:block;color:var(--ink);font-weight:700;letter-spacing:-.022em}
+.rc-mot p{margin:0;font-size:1.02rem;line-height:1.55;color:var(--ink-2);max-width:62ch}
 
-.rc-grille{display:grid;gap:14px;grid-template-columns:1fr}
+.rc-grille{display:grid;gap:20px;grid-template-columns:1fr}
 @media (min-width:620px){.rc-grille{grid-template-columns:1fr 1fr}}
 @media (min-width:1060px){.rc-grille{grid-template-columns:repeat(4,1fr)}}
-.rc{position:relative;overflow:hidden;background:var(--cream-2);border-radius:18px;
-  padding:clamp(20px,2.2vw,26px);display:flex;flex-direction:column;min-height:300px;
+/* cartes blanches sur le fond crème : c'est le contraste de la maquette */
+.rc{position:relative;overflow:hidden;background:#fff;border-radius:20px;
+  padding:32px 30px 30px;display:flex;flex-direction:column;min-height:414px;
+  box-shadow:0 1px 2px rgba(20,20,20,.04),0 14px 32px -20px rgba(20,20,20,.18);
   transition:transform .3s var(--ease),box-shadow .3s}
-/* la tache colorée diffuse du modèle, en très basse intensité */
-.rc::before{content:"";position:absolute;width:150%;height:64%;left:-32%;bottom:-26%;z-index:0;
-  background:radial-gradient(45% 60% at 30% 60%,rgba(148,87,196,.20),transparent 70%),
-    radial-gradient(46% 58% at 72% 46%,rgba(44,111,224,.17),transparent 72%);
-  filter:blur(6px);pointer-events:none}
+.rc:hover{transform:translateY(-4px);box-shadow:0 2px 5px rgba(20,20,20,.06),0 26px 50px -26px rgba(20,20,20,.3)}
+/* les taches pastel de la maquette, franches et débordantes */
+.rc::before{content:"";position:absolute;z-index:0;pointer-events:none;
+  width:150%;height:66%;left:-42%;bottom:-24%;
+  background:radial-gradient(42% 54% at 34% 62%,rgba(148,87,196,.42),transparent 72%),
+    radial-gradient(40% 50% at 74% 44%,rgba(44,111,224,.34),transparent 74%),
+    radial-gradient(34% 44% at 58% 78%,rgba(224,26,79,.20),transparent 76%);
+  filter:blur(10px)}
+.rc:nth-child(4n+1)::before{transform:scaleX(-1)}
+.rc:nth-child(4n)::before{left:auto;right:-46%;width:150%;
+  background:radial-gradient(40% 52% at 62% 46%,rgba(109,91,208,.40),transparent 72%),
+    radial-gradient(38% 48% at 34% 66%,rgba(14,150,188,.30),transparent 74%),
+    radial-gradient(32% 42% at 74% 74%,rgba(224,69,158,.24),transparent 76%)}
 .rc > *{position:relative;z-index:1}
-.rc:hover{transform:translateY(-4px);box-shadow:0 2px 4px rgba(0,0,0,.04),0 20px 40px -24px rgba(0,0,0,.3)}
-.rc-logo{width:54px;height:54px;border-radius:50%;background:#fff;flex:none;
-  display:grid;place-items:center;padding:9px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.rc-logo{width:62px;height:62px;border-radius:50%;background:#fff;flex:none;
+  display:grid;place-items:center;padding:11px;
+  box-shadow:0 1px 3px rgba(20,20,20,.10),0 6px 16px -8px rgba(20,20,20,.28)}
 .rc-logo img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block}
-.rc > p{margin:22px 0 0;font-size:.96rem;line-height:1.5;color:var(--ink)}
-.rc-sig{margin-top:auto;padding-top:22px}
-.rc-sig b{display:block;font-size:1.06rem;font-weight:700;letter-spacing:-.032em;color:var(--ink)}
-.rc-sig span{display:block;margin-top:3px;font-size:.86rem;line-height:1.35;color:var(--ink-2)}
-/* la carte d'accent, comme la carte sombre du modèle */
-.rc-dk{background:var(--char);color:var(--on-char)}
-.rc-dk::before{background:radial-gradient(48% 62% at 28% 58%,rgba(224,26,79,.42),transparent 70%),
-  radial-gradient(46% 58% at 74% 44%,rgba(109,91,208,.36),transparent 72%)}
-.rc-dk > p{color:var(--on-char);font-style:italic}
+.rc-stars{display:flex;gap:2px;margin:26px 0 0;color:#F5A623;font-size:.82rem;letter-spacing:.05em}
+.rc > p{margin:14px 0 0;font-size:1.02rem;line-height:1.55;color:var(--ink);max-width:24ch}
+.rc-sig{margin-top:auto;padding-top:26px}
+.rc-sig b{display:block;font-size:1.3rem;font-weight:700;letter-spacing:-.038em;color:var(--ink)}
+.rc-sig span{display:block;margin-top:5px;font-size:.9rem;line-height:1.35;color:var(--ink-2)}
+/* la carte photo de la maquette */
+.rc-dk{background:var(--char);color:#fff;padding:0;justify-content:flex-end}
+.rc-dk .rc-fond{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;
+  object-position:center 16%}
+.rc-dk::before{content:"";position:absolute;inset:0;z-index:1;width:auto;height:auto;
+  left:0;bottom:0;filter:none;transform:none;
+  background:linear-gradient(180deg,rgba(18,10,24,.30) 0%,rgba(18,10,24,.52) 32%,rgba(18,10,24,.88) 62%,rgba(18,10,24,.96) 100%)}
+.rc-dk .rc-in{position:relative;z-index:2;padding:114px 30px 30px;display:flex;flex-direction:column;
+  height:100%;justify-content:flex-end}
+/* sur la carte photo, tout le bloc se cale en bas d'un seul tenant */
+.rc-dk .rc-stars{margin-top:0}
+.rc-dk .rc-sig{margin-top:0;padding-top:20px}
+.rc-dk .rc-logo{position:absolute;top:32px;left:30px;z-index:2}
+.rc-dk > p{color:#fff;max-width:26ch}
 .rc-dk .rc-sig b{color:#fff}
-.rc-dk .rc-sig span{color:var(--on-char-2)}
+.rc-dk .rc-sig span{color:rgba(255,255,255,.74)}
 
 /* ══════════ APPEL À L'ACTION INTERMÉDIAIRE ══════════ */
 /* Géométrie calquée sur la référence : panneau 963x375 à r=24, colonne de
@@ -1016,35 +1036,45 @@ section[id]{scroll-margin-top:92px}
     <div class="rc-tete rv">
       <div class="rc-chiffre">
         <b>1 300<u>+</u></b>
-        <span>organismes de formation diffusent nos modules</span>
+        <span>organismes de formation, entreprises et institutions diffusent nos modules</span>
       </div>
       <div class="rc-mot">
         <div class="rc-join">
           <span class="rc-pile" aria-hidden="true"><img src="img/logos/sncf.png" alt="" width="312" height="164" loading="lazy" decoding="async"><img src="img/logos/afpa.png" alt="" width="398" height="208" loading="lazy" decoding="async"><img src="img/logos/france-travail.png" alt="" width="381" height="171" loading="lazy" decoding="async"></span>
-          <span><b>Rejoignez 1 300 organismes</b>de formation, d'entreprises et d'institutions</span>
+          <span><b>Rejoignez 1 300 organismes</b>qui forment avec nos contenus</span>
         </div>
         <p>Du réseau régional au groupe national, nos modules sont diffusés dans des parcours conçus et pilotés par nos clients, à leur charte et sur leur plateforme.</p>
       </div>
     </div>
 
     <div class="rc-grille">
-      <article class="rc rc-dk rv">
-        <span class="rc-logo"><img src="img/logos/sncf.png" alt="SNCF" width="312" height="164" loading="lazy" decoding="async"></span>
-        <p>« Nos collaborateurs disposent d'un environnement de formation individualisé et tutoré accessible 24h/24. »</p>
-        <div class="rc-sig"><b>Isabelle Provillard</b><span>Chef de projet ingénierie de formation &middot; SNCF</span></div>
-      </article>
       <article class="rc rv">
         <span class="rc-logo"><img src="img/logos/afpa.png" alt="Afpa" width="398" height="208" loading="lazy" decoding="async"></span>
+        <div class="rc-stars" aria-hidden="true">★★★★★</div>
         <p>Contenus intégrés aux parcours de formation professionnelle des adultes.</p>
         <div class="rc-sig"><b>Afpa</b><span>Formation professionnelle des adultes</span></div>
       </article>
+
+      <article class="rc rc-dk rv">
+        <img class="rc-fond" src="img/apprenants-formation-e-learning.png" alt="" width="435" height="545" loading="lazy" decoding="async">
+        <span class="rc-logo"><img src="img/logos/sncf.png" alt="SNCF" width="312" height="164" loading="lazy" decoding="async"></span>
+        <div class="rc-in">
+          <div class="rc-stars" aria-hidden="true">★★★★★</div>
+          <p>« Nos collaborateurs disposent d'un environnement de formation individualisé et tutoré accessible 24h/24. »</p>
+          <div class="rc-sig"><b>Isabelle Provillard</b><span>Chef de projet ingénierie de formation &middot; SNCF</span></div>
+        </div>
+      </article>
+
       <article class="rc rv">
         <span class="rc-logo"><img src="img/logos/france-travail.png" alt="France Travail" width="381" height="171" loading="lazy" decoding="async"></span>
+        <div class="rc-stars" aria-hidden="true">★★★★★</div>
         <p>Ressources mobilisées dans l'accompagnement vers l'emploi et la montée en compétences.</p>
         <div class="rc-sig"><b>France Travail</b><span>Service public de l'emploi</span></div>
       </article>
+
       <article class="rc rv">
         <span class="rc-logo"><img src="img/logos/pigier.png" alt="Pigier" width="548" height="183" loading="lazy" decoding="async"></span>
+        <div class="rc-stars" aria-hidden="true">★★★★★</div>
         <p>Contenus au service des parcours étudiants et de l'alternance.</p>
         <div class="rc-sig"><b>Pigier</b><span>Enseignement privé</span></div>
       </article>
