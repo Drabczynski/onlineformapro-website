@@ -49,8 +49,6 @@ p{margin:0}
 .btn:hover .chev{transform:translateX(3px)}
 .btn-primary{background:var(--ink);color:#fff}
 .btn-primary:hover{background:#000}
-.btn-dark{background:var(--ink);color:#fff}
-.btn-dark:hover{background:#000}
 .btn-line{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn-line:hover{border-color:var(--ink)}
 
@@ -74,18 +72,9 @@ p{margin:0}
   backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);
   border-radius:0;padding:0;box-shadow:0 1px 0 var(--line)}
 .brand{display:flex;align-items:center;flex:none}
-.brand img{display:block;height:34px;width:auto}
-.brand b{font-size:1.32rem;font-weight:700;letter-spacing:-.045em}
-.brand b i{color:var(--red);font-style:normal}
-.brand span{font-size:.53rem;font-weight:500;letter-spacing:.36em;color:var(--ink-2);padding-left:1px}
-.nav-links{display:none;align-items:center;gap:clamp(14px,1.9vw,26px);margin-left:auto}
-@media (min-width:1000px){.nav-links{display:flex}}
-.nav-links a{font-size:.9rem;font-weight:500;color:var(--ink-2);white-space:nowrap;transition:color .16s}
-.nav-links a:hover{color:var(--ink)}
-.nav-links a[aria-current]{color:var(--ink);font-weight:600}
-.nav-cta{margin-left:auto}
-@media (min-width:1000px){.nav-cta{margin-left:14px}}
-.nav-cta .btn{padding:9px 16px;font-size:.85rem}
+.brand img{display:block;height:clamp(38px,3.4vw,46px);width:auto}
+@media (min-width:1000px){}
+@media (min-width:1000px){}
 
 section{padding:clamp(52px,6vw,92px) 0;position:relative}
 /* filet de separation entre rubriques : meme largeur que le contenu */
@@ -144,6 +133,45 @@ section[id]{scroll-margin-top:92px}
 .eq-don > div > span{display:block;margin-top:5px;font-size:.89rem;line-height:1.5;color:var(--ink-2)}
 .eq-don em{font-style:normal;color:var(--ink-3)}
 
+
+
+/* ══════════ CE QUE COUVRE LE QUESTIONNAIRE ══════════ */
+.tm{list-style:none;margin:clamp(24px,3vw,34px) 0 0;padding:0;display:grid;gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+@media (min-width:700px){.tm{grid-template-columns:1fr 1fr}}
+.tm li{display:flex;align-items:baseline;gap:13px;background:var(--cream);
+  padding:14px clamp(15px,1.8vw,20px)}
+.tm-n{font-size:.74rem;color:var(--ink-3);font-variant-numeric:tabular-nums;flex:none}
+.tm-t{font-size:.95rem;color:var(--ink)}
+
+/* ══════════ LES CINQ PALIERS ══════════ */
+.pa{list-style:none;margin:clamp(24px,3vw,34px) 0 0;padding:0;display:grid;gap:10px}
+@media (min-width:900px){.pa{grid-template-columns:repeat(5,1fr);gap:8px}}
+.pa li{border:1px solid var(--line);border-top:2px solid var(--ink-3);border-radius:0 0 8px 8px;
+  padding:14px clamp(13px,1.5vw,16px)}
+.pa li:first-child{border-top-color:var(--line)}
+.pa li:last-child{border-top-color:var(--ink)}
+.pa b{display:block;font-size:.92rem;font-weight:500;color:var(--ink)}
+.pa-b{display:block;margin-top:3px;font-size:.75rem;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.pa li > span:last-child{display:block;margin-top:8px;font-size:.85rem;line-height:1.45;color:var(--ink-2)}
+@media (min-width:900px){.pa li > span:last-child{display:none}}
+
+/* ══════════ FOND ══════════ */
+/* Trois taches de couleur tres diluees, en derive lente. Elles vivent
+   dans un pseudo-element pour rester sous le contenu sans le decaler. */
+.eq-hero{position:relative;isolation:isolate;overflow:hidden}
+.eq-hero::before{content:"";position:absolute;inset:-10% -5% 0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(38% 44% at 22% 28%, rgba(224,26,79,.07), transparent 70%),
+    radial-gradient(34% 40% at 78% 22%, rgba(44,111,224,.07), transparent 70%),
+    radial-gradient(42% 38% at 55% 82%, rgba(232,89,12,.055), transparent 72%);
+  animation:derive 26s ease-in-out infinite alternate}
+@keyframes derive{
+  0%  {transform:translate3d(0,0,0) scale(1)}
+  50% {transform:translate3d(2.5%,-1.5%,0) scale(1.06)}
+  100%{transform:translate3d(-2%,1.5%,0) scale(1.03)}
+}
+@media (prefers-reduced-motion:reduce){.eq-hero::before{animation:none}}
 
 /* ══════════ COUVERTURE ANIMÉE ══════════ */
 /* Chaque bloc du héros entre décalé. Le retard est porté par une variable
@@ -264,11 +292,7 @@ body.fige{overflow:hidden}
 <body>
 <header class="nav" id="nav">
   <div class="nav-in">
-    <a class="brand" href="/" aria-label="Onlineformapro, accueil"><img src="../catalogue/img/logo.svg" alt="Onlineformapro" width="87" height="36"></a>
-    <nav class="nav-links" aria-label="Navigation principale">
-      <a href="../catalogue/">Catalogue e-learning</a><a href="#enquete" aria-current="page">L'enquête</a>
-    </nav>
-    <div class="nav-cta"><a class="btn btn-dark" href="#enquete">Répondre à l'enquête<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+    <a class="brand" href="/" aria-label="Onlineformapro, accueil"><img src="../catalogue/img/logo.svg" alt="Onlineformapro" width="139" height="57"></a>
   </div>
 </header>
 
@@ -300,13 +324,36 @@ body.fige{overflow:hidden}
         <b>Les résultats complets, en avant-première</b>
         <span>Le baromètre 2026 vous est envoyé avant sa publication. <em>Vos réponses restent anonymes dans les résultats.</em></span></div></div>
     </div>
+  </div>
+</section>
+
+
+
+<section id="themes">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow">Le questionnaire</span>
+      <h2>Ce sur quoi nous vous interrogeons.</h2>
+      <p class="eq-intro" style="margin:0;max-width:60ch;text-align:left">Vingt-sept écrans, une question par écran, aucune réponse obligatoire au-delà de votre adresse. Vous pouvez revenir en arrière à tout moment.</p>
+    </div>
+    <ul class="tm rv"><li><span class="tm-n">01</span><span class="tm-t">Votre organisme</span></li><li><span class="tm-n">02</span><span class="tm-t">Où vous en êtes</span></li><li><span class="tm-n">03</span><span class="tm-t">Ingénierie pédagogique</span></li><li><span class="tm-n">04</span><span class="tm-t">Évaluations</span></li><li><span class="tm-n">05</span><span class="tm-t">Appels d'offres et gestion</span></li><li><span class="tm-n">06</span><span class="tm-t">Cadre et freins</span></li><li><span class="tm-n">07</span><span class="tm-t">Demain</span></li></ul>
+  </div>
+</section>
+
+<section id="paliers">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow">À la fin</span>
+      <h2>Vous vous situez sur l'un de ces cinq paliers.</h2>
+      <p class="eq-intro" style="margin:0;max-width:60ch;text-align:left">L'indice se calcule sur vos réponses, à l'écran, dès la dernière question. Il ne quitte pas votre navigateur tant que vous ne validez pas votre adresse.</p>
+    </div>
+    <ul class="pa rv"><li><b>Découverte</b><span class="pa-b">0 – 20</span><span>L'IA reste à la porte de l'organisme. Le premier pas tient souvent à une tâche unique, répétitive, que l'on confie pour voir.</span></li><li><b>Expérimentation</b><span class="pa-b">21 – 40</span><span>Quelques personnes s'y sont mises, chacune de son côté. L'enjeu devient de partager ce qui marche.</span></li><li><b>Adoption</b><span class="pa-b">41 – 60</span><span>L'IA est entrée dans la production courante. Reste à l'inscrire dans des règles et des outils communs.</span></li><li><b>Intégration</b><span class="pa-b">61 – 80</span><span>L'IA irrigue plusieurs métiers de l'organisme. Le sujet devient celui de la mesure et de la qualité.</span></li><li><b>Organisme augmenté</b><span class="pa-b">81 – 100</span><span>L'IA est dans les outils, les process et le LMS. Vous êtes en avance sur la profession.</span></li></ul>
     <div class="eq-lancer rv" style="margin-top:clamp(28px,3.4vw,40px)">
       <button class="btn btn-primary" type="button" id="eq-lancer-2">Répondre au questionnaire<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <small>Vos réponses restent anonymes. Rien n'est publié à votre nom.</small>
     </div>
   </div>
 </section>
-
 
 <div class="qz" id="qz" role="dialog" aria-modal="true" aria-label="Baromètre 2026 de l'IA" aria-hidden="true">
   <div class="qz-barre" role="progressbar" aria-label="Progression" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div>
@@ -709,7 +756,7 @@ body.fige{overflow:hidden}
     };
 
     /* les deux appels de la page ouvrent le meme questionnaire */
-    [].forEach.call(document.querySelectorAll('#eq-lancer, #eq-lancer-2, .nav-cta a[href="#enquete"]'),
+    [].forEach.call(document.querySelectorAll('#eq-lancer, #eq-lancer-2'),
       function(b){ b.addEventListener('click', function(ev){ ev.preventDefault(); ouvrir(); }); });
     qz.querySelector('.qz-fermer').addEventListener('click', fermer);
     bSuiv.addEventListener('click', suivant);
