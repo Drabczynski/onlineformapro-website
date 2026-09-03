@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Baromètre 2026 de l'IA dans les organismes de formation | Onlineformapro</title>
+<meta name="description" content="Où en sont réellement les organismes de formation avec l'IA ? Répondez au baromètre 2026 en cinq minutes, situez-vous sur l'indice de maturité et recevez un mois d'accès à nos outils IA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,400&display=swap">
+<style>:root{
+  --cream:#FFFFFF;--cream-2:#F7F7F7;--cream-3:#EFEFEF;
+  --char:#FFFFFF;--char-2:#FFFFFF;--char-3:#F7F7F7;
+  --ink:#0F0F0F;--ink-2:#6E6E6E;--ink-3:#9B9B9B;
+  --on-char:#0F0F0F;--on-char-2:#6E6E6E;--on-char-3:#9B9B9B;
+  --line:#E8E8E8;--line-char:#E8E8E8;
+  --red:#E01A4F;--red-deep:#B31240;--green:#2F8F5B;
+  --c-bur:#E8590C;--c-inf:#0E96BC;--c-cog:#6EA912;--c-san:#E01A4F;
+  --c-lan:#0E9384;--c-sav:#6D5BD0;--c-ori:#9457C4;--c-pre:#E0459E;
+  --c-ter:#D2691E;--c-cao:#B82B85;--c-pao:#2C6FE0;--c-dev:#1D4FB8;
+  --sans:"Inter",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:var(--sans);
+  --r:14px;--r-sm:10px;--max:1240px;--pad:clamp(20px,5vw,44px);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.62;letter-spacing:-.002em;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--red);outline-offset:4px;border-radius:6px}
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--pad)}
+
+h1,h2,h3,h4{margin:0;font-weight:500;letter-spacing:-.018em;text-wrap:balance}
+h1{font-size:clamp(1.95rem,3.2vw,2.95rem);line-height:1.14;letter-spacing:-.024em}
+h2{font-size:clamp(1.55rem,2.4vw,2.2rem);line-height:1.18;letter-spacing:-.02em}
+h3{font-size:clamp(1.08rem,1.45vw,1.25rem);line-height:1.32;letter-spacing:-.012em}
+h4{font-size:1rem;line-height:1.38;letter-spacing:-.006em}
+p{margin:0}
+
+.eyebrow{display:inline-flex;align-items:center;align-self:flex-start;
+  font-size:.82rem;font-weight:400;letter-spacing:0;color:var(--ink-3)}
+
+.btn{display:inline-flex;align-items:center;gap:7px;font-size:.88rem;font-weight:500;letter-spacing:-.006em;
+  padding:10px 17px;border-radius:100px;border:1px solid transparent;cursor:pointer;white-space:nowrap;
+  transition:transform .2s var(--ease),background .18s,color .18s,border-color .18s,box-shadow .2s}
+.btn .chev{transition:transform .2s var(--ease);opacity:.75}
+.btn:hover .chev{transform:translateX(3px)}
+.btn-primary{background:var(--ink);color:#fff}
+.btn-primary:hover{background:#000}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:#000}
+.btn-line{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-line:hover{border-color:var(--ink)}
+
+/* ══ révélations : courtes, déclenchées tôt, delay nettoyé après coup ══ */
+.rv{opacity:0;transform:translateY(14px);
+  transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv.done{transition-delay:0ms!important;will-change:auto}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1!important;transform:none!important;transition:none!important}
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+
+/* ══ nav ══ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:80;padding:0 var(--pad);transition:padding .4s var(--ease)}
+.nav.float{padding-top:0}
+.nav-in{max-width:var(--max);margin:0 auto;height:70px;display:flex;align-items:center;gap:clamp(12px,2.4vw,30px);
+  transition:max-width .4s var(--ease),background .3s,border-radius .4s var(--ease),padding .4s var(--ease),box-shadow .3s,height .3s var(--ease)}
+/* bandeau plein, filet en bas : la pilule flottante n'est plus de mise */
+.nav.float .nav-in{max-width:var(--max);height:62px;background:rgba(255,255,255,.88);
+  backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);
+  border-radius:0;padding:0;box-shadow:0 1px 0 var(--line)}
+.brand{display:flex;align-items:center;flex:none}
+.brand img{display:block;height:34px;width:auto}
+.brand b{font-size:1.32rem;font-weight:700;letter-spacing:-.045em}
+.brand b i{color:var(--red);font-style:normal}
+.brand span{font-size:.53rem;font-weight:500;letter-spacing:.36em;color:var(--ink-2);padding-left:1px}
+.nav-links{display:none;align-items:center;gap:clamp(14px,1.9vw,26px);margin-left:auto}
+@media (min-width:1000px){.nav-links{display:flex}}
+.nav-links a{font-size:.9rem;font-weight:500;color:var(--ink-2);white-space:nowrap;transition:color .16s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a[aria-current]{color:var(--ink);font-weight:600}
+.nav-cta{margin-left:auto}
+@media (min-width:1000px){.nav-cta{margin-left:14px}}
+.nav-cta .btn{padding:9px 16px;font-size:.85rem}
+
+section{padding:clamp(52px,6vw,92px) 0;position:relative}
+/* filet de separation entre rubriques : meme largeur que le contenu */
+section:not(.eq-hero)::before,.foot::before{content:"";position:absolute;top:0;left:50%;
+  transform:translateX(-50%);height:1px;background:var(--line);
+  width:min(100% - var(--pad) * 2, var(--max) - var(--pad) * 2)}
+section[id]{scroll-margin-top:92px}
+.head{display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:14px;margin-bottom:clamp(30px,3.6vw,46px)}
+.head h2{max-width:26ch}
+.hero-logo{height:clamp(42px,4.4vw,56px);width:auto;display:block;
+  margin-inline:auto;margin-bottom:clamp(12px,1.6vw,20px)}
+
+/* ══════════ PIED DE PAGE ══════════ */
+.foot{background:var(--cream);position:relative;
+  padding:clamp(40px,4.6vw,64px) 0 clamp(34px,4vw,54px)}
+.foot-in{display:grid;grid-template-columns:1fr;gap:clamp(28px,3.4vw,42px)}
+@media (min-width:900px){
+  .foot-in{grid-template-columns:minmax(170px,.85fr) 1px minmax(0,3.5fr);
+    gap:clamp(30px,3.8vw,56px);align-items:start}
+}
+.foot-rule{display:none}
+@media (min-width:900px){.foot-rule{display:block;align-self:stretch;width:1px;background:var(--line)}}
+.foot-id{display:flex;flex-direction:column;gap:15px;align-items:flex-start}
+.foot-id img{height:clamp(38px,4.2vw,50px);width:auto;display:block}
+.foot-id p{margin:0;font-size:.79rem;line-height:1.5;color:var(--ink-3)}
+.foot-cols{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(24px,2.8vw,34px) clamp(18px,2.2vw,30px)}
+@media (min-width:640px){.foot-cols{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:1040px){.foot-cols{grid-template-columns:repeat(5,1fr)}}
+.foot-col{display:flex;flex-direction:column;gap:clamp(24px,2.8vw,34px)}
+.foot-grp h4{font-size:.83rem;font-weight:500;letter-spacing:0;color:var(--ink);margin:0 0 12px}
+.foot-grp ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.foot-grp a{font-size:.83rem;line-height:1.4;color:var(--ink-2);transition:color .16s}
+.foot-grp a:hover{color:var(--ink)}
+
+/* ══════════ ENQUÊTE : EN-TÊTE ══════════ */
+.eq-hero{padding-top:clamp(104px,12vw,150px);padding-bottom:clamp(26px,3vw,42px);text-align:center}
+.eq-hero h1{max-width:20ch;margin:0 auto}
+.eq-promesse{margin:clamp(16px,2vw,22px) auto 0;max-width:52ch;font-size:clamp(1rem,1.35vw,1.12rem);
+  line-height:1.5;font-style:italic;color:var(--ink)}
+.eq-intro{margin:clamp(18px,2.2vw,26px) auto 0;max-width:58ch;font-size:.98rem;line-height:1.6;color:var(--ink-2)}
+.eq-pills{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-top:clamp(22px,2.6vw,30px)}
+.eq-pill{display:inline-flex;align-items:center;gap:7px;padding:7px 15px;border-radius:100px;
+  border:1px solid var(--line);font-size:.83rem;color:var(--ink-2)}
+.eq-pill svg{color:var(--ink-3);flex:none}
+
+/* ══════════ CE QUE VOUS RECEVEZ ══════════ */
+.eq-recoit{display:grid;grid-template-columns:1fr;gap:14px;margin-top:clamp(26px,3vw,36px)}
+@media (min-width:820px){.eq-recoit{grid-template-columns:1fr 1fr}}
+.eq-don{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+  border:1px solid var(--line);border-left:2px solid var(--ink);border-radius:8px;
+  padding:clamp(16px,1.9vw,22px)}
+.eq-num{width:23px;height:23px;border-radius:50%;background:var(--ink);color:#fff;
+  display:grid;place-items:center;font-size:.76rem;font-weight:600;flex:none}
+.eq-don b{display:block;font-size:.97rem;font-weight:500;color:var(--ink)}
+/* le descriptif seul : sans le > div, la regle emportait aussi la pastille */
+.eq-don > div > span{display:block;margin-top:5px;font-size:.89rem;line-height:1.5;color:var(--ink-2)}
+.eq-don em{font-style:normal;color:var(--ink-3)}
+
+/* ══════════ QUESTIONNAIRE ══════════ */
+.eq-form{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--cream)}
+.eq-barre{height:3px;background:var(--cream-3)}
+.eq-barre i{display:block;height:100%;width:0;background:var(--ink);transition:width .35s var(--ease)}
+.eq-corps{padding:clamp(22px,3vw,40px) clamp(20px,2.8vw,38px)}
+.eq-etape-nom{display:flex;align-items:baseline;gap:10px;margin-bottom:clamp(20px,2.4vw,28px)}
+.eq-etape-nom b{font-size:1.05rem;font-weight:500;letter-spacing:-.012em}
+.eq-etape-nom span{font-size:.78rem;color:var(--ink-3);margin-left:auto;white-space:nowrap}
+
+.eq-q{padding:clamp(18px,2.2vw,26px) 0;border-top:1px solid var(--line)}
+.eq-q:first-child{border-top:0;padding-top:0}
+.eq-q > legend,.eq-lab{font-size:.99rem;font-weight:500;line-height:1.45;color:var(--ink);
+  letter-spacing:-.008em;padding:0}
+.eq-aide{margin-top:5px;font-size:.85rem;color:var(--ink-3)}
+.eq-q fieldset{border:0;margin:0;padding:0}
+
+.eq-opts{display:flex;flex-direction:column;gap:7px;margin-top:14px}
+.eq-opt{display:flex;align-items:flex-start;gap:11px;padding:11px 14px;border:1px solid var(--line);
+  border-radius:8px;font-size:.93rem;line-height:1.4;color:var(--ink-2);cursor:pointer;
+  transition:border-color .16s,background .16s,color .16s}
+.eq-opt:hover{background:var(--cream-2)}
+.eq-opt input{margin:2px 0 0;accent-color:var(--ink);width:15px;height:15px;flex:none}
+.eq-opt:has(input:checked){border-color:var(--ink);background:var(--cream-2);color:var(--ink)}
+
+/* matrice : une ligne par item, les colonnes en boutons radio */
+.eq-mat{margin-top:14px;display:flex;flex-direction:column;gap:6px}
+.eq-mat-tete{display:none}
+@media (min-width:720px){
+  .eq-mat-tete{display:grid;grid-template-columns:1fr repeat(3,72px);gap:8px;
+    font-size:.76rem;color:var(--ink-3);padding:0 12px 4px;text-align:center}
+  .eq-mat-tete span:first-child{text-align:left}
+  .eq-ligne{display:grid;grid-template-columns:1fr repeat(3,72px);gap:8px;align-items:center}
+  .eq-ligne .eq-mat-opts{display:contents}
+}
+.eq-ligne{border:1px solid var(--line);border-radius:8px;padding:11px 12px;font-size:.92rem;color:var(--ink-2)}
+.eq-mat-opts{display:flex;gap:7px;margin-top:9px;flex-wrap:wrap}
+.eq-case{display:inline-flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;
+  border:1px solid var(--line);border-radius:6px;padding:6px 10px;font-size:.82rem;min-height:32px}
+@media (min-width:720px){.eq-case{padding:6px 4px}.eq-case span{display:none}}
+.eq-case input{accent-color:var(--ink);width:14px;height:14px;margin:0}
+.eq-case:has(input:checked){border-color:var(--ink);background:var(--cream-2);color:var(--ink)}
+
+.eq-txt{margin-top:14px;width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:8px;
+  font-family:inherit;font-size:.93rem;color:var(--ink);background:var(--cream);resize:vertical;min-height:88px}
+.eq-txt::placeholder{color:var(--ink-3)}
+
+.eq-pied{display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:clamp(16px,2vw,22px) clamp(20px,2.8vw,38px);border-top:1px solid var(--line);background:var(--cream-2)}
+.eq-pied .btn-line{margin-right:auto}
+.eq-oblig{font-size:.82rem;color:var(--red)}
+
+/* ══════════ RÉSULTAT ══════════ */
+.eq-res{text-align:center;padding:clamp(30px,4vw,52px) clamp(20px,2.8vw,38px)}
+.eq-jauge{width:min(100%,320px);margin:clamp(20px,2.4vw,28px) auto 0;height:6px;
+  border-radius:100px;background:var(--cream-3);overflow:hidden}
+.eq-jauge i{display:block;height:100%;width:0;background:var(--ink);transition:width .9s var(--ease)}
+.eq-score{margin-top:clamp(18px,2vw,24px);font-size:clamp(2.4rem,5vw,3.4rem);line-height:1;
+  font-weight:500;letter-spacing:-.03em}
+.eq-score small{font-size:.34em;color:var(--ink-3);letter-spacing:0;font-weight:400}
+.eq-niv{margin-top:9px;font-size:1.12rem;font-weight:500;letter-spacing:-.014em}
+.eq-niv-txt{margin:12px auto 0;max-width:50ch;font-size:.94rem;line-height:1.55;color:var(--ink-2)}
+.eq-echelle{display:flex;gap:4px;width:min(100%,420px);margin:clamp(22px,2.6vw,30px) auto 0}
+.eq-ech{flex:1;text-align:center;font-size:.7rem;color:var(--ink-3);padding-top:7px;
+  border-top:2px solid var(--line)}
+.eq-ech.on{color:var(--ink);border-top-color:var(--ink)}
+
+/* ══════════ COORDONNÉES ══════════ */
+.eq-champs{display:grid;grid-template-columns:1fr;gap:12px;margin-top:16px}
+@media (min-width:640px){.eq-champs{grid-template-columns:1fr 1fr}}
+.eq-champ label{display:block;font-size:.82rem;color:var(--ink-2);margin-bottom:6px}
+.eq-champ input{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:8px;
+  font-family:inherit;font-size:.93rem;color:var(--ink);background:var(--cream)}
+.eq-champ input::placeholder{color:var(--ink-3)}
+.eq-legal{margin-top:14px;font-size:.79rem;line-height:1.5;color:var(--ink-3)}
+.eq-legal a{text-decoration:underline;text-underline-offset:2px}
+.eq-merci{text-align:center;padding:clamp(34px,4.4vw,60px) clamp(20px,2.8vw,38px)}
+.eq-merci h2{max-width:22ch;margin:0 auto}
+.eq-merci p{margin:14px auto 0;max-width:50ch;font-size:.96rem;line-height:1.6;color:var(--ink-2)}
+</style>
+</head>
+<body>
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="/" aria-label="Onlineformapro, accueil"><img src="../catalogue/img/logo.svg" alt="Onlineformapro" width="87" height="36"></a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="../catalogue/">Catalogue e-learning</a><a href="#enquete" aria-current="page">L'enquête</a>
+    </nav>
+    <div class="nav-cta"><a class="btn btn-dark" href="#enquete">Répondre à l'enquête<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  </div>
+</header>
+
+<section class="eq-hero" id="haut">
+  <div class="wrap">
+    <img class="hero-logo rv" src="../catalogue/img/logo.svg" alt="Onlineformapro" width="139" height="57">
+    <h1 class="rv">Où en sont réellement les organismes de formation avec l'IA&nbsp;?</h1>
+    <p class="eq-promesse rv">Participez au baromètre 2026 et recevez un mois d'accès à tous nos outils IA, ainsi que les résultats en avant-première.</p>
+    <p class="eq-intro rv">Nous menons l'enquête auprès des organismes de formation, des CFA et des services formation. <strong>L'objectif&nbsp;:</strong> vous permettre de situer vos pratiques par rapport à celles de la profession, plutôt que par rapport aux discours ambiants.</p>
+    <div class="eq-pills rv"><span class="eq-pill"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.4" stroke="currentColor" stroke-width="1.3"/><path d="M8 4.6V8l2.4 1.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>5 minutes</span><span class="eq-pill"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="3.2" y="7" width="9.6" height="6.4" rx="1.6" stroke="currentColor" stroke-width="1.3"/><path d="M5.6 7V5.2a2.4 2.4 0 0 1 4.8 0V7" stroke="currentColor" stroke-width="1.3"/></svg>Réponses anonymes</span><span class="eq-pill"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.6 8h10.8M9.4 4.2 13.2 8l-3.8 3.8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Résultats en avant-première</span></div>
+  </div>
+</section>
+
+<section id="enquete">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow">Le baromètre</span>
+      <h2>Répondez au questionnaire, et recevez&nbsp;:</h2>
+    </div>
+    <div class="eq-recoit rv">
+      <div class="eq-don"><span class="eq-num">1</span><div>
+        <b>Un mois d'accès à tous nos outils IA</b>
+        <span>Nos outils de création de contenu, d'évaluation et de correction assistée, ouverts pendant trente jours, sans engagement.</span></div></div>
+      <div class="eq-don"><span class="eq-num">2</span><div>
+        <b>Les résultats complets, en avant-première</b>
+        <span>Le baromètre 2026 vous est envoyé avant sa publication. <em>Vos réponses restent anonymes dans les résultats.</em></span></div></div>
+    </div>
+
+    <form class="eq-form rv" id="eq" novalidate>
+      <div class="eq-barre" role="progressbar" aria-label="Progression du questionnaire" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div>
+      <div class="eq-corps">
+<section class="eq-etape" data-etape="0">
+  <div class="eq-etape-nom"><b>Votre organisme</b><span>Étape 1 sur 8</span></div>
+  <div class="eq-q" data-q="fonction"><fieldset><legend>Quelle est votre fonction&nbsp;?</legend><div class="eq-opts"><label class="eq-opt"><input type="radio" name="fonction" value="0"><span>Dirigeant·e ou gérant·e</span></label><label class="eq-opt"><input type="radio" name="fonction" value="1"><span>Responsable pédagogique</span></label><label class="eq-opt"><input type="radio" name="fonction" value="2"><span>Formateur·rice</span></label><label class="eq-opt"><input type="radio" name="fonction" value="3"><span>Responsable administratif ou qualité</span></label><label class="eq-opt"><input type="radio" name="fonction" value="4"><span>Autre</span></label></div></fieldset></div><div class="eq-q" data-q="taille"><fieldset><legend>Combien de personnes travaillent dans votre organisme&nbsp;?</legend><p class="eq-aide">Salariés et formateurs vacataires compris.</p><div class="eq-opts"><label class="eq-opt"><input type="radio" name="taille" value="0"><span>1 à 5</span></label><label class="eq-opt"><input type="radio" name="taille" value="1"><span>6 à 20</span></label><label class="eq-opt"><input type="radio" name="taille" value="2"><span>21 à 50</span></label><label class="eq-opt"><input type="radio" name="taille" value="3"><span>51 à 200</span></label><label class="eq-opt"><input type="radio" name="taille" value="4"><span>Plus de 200</span></label></div></fieldset></div><div class="eq-q" data-q="apprenants"><fieldset><legend>Combien d'apprenants formez-vous chaque année&nbsp;?</legend><div class="eq-opts"><label class="eq-opt"><input type="radio" name="apprenants" value="0"><span>Moins de 100</span></label><label class="eq-opt"><input type="radio" name="apprenants" value="1"><span>100 à 500</span></label><label class="eq-opt"><input type="radio" name="apprenants" value="2"><span>500 à 2 000</span></label><label class="eq-opt"><input type="radio" name="apprenants" value="3"><span>2 000 à 10 000</span></label><label class="eq-opt"><input type="radio" name="apprenants" value="4"><span>Plus de 10 000</span></label></div></fieldset></div>
+</section>
+
+<section class="eq-etape" data-etape="1" hidden>
+  <div class="eq-etape-nom"><b>Où vous en êtes</b><span>Étape 2 sur 8</span></div>
+  <div class="eq-q" data-q="usage"><fieldset><legend>Utilisez-vous des outils d'IA dans votre organisme&nbsp;?</legend><div class="eq-opts"><label class="eq-opt"><input type="radio" name="usage" value="0"><span>Oui, régulièrement</span></label><label class="eq-opt"><input type="radio" name="usage" value="1"><span>Oui, ponctuellement</span></label><label class="eq-opt"><input type="radio" name="usage" value="2"><span>Nous expérimentons</span></label><label class="eq-opt"><input type="radio" name="usage" value="3"><span>Pas encore</span></label><label class="eq-opt"><input type="radio" name="usage" value="4"><span>Non, et ce n'est pas prévu</span></label></div></fieldset></div><div class="eq-q" data-q="depuis"><fieldset><legend>Depuis combien de temps&nbsp;?</legend><div class="eq-opts"><label class="eq-opt"><input type="radio" name="depuis" value="0"><span>Moins de 6 mois</span></label><label class="eq-opt"><input type="radio" name="depuis" value="1"><span>6 mois à 1 an</span></label><label class="eq-opt"><input type="radio" name="depuis" value="2"><span>Plus d'un an</span></label></div></fieldset></div><div class="eq-q" data-q="outils"><fieldset><legend>Quels outils utilisez-vous&nbsp;?</legend><p class="eq-aide">Plusieurs réponses possibles.</p><div class="eq-opts"><label class="eq-opt"><input type="checkbox" name="outils" value="0"><span>ChatGPT</span></label><label class="eq-opt"><input type="checkbox" name="outils" value="1"><span>Claude</span></label><label class="eq-opt"><input type="checkbox" name="outils" value="2"><span>Gemini</span></label><label class="eq-opt"><input type="checkbox" name="outils" value="3"><span>Microsoft Copilot</span></label><label class="eq-opt"><input type="checkbox" name="outils" value="4"><span>Mistral</span></label><label class="eq-opt"><input type="checkbox" name="outils" value="5"><span>Une IA intégrée à notre LMS</span></label><label class="eq-opt"><input type="checkbox" name="outils" value="6"><span>Un outil spécialisé formation</span></label><label class="eq-opt"><input type="checkbox" name="outils" value="7"><span>Autre</span></label></div></fieldset></div><div class="eq-q" data-q="qui"><fieldset><legend>Comment l'IA est-elle utilisée chez vous&nbsp;?</legend><div class="eq-opts"><label class="eq-opt"><input type="radio" name="qui" value="0"><span>Usage individuel, non organisé</span></label><label class="eq-opt"><input type="radio" name="qui" value="1"><span>Quelques collaborateurs l'utilisent</span></label><label class="eq-opt"><input type="radio" name="qui" value="2"><span>Des expérimentations organisées</span></label><label class="eq-opt"><input type="radio" name="qui" value="3"><span>Un processus métier intègre l'IA</span></label><label class="eq-opt"><input type="radio" name="qui" value="4"><span>L'IA est intégrée à nos outils et à notre LMS</span></label></div></fieldset></div>
+</section>
+
+<section class="eq-etape" data-etape="2" hidden>
+  <div class="eq-etape-nom"><b>Ingénierie pédagogique</b><span>Étape 3 sur 8</span></div>
+  <div class="eq-q" data-q="inge"><fieldset><legend>Utilisez-vous l'IA pour&nbsp;:</legend><div class="eq-mat"><div class="eq-mat-tete"><span></span><span>Jamais</span><span>Parfois</span><span>Souvent</span></div><div class="eq-ligne"><span>Créer un programme de formation</span><div class="eq-mat-opts"><label class="eq-case" title="Jamais"><input type="radio" name="inge_0" value="0"><span>Jamais</span></label><label class="eq-case" title="Parfois"><input type="radio" name="inge_0" value="1"><span>Parfois</span></label><label class="eq-case" title="Souvent"><input type="radio" name="inge_0" value="2"><span>Souvent</span></label></div></div><div class="eq-ligne"><span>Transformer un référentiel en parcours</span><div class="eq-mat-opts"><label class="eq-case" title="Jamais"><input type="radio" name="inge_1" value="0"><span>Jamais</span></label><label class="eq-case" title="Parfois"><input type="radio" name="inge_1" value="1"><span>Parfois</span></label><label class="eq-case" title="Souvent"><input type="radio" name="inge_1" value="2"><span>Souvent</span></label></div></div><div class="eq-ligne"><span>Rédiger des objectifs pédagogiques</span><div class="eq-mat-opts"><label class="eq-case" title="Jamais"><input type="radio" name="inge_2" value="0"><span>Jamais</span></label><label class="eq-case" title="Parfois"><input type="radio" name="inge_2" value="1"><span>Parfois</span></label><label class="eq-case" title="Souvent"><input type="radio" name="inge_2" value="2"><span>Souvent</span></label></div></div><div class="eq-ligne"><span>Produire des supports de cours</span><div class="eq-mat-opts"><label class="eq-case" title="Jamais"><input type="radio" name="inge_3" value="0"><span>Jamais</span></label><label class="eq-case" title="Parfois"><input type="radio" name="inge_3" value="1"><span>Parfois</span></label><label class="eq-case" title="Souvent"><input type="radio" name="inge_3" value="2"><span>Souvent</span></label></div></div><div class="eq-ligne"><span>Créer des exercices et des cas pratiques</span><div class="eq-mat-opts"><label class="eq-case" title="Jamais"><input type="radio" name="inge_4" value="0"><span>Jamais</span></label><label class="eq-case" title="Parfois"><input type="radio" name="inge_4" value="1"><span>Parfois</span></label><label class="eq-case" title="Souvent"><input type="radio" name="inge_4" value="2"><span>Souvent</span></label></div></div><div class="eq-ligne"><span>Adapter un contenu à un niveau ou à un public FLE</span><div class="eq-mat-opts"><label class="eq-case" title="Jamais"><input type="radio" name="inge_5" value="0"><span>Jamais</span></label><label class="eq-case" title="Parfois"><input type="radio" name="inge_5" value="1"><span>Parfois</span></label><label class="eq-case" title="Souvent"><input type="radio" name="inge_5" value="2"><span>Souvent</span></label></div></div><div class="eq-ligne"><span>Transformer un document existant en module e-learning</span><div class="eq-mat-opts"><label class="eq-case" title="Jamais"><input type="radio" name="inge_6" value="0"><span>Jamais</span></label><label class="eq-case" title="Parfois"><input type="radio" name="inge_6" value="1"><span>Parfois</span></label><label class="eq-case" title="Souvent"><input type="radio" name="inge_6" value="2"><span>Souvent</span></label></div></div></div></fieldset></div><div class="eq-q" data-q="gain"><fieldset><legend>Quel gain de temps estimez-vous sur la création de contenu&nbsp;?</legend><div class="eq-opts"><label class="eq-opt"><input type="radio" name="gain" value="0"><span>Pas de gain notable</span></label><label class="eq-opt"><input type="radio" name="gain" value="1"><span>Moins de 20 %</span></label><label class="eq-opt"><input type="radio" name="gain" value="2"><span>20 à 50 %</span></label><label class="eq-opt"><input type="radio" name="gain" value="3"><span>Plus de 50 %</span></label></div></fieldset></div>
+</section>
+
+<section class="eq-etape" data-etape="3" hidden>
+  <div class="eq-etape-nom"><b>Évaluations</b><span>Étape 4 sur 8</span></div>
+  <div class="eq-q" data-q="eval"><fieldset><legend>Utilisez-vous l'IA pour créer des évaluations&nbsp;?</legend><p class="eq-aide">Plusieurs réponses possibles.</p><div class="eq-opts"><label class="eq-opt"><input type="checkbox" name="eval" value="0"><span>Des QCM</span></label><label class="eq-opt"><input type="checkbox" name="eval" value="1"><span>Des questions ouvertes</span></label><label class="eq-opt"><input type="checkbox" name="eval" value="2"><span>Des études de cas ou mises en situation</span></label><label class="eq-opt"><input type="checkbox" name="eval" value="3"><span>Des grilles d'évaluation et des critères de réussite</span></label><label class="eq-opt"><input type="checkbox" name="eval" value="4"><span>Des évaluations différentes pour chaque apprenant</span></label></div></fieldset></div><div class="eq-q" data-q="corr"><fieldset><legend>Et pour la correction&nbsp;?</legend><div class="eq-opts"><label class="eq-opt"><input type="radio" name="corr" value="0"><span>Non, jamais</span></label><label class="eq-opt"><input type="radio" name="corr" value="1"><span>Correction automatique de QCM</span></label><label class="eq-opt"><input type="radio" name="corr" value="2"><span>Analyse de réponses rédigées</span></label><label class="eq-opt"><input type="radio" name="corr" value="3"><span>Aide au formateur qui corrige</span></label><label class="eq-opt"><input type="radio" name="corr" value="4"><span>Feedback automatique à l'apprenant</span></label></div></fieldset></div><div class="eq-q" data-q="valide"><fieldset><legend>Laisseriez-vous une IA valider seule une compétence&nbsp;?</legend><div class="eq-opts"><label class="eq-opt"><input type="radio" name="valide" value="0"><span>Oui</span></label><label class="eq-opt"><input type="radio" name="valide" value="1"><span>Oui, pour certaines compétences</span></label><label class="eq-opt"><input type="radio" name="valide" value="2"><span>Oui, avec validation finale d'un formateur</span></label><label class="eq-opt"><input type="radio" name="valide" value="3"><span>Non</span></label></div></fieldset></div>
+</section>
+
+<section class="eq-etape" data-etape="4" hidden>
+  <div class="eq-etape-nom"><b>Appels d'offres et gestion</b><span>Étape 5 sur 8</span></div>
+  <div class="eq-q" data-q="ao"><fieldset><legend>Utilisez-vous l'IA pour répondre aux appels d'offres&nbsp;?</legend><div class="eq-opts"><label class="eq-opt"><input type="radio" name="ao" value="0"><span>Jamais</span></label><label class="eq-opt"><input type="radio" name="ao" value="1"><span>Pour analyser le dossier</span></label><label class="eq-opt"><input type="radio" name="ao" value="2"><span>Pour préparer la réponse</span></label><label class="eq-opt"><input type="radio" name="ao" value="3"><span>Pour rédiger certaines parties</span></label><label class="eq-opt"><input type="radio" name="ao" value="4"><span>Pour produire une grande partie du dossier</span></label></div></fieldset></div><div class="eq-q" data-q="gestion"><fieldset><legend>Pour quelles autres tâches&nbsp;?</legend><p class="eq-aide">Plusieurs réponses possibles.</p><div class="eq-opts"><label class="eq-opt"><input type="checkbox" name="gestion" value="0"><span>Préparer Qualiopi ou un audit</span></label><label class="eq-opt"><input type="checkbox" name="gestion" value="1"><span>Rédiger des propositions commerciales</span></label><label class="eq-opt"><input type="checkbox" name="gestion" value="2"><span>Écrire des emails ou prospecter</span></label><label class="eq-opt"><input type="checkbox" name="gestion" value="3"><span>Produire du marketing et des publications</span></label><label class="eq-opt"><input type="checkbox" name="gestion" value="4"><span>Analyser des CV, recruter des formateurs</span></label><label class="eq-opt"><input type="checkbox" name="gestion" value="5"><span>Rédiger des comptes rendus et des synthèses</span></label><label class="eq-opt"><input type="checkbox" name="gestion" value="6"><span>Analyser des données de formation</span></label></div></fieldset></div>
+</section>
+
+<section class="eq-etape" data-etape="5" hidden>
+  <div class="eq-etape-nom"><b>Cadre et freins</b><span>Étape 6 sur 8</span></div>
+  <div class="eq-q" data-q="freins"><fieldset><legend>Quels sont vos principaux freins&nbsp;?</legend><p class="eq-aide">Trois réponses au maximum.</p><div class="eq-opts"><label class="eq-opt"><input type="checkbox" name="freins" value="0"><span>Manque de compétences</span></label><label class="eq-opt"><input type="checkbox" name="freins" value="1"><span>Manque de temps</span></label><label class="eq-opt"><input type="checkbox" name="freins" value="2"><span>Budget</span></label><label class="eq-opt"><input type="checkbox" name="freins" value="3"><span>Difficulté à choisir les outils</span></label><label class="eq-opt"><input type="checkbox" name="freins" value="4"><span>RGPD et confidentialité des données</span></label><label class="eq-opt"><input type="checkbox" name="freins" value="5"><span>Fiabilité des réponses</span></label><label class="eq-opt"><input type="checkbox" name="freins" value="6"><span>Absence de règles internes</span></label><label class="eq-opt"><input type="checkbox" name="freins" value="7"><span>Résistance des équipes</span></label><label class="eq-opt"><input type="checkbox" name="freins" value="8"><span>Manque d'intégration avec le LMS</span></label></div></fieldset></div><div class="eq-q" data-q="charte"><fieldset><legend>Disposez-vous d'une charte d'utilisation de l'IA&nbsp;?</legend><div class="eq-opts"><label class="eq-opt"><input type="radio" name="charte" value="0"><span>Oui</span></label><label class="eq-opt"><input type="radio" name="charte" value="1"><span>En préparation</span></label><label class="eq-opt"><input type="radio" name="charte" value="2"><span>Non</span></label></div></fieldset></div><div class="eq-q" data-q="formes"><fieldset><legend>Vos équipes ont-elles été formées à l'IA&nbsp;?</legend><div class="eq-opts"><label class="eq-opt"><input type="radio" name="formes" value="0"><span>Toutes</span></label><label class="eq-opt"><input type="radio" name="formes" value="1"><span>Une partie</span></label><label class="eq-opt"><input type="radio" name="formes" value="2"><span>Quelques personnes</span></label><label class="eq-opt"><input type="radio" name="formes" value="3"><span>Personne</span></label></div></fieldset></div>
+</section>
+
+<section class="eq-etape" data-etape="6" hidden>
+  <div class="eq-etape-nom"><b>Demain</b><span>Étape 7 sur 8</span></div>
+  <div class="eq-q" data-q="metier"><fieldset><legend>D'ici deux ans, l'IA va-t-elle modifier le métier de formateur&nbsp;?</legend><div class="eq-opts"><label class="eq-opt"><input type="radio" name="metier" value="0"><span>Oui, fortement</span></label><label class="eq-opt"><input type="radio" name="metier" value="1"><span>Oui, partiellement</span></label><label class="eq-opt"><input type="radio" name="metier" value="2"><span>Peu</span></label><label class="eq-opt"><input type="radio" name="metier" value="3"><span>Pas du tout</span></label></div></fieldset></div><div class="eq-q" data-q="part"><fieldset><legend>Quelle part du travail d'un organisme pourrait être assistée par l'IA d'ici trois ans&nbsp;?</legend><div class="eq-opts"><label class="eq-opt"><input type="radio" name="part" value="0"><span>Moins de 10 %</span></label><label class="eq-opt"><input type="radio" name="part" value="1"><span>10 à 25 %</span></label><label class="eq-opt"><input type="radio" name="part" value="2"><span>25 à 50 %</span></label><label class="eq-opt"><input type="radio" name="part" value="3"><span>50 à 75 %</span></label><label class="eq-opt"><input type="radio" name="part" value="4"><span>Plus de 75 %</span></label></div></fieldset></div><div class="eq-q" data-q="priorite"><label class="eq-lab" for="priorite">Quelle tâche souhaiteriez-vous automatiser en priorité&nbsp;?</label><p class="eq-aide">Une phrase suffit. Champ facultatif.</p><textarea class="eq-txt" id="priorite" name="priorite" placeholder="Par exemple : la correction des évaluations, les comptes rendus de session…"></textarea></div>
+</section>
+
+<section class="eq-etape" data-etape="7" hidden>
+  <div class="eq-etape-nom"><b>Recevoir vos résultats</b><span>Étape 8 sur 8</span></div>
+  <div class="eq-q">
+    <p class="eq-lab">Où vous envoyons-nous vos accès et le baromètre&nbsp;?</p>
+    <p class="eq-aide">Votre adresse ne sert qu'à cela. Vos réponses au questionnaire restent anonymes dans les résultats publiés.</p>
+    <div class="eq-champs">
+      <div class="eq-champ"><label for="eq-orga">Votre organisme</label>
+        <input id="eq-orga" name="organisme" type="text" autocomplete="organization" placeholder="Nom de votre structure"></div>
+      <div class="eq-champ"><label for="eq-mail">E-mail professionnel <span aria-hidden="true" style="color:var(--red)">*</span></label>
+        <input id="eq-mail" name="email" type="email" autocomplete="email" required placeholder="prenom@organisme.fr"></div>
+    </div>
+    <p class="eq-legal">Vos données servent uniquement à vous transmettre vos accès et les résultats. Elles sont hébergées en France et ne sont pas cédées. Vous pouvez y accéder, les corriger ou les supprimer à tout moment&nbsp;: voir notre <a href="#">politique de confidentialité</a>.</p>
+  </div>
+</section>
+
+        <div class="eq-res" id="eq-res" hidden>
+          <span class="eyebrow" style="align-self:center">Votre indice de maturité IA</span>
+          <p class="eq-score"><b id="eq-pts">0</b><small> / 100</small></p>
+          <div class="eq-jauge"><i id="eq-jauge"></i></div>
+          <p class="eq-niv" id="eq-niv"></p>
+          <p class="eq-niv-txt" id="eq-niv-txt"></p>
+          <div class="eq-echelle" id="eq-echelle"></div>
+        </div>
+
+        <div class="eq-merci" id="eq-merci" hidden>
+          <h2>Merci, c'est enregistré.</h2>
+          <p>Vous recevez vos accès et le baromètre à l'adresse indiquée. En attendant, le catalogue de contenu e-learning est <a href="../catalogue/" style="text-decoration:underline;text-underline-offset:2px">par ici</a>.</p>
+        </div>
+      </div>
+      <div class="eq-pied" id="eq-pied">
+        <button class="btn btn-line" type="button" id="eq-prec" hidden>Retour</button>
+        <span class="eq-oblig" id="eq-err" hidden>Merci de répondre avant de continuer.</span>
+        <button class="btn btn-primary" type="button" id="eq-suiv">Commencer<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div class="foot-id rv">
+      <img src="../catalogue/img/logo.svg" alt="Onlineformapro" width="139" height="57">
+      <p>&copy; 2026 Onlineformapro<br>Tous droits réservés</p>
+    </div>
+    <div class="foot-rule" aria-hidden="true"></div>
+    <nav class="foot-cols rv" aria-label="Pied de page">
+      <div class="foot-col">
+        <div class="foot-grp">
+          <h4>Produit</h4>
+          <ul><li><a href="../catalogue/">Catalogue e-learning</a></li><li><a href="#">Plateforme LMS</a></li><li><a href="#">Outil auteur</a></li><li><a href="#">Intelligence artificielle</a></li></ul>
+        </div>
+        <div class="foot-grp">
+          <h4>Formats</h4>
+          <ul><li><a href="#">SCORM 1.2</a></li><li><a href="#">SCORM 2004</a></li><li><a href="#">AICC</a></li><li><a href="#">xAPI</a></li></ul>
+        </div>
+      </div>
+      <div class="foot-col">
+        <div class="foot-grp">
+          <h4>Solutions</h4>
+          <ul><li><a href="#">Organismes de formation</a></li><li><a href="#">CFA</a></li><li><a href="#">Entreprises</a></li><li><a href="#">Secteur public</a></li></ul>
+        </div>
+      </div>
+      <div class="foot-col">
+        <div class="foot-grp">
+          <h4>Ressources</h4>
+          <ul><li><a href="#">Blog</a></li><li><a href="#">Espace client</a></li></ul>
+        </div>
+      </div>
+      <div class="foot-col">
+        <div class="foot-grp">
+          <h4>Société</h4>
+          <ul><li><a href="#">Qui sommes-nous</a></li><li><a href="#">Nous contacter</a></li><li><a href="#">Recrutement</a></li></ul>
+        </div>
+        <div class="foot-grp">
+          <h4>Conformité</h4>
+          <ul><li><a href="#">Certification Qualiopi</a></li><li><a href="#">RGPD</a></li><li><a href="#">Accessibilité</a></li><li><a href="#">Hébergement en France</a></li></ul>
+        </div>
+      </div>
+      <div class="foot-col">
+        <div class="foot-grp">
+          <h4>Légal</h4>
+          <ul><li><a href="#">Mentions légales</a></li><li><a href="#">Confidentialité</a></li><li><a href="#">Cookies</a></li><li><a href="#">Plan du site</a></li></ul>
+        </div>
+        <div class="foot-grp">
+          <h4>Réseaux</h4>
+          <ul><li><a href="#">LinkedIn</a></li><li><a href="#">YouTube</a></li><li><a href="#">X</a></li></ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── nav : barre pleine largeur → pilule flottante ── */
+  var nav = document.getElementById('nav');
+  var onScroll = function(){ nav.classList.toggle('float', window.scrollY > 40); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ── révélations ──
+     Le décalage est retiré dès l'animation finie : laissé en place, il
+     s'appliquerait ensuite à toutes les transitions de l'élément (survol
+     compris), qui paraîtraient bloquées pendant la durée du décalage. */
+  var items = [].slice.call(document.querySelectorAll('.rv'));
+
+  if (reduce || !('IntersectionObserver' in window)) {
+    items.forEach(function(el){ el.classList.add('in','done'); });
+  } else {
+    var counts = new Map();
+    items.forEach(function(el){
+      var p = el.parentElement;
+      var i = counts.get(p) || 0;
+      counts.set(p, i + 1);
+      el.style.transitionDelay = Math.min(i * 45, 180) + 'ms';
+    });
+
+    var settle = function(el){
+      el.classList.add('done');
+      el.style.willChange = 'auto';
+    };
+    var reveal = function(el){
+      el.style.willChange = 'opacity, transform';
+      el.classList.add('in');
+      var done = function(ev){
+        if (ev && ev.target !== el) return;
+        el.removeEventListener('transitionend', done);
+        settle(el);
+      };
+      el.addEventListener('transitionend', done);
+      setTimeout(function(){ done(); }, 1200);   // filet si transitionend ne part pas
+    };
+
+    /* Balayage au défilement plutôt qu'un IntersectionObserver : en défilement
+       rapide, l'observateur peut ne jamais signaler un élément traversé entre
+       deux images, qui reste alors invisible pour de bon. Le balayage compare
+       les positions à chaque image utile : il ne laisse rien derrière lui, et
+       rattrape aussi ce qui est déjà passé au-dessus de l'écran. */
+    var pending = items.slice();
+    var sweep = function(){
+      if (!pending.length) return;
+      var vh = window.innerHeight, still = [];
+      for (var i = 0; i < pending.length; i++) {
+        var el = pending[i];
+        if (el.getBoundingClientRect().top < vh * 1.12) reveal(el);
+        else still.push(el);
+      }
+      pending = still;
+    };
+    var queued = false;
+    var onMove = function(){
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(function(){ queued = false; sweep(); });
+    };
+    sweep();                                   // premier écran : sans attendre
+    window.addEventListener('scroll', onMove, { passive: true });
+    window.addEventListener('resize', onMove, { passive: true });
+  }
+
+  /* ── questionnaire du barometre ── */
+  var eq = document.getElementById('eq');
+  if (eq) {
+    var BAREME = [{"id": "fonction", "type": "radio", "opts": ["Dirigeant·e ou gérant·e", "Responsable pédagogique", "Formateur·rice", "Responsable administratif ou qualité", "Autre"]}, {"id": "taille", "type": "radio", "opts": ["1 à 5", "6 à 20", "21 à 50", "51 à 200", "Plus de 200"]}, {"id": "apprenants", "type": "radio", "opts": ["Moins de 100", "100 à 500", "500 à 2 000", "2 000 à 10 000", "Plus de 10 000"]}, {"id": "usage", "type": "radio", "p": [4, 3, 2, 1, 0], "max": 4, "poids": 2, "opts": ["Oui, régulièrement", "Oui, ponctuellement", "Nous expérimentons", "Pas encore", "Non, et ce n'est pas prévu"]}, {"id": "depuis", "type": "radio", "si": {"q": "usage", "pas": ["Pas encore", "Non, et ce n'est pas prévu"]}, "opts": ["Moins de 6 mois", "6 mois à 1 an", "Plus d'un an"]}, {"id": "outils", "type": "check", "si": {"q": "usage", "pas": ["Pas encore", "Non, et ce n'est pas prévu"]}, "opts": ["ChatGPT", "Claude", "Gemini", "Microsoft Copilot", "Mistral", "Une IA intégrée à notre LMS", "Un outil spécialisé formation", "Autre"]}, {"id": "qui", "type": "radio", "p": [1, 2, 3, 4, 5], "max": 5, "si": {"q": "usage", "pas": ["Pas encore", "Non, et ce n'est pas prévu"]}, "opts": ["Usage individuel, non organisé", "Quelques collaborateurs l'utilisent", "Des expérimentations organisées", "Un processus métier intègre l'IA", "L'IA est intégrée à nos outils et à notre LMS"]}, {"id": "inge", "type": "matrice", "pcols": [0, 1, 2], "n": 7}, {"id": "gain", "type": "radio", "p": [0, 1, 2, 3], "max": 3, "opts": ["Pas de gain notable", "Moins de 20 %", "20 à 50 %", "Plus de 50 %"]}, {"id": "eval", "type": "check", "pchaque": 1, "max": 5, "opts": ["Des QCM", "Des questions ouvertes", "Des études de cas ou mises en situation", "Des grilles d'évaluation et des critères de réussite", "Des évaluations différentes pour chaque apprenant"]}, {"id": "corr", "type": "radio", "p": [0, 1, 2, 3, 4], "max": 4, "opts": ["Non, jamais", "Correction automatique de QCM", "Analyse de réponses rédigées", "Aide au formateur qui corrige", "Feedback automatique à l'apprenant"]}, {"id": "valide", "type": "radio", "opts": ["Oui", "Oui, pour certaines compétences", "Oui, avec validation finale d'un formateur", "Non"]}, {"id": "ao", "type": "radio", "p": [0, 1, 2, 3, 4], "max": 4, "opts": ["Jamais", "Pour analyser le dossier", "Pour préparer la réponse", "Pour rédiger certaines parties", "Pour produire une grande partie du dossier"]}, {"id": "gestion", "type": "check", "pchaque": 1, "max": 7, "opts": ["Préparer Qualiopi ou un audit", "Rédiger des propositions commerciales", "Écrire des emails ou prospecter", "Produire du marketing et des publications", "Analyser des CV, recruter des formateurs", "Rédiger des comptes rendus et des synthèses", "Analyser des données de formation"]}, {"id": "freins", "type": "check", "limite": 3, "opts": ["Manque de compétences", "Manque de temps", "Budget", "Difficulté à choisir les outils", "RGPD et confidentialité des données", "Fiabilité des réponses", "Absence de règles internes", "Résistance des équipes", "Manque d'intégration avec le LMS"]}, {"id": "charte", "type": "radio", "p": [2, 1, 0], "max": 2, "opts": ["Oui", "En préparation", "Non"]}, {"id": "formes", "type": "radio", "p": [3, 2, 1, 0], "max": 3, "opts": ["Toutes", "Une partie", "Quelques personnes", "Personne"]}, {"id": "metier", "type": "radio", "opts": ["Oui, fortement", "Oui, partiellement", "Peu", "Pas du tout"]}, {"id": "part", "type": "radio", "opts": ["Moins de 10 %", "10 à 25 %", "25 à 50 %", "50 à 75 %", "Plus de 75 %"]}, {"id": "priorite", "type": "texte"}];
+    var NIVEAUX = [[20, "Découverte", "L'IA reste à la porte de l'organisme. Le premier pas tient souvent à une tâche unique, répétitive, que l'on confie pour voir."], [40, "Expérimentation", "Quelques personnes s'y sont mises, chacune de son côté. L'enjeu devient de partager ce qui marche."], [60, "Adoption", "L'IA est entrée dans la production courante. Reste à l'inscrire dans des règles et des outils communs."], [80, "Intégration", "L'IA irrigue plusieurs métiers de l'organisme. Le sujet devient celui de la mesure et de la qualité."], [100, "Organisme augmenté", "L'IA est dans les outils, les process et le LMS. Vous êtes en avance sur la profession."]];
+    var etapes = [].slice.call(eq.querySelectorAll('.eq-etape'));
+    var barre = eq.querySelector('.eq-barre'), jauge = barre.querySelector('i');
+    var prec = document.getElementById('eq-prec'), suiv = document.getElementById('eq-suiv');
+    var err = document.getElementById('eq-err'), res = document.getElementById('eq-res');
+    var merci = document.getElementById('eq-merci'), pied = document.getElementById('eq-pied');
+    var cur = -1;   /* -1 : rien n'est ouvert, le bouton dit « Commencer » */
+
+    var val = function(id){
+      var c = eq.querySelectorAll('[name="' + id + '"]:checked');
+      return [].map.call(c, function(x){ return +x.value; });
+    };
+    var texteDe = function(id){
+      var c = eq.querySelector('[name="' + id + '"]:checked');
+      return c ? c.parentNode.textContent.trim() : null;
+    };
+
+    /* une question ne s'affiche que si sa condition est remplie */
+    var applique = function(){
+      BAREME.forEach(function(q){
+        if (!q.si) return;
+        var bloc = eq.querySelector('[data-q="' + q.id + '"]');
+        if (!bloc) return;
+        var rep = texteDe(q.si.q);
+        var cache = rep !== null && q.si.pas.indexOf(rep) !== -1;
+        bloc.hidden = cache;
+        if (cache) [].forEach.call(bloc.querySelectorAll('input'), function(i){ i.checked = false; });
+      });
+    };
+
+    /* limite le nombre de cases cochees quand la question en impose une */
+    BAREME.forEach(function(q){
+      if (!q.limite) return;
+      var bloc = eq.querySelector('[data-q="' + q.id + '"]');
+      if (!bloc) return;
+      bloc.addEventListener('change', function(){
+        var coches = bloc.querySelectorAll('input:checked');
+        [].forEach.call(bloc.querySelectorAll('input'), function(i){
+          i.disabled = !i.checked && coches.length >= q.limite;
+          i.closest('.eq-opt').style.opacity = i.disabled ? '.45' : '';
+        });
+      });
+    });
+
+    eq.addEventListener('change', function(){ applique(); err.hidden = true; });
+
+    var complete = function(n){
+      var e = etapes[n], manque = false;
+      [].forEach.call(e.querySelectorAll('.eq-q'), function(bloc){
+        if (bloc.hidden) return;
+        var id = bloc.dataset.q;
+        if (!id) return;
+        var q = BAREME.filter(function(x){ return x.id === id; })[0];
+        if (!q || q.type === 'texte') return;
+        if (q.type === 'matrice') {
+          for (var k = 0; k < q.n; k++)
+            if (!eq.querySelector('[name="' + id + '_' + k + '"]:checked')) manque = true;
+        } else if (!eq.querySelector('[name="' + id + '"]:checked')) manque = true;
+      });
+      /* derniere etape : seule l'adresse est requise */
+      var mail = e.querySelector('#eq-mail');
+      if (mail) manque = !mail.value.trim() || mail.value.indexOf('@') < 1;
+      return !manque;
+    };
+
+    var score = function(){
+      var pts = 0, max = 0;
+      BAREME.forEach(function(q){
+        var poids = q.poids || 1;
+        if (q.pcols) {
+          max += q.n * Math.max.apply(null, q.pcols) * poids;
+          for (var k = 0; k < q.n; k++) {
+            var c = eq.querySelector('[name="' + q.id + '_' + k + '"]:checked');
+            if (c) pts += q.pcols[+c.value] * poids;
+          }
+          return;
+        }
+        if (q.pchaque) { max += q.max * poids; pts += Math.min(val(q.id).length, q.max) * q.pchaque * poids; return; }
+        if (q.p) {
+          max += q.max * poids;
+          var v = val(q.id);
+          if (v.length) pts += q.p[v[0]] * poids;
+        }
+      });
+      return max ? Math.round(pts / max * 100) : 0;
+    };
+
+    var montreResultat = function(){
+      var n = score();
+      document.getElementById('eq-pts').textContent = n;
+      document.getElementById('eq-jauge').style.width = n + '%';
+      var niv = NIVEAUX.filter(function(x){ return n <= x[0]; })[0] || NIVEAUX[NIVEAUX.length - 1];
+      document.getElementById('eq-niv').textContent = niv[1];
+      document.getElementById('eq-niv-txt').textContent = niv[2];
+      document.getElementById('eq-echelle').innerHTML = NIVEAUX.map(function(x){
+        return '<span class="eq-ech' + (x === niv ? ' on' : '') + '">' + x[1] + '</span>';
+      }).join('');
+      res.hidden = false;
+    };
+
+    var affiche = function(n){
+      etapes.forEach(function(e, i){ e.hidden = i !== n; });
+      applique();
+      cur = n;
+      var p = Math.round((n + 1) / (etapes.length + 1) * 100);
+      jauge.style.width = p + '%';
+      barre.setAttribute('aria-valuenow', p);
+      prec.hidden = n === 0;
+      suiv.innerHTML = n === etapes.length - 1
+        ? 'Voir mon indice de maturité'
+        : 'Continuer<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      var y = eq.getBoundingClientRect().top + window.scrollY - 90;
+      if (window.scrollY > y) window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+    };
+
+    suiv.addEventListener('click', function(){
+      if (cur === -1) { affiche(0); return; }
+      if (!complete(cur)) { err.hidden = false; return; }
+      err.hidden = true;
+      if (cur < etapes.length - 1) { affiche(cur + 1); return; }
+      etapes.forEach(function(e){ e.hidden = true; });
+      prec.hidden = true;
+      montreResultat();
+      window.setTimeout(function(){ merci.hidden = false; }, 900);
+      pied.hidden = true;
+      jauge.style.width = '100%';
+      barre.setAttribute('aria-valuenow', 100);
+    });
+    prec.addEventListener('click', function(){ if (cur > 0) affiche(cur - 1); });
+  }
+
+})();
+</script>
+</body>
+</html>
