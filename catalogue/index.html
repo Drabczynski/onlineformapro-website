@@ -356,6 +356,21 @@ section[id]{scroll-margin-top:92px}
 .mq-track img.mq-large{height:34px}
 .marquee:hover .mq-track img{filter:grayscale(0);opacity:1}
 
+/* ══════════ VIDEO DE DEMONSTRATION ══════════ */
+/* Le rapport vient du fichier lui-même, 1878x1080, et non d'un 16/9
+   suppose : la place est ainsi reservee avant le chargement, sans
+   saut de mise en page ni recadrage. */
+.demo-v{padding:0 0 clamp(40px,5vw,64px)}
+.vidframe{position:relative;width:100%;aspect-ratio:1878/1080;overflow:hidden;
+  border-radius:16px;border:1px solid var(--line);background:var(--cream-2)}
+.vidframe video{width:100%;height:100%;object-fit:cover;display:block}
+/* lecture automatique retiree pour qui a demande a limiter les animations */
+@media (prefers-reduced-motion:reduce){
+  .vidframe video{display:none}
+  .vidframe::after{content:"Demonstration d'un module bureautique";position:absolute;inset:0;
+    display:grid;place-items:center;font-size:.9rem;color:var(--ink-2)}
+}
+
 /* ══════════ GRILLE DE FONCTIONNALITÉS ══════════ */
 /* Titre aligné à gauche, trois colonnes d'entrées à icône fine */
 .ft-head{display:flex;flex-direction:column;gap:12px;align-items:flex-start;
@@ -450,6 +465,17 @@ section[id]{scroll-margin-top:92px}
   <div class="wrap">
     <div class="logos-lab rv"><span>Ils diffusent nos contenus</span></div>
     <div class="marquee rv"><div class="mq-track"><img src="img/logos/image01.png" alt="Greta" width="415" height="233" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/image02.png" alt="Afpa" width="346" height="179" loading="eager" fetchpriority="low" decoding="async"><img class="mq-carre" src="img/logos/image03.png" alt="Réseau E2C France" width="233" height="226" loading="eager" fetchpriority="low" decoding="async"><img class="mq-large" src="img/logos/image04.png" alt="Pigier" width="491" height="138" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/image05.png" alt="Infrep" width="346" height="182" loading="eager" fetchpriority="low" decoding="async"><img class="mq-carre" src="img/logos/image06.png" alt="APP, Ateliers de pédagogie personnalisée" width="222" height="217" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/image01.png" alt="" aria-hidden="true" width="415" height="233" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/image02.png" alt="" aria-hidden="true" width="346" height="179" loading="eager" fetchpriority="low" decoding="async"><img class="mq-carre" src="img/logos/image03.png" alt="" aria-hidden="true" width="233" height="226" loading="eager" fetchpriority="low" decoding="async"><img class="mq-large" src="img/logos/image04.png" alt="" aria-hidden="true" width="491" height="138" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/image05.png" alt="" aria-hidden="true" width="346" height="182" loading="eager" fetchpriority="low" decoding="async"><img class="mq-carre" src="img/logos/image06.png" alt="" aria-hidden="true" width="222" height="217" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/image01.png" alt="" aria-hidden="true" width="415" height="233" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/image02.png" alt="" aria-hidden="true" width="346" height="179" loading="eager" fetchpriority="low" decoding="async"><img class="mq-carre" src="img/logos/image03.png" alt="" aria-hidden="true" width="233" height="226" loading="eager" fetchpriority="low" decoding="async"><img class="mq-large" src="img/logos/image04.png" alt="" aria-hidden="true" width="491" height="138" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/image05.png" alt="" aria-hidden="true" width="346" height="182" loading="eager" fetchpriority="low" decoding="async"><img class="mq-carre" src="img/logos/image06.png" alt="" aria-hidden="true" width="222" height="217" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/image01.png" alt="" aria-hidden="true" width="415" height="233" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/image02.png" alt="" aria-hidden="true" width="346" height="179" loading="eager" fetchpriority="low" decoding="async"><img class="mq-carre" src="img/logos/image03.png" alt="" aria-hidden="true" width="233" height="226" loading="eager" fetchpriority="low" decoding="async"><img class="mq-large" src="img/logos/image04.png" alt="" aria-hidden="true" width="491" height="138" loading="eager" fetchpriority="low" decoding="async"><img src="img/logos/image05.png" alt="" aria-hidden="true" width="346" height="182" loading="eager" fetchpriority="low" decoding="async"><img class="mq-carre" src="img/logos/image06.png" alt="" aria-hidden="true" width="222" height="217" loading="eager" fetchpriority="low" decoding="async"></div></div>
+  </div>
+</div>
+
+<div class="demo-v">
+  <div class="wrap">
+    <div class="vidframe rv">
+      <video src="video/powerpoint.mp4" autoplay muted loop playsinline
+             preload="metadata" disablepictureinpicture
+             aria-label="Demonstration : un module bureautique du catalogue, joue dans le navigateur"
+             data-alt="Module bureautique du catalogue joue dans le navigateur"></video>
+    </div>
   </div>
 </div>
 

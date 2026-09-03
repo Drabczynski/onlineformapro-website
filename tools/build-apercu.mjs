@@ -36,20 +36,22 @@ let page = html.slice(i, j) + html.slice(j, k);
 
 // 2. les vidéos : encodées si le budget le permet, sinon remplacées par
 //    leur image d'attente (l'aperçu refuse les médias distants)
-const pesee = [...page.matchAll(/<source src="(?!https?:|data:)([^"]+\.(?:mp4|webm))"/gi)]
-  .map(m => resolve(base, m[1]))
+const SRC_VIDEO = /<(?:source|video)([^>]*?)\ssrc="(?!https?:|data:)([^"]+\.(?:mp4|webm))"/gi;
+const pesee = [...page.matchAll(SRC_VIDEO)]
+  .map(m => resolve(base, m[2]))
   .filter(existsSync)
   .reduce((n, f) => n + statSync(f).size, 0);
 const budgetOk = pesee * 4 / 3 < PLAFOND * 0.8;   // base64 pèse un tiers de plus
 
 let encodees = 0, substituees = 0, sansPoster = [];
 if (budgetOk && pesee) {
-  page = page.replace(/<source src="(?!https?:|data:)([^"]+\.(?:mp4|webm))"/gi, (whole, rel) => {
+  page = page.replace(SRC_VIDEO, (whole, attrs, rel) => {
     const file = resolve(base, rel);
     if (!existsSync(file)) return whole;
     const ext = rel.split('.').pop().toLowerCase();
+    const balise = whole.slice(1, whole.indexOf(attrs));
     encodees++;
-    return `<source src="data:${TYPES[ext]};base64,${readFileSync(file).toString('base64')}"`;
+    return `<${balise}${attrs} src="data:${TYPES[ext]};base64,${readFileSync(file).toString('base64')}"`;
   });
   console.log(`${encodees} vidéo(s) encodée(s) — ${(pesee / 1048576).toFixed(1)} Mo de source.`);
 } else if (pesee) {
@@ -58,7 +60,13 @@ page = page.replace(/<video\b([^>]*)>([\s\S]*?)<\/video>/gi, (whole, attrs) => {
   if (!local) return whole;
   substituees++;
   const poster = (attrs.match(/poster="([^"]+)"/) || [])[1];
-  if (!poster) { sansPoster.push((attrs.match(/class="([^"]+)"/) || [])[1] || 'sans classe'); return whole; }
+  if (!poster) {
+    sansPoster.push((attrs.match(/class="([^"]+)"/) || [])[1] || 'sans classe');
+    const legende = (attrs.match(/data-alt="([^"]+)"/) || [])[1] || 'Vidéo';
+    return `<div style="position:absolute;inset:0;display:grid;place-items:center;text-align:center;`
+         + `padding:24px;font-size:.86rem;line-height:1.5;color:#6E6E6E">`
+         + `${legende}<br><span style="color:#9B9B9B">Trop lourde pour l'aperçu : visible en local et sur Vercel.</span></div>`;
+  }
   const cls = (attrs.match(/class="([^"]+)"/) || [])[1];
   const alt = (attrs.match(/data-alt="([^"]+)"/) || [])[1] || '';
   return `<img src="${poster}"${cls ? ` class="${cls}"` : ''} alt="${alt}">`;
@@ -94,5 +102,5 @@ const ko = (Buffer.byteLength(page) / 1024).toFixed(1);
 console.log(`${out} — ${ko} Ko, ${inlined} image(s) encodée(s)`);
 if (manquantes.length) console.warn('Introuvables :', manquantes.join(', '));
 if (substituees) console.log(`${substituees} vidéo(s) remplacée(s) par leur image d'attente : trop lourde(s) pour l'aperçu.`);
-if (sansPoster.length) console.warn("Vidéo(s) sans image d'attente, laissée(s) telle(s) quelle(s) et donc absente(s) de l'aperçu :", sansPoster.join(', '));
+if (sansPoster.length) console.warn("Vidéo(s) sans image d'attente, remplacée(s) par un cadre légendé :", sansPoster.join(', '));
 if (ko > 16000) console.warn('Au-delà de la limite de 16 Mo de la publication.');
