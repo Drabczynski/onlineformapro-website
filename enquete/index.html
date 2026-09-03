@@ -20,15 +20,7 @@
   --c-ter:#D2691E;--c-cao:#B82B85;--c-pao:#2C6FE0;--c-dev:#1D4FB8;
   --sans:"Inter",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --mono:var(--sans);
-  --r:14px;--r-sm:10px;--max:1240px;--maxcv:1400px;
-  /* Bilan — une teinte par signification (voir la feuille du bilan).
-     h- = aplat, t- = la meme teinte assombrie pour le texte. */
-  --h-marque:#E01A4F;
-  --h-bas:#FF9500;--t-bas:#AD6500;
-  --h-moy:#5E5CE6;--t-moy:#5E5CE6;
-  --h-haut:#34C759;--t-haut:#23883C;
-  --h-t1:#FF9500;--t-t1:#AD6500;--h-t2:#34C759;--t-t2:#23883C;
-  --h-t3:#007AFF;--t-t3:#0072EF;--h-t4:#FF2D55;--t-t4:#E2284B;--pad:clamp(20px,5vw,44px);
+  --r:14px;--r-sm:10px;--max:1240px;--maxcv:1400px;--pad:clamp(20px,5vw,44px);
   --ease:cubic-bezier(.16,1,.3,1);
 }
 *{box-sizing:border-box}
@@ -39,9 +31,10 @@ img{max-width:100%}
 [hidden]{display:none!important}
 :focus-visible{outline:2px solid var(--red);outline-offset:4px;border-radius:6px}
 
-h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.018em;text-wrap:balance}
+h1,h2,h3,h4{margin:0;font-weight:500;letter-spacing:-.018em;text-wrap:balance}
 h1{font-size:clamp(1.95rem,3.2vw,2.95rem);line-height:1.14;letter-spacing:-.024em}
 h2{font-size:clamp(1.55rem,2.4vw,2.2rem);line-height:1.18;letter-spacing:-.02em}
+h4{font-size:1rem;line-height:1.38;letter-spacing:-.006em}
 h3{font-size:clamp(1.08rem,1.45vw,1.25rem);line-height:1.32;letter-spacing:-.012em}
 p{margin:0}
 
@@ -81,44 +74,6 @@ p{margin:0}
 /* ══════════ QUESTIONNAIRE PLEIN ÉCRAN ══════════ */
 .qz{position:fixed;inset:0;z-index:200;background:var(--cream);
   display:none;flex-direction:column;overflow:hidden}
-/* Fond en derive, seulement ici : on le regarde plusieurs minutes.
-   Trois taches independantes plutot qu'un seul calque deplace en bloc :
-   deplacer l'ensemble d'un meme mouvement ne se voit pas, alors que trois
-   courses de durees differentes ne repassent jamais par la meme image et
-   se lisent comme un mouvement, meme tres dilue. */
-.qz-fond{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.qz-fond i{position:absolute;display:block;border-radius:50%;
-  background:radial-gradient(closest-side, var(--t), transparent 100%);
-  will-change:transform}
-/* Deux mouvements par tache, de periodes differentes : la course et une
-   respiration d'opacite. Une tache tres diluee qui se deplace ne change
-   presque rien la ou on regarde ; c'est le battement des deux qui rend le
-   mouvement perceptible sans jamais forcer la couleur. */
-.qz-fond i:nth-child(1){--t:rgba(224,26,79,.13);width:56vmax;height:56vmax;
-  left:-18vmax;top:-22vmax;
-  animation:derive1 21s linear infinite alternate -7s, respire 16s linear infinite alternate -4s}
-.qz-fond i:nth-child(2){--t:rgba(44,111,224,.12);width:50vmax;height:50vmax;
-  right:-16vmax;top:-13vmax;
-  animation:derive2 26s linear infinite alternate -17s, respire 21s linear infinite alternate -13s}
-.qz-fond i:nth-child(3){--t:rgba(232,89,12,.10);width:54vmax;height:54vmax;
-  left:24vmax;bottom:-28vmax;
-  animation:derive3 31s linear infinite alternate -24s, respire 27s linear infinite alternate -9s}
-@keyframes derive1{
-  0%  {transform:translate3d(0,0,0) scale(1)}
-  100%{transform:translate3d(19vmax,13vmax,0) scale(1.16)}
-}
-@keyframes derive2{
-  0%  {transform:translate3d(0,0,0) scale(1.1)}
-  100%{transform:translate3d(-17vmax,16vmax,0) scale(.9)}
-}
-@keyframes derive3{
-  0%  {transform:translate3d(0,0,0) scale(.94)}
-  100%{transform:translate3d(-21vmax,-15vmax,0) scale(1.14)}
-}
-@keyframes respire{0%{opacity:.5}100%{opacity:1}}
-@media (prefers-reduced-motion:reduce){.qz-fond i{animation:none}}
-/* le contenu passe devant les taches */
-.qz-barre,.qz-tete,.qz-scene,.qz-pied{position:relative;z-index:1}
 .qz.on{display:flex}
 html.fige,body.fige{overflow:hidden}
 
@@ -135,9 +90,11 @@ html.fige,body.fige{overflow:hidden}
   font-family:inherit;transition:border-color .16s,color .16s}
 .qz-fermer:hover{border-color:var(--ink);color:var(--ink)}
 
-.qz-scene{flex:1;display:grid;place-items:center;overflow-y:auto;
+.qz-scene{flex:1;display:flex;flex-direction:column;align-items:center;overflow-y:auto;
   padding:clamp(20px,4vw,44px) var(--pad)}
-.qz-carte{width:min(100%,660px)}
+/* marge automatique : centre tant que la carte tient, aligne en haut et
+   laisse defiler des qu'elle deborde (une grille de seize lignes) */
+.qz-carte{width:min(100%,660px);margin:auto 0;flex:none}
 .qz-carte.entre{animation:qzIn .3s var(--ease) both}
 .qz-carte.sort{animation:qzOut .15s var(--ease) both}
 @keyframes qzIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
@@ -146,12 +103,18 @@ html.fige,body.fige{overflow:hidden}
   .qz-carte.entre,.qz-carte.sort{animation:none}
 }
 
-.qz-num{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--ink-2);
+.qz-num{display:flex;align-items:center;flex-wrap:wrap;gap:8px;font-size:.78rem;color:var(--ink-2);
   margin-bottom:12px}
 .qz-num b{font-weight:500;color:var(--ink-2)}
-.qz-chapeau{font-size:.92rem;color:var(--ink-2);margin-bottom:7px}
+.qz-partie{letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;color:var(--ink-2)}
+.qz-partie::after{content:"·";margin-left:8px;color:var(--ink-3)}
 .qz-q{font-size:clamp(1.28rem,2.5vw,1.85rem);line-height:1.26;letter-spacing:-.02em;
   font-weight:500;color:var(--ink);text-wrap:balance}
+/* sur mobile la question est le seul point d'appui de l'ecran : elle porte */
+@media (max-width:720px){
+  .qz-q{font-size:clamp(1.42rem,5.4vw,1.72rem);line-height:1.22}
+  .qz-aide{font-size:.92rem}
+}
 .qz-aide{margin-top:11px;font-size:.89rem;line-height:1.5;color:var(--ink-2)}
 
 .qz-opts{margin-top:clamp(20px,2.6vw,30px);display:flex;flex-direction:column;gap:8px}
@@ -234,10 +197,10 @@ html.fige,body.fige{overflow:hidden}
 .cv-eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.78rem;letter-spacing:.08em;
   text-transform:uppercase;color:var(--ink-2)}
 .cv-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red)}
-.cv h1{margin-top:16px;font-size:clamp(1.9rem,3.5vw,3.15rem);line-height:1.1;letter-spacing:-.028em;
+.cv h1{margin-top:16px;font-size:clamp(1.6rem,2.7vw,2.45rem);line-height:1.14;letter-spacing:-.026em;
   text-wrap:balance}
-.cv-promesse{margin-top:clamp(15px,1.7vw,21px);font-size:clamp(1rem,1.25vw,1.14rem);line-height:1.5;
-  color:var(--ink);max-width:62ch;font-style:italic;text-wrap:pretty}
+.cv-promesse{margin-top:clamp(15px,1.7vw,21px);font-size:clamp(1.02rem,1.35vw,1.24rem);line-height:1.45;
+  color:var(--ink);max-width:52ch;font-style:normal;text-wrap:pretty}
 .cv-intro{margin-top:clamp(11px,1.3vw,15px);font-size:.95rem;line-height:1.6;color:var(--ink-2);
   max-width:58ch;text-wrap:pretty}
 .cv-acts{margin-top:clamp(20px,2.3vw,30px);display:flex;flex-wrap:wrap;align-items:center;gap:14px}
@@ -245,11 +208,12 @@ html.fige,body.fige{overflow:hidden}
 .cv-acts small{font-size:.81rem;color:var(--ink-2)}
 
 /* colonne de droite : ce qu’on donne, ce qu’on demande */
-.cv-panneau{border:1px solid var(--line);border-radius:14px;padding:clamp(20px,2.1vw,28px);
-  background:rgba(255,255,255,.62);backdrop-filter:blur(6px)}
+.cv-panneau{border-radius:16px;padding:clamp(24px,2.9vw,40px) clamp(22px,2.6vw,36px);
+  background:var(--cream-2)}
 .cv-panneau h2{font-size:.82rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
   color:var(--ink-2)}
-.cv-dons{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+.cv-dons{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;
+  gap:clamp(16px,1.8vw,22px)}
 .cv-dons li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start}
 .cv-dons li:has(.cv-vig.img){gap:14px;align-items:center}
 /* Chaque cadeau porte sa vignette. Tant que l'image n'est pas chargee, la
@@ -259,16 +223,16 @@ html.fige,body.fige{overflow:hidden}
 .cv-vig i{width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;
   display:grid;place-items:center;font-size:.73rem;font-weight:600;font-style:normal}
 .cv-vig img{display:none;width:100%;height:auto;border-radius:8px}
-.cv-vig.img{width:clamp(86px,7.6vw,112px)}
+.cv-vig.img{width:clamp(104px,10.4vw,150px)}
 .cv-vig.img img{display:block}
 .cv-vig.img i{display:none}
 .cv-dons b{display:block;font-size:.94rem;font-weight:500;color:var(--ink)}
 .cv-dons b + span{display:block;margin-top:3px;font-size:.85rem;line-height:1.45;color:var(--ink-2);
   text-wrap:pretty}
-.cv-sep{height:1px;background:var(--line);margin:clamp(15px,1.7vw,21px) 0}
+.cv-sep{height:1px;background:var(--line);margin:clamp(20px,2.4vw,30px) 0}
 .cv-faits{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:7px}
-.cv-faits li{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:100px;
-  border:1px solid var(--line);font-size:.8rem;color:var(--ink-2);background:var(--cream)}
+.cv-faits li{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:100px;
+  font-size:.8rem;color:var(--ink-2);background:var(--cream)}
 .cv-faits svg{color:var(--ink-3);flex:none}
 .cv-paliers{margin-top:clamp(14px,1.5vw,18px)}
 .cv-paliers > span{display:block;font-size:.78rem;color:var(--ink-2);margin-bottom:9px}
@@ -285,7 +249,7 @@ html.fige,body.fige{overflow:hidden}
 
 /* fenetres basses : on resserre plutot que de deborder */
 @media (min-width:980px) and (max-height:800px){
-  .cv h1{font-size:clamp(1.8rem,2.9vw,2.5rem)}
+  .cv h1{font-size:clamp(1.5rem,2.4vw,2.1rem)}
   .cv-corps{padding:clamp(14px,1.8vw,24px) 0;gap:clamp(24px,3.4vw,52px)}
   .cv-panneau{padding:clamp(17px,1.7vw,22px)}
   .cv-dons{gap:10px}
@@ -297,7 +261,7 @@ html.fige,body.fige{overflow:hidden}
   .cv-acts{margin-top:20px}
   .cv-sep{margin:14px 0}
   .cv-pied{padding:11px 0 13px}
-  .cv-vig.img{width:clamp(76px,6.4vw,92px)}
+  .cv-vig.img{width:clamp(88px,8.4vw,116px)}
 }
 @media (min-width:980px) and (max-height:700px){
   /* sous cette hauteur la vignette ne serait plus lisible : la pastille
@@ -309,7 +273,7 @@ html.fige,body.fige{overflow:hidden}
 }
 @media (min-width:980px) and (max-height:620px){
   .cv-intro{display:none}
-  .cv h1{font-size:clamp(1.7rem,2.5vw,2.2rem)}
+  .cv h1{font-size:clamp(1.4rem,2.1vw,1.85rem)}
 }
 
 /* petits ecrans : la coupure forcee du titre nuirait, on rend la main */
@@ -320,135 +284,164 @@ html.fige,body.fige{overflow:hidden}
   .cv-pied-note{margin-left:0;width:100%}
 }
 
-/* ══════════ BILAN ══════════ */
-/* Deux colonnes : l’indice tient la colonne de gauche, immobile, et
-   l’analyse defile a droite. Sous 900 px la page redevient une colonne
-   et c’est la scene qui defile.
-   Les couleurs suivent la logique d’Apple Sante : une teinte par
-   signification, jamais par decoration. Les fonds vifs ne portent que des
-   aplats (barres, anneau, pastilles) ; les memes teintes assombries
-   servent au texte, ou il faut 4,5:1 sur blanc. */
-.qz.bilan .qz-fond{display:none}
-.qz.bilan .qz-scene{place-items:stretch;overflow:hidden;padding:0}
-.bl{display:grid;width:100%;min-height:0}
-@media (min-width:900px){
-  .bl{grid-template-columns:minmax(330px,36%) 1fr;height:100%}
+/* rappel des contreparties sur l’ecran de contact */
+.qz-gains{display:grid;gap:10px;margin-top:clamp(18px,2.2vw,24px)}
+@media (min-width:640px){.qz-gains{grid-template-columns:1fr 1fr}}
+.qz-gain{display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:start;
+  border:1px solid var(--line);border-radius:9px;padding:13px 15px}
+.qz-gain svg{color:var(--ink-2);margin-top:2px;flex:none}
+.qz-gain b{display:block;font-size:.89rem;font-weight:500;color:var(--ink)}
+.qz-gain span{display:block;margin-top:3px;font-size:.82rem;line-height:1.45;color:var(--ink-2)}
+
+.qz-res{text-align:center;width:min(100%,600px)}
+.qz-res .eyebrow{justify-content:center;width:100%}
+.qz-score{margin-top:14px;font-size:clamp(3rem,8vw,4.6rem);line-height:1;font-weight:500;
+  letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+.qz-score small{font-size:.3em;color:var(--ink-2);letter-spacing:0;font-weight:400}
+.qz-jauge{width:min(100%,340px);margin:22px auto 0;height:6px;border-radius:100px;
+  background:var(--cream-3);overflow:hidden}
+.qz-jauge i{display:block;height:100%;width:0;background:var(--ink);
+  transition:width 1.1s var(--ease)}
+.qz-niv{margin-top:20px;font-size:1.3rem;font-weight:500;letter-spacing:-.016em}
+.qz-niv-txt{margin:11px auto 0;max-width:48ch;font-size:.95rem;line-height:1.55;color:var(--ink-2)}
+.qz-echelle{display:flex;gap:4px;width:min(100%,440px);margin:26px auto 0}
+.qz-ech{flex:1;text-align:center;font-size:.69rem;line-height:1.3;color:var(--ink-2);
+  padding-top:8px;border-top:2px solid var(--line);transition:color .4s,border-color .4s}
+.qz-ech.on{color:var(--ink);border-top-color:var(--ink)}
+
+/* ══════════ MATRICE ══════════ */
+/* Une ligne par usage, une colonne par frequence. L'en-tete reste colle en
+   haut pendant que la grille defile ; sur mobile, les colonnes portent un
+   numero et la legende sous la grille les nomme. */
+.qz-mat{margin-top:clamp(18px,2.2vw,26px);--wc:102px}
+.qz-mat-tete,.qz-mat-l{display:grid;grid-template-columns:minmax(0,1fr) repeat(var(--nc),var(--wc));
+  align-items:center;column-gap:4px}
+.qz-mat-tete{position:sticky;top:0;z-index:2;background:var(--cream);padding:6px 0 8px;
+  border-bottom:1px solid var(--line)}
+.qz-mat-tete i{font-style:normal;text-align:center;font-size:.74rem;line-height:1.25;
+  color:var(--ink-2);padding:0 4px}
+.qz-mat-tete i b{display:none;font-weight:500}
+.qz-mat-l{min-height:44px;border-bottom:1px solid var(--line);transition:background .15s}
+.qz-mat-l:hover{background:var(--cream-2)}
+.qz-mat-lib{font-size:.9rem;line-height:1.35;color:var(--ink);padding:8px 10px 8px 0}
+.qz-mat-l.ok .qz-mat-lib{color:var(--ink-2)}
+.qz-cel{display:grid;place-items:center;height:44px;background:none;border:0;cursor:pointer;
+  padding:0;border-radius:6px}
+.qz-cel i{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--ink-3);display:block;
+  transition:border-color .15s,background .15s,box-shadow .15s}
+.qz-cel:hover i{border-color:var(--ink)}
+.qz-cel[aria-checked="true"] i{border-color:var(--ink);background:var(--ink);
+  box-shadow:inset 0 0 0 4px var(--cream)}
+.qz-mat-leg{display:none}
+.qz-mat-reste{margin-top:12px;font-size:.8rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
+@media (max-width:720px){
+  .qz-mat{--wc:46px}
+  .qz-mat-tete i span{display:none}
+  .qz-mat-tete i b{display:block;font-size:.8rem;color:var(--ink)}
+  .qz-mat-leg{display:block;margin-top:10px;font-size:.76rem;line-height:1.6;color:var(--ink-2)}
+  .qz-mat-leg b{font-weight:500;color:var(--ink)}
+  .qz-mat-lib{font-size:.86rem}
+  .qz-cel i{width:18px;height:18px}
 }
 
-/* ── colonne de gauche : l’indice ── */
-.bl-fixe{display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;gap:clamp(14px,1.8vw,20px);
-  padding:clamp(26px,3.4vw,44px) clamp(22px,2.6vw,36px)}
-@media (min-width:900px){.bl-fixe{border-right:1px solid var(--line)}}
-@media (max-width:899px){.bl-fixe{border-bottom:1px solid var(--line)}}
-.bl-fixe .eyebrow{justify-content:center}
+/* ══════════ ANNONCE DE PARTIE ══════════ */
+/* Le nom de la partie, seul, en grand ; il entre, tient, et s'efface pour
+   laisser la premiere question. */
+.qz-annonce{text-align:center;max-width:30ch;cursor:default}
+.qz-annonce-n{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.qz-annonce-t{margin-top:14px;font-size:clamp(1.9rem,4.2vw,3.3rem);line-height:1.08;
+  letter-spacing:-.03em;font-weight:500;text-wrap:balance}
+.qz-annonce-i{margin-top:14px;font-size:clamp(.98rem,1.2vw,1.1rem);line-height:1.5;color:var(--ink-2);
+  max-width:40ch;margin-left:auto;margin-right:auto;text-wrap:pretty}
+.qz-annonce-trait{display:block;width:44px;height:2px;margin:22px auto 0;background:var(--ink);
+  transform-origin:left;animation:trait .9s .25s var(--ease) both}
+.qz-annonce.entre{animation:annonceIn .65s var(--ease) both}
+.qz-annonce.sort{animation:annonceOut .38s var(--ease) both}
+@keyframes annonceIn{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes annonceOut{to{opacity:0;transform:translateY(-10px) scale(.99)}}
+@keyframes trait{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){
+  .qz-annonce.entre,.qz-annonce.sort,.qz-annonce-trait{animation:none}
+}
+/* ══════════ BILAN ══════════ */
+.qz-res{text-align:left;width:min(100%,720px)}
+.qz-res .eyebrow{justify-content:center;width:100%}
+.bl-tete{text-align:center;padding-bottom:clamp(26px,3vw,36px);border-bottom:1px solid var(--line)}
+.bl-sec{margin-top:clamp(26px,3vw,36px);padding:0;position:static}
+/* la regle generale de <section> (grande respiration + filet centre) n’a pas
+   cours ici : le bilan defile dans une fenetre, pas dans la page. */
+.bl-sec::before{content:none}
+.bl-sec + .bl-sec{border-top:1px solid var(--line);padding-top:clamp(26px,3vw,36px)}
+.bl-sec > h3{font-size:1.02rem;font-weight:500;letter-spacing:-.012em;margin-bottom:4px}
+.bl-sec > p.bl-note{font-size:.85rem;line-height:1.5;color:var(--ink-2);max-width:62ch}
 
-.bl-anneau{position:relative;width:clamp(168px,17vw,212px);aspect-ratio:1}
-.bl-anneau svg{width:100%;height:100%;transform:rotate(-90deg)}
-.bl-anneau circle{fill:none;stroke-width:13;stroke-linecap:round}
-.bl-anneau .bl-creux{stroke:#FBE4EB}
-.bl-anneau .bl-arc{stroke:var(--h-marque);
-  transition:stroke-dashoffset 1.2s var(--ease)}
-.bl-coeur{position:absolute;inset:0;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:1px}
-.bl-coeur b{font-size:clamp(2.6rem,3.4vw,3.4rem);font-weight:500;line-height:1;
-  letter-spacing:-.03em;font-variant-numeric:tabular-nums}
-.bl-coeur span{font-size:.76rem;color:var(--ink-2)}
-
-.bl-palier{font-size:clamp(1.16rem,1.5vw,1.42rem);font-weight:500;letter-spacing:-.02em}
-.bl-palier-txt{font-size:.89rem;line-height:1.55;color:var(--ink-2);max-width:34ch;
-  text-wrap:pretty}
-.bl-paliers{display:flex;flex-direction:column;gap:2px;width:100%;max-width:236px;
-  margin-top:clamp(4px,1vw,10px);text-align:left}
-.bl-paliers li{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;
-  font-size:.78rem;color:var(--ink-2);list-style:none;padding:4px 0}
-.bl-paliers li i{width:9px;height:9px;border-radius:50%;background:var(--cream);
-  border:1px solid var(--cream-3);box-sizing:border-box}
-.bl-paliers li.ici{color:var(--ink);font-weight:500}
-.bl-paliers li.ici i{background:var(--h-marque);border-color:var(--h-marque)}
-
-/* ── colonne de droite : l’analyse ── */
-.bl-flux{min-width:0;display:flex;flex-direction:column;gap:clamp(12px,1.4vw,16px);
-  padding:clamp(20px,2.4vw,30px) clamp(20px,2.6vw,34px) clamp(40px,5vw,64px)}
-@media (min-width:900px){.bl-flux{overflow-y:auto}}
-.bl-carte{border:1px solid var(--line);border-radius:14px;
-  padding:clamp(16px,1.8vw,22px) clamp(16px,1.9vw,24px);background:var(--cream)}
-.bl-carte > h3{font-size:.99rem;font-weight:500;letter-spacing:-.012em}
-.bl-carte > p{margin:4px 0 0;font-size:.83rem;line-height:1.5;color:var(--ink-2);
-  max-width:64ch;text-wrap:pretty}
-
-/* domaines : une teinte par bande d’avancement, jamais seule —
-   la valeur et la pastille disent la meme chose en clair */
-.bl-axes{list-style:none;margin:15px 0 0;padding:0;display:flex;flex-direction:column;gap:13px}
-.bl-axe{display:grid;grid-template-columns:1fr auto;gap:5px 10px;align-items:baseline}
-.bl-axe b{font-size:.9rem;font-weight:400;color:var(--ink);display:flex;
-  align-items:baseline;gap:8px;flex-wrap:wrap}
-.bl-chip{font-size:.7rem;padding:2px 8px;border-radius:100px;white-space:nowrap;
-  border:1px solid currentColor}
-.bl-axe i{font-style:normal;font-size:.86rem;font-variant-numeric:tabular-nums;
-  font-weight:500}
-.bl-rail{grid-column:1/-1;height:8px;border-radius:4px;background:var(--cream-3);
-  overflow:hidden}
-.bl-rail span{display:block;height:100%;width:0;border-radius:4px;
+/* barres : une seule teinte, la longueur porte la mesure */
+.bl-axes{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:13px}
+.bl-axe{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:baseline}
+.bl-axe b{font-size:.9rem;font-weight:400;color:var(--ink)}
+.bl-axe i{font-style:normal;font-size:.85rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.bl-piste{grid-column:1/-1;height:8px;border-radius:4px;background:var(--cream-3);overflow:hidden}
+.bl-piste span{display:block;height:100%;width:0;border-radius:4px;background:var(--ink);
   transition:width .9s var(--ease)}
-.bl-axe.bas  i{color:var(--t-bas)}   .bl-axe.bas  .bl-rail span{background:var(--h-bas)}
-.bl-axe.bas  .bl-chip{color:var(--t-bas)}
-.bl-axe.moy  i{color:var(--t-moy)}   .bl-axe.moy  .bl-rail span{background:var(--h-moy)}
-.bl-axe.moy  .bl-chip{color:var(--t-moy)}
-.bl-axe.haut i{color:var(--t-haut)}  .bl-axe.haut .bl-rail span{background:var(--h-haut)}
-.bl-axe.haut .bl-chip{color:var(--t-haut)}
+.bl-axe.faible .bl-piste span{background:var(--ink-3)}
 
-/* usages : trois crans par ligne */
-.bl-niv{list-style:none;margin:15px 0 0;padding:0;display:flex;flex-direction:column;gap:9px}
-.bl-niv li{display:grid;grid-template-columns:1fr 76px;gap:12px;align-items:center;
-  font-size:.87rem;color:var(--ink-2)}
+/* points d’appui et angles morts */
+.bl-duo{display:grid;gap:12px;margin-top:16px}
+@media (min-width:640px){.bl-duo{grid-template-columns:1fr 1fr}}
+.bl-bloc{border:1px solid var(--line);border-radius:9px;padding:15px 17px}
+.bl-bloc h4{font-size:.82rem;font-weight:500;color:var(--ink-2);margin-bottom:9px}
+.bl-bloc ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.bl-bloc li{font-size:.9rem;color:var(--ink);display:flex;gap:8px;align-items:baseline}
+.bl-bloc li em{font-style:normal;color:var(--ink-2);font-size:.82rem;margin-left:auto;
+  font-variant-numeric:tabular-nums}
+
+/* detail : un niveau atteint sur trois, par usage */
+.bl-niv{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:9px}
+.bl-niv li{display:grid;grid-template-columns:1fr calc(var(--nc,3) * 24px);gap:12px;align-items:center;font-size:.88rem;color:var(--ink-2)}
 .bl-crans{display:flex;gap:3px}
 .bl-crans i{flex:1;height:7px;border-radius:2px;background:var(--cream-3)}
-.bl-crans i.on{background:var(--h-moy)}
-.bl-leg{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:14px;font-size:.76rem;
-  color:var(--ink-2)}
+.bl-crans i.on{background:var(--ink)}
+.bl-leg{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:14px;font-size:.76rem;color:var(--ink-2)}
 .bl-leg > span{display:inline-flex;align-items:center;gap:7px}
-.bl-leg .bl-crans{width:44px;flex:none}
+.bl-leg .bl-crans{width:calc(var(--nc,3) * 14px);flex:none}
 
-/* reperes declares : quatre categories sans unite commune, donc quatre
-   teintes — palette verifiee sur toutes les paires */
-.bl-tuiles{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:15px}
-@media (min-width:1180px){.bl-tuiles{grid-template-columns:repeat(4,1fr)}}
-.bl-tuile{border:1px solid var(--line);border-radius:10px;padding:12px 13px;
-  display:flex;flex-direction:column;gap:7px}
-.bl-tuile em{font-style:normal;width:20px;height:3px;border-radius:2px;display:block}
-.bl-tuile b{display:block;font-size:1.42rem;font-weight:500;letter-spacing:-.026em;
-  line-height:1.1}
-.bl-tuile b.long{font-size:.99rem;line-height:1.3;letter-spacing:-.012em}
-.bl-tuile span{display:block;font-size:.77rem;line-height:1.4;color:var(--ink-2);
-  margin-top:auto}
-.bl-tuile:nth-child(1) em{background:var(--h-t1)} .bl-tuile:nth-child(1) b{color:var(--t-t1)}
-.bl-tuile:nth-child(2) em{background:var(--h-t2)} .bl-tuile:nth-child(2) b{color:var(--t-t2)}
-.bl-tuile:nth-child(3) em{background:var(--h-t3)} .bl-tuile:nth-child(3) b{color:var(--t-t3)}
-.bl-tuile:nth-child(4) em{background:var(--h-t4)} .bl-tuile:nth-child(4) b{color:var(--t-t4)}
+/* tuiles de rappel */
+.bl-tuiles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}
+@media (min-width:640px){.bl-tuiles{grid-template-columns:repeat(4,1fr)}}
+.bl-tuile{border:1px solid var(--line);border-radius:9px;padding:13px 14px;
+  display:flex;flex-direction:column;justify-content:space-between}
+.bl-tuile b{display:block;font-size:1.5rem;font-weight:500;letter-spacing:-.026em;
+  font-variant-numeric:tabular-nums;line-height:1.1}
+.bl-tuile b.long{font-size:1.02rem;line-height:1.3;letter-spacing:-.012em}
+.bl-tuile span{display:block;margin-top:5px;font-size:.78rem;line-height:1.4;color:var(--ink-2)}
 
-/* pistes : elles viennent des domaines les moins avances, elles en
-   portent donc la teinte */
-.bl-pistes{list-style:none;margin:15px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+/* pistes */
+.bl-pistes{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
 .bl-pistes li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;
-  padding-left:12px;border-left:2px solid var(--h-bas)}
-.bl-n{width:21px;height:21px;border-radius:50%;background:var(--h-bas);color:#fff;
-  display:grid;place-items:center;font-size:.72rem;font-weight:600;flex:none}
-.bl-pistes b{display:block;font-size:.91rem;font-weight:500;color:var(--ink)}
-.bl-pistes .bl-ou{display:block;font-size:.71rem;color:var(--t-bas);margin-top:2px}
-.bl-pistes div > span:last-child{display:block;margin-top:4px;font-size:.85rem;
-  line-height:1.5;color:var(--ink-2);text-wrap:pretty}
+  border:1px solid var(--line);border-left:2px solid var(--ink);border-radius:0 9px 9px 0;padding:14px 16px}
+.bl-pistes .bl-n{width:21px;height:21px;border-radius:50%;background:var(--ink);color:#fff;
+  display:grid;place-items:center;font-size:.72rem;font-weight:600}
+.bl-pistes b{display:block;font-size:.92rem;font-weight:500;color:var(--ink)}
+.bl-pistes span{display:block;margin-top:4px;font-size:.86rem;line-height:1.5;color:var(--ink-2)}
 
-/* ce qui arrive par e-mail */
-.bl-gains{display:grid;gap:9px;margin-top:15px}
-@media (min-width:620px){.bl-gains{grid-template-columns:1fr 1fr}}
-.bl-gain{border:1px solid var(--line);border-radius:10px;padding:13px 15px;
-  display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start}
-.bl-gain svg{color:var(--t-haut);flex:none;margin-top:2px}
-.bl-gain b{display:block;font-size:.9rem;font-weight:500;color:var(--ink)}
-.bl-gain span{display:block;margin-top:3px;font-size:.83rem;line-height:1.45;
-  color:var(--ink-2);text-wrap:pretty}
+/* rappel des contreparties */
+.bl-gains{display:grid;gap:11px;margin-top:16px}
+@media (min-width:640px){.bl-gains{grid-template-columns:1fr 1fr}}
+.bl-gain{border:1px solid var(--line);border-radius:9px;padding:15px 17px;background:var(--cream-2)}
+.bl-gain b{display:block;font-size:.92rem;font-weight:500;color:var(--ink);margin-bottom:5px}
+.bl-gain span{font-size:.85rem;line-height:1.5;color:var(--ink-2)}
 
+/* les sept indicateurs du barometre : libelle a gauche, votre reponse a droite */
+.bl-indic{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column}
+.bl-indic li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:6px 18px;
+  padding:11px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.bl-indic li:last-child{border-bottom:0}
+.bl-indic li > span{font-size:.86rem;color:var(--ink-2)}
+.bl-indic li > b{font-size:.92rem;font-weight:500;color:var(--ink);text-align:right;text-wrap:pretty}
+@media (max-width:560px){
+  .bl-indic li{grid-template-columns:1fr}
+  .bl-indic li > b{text-align:left}
+}
 </style>
 </head>
 <body>
@@ -458,9 +451,9 @@ html.fige,body.fige{overflow:hidden}
   </div>
   <div class="cv-corps">
     <div>
-      <span class="cv-eyebrow ap" style="--i:1">Baromètre 2026</span>
-      <h1 class="ap" style="--i:2">Où en sont les organismes <br>de formation avec l’IA&nbsp;?</h1>
-      <p class="cv-promesse ap" style="--i:3">Cinq minutes de questions, et vous savez <span class="nb">où vous vous situez</span>.</p>
+      <span class="cv-eyebrow ap" style="--i:1">Enquête nationale</span>
+      <h1 class="ap" style="--i:2">Baromètre 2026 de l’intelligence artificielle <br>dans les organismes de formation</h1>
+      <p class="cv-promesse ap" style="--i:3">Où en sont réellement les organismes de formation dans <span class="nb">l’utilisation de l’IA</span>&nbsp;?</p>
       <p class="cv-intro ap" style="--i:4">Nous interrogeons les organismes de formation, les CFA et les services formation sur leurs usages réels de l’IA. À la fin, vous obtenez votre indice de maturité et une analyse détaillée, <span class="nb">domaine par domaine</span>.</p>
       <div class="cv-acts ap" style="--i:5">
         <button class="btn btn-primary" type="button" id="eq-lancer">Commencer le questionnaire<svg class="chev" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -483,7 +476,7 @@ html.fige,body.fige{overflow:hidden}
       <div class="cv-sep"></div>
       <h2>Ce que nous demandons</h2>
       <ul class="cv-faits">
-        <li><svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5.4 4.6h7M5.4 8h7M5.4 11.4h7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="3" cy="4.6" r=".9" fill="currentColor"/><circle cx="3" cy="8" r=".9" fill="currentColor"/><circle cx="3" cy="11.4" r=".9" fill="currentColor"/></svg>27 questions</li>
+        <li><svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5.4 4.6h7M5.4 8h7M5.4 11.4h7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="3" cy="4.6" r=".9" fill="currentColor"/><circle cx="3" cy="8" r=".9" fill="currentColor"/><circle cx="3" cy="11.4" r=".9" fill="currentColor"/></svg>26 questions</li>
         <li><svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.4" stroke="currentColor" stroke-width="1.3"/><path d="M8 4.6V8l2.4 1.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>5 minutes</li>
         <li><svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="3.2" y="7" width="9.6" height="6.4" rx="1.6" stroke="currentColor" stroke-width="1.3"/><path d="M5.6 7V5.2a2.4 2.4 0 0 1 4.8 0V7" stroke="currentColor" stroke-width="1.3"/></svg>Réponses anonymes</li>
       </ul>
@@ -501,7 +494,6 @@ html.fige,body.fige{overflow:hidden}
 </section>
 
 <div class="qz" id="qz" role="dialog" aria-modal="true" aria-label="Baromètre 2026 de l’IA" aria-hidden="true">
-  <div class="qz-fond" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="qz-barre" role="progressbar" aria-label="Progression" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div>
   <header class="qz-tete">
     <img src="../catalogue/img/logo.svg" alt="Onlineformapro" width="139" height="57">
@@ -515,7 +507,7 @@ html.fige,body.fige{overflow:hidden}
     <button class="btn btn-line" type="button" id="qz-prec" hidden>Retour</button>
     <button class="btn btn-primary" type="button" id="qz-suiv">Continuer</button>
     <span class="qz-err" id="qz-err" hidden></span>
-    <span class="qz-astuce"><span class="qz-astuce-ch"><kbd>A</kbd>…<kbd>J</kbd> pour choisir &middot; </span><kbd>Entrée</kbd> pour continuer &middot; <kbd>Échap</kbd> pour fermer</span>
+    <span class="qz-astuce"><span class="qz-astuce-ch"><kbd>A</kbd>…<kbd>Z</kbd> pour choisir &middot; </span><kbd>Entrée</kbd> pour continuer &middot; <kbd>Échap</kbd> pour fermer</span>
   </div>
 </div>
 
@@ -533,8 +525,12 @@ html.fige,body.fige{overflow:hidden}
   (function(){
     var qz = document.getElementById('qz');
     if (!qz) return;
-    var ECRANS = [{"id": "fonction", "section": "Votre organisme", "type": "radio", "label": "Quelle est votre fonction&nbsp;?", "opts": ["Dirigeant·e ou gérant·e", "Responsable pédagogique", "Formateur·rice", "Responsable administratif ou qualité", "Autre"], "auto": true}, {"id": "taille", "section": "Votre organisme", "type": "radio", "label": "Combien de personnes travaillent dans votre organisme&nbsp;?", "aide": "Salariés et formateurs vacataires compris.", "opts": ["1 à 5", "6 à 20", "21 à 50", "51 à 200", "Plus de 200"], "auto": true}, {"id": "apprenants", "section": "Votre organisme", "type": "radio", "label": "Combien d’apprenants formez-vous chaque année&nbsp;?", "opts": ["Moins de 100", "100 à 500", "500 à 2 000", "2 000 à 10 000", "Plus de 10 000"], "auto": true}, {"id": "usage", "section": "Où vous en êtes", "type": "radio", "label": "Utilisez-vous des outils d’IA dans votre organisme&nbsp;?", "opts": ["Oui, régulièrement", "Oui, ponctuellement", "Nous expérimentons", "Pas encore", "Non, et ce n’est pas prévu"], "p": [4, 3, 2, 1, 0], "max": 4, "poids": 2, "auto": true}, {"id": "depuis", "section": "Où vous en êtes", "type": "radio", "label": "Depuis combien de temps&nbsp;?", "opts": ["Moins de 6 mois", "6 mois à 1 an", "Plus d’un an"], "si": {"q": "usage", "pas": ["Pas encore", "Non, et ce n’est pas prévu"]}, "auto": true}, {"id": "outils", "section": "Où vous en êtes", "type": "check", "label": "Quels outils utilisez-vous&nbsp;?", "aide": "Plusieurs réponses possibles.", "opts": ["ChatGPT", "Claude", "Gemini", "Microsoft Copilot", "Mistral", "Une IA intégrée à notre LMS", "Un outil spécialisé formation", "Autre"], "si": {"q": "usage", "pas": ["Pas encore", "Non, et ce n’est pas prévu"]}, "auto": false}, {"id": "qui", "section": "Où vous en êtes", "type": "radio", "label": "Comment l’IA est-elle utilisée chez vous&nbsp;?", "opts": ["Usage individuel, non organisé", "Quelques collaborateurs l’utilisent", "Des expérimentations organisées", "Un processus métier intègre l’IA", "L’IA est intégrée à nos outils et à notre LMS"], "p": [1, 2, 3, 4, 5], "max": 5, "si": {"q": "usage", "pas": ["Pas encore", "Non, et ce n’est pas prévu"]}, "auto": true}, {"id": "inge_0", "section": "Ingénierie pédagogique", "type": "radio", "label": "Créer un programme de formation", "chapeau": "Utilisez-vous l’IA pour…", "opts": ["Jamais", "Parfois", "Souvent"], "p": [0, 1, 2], "max": 2, "auto": true}, {"id": "inge_1", "section": "Ingénierie pédagogique", "type": "radio", "label": "Transformer un référentiel en parcours", "chapeau": "Utilisez-vous l’IA pour…", "opts": ["Jamais", "Parfois", "Souvent"], "p": [0, 1, 2], "max": 2, "auto": true}, {"id": "inge_2", "section": "Ingénierie pédagogique", "type": "radio", "label": "Rédiger des objectifs pédagogiques", "chapeau": "Utilisez-vous l’IA pour…", "opts": ["Jamais", "Parfois", "Souvent"], "p": [0, 1, 2], "max": 2, "auto": true}, {"id": "inge_3", "section": "Ingénierie pédagogique", "type": "radio", "label": "Produire des supports de cours", "chapeau": "Utilisez-vous l’IA pour…", "opts": ["Jamais", "Parfois", "Souvent"], "p": [0, 1, 2], "max": 2, "auto": true}, {"id": "inge_4", "section": "Ingénierie pédagogique", "type": "radio", "label": "Créer des exercices et des cas pratiques", "chapeau": "Utilisez-vous l’IA pour…", "opts": ["Jamais", "Parfois", "Souvent"], "p": [0, 1, 2], "max": 2, "auto": true}, {"id": "inge_5", "section": "Ingénierie pédagogique", "type": "radio", "label": "Adapter un contenu à un niveau ou à un public FLE", "chapeau": "Utilisez-vous l’IA pour…", "opts": ["Jamais", "Parfois", "Souvent"], "p": [0, 1, 2], "max": 2, "auto": true}, {"id": "inge_6", "section": "Ingénierie pédagogique", "type": "radio", "label": "Transformer un document existant en module e-learning", "chapeau": "Utilisez-vous l’IA pour…", "opts": ["Jamais", "Parfois", "Souvent"], "p": [0, 1, 2], "max": 2, "auto": true}, {"id": "gain", "section": "Ingénierie pédagogique", "type": "radio", "label": "Quel gain de temps estimez-vous sur la création de contenu&nbsp;?", "opts": ["Pas de gain notable", "Moins de 20 %", "20 à 50 %", "Plus de 50 %"], "p": [0, 1, 2, 3], "max": 3, "auto": true}, {"id": "eval", "section": "Évaluations", "type": "check", "label": "Utilisez-vous l’IA pour créer des évaluations&nbsp;?", "aide": "Plusieurs réponses possibles.", "opts": ["Des QCM", "Des questions ouvertes", "Des études de cas ou mises en situation", "Des grilles d’évaluation et des critères de réussite", "Des évaluations différentes pour chaque apprenant"], "max": 5, "auto": false}, {"id": "corr", "section": "Évaluations", "type": "radio", "label": "Et pour la correction&nbsp;?", "opts": ["Non, jamais", "Correction automatique de QCM", "Analyse de réponses rédigées", "Aide au formateur qui corrige", "Feedback automatique à l’apprenant"], "p": [0, 1, 2, 3, 4], "max": 4, "auto": true}, {"id": "valide", "section": "Évaluations", "type": "radio", "label": "Laisseriez-vous une IA valider seule une compétence&nbsp;?", "opts": ["Oui", "Oui, pour certaines compétences", "Oui, avec validation finale d’un formateur", "Non"], "auto": true}, {"id": "ao", "section": "Appels d’offres et gestion", "type": "radio", "label": "Utilisez-vous l’IA pour répondre aux appels d’offres&nbsp;?", "opts": ["Jamais", "Pour analyser le dossier", "Pour préparer la réponse", "Pour rédiger certaines parties", "Pour produire une grande partie du dossier"], "p": [0, 1, 2, 3, 4], "max": 4, "auto": true}, {"id": "gestion", "section": "Appels d’offres et gestion", "type": "check", "label": "Pour quelles autres tâches&nbsp;?", "aide": "Plusieurs réponses possibles.", "opts": ["Préparer Qualiopi ou un audit", "Rédiger des propositions commerciales", "Écrire des emails ou prospecter", "Produire du marketing et des publications", "Analyser des CV, recruter des formateurs", "Rédiger des comptes rendus et des synthèses", "Analyser des données de formation"], "max": 7, "auto": false}, {"id": "freins", "section": "Cadre et freins", "type": "check", "label": "Quels sont vos principaux freins&nbsp;?", "aide": "Trois réponses au maximum.", "opts": ["Manque de compétences", "Manque de temps", "Budget", "Difficulté à choisir les outils", "RGPD et confidentialité des données", "Fiabilité des réponses", "Absence de règles internes", "Résistance des équipes", "Manque d’intégration avec le LMS"], "limite": 3, "auto": false}, {"id": "charte", "section": "Cadre et freins", "type": "radio", "label": "Disposez-vous d’une charte d’utilisation de l’IA&nbsp;?", "opts": ["Oui", "En préparation", "Non"], "p": [2, 1, 0], "max": 2, "auto": true}, {"id": "formes", "section": "Cadre et freins", "type": "radio", "label": "Vos équipes ont-elles été formées à l’IA&nbsp;?", "opts": ["Toutes", "Une partie", "Quelques personnes", "Personne"], "p": [3, 2, 1, 0], "max": 3, "auto": true}, {"id": "metier", "section": "Demain", "type": "radio", "label": "D’ici deux ans, l’IA va-t-elle modifier le métier de formateur&nbsp;?", "opts": ["Oui, fortement", "Oui, partiellement", "Peu", "Pas du tout"], "auto": true}, {"id": "part", "section": "Demain", "type": "radio", "label": "Quelle part du travail d’un organisme pourrait être assistée par l’IA d’ici trois ans&nbsp;?", "opts": ["Moins de 10 %", "10 à 25 %", "25 à 50 %", "50 à 75 %", "Plus de 75 %"], "auto": true}, {"id": "priorite", "section": "Demain", "type": "texte", "label": "Quelle tâche souhaiteriez-vous automatiser en priorité&nbsp;?", "aide": "Une phrase suffit. Champ facultatif.", "ph": "Par exemple : la correction des évaluations, les comptes rendus de session…", "auto": false}, {"id": "contact", "section": "Vos résultats", "type": "contact", "label": "Où vous envoyons-nous vos accès et le baromètre&nbsp;?", "aide": "Votre adresse ne sert qu’à cela. Vos réponses restent anonymes dans les résultats publiés."}], NIVEAUX = [[20, "Découverte", "L’IA reste à la porte de l’organisme. Le premier pas tient souvent à une tâche unique, répétitive, que l’on confie pour voir."], [40, "Expérimentation", "Quelques personnes s’y sont mises, chacune de son côté. L’enjeu devient de partager ce qui marche."], [60, "Adoption", "L’IA est entrée dans la production courante. Reste à l’inscrire dans des règles et des outils communs."], [80, "Intégration", "L’IA irrigue plusieurs métiers de l’organisme. Le sujet devient celui de la mesure et de la qualité."], [100, "Organisme augmenté", "L’IA est dans les outils, les process et le LMS. Vous êtes en avance sur la profession."]];
-    var LETTRES = 'ABCDEFGHIJ';
+    var PARTIES = [{"nom": "Profil de l’organisme", "intro": "Trois questions pour situer votre structure."}, {"nom": "Niveau général d’utilisation de l’IA", "intro": "Où vous en êtes aujourd’hui."}, {"nom": "IA et ingénierie pédagogique", "intro": "Ce que vous confiez à l’IA pour concevoir vos formations."}, {"nom": "IA et évaluations", "intro": "Concevoir, corriger, décider."}, {"nom": "IA au service de l’apprenant", "intro": "Ce que l’IA fait, ou pourrait faire, face à l’apprenant."}, {"nom": "IA et travail du formateur", "intro": "Le temps gagné, concrètement."}, {"nom": "IA dans la gestion de l’organisme", "intro": "Appels d’offres, qualité, commerce, recrutement."}, {"nom": "Freins, risques et stratégie", "intro": "Ce qui vous retient, et ce que vous voyez venir."}];
+    var ECRANS = [{"type": "annonce", "partie": 0, "nom": "Profil de l’organisme", "intro": "Trois questions pour situer votre structure."}, {"id": "type", "type": "radio", "label": "Quel est votre type d’organisme&nbsp;?", "opts": ["Organisme de formation privé", "CFA", "École ou enseignement supérieur", "Service formation interne", "Association", "Autre"], "auto": true, "partie": 0, "section": "Profil de l’organisme"}, {"id": "taille", "type": "radio", "label": "Combien de personnes travaillent dans votre organisme&nbsp;?", "aide": "Salariés et formateurs vacataires compris.", "opts": ["1 à 5", "6 à 20", "21 à 50", "51 à 200", "Plus de 200"], "auto": true, "partie": 0, "section": "Profil de l’organisme"}, {"id": "apprenants", "type": "radio", "label": "Combien d’apprenants formez-vous chaque année&nbsp;?", "opts": ["Moins de 100", "100 à 500", "500 à 2 000", "2 000 à 10 000", "Plus de 10 000"], "auto": true, "partie": 0, "section": "Profil de l’organisme"}, {"type": "annonce", "partie": 1, "nom": "Niveau général d’utilisation de l’IA", "intro": "Où vous en êtes aujourd’hui."}, {"id": "usage", "type": "radio", "label": "Utilisez-vous actuellement des outils d’IA dans votre organisme&nbsp;?", "opts": ["Oui régulièrement", "Oui ponctuellement", "Nous expérimentons", "Pas encore", "Non et ce n’est pas prévu"], "p": [4, 3, 2, 1, 0], "max": 4, "axe": "usage", "auto": true, "partie": 1, "section": "Niveau général d’utilisation de l’IA"}, {"id": "depuis", "type": "radio", "label": "Depuis quand utilisez-vous l’IA&nbsp;?", "opts": ["Moins de 6 mois", "6 mois à 1 an", "1 à 2 ans", "Plus de 2 ans"], "si": {"q": "usage", "pas": ["Pas encore", "Non et ce n’est pas prévu"]}, "auto": true, "partie": 1, "section": "Niveau général d’utilisation de l’IA"}, {"id": "outils", "type": "check", "label": "Quels outils utilisez-vous&nbsp;?", "aide": "Plusieurs réponses possibles.", "opts": ["ChatGPT", "Claude", "Gemini", "Microsoft Copilot", "Mistral", "IA intégrée à votre LMS", "Outils spécialisés formation", "Autres"], "si": {"q": "usage", "pas": ["Pas encore", "Non et ce n’est pas prévu"]}, "auto": false, "partie": 1, "section": "Niveau général d’utilisation de l’IA"}, {"id": "comment", "type": "radio", "label": "Comment utilisez-vous l’IA aujourd’hui&nbsp;?", "opts": ["Usage individuel non organisé", "Quelques collaborateurs utilisent l’IA", "Expérimentations organisées", "Processus métier intégrant l’IA", "IA intégrée dans nos outils et notre LMS"], "p": [1, 2, 3, 4, 5], "max": 5, "axe": "usage", "si": {"q": "usage", "pas": ["Pas encore", "Non et ce n’est pas prévu"]}, "auto": true, "partie": 1, "section": "Niveau général d’utilisation de l’IA"}, {"type": "annonce", "partie": 2, "nom": "IA et ingénierie pédagogique", "intro": "Ce que vous confiez à l’IA pour concevoir vos formations."}, {"id": "inge", "type": "matrice", "label": "Utilisez-vous l’IA pour&nbsp;:", "aide": "Une réponse par ligne.", "echelle": ["Jamais", "Occasionnellement", "Régulièrement", "Très souvent"], "axe": "inge", "lignes": ["Créer un programme de formation", "Construire une progression pédagogique", "Transformer un référentiel en parcours de formation", "Créer des objectifs pédagogiques", "Créer des séquences pédagogiques", "Créer des supports de cours", "Créer des fiches pédagogiques", "Créer des exercices", "Créer des cas pratiques", "Adapter un contenu à différents niveaux", "Simplifier un contenu pour des publics FLE ou en difficulté", "Transformer un document existant en module e-learning", "Créer des vidéos", "Créer des podcasts", "Créer des illustrations", "Créer des simulations ou mises en situation"], "partie": 2, "section": "IA et ingénierie pédagogique"}, {"type": "annonce", "partie": 3, "nom": "IA et évaluations", "intro": "Concevoir, corriger, décider."}, {"id": "eval", "type": "check", "label": "Utilisez-vous l’IA pour&nbsp;:", "aide": "Plusieurs réponses possibles.", "axe": "eval", "opts": ["Créer des QCM", "Créer des questions ouvertes", "Créer des études de cas", "Créer des mises en situation", "Créer des grilles d’évaluation", "Créer des critères de réussite", "Adapter la difficulté d’une évaluation", "Générer des évaluations différentes pour chaque apprenant", "Corriger automatiquement des QCM", "Analyser des réponses ouvertes", "Aider le formateur à corriger", "Fournir automatiquement un feedback à l’apprenant", "Identifier les compétences acquises ou non acquises"], "auto": false, "partie": 3, "section": "IA et évaluations", "plein": 8}, {"id": "valide", "type": "radio", "label": "Seriez-vous prêt à laisser une IA valider seule une compétence&nbsp;?", "opts": ["Oui", "Oui pour certaines compétences", "Oui avec validation finale d’un formateur", "Non"], "auto": true, "partie": 3, "section": "IA et évaluations"}, {"type": "annonce", "partie": 4, "nom": "IA au service de l’apprenant", "intro": "Ce que l’IA fait, ou pourrait faire, face à l’apprenant."}, {"id": "appr", "type": "matrice", "label": "Utilisez-vous ou envisagez-vous l’IA pour&nbsp;:", "aide": "Une réponse par ligne.", "echelle": ["Non", "Envisagé", "Oui"], "axe": "appr", "lignes": ["Répondre aux questions des apprenants 24 h/24", "Expliquer différemment une notion mal comprise", "Créer des exercices personnalisés", "Adapter le niveau de difficulté", "Recommander les prochaines activités", "Détecter les risques de décrochage", "Relancer automatiquement un apprenant", "Créer un parcours personnalisé", "Faire pratiquer une langue avec un agent conversationnel", "Préparer un examen ou une certification"], "partie": 4, "section": "IA au service de l’apprenant"}, {"id": "role", "type": "radio", "label": "Pour vous, quel doit être le rôle de l’IA auprès de l’apprenant&nbsp;?", "opts": ["Assistant ponctuel", "Tuteur pédagogique", "Coach personnalisé", "Agent conversationnel", "Outil de recommandation", "L’IA ne doit pas intervenir directement auprès de l’apprenant"], "auto": true, "partie": 4, "section": "IA au service de l’apprenant"}, {"type": "annonce", "partie": 5, "nom": "IA et travail du formateur", "intro": "Le temps gagné, concrètement."}, {"id": "gainsur", "type": "check", "label": "L’IA vous permet-elle déjà de gagner du temps sur&nbsp;:", "aide": "Plusieurs réponses possibles.", "axe": "form", "opts": ["La préparation des formations", "La recherche documentaire", "La création des supports", "Les évaluations", "Les corrections", "Les comptes rendus", "Les synthèses de sessions", "Le suivi des apprenants", "La préparation des classes virtuelles", "Les réponses aux apprenants"], "auto": false, "partie": 5, "section": "IA et travail du formateur", "plein": 6}, {"id": "temps", "type": "radio", "label": "Combien de temps estimez-vous gagner grâce à l’IA&nbsp;?", "opts": ["Aucun", "Moins d’une heure par semaine", "1 à 3 heures", "3 à 5 heures", "5 à 10 heures", "Plus de 10 heures"], "p": [0, 1, 2, 3, 4, 5], "max": 5, "axe": "form", "auto": true, "partie": 5, "section": "IA et travail du formateur"}, {"type": "annonce", "partie": 6, "nom": "IA dans la gestion de l’organisme", "intro": "Appels d’offres, qualité, commerce, recrutement."}, {"id": "gestion", "type": "check", "label": "Utilisez-vous l’IA pour&nbsp;:", "aide": "Plusieurs réponses possibles.", "axe": "gest", "opts": ["Répondre aux appels d’offres", "Analyser un cahier des charges", "Identifier les exigences d’un appel d’offres", "Rédiger des mémoires techniques", "Préparer des réponses Qualiopi", "Préparer des audits", "Créer des propositions commerciales", "Rédiger des emails commerciaux", "Créer des campagnes marketing", "Créer des publications pour les réseaux sociaux", "Prospecter", "Analyser des CV", "Recruter des formateurs", "Créer des fiches de poste", "Préparer les entretiens", "Analyser la satisfaction des stagiaires", "Créer des comptes rendus", "Analyser des données de formation"], "auto": false, "partie": 6, "section": "IA dans la gestion de l’organisme", "plein": 9}, {"id": "ao", "type": "radio", "label": "Utilisez-vous l’IA pour répondre aux appels d’offres&nbsp;?", "opts": ["Jamais", "Pour analyser le dossier", "Pour préparer la réponse", "Pour rédiger certaines parties", "Pour produire une grande partie du dossier"], "p": [0, 1, 2, 3, 4], "max": 4, "axe": "gest", "auto": true, "partie": 6, "section": "IA dans la gestion de l’organisme"}, {"type": "annonce", "partie": 7, "nom": "Freins, risques et stratégie", "intro": "Ce qui vous retient, et ce que vous voyez venir."}, {"id": "freins", "type": "check", "label": "Quels sont vos principaux freins à l’utilisation de l’IA&nbsp;?", "aide": "Trois réponses au maximum.", "limite": 3, "opts": ["Manque de compétences", "Manque de temps", "Manque de budget", "Difficulté à choisir les outils", "Protection des données", "RGPD", "Confidentialité", "Fiabilité des réponses", "Risque d’erreurs", "Absence de règles internes", "Résistance des équipes", "Crainte concernant l’avenir du métier de formateur", "Manque d’intégration avec le LMS"], "auto": false, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "charte", "type": "radio", "label": "Votre organisme dispose-t-il d’une charte d’utilisation de l’IA&nbsp;?", "opts": ["Oui", "En préparation", "Non"], "p": [2, 1, 0], "max": 2, "axe": "cadre", "auto": true, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "formes", "type": "radio", "label": "Les collaborateurs ont-ils été formés à l’utilisation de l’IA&nbsp;?", "opts": ["Tous", "Une partie", "Quelques personnes", "Personne"], "p": [3, 2, 1, 0], "max": 3, "axe": "cadre", "auto": true, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "donnees", "type": "radio", "label": "Avez-vous défini les données qui peuvent ou ne peuvent pas être envoyées dans une IA publique&nbsp;?", "opts": ["Oui", "Partiellement", "Non"], "p": [2, 1, 0], "max": 2, "axe": "cadre", "auto": true, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "budget", "type": "radio", "label": "Avez-vous un budget spécifique consacré à l’IA&nbsp;?", "opts": ["Oui", "Prévu dans les 12 prochains mois", "Non"], "p": [2, 1, 0], "max": 2, "axe": "cadre", "auto": true, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "metier", "type": "radio", "label": "Dans les 2 prochaines années, l’IA va-t-elle modifier profondément le métier de formateur&nbsp;?", "opts": ["Oui fortement", "Oui partiellement", "Peu", "Pas du tout"], "auto": true, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "potentiel", "type": "texte", "label": "Quel usage de l’IA vous paraît avoir le plus de potentiel dans la formation professionnelle&nbsp;?", "aide": "Une phrase suffit. Champ facultatif.", "ph": "Par exemple : la personnalisation des parcours, la correction assistée…", "auto": false, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "priorite", "type": "texte", "label": "Quelle tâche souhaiteriez-vous automatiser en priorité grâce à l’IA&nbsp;?", "aide": "Une phrase suffit. Champ facultatif.", "ph": "Par exemple : la correction des évaluations, les comptes rendus de session…", "auto": false, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "part", "type": "radio", "label": "Selon vous, quel pourcentage du travail d’un organisme de formation pourrait être assisté par l’IA d’ici 3 ans&nbsp;?", "opts": ["Moins de 10 %", "10 à 25 %", "25 à 50 %", "50 à 75 %", "Plus de 75 %"], "auto": true, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "percu", "type": "radio", "label": "Aujourd’hui, votre organisme considère principalement l’IA comme&nbsp;:", "opts": ["Un outil de productivité", "Un outil pédagogique", "Un assistant du formateur", "Un outil de personnalisation des parcours", "Un moyen de réduire les coûts", "Un avantage concurrentiel", "Une menace", "Un sujet que nous maîtrisons encore mal"], "auto": true, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "contact", "section": "Vos résultats", "type": "contact", "label": "Où vous envoyons-nous vos accès et le baromètre&nbsp;?", "aide": "Votre adresse ne sert qu’à cela. Vos réponses restent anonymes dans les résultats publiés."}];
+    var NIVEAUX = [[20, "Découverte", "L’IA reste à la porte de l’organisme. Le premier pas tient souvent à une tâche unique, répétitive, que l’on confie pour voir."], [40, "Expérimentation", "Quelques personnes s’y sont mises, chacune de son côté. L’enjeu devient de partager ce qui marche."], [60, "Adoption", "L’IA est entrée dans la production courante. Reste à l’inscrire dans des règles et des outils communs."], [80, "Intégration", "L’IA irrigue plusieurs métiers de l’organisme. Le sujet devient celui de la mesure et de la qualité."], [100, "Organisme augmenté", "L’IA est dans les outils, les process et le LMS. Vous êtes en avance sur la profession."]];
+    var AXES = [["usage", "Usage et organisation"], ["inge", "Ingénierie pédagogique"], ["eval", "Évaluations"], ["appr", "IA au service de l’apprenant"], ["form", "Travail du formateur"], ["gest", "Gestion et appels d’offres"], ["cadre", "Cadre et gouvernance"]];
+    var PISTES = {"Usage et organisation": [["Sortir de l’usage individuel", "Tant que chacun utilise l’IA dans son coin, rien ne se capitalise. Un espace partagé de prompts et de bonnes pratiques change l’échelle."], ["Rapprocher l’IA de vos outils", "Un usage intégré au LMS et aux outils de production pèse plus qu’un outil de plus à ouvrir dans un onglet."]], "Ingénierie pédagogique": [["Partir du référentiel, pas de la page blanche", "L’IA sert surtout à produire des supports. Elle est bien plus utile en amont : transformer un référentiel de compétences en progression, puis en séquences."], ["Adapter plutôt que reproduire", "Un même contenu décliné pour un public FLE, un débutant et un profil expérimenté coûte trois fois moins cher à produire avec l’IA qu’à écrire trois fois."]], "Évaluations": [["Faire produire les variantes, pas les questions", "Le gain le plus net est la génération d’évaluations différentes pour chaque apprenant à partir d’un même socle, plutôt qu’un QCM de plus."], ["Garder le formateur sur la correction qualitative", "L’IA prend les QCM et le premier passage sur les réponses rédigées ; le formateur garde l’appréciation et la décision."]], "Gestion et appels d’offres": [["Commencer par l’analyse du dossier", "Avant de rédiger, faire extraire les exigences d’un cahier des charges et la grille d’évaluation : c’est là que se perdent les dossiers."], ["Constituer une base de vos mémoires techniques", "Vos réponses passées sont le meilleur matériau : elles rendent les propositions générées spécifiques plutôt que génériques."]], "Cadre et gouvernance": [["Écrire la charte avant l’incident", "Une page suffit : quelles données ne sortent pas, qui relit quoi, ce qui est signalé comme généré. C’est aussi ce qu’un auditeur demandera."], ["Former ceux qui produisent, pas seulement la direction", "L’écart de compétence se creuse vite entre les personnes qui ont pris l’outil en main et les autres."]], "IA au service de l’apprenant": [["Commencer par la question qui revient le plus", "Un assistant qui répond aux questions récurrentes des apprenants, à partir de vos propres contenus, est le premier usage à mettre en place : il soulage le formateur sans rien décider à sa place."], ["Adapter la difficulté avant d’individualiser le parcours", "Ajuster le niveau d’un exercice à la réponse précédente demande peu de mise en place et se mesure tout de suite ; le parcours personnalisé viendra ensuite."]], "Travail du formateur": [["Mesurer le temps gagné, tâche par tâche", "Une semaine de relevé suffit pour savoir où l’IA rend vraiment du temps. C’est ce qui convainc les équipes hésitantes, bien plus qu’une démonstration."], ["Réinvestir le temps gagné dans l’accompagnement", "Le temps repris sur la préparation et les comptes rendus a le plus de valeur quand il retourne aux apprenants, pas quand il absorbe une session de plus."]]};
+    var LETTRES = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     var scene = qz.querySelector('.qz-scene'),
         jauge = qz.querySelector('.qz-barre i'),
@@ -546,23 +542,33 @@ html.fige,body.fige{overflow:hidden}
         err   = document.getElementById('qz-err'),
         lance = document.getElementById('eq-lancer');
 
-    var rep = {}, cur = 0, anime = true, verrou = false;
+    var rep = {}, cur = 0, anime = true, verrou = false, minuteur = null;
+
+    var QDE = function(id){ return ECRANS.filter(function(x){ return x.id === id; })[0]; };
 
     /* un ecran saute si sa condition n’est plus remplie */
     var saute = function(e){
       if (!e.si) return false;
       var v = rep[e.si.q];
       if (v === undefined) return false;
-      var ec = ECRANS.filter(function(x){ return x.id === e.si.q; })[0];
+      var ec = QDE(e.si.q);
       return ec && e.si.pas.indexOf(ec.opts[v]) !== -1;
     };
-    var visibles = function(){ return ECRANS.filter(function(e){ return !saute(e); }); };
+    /* les annonces de partie ne sont pas des questions : elles ne comptent pas */
+    var estQ = function(e){ return e.type !== 'annonce'; };
+    var visibles = function(){ return ECRANS.filter(function(e){ return estQ(e) && !saute(e); }); };
     var indexReel = function(i){ return visibles().indexOf(ECRANS[i]); };
+    var prochaineQ = function(i){
+      for (; i < ECRANS.length; i++) if (estQ(ECRANS[i]) && !saute(ECRANS[i])) return i;
+      return -1;
+    };
 
     var repondu = function(e){
       var v = rep[e.id];
+      if (e.type === 'annonce' || e.type === 'texte') return true;   /* le texte est facultatif */
       if (e.type === 'check') return Array.isArray(v) && v.length > 0;
-      if (e.type === 'texte') return true;                  /* facultatif */
+      if (e.type === 'matrice') return Array.isArray(v) &&
+        e.lignes.every(function(_, k){ return v[k] !== undefined; });
       if (e.type === 'contact') {
         var m = (rep.email || '').trim();
         return m.length > 2 && m.indexOf('@') > 0;
@@ -571,19 +577,34 @@ html.fige,body.fige{overflow:hidden}
     };
 
     var majBarre = function(){
-      var l = visibles(), p = Math.round((indexReel(cur) + 1) / (l.length + 1) * 100);
+      var e = ECRANS[cur], l = visibles();
+      var annonce = e.type === 'annonce';
+      var k = annonce ? indexReel(prochaineQ(cur)) : indexReel(cur);
+      var p = Math.round((k + (annonce ? 0 : 1)) / (l.length + 1) * 100);
       jauge.style.width = p + '%';
       barre.setAttribute('aria-valuenow', p);
-      secNom.textContent = ECRANS[cur].section + ' · ' + (indexReel(cur) + 1) + ' sur ' + l.length;
+      secNom.textContent = annonce ? e.nom : (e.section + ' · ' + (k + 1) + ' sur ' + l.length);
     };
+
+    var echap = function(t){ return String(t).replace(/&nbsp;/g, ' ').replace(/"/g, '&quot;'); };
 
     /* ---- construction d’un ecran ---- */
     var carte = function(e){
       var d = document.createElement('div');
+
+      if (e.type === 'annonce') {
+        d.className = 'qz-carte qz-annonce entre';
+        d.innerHTML = '<p class="qz-annonce-n">Partie ' + (e.partie + 1) + ' sur ' + PARTIES.length + '</p>' +
+          '<h2 class="qz-annonce-t">' + e.nom + '</h2>' +
+          (e.intro ? '<p class="qz-annonce-i">' + e.intro + '</p>' : '') +
+          '<i class="qz-annonce-trait" aria-hidden="true"></i>';
+        return d;
+      }
+
       d.className = 'qz-carte entre';
       var l = visibles();
-      var h = '<p class="qz-num"><b>' + (indexReel(cur) + 1) + '</b><span>sur ' + l.length + '</span></p>';
-      if (e.chapeau) h += '<p class="qz-chapeau">' + e.chapeau + '</p>';
+      var h = '<p class="qz-num"><span class="qz-partie">' + e.section + '</span>' +
+              '<b>' + (indexReel(cur) + 1) + '</b><span>sur ' + l.length + '</span></p>';
       h += '<h2 class="qz-q">' + e.label + '</h2>';
       if (e.aide) h += '<p class="qz-aide">' + e.aide + '</p>';
 
@@ -599,9 +620,35 @@ html.fige,body.fige{overflow:hidden}
                '<span>' + o + '</span></button>';
         });
         h += '</div>';
+
+      } else if (e.type === 'matrice') {
+        /* une ligne par usage, une colonne par frequence ; sur mobile les
+           colonnes portent un numero, la legende sous la grille les nomme */
+        var v = rep[e.id] || [];
+        h += '<div class="qz-mat" style="--nc:' + e.echelle.length + '">' +
+             '<div class="qz-mat-tete" aria-hidden="true"><span></span>' +
+             e.echelle.map(function(t, c){ return '<i><b>' + (c + 1) + '</b><span>' + t + '</span></i>'; }).join('') +
+             '</div>';
+        e.lignes.forEach(function(lig, k){
+          h += '<div class="qz-mat-l' + (v[k] !== undefined ? ' ok' : '') +
+               '" role="radiogroup" aria-label="' + echap(lig) + '">' +
+               '<span class="qz-mat-lib">' + lig + '</span>';
+          e.echelle.forEach(function(t, c){
+            h += '<button type="button" class="qz-cel" role="radio" aria-checked="' + (v[k] === c) +
+                 '" data-l="' + k + '" data-c="' + c + '" aria-label="' + echap(t) + '"><i></i></button>';
+          });
+          h += '</div>';
+        });
+        h += '</div>' +
+             '<p class="qz-mat-leg" aria-hidden="true">' +
+             e.echelle.map(function(t, c){ return '<b>' + (c + 1) + '</b> ' + t; }).join('<span> · </span>') +
+             '</p><p class="qz-mat-reste" id="qz-mat-reste" aria-live="polite"></p>';
+
       } else if (e.type === 'texte') {
         h += '<textarea class="qz-txt" id="qz-libre" placeholder="' + e.ph + '"></textarea>';
+
       } else if (e.type === 'contact') {
+        var cadeau = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2.6" y="6.4" width="10.8" height="7" rx="1.2" stroke="currentColor" stroke-width="1.3"/><path d="M2.6 6.4h10.8M8 6.4v7M8 6.4S6.4 3 5 3.6s.2 2.8 3 2.8Zm0 0S9.6 3 11 3.6s-.2 2.8-3 2.8Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>';
         h += '<div class="qz-champs">' +
              '<div class="qz-champ"><label for="qz-orga">Votre organisme</label>' +
              '<input id="qz-orga" type="text" autocomplete="organization" placeholder="Nom de votre structure"></div>' +
@@ -609,9 +656,9 @@ html.fige,body.fige{overflow:hidden}
              '<input id="qz-mail" type="email" autocomplete="email" required placeholder="prenom@organisme.fr"></div>' +
              '</div>' +
              '<div class="qz-gains">' +
-             '<div class="qz-gain"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2.6" y="6.4" width="10.8" height="7" rx="1.2" stroke="currentColor" stroke-width="1.3"/><path d="M2.6 6.4h10.8M8 6.4v7M8 6.4S6.4 3 5 3.6s.2 2.8 3 2.8Zm0 0S9.6 3 11 3.6s-.2 2.8-3 2.8Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><div><b>Un mois d’accès à nos outils IA</b>' +
+             '<div class="qz-gain">' + cadeau + '<div><b>Un mois d’accès à nos outils IA</b>' +
              '<span>Création de contenu, d’évaluations, correction assistée.</span></div></div>' +
-             '<div class="qz-gain"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2.6" y="6.4" width="10.8" height="7" rx="1.2" stroke="currentColor" stroke-width="1.3"/><path d="M2.6 6.4h10.8M8 6.4v7M8 6.4S6.4 3 5 3.6s.2 2.8 3 2.8Zm0 0S9.6 3 11 3.6s-.2 2.8-3 2.8Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><div><b>Le baromètre en avant-première</b>' +
+             '<div class="qz-gain">' + cadeau + '<div><b>Le baromètre en avant-première</b>' +
              '<span>Les résultats complets, avant leur publication.</span></div></div>' +
              '</div>' +
              '<p class="qz-legal">Vos données servent uniquement à vous transmettre vos accès et les résultats. ' +
@@ -626,6 +673,9 @@ html.fige,body.fige{overflow:hidden}
       [].forEach.call(d.querySelectorAll('.qz-opt'), function(b){
         b.addEventListener('click', function(){ choisir(e, +b.dataset.i); });
       });
+      [].forEach.call(d.querySelectorAll('.qz-cel'), function(b){
+        b.addEventListener('click', function(){ choisirCel(e, +b.dataset.l, +b.dataset.c); });
+      });
       var t = d.querySelector('#qz-libre');
       if (t) { t.value = rep[e.id] || ''; t.addEventListener('input', function(){ rep[e.id] = t.value; }); }
       var o = d.querySelector('#qz-orga'), m = d.querySelector('#qz-mail');
@@ -636,6 +686,19 @@ html.fige,body.fige{overflow:hidden}
     var majOptions = function(e){
       var d = scene.querySelector('.qz-carte');
       if (!d) return;
+      if (e.type === 'matrice') {
+        var v = rep[e.id] || [], n = 0;
+        [].forEach.call(d.querySelectorAll('.qz-mat-l'), function(r, k){
+          var on = v[k] !== undefined; if (on) n++;
+          r.classList.toggle('ok', on);
+          [].forEach.call(r.querySelectorAll('.qz-cel'), function(b){
+            b.setAttribute('aria-checked', v[k] === +b.dataset.c);
+          });
+        });
+        var reste = d.querySelector('#qz-mat-reste');
+        if (reste) reste.textContent = n + ' ligne' + (n > 1 ? 's' : '') + ' sur ' + e.lignes.length;
+        return;
+      }
       [].forEach.call(d.querySelectorAll('.qz-opt'), function(b){
         var i = +b.dataset.i;
         var on = e.type === 'check' ? (rep[e.id] || []).indexOf(i) !== -1 : rep[e.id] === i;
@@ -664,69 +727,126 @@ html.fige,body.fige{overflow:hidden}
       err.hidden = true;
       if (e.auto) { verrou = true; window.setTimeout(function(){ verrou = false; suivant(); }, anime ? 170 : 0); }
     };
+    var choisirCel = function(e, k, c){
+      if (verrou) return;
+      var v = rep[e.id] || [];
+      v[k] = c;
+      rep[e.id] = v;
+      majOptions(e);
+      err.hidden = true;
+    };
 
-    var montre = function(sens){
+    var montre = function(){
       var e = ECRANS[cur];
       var vieux = scene.querySelector('.qz-carte');
+      window.clearTimeout(minuteur);
       var pose = function(){
         scene.innerHTML = '';
+        scene.scrollTop = 0;
         var d = carte(e);
         scene.appendChild(d);
+        majBarre();
+        var ch = document.querySelector('.qz-astuce-ch');
+        err.hidden = true;
+
+        if (e.type === 'annonce') {
+          /* le nom de la partie s’affiche, puis s’efface de lui-meme ;
+             un clic ou Entree n’attendent pas */
+          bPrec.hidden = true; bSuiv.hidden = true;
+          if (ch) ch.hidden = true;
+          scene.onclick = function(){ suivant(); };
+          minuteur = window.setTimeout(function(){ if (ECRANS[cur] === e) suivant(); }, anime ? 2100 : 800);
+          return;
+        }
+        scene.onclick = null;
         poseEcouteurs(d, e);
         majOptions(e);
-        majBarre();
         bPrec.hidden = indexReel(cur) === 0;
         bSuiv.hidden = e.auto === true;
         bSuiv.textContent = e.type === 'contact' ? 'Voir mon indice' : 'Continuer';
-        /* les lettres ne servent qu'aux ecrans a choix */
-        var ch = document.querySelector('.qz-astuce-ch');
+        /* les lettres ne servent qu’aux ecrans a choix */
         if (ch) ch.hidden = !d.querySelector('.qz-opt');
-        var f = d.querySelector('.qz-opt, textarea, input');
+        var f = d.querySelector('.qz-opt, .qz-cel, textarea, input');
         if (f) f.focus({ preventScroll: true });
       };
       if (vieux && anime) {
         vieux.classList.remove('entre');
         vieux.classList.add('sort');
-        window.setTimeout(pose, 150);
+        window.setTimeout(pose, vieux.classList.contains('qz-annonce') ? 380 : 150);
       } else pose();
     };
 
     var suivant = function(){
+      window.clearTimeout(minuteur);
       var e = ECRANS[cur];
       if (!repondu(e)) {
-        err.textContent = e.type === 'contact'
-          ? 'Merci d’indiquer une adresse e-mail valide.'
-          : 'Choisissez une réponse pour continuer.';
+        if (e.type === 'matrice') {
+          var v = rep[e.id] || [];
+          var manque = e.lignes.filter(function(_, k){ return v[k] === undefined; }).length;
+          err.textContent = 'Il reste ' + manque + ' ligne' + (manque > 1 ? 's' : '') + ' sans réponse.';
+          var r = scene.querySelector('.qz-mat-l:not(.ok)');
+          if (r) r.scrollIntoView({ block: 'center', behavior: anime ? 'smooth' : 'auto' });
+        } else {
+          err.textContent = e.type === 'contact'
+            ? 'Merci d’indiquer une adresse e-mail valide.'
+            : 'Choisissez une réponse pour continuer.';
+        }
         err.hidden = false;
         return;
       }
-      var l = visibles(), k = l.indexOf(e);
-      if (k >= l.length - 1) { calcule(); return; }
-      cur = ECRANS.indexOf(l[k + 1]);
-      montre(1);
+      /* l’ecran suivant dans l’ordre, annonces comprises, conditions sautees */
+      var i = cur + 1;
+      while (i < ECRANS.length && saute(ECRANS[i])) i++;
+      if (i >= ECRANS.length) { calcule(); return; }
+      cur = i;
+      montre();
     };
+    /* en arriere, on va de question en question : les annonces ne se rejouent pas */
     var precedent = function(){
+      window.clearTimeout(minuteur);
       var l = visibles(), k = l.indexOf(ECRANS[cur]);
       if (k <= 0) return;
       cur = ECRANS.indexOf(l[k - 1]);
-      montre(-1);
+      montre();
     };
 
-    /* ---- indice de maturite ---- */
-    var score = function(){
-      var pts = 0, max = 0;
-      ECRANS.forEach(function(e){
-        var poids = e.poids || 1;
-        if (e.p) {
-          max += e.max * poids;
-          if (rep[e.id] !== undefined && !saute(e)) pts += e.p[rep[e.id]] * poids;
-        } else if (e.pchaque) {
-          max += e.max * poids;
-          pts += Math.min((rep[e.id] || []).length, e.max) * e.pchaque * poids;
-        }
+    /* ---- indice de maturite ----
+       Chaque domaine est ramene sur 100 ; l’indice est la moyenne des sept.
+       Une matrice de seize lignes ne pese donc pas plus qu’une question. */
+    var parAxe = function(){
+      return AXES.map(function(ax){
+        var pts = 0, max = 0;
+        ECRANS.forEach(function(e){
+          if (e.axe !== ax[0]) return;
+          var v = rep[e.id];
+          if (e.type === 'matrice') {
+            max += e.lignes.length * (e.echelle.length - 1);
+            (v || []).forEach(function(c){ if (c !== undefined) pts += c; });
+          } else if (e.type === 'check') {
+            /* « plein » : le nombre de cases a partir duquel le domaine est
+               couvert. Cocher les dix-huit usages de gestion n’est pas un
+               objectif, en cocher neuf dit deja tout. */
+            var plein = e.plein || e.opts.length;
+            max += plein;
+            pts += Math.min((v || []).length, plein);
+          } else if (e.p) {
+            max += e.max;
+            if (v !== undefined && !saute(e)) pts += e.p[v];
+          }
+        });
+        return { id: ax[0], nom: ax[1], v: max ? Math.round(pts / max * 100) : 0 };
       });
-      return max ? Math.round(pts / max * 100) : 0;
     };
+    var score = function(){
+      var a = parAxe();
+      return a.length ? Math.round(a.reduce(function(s, x){ return s + x.v; }, 0) / a.length) : 0;
+    };
+    var texteDeQ = function(id){
+      var e = QDE(id);
+      if (!e || rep[id] === undefined) return null;
+      return e.opts ? e.opts[rep[id]] : null;
+    };
+    var pluriel = function(n, un, des){ return n + ' ' + (n > 1 ? des : un); };
 
     var ETATS = ['Analyse de vos réponses…',
                  'Croisement de vos réponses par domaine…',
@@ -735,6 +855,7 @@ html.fige,body.fige{overflow:hidden}
     var calcule = function(){
       var n = score();
       pied.hidden = true;
+      scene.onclick = null;
       jauge.style.width = '100%';
       barre.setAttribute('aria-valuenow', 100);
       secNom.textContent = '';
@@ -752,145 +873,137 @@ html.fige,body.fige{overflow:hidden}
       pas();
     };
 
-    var AXES = [["Ingénierie pédagogique", ["inge_0", "inge_1", "inge_2", "inge_3", "inge_4", "inge_5", "inge_6"]], ["Évaluations", ["eval", "corr"]], ["Appels d’offres et gestion", ["ao", "gestion"]], ["Outillage et organisation", ["usage", "qui", "gain"]], ["Cadre et compétences", ["charte", "formes"]]];
-    var PISTES = {"Ingénierie pédagogique": [["Partir du référentiel, pas de la page blanche", "L’IA sert surtout à produire des supports. Elle est bien plus utile en amont : transformer un référentiel de compétences en progression, puis en séquences."], ["Adapter plutôt que reproduire", "Un même contenu décliné pour un public FLE, un débutant et un profil expérimenté coûte trois fois moins cher à produire avec l’IA qu’à écrire trois fois."]], "Évaluations": [["Faire produire les variantes, pas les questions", "Le gain le plus net est la génération d’évaluations différentes pour chaque apprenant à partir d’un même socle, plutôt qu’un QCM de plus."], ["Garder le formateur sur la correction qualitative", "L’IA prend les QCM et le premier passage sur les réponses rédigées ; le formateur garde l’appréciation et la décision."]], "Appels d’offres et gestion": [["Commencer par l’analyse du dossier", "Avant de rédiger, faire extraire les exigences d’un cahier des charges et la grille d’évaluation : c’est là que se perdent les dossiers."], ["Constituer une base de vos mémoires techniques", "Vos réponses passées sont le meilleur matériau : elles rendent les propositions générées spécifiques plutôt que génériques."]], "Outillage et organisation": [["Sortir de l’usage individuel", "Tant que chacun utilise l’IA dans son coin, rien ne se capitalise. Un espace partagé de prompts et de bonnes pratiques change l’échelle."], ["Rapprocher l’IA de vos outils", "Un usage intégré au LMS et aux outils de production pèse plus qu’un outil de plus à ouvrir dans un onglet."]], "Cadre et compétences": [["Écrire la charte avant l’incident", "Une page suffit : quelles données ne sortent pas, qui relit quoi, ce qui est signalé comme généré. C’est aussi ce qu’un auditeur demandera."], ["Former ceux qui produisent, pas seulement la direction", "L’écart de compétence se creuse vite entre les personnes qui ont pris l’outil en main et les autres."]]};
-    var USAGES = ["Créer un programme de formation", "Transformer un référentiel en parcours", "Rédiger des objectifs pédagogiques", "Produire des supports de cours", "Créer des exercices et des cas pratiques", "Adapter un contenu à un niveau ou à un public FLE", "Transformer un document existant en module e-learning"];
-
-    /* chaque axe est ramene sur 100 a partir des seules questions qui le
-       composent, pour que les cinq soient comparables entre eux */
-    var parAxe = function(){
-      return AXES.map(function(ax){
-        var pts = 0, max = 0;
-        ax[1].forEach(function(id){
-          var e = ECRANS.filter(function(x){ return x.id === id; })[0];
-          if (!e) return;
-          var poids = e.poids || 1;
-          if (e.p) { max += e.max * poids;
-            if (rep[id] !== undefined && !saute(e)) pts += e.p[rep[id]] * poids; }
-          else if (e.pchaque) { max += e.max * poids;
-            pts += Math.min((rep[id] || []).length, e.max) * e.pchaque * poids; }
-        });
-        return { nom: ax[0], v: max ? Math.round(pts / max * 100) : 0 };
-      });
-    };
-
-    var texteDeQ = function(id){
-      var e = ECRANS.filter(function(x){ return x.id === id; })[0];
-      if (!e || rep[id] === undefined) return null;
-      return e.opts ? e.opts[rep[id]] : null;
-    };
-
     var resultat = function(n){
       var niv = NIVEAUX.filter(function(x){ return n <= x[0]; })[0] || NIVEAUX[NIVEAUX.length - 1];
       var axes = parAxe();
-      /* du plus avance au moins avance : le classement porte a lui seul
-         « points d’appui » et « angles morts », sans deux rubriques de plus */
       var tri = axes.slice().sort(function(a, b){ return b.v - a.v; });
-      var faibles = tri.slice(-2).reverse();
+      var forts = tri.slice(0, 2), faibles = tri.slice(-2).reverse();
+      var seuilFaible = faibles[0].v;
 
-      /* trois bandes d’avancement. La teinte ne dit rien que la valeur et
-         la pastille ne disent deja en clair. */
-      var bande = function(v){ return v >= 70 ? 'haut' : (v >= 40 ? 'moy' : 'bas'); };
-      var barres = tri.map(function(a, k){
-        var b = bande(a.v), chip = '';
-        if (k === 0 && a.v >= 40) chip = '<span class="bl-chip">Point d’appui</span>';
-        else if (k === tri.length - 1) chip = '<span class="bl-chip">À travailler</span>';
-        return '<li class="bl-axe ' + b + '"><b>' + a.nom + chip + '</b><i>' + a.v + '</i>' +
-          '<span class="bl-rail"><span data-v="' + a.v + '"></span></span></li>';
+      var barres = axes.map(function(a){
+        return '<li class="bl-axe' + (a.v <= seuilFaible ? ' faible' : '') + '">' +
+          '<b>' + a.nom + '</b><i>' + a.v + '</i>' +
+          '<span class="bl-piste"><span data-v="' + a.v + '"></span></span></li>';
       }).join('');
 
-      var crans = USAGES.map(function(u, k){
-        var v = rep['inge_' + k];
-        var c = [0,1,2].map(function(i){
-          return '<i class="' + (v !== undefined && i <= v ? 'on' : '') + '"></i>'; }).join('');
-        return '<li><span>' + u + '</span><span class="bl-crans">' + c + '</span></li>';
+      /* --- les sept indicateurs du barometre, avec vos reponses --- */
+      var inge = QDE('inge'), appr = QDE('appr'), evalQ = QDE('eval'), freinsQ = QDE('freins');
+      var mInge = rep.inge || [], mAppr = rep.appr || [];
+      var ingeUn = mInge.filter(function(c){ return c >= 1; }).length;
+      var ingeReg = mInge.filter(function(c){ return c >= 2; }).length;
+      var nEval = (rep.eval || []).length;
+      var nOutils = (rep.outils || []).length;
+      var freinsTxt = (rep.freins || []).map(function(i){ return freinsQ.opts[i]; });
+      var envis = mAppr.filter(function(c){ return c === 1; }).length;
+      var dejaAppr = mAppr.filter(function(c){ return c === 2; }).length;
+      var formes = texteDeQ('formes');
+      var INDIC = [
+        ['Création de formations avec l’IA',
+          ingeUn ? pluriel(ingeUn, 'usage', 'usages') + ' sur ' + inge.lignes.length +
+                   (ingeReg ? ', dont ' + pluriel(ingeReg, 'régulier', 'réguliers') : '') : 'Aucun usage déclaré'],
+        ['Évaluations',
+          nEval ? pluriel(nEval, 'usage', 'usages') + ' sur ' + evalQ.opts.length : 'Aucun usage déclaré'],
+        ['Appels d’offres', texteDeQ('ao') || '—'],
+        ['Temps gagné par semaine', texteDeQ('temps') || '—'],
+        ['Équipement des formateurs',
+          (nOutils ? pluriel(nOutils, 'outil', 'outils') : 'Aucun outil') +
+          (formes ? ' · équipes formées : ' + formes.toLowerCase() : '')],
+        ['Principaux freins', freinsTxt.length ? freinsTxt.join(', ') : '—'],
+        ['Usages prévus auprès des apprenants',
+          (envis || dejaAppr)
+            ? (envis ? pluriel(envis, 'usage envisagé', 'usages envisagés') : '') +
+              (envis && dejaAppr ? ', ' : '') +
+              (dejaAppr ? pluriel(dejaAppr, 'déjà en place', 'déjà en place') : '')
+            : 'Aucun pour l’instant']
+      ].map(function(x){
+        return '<li><span>' + x[0] + '</span><b>' + x[1] + '</b></li>'; }).join('');
+
+      /* --- detail de l’ingenierie, un cran par niveau de frequence --- */
+      /* un cran par niveau au-dessus de « Jamais » : trois crans pour quatre niveaux */
+      var nc = inge.echelle.length - 1;
+      var cransDe = function(v){
+        return inge.echelle.slice(1).map(function(_, i){
+          return '<i class="' + (v !== undefined && i < v ? 'on' : '') + '"></i>'; }).join('');
+      };
+      var crans = inge.lignes.map(function(u, k){
+        return '<li><span>' + u + '</span><span class="bl-crans">' + cransDe(mInge[k]) + '</span></li>';
+      }).join('');
+      var legende = inge.echelle.map(function(t, i){
+        return '<span><span class="bl-crans">' + cransDe(i) + '</span>' + t + '</span>';
       }).join('');
 
-      var outils = (rep.outils || []).length;
-      var freins = (rep.freins || []).length;
+      var nFreins = (rep.freins || []).length;
       var tuiles = [
-        [outils, outils > 1 ? 'outils d’IA utilisés' : 'outil d’IA utilisé'],
-        [texteDeQ('gain') || '—', 'de gain déclaré sur la création de contenu'],
-        [freins, freins > 1 ? 'freins identifiés' : 'frein identifié'],
+        [nOutils, nOutils > 1 ? 'outils d’IA utilisés' : 'outil d’IA utilisé'],
+        [texteDeQ('temps') || '—', 'de temps gagné par semaine'],
+        [nFreins, nFreins > 1 ? 'freins identifiés' : 'frein identifié'],
         [texteDeQ('charte') || '—', 'charte d’utilisation de l’IA']
       ].map(function(t){
         var lng = String(t[0]).length > 7 ? ' class="long"' : '';
-        return '<div class="bl-tuile"><em aria-hidden="true"></em><b' + lng + '>' + t[0] +
-               '</b><span>' + t[1] + '</span></div>'; }).join('');
+        return '<div class="bl-tuile"><b' + lng + '>' + t[0] + '</b><span>' + t[1] + '</span></div>'; }).join('');
 
       /* deux pistes sur l’axe le plus faible, une sur le second */
       var choix = [];
-      (PISTES[faibles[0].nom] || []).forEach(function(x){ choix.push([x, faibles[0].nom]); });
-      (PISTES[faibles[1].nom] || []).slice(0, 1).forEach(function(x){ choix.push([x, faibles[1].nom]); });
+      (PISTES[faibles[0].nom] || []).forEach(function(x){ choix.push(x); });
+      (PISTES[faibles[1].nom] || []).slice(0, 1).forEach(function(x){ choix.push(x); });
       var pistes = choix.slice(0, 3).map(function(x, k){
-        return '<li><span class="bl-n">' + (k + 1) + '</span><div><b>' + x[0][0] + '</b>' +
-               '<span class="bl-ou">' + x[1] + '</span>' +
-               '<span>' + x[0][1] + '</span></div></li>'; }).join('');
-
-      var paliers = NIVEAUX.map(function(x){
-        return '<li class="' + (x === niv ? 'ici' : '') + '"><span>' + x[1] + '</span>' +
-               '<i></i></li>'; }).join('');
-
-      var CIRC = 540;   /* 2 pi r, r = 86 */
-      var coche = '<svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">' +
-        '<circle cx="8" cy="8" r="6.6" stroke="currentColor" stroke-width="1.3"/>' +
-        '<path d="M5.2 8.2l2 2 3.6-4" stroke="currentColor" stroke-width="1.5" ' +
-        'stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        return '<li><span class="bl-n">' + (k + 1) + '</span><div><b>' + x[0] + '</b>' +
+               '<span>' + x[1] + '</span></div></li>'; }).join('');
 
       qz.classList.add('bilan');
       scene.innerHTML =
-        '<div class="bl qz-carte entre">' +
+        '<div class="qz-carte entre qz-res">' +
+        '<div class="bl-tete">' +
+        '<span class="eyebrow">Votre indice de maturité IA</span>' +
+        '<p class="qz-score"><b id="qz-pts">0</b><small> / 100</small></p>' +
+        '<div class="qz-jauge"><i id="qz-j"></i></div>' +
+        '<p class="qz-niv">' + niv[1] + '</p>' +
+        '<p class="qz-niv-txt">' + niv[2] + '</p>' +
+        '<div class="qz-echelle">' + NIVEAUX.map(function(x){
+          return '<span class="qz-ech' + (x === niv ? ' on' : '') + '">' + x[1] + '</span>';
+        }).join('') + '</div></div>' +
 
-        '<aside class="bl-fixe">' +
-          '<span class="eyebrow">Votre indice de maturité IA</span>' +
-          '<div class="bl-anneau">' +
-            '<svg viewBox="0 0 200 200" aria-hidden="true">' +
-              '<circle class="bl-creux" cx="100" cy="100" r="86"/>' +
-              '<circle class="bl-arc" id="qz-arc" cx="100" cy="100" r="86" ' +
-                'stroke-dasharray="' + CIRC + '" stroke-dashoffset="' + CIRC + '"/>' +
-            '</svg>' +
-            '<div class="bl-coeur"><b id="qz-pts">0</b><span>sur 100</span></div>' +
-          '</div>' +
-          '<p class="bl-palier">' + niv[1] + '</p>' +
-          '<p class="bl-palier-txt">' + niv[2] + '</p>' +
-          '<ul class="bl-paliers">' + paliers + '</ul>' +
-        '</aside>' +
+        '<section class="bl-sec"><h3>Votre profil, domaine par domaine</h3>' +
+        '<p class="bl-note">Chaque domaine est ramené sur 100 à partir des seules questions qui le composent ; votre indice est la moyenne des sept.</p>' +
+        '<ul class="bl-axes">' + barres + '</ul></section>' +
 
-        '<div class="bl-flux">' +
-          '<section class="bl-carte"><h3>Vos cinq domaines</h3>' +
-          '<p>Chaque domaine est ramené sur 100 à partir des seules questions qui le composent : les cinq sont comparables entre eux.</p>' +
-          '<ul class="bl-axes">' + barres + '</ul></section>' +
+        '<section class="bl-sec"><div class="bl-duo">' +
+        '<div class="bl-bloc"><h4>Vos points d’appui</h4><ul>' +
+          forts.map(function(a){ return '<li>' + a.nom + '<em>' + a.v + '</em></li>'; }).join('') +
+        '</ul></div>' +
+        '<div class="bl-bloc"><h4>Vos angles morts</h4><ul>' +
+          faibles.map(function(a){ return '<li>' + a.nom + '<em>' + a.v + '</em></li>'; }).join('') +
+        '</ul></div></div></section>' +
 
-          '<section class="bl-carte"><h3>Votre ingénierie pédagogique, usage par usage</h3>' +
-          '<p>Ce que vous confiez déjà à l’IA.</p>' +
-          '<ul class="bl-niv">' + crans + '</ul>' +
-          '<div class="bl-leg">' +
-            '<span><span class="bl-crans"><i class="on"></i><i class="on"></i><i class="on"></i></span>Souvent</span>' +
-            '<span><span class="bl-crans"><i class="on"></i><i class="on"></i><i></i></span>Parfois</span>' +
-            '<span><span class="bl-crans"><i></i><i></i><i></i></span>Jamais</span>' +
-          '</div></section>' +
+        '<section class="bl-sec"><h3>Les sept indicateurs du baromètre</h3>' +
+        '<p class="bl-note">Ceux que le baromètre publiera pour la profession. Ici, vos réponses ; les pourcentages nationaux vous parviendront avec les résultats.</p>' +
+        '<ul class="bl-indic">' + INDIC + '</ul></section>' +
 
-          '<section class="bl-carte"><h3>Ce que vous avez déclaré</h3>' +
-          '<div class="bl-tuiles">' + tuiles + '</div></section>' +
+        '<section class="bl-sec"><h3>Le détail de votre ingénierie pédagogique</h3>' +
+        '<p class="bl-note">Ce que vous confiez déjà à l’IA, usage par usage.</p>' +
+        '<ul class="bl-niv" style="--nc:' + nc + '">' + crans + '</ul>' +
+        '<div class="bl-leg" style="--nc:' + nc + '">' + legende + '</div></section>' +
 
-          '<section class="bl-carte"><h3>Trois pistes, à partir de vos réponses</h3>' +
-          '<p>Choisies sur vos deux domaines les moins avancés. La comparaison à la profession viendra avec les résultats du baromètre.</p>' +
-          '<ul class="bl-pistes">' + pistes + '</ul></section>' +
+        '<section class="bl-sec"><h3>Ce que vous avez déclaré</h3>' +
+        '<div class="bl-tuiles">' + tuiles + '</div></section>' +
 
-          '<section class="bl-carte"><h3>Ce qui vous attend par e-mail</h3>' +
-          '<div class="bl-gains">' +
-            '<div class="bl-gain">' + coche + '<div><b>Un mois d’accès à nos outils IA</b>' +
-            '<span>Création de contenu, d’évaluations et correction assistée. Trente jours, sans engagement.</span></div></div>' +
-            '<div class="bl-gain">' + coche + '<div><b>Le baromètre complet</b>' +
-            '<span>Les résultats de l’enquête, envoyés avant leur publication.</span></div></div>' +
-          '</div></section>' +
-        '</div></div>';
+        '<section class="bl-sec"><h3>Trois pistes, à partir de vos réponses</h3>' +
+        '<p class="bl-note">Choisies sur vos deux domaines les moins avancés. La comparaison à la profession viendra avec les résultats du baromètre.</p>' +
+        '<ul class="bl-pistes">' + pistes + '</ul></section>' +
+
+        '<section class="bl-sec"><h3>Ce qui vous attend par e-mail</h3>' +
+        '<div class="bl-gains">' +
+        '<div class="bl-gain"><b>Un mois d’accès à nos outils IA</b>' +
+        '<span>Création de contenu, d’évaluations et correction assistée. Trente jours, sans engagement.</span></div>' +
+        '<div class="bl-gain"><b>Le baromètre complet</b>' +
+        '<span>Les résultats de l’enquête, envoyés avant leur publication.</span></div>' +
+        '</div></section>' +
+        '</div>';
 
       window.setTimeout(function(){
-        var arc = document.getElementById('qz-arc');
-        if (arc) arc.style.strokeDashoffset = (CIRC * (1 - n / 100)).toFixed(1);
-        [].forEach.call(scene.querySelectorAll('.bl-rail span'), function(b, k){
-          window.setTimeout(function(){ b.style.width = b.dataset.v + '%'; }, anime ? 140 + k * 90 : 0);
+        document.getElementById('qz-j').style.width = n + '%';
+        [].forEach.call(scene.querySelectorAll('.bl-piste span'), function(b, k){
+          window.setTimeout(function(){ b.style.width = b.dataset.v + '%'; }, anime ? 120 + k * 90 : 0);
         });
       }, 60);
 
