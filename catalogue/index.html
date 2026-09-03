@@ -213,16 +213,20 @@ section[id]{scroll-margin-top:92px}
 /* ══════════ FORMULAIRE DE DÉMONSTRATION ══════════ */
 /* le fond sombre file d'un bord à l'autre, le contenu reste dans le conteneur */
 #demo{position:relative;overflow:hidden}
-/* un voile blanc ramene le degrade dans une plage tonale ou le texte
-   sombre passe partout, quelle que soit la hauteur de la fenetre */
+/* Le fond est cale a gauche, pas centre : le cadrage en cover garde
+   ainsi la zone sombre de l'image sous la colonne de texte, quelle que
+   soit la largeur de la fenetre. Un voile sombre borne la plage tonale,
+   pour que le texte clair passe meme la ou l'image s'eclaircit. */
 #demo::before{content:"";position:absolute;inset:0;
-  background:linear-gradient(rgba(255,255,255,.34),rgba(255,255,255,.46)),
-    url(img/gradient_site.png) center/cover no-repeat}
-/* sur fond colore, les gris de la colonne de gauche tombaient
-   entre 1,4:1 et 3,3:1 */
-#demo .dm-side .eyebrow{color:#43403F}
-#demo .dm-side > p{color:#3D3A39}
-#demo .dm-side li svg{color:#43403F}
+  background:linear-gradient(rgba(16,18,42,.34),rgba(16,18,42,.44)),
+    url(img/colorFlow.jpg) left center/cover no-repeat}
+/* colonne de gauche en texte clair : l'image est trop saturee et trop
+   sombre pour les gris fonces d'origine */
+#demo .dm-side .eyebrow{color:#DCDCE6}
+#demo .dm-side h2{color:#fff}
+#demo .dm-side > p{color:#EDEDF3}
+#demo .dm-pts li{color:#fff}
+#demo .dm-side li svg{color:#DCDCE6}
 #demo > *{position:relative}
 .dm{position:relative}
 .dm-in{max-width:var(--max);margin:0 auto;padding:0 var(--pad);
