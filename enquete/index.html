@@ -310,50 +310,57 @@ html.fige,body.fige{overflow:hidden}
 .qz-ech.on{color:var(--ink);border-top-color:var(--ink)}
 
 /* ══════════ MATRICE ══════════ */
-/* Une ligne par usage, une colonne par frequence. L'en-tete reste colle en
-   haut pendant que la grille defile ; sur mobile, les colonnes portent un
-   numero et la legende sous la grille les nomme. */
-.qz-mat{margin-top:clamp(18px,2.2vw,26px);--wc:102px}
+/* Une ligne par usage, une colonne par frequence. La carte s'elargit pour
+   que les libelles tiennent sur une ligne ; les rangs alternent pour que
+   l'oeil suive une ligne jusqu'a sa colonne ; les cercles vides sont fins
+   et gris, seuls les choix sont noirs. L'en-tete reste colle en haut. */
+.qz-carte.qz-large{width:min(100%,940px)}
+.qz-mat{margin-top:clamp(20px,2.4vw,30px);--wc:108px}
 .qz-mat-tete,.qz-mat-l{display:grid;grid-template-columns:minmax(0,1fr) repeat(var(--nc),var(--wc));
-  align-items:center;column-gap:4px}
-.qz-mat-tete{position:sticky;top:0;z-index:2;background:var(--cream);padding:6px 0 8px;
+  align-items:center;column-gap:8px}
+.qz-mat-tete{position:sticky;top:0;z-index:2;background:var(--cream);padding:10px 0 12px;
   border-bottom:1px solid var(--line)}
-.qz-mat-tete i{font-style:normal;text-align:center;font-size:.74rem;line-height:1.25;
+.qz-mat-tete i{font-style:normal;text-align:center;font-size:.78rem;line-height:1.25;
   color:var(--ink-2);padding:0 4px}
 .qz-mat-tete i b{display:none;font-weight:500}
-.qz-mat-l{min-height:44px;border-bottom:1px solid var(--line);transition:background .15s}
-.qz-mat-l:hover{background:var(--cream-2)}
-.qz-mat-lib{font-size:.9rem;line-height:1.35;color:var(--ink);padding:8px 10px 8px 0}
+.qz-mat-l{min-height:54px;border-radius:8px;transition:background .15s}
+.qz-mat-l:nth-child(odd){background:var(--cream-2)}
+.qz-mat-l:hover{background:var(--cream-3)}
+.qz-mat-lib{font-size:.94rem;line-height:1.35;color:var(--ink);padding:12px 12px 12px 14px}
 .qz-mat-l.ok .qz-mat-lib{color:var(--ink-2)}
-.qz-cel{display:grid;place-items:center;height:44px;background:none;border:0;cursor:pointer;
+.qz-cel{display:grid;place-items:center;height:54px;background:none;border:0;cursor:pointer;
   padding:0;border-radius:6px}
-.qz-cel i{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--ink-3);display:block;
-  transition:border-color .15s,background .15s,box-shadow .15s}
-.qz-cel:hover i{border-color:var(--ink)}
+.qz-cel i{width:22px;height:22px;border-radius:50%;border:1px solid #8A8A8A;display:block;
+  transition:border-color .15s,background .15s,box-shadow .15s,transform .15s}
+.qz-cel:hover i{border-color:var(--ink);transform:scale(1.08)}
 .qz-cel[aria-checked="true"] i{border-color:var(--ink);background:var(--ink);
-  box-shadow:inset 0 0 0 4px var(--cream)}
+  box-shadow:inset 0 0 0 5px var(--cream);transform:none}
 .qz-mat-leg{display:none}
-.qz-mat-reste{margin-top:12px;font-size:.8rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.qz-mat-reste{margin-top:14px;font-size:.8rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
 @media (max-width:720px){
   .qz-mat{--wc:46px}
+  .qz-mat-tete,.qz-mat-l{column-gap:2px}
   .qz-mat-tete i span{display:none}
   .qz-mat-tete i b{display:block;font-size:.8rem;color:var(--ink)}
   .qz-mat-leg{display:block;margin-top:10px;font-size:.76rem;line-height:1.6;color:var(--ink-2)}
   .qz-mat-leg b{font-weight:500;color:var(--ink)}
-  .qz-mat-lib{font-size:.86rem}
-  .qz-cel i{width:18px;height:18px}
+  .qz-mat-l{min-height:48px;border-radius:6px}
+  .qz-mat-lib{font-size:.88rem;padding:10px 6px 10px 10px}
+  .qz-cel{height:48px}
+  .qz-cel i{width:19px;height:19px}
 }
 
 /* ══════════ ANNONCE DE PARTIE ══════════ */
 /* Le nom de la partie, seul, en grand ; il entre, tient, et s'efface pour
-   laisser la premiere question. */
-.qz-annonce{text-align:center;max-width:30ch;cursor:default}
-.qz-annonce-n{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
-.qz-annonce-t{margin-top:14px;font-size:clamp(1.9rem,4.2vw,3.3rem);line-height:1.08;
+   laisser la premiere question. La carte est large : les titres tiennent
+   sur une ligne, les deux plus longs se coupent en deux lignes egales. */
+.qz-carte.qz-annonce{width:min(100%,980px);text-align:center;cursor:default}
+.qz-annonce-n{font-size:.8rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+.qz-annonce-t{margin:16px auto 0;max-width:24ch;font-size:clamp(2.1rem,4.6vw,3.7rem);line-height:1.08;
   letter-spacing:-.03em;font-weight:500;text-wrap:balance}
-.qz-annonce-i{margin-top:14px;font-size:clamp(.98rem,1.2vw,1.1rem);line-height:1.5;color:var(--ink-2);
-  max-width:40ch;margin-left:auto;margin-right:auto;text-wrap:pretty}
-.qz-annonce-trait{display:block;width:44px;height:2px;margin:22px auto 0;background:var(--ink);
+.qz-annonce-i{margin:16px auto 0;max-width:60ch;font-size:clamp(1rem,1.25vw,1.15rem);line-height:1.5;
+  color:var(--ink-2);text-wrap:pretty}
+.qz-annonce-trait{display:block;width:48px;height:2px;margin:24px auto 0;background:var(--ink);
   transform-origin:left;animation:trait .9s .25s var(--ease) both}
 .qz-annonce.entre{animation:annonceIn .65s var(--ease) both}
 .qz-annonce.sort{animation:annonceOut .38s var(--ease) both}
@@ -601,7 +608,7 @@ html.fige,body.fige{overflow:hidden}
         return d;
       }
 
-      d.className = 'qz-carte entre';
+      d.className = 'qz-carte entre' + (e.type === 'matrice' ? ' qz-large' : '');
       var l = visibles();
       var h = '<p class="qz-num"><span class="qz-partie">' + e.section + '</span>' +
               '<b>' + (indexReel(cur) + 1) + '</b><span>sur ' + l.length + '</span></p>';
