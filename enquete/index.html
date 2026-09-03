@@ -188,7 +188,18 @@ section[id]{scroll-margin-top:92px}
 
 /* ══════════ QUESTIONNAIRE PLEIN ÉCRAN ══════════ */
 .qz{position:fixed;inset:0;z-index:200;background:var(--cream);
-  display:none;flex-direction:column}
+  display:none;flex-direction:column;overflow:hidden}
+/* Le meme fond que la couverture, plus dilue encore et plus lent : on
+   le regarde pendant plusieurs minutes, il ne doit pas entrer en
+   concurrence avec la lecture des questions. Absolu, donc hors du flux
+   flex malgre le conteneur. */
+.qz::before{content:"";position:absolute;inset:-8%;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(36% 42% at 16% 26%, rgba(224,26,79,.055), transparent 70%),
+    radial-gradient(32% 38% at 84% 24%, rgba(44,111,224,.05), transparent 70%),
+    radial-gradient(40% 36% at 62% 86%, rgba(232,89,12,.045), transparent 72%);
+  animation:derive 38s ease-in-out infinite alternate}
+@media (prefers-reduced-motion:reduce){.qz::before{animation:none}}
 .qz.on{display:flex}
 body.fige{overflow:hidden}
 
@@ -199,7 +210,7 @@ body.fige{overflow:hidden}
 .qz-tete{flex:none;display:flex;align-items:center;gap:14px;
   padding:13px var(--pad);border-bottom:1px solid var(--line)}
 .qz-tete img{height:26px;width:auto;display:block}
-.qz-sec{margin-left:auto;font-size:.79rem;color:var(--ink-3)}
+.qz-sec{margin-left:auto;font-size:.79rem;color:var(--ink-2)}
 .qz-fermer{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);
   background:transparent;cursor:pointer;display:grid;place-items:center;color:var(--ink-2);
   font-family:inherit;transition:border-color .16s,color .16s}
@@ -216,13 +227,13 @@ body.fige{overflow:hidden}
   .qz-carte.entre,.qz-carte.sort{animation:none}
 }
 
-.qz-num{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--ink-3);
+.qz-num{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--ink-2);
   margin-bottom:12px}
 .qz-num b{font-weight:500;color:var(--ink-2)}
-.qz-chapeau{font-size:.92rem;color:var(--ink-3);margin-bottom:7px}
+.qz-chapeau{font-size:.92rem;color:var(--ink-2);margin-bottom:7px}
 .qz-q{font-size:clamp(1.28rem,2.5vw,1.85rem);line-height:1.26;letter-spacing:-.02em;
   font-weight:500;color:var(--ink);text-wrap:balance}
-.qz-aide{margin-top:11px;font-size:.89rem;line-height:1.5;color:var(--ink-3)}
+.qz-aide{margin-top:11px;font-size:.89rem;line-height:1.5;color:var(--ink-2)}
 
 .qz-opts{margin-top:clamp(20px,2.6vw,30px);display:flex;flex-direction:column;gap:8px}
 .qz-opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;
@@ -232,7 +243,7 @@ body.fige{overflow:hidden}
 .qz-opt:hover{border-color:var(--ink-3);background:var(--cream-2)}
 .qz-opt[aria-checked="true"]{border-color:var(--ink);background:var(--cream-2);color:var(--ink)}
 .qz-touche{flex:none;width:23px;height:23px;border:1px solid var(--line);border-radius:5px;
-  display:grid;place-items:center;font-size:.71rem;color:var(--ink-3);
+  display:grid;place-items:center;font-size:.71rem;color:var(--ink-2);
   transition:background .15s,color .15s,border-color .15s}
 .qz-opt[aria-checked="true"] .qz-touche{background:var(--ink);border-color:var(--ink);color:#fff}
 .qz-opt[disabled]{opacity:.4;cursor:not-allowed}
@@ -252,7 +263,7 @@ body.fige{overflow:hidden}
 
 .qz-pied{flex:none;display:flex;align-items:center;gap:11px;flex-wrap:wrap;
   padding:13px var(--pad);border-top:1px solid var(--line);background:var(--cream-2)}
-.qz-astuce{margin-left:auto;font-size:.77rem;color:var(--ink-3)}
+.qz-astuce{margin-left:auto;font-size:.77rem;color:var(--ink-2)}
 .qz-astuce kbd{font-family:inherit;border:1px solid var(--line);border-radius:4px;
   padding:1px 5px;font-size:.72rem;background:var(--cream)}
 .qz-err{font-size:.81rem;color:var(--red)}
