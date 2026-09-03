@@ -25,14 +25,15 @@ const TYPES = { svg: 'image/svg+xml', png: 'image/png', jpg: 'image/jpeg',
 const PLAFOND = 15 * 1024 * 1024;   // marge sous la limite de publication
 
 // 1. retirer l'enveloppe fournie par l'hôte
+//    (du <title> à la fin du corps : les pages n'ont pas toutes le même
+//    premier élément, l'ancrage ne doit donc pas dépendre de la mise en page)
 const i = html.indexOf('<title>');
-const j = html.indexOf('<header class="nav"');
 const k = html.lastIndexOf('</body>');
-if (i < 0 || j < 0 || k < 0) {
-  console.error('Structure inattendue : <title>, <header class="nav"> ou </body> introuvable.');
+if (i < 0 || k < 0) {
+  console.error('Structure inattendue : <title> ou </body> introuvable.');
   process.exit(1);
 }
-let page = html.slice(i, j) + html.slice(j, k);
+let page = html.slice(i, k);
 
 // 2. les vidéos : encodées si le budget le permet, sinon remplacées par
 //    leur image d'attente (l'aperçu refuse les médias distants)
