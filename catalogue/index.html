@@ -361,15 +361,28 @@ section[id]{scroll-margin-top:92px}
    suppose : la place est ainsi reservee avant le chargement, sans
    saut de mise en page ni recadrage. */
 .demo-v{padding:clamp(30px,4vw,58px) 0 clamp(26px,3vw,40px)}
+.vplayer{display:grid;grid-template-columns:1fr;gap:clamp(14px,1.6vw,22px);align-items:start}
+@media (min-width:1040px){.vplayer{grid-template-columns:1.85fr 1fr}}
 .vidframe{position:relative;width:100%;aspect-ratio:1878/1080;overflow:hidden;
   border-radius:16px;border:1px solid var(--line);background:var(--cream-2)}
 .vidframe video{width:100%;height:100%;object-fit:cover;display:block}
-/* lecture automatique retiree pour qui a demande a limiter les animations */
-@media (prefers-reduced-motion:reduce){
-  .vidframe video{display:none}
-  .vidframe::after{content:"Demonstration d'un module bureautique";position:absolute;inset:0;
-    display:grid;place-items:center;font-size:.9rem;color:var(--ink-2)}
-}
+/* affiche quand le fichier de la gamme choisie n'est pas encore livre */
+.vid-attente{position:absolute;inset:0;margin:0;display:grid;place-items:center;
+  text-align:center;padding:24px;font-size:.9rem;line-height:1.5;color:var(--ink-2);
+  background:var(--cream-2)}
+
+/* le volet : une entree par gamme, celle qui joue est remplie */
+.vlist{display:flex;flex-direction:column;gap:7px;list-style:none;margin:0;padding:0}
+.vitem{display:block;width:100%;text-align:left;font-family:inherit;cursor:pointer;
+  background:transparent;border:1px solid var(--line);border-radius:12px;
+  padding:clamp(10px,1.1vw,13px) clamp(12px,1.4vw,16px);
+  transition:background .18s,border-color .18s}
+.vitem:hover{background:var(--cream-2)}
+.vitem[aria-current="true"]{background:var(--cream-2);border-color:var(--ink-3)}
+.vmeta{display:block;font-size:.72rem;letter-spacing:.02em;color:var(--ink-3);
+  margin-bottom:5px}
+.vtit{display:block;font-size:.95rem;font-weight:500;letter-spacing:-.008em;color:var(--ink)}
+.vitem[aria-current="true"] .vtit{font-weight:600}
 
 /* ══════════ GRILLE DE FONCTIONNALITÉS ══════════ */
 /* Titre aligné à gauche, trois colonnes d'entrées à icône fine */
@@ -462,13 +475,22 @@ section[id]{scroll-margin-top:92px}
 </section>
 
 <div class="demo-v">
-  <div class="wrap">
+  <div class="wrap vplayer">
     <div class="vidframe rv">
-      <video src="video/powerpoint.mp4" autoplay muted loop playsinline
+      <video id="vdemo" src="video/powerpoint.mp4" autoplay muted loop playsinline
              preload="metadata" disablepictureinpicture
-             aria-label="Demonstration : un module bureautique du catalogue, joue dans le navigateur"
-             data-alt="Module bureautique du catalogue joue dans le navigateur"></video>
+             aria-label="Extrait d'un module du catalogue, joue dans le navigateur"
+             data-alt="Extrait d'un module du catalogue joue dans le navigateur"></video>
+      <p class="vid-attente" id="vattente" hidden>Vidéo à venir pour cette gamme.</p>
     </div>
+    <ul class="vlist rv" aria-label="Gammes illustrées en vidéo">
+      <li><button type="button" class="vitem" data-src="video/powerpoint.mp4" aria-current="true"><span class="vmeta">Word · Excel · PowerPoint · Outlook</span><span class="vtit">Bureautique Microsoft Office</span></button></li>
+      <li><button type="button" class="vitem" data-src="video/mathematiques.mp4"><span class="vmeta">Compétences de base</span><span class="vtit">Mathématiques</span></button></li>
+      <li><button type="button" class="vitem" data-src="video/fle.mp4"><span class="vmeta">Français langue étrangère</span><span class="vtit">FLE</span></button></li>
+      <li><button type="button" class="vitem" data-src="video/clea.mp4"><span class="vmeta">Socle de compétences</span><span class="vtit">Certification CléA</span></button></li>
+      <li><button type="button" class="vitem" data-src="video/savoirs-de-base.mp4"><span class="vmeta">Socle · Remise à niveau</span><span class="vtit">Savoirs de base</span></button></li>
+      <li><button type="button" class="vitem" data-src="video/pao.mp4"><span class="vmeta">Photoshop · Illustrator · InDesign</span><span class="vtit">PAO</span></button></li>
+    </ul>
   </div>
 </div>
 
@@ -1323,6 +1345,38 @@ section[id]{scroll-margin-top:92px}
       minuteur = setTimeout(function(){ if (redimensionner() && sobre) dessiner(0); }, 160);
     });
   })();
+
+  /* ── lecteur de demonstration : le volet change la video ── */
+  var vdemo = document.getElementById('vdemo');
+  var vattente = document.getElementById('vattente');
+  var vitems = document.querySelectorAll('.vitem');
+  if (vdemo && vitems.length) {
+    /* la lecture automatique en boucle est exactement ce que le reglage
+       « limiter les animations » vise : on rend la main a la personne */
+    if (reduce) { vdemo.autoplay = false; vdemo.loop = false; vdemo.controls = true; }
+
+    vdemo.addEventListener('error', function(){
+      if (vattente) vattente.hidden = false;
+    });
+    vdemo.addEventListener('loadeddata', function(){
+      if (vattente) vattente.hidden = true;
+    });
+
+    vitems.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var src = btn.dataset.src;
+        if (!src || vdemo.getAttribute('src') === src) return;
+        vitems.forEach(function(b){
+          if (b === btn) b.setAttribute('aria-current', 'true');
+          else b.removeAttribute('aria-current');
+        });
+        if (vattente) vattente.hidden = true;
+        vdemo.setAttribute('src', src);
+        vdemo.load();
+        if (!reduce) { var j = vdemo.play(); if (j && j.catch) j.catch(function(){}); }
+      });
+    });
+  }
 
   /* ── formulaire de démonstration (maquette : rien n'est envoyé) ── */
   var dmForm = document.getElementById('dm-form');
