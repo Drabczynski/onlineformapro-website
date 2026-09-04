@@ -323,10 +323,12 @@ html.fige,body.fige{overflow:hidden}
 /* Petite fenetre en bas a droite, au-dessus du pied. Elle glisse depuis
    le bord, reste huit secondes, se ferme d'un clic. */
 .qz-toast{position:absolute;right:20px;bottom:80px;z-index:5;
-  width:min(100% - 40px,360px);padding:14px 16px 15px;border:1px solid var(--line);
+  width:min(100% - 40px,340px);border:1px solid var(--line);overflow:hidden;
   border-radius:12px;background:var(--cream);
   opacity:0;transform:translateY(14px);transition:opacity .32s var(--ease),transform .32s var(--ease)}
 .qz-toast.on{opacity:1;transform:none}
+.qz-toast-img{display:block;width:100%;aspect-ratio:567/356;object-fit:cover;background:var(--cream-3)}
+.qz-toast-corps{padding:13px 16px 15px}
 .qz-toast-tete{display:flex;align-items:center;gap:9px}
 .qz-toast-eti{font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2)}
 .qz-toast-n{font-size:.8rem;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
@@ -337,7 +339,15 @@ html.fige,body.fige{overflow:hidden}
   display:grid;place-items:center;cursor:pointer;margin-right:-6px}
 .qz-toast-x:hover{background:var(--cream-2);color:var(--ink)}
 .qz-toast-txt{margin-top:9px;font-size:.86rem;line-height:1.5;color:var(--ink);text-wrap:pretty}
-@media (max-width:600px){.qz-toast{right:12px;left:12px;width:auto;bottom:76px}}
+/* sur mobile, une carte horizontale : l'image a gauche, le texte a droite,
+   sinon la fenetre couvrait plus de la moitie de l'ecran */
+@media (max-width:600px){
+  .qz-toast{right:12px;left:12px;width:auto;bottom:76px;display:grid;grid-template-columns:108px 1fr}
+  .qz-toast-img{aspect-ratio:auto;height:100%;min-height:118px}
+  .qz-toast-corps{padding:11px 12px 12px 13px}
+  .qz-toast-txt{margin-top:7px;font-size:.8rem;line-height:1.45}
+  .qz-toast-eti{font-size:.66rem}
+}
 @media (prefers-reduced-motion:reduce){.qz-toast{transition:none;transform:none}}
 
 /* ══════════ MATRICE ══════════ */
@@ -542,12 +552,15 @@ html.fige,body.fige{overflow:hidden}
   </header>
   <div class="qz-scene"></div>
   <div class="qz-toast" id="qz-toast" role="status" aria-live="polite" hidden>
+    <img class="qz-toast-img" alt="" width="567" height="356">
+    <div class="qz-toast-corps">
     <div class="qz-toast-tete">
       <span class="qz-toast-eti">Débloqué</span><b class="qz-toast-n">1/4</b>
       <span class="qz-toast-barre" aria-hidden="true"></span>
       <button class="qz-toast-x" type="button" aria-label="Fermer"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button>
     </div>
     <p class="qz-toast-txt"></p>
+    </div>
   </div>
   <div class="qz-pied">
     <button class="btn btn-line" type="button" id="qz-prec" hidden>Retour</button>
@@ -582,10 +595,14 @@ html.fige,body.fige{overflow:hidden}
        parties (indices 0 a 7). Le mois d'acces se revele piece par piece,
        sans s'afficher a chaque titre. */
     var DEBLOQUES = {
-      2: 'Vous avez débloqué votre accès à Fastformation pour générer vos modules e-learning avec l’IA.',
-      3: 'Vous avez débloqué FastQuiz IA : FastQuiz IA vous permet d’évaluer vos apprenants en quelques secondes avec l’IA.',
-      5: 'Vous avez débloqué Learning podcast : créez des podcasts interactifs et pédagogiques en quelques minutes.',
-      7: 'Vous avez débloqué RolePlay : RolePlay vous permet de générer des mises en situation interactives pour entraîner vos apprenants face à des cas métiers concrets.'
+      2: { img: 'win_fastformation.jpg',
+           txt: 'Vous avez débloqué votre accès à Fastformation pour générer vos modules e-learning avec l’IA.' },
+      3: { img: 'win_fastquiz.jpg',
+           txt: 'Vous avez débloqué FastQuiz IA : FastQuiz IA vous permet d’évaluer vos apprenants en quelques secondes avec l’IA.' },
+      5: { img: 'win_podcast.jpg',
+           txt: 'Vous avez débloqué Learning podcast : créez des podcasts interactifs et pédagogiques en quelques minutes.' },
+      7: { img: 'win_roleplay.jpg',
+           txt: 'Vous avez débloqué RolePlay : RolePlay vous permet de générer des mises en situation interactives pour entraîner vos apprenants face à des cas métiers concrets.' }
     };
     var ORDRE_DEBLOQUES = [2, 3, 5, 7], debloquesVus = {};
 
@@ -804,8 +821,12 @@ html.fige,body.fige{overflow:hidden}
       window.setTimeout(function(){ if (!toast.classList.contains('on')) toast.hidden = true; }, anime ? 320 : 0);
     };
     var montreToast = function(partie){
-      var texte = DEBLOQUES[partie];
-      if (!texte || debloquesVus[partie]) return;
+      var d = DEBLOQUES[partie];
+      if (!d || debloquesVus[partie]) return;
+      var texte = d.txt;
+      var im = toast.querySelector('.qz-toast-img');
+      im.hidden = false;
+      im.src = d.img;
       debloquesVus[partie] = true;
       var n = ORDRE_DEBLOQUES.indexOf(partie) + 1, total = ORDRE_DEBLOQUES.length;
       toast.querySelector('.qz-toast-n').textContent = n + '/' + total;
@@ -819,6 +840,7 @@ html.fige,body.fige{overflow:hidden}
       toastMinuteur = window.setTimeout(fermeToast, 8000);
     };
     toast.querySelector('.qz-toast-x').addEventListener('click', fermeToast);
+    toast.querySelector('.qz-toast-img').addEventListener('error', function(){ this.hidden = true; });
 
     var montre = function(){
       var e = ECRANS[cur];
@@ -1109,6 +1131,7 @@ html.fige,body.fige{overflow:hidden}
     /* ---- ouverture, fermeture, clavier ---- */
     var ouvrir = function(){
       anime = !reduce;
+      Object.keys(DEBLOQUES).forEach(function(k){ var i = new Image(); i.src = DEBLOQUES[k].img; });
       qz.classList.add('on');
       document.body.classList.add('fige');
       document.documentElement.classList.add('fige');

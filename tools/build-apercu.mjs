@@ -98,6 +98,17 @@ page = page.replace(/url\((['"]?)(?!https?:|data:|#|\/\/)([^)'"]+\.(?:svg|png|jp
     return uri ? `url(${uri})` : whole;
   });
 
+// 4. les images nommees dans le script (une chaine 'fichier.jpg' posee sur
+//    un <img> au moment voulu, comme les vignettes de deblocage) : on ne
+//    remplace que si le fichier existe, une chaine quelconque n'est pas
+//    forcement un chemin
+page = page.replace(/(['"])(?!https?:|data:|#|\/\/)([\w][\w./-]*\.(?:svg|png|jpe?g|webp|avif))\1/gi,
+  (whole, q, rel) => {
+    if (!existsSync(resolve(base, rel))) return whole;
+    const uri = encoder(rel);
+    return uri ? `${q}${uri}${q}` : whole;
+  });
+
 writeFileSync(out, page);
 const ko = (Buffer.byteLength(page) / 1024).toFixed(1);
 console.log(`${out} — ${ko} Ko, ${inlined} image(s) encodée(s)`);
