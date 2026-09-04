@@ -323,12 +323,14 @@ html.fige,body.fige{overflow:hidden}
 /* Petite fenetre en bas a droite, au-dessus du pied. Elle glisse depuis
    le bord, reste huit secondes, se ferme d'un clic. */
 .qz-toast{position:absolute;right:20px;bottom:80px;z-index:5;
-  width:min(100% - 40px,340px);border:1px solid var(--line);overflow:hidden;
-  border-radius:12px;background:var(--cream);
+  width:min(100% - 40px,344px);padding:14px;border:1px solid var(--line);
+  border-radius:16px;background:var(--cream);
+  box-shadow:0 12px 32px rgba(15,15,15,.09),0 2px 6px rgba(15,15,15,.05);
   opacity:0;transform:translateY(14px);transition:opacity .32s var(--ease),transform .32s var(--ease)}
 .qz-toast.on{opacity:1;transform:none}
-.qz-toast-img{display:block;width:100%;aspect-ratio:567/356;object-fit:cover;background:var(--cream-3)}
-.qz-toast-corps{padding:13px 16px 15px}
+.qz-toast-img{display:block;width:100%;height:auto;aspect-ratio:567/356;object-fit:cover;
+  border-radius:10px;background:var(--cream-3)}
+.qz-toast-corps{padding:14px 4px 4px}
 .qz-toast-tete{display:flex;align-items:center;gap:9px}
 .qz-toast-eti{font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2)}
 .qz-toast-n{font-size:.8rem;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
@@ -338,13 +340,14 @@ html.fige,body.fige{overflow:hidden}
 .qz-toast-x{width:24px;height:24px;border:0;border-radius:50%;background:transparent;color:var(--ink-2);
   display:grid;place-items:center;cursor:pointer;margin-right:-6px}
 .qz-toast-x:hover{background:var(--cream-2);color:var(--ink)}
-.qz-toast-txt{margin-top:9px;font-size:.86rem;line-height:1.5;color:var(--ink);text-wrap:pretty}
+.qz-toast-txt{margin-top:10px;font-size:.92rem;line-height:1.5;color:var(--ink);text-wrap:pretty}
 /* sur mobile, une carte horizontale : l'image a gauche, le texte a droite,
    sinon la fenetre couvrait plus de la moitie de l'ecran */
 @media (max-width:600px){
-  .qz-toast{right:12px;left:12px;width:auto;bottom:76px;display:grid;grid-template-columns:108px 1fr}
-  .qz-toast-img{aspect-ratio:auto;height:100%;min-height:118px}
-  .qz-toast-corps{padding:11px 12px 12px 13px}
+  .qz-toast{right:12px;left:12px;width:auto;bottom:76px;padding:10px;
+    display:grid;grid-template-columns:108px 1fr;gap:12px;align-items:center}
+  .qz-toast-img{aspect-ratio:auto;height:100%;min-height:112px;border-radius:8px}
+  .qz-toast-corps{padding:0 2px 0 0}
   .qz-toast-txt{margin-top:7px;font-size:.8rem;line-height:1.45}
   .qz-toast-eti{font-size:.66rem}
 }
@@ -552,7 +555,7 @@ html.fige,body.fige{overflow:hidden}
   </header>
   <div class="qz-scene"></div>
   <div class="qz-toast" id="qz-toast" role="status" aria-live="polite" hidden>
-    <img class="qz-toast-img" alt="" width="567" height="356">
+    <img class="qz-toast-img" alt="">
     <div class="qz-toast-corps">
     <div class="qz-toast-tete">
       <span class="qz-toast-eti">Débloqué</span><b class="qz-toast-n">1/4</b>
