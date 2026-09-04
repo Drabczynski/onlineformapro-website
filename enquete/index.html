@@ -82,19 +82,26 @@ html.fige,body.fige{overflow:hidden}
   transition:width .45s var(--ease)}
 
 .qz-tete{flex:none;display:flex;align-items:center;gap:14px;
-  padding:13px var(--pad);border-bottom:1px solid var(--line)}
-.qz-tete img{height:26px;width:auto;display:block}
-.qz-sec{margin-left:auto;font-size:.79rem;color:var(--ink-2)}
+  padding:11px var(--pad);border-bottom:1px solid var(--line)}
+.qz-tete img{height:clamp(34px,3vw,42px);width:auto;display:block}
+.qz-sec{margin-left:auto;font-size:.79rem;color:var(--ink-2);white-space:nowrap}
+.qz-sec-nom + .qz-sec-num::before{content:" · "}
+/* sur mobile, le nom de la partie est deja en tete de la question */
+@media (max-width:600px){.qz-sec-nom{display:none}.qz-sec-nom + .qz-sec-num::before{content:none}}
 .qz-fermer{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);
   background:transparent;cursor:pointer;display:grid;place-items:center;color:var(--ink-2);
   font-family:inherit;transition:border-color .16s,color .16s}
 .qz-fermer:hover{border-color:var(--ink);color:var(--ink)}
 
 .qz-scene{flex:1;display:flex;flex-direction:column;align-items:center;overflow-y:auto;
-  padding:clamp(20px,4vw,44px) var(--pad)}
+  padding:0 var(--pad)}
 /* marge automatique : centre tant que la carte tient, aligne en haut et
    laisse defiler des qu'elle deborde (une grille de seize lignes) */
-.qz-carte{width:min(100%,660px);margin:auto 0;flex:none}
+.qz-carte{width:min(100%,660px);margin:auto 0;flex:none;padding:clamp(20px,4vw,44px) 0}
+/* Le rembourrage vertical est sur la carte, pas sur la scene : dans un
+   conteneur flex qui defile, Chromium colle un position:sticky au bord du
+   contenu, pas a celui du cadre. Avec la scene rembourree, l'en-tete de
+   la matrice restait 44 px trop bas et masquait deux lignes. */
 .qz-carte.entre{animation:qzIn .3s var(--ease) both}
 .qz-carte.sort{animation:qzOut .15s var(--ease) both}
 @keyframes qzIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
@@ -118,13 +125,16 @@ html.fige,body.fige{overflow:hidden}
 .qz-aide{margin-top:11px;font-size:.89rem;line-height:1.5;color:var(--ink-2)}
 
 .qz-opts{margin-top:clamp(20px,2.6vw,30px);display:flex;flex-direction:column;gap:8px}
+/* dix choix et plus : deux colonnes, dans la carte large */
+@media (min-width:720px){.qz-opts.deux{display:grid;grid-template-columns:1fr 1fr;gap:8px 10px}}
 .qz-opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;
   padding:13px 16px;border:1px solid var(--line);border-radius:9px;cursor:pointer;
   font-family:inherit;font-size:.97rem;line-height:1.4;color:var(--ink-2);background:transparent;
   transition:border-color .15s,background .15s,color .15s}
 .qz-opt:hover{border-color:var(--ink-3);background:var(--cream-2)}
 .qz-opt[aria-checked="true"]{border-color:var(--ink);background:var(--cream-2);color:var(--ink)}
-.qz-touche{flex:none;width:23px;height:23px;border:1px solid var(--line);border-radius:5px;
+.qz-touche{flex:none;min-width:23px;height:23px;padding:0 5px;border:1px solid var(--line);border-radius:5px;
+  font-variant-numeric:tabular-nums;
   display:grid;place-items:center;font-size:.71rem;color:var(--ink-2);
   transition:background .15s,color .15s,border-color .15s}
 .qz-opt[aria-checked="true"] .qz-touche{background:var(--ink);border-color:var(--ink);color:#fff}
@@ -160,7 +170,7 @@ html.fige,body.fige{overflow:hidden}
   .qz-aide{margin-top:8px;font-size:.86rem}
   .qz-opts{margin-top:clamp(14px,1.9vw,20px);gap:6px}
   .qz-opt{padding:10px 14px;font-size:.93rem}
-  .qz-touche{width:21px;height:21px}
+  .qz-touche{min-width:21px;height:21px}
   .qz-txt{margin-top:16px;min-height:84px}
   .qz-champs{margin-top:16px}
 }
@@ -308,6 +318,27 @@ html.fige,body.fige{overflow:hidden}
 .qz-ech{flex:1;text-align:center;font-size:.69rem;line-height:1.3;color:var(--ink-2);
   padding-top:8px;border-top:2px solid var(--line);transition:color .4s,border-color .4s}
 .qz-ech.on{color:var(--ink);border-top-color:var(--ink)}
+
+/* ══════════ DEBLOCAGE ══════════ */
+/* Petite fenetre en bas a droite, au-dessus du pied. Elle glisse depuis
+   le bord, reste huit secondes, se ferme d'un clic. */
+.qz-toast{position:absolute;right:20px;bottom:80px;z-index:5;
+  width:min(100% - 40px,360px);padding:14px 16px 15px;border:1px solid var(--line);
+  border-radius:12px;background:var(--cream);
+  opacity:0;transform:translateY(14px);transition:opacity .32s var(--ease),transform .32s var(--ease)}
+.qz-toast.on{opacity:1;transform:none}
+.qz-toast-tete{display:flex;align-items:center;gap:9px}
+.qz-toast-eti{font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2)}
+.qz-toast-n{font-size:.8rem;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+.qz-toast-barre{flex:1;display:flex;gap:3px}
+.qz-toast-barre i{flex:1;height:4px;border-radius:2px;background:var(--cream-3)}
+.qz-toast-barre i.on{background:var(--ink)}
+.qz-toast-x{width:24px;height:24px;border:0;border-radius:50%;background:transparent;color:var(--ink-2);
+  display:grid;place-items:center;cursor:pointer;margin-right:-6px}
+.qz-toast-x:hover{background:var(--cream-2);color:var(--ink)}
+.qz-toast-txt{margin-top:9px;font-size:.86rem;line-height:1.5;color:var(--ink);text-wrap:pretty}
+@media (max-width:600px){.qz-toast{right:12px;left:12px;width:auto;bottom:76px}}
+@media (prefers-reduced-motion:reduce){.qz-toast{transition:none;transform:none}}
 
 /* ══════════ MATRICE ══════════ */
 /* Une ligne par usage, une colonne par frequence. La carte s'elargit pour
@@ -510,11 +541,19 @@ html.fige,body.fige{overflow:hidden}
     </button>
   </header>
   <div class="qz-scene"></div>
+  <div class="qz-toast" id="qz-toast" role="status" aria-live="polite" hidden>
+    <div class="qz-toast-tete">
+      <span class="qz-toast-eti">Débloqué</span><b class="qz-toast-n">1/4</b>
+      <span class="qz-toast-barre" aria-hidden="true"></span>
+      <button class="qz-toast-x" type="button" aria-label="Fermer"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button>
+    </div>
+    <p class="qz-toast-txt"></p>
+  </div>
   <div class="qz-pied">
     <button class="btn btn-line" type="button" id="qz-prec" hidden>Retour</button>
     <button class="btn btn-primary" type="button" id="qz-suiv">Continuer</button>
     <span class="qz-err" id="qz-err" hidden></span>
-    <span class="qz-astuce"><span class="qz-astuce-ch"><kbd>A</kbd>…<kbd>Z</kbd> pour choisir &middot; </span><kbd>Entrée</kbd> pour continuer &middot; <kbd>Échap</kbd> pour fermer</span>
+    <span class="qz-astuce"><span class="qz-astuce-ch"><kbd>1</kbd>…<kbd>9</kbd> pour choisir &middot; </span><kbd>Entrée</kbd> pour continuer &middot; <kbd>Échap</kbd> pour fermer</span>
   </div>
 </div>
 
@@ -537,7 +576,18 @@ html.fige,body.fige{overflow:hidden}
     var NIVEAUX = [[20, "Découverte", "L’IA reste à la porte de l’organisme. Le premier pas tient souvent à une tâche unique, répétitive, que l’on confie pour voir."], [40, "Expérimentation", "Quelques personnes s’y sont mises, chacune de son côté. L’enjeu devient de partager ce qui marche."], [60, "Adoption", "L’IA est entrée dans la production courante. Reste à l’inscrire dans des règles et des outils communs."], [80, "Intégration", "L’IA irrigue plusieurs métiers de l’organisme. Le sujet devient celui de la mesure et de la qualité."], [100, "Organisme augmenté", "L’IA est dans les outils, les process et le LMS. Vous êtes en avance sur la profession."]];
     var AXES = [["usage", "Usage et organisation"], ["inge", "Ingénierie pédagogique"], ["eval", "Évaluations"], ["appr", "IA au service de l’apprenant"], ["form", "Travail du formateur"], ["gest", "Gestion et appels d’offres"], ["cadre", "Cadre et gouvernance"]];
     var PISTES = {"Usage et organisation": [["Sortir de l’usage individuel", "Tant que chacun utilise l’IA dans son coin, rien ne se capitalise. Un espace partagé de prompts et de bonnes pratiques change l’échelle."], ["Rapprocher l’IA de vos outils", "Un usage intégré au LMS et aux outils de production pèse plus qu’un outil de plus à ouvrir dans un onglet."]], "Ingénierie pédagogique": [["Partir du référentiel, pas de la page blanche", "L’IA sert surtout à produire des supports. Elle est bien plus utile en amont : transformer un référentiel de compétences en progression, puis en séquences."], ["Adapter plutôt que reproduire", "Un même contenu décliné pour un public FLE, un débutant et un profil expérimenté coûte trois fois moins cher à produire avec l’IA qu’à écrire trois fois."]], "Évaluations": [["Faire produire les variantes, pas les questions", "Le gain le plus net est la génération d’évaluations différentes pour chaque apprenant à partir d’un même socle, plutôt qu’un QCM de plus."], ["Garder le formateur sur la correction qualitative", "L’IA prend les QCM et le premier passage sur les réponses rédigées ; le formateur garde l’appréciation et la décision."]], "Gestion et appels d’offres": [["Commencer par l’analyse du dossier", "Avant de rédiger, faire extraire les exigences d’un cahier des charges et la grille d’évaluation : c’est là que se perdent les dossiers."], ["Constituer une base de vos mémoires techniques", "Vos réponses passées sont le meilleur matériau : elles rendent les propositions générées spécifiques plutôt que génériques."]], "Cadre et gouvernance": [["Écrire la charte avant l’incident", "Une page suffit : quelles données ne sortent pas, qui relit quoi, ce qui est signalé comme généré. C’est aussi ce qu’un auditeur demandera."], ["Former ceux qui produisent, pas seulement la direction", "L’écart de compétence se creuse vite entre les personnes qui ont pris l’outil en main et les autres."]], "IA au service de l’apprenant": [["Commencer par la question qui revient le plus", "Un assistant qui répond aux questions récurrentes des apprenants, à partir de vos propres contenus, est le premier usage à mettre en place : il soulage le formateur sans rien décider à sa place."], ["Adapter la difficulté avant d’individualiser le parcours", "Ajuster le niveau d’un exercice à la réponse précédente demande peu de mise en place et se mesure tout de suite ; le parcours personnalisé viendra ensuite."]], "Travail du formateur": [["Mesurer le temps gagné, tâche par tâche", "Une semaine de relevé suffit pour savoir où l’IA rend vraiment du temps. C’est ce qui convainc les équipes hésitantes, bien plus qu’une démonstration."], ["Réinvestir le temps gagné dans l’accompagnement", "Le temps repris sur la préparation et les comptes rendus a le plus de valeur quand il retourne aux apprenants, pas quand il absorbe une session de plus."]]};
-    var LETTRES = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var TOUCHES = '123456789';   /* les neuf premiers choix, au clavier */
+
+    /* Quatre outils debloques au fil du questionnaire, a l'entree de quatre
+       parties (indices 0 a 7). Le mois d'acces se revele piece par piece,
+       sans s'afficher a chaque titre. */
+    var DEBLOQUES = {
+      2: 'Vous avez débloqué votre accès à Fastformation pour générer vos modules e-learning avec l’IA.',
+      3: 'Vous avez débloqué FastQuiz IA : FastQuiz IA vous permet d’évaluer vos apprenants en quelques secondes avec l’IA.',
+      5: 'Vous avez débloqué Learning podcast : créez des podcasts interactifs et pédagogiques en quelques minutes.',
+      7: 'Vous avez débloqué RolePlay : RolePlay vous permet de générer des mises en situation interactives pour entraîner vos apprenants face à des cas métiers concrets.'
+    };
+    var ORDRE_DEBLOQUES = [2, 3, 5, 7], debloquesVus = {};
 
     var scene = qz.querySelector('.qz-scene'),
         jauge = qz.querySelector('.qz-barre i'),
@@ -590,7 +640,8 @@ html.fige,body.fige{overflow:hidden}
       var p = Math.round((k + (annonce ? 0 : 1)) / (l.length + 1) * 100);
       jauge.style.width = p + '%';
       barre.setAttribute('aria-valuenow', p);
-      secNom.textContent = annonce ? e.nom : (e.section + ' · ' + (k + 1) + ' sur ' + l.length);
+      secNom.innerHTML = '<span class="qz-sec-nom">' + (annonce ? e.nom : e.section) + '</span>' +
+        (annonce ? '' : '<span class="qz-sec-num">' + (k + 1) + ' sur ' + l.length + '</span>');
     };
 
     var echap = function(t){ return String(t).replace(/&nbsp;/g, ' ').replace(/"/g, '&quot;'); };
@@ -608,7 +659,8 @@ html.fige,body.fige{overflow:hidden}
         return d;
       }
 
-      d.className = 'qz-carte entre' + (e.type === 'matrice' ? ' qz-large' : '');
+      d.className = 'qz-carte entre' +
+        (e.type === 'matrice' || (e.opts && e.opts.length >= 10) ? ' qz-large' : '');
       var l = visibles();
       var h = '<p class="qz-num"><span class="qz-partie">' + e.section + '</span>' +
               '<b>' + (indexReel(cur) + 1) + '</b><span>sur ' + l.length + '</span></p>';
@@ -616,14 +668,15 @@ html.fige,body.fige{overflow:hidden}
       if (e.aide) h += '<p class="qz-aide">' + e.aide + '</p>';
 
       if (e.type === 'radio' || e.type === 'check') {
-        h += '<div class="qz-opts" role="' + (e.type === 'radio' ? 'radiogroup' : 'group') + '">';
+        h += '<div class="qz-opts' + (e.opts.length >= 10 ? ' deux' : '') + '" role="' +
+             (e.type === 'radio' ? 'radiogroup' : 'group') + '">';
         e.opts.forEach(function(o, i){
           var choisi = e.type === 'check'
             ? (rep[e.id] || []).indexOf(i) !== -1
             : rep[e.id] === i;
           h += '<button type="button" class="qz-opt" role="' +
                (e.type === 'radio' ? 'radio' : 'checkbox') + '" aria-checked="' + choisi +
-               '" data-i="' + i + '"><span class="qz-touche">' + LETTRES[i] + '</span>' +
+               '" data-i="' + i + '"><span class="qz-touche">' + (i + 1) + '</span>' +
                '<span>' + o + '</span></button>';
         });
         h += '</div>';
@@ -743,6 +796,30 @@ html.fige,body.fige{overflow:hidden}
       err.hidden = true;
     };
 
+    /* ---- petite fenetre de deblocage, en bas a droite ---- */
+    var toast = document.getElementById('qz-toast'), toastMinuteur = null;
+    var fermeToast = function(){
+      window.clearTimeout(toastMinuteur);
+      toast.classList.remove('on');
+      window.setTimeout(function(){ if (!toast.classList.contains('on')) toast.hidden = true; }, anime ? 320 : 0);
+    };
+    var montreToast = function(partie){
+      var texte = DEBLOQUES[partie];
+      if (!texte || debloquesVus[partie]) return;
+      debloquesVus[partie] = true;
+      var n = ORDRE_DEBLOQUES.indexOf(partie) + 1, total = ORDRE_DEBLOQUES.length;
+      toast.querySelector('.qz-toast-n').textContent = n + '/' + total;
+      toast.querySelector('.qz-toast-barre').innerHTML =
+        ORDRE_DEBLOQUES.map(function(_, k){ return '<i class="' + (k < n ? 'on' : '') + '"></i>'; }).join('');
+      toast.querySelector('.qz-toast-txt').textContent = texte;
+      window.clearTimeout(toastMinuteur);
+      toast.hidden = false;
+      /* deux images : la boite existe avant de glisser */
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ toast.classList.add('on'); }); });
+      toastMinuteur = window.setTimeout(fermeToast, 8000);
+    };
+    toast.querySelector('.qz-toast-x').addEventListener('click', fermeToast);
+
     var montre = function(){
       var e = ECRANS[cur];
       var vieux = scene.querySelector('.qz-carte');
@@ -761,8 +838,10 @@ html.fige,body.fige{overflow:hidden}
              un clic ou Entree n’attendent pas */
           bPrec.hidden = true; bSuiv.hidden = true;
           if (ch) ch.hidden = true;
+          if (toast.classList.contains('on')) fermeToast();
           scene.onclick = function(){ suivant(); };
           minuteur = window.setTimeout(function(){ if (ECRANS[cur] === e) suivant(); }, anime ? 2100 : 800);
+          window.setTimeout(function(){ montreToast(e.partie); }, anime ? 500 : 0);
           return;
         }
         scene.onclick = null;
@@ -861,6 +940,7 @@ html.fige,body.fige{overflow:hidden}
 
     var calcule = function(){
       var n = score();
+      fermeToast();
       pied.hidden = true;
       scene.onclick = null;
       jauge.style.width = '100%';
@@ -1038,6 +1118,7 @@ html.fige,body.fige{overflow:hidden}
       montre(1);
     };
     var fermer = function(){
+      fermeToast();
       qz.classList.remove('on');
       document.body.classList.remove('fige');
       document.documentElement.classList.remove('fige');
@@ -1059,7 +1140,7 @@ html.fige,body.fige{overflow:hidden}
       if (ev.key === 'Enter' && !ev.shiftKey) { ev.preventDefault(); suivant(); return; }
       if (champ) return;
       if (e.opts) {
-        var k = LETTRES.indexOf(ev.key.toUpperCase());
+        var k = TOUCHES.indexOf(ev.key);
         if (k !== -1 && k < e.opts.length) { ev.preventDefault(); choisir(e, k); }
       }
     });
