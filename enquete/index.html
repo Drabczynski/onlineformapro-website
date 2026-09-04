@@ -597,26 +597,30 @@ html.fige,body.fige{overflow:hidden}
     var PISTES = {"Usage et organisation": [["Sortir de l’usage individuel", "Tant que chacun utilise l’IA dans son coin, rien ne se capitalise. Un espace partagé de prompts et de bonnes pratiques change l’échelle."], ["Rapprocher l’IA de vos outils", "Un usage intégré au LMS et aux outils de production pèse plus qu’un outil de plus à ouvrir dans un onglet."]], "Ingénierie pédagogique": [["Partir du référentiel, pas de la page blanche", "L’IA sert surtout à produire des supports. Elle est bien plus utile en amont : transformer un référentiel de compétences en progression, puis en séquences."], ["Adapter plutôt que reproduire", "Un même contenu décliné pour un public FLE, un débutant et un profil expérimenté coûte trois fois moins cher à produire avec l’IA qu’à écrire trois fois."]], "Évaluations": [["Faire produire les variantes, pas les questions", "Le gain le plus net est la génération d’évaluations différentes pour chaque apprenant à partir d’un même socle, plutôt qu’un QCM de plus."], ["Garder le formateur sur la correction qualitative", "L’IA prend les QCM et le premier passage sur les réponses rédigées ; le formateur garde l’appréciation et la décision."]], "Gestion et appels d’offres": [["Commencer par l’analyse du dossier", "Avant de rédiger, faire extraire les exigences d’un cahier des charges et la grille d’évaluation : c’est là que se perdent les dossiers."], ["Constituer une base de vos mémoires techniques", "Vos réponses passées sont le meilleur matériau : elles rendent les propositions générées spécifiques plutôt que génériques."]], "Cadre et gouvernance": [["Écrire la charte avant l’incident", "Une page suffit : quelles données ne sortent pas, qui relit quoi, ce qui est signalé comme généré. C’est aussi ce qu’un auditeur demandera."], ["Former ceux qui produisent, pas seulement la direction", "L’écart de compétence se creuse vite entre les personnes qui ont pris l’outil en main et les autres."]], "IA au service de l’apprenant": [["Commencer par la question qui revient le plus", "Un assistant qui répond aux questions récurrentes des apprenants, à partir de vos propres contenus, est le premier usage à mettre en place : il soulage le formateur sans rien décider à sa place."], ["Adapter la difficulté avant d’individualiser le parcours", "Ajuster le niveau d’un exercice à la réponse précédente demande peu de mise en place et se mesure tout de suite ; le parcours personnalisé viendra ensuite."]], "Travail du formateur": [["Mesurer le temps gagné, tâche par tâche", "Une semaine de relevé suffit pour savoir où l’IA rend vraiment du temps. C’est ce qui convainc les équipes hésitantes, bien plus qu’une démonstration."], ["Réinvestir le temps gagné dans l’accompagnement", "Le temps repris sur la préparation et les comptes rendus a le plus de valeur quand il retourne aux apprenants, pas quand il absorbe une session de plus."]]};
     var TOUCHES = '123456789';   /* les neuf premiers choix, au clavier */
 
-    /* Quatre outils debloques au fil du questionnaire, repartis a egale
-       distance sur les ecrans reellement poses : au quart, a la moitie,
-       aux trois quarts et sur le dernier (27 ecrans : questions 6, 13, 20
-       et 27 ; 24 ecrans quand l'organisme n'utilise pas l'IA : 6, 12, 18
-       et 24). Les parties etant de longueur tres inegale, les accrocher
-       aux titres ne pouvait pas donner un rythme regulier. */
+    /* Quatre outils debloques au fil du questionnaire. Les trois premiers
+       se gagnent en validant une question precise (« apres »), le dernier
+       s'affiche a l'arrivee sur l'ecran de contact (« sur »). Accroches a
+       l'identifiant de la question, pas a son numero : l'embranchement de
+       la partie 2 ne les deplace pas. Sur le parcours complet : questions
+       8, 11, 17 et 27. */
     var DEBLOQUES = [
-      { img: 'win_fastformation.jpg',
+      { apres: 'inge', img: 'win_fastformation.jpg',
         txt: 'Vous avez débloqué votre accès à Fastformation pour générer vos modules e-learning avec l’IA.' },
-      { img: 'win_fastquiz.jpg',
+      { apres: 'appr', img: 'win_fastquiz.jpg',
         txt: 'Vous avez débloqué FastQuiz IA : FastQuiz IA vous permet d’évaluer vos apprenants en quelques secondes avec l’IA.' },
-      { img: 'win_podcast.jpg',
+      { apres: 'freins', img: 'win_podcast.jpg',
         txt: 'Vous avez débloqué Learning podcast : créez des podcasts interactifs et pédagogiques en quelques minutes.' },
-      { img: 'win_roleplay.jpg',
+      { sur: 'contact', img: 'win_roleplay.jpg',
         txt: 'Vous avez débloqué RolePlay : RolePlay vous permet de générer des mises en situation interactives pour entraîner vos apprenants face à des cas métiers concrets.' }
     ];
     var debloquesVus = {};
-    var positionsDeblocage = function(){
-      var N = visibles().length;
-      return DEBLOQUES.map(function(_, k){ return Math.floor(N * (k + 1) / DEBLOQUES.length); });
+    var deblocagePour = function(cle, id){
+      /* les annonces n'ont pas d'identifiant et le dernier cadeau n'a pas de
+         cle « apres » : sans ce garde, undefined vaudrait undefined et
+         RolePlay tomberait des la premiere annonce */
+      if (!id) return 0;
+      for (var k = 0; k < DEBLOQUES.length; k++) if (DEBLOQUES[k][cle] === id) return k + 1;
+      return 0;
     };
 
     var scene = qz.querySelector('.qz-scene'),
@@ -875,7 +879,6 @@ html.fige,body.fige{overflow:hidden}
              un clic ou Entree n’attendent pas */
           bPrec.hidden = true; bSuiv.hidden = true;
           if (ch) ch.hidden = true;
-          if (toast.classList.contains('on')) fermeToast();
           scene.onclick = function(){ suivant(); };
           minuteur = window.setTimeout(function(){ if (ECRANS[cur] === e) suivant(); }, anime ? 2100 : 800);
           return;
@@ -890,8 +893,8 @@ html.fige,body.fige{overflow:hidden}
         if (ch) ch.hidden = !d.querySelector('.qz-opt');
         var f = d.querySelector('.qz-opt, .qz-cel, textarea, input');
         if (f) f.focus({ preventScroll: true });
-        var n = positionsDeblocage().indexOf(indexReel(cur) + 1) + 1;
-        if (n > 0) window.setTimeout(function(){ if (ECRANS[cur] === e) montreToast(n); }, anime ? 420 : 0);
+        var n = deblocagePour('sur', e.id);
+        if (n) window.setTimeout(function(){ if (ECRANS[cur] === e) montreToast(n); }, anime ? 420 : 0);
       };
       if (vieux && anime) {
         vieux.classList.remove('entre');
@@ -918,6 +921,8 @@ html.fige,body.fige{overflow:hidden}
         err.hidden = false;
         return;
       }
+      var gagne = deblocagePour('apres', e.id);
+      if (gagne) window.setTimeout(function(){ montreToast(gagne); }, anime ? 380 : 0);
       /* l’ecran suivant dans l’ordre, annonces comprises, conditions sautees */
       var i = cur + 1;
       while (i < ECRANS.length && saute(ECRANS[i])) i++;
