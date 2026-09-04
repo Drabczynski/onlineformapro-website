@@ -335,8 +335,11 @@ html.fige,body.fige{overflow:hidden}
 .qz-toast-eti{font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2)}
 .qz-toast-n{font-size:.8rem;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
 .qz-toast-barre{flex:1;display:flex;gap:3px}
-.qz-toast-barre i{flex:1;height:4px;border-radius:2px;background:var(--cream-3)}
-.qz-toast-barre i.on{background:var(--ink)}
+.qz-toast-barre i{flex:1;height:5px;border-radius:3px;background:var(--cream-3);position:relative;overflow:hidden}
+.qz-toast-barre i.on::after{content:"";position:absolute;inset:0;border-radius:3px;background:var(--green)}
+.qz-toast-barre i.neuf::after{transform-origin:left;animation:remplir 1.1s .4s var(--ease) both}
+@keyframes remplir{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){.qz-toast-barre i.neuf::after{animation:none}}
 .qz-toast-x{width:24px;height:24px;border:0;border-radius:50%;background:transparent;color:var(--ink-2);
   display:grid;place-items:center;cursor:pointer;margin-right:-6px}
 .qz-toast-x:hover{background:var(--cream-2);color:var(--ink)}
@@ -594,21 +597,27 @@ html.fige,body.fige{overflow:hidden}
     var PISTES = {"Usage et organisation": [["Sortir de l’usage individuel", "Tant que chacun utilise l’IA dans son coin, rien ne se capitalise. Un espace partagé de prompts et de bonnes pratiques change l’échelle."], ["Rapprocher l’IA de vos outils", "Un usage intégré au LMS et aux outils de production pèse plus qu’un outil de plus à ouvrir dans un onglet."]], "Ingénierie pédagogique": [["Partir du référentiel, pas de la page blanche", "L’IA sert surtout à produire des supports. Elle est bien plus utile en amont : transformer un référentiel de compétences en progression, puis en séquences."], ["Adapter plutôt que reproduire", "Un même contenu décliné pour un public FLE, un débutant et un profil expérimenté coûte trois fois moins cher à produire avec l’IA qu’à écrire trois fois."]], "Évaluations": [["Faire produire les variantes, pas les questions", "Le gain le plus net est la génération d’évaluations différentes pour chaque apprenant à partir d’un même socle, plutôt qu’un QCM de plus."], ["Garder le formateur sur la correction qualitative", "L’IA prend les QCM et le premier passage sur les réponses rédigées ; le formateur garde l’appréciation et la décision."]], "Gestion et appels d’offres": [["Commencer par l’analyse du dossier", "Avant de rédiger, faire extraire les exigences d’un cahier des charges et la grille d’évaluation : c’est là que se perdent les dossiers."], ["Constituer une base de vos mémoires techniques", "Vos réponses passées sont le meilleur matériau : elles rendent les propositions générées spécifiques plutôt que génériques."]], "Cadre et gouvernance": [["Écrire la charte avant l’incident", "Une page suffit : quelles données ne sortent pas, qui relit quoi, ce qui est signalé comme généré. C’est aussi ce qu’un auditeur demandera."], ["Former ceux qui produisent, pas seulement la direction", "L’écart de compétence se creuse vite entre les personnes qui ont pris l’outil en main et les autres."]], "IA au service de l’apprenant": [["Commencer par la question qui revient le plus", "Un assistant qui répond aux questions récurrentes des apprenants, à partir de vos propres contenus, est le premier usage à mettre en place : il soulage le formateur sans rien décider à sa place."], ["Adapter la difficulté avant d’individualiser le parcours", "Ajuster le niveau d’un exercice à la réponse précédente demande peu de mise en place et se mesure tout de suite ; le parcours personnalisé viendra ensuite."]], "Travail du formateur": [["Mesurer le temps gagné, tâche par tâche", "Une semaine de relevé suffit pour savoir où l’IA rend vraiment du temps. C’est ce qui convainc les équipes hésitantes, bien plus qu’une démonstration."], ["Réinvestir le temps gagné dans l’accompagnement", "Le temps repris sur la préparation et les comptes rendus a le plus de valeur quand il retourne aux apprenants, pas quand il absorbe une session de plus."]]};
     var TOUCHES = '123456789';   /* les neuf premiers choix, au clavier */
 
-    /* Quatre outils debloques au fil du questionnaire, a l'entree d'une
-       partie sur deux (indices 0 a 7 : parties 2, 4, 6 et 8). Le mois
-       d'acces se revele piece par piece, avec au moins quatre questions
-       entre deux deblocages, et le dernier sur la derniere partie. */
-    var DEBLOQUES = {
-      1: { img: 'win_fastformation.jpg',
-           txt: 'Vous avez débloqué votre accès à Fastformation pour générer vos modules e-learning avec l’IA.' },
-      3: { img: 'win_fastquiz.jpg',
-           txt: 'Vous avez débloqué FastQuiz IA : FastQuiz IA vous permet d’évaluer vos apprenants en quelques secondes avec l’IA.' },
-      5: { img: 'win_podcast.jpg',
-           txt: 'Vous avez débloqué Learning podcast : créez des podcasts interactifs et pédagogiques en quelques minutes.' },
-      7: { img: 'win_roleplay.jpg',
-           txt: 'Vous avez débloqué RolePlay : RolePlay vous permet de générer des mises en situation interactives pour entraîner vos apprenants face à des cas métiers concrets.' }
+    /* Quatre outils debloques au fil du questionnaire, repartis a egale
+       distance sur les ecrans reellement poses : au quart, a la moitie,
+       aux trois quarts et sur le dernier (27 ecrans : questions 6, 13, 20
+       et 27 ; 23 ecrans quand l'organisme n'utilise pas l'IA : 5, 11, 17
+       et 23). Les parties etant de longueur tres inegale, les accrocher
+       aux titres ne pouvait pas donner un rythme regulier. */
+    var DEBLOQUES = [
+      { img: 'win_fastformation.jpg',
+        txt: 'Vous avez débloqué votre accès à Fastformation pour générer vos modules e-learning avec l’IA.' },
+      { img: 'win_fastquiz.jpg',
+        txt: 'Vous avez débloqué FastQuiz IA : FastQuiz IA vous permet d’évaluer vos apprenants en quelques secondes avec l’IA.' },
+      { img: 'win_podcast.jpg',
+        txt: 'Vous avez débloqué Learning podcast : créez des podcasts interactifs et pédagogiques en quelques minutes.' },
+      { img: 'win_roleplay.jpg',
+        txt: 'Vous avez débloqué RolePlay : RolePlay vous permet de générer des mises en situation interactives pour entraîner vos apprenants face à des cas métiers concrets.' }
+    ];
+    var debloquesVus = {};
+    var positionsDeblocage = function(){
+      var N = visibles().length;
+      return DEBLOQUES.map(function(_, k){ return Math.floor(N * (k + 1) / DEBLOQUES.length); });
     };
-    var ORDRE_DEBLOQUES = [1, 3, 5, 7], debloquesVus = {};
 
     var scene = qz.querySelector('.qz-scene'),
         jauge = qz.querySelector('.qz-barre i'),
@@ -824,18 +833,20 @@ html.fige,body.fige{overflow:hidden}
       toast.classList.remove('on');
       window.setTimeout(function(){ if (!toast.classList.contains('on')) toast.hidden = true; }, anime ? 320 : 0);
     };
-    var montreToast = function(partie){
-      var d = DEBLOQUES[partie];
-      if (!d || debloquesVus[partie]) return;
+    var montreToast = function(n){
+      var d = DEBLOQUES[n - 1];
+      if (!d || debloquesVus[n]) return;
       var texte = d.txt;
       var im = toast.querySelector('.qz-toast-img');
       im.hidden = false;
       im.src = d.img;
-      debloquesVus[partie] = true;
-      var n = ORDRE_DEBLOQUES.indexOf(partie) + 1, total = ORDRE_DEBLOQUES.length;
+      debloquesVus[n] = true;
+      var total = DEBLOQUES.length;
       toast.querySelector('.qz-toast-n').textContent = n + '/' + total;
+      /* les segments deja gagnes sont pleins ; le nouveau se remplit sous les yeux */
       toast.querySelector('.qz-toast-barre').innerHTML =
-        ORDRE_DEBLOQUES.map(function(_, k){ return '<i class="' + (k < n ? 'on' : '') + '"></i>'; }).join('');
+        DEBLOQUES.map(function(_, k){
+          return '<i class="' + (k < n - 1 ? 'on' : k === n - 1 ? 'on neuf' : '') + '"></i>'; }).join('');
       toast.querySelector('.qz-toast-txt').textContent = texte;
       window.clearTimeout(toastMinuteur);
       toast.hidden = false;
@@ -867,7 +878,6 @@ html.fige,body.fige{overflow:hidden}
           if (toast.classList.contains('on')) fermeToast();
           scene.onclick = function(){ suivant(); };
           minuteur = window.setTimeout(function(){ if (ECRANS[cur] === e) suivant(); }, anime ? 2100 : 800);
-          window.setTimeout(function(){ montreToast(e.partie); }, anime ? 500 : 0);
           return;
         }
         scene.onclick = null;
@@ -880,6 +890,8 @@ html.fige,body.fige{overflow:hidden}
         if (ch) ch.hidden = !d.querySelector('.qz-opt');
         var f = d.querySelector('.qz-opt, .qz-cel, textarea, input');
         if (f) f.focus({ preventScroll: true });
+        var n = positionsDeblocage().indexOf(indexReel(cur) + 1) + 1;
+        if (n > 0) window.setTimeout(function(){ if (ECRANS[cur] === e) montreToast(n); }, anime ? 420 : 0);
       };
       if (vieux && anime) {
         vieux.classList.remove('entre');
@@ -1135,7 +1147,7 @@ html.fige,body.fige{overflow:hidden}
     /* ---- ouverture, fermeture, clavier ---- */
     var ouvrir = function(){
       anime = !reduce;
-      Object.keys(DEBLOQUES).forEach(function(k){ var i = new Image(); i.src = DEBLOQUES[k].img; });
+      DEBLOQUES.forEach(function(d){ var i = new Image(); i.src = d.img; });
       qz.classList.add('on');
       document.body.classList.add('fige');
       document.documentElement.classList.add('fige');
