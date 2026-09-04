@@ -594,11 +594,12 @@ html.fige,body.fige{overflow:hidden}
     var PISTES = {"Usage et organisation": [["Sortir de l’usage individuel", "Tant que chacun utilise l’IA dans son coin, rien ne se capitalise. Un espace partagé de prompts et de bonnes pratiques change l’échelle."], ["Rapprocher l’IA de vos outils", "Un usage intégré au LMS et aux outils de production pèse plus qu’un outil de plus à ouvrir dans un onglet."]], "Ingénierie pédagogique": [["Partir du référentiel, pas de la page blanche", "L’IA sert surtout à produire des supports. Elle est bien plus utile en amont : transformer un référentiel de compétences en progression, puis en séquences."], ["Adapter plutôt que reproduire", "Un même contenu décliné pour un public FLE, un débutant et un profil expérimenté coûte trois fois moins cher à produire avec l’IA qu’à écrire trois fois."]], "Évaluations": [["Faire produire les variantes, pas les questions", "Le gain le plus net est la génération d’évaluations différentes pour chaque apprenant à partir d’un même socle, plutôt qu’un QCM de plus."], ["Garder le formateur sur la correction qualitative", "L’IA prend les QCM et le premier passage sur les réponses rédigées ; le formateur garde l’appréciation et la décision."]], "Gestion et appels d’offres": [["Commencer par l’analyse du dossier", "Avant de rédiger, faire extraire les exigences d’un cahier des charges et la grille d’évaluation : c’est là que se perdent les dossiers."], ["Constituer une base de vos mémoires techniques", "Vos réponses passées sont le meilleur matériau : elles rendent les propositions générées spécifiques plutôt que génériques."]], "Cadre et gouvernance": [["Écrire la charte avant l’incident", "Une page suffit : quelles données ne sortent pas, qui relit quoi, ce qui est signalé comme généré. C’est aussi ce qu’un auditeur demandera."], ["Former ceux qui produisent, pas seulement la direction", "L’écart de compétence se creuse vite entre les personnes qui ont pris l’outil en main et les autres."]], "IA au service de l’apprenant": [["Commencer par la question qui revient le plus", "Un assistant qui répond aux questions récurrentes des apprenants, à partir de vos propres contenus, est le premier usage à mettre en place : il soulage le formateur sans rien décider à sa place."], ["Adapter la difficulté avant d’individualiser le parcours", "Ajuster le niveau d’un exercice à la réponse précédente demande peu de mise en place et se mesure tout de suite ; le parcours personnalisé viendra ensuite."]], "Travail du formateur": [["Mesurer le temps gagné, tâche par tâche", "Une semaine de relevé suffit pour savoir où l’IA rend vraiment du temps. C’est ce qui convainc les équipes hésitantes, bien plus qu’une démonstration."], ["Réinvestir le temps gagné dans l’accompagnement", "Le temps repris sur la préparation et les comptes rendus a le plus de valeur quand il retourne aux apprenants, pas quand il absorbe une session de plus."]]};
     var TOUCHES = '123456789';   /* les neuf premiers choix, au clavier */
 
-    /* Quatre outils debloques au fil du questionnaire, a l'entree de quatre
-       parties (indices 0 a 7). Le mois d'acces se revele piece par piece,
-       sans s'afficher a chaque titre. */
+    /* Quatre outils debloques au fil du questionnaire, a l'entree d'une
+       partie sur deux (indices 0 a 7 : parties 2, 4, 6 et 8). Le mois
+       d'acces se revele piece par piece, avec au moins quatre questions
+       entre deux deblocages, et le dernier sur la derniere partie. */
     var DEBLOQUES = {
-      2: { img: 'win_fastformation.jpg',
+      1: { img: 'win_fastformation.jpg',
            txt: 'Vous avez débloqué votre accès à Fastformation pour générer vos modules e-learning avec l’IA.' },
       3: { img: 'win_fastquiz.jpg',
            txt: 'Vous avez débloqué FastQuiz IA : FastQuiz IA vous permet d’évaluer vos apprenants en quelques secondes avec l’IA.' },
@@ -607,7 +608,7 @@ html.fige,body.fige{overflow:hidden}
       7: { img: 'win_roleplay.jpg',
            txt: 'Vous avez débloqué RolePlay : RolePlay vous permet de générer des mises en situation interactives pour entraîner vos apprenants face à des cas métiers concrets.' }
     };
-    var ORDRE_DEBLOQUES = [2, 3, 5, 7], debloquesVus = {};
+    var ORDRE_DEBLOQUES = [1, 3, 5, 7], debloquesVus = {};
 
     var scene = qz.querySelector('.qz-scene'),
         jauge = qz.querySelector('.qz-barre i'),
