@@ -73,12 +73,15 @@ p{margin:0}
 
 /* ══════════ QUESTIONNAIRE PLEIN ÉCRAN ══════════ */
 .qz{position:fixed;inset:0;z-index:200;background:var(--cream);
-  display:none;flex-direction:column;overflow:hidden}
+  display:none;flex-direction:column;overflow:hidden;
+  /* l'accent de la partie en cours, pose par le script ; deux teintes tres claires en decoulent */
+  --acc:#E01A4F;--acc-t:color-mix(in srgb,var(--acc) 8%,white);--acc-t2:color-mix(in srgb,var(--acc) 15%,white);
+  --acc-l:color-mix(in srgb,var(--acc) 40%,white)}
 .qz.on{display:flex}
 html.fige,body.fige{overflow:hidden}
 
 .qz-barre{flex:none;height:3px;background:var(--cream-3)}
-.qz-barre i{display:block;height:100%;width:0;background:var(--ink);
+.qz-barre i{display:block;height:100%;width:0;background:var(--acc);
   transition:width .45s var(--ease)}
 
 .qz-tete{flex:none;display:flex;align-items:center;gap:14px;
@@ -113,7 +116,7 @@ html.fige,body.fige{overflow:hidden}
 .qz-num{display:flex;align-items:center;flex-wrap:wrap;gap:8px;font-size:.78rem;color:var(--ink-2);
   margin-bottom:12px}
 .qz-num b{font-weight:500;color:var(--ink-2)}
-.qz-partie{letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;color:var(--ink-2)}
+.qz-partie{letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;color:var(--acc);font-weight:500}
 .qz-partie::after{content:"·";margin-left:8px;color:var(--ink-3)}
 .qz-q{font-size:clamp(1.28rem,2.5vw,1.85rem);line-height:1.26;letter-spacing:-.02em;
   font-weight:500;color:var(--ink);text-wrap:balance}
@@ -131,13 +134,13 @@ html.fige,body.fige{overflow:hidden}
   padding:13px 16px;border:1px solid var(--line);border-radius:9px;cursor:pointer;
   font-family:inherit;font-size:.97rem;line-height:1.4;color:var(--ink-2);background:transparent;
   transition:border-color .15s,background .15s,color .15s}
-.qz-opt:hover{border-color:var(--ink-3);background:var(--cream-2)}
-.qz-opt[aria-checked="true"]{border-color:var(--ink);background:var(--cream-2);color:var(--ink)}
+.qz-opt:hover{border-color:var(--acc-l);background:var(--acc-t)}
+.qz-opt[aria-checked="true"]{border-color:var(--acc);background:var(--acc-t);color:var(--ink)}
 .qz-touche{flex:none;min-width:23px;height:23px;padding:0 5px;border:1px solid var(--line);border-radius:5px;
   font-variant-numeric:tabular-nums;
-  display:grid;place-items:center;font-size:.71rem;color:var(--ink-2);
+  display:grid;place-items:center;font-size:.71rem;color:var(--acc);border-color:var(--acc-l);
   transition:background .15s,color .15s,border-color .15s}
-.qz-opt[aria-checked="true"] .qz-touche{background:var(--ink);border-color:var(--ink);color:#fff}
+.qz-opt[aria-checked="true"] .qz-touche{background:var(--acc);border-color:var(--acc);color:#fff}
 .qz-opt[disabled]{opacity:.4;cursor:not-allowed}
 
 .qz-txt{margin-top:clamp(20px,2.6vw,28px);width:100%;padding:13px 15px;
@@ -149,12 +152,15 @@ html.fige,body.fige{overflow:hidden}
 .qz-champ label{display:block;font-size:.81rem;color:var(--ink-2);margin-bottom:6px}
 .qz-champ input{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:9px;
   font-family:inherit;font-size:.96rem;color:var(--ink);background:transparent}
+.qz-champ input:focus,.qz-txt:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-t2)}
 .qz-champ input::placeholder{color:var(--ink-3)}
 .qz-legal{margin-top:14px;font-size:.79rem;line-height:1.5;color:var(--ink-3)}
 .qz-legal a{text-decoration:underline;text-underline-offset:2px}
 
 .qz-pied{flex:none;display:flex;align-items:center;gap:11px;flex-wrap:wrap;
   padding:13px var(--pad);border-top:1px solid var(--line);background:var(--cream-2)}
+.qz-pied .btn-primary{background:var(--acc);transition:filter .18s}
+.qz-pied .btn-primary:hover{background:var(--acc);filter:brightness(.88)}
 .qz-astuce{margin-left:auto;font-size:.77rem;color:var(--ink-2)}
 .qz-astuce kbd{font-family:inherit;border:1px solid var(--line);border-radius:4px;
   padding:1px 5px;font-size:.72rem;background:var(--cream)}
@@ -183,7 +189,7 @@ html.fige,body.fige{overflow:hidden}
 /* ══════════ LOADER ══════════ */
 .qz-load{text-align:center}
 .qz-anneau{width:52px;height:52px;margin:0 auto;border-radius:50%;
-  border:2px solid var(--cream-3);border-top-color:var(--ink);
+  border:2px solid var(--cream-3);border-top-color:var(--acc);
   animation:qzTourne .9s linear infinite}
 @keyframes qzTourne{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.qz-anneau{animation-duration:2.4s}}
@@ -215,6 +221,8 @@ html.fige,body.fige{overflow:hidden}
   max-width:58ch;text-wrap:pretty}
 .cv-acts{margin-top:clamp(20px,2.3vw,30px);display:flex;flex-wrap:wrap;align-items:center;gap:14px}
 .cv-acts .btn{padding:14px 26px;font-size:.98rem}
+.cv-acts .btn-primary{background:var(--red)}
+.cv-acts .btn-primary:hover{background:var(--red-deep)}
 .cv-acts small{font-size:.81rem;color:var(--ink-2)}
 
 /* colonne de droite : ce qu’on donne, ce qu’on demande */
@@ -310,14 +318,14 @@ html.fige,body.fige{overflow:hidden}
 .qz-score small{font-size:.3em;color:var(--ink-2);letter-spacing:0;font-weight:400}
 .qz-jauge{width:min(100%,340px);margin:22px auto 0;height:6px;border-radius:100px;
   background:var(--cream-3);overflow:hidden}
-.qz-jauge i{display:block;height:100%;width:0;background:var(--ink);
+.qz-jauge i{display:block;height:100%;width:0;background:var(--red);
   transition:width 1.1s var(--ease)}
-.qz-niv{margin-top:20px;font-size:1.3rem;font-weight:500;letter-spacing:-.016em}
+.qz-niv{margin-top:20px;font-size:1.3rem;font-weight:500;letter-spacing:-.016em;color:var(--red)}
 .qz-niv-txt{margin:11px auto 0;max-width:48ch;font-size:.95rem;line-height:1.55;color:var(--ink-2)}
 .qz-echelle{display:flex;gap:4px;width:min(100%,440px);margin:26px auto 0}
 .qz-ech{flex:1;text-align:center;font-size:.69rem;line-height:1.3;color:var(--ink-2);
   padding-top:8px;border-top:2px solid var(--line);transition:color .4s,border-color .4s}
-.qz-ech.on{color:var(--ink);border-top-color:var(--ink)}
+.qz-ech.on{color:var(--red);border-top-color:var(--red)}
 
 /* ══════════ DEBLOCAGE ══════════ */
 /* Petite fenetre en bas a droite, au-dessus du pied. Elle glisse depuis
@@ -372,15 +380,16 @@ html.fige,body.fige{overflow:hidden}
 .qz-mat-tete i b{display:none;font-weight:500}
 .qz-mat-l{min-height:54px;border-radius:8px;transition:background .15s}
 .qz-mat-l:nth-child(odd){background:var(--cream-2)}
-.qz-mat-l:hover{background:var(--cream-3)}
+.qz-mat-l:hover{background:var(--acc-t)}
+.qz-mat-l.ok{background:var(--acc-t)}
 .qz-mat-lib{font-size:.94rem;line-height:1.35;color:var(--ink);padding:12px 12px 12px 14px}
 .qz-mat-l.ok .qz-mat-lib{color:var(--ink-2)}
 .qz-cel{display:grid;place-items:center;height:54px;background:none;border:0;cursor:pointer;
   padding:0;border-radius:6px}
 .qz-cel i{width:22px;height:22px;border-radius:50%;border:1px solid #8A8A8A;display:block;
   transition:border-color .15s,background .15s,box-shadow .15s,transform .15s}
-.qz-cel:hover i{border-color:var(--ink);transform:scale(1.08)}
-.qz-cel[aria-checked="true"] i{border-color:var(--ink);background:var(--ink);
+.qz-cel:hover i{border-color:var(--acc);transform:scale(1.08)}
+.qz-cel[aria-checked="true"] i{border-color:var(--acc);background:var(--acc);
   box-shadow:inset 0 0 0 5px var(--cream);transform:none}
 .qz-mat-leg{display:none}
 .qz-mat-reste{margin-top:14px;font-size:.8rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
@@ -388,7 +397,7 @@ html.fige,body.fige{overflow:hidden}
   .qz-mat{--wc:46px}
   .qz-mat-tete,.qz-mat-l{column-gap:2px}
   .qz-mat-tete i span{display:none}
-  .qz-mat-tete i b{display:block;font-size:.8rem;color:var(--ink)}
+  .qz-mat-tete i b{display:block;font-size:.8rem;color:var(--acc)}
   .qz-mat-leg{display:block;margin-top:10px;font-size:.76rem;line-height:1.6;color:var(--ink-2)}
   .qz-mat-leg b{font-weight:500;color:var(--ink)}
   .qz-mat-l{min-height:48px;border-radius:6px}
@@ -402,12 +411,15 @@ html.fige,body.fige{overflow:hidden}
    laisser la premiere question. La carte est large : les titres tiennent
    sur une ligne, les deux plus longs se coupent en deux lignes egales. */
 .qz-carte.qz-annonce{width:min(100%,980px);text-align:center;cursor:default}
-.qz-annonce-n{font-size:.8rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+.qz-annonce-n{font-size:.8rem;letter-spacing:.09em;text-transform:uppercase;font-weight:500;
+  color:color-mix(in srgb,var(--acc) 80%,black)}   /* sur le fond teinte, l'accent pur passait sous 4,5:1 */
+/* pendant l'annonce, la scene prend une teinte de la partie */
+.qz.annonce .qz-scene{background:radial-gradient(ellipse 70% 60% at 50% 45%,var(--acc-t2),var(--cream) 100%)}
 .qz-annonce-t{margin:16px auto 0;max-width:24ch;font-size:clamp(2.1rem,4.6vw,3.7rem);line-height:1.08;
   letter-spacing:-.03em;font-weight:500;text-wrap:balance}
 .qz-annonce-i{margin:16px auto 0;max-width:60ch;font-size:clamp(1rem,1.25vw,1.15rem);line-height:1.5;
-  color:var(--ink-2);text-wrap:pretty}
-.qz-annonce-trait{display:block;width:48px;height:2px;margin:24px auto 0;background:var(--ink);
+  color:#5C5C5C;text-wrap:pretty}   /* un cran plus sombre que --ink-2 : le fond est teinte */
+.qz-annonce-trait{display:block;width:48px;height:3px;border-radius:2px;margin:24px auto 0;background:var(--acc);
   transform-origin:left;animation:trait .9s .25s var(--ease) both}
 .qz-annonce.entre{animation:annonceIn .65s var(--ease) both}
 .qz-annonce.sort{animation:annonceOut .38s var(--ease) both}
@@ -435,9 +447,8 @@ html.fige,body.fige{overflow:hidden}
 .bl-axe b{font-size:.9rem;font-weight:400;color:var(--ink)}
 .bl-axe i{font-style:normal;font-size:.85rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
 .bl-piste{grid-column:1/-1;height:8px;border-radius:4px;background:var(--cream-3);overflow:hidden}
-.bl-piste span{display:block;height:100%;width:0;border-radius:4px;background:var(--ink);
+.bl-piste span{display:block;height:100%;width:0;border-radius:4px;background:var(--acc,var(--ink));
   transition:width .9s var(--ease)}
-.bl-axe.faible .bl-piste span{background:var(--ink-3)}
 
 /* points d’appui et angles morts */
 .bl-duo{display:grid;gap:12px;margin-top:16px}
@@ -472,8 +483,8 @@ html.fige,body.fige{overflow:hidden}
 /* pistes */
 .bl-pistes{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
 .bl-pistes li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;
-  border:1px solid var(--line);border-left:2px solid var(--ink);border-radius:0 9px 9px 0;padding:14px 16px}
-.bl-pistes .bl-n{width:21px;height:21px;border-radius:50%;background:var(--ink);color:#fff;
+  border:1px solid var(--line);border-left:2px solid var(--red);border-radius:0 9px 9px 0;padding:14px 16px}
+.bl-pistes .bl-n{width:21px;height:21px;border-radius:50%;background:var(--red);color:#fff;
   display:grid;place-items:center;font-size:.72rem;font-weight:600}
 .bl-pistes b{display:block;font-size:.92rem;font-weight:500;color:var(--ink)}
 .bl-pistes span{display:block;margin-top:4px;font-size:.86rem;line-height:1.5;color:var(--ink-2)}
@@ -591,8 +602,9 @@ html.fige,body.fige{overflow:hidden}
     var qz = document.getElementById('qz');
     if (!qz) return;
     var PARTIES = [{"nom": "Profil de l’organisme", "intro": "Trois questions pour situer votre structure."}, {"nom": "Niveau général d’utilisation de l’IA", "intro": "Où vous en êtes aujourd’hui."}, {"nom": "IA et ingénierie pédagogique", "intro": "Ce que vous confiez à l’IA pour concevoir vos formations."}, {"nom": "IA et évaluations", "intro": "Concevoir, corriger, décider."}, {"nom": "IA au service de l’apprenant", "intro": "Ce que l’IA fait, ou pourrait faire, face à l’apprenant."}, {"nom": "IA et travail du formateur", "intro": "Le temps gagné, concrètement."}, {"nom": "IA dans la gestion de l’organisme", "intro": "Appels d’offres, qualité, commerce, recrutement."}, {"nom": "Freins, risques et stratégie", "intro": "Ce qui vous retient, et ce que vous voyez venir."}];
-    var ECRANS = [{"type": "annonce", "partie": 0, "nom": "Profil de l’organisme", "intro": "Trois questions pour situer votre structure."}, {"id": "type", "type": "radio", "label": "Quel est votre type d’organisme&nbsp;?", "opts": ["Organisme de formation privé", "CFA", "École ou enseignement supérieur", "Service formation interne", "Association", "Autre"], "auto": true, "partie": 0, "section": "Profil de l’organisme"}, {"id": "taille", "type": "radio", "label": "Combien de personnes travaillent dans votre organisme&nbsp;?", "aide": "Salariés et formateurs vacataires compris.", "opts": ["1 à 5", "6 à 20", "21 à 50", "51 à 200", "Plus de 200"], "auto": true, "partie": 0, "section": "Profil de l’organisme"}, {"id": "apprenants", "type": "radio", "label": "Combien d’apprenants formez-vous chaque année&nbsp;?", "opts": ["Moins de 100", "100 à 500", "500 à 2 000", "2 000 à 10 000", "Plus de 10 000"], "auto": true, "partie": 0, "section": "Profil de l’organisme"}, {"type": "annonce", "partie": 1, "nom": "Niveau général d’utilisation de l’IA", "intro": "Où vous en êtes aujourd’hui."}, {"id": "usage", "type": "radio", "label": "Utilisez-vous actuellement des outils d’IA dans votre organisme&nbsp;?", "opts": ["Oui régulièrement", "Oui ponctuellement", "Nous expérimentons", "Pas encore", "Non et ce n’est pas prévu"], "p": [4, 3, 2, 1, 0], "max": 4, "axe": "usage", "auto": true, "partie": 1, "section": "Niveau général d’utilisation de l’IA"}, {"id": "depuis", "type": "radio", "label": "Depuis quand utilisez-vous l’IA&nbsp;?", "opts": ["Moins de 6 mois", "6 mois à 1 an", "1 à 2 ans", "Plus de 2 ans"], "si": {"q": "usage", "pas": ["Pas encore", "Non et ce n’est pas prévu"]}, "auto": true, "partie": 1, "section": "Niveau général d’utilisation de l’IA"}, {"id": "outils", "type": "check", "label": "Quels outils utilisez-vous&nbsp;?", "aide": "Plusieurs réponses possibles.", "opts": ["ChatGPT", "Claude", "Gemini", "Microsoft Copilot", "Mistral", "IA intégrée à votre LMS", "Outils spécialisés formation", "Autres"], "si": {"q": "usage", "pas": ["Pas encore", "Non et ce n’est pas prévu"]}, "auto": false, "partie": 1, "section": "Niveau général d’utilisation de l’IA"}, {"id": "comment", "type": "radio", "label": "Comment utilisez-vous l’IA aujourd’hui&nbsp;?", "opts": ["Usage individuel non organisé", "Quelques collaborateurs utilisent l’IA", "Expérimentations organisées", "Processus métier intégrant l’IA", "IA intégrée dans nos outils et notre LMS"], "p": [1, 2, 3, 4, 5], "max": 5, "axe": "usage", "si": {"q": "usage", "pas": ["Pas encore", "Non et ce n’est pas prévu"]}, "auto": true, "partie": 1, "section": "Niveau général d’utilisation de l’IA"}, {"type": "annonce", "partie": 2, "nom": "IA et ingénierie pédagogique", "intro": "Ce que vous confiez à l’IA pour concevoir vos formations."}, {"id": "inge", "type": "matrice", "label": "Utilisez-vous l’IA pour&nbsp;:", "aide": "Une réponse par ligne.", "echelle": ["Jamais", "Occasionnellement", "Régulièrement", "Très souvent"], "axe": "inge", "lignes": ["Créer un programme de formation", "Construire une progression pédagogique", "Transformer un référentiel en parcours de formation", "Créer des objectifs pédagogiques", "Créer des séquences pédagogiques", "Créer des supports de cours", "Créer des fiches pédagogiques", "Créer des exercices", "Créer des cas pratiques", "Adapter un contenu à différents niveaux", "Simplifier un contenu pour des publics FLE ou en difficulté", "Transformer un document existant en module e-learning", "Créer des vidéos", "Créer des podcasts", "Créer des illustrations", "Créer des simulations ou mises en situation"], "partie": 2, "section": "IA et ingénierie pédagogique"}, {"type": "annonce", "partie": 3, "nom": "IA et évaluations", "intro": "Concevoir, corriger, décider."}, {"id": "eval", "type": "check", "label": "Utilisez-vous l’IA pour&nbsp;:", "aide": "Plusieurs réponses possibles.", "axe": "eval", "opts": ["Créer des QCM", "Créer des questions ouvertes", "Créer des études de cas", "Créer des mises en situation", "Créer des grilles d’évaluation", "Créer des critères de réussite", "Adapter la difficulté d’une évaluation", "Générer des évaluations différentes pour chaque apprenant", "Corriger automatiquement des QCM", "Analyser des réponses ouvertes", "Aider le formateur à corriger", "Fournir automatiquement un feedback à l’apprenant", "Identifier les compétences acquises ou non acquises"], "auto": false, "partie": 3, "section": "IA et évaluations", "plein": 8}, {"id": "valide", "type": "radio", "label": "Seriez-vous prêt à laisser une IA valider seule une compétence&nbsp;?", "opts": ["Oui", "Oui pour certaines compétences", "Oui avec validation finale d’un formateur", "Non"], "auto": true, "partie": 3, "section": "IA et évaluations"}, {"type": "annonce", "partie": 4, "nom": "IA au service de l’apprenant", "intro": "Ce que l’IA fait, ou pourrait faire, face à l’apprenant."}, {"id": "appr", "type": "matrice", "label": "Utilisez-vous ou envisagez-vous l’IA pour&nbsp;:", "aide": "Une réponse par ligne.", "echelle": ["Non", "Envisagé", "Oui"], "axe": "appr", "lignes": ["Répondre aux questions des apprenants 24 h/24", "Expliquer différemment une notion mal comprise", "Créer des exercices personnalisés", "Adapter le niveau de difficulté", "Recommander les prochaines activités", "Détecter les risques de décrochage", "Relancer automatiquement un apprenant", "Créer un parcours personnalisé", "Faire pratiquer une langue avec un agent conversationnel", "Préparer un examen ou une certification"], "partie": 4, "section": "IA au service de l’apprenant"}, {"id": "role", "type": "radio", "label": "Pour vous, quel doit être le rôle de l’IA auprès de l’apprenant&nbsp;?", "opts": ["Assistant ponctuel", "Tuteur pédagogique", "Coach personnalisé", "Agent conversationnel", "Outil de recommandation", "L’IA ne doit pas intervenir directement auprès de l’apprenant"], "auto": true, "partie": 4, "section": "IA au service de l’apprenant"}, {"type": "annonce", "partie": 5, "nom": "IA et travail du formateur", "intro": "Le temps gagné, concrètement."}, {"id": "gainsur", "type": "check", "label": "L’IA vous permet-elle déjà de gagner du temps sur&nbsp;:", "aide": "Plusieurs réponses possibles.", "axe": "form", "opts": ["La préparation des formations", "La recherche documentaire", "La création des supports", "Les évaluations", "Les corrections", "Les comptes rendus", "Les synthèses de sessions", "Le suivi des apprenants", "La préparation des classes virtuelles", "Les réponses aux apprenants"], "auto": false, "partie": 5, "section": "IA et travail du formateur", "plein": 6}, {"id": "temps", "type": "radio", "label": "Combien de temps estimez-vous gagner grâce à l’IA&nbsp;?", "opts": ["Aucun", "Moins d’une heure par semaine", "1 à 3 heures", "3 à 5 heures", "5 à 10 heures", "Plus de 10 heures"], "p": [0, 1, 2, 3, 4, 5], "max": 5, "axe": "form", "auto": true, "partie": 5, "section": "IA et travail du formateur"}, {"type": "annonce", "partie": 6, "nom": "IA dans la gestion de l’organisme", "intro": "Appels d’offres, qualité, commerce, recrutement."}, {"id": "gestion", "type": "check", "label": "Utilisez-vous l’IA pour&nbsp;:", "aide": "Plusieurs réponses possibles.", "axe": "gest", "opts": ["Répondre aux appels d’offres", "Analyser un cahier des charges", "Identifier les exigences d’un appel d’offres", "Rédiger des mémoires techniques", "Préparer des réponses Qualiopi", "Préparer des audits", "Créer des propositions commerciales", "Rédiger des emails commerciaux", "Créer des campagnes marketing", "Créer des publications pour les réseaux sociaux", "Prospecter", "Analyser des CV", "Recruter des formateurs", "Créer des fiches de poste", "Préparer les entretiens", "Analyser la satisfaction des stagiaires", "Créer des comptes rendus", "Analyser des données de formation"], "auto": false, "partie": 6, "section": "IA dans la gestion de l’organisme", "plein": 9}, {"id": "ao", "type": "radio", "label": "Utilisez-vous l’IA pour répondre aux appels d’offres&nbsp;?", "opts": ["Jamais", "Pour analyser le dossier", "Pour préparer la réponse", "Pour rédiger certaines parties", "Pour produire une grande partie du dossier"], "p": [0, 1, 2, 3, 4], "max": 4, "axe": "gest", "auto": true, "partie": 6, "section": "IA dans la gestion de l’organisme"}, {"type": "annonce", "partie": 7, "nom": "Freins, risques et stratégie", "intro": "Ce qui vous retient, et ce que vous voyez venir."}, {"id": "freins", "type": "check", "label": "Quels sont vos principaux freins à l’utilisation de l’IA&nbsp;?", "aide": "Trois réponses au maximum.", "limite": 3, "opts": ["Manque de compétences", "Manque de temps", "Manque de budget", "Difficulté à choisir les outils", "Protection des données", "RGPD", "Confidentialité", "Fiabilité des réponses", "Risque d’erreurs", "Absence de règles internes", "Résistance des équipes", "Crainte concernant l’avenir du métier de formateur", "Manque d’intégration avec le LMS"], "auto": false, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "charte", "type": "radio", "label": "Votre organisme dispose-t-il d’une charte d’utilisation de l’IA&nbsp;?", "opts": ["Oui", "En préparation", "Non"], "p": [2, 1, 0], "max": 2, "axe": "cadre", "auto": true, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "formes", "type": "radio", "label": "Les collaborateurs ont-ils été formés à l’utilisation de l’IA&nbsp;?", "opts": ["Tous", "Une partie", "Quelques personnes", "Personne"], "p": [3, 2, 1, 0], "max": 3, "axe": "cadre", "auto": true, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "donnees", "type": "radio", "label": "Avez-vous défini les données qui peuvent ou ne peuvent pas être envoyées dans une IA publique&nbsp;?", "opts": ["Oui", "Partiellement", "Non"], "p": [2, 1, 0], "max": 2, "axe": "cadre", "auto": true, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "budget", "type": "radio", "label": "Avez-vous un budget spécifique consacré à l’IA&nbsp;?", "opts": ["Oui", "Prévu dans les 12 prochains mois", "Non"], "p": [2, 1, 0], "max": 2, "axe": "cadre", "auto": true, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "metier", "type": "radio", "label": "Dans les 2 prochaines années, l’IA va-t-elle modifier profondément le métier de formateur&nbsp;?", "opts": ["Oui fortement", "Oui partiellement", "Peu", "Pas du tout"], "auto": true, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "potentiel", "type": "texte", "label": "Quel usage de l’IA vous paraît avoir le plus de potentiel dans la formation professionnelle&nbsp;?", "aide": "Une phrase suffit. Champ facultatif.", "ph": "Par exemple : la personnalisation des parcours, la correction assistée…", "auto": false, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "priorite", "type": "texte", "label": "Quelle tâche souhaiteriez-vous automatiser en priorité grâce à l’IA&nbsp;?", "aide": "Une phrase suffit. Champ facultatif.", "ph": "Par exemple : la correction des évaluations, les comptes rendus de session…", "auto": false, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "part", "type": "radio", "label": "Selon vous, quel pourcentage du travail d’un organisme de formation pourrait être assisté par l’IA d’ici 3 ans&nbsp;?", "opts": ["Moins de 10 %", "10 à 25 %", "25 à 50 %", "50 à 75 %", "Plus de 75 %"], "auto": true, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "percu", "type": "radio", "label": "Aujourd’hui, votre organisme considère principalement l’IA comme&nbsp;:", "opts": ["Un outil de productivité", "Un outil pédagogique", "Un assistant du formateur", "Un outil de personnalisation des parcours", "Un moyen de réduire les coûts", "Un avantage concurrentiel", "Une menace", "Un sujet que nous maîtrisons encore mal"], "auto": true, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "contact", "section": "Vos résultats", "type": "contact", "label": "Où vous envoyons-nous vos accès et le baromètre&nbsp;?", "aide": "Votre adresse ne sert qu’à cela. Vos réponses restent anonymes dans les résultats publiés."}];
+    var ECRANS = [{"type": "annonce", "partie": 0, "nom": "Profil de l’organisme", "intro": "Trois questions pour situer votre structure."}, {"id": "type", "type": "radio", "label": "Quel est votre type d’organisme&nbsp;?", "opts": ["Organisme de formation privé", "CFA", "École ou enseignement supérieur", "Service formation interne", "Association", "Autre"], "auto": true, "partie": 0, "section": "Profil de l’organisme"}, {"id": "taille", "type": "radio", "label": "Combien de personnes travaillent dans votre organisme&nbsp;?", "aide": "Salariés et formateurs vacataires compris.", "opts": ["1 à 5", "6 à 20", "21 à 50", "51 à 200", "Plus de 200"], "auto": true, "partie": 0, "section": "Profil de l’organisme"}, {"id": "apprenants", "type": "radio", "label": "Combien d’apprenants formez-vous chaque année&nbsp;?", "opts": ["Moins de 100", "100 à 500", "500 à 2 000", "2 000 à 10 000", "Plus de 10 000"], "auto": true, "partie": 0, "section": "Profil de l’organisme"}, {"type": "annonce", "partie": 1, "nom": "Niveau général d’utilisation de l’IA", "intro": "Où vous en êtes aujourd’hui."}, {"id": "usage", "type": "radio", "label": "Utilisez-vous actuellement des outils d’IA dans votre organisme&nbsp;?", "opts": ["Oui régulièrement", "Oui ponctuellement", "Nous expérimentons", "Pas encore", "Non et ce n’est pas prévu"], "p": [4, 3, 2, 1, 0], "max": 4, "axe": "usage", "auto": true, "partie": 1, "section": "Niveau général d’utilisation de l’IA"}, {"id": "depuis", "type": "radio", "label": "Depuis quand utilisez-vous l’IA&nbsp;?", "opts": ["Moins de 6 mois", "6 mois à 1 an", "1 à 2 ans", "Plus de 2 ans"], "si": {"q": "usage", "pas": ["Pas encore", "Non et ce n’est pas prévu"]}, "auto": true, "partie": 1, "section": "Niveau général d’utilisation de l’IA"}, {"id": "outils", "type": "check", "label": "Quels outils utilisez-vous&nbsp;?", "aide": "Plusieurs réponses possibles.", "opts": ["ChatGPT", "Claude", "Gemini", "Microsoft Copilot", "Mistral", "IA intégrée à votre LMS", "Outils spécialisés formation", "Autres"], "si": {"q": "usage", "pas": ["Pas encore", "Non et ce n’est pas prévu"]}, "auto": false, "partie": 1, "section": "Niveau général d’utilisation de l’IA"}, {"id": "comment", "type": "radio", "label": "Comment utilisez-vous l’IA aujourd’hui&nbsp;?", "opts": ["Usage individuel non organisé", "Quelques collaborateurs utilisent l’IA", "Expérimentations organisées", "Processus métier intégrant l’IA", "IA intégrée dans nos outils et notre LMS"], "p": [1, 2, 3, 4, 5], "max": 5, "axe": "usage", "si": {"q": "usage", "pas": ["Pas encore", "Non et ce n’est pas prévu"]}, "auto": true, "partie": 1, "section": "Niveau général d’utilisation de l’IA"}, {"type": "annonce", "partie": 2, "nom": "IA et ingénierie pédagogique", "intro": "Ce que vous confiez à l’IA pour concevoir vos formations."}, {"id": "inge", "type": "matrice", "label": "Utilisez-vous l’IA pour&nbsp;:", "aide": "Une réponse par ligne.", "echelle": ["Jamais", "Occasionnellement", "Régulièrement", "Très souvent"], "axe": "inge", "lignes": ["Créer un programme de formation", "Construire une progression pédagogique", "Transformer un référentiel en parcours de formation", "Créer des objectifs pédagogiques", "Créer des séquences pédagogiques", "Créer des supports de cours", "Créer des fiches pédagogiques", "Créer des exercices", "Créer des cas pratiques", "Adapter un contenu à différents niveaux", "Simplifier un contenu pour des publics FLE ou en difficulté", "Transformer un document existant en module e-learning", "Créer des vidéos", "Créer des podcasts", "Créer des illustrations", "Créer des simulations ou mises en situation"], "partie": 2, "section": "IA et ingénierie pédagogique", "si": {"q": "usage", "pas": ["Pas encore", "Non et ce n’est pas prévu"]}}, {"type": "annonce", "partie": 3, "nom": "IA et évaluations", "intro": "Concevoir, corriger, décider."}, {"id": "eval", "type": "check", "label": "Utilisez-vous l’IA pour&nbsp;:", "aide": "Plusieurs réponses possibles.", "axe": "eval", "opts": ["Créer des QCM", "Créer des questions ouvertes", "Créer des études de cas", "Créer des mises en situation", "Créer des grilles d’évaluation", "Créer des critères de réussite", "Adapter la difficulté d’une évaluation", "Générer des évaluations différentes pour chaque apprenant", "Corriger automatiquement des QCM", "Analyser des réponses ouvertes", "Aider le formateur à corriger", "Fournir automatiquement un feedback à l’apprenant", "Identifier les compétences acquises ou non acquises"], "auto": false, "partie": 3, "section": "IA et évaluations", "plein": 8, "si": {"q": "usage", "pas": ["Pas encore", "Non et ce n’est pas prévu"]}}, {"id": "valide", "type": "radio", "label": "Seriez-vous prêt à laisser une IA valider seule une compétence&nbsp;?", "opts": ["Oui", "Oui pour certaines compétences", "Oui avec validation finale d’un formateur", "Non"], "auto": true, "partie": 3, "section": "IA et évaluations"}, {"type": "annonce", "partie": 4, "nom": "IA au service de l’apprenant", "intro": "Ce que l’IA fait, ou pourrait faire, face à l’apprenant."}, {"id": "appr", "type": "matrice", "label": "Utilisez-vous ou envisagez-vous l’IA pour&nbsp;:", "aide": "Une réponse par ligne.", "echelle": ["Non", "Envisagé", "Oui"], "axe": "appr", "lignes": ["Répondre aux questions des apprenants 24 h/24", "Expliquer différemment une notion mal comprise", "Créer des exercices personnalisés", "Adapter le niveau de difficulté", "Recommander les prochaines activités", "Détecter les risques de décrochage", "Relancer automatiquement un apprenant", "Créer un parcours personnalisé", "Faire pratiquer une langue avec un agent conversationnel", "Préparer un examen ou une certification"], "partie": 4, "section": "IA au service de l’apprenant"}, {"id": "role", "type": "radio", "label": "Pour vous, quel doit être le rôle de l’IA auprès de l’apprenant&nbsp;?", "opts": ["Assistant ponctuel", "Tuteur pédagogique", "Coach personnalisé", "Agent conversationnel", "Outil de recommandation", "L’IA ne doit pas intervenir directement auprès de l’apprenant"], "auto": true, "partie": 4, "section": "IA au service de l’apprenant"}, {"type": "annonce", "partie": 5, "nom": "IA et travail du formateur", "intro": "Le temps gagné, concrètement."}, {"id": "gainsur", "type": "check", "label": "L’IA vous permet-elle déjà de gagner du temps sur&nbsp;:", "aide": "Plusieurs réponses possibles.", "axe": "form", "opts": ["La préparation des formations", "La recherche documentaire", "La création des supports", "Les évaluations", "Les corrections", "Les comptes rendus", "Les synthèses de sessions", "Le suivi des apprenants", "La préparation des classes virtuelles", "Les réponses aux apprenants"], "auto": false, "partie": 5, "section": "IA et travail du formateur", "plein": 6, "si": {"q": "usage", "pas": ["Pas encore", "Non et ce n’est pas prévu"]}}, {"id": "temps", "type": "radio", "label": "Combien de temps estimez-vous gagner grâce à l’IA&nbsp;?", "opts": ["Aucun", "Moins d’une heure par semaine", "1 à 3 heures", "3 à 5 heures", "5 à 10 heures", "Plus de 10 heures"], "p": [0, 1, 2, 3, 4, 5], "max": 5, "axe": "form", "auto": true, "partie": 5, "section": "IA et travail du formateur", "si": {"q": "usage", "pas": ["Pas encore", "Non et ce n’est pas prévu"]}}, {"type": "annonce", "partie": 6, "nom": "IA dans la gestion de l’organisme", "intro": "Appels d’offres, qualité, commerce, recrutement."}, {"id": "gestion", "type": "check", "label": "Utilisez-vous l’IA pour&nbsp;:", "aide": "Plusieurs réponses possibles.", "axe": "gest", "opts": ["Répondre aux appels d’offres", "Analyser un cahier des charges", "Identifier les exigences d’un appel d’offres", "Rédiger des mémoires techniques", "Préparer des réponses Qualiopi", "Préparer des audits", "Créer des propositions commerciales", "Rédiger des emails commerciaux", "Créer des campagnes marketing", "Créer des publications pour les réseaux sociaux", "Prospecter", "Analyser des CV", "Recruter des formateurs", "Créer des fiches de poste", "Préparer les entretiens", "Analyser la satisfaction des stagiaires", "Créer des comptes rendus", "Analyser des données de formation"], "auto": false, "partie": 6, "section": "IA dans la gestion de l’organisme", "plein": 9, "si": {"q": "usage", "pas": ["Pas encore", "Non et ce n’est pas prévu"]}}, {"id": "ao", "type": "radio", "label": "Utilisez-vous l’IA pour répondre aux appels d’offres&nbsp;?", "opts": ["Jamais", "Pour analyser le dossier", "Pour préparer la réponse", "Pour rédiger certaines parties", "Pour produire une grande partie du dossier"], "p": [0, 1, 2, 3, 4], "max": 4, "axe": "gest", "auto": true, "partie": 6, "section": "IA dans la gestion de l’organisme", "si": {"q": "usage", "pas": ["Pas encore", "Non et ce n’est pas prévu"]}}, {"type": "annonce", "partie": 7, "nom": "Freins, risques et stratégie", "intro": "Ce qui vous retient, et ce que vous voyez venir."}, {"id": "freins", "type": "check", "label": "Quels sont vos principaux freins à l’utilisation de l’IA&nbsp;?", "aide": "Trois réponses au maximum.", "limite": 3, "opts": ["Manque de compétences", "Manque de temps", "Manque de budget", "Difficulté à choisir les outils", "Protection des données", "RGPD", "Confidentialité", "Fiabilité des réponses", "Risque d’erreurs", "Absence de règles internes", "Résistance des équipes", "Crainte concernant l’avenir du métier de formateur", "Manque d’intégration avec le LMS"], "auto": false, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "charte", "type": "radio", "label": "Votre organisme dispose-t-il d’une charte d’utilisation de l’IA&nbsp;?", "opts": ["Oui", "En préparation", "Non"], "p": [2, 1, 0], "max": 2, "axe": "cadre", "auto": true, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "formes", "type": "radio", "label": "Les collaborateurs ont-ils été formés à l’utilisation de l’IA&nbsp;?", "opts": ["Tous", "Une partie", "Quelques personnes", "Personne"], "p": [3, 2, 1, 0], "max": 3, "axe": "cadre", "auto": true, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "donnees", "type": "radio", "label": "Avez-vous défini les données qui peuvent ou ne peuvent pas être envoyées dans une IA publique&nbsp;?", "opts": ["Oui", "Partiellement", "Non"], "p": [2, 1, 0], "max": 2, "axe": "cadre", "auto": true, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "budget", "type": "radio", "label": "Avez-vous un budget spécifique consacré à l’IA&nbsp;?", "opts": ["Oui", "Prévu dans les 12 prochains mois", "Non"], "p": [2, 1, 0], "max": 2, "axe": "cadre", "auto": true, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "metier", "type": "radio", "label": "Dans les 2 prochaines années, l’IA va-t-elle modifier profondément le métier de formateur&nbsp;?", "opts": ["Oui fortement", "Oui partiellement", "Peu", "Pas du tout"], "auto": true, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "potentiel", "type": "texte", "label": "Quel usage de l’IA vous paraît avoir le plus de potentiel dans la formation professionnelle&nbsp;?", "aide": "Une phrase suffit. Champ facultatif.", "ph": "Par exemple : la personnalisation des parcours, la correction assistée…", "auto": false, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "priorite", "type": "texte", "label": "Quelle tâche souhaiteriez-vous automatiser en priorité grâce à l’IA&nbsp;?", "aide": "Une phrase suffit. Champ facultatif.", "ph": "Par exemple : la correction des évaluations, les comptes rendus de session…", "auto": false, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "part", "type": "radio", "label": "Selon vous, quel pourcentage du travail d’un organisme de formation pourrait être assisté par l’IA d’ici 3 ans&nbsp;?", "opts": ["Moins de 10 %", "10 à 25 %", "25 à 50 %", "50 à 75 %", "Plus de 75 %"], "auto": true, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "percu", "type": "radio", "label": "Aujourd’hui, votre organisme considère principalement l’IA comme&nbsp;:", "opts": ["Un outil de productivité", "Un outil pédagogique", "Un assistant du formateur", "Un outil de personnalisation des parcours", "Un moyen de réduire les coûts", "Un avantage concurrentiel", "Une menace", "Un sujet que nous maîtrisons encore mal"], "auto": true, "partie": 7, "section": "Freins, risques et stratégie"}, {"id": "contact", "section": "Vos résultats", "type": "contact", "label": "Où vous envoyons-nous vos accès et le baromètre&nbsp;?", "aide": "Votre adresse ne sert qu’à cela. Vos réponses restent anonymes dans les résultats publiés."}];
     var NIVEAUX = [[20, "Découverte", "L’IA reste à la porte de l’organisme. Le premier pas tient souvent à une tâche unique, répétitive, que l’on confie pour voir."], [40, "Expérimentation", "Quelques personnes s’y sont mises, chacune de son côté. L’enjeu devient de partager ce qui marche."], [60, "Adoption", "L’IA est entrée dans la production courante. Reste à l’inscrire dans des règles et des outils communs."], [80, "Intégration", "L’IA irrigue plusieurs métiers de l’organisme. Le sujet devient celui de la mesure et de la qualité."], [100, "Organisme augmenté", "L’IA est dans les outils, les process et le LMS. Vous êtes en avance sur la profession."]];
+    var AXE_PARTIE = { usage: 1, inge: 2, eval: 3, appr: 4, form: 5, gest: 6, cadre: 7 };
     var AXES = [["usage", "Usage et organisation"], ["inge", "Ingénierie pédagogique"], ["eval", "Évaluations"], ["appr", "IA au service de l’apprenant"], ["form", "Travail du formateur"], ["gest", "Gestion et appels d’offres"], ["cadre", "Cadre et gouvernance"]];
     var PISTES = {"Usage et organisation": [["Sortir de l’usage individuel", "Tant que chacun utilise l’IA dans son coin, rien ne se capitalise. Un espace partagé de prompts et de bonnes pratiques change l’échelle."], ["Rapprocher l’IA de vos outils", "Un usage intégré au LMS et aux outils de production pèse plus qu’un outil de plus à ouvrir dans un onglet."]], "Ingénierie pédagogique": [["Partir du référentiel, pas de la page blanche", "L’IA sert surtout à produire des supports. Elle est bien plus utile en amont : transformer un référentiel de compétences en progression, puis en séquences."], ["Adapter plutôt que reproduire", "Un même contenu décliné pour un public FLE, un débutant et un profil expérimenté coûte trois fois moins cher à produire avec l’IA qu’à écrire trois fois."]], "Évaluations": [["Faire produire les variantes, pas les questions", "Le gain le plus net est la génération d’évaluations différentes pour chaque apprenant à partir d’un même socle, plutôt qu’un QCM de plus."], ["Garder le formateur sur la correction qualitative", "L’IA prend les QCM et le premier passage sur les réponses rédigées ; le formateur garde l’appréciation et la décision."]], "Gestion et appels d’offres": [["Commencer par l’analyse du dossier", "Avant de rédiger, faire extraire les exigences d’un cahier des charges et la grille d’évaluation : c’est là que se perdent les dossiers."], ["Constituer une base de vos mémoires techniques", "Vos réponses passées sont le meilleur matériau : elles rendent les propositions générées spécifiques plutôt que génériques."]], "Cadre et gouvernance": [["Écrire la charte avant l’incident", "Une page suffit : quelles données ne sortent pas, qui relit quoi, ce qui est signalé comme généré. C’est aussi ce qu’un auditeur demandera."], ["Former ceux qui produisent, pas seulement la direction", "L’écart de compétence se creuse vite entre les personnes qui ont pris l’outil en main et les autres."]], "IA au service de l’apprenant": [["Commencer par la question qui revient le plus", "Un assistant qui répond aux questions récurrentes des apprenants, à partir de vos propres contenus, est le premier usage à mettre en place : il soulage le formateur sans rien décider à sa place."], ["Adapter la difficulté avant d’individualiser le parcours", "Ajuster le niveau d’un exercice à la réponse précédente demande peu de mise en place et se mesure tout de suite ; le parcours personnalisé viendra ensuite."]], "Travail du formateur": [["Mesurer le temps gagné, tâche par tâche", "Une semaine de relevé suffit pour savoir où l’IA rend vraiment du temps. C’est ce qui convainc les équipes hésitantes, bien plus qu’une démonstration."], ["Réinvestir le temps gagné dans l’accompagnement", "Le temps repris sur la préparation et les comptes rendus a le plus de valeur quand il retourne aux apprenants, pas quand il absorbe une session de plus."]]};
     var TOUCHES = '123456789';   /* les neuf premiers choix, au clavier */
@@ -600,20 +612,41 @@ html.fige,body.fige{overflow:hidden}
     /* Quatre outils debloques au fil du questionnaire. Les trois premiers
        se gagnent en validant une question precise (« apres »), le dernier
        s'affiche a l'arrivee sur l'ecran de contact (« sur »). Accroches a
-       l'identifiant de la question, pas a son numero : l'embranchement de
-       la partie 2 ne les deplace pas. Sur le parcours complet : questions
-       8, 11, 17 et 27. */
+       l'identifiant de la question, pas a son numero. Parcours complet :
+       questions 8, 11, 17 et 27. Organisme sans usage de l'IA (les six
+       questions d'usage sont sautees, 18 ecrans) : « apresSans », soit les
+       questions 4, 8, 12 et 18. */
     var DEBLOQUES = [
-      { apres: 'inge', img: 'win_fastformation.jpg',
+      { apres: 'inge', apresSans: 'usage', img: 'win_fastformation.jpg',
         txt: 'Vous avez débloqué votre accès à Fastformation pour générer vos modules e-learning avec l’IA.' },
-      { apres: 'appr', img: 'win_fastquiz.jpg',
+      { apres: 'appr', apresSans: 'freins', img: 'win_fastquiz.jpg',
         txt: 'Vous avez débloqué FastQuiz IA : FastQuiz IA vous permet d’évaluer vos apprenants en quelques secondes avec l’IA.' },
-      { apres: 'freins', img: 'win_podcast.jpg',
+      { apres: 'freins', apresSans: 'budget', img: 'win_podcast.jpg',
         txt: 'Vous avez débloqué Learning podcast : créez des podcasts interactifs et pédagogiques en quelques minutes.' },
       { sur: 'contact', img: 'win_roleplay.jpg',
         txt: 'Vous avez débloqué RolePlay : RolePlay vous permet de générer des mises en situation interactives pour entraîner vos apprenants face à des cas métiers concrets.' }
     ];
     var debloquesVus = {};
+    /* une couleur par partie ; toutes tiennent 4,5:1 sous du texte blanc
+       (donc aussi comme texte sur blanc). Les sept de la partie 2 a la 8
+       colorent aussi les barres du bilan : elles passent le validateur de
+       palette (bande de clarte, chroma, separation daltonienne entre
+       voisines, 3:1 sur la surface), l'ordre compte donc. Le contact et le
+       bilan reprennent le rouge de marque. */
+    var COULEURS = ["#0A8074", "#2C6FE0", "#C54A07", "#B0287A", "#298152", "#1D4FB8", "#E01A4F", "#6D5BD0"];
+    var accent = function(e){
+      var c = e.type === 'contact' || e.partie === undefined ? '#E01A4F' : COULEURS[e.partie];
+      qz.style.setProperty('--acc', c);
+      qz.classList.toggle('annonce', e.type === 'annonce');
+    };
+    var SANS_IA = ['Pas encore', 'Non et ce n’est pas prévu'];
+    var sansIA = function(){
+      var u = QDE('usage'), v = rep.usage;
+      return !!u && v !== undefined && SANS_IA.indexOf(u.opts[v]) !== -1;
+    };
+    var partieVide = function(p){
+      return !ECRANS.some(function(x){ return x.partie === p && estQ(x) && !saute(x); });
+    };
     var deblocagePour = function(cle, id){
       /* les annonces n'ont pas d'identifiant et le dernier cadeau n'a pas de
          cle « apres » : sans ce garde, undefined vaudrait undefined et
@@ -868,6 +901,7 @@ html.fige,body.fige{overflow:hidden}
       var pose = function(){
         scene.innerHTML = '';
         scene.scrollTop = 0;
+        accent(e);
         var d = carte(e);
         scene.appendChild(d);
         majBarre();
@@ -921,11 +955,13 @@ html.fige,body.fige{overflow:hidden}
         err.hidden = false;
         return;
       }
-      var gagne = deblocagePour('apres', e.id);
+      var gagne = deblocagePour(sansIA() ? 'apresSans' : 'apres', e.id);
       if (gagne) window.setTimeout(function(){ montreToast(gagne); }, anime ? 380 : 0);
-      /* l’ecran suivant dans l’ordre, annonces comprises, conditions sautees */
+      /* l’ecran suivant dans l’ordre, annonces comprises, conditions sautees ;
+         une annonce dont toutes les questions sont sautees ne se joue pas */
       var i = cur + 1;
-      while (i < ECRANS.length && saute(ECRANS[i])) i++;
+      while (i < ECRANS.length && (saute(ECRANS[i]) ||
+             (ECRANS[i].type === 'annonce' && partieVide(ECRANS[i].partie)))) i++;
       if (i >= ECRANS.length) { calcule(); return; }
       cur = i;
       montre();
@@ -1011,7 +1047,8 @@ html.fige,body.fige{overflow:hidden}
       var seuilFaible = faibles[0].v;
 
       var barres = axes.map(function(a){
-        return '<li class="bl-axe' + (a.v <= seuilFaible ? ' faible' : '') + '">' +
+        return '<li class="bl-axe' + (a.v <= seuilFaible ? ' faible' : '') +
+          '" style="--acc:' + COULEURS[AXE_PARTIE[a.id]] + '">' +
           '<b>' + a.nom + '</b><i>' + a.v + '</i>' +
           '<span class="bl-piste"><span data-v="' + a.v + '"></span></span></li>';
       }).join('');
@@ -1081,6 +1118,8 @@ html.fige,body.fige{overflow:hidden}
                '<span>' + x[1] + '</span></div></li>'; }).join('');
 
       qz.classList.add('bilan');
+      qz.classList.remove('annonce');
+      qz.style.setProperty('--acc', '#E01A4F');
       scene.innerHTML =
         '<div class="qz-carte entre qz-res">' +
         '<div class="bl-tete">' +
@@ -1109,10 +1148,11 @@ html.fige,body.fige{overflow:hidden}
         '<p class="bl-note">Ceux que le baromètre publiera pour la profession. Ici, vos réponses ; les pourcentages nationaux vous parviendront avec les résultats.</p>' +
         '<ul class="bl-indic">' + INDIC + '</ul></section>' +
 
+        (rep.inge === undefined ? '' :
         '<section class="bl-sec"><h3>Le détail de votre ingénierie pédagogique</h3>' +
         '<p class="bl-note">Ce que vous confiez déjà à l’IA, usage par usage.</p>' +
         '<ul class="bl-niv" style="--nc:' + nc + '">' + crans + '</ul>' +
-        '<div class="bl-leg" style="--nc:' + nc + '">' + legende + '</div></section>' +
+        '<div class="bl-leg" style="--nc:' + nc + '">' + legende + '</div></section>') +
 
         '<section class="bl-sec"><h3>Ce que vous avez déclaré</h3>' +
         '<div class="bl-tuiles">' + tuiles + '</div></section>' +
