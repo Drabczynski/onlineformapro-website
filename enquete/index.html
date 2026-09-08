@@ -97,10 +97,14 @@ html.fige,body.fige{overflow:hidden}
 .qz-fermer:hover{border-color:var(--ink);color:var(--ink)}
 
 .qz-scene{flex:1;display:flex;flex-direction:column;align-items:center;overflow-y:auto;
-  padding:0 var(--pad)}
+  padding:0 var(--pad);position:relative}
+/* Le rang porte le visuel et la carte. Ses marges automatiques centrent
+   l'ensemble quand il tient, et se resolvent a zero quand il deborde :
+   contrairement a align-items:center, rien n'est jamais coupe en haut. */
+.qz-rang{margin:auto 0;width:100%;display:flex;justify-content:center;position:relative;z-index:1}
 /* marge automatique : centre tant que la carte tient, aligne en haut et
    laisse defiler des qu'elle deborde (une grille de seize lignes) */
-.qz-carte{width:min(100%,660px);margin:auto 0;flex:none;padding:clamp(20px,4vw,44px) 0}
+.qz-carte{width:min(100%,660px);flex:0 1 auto;min-width:0;padding:clamp(18px,3vw,32px) 0}
 /* Le rembourrage vertical est sur la carte, pas sur la scene : dans un
    conteneur flex qui defile, Chromium colle un position:sticky au bord du
    contenu, pas a celui du cadre. Avec la scene rembourree, l'en-tete de
@@ -420,8 +424,25 @@ html.fige,body.fige{overflow:hidden}
   color:color-mix(in srgb,var(--acc) 80%,black)}   /* sur le fond teinte, l'accent pur passait sous 4,5:1 */
 /* pendant l'annonce, le visuel de la partie occupe tout l'ecran, sous un
    voile sombre qui garde le titre lisible quelle que soit la photo */
-.qz.annonce .qz-scene{background:linear-gradient(180deg,rgba(12,12,20,.38),rgba(12,12,20,.62)),
-  var(--visuel,none) center/cover no-repeat,var(--acc)}
+/* la teinte de la partie est posee tout de suite : le texte blanc est
+   lisible des la premiere image, l'image se revele par-dessus */
+.qz.annonce .qz-scene{background:var(--acc)}
+/* La mise a l'echelle porte sur l'enfant, pas sur la boite : appliquee au
+   .qz-fond lui-meme, elle debordait la scene et creait 24 px de defilement
+   sur des ecrans qui tenaient pourtant. */
+.qz-fond{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  opacity:0;transition:opacity .4s var(--ease)}
+.qz-fond::before{content:"";position:absolute;inset:0;transform:scale(1.08);
+  transform-origin:center;will-change:transform;
+  background:var(--visuel,none) center/cover no-repeat,var(--acc);
+  transition:transform .55s var(--ease)}
+.qz-fond::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(10,10,18,.34),rgba(10,10,18,.66))}
+/* entree : l'image se pose lentement pendant qu'on lit le titre ;
+   sortie : elle s'eloigne en s'effacant */
+.qz.annonce .qz-fond{opacity:1;transition:opacity .75s var(--ease)}
+.qz.annonce .qz-fond::before{transform:scale(1);
+  transition:transform 2.6s cubic-bezier(.16,1,.3,1)}
 .qz.annonce .qz-annonce-n{color:rgba(255,255,255,.86)}
 .qz.annonce .qz-annonce-t{color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.25)}
 .qz.annonce .qz-annonce-i{color:rgba(255,255,255,.88)}
@@ -431,13 +452,12 @@ html.fige,body.fige{overflow:hidden}
 /* ══ visuel de partie a cote des questions ══ */
 .qz-visuel{display:none}
 @media (min-width:1100px){
-  .qz-scene{flex-direction:row;align-items:flex-start;justify-content:center;
-    gap:clamp(32px,4.5vw,64px);--haut:clamp(28px,6vh,72px)}
-  /* la carte peut se resserrer : visuel + ecart + carte large depassaient
-     la scene sous 1350 px */
-  .qz-scene .qz-carte{margin:0;padding-top:var(--haut);flex:0 1 auto;min-width:0}
-  .qz-visuel{display:block;flex:none;width:clamp(220px,21vw,340px);margin-top:var(--haut);
-    position:sticky;top:var(--haut);border-radius:14px;overflow:hidden;background:var(--acc-t2)}
+  .qz-rang{gap:clamp(32px,4.5vw,64px);align-items:flex-start}
+  /* le visuel s'aligne sur le haut de la carte et reste en place pendant
+     qu'une grille de seize lignes defile */
+  .qz-visuel{display:block;flex:none;width:clamp(220px,21vw,340px);
+    margin-top:clamp(18px,3vw,32px);position:sticky;top:clamp(18px,3vw,32px);
+    border-radius:14px;overflow:hidden;background:var(--acc-t2)}
   .qz-visuel img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
   .qz.bilan .qz-visuel{display:none}
 }
@@ -447,13 +467,21 @@ html.fige,body.fige{overflow:hidden}
   color:#5C5C5C;text-wrap:pretty}   /* un cran plus sombre que --ink-2 : le fond est teinte */
 .qz-annonce-trait{display:block;width:48px;height:3px;border-radius:2px;margin:24px auto 0;background:var(--acc);
   transform-origin:left;animation:trait .9s .25s var(--ease) both}
-.qz-annonce.entre{animation:annonceIn .65s var(--ease) both}
+.qz-annonce.entre{animation:annonceIn .5s var(--ease) both}
 .qz-annonce.sort{animation:annonceOut .38s var(--ease) both}
-@keyframes annonceIn{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes annonceIn{from{opacity:0}to{opacity:1}}
+.qz-annonce.entre > *{animation:annElem .75s var(--ease) both}
+.qz-annonce.entre .qz-annonce-n{animation-delay:.04s}
+.qz-annonce.entre .qz-annonce-t{animation-delay:.13s}
+.qz-annonce.entre .qz-annonce-i{animation-delay:.24s}
+.qz-annonce.entre .qz-annonce-trait{animation:trait .9s .38s var(--ease) both}
+@keyframes annElem{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes annonceOut{to{opacity:0;transform:translateY(-10px) scale(.99)}}
 @keyframes trait{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @media (prefers-reduced-motion:reduce){
-  .qz-annonce.entre,.qz-annonce.sort,.qz-annonce-trait{animation:none}
+  .qz-annonce.entre,.qz-annonce.sort,.qz-annonce-trait,.qz-annonce.entre > *{animation:none}
+  .qz-fond,.qz.annonce .qz-fond{transition:opacity .2s linear}
+  .qz-fond::before,.qz.annonce .qz-fond::before{transform:none;transition:none}
 }
 /* ══════════ BILAN ══════════ */
 .qz-res{text-align:left;width:min(100%,720px)}
@@ -711,14 +739,7 @@ html.fige,body.fige{overflow:hidden}
       qz.classList.toggle('annonce', e.type === 'annonce');
       var src = p === undefined ? '' : VISUELS[p];
       qz.style.setProperty('--visuel', src ? 'url("' + src + '")' : 'none');
-      var vis = scene.querySelector('.qz-visuel');
-      if (!vis) {
-        vis = document.createElement('div');
-        vis.className = 'qz-visuel';
-        vis.setAttribute('aria-hidden', 'true');
-        vis.innerHTML = '<img alt="">';
-        scene.insertBefore(vis, scene.firstChild);
-      }
+      var rang = scene.querySelector('.qz-rang'), vis = rang.querySelector('.qz-visuel');
       var im = vis.querySelector('img');
       if (src) { if (im.getAttribute('src') !== src) im.src = src; vis.hidden = false; }
       else vis.hidden = true;
@@ -989,7 +1010,7 @@ html.fige,body.fige{overflow:hidden}
         scene.scrollTop = 0;
         accent(e);
         var d = carte(e);
-        scene.appendChild(d);
+        scene.querySelector('.qz-rang').appendChild(d);
         majBarre();
         var ch = document.querySelector('.qz-astuce-ch');
         err.hidden = true;
@@ -1415,8 +1436,25 @@ html.fige,body.fige{overflow:hidden}
     };
 
     /* ---- ouverture, fermeture, clavier ---- */
+    /* La scene est montee une fois, avant le premier ecran : un element cree
+       alors que .annonce est deja pose naitrait dans son etat final et ne
+       pourrait pas se transitionner. */
+    var monteScene = function(){
+      if (scene.querySelector('.qz-rang')) return;
+      var f = document.createElement('div');
+      f.className = 'qz-fond';
+      f.setAttribute('aria-hidden', 'true');
+      var rang = document.createElement('div');
+      rang.className = 'qz-rang';
+      rang.innerHTML = '<div class="qz-visuel" aria-hidden="true"><img alt=""></div>';
+      scene.innerHTML = '';
+      scene.appendChild(f);
+      scene.appendChild(rang);
+    };
+
     var ouvrir = function(){
       anime = !reduce;
+      monteScene();
       DEBLOQUES.forEach(function(d){ var i = new Image(); i.src = d.img; });
       var v0 = new Image(); v0.src = VISUELS[0];
       qz.classList.add('on');
