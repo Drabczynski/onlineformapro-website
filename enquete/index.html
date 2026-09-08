@@ -316,16 +316,21 @@ html.fige,body.fige{overflow:hidden}
 .qz-score{margin-top:14px;font-size:clamp(3rem,8vw,4.6rem);line-height:1;font-weight:500;
   letter-spacing:-.035em;font-variant-numeric:tabular-nums}
 .qz-score small{font-size:.3em;color:var(--ink-2);letter-spacing:0;font-weight:400}
-.qz-jauge{width:min(100%,340px);margin:22px auto 0;height:6px;border-radius:100px;
-  background:var(--cream-3);overflow:hidden}
-.qz-jauge i{display:block;height:100%;width:0;background:var(--red);
-  transition:width 1.1s var(--ease)}
-.qz-niv{margin-top:20px;font-size:1.3rem;font-weight:500;letter-spacing:-.016em;color:var(--red)}
+.bl-jauge{position:relative;width:min(100%,220px);margin:10px auto 0}
+.bl-jauge svg{display:block;width:100%;height:auto}
+.bl-jauge .piste{fill:none;stroke:var(--cream-3);stroke-width:14;stroke-linecap:round}
+.bl-jauge .arc{fill:none;stroke:var(--pal);stroke-width:14;stroke-linecap:round;
+  transition:stroke-dasharray 1.2s var(--ease)}
+.bl-score{position:absolute;inset:0;display:grid;place-content:center;text-align:center;padding-top:4px}
+.bl-score b{display:block;font-size:clamp(2.6rem,6vw,3.5rem);line-height:1;font-weight:500;
+  letter-spacing:-.035em;font-variant-numeric:tabular-nums;color:var(--ink)}
+.bl-score small{display:block;margin-top:4px;font-size:.8rem;color:var(--ink-2)}
+.qz-niv{margin-top:6px;font-size:1.45rem;font-weight:500;letter-spacing:-.018em;color:var(--pal)}
 .qz-niv-txt{margin:11px auto 0;max-width:48ch;font-size:.95rem;line-height:1.55;color:var(--ink-2)}
-.qz-echelle{display:flex;gap:4px;width:min(100%,440px);margin:26px auto 0}
-.qz-ech{flex:1;text-align:center;font-size:.69rem;line-height:1.3;color:var(--ink-2);
-  padding-top:8px;border-top:2px solid var(--line);transition:color .4s,border-color .4s}
-.qz-ech.on{color:var(--red);border-top-color:var(--red)}
+.qz-echelle{display:flex;gap:4px;width:min(100%,520px);margin:22px auto 0}
+.qz-ech{flex:1;text-align:center;font-size:.69rem;line-height:1.25;color:#575757;
+  padding:8px 4px;border-radius:7px;background:color-mix(in srgb,var(--pal) 12%,white)}
+.qz-ech.on{background:var(--pal);color:#fff;font-weight:500}
 
 /* ══════════ DEBLOCAGE ══════════ */
 /* Petite fenetre en bas a droite, au-dessus du pied. Elle glisse depuis
@@ -471,11 +476,50 @@ html.fige,body.fige{overflow:hidden}
 .bl-piste span{display:block;height:100%;width:0;border-radius:4px;background:var(--acc,var(--ink));
   transition:width .9s var(--ease)}
 
+/* lecture du profil : un archetype, dans la teinte du palier */
+.bl-lecture{border-top:0 !important;padding:20px 22px !important;border-radius:12px;
+  background:color-mix(in srgb,var(--pal) 8%,white)}
+.bl-eti{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:500;
+  color:color-mix(in srgb,var(--pal) 85%,black)}
+.bl-arch{font-size:1.35rem;margin-top:6px;letter-spacing:-.016em;color:var(--ink)}
+.bl-lecture p{margin-top:8px;font-size:.95rem;line-height:1.55;color:var(--ink);text-wrap:pretty}
+
+/* signaux : un etat (risque, vigilance, atout), toujours nomme, jamais la couleur seule */
+.bl-signaux{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
+@media (min-width:640px){.bl-signaux{grid-template-columns:1fr 1fr}}
+.bl-sig{border-radius:11px;padding:14px 16px;border:1px solid color-mix(in srgb,var(--sc) 28%,white);
+  background:color-mix(in srgb,var(--sc) 7%,white)}
+.bl-sig.risque{--sc:#E01A4F}
+.bl-sig.vigilance{--sc:#C54A07}
+.bl-sig.atout{--sc:#298152}
+.bl-sig-type{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;letter-spacing:.07em;
+  text-transform:uppercase;font-weight:500;color:color-mix(in srgb,var(--sc) 85%,black)}
+.bl-sig-type i{width:8px;height:8px;border-radius:50%;background:var(--sc)}
+.bl-sig b{display:block;margin-top:6px;font-size:.94rem;font-weight:500;color:var(--ink)}
+.bl-sig span:not(.bl-sig-type){display:block;margin-top:4px;font-size:.85rem;line-height:1.5;color:var(--ink-2)}
+
 /* points d’appui et angles morts */
 .bl-duo{display:grid;gap:12px;margin-top:16px}
 @media (min-width:640px){.bl-duo{grid-template-columns:1fr 1fr}}
-.bl-bloc{border:1px solid var(--line);border-radius:9px;padding:15px 17px}
-.bl-bloc h4{font-size:.82rem;font-weight:500;color:var(--ink-2);margin-bottom:9px}
+.bl-bloc{border:1px solid color-mix(in srgb,var(--sc,#000) 25%,white);border-radius:11px;padding:15px 17px;
+  background:color-mix(in srgb,var(--sc,#000) 6%,white)}
+.bl-bloc.forts{--sc:#298152}
+.bl-bloc.faibles{--sc:#C54A07}
+.bl-bloc h4{font-size:.82rem;font-weight:500;color:color-mix(in srgb,var(--sc) 85%,black);margin-bottom:9px}
+
+/* le plan : trois horizons, chacun sa teinte */
+.bl-plan{display:grid;gap:12px;margin-top:16px}
+@media (min-width:720px){.bl-plan{grid-template-columns:repeat(3,1fr)}}
+.bl-hor{--sc:#2C6FE0;border-radius:12px;padding:16px 16px 14px;border-top:3px solid var(--sc);
+  background:color-mix(in srgb,var(--sc) 7%,white)}
+.bl-hor.m3{--sc:#6D5BD0}
+.bl-hor.m6{--sc:#0A8074}
+.bl-hor h4{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;font-weight:500;
+  color:color-mix(in srgb,var(--sc) 85%,black)}
+.bl-hor small{display:block;margin-top:3px;font-size:.76rem;color:var(--ink-2)}
+.bl-hor ul{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+.bl-hor b{display:block;font-size:.92rem;font-weight:500;color:var(--ink)}
+.bl-hor span{display:block;margin-top:4px;font-size:.84rem;line-height:1.5;color:var(--ink-2)}
 .bl-bloc ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
 .bl-bloc li{font-size:.9rem;color:var(--ink);display:flex;gap:8px;align-items:baseline}
 .bl-bloc li em{font-style:normal;color:var(--ink-2);font-size:.82rem;margin-left:auto;
@@ -1081,9 +1125,136 @@ html.fige,body.fige{overflow:hidden}
       pas();
     };
 
+    /* ---- lecture du profil : tout est deduit des reponses, rien n’est compare
+       a une population que le barometre n’a pas encore mesuree ---- */
+    var TEINTES_PALIER = ['#C54A07', '#B0287A', '#2C6FE0', '#6D5BD0', '#298152'];
+    var opt = function(id){ return texteDeQ(id); };
+    var rang = function(id){ return rep[id] === undefined ? -1 : rep[id]; };
+    var coche = function(id, lib){
+      var e = QDE(id), v = rep[id] || [];
+      return !!e && v.some(function(i){ return e.opts[i] === lib; });
+    };
+    var compte = function(id, c){ return (rep[id] || []).filter(function(x){ return x === c; }).length; };
+
+    var lecture = function(ax, k){
+      var sans = sansIA();
+      var deja = compte('appr', 2), envis = compte('appr', 1);
+      if (sans) return ['Au point de départ',
+        'Vous n’utilisez pas encore l’IA. Votre bilan porte donc sur le cadre, les freins et les intentions : c’est là que se décide la suite, et c’est souvent plus simple qu’il n’y paraît.'];
+      if (k >= 4) return ['Organisme augmenté',
+        'L’IA est dans vos outils, vos process et votre LMS. Le sujet n’est plus l’adoption mais la mesure, la qualité et la transmission de vos pratiques.'];
+      if (ax.usage >= 60 && ax.cadre < 40) return ['Adopteur sans filet',
+        'L’IA est entrée dans votre production courante, mais sans charte, sans règle sur les données ou sans formation des équipes. L’usage a pris de l’avance sur le cadre : c’est la situation la plus facile à corriger, et la plus coûteuse à laisser durer.'];
+      if (ax.usage < 40 && ax.cadre >= 60) return ['Prudent et structuré',
+        'Le cadre est posé avant l’usage : charte, règles, formation. Il reste à ouvrir la production. Votre organisation est prête à l’absorber, ce qui est rarement le cas dans l’autre sens.'];
+      if (ax.inge >= 50 && ax.eval < 35 && ax.appr < 35) return ['Producteur de contenus',
+        'L’IA vous sert d’abord à concevoir et à produire. Les évaluations et l’accompagnement des apprenants restent en dehors : c’est votre prochain terrain, et il demande d’autres règles que la production.'];
+      if (deja >= 3) return ['Tourné vers l’apprenant',
+        'Vous confiez déjà à l’IA une part de la relation avec l’apprenant. La question devient celle du rôle que vous lui laissez, et de ce que le formateur garde.'];
+      if (envis >= 5 && deja === 0) return ['Des projets apprenants en attente',
+        'Vous envisagez ' + envis + ' usages de l’IA auprès des apprenants et n’en avez lancé aucun. Le passage à l’acte est votre sujet : un seul usage, mesuré, avant d’en imaginer d’autres.'];
+      if (ax.gest >= 50 && ax.inge < 40) return ['Gestionnaire outillé',
+        'L’IA travaille davantage pour la gestion de l’organisme, appels d’offres et administratif, que pour la pédagogie. Vous avez une avance à transférer vers la conception des formations.'];
+      return ['En progression équilibrée',
+        'Aucun domaine ne décroche vraiment, aucun ne prend la tête. La marche suivante se choisit, elle ne s’impose pas : le plan ci-dessous propose par où commencer.'];
+    };
+
+    var signaux = function(ax, k){
+      var S = [], sans = sansIA(), actif = !sans;
+      var charte = opt('charte'), donnees = opt('donnees'), formes = opt('formes'), budget = opt('budget');
+      var usage = opt('usage'), temps = rang('temps'), valide = opt('valide'), percu = opt('percu'), metier = opt('metier');
+      var envis = compte('appr', 1), deja = compte('appr', 2);
+      var ingeReg = (rep.inge || []).filter(function(c){ return c >= 2; }).length;
+      var nEval = (rep.eval || []).length;
+      var freinDonnees = coche('freins', 'RGPD') || coche('freins', 'Protection des données') || coche('freins', 'Confidentialité');
+      var push = function(type, titre, texte){ S.push({ type: type, titre: titre, texte: texte }); };
+
+      if (actif && donnees === 'Non')
+        push('risque', 'Des données envoyées sans règle', 'Vous utilisez l’IA sans avoir défini ce qui peut ou non être envoyé dans une IA publique. C’est le premier point à régler, avant tout le reste.');
+      if (valide === 'Oui')
+        push('risque', 'Une validation de compétence confiée à l’IA', 'Laisser une IA valider seule une compétence engage votre responsabilité pédagogique et votre certification. Une validation finale humaine protège les deux.');
+      if (actif && charte === 'Non' && donnees !== 'Non')
+        push('vigilance', 'Pas de charte d’utilisation', 'L’usage existe, les règles communes pas encore. Une page suffit pour dire qui relit quoi et ce qui est signalé comme généré.');
+      if (actif && (formes === 'Personne' || formes === 'Quelques personnes') && (usage === 'Oui régulièrement' || usage === 'Oui ponctuellement'))
+        push('vigilance', 'Un usage réel, des équipes peu formées', 'L’écart se creuse vite entre ceux qui ont pris l’outil en main et les autres. Former ceux qui produisent vient avant d’élargir.');
+      if (envis >= 3 && deja === 0)
+        push('vigilance', 'Des usages apprenants envisagés, aucun lancé', pluriel(envis, 'usage envisagé', 'usages envisagés') + ' auprès des apprenants, aucun en place. Un seul, mesuré, en dit plus que trois projets.');
+      if (actif && budget === 'Non' && k >= 2)
+        push('vigilance', 'Une adoption sans budget dédié', 'L’IA est dans votre production courante sans ligne budgétaire : abonnements individuels et temps de formation restent invisibles, donc fragiles.');
+      if (percu === 'Une menace' || percu === 'Un sujet que nous maîtrisons encore mal')
+        push('vigilance', 'Une perception défensive', 'Vous considérez l’IA comme « ' + percu.toLowerCase() + ' ». C’est ce que la formation des équipes fait bouger le plus vite.');
+      if (metier === 'Oui fortement' && formes === 'Personne')
+        push('vigilance', 'Un bouleversement anticipé, personne de formé', 'Vous pensez que l’IA va modifier profondément le métier de formateur, et personne n’a été formé. L’écart entre les deux est votre chantier prioritaire.');
+      if (temps >= 3)
+        push('atout', 'Un gain de temps déjà tangible', 'Vous déclarez ' + opt('temps').toLowerCase() + ' gagnées grâce à l’IA. Mesuré tâche par tâche, ce temps est la meilleure preuve à donner aux équipes hésitantes.');
+      if (freinDonnees && donnees === 'Oui')
+        push('atout', 'Le frein des données est déjà cadré', 'Vous citez les données parmi vos freins, mais vous avez défini ce qui peut sortir : le sujet est traité, il reste à le faire savoir.');
+      if (ingeReg >= 6)
+        push('atout', 'Une conception outillée', pluriel(ingeReg, 'usage régulier', 'usages réguliers') + ' de l’IA dans votre ingénierie pédagogique. La production est acquise ; la question suivante est celle du référentiel et de la qualité.');
+      if (nEval >= 5)
+        push('atout', 'L’IA jusque dans l’évaluation', pluriel(nEval, 'usage', 'usages') + ' en évaluation, ce qui suppose déjà une réflexion sur ce que vous laissez juger à l’IA.');
+      if (charte === 'Oui' && donnees === 'Oui' && (formes === 'Tous' || formes === 'Une partie'))
+        push('atout', 'Un cadre complet', 'Charte, règles sur les données et équipes formées : les trois conditions d’un usage qui tient dans le temps sont réunies.');
+      if (sans) {
+        var fr = (rep.freins || []).map(function(i){ return QDE('freins').opts[i]; });
+        push('vigilance', 'Pas d’usage aujourd’hui', fr.length
+          ? 'Vos freins : ' + fr.join(', ').toLowerCase() + '. Ils disent par où commencer.'
+          : 'Aucun frein déclaré : le premier usage tient à une décision plus qu’à un obstacle.');
+        if (charte === 'Oui' || donnees === 'Oui')
+          push('atout', 'Un cadre déjà posé', 'Charte ou règles sur les données existent avant même l’usage : le jour où vous commencez, vous commencez proprement.');
+      }
+      if (S.length < 3) {
+        var tri = Object.keys(ax).map(function(id){ return { id: id, v: ax[id] }; })
+          .sort(function(a, b){ return b.v - a.v; });
+        var nomAxe = function(id){ return AXES.filter(function(a){ return a[0] === id; })[0][1]; };
+        var haut = tri[0], bas = tri[tri.length - 1];
+        if (haut.v > 0) push('atout', 'Votre domaine le plus avancé : ' + nomAxe(haut.id).toLowerCase(),
+          haut.v + ' sur 100. C’est là que vos pratiques sont les plus solides ; elles peuvent servir de modèle aux autres domaines.');
+        if (bas.v < haut.v) push('vigilance', 'Votre domaine le moins avancé : ' + nomAxe(bas.id).toLowerCase(),
+          bas.v + ' sur 100. Le plan ci-dessous commence par là.');
+      }
+      var poids = { risque: 0, vigilance: 1, atout: 2 };
+      S.sort(function(a, b){ return poids[a.type] - poids[b.type]; });
+      return S.slice(0, 6);
+    };
+
+    /* le plan : ce qui se decide en une reunion, ce qui se construit en un
+       trimestre, ce qui engage l’organisme. Deux actions par horizon au plus,
+       jamais deux fois la meme. */
+    var plan = function(faibles){
+      var sans = sansIA();
+      var charte = opt('charte'), donnees = opt('donnees'), formes = opt('formes'), budget = opt('budget');
+      var envis = compte('appr', 1), deja = compte('appr', 2), temps = rang('temps');
+      var freinLMS = coche('freins', 'Manque d’intégration avec le LMS');
+      var comment = rang('comment');
+      var pris = {};
+      var H = { j30: [], m3: [], m6: [] };
+      var ajoute = function(h, a){ if (!a || pris[a[0]] || H[h].length >= 2) return; pris[a[0]] = true; H[h].push(a); };
+      var piste = function(nom, i){ var l = PISTES[nom] || []; return l[i] || l[0]; };
+
+      if (sans) ajoute('j30', ['Confier une tâche répétitive à l’IA, pour voir', 'Comptes rendus de session ou reformulation d’un support : une tâche, une personne, deux semaines. Le premier usage se décide, il ne se planifie pas.']);
+      if (!sans && donnees === 'Non') ajoute('j30', ['Lister ce qui ne sort pas', 'Données des apprenants, documents clients, contenus sous droits : une liste d’une page, affichée, vaut mieux qu’une politique de vingt pages.']);
+      if (!sans && charte !== 'Oui') ajoute('j30', ['Écrire la charte en une page', 'Qui relit quoi, ce qui est signalé comme généré, quels outils sont admis. C’est aussi ce qu’un auditeur demandera.']);
+      if (!sans && (formes === 'Personne' || formes === 'Quelques personnes')) ajoute('j30', ['Une demi-journée pour ceux qui produisent', 'Pas une formation générale : une session sur vos propres supports, avec les outils que vous utilisez déjà.']);
+      ajoute('j30', piste(faibles[0].nom, 0));
+
+      ajoute('m3', piste(faibles[0].nom, 1));
+      if (envis >= 1 && deja === 0) ajoute('m3', ['Lancer un premier usage auprès des apprenants', 'Parmi ceux que vous envisagez, celui qui se mesure le plus simplement : réponse aux questions récurrentes, ou adaptation de la difficulté d’un exercice.']);
+      if (temps >= 2) ajoute('m3', ['Mesurer le temps gagné, tâche par tâche', 'Une semaine de relevé suffit pour savoir où l’IA rend vraiment du temps, et pour le réinvestir en accompagnement plutôt qu’en sessions supplémentaires.']);
+      ajoute('m3', piste(faibles[1].nom, 0));
+
+      if (!sans && budget === 'Non') ajoute('m6', ['Une ligne budgétaire dédiée', 'Abonnements, temps de formation, intégration au LMS : ce que vous financez aujourd’hui au fil de l’eau devient un choix assumé.']);
+      if (freinLMS || (comment !== -1 && comment < 4)) ajoute('m6', ['Intégrer l’IA à votre LMS', 'Tant que l’IA vit dans des onglets séparés, chaque usage dépend d’une personne. Dans le LMS, il devient un process de l’organisme.']);
+      if (formes !== 'Tous') ajoute('m6', ['Former toutes les équipes, pas seulement les pionniers', 'L’usage se généralise quand la formation le précède ; sinon il reste l’affaire de quelques-uns.']);
+      ajoute('m6', piste(faibles[1].nom, 1));
+      return H;
+    };
+
     var resultat = function(n){
       var niv = NIVEAUX.filter(function(x){ return n <= x[0]; })[0] || NIVEAUX[NIVEAUX.length - 1];
+      var k = NIVEAUX.indexOf(niv), pal = TEINTES_PALIER[k];
       var axes = parAxe();
+      var ax = {}; axes.forEach(function(a){ ax[a.id] = a.v; });
       var tri = axes.slice().sort(function(a, b){ return b.v - a.v; });
       var forts = tri.slice(0, 2), faibles = tri.slice(-2).reverse();
       var seuilFaible = faibles[0].v;
@@ -1095,23 +1266,31 @@ html.fige,body.fige{overflow:hidden}
           '<span class="bl-piste"><span data-v="' + a.v + '"></span></span></li>';
       }).join('');
 
+      var L = lecture(ax, k), S = signaux(ax, k), P = plan(faibles);
+      var sig = S.map(function(x){
+        var eti = { risque: 'Risque', vigilance: 'Vigilance', atout: 'Atout' }[x.type];
+        return '<li class="bl-sig ' + x.type + '"><span class="bl-sig-type"><i></i>' + eti + '</span>' +
+               '<b>' + x.titre + '</b><span>' + x.texte + '</span></li>'; }).join('');
+      var hor = function(cle, titre, sous){
+        return '<div class="bl-hor ' + cle + '"><h4>' + titre + '</h4><small>' + sous + '</small><ul>' +
+          P[cle].map(function(a){ return '<li><b>' + a[0] + '</b><span>' + a[1] + '</span></li>'; }).join('') +
+          '</ul></div>';
+      };
+
       /* --- les sept indicateurs du barometre, avec vos reponses --- */
-      var inge = QDE('inge'), appr = QDE('appr'), evalQ = QDE('eval'), freinsQ = QDE('freins');
-      var mInge = rep.inge || [], mAppr = rep.appr || [];
+      var inge = QDE('inge'), evalQ = QDE('eval'), freinsQ = QDE('freins');
+      var mInge = rep.inge || [];
       var ingeUn = mInge.filter(function(c){ return c >= 1; }).length;
       var ingeReg = mInge.filter(function(c){ return c >= 2; }).length;
-      var nEval = (rep.eval || []).length;
-      var nOutils = (rep.outils || []).length;
+      var nEval = (rep.eval || []).length, nOutils = (rep.outils || []).length;
       var freinsTxt = (rep.freins || []).map(function(i){ return freinsQ.opts[i]; });
-      var envis = mAppr.filter(function(c){ return c === 1; }).length;
-      var dejaAppr = mAppr.filter(function(c){ return c === 2; }).length;
+      var envis = compte('appr', 1), dejaAppr = compte('appr', 2);
       var formes = texteDeQ('formes');
       var INDIC = [
         ['Création de formations avec l’IA',
           ingeUn ? pluriel(ingeUn, 'usage', 'usages') + ' sur ' + inge.lignes.length +
                    (ingeReg ? ', dont ' + pluriel(ingeReg, 'régulier', 'réguliers') : '') : 'Aucun usage déclaré'],
-        ['Évaluations',
-          nEval ? pluriel(nEval, 'usage', 'usages') + ' sur ' + evalQ.opts.length : 'Aucun usage déclaré'],
+        ['Évaluations', nEval ? pluriel(nEval, 'usage', 'usages') + ' sur ' + evalQ.opts.length : 'Aucun usage déclaré'],
         ['Appels d’offres', texteDeQ('ao') || '—'],
         ['Temps gagné par semaine', texteDeQ('temps') || '—'],
         ['Équipement des formateurs',
@@ -1121,24 +1300,20 @@ html.fige,body.fige{overflow:hidden}
         ['Usages prévus auprès des apprenants',
           (envis || dejaAppr)
             ? (envis ? pluriel(envis, 'usage envisagé', 'usages envisagés') : '') +
-              (envis && dejaAppr ? ', ' : '') +
-              (dejaAppr ? pluriel(dejaAppr, 'déjà en place', 'déjà en place') : '')
+              (envis && dejaAppr ? ', ' : '') + (dejaAppr ? dejaAppr + ' déjà en place' : '')
             : 'Aucun pour l’instant']
-      ].map(function(x){
-        return '<li><span>' + x[0] + '</span><b>' + x[1] + '</b></li>'; }).join('');
+      ].map(function(x){ return '<li><span>' + x[0] + '</span><b>' + x[1] + '</b></li>'; }).join('');
 
-      /* --- detail de l’ingenierie, un cran par niveau de frequence --- */
-      /* un cran par niveau au-dessus de « Jamais » : trois crans pour quatre niveaux */
       var nc = inge.echelle.length - 1;
-      var cransDe = function(v){
-        return inge.echelle.slice(1).map(function(_, i){
+      var crans = inge.lignes.map(function(u, j){
+        var v = mInge[j];
+        var c = inge.echelle.slice(1).map(function(_, i){
           return '<i class="' + (v !== undefined && i < v ? 'on' : '') + '"></i>'; }).join('');
-      };
-      var crans = inge.lignes.map(function(u, k){
-        return '<li><span>' + u + '</span><span class="bl-crans">' + cransDe(mInge[k]) + '</span></li>';
+        return '<li><span>' + u + '</span><span class="bl-crans">' + c + '</span></li>';
       }).join('');
       var legende = inge.echelle.map(function(t, i){
-        return '<span><span class="bl-crans">' + cransDe(i) + '</span>' + t + '</span>';
+        var c = inge.echelle.slice(1).map(function(_, j){ return '<i class="' + (j < i ? 'on' : '') + '"></i>'; }).join('');
+        return '<span><span class="bl-crans">' + c + '</span>' + t + '</span>';
       }).join('');
 
       var nFreins = (rep.freins || []).length;
@@ -1151,40 +1326,52 @@ html.fige,body.fige{overflow:hidden}
         var lng = String(t[0]).length > 7 ? ' class="long"' : '';
         return '<div class="bl-tuile"><b' + lng + '>' + t[0] + '</b><span>' + t[1] + '</span></div>'; }).join('');
 
-      /* deux pistes sur l’axe le plus faible, une sur le second */
-      var choix = [];
-      (PISTES[faibles[0].nom] || []).forEach(function(x){ choix.push(x); });
-      (PISTES[faibles[1].nom] || []).slice(0, 1).forEach(function(x){ choix.push(x); });
-      var pistes = choix.slice(0, 3).map(function(x, k){
-        return '<li><span class="bl-n">' + (k + 1) + '</span><div><b>' + x[0] + '</b>' +
-               '<span>' + x[1] + '</span></div></li>'; }).join('');
+      /* jauge en arc : 270 degres, rayon 80 -> 377 unites de trait */
+      var ARC = 377, CIRC = 502.7;
 
       qz.classList.add('bilan');
       qz.classList.remove('annonce');
-      qz.style.setProperty('--acc', '#E01A4F');
+      qz.style.setProperty('--acc', pal);
       scene.innerHTML =
-        '<div class="qz-carte entre qz-res">' +
+        '<div class="qz-carte entre qz-res" style="--pal:' + pal + '">' +
         '<div class="bl-tete">' +
         '<span class="eyebrow">Votre indice de maturité IA</span>' +
-        '<p class="qz-score"><b id="qz-pts">0</b><small> / 100</small></p>' +
-        '<div class="qz-jauge"><i id="qz-j"></i></div>' +
+        '<div class="bl-jauge"><svg viewBox="0 0 200 200" aria-hidden="true">' +
+          '<circle class="piste" cx="100" cy="100" r="80" transform="rotate(135 100 100)" stroke-dasharray="' + ARC + ' ' + CIRC + '"/>' +
+          '<circle class="arc" id="bl-arc" cx="100" cy="100" r="80" transform="rotate(135 100 100)" stroke-dasharray="0 ' + CIRC + '"/>' +
+          '</svg><div class="bl-score"><b id="qz-pts">0</b><small>sur 100</small></div></div>' +
         '<p class="qz-niv">' + niv[1] + '</p>' +
         '<p class="qz-niv-txt">' + niv[2] + '</p>' +
-        '<div class="qz-echelle">' + NIVEAUX.map(function(x){
-          return '<span class="qz-ech' + (x === niv ? ' on' : '') + '">' + x[1] + '</span>';
+        '<div class="qz-echelle">' + NIVEAUX.map(function(x, i){
+          return '<span class="qz-ech' + (x === niv ? ' on' : '') + '" style="--pal:' + TEINTES_PALIER[i] + '">' + x[1] + '</span>';
         }).join('') + '</div></div>' +
+
+        '<section class="bl-sec bl-lecture"><span class="bl-eti">Votre profil</span>' +
+        '<h3 class="bl-arch">' + L[0] + '</h3><p>' + L[1] + '</p></section>' +
+
+        (sig ? '<section class="bl-sec"><h3>Ce que vos réponses révèlent</h3>' +
+        '<p class="bl-note">Des signaux croisés entre vos usages, votre cadre et vos intentions. Rien ici ne vient d’une moyenne : tout est dans vos réponses.</p>' +
+        '<ul class="bl-signaux">' + sig + '</ul></section>' : '') +
 
         '<section class="bl-sec"><h3>Votre profil, domaine par domaine</h3>' +
         '<p class="bl-note">Chaque domaine est ramené sur 100 à partir des seules questions qui le composent ; votre indice est la moyenne des sept.</p>' +
         '<ul class="bl-axes">' + barres + '</ul></section>' +
 
         '<section class="bl-sec"><div class="bl-duo">' +
-        '<div class="bl-bloc"><h4>Vos points d’appui</h4><ul>' +
+        '<div class="bl-bloc forts"><h4>Vos points d’appui</h4><ul>' +
           forts.map(function(a){ return '<li>' + a.nom + '<em>' + a.v + '</em></li>'; }).join('') +
         '</ul></div>' +
-        '<div class="bl-bloc"><h4>Vos angles morts</h4><ul>' +
+        '<div class="bl-bloc faibles"><h4>Vos angles morts</h4><ul>' +
           faibles.map(function(a){ return '<li>' + a.nom + '<em>' + a.v + '</em></li>'; }).join('') +
         '</ul></div></div></section>' +
+
+        '<section class="bl-sec"><h3>Votre plan pour la suite</h3>' +
+        '<p class="bl-note">Construit sur vos deux domaines les moins avancés et sur les signaux ci-dessus. Deux actions par horizon, pas davantage.</p>' +
+        '<div class="bl-plan">' +
+          hor('j30', 'Dans les 30 jours', 'Ce qui se décide en une réunion') +
+          hor('m3', 'D’ici 3 mois', 'Ce qui se construit en un trimestre') +
+          hor('m6', 'D’ici 6 mois', 'Ce qui engage l’organisme') +
+        '</div></section>' +
 
         '<section class="bl-sec"><h3>Les sept indicateurs du baromètre</h3>' +
         '<p class="bl-note">Ceux que le baromètre publiera pour la profession. Ici, vos réponses ; les pourcentages nationaux vous parviendront avec les résultats.</p>' +
@@ -1199,10 +1386,6 @@ html.fige,body.fige{overflow:hidden}
         '<section class="bl-sec"><h3>Ce que vous avez déclaré</h3>' +
         '<div class="bl-tuiles">' + tuiles + '</div></section>' +
 
-        '<section class="bl-sec"><h3>Trois pistes, à partir de vos réponses</h3>' +
-        '<p class="bl-note">Choisies sur vos deux domaines les moins avancés. La comparaison à la profession viendra avec les résultats du baromètre.</p>' +
-        '<ul class="bl-pistes">' + pistes + '</ul></section>' +
-
         '<section class="bl-sec"><h3>Ce qui vous attend par e-mail</h3>' +
         '<div class="bl-gains">' +
         '<div class="bl-gain"><b>Un mois d’accès à nos outils IA</b>' +
@@ -1213,9 +1396,9 @@ html.fige,body.fige{overflow:hidden}
         '</div>';
 
       window.setTimeout(function(){
-        document.getElementById('qz-j').style.width = n + '%';
-        [].forEach.call(scene.querySelectorAll('.bl-piste span'), function(b, k){
-          window.setTimeout(function(){ b.style.width = b.dataset.v + '%'; }, anime ? 120 + k * 90 : 0);
+        document.getElementById('bl-arc').style.strokeDasharray = (ARC * n / 100) + ' ' + CIRC;
+        [].forEach.call(scene.querySelectorAll('.bl-piste span'), function(b, j){
+          window.setTimeout(function(){ b.style.width = b.dataset.v + '%'; }, anime ? 120 + j * 90 : 0);
         });
       }, 60);
 
