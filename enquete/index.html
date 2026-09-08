@@ -215,9 +215,17 @@ html.fige,body.fige{overflow:hidden}
 /* Hauteur de la fenetre, sans defilement, tant que la place le permet.
    En dessous, on rend la main plutot que de comprimer le texte. */
 .cv{min-height:100dvh;padding:0;display:flex;flex-direction:column;position:relative;overflow:hidden}
-.cv-tete{flex:none;width:min(100% - var(--pad) * 2, var(--maxcv));margin:0 auto;
-  padding:clamp(16px,2vw,26px) 0 0}
-.cv-tete img{height:clamp(38px,3.2vw,46px);width:auto;display:block}
+/* Le logo n'est plus une bande d'en-tete : il ouvre la colonne, au-dessus
+   de « Enquête nationale », et prend la taille qui va avec. */
+.cv-logo{display:block;margin-bottom:clamp(14px,2.2vw,28px)}
+.cv-logo img{height:clamp(44px,5vw,76px);width:auto;display:block}
+
+/* La toile WebGL tient le fond de la couverture. Le contenu passe devant :
+   sans position, les blocs de flux passeraient sous le canvas positionne. */
+.cv-toile{position:absolute;inset:0;width:100%;height:100%;display:block;
+  z-index:0;pointer-events:none;opacity:0;transition:opacity 1.1s var(--ease)}
+.cv-toile.vue{opacity:1}
+.cv > *:not(.cv-toile){position:relative;z-index:1}
 .cv-corps{flex:1;display:grid;align-items:center;gap:clamp(26px,4.4vw,72px);
   width:min(100% - var(--pad) * 2, var(--maxcv));margin:0 auto;padding:clamp(20px,2.6vw,38px) 0}
 @media (min-width:980px){.cv-corps{grid-template-columns:1.18fr .82fr}}
@@ -718,11 +726,10 @@ html.fige,body.fige{overflow:hidden}
 </head>
 <body>
 <section class="cv" id="couverture">
-  <div class="cv-tete ap" style="--i:0">
-    <a href="/" aria-label="Onlineformapro, accueil"><img src="../catalogue/img/logo.svg" alt="Onlineformapro" width="139" height="57"></a>
-  </div>
+  <canvas class="cv-toile" aria-hidden="true"></canvas>
   <div class="cv-corps">
     <div>
+      <a class="cv-logo ap" href="/" style="--i:0" aria-label="Onlineformapro, accueil"><img src="../catalogue/img/logo.svg" alt="Onlineformapro" width="139" height="57"></a>
       <span class="cv-eyebrow ap" style="--i:1">Enquête nationale</span>
       <h1 class="ap" style="--i:2">Baromètre 2026 de l’intelligence artificielle <br>dans les organismes de formation</h1>
       <p class="cv-promesse ap" style="--i:3">Où en sont réellement les organismes de formation dans <span class="nb">l’utilisation de l’IA</span>&nbsp;?</p>
@@ -1683,6 +1690,178 @@ html.fige,body.fige{overflow:hidden}
     });
   })();
 
+})();
+</script>
+
+<script>
+/* ══════════ FOND WEBGL DE LA COUVERTURE ══════════
+   Un treillis de traits fins, sur fond blanc : des trainees qui montent d'un
+   foyer place sous l'ecran, quelques arcs concentriques, de rares ancres a
+   leurs croisements. Le tout respire lentement et derive un peu sous le
+   pointeur. Ecrit en WebGL brut : pas de bibliotheque a charger, donc rien
+   qui puisse manquer a l'appel.
+   Repli : si le contexte n'existe pas ou si le programme ne compile pas, la
+   toile reste transparente et la couverture s'affiche exactement comme avant. */
+(function(){
+  var toile = document.querySelector('.cv-toile');
+  var cv = document.getElementById('couverture');
+  if (!toile || !cv) return;
+
+  var gl = null;
+  try {
+    gl = toile.getContext('webgl', { alpha: true, antialias: true, depth: false,
+      stencil: false, premultipliedAlpha: true, powerPreference: 'low-power' })
+      || toile.getContext('experimental-webgl', { alpha: true, antialias: true });
+  } catch (e) { gl = null; }
+  if (!gl) return;                       /* repli DOM : rien d'autre a faire */
+
+  var VS =
+    'attribute vec2 aPos;' +
+    'void main(){ gl_Position = vec4(aPos, 0.0, 1.0); }';
+
+  var FS = [
+    'precision highp float;',
+    'uniform vec2 uRes;',
+    'uniform float uTemps;',
+    'uniform vec2 uPtr;',
+    'uniform float uForce;',
+    '#define PI 3.14159265359',
+    /* trait fin, adouci sur sa largeur : c'est la l'antialiasing */
+    'float trait(float x, float w){ return smoothstep(w, 0.0, abs(x)); }',
+    'float bruit(float n){ return fract(sin(n) * 43758.5453123); }',
+    'void main(){',
+    '  vec2 p = (gl_FragCoord.xy - 0.5 * uRes) / uRes.y;',
+    /* le foyer est sous le cadre : les trainees s'ouvrent en montant */
+    '  vec2 foyer = vec2(uPtr.x * 0.07, -1.32 + uPtr.y * 0.05);',
+    '  vec2 d = p - foyer;',
+    '  float r = length(d);',
+    '  float a = atan(d.x, d.y);',
+    '  float souffle = 0.5 + 0.5 * sin(uTemps * 0.21);',
+    /* la derive angulaire avec le rayon courbe les traits en arcs */
+    '  float ac = a + r * 0.40 + uTemps * 0.010;',
+    '  float n = 54.0;',
+    '  float s = ac * n / PI;',
+    '  float id = floor(s);',
+    '  float f = abs(fract(s) - 0.5);',
+    '  float w = 0.010 + 0.005 * souffle;',
+    '  float t = trait(f, w);',
+    /* espacement clairseme : deux traits sur cinq seulement existent */
+    '  t *= step(0.60, bruit(id * 17.13));',
+    /* chaque trainee ne vit que sur un intervalle de rayon qui lui est propre */
+    '  float r0 = 0.70 + bruit(id * 7.71) * 1.25;',
+    '  float lg = 0.40 + bruit(id * 3.37) * 1.00;',
+    '  float pousse = souffle * 0.10;',
+    '  t *= smoothstep(r0, r0 + 0.14, r) * (1.0 - smoothstep(r0 + lg + pousse, r0 + lg + pousse + 0.40, r));',
+    /* arcs concentriques, rares */
+    '  float ar = r * 5.2 - uTemps * 0.040;',
+    '  float fa = abs(fract(ar) - 0.5);',
+    '  float arcs = trait(fa, 0.005) * step(0.78, bruit(floor(ar) * 11.7));',
+    /* ancres : un point la ou une trainee croise un arc, une fois sur vingt */
+    '  float anc = trait(f, 0.022) * trait(fa, 0.020) * step(0.94, bruit(id * 5.1 + floor(ar) * 2.3));',
+    '  float v = t * 0.62 + arcs * 0.30 + anc * 1.0;',
+    /* on degage le centre et on s\'efface avant les bords */
+    '  v *= smoothstep(0.30, 0.85, r);',
+    '  v *= 1.0 - smoothstep(1.45, 2.35, r);',
+    '  v *= 0.55 + 0.45 * souffle;',
+    '  v *= uForce;',
+    /* 0,22 au plus : sur blanc, un trait plein tombe vers 200/255. Present,
+       jamais bavard — mesure sur une bande sans texte. */
+    '  float al = clamp(v, 0.0, 1.0) * 0.22;',
+    '  vec3 encre = vec3(0.055, 0.055, 0.075);',
+    '  gl_FragColor = vec4(encre * al, al);',   /* alpha premultiplie */
+    '}'
+  ].join('\n');
+
+  var compile = function(type, src){
+    var sh = gl.createShader(type);
+    gl.shaderSource(sh, src); gl.compileShader(sh);
+    return gl.getShaderParameter(sh, gl.COMPILE_STATUS) ? sh : null;
+  };
+  var vs = compile(gl.VERTEX_SHADER, VS), fs = compile(gl.FRAGMENT_SHADER, FS);
+  if (!vs || !fs) return;
+  var prog = gl.createProgram();
+  gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+  gl.useProgram(prog);
+
+  /* un seul triangle couvrant tout le cadre : moins cher que deux */
+  var buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+  var aPos = gl.getAttribLocation(prog, 'aPos');
+  gl.enableVertexAttribArray(aPos);
+  gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+  var uRes = gl.getUniformLocation(prog, 'uRes'),
+      uTemps = gl.getUniformLocation(prog, 'uTemps'),
+      uPtr = gl.getUniformLocation(prog, 'uPtr'),
+      uForce = gl.getUniformLocation(prog, 'uForce');
+
+  gl.enable(gl.BLEND);
+  gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);   /* alpha premultiplie */
+  gl.clearColor(0, 0, 0, 0);
+
+  var dim = function(){
+    var q = Math.min(window.devicePixelRatio || 1, 2);
+    var l = Math.max(1, Math.round(cv.clientWidth * q)),
+        h = Math.max(1, Math.round(cv.clientHeight * q));
+    if (toile.width !== l || toile.height !== h) {
+      toile.width = l; toile.height = h;
+      gl.viewport(0, 0, l, h);
+    }
+    gl.uniform2f(uRes, toile.width, toile.height);
+  };
+
+  var lent = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cible = [0, 0], pos = [0, 0], t0 = 0, boucle = 0, visible = true;
+
+  cv.addEventListener('pointermove', function(ev){
+    var b = cv.getBoundingClientRect();
+    cible[0] = ((ev.clientX - b.left) / b.width - 0.5) * 2;
+    cible[1] = ((ev.clientY - b.top) / b.height - 0.5) * -2;
+  }, { passive: true });
+  cv.addEventListener('pointerleave', function(){ cible[0] = 0; cible[1] = 0; }, { passive: true });
+
+  var rendu = function(ms){
+    boucle = 0;
+    if (!t0) t0 = ms;
+    var t = (ms - t0) / 1000;
+    /* derive amortie : le pointeur pousse, il ne pilote pas */
+    pos[0] += (cible[0] - pos[0]) * 0.035;
+    pos[1] += (cible[1] - pos[1]) * 0.035;
+    dim();
+    gl.uniform1f(uTemps, lent ? 6.0 : t);
+    gl.uniform2f(uPtr, pos[0], pos[1]);
+    gl.uniform1f(uForce, Math.min(1, t / 1.6));
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    if (!lent && visible && !boucle) boucle = requestAnimationFrame(rendu);
+  };
+
+  var relance = function(){
+    if (!boucle && visible && !lent) boucle = requestAnimationFrame(rendu);
+  };
+  var arrete = function(){
+    if (boucle) { cancelAnimationFrame(boucle); boucle = 0; }
+  };
+
+  /* on ne dessine pas derriere le questionnaire, ni hors de l'ecran */
+  if (window.IntersectionObserver) {
+    new IntersectionObserver(function(e){
+      visible = e[0].isIntersecting;
+      if (visible) relance(); else arrete();
+    }, { threshold: 0 }).observe(cv);
+  }
+  var qz = document.getElementById('qz');
+  if (qz && window.MutationObserver) {
+    new MutationObserver(function(){
+      if (qz.classList.contains('on')) arrete(); else relance();
+    }).observe(qz, { attributes: true, attributeFilter: ['class'] });
+  }
+  window.addEventListener('resize', function(){ dim(); if (lent) rendu(performance.now()); }, { passive: true });
+
+  dim();
+  requestAnimationFrame(function(ms){ rendu(ms); toile.classList.add('vue'); });
 })();
 </script>
 </body>
