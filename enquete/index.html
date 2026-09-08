@@ -469,13 +469,28 @@ html.fige,body.fige{overflow:hidden}
 /* ══ visuel de partie a cote des questions ══ */
 .qz-visuel{display:none}
 @media (min-width:1100px){
-  .qz-rang{gap:clamp(32px,4.5vw,64px)}
+  /* Deux colonnes de largeur fixe, l'ensemble centre. Tant que la rangee
+     etait un simple flex centre, elle retrecissait avec la carte : entre une
+     question a 660 px et une question large a 940 px, le visuel sautait de
+     140 px sur le cote. La colonne de droite reserve toujours la largeur
+     maximale ; la carte etroite s'y centre, le visuel ne bouge plus. */
+  /* La rangee unique est bornee a la hauteur de la scene (minmax(0,1fr)) :
+     sans cela une carte plus haute la faisait grandir et le visuel, centre
+     dedans, redescendait. La carte deborde la rangee, la scene la fait defiler. */
+  .qz-rang{display:grid;grid-template-columns:clamp(220px,21vw,340px) minmax(0,940px);
+    grid-template-rows:minmax(0,1fr);
+    justify-content:center;column-gap:clamp(32px,4.5vw,64px);align-items:center}
+  .qz-rang > .qz-carte{grid-column:2;justify-self:center}
   /* Centre dans un rang qui fait exactement la hauteur de la scene, le visuel
      tombe au meme endroit a chaque question. Il n'est pas colle : sur une
      grille de seize lignes il defile avec le reste, plutot que de rester
      coupe en deux sous l'en-tete. */
-  .qz-visuel{display:block;flex:none;width:clamp(220px,21vw,340px);
+  .qz-visuel{display:block;grid-column:1;width:clamp(220px,21vw,340px);
     border-radius:14px;overflow:hidden;background:var(--acc-t2)}
+  /* annonce, contact, bilan : pas de visuel, une seule colonne vraiment centree */
+  .qz.annonce .qz-rang,.qz.bilan .qz-rang,.qz-rang.sans-visuel{grid-template-columns:minmax(0,980px)}
+  .qz.annonce .qz-rang > .qz-carte,.qz.bilan .qz-rang > .qz-carte,
+  .qz-rang.sans-visuel > .qz-carte{grid-column:1}
   .qz-visuel img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
   .qz.bilan .qz-visuel{display:none}
 }
@@ -553,9 +568,10 @@ html.fige,body.fige{overflow:hidden}
 .bl-bloc.faibles{--sc:#C54A07}
 .bl-bloc h4{font-size:.82rem;font-weight:500;color:color-mix(in srgb,var(--sc) 85%,black);margin-bottom:9px}
 
-/* le plan : trois horizons, chacun sa teinte */
+/* Le plan : trois horizons, chacun sa teinte, un par ligne. En trois colonnes
+   chaque action tombait sur cinq mots de large ; en pleine largeur, l'horizon
+   se lit a gauche et ses deux actions se posent cote a cote a droite. */
 .bl-plan{display:grid;gap:12px;margin-top:16px}
-@media (min-width:720px){.bl-plan{grid-template-columns:repeat(3,1fr)}}
 .bl-hor{--sc:#2C6FE0;border-radius:12px;padding:16px 16px 14px;border-top:3px solid var(--sc);
   background:color-mix(in srgb,var(--sc) 7%,white)}
 .bl-hor.m3{--sc:#6D5BD0}
@@ -564,6 +580,14 @@ html.fige,body.fige{overflow:hidden}
   color:color-mix(in srgb,var(--sc) 85%,black)}
 .bl-hor small{display:block;margin-top:3px;font-size:.76rem;color:var(--ink-2)}
 .bl-hor ul{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+@media (min-width:820px){
+  .bl-hor{display:grid;grid-template-columns:minmax(150px,210px) minmax(0,1fr);
+    column-gap:clamp(22px,3vw,44px);align-items:start;padding:18px 20px 17px}
+  .bl-hor h4{grid-column:1;grid-row:1}
+  .bl-hor small{grid-column:1;grid-row:2}
+  .bl-hor ul{grid-column:2;grid-row:1 / span 2;margin-top:2px;
+    display:grid;grid-template-columns:1fr 1fr;gap:14px clamp(20px,2.6vw,36px)}
+}
 .bl-hor b{display:block;font-size:.92rem;font-weight:500;color:var(--ink)}
 .bl-hor span{display:block;margin-top:4px;font-size:.84rem;line-height:1.5;color:var(--ink-2)}
 .bl-bloc ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
@@ -762,6 +786,9 @@ html.fige,body.fige{overflow:hidden}
       var im = vis.querySelector('img');
       if (src) { if (im.getAttribute('src') !== src) im.src = src; vis.hidden = false; }
       else vis.hidden = true;
+      /* sans visuel (ecran de contact), la rangee repasse a une colonne :
+         sinon la carte restait decalee a droite, la colonne vide reservee */
+      rang.classList.toggle('sans-visuel', !src);
       /* le visuel de la partie suivante se charge pendant celle-ci */
       if (p !== undefined && VISUELS[p + 1]) { var pre = new Image(); pre.src = VISUELS[p + 1]; }
     };
@@ -1039,7 +1066,8 @@ html.fige,body.fige{overflow:hidden}
              un clic ou Entree n’attendent pas */
           bPrec.hidden = true; bSuiv.hidden = true;
           if (ch) ch.hidden = true;
-          scene.onclick = function(){ suivant(); };
+          /* l'annonce va jusqu'au bout : un clic ne l'accelere ni ne la coupe */
+          scene.onclick = null;
           minuteur = window.setTimeout(function(){ if (ECRANS[cur] === e) suivant(); }, anime ? 2100 : 800);
           return;
         }
