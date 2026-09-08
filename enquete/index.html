@@ -1725,50 +1725,67 @@ html.fige,body.fige{overflow:hidden}
     'uniform float uTemps;',
     'uniform vec2 uPtr;',
     'uniform float uForce;',
-    '#define PI 3.14159265359',
-    /* trait fin, adouci sur sa largeur : c'est la l'antialiasing */
-    'float trait(float x, float w){ return smoothstep(w, 0.0, abs(x)); }',
-    'float bruit(float n){ return fract(sin(n) * 43758.5453123); }',
-    'void main(){',
-    '  vec2 p = (gl_FragCoord.xy - 0.5 * uRes) / uRes.y;',
-    /* le foyer est sous le cadre : les trainees s'ouvrent en montant */
-    '  vec2 foyer = vec2(uPtr.x * 0.07, -1.32 + uPtr.y * 0.05);',
+    '#define TAU 6.28318530718',
+    'float bruit(float n){ return fract(sin(n * 12.9898) * 43758.5453123); }',
+    /* Une couche de trainees. Le plan angulaire est decoupe en n cellules ;
+       chaque cellule porte une trainee et une seule, dont la tete descend en
+       boucle. Cout constant par pixel, quel que soit le nombre de trainees. */
+    'float couche(vec2 p, vec2 foyer, float n, float vit, float gr,',
+    '             float larg, float courbe, float t, float souffle){',
     '  vec2 d = p - foyer;',
     '  float r = length(d);',
-    '  float a = atan(d.x, d.y);',
-    '  float souffle = 0.5 + 0.5 * sin(uTemps * 0.21);',
-    /* la derive angulaire avec le rayon courbe les traits en arcs */
-    '  float ac = a + r * 0.40 + uTemps * 0.010;',
-    '  float n = 54.0;',
-    '  float s = ac * n / PI;',
+    '  if (r < 0.001) return 0.0;',
+    /* atan(x, -y) : le bas de l ecran vaut zero, la couture de +/-PI reste
+       hors champ. Le decalage angulaire croissant avec le rayon courbe les
+       trainees en eventail. */
+    '  float a = atan(d.x, -d.y) + courbe * r;',
+    '  float s = a * n / TAU;',
     '  float id = floor(s);',
-    '  float f = abs(fract(s) - 0.5);',
-    '  float w = 0.010 + 0.005 * souffle;',
-    '  float t = trait(f, w);',
-    /* espacement clairseme : deux traits sur cinq seulement existent */
-    '  t *= step(0.60, bruit(id * 17.13));',
-    /* chaque trainee ne vit que sur un intervalle de rayon qui lui est propre */
-    '  float r0 = 0.70 + bruit(id * 7.71) * 1.25;',
-    '  float lg = 0.40 + bruit(id * 3.37) * 1.00;',
-    '  float pousse = souffle * 0.10;',
-    '  t *= smoothstep(r0, r0 + 0.14, r) * (1.0 - smoothstep(r0 + lg + pousse, r0 + lg + pousse + 0.40, r));',
-    /* arcs concentriques, rares */
-    '  float ar = r * 5.2 - uTemps * 0.040;',
-    '  float fa = abs(fract(ar) - 0.5);',
-    '  float arcs = trait(fa, 0.005) * step(0.78, bruit(floor(ar) * 11.7));',
-    /* ancres : un point la ou une trainee croise un arc, une fois sur vingt */
-    '  float anc = trait(f, 0.022) * trait(fa, 0.020) * step(0.94, bruit(id * 5.1 + floor(ar) * 2.3));',
-    '  float v = t * 0.62 + arcs * 0.30 + anc * 1.0;',
-    /* on degage le centre et on s\'efface avant les bords */
-    '  v *= smoothstep(0.30, 0.85, r);',
-    '  v *= 1.0 - smoothstep(1.45, 2.35, r);',
-    '  v *= 0.55 + 0.45 * souffle;',
+    '  float fa = fract(s) - 0.5;',
+    '  float h1 = bruit(id + gr), h2 = bruit(id * 1.7 + gr), h3 = bruit(id * 3.1 + gr);',
+    /* une trainee sur trois manque : l espacement doit rester clairseme */
+    '  if (h3 < 0.18) return 0.0;',
+    '  float cycle = 3.2;',
+    '  float tete = mod(h1 * cycle + t * vit * (0.55 + 0.9 * h2), cycle);',
+    '  float lg = 0.22 + 0.62 * h2;',
+    /* ecart lateral ramene en unites d ecran : le trait garde la meme
+       epaisseur pres du foyer comme au loin */
+    '  float dl = abs(fa) * (TAU / n) * r;',
+    '  float w = larg * (0.7 + 0.6 * h1) * (0.85 + 0.30 * souffle);',
+    '  float trait = smoothstep(w, 0.0, dl);',
+    '  float q = (r - (tete - lg)) / max(lg, 0.001);',
+    '  if (q < 0.0 || q > 1.0) return 0.0;',
+    /* la trainee s eteint vers sa queue et s intensifie vers sa tete */
+    '  float corps = trait * pow(q, 2.2) * 0.85;',
+    /* la tete : un point un peu plus large, plus dense */
+    '  float pt = smoothstep(w * 2.4, 0.0, dl) * smoothstep(0.028, 0.0, abs(r - tete));',
+    '  return corps + pt * 1.30;',
+    '}',
+    'void main(){',
+    '  vec2 p = (gl_FragCoord.xy - 0.5 * uRes) / uRes.y;',
+    '  float t = uTemps;',
+    '  float souffle = 0.5 + 0.5 * sin(t * 0.19);',
+    /* Point de fuite au-dessus du cadre, legerement pousse par le pointeur.
+       Trois couches a des profondeurs differentes : les lointaines sont fines
+       et lentes, les proches plus larges et plus rapides. */
+    '  vec2 f0 = vec2(uPtr.x * 0.05, 0.78 + uPtr.y * 0.03);',
+    '  vec2 f1 = vec2(uPtr.x * 0.09, 0.74 + uPtr.y * 0.05);',
+    '  vec2 f2 = vec2(uPtr.x * 0.14, 0.70 + uPtr.y * 0.07);',
+    '  float v = 0.0;',
+    '  v += couche(p, f0, 420.0, 0.085, 11.3, 0.0010, 0.30, t, souffle) * 0.50;',
+    '  v += couche(p, f1, 270.0, 0.115, 47.9, 0.0015, 0.42, t, souffle) * 0.75;',
+    '  v += couche(p, f2, 168.0, 0.150, 83.1, 0.0022, 0.56, t, souffle) * 1.00;',
+    /* on degage le sommet, autour du point de fuite, et on s efface en bas */
+    '  float r0 = length(p - f1);',
+    '  v *= smoothstep(0.09, 0.45, r0);',
+    '  v *= 1.0 - smoothstep(1.35, 2.10, r0);',
+    '  v *= 0.62 + 0.38 * souffle;',
     '  v *= uForce;',
-    /* 0,22 au plus : sur blanc, un trait plein tombe vers 200/255. Present,
-       jamais bavard — mesure sur une bande sans texte. */
-    '  float al = clamp(v, 0.0, 1.0) * 0.22;',
-    '  vec3 encre = vec3(0.055, 0.055, 0.075);',
-    '  gl_FragColor = vec4(encre * al, al);',   /* alpha premultiplie */
+    /* 0,20 au plus : sur blanc, une tete tombe vers 205/255, un corps de
+       trainee bien plus haut. Present, jamais bavard. */
+    '  float al = clamp(v, 0.0, 1.0) * 0.17;',
+    '  vec3 encre = vec3(0.055, 0.055, 0.080);',
+    '  gl_FragColor = vec4(encre * al, al);',
     '}'
   ].join('\n');
 
