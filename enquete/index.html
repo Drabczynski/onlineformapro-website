@@ -1208,9 +1208,9 @@ html.fige,body.fige{overflow:hidden}
           .sort(function(a, b){ return b.v - a.v; });
         var nomAxe = function(id){ return AXES.filter(function(a){ return a[0] === id; })[0][1]; };
         var haut = tri[0], bas = tri[tri.length - 1];
-        if (haut.v > 0) push('atout', 'Votre domaine le plus avancé : ' + nomAxe(haut.id).toLowerCase(),
+        if (haut.v > 0) push('atout', 'Votre domaine le plus avancé : ' + nomAxe(haut.id),
           haut.v + ' sur 100. C’est là que vos pratiques sont les plus solides ; elles peuvent servir de modèle aux autres domaines.');
-        if (bas.v < haut.v) push('vigilance', 'Votre domaine le moins avancé : ' + nomAxe(bas.id).toLowerCase(),
+        if (bas.v < haut.v) push('vigilance', 'Votre domaine le moins avancé : ' + nomAxe(bas.id),
           bas.v + ' sur 100. Le plan ci-dessous commence par là.');
       }
       var poids = { risque: 0, vigilance: 1, atout: 2 };
