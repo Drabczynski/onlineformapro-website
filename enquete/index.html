@@ -340,10 +340,16 @@ html.fige,body.fige{overflow:hidden}
 .bl-score small{display:block;margin-top:4px;font-size:.8rem;color:var(--ink-2)}
 .qz-niv{margin-top:6px;font-size:1.45rem;font-weight:500;letter-spacing:-.018em;color:var(--pal)}
 .qz-niv-txt{margin:11px auto 0;max-width:48ch;font-size:.95rem;line-height:1.55;color:var(--ink-2)}
-.qz-echelle{display:flex;gap:4px;width:min(100%,520px);margin:22px auto 0}
-.qz-ech{flex:1;text-align:center;font-size:.69rem;line-height:1.25;color:#575757;
-  padding:8px 4px;border-radius:7px;background:color-mix(in srgb,var(--pal) 12%,white)}
-.qz-ech.on{background:var(--pal);color:#fff;font-weight:500}
+/* L'echelle de maturite : le filet du depart, mais rempli. Les marches
+   atteintes portent la teinte, de plus en plus foncee ; celles qui restent
+   gardent le filet gris. On voit d'un coup d'oeil du moins fait au plus fait,
+   ce que cinq pastilles de couleurs differentes ne disaient pas. */
+.qz-echelle{display:flex;gap:5px;width:min(100%,520px);margin:24px auto 0}
+.qz-ech{flex:1;text-align:center;font-size:.69rem;line-height:1.25;color:#7A7A7A;
+  padding-top:9px;border-top:3px solid var(--cream-3);
+  transition:color .4s var(--ease),border-color .4s var(--ease)}
+.qz-ech.fait{border-top-color:var(--pal);color:#575757}
+.qz-ech.on{color:var(--ink);font-weight:500}
 
 /* ══════════ DEBLOCAGE ══════════ */
 /* Petite fenetre en bas a droite, au-dessus du pied. Elle glisse depuis
@@ -601,6 +607,9 @@ html.fige,body.fige{overflow:hidden}
    ecart en vision normale, contraste sur le fond). */
 .bl-anneaux{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:14px;
   grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+/* quatre colonnes des que la place le permet : les sept se lisent 4 puis 3,
+   au lieu d'un 5 + 2 qui donne l'impression d'un reste */
+@media (min-width:760px){.bl-anneaux{grid-template-columns:repeat(4,1fr)}}
 .bl-anneau{text-align:center;padding:16px 10px 15px;border-radius:12px;
   background:color-mix(in srgb,var(--sc) 6%,white);
   border:1px solid color-mix(in srgb,var(--sc) 18%,white)}
@@ -614,6 +623,10 @@ html.fige,body.fige{overflow:hidden}
   font-variant-numeric:tabular-nums;line-height:1}
 .bl-anneau figcaption small{display:block;margin-top:2px;font-size:.66rem;font-weight:400;
   letter-spacing:0;color:var(--ink-2)}
+.bl-anneau.val figure{display:grid;place-content:center}
+.bl-val{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;width:100%}
+.bl-val li{font-size:.76rem;line-height:1.3;color:var(--ink);padding:4px 8px;border-radius:6px;
+  background:color-mix(in srgb,var(--sc) 10%,white);text-wrap:balance}
 .bl-anneau b{display:block;margin-top:11px;font-size:.84rem;font-weight:500;
   color:color-mix(in srgb,var(--sc) 85%,black)}
 .bl-anneau span{display:block;margin-top:3px;font-size:.78rem;line-height:1.45;color:var(--ink-2)}
@@ -1250,7 +1263,11 @@ html.fige,body.fige{overflow:hidden}
 
     /* ---- lecture du profil : tout est deduit des reponses, rien n’est compare
        a une population que le barometre n’a pas encore mesuree ---- */
-    var TEINTES_PALIER = ['#C54A07', '#B0287A', '#2C6FE0', '#6D5BD0', '#298152'];
+    /* Un seul ton, du clair au fonce : c'est une progression, pas cinq
+       categories. Le rouge et l'orange restent reserves a l'alerte, le vert a
+       l'atout. Chaque marche tient au moins 3:1 sur blanc (3,16 · 4,66 · 7,23
+       · 10,27 · 14,15), l'arc et la toile s'en servent tels quels. */
+    var TEINTES_PALIER = ['#5F93D8', '#3C74C6', '#2255A4', '#153F7E', '#0E2A56'];
     var opt = function(id){ return texteDeQ(id); };
     var rang = function(id){ return rep[id] === undefined ? -1 : rep[id]; };
     var coche = function(id, lib){
@@ -1458,6 +1475,17 @@ html.fige,body.fige{overflow:hidden}
           '<b>' + cfg.nom + '</b><span>' +
           cfg.txt.charAt(0).toUpperCase() + cfg.txt.slice(1) + '</span></li>';
       };
+      /* Une carte de valeur pour l'indicateur qui n'est pas une proportion :
+         « trois freins sur treize » ne voudrait rien dire. */
+      var carteVal = function(cfg){
+        return '<li class="bl-anneau val" style="--sc:' + cfg.sc + '">' +
+          '<figure><ul class="bl-val">' + cfg.lignes.map(function(t){
+            return '<li>' + t + '</li>'; }).join('') + '</ul></figure>' +
+          '<b>' + cfg.nom + '</b><span>' + cfg.txt + '</span></li>';
+      };
+      var aoR = rang('ao'), aoQ = QDE('ao'), outilsQ = QDE('outils');
+      var nOutilsMax = outilsQ ? outilsQ.opts.length : 8;
+      var GRIS = '#4A4A4A';   /* les trois indicateurs secondaires, sans teinte propre */
       var ANNEAUX = [
         anneau({ sc: '#2C6FE0', part: ingeUn / inge.lignes.length, gros: String(ingeUn),
           sur: 'sur ' + inge.lignes.length, nom: 'Création de formations',
@@ -1471,35 +1499,18 @@ html.fige,body.fige{overflow:hidden}
         anneau({ sc: '#B0287A', part: (envis + dejaAppr) / nAppr, gros: String(envis + dejaAppr),
           sur: 'sur ' + nAppr, nom: 'Usages auprès des apprenants',
           txt: (dejaAppr ? pluriel(dejaAppr, 'déjà en place', 'déjà en place') : 'aucun en place') +
-               (envis ? ' · ' + pluriel(envis, 'envisagé', 'envisagés') : '') })
+               (envis ? ' · ' + pluriel(envis, 'envisagé', 'envisagés') : '') }),
+        anneau({ sc: GRIS, part: aoR <= 0 ? 0 : aoR / (aoQ.opts.length - 1),
+          gros: aoR <= 0 ? '0' : String(aoR), sur: 'sur ' + (aoQ.opts.length - 1),
+          nom: 'Appels d’offres', txt: texteDeQ('ao') || 'Non renseigné' }),
+        anneau({ sc: GRIS, part: nOutils / nOutilsMax, gros: String(nOutils),
+          sur: 'sur ' + nOutilsMax, nom: 'Équipement des formateurs',
+          txt: (nOutils ? pluriel(nOutils, 'outil d’IA en usage', 'outils d’IA en usage') : 'aucun outil') +
+               (formes ? ' · équipes formées : ' + formes.toLowerCase() : '') }),
+        carteVal({ sc: GRIS, nom: 'Principaux freins',
+          lignes: freinsTxt.length ? freinsTxt : ['Aucun frein déclaré'],
+          txt: freinsTxt.length > 1 ? pluriel(freinsTxt.length, 'frein cité', 'freins cités') : 'Un frein cité' })
       ].join('');
-
-      /* Les quatre premiers indicateurs sont dans les anneaux ci-dessus :
-         les repeter en toutes lettres ferait lire deux fois le meme nombre. */
-      var INDIC = [
-        ['Appels d’offres', texteDeQ('ao') || '—'],
-        ['Équipement des formateurs',
-          (nOutils ? pluriel(nOutils, 'outil', 'outils') : 'Aucun outil') +
-          (formes ? ' · équipes formées : ' + formes.toLowerCase() : '')],
-        ['Principaux freins', freinsTxt.length ? freinsTxt.join(', ') : '—'],
-        ['Usages prévus auprès des apprenants',
-          (envis || dejaAppr)
-            ? (envis ? pluriel(envis, 'usage envisagé', 'usages envisagés') : '') +
-              (envis && dejaAppr ? ', ' : '') + (dejaAppr ? dejaAppr + ' déjà en place' : '')
-            : 'Aucun pour l’instant']
-      ].map(function(x){ return '<li><span>' + x[0] + '</span><b>' + x[1] + '</b></li>'; }).join('');
-
-      var nc = inge.echelle.length - 1;
-      var crans = inge.lignes.map(function(u, j){
-        var v = mInge[j];
-        var c = inge.echelle.slice(1).map(function(_, i){
-          return '<i class="' + (v !== undefined && i < v ? 'on' : '') + '"></i>'; }).join('');
-        return '<li><span>' + u + '</span><span class="bl-crans">' + c + '</span></li>';
-      }).join('');
-      var legende = inge.echelle.map(function(t, i){
-        var c = inge.echelle.slice(1).map(function(_, j){ return '<i class="' + (j < i ? 'on' : '') + '"></i>'; }).join('');
-        return '<span><span class="bl-crans">' + c + '</span>' + t + '</span>';
-      }).join('');
 
       var nFreins = (rep.freins || []).length;
       var tuiles = [
@@ -1528,11 +1539,10 @@ html.fige,body.fige{overflow:hidden}
         '<p class="qz-niv">' + niv[1] + '</p>' +
         '<p class="qz-niv-txt">' + niv[2] + '</p>' +
         '<div class="qz-echelle">' + NIVEAUX.map(function(x, i){
-          return '<span class="qz-ech' + (x === niv ? ' on' : '') + '" style="--pal:' + TEINTES_PALIER[i] + '">' + x[1] + '</span>';
+          return '<span class="qz-ech' + (i <= k ? ' fait' : '') + (x === niv ? ' on' : '') +
+            '" style="--pal:' + TEINTES_PALIER[i] + '">' + x[1] + '</span>';
         }).join('') + '</div></div>' +
 
-        '<section class="bl-sec bl-lecture"><span class="bl-eti">Votre profil</span>' +
-        '<h3 class="bl-arch">' + L[0] + '</h3><p>' + L[1] + '</p></section>' +
 
         (sig ? '<section class="bl-sec"><h3>Ce que vos réponses révèlent</h3>' +
         '<p class="bl-note">Des signaux croisés entre vos usages, votre cadre et vos intentions. Rien ici ne vient d’une moyenne : tout est dans vos réponses.</p>' +
@@ -1541,6 +1551,9 @@ html.fige,body.fige{overflow:hidden}
         '<section class="bl-sec"><h3>Votre profil, domaine par domaine</h3>' +
         '<p class="bl-note">Chaque domaine est ramené sur 100 à partir des seules questions qui le composent ; votre indice est la moyenne des sept. La toile donne la forme, les barres la mesure : les repères 1 à 7 sont les mêmes des deux côtés.</p>' +
         '<div class="bl-profil">' + toile + '<ul class="bl-axes">' + barres + '</ul></div></section>' +
+
+        '<section class="bl-sec bl-lecture"><span class="bl-eti">Votre profil</span>' +
+        '<h3 class="bl-arch">' + L[0] + '</h3><p>' + L[1] + '</p></section>' +
 
         '<section class="bl-sec"><div class="bl-duo">' +
         '<div class="bl-bloc forts"><h4>Vos points d’appui</h4><ul>' +
@@ -1559,15 +1572,8 @@ html.fige,body.fige{overflow:hidden}
         '</div></section>' +
 
         '<section class="bl-sec"><h3>Les sept indicateurs du baromètre</h3>' +
-        '<p class="bl-note">Ceux que le baromètre publiera pour la profession. Ici, vos réponses ; les pourcentages nationaux vous parviendront avec les résultats.</p>' +
-        '<ul class="bl-anneaux">' + ANNEAUX + '</ul>' +
-        '<ul class="bl-indic">' + INDIC + '</ul></section>' +
-
-        (rep.inge === undefined ? '' :
-        '<section class="bl-sec"><h3>Le détail de votre ingénierie pédagogique</h3>' +
-        '<p class="bl-note">Ce que vous confiez déjà à l’IA, usage par usage.</p>' +
-        '<ul class="bl-niv" style="--nc:' + nc + '">' + crans + '</ul>' +
-        '<div class="bl-leg" style="--nc:' + nc + '">' + legende + '</div></section>') +
+        '<p class="bl-note">Les sept que le baromètre publiera pour la profession. Ici, vos réponses ; les pourcentages nationaux vous parviendront avec les résultats.</p>' +
+        '<ul class="bl-anneaux">' + ANNEAUX + '</ul></section>' +
 
         '<section class="bl-sec"><h3>Ce que vous avez déclaré</h3>' +
         '<div class="bl-tuiles">' + tuiles + '</div></section>' +
