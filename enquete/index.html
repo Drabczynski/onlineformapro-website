@@ -329,16 +329,16 @@ html.fige,body.fige{overflow:hidden}
 .qz-score{margin-top:14px;font-size:clamp(3rem,8vw,4.6rem);line-height:1;font-weight:500;
   letter-spacing:-.035em;font-variant-numeric:tabular-nums}
 .qz-score small{font-size:.3em;color:var(--ink-2);letter-spacing:0;font-weight:400}
-.bl-jauge{position:relative;width:min(100%,220px);margin:10px auto 0}
+.bl-jauge{position:relative;width:min(100%,252px);margin:10px auto 0}
 .bl-jauge svg{display:block;width:100%;height:auto}
 .bl-jauge .piste{fill:none;stroke:var(--cream-3);stroke-width:14;stroke-linecap:round}
 .bl-jauge .arc{fill:none;stroke:var(--pal);stroke-width:14;stroke-linecap:round;
   transition:stroke-dasharray 1.2s var(--ease)}
 .bl-score{position:absolute;inset:0;display:grid;place-content:center;text-align:center;padding-top:4px}
-.bl-score b{display:block;font-size:clamp(2.6rem,6vw,3.5rem);line-height:1;font-weight:500;
+.bl-score b{display:block;font-size:clamp(2.6rem,6vw,3.9rem);line-height:1;font-weight:600;
   letter-spacing:-.035em;font-variant-numeric:tabular-nums;color:var(--ink)}
 .bl-score small{display:block;margin-top:4px;font-size:.8rem;color:var(--ink-2)}
-.qz-niv{margin-top:6px;font-size:1.45rem;font-weight:500;letter-spacing:-.018em;color:var(--pal)}
+.qz-niv{margin-top:6px;font-size:1.6rem;font-weight:600;letter-spacing:-.02em;color:var(--pal)}
 .qz-niv-txt{margin:11px auto 0;max-width:48ch;font-size:.95rem;line-height:1.55;color:var(--ink-2)}
 /* L'echelle de maturite : le filet du depart, mais rempli. Les marches
    atteintes portent la teinte, de plus en plus foncee ; celles qui restent
@@ -527,30 +527,7 @@ html.fige,body.fige{overflow:hidden}
   .qz-fond::before,.qz.annonce .qz-fond::before{transform:none;transition:none}
 }
 /* ══════════ BILAN ══════════ */
-.qz-res{text-align:left;width:min(100%,940px)}
-/* Deux colonnes des que la fenetre le permet : l'indice de maturite reste
-   en place a gauche pendant que les rubriques defilent a droite. Le
-   defilement quitte alors la scene pour la seule colonne de droite, sinon
-   les deux colonnes remonteraient ensemble. */
-@media (min-width:1000px){
-  .qz.bilan .qz-scene{overflow:hidden;padding-bottom:0}
-  .qz-res{width:min(100%,1240px);height:100%;display:grid;align-items:stretch;
-    grid-template-columns:minmax(290px,380px) minmax(0,1fr);
-    column-gap:clamp(30px,3.6vw,60px);padding-bottom:0}
-  .qz-res > .bl-tete{grid-column:1;grid-row:1;align-self:center;
-    border-bottom:0;padding-bottom:0}
-  .bl-flux{grid-column:2;grid-row:1;height:100%;overflow-y:auto;
-    padding:clamp(18px,3vw,32px) 14px clamp(24px,4vw,48px) 0;
-    scrollbar-gutter:stable}
-  /* la premiere rubrique n'a plus besoin du filet qui la separait de l'indice */
-  .bl-flux > .bl-sec:first-child{margin-top:0}
-  /* le panneau a la place : l'indice y prend sa vraie taille */
-  .bl-jauge{width:min(100%,264px)}
-  .bl-score b{font-size:4rem}
-  .bl-score small{font-size:.86rem}
-  .qz-niv{font-size:1.6rem;font-weight:600}
-  .qz-echelle{margin-top:30px}
-}
+.qz-res{text-align:left;width:min(100%,1120px)}
 /* le texte garde sa mesure de lecture meme quand la carte s'elargit */
 .bl-sec > h3,.bl-lecture p,.bl-sig span:not(.bl-sig-type){max-width:74ch}
 .qz-res .eyebrow{justify-content:center;width:100%}
@@ -569,20 +546,23 @@ html.fige,body.fige{overflow:hidden}
    d'oeil, les barres se lisent une par une ; les reperes 1 a 7 font le lien,
    de sorte que la couleur n'est jamais seule a porter l'identite. */
 .bl-profil{display:grid;gap:clamp(18px,2.6vw,34px);margin-top:20px;align-items:center}
-@media (min-width:860px){.bl-profil{grid-template-columns:minmax(0,340px) minmax(0,1fr)}}
-.bl-toile{width:100%;max-width:340px;margin:0 auto;display:block;overflow:visible}
+@media (min-width:860px){.bl-profil{grid-template-columns:minmax(0,400px) minmax(0,1fr)}}
+.bl-toile{width:100%;max-width:400px;margin:0 auto;display:block;overflow:visible}
 .bl-toile .grille{fill:none;stroke:var(--line);stroke-width:1}
 .bl-toile .grille.plein{stroke:color-mix(in srgb,var(--ink) 22%,white)}
 .bl-toile .rayon{stroke:var(--line);stroke-width:1}
-.bl-toile .aire{fill:color-mix(in srgb,var(--pal) 26%,transparent);
-  stroke:var(--pal);stroke-width:2.4;stroke-linejoin:round;
+.bl-toile .aire{fill:color-mix(in srgb,var(--pal) 15%,transparent);
+  stroke:color-mix(in srgb,var(--pal) 55%,white);stroke-width:2;stroke-linejoin:round;
   transform-origin:130px 130px;transform:scale(.02);
   transition:transform 1s cubic-bezier(.16,1,.3,1)}
 .bl-toile.vu .aire{transform:scale(1)}
-.bl-toile .pt{fill:var(--pal);stroke:#fff;stroke-width:2;opacity:0;
+/* Les sommets et les reperes portent la teinte de leur domaine, la meme que
+   la barre en face : la surface, elle, ne peut avoir qu'une couleur, elle
+   garde donc celle du palier, en retrait. */
+.bl-toile .pt{stroke:#fff;stroke-width:2;opacity:0;
   transition:opacity .4s var(--ease) .5s}
 .bl-toile.vu .pt{opacity:1}
-.bl-toile .rep{font-size:11px;fill:var(--ink-2);text-anchor:middle;dominant-baseline:middle}
+.bl-toile .rep{font-size:12px;font-weight:600;text-anchor:middle;dominant-baseline:middle}
 .bl-axes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:13px}
 .bl-axe{display:grid;grid-template-columns:auto 1fr auto;gap:4px 10px;align-items:baseline}
 .bl-axe u{grid-row:1;text-decoration:none;font-size:.7rem;font-variant-numeric:tabular-nums;
@@ -1452,11 +1432,16 @@ html.fige,body.fige{overflow:hidden}
         for (var i = 0; i < N; i++) {
           var b = pt(i, R), v = pt(i, Math.max(R * axes[i].v / 100, 1.5)), e = pt(i, R + 17);
           g += '<line class="rayon" x1="' + C + '" y1="' + C + '" x2="' + b[0].toFixed(1) + '" y2="' + b[1].toFixed(1) + '"/>';
+          var tc = COULEURS[AXE_PARTIE[axes[i].id]];
           val.push(v[0].toFixed(1) + ',' + v[1].toFixed(1));
-          pts += '<circle class="pt" cx="' + v[0].toFixed(1) + '" cy="' + v[1].toFixed(1) + '" r="4"/>';
-          rep_ += '<text class="rep" x="' + e[0].toFixed(1) + '" y="' + e[1].toFixed(1) + '">' + (i + 1) + '</text>';
+          pts += '<circle class="pt" cx="' + v[0].toFixed(1) + '" cy="' + v[1].toFixed(1) +
+                 '" r="5" style="fill:' + tc + '"/>';
+          rep_ += '<text class="rep" x="' + e[0].toFixed(1) + '" y="' + e[1].toFixed(1) +
+                  '" style="fill:color-mix(in srgb,' + tc + ' 88%,black)">' + (i + 1) + '</text>';
         }
-        return '<svg class="bl-toile" viewBox="-20 -20 300 300" role="img" ' +
+        /* la boite serre le dessin : centre 130, rayon 100, reperes a 117,
+           donc 13..247 — quarante unites de marge perdues en moins */
+        return '<svg class="bl-toile" viewBox="2 2 256 256" role="img" ' +
           'aria-label="Vos sept domaines, de 0 a 100 : ' +
           axes.map(function(a){ return a.nom + ' ' + a.v; }).join(', ') + '.">' +
           g + '<polygon class="aire" points="' + val.join(' ') + '"/>' + pts + rep_ + '</svg>';
@@ -1567,9 +1552,6 @@ html.fige,body.fige{overflow:hidden}
             '" style="--pal:' + TEINTES_PALIER[i] + '">' + x[1] + '</span>';
         }).join('') + '</div></div>' +
 
-        /* tout ce qui suit forme la colonne qui defile ; l'indice reste a
-           gauche, fixe, sur les ecrans qui ont la largeur */
-        '<div class="bl-flux">' +
 
 
         (sig ? '<section class="bl-sec"><h3>Ce que vos réponses révèlent</h3>' +
@@ -1613,7 +1595,7 @@ html.fige,body.fige{overflow:hidden}
         '<div class="bl-gain"><b>Le baromètre complet</b>' +
         '<span>Les résultats de l’enquête, envoyés avant leur publication.</span></div>' +
         '</div></section>' +
-        '</div></div>';
+        '</div>';
 
       window.setTimeout(function(){
         document.getElementById('bl-arc').style.strokeDasharray = (ARC * n / 100) + ' ' + CIRC;
