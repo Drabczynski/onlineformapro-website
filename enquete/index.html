@@ -36,23 +36,26 @@
   --sans:"Geist",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --display:var(--sans);
   --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  --t-xs:.78rem;
-  --t-s:.88rem;
-  --t-m:1rem;
-  --t-l:clamp(1.04rem,1.2vw,1.22rem);
-  --t-xl:clamp(1.26rem,2.1vw,1.56rem);
-  --t-2xl:clamp(1.46rem,2.7vw,1.95rem);
-  --t-3xl:clamp(1.8rem,3.3vw,2.55rem);
-  --t-4xl:clamp(2.6rem,5.4vw,3.9rem);
-  --tr-serre:-.03em;
+  --t-xs:.7rem;
+  --t-s:.8rem;
+  --t-m:.94rem;
+  --t-l:clamp(1rem,1.15vw,1.14rem);
+  --t-xl:clamp(1.2rem,1.95vw,1.44rem);
+  --t-2xl:clamp(1.4rem,2.5vw,1.82rem);
+  --t-3xl:clamp(2rem,3.8vw,3rem);
+  --t-4xl:clamp(3rem,6.2vw,4.6rem);
+  --tr-serre:-.032em;
   --tr-doux:-.018em;
-  --tr-large:.08em;
+  --tr-large:.11em;
+  /* Le libelle d'interface : mono, capitales, creuse. C'est lui qui porte
+     l'identite — un texte courant ne se remarque pas, un libelle si. */
+  --lib:var(--mono);
   --r:14px;--r-sm:10px;--max:1240px;--maxcv:1400px;--pad:clamp(20px,5vw,44px);
   --ease:cubic-bezier(.16,1,.3,1);
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);
-  font-size:16px;line-height:1.62;letter-spacing:-.002em;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  font-size:15px;line-height:1.6;letter-spacing:-.002em;overflow-x:hidden;-webkit-font-smoothing:antialiased;
   /* Inter porte un axe de taille optique : on le laisse faire son travail */
   font-optical-sizing:auto;font-synthesis:none}
 a{color:inherit;text-decoration:none}
@@ -62,6 +65,20 @@ img{max-width:100%}
 
 h1,h2,h3,h4{margin:0;font-family:var(--display);font-weight:600;
   letter-spacing:var(--tr-doux);text-wrap:balance}
+
+/* ══ LIBELLES ══
+   Partout ou un mot sert d'etiquette et non de phrase — rubrique, palier,
+   horizon, compteur, touche — il passe en mono capitales, creuse. Les
+   phrases, elles, restent dans la fonte de texte. C'est la seule regle,
+   mais elle tient toute l'identite. */
+.cv-eyebrow,.cv-panneau h2,.qz-partie,.qz-num,.bl-eti,.bl-sig-type,
+.bl-hor h4,.qz-ech,.qz-astuce,.cv-pied,.eyebrow,.bl-leg,
+.cv-ech-noms span,.qz-toast-eti{
+  font-family:var(--lib);text-transform:uppercase;
+  letter-spacing:var(--tr-large);font-weight:500}
+/* un repere carre, pas un point : c'est une marque de mesure */
+.cv-eyebrow::before{border-radius:0}
+.bl-sig-type i{border-radius:0}
 h1{letter-spacing:var(--tr-serre)}
 /* Les nombres mesures passent a la chasse fixe : ils s'alignent en colonne
    et se lisent comme des releves. Les nombres pris dans une phrase, eux,
