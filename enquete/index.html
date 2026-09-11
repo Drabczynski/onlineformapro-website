@@ -7,7 +7,7 @@
 <meta name="description" content="Où en sont réellement les organismes de formation avec l’IA ? Répondez au baromètre 2026 en cinq minutes, situez-vous sur l’indice de maturité et recevez un mois d’accès à nos outils IA.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,400&display=swap">
 <style>:root{
   --cream:#FFFFFF;--cream-2:#F7F7F7;--cream-3:#EFEFEF;
   --char:#FFFFFF;--char-2:#FFFFFF;--char-3:#F7F7F7;
@@ -18,20 +18,50 @@
   --c-bur:#E8590C;--c-inf:#0E96BC;--c-cog:#6EA912;--c-san:#E01A4F;
   --c-lan:#0E9384;--c-sav:#6D5BD0;--c-ori:#9457C4;--c-pre:#E0459E;
   --c-ter:#D2691E;--c-cao:#B82B85;--c-pao:#2C6FE0;--c-dev:#1D4FB8;
+  /* ══ TYPOGRAPHIE ══
+     Deux familles, deux metiers. Funnel Display porte les titres : c'est la
+     ou se joue l'identite, et sa chasse serree encaisse les titres francais,
+     toujours longs. Inter tient tout le reste — formulaires, tableaux,
+     chiffres — parce qu'un caractere d'affichage y serait un handicap.
+     L'echelle est une seule suite de pas, au lieu de clamp() disperses :
+     rapport 1,25, bornes fluides. Le creusement suit le corps : serre en
+     grand, neutre en courant, ouvert en capitales. */
   --sans:"Inter",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --display:"Funnel Display","Inter",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
   --mono:var(--sans);
+  --t-xs:.78rem;
+  --t-s:.88rem;
+  --t-m:1rem;
+  --t-l:clamp(1.04rem,1.2vw,1.22rem);
+  --t-xl:clamp(1.26rem,2.1vw,1.56rem);
+  --t-2xl:clamp(1.46rem,2.7vw,1.95rem);
+  --t-3xl:clamp(1.8rem,3.3vw,2.55rem);
+  --t-4xl:clamp(2.6rem,5.4vw,3.9rem);
+  --tr-serre:-.03em;
+  --tr-doux:-.018em;
+  --tr-large:.08em;
   --r:14px;--r-sm:10px;--max:1240px;--maxcv:1400px;--pad:clamp(20px,5vw,44px);
   --ease:cubic-bezier(.16,1,.3,1);
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);
-  font-size:16px;line-height:1.62;letter-spacing:-.002em;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  font-size:16px;line-height:1.62;letter-spacing:-.002em;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  /* Inter porte un axe de taille optique : on le laisse faire son travail */
+  font-optical-sizing:auto}
 a{color:inherit;text-decoration:none}
 img{max-width:100%}
 [hidden]{display:none!important}
 :focus-visible{outline:2px solid var(--red);outline-offset:4px;border-radius:6px}
 
-h1,h2,h3,h4{margin:0;font-weight:500;letter-spacing:-.018em;text-wrap:balance}
+/* Tous les niveaux de titre passent a la famille d'affichage. Le poids 600
+   y remplace le 500 d'Inter : la Funnel est un peu plus legere a l'oeil. */
+h1,h2,h3,h4{margin:0;font-family:var(--display);font-weight:600;
+  letter-spacing:var(--tr-doux);text-wrap:balance}
+h1{letter-spacing:var(--tr-serre)}
+/* Les chiffres d'un tableau ou d'un indicateur s'alignent en colonne ;
+   ceux d'une phrase gardent leur chasse propre. */
+.bl-axe i,.bl-anneau figcaption,.bl-score b,.bl-tuile b,.qz-num b,
+.bl-bloc li em,.bl-toile .rep{font-variant-numeric:tabular-nums}
 h1{font-size:clamp(1.95rem,3.2vw,2.95rem);line-height:1.14;letter-spacing:-.024em}
 h2{font-size:clamp(1.55rem,2.4vw,2.2rem);line-height:1.18;letter-spacing:-.02em}
 h4{font-size:1rem;line-height:1.38;letter-spacing:-.006em}
@@ -125,8 +155,8 @@ html.fige,body.fige{overflow:hidden}
 .qz-num b{font-weight:500;color:var(--ink-2)}
 .qz-partie{letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;color:var(--acc);font-weight:500}
 .qz-partie::after{content:"·";margin-left:8px;color:var(--ink-3)}
-.qz-q{font-size:clamp(1.28rem,2.5vw,1.85rem);line-height:1.26;letter-spacing:-.02em;
-  font-weight:500;color:var(--ink);text-wrap:balance}
+.qz-q{font-family:var(--display);font-size:var(--t-2xl);line-height:1.2;
+  letter-spacing:var(--tr-serre);font-weight:600;color:var(--ink);text-wrap:balance}
 /* Cinq questions portent une coupure choisie a la main. Elle ne vaut qu'en
    grand ecran ; en dessous, le navigateur reprend la main, et l'equilibrage
    automatique est neutralise la ou la coupure est imposee. */
@@ -238,22 +268,24 @@ br.dk{display:none}
 .cv-toile.vue{opacity:1}
 body:has(.qz.on) .cv-toile{display:none}
 
-/* Un voile blanc pose sur la moitie gauche, en ellipse tres large : le texte
-   se lit sur du blanc franc, la trame reapparait progressivement vers la
-   droite et les angles. Aucune arete : la sortie du blanc s'etale sur plus
-   d'un quart de la largeur. Le voile est un frere du canvas, place apres lui
-   dans le document, donc peint par-dessus ; le contenu, lui, monte d'un cran. */
+/* Un voile blanc leve le fond sous la colonne de texte, sans jamais l'effacer :
+   il plafonne a 92 % et s'eteint aux trois quarts de la largeur. Le fond reste
+   donc lisible partout, seulement attenue la ou l'on lit. Aucune arete : la
+   sortie s'etale sur plus de quarante pour cent. Le voile est un frere du
+   canvas, place apres lui dans le document, donc peint par-dessus ; le
+   contenu, lui, monte d'un cran. */
 .cv-voile{position:absolute;inset:0;z-index:0;pointer-events:none;
   background:linear-gradient(92deg,
-    #fff 0%, #fff 50%,
-    rgba(255,255,255,.84) 57%, rgba(255,255,255,.5) 64%,
-    rgba(255,255,255,.19) 71%, rgba(255,255,255,0) 78%)}
+    rgba(255,255,255,.92) 0%, rgba(255,255,255,.87) 30%,
+    rgba(255,255,255,.6) 44%, rgba(255,255,255,.29) 56%,
+    rgba(255,255,255,.09) 66%, rgba(255,255,255,0) 76%)}
 /* colonnes empilees : le texte est en haut, le voile descend au lieu d'aller
    vers la droite */
 @media (max-width:979px){
   .cv-voile{background:linear-gradient(180deg,
-    #fff 0%, #fff 44%, rgba(255,255,255,.72) 60%,
-    rgba(255,255,255,.3) 74%, rgba(255,255,255,0) 88%)}
+    rgba(255,255,255,.92) 0%, rgba(255,255,255,.86) 40%,
+    rgba(255,255,255,.55) 58%, rgba(255,255,255,.22) 74%,
+    rgba(255,255,255,0) 88%)}
 }
 .cv > *:not(.cv-toile):not(.cv-voile){position:relative;z-index:1}
 
@@ -267,12 +299,13 @@ body:has(.qz.on) .cv-toile{display:none}
 @media (min-width:980px){.cv-corps{grid-template-columns:1.18fr .82fr}}
 
 .nb{white-space:nowrap}
-.cv-eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.78rem;letter-spacing:.08em;
+.cv-eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:var(--t-xs);
+  letter-spacing:var(--tr-large);
   text-transform:uppercase;color:var(--ink-2)}
 .cv-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red)}
-.cv h1{margin-top:16px;font-size:clamp(1.6rem,2.7vw,2.45rem);line-height:1.14;letter-spacing:-.026em;
-  text-wrap:balance}
-.cv-promesse{margin-top:clamp(15px,1.7vw,21px);font-size:clamp(1.02rem,1.35vw,1.24rem);line-height:1.45;
+.cv h1{margin-top:16px;font-size:var(--t-3xl);line-height:1.08;
+  letter-spacing:var(--tr-serre);text-wrap:balance}
+.cv-promesse{margin-top:clamp(15px,1.7vw,21px);font-size:var(--t-l);line-height:1.45;
   color:var(--ink);max-width:52ch;font-style:normal;text-wrap:pretty}
 .cv-intro{margin-top:clamp(11px,1.3vw,15px);font-size:.95rem;line-height:1.6;color:var(--ink-2);
   max-width:58ch;text-wrap:pretty}
@@ -381,10 +414,11 @@ body:has(.qz.on) .cv-toile{display:none}
 .bl-jauge .arc{fill:none;stroke:var(--pal);stroke-width:14;stroke-linecap:round;
   transition:stroke-dasharray 1.2s var(--ease)}
 .bl-score{position:absolute;inset:0;display:grid;place-content:center;text-align:center;padding-top:4px}
-.bl-score b{display:block;font-size:clamp(2.6rem,6vw,3.9rem);line-height:1;font-weight:600;
-  letter-spacing:-.035em;font-variant-numeric:tabular-nums;color:var(--ink)}
+.bl-score b{display:block;font-family:var(--display);font-size:var(--t-4xl);line-height:1;
+  font-weight:700;letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:var(--ink)}
 .bl-score small{display:block;margin-top:4px;font-size:.8rem;color:var(--ink-2)}
-.qz-niv{margin-top:6px;font-size:1.6rem;font-weight:600;letter-spacing:-.02em;color:var(--pal)}
+.qz-niv{margin-top:6px;font-family:var(--display);font-size:var(--t-xl);font-weight:600;
+  letter-spacing:var(--tr-serre);color:var(--pal)}
 .qz-niv-txt{margin:11px auto 0;max-width:48ch;font-size:.95rem;line-height:1.55;color:var(--ink-2)}
 /* L'echelle de maturite : le filet du depart, mais rempli. Les marches
    atteintes portent la teinte, de plus en plus foncee ; celles qui restent
@@ -550,8 +584,9 @@ body:has(.qz.on) .cv-toile{display:none}
   .qz-visuel img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
   .qz.bilan .qz-visuel{display:none}
 }
-.qz-annonce-t{margin:16px auto 0;max-width:24ch;font-size:clamp(2.1rem,4.6vw,3.7rem);line-height:1.08;
-  letter-spacing:-.03em;font-weight:500;text-wrap:balance}
+.qz-annonce-t{margin:16px auto 0;max-width:24ch;font-family:var(--display);
+  font-size:clamp(2.1rem,4.6vw,3.7rem);line-height:1.04;
+  letter-spacing:var(--tr-serre);font-weight:600;text-wrap:balance}
 .qz-annonce-i{margin:16px auto 0;max-width:60ch;font-size:clamp(1rem,1.25vw,1.15rem);line-height:1.5;
   color:#5C5C5C;text-wrap:pretty}   /* un cran plus sombre que --ink-2 : le fond est teinte */
 .qz-annonce-trait{display:block;width:48px;height:3px;border-radius:2px;margin:24px auto 0;background:var(--acc);
@@ -583,8 +618,8 @@ body:has(.qz.on) .cv-toile{display:none}
    cours ici : le bilan defile dans une fenetre, pas dans la page. */
 .bl-sec::before{content:none}
 .bl-sec + .bl-sec{border-top:1px solid var(--line);padding-top:clamp(26px,3vw,36px)}
-.bl-sec > h3{font-size:clamp(1.2rem,1.55vw,1.34rem);font-weight:600;
-  letter-spacing:-.02em;margin-bottom:7px}
+.bl-sec > h3{font-size:var(--t-xl);font-weight:600;
+  letter-spacing:var(--tr-serre);margin-bottom:7px}
 .bl-sec > p.bl-note{font-size:.85rem;line-height:1.5;color:var(--ink-2);max-width:62ch}
 
 /* ── le profil : la toile donne la forme, les barres donnent la mesure ──
@@ -625,7 +660,8 @@ body:has(.qz.on) .cv-toile{display:none}
   background:color-mix(in srgb,var(--pal) 8%,white)}
 .bl-eti{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:500;
   color:color-mix(in srgb,var(--pal) 85%,black)}
-.bl-arch{font-size:1.5rem;font-weight:600;margin-top:6px;letter-spacing:-.02em;color:var(--ink)}
+.bl-arch{font-size:var(--t-xl);font-weight:600;margin-top:6px;
+  letter-spacing:var(--tr-serre);color:var(--ink)}
 .bl-lecture p{margin-top:8px;font-size:.95rem;line-height:1.55;color:var(--ink);text-wrap:pretty}
 
 /* signaux : un etat (risque, vigilance, atout), toujours nomme, jamais la couleur seule */
@@ -669,7 +705,8 @@ body:has(.qz.on) .cv-toile{display:none}
 .bl-anneau .arc{fill:none;stroke:var(--sc);stroke-width:10;stroke-linecap:round;
   transition:stroke-dasharray 1.1s cubic-bezier(.16,1,.3,1)}
 .bl-anneau figcaption{position:absolute;inset:0;display:grid;place-content:center;
-  font-size:1.95rem;font-weight:600;letter-spacing:-.026em;color:var(--ink);
+  font-family:var(--display);font-size:1.95rem;font-weight:600;
+  letter-spacing:var(--tr-serre);color:var(--ink);
   font-variant-numeric:tabular-nums;line-height:1}
 .bl-anneau figcaption small{display:block;margin-top:4px;font-size:.75rem;font-weight:400;
   letter-spacing:0;color:var(--ink-2)}
@@ -728,7 +765,8 @@ body:has(.qz.on) .cv-toile{display:none}
 @media (min-width:640px){.bl-tuiles{grid-template-columns:repeat(4,1fr)}}
 .bl-tuile{border:1px solid var(--line);border-radius:9px;padding:13px 14px;
   display:flex;flex-direction:column;justify-content:space-between}
-.bl-tuile b{display:block;font-size:1.5rem;font-weight:500;letter-spacing:-.026em;
+.bl-tuile b{display:block;font-family:var(--display);font-size:1.5rem;font-weight:600;
+  letter-spacing:var(--tr-serre);
   font-variant-numeric:tabular-nums;line-height:1.1}
 .bl-tuile b.long{font-size:1.02rem;line-height:1.3;letter-spacing:-.012em}
 .bl-tuile span{display:block;margin-top:5px;font-size:.78rem;line-height:1.4;color:var(--ink-2)}
