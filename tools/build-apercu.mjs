@@ -21,7 +21,8 @@ const base = dirname(resolve(src));
 
 const TYPES = { svg: 'image/svg+xml', png: 'image/png', jpg: 'image/jpeg',
                 jpeg: 'image/jpeg', webp: 'image/webp', avif: 'image/avif',
-                mp4: 'video/mp4', webm: 'video/webm' };
+                mp4: 'video/mp4', webm: 'video/webm',
+                woff2: 'font/woff2' };
 const PLAFOND = 15 * 1024 * 1024;   // marge sous la limite de publication
 
 // 1. retirer l'enveloppe fournie par l'hôte
@@ -92,7 +93,9 @@ page = page.replace(/(src|href)="(?!https?:|data:|#|\/\/)([^"]+\.(?:svg|png|jpe?
     return uri ? `${attr}="${uri}"` : whole;
   });
 
-page = page.replace(/url\((['"]?)(?!https?:|data:|#|\/\/)([^)'"]+\.(?:svg|png|jpe?g|webp|avif))\1\)/gi,
+// les fontes hebergees passent par le meme chemin : sans cela l'apercu
+// retombait sur la fonte systeme et ne montrait pas la vraie page
+page = page.replace(/url\((['"]?)(?!https?:|data:|#|\/\/)([^)'"]+\.(?:svg|png|jpe?g|webp|avif|woff2))\1\)/gi,
   (whole, q, rel) => {
     const uri = encoder(rel);
     return uri ? `url(${uri})` : whole;
