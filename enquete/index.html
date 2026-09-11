@@ -1801,11 +1801,11 @@ body:has(.qz.on) .cv-toile{display:none}
 
 <script type="module">
 /*
- * @bornemisza · OpenShaders
- * https://openshaders.com/@bornemisza
- * WebGL2 · JavaScript module · ascii
+ * @beno · OpenShaders
+ * https://openshaders.com/@beno
+ * WebGL2 · JavaScript module
  *
- * import { createShader } from "./bornemisza-shader.webgl.js";
+ * import { createShader } from "./beno-shader.webgl.js";
  *
  * const shader = createShader(document.querySelector("canvas"), { theme: "dark" });
  * shader.setTheme("light");
@@ -1832,40 +1832,40 @@ uniform vec3 uDarkBackground;
 uniform vec3 uLightBackground;
 out vec4 fragColor;
 
-const float HUE = 0.98603344;
-const float HUE_SPREAD = -0.448057294;
-const float HUE_TRAVEL = 1.95262444;
-const float CHROMA = 0.0949338078;
-const float LIGHTNESS = 0.612061739;
-const float COLOUR_CYCLE = 0.165856764;
-const float THETA = 2.11597466;
-const float SHEAR = 0.969601095;
-const float SHRINK = 0.958566904;
-const float LAYERS = 87.0;
-const float WARP_FREQ_X = 0.395354658;
-const float WARP_FREQ_Y = 2.67546248;
-const float WARP_AMP_X = 0.153880984;
-const float WARP_AMP_Y = 0.0332240835;
-const float ASPECT_X = 2.15832877;
-const float ASPECT_Y = 0.141412348;
-const float OFFSET_X = 0.349069178;
-const float OFFSET_Y = 0.00502036326;
-const float TILT = 0.918092787;
-const float ZOOM = 1.09302986;
-const float CENTRE_X = -0.152906731;
-const float CENTRE_Y = -0.503468752;
-const float GLOW_SIZE = 0.00385385728;
-const float FALLOFF = 0.323336482;
-const float VIGNETTE = 0.0994883403;
-const float FLOW_SPEED = 0.449959099;
+const float HUE = 0.0587584898;
+const float HUE_SPREAD = -0.430978447;
+const float HUE_TRAVEL = 1.51770461;
+const float CHROMA = 0.115285896;
+const float LIGHTNESS = 0.603393018;
+const float COLOUR_CYCLE = 0.0999196991;
+const float THETA = 2.13934112;
+const float SHEAR = 0.955037475;
+const float SHRINK = 0.956837416;
+const float LAYERS = 70.0;
+const float WARP_FREQ_X = 0.438879073;
+const float WARP_FREQ_Y = 2.42122483;
+const float WARP_AMP_X = 0.130662724;
+const float WARP_AMP_Y = 0.0295049623;
+const float ASPECT_X = 2.34533381;
+const float ASPECT_Y = 0.196176007;
+const float OFFSET_X = 0.345758796;
+const float OFFSET_Y = -0.0368553251;
+const float TILT = 0.261301994;
+const float ZOOM = 0.95255363;
+const float CENTRE_X = 0.369549811;
+const float CENTRE_Y = -0.60292381;
+const float GLOW_SIZE = 0.00183583167;
+const float FALLOFF = 0.382450253;
+const float VIGNETTE = 0.0676572919;
+const float FLOW_SPEED = 0.43675971;
 const float FLOW_DIRECTION = 1.0;
-const float BREATH_RATE = 0.45622313;
-const float BREATH_AMOUNT = 0.060891293;
-const float PHASE = 76.9150085;
+const float BREATH_RATE = 0.560411453;
+const float BREATH_AMOUNT = 0.0539357178;
+const float PHASE = 73.4915695;
 const float ECHO = 0.0;
-const float ECHO_SHIFT = -0.202632293;
-const float SOFTNESS = 0.00270066434;
-const float LIGHT_SWING = 0.171284825;
+const float ECHO_SHIFT = 0.199365258;
+const float SOFTNESS = 0.00167708786;
+const float LIGHT_SWING = 0.176818371;
 
 const float TAU = 6.28318530718;
 
@@ -1939,64 +1939,6 @@ void main() {
   fragColor = vec4(clamp(color, 0.0, 1.0), 1.0);
 }
 `;
-
-const RARITY_SHADER = `#version 300 es
-precision highp float;
-
-uniform sampler2D tScene;
-uniform sampler2D tGlyphs;
-uniform vec2 iResolution;
-uniform float iTime;
-uniform float uLightMode;
-uniform vec3 uDarkBackground;
-uniform vec3 uLightBackground;
-uniform float uPixelRatio;
-out vec4 fragColor;
-
-const float uStrength = 0.709605455;
-const float uScale = 1.18257558;
-const float uSeed = 0.406088412;
-const float uGlyphCount = 10.0;
-
-const float TAU = 6.28318530718;
-const vec3 LUMA = vec3(0.2126, 0.7152, 0.0722);
-
-vec3 toInk(vec3 c) { return mix(c - uDarkBackground, uLightBackground - c, uLightMode); }
-vec3 fromInk(vec3 ink) { return mix(uDarkBackground + ink, uLightBackground - ink, uLightMode); }
-vec3 sceneInk(vec2 uv) { return toInk(texture(tScene, clamp(uv, 0.0, 1.0)).rgb); }
-
-vec3 ascii(vec2 frag) {
-  vec2 cellPx = vec2(0.62, 1.0) * floor(uScale * 9.0 * uPixelRatio + 0.5);
-  vec2 cell = floor(frag / cellPx);
-  vec2 centre = (cell + 0.5) * cellPx;
-  vec3 ink = vec3(0.0);
-  ink += sceneInk(centre / iResolution) * 2.0;
-  ink += sceneInk((centre + cellPx * vec2(0.3, 0.3)) / iResolution);
-  ink += sceneInk((centre + cellPx * vec2(-0.3, 0.3)) / iResolution);
-  ink += sceneInk((centre + cellPx * vec2(0.3, -0.3)) / iResolution);
-  ink += sceneInk((centre + cellPx * vec2(-0.3, -0.3)) / iResolution);
-  ink /= 6.0;
-  float level = pow(clamp(dot(ink, LUMA) * (0.9 + 0.3 * uStrength), 0.0, 1.0), 0.9);
-  float glyph = floor(level * (uGlyphCount - 1.0) + 0.5);
-  vec2 local = (frag - cell * cellPx) / cellPx;
-  vec2 atlas = vec2((glyph + local.x) / uGlyphCount, local.y);
-  float mask = texture(tGlyphs, atlas).r;
-  vec3 under = sceneInk(frag / iResolution) * 0.45;
-  return under + ink * mask * (1.0 + 0.7 * uLightMode);
-}
-
-void main() {
-  vec2 frag = gl_FragCoord.xy;
-  vec3 ink = ascii(frag);
-  vec3 color = fromInk(clamp(ink, 0.0, 1.0));
-  fragColor = vec4(clamp(color, 0.0, 1.0), 1.0);
-}
-`;
-
-const GLYPHS = " .:;+*oO8@";
-const GLYPH_CELL = { width: 48, height: 80 };
-const GLYPH_MIP_LEVELS = 5;
-const GLYPH_FONT = "500 62px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
 const MAX_PIXELS = 2400000;
 const THEME_EASE = 7;
@@ -2162,77 +2104,17 @@ function uniforms(gl, program, names) {
   return Object.fromEntries(names.map((name) => [name, gl.getUniformLocation(program, name)]));
 }
 
-function createGlyphAtlas() {
-  const width = GLYPH_CELL.width * GLYPHS.length, height = GLYPH_CELL.height;
-  const canvas = document.createElement("canvas");
-  canvas.width = width;
-  canvas.height = height;
-  const context = canvas.getContext("2d", { willReadFrequently: true });
-  if (!context) throw new Error("A 2D canvas context is needed to draw the glyph atlas.");
-  context.fillStyle = "#000";
-  context.fillRect(0, 0, width, height);
-  context.fillStyle = "#fff";
-  context.textAlign = "center";
-  context.textBaseline = "middle";
-  context.font = GLYPH_FONT;
-  for (let i = 0; i < GLYPHS.length; i++) {
-    context.fillText(GLYPHS[i], i * GLYPH_CELL.width + GLYPH_CELL.width / 2, height / 2 + height * 0.04);
-  }
-  const levels = [context.getImageData(0, 0, width, height).data];
-  for (let level = 1, w = width, h = height; level < GLYPH_MIP_LEVELS; level++) {
-    const source = levels[level - 1];
-    const next = new Uint8ClampedArray((w / 2) * (h / 2) * 4);
-    for (let y = 0; y < h / 2; y++) {
-      for (let x = 0; x < w / 2; x++) {
-        const a = (y * 2 * w + x * 2) * 4, b = a + 4, c = a + w * 4, d = c + 4;
-        for (let ch = 0; ch < 4; ch++) next[(y * (w / 2) + x) * 4 + ch] = (source[a + ch] + source[b + ch] + source[c + ch] + source[d + ch] + 2) >> 2;
-      }
-    }
-    levels.push(next);
-    w /= 2; h /= 2;
-  }
-  return { width, height, levels };
-}
-
-function uploadGlyphAtlas(gl) {
-  const atlas = createGlyphAtlas();
-  const texture = gl.createTexture();
-  gl.bindTexture(gl.TEXTURE_2D, texture);
-  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
-  atlas.levels.forEach((pixels, level) => {
-    gl.texImage2D(gl.TEXTURE_2D, level, gl.RGBA, atlas.width >> level, atlas.height >> level, 0, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
-  });
-  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 0);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAX_LEVEL, atlas.levels.length - 1);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-  return texture;
-}
-
 function createShader(canvas, options = {}) {
+  /* « speed » etire le temps donne au shader : les constantes de l'auteur
+     restent intactes, seule la cadence change. */
+  const speed = options.speed ?? 1;
   const gl = canvas.getContext("webgl2", { alpha: false, antialias: false, depth: false, stencil: false });
   if (!gl) throw new Error("WebGL2 is not available in this browser.");
   const dark = parseHex(options.background?.dark ?? "#090909");
   const light = parseHex(options.background?.light ?? "#ffffff");
-  /* « speed » etire le temps donne au shader : les constantes de l'auteur
-     restent intactes, seule la cadence change. */
-  const speed = options.speed ?? 1;
 
   const field = compile(gl, FIELD_SHADER);
   const fieldUniforms = uniforms(gl, field, ["iResolution", "iTime", "uLightMode", "uDarkBackground", "uLightBackground"]);
-  const post = compile(gl, RARITY_SHADER);
-  const postUniforms = uniforms(gl, post, ["tScene", "tGlyphs", "iResolution", "iTime", "uLightMode", "uDarkBackground", "uLightBackground", "uPixelRatio"]);
-  const framebuffer = gl.createFramebuffer();
-  const scene = gl.createTexture();
-  gl.bindTexture(gl.TEXTURE_2D, scene);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-  let sceneWidth = 0, sceneHeight = 0;
-  const glyphs = uploadGlyphAtlas(gl);
 
   const setFrame = (locations, time, theme) => {
     gl.uniform2f(locations.iResolution, canvas.width, canvas.height);
@@ -2242,55 +2124,20 @@ function createShader(canvas, options = {}) {
     gl.uniform3fv(locations.uLightBackground, light);
   };
 
-  return animate(options, (time, theme, pixelRatio) => {
+  return animate(options, (time, theme, _pixelRatio) => {
     const { width, height } = canvas;
     gl.viewport(0, 0, width, height);
-    if (sceneWidth !== width || sceneHeight !== height) {
-      sceneWidth = width;
-      sceneHeight = height;
-      gl.bindTexture(gl.TEXTURE_2D, scene);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width, height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
-      gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
-      gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, scene, 0);
-      gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-    }
-    const drawThemed = (mode) => {
-      gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
-      gl.useProgram(field);
-      setFrame(fieldUniforms, time, mode);
-      gl.drawArrays(gl.TRIANGLES, 0, 3);
-      gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-
-      gl.useProgram(post);
-      setFrame(postUniforms, time, mode);
-      gl.uniform1f(postUniforms.uPixelRatio, pixelRatio);
-      gl.activeTexture(gl.TEXTURE0);
-      gl.bindTexture(gl.TEXTURE_2D, scene);
-      gl.uniform1i(postUniforms.tScene, 0);
-      gl.activeTexture(gl.TEXTURE1);
-      gl.bindTexture(gl.TEXTURE_2D, glyphs);
-      gl.uniform1i(postUniforms.tGlyphs, 1);
-      gl.drawArrays(gl.TRIANGLES, 0, 3);
-    };
-    if (theme <= 0 || theme >= 1) { drawThemed(theme); return; }
-    drawThemed(0);
-    gl.enable(gl.BLEND);
-    gl.blendColor(0, 0, 0, theme);
-    gl.blendFunc(gl.CONSTANT_ALPHA, gl.ONE_MINUS_CONSTANT_ALPHA);
-    drawThemed(1);
-    gl.disable(gl.BLEND);
+    gl.useProgram(field);
+    setFrame(fieldUniforms, time, theme);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
   }, canvas, () => {
     gl.deleteProgram(field);
-    gl.deleteProgram(post);
-    gl.deleteFramebuffer(framebuffer);
-    gl.deleteTexture(scene);
-    gl.deleteTexture(glyphs);
   }, Math.min(gl.getParameter(gl.MAX_TEXTURE_SIZE), gl.getParameter(gl.MAX_RENDERBUFFER_SIZE)));
 }
 
 /* ── mise en place sur la couverture ──────────────────────────────────────
    Mode clair, avec le blanc de la page comme fond : le canvas est opaque,
-   il remplace le fond plutot que de s'y superposer. Le temps est ralenti.
+   il remplace le fond plutot que de s'y superposer.
    Repli : sans WebGL2, ou si un shader ne compile pas, la toile est retiree
    et la couverture s'affiche comme avant. */
 const toile = document.querySelector(".cv-toile");
