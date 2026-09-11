@@ -39,11 +39,11 @@
   --t-xs:.7rem;
   --t-s:.8rem;
   --t-m:.94rem;
-  --t-l:clamp(1rem,1.15vw,1.14rem);
-  --t-xl:clamp(1.2rem,1.95vw,1.44rem);
-  --t-2xl:clamp(1.4rem,2.5vw,1.82rem);
-  --t-3xl:clamp(2rem,3.8vw,3rem);
-  --t-4xl:clamp(3rem,6.2vw,4.6rem);
+  --t-l:clamp(.98rem,1.1vw,1.1rem);
+  --t-xl:clamp(1.08rem,1.5vw,1.22rem);
+  --t-2xl:clamp(1.22rem,1.9vw,1.46rem);
+  --t-3xl:clamp(1.5rem,2.3vw,1.95rem);
+  --t-4xl:clamp(2.1rem,3.6vw,2.9rem);
   --tr-serre:-.032em;
   --tr-doux:-.018em;
   --tr-large:.11em;
@@ -293,31 +293,6 @@ br.dk{display:none}
 .cv-toile.vue{opacity:1}
 body:has(.qz.on) .cv-toile{display:none}
 
-/* Une grille de mesure, revelee par un balayage lent. C'est ce qui fait la
-   difference entre un decor et un instrument : la trame est fixe, toujours
-   la, mais on ne la voit que la ou passe le releve. Les croisements marquent
-   un peu plus que les traits — ce sont les points de mesure.
-   Elle est posee entre le champ et le voile : le voile l'attenue donc aussi
-   sous le texte, sans qu'il faille la traiter a part. */
-.cv-grille{position:absolute;inset:0;z-index:0;pointer-events:none;
-  --trait:rgba(12,18,32,.05);
-  --noeud:rgba(12,18,32,.17);
-  background:
-    radial-gradient(circle at 0 0,var(--noeud) 0 1.5px,transparent 1.6px) 0 0/78px 78px,
-    repeating-linear-gradient(90deg,var(--trait) 0 1px,transparent 1px 78px),
-    repeating-linear-gradient(0deg,var(--trait) 0 1px,transparent 1px 78px);
-  -webkit-mask-image:linear-gradient(112deg,transparent 0 28%,#000 41%,#000 53%,transparent 66%);
-  mask-image:linear-gradient(112deg,transparent 0 28%,#000 41%,#000 53%,transparent 66%);
-  -webkit-mask-size:300% 300%;mask-size:300% 300%;
-  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
-  animation:releve 21s linear infinite}
-@keyframes releve{
-  from{-webkit-mask-position:118% 6%;mask-position:118% 6%}
-  to{-webkit-mask-position:-48% 94%;mask-position:-48% 94%}}
-@media (prefers-reduced-motion:reduce){
-  .cv-grille{animation:none;-webkit-mask-position:34% 50%;mask-position:34% 50%}}
-body:has(.qz.on) .cv-grille{display:none}
-
 /* Un voile blanc leve le fond sous la colonne de texte, sans jamais l'effacer :
    il plafonne a 92 % et s'eteint aux trois quarts de la largeur. Le fond reste
    donc lisible partout, seulement attenue la ou l'on lit. Aucune arete : la
@@ -337,7 +312,7 @@ body:has(.qz.on) .cv-grille{display:none}
     rgba(255,255,255,.55) 58%, rgba(255,255,255,.22) 74%,
     rgba(255,255,255,0) 88%)}
 }
-.cv > *:not(.cv-toile):not(.cv-voile):not(.cv-grille){position:relative;z-index:1}
+.cv > *:not(.cv-toile):not(.cv-voile){position:relative;z-index:1}
 
 /* Le logo n'est plus une bande d'en-tete : il ouvre la colonne, au-dessus
    de « Enquête nationale », et prend la taille qui va avec. */
@@ -635,7 +610,7 @@ body:has(.qz.on) .cv-grille{display:none}
   .qz.bilan .qz-visuel{display:none}
 }
 .qz-annonce-t{margin:16px auto 0;max-width:24ch;font-family:var(--display);
-  font-size:clamp(2.1rem,4.6vw,3.7rem);line-height:1.04;
+  font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.08;
   letter-spacing:var(--tr-serre);font-weight:600;text-wrap:balance}
 .qz-annonce-i{margin:16px auto 0;max-width:60ch;font-size:clamp(1rem,1.25vw,1.15rem);line-height:1.5;
   color:#5C5C5C;text-wrap:pretty}   /* un cran plus sombre que --ink-2 : le fond est teinte */
@@ -857,7 +832,6 @@ body:has(.qz.on) .cv-grille{display:none}
 <body>
 <section class="cv" id="couverture">
   <canvas class="cv-toile" aria-hidden="true"></canvas>
-  <div class="cv-grille" aria-hidden="true"></div>
   <div class="cv-voile" aria-hidden="true"></div>
   <div class="cv-corps">
     <div>
