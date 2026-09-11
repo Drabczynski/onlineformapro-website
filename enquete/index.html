@@ -265,10 +265,10 @@ body:has(.qz.on) .cv-toile{display:none}
 .cv-acts small{font-size:.81rem;color:var(--ink-2)}
 
 /* colonne de droite : ce qu’on donne, ce qu’on demande */
-/* Blanc plein, pas le gris tres clair : sur le fond anime, une carte
-   translucide ou teintee prenait les couleurs du shader. */
+/* Blanc, sans filet, a peine translucide : le fond anime transparait juste
+   assez pour que la carte n'ait pas l'air posee sur une autre page. */
 .cv-panneau{border-radius:16px;padding:clamp(24px,2.9vw,40px) clamp(22px,2.6vw,36px);
-  background:#FFFFFF;border:1px solid var(--line)}
+  background:rgba(255,255,255,.93)}
 .cv-panneau h2{font-size:.82rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
   color:var(--ink-2)}
 .cv-dons{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;
