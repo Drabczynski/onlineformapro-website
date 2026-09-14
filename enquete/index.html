@@ -150,11 +150,6 @@ html.fige,body.fige{overflow:hidden}
    sous un canvas positionne */
 .qz.ch1 .qz-barre,.qz.ch1 .qz-tete,.qz.ch1 .qz-scene,.qz.ch1 .qz-pied{
   position:relative;z-index:1}
-/* Sur fond anime, l'encre secondaire des suggestions tombait a 4,54:1 —
-   au-dessus du seuil, mais sans marge pour un fond qui bouge. Elle passe a
-   l'encre pleine sur ce seul chapitre : l'ecart est invisible a l'oeil, la
-   marge devient large. */
-.qz.ch1 .qz-opt{color:var(--ink)}
 /* les barres reprennent la couleur du fond, sinon elles la masqueraient */
 .qz.ch1 .qz-tete,.qz.ch1 .qz-pied{background:transparent}
 .qz.ch1 .qz-pied{border-top-color:color-mix(in srgb,var(--ink) 10%,transparent)}
@@ -224,13 +219,18 @@ br.dk{display:none}
 .qz-opts{margin-top:clamp(20px,2.6vw,30px);display:flex;flex-direction:column;gap:8px}
 /* dix choix et plus : deux colonnes, dans la carte large */
 @media (min-width:720px){.qz-opts.deux{display:grid;grid-template-columns:1fr 1fr;gap:8px 10px}}
+/* Blanc plein, sans filet. L'etat ne se lit donc plus sur un contour mais
+   sur l'aplat et sur la pastille : survol en teinte legere, choix en teinte
+   plus dense avec la pastille pleine. La bordure transparente reste, elle
+   tient la boite — sans elle, chaque changement d'etat decalerait le texte
+   d'un pixel. */
 .qz-opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;
-  padding:13px 16px;border:1px solid var(--line);border-radius:9px;cursor:pointer;
+  padding:13px 16px;border:1px solid transparent;border-radius:9px;cursor:pointer;
   font-family:inherit;font-size:.97rem;line-height:1.4;color:var(--ink-2);
-  background:rgba(255,255,255,.5);
-  transition:border-color .15s,background .15s,color .15s}
-.qz-opt:hover{border-color:var(--acc-l);background:var(--acc-t)}
-.qz-opt[aria-checked="true"]{border-color:var(--acc);background:var(--acc-t);color:var(--ink)}
+  background:#fff;
+  transition:background .15s,color .15s}
+.qz-opt:hover{background:var(--acc-t)}
+.qz-opt[aria-checked="true"]{background:var(--acc-t2);color:var(--ink)}
 .qz-touche{flex:none;min-width:23px;height:23px;padding:0 5px;border:1px solid var(--line);border-radius:5px;
   font-variant-numeric:tabular-nums;
   display:grid;place-items:center;font-size:.71rem;color:var(--acc);border-color:var(--acc-l);
