@@ -328,7 +328,22 @@ body:has(.qz.on) .cv-toile{display:none}
   letter-spacing:var(--tr-large);
   text-transform:uppercase;color:var(--ink-2)}
 .cv-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red)}
-.cv h1{margin-top:16px;font-size:var(--t-3xl);line-height:1.08;
+/* Le millesime sort de la phrase et devient une mesure : chiffres en mono
+   sous un filet epais, le titre a cote. Deux gains — la page prend une
+   signature, et le titre francais, toujours long, retombe sur deux lignes
+   nettes. Le tout reste un seul h1 : « 2026 · Edition 1 · Barometre de
+   l'intelligence artificielle dans les organismes de formation ». */
+.cv-titre{margin-top:clamp(18px,2vw,26px);display:grid;gap:clamp(16px,2.4vw,32px);
+  align-items:start;justify-items:start}
+@media (min-width:680px){.cv-titre{grid-template-columns:auto minmax(0,1fr)}}
+.cv-an{font-family:var(--mono);font-weight:600;font-size:clamp(2.8rem,5vw,4.2rem);
+  line-height:.82;letter-spacing:-.05em;color:var(--ink);
+  border-top:2px solid var(--ink);padding-top:clamp(9px,1vw,13px);
+  font-variant-numeric:tabular-nums}
+.cv-an i{display:block;margin-top:clamp(9px,1vw,13px);font-style:normal;
+  font-size:var(--t-xs);font-weight:500;letter-spacing:var(--tr-large);
+  text-transform:uppercase;color:var(--ink-3)}
+.cv-t{display:block;padding-top:clamp(2px,.5vw,7px);font-size:var(--t-3xl);line-height:1.1;
   letter-spacing:var(--tr-serre);text-wrap:balance}
 .cv-promesse{margin-top:clamp(15px,1.7vw,21px);font-size:var(--t-l);line-height:1.45;
   color:var(--ink);max-width:52ch;font-style:normal;text-wrap:pretty}
@@ -837,7 +852,7 @@ body:has(.qz.on) .cv-toile{display:none}
     <div>
       <a class="cv-logo ap" href="/" style="--i:0" aria-label="Onlineformapro, accueil"><img src="../catalogue/img/logo.svg" alt="Onlineformapro" width="139" height="57"></a>
       <span class="cv-eyebrow ap" style="--i:1">Enquête nationale</span>
-      <h1 class="ap" style="--i:2">Baromètre 2026 de l’intelligence artificielle <br>dans les organismes de formation</h1>
+      <h1 class="cv-titre ap" style="--i:2"><span class="cv-an">2026 <i>Édition 1</i></span> <span class="cv-t">Baromètre de l’intelligence artificielle <br>dans les organismes de formation</span></h1>
       <p class="cv-promesse ap" style="--i:3">Où en sont réellement les organismes de formation dans <span class="nb">l’utilisation de l’IA</span>&nbsp;?</p>
       <p class="cv-intro ap" style="--i:4">Nous interrogeons les organismes de formation, les CFA et les services formation sur leurs usages réels de l’IA. À la fin, vous obtenez votre indice de maturité et une analyse détaillée, <span class="nb">domaine par domaine</span>.</p>
       <div class="cv-acts ap" style="--i:5">
