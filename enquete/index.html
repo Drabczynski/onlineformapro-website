@@ -72,7 +72,7 @@ h1,h2,h3,h4{margin:0;font-family:var(--display);font-weight:600;
    phrases, elles, restent dans la fonte de texte. C'est la seule regle,
    mais elle tient toute l'identite. */
 .cv-eyebrow,.cv-panneau h2,.qz-partie,.qz-num,.bl-eti,.bl-sig-type,
-.bl-hor h4,.qz-ech,.qz-astuce,.cv-pied,.eyebrow,.bl-leg,
+.bl-hor h4,.qz-ech,.cv-pied,.eyebrow,.bl-leg,
 .cv-ech-noms span,.qz-toast-eti{
   font-family:var(--lib);text-transform:uppercase;
   letter-spacing:var(--tr-large);font-weight:500}
@@ -240,13 +240,12 @@ br.dk{display:none}
    hidden reste pose, et visibility:hidden suffit a le sortir du tri de
    tabulation comme de l'arbre d'accessibilite. */
 .qz-pied .btn[hidden]{display:inline-flex!important;visibility:hidden}
-.qz-pied .btn-primary{background:var(--acc);transition:filter .18s}
+/* Continuer tient le coin bas droite : il est le dernier du pied et pousse
+   tout ce qui le precede vers la gauche. Cache, il garde sa place, donc la
+   marge automatique reste portee par lui et le pied ne bouge pas. */
+.qz-pied .btn-primary{margin-left:auto;background:var(--acc);transition:filter .18s}
 .qz-pied .btn-primary:hover{background:var(--acc);filter:brightness(.88)}
-.qz-astuce{margin-left:auto;font-size:.77rem;color:var(--ink-2)}
-.qz-astuce kbd{font-family:inherit;border:1px solid var(--line);border-radius:4px;
-  padding:1px 5px;font-size:.72rem;background:var(--cream)}
 .qz-err{font-size:.81rem;color:var(--red)}
-@media (max-width:600px){.qz-astuce{display:none}}
 
 /* fenetres basses : les listes longues (jusqu’a neuf choix) doivent tenir
    sans faire defiler la question, sinon le principe « un ecran, une question »
@@ -889,9 +888,8 @@ body:has(.qz.on) .cv-toile{display:none}
   </div>
   <div class="qz-pied">
     <button class="btn btn-line" type="button" id="qz-prec" hidden>Retour</button>
-    <button class="btn btn-primary" type="button" id="qz-suiv">Continuer</button>
     <span class="qz-err" id="qz-err" hidden></span>
-    <span class="qz-astuce"><span class="qz-astuce-ch"><kbd>1</kbd>…<kbd>9</kbd> pour choisir &middot; </span><kbd>Entrée</kbd> pour continuer &middot; <kbd>Échap</kbd> pour fermer</span>
+    <button class="btn btn-primary" type="button" id="qz-suiv">Continuer</button>
   </div>
 </div>
 
@@ -1274,14 +1272,12 @@ body:has(.qz.on) .cv-toile{display:none}
         scene.querySelector('.qz-rang').appendChild(d);
         typo(d);
         majBarre();
-        var ch = document.querySelector('.qz-astuce-ch');
         err.hidden = true;
 
         if (e.type === 'annonce') {
           /* le nom de la partie s’affiche, puis s’efface de lui-meme ;
              un clic ou Entree n’attendent pas */
           bPrec.hidden = true; bSuiv.hidden = true;
-          if (ch) ch.hidden = true;
           /* l'annonce va jusqu'au bout : un clic ne l'accelere ni ne la coupe */
           scene.onclick = null;
           minuteur = window.setTimeout(function(){ if (ECRANS[cur] === e) suivant(); }, anime ? 2100 : 800);
@@ -1293,8 +1289,6 @@ body:has(.qz.on) .cv-toile{display:none}
         bPrec.hidden = indexReel(cur) === 0;
         bSuiv.hidden = e.auto === true;
         bSuiv.textContent = e.type === 'contact' ? 'Voir mon indice' : 'Continuer';
-        /* les lettres ne servent qu’aux ecrans a choix */
-        if (ch) ch.hidden = !d.querySelector('.qz-opt');
         var f = d.querySelector('.qz-opt, .qz-cel, textarea, input');
         if (f) f.focus({ preventScroll: true });
         var n = deblocagePour('sur', e.id);
