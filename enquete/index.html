@@ -582,39 +582,9 @@ body:has(.qz.on) .cv-toile{display:none}
 .qz-carte.qz-annonce{width:min(100%,980px);text-align:center;cursor:default}
 .qz-annonce-n{font-size:.8rem;letter-spacing:.09em;text-transform:uppercase;font-weight:500;
   color:color-mix(in srgb,var(--acc) 80%,black)}   /* sur le fond teinte, l'accent pur passait sous 4,5:1 */
-/* pendant l'annonce, le visuel de la partie occupe tout l'ecran, sous un
-   voile sombre qui garde le titre lisible quelle que soit la photo */
-/* Le fond est un enfant de .qz, pas de la scene : il passe donc par-dessus
-   la barre de progression, l'en-tete et le pied, et l'image tient vraiment
-   toute l'interface. Seul le titre remonte au-dessus de lui. */
-.qz.annonce .qz-scene{z-index:21}
-/* La mise a l'echelle porte sur l'enfant, pas sur la boite : appliquee au
-   .qz-fond lui-meme, elle debordait la scene et creait 24 px de defilement
-   sur des ecrans qui tenaient pourtant. */
-.qz-fond{position:absolute;inset:0;z-index:20;pointer-events:none;overflow:hidden;
-  opacity:0;transition:opacity .3s var(--ease)}
-.qz-fond::before{content:"";position:absolute;inset:0;transform:scale(1.08);
-  transform-origin:center;will-change:transform;
-  background:var(--visuel,none) center/cover no-repeat,var(--acc);
-  transition:transform .55s var(--ease)}
-/* Deux couches : un voile general qui garde la photo lisible, et un ecran
-   ovale sous le bloc de titre, toujours centre. Sans lui, le blanc du titre
-   tombait a 1:1 sur les zones claires de certaines photos. */
-.qz-fond::after{content:"";position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 66% 50% at 50% 50%,rgba(6,6,12,.70),rgba(6,6,12,0) 76%),
-    linear-gradient(180deg,rgba(8,8,14,.44),rgba(8,8,14,.64))}
-/* entree : l'image se pose vite, puis continue de s'approcher lentement
-   pendant qu'on lit le titre ; sortie : elle s'eloigne en s'effacant.
-   La montee est courte parce que le titre blanc n'a plus d'aplat de
-   couleur sous lui : il attend l'image (voir les retards ci-dessous). */
-.qz.annonce .qz-fond{opacity:1;transition:opacity .32s var(--ease)}
-.qz.annonce .qz-fond::before{transform:scale(1);
-  transition:transform 2.6s cubic-bezier(.16,1,.3,1)}
-.qz.annonce .qz-annonce-n{color:rgba(255,255,255,.86)}
-.qz.annonce .qz-annonce-t{color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.25)}
-.qz.annonce .qz-annonce-i{color:rgba(255,255,255,.94)}
-.qz.annonce .qz-annonce-trait{background:#fff}
+/* L'annonce est typographique : le nom de la partie sur le fond courant,
+   sans photo plein ecran. Le visuel de partie ne sert plus qu'en vignette,
+   a cote des questions. */
 .qz.annonce .qz-visuel{display:none}
 
 /* ══ visuel de partie a cote des questions ══ */
@@ -660,17 +630,15 @@ body:has(.qz.on) .cv-toile{display:none}
 .qz-annonce.sort{animation:annonceOut .38s var(--ease) both}
 @keyframes annonceIn{from{opacity:0}to{opacity:1}}
 .qz-annonce.entre > *{animation:annElem .75s var(--ease) both}
-.qz-annonce.entre .qz-annonce-n{animation-delay:.18s}
-.qz-annonce.entre .qz-annonce-t{animation-delay:.27s}
-.qz-annonce.entre .qz-annonce-i{animation-delay:.38s}
-.qz-annonce.entre .qz-annonce-trait{animation:trait .9s .52s var(--ease) both}
+.qz-annonce.entre .qz-annonce-n{animation-delay:.05s}
+.qz-annonce.entre .qz-annonce-t{animation-delay:.13s}
+.qz-annonce.entre .qz-annonce-i{animation-delay:.23s}
+.qz-annonce.entre .qz-annonce-trait{animation:trait .9s .34s var(--ease) both}
 @keyframes annElem{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes annonceOut{to{opacity:0;transform:translateY(-10px) scale(.99)}}
 @keyframes trait{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @media (prefers-reduced-motion:reduce){
   .qz-annonce.entre,.qz-annonce.sort,.qz-annonce-trait,.qz-annonce.entre > *{animation:none}
-  .qz-fond,.qz.annonce .qz-fond{transition:opacity .2s linear}
-  .qz-fond::before,.qz.annonce .qz-fond::before{transform:none;transition:none}
 }
 /* ══════════ BILAN ══════════ */
 .qz-res{text-align:left;width:min(100%,1120px)}
@@ -1037,9 +1005,9 @@ body:has(.qz.on) .cv-toile{display:none}
        palette (bande de clarte, chroma, separation daltonienne entre
        voisines, 3:1 sur la surface), l'ordre compte donc. Le contact et le
        bilan reprennent le rouge de marque. */
-    /* Un visuel par partie : plein ecran derriere le titre de la partie, puis
-       en vignette a cote des questions. Les fichiers img/partie-N.svg sont
-       des visuels de tenue ; une photo au meme nom (jpg ou svg) les remplace. */
+    /* Un visuel par partie, en vignette a cote des questions. Les fichiers
+       img/partie-N.svg sont des visuels de tenue ; une photo au meme nom
+       (jpg ou svg) les remplace. */
     /* Les photos fournies, redimensionnees pour le web (1600 px de large). */
     var VISUELS = ['img/partie-1.jpg', 'img/partie-2.jpg', 'img/partie-3.jpg', 'img/partie-4.jpg',
                    'img/partie-5.jpg', 'img/partie-6.jpg', 'img/partie-7.jpg', 'img/partie-8.jpg'];
@@ -1052,7 +1020,6 @@ body:has(.qz.on) .cv-toile{display:none}
       /* le fond anime n'accompagne que les questions du premier chapitre */
       qz.classList.toggle('ch1', p === 0 && e.type !== 'annonce');
       var src = p === undefined ? '' : VISUELS[p];
-      qz.style.setProperty('--visuel', src ? 'url("' + src + '")' : 'none');
       var rang = scene.querySelector('.qz-rang'), vis = rang.querySelector('.qz-visuel');
       var im = vis.querySelector('img');
       if (src) { if (im.getAttribute('src') !== src) im.src = src; vis.hidden = false; }
@@ -1844,16 +1811,11 @@ body:has(.qz.on) .cv-toile{display:none}
        pourrait pas se transitionner. */
     var monteScene = function(){
       if (scene.querySelector('.qz-rang')) return;
-      var f = document.createElement('div');
-      f.className = 'qz-fond';
-      f.setAttribute('aria-hidden', 'true');
       var rang = document.createElement('div');
       rang.className = 'qz-rang';
       rang.innerHTML = '<div class="qz-visuel" aria-hidden="true"><img alt=""></div>';
       scene.innerHTML = '';
       scene.appendChild(rang);
-      /* le fond est pose sur le cadre entier, au-dessus des barres */
-      qz.insertBefore(f, qz.firstChild);
     };
 
     var ouvrir = function(){
