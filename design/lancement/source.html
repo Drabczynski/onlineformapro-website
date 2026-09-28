@@ -1,0 +1,605 @@
+<title>Baromètre IA Lancement</title>
+<style>
+@font-face{font-family:"OFP Sans";src:url(data:font/woff2;base64,@@SANS@@) format("woff2");
+  font-weight:400 700;font-style:normal;font-display:block}
+@font-face{font-family:"OFP Mono";src:url(data:font/woff2;base64,@@MONO@@) format("woff2");
+  font-weight:400 500;font-style:normal;font-display:block}
+
+@property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
+
+*,*::before,*::after{box-sizing:border-box}
+
+:root{
+  color-scheme:dark;
+  --bg:#0A0A0C; --bg-2:#101014; --bg-3:#16161B;
+  --li:rgba(255,255,255,.085); --li-2:rgba(255,255,255,.15);
+  --tx:#F5F3F1; --tx-2:#9D9893; --tx-3:#67635E;
+  --red:#FF2E5F;        /* le rouge de marque, remonté pour l'écran */
+  --red-2:#E01A4F;      /* #E01A4F, la valeur du site */
+  --red-3:#8E0F33;
+  --cool:#3D4ED8;
+  --sans:"OFP Sans",ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"OFP Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --e:cubic-bezier(.22,1,.36,1);
+}
+
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* ============ décor ============ */
+.deco{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.halo{position:absolute;border-radius:50%;will-change:transform}
+.halo-a{width:min(1180px,125vw);aspect-ratio:1;left:-20%;top:-42%;
+  background:radial-gradient(circle,rgba(255,46,95,.30),rgba(255,46,95,.10) 36%,transparent 66%);
+  animation:driftA 30s ease-in-out infinite}
+.halo-b{width:min(1000px,110vw);aspect-ratio:1;right:-24%;bottom:-40%;
+  background:radial-gradient(circle,rgba(61,78,216,.22),rgba(61,78,216,.07) 40%,transparent 68%);
+  animation:driftB 38s ease-in-out infinite}
+.halo-c{width:min(620px,72vw);aspect-ratio:1;left:24%;top:-18%;
+  background:radial-gradient(circle,rgba(255,110,140,.22),transparent 62%);
+  animation:driftA 24s ease-in-out infinite reverse}
+@keyframes driftA{0%,100%{transform:translate3d(0,0,0) scale(1)}
+  50%{transform:translate3d(5%,4%,0) scale(1.1)}}
+@keyframes driftB{0%,100%{transform:translate3d(0,0,0) scale(1.05)}
+  50%{transform:translate3d(-6%,-4%,0) scale(1)}}
+
+.grille{position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+  background-size:76px 76px;
+  -webkit-mask-image:radial-gradient(ellipse 88% 72% at 50% 38%,#000 18%,transparent 76%);
+  mask-image:radial-gradient(ellipse 88% 72% at 50% 38%,#000 18%,transparent 76%)}
+.spot{position:absolute;inset:0;opacity:0;transition:opacity .5s;
+  background:radial-gradient(560px circle at var(--mx,50%) var(--my,30%),
+    rgba(255,46,95,.11),transparent 62%)}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:40;opacity:.045;
+  mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E")}
+.vignette{position:fixed;inset:0;pointer-events:none;z-index:39;
+  background:radial-gradient(ellipse 120% 100% at 50% 45%,transparent 52%,rgba(0,0,0,.55))}
+
+/* ============ structure ============ */
+.app{position:relative;z-index:1}
+.ec{display:none;min-height:100vh;
+  min-height:calc(100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));
+  flex-direction:column;padding:0 clamp(18px,4.2vw,64px) clamp(54px,5vw,62px)}
+.ec.on{display:flex}
+
+/* ---- barre haute ---- */
+.tete{display:flex;align-items:center;gap:14px;row-gap:9px;flex-wrap:wrap;
+  padding:clamp(18px,2.4vw,26px) 0;flex:0 0 auto}
+.mark{font-size:clamp(15px,1.5vw,17.5px);font-weight:600;letter-spacing:-.025em;
+  color:var(--tx);white-space:nowrap}
+.mark i{font-style:normal;color:var(--red);position:relative}
+.mark i::after{content:"";position:absolute;top:-.34em;left:50%;width:.16em;height:.16em;
+  border-radius:50%;background:var(--red);transform:translateX(-50%);
+  box-shadow:0 0 8px var(--red)}
+.pastille{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);
+  font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--tx-2);
+  border:1px solid var(--li);border-radius:999px;padding:5px 11px;
+  background:rgba(255,255,255,.028);white-space:nowrap}
+.pastille b{color:var(--tx);font-weight:500}
+.vivant{width:5px;height:5px;border-radius:50%;background:var(--red);flex:0 0 5px;
+  box-shadow:0 0 0 0 rgba(255,46,95,.7);animation:pouls 2.4s ease-out infinite}
+@keyframes pouls{0%{box-shadow:0 0 0 0 rgba(255,46,95,.6)}
+  70%{box-shadow:0 0 0 7px rgba(255,46,95,0)}100%{box-shadow:0 0 0 0 rgba(255,46,95,0)}}
+.tete-d{margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;row-gap:9px}
+@media (max-width:880px){
+  .tete-d{margin-left:0}
+  .sm-off{display:none}
+  .lg{display:none}
+}
+
+/* ---- couverture ---- */
+.cv{flex:1;display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);
+  gap:clamp(28px,4vw,66px);align-items:center;padding:clamp(14px,2vw,26px) 0}
+@media (max-width:1000px){.cv{grid-template-columns:1fr;align-items:start;
+  padding-top:8px;gap:34px}}
+
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);
+  font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--tx-2);
+  border:1px solid var(--li);border-radius:999px;padding:7px 14px 7px 11px;
+  background:rgba(255,255,255,.03);margin-bottom:clamp(18px,2.4vw,26px)}
+h1{font-size:clamp(35px,5.6vw,74px);line-height:1.02;letter-spacing:-.042em;
+  font-weight:600;margin:0 0 clamp(16px,1.8vw,22px);max-width:15ch;text-wrap:balance}
+.grad{background:linear-gradient(96deg,#FFFFFF 4%,#FFC4D1 34%,#FF3F6C 74%,#E01A4F 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  -webkit-text-fill-color:transparent}
+.lede{font-size:clamp(14.5px,1.35vw,17px);line-height:1.6;color:var(--tx-2);
+  max-width:46ch;margin:0 0 clamp(22px,2.6vw,32px)}
+.lede b{color:var(--tx);font-weight:500}
+
+.actes{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  margin-bottom:clamp(20px,2.4vw,28px)}
+.btn{font-family:inherit;font-size:14.5px;font-weight:500;border:0;cursor:pointer;
+  border-radius:11px;padding:13px 21px;display:inline-flex;align-items:center;gap:10px;
+  transition:transform .18s var(--e),filter .18s,background .18s,border-color .18s;
+  white-space:nowrap}
+.btn:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.btn-p{background:linear-gradient(180deg,#FF4C74,#E01A4F);color:#fff;font-weight:600;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 0 0 1px rgba(255,255,255,.1),
+    0 12px 34px -10px rgba(224,26,79,.75),0 2px 8px -2px rgba(0,0,0,.6)}
+.btn-p:hover{transform:translateY(-1.5px);filter:brightness(1.07)}
+.btn-p:active{transform:translateY(0)}
+.btn-f{background:rgba(255,255,255,.04);color:var(--tx);border:1px solid var(--li)}
+.btn-f:hover{background:rgba(255,255,255,.075);border-color:var(--li-2)}
+.fleche{display:inline-block;transition:transform .22s var(--e)}
+.btn:hover .fleche{transform:translateX(3px)}
+
+@media (max-width:560px){
+  .actes{flex-direction:column;align-items:stretch}
+  .actes .btn{justify-content:center;padding-block:15px}
+}
+.faits{display:flex;flex-wrap:wrap;gap:0 18px;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--tx-3)}
+.faits span{display:flex;align-items:center;gap:8px;padding:3px 0}
+.faits span::before{content:"";width:3px;height:3px;border-radius:50%;
+  background:var(--tx-3);flex:0 0 3px}
+
+/* ---- la carte produit ---- */
+.scene{perspective:1700px;display:flex;justify-content:center}
+.shot{width:100%;max-width:470px;transform:rotateY(-13deg) rotateX(5deg) rotateZ(.7deg);
+  transition:transform .7s var(--e)}
+.scene:hover .shot{transform:rotateY(-7deg) rotateX(3deg) rotateZ(.3deg)}
+@media (max-width:1000px){.shot{transform:none;max-width:none}.scene:hover .shot{transform:none}}
+.verre{background:linear-gradient(170deg,rgba(255,255,255,.055),rgba(255,255,255,.012));
+  border:1px solid var(--li);border-radius:16px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 60px 110px -40px rgba(0,0,0,.95),
+    0 0 90px -34px rgba(224,26,79,.4);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.shot-t{display:flex;align-items:center;gap:9px;padding:13px 16px;
+  border-bottom:1px solid var(--li)}
+.shot-t .pt{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.13)}
+.shot-t b{font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--tx-3);font-weight:400;margin-left:5px}
+.ex{margin-left:auto;font-family:var(--mono);font-size:9px;letter-spacing:.1em;
+  text-transform:uppercase;color:#FFB0C2;background:rgba(224,26,79,.16);
+  border:1px solid rgba(255,46,95,.3);border-radius:4px;padding:3px 7px}
+.shot-c{padding:20px 20px 22px}
+.jauge-t{display:flex;align-items:flex-end;gap:16px;margin-bottom:18px}
+.jauge{width:132px;flex:0 0 132px}
+.jauge svg{display:block;width:100%;height:auto;overflow:visible}
+.arc{stroke-dasharray:270.2;stroke-dashoffset:270.2;
+  transition:stroke-dashoffset 1.5s var(--e)}
+.on .arc{stroke-dashoffset:113.5}
+.chiffre{font-size:44px;line-height:.9;font-weight:600;letter-spacing:-.045em;
+  font-variant-numeric:tabular-nums}
+.chiffre small{font-size:16px;color:var(--tx-3);font-weight:400;letter-spacing:-.02em}
+.niv{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--red);margin-top:8px}
+.niv-p{font-size:12.5px;line-height:1.5;color:var(--tx-2);margin:0}
+.dom{margin-top:18px;padding-top:16px;border-top:1px solid var(--li);display:grid;gap:9px}
+.dom-l{display:grid;grid-template-columns:1fr 42px;gap:10px;align-items:center;
+  font-size:11.5px;color:var(--tx-2)}
+.dom-b{grid-column:1/-1;height:4px;border-radius:2px;background:rgba(255,255,255,.07);
+  overflow:hidden;margin-top:-4px}
+.dom-b i{display:block;height:100%;width:0;border-radius:2px;
+  background:linear-gradient(90deg,var(--red-3),var(--red));
+  transition:width 1.1s var(--e)}
+.dom-v{font-family:var(--mono);font-size:10.5px;color:var(--tx-3);text-align:right;
+  font-variant-numeric:tabular-nums}
+
+/* ---- bande défilante ---- */
+.bande{flex:0 0 auto}
+.bande-m{overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.bande-t{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--tx-3);margin-bottom:11px}
+.piste{display:flex;gap:38px;width:max-content;animation:defile 46s linear infinite}
+.piste span{font-size:13px;color:var(--tx-3);white-space:nowrap;display:flex;
+  align-items:center;gap:11px}
+.piste span::before{content:"";width:4px;height:4px;border-radius:50%;
+  background:var(--red);opacity:.55;flex:0 0 4px}
+@keyframes defile{to{transform:translateX(-50%)}}
+
+/* ============ écran question ============ */
+.prog{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;height:2px;
+  background:rgba(255,255,255,.07);z-index:30}
+.prog i{display:block;height:100%;width:3.8%;
+  background:linear-gradient(90deg,var(--red-3),var(--red));
+  box-shadow:0 0 14px rgba(255,46,95,.8);transition:width .6s var(--e)}
+.qz{flex:1;display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(10px,2vw,24px) 0;max-width:1120px;width:100%;margin:0 auto}
+.q-eti{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);
+  margin-bottom:14px}
+.q-eti::before{content:"";width:16px;height:1px;background:var(--red)}
+h2{font-size:clamp(25px,3.6vw,45px);line-height:1.08;letter-spacing:-.035em;
+  font-weight:600;margin:0 0 10px;max-width:19ch}
+.q-aide{font-size:13.5px;color:var(--tx-3);margin:0 0 clamp(20px,2.6vw,30px)}
+.opts{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:620px){.opts{grid-template-columns:1fr 1fr}}
+@media (min-width:1000px){.opts{grid-template-columns:repeat(3,1fr)}}
+.opt{display:flex;align-items:center;gap:13px;text-align:left;width:100%;
+  font-family:inherit;font-size:15px;line-height:1.3;color:var(--tx-2);cursor:pointer;
+  background:linear-gradient(170deg,rgba(255,255,255,.04),rgba(255,255,255,.012));
+  border:1px solid var(--li);border-radius:12px;padding:15px 16px;min-height:58px;
+  transition:transform .16s var(--e),border-color .16s,background .16s,color .16s,
+    box-shadow .16s}
+.opt:hover{border-color:var(--li-2);color:var(--tx);transform:translateY(-1.5px);
+  background:linear-gradient(170deg,rgba(255,255,255,.07),rgba(255,255,255,.02))}
+.opt:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.opt kbd{font-family:var(--mono);font-size:10.5px;width:24px;height:24px;flex:0 0 24px;
+  border-radius:6px;border:1px solid var(--li);background:rgba(0,0,0,.35);
+  color:var(--tx-3);display:grid;place-items:center;transition:all .16s}
+.opt[aria-checked="true"]{color:#fff;border-color:rgba(255,46,95,.55);
+  background:linear-gradient(170deg,rgba(255,46,95,.16),rgba(255,46,95,.05));
+  box-shadow:0 0 0 1px rgba(255,46,95,.25),0 12px 34px -16px rgba(255,46,95,.8),
+    inset 0 1px 0 rgba(255,255,255,.1)}
+.opt[aria-checked="true"] kbd{background:var(--red-2);border-color:var(--red);color:#fff;
+  box-shadow:0 0 12px rgba(255,46,95,.6)}
+.q-pied{flex:0 0 auto;display:flex;align-items:center;gap:13px;
+  padding:clamp(14px,2vw,20px) 0 clamp(18px,2.4vw,26px);border-top:1px solid var(--li);
+  max-width:1120px;width:100%;margin:0 auto}
+.q-pied .btn-p{margin-left:auto}
+.q-astuce{font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--tx-3)}
+@media (max-width:640px){.q-astuce{display:none}}
+
+/* ============ écran résultat ============ */
+.res{flex:1;display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(14px,2.4vw,30px) 0;max-width:1000px;width:100%;margin:0 auto}
+.res-h{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(24px,4vw,56px);
+  align-items:center;margin-bottom:clamp(22px,3vw,34px)}
+@media (max-width:760px){.res-h{grid-template-columns:1fr;gap:20px}}
+.res-j{width:clamp(160px,19vw,204px)}
+.res-j svg{display:block;width:100%;height:auto;overflow:visible}
+.res-n{font-size:clamp(46px,7vw,82px);line-height:.86;font-weight:600;
+  letter-spacing:-.05em;font-variant-numeric:tabular-nums;margin-bottom:4px}
+.res-n small{font-size:.32em;color:var(--tx-3);font-weight:400;letter-spacing:-.02em}
+.res-t{font-size:clamp(22px,3vw,34px);line-height:1.1;letter-spacing:-.032em;
+  font-weight:600;margin:0 0 10px}
+.res-p{font-size:14.5px;line-height:1.6;color:var(--tx-2);margin:0;max-width:52ch}
+.res-g{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:620px){.res-g{grid-template-columns:1fr 1fr}}
+@media (min-width:1040px){.res-g{grid-template-columns:repeat(4,1fr)}}
+.res-c-s{display:flex;flex-direction:column;justify-content:center;
+  border-color:rgba(255,46,95,.26);
+  background:linear-gradient(170deg,rgba(255,46,95,.12),rgba(255,46,95,.03))}
+.res-c-s b{display:block;font-size:12.5px;color:#fff;font-weight:600;margin-bottom:5px}
+.res-c-s span{font-size:11.5px;line-height:1.45;color:var(--tx-2)}
+.res-c{padding:14px 15px;display:flex;flex-direction:column;justify-content:center}
+.res-c-t{display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  margin-bottom:10px}
+.res-c-t span{font-size:12.5px;color:var(--tx-2);line-height:1.25}
+.res-c-t b{font-family:var(--mono);font-size:12px;color:var(--tx);font-weight:500;
+  font-variant-numeric:tabular-nums}
+.res-pied{display:flex;align-items:center;gap:13px;flex-wrap:wrap;
+  margin-top:clamp(20px,2.6vw,28px)}
+
+/* ============ navigation du prototype ============ */
+.nav{position:fixed;left:50%;transform:translateX(-50%);z-index:50;
+  bottom:calc(14px + env(safe-area-inset-bottom,0px));
+  display:flex;align-items:center;gap:3px;padding:5px;border-radius:999px;
+  background:rgba(14,14,17,.82);border:1px solid var(--li);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 14px 40px -14px rgba(0,0,0,.9)}
+.nav button{font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--tx-3);background:none;border:0;cursor:pointer;
+  padding:8px 14px;border-radius:999px;transition:color .16s,background .16s}
+.nav button:hover{color:var(--tx-2)}
+.nav button[aria-current="true"]{color:#fff;background:rgba(255,46,95,.2);
+  box-shadow:inset 0 0 0 1px rgba(255,46,95,.4)}
+.nav button:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+
+/* ============ éclat qui tourne ============ */
+.brille{position:relative}
+.brille::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
+  pointer-events:none;
+  background:conic-gradient(from var(--ang),transparent 0 60%,rgba(255,46,95,.9) 73%,
+    rgba(255,255,255,.7) 79%,transparent 88% 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  animation:tourne 5.5s linear infinite}
+@keyframes tourne{to{--ang:360deg}}
+
+/* ============ entrées ============ */
+.ap{opacity:0;transform:translateY(14px);
+  animation:monte .8s var(--e) forwards;animation-delay:calc(var(--i,0)*70ms + 60ms)}
+@keyframes monte{to{opacity:1;transform:none}}
+
+@media (prefers-reduced-motion:reduce){
+  .halo,.piste,.brille::after,.vivant{animation:none!important}
+  .ap{animation:none;opacity:1;transform:none}
+  .arc{transition:none}
+  .btn,.opt{transition:none}
+}
+</style>
+
+<div class="deco" aria-hidden="true">
+  <div class="halo halo-a"></div>
+  <div class="halo halo-b"></div>
+  <div class="halo halo-c"></div>
+  <div class="grille"></div>
+  <div class="spot" id="spot"></div>
+</div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="prog" id="prog" hidden><i></i></div>
+
+<div class="app">
+
+  <!-- ==================== 1 · COUVERTURE ==================== -->
+  <section class="ec on" id="ec-cv">
+    <header class="tete">
+      <span class="mark ap" style="--i:0">onlinef<i>o</i>rmapro</span>
+      <div class="tete-d">
+        <span class="pastille ap" style="--i:1"><i class="vivant"></i>Édition <b>1</b> · 2026</span>
+      </div>
+    </header>
+
+    <div class="cv">
+      <div>
+        <span class="eyebrow ap brille" style="--i:2"><i class="vivant"></i>Enquête nationale</span>
+        <h1 class="ap" style="--i:3">Où en est <span class="grad">réellement</span> votre organisme&nbsp;?</h1>
+        <p class="lede ap" style="--i:4">26 questions sur vos usages réels de l'IA. À la dernière,
+          vous obtenez <b>votre indice de maturité</b> et votre analyse domaine par domaine —
+          tout de suite, à l'écran.</p>
+        <div class="actes ap" style="--i:5">
+          <button class="btn btn-p" type="button" data-va="q">Commencer le questionnaire
+            <span class="fleche">→</span></button>
+          <button class="btn btn-f" type="button" data-va="res">Voir un exemple de résultat</button>
+        </div>
+        <div class="faits ap" style="--i:6">
+          <span>26 questions</span><span>5 minutes</span><span>Sans inscription</span>
+          <span>Réponses anonymes</span><span>Hébergé en France</span>
+        </div>
+      </div>
+
+      <div class="scene ap" style="--i:6">
+        <div class="shot verre">
+          <div class="shot-t">
+            <i class="pt"></i><i class="pt"></i><i class="pt"></i>
+            <b>Votre résultat</b>
+            <span class="ex">Exemple</span>
+          </div>
+          <div class="shot-c">
+            <div class="jauge-t">
+              <div class="jauge">
+                <svg viewBox="0 0 200 118" role="img" aria-label="Indice de maturité, exemple : 58 sur 100">
+                  <defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0" stop-color="#7A1030"/><stop offset=".5" stop-color="#E01A4F"/>
+                    <stop offset="1" stop-color="#FF7C99"/></linearGradient></defs>
+                  <path d="M14 104A86 86 0 0 1 186 104" fill="none" stroke="rgba(255,255,255,.08)"
+                    stroke-width="13" stroke-linecap="round"/>
+                  <path class="arc" d="M14 104A86 86 0 0 1 186 104" fill="none" stroke="url(#ga)"
+                    stroke-width="13" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <div class="chiffre">58<small>/100</small></div>
+                <div class="niv">Adoption · palier 3 sur 5</div>
+              </div>
+            </div>
+            <p class="niv-p">L'IA est entrée dans la production courante. Reste à l'inscrire dans
+              des règles et des outils communs.</p>
+            <div class="dom" data-bars>
+              <div class="dom-l"><span>Ingénierie pédagogique</span><span class="dom-v">64</span></div>
+              <div class="dom-b"><i data-w="64"></i></div>
+              <div class="dom-l"><span>Travail du formateur</span><span class="dom-v">66</span></div>
+              <div class="dom-b"><i data-w="66"></i></div>
+              <div class="dom-l"><span>Cadre et gouvernance</span><span class="dom-v">19</span></div>
+              <div class="dom-b"><i data-w="19"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bande">
+      <div class="bande-t">Les huit domaines interrogés</div>
+      <div class="bande-m"><div class="piste" id="piste"></div></div>
+    </div>
+  </section>
+
+  <!-- ==================== 2 · QUESTION 1 ==================== -->
+  <section class="ec" id="ec-q">
+    <header class="tete">
+      <span class="mark">onlinef<i>o</i>rmapro</span>
+      <span class="pastille"><span class="lg">Partie <b>1</b> / 8 · </span>Profil de l'organisme</span>
+      <div class="tete-d">
+        <span class="pastille sm-off">Indice <b>––</b> / 100</span>
+        <span class="pastille"><b>01</b> / 26</span>
+      </div>
+    </header>
+
+    <div class="qz">
+      <span class="q-eti ap" style="--i:0">Question 1 sur 26</span>
+      <h2 class="ap" style="--i:1">Quel est votre type d'organisme&nbsp;?</h2>
+      <p class="q-aide ap" style="--i:2">Une seule réponse.</p>
+      <div class="opts ap" style="--i:3" role="radiogroup" aria-label="Quel est votre type d'organisme ?">
+        <button class="opt" type="button" role="radio" aria-checked="false"><kbd>1</kbd>Organisme de formation privé</button>
+        <button class="opt" type="button" role="radio" aria-checked="false"><kbd>2</kbd>CFA</button>
+        <button class="opt" type="button" role="radio" aria-checked="false"><kbd>3</kbd>École ou enseignement supérieur</button>
+        <button class="opt" type="button" role="radio" aria-checked="false"><kbd>4</kbd>Service formation interne</button>
+        <button class="opt" type="button" role="radio" aria-checked="false"><kbd>5</kbd>Association</button>
+        <button class="opt" type="button" role="radio" aria-checked="false"><kbd>6</kbd>Autre</button>
+      </div>
+    </div>
+
+    <div class="q-pied">
+      <button class="btn btn-f" type="button" data-va="cv">Retour</button>
+      <span class="q-astuce">Touches 1 à 6 · Entrée pour continuer</span>
+      <button class="btn btn-p" type="button" data-va="res">Continuer <span class="fleche">→</span></button>
+    </div>
+  </section>
+
+  <!-- ==================== 3 · RÉSULTAT ==================== -->
+  <section class="ec" id="ec-res">
+    <header class="tete">
+      <span class="mark">onlinef<i>o</i>rmapro</span>
+      <span class="pastille"><i class="vivant"></i>Questionnaire terminé</span>
+      <div class="tete-d"><span class="pastille" style="color:#FFB0C2;border-color:rgba(255,46,95,.3);background:rgba(224,26,79,.14)">Exemple<span class="lg"> — données d'illustration</span></span></div>
+    </header>
+
+    <div class="res">
+      <div class="res-h">
+        <div class="res-j">
+          <svg viewBox="0 0 200 118" role="img" aria-label="Indice de maturité, exemple : 58 sur 100">
+            <defs><linearGradient id="gb" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#7A1030"/><stop offset=".5" stop-color="#E01A4F"/>
+              <stop offset="1" stop-color="#FF7C99"/></linearGradient></defs>
+            <path d="M14 104A86 86 0 0 1 186 104" fill="none" stroke="rgba(255,255,255,.08)"
+              stroke-width="13" stroke-linecap="round"/>
+            <path class="arc" d="M14 104A86 86 0 0 1 186 104" fill="none" stroke="url(#gb)"
+              stroke-width="13" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="res-n" id="compteur">0<small>/100</small></div>
+          <h2 class="res-t">Adoption<span style="color:var(--tx-3);font-weight:400"> · palier 3 sur 5</span></h2>
+          <p class="res-p">L'IA est entrée dans la production courante. Reste à l'inscrire dans des
+            règles et des outils communs.</p>
+        </div>
+      </div>
+
+      <div class="res-g" data-bars>
+        <div class="verre res-c"><div class="res-c-t"><span>Usage et organisation</span><b>72</b></div>
+          <div class="dom-b"><i data-w="72"></i></div></div>
+        <div class="verre res-c"><div class="res-c-t"><span>Ingénierie pédagogique</span><b>64</b></div>
+          <div class="dom-b"><i data-w="64"></i></div></div>
+        <div class="verre res-c"><div class="res-c-t"><span>Évaluations</span><b>41</b></div>
+          <div class="dom-b"><i data-w="41"></i></div></div>
+        <div class="verre res-c"><div class="res-c-t"><span>IA au service de l'apprenant</span><b>28</b></div>
+          <div class="dom-b"><i data-w="28"></i></div></div>
+        <div class="verre res-c"><div class="res-c-t"><span>Travail du formateur</span><b>66</b></div>
+          <div class="dom-b"><i data-w="66"></i></div></div>
+        <div class="verre res-c"><div class="res-c-t"><span>Gestion et appels d'offres</span><b>52</b></div>
+          <div class="dom-b"><i data-w="52"></i></div></div>
+        <div class="verre res-c"><div class="res-c-t"><span>Cadre et gouvernance</span><b>19</b></div>
+          <div class="dom-b"><i data-w="19"></i></div></div>
+        <div class="verre res-c res-c-s"><b>Et ensuite</b><span>Deux pistes concrètes
+          par domaine.</span></div>
+      </div>
+
+      <div class="res-pied">
+        <button class="btn btn-p" type="button" data-va="cv">Revenir à la couverture
+          <span class="fleche">→</span></button>
+        <span class="q-astuce">Les sept domaines sont ceux du baromètre réel</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<nav class="nav" aria-label="Écrans du prototype">
+  <button type="button" data-va="cv" aria-current="true">Couverture</button>
+  <button type="button" data-va="q" aria-current="false">Question</button>
+  <button type="button" data-va="res" aria-current="false">Résultat</button>
+</nav>
+
+<script>
+(function(){
+  var DOMAINES = ["Profil de l'organisme","Niveau général d'utilisation de l'IA",
+    "IA et ingénierie pédagogique","IA et évaluations","IA au service de l'apprenant",
+    "IA et travail du formateur","IA dans la gestion de l'organisme",
+    "Freins, risques et stratégie"];
+
+  /* bande défilante : la liste est doublée pour que la boucle soit continue */
+  var piste = document.getElementById('piste');
+  if (piste){
+    var h = '';
+    for (var t = 0; t < 2; t++)
+      for (var i = 0; i < DOMAINES.length; i++) h += '<span>' + DOMAINES[i] + '</span>';
+    piste.innerHTML = h;
+  }
+
+  var ecrans = {cv:document.getElementById('ec-cv'), q:document.getElementById('ec-q'),
+                res:document.getElementById('ec-res')};
+  var prog = document.getElementById('prog');
+  var nav = document.querySelectorAll('.nav button');
+  var courant = 'cv';
+
+  function barres(racine){
+    var b = racine.querySelectorAll('[data-bars] i[data-w]');
+    for (var i = 0; i < b.length; i++) b[i].style.width = '0%';
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      for (var j = 0; j < b.length; j++){
+        var el = b[j];
+        el.style.transitionDelay = (j * 80) + 'ms';
+        el.style.width = el.getAttribute('data-w') + '%';
+      }
+    }); });
+  }
+
+  var compte = null;
+  function compteur(){
+    var el = document.getElementById('compteur');
+    if (!el) return;
+    if (compte) clearInterval(compte);
+    var n = 0, cible = 58;
+    el.innerHTML = '0<small>/100</small>';
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      el.innerHTML = cible + '<small>/100</small>'; return;
+    }
+    compte = setInterval(function(){
+      n += Math.max(1, Math.round((cible - n) / 6));
+      if (n >= cible){ n = cible; clearInterval(compte); compte = null; }
+      el.innerHTML = n + '<small>/100</small>';
+    }, 28);
+  }
+
+  function rejoue(sec){
+    var a = sec.querySelectorAll('.ap');
+    for (var i = 0; i < a.length; i++){
+      var el = a[i], anim = el.style.animation;
+      el.style.animation = 'none';
+      void el.offsetWidth;          /* force le recalcul */
+      el.style.animation = anim;
+    }
+  }
+
+  function va(cle){
+    if (!ecrans[cle]) return;
+    for (var k in ecrans) ecrans[k].classList.toggle('on', k === cle);
+    for (var i = 0; i < nav.length; i++)
+      nav[i].setAttribute('aria-current', nav[i].getAttribute('data-va') === cle ? 'true' : 'false');
+    prog.hidden = (cle === 'cv');
+    if (cle === 'q') prog.firstElementChild.style.width = '3.8%';
+    if (cle === 'res') prog.firstElementChild.style.width = '100%';
+    courant = cle;
+    rejoue(ecrans[cle]);
+    barres(ecrans[cle]);
+    if (cle === 'res') compteur();
+    window.scrollTo(0, 0);
+  }
+
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('[data-va]');
+    if (b) va(b.getAttribute('data-va'));
+  });
+
+  /* choix d'une réponse */
+  var opts = ecrans.q.querySelectorAll('.opt');
+  function choisis(el){
+    for (var i = 0; i < opts.length; i++)
+      opts[i].setAttribute('aria-checked', opts[i] === el ? 'true' : 'false');
+    prog.firstElementChild.style.width = '7.7%';
+  }
+  for (var i = 0; i < opts.length; i++)
+    (function(el){ el.addEventListener('click', function(){ choisis(el); }); })(opts[i]);
+
+  document.addEventListener('keydown', function(e){
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (courant === 'q'){
+      var n = parseInt(e.key, 10);
+      if (n >= 1 && n <= opts.length){ choisis(opts[n - 1]); opts[n - 1].focus(); e.preventDefault(); }
+      else if (e.key === 'Enter'){ va('res'); e.preventDefault(); }
+      else if (e.key === 'Escape'){ va('cv'); }
+    } else if (courant === 'cv' && e.key === 'Enter'){ va('q'); }
+    else if (courant === 'res' && e.key === 'Escape'){ va('cv'); }
+  });
+
+  /* halo qui suit le curseur */
+  var spot = document.getElementById('spot');
+  window.addEventListener('pointermove', function(e){
+    spot.style.opacity = '1';
+    spot.style.setProperty('--mx', e.clientX + 'px');
+    spot.style.setProperty('--my', e.clientY + 'px');
+  }, {passive:true});
+
+  barres(ecrans.cv);
+})();
+</script>
