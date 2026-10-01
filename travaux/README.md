@@ -5,6 +5,7 @@ Dossier accessible depuis la plaque « Travail en cours » de la page d'accueil.
 
 | Ligne de la liste | Ouvre |
 |---|---|
+| Baromètre IA 2026 | `/enquete/` — la maquette de l'enquête |
 | Gagnants d'appels d'offre | `gagnants-fle/` — la table des 45 organismes |
 | Mailing des gagnants | `mailing-gagnants/` — 39 organismes, 348 adresses |
 | Poster Octobre Rose | `poster-octobre-rose.webp` |
