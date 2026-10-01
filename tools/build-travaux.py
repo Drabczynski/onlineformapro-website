@@ -41,6 +41,11 @@ MAIL = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
 BIDON = re.compile(r"^(f\.last|unknown_not_verified|undetermined|prenom|nom)@", re.I)
 BORDS_E = " \t,;.\u2013\u2014-"       # on garde « : » pour le découpage
 BORDS_L = " \t,;:.\u2013\u2014?-"
+# Organismes à ne pas contacter. Leurs adresses restent affichées, mais elles
+# ne sont ni cliquables ni copiables, et le bloc porte la mention.
+EXCLUS = {
+    "aksis": "Ne pas contacter",
+}
 # Les organismes nommés différemment dans les deux fichiers.
 ALIAS = {
     "ufcvl": "UFCV Auvergne-Rhône-Alpes",
@@ -315,29 +320,40 @@ def page_mails():
     sans = [pr["Organisme"].strip() for pr in prospects
             if _cle(ALIAS.get(pr["Organisme"].strip().lower(), pr["Organisme"].strip())) not in vus_of]
 
-    blocs = []
+    blocs, nb_exclus = [], 0
     for f in fiches:
+        exclu = EXCLUS.get(_cle(f["of"]))
+        if exclu:
+            nb_exclus += 1
         adresses = ", ".join(c["adr"] for c in f["contacts"])
         prio = (f'<span class="p p-{e(f["prio"])}">{e(f["prio"])}</span>'
                 if f["prio"] else '<span class="p p-0" title="hors table de prospection">·</span>')
         lignes = []
         for c in f["contacts"]:
             qui = " · ".join(x for x in (c["nom"], c["fonction"]) if x)
+            # sur un organisme exclu l'adresse n'est pas un lien : un clic ne
+            # doit pas pouvoir ouvrir un message par mégarde
+            adr = (f'<span class="adr">{e(c["adr"])}</span>' if exclu else
+                   f'<a class="adr" href="mailto:{e(c["adr"])}">{e(c["adr"])}</a>')
             lignes.append(
-                "<li>"
-                f'<a class="adr" href="mailto:{e(c["adr"])}">{e(c["adr"])}</a>'
+                "<li>" + adr
                 + (f'<span class="qui">{e(qui)}</span>' if qui else '<span class="qui"></span>')
-                + ('<span class="reco">recommandé</span>' if c["src"] == "reco" else "")
+                + ('<span class="reco">recommandé</span>'
+                   if c["src"] == "reco" and not exclu else "")
                 + ('<span class="dec">décideur</span>' if c.get("decideur") else "")
                 + "</li>"
             )
+        action = (f'<span class="nope">{e(exclu)}</span>' if exclu else
+                  f'<button class="cop" type="button" data-adr="{e(adresses)}">'
+                  f'Copier les {len(f["contacts"])}</button>')
+        avis = ('<p class="avis">Ces adresses sont à exclure du mailing. Elles restent '
+                'affichées pour mémoire, mais elles ne sont ni cliquables ni '
+                'copiables.</p>') if exclu else ""
         blocs.append(
-            '<section class="of">'
+            f'<section class="of{" exclu" if exclu else ""}">'
             f'<div class="of-h">{prio}<h2>{e(f["of"])}</h2>'
-            f'<span class="dom">{e(f["domaine"])}</span>'
-            f'<button class="cop" type="button" data-adr="{e(adresses)}">'
-            f'Copier les {len(f["contacts"])}</button></div>'
-            f'<ul class="adrs">{"".join(lignes)}</ul></section>'
+            f'<span class="dom">{e(f["domaine"])}</span>{action}</div>'
+            f'{avis}<ul class="adrs">{"".join(lignes)}</ul></section>'
         )
 
     if sans:
@@ -353,14 +369,16 @@ def page_mails():
     total = sum(len(f["contacts"]) for f in fiches)
     nommes = sum(1 for f in fiches for c in f["contacts"] if c["nom"] or c["fonction"])
     compte = (f'<span class="compte">{len(fiches)} organismes · {total} adresses · '
-              f'{nommes} avec un nom ou une fonction</span>')
+              f'{nommes} avec un nom ou une fonction'
+              + (f' · {nb_exclus} organisme{"s" if nb_exclus > 1 else ""} à exclure'
+                 if nb_exclus else "") + '</span>')
 
     ZONES_MAILS["COUNT:MAILS"] = compte
     ZONES_MAILS["LISTE:MAILS"] = "\n  " + "\n  ".join(blocs) + "\n  "
     injecte(PAGE_MAILS, ZONES_MAILS)
     print(f"{len(fiches)} organismes et {total} adresses écrits dans "
           f"{PAGE_MAILS.relative_to(RACINE)} ({len(sans)} organismes sans contact, "
-          f"{len(ecartees)} adresses gabarit écartées)")
+          f"{len(ecartees)} adresses gabarit écartées, {nb_exclus} organisme à exclure)")
 
 
 def injecte(page, zones):

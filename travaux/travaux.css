@@ -156,6 +156,20 @@ h1{margin:0 0 12px;font-size:clamp(1.9rem,4.6vw,2.7rem);line-height:1.05;font-we
   .cop{margin-left:0}
 }
 
+/* organisme à ne pas contacter */
+.nope{margin-left:auto;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--red);background:#FDF0F4;
+  border:1px solid rgba(224,26,79,.32);border-radius:999px;padding:6px 13px;white-space:nowrap}
+.exclu .of-h h2{color:var(--ink-2)}
+.avis{margin:0 0 12px;font-size:.84rem;line-height:1.5;color:var(--ink-2);max-width:68ch}
+.exclu .adrs{border-color:rgba(224,26,79,.26)}
+.exclu .adrs li{background:#FDFAFB}
+.exclu .adr{color:var(--ink-3);text-decoration:line-through;
+  text-decoration-color:rgba(224,26,79,.5);text-decoration-thickness:1px}
+.exclu .qui{color:var(--ink-3)}
+.exclu .dec{background:var(--cream-2);color:var(--ink-3)}
+@media (max-width:620px){.nope{margin-left:0}}
+
 .manque .of-h h2{color:var(--ink-2);font-weight:500}
 .rien{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:7px}
 .rien li{font-size:.84rem;color:var(--ink-2);background:var(--cream-2);border-radius:7px;

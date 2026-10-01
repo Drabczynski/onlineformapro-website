@@ -47,6 +47,28 @@ académiques. C'est voulu, les deux sont joignables à ces adresses.
 Trois adresses gabarit rendues par l'outil de recherche sont écartées à la
 génération : `f.last@`, `undetermined@`, `unknown_not_verified@`.
 
+## Organismes à ne pas contacter
+
+Le dictionnaire `EXCLUS` en tête de `tools/build-travaux.py` liste les
+organismes à exclure du mailing, par nom normalisé. **AKSIS** y figure.
+
+Un organisme exclu garde ses adresses à l'écran, pour mémoire, mais le bloc
+porte la mention « Ne pas contacter », les adresses sont barrées et ne sont
+plus des liens `mailto:`, et le bouton de copie disparaît — on ne peut donc
+ni les copier en masse ni ouvrir un message par mégarde.
+
+Pour en ajouter un, une ligne suffit :
+
+```python
+EXCLUS = {
+    "aksis": "Ne pas contacter",
+    "<nom normalisé>": "Ne pas contacter",
+}
+```
+
+La clé est le nom passé par `_cle()` : minuscules, sans accent ni espace ni
+ponctuation.
+
 ## Régénérer
 
 ```bash
