@@ -6,34 +6,59 @@ Dossier accessible depuis la plaque « Travail en cours » de la page d'accueil.
 | Ligne de la liste | Ouvre |
 |---|---|
 | Gagnants d'appels d'offre | `gagnants-fle/` — la table des 45 organismes |
-| Mailing des gagnants | `mailing-gagnants/` — en attente des contacts |
+| Mailing des gagnants | `mailing-gagnants/` — 39 organismes, 348 adresses |
 | Poster Octobre Rose | `poster-octobre-rose.webp` |
 | Mailing FLE Plateforme | `mailing-fle-plateforme.pdf` |
 | Poster FICA | `poster-fica.webp` |
 
-`travaux.css` est la feuille commune aux trois pages. `prospection-fle.csv` est
-la source de la table.
+`travaux.css` est la feuille commune aux trois pages.
 
-## Mettre la table à jour
+## Les trois sources de données
 
-Modifier `prospection-fle.csv`, puis depuis la racine du dépôt :
+| Fichier | Alimente |
+|---|---|
+| `prospection-fle.csv` | la table des gagnants |
+| `mails-fle.csv` | les adresses, par organisme |
+| `contacts-hunter.csv` | les fiches nominatives, par domaine |
+
+Les deux fichiers d'adresses sont **fusionnés sur le nom de domaine**. Quand la
+même adresse figure dans les deux, c'est la fiche de `contacts-hunter.csv` qui
+est retenue : elle porte un nom, une fonction et la marque décideur. Dans
+chaque bloc, l'ordre est : adresse recommandée, décideurs, contacts nommés,
+adresses génériques.
+
+Un domaine partagé sert plusieurs organismes : `greta-cfa.ac-lyon.fr` apparaît
+sous GRETA CFA Loire et sous GRETA CFA de l'Ain, avec les mêmes fiches
+académiques. C'est voulu, les deux sont joignables à ces adresses.
+
+Trois adresses gabarit rendues par l'outil de recherche sont écartées à la
+génération : `f.last@`, `undetermined@`, `unknown_not_verified@`.
+
+## Régénérer
 
 ```bash
 python3 tools/build-travaux.py
 ```
 
-Le script réécrit uniquement les deux fragments situés entre les marqueurs
-`COUNT:PROSPECTION-FLE` et `TABLE:PROSPECTION-FLE` de
-`travaux/gagnants-fle/index.html`.
+Le script réécrit uniquement les fragments situés entre marqueurs
+(`COUNT:…`, `TABLE:…`, `LISTE:…`) dans `gagnants-fle/index.html` et
+`mailing-gagnants/index.html`.
 
-Le CSV d'origine était en Windows-1252 et son séparateur de milliers avait été
-perdu à l'enregistrement (`1?260?000`). La copie de ce dossier est en UTF-8,
-avec une espace fine insécable rétablie dans les montants.
+## Encodages
 
-## Deux choses encore attendues
+Les deux CSV d'origine arrivaient abîmés et ont été réécrits en UTF-8 :
 
-- **Les contacts du mailing** : organisme, nom, fonction, adresse. Un fichier,
-  un tableur ou du texte collé suffisent.
+- `prospection-fle.csv` était en **Windows-1252**, séparateur de milliers perdu
+  à l'enregistrement (`1?260?000`) ; l'espace fine insécable a été rétablie.
+- `mails-fle.csv` était en **cp850** (encodage DOS), apostrophes et tirets
+  remplacés par des `?` ; ils ont été rétablis selon le contexte.
+- `contacts-hunter.csv` était déjà propre, seule la marque d'ordre d'octets a
+  été retirée.
+
+## Encore attendu
+
 - **Les PDF des deux affiches**, si vous voulez qu'elles s'ouvrent en PDF
-  plutôt qu'en image. Il suffira de déposer les fichiers ici et de changer les
-  deux `href` dans `index.html`.
+  plutôt qu'en image : déposer les fichiers ici et changer les deux `href`
+  dans `index.html`.
+- **Les contacts des 7 organismes restants** : RH Reflex, GRETA CFA Lyon
+  Métropole, FCR Lyon, GRETA CFA Rhône, FCR 38, FCR PDS, INFREP Ardèche.

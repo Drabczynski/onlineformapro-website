@@ -1,24 +1,57 @@
 #!/usr/bin/env python3
-"""Régénère la table « Gagnants d'appels d'offre ».
+"""Régénère les deux pages de données du dossier « Travail en cours ».
 
     python3 tools/build-travaux.py
 
-Lit travaux/prospection-fle.csv et réécrit, dans
-travaux/gagnants-fle/index.html, les deux fragments situés entre les marqueurs
-COUNT:PROSPECTION-FLE et TABLE:PROSPECTION-FLE. Rien d'autre n'est touché.
+  travaux/prospection-fle.csv                        → travaux/gagnants-fle/
+  travaux/mails-fle.csv + travaux/contacts-hunter.csv → travaux/mailing-gagnants/
+
+Les deux sources d'adresses sont fusionnées sur le nom de domaine. Quand la
+même adresse figure dans les deux, la fiche de contacts-hunter.csv l'emporte :
+elle porte un nom, une fonction et la marque décideur.
+
+Dans chaque page, seuls les fragments situés entre les marqueurs sont
+réécrits. Le reste des pages n'est pas touché.
 """
 import csv
 import html
 import pathlib
 import re
 import sys
+import unicodedata
 
 RACINE = pathlib.Path(__file__).resolve().parent.parent
 CSV = RACINE / "travaux" / "prospection-fle.csv"
 PAGE = RACINE / "travaux" / "gagnants-fle" / "index.html"
+CSV_MAILS = RACINE / "travaux" / "mails-fle.csv"
+CSV_HUNTER = RACINE / "travaux" / "contacts-hunter.csv"
+PAGE_MAILS = RACINE / "travaux" / "mailing-gagnants" / "index.html"
 ZONES = {
-    "COUNT:PROSPECTION-FLE": None,   # le compteur, dans l'en-tête de l'encart
-    "TABLE:PROSPECTION-FLE": None,   # la table, sous le paragraphe
+    "COUNT:PROSPECTION-FLE": None,   # le compteur, sous le titre
+    "TABLE:PROSPECTION-FLE": None,   # la table, sous le chapeau
+}
+ZONES_MAILS = {
+    "COUNT:MAILS": None,
+    "LISTE:MAILS": None,
+}
+
+MAIL = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
+# Adresses manifestement gabarit ou non vérifiées, rendues par l'outil de
+# recherche : elles ne partent pas dans un mailing.
+BIDON = re.compile(r"^(f\.last|unknown_not_verified|undetermined|prenom|nom)@", re.I)
+BORDS_E = " \t,;.\u2013\u2014-"       # on garde « : » pour le découpage
+BORDS_L = " \t,;:.\u2013\u2014?-"
+# Les organismes nommés différemment dans les deux fichiers.
+ALIAS = {
+    "ufcvl": "UFCV Auvergne-Rhône-Alpes",
+    "nouvelle donne": "Nouvelle Donne Formation",
+    "nacarat": "NACARAT Formations",
+    "eclipse istec groupe": "Eclipse ISTEC / EI Groupe",
+    "cfp presqu\u2019île": "CFP Presqu\u2019Île",
+    "aksis": "AKSIS",
+    "mooveus": "Moovéus",
+    "croix-rouge compétence": "Croix-Rouge française / Croix-Rouge Compétence",
+    "learning system": "Learning System",
 }
 
 RANG = {"A": 0, "B": 1, "C": 2}
@@ -134,6 +167,212 @@ def main():
     PAGE.write_text(page, encoding="utf-8")
     print(f"{len(lignes)} lignes écrites dans {PAGE.relative_to(RACINE)} "
           f"(A {n['A']} · B {n['B']} · C {n['C']})")
+    page_mails()
+
+
+# ---------------------------------------------------------------- mailing ---
+
+def _entrees(champ):
+    """Rend les couples (libellé, adresse) d'un champ de l'export.
+
+    Le libellé d'une adresse est le texte qui la précède, borné par l'adresse
+    précédente et par le début de ligne. Cette règle couvre les trois formats
+    présents dans le fichier : liste d'adresses séparées par des virgules ou
+    des points-virgules, « Fonction : adresse », et « Nom – Fonction – adresse »
+    une par ligne.
+    """
+    champ = re.sub(r"[ \t]*Markdown coll[ée][ \t]*", " ", champ or "")
+    sortie, fin = [], 0
+    for m in MAIL.finditer(champ):
+        avant = champ[fin:m.start()].split("\n")[-1]
+        sortie.append((avant.strip(BORDS_E), m.group(0).lower()))
+        fin = m.end()
+    return sortie
+
+
+def _decoupe(label):
+    """« Nom – Fonction » → (nom, fonction). « Fonction : » → (—, fonction)."""
+    for sep in (" \u2019 ", " ? ", " \u2013 ", " \u2014 "):
+        if sep in label:
+            a, _, b = label.partition(sep)
+            return a.strip(BORDS_L), b.strip(BORDS_L)
+    if ":" in label:
+        a, _, b = label.rpartition(":")
+        if not b.strip(BORDS_L):
+            return "", a.strip(BORDS_L)
+    label = label.strip(BORDS_L)
+    # un libellé court est un nom, un libellé long une fonction
+    return ("", label) if len(label.split()) > 3 else (label, "")
+
+
+def _cle(s):
+    s = unicodedata.normalize("NFKD", (s or "").lower())
+    s = "".join(c for c in s if not unicodedata.combining(c))
+    return re.sub(r"[^a-z0-9]", "", s)
+
+
+def _hunter():
+    """Les fiches nominatives, groupées par domaine."""
+    with CSV_HUNTER.open(encoding="utf-8", newline="") as f:
+        lignes = [r for r in csv.DictReader(f, delimiter=";") if (r.get("email") or "").strip()]
+    par_domaine = {}
+    for r in lignes:
+        d = r["target_domain"].strip().lower()
+        par_domaine.setdefault(d, {"societe": r["company"].strip(), "contacts": []})
+        par_domaine[d]["contacts"].append({
+            "nom": r["name"].strip(),
+            "fonction": r["role"].strip(),
+            "adr": r["email"].strip().lower(),
+            "src": "hunter",
+            "decideur": r["decision_maker"].strip().lower() == "yes",
+        })
+    return par_domaine
+
+
+def fiches_mails():
+    """Une fiche par organisme : le fichier d'adresses, complété par les
+    fiches nominatives rattachées au même domaine. Ordre alphabétique."""
+    with CSV_MAILS.open(encoding="utf-8", newline="") as f:
+        lignes = [r for r in csv.DictReader(f, delimiter=";") if (r.get("Organisme") or "").strip()]
+    hunter = _hunter()
+
+    def bloc(nom_of, domaine, remplir):
+        vus, contacts, ecartees = set(), [], []
+
+        def ajoute(c):
+            if c["adr"] in vus:
+                return
+            if BIDON.match(c["adr"]):
+                ecartees.append(c["adr"])
+                return
+            vus.add(c["adr"])
+            contacts.append(c)
+
+        remplir(ajoute)
+        # les fiches nominatives du même domaine, d'abord : elles sont mieux
+        # renseignées, donc elles gagnent le dédoublonnage
+        rang = {"reco": 0, "hunter": 1, "finder": 2, "public": 3}
+        contacts.sort(key=lambda c: (rang.get(c["src"], 9), not c.get("decideur"),
+                                     not (c["nom"] or c["fonction"]), c["adr"]))
+        return {"of": nom_of, "domaine": domaine, "contacts": contacts}, ecartees
+
+    fiches, ecartees = [], []
+    domaines_vus = set()
+    for r in lignes:
+        dom = (r["Domaine"] or "").strip().lower()
+        domaines_vus.add(dom)
+
+        def remplir(ajoute, r=r, dom=dom):
+            reco = (r["Email recommandé"] or "").strip().lower()
+            if MAIL.fullmatch(reco):
+                ajoute({"nom": "", "fonction": "", "adr": reco, "src": "reco", "decideur": False})
+            for c in hunter.get(dom, {}).get("contacts", []):
+                ajoute(dict(c))
+            for label, adr in _entrees(r["Réponse outil DomainFinder"]):
+                nom, fonction = _decoupe(label)
+                ajoute({"nom": nom, "fonction": fonction, "adr": adr,
+                        "src": "finder", "decideur": False})
+            for label, adr in _entrees(r["Autres emails publics"]):
+                nom, fonction = _decoupe(label)
+                ajoute({"nom": nom, "fonction": fonction, "adr": adr,
+                        "src": "public", "decideur": False})
+
+        fiche, ec = bloc(r["Organisme"].strip(), (r["Domaine"] or "").strip(), remplir)
+        fiches.append(fiche)
+        ecartees += ec
+
+    # les domaines que seule la recherche nominative a trouvés
+    for dom, h in hunter.items():
+        if dom in domaines_vus:
+            continue
+
+        def remplir(ajoute, h=h):
+            for c in h["contacts"]:
+                ajoute(dict(c))
+
+        fiche, ec = bloc(h["societe"], dom, remplir)
+        fiches.append(fiche)
+        ecartees += ec
+
+    fiches.sort(key=lambda f: f["of"].lower())
+    return fiches, ecartees
+
+
+def page_mails():
+    fiches, ecartees = fiches_mails()
+
+    # priorité reprise de la table de prospection, quand l'organisme s'y trouve
+    with CSV.open(encoding="utf-8", newline="") as f:
+        prospects = [r for r in csv.DictReader(f, delimiter=";") if r.get("Organisme")]
+    par_cle = {}
+    for pr in prospects:
+        nom = pr["Organisme"].strip()
+        par_cle[_cle(ALIAS.get(nom.lower(), nom))] = pr["Priorité"].strip()
+    for f in fiches:
+        f["prio"] = par_cle.get(_cle(f["of"]), "")
+
+    vus_of = {_cle(f["of"]) for f in fiches}
+    sans = [pr["Organisme"].strip() for pr in prospects
+            if _cle(ALIAS.get(pr["Organisme"].strip().lower(), pr["Organisme"].strip())) not in vus_of]
+
+    blocs = []
+    for f in fiches:
+        adresses = ", ".join(c["adr"] for c in f["contacts"])
+        prio = (f'<span class="p p-{e(f["prio"])}">{e(f["prio"])}</span>'
+                if f["prio"] else '<span class="p p-0" title="hors table de prospection">·</span>')
+        lignes = []
+        for c in f["contacts"]:
+            qui = " · ".join(x for x in (c["nom"], c["fonction"]) if x)
+            lignes.append(
+                "<li>"
+                f'<a class="adr" href="mailto:{e(c["adr"])}">{e(c["adr"])}</a>'
+                + (f'<span class="qui">{e(qui)}</span>' if qui else '<span class="qui"></span>')
+                + ('<span class="reco">recommandé</span>' if c["src"] == "reco" else "")
+                + ('<span class="dec">décideur</span>' if c.get("decideur") else "")
+                + "</li>"
+            )
+        blocs.append(
+            '<section class="of">'
+            f'<div class="of-h">{prio}<h2>{e(f["of"])}</h2>'
+            f'<span class="dom">{e(f["domaine"])}</span>'
+            f'<button class="cop" type="button" data-adr="{e(adresses)}">'
+            f'Copier les {len(f["contacts"])}</button></div>'
+            f'<ul class="adrs">{"".join(lignes)}</ul></section>'
+        )
+
+    if sans:
+        items = "".join(f"<li>{e(x)}</li>" for x in sans)
+        blocs.append(
+            '<section class="of manque"><div class="of-h">'
+            f'<h2>Sans contact&nbsp;: {len(sans)} organismes</h2></div>'
+            f'<ul class="rien">{items}</ul>'
+            "<p>Ces organismes figurent dans la table des gagnants mais pas dans "
+            "l'export d'adresses.</p></section>"
+        )
+
+    total = sum(len(f["contacts"]) for f in fiches)
+    nommes = sum(1 for f in fiches for c in f["contacts"] if c["nom"] or c["fonction"])
+    compte = (f'<span class="compte">{len(fiches)} organismes · {total} adresses · '
+              f'{nommes} avec un nom ou une fonction</span>')
+
+    ZONES_MAILS["COUNT:MAILS"] = compte
+    ZONES_MAILS["LISTE:MAILS"] = "\n  " + "\n  ".join(blocs) + "\n  "
+    injecte(PAGE_MAILS, ZONES_MAILS)
+    print(f"{len(fiches)} organismes et {total} adresses écrits dans "
+          f"{PAGE_MAILS.relative_to(RACINE)} ({len(sans)} organismes sans contact, "
+          f"{len(ecartees)} adresses gabarit écartées)")
+
+
+def injecte(page, zones):
+    txt = page.read_text(encoding="utf-8")
+    for nom, contenu in zones.items():
+        debut, fin = f"<!-- {nom} -->", f"<!-- /{nom} -->"
+        if debut not in txt or fin not in txt:
+            sys.exit(f"Marqueur {nom} absent de {page}")
+        txt = re.sub(re.escape(debut) + r".*?" + re.escape(fin),
+                     lambda _, d=debut, c=contenu, f=fin: d + c + f,
+                     txt, flags=re.S)
+    page.write_text(txt, encoding="utf-8")
 
 
 if __name__ == "__main__":
