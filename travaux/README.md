@@ -18,6 +18,12 @@ groupe « À faire ». Elle est commentée dans `index.html` entre les repères
 La page `tournage/` et sa pièce jointe `question-video.docx` n'ont pas bougé
 et restent accessibles en direct.
 
+Chaque ligne porte un marqueur d'état : cercle vide tant que la pièce est en
+cours, coche verte quand elle est finie. Pour basculer une ligne, remplacer
+`<span class="st" aria-hidden="true"></span>` par le bloc `<span class="st ok">`
+du Baromètre, et le libellé `.sr` qui suit (« En cours » / « Terminé », lu par
+les lecteurs d'écran, invisible à l'œil).
+
 `travaux.css` est la feuille commune aux trois pages.
 
 ## Les trois sources de données
