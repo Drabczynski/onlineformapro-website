@@ -97,6 +97,25 @@ h1{margin:0 0 12px;font-size:clamp(1.9rem,4.6vw,2.7rem);line-height:1.05;font-we
 .lnk:hover{text-decoration:underline}
 .vide{color:var(--ink-3)}
 
+/* ---- conducteur de tournage : une question par ligne ---- */
+.piece{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--ink-2);background:var(--cream-0);
+  border:1px solid var(--line);border-radius:999px;padding:8px 15px;margin-top:22px;
+  transition:border-color .18s,color .18s}
+.piece:hover{border-color:var(--red);color:var(--red)}
+.qs{list-style:none;margin:clamp(34px,5vw,46px) 0 0;padding:0;counter-reset:q;
+  border-top:1px solid var(--line)}
+.qs li{counter-increment:q;display:grid;grid-template-columns:38px minmax(0,1fr);gap:18px;
+  padding:19px 0;border-bottom:1px solid var(--line)}
+.qs li::before{content:counter(q,decimal-leading-zero);font-family:var(--mono);font-size:11px;
+  font-weight:500;letter-spacing:.06em;color:var(--red);padding-top:5px}
+.qs p{margin:0;font-size:1.04rem;line-height:1.5;letter-spacing:-.018em;color:var(--ink);
+  max-width:62ch;text-wrap:pretty}
+@media (max-width:520px){
+  .qs li{grid-template-columns:28px minmax(0,1fr);gap:12px}
+  .qs p{font-size:.99rem}
+}
+
 /* ---- mailing : un bloc par organisme ---- */
 .of{border-top:1px solid var(--line);padding:22px 0 24px}
 .of:last-child{border-bottom:1px solid var(--line)}

@@ -5,11 +5,16 @@ Dossier accessible depuis la plaque « Travail en cours » de la page d'accueil.
 
 | Ligne de la liste | Ouvre |
 |---|---|
+| Rendez-vous tournage Auguste prix | `tournage/` — le conducteur, 12 questions |
 | Gagnants d'appels d'offre | `gagnants-fle/` — la table des 45 organismes |
 | Mailing des gagnants | `mailing-gagnants/` — 39 organismes, 348 adresses |
 | Poster Octobre Rose | `poster-octobre-rose.webp` |
 | Mailing FLE Plateforme | `mailing-fle-plateforme.pdf` |
 | Poster FICA | `poster-fica.webp` |
+
+Pièce jointe du conducteur : `question-video.docx`, qui contient les mêmes
+questions avec des réponses préparées, plus quelques séquences hors
+conducteur (plateforme FLE, rôle de la plateforme dans les prochaines années).
 
 `travaux.css` est la feuille commune aux trois pages.
 
