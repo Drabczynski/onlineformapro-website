@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Régénère la table « Gagnants d'appels d'offre » dans index.html.
+"""Régénère la table « Gagnants d'appels d'offre ».
 
     python3 tools/build-travaux.py
 
-Lit travaux/prospection-fle.csv et réécrit le fragment situé entre les deux
-marqueurs TABLE:PROSPECTION-FLE de index.html. Rien d'autre n'est touché.
+Lit travaux/prospection-fle.csv et réécrit, dans
+travaux/gagnants-fle/index.html, les deux fragments situés entre les marqueurs
+COUNT:PROSPECTION-FLE et TABLE:PROSPECTION-FLE. Rien d'autre n'est touché.
 """
 import csv
 import html
@@ -14,7 +15,7 @@ import sys
 
 RACINE = pathlib.Path(__file__).resolve().parent.parent
 CSV = RACINE / "travaux" / "prospection-fle.csv"
-PAGE = RACINE / "index.html"
+PAGE = RACINE / "travaux" / "gagnants-fle" / "index.html"
 ZONES = {
     "COUNT:PROSPECTION-FLE": None,   # le compteur, dans l'en-tête de l'encart
     "TABLE:PROSPECTION-FLE": None,   # la table, sous le paragraphe
@@ -114,11 +115,11 @@ def main():
              f"<tbody>{''.join(corps)}</tbody></table></div>")
 
     n = {k: sum(1 for r in lignes if r["Priorité"].strip() == k) for k in "ABC"}
-    compte = (f'<span class="m">{len(lignes)} organismes · '
+    compte = (f'<span class="compte">{len(lignes)} organismes · '
               f'{n["A"]} en A · {n["B"]} en B · {n["C"]} en C</span>')
 
     ZONES["COUNT:PROSPECTION-FLE"] = compte
-    ZONES["TABLE:PROSPECTION-FLE"] = "\n" + table + "\n        "
+    ZONES["TABLE:PROSPECTION-FLE"] = "\n  " + table + "\n  "
 
     page = PAGE.read_text(encoding="utf-8")
     for nom, contenu in ZONES.items():
