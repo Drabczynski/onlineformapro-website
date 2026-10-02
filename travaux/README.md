@@ -9,6 +9,7 @@ Dossier accessible depuis la plaque « Travail en cours » de la page d'accueil.
 | Baromètre IA 2026 | `/enquete/` — la maquette de l'enquête |
 | Gagnants d'appels d'offre | `gagnants-fle/` — la table des 45 organismes |
 | Mailing des gagnants | `mailing-gagnants/` — 39 organismes, 348 adresses |
+| Newsletter CiviCap | `newsletter-civicap/` — objets, e-mail, version texte |
 | Poster Octobre Rose | `poster-octobre-rose.webp` |
 | Mailing FLE Plateforme | `mailing-fle-plateforme.pdf` |
 | Poster FICA | `poster-fica.webp` |
@@ -19,7 +20,18 @@ cours, coche verte quand elle est finie. Pour basculer une ligne, remplacer
 du Baromètre, et le libellé `.sr` qui suit (« En cours » / « Terminé », lu par
 les lecteurs d'écran, invisible à l'œil).
 
-`travaux.css` est la feuille commune aux trois pages.
+`travaux.css` est la feuille commune aux pages du dossier.
+
+## Newsletter CiviCap
+
+`newsletter-civicap/email.html` est l'e-mail lui-même, en tableaux et styles
+en ligne, prêt à coller dans l'outil d'envoi. `index.html` porte les objets,
+l'aperçu, la version texte et la liste de ce qui reste à fournir.
+
+Le logo `logo-civicap.png` est un recadrage de la capture d'écran fournie
+(313 × 111 px, fond ramené au blanc pur par remplissage depuis les bords) :
+il dépanne à l'écran, il faudra le fichier d'origine avant l'envoi. Dans
+l'outil d'envoi, son chemin devra aussi devenir une adresse absolue.
 
 ## Les trois sources de données
 
