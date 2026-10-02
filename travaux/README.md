@@ -30,14 +30,16 @@ l'aperçu, la version texte et la liste de ce qui reste à fournir.
 
 `img/` porte les quatre visuels de l'e-mail, fabriqués par
 `tools/illustrations-civicap.py` : la démonstration (question du 14 juillet,
-explication en arabe, niveaux), l'écran d'examen blanc, le bilan par thème et la
+bonne réponse, explication, niveaux), l'écran d'examen blanc, le bilan par thème et la
 jauge de préparation. Chaque visuel est une page HTML/CSS rendue en PNG double
 densité par Chromium : les messageries n'affichent ni SVG ni dégradés fiables.
 
 Le contenu vient de ce que CiviCap montre sur son propre site ; le bilan et la
 jauge portent la mention « Exemple ». Aucune personne, aucun résultat présenté
-comme réel. Le script télécharge Inter et Noto Sans Arabic depuis Google Fonts au
-premier lancement : il faut un accès réseau pour régénérer.
+comme réel. L'explication du 14 juillet est traduite de sa version arabe, la seule
+présente dans la copie du site transmise : à remplacer par le texte exact de CiviCap. Le script
+télécharge Inter depuis Google Fonts au premier lancement : il faut un accès réseau
+pour régénérer.
 
 Le logo `logo-civicap.png` est un recadrage de la capture d'écran fournie
 (313 × 111 px, fond ramené au blanc pur par remplissage depuis les bords) :

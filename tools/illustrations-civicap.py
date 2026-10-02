@@ -7,14 +7,14 @@ tout ce qui fait le style « vitrine » est cuit dans l'image, le texte de l'e-m
 reste du HTML. Les coins arrondis aussi sont cuits, sur le blanc du conteneur,
 pour qu'Outlook ne les rende pas carrés.
 
-Le contenu vient uniquement de ce que CiviCap montre sur son propre site : la
-question de démonstration du 14 juillet et son explication en arabe, les niveaux
-A2/B1/B2, le chrono et le drapeau « à revoir » de l'examen blanc, le bilan par
+Le contenu vient de ce que CiviCap montre sur son propre site : la question de
+démonstration du 14 juillet, sa bonne réponse et son explication (traduite de la
+version arabe, la seule présente dans la copie du site transmise), les niveaux A2/B1/B2, le chrono et le drapeau « à revoir » de l'examen blanc, le bilan par
 thème, la jauge de préparation. Le bilan et la jauge portent la mention
 « Exemple » : leurs barres et leur courbe ne sont les résultats de personne.
 
-Polices : Inter et Noto Sans Arabic, téléchargées depuis Google Fonts au premier
-lancement (curl), mises en cache, puis intégrées en base64. Régénérer demande donc
+Police : Inter, téléchargée depuis Google Fonts au premier lancement (curl), mise
+en cache, puis intégrée en base64. Régénérer demande donc
 un accès réseau la première fois.
 """
 import base64, json, pathlib, re, subprocess, tempfile, textwrap
@@ -27,13 +27,14 @@ UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 
 
 POLICES = {  # fichier en cache : (famille Google Fonts, sous-ensemble)
     "inter-latin.woff2": ("Inter:wght@400..800", "latin"),
-    "noto-arabic.woff2": ("Noto+Sans+Arabic:wght@400..700", "arabic"),
 }
 
-# l'explication telle qu'elle figure sur civicap.app, onglet العربية
-ARABE = ("الرابع عشر من يوليو هو العيد الوطني الفرنسي. يُحيي ذكرى اقتحام سجن الباستيل عام 1789، "
-         "رمز نهاية الملكية المطلقة، وكذلك عيد الاتحاد عام 1790. ويُحتفى فيه بقيم الجمهورية: "
-         "الحرية والمساواة والإخاء.")
+# L'explication de la démonstration de civicap.app, traduite de sa version arabe : la copie
+# du site transmise ne donnait pas la version française. À remplacer par le texte français exact de CiviCap.
+EXPLICATION = ("Le 14 juillet est la fête nationale française. Il commémore la prise de la Bastille "
+               "en 1789, symbole de la fin de la monarchie absolue, ainsi que la fête de la "
+               "Fédération de 1790. On y célèbre les valeurs de la République : liberté, égalité, "
+               "fraternité.")
 
 
 def polices_css():
@@ -50,9 +51,7 @@ def polices_css():
         subprocess.run(["curl", "-sS", url, "-o", str(cible)], check=True)
     b64 = lambda f: base64.b64encode((CACHE / f).read_bytes()).decode()
     return (f"@font-face{{font-family:'Inter';font-weight:400 800;"
-            f"src:url(data:font/woff2;base64,{b64('inter-latin.woff2')}) format('woff2')}}"
-            f"@font-face{{font-family:'Noto Sans Arabic';font-weight:400 700;"
-            f"src:url(data:font/woff2;base64,{b64('noto-arabic.woff2')}) format('woff2')}}")
+            f"src:url(data:font/woff2;base64,{b64('inter-latin.woff2')}) format('woff2')}}")
 
 
 COCHE = ('<svg width="{s}" height="{s}" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.3 4.9 8.6 9.6 3.6" '
@@ -85,7 +84,7 @@ body{font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased;color:#0F0A
 
 
 def hero():
-    """La démonstration de CiviCap : la question, la bonne réponse, l'explication en arabe."""
+    """La démonstration de CiviCap : la question, la bonne réponse, l'explication au bon niveau."""
     w, h = 528, 340
     css = """
 .fond{position:absolute;inset:0;border-radius:22px;overflow:hidden;
@@ -103,13 +102,12 @@ def hero():
 .rep{margin-top:12px;display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:10px;
   background:#EEFBF3;border:1px solid #C6F0D5;font-size:13px;font-weight:600;color:#14532D}
 .sep{margin:14px 0 10px;height:1px;background:#EEEBF4}
-.seg .ar{font-family:'Noto Sans Arabic';font-size:11px;padding-top:2px;padding-bottom:3px}
-.ex{margin-top:10px;direction:rtl;text-align:right;font-family:'Noto Sans Arabic';font-size:12.5px;
-  line-height:1.8;color:#3D3850;height:68px;overflow:hidden;-webkit-mask-image:linear-gradient(#000 55%,transparent)}
-.niv{left:22px;top:250px;padding:11px 12px 12px}
+.ex{margin-top:8px;font-size:12.5px;line-height:1.65;color:#3D3850;height:64px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(#000 50%,transparent)}
+.niv{right:22px;top:248px;padding:11px 12px 12px}
 .niv .seg span{font-size:11px;padding:5px 10px}
 .niv .seg .on{background:#6D28D9}
-.toast{right:24px;top:20px;display:flex;align-items:center;gap:8px;padding:8px 12px 8px 9px;
+.toast{left:26px;top:20px;display:flex;align-items:center;gap:8px;padding:8px 12px 8px 9px;
   border-radius:999px;font-size:11.5px;font-weight:600}
 .toast .ok{width:16px;height:16px}
 """
@@ -120,9 +118,8 @@ def hero():
   <div class="question">Que commémore la fête nationale du&nbsp;14&nbsp;juillet&nbsp;?</div>
   <div class="rep"><span class="ok">{COCHE.format(s=10)}</span>La prise de la Bastille (1789)</div>
   <div class="sep"></div>
-  <div class="ligne"><span class="eti">Explication</span>
-    <div class="seg"><span>Français</span><span class="on ar">العربية</span><span>English</span></div></div>
-  <div class="ex">{ARABE}</div>
+  <div class="eti">Explication</div>
+  <div class="ex">{EXPLICATION}</div>
 </div>
 <div class="carte niv"><div class="eti" style="margin:0 0 7px 2px">Niveau</div>
   <div class="seg"><span>A2</span><span class="on">B1</span><span>B2</span></div></div>
@@ -237,7 +234,7 @@ def jauge():
   <path d="M0 84H200" stroke="#EEEBF4" stroke-width="1"/>
   <path d="{aire}" fill="url(#a)"/>
   <path d="M0 34H200" stroke="#16A34A" stroke-width="1.2" stroke-dasharray="3 3"/>
-  <text x="0" y="29" font-family="Inter" font-size="8.5" font-weight="600" fill="#166534">Seuil de réussite</text>
+  <text x="0" y="29" font-family="Inter" font-size="8.5" font-weight="600" fill="#166534">32/40 · seuil de réussite</text>
   <polyline points="{trace}" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
   {points}<circle cx="{x}" cy="{y}" r="4.4" fill="#7C3AED" stroke="#fff" stroke-width="2"/>
 </svg>"""
