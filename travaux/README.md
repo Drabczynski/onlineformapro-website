@@ -28,14 +28,16 @@ les lecteurs d'écran, invisible à l'œil).
 en ligne, prêt à coller dans l'outil d'envoi. `index.html` porte les objets,
 l'aperçu, la version texte et la liste de ce qui reste à fournir.
 
-`img/` porte les quatre visuels de l'e-mail, fabriqués par
+`img/` porte les cinq visuels de l'e-mail, fabriqués par
 `tools/illustrations-civicap.py` : la démonstration (question du 14 juillet,
-bonne réponse, explication, niveaux), l'écran d'examen blanc, le bilan par thème et la
-jauge de préparation. Chaque visuel est une page HTML/CSS rendue en PNG double
+bonne réponse, explication, niveaux), l'écran d'examen blanc, le bilan par thème, la
+jauge de préparation et le suivi d'un groupe côté formateur. Chaque visuel est une page HTML/CSS rendue en PNG double
 densité par Chromium : les messageries n'affichent ni SVG ni dégradés fiables.
 
-Le contenu vient de ce que CiviCap montre sur son propre site ; le bilan et la
-jauge portent la mention « Exemple ». Aucune personne, aucun résultat présenté
+Le contenu vient de ce que CiviCap montre sur son propre site, sauf le suivi côté
+formateur, que la copie du site ne décrit pas : il illustre la rubrique demandée
+et doit être confirmé. Le bilan, la jauge et le suivi portent la mention
+« Exemple ». Aucune personne, aucun résultat présenté
 comme réel. L'explication du 14 juillet est traduite de sa version arabe, la seule
 présente dans la copie du site transmise : à remplacer par le texte exact de CiviCap. Le script
 télécharge Inter depuis Google Fonts au premier lancement : il faut un accès réseau

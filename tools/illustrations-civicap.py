@@ -10,8 +10,10 @@ pour qu'Outlook ne les rende pas carrés.
 Le contenu vient de ce que CiviCap montre sur son propre site : la question de
 démonstration du 14 juillet, sa bonne réponse et son explication (traduite de la
 version arabe, la seule présente dans la copie du site transmise), les niveaux A2/B1/B2, le chrono et le drapeau « à revoir » de l'examen blanc, le bilan par
-thème, la jauge de préparation. Le bilan et la jauge portent la mention
-« Exemple » : leurs barres et leur courbe ne sont les résultats de personne.
+thème, la jauge de préparation. Le suivi de groupe côté formateur, lui, n'est pas
+décrit sur le site : il illustre la rubrique demandée pour l'offre organisme. Le
+bilan, la jauge et le suivi portent la mention « Exemple » : leurs barres, leur
+courbe et leurs scores ne sont les résultats de personne.
 
 Police : Inter, téléchargée depuis Google Fonts au premier lancement (curl), mise
 en cache, puis intégrée en base64. Régénérer demande donc
@@ -247,10 +249,76 @@ def jauge():
     return w, h, css, corps
 
 
+def pilotage():
+    """Le suivi d'un groupe côté formateur, sur un exemple : score, jauge, statut.
+
+    Cette vue n'est pas décrite dans la copie du site CiviCap : elle illustre la rubrique
+    demandée pour l'offre organisme. Initiales seulement, noms en barres grises, mention
+    « Exemple » : aucune personne, aucun résultat réel.
+    """
+    w, h = 528, 336
+    css = """
+.fond{position:absolute;inset:0;border-radius:22px;overflow:hidden;
+  background:radial-gradient(55% 70% at 4% 0%,rgba(251,206,8,.30),transparent 62%),
+   radial-gradient(50% 65% at 100% 8%,rgba(192,132,252,.30),transparent 60%),
+   radial-gradient(60% 75% at 96% 104%,rgba(124,58,237,.32),transparent 62%),#F4EFFF}
+.fond::after{content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(91,33,182,.07) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(91,33,182,.07) 1px,transparent 1px);
+  background-size:22px 22px;background-position:-1px -1px;
+  -webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 45%,#000 25%,transparent 78%)}
+.tab{left:34px;top:34px;width:460px;padding:15px 18px 10px}
+.titre{font-size:12.5px;font-weight:650;letter-spacing:-.01em}
+.titre span{color:#8A8499;font-weight:500}
+.grille{display:grid;grid-template-columns:112px 56px 1fr 96px;column-gap:14px;align-items:center}
+.th{margin-top:12px;padding-bottom:7px;font-size:8.5px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:#9A94A8}
+.tr{padding:7px 0;border-top:1px solid #F0EDF6}
+.qui{display:flex;align-items:center;gap:8px}
+.av{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;
+  font-size:9px;font-weight:700;letter-spacing:.02em}
+.score{font-size:12px;font-weight:650;font-variant-numeric:tabular-nums}
+.score span{color:#9A94A8;font-weight:500}
+.j{position:relative;height:6px;border-radius:9px;background:#EFECF6}
+.j i{position:absolute;left:0;top:0;bottom:0;border-radius:9px}
+.j b{position:absolute;left:80%;top:-4px;width:2px;height:14px;border-radius:2px;background:#16A34A}
+.st{justify-self:start;font-size:9.5px;font-weight:600;border-radius:999px;padding:4px 9px}
+.s-ok{background:#EAF8EF;color:#166534}.s-cours{background:#F1EBFF;color:#5B21B6}.s-aide{background:#FFF4D6;color:#92400E}
+.titre-l{display:flex;align-items:center;gap:9px}
+.toast{right:18px;top:16px;display:flex;align-items:center;gap:8px;padding:8px 12px 8px 9px;
+  border-radius:999px;font-size:11.5px;font-weight:600}
+.toast .ok{width:16px;height:16px}
+"""
+    gens = [("AM", 36, "ok", "Prêt", "#EDE7FF", "#5B21B6"),
+            ("KD", 33, "ok", "Prêt", "#DCFCE7", "#166534"),
+            ("SB", 29, "cours", "En progrès", "#FCE7F3", "#9D174D"),
+            ("YN", 27, "cours", "En progrès", "#E0F2FE", "#075985"),
+            ("LT", 22, "aide", "À accompagner", "#FEF3C7", "#92400E")]
+    couleur = {"ok": "#7C3AED", "cours": "#A78BFA", "aide": "#F59E0B"}
+    lignes = "".join(
+        f'<div class="grille tr"><div class="qui"><span class="av" style="background:{fond};color:{encre}">{ini}</span>'
+        f'<div class="sk" style="width:{56 - 4 * k}px;height:7px"></div></div>'
+        f'<div class="score">{s}<span>/40</span></div>'
+        f'<div class="j"><i style="width:{round(100 * s / 40)}%;background:{couleur[c]}"></i><b></b></div>'
+        f'<span class="st s-{c}">{lib}</span></div>'
+        for k, (ini, s, c, lib, fond, encre) in enumerate(gens))
+    corps = f"""
+<div class="fond"></div>
+<div class="carte tab">
+  <div class="titre-l"><span class="titre">Groupe FLE <span>· mardi matin</span></span><span class="tag">Exemple</span></div>
+  <div class="grille th"><span>Apprenant</span><span>Score</span><span>Jauge · seuil 32/40</span><span>Statut</span></div>
+  {lignes}
+</div>
+<div class="carte toast"><span class="ok">{COCHE.format(s=9)}</span>2 prêts pour l’examen</div>
+"""
+    return w, h, css, corps
+
+
 def main():
     SORTIE.mkdir(parents=True, exist_ok=True)
     polices = polices_css()
-    pieces = {"hero": hero(), "examen": examen(), "bilan": bilan(), "jauge": jauge()}
+    pieces = {"hero": hero(), "examen": examen(), "bilan": bilan(), "jauge": jauge(),
+              "pilotage": pilotage()}
     taches = []
     with tempfile.TemporaryDirectory() as tmp:
         for nom, (w, h, css, corps) in pieces.items():
