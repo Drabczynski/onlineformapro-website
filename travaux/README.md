@@ -43,6 +43,18 @@ présente dans la copie du site transmise : à remplacer par le texte exact de C
 télécharge Inter depuis Google Fonts au premier lancement : il faut un accès réseau
 pour régénérer.
 
+`photos/` porte les deux photos Unsplash posées en fond de deux visuels, sous
+licence Unsplash (usage commercial libre, crédit non obligatoire) :
+
+| Fichier | Sujet | Auteur | Page |
+|---|---|---|---|
+| `mairie-caen.jpg` | Place de mairie pavoisée, Caen | Joris Berthelot | unsplash.com/photos/yj84x60qmEg |
+| `salle-formation.jpg` | Salle de formation, apprenants de dos | Ilya Sonin | unsplash.com/photos/IsX2ZkbSk1Y |
+
+Ce sont les versions de 400 px de large : le réseau de l'environnement de travail
+bloquait `images.unsplash.com`. Pour plus de netteté, déposer les originaux sous
+les mêmes noms et relancer `python3 tools/illustrations-civicap.py`.
+
 Le logo `logo-civicap.png` est un recadrage de la capture d'écran fournie
 (313 × 111 px, fond ramené au blanc pur par remplissage depuis les bords) :
 il dépanne à l'écran, il faudra le fichier d'origine avant l'envoi. Dans

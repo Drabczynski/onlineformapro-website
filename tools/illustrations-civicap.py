@@ -24,6 +24,7 @@ import base64, json, pathlib, re, subprocess, tempfile, textwrap
 RACINE = pathlib.Path(__file__).resolve().parent.parent
 SORTIE = RACINE / "travaux" / "newsletter-civicap" / "img"
 CACHE = pathlib.Path(tempfile.gettempdir()) / "civicap-polices"
+PHOTOS = RACINE / "travaux" / "newsletter-civicap" / "photos"   # Unsplash, voir README
 PLAYWRIGHT = "/opt/node22/lib/node_modules/playwright/index.js"
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36"
 
@@ -56,6 +57,12 @@ def polices_css():
             f"src:url(data:font/woff2;base64,{b64('inter-latin.woff2')}) format('woff2')}}")
 
 
+
+def photo(nom):
+    """Une photo du dossier photos/, en URI de données pour la page de rendu."""
+    return "data:image/jpeg;base64," + base64.b64encode((PHOTOS / nom).read_bytes()).decode()
+
+
 COCHE = ('<svg width="{s}" height="{s}" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.3 4.9 8.6 9.6 3.6" '
          'stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>')
 
@@ -86,35 +93,37 @@ body{font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased;color:#0F0A
 
 
 def hero():
-    """La démonstration de CiviCap : la question, la bonne réponse, l'explication au bon niveau."""
+    """La démonstration de CiviCap posée sur une place de mairie, drapeau tricolore visible.
+
+    La photo source ne fait que 400 px de large : elle tient en panneau à gauche, où son
+    agrandissement reste discret, fondue dans le dégradé sous la carte.
+    """
     w, h = 528, 340
-    css = """
-.fond{position:absolute;inset:0;border-radius:22px;overflow:hidden;
-  background:radial-gradient(55% 70% at 8% 0%,rgba(124,58,237,.34),transparent 62%),
-   radial-gradient(45% 60% at 96% 6%,rgba(192,132,252,.30),transparent 60%),
-   radial-gradient(55% 70% at 92% 104%,rgba(251,206,8,.34),transparent 62%),
-   radial-gradient(50% 60% at 2% 100%,rgba(167,139,250,.26),transparent 60%),#F4EFFF}
-.fond::after{content:"";position:absolute;inset:0;
-  background-image:linear-gradient(rgba(91,33,182,.075) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(91,33,182,.075) 1px,transparent 1px);
-  background-size:22px 22px;background-position:-1px -1px;
-  -webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 45%,#000 25%,transparent 78%)}
-.q{left:82px;top:42px;width:364px;padding:20px 20px 18px}
-.question{margin-top:7px;font-size:15.5px;line-height:1.32;font-weight:650;letter-spacing:-.012em}
-.rep{margin-top:12px;display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:10px;
-  background:#EEFBF3;border:1px solid #C6F0D5;font-size:13px;font-weight:600;color:#14532D}
-.sep{margin:14px 0 10px;height:1px;background:#EEEBF4}
-.ex{margin-top:8px;font-size:12.5px;line-height:1.65;color:#3D3850;height:64px;overflow:hidden;
-  -webkit-mask-image:linear-gradient(#000 50%,transparent)}
-.niv{right:22px;top:248px;padding:11px 12px 12px}
-.niv .seg span{font-size:11px;padding:5px 10px}
-.niv .seg .on{background:#6D28D9}
-.toast{left:26px;top:20px;display:flex;align-items:center;gap:8px;padding:8px 12px 8px 9px;
-  border-radius:999px;font-size:11.5px;font-weight:600}
-.toast .ok{width:16px;height:16px}
+    css = f"""
+.fond{{position:absolute;inset:0;border-radius:22px;overflow:hidden;
+  background:radial-gradient(55% 70% at 96% 6%,rgba(192,132,252,.34),transparent 60%),
+   radial-gradient(55% 70% at 92% 104%,rgba(251,206,8,.34),transparent 62%),#F4EFFF}}
+.ph{{position:absolute;left:0;top:0;bottom:0;width:300px;
+  background:url({photo("mairie-caen.jpg")}) no-repeat;background-size:511px auto;background-position:-51px 0;
+  -webkit-mask-image:linear-gradient(90deg,#000 62%,transparent)}}
+.ph::after{{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(76,29,149,.06),rgba(46,16,101,.30))}}
+.q{{left:196px;top:42px;width:314px;padding:19px 19px 17px}}
+.question{{margin-top:7px;font-size:15px;line-height:1.32;font-weight:650;letter-spacing:-.012em}}
+.rep{{margin-top:11px;display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:10px;
+  background:#EEFBF3;border:1px solid #C6F0D5;font-size:12.5px;font-weight:600;color:#14532D}}
+.sep{{margin:13px 0 9px;height:1px;background:#EEEBF4}}
+.ex{{margin-top:7px;font-size:12px;line-height:1.62;color:#3D3850;height:58px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(#000 50%,transparent)}}
+.niv{{right:16px;top:250px;padding:11px 12px 12px}}
+.niv .seg span{{font-size:11px;padding:5px 10px}}
+.niv .seg .on{{background:#6D28D9}}
+.toast{{left:150px;top:18px;display:flex;align-items:center;gap:8px;padding:8px 12px 8px 9px;
+  border-radius:999px;font-size:11.5px;font-weight:600}}
+.toast .ok{{width:16px;height:16px}}
 """
     corps = f"""
-<div class="fond"></div>
+<div class="fond"><div class="ph"></div></div>
 <div class="carte q">
   <div class="eti">Question</div>
   <div class="question">Que commémore la fête nationale du&nbsp;14&nbsp;juillet&nbsp;?</div>
@@ -128,7 +137,6 @@ def hero():
 <div class="carte toast"><span class="ok">{COCHE.format(s=9)}</span>Corrigée à l’instant</div>
 """
     return w, h, css, corps
-
 
 def examen():
     """L'examen blanc : écran sobre, compte à rebours, drapeau « à revoir »."""
@@ -253,24 +261,23 @@ def pilotage():
     """Le suivi d'un groupe côté formateur, sur un exemple : score, jauge, statut.
 
     Cette vue n'est pas décrite dans la copie du site CiviCap : elle illustre la rubrique
-    demandée pour l'offre organisme. Initiales seulement, noms en barres grises, mention
-    « Exemple » : aucune personne, aucun résultat réel.
+    demandée pour l'offre organisme. Initiales seulement, mention « Exemple » : aucune
+    personne, aucun résultat réel. Fond : une salle de formation vue de dos (Unsplash).
     """
     w, h = 528, 336
     css = """
 .fond{position:absolute;inset:0;border-radius:22px;overflow:hidden;
-  background:radial-gradient(55% 70% at 4% 0%,rgba(251,206,8,.30),transparent 62%),
-   radial-gradient(50% 65% at 100% 8%,rgba(192,132,252,.30),transparent 60%),
-   radial-gradient(60% 75% at 96% 104%,rgba(124,58,237,.32),transparent 62%),#F4EFFF}
-.fond::after{content:"";position:absolute;inset:0;
-  background-image:linear-gradient(rgba(91,33,182,.07) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(91,33,182,.07) 1px,transparent 1px);
-  background-size:22px 22px;background-position:-1px -1px;
-  -webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 45%,#000 25%,transparent 78%)}
-.tab{left:34px;top:34px;width:460px;padding:15px 18px 10px}
+  background:radial-gradient(50% 65% at 100% 8%,rgba(192,132,252,.32),transparent 60%),
+   radial-gradient(60% 75% at 96% 104%,rgba(124,58,237,.30),transparent 62%),#F4EFFF}
+.ph{position:absolute;left:0;top:0;bottom:0;width:290px;
+  background:url(""" + photo("salle-formation.jpg") + """) no-repeat;background-size:507px auto;background-position:-25px 0;
+  -webkit-mask-image:linear-gradient(90deg,#000 60%,transparent)}
+.ph::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(76,29,149,.05),rgba(46,16,101,.28))}
+.tab{left:150px;top:44px;width:362px;padding:15px 16px 9px}
 .titre{font-size:12.5px;font-weight:650;letter-spacing:-.01em}
 .titre span{color:#8A8499;font-weight:500}
-.grille{display:grid;grid-template-columns:112px 56px 1fr 96px;column-gap:14px;align-items:center}
+.grille{display:grid;grid-template-columns:26px 50px 1fr 92px;column-gap:12px;align-items:center}
 .th{margin-top:12px;padding-bottom:7px;font-size:8.5px;font-weight:600;letter-spacing:.08em;
   text-transform:uppercase;color:#9A94A8}
 .tr{padding:7px 0;border-top:1px solid #F0EDF6}
@@ -285,7 +292,7 @@ def pilotage():
 .st{justify-self:start;font-size:9.5px;font-weight:600;border-radius:999px;padding:4px 9px}
 .s-ok{background:#EAF8EF;color:#166534}.s-cours{background:#F1EBFF;color:#5B21B6}.s-aide{background:#FFF4D6;color:#92400E}
 .titre-l{display:flex;align-items:center;gap:9px}
-.toast{right:18px;top:16px;display:flex;align-items:center;gap:8px;padding:8px 12px 8px 9px;
+.toast{right:16px;top:16px;display:flex;align-items:center;gap:8px;padding:8px 12px 8px 9px;
   border-radius:999px;font-size:11.5px;font-weight:600}
 .toast .ok{width:16px;height:16px}
 """
@@ -296,17 +303,16 @@ def pilotage():
             ("LT", 22, "aide", "À accompagner", "#FEF3C7", "#92400E")]
     couleur = {"ok": "#7C3AED", "cours": "#A78BFA", "aide": "#F59E0B"}
     lignes = "".join(
-        f'<div class="grille tr"><div class="qui"><span class="av" style="background:{fond};color:{encre}">{ini}</span>'
-        f'<div class="sk" style="width:{56 - 4 * k}px;height:7px"></div></div>'
+        f'<div class="grille tr"><span class="av" style="background:{fond};color:{encre}">{ini}</span>'
         f'<div class="score">{s}<span>/40</span></div>'
         f'<div class="j"><i style="width:{round(100 * s / 40)}%;background:{couleur[c]}"></i><b></b></div>'
         f'<span class="st s-{c}">{lib}</span></div>'
-        for k, (ini, s, c, lib, fond, encre) in enumerate(gens))
+        for ini, s, c, lib, fond, encre in gens)
     corps = f"""
-<div class="fond"></div>
+<div class="fond"><div class="ph"></div></div>
 <div class="carte tab">
   <div class="titre-l"><span class="titre">Groupe FLE <span>· mardi matin</span></span><span class="tag">Exemple</span></div>
-  <div class="grille th"><span>Apprenant</span><span>Score</span><span>Jauge · seuil 32/40</span><span>Statut</span></div>
+  <div class="grille th"><span></span><span>Score</span><span>Jauge · seuil 32/40</span><span>Statut</span></div>
   {lignes}
 </div>
 <div class="carte toast"><span class="ok">{COCHE.format(s=9)}</span>2 prêts pour l’examen</div>
