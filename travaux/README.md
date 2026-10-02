@@ -28,14 +28,16 @@ les lecteurs d'écran, invisible à l'œil).
 en ligne, prêt à coller dans l'outil d'envoi. `index.html` porte les objets,
 l'aperçu, la version texte et la liste de ce qui reste à fournir.
 
-`img/` porte les six repères des thèmes du programme, fabriqués par
-`tools/illustrations-civicap.py` : dessinés en SVG, rendus en PNG double densité
-avec Chromium — aucun client de messagerie n'affiche du SVG, et le fond de la
-carte est cuit dans l'image parce qu'un PNG transparent vire au noir dans les
-vieux Outlook. Les barres des trois parcours ne sont pas une image : ce sont des
-cellules de tableau colorées, qui survivent au blocage des images.
+`img/` porte les quatre visuels de l'e-mail, fabriqués par
+`tools/illustrations-civicap.py` : la démonstration (question du 14 juillet,
+explication en arabe, niveaux), l'écran d'examen blanc, le bilan par thème et la
+jauge de préparation. Chaque visuel est une page HTML/CSS rendue en PNG double
+densité par Chromium : les messageries n'affichent ni SVG ni dégradés fiables.
 
-Aucune capture du produit, aucune personne, aucune interface inventée.
+Le contenu vient de ce que CiviCap montre sur son propre site ; le bilan et la
+jauge portent la mention « Exemple ». Aucune personne, aucun résultat présenté
+comme réel. Le script télécharge Inter et Noto Sans Arabic depuis Google Fonts au
+premier lancement : il faut un accès réseau pour régénérer.
 
 Le logo `logo-civicap.png` est un recadrage de la capture d'écran fournie
 (313 × 111 px, fond ramené au blanc pur par remplissage depuis les bords) :
