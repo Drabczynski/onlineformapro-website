@@ -5,18 +5,13 @@ Dossier accessible depuis la plaque « Travail en cours » de la page d'accueil.
 
 | Ligne de la liste | Ouvre |
 |---|---|
+| Tournage Auguste | `tournage/` — le conducteur, 12 questions, + le Word |
 | Baromètre IA 2026 | `/enquete/` — la maquette de l'enquête |
 | Gagnants d'appels d'offre | `gagnants-fle/` — la table des 45 organismes |
 | Mailing des gagnants | `mailing-gagnants/` — 39 organismes, 348 adresses |
 | Poster Octobre Rose | `poster-octobre-rose.webp` |
 | Mailing FLE Plateforme | `mailing-fle-plateforme.pdf` |
 | Poster FICA | `poster-fica.webp` |
-
-**Masqué pour l'instant** : la ligne « Rendez-vous tournage Auguste prix »,
-groupe « À faire ». Elle est commentée dans `index.html` entre les repères
-`MASQUÉ` et `FIN DU BLOC MASQUÉ` — retirer le commentaire la remet en place.
-La page `tournage/` et sa pièce jointe `question-video.docx` n'ont pas bougé
-et restent accessibles en direct.
 
 Chaque ligne porte un marqueur d'état : cercle vide tant que la pièce est en
 cours, coche verte quand elle est finie. Pour basculer une ligne, remplacer
