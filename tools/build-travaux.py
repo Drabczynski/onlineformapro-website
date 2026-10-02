@@ -5,6 +5,7 @@
 
   travaux/prospection-fle.csv                        → travaux/gagnants-fle/
   travaux/mails-fle.csv + travaux/contacts-hunter.csv → travaux/mailing-gagnants/
+  travaux/contacts-ofii.csv                          → travaux/mailing-ofii/
 
 Les deux sources d'adresses sont fusionnées sur le nom de domaine. Quand la
 même adresse figure dans les deux, la fiche de contacts-hunter.csv l'emporte :
@@ -25,6 +26,8 @@ CSV = RACINE / "travaux" / "prospection-fle.csv"
 PAGE = RACINE / "travaux" / "gagnants-fle" / "index.html"
 CSV_MAILS = RACINE / "travaux" / "mails-fle.csv"
 CSV_HUNTER = RACINE / "travaux" / "contacts-hunter.csv"
+CSV_OFII = RACINE / "travaux" / "contacts-ofii.csv"
+PAGE_OFII = RACINE / "travaux" / "mailing-ofii" / "index.html"
 PAGE_MAILS = RACINE / "travaux" / "mailing-gagnants" / "index.html"
 ZONES = {
     "COUNT:PROSPECTION-FLE": None,   # le compteur, sous le titre
@@ -34,6 +37,14 @@ ZONES_MAILS = {
     "COUNT:MAILS": None,
     "LISTE:MAILS": None,
 }
+ZONES_OFII = {
+    "COUNT:OFII": None,
+    "LISTE:OFII": None,
+}
+# Une adresse mal formée ne part pas dans un envoi : elle est écartée.
+SYNTAXE = re.compile(r"^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+"
+                     r"(\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*"
+                     r"@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$")
 
 MAIL = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
 # Adresses manifestement gabarit ou non vérifiées, rendues par l'outil de
@@ -173,6 +184,7 @@ def main():
     print(f"{len(lignes)} lignes écrites dans {PAGE.relative_to(RACINE)} "
           f"(A {n['A']} · B {n['B']} · C {n['C']})")
     page_mails()
+    page_ofii()
 
 
 # ---------------------------------------------------------------- mailing ---
@@ -379,6 +391,108 @@ def page_mails():
     print(f"{len(fiches)} organismes et {total} adresses écrits dans "
           f"{PAGE_MAILS.relative_to(RACINE)} ({len(sans)} organismes sans contact, "
           f"{len(ecartees)} adresses gabarit écartées, {nb_exclus} organisme à exclure)")
+
+
+# ------------------------------------------------------------------ OFII ---
+
+def page_ofii():
+    """Les contacts des gagnants de l'appel d'offre OFII, groupés par domaine.
+
+    L'export porte deux signaux de délivrabilité qu'on ne peut pas ignorer dans
+    un mailing : la syntaxe de l'adresse, et l'existence d'un serveur de
+    messagerie sur le domaine (MX). Un domaine sans MX ne reçoit rien ; ses
+    adresses sont affichées mais ni cliquables ni copiables.
+    """
+    with CSV_OFII.open(encoding="utf-8", newline="") as f:
+        lignes = [r for r in csv.DictReader(f) if (r.get("Email") or "").strip()]
+
+    par_domaine, invalides = {}, []
+    for r in lignes:
+        adr = r["Email"].strip().lower()
+        if not SYNTAXE.match(adr):
+            invalides.append(adr)
+            continue
+        dom = r["Domain"].strip().lower()
+        d = par_domaine.setdefault(dom, {"nom": "", "contacts": [], "sansmx": True})
+        if not d["nom"] and (r["Company Name"] or "").strip():
+            d["nom"] = r["Company Name"].strip()
+        if r["MX Active"].strip().lower() == "yes":
+            d["sansmx"] = False
+        score = r["Confidence Score"].strip()
+        d["contacts"].append({
+            "nom": (r["Full Name"] or "").strip(),
+            "fonction": (r["Job Title"] or "").strip(),
+            "adr": adr,
+            "decideur": r["Decision Maker"].strip().lower() == "yes",
+            "generique": r["Email Type"].strip().lower() == "generic",
+            "score": int(score) if score.isdigit() else None,
+        })
+
+    fiches = []
+    for dom, d in par_domaine.items():
+        d["contacts"].sort(key=lambda c: (not c["decideur"], c["generique"],
+                                          not c["nom"], c["adr"]))
+        fiches.append({"of": d["nom"] or dom, "domaine": dom,
+                       "contacts": d["contacts"], "sansmx": d["sansmx"]})
+    fiches.sort(key=lambda f: f["of"].lower())
+
+    # les domaines déjà présents dans la campagne FLE, pour ne pas écrire deux fois
+    with CSV_HUNTER.open(encoding="utf-8", newline="") as f:
+        dom_fle = {r["target_domain"].strip().lower()
+                   for r in csv.DictReader(f, delimiter=";") if r.get("target_domain")}
+
+    blocs, nb_sansmx, nb_croise = [], 0, 0
+    for f in fiches:
+        croise = f["domaine"] in dom_fle
+        if croise:
+            nb_croise += 1
+        if f["sansmx"]:
+            nb_sansmx += 1
+        envoyables = [c["adr"] for c in f["contacts"]] if not f["sansmx"] else []
+        lignes_html = []
+        for c in f["contacts"]:
+            qui = " · ".join(x for x in (c["nom"], c["fonction"]) if x)
+            adr = (f'<span class="adr">{e(c["adr"])}</span>' if f["sansmx"] else
+                   f'<a class="adr" href="mailto:{e(c["adr"])}">{e(c["adr"])}</a>')
+            lignes_html.append(
+                "<li>" + adr
+                + (f'<span class="qui">{e(qui)}</span>' if qui else '<span class="qui"></span>')
+                + ('<span class="dec">décideur</span>' if c["decideur"] else "")
+                + (f'<span class="faible">confiance {c["score"]}</span>'
+                   if c["score"] is not None and c["score"] < 70 else "")
+                + "</li>"
+            )
+        action = ('<span class="nope">Domaine sans messagerie</span>' if f["sansmx"] else
+                  f'<button class="cop" type="button" data-adr="{e(", ".join(envoyables))}">'
+                  f'Copier les {len(envoyables)}</button>')
+        avis = []
+        if f["sansmx"]:
+            avis.append("Ce domaine n'a pas de serveur de messagerie actif&nbsp;: aucune de ces "
+                        "adresses ne peut recevoir de courrier. Les liens sont désactivés.")
+        if croise:
+            avis.append("Ce domaine figure déjà dans la campagne FLE&nbsp;: vérifiez de ne pas "
+                        "écrire deux fois au même organisme.")
+        avis_html = f'<p class="avis">{" ".join(avis)}</p>' if avis else ""
+        blocs.append(
+            f'<section class="of{" exclu" if f["sansmx"] else ""}">'
+            f'<div class="of-h"><span class="p p-0">·</span><h2>{e(f["of"])}</h2>'
+            f'<span class="dom">{e(f["domaine"])}</span>{action}</div>'
+            f'{avis_html}<ul class="adrs">{"".join(lignes_html)}</ul></section>'
+        )
+
+    total = sum(len(f["contacts"]) for f in fiches)
+    envoyables = sum(len(f["contacts"]) for f in fiches if not f["sansmx"])
+    decideurs = sum(1 for f in fiches for c in f["contacts"] if c["decideur"])
+    compte = (f'<span class="compte">{len(fiches)} organismes · {total} adresses · '
+              f'{envoyables} envoyables · {decideurs} décideurs</span>')
+
+    ZONES_OFII["COUNT:OFII"] = compte
+    ZONES_OFII["LISTE:OFII"] = "\n  " + "\n  ".join(blocs) + "\n  "
+    injecte(PAGE_OFII, ZONES_OFII)
+    print(f"{len(fiches)} organismes et {total} adresses écrits dans "
+          f"{PAGE_OFII.relative_to(RACINE)} ({envoyables} envoyables, "
+          f"{nb_sansmx} domaines sans messagerie, {len(invalides)} adresse mal formée, "
+          f"{nb_croise} domaines déjà dans la campagne FLE)")
 
 
 def injecte(page, zones):

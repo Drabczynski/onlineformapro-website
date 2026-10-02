@@ -168,6 +168,8 @@ h1{margin:0 0 12px;font-size:clamp(1.9rem,4.6vw,2.7rem);line-height:1.05;font-we
   text-decoration-color:rgba(224,26,79,.5);text-decoration-thickness:1px}
 .exclu .qui{color:var(--ink-3)}
 .exclu .dec{background:var(--cream-2);color:var(--ink-3)}
+.faible{font-family:var(--mono);font-size:8.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:#9A6B00;background:#FFF6E0;border-radius:5px;padding:2px 6px;white-space:nowrap}
 @media (max-width:620px){.nope{margin-left:0}}
 
 .manque .of-h h2{color:var(--ink-2);font-weight:500}

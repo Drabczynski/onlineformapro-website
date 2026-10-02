@@ -8,7 +8,8 @@ Dossier accessible depuis la plaque « Travail en cours » de la page d'accueil.
 | Tournage Auguste | `tournage/` — le conducteur, 12 questions, + le Word |
 | Baromètre IA 2026 | `/enquete/` — la maquette de l'enquête |
 | Gagnants d'appels d'offre | `gagnants-fle/` — la table des 45 organismes |
-| Mailing des gagnants | `mailing-gagnants/` — 39 organismes, 348 adresses |
+| Mailing des gagnants | `mailing-gagnants/` — FLE, 39 organismes, 348 adresses |
+| Mailing des gagnants OFII | `mailing-ofii/` — 48 organismes, 274 adresses |
 | Newsletter CiviCap | `newsletter-civicap/` — objets, e-mail, version texte |
 | Poster Octobre Rose | `poster-octobre-rose.webp` |
 | Mailing FLE Plateforme | `mailing-fle-plateforme.pdf` |
@@ -33,13 +34,14 @@ Le logo `logo-civicap.png` est un recadrage de la capture d'écran fournie
 il dépanne à l'écran, il faudra le fichier d'origine avant l'envoi. Dans
 l'outil d'envoi, son chemin devra aussi devenir une adresse absolue.
 
-## Les trois sources de données
+## Les sources de données
 
 | Fichier | Alimente |
 |---|---|
-| `prospection-fle.csv` | la table des gagnants |
-| `mails-fle.csv` | les adresses, par organisme |
-| `contacts-hunter.csv` | les fiches nominatives, par domaine |
+| `prospection-fle.csv` | la table des gagnants FLE |
+| `mails-fle.csv` | les adresses FLE, par organisme |
+| `contacts-hunter.csv` | les fiches nominatives FLE, par domaine |
+| `contacts-ofii.csv` | les contacts OFII (export Hunter, 275 lignes) |
 
 Les deux fichiers d'adresses sont **fusionnés sur le nom de domaine**. Quand la
 même adresse figure dans les deux, c'est la fiche de `contacts-hunter.csv` qui
@@ -75,6 +77,28 @@ EXCLUS = {
 
 La clé est le nom passé par `_cle()` : minuscules, sans accent ni espace ni
 ponctuation.
+
+## Campagne OFII
+
+`contacts-ofii.csv` est l'export Hunter brut, débarrassé de sa marque d'ordre
+d'octets. Le générateur groupe par domaine et applique deux filtres de
+délivrabilité :
+
+- **Syntaxe.** Une adresse mal formée est écartée. Une seule l'est ici :
+  `reclamation.@mooveus.fr`, point collé devant l'arobase.
+- **MX.** Un domaine sans serveur de messagerie actif ne reçoit rien. Ses
+  adresses restent affichées mais barrées, non cliquables, sans bouton de
+  copie. Trois domaines sont concernés, dont `esf-formations.com` avec ses
+  17 adresses.
+
+Trois domaines apparaissent aussi dans la campagne FLE — `infrep.org`,
+`mooveus.fr`, `nouvelle-donne-formation.org` — et leur bloc le signale, pour
+ne pas écrire deux fois au même organisme.
+
+La colonne « nom » de l'export n'est pas fiable : elle contient parfois un
+fragment de phrase plutôt qu'une identité (« contact avec », « sur demande »,
+« des DREETS »). Elle est affichée telle quelle, sans correction silencieuse,
+et la page avertit de ne pas publiposter sur le prénom.
 
 ## Régénérer
 
