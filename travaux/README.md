@@ -7,9 +7,8 @@ Dossier accessible depuis la plaque « Travail en cours » de la page d'accueil.
 |---|---|
 | Tournage Auguste | `tournage/` — le conducteur, 12 questions, + le Word |
 | Baromètre IA 2026 | `/enquete/` — la maquette de l'enquête |
-| Gagnants d'appels d'offre | `gagnants-fle/` — la table des 45 organismes |
-| Mailing des gagnants | `mailing-gagnants/` — FLE, 39 organismes, 348 adresses |
-| Mailing des gagnants OFII | `mailing-ofii/` — 48 organismes, 274 adresses |
+| Gagnants d'appels d'offre FLE | `gagnants-fle/` — la table des 45 organismes |
+| Mailing des gagnants | `mailing-gagnants/` — OFII puis FLE, les deux campagnes |
 | Newsletter CiviCap | `newsletter-civicap/` — objets, e-mail, version texte |
 | Poster Octobre Rose | `poster-octobre-rose.webp` |
 | Mailing FLE Plateforme | `mailing-fle-plateforme.pdf` |
@@ -48,6 +47,14 @@ même adresse figure dans les deux, c'est la fiche de `contacts-hunter.csv` qui
 est retenue : elle porte un nom, une fonction et la marque décideur. Dans
 chaque bloc, l'ordre est : adresse recommandée, décideurs, contacts nommés,
 adresses génériques.
+
+`mailing-gagnants/index.html` porte **les deux campagnes, dans deux sections
+distinctes** : « Gagnants OFII » d'abord, « Gagnants FLE » ensuite. Chaque section a
+son propre compte, son propre chapeau et sa propre liste. Dans le HTML, les quatre
+marqueurs les délimitent : `COUNT:OFII` / `LISTE:OFII` pour la première,
+`COUNT:MAILS` / `LISTE:MAILS` pour la seconde. Le titre de la page est un `h1`, celui
+d'une section un `h2`, celui d'un organisme un `h3` — ne pas remonter ce niveau, la
+hiérarchie est ce qui sépare les deux listes pour un lecteur d'écran.
 
 Un domaine partagé sert plusieurs organismes : `greta-cfa.ac-lyon.fr` apparaît
 sous GRETA CFA Loire et sous GRETA CFA de l'Ain, avec les mêmes fiches
@@ -92,8 +99,8 @@ délivrabilité :
   17 adresses.
 
 Trois domaines apparaissent aussi dans la campagne FLE — `infrep.org`,
-`mooveus.fr`, `nouvelle-donne-formation.org` — et leur bloc le signale, pour
-ne pas écrire deux fois au même organisme.
+`mooveus.fr`, `nouvelle-donne-formation.org` — et leur bloc renvoie à la section du
+dessous, pour ne pas écrire deux fois au même organisme.
 
 La colonne « nom » de l'export n'est pas fiable : elle contient parfois un
 fragment de phrase plutôt qu'une identité (« contact avec », « sur demande »,

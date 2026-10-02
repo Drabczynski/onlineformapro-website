@@ -27,7 +27,6 @@ PAGE = RACINE / "travaux" / "gagnants-fle" / "index.html"
 CSV_MAILS = RACINE / "travaux" / "mails-fle.csv"
 CSV_HUNTER = RACINE / "travaux" / "contacts-hunter.csv"
 CSV_OFII = RACINE / "travaux" / "contacts-ofii.csv"
-PAGE_OFII = RACINE / "travaux" / "mailing-ofii" / "index.html"
 PAGE_MAILS = RACINE / "travaux" / "mailing-gagnants" / "index.html"
 ZONES = {
     "COUNT:PROSPECTION-FLE": None,   # le compteur, sous le titre
@@ -363,7 +362,7 @@ def page_mails():
                 'copiables.</p>') if exclu else ""
         blocs.append(
             f'<section class="of{" exclu" if exclu else ""}">'
-            f'<div class="of-h">{prio}<h2>{e(f["of"])}</h2>'
+            f'<div class="of-h">{prio}<h3>{e(f["of"])}</h3>'
             f'<span class="dom">{e(f["domaine"])}</span>{action}</div>'
             f'{avis}<ul class="adrs">{"".join(lignes)}</ul></section>'
         )
@@ -372,7 +371,7 @@ def page_mails():
         items = "".join(f"<li>{e(x)}</li>" for x in sans)
         blocs.append(
             '<section class="of manque"><div class="of-h">'
-            f'<h2>Sans contact&nbsp;: {len(sans)} organismes</h2></div>'
+            f'<h3>Sans contact&nbsp;: {len(sans)} organismes</h3></div>'
             f'<ul class="rien">{items}</ul>'
             "<p>Ces organismes figurent dans la table des gagnants mais pas dans "
             "l'export d'adresses.</p></section>"
@@ -388,8 +387,7 @@ def page_mails():
     ZONES_MAILS["COUNT:MAILS"] = compte
     ZONES_MAILS["LISTE:MAILS"] = "\n  " + "\n  ".join(blocs) + "\n  "
     injecte(PAGE_MAILS, ZONES_MAILS)
-    print(f"{len(fiches)} organismes et {total} adresses écrits dans "
-          f"{PAGE_MAILS.relative_to(RACINE)} ({len(sans)} organismes sans contact, "
+    print(f"FLE  : {len(fiches)} organismes et {total} adresses ({len(sans)} sans contact, "
           f"{len(ecartees)} adresses gabarit écartées, {nb_exclus} organisme à exclure)")
 
 
@@ -470,12 +468,13 @@ def page_ofii():
             avis.append("Ce domaine n'a pas de serveur de messagerie actif&nbsp;: aucune de ces "
                         "adresses ne peut recevoir de courrier. Les liens sont désactivés.")
         if croise:
-            avis.append("Ce domaine figure déjà dans la campagne FLE&nbsp;: vérifiez de ne pas "
-                        "écrire deux fois au même organisme.")
+            avis.append("Ce domaine figure déjà dans la campagne FLE, plus bas sur cette "
+                        "page&nbsp;: vérifiez de ne pas écrire deux fois au même "
+                        "organisme.")
         avis_html = f'<p class="avis">{" ".join(avis)}</p>' if avis else ""
         blocs.append(
             f'<section class="of{" exclu" if f["sansmx"] else ""}">'
-            f'<div class="of-h"><span class="p p-0">·</span><h2>{e(f["of"])}</h2>'
+            f'<div class="of-h"><span class="p p-0">·</span><h3>{e(f["of"])}</h3>'
             f'<span class="dom">{e(f["domaine"])}</span>{action}</div>'
             f'{avis_html}<ul class="adrs">{"".join(lignes_html)}</ul></section>'
         )
@@ -488,9 +487,8 @@ def page_ofii():
 
     ZONES_OFII["COUNT:OFII"] = compte
     ZONES_OFII["LISTE:OFII"] = "\n  " + "\n  ".join(blocs) + "\n  "
-    injecte(PAGE_OFII, ZONES_OFII)
-    print(f"{len(fiches)} organismes et {total} adresses écrits dans "
-          f"{PAGE_OFII.relative_to(RACINE)} ({envoyables} envoyables, "
+    injecte(PAGE_MAILS, ZONES_OFII)
+    print(f"OFII : {len(fiches)} organismes et {total} adresses ({envoyables} envoyables, "
           f"{nb_sansmx} domaines sans messagerie, {len(invalides)} adresse mal formée, "
           f"{nb_croise} domaines déjà dans la campagne FLE)")
 
