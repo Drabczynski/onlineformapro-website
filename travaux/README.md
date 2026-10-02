@@ -28,17 +28,14 @@ les lecteurs d'écran, invisible à l'œil).
 en ligne, prêt à coller dans l'outil d'envoi. `index.html` porte les objets,
 l'aperçu, la version texte et la liste de ce qui reste à fournir.
 
-`img/` porte les illustrations, fabriquées par `tools/illustrations-civicap.py` :
-la grille du barème (32 cases pleines sur 40), six repères pour les six thèmes
-du programme. Le script dessine en SVG et rend en PNG double densité avec
-Chromium — aucun client de messagerie n'affiche du SVG, et le fond du bloc
-d'accueil est cuit dans l'image parce qu'un PNG transparent vire au noir dans
-les vieux Outlook. Les barres des trois parcours ne sont pas une image : ce
-sont des cellules de tableau colorées, qui survivent au blocage des images.
+`img/` porte les six repères des thèmes du programme, fabriqués par
+`tools/illustrations-civicap.py` : dessinés en SVG, rendus en PNG double densité
+avec Chromium — aucun client de messagerie n'affiche du SVG, et le fond de la
+carte est cuit dans l'image parce qu'un PNG transparent vire au noir dans les
+vieux Outlook. Les barres des trois parcours ne sont pas une image : ce sont des
+cellules de tableau colorées, qui survivent au blocage des images.
 
-Aucune capture du produit, aucune personne, aucune interface inventée : les
-illustrations ne montrent que des faits publics (le barème, les volumes de
-questions, les thèmes officiels).
+Aucune capture du produit, aucune personne, aucune interface inventée.
 
 Le logo `logo-civicap.png` est un recadrage de la capture d'écran fournie
 (313 × 111 px, fond ramené au blanc pur par remplissage depuis les bords) :

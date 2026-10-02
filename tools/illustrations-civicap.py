@@ -6,52 +6,15 @@ on rend en PNG avec Chromium, en double densité. Le fond de chaque image est
 celui du bloc qui l'accueille — un PNG transparent vire au noir dans les
 vieux Outlook.
 
-Rien n'est inventé : la grille montre le barème officiel (32 sur 40), les
-barres montrent le nombre de questions de chaque parcours. Aucune capture
-du produit, aucune personne.
+Rien n'est inventé : six repères pour les six thèmes du programme officiel.
+Aucune capture du produit, aucune personne, aucune interface.
 """
 import json, pathlib, subprocess, textwrap
 
 RACINE = pathlib.Path(__file__).resolve().parent.parent
 SORTIE = RACINE / "travaux" / "newsletter-civicap" / "img"
-VIOLET, SOMBRE, JAUNE = "#6D28D9", "#13041C", "#FBCE08"
-PALE, BANDE, CARTE = "#D9CFF0", "#F3EFFB", "#F7F5FD"
-
-
-def grille(reussite=32, total=40, colonnes=10, cote=42, jeu=12):
-    """Le barème, case par case : ce qu'il faut avoir juste pour l'attestation."""
-    lignes = -(-total // colonnes)
-    w = colonnes * cote + (colonnes - 1) * jeu
-    h = lignes * cote + (lignes - 1) * jeu
-    cases = []
-    for i in range(total):
-        x = (i % colonnes) * (cote + jeu)
-        y = (i // colonnes) * (cote + jeu)
-        if i < reussite:
-            cases.append(f'<rect x="{x}" y="{y}" width="{cote}" height="{cote}" rx="10" '
-                         f'fill="{VIOLET}"/>')
-        else:
-            cases.append(f'<rect x="{x + 1}" y="{y + 1}" width="{cote - 2}" height="{cote - 2}" '
-                         f'rx="9" fill="#FFFFFF" stroke="{PALE}" stroke-width="2"/>')
-    return w, h, (f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" '
-                  f'viewBox="0 0 {w} {h}"><rect width="{w}" height="{h}" fill="{BANDE}"/>'
-                  + "".join(cases) + "</svg>")
-
-
-def barres(donnees, largeur=528, hauteur_barre=34, jeu=18):
-    """Les trois parcours à l'échelle : 235, 257 et 343 questions."""
-    maxi = max(v for _, v in donnees)
-    h = len(donnees) * hauteur_barre + (len(donnees) - 1) * jeu
-    out = []
-    for i, (_, v) in enumerate(donnees):
-        y = i * (hauteur_barre + jeu)
-        out.append(f'<rect x="0" y="{y}" width="{largeur}" height="{hauteur_barre}" rx="8" '
-                   f'fill="#FFFFFF"/>')
-        out.append(f'<rect x="0" y="{y}" width="{round(largeur * v / maxi)}" '
-                   f'height="{hauteur_barre}" rx="8" fill="{VIOLET}"/>')
-    return largeur, h, (f'<svg xmlns="http://www.w3.org/2000/svg" width="{largeur}" height="{h}" '
-                        f'viewBox="0 0 {largeur} {h}"><rect width="{largeur}" height="{h}" '
-                        f'fill="{CARTE}"/>' + "".join(out) + "</svg>")
+VIOLET = "#6D28D9"
+CARTE = "#F7F5FD"   # le fond de la carte qui accueille le repère
 
 
 GLYPHES = {
@@ -80,9 +43,7 @@ def icone(cle):
 
 def main():
     SORTIE.mkdir(parents=True, exist_ok=True)
-    pieces = {"bareme": grille(),
-              "parcours": barres([("pluriannuelle", 235), ("resident", 257), ("naturalisation", 343)])}
-    pieces.update({f"th-{c}": icone(c) for c in GLYPHES})
+    pieces = {f"th-{c}": icone(c) for c in GLYPHES}
 
     taches = []
     for nom, (w, h, svg) in pieces.items():
