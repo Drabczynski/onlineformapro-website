@@ -32,6 +32,7 @@ RACINE = pathlib.Path(__file__).resolve().parent.parent
 SORTIE = RACINE / "travaux" / "newsletter-civicap" / "img"
 CACHE = pathlib.Path(tempfile.gettempdir()) / "civicap-polices"
 PHOTOS = RACINE / "travaux" / "newsletter-civicap" / "photos"   # Unsplash, voir README
+FICHES = RACINE / "travaux" / "newsletter-civicap" / "fiches"   # fiches formatives Onlineformapro
 PLAYWRIGHT = "/opt/node22/lib/node_modules/playwright/index.js"
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36"
 
@@ -74,6 +75,11 @@ COCHE = ('<svg width="{s}" height="{s}" viewBox="0 0 12 12" fill="none"><path d=
 def photo(nom):
     """Une photo du dossier photos/, en URI de données pour la page de rendu."""
     return "data:image/jpeg;base64," + base64.b64encode((PHOTOS / nom).read_bytes()).decode()
+
+
+def fiche(nom):
+    """Une fiche formative du dossier fiches/ (WebP), en URI de données."""
+    return "data:image/webp;base64," + base64.b64encode((FICHES / nom).read_bytes()).decode()
 
 # le dégradé de marque : jaune-pêche à gauche, lilas-violet à droite
 DEGRADE = """radial-gradient(75% 60% at 0% 0%,#FFB45C 0%,rgba(255,180,92,0) 70%),
@@ -418,6 +424,36 @@ def entete_photo():
     return w, h, css, corps, {"jpeg": 86, "echelle": 2}
 
 
+def fiches():
+    """Les fiches formatives à télécharger : cinq vraies fiches en éventail, dans le cadre de marque."""
+    w, h = 528, 300
+    css = """
+.fond{position:absolute;inset:0;border-radius:24px;overflow:hidden;background:""" + DEGRADE + """}
+.fond::after{content:"";position:absolute;inset:0;""" + GRILLE + """;
+  -webkit-mask-image:radial-gradient(ellipse 60% 55% at 50% 45%,transparent 35%,#000 85%)}
+.f{position:absolute;left:180px;top:34px;width:168px;height:252px;border-radius:7px;border:4px solid #fff;
+  background:#fff center top/cover no-repeat;transform-origin:50% 175%;
+  box-shadow:0 24px 44px -18px rgba(46,16,101,.48),0 2px 6px rgba(46,16,101,.12)}
+.tele{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;align-items:center;gap:7px;
+  padding:8px 14px 8px 10px;border-radius:999px;background:#fff;font-size:11.5px;font-weight:650;color:#0F0A1A;white-space:nowrap;
+  box-shadow:0 14px 30px -10px rgba(46,16,101,.42),0 0 0 1px rgba(76,52,140,.08)}
+.tele i{width:20px;height:20px;border-radius:50%;background:#6D28D9;display:grid;place-items:center}
+"""
+    eventail = [("constitution.webp", -24, 1), ("droit-des-femmes.webp", -12, 2), ("parlement.webp", 12, 2),
+                ("travailler-en-france.webp", 24, 1), ("devoirs-du-citoyen.webp", 0, 3)]
+    feuilles = "".join(f'<div class="f" style="background-image:url({fiche(nom)});transform:rotate({angle}deg);z-index:{z}"></div>'
+                       for nom, angle, z in eventail)
+    fleche = ('<svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M8 2.5v8M4.5 7.5 8 11l3.5-3.5M3 13.5h10" '
+              'stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+    corps = f"""
+<div class="fond"></div>
+{feuilles}
+<div class="tele" style="z-index:6"><i>{fleche}</i>Télécharger la fiche</div>
+<div class="main" style="left:16px;top:16px;transform:rotate(-3deg);z-index:6"><i>✦</i>une notion par fiche</div>
+"""
+    return w, h, css, corps, {"jpeg": 84, "echelle": 2}
+
+
 def coche_badge():
     """La coche du badge de tête, en image : alignée au pixel dans toutes les messageries."""
     w, h = 18, 18
@@ -430,7 +466,7 @@ def main():
     polices = polices_css()
     pieces = {"fond-hero": fond_hero(), "hero": hero(), "coche": coche_badge(),
               "entete-photo": entete_photo(), "entrainement": entrainement(), "examen": examen(),
-              "revision": revision(), "pilotage": pilotage(), "fond-cta": fond_cta()}
+              "revision": revision(), "pilotage": pilotage(), "fiches": fiches(), "fond-cta": fond_cta()}
     taches = []
     with tempfile.TemporaryDirectory() as tmp:
         for nom, piece in pieces.items():

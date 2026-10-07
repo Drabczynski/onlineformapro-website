@@ -37,7 +37,9 @@ deux fonds en JPEG (`fond-hero.jpg`, le dégradé de marque quadrillé du bandea
 et cinq fragments d'interface en PNG double densité : la démonstration du 14 juillet en
 pile de questions, puis les trois modes de la page organismes (l'entraînement libre,
 l'examen blanc, la révision par thème en cartes mémoire) et le suivi des stagiaires côté
-formateur. Chaque visuel est une page HTML/CSS rendue par Chromium.
+formateur ; enfin les fiches formatives en éventail (`fiches.jpg`), composées à partir des
+cinq fiches fournies, rangées dans `fiches/` (WebP). Chaque visuel est une page HTML/CSS
+rendue par Chromium.
 
 Typographie de l'e-mail : titres et chiffres en Instrument Sans, mots mis en valeur en Instrument
 Serif italique, texte en Inter, chargés depuis Google Fonts là où la messagerie le permet
