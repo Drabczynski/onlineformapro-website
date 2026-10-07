@@ -28,20 +28,25 @@ les lecteurs d'écran, invisible à l'œil).
 en ligne, prêt à coller dans l'outil d'envoi. `index.html` porte les objets,
 l'aperçu, la version texte et la liste de ce qui reste à fournir.
 
-`img/` porte les cinq visuels de l'e-mail, fabriqués par
-`tools/illustrations-civicap.py` : la démonstration (question du 14 juillet,
-bonne réponse, explication, niveaux), l'écran d'examen blanc, le bilan par thème, la
-jauge de préparation et le suivi d'un groupe côté formateur. Chaque visuel est une page HTML/CSS rendue en PNG double
-densité par Chromium : les messageries n'affichent ni SVG ni dégradés fiables.
+`img/` porte les visuels de l'e-mail, fabriqués par `tools/illustrations-civicap.py` :
+deux fonds en JPEG (`fond-hero.jpg`, le dégradé de marque quadrillé du bandeau de tête ;
+`fond-cta.jpg`, l'aurore du bloc final) et cinq fragments d'interface en PNG double
+densité (la démonstration du 14 juillet, l'examen blanc, le bilan par thème, la jauge
+de préparation, le suivi d'un groupe côté formateur), posés dans des cadres de verre
+avec étiquettes manuscrites et tuiles de thème. Chaque visuel est une page HTML/CSS
+rendue par Chromium : les messageries n'affichent ni SVG ni dégradés fiables.
+
+Les fonds d'image de l'e-mail ont tous une couleur de repli ; celui du bandeau de tête
+est doublé d'un fond VML pour Outlook. Le texte, les chiffres et les boutons restent
+du HTML.
 
 Le contenu vient de ce que CiviCap montre sur son propre site, sauf le suivi côté
 formateur, que la copie du site ne décrit pas : il illustre la rubrique demandée
 et doit être confirmé. Le bilan, la jauge et le suivi portent la mention
-« Exemple ». Aucune personne, aucun résultat présenté
-comme réel. L'explication du 14 juillet est traduite de sa version arabe, la seule
-présente dans la copie du site transmise : à remplacer par le texte exact de CiviCap. Le script
-télécharge Inter depuis Google Fonts au premier lancement : il faut un accès réseau
-pour régénérer.
+« Exemple ». L'explication du 14 juillet est traduite de sa version arabe, la seule
+présente dans la copie du site transmise : à remplacer par le texte exact de CiviCap.
+Le script télécharge Inter et Caveat depuis Google Fonts au premier lancement : il
+faut un accès réseau pour régénérer.
 
 Le logo `logo-civicap.png` est un recadrage de la capture d'écran fournie
 (313 × 111 px, fond ramené au blanc pur par remplissage depuis les bords) :
