@@ -425,7 +425,8 @@ def entete_photo():
 
 
 def fiches():
-    """Les fiches formatives à télécharger : cinq vraies fiches en éventail, dans le cadre de marque."""
+    """Les fiches formatives à télécharger : cinq vraies fiches en éventail, dans le cadre de marque,
+    qui se fondent dans le fond vers le bas."""
     w, h = 528, 300
     css = """
 .fond{position:absolute;inset:0;border-radius:24px;overflow:hidden;background:""" + DEGRADE + """}
@@ -434,6 +435,12 @@ def fiches():
 .f{position:absolute;left:180px;top:34px;width:168px;height:252px;border-radius:7px;border:4px solid #fff;
   background:#fff center top/cover no-repeat;transform-origin:50% 175%;
   box-shadow:0 24px 44px -18px rgba(46,16,101,.48),0 2px 6px rgba(46,16,101,.12)}
+/* le fondu du bas : une copie exacte du fond (dégradé et quadrillage), opaque en bas,
+   posée sur les fiches, qui s'y dissolvent au lieu d'être coupées par le cadre */
+.voile{position:absolute;inset:0;z-index:4;border-radius:24px;overflow:hidden;background:""" + DEGRADE + """;
+  -webkit-mask-image:linear-gradient(180deg,transparent 48%,rgba(0,0,0,.55) 70%,#000 90%)}
+.voile::after{content:"";position:absolute;inset:0;""" + GRILLE + """;
+  -webkit-mask-image:radial-gradient(ellipse 60% 55% at 50% 45%,transparent 35%,#000 85%)}
 .tele{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;align-items:center;gap:7px;
   padding:8px 14px 8px 10px;border-radius:999px;background:#fff;font-size:11.5px;font-weight:650;color:#0F0A1A;white-space:nowrap;
   box-shadow:0 14px 30px -10px rgba(46,16,101,.42),0 0 0 1px rgba(76,52,140,.08)}
@@ -448,6 +455,7 @@ def fiches():
     corps = f"""
 <div class="fond"></div>
 {feuilles}
+<div class="voile"></div>
 <div class="tele" style="z-index:6"><i>{fleche}</i>Télécharger la fiche</div>
 <div class="main" style="left:16px;top:16px;transform:rotate(-3deg);z-index:6"><i>✦</i>une notion par fiche</div>
 """
