@@ -89,14 +89,17 @@ quatre réponses sont celles de la démonstration de civicap.app.
 
 À compléter avant de la mettre en ligne :
 
-- deux questions fréquentes ont été laissées de côté, faute de réponse visible sur les
-  captures (accordéons fermés) : « Faut-il une carte bancaire pour l'essai ? » et « Où
-  sont hébergées les données ? ». Leur place est marquée en commentaire dans le HTML ;
-- le formulaire d'essai : seul le champ « Nom de l'organisme » était visible. « Votre nom »
-  et « E-mail professionnel » sont des hypothèses, à aligner sur le vrai formulaire. Il
-  n'envoie rien : un message le dit si on le soumet ;
+- une question fréquente reste de côté, faute de réponse visible sur les captures :
+  « Où sont hébergées les données ? ». Sa place est marquée en commentaire dans le HTML.
+  « Faut-il une carte bancaire pour l'essai ? » est revenue : le formulaire réel répond
+  « Aucune carte bancaire demandée » ;
+- le formulaire d'essai reprend les champs du formulaire réel (organisme, SIRET, prénom,
+  nom, e-mail professionnel, téléphone et stagiaires par an facultatifs, case des CGV et
+  de la politique de confidentialité). Seules les tranches de « Stagiaires par an » sont
+  provisoires : elles n'étaient pas visibles. Il n'envoie rien : un message le dit si on
+  le soumet ;
 - les liens « Espace stagiaire », « Espace organisme », « Mentions légales », « CGV » et
-  « Confidentialité » pointent sur `#`.
+  « Confidentialité » (pied de page et case du formulaire) pointent sur `#`.
 
 Les coupures de ligne suivent les règles de la typographie française, posées par
 `tools/insecables.py` (à relancer après chaque modification de texte, sur la page comme

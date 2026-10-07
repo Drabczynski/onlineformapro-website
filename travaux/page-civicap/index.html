@@ -324,12 +324,20 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
 .etapes b{display:block;font:600 17px/1.3 var(--sans);letter-spacing:-.01em;color:#fff}
 .etapes small{display:block;margin-top:3px;font:400 14.5px/1.45 var(--corps);color:#CFC7E2}
 .formulaire{padding:clamp(24px,3vw,36px);border-radius:28px;background:#fff;color:var(--ink);box-shadow:0 40px 80px -30px rgba(0,0,0,.55)}
-.formulaire h3{font-size:26px;line-height:1.15;letter-spacing:-.028em}
-.sous-f{margin-top:8px;font-size:15px;color:var(--texte)}
+.formulaire h3{font-size:26px;line-height:1.15;letter-spacing:-.028em;margin-bottom:4px}
 .formulaire label{display:block;margin-top:16px;font:600 13.5px/1.2 var(--corps);color:var(--doux)}
-.formulaire input{display:block;width:100%;margin-top:7px;padding:13px 14px;border-radius:13px;border:1px solid #E2DDED;background:#FBFAFE;font:500 15.5px/1.2 var(--corps);color:var(--ink);transition:border-color .15s,box-shadow .15s,background-color .15s}
+.formulaire input,.formulaire select{display:block;width:100%;margin-top:7px;padding:13px 14px;border-radius:13px;border:1px solid #E2DDED;background-color:#FBFAFE;font:500 15.5px/1.2 var(--corps);color:var(--ink);transition:border-color .15s,box-shadow .15s,background-color .15s}
 .formulaire input::placeholder{color:#B3ADC2}
-.formulaire input:focus{outline:none;border-color:var(--violet-3);background:#fff;box-shadow:0 0 0 4px rgba(167,139,250,.25)}
+.formulaire input:focus,.formulaire select:focus{outline:none;border-color:var(--violet-3);background-color:#fff;box-shadow:0 0 0 4px rgba(167,139,250,.25)}
+.formulaire select{-webkit-appearance:none;appearance:none;padding-right:40px;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%2357516B' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center}
+.formulaire .deux{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 12px}
+.formulaire .deux label{display:flex;flex-direction:column;justify-content:flex-end}
+.formulaire .case{display:flex;align-items:flex-start;gap:10px;margin-top:20px;font:500 13.5px/1.5 var(--corps);color:var(--texte);cursor:pointer}
+.formulaire .case input{flex:none;width:18px;height:18px;margin:1px 0 0;padding:0;accent-color:var(--violet);cursor:pointer}
+.formulaire .case a{color:var(--violet);font-weight:600}
+.formulaire .case a:hover{text-decoration:underline}
 .formulaire .bouton{width:100%;margin-top:24px;padding:17px 24px}
 .form-note{margin-top:12px;text-align:center;font:500 13.5px/1.45 var(--corps);color:var(--muet)}
 
@@ -399,6 +407,7 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
   .txt{padding:22px 22px 26px}
 }
 @media (max-width:520px){
+  .formulaire .deux{grid-template-columns:minmax(0,1fr)}
   .trio{grid-template-columns:minmax(0,1fr);gap:8px}
   .chiffre{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:18px;align-items:center;padding:16px 20px;border-radius:20px}
   .chiffre .n{grid-row:span 2;font-size:46px}
@@ -412,6 +421,7 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
   .titre-2{font-size:32px}
   .hero h1{font-size:34px}
   .badge{gap:7px;padding-right:12px;font-size:12px;white-space:nowrap}
+  .form-note{font-size:12px}
 }
 </style>
 </head>
@@ -712,7 +722,10 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
           <summary>Que&nbsp;se passe&#8209;t&#8209;il à&nbsp;la&nbsp;fin de&nbsp;l’essai&nbsp;?<span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
           <p class="reponse">Vous commandez des&nbsp;licences si le&nbsp;service vous convient, uniquement ce&nbsp;dont vous avez besoin&nbsp;: 7,&nbsp;30&nbsp;ou&nbsp;90&nbsp;jours par&nbsp;stagiaire. Sans&nbsp;engagement.</p>
         </details>
-        <!-- « Faut-il une carte bancaire pour l’essai ? » : la réponse n'apparaît pas sur les captures du site actuel. À reprendre du site avant de remettre la question. -->
+        <details name="faq">
+          <summary>Faut&#8209;il une&nbsp;carte bancaire pour&nbsp;l’essai&nbsp;?<span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
+          <p class="reponse">Non. Aucune carte bancaire n’est demandée&nbsp;: vos&nbsp;5&nbsp;licences offertes sont créditées dès&nbsp;la&nbsp;création de&nbsp;votre espace&nbsp;organisme.</p>
+        </details>
         <details name="faq">
           <summary>Mes stagiaires doivent&#8209;ils s’inscrire eux&#8209;mêmes&nbsp;?<span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
           <p class="reponse">Non. Vous les&nbsp;créez depuis votre espace en&nbsp;quelques clics, et&nbsp;chacun reçoit une&nbsp;invitation par&nbsp;e&#8209;mail. Aucune inscription à&nbsp;gérer de&nbsp;leur&nbsp;côté.</p>
@@ -746,13 +759,29 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
           </div>
           <form class="formulaire" action="#" method="post" novalidate>
             <h3>Demandez votre essai gratuit</h3>
-            <p class="sous-f">Votre espace organisme est prêt dans la&nbsp;minute.</p>
-            <!-- Champs à aligner sur le formulaire réel : seul « Nom de l'organisme » apparaît sur les captures. -->
-            <label>Nom de&nbsp;l’organisme<input name="organisme" autocomplete="organization" placeholder="Nom de votre organisme" required></label>
-            <label>Votre nom<input name="nom" autocomplete="name" placeholder="Prénom Nom" required></label>
-            <label>E&#8209;mail professionnel<input type="email" name="email" autocomplete="email" placeholder="vous@organisme.fr" required></label>
+            <!-- Champs du formulaire réel. Les tranches de « Stagiaires par an » n'étaient pas visibles :
+                 celles-ci sont provisoires, à remplacer par celles du site. -->
+            <label>Nom de&nbsp;l’organisme<input name="organisme" autocomplete="organization" required></label>
+            <label>SIRET (14&nbsp;chiffres)<input name="siret" inputmode="numeric" pattern="[0-9]{14}" maxlength="14" autocomplete="off" placeholder="12345678900012" required></label>
+            <div class="deux">
+              <label>Prénom<input name="prenom" autocomplete="given-name" required></label>
+              <label>Nom<input name="nom" autocomplete="family-name" required></label>
+            </div>
+            <label>Email professionnel<input type="email" name="email" autocomplete="email" placeholder="contact@votre-organisme.fr" required></label>
+            <div class="deux">
+              <label>Téléphone (facultatif)<input type="tel" name="telephone" autocomplete="tel" inputmode="tel"></label>
+              <label>Stagiaires par&nbsp;an (facultatif)<select name="stagiaires">
+                <option value="">—</option>
+                <option>Moins de&nbsp;20</option>
+                <option>De&nbsp;20&nbsp;à&nbsp;50</option>
+                <option>De&nbsp;51&nbsp;à&nbsp;100</option>
+                <option>De&nbsp;101&nbsp;à&nbsp;300</option>
+                <option>Plus de&nbsp;300</option>
+              </select></label>
+            </div>
+            <label class="case"><input type="checkbox" name="conditions" required><span>J’ai pris connaissance des&nbsp;<a href="#">conditions générales de&nbsp;vente</a> et&nbsp;de&nbsp;la&nbsp;<a href="#">politique de&nbsp;confidentialité</a>.</span></label>
             <button class="bouton b-noir" type="submit">Créer mon espace d’essai<svg width="15" height="15"><use href="#i-fleche"/></svg></button>
-            <p class="form-note">5&nbsp;licences offertes · Sans&nbsp;engagement</p>
+            <p class="form-note">5&nbsp;licences&nbsp;offertes · Sans&nbsp;engagement<br>Aucune&nbsp;carte&nbsp;bancaire&nbsp;demandée</p>
           </form>
         </div>
       </div>
