@@ -385,10 +385,12 @@ def jauge_large():
 
 
 def entete_photo():
-    """L'en-tête du bloc blanc : une formatrice aux côtés d'une apprenante, dans un cadre.
+    """L'en-tête du bloc blanc : une formatrice montre son ordinateur à une personne en formation.
 
     La photo (Unsplash) n'existe ici qu'en 400 px de large : elle est montrée à sa taille,
     jamais agrandie au-delà, et les éléments d'interface qui l'entourent restent nets.
+    La carte « Entraînement libre » se pose sur le dos de l'ordinateur : elle donne ce que
+    voit l'apprenant et couvre la marque de l'appareil.
     """
     w, h = 528, 316
     css = """
@@ -396,9 +398,9 @@ def entete_photo():
 .fond::after{content:"";position:absolute;inset:0;""" + GRILLE + """;
   -webkit-mask-image:radial-gradient(ellipse 60% 60% at 50% 50%,transparent 35%,#000 85%)}
 .ph{position:absolute;left:64px;top:28px;width:400px;height:260px;border-radius:20px;
-  background:url(""" + photo("accompagnement.jpg") + """) center/cover no-repeat;
+  background:url(""" + photo("formatrice-ordinateur.jpg") + """) center/cover no-repeat;
   box-shadow:0 0 0 7px rgba(255,255,255,.55),0 30px 60px -22px rgba(46,16,101,.45)}
-.mini{left:20px;top:206px;width:198px;padding:11px 13px 12px}
+.mini{left:300px;top:160px;width:198px;padding:11px 13px 12px}
 .mini .h{display:flex;align-items:center;justify-content:space-between;font-size:10px;font-weight:600;color:#3D3850}
 .mini .h span{color:#8A8499;font-weight:500}
 .mini .prog{margin-top:8px;height:5px;border-radius:9px;background:#EFECF6;overflow:hidden}
@@ -408,7 +410,7 @@ def entete_photo():
 <div class="fond"></div>
 <div class="ph"></div>
 <div class="carte mini"><div class="h">Entraînement libre<span>7 / 15</span></div><div class="prog"><i></i></div></div>
-<div class="main" style="right:18px;top:20px;transform:rotate(3deg)"><i>✦</i>à son rythme</div>
+<div class="main" style="left:20px;top:22px;transform:rotate(-3deg)"><i>✦</i>à son rythme</div>
 """
     return w, h, css, corps, {"jpeg": 86, "echelle": 2}
 

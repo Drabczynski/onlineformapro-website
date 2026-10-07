@@ -36,17 +36,18 @@ et cinq fragments d'interface en PNG double densité : la démonstration du 14 j
 pile de questions, l'examen blanc, le bilan par thème, la jauge de préparation, le suivi
 d'un groupe côté formateur. Chaque visuel est une page HTML/CSS rendue par Chromium.
 
-Typographie de l'e-mail : titres en Instrument Sans, mots mis en valeur en Instrument
+Typographie de l'e-mail : titres et chiffres en Instrument Sans, mots mis en valeur en Instrument
 Serif italique, texte en Inter, chargés depuis Google Fonts là où la messagerie le permet
 (Apple Mail, iOS). Ailleurs, la pile système prend le relais, et l'italique retombe sur
 Georgia — Outlook compris, grâce à la classe `serif` reprise dans son bloc conditionnel.
 
-`photos/accompagnement.jpg` : une formatrice aux côtés d'une apprenante, photo Unsplash
-du Centre for Ageing Better (unsplash.com/photos/ukDFRP2RNA0), licence Unsplash (usage
-commercial libre, crédit non obligatoire). C'est la version de 400 px de large : le
-réseau de l'environnement de travail bloquait `images.unsplash.com`. Elle est montrée à
-sa taille, jamais étirée ; pour un original plus grand, le déposer sous le même nom et
-régénérer.
+`photos/formatrice-ordinateur.jpg` : une formatrice montre son ordinateur à une personne
+en formation, photo Unsplash de UK Black Tech (unsplash.com/photos/1g96LfUK3lU), licence
+Unsplash (usage commercial libre, crédit non obligatoire, aucun droit sur les marques
+visibles : la carte d'interface posée sur l'ordinateur en couvre le logo). C'est la
+version de 400 px de large : le réseau de l'environnement de travail bloquait
+`images.unsplash.com`. Elle est montrée à sa taille, jamais étirée ; pour un original plus
+grand, le déposer sous le même nom et régénérer.
 
 Le contenu vient de ce que CiviCap montre sur son propre site, sauf le suivi côté
 formateur, que la copie du site ne décrit pas : il illustre la rubrique demandée et doit
