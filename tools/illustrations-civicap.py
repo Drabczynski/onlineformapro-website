@@ -8,15 +8,15 @@ l'image, le texte de l'e-mail reste du HTML.
 
 Langage visuel : un cadre en dégradé jaune-pêche vers lilas-violet, quadrillé de blanc,
 autour de cartes blanches ; les fragments d'interface sont posés dans des cadres de verre
-dépoli, avec quelques étiquettes manuscrites et des tuiles de thème qui débordent.
+dépoli, avec quelques étiquettes manuscrites.
 
-Contenu : ce que CiviCap montre sur son propre site — la question de démonstration du
-14 juillet, sa bonne réponse et son explication (traduite de la version arabe, la seule
-présente dans la copie du site transmise), les niveaux A2/B1/B2, le mode « Entraînement
-libre », le chrono et le drapeau « à revoir » de l'examen blanc, le bilan par thème, la
-jauge de préparation. Le suivi de groupe côté formateur n'est pas décrit sur le site :
-il illustre la rubrique demandée pour l'offre organisme. Le bilan, la jauge et le suivi
-portent la mention « Exemple » : aucune personne, aucun résultat réel.
+Contenu : ce qu'annonce la page « organismes » de CiviCap — les trois modes d'entraînement
+(entraînement libre de 15, 25 ou 40 questions, examen blanc chronométré avec drapeau
+« à revoir », révision par thème avec cartes mémoire) et le suivi des stagiaires par le
+formateur (scores, thèmes faibles, tests passés). La question du 14 juillet, sa bonne
+réponse et son explication viennent de la démonstration de civicap.app (explication
+traduite de la version arabe, la seule présente dans la copie du site transmise). Le suivi
+porte la mention « Exemple » : aucune personne, aucun résultat réel.
 
 Polices : Inter et Caveat (étiquettes manuscrites), téléchargées depuis Google Fonts au
 premier lancement (curl), mises en cache, puis intégrées en base64. Régénérer demande donc
@@ -104,7 +104,7 @@ body{font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased;color:#0F0A
   box-shadow:0 34px 70px -24px rgba(60,28,130,.38),inset 0 1px 0 rgba(255,255,255,.95)}
 .fen{background:#fff;border-radius:16px;border:1px solid rgba(76,52,140,.09);overflow:hidden}
 /* étiquette manuscrite */
-.main{position:absolute;display:flex;align-items:center;gap:6px;padding:5px 12px 6px 10px;border-radius:999px;
+.main{position:absolute;display:flex;align-items:center;gap:6px;padding:5px 12px 6px 10px;border-radius:999px;white-space:nowrap;
   background:#fff;font-family:Caveat,cursive;font-size:17px;font-weight:600;color:#3B2A63;line-height:1;
   box-shadow:0 10px 24px -10px rgba(46,16,101,.35),0 0 0 1px rgba(76,52,140,.06)}
 .main i{font-style:normal;color:#7C3AED;font-family:Inter;font-size:11px}
@@ -205,13 +205,12 @@ def hero():
     <div class="question">Que commémore la fête nationale du&nbsp;14&nbsp;juillet&nbsp;?</div>
     <div class="rep"><span class="ok">{COCHE.format(s=10)}</span>La prise de la Bastille (1789)</div>
     <div class="sep"></div>
-    <div class="ligne"><span class="eti">Explication</span>
-      <div class="seg"><span>A2</span><span class="on">B1</span><span>B2</span></div></div>
+    <div class="eti">Explication</div>
     <div class="ex">{EXPLICATION}</div>
   </div>
   </div>
 </div>
-<div class="main" style="right:6px;top:16px;transform:rotate(3deg)"><i>✦</i>au niveau de chacun</div>
+<div class="main" style="right:6px;top:16px;transform:rotate(3deg)"><i>✦</i>une explication à chaque réponse</div>
 <div class="fondu"></div>
 """
     return w, h, css, corps
@@ -261,11 +260,11 @@ def examen():
 
 
 def pilotage():
-    """Le suivi d'un groupe côté formateur, sur un exemple, dans un cadre de verre.
+    """Le suivi des stagiaires côté formateur, sur un exemple, dans un cadre de verre.
 
-    Cette vue n'est pas décrite dans la copie du site CiviCap : elle illustre la rubrique
-    demandée pour l'offre organisme. Initiales seulement, noms en barres grises, mention
-    « Exemple » : aucune personne, aucun résultat réel.
+    La page « organismes » de CiviCap annonce ce suivi : scores, thèmes faibles, tests passés.
+    Initiales seulement, noms en barres grises, mention « Exemple » : aucune personne, aucun
+    résultat réel.
     """
     w, h = 528, 336
     css = """
@@ -275,41 +274,40 @@ def pilotage():
 .verre{left:26px;top:34px;width:476px;height:290px}
 .tab{padding:13px 16px 6px}
 .titre{font-size:12.5px;font-weight:650;letter-spacing:-.01em}
-.titre span{color:#8A8499;font-weight:500}
 .titre-l{display:flex;align-items:center;gap:9px}
-.grille{display:grid;grid-template-columns:112px 56px 1fr 96px;column-gap:14px;align-items:center}
+.grille{display:grid;grid-template-columns:92px 54px 1fr 34px 92px;column-gap:12px;align-items:center}
 .th{margin-top:11px;padding-bottom:6px;font-size:8.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#9A94A8}
 .tr{padding:7px 0;border-top:1px solid #F0EDF6}
 .qui{display:flex;align-items:center;gap:8px}
 .av{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:9px;font-weight:700}
 .score{font-size:12px;font-weight:650;font-variant-numeric:tabular-nums}
 .score span{color:#9A94A8;font-weight:500}
-.j{position:relative;height:6px;border-radius:9px;background:#EFECF6}
-.j i{position:absolute;left:0;top:0;bottom:0;border-radius:9px}
-.j b{position:absolute;left:80%;top:-4px;width:2px;height:14px;border-radius:2px;background:#16A34A}
-.st{justify-self:start;font-size:9.5px;font-weight:600;border-radius:999px;padding:4px 9px}
+.faible{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:500;color:#4B4658;white-space:nowrap}
+.faible svg{flex:none;color:#B45309}
+.vide{font-size:11px;color:#C9C4D6}
+.nb{font-size:11.5px;font-weight:500;color:#4B4658;font-variant-numeric:tabular-nums}
+.st{justify-self:start;font-size:9.5px;font-weight:600;border-radius:999px;padding:4px 9px;white-space:nowrap}
 .s-ok{background:#EAF8EF;color:#166534}.s-cours{background:#F1EBFF;color:#5B21B6}.s-aide{background:#FFF4D6;color:#92400E}
 .toast{right:14px;top:14px;display:flex;align-items:center;gap:8px;padding:8px 12px 8px 9px;border-radius:999px;font-size:11.5px;font-weight:600}
 .toast .ok{width:16px;height:16px}
 """
-    gens = [("AM", 36, "ok", "Prêt", "#EDE7FF", "#5B21B6"),
-            ("KD", 33, "ok", "Prêt", "#DCFCE7", "#166534"),
-            ("SB", 29, "cours", "En progrès", "#FCE7F3", "#9D174D"),
-            ("YN", 27, "cours", "En progrès", "#E0F2FE", "#075985"),
-            ("LT", 22, "aide", "À accompagner", "#FEF3C7", "#92400E")]
-    couleur = {"ok": "#7C3AED", "cours": "#A78BFA", "aide": "#F59E0B"}
+    gens = [("AM", 36, None, 9, "ok", "Prêt", "#EDE7FF", "#5B21B6"),
+            ("KD", 33, None, 7, "ok", "Prêt", "#DCFCE7", "#166534"),
+            ("SB", 29, "Histoire", 6, "cours", "En progrès", "#FCE7F3", "#9D174D"),
+            ("YN", 27, "Institutions", 5, "cours", "En progrès", "#E0F2FE", "#075985"),
+            ("LT", 22, "Histoire", 3, "aide", "À accompagner", "#FEF3C7", "#92400E")]
     lignes = "".join(
         f'<div class="grille tr"><div class="qui"><span class="av" style="background:{fond};color:{encre}">{ini}</span>'
-        f'<div class="sk" style="width:{56 - 4 * k}px;height:7px"></div></div>'
+        f'<div class="sk" style="width:{50 - 4 * k}px;height:7px"></div></div>'
         f'<div class="score">{s}<span>/40</span></div>'
-        f'<div class="j"><i style="width:{round(100 * s / 40)}%;background:{couleur[c]}"></i><b></b></div>'
-        f'<span class="st s-{c}">{lib}</span></div>'
-        for k, (ini, s, c, lib, fond, encre) in enumerate(gens))
+        + (f'<div class="faible">{glyphe(th, 12, 6)}{th}</div>' if th else '<div class="vide">—</div>')
+        + f'<div class="nb">{n}</div><span class="st s-{c}">{lib}</span></div>'
+        for k, (ini, s, th, n, c, lib, fond, encre) in enumerate(gens))
     corps = f"""
 <div class="fond"></div>
 <div class="verre"><div class="fen tab">
-  <div class="titre-l"><span class="titre">Groupe FLE <span>· mardi matin</span></span><span class="tag">Exemple</span></div>
-  <div class="grille th"><span>Apprenant</span><span>Score</span><span>Jauge · seuil 32/40</span><span>Statut</span></div>
+  <div class="titre-l"><span class="titre">Mes stagiaires</span><span class="tag">Exemple</span></div>
+  <div class="grille th"><span>Stagiaire</span><span>Score</span><span>Thème faible</span><span>Tests</span><span>Statut</span></div>
   {lignes}
 </div></div>
 <div class="carte toast"><span class="ok">{COCHE.format(s=9)}</span>2 prêts pour l’examen</div>
@@ -319,66 +317,63 @@ def pilotage():
 
 
 
-def bilan_large():
-    """Le bilan par thème en pleine largeur, sur un exemple."""
-    w, h = 528, 220
+def entrainement():
+    """L'entraînement libre : 15, 25 ou 40 questions tirées au hasard parmi les 835 officielles."""
+    w, h = 528, 210
     css = """
-.pan{left:40px;width:336px;top:24px;height:220px;padding:14px 16px}
+.pan{left:40px;width:304px;top:24px;height:230px;padding:14px 16px}
 .t{font-size:12px;font-weight:650}
-.row{display:flex;align-items:center;gap:9px;margin-top:9px}
-.row svg{flex:none;color:#6D28D9}
-.lab{width:78px;font-size:10.5px;font-weight:500;color:#4B4658;white-space:nowrap}
-.tr{flex:1;height:6px;border-radius:9px;background:#EFECF6;overflow:hidden}
-.tr i{display:block;height:100%;border-radius:9px;background:#7C3AED}
-.tr i.bas{background:#F59E0B}
-.row.bas svg{color:#B45309}
+.choix{margin-top:8px;display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.choix span{display:grid;place-items:center;height:50px;border-radius:12px;border:1px solid #E9E5F2;
+  font-size:21px;font-weight:650;letter-spacing:-.03em;color:#3D3850}
+.choix .on{border-color:#7C3AED;background:#FAF7FF;color:#6D28D9;box-shadow:0 0 0 3px rgba(124,58,237,.12)}
+.note{margin-top:10px;display:flex;align-items:center;gap:6px;font-size:10px;color:#57516B}
+.note svg{flex:none}
+.go{margin-top:11px;padding:9px;border-radius:999px;background:#0F0A1A;color:#fff;text-align:center;font-size:11.5px;font-weight:600}
 """
-    valeurs = [("Valeurs", 88), ("Institutions", 74), ("Droits", 91), ("Histoire", 46),
-               ("Société", 83), ("Situations", 67)]
-    lignes = "".join(
-        f'<div class="row{" bas" if v < 50 else ""}">{glyphe(n, 13, 5)}'
-        f'<span class="lab">{n}</span><div class="tr"><i class="{"bas" if v < 50 else ""}" style="width:{v}%"></i></div></div>'
-        for n, v in valeurs)
+    hasard = ('<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2" '
+              'stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h3.2c2 0 3.2.9 4.2 2.7l2.6 4.6c1 1.8 '
+              '2.2 2.7 4.2 2.7H21"/><path d="M3 17h3.2c1.3 0 2.3-.4 3.1-1.2M14.6 8.2c.8-.8 1.8-1.2 3-1.2H21"/>'
+              '<path d="m18 4 3 3-3 3M18 14l3 3-3 3"/></svg>')
     corps = f"""
 <div class="fond-carte">
-  <div class="panneau pan"><div class="ligne"><span class="t">Bilan par thème</span><span class="tag">Exemple</span></div>{lignes}</div>
-  <div class="main" style="left:300px;top:122px;transform:rotate(-3deg)"><i>✦</i>c'est ici que ça décroche</div>
+  <div class="panneau pan"><div class="t">Nouvel entraînement</div>
+    <div class="eti" style="margin-top:11px">Nombre de questions</div>
+    <div class="choix"><span>15</span><span class="on">25</span><span>40</span></div>
+    <div class="note">{hasard}Tirées au hasard parmi les 835 questions officielles</div>
+    <div class="go">Commencer</div></div>
+  <div class="main" style="left:372px;top:62px;transform:rotate(-4deg)"><i>✦</i>à la carte</div>
 </div>
 """
     return w, h, css, corps
 
 
-def jauge_large():
-    """La jauge de préparation en pleine largeur, sur un exemple."""
+def revision():
+    """La révision par thème : des cartes mémoire, revues au rythme de la répétition espacée."""
     w, h = 528, 220
     css = """
-.pan{left:40px;width:336px;top:24px;height:220px;padding:14px 16px}
-.t{font-size:12px;font-weight:650}
-.etat{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:10.5px;font-weight:600;
-  color:#166534;background:#EAF8EF;border-radius:999px;padding:4px 10px 4px 8px}
-.etat i{width:6px;height:6px;border-radius:50%;background:#16A34A}
+.fiche{position:absolute;border-radius:16px;background:#fff;border:1px solid rgba(76,52,140,.10)}
+.f3{left:76px;width:248px;top:20px;height:50px;background:#EFEAFB}
+.f2{left:62px;width:276px;top:31px;height:50px;background:#F8F6FE;box-shadow:0 -6px 16px -10px rgba(46,16,101,.18)}
+.f1{left:48px;width:304px;top:43px;height:158px;padding:14px 16px;
+  box-shadow:0 0 0 5px rgba(255,255,255,.6),0 22px 44px -16px rgba(46,16,101,.28)}
+.etq{display:inline-flex;align-items:center;gap:5px;padding:4px 9px 4px 6px;border-radius:999px;background:#F3EEFF;
+  color:#6D28D9;font-size:10px;font-weight:600}
+.titre{margin-top:10px;font-size:19px;font-weight:650;letter-spacing:-.025em}
+.f1 .sk{margin-top:8px;height:7px}
+.pied{position:absolute;left:16px;right:16px;bottom:13px;display:flex;align-items:center;justify-content:space-between}
+.puce{padding:5px 9px;border-radius:999px;background:#F1EBFF;color:#5B21B6;font-size:10px;font-weight:600}
 """
-    pts = [(14, 78), (60, 70), (106, 64), (152, 50), (198, 35), (244, 30), (290, 24)]
-    trace = " ".join(f"{x},{y}" for x, y in pts)
-    aire = f"M{pts[0][0]},94 L" + " L".join(f"{x},{y}" for x, y in pts) + f" L{pts[-1][0]},94 Z"
-    points = "".join(f'<circle cx="{x}" cy="{y}" r="3" fill="#fff" stroke="#7C3AED" stroke-width="1.7"/>'
-                     for x, y in pts[:-1])
-    x, y = pts[-1]
-    graphe = f"""<svg width="302" height="96" viewBox="0 0 326 96" style="display:block;margin-top:10px;overflow:visible">
-  <defs><linearGradient id="a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7C3AED" stop-opacity=".18"/>
-    <stop offset="1" stop-color="#7C3AED" stop-opacity="0"/></linearGradient></defs>
-  <path d="M0 94H326" stroke="#EEEBF4" stroke-width="1"/>
-  <path d="{aire}" fill="url(#a)"/>
-  <path d="M0 38H326" stroke="#16A34A" stroke-width="1.2" stroke-dasharray="3 3"/>
-  <text x="0" y="32" font-family="Inter" font-size="9.5" font-weight="600" fill="#166534">32/40 · seuil de réussite</text>
-  <polyline points="{trace}" fill="none" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-  {points}<circle cx="{x}" cy="{y}" r="4.8" fill="#7C3AED" stroke="#fff" stroke-width="2"/>
-</svg>"""
     corps = f"""
 <div class="fond-carte" style="background:radial-gradient(70% 95% at 0% 0%,rgba(185,163,255,.48),transparent 62%),radial-gradient(60% 95% at 100% 100%,rgba(255,180,92,.30),transparent 60%),#F7F5FC">
-  <div class="panneau pan"><div class="ligne"><span class="t">Jauge de préparation</span><span class="tag">Exemple</span></div>
-    {graphe}<span class="etat"><i></i>Au-dessus du seuil</span></div>
-  <div class="main" style="left:368px;top:62px;transform:rotate(-4deg)"><i>✦</i>pas qu'une fois</div>
+  <div class="fiche f3"></div><div class="fiche f2"></div>
+  <div class="fiche f1">
+    <span class="etq">{glyphe("Valeurs", 11, 6)}Principes et valeurs</span>
+    <div class="titre">La laïcité</div>
+    <div class="sk" style="width:92%"></div><div class="sk" style="width:76%"></div><div class="sk" style="width:58%"></div>
+    <div class="pied"><span class="eti">Carte mémoire</span><span class="puce">À revoir dans 3 jours</span></div>
+  </div>
+  <div class="main" style="left:376px;top:74px;transform:rotate(-4deg)"><i>✦</i>au bon moment</div>
 </div>
 """
     return w, h, css, corps
@@ -426,8 +421,8 @@ def main():
     SORTIE.mkdir(parents=True, exist_ok=True)
     polices = polices_css()
     pieces = {"fond-hero": fond_hero(), "hero": hero(), "coche": coche_badge(),
-              "entete-photo": entete_photo(), "examen": examen(), "bilan": bilan_large(),
-              "jauge": jauge_large(), "pilotage": pilotage(), "fond-cta": fond_cta()}
+              "entete-photo": entete_photo(), "entrainement": entrainement(), "examen": examen(),
+              "revision": revision(), "pilotage": pilotage(), "fond-cta": fond_cta()}
     taches = []
     with tempfile.TemporaryDirectory() as tmp:
         for nom, piece in pieces.items():

@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<title>CiviCap pour les organismes de formation</title>
+<meta name="description" content="Préparez vos stagiaires à l’examen civique et suivez leur progression : 835 questions officielles, examens blancs aux conditions réelles, espace formateur. 5 licences offertes, sans engagement.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Instrument+Sans:wght@500;600;700&family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Refonte de la page « organismes » de CiviCap, dans le langage de la newsletter :
+   le dégradé de marque quadrillé, des cartes blanches, des titres en Instrument Sans avec
+   un mot en Instrument Serif italique, des fragments d'interface posés sous verre et un
+   bloc final sombre. Les fragments d'interface sont des illustrations, pas des captures. */
+:root{
+  --ink:#0F0A1A; --doux:#3D3850; --texte:#57516B; --muet:#8A8499; --pale:#9A94A8;
+  --violet:#6D28D9; --violet-2:#7C3AED; --violet-3:#A78BFA; --lilas:#F3EEFF;
+  --bord:rgba(76,52,140,.10); --fond:#F3F1F8; --vert:#16A34A; --ambre:#F59E0B; --nuit:#120A24;
+  --sans:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --serif:'Instrument Serif',Georgia,'Times New Roman',serif;
+  --corps:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --plume:Caveat,'Segoe Print','Bradley Hand',cursive;
+  --degrade:radial-gradient(75% 60% at 0% 0%,#FFB45C 0%,rgba(255,180,92,0) 70%),
+    radial-gradient(65% 55% at 100% 0%,#B9A3FF 0%,rgba(185,163,255,0) 72%),
+    radial-gradient(85% 65% at 100% 100%,#8E72F6 0%,rgba(142,114,246,0) 72%),
+    radial-gradient(75% 60% at 0% 100%,#FF9E80 0%,rgba(255,158,128,0) 72%),
+    linear-gradient(180deg,#FFE9DA 0%,#F2EAFF 55%,#E3D7FF 100%);
+  --degrade-doux:radial-gradient(70% 95% at 100% 0%,rgba(185,163,255,.48),transparent 62%),
+    radial-gradient(60% 95% at 0% 100%,rgba(255,180,92,.32),transparent 60%),#F7F5FC;
+  --ombre-carte:0 24px 48px -36px rgba(46,16,101,.42);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--fond);color:var(--ink);font:400 17px/1.6 var(--corps);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+img,svg{display:block}
+img{max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{margin:0;font-family:var(--sans);font-weight:600;text-wrap:balance;word-spacing:.03em}
+h3,.nom,.chiffre .l,.etapes b,.fiche-titre{word-spacing:.07em}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+:focus-visible{outline:3px solid var(--violet-3);outline-offset:3px}
+[id]{scroll-margin-top:92px}
+.wrap{width:100%;max-width:1160px;margin:0 auto;padding-inline:24px}
+.section{padding-top:clamp(80px,10vw,128px)}
+
+/* ---------- titres, pastilles, boutons ---------- */
+.titre-2{font-size:clamp(34px,4.6vw,56px);line-height:1.03;letter-spacing:-.042em}
+h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.1em;letter-spacing:-.01em;color:var(--violet)}
+.tete{max-width:780px;margin:0 auto;text-align:center}
+.tete .titre-2{margin-top:18px}
+.tete p{margin:18px auto 0;max-width:620px;font-size:18px;color:var(--texte)}
+.pastille{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 12px;border-radius:999px;background:var(--lilas);color:var(--violet);font:600 13px/1.25 var(--corps)}
+.pastille::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.surtitre{font:700 12px/1.3 var(--corps);letter-spacing:.14em;text-transform:uppercase;color:#4C1D95}
+.bouton{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 24px;border:0;border-radius:999px;font:600 15px/1 var(--corps);letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}
+.bouton svg{transition:transform .18s ease}
+.bouton:hover svg{transform:translateX(3px)}
+.b-noir{background:var(--ink);color:#fff;box-shadow:0 12px 26px -12px rgba(15,10,26,.6),inset 0 1px 0 rgba(255,255,255,.14)}
+.b-noir:hover{transform:translateY(-1px);box-shadow:0 18px 32px -14px rgba(15,10,26,.65),inset 0 1px 0 rgba(255,255,255,.14)}
+.b-blanc{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px #E4DFEE}
+.b-blanc:hover{box-shadow:inset 0 0 0 1px #CBC2E0}
+
+/* ---------- navigation flottante ---------- */
+.nav{position:fixed;z-index:50;top:12px;left:50%;transform:translateX(-50%);width:min(1136px,calc(100% - 24px));display:flex;align-items:center;gap:4px;padding:7px 7px 7px 18px;border-radius:999px;background:rgba(255,255,255,.78);-webkit-backdrop-filter:saturate(1.6) blur(16px);backdrop-filter:saturate(1.6) blur(16px);border:1px solid rgba(255,255,255,.9);box-shadow:0 14px 34px -16px rgba(46,16,101,.32),0 2px 6px -2px rgba(46,16,101,.08)}
+.nav .logo img{height:36px;width:auto}
+.nav .liens{margin-left:auto;display:flex;gap:2px}
+.nav .liens a{padding:10px 14px;border-radius:999px;font:600 14px/1 var(--corps);color:var(--doux);transition:background-color .15s,color .15s}
+.nav .liens a:hover{background:rgba(109,40,217,.07);color:var(--violet)}
+.nav .bouton{margin-left:6px;padding:12px 18px;font-size:14px}
+
+/* ---------- bandeau de tête ---------- */
+.hero{padding:12px 12px 0}
+.cadre{position:relative;isolation:isolate;max-width:1416px;margin:0 auto;border-radius:36px;overflow:hidden;background:var(--degrade);padding:92px clamp(12px,3vw,40px) clamp(28px,4vw,48px)}
+.cadre::before,.bande::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.42) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.42) 1px,transparent 1px);background-size:32px 32px;
+  -webkit-mask-image:radial-gradient(ellipse 70% 55% at 50% 38%,transparent 30%,#000 82%);mask-image:radial-gradient(ellipse 70% 55% at 50% 38%,transparent 30%,#000 82%)}
+.carte-hero{position:relative;max-width:1136px;margin:0 auto;padding:clamp(48px,7vw,88px) clamp(18px,5vw,64px) 0;border-radius:30px;background:#fff;text-align:center;overflow:hidden;box-shadow:0 40px 90px -50px rgba(46,16,101,.5)}
+.badge{display:inline-flex;align-items:center;gap:9px;padding:5px 15px 5px 5px;border-radius:999px;background:#F5F0FF;border:1px solid #E9DEFF;font:600 13.5px/1.2 var(--corps);color:#5B21B6}
+.rond{flex:none;width:24px;height:24px;border-radius:50%;background:var(--violet);color:#fff;display:grid;place-items:center}
+.hero h1{margin-top:26px;font-size:clamp(40px,6.3vw,80px);line-height:.98;letter-spacing:-.048em}
+.hero h1 .l{display:block}
+.hero h1 .v{color:var(--violet)}
+.sous{max-width:650px;margin:26px auto 0;font-size:clamp(17px,1.45vw,19px);line-height:1.6;color:var(--texte)}
+.ctas{margin-top:34px;display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
+.micro{margin-top:18px;display:flex;justify-content:center;flex-wrap:wrap;gap:8px 20px;font:500 14px/1.3 var(--corps);color:var(--texte)}
+.micro span{display:inline-flex;align-items:center;gap:7px}
+.micro svg{color:var(--vert)}
+.deja{display:none;margin-top:14px;font:500 14px/1.4 var(--corps);color:var(--texte)}
+.deja a{color:var(--violet);font-weight:600}
+
+/* la démonstration : l'espace organisme, une question d'entraînement posée devant */
+.demo{position:relative;max-width:1000px;height:500px;margin:68px auto 0}
+.halo{position:absolute;left:6%;right:6%;top:100px;bottom:-80px;filter:blur(44px);background:radial-gradient(60% 70% at 15% 70%,rgba(255,170,110,.7),transparent 70%),radial-gradient(60% 70% at 85% 25%,rgba(167,139,250,.8),transparent 70%),radial-gradient(50% 50% at 55% 55%,rgba(196,181,253,.55),transparent 70%)}
+.verre{padding:10px;border-radius:26px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.95);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 40px 80px -30px rgba(60,28,130,.45),inset 0 1px 0 rgba(255,255,255,.95)}
+.fen{background:#fff;border-radius:17px;border:1px solid rgba(76,52,140,.09);overflow:hidden;text-align:left}
+.v-app{position:absolute;right:0;top:28px;width:76%}
+.fondu{position:absolute;z-index:4;left:-60px;right:-60px;bottom:0;height:130px;background:linear-gradient(rgba(255,255,255,0),#fff 86%);pointer-events:none}
+.app-haut{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid #F0EDF6}
+.app-titre{display:flex;align-items:center;gap:9px;font:600 14.5px/1 var(--corps);letter-spacing:-.01em;white-space:nowrap}
+.tag{display:inline-block;padding:4px 8px;border-radius:999px;background:#F3F1F8;color:var(--muet);font:600 10px/1 var(--corps);letter-spacing:.04em}
+.seg{display:flex;gap:2px;padding:3px;border-radius:10px;background:#F3F1F8}
+.seg span{padding:7px 10px;border-radius:8px;font:600 12px/1 var(--corps);color:#6E6880;white-space:nowrap}
+.seg .on{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(46,16,101,.14)}
+.app-droite{margin-left:auto;display:flex;align-items:center;gap:8px}
+.solde{padding:7px 11px;border-radius:999px;background:#F7F5FC;border:1px solid #EEEAF6;font:500 12px/1 var(--corps);color:var(--texte);white-space:nowrap}
+.solde b{font-weight:700;color:var(--ink)}
+.mini-noir{flex:none;display:inline-flex;align-items:center;gap:5px;padding:8px 12px;border-radius:999px;background:var(--ink);color:#fff;font:600 12px/1 var(--corps);white-space:nowrap}
+.app-table{padding:4px 18px 18px}
+.ln{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1.15fr) minmax(0,1.5fr) minmax(0,1fr) 34px minmax(0,1.1fr);column-gap:14px;align-items:center;padding:11px 0;border-top:1px solid #F3F0F8;font:500 13px/1.2 var(--corps);color:var(--doux)}
+.ln.th{padding:10px 0 8px;border-top:0;font:600 10px/1.2 var(--corps);letter-spacing:.08em;text-transform:uppercase;color:var(--pale)}
+.qui{display:flex;align-items:center;gap:10px;min-width:0}
+.av{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--f);color:var(--e);font:700 11px/1 var(--corps)}
+.sk{display:block;height:8px;border-radius:5px;background:#ECE9F3;min-width:0}
+.sc{display:flex;align-items:center;gap:3px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sc b{font-weight:700;color:var(--ink)}
+.sc small{font-size:12px;color:var(--pale)}
+.j{position:relative;flex:1;min-width:36px;height:6px;margin-left:9px;border-radius:9px;background:#EFECF6}
+.j i{position:absolute;left:0;top:0;bottom:0;border-radius:9px;background:var(--c)}
+.j u{position:absolute;left:80%;top:-4px;width:2px;height:14px;border-radius:2px;background:var(--vert)}
+.faible{display:flex;align-items:center;gap:7px;white-space:nowrap}
+.faible svg{flex:none;color:#B45309}
+.vide{color:#C9C4D6}
+.nb{font-variant-numeric:tabular-nums}
+.st{justify-self:start;padding:6px 10px;border-radius:999px;font:600 11.5px/1 var(--corps);white-space:nowrap}
+.s-ok{background:#EAF8EF;color:#166534}.s-cours{background:#F1EBFF;color:#5B21B6}.s-aide{background:#FFF4D6;color:#92400E}
+.carte{background:#fff;border-radius:18px;border:1px solid rgba(76,52,140,.10);box-shadow:0 0 0 6px rgba(255,255,255,.6),0 30px 60px -22px rgba(46,16,101,.38),0 8px 16px -8px rgba(46,16,101,.14)}
+.q-carte{position:absolute;z-index:3;left:-44px;top:156px;width:292px;overflow:hidden;text-align:left}
+.q-barre{display:flex;align-items:center;gap:7px;padding:12px 15px;border-bottom:1px solid #F0EDF6;font:500 11.5px/1 var(--corps);color:var(--muet);white-space:nowrap}
+.q-barre svg{color:var(--violet)}
+.q-barre b{font-weight:600;color:var(--doux)}
+.q-barre .num{margin-left:auto;display:flex;align-items:center;gap:8px;font-weight:600;color:var(--doux);font-variant-numeric:tabular-nums}
+.prog{display:block;width:44px;height:4px;border-radius:9px;background:#EFECF6;overflow:hidden}
+.prog i{display:block;height:100%;border-radius:9px;background:var(--violet-2)}
+.q-corps{padding:14px 16px 16px}
+.eti{display:block;font:600 10px/1 var(--corps);letter-spacing:.09em;text-transform:uppercase;color:var(--muet)}
+.q-texte{margin-top:8px;font:600 16px/1.3 var(--corps);letter-spacing:-.014em;color:var(--ink)}
+.rep{margin-top:12px;display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:11px;background:#EEFBF3;border:1px solid #C6F0D5;font:600 13px/1.3 var(--corps);color:#14532D}
+.ok{flex:none;width:18px;height:18px;border-radius:50%;background:var(--vert);color:#fff;display:grid;place-items:center}
+.sep{margin:13px 0 10px;height:1px;background:#EEEBF4}
+.ex{margin-top:7px;font:400 12.5px/1.6 var(--corps);color:var(--doux)}
+.toast{position:absolute;z-index:3;right:-8px;top:0;display:flex;align-items:center;gap:9px;padding:10px 16px 10px 10px;border-radius:999px;font:600 13.5px/1 var(--corps);white-space:nowrap}
+.plume{position:absolute;z-index:3;display:inline-flex;align-items:center;gap:6px;padding:6px 14px 8px 11px;border-radius:999px;background:#fff;font:600 20px/1 var(--plume);color:#3B2A63;white-space:nowrap;box-shadow:0 10px 24px -10px rgba(46,16,101,.38),0 0 0 1px rgba(76,52,140,.06)}
+.plume i{font:normal 600 12px/1 var(--corps);color:var(--violet-2)}
+@media (prefers-reduced-motion:no-preference){
+  .flotte{animation:flotte 7s ease-in-out infinite}
+  .flotte.lent{animation-duration:9s;animation-delay:-3s}
+}
+@keyframes flotte{50%{translate:0 -8px}}
+
+/* les trois parcours, sous la carte blanche */
+.parcours{position:relative;max-width:1136px;margin:clamp(28px,4vw,44px) auto 0;text-align:center}
+.trio{margin-top:16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.chiffre{padding:26px 26px 24px;border-radius:24px;background:#fff;text-align:left;box-shadow:0 24px 44px -28px rgba(46,16,101,.38)}
+.chiffre .n{font:600 clamp(42px,5.4vw,68px)/1 var(--sans);letter-spacing:-.03em;color:var(--ink)}
+.chiffre .u{margin-top:12px;font:700 11px/1.2 var(--corps);letter-spacing:.11em;text-transform:uppercase;color:var(--muet)}
+.chiffre .l{margin-top:10px;font:600 clamp(15px,1.6vw,20px)/1.22 var(--sans);letter-spacing:-.012em;color:var(--ink)}
+.legende{margin-top:18px;font:500 15px/1.5 var(--corps);color:#4B3F6B}
+
+/* ---------- le constat ---------- */
+.constat-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,80px);align-items:center}
+.constat-txt .titre-2{margin-top:18px}
+.constat-txt p{margin-top:20px;max-width:470px;font-size:18px;color:var(--texte)}
+.peines{display:grid;gap:12px}
+.peines li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:18px;align-items:center;padding:22px 26px 22px 22px;border-radius:24px;background:#fff;border:1px solid var(--bord);box-shadow:var(--ombre-carte)}
+.peines .no{height:52px;border-radius:15px;background:var(--lilas);color:var(--violet);display:grid;place-items:center;font:600 16px/1 var(--sans);letter-spacing:-.01em}
+.peines h3{font-size:21px;line-height:1.25;letter-spacing:-.018em}
+.peines p{margin-top:4px;font-size:16px;color:var(--texte)}
+
+/* ---------- cartes à visuel ---------- */
+.trois{margin-top:clamp(40px,5vw,56px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.carte-f,.b{display:flex;flex-direction:column;border-radius:28px;overflow:hidden;background:#fff;border:1px solid var(--bord);box-shadow:var(--ombre-carte)}
+.visuel{position:relative;isolation:isolate;flex:1;display:grid;place-items:center;min-height:300px;padding:30px 24px;background:var(--degrade-doux);overflow:hidden}
+.txt{padding:24px 28px 30px}
+.carte-f .visuel{flex:none;height:340px}
+.carte-f .txt{flex:1}
+.txt h3{font-size:22px;line-height:1.2;letter-spacing:-.018em}
+.txt p{margin-top:8px;font-size:16px;line-height:1.55;color:var(--texte)}
+.panneau{position:relative;width:100%;max-width:312px;padding:16px 18px 18px;border-radius:16px;background:#fff;border:1px solid rgba(76,52,140,.10);text-align:left;box-shadow:0 0 0 6px rgba(255,255,255,.55),0 26px 50px -22px rgba(46,16,101,.34),0 4px 12px -6px rgba(46,16,101,.10)}
+.p-titre{display:flex;align-items:center;justify-content:space-between;gap:10px;font:600 13.5px/1.2 var(--corps);letter-spacing:-.01em;color:var(--ink)}
+.champ{margin-top:12px;display:flex;align-items:center;gap:8px;padding:5px 5px 5px 11px;border-radius:12px;border:1px solid #E6E1F0;background:#FBFAFE}
+.champ svg{flex:none;color:var(--pale)}
+.champ span:first-of-type{flex:1;min-width:0;font:500 12.5px/1 var(--corps);color:#A39DB5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.invites{margin-top:8px}
+.invites li{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid #F3F0F8}
+.invites li:first-child{border-top:0}
+.invites .av{width:28px;height:28px;font-size:10.5px}
+.envoyee{margin-left:auto;flex:none;display:inline-flex;align-items:center;gap:5px;padding:5px 9px 5px 6px;border-radius:999px;background:#EAF8EF;color:#166534;font:600 11px/1 var(--corps);white-space:nowrap}
+.envoyee .ok{width:14px;height:14px}
+.fiche-tete{display:flex;align-items:center;gap:10px}
+.fiche-tete .tag{margin-left:auto}
+.mini-tag{display:inline-block;margin-top:6px;padding:4px 8px;border-radius:999px;background:#F1EBFF;color:#5B21B6;font:600 10.5px/1 var(--corps)}
+.kpis{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.kpis > div{padding:10px 12px;border-radius:12px;background:#F7F5FC}
+.kpis b{font:600 24px/1 var(--sans);letter-spacing:-.03em;color:var(--ink)}
+.kpis small{font:500 12px/1 var(--corps);color:var(--pale)}
+.kpis span{display:block;margin-top:6px;font:500 11px/1.2 var(--corps);color:var(--texte)}
+.barres{margin-top:14px;display:grid;gap:9px}
+.barre{display:grid;grid-template-columns:14px 74px minmax(0,1fr);align-items:center;gap:8px;font:500 11.5px/1 var(--corps);color:#4B4658}
+.barre svg{color:var(--violet)}
+.tr{display:block;height:6px;border-radius:9px;background:#EFECF6;overflow:hidden}
+.tr i{display:block;height:100%;border-radius:9px;background:var(--violet-2)}
+.barre.bas{color:#92400E;font-weight:600}
+.barre.bas svg{color:#B45309}
+.barre.bas .tr i{background:var(--ambre)}
+.lic-solde{margin-top:8px;display:flex;align-items:center;gap:10px}
+.lic-solde b{font:600 46px/1 var(--sans);letter-spacing:-.045em;color:var(--ink)}
+.lic-solde span{font:500 12.5px/1.3 var(--corps);color:var(--texte)}
+.seg-l{margin-top:14px}
+.seg-l span{flex:1;text-align:center}
+.lic-ligne{margin-top:14px;padding-top:12px;border-top:1px dashed #E6E1F0;display:flex;justify-content:space-between;gap:10px;font:500 12.5px/1.3 var(--corps);color:var(--texte)}
+.lic-ligne b{font-weight:700;color:var(--ink);white-space:nowrap}
+.mini-large{margin-top:14px;display:block;padding:11px;border-radius:999px;background:var(--ink);color:#fff;text-align:center;font:600 13px/1 var(--corps)}
+.paiement{margin-top:11px;display:flex;justify-content:center;gap:14px;font:500 11px/1 var(--corps);color:var(--pale)}
+.paiement span{display:inline-flex;align-items:center;gap:5px}
+
+/* ---------- les trois modes ---------- */
+.modes-tete{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(32px,5vw,64px);align-items:center}
+.modes-tete .titre-2{margin-top:18px}
+.modes-tete p{margin-top:20px;max-width:460px;font-size:18px;color:var(--texte)}
+.modes-tete img{width:100%;max-width:528px;justify-self:end;border-radius:26px}
+.bento{margin-top:clamp(40px,5vw,56px);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px}
+.b-grand{grid-row:span 2;background:var(--nuit);border-color:transparent}
+.b-grand .visuel{background:radial-gradient(70% 70% at 100% 0%,rgba(124,58,237,.7),transparent 62%),radial-gradient(60% 60% at 0% 100%,rgba(251,180,40,.26),transparent 62%),var(--nuit)}
+.b-grand .txt h3{color:#fff}
+.b-grand .txt p{color:#CFC7E2}
+.b-grand .visuel::before,.nuit::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:32px 32px;
+  -webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,transparent 20%,#000 85%);mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,transparent 20%,#000 85%)}
+.b-grand .visuel{padding-top:136px}
+.v-exam{width:100%;max-width:520px}
+.b-grand .verre{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.22);box-shadow:0 40px 80px -30px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.25)}
+.resultat{position:absolute;z-index:3;right:24px;top:22px;padding:13px 16px 14px;text-align:left}
+.res-n{margin-top:7px;font:600 30px/1 var(--sans);letter-spacing:-.04em;color:var(--ink)}
+.res-n small{font:500 14px/1 var(--corps);letter-spacing:0;color:var(--pale)}
+.res-ok{margin-top:9px;display:inline-flex;align-items:center;gap:6px;padding:5px 9px 5px 6px;border-radius:999px;background:#EAF8EF;color:#166534;font:600 11px/1 var(--corps);white-space:nowrap}
+.res-ok .ok{width:14px;height:14px}
+.exam-haut{display:flex;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid #F0EDF6}
+.exam-haut .num{font:600 12px/1 var(--corps);color:var(--doux);white-space:nowrap}
+.exam-haut .num b{color:var(--ink)}
+.exam-haut .prog{flex:1;width:auto;height:5px}
+.chrono{display:inline-flex;align-items:center;gap:6px;padding:6px 11px 6px 9px;border-radius:999px;background:#F1EBFF;color:#5B21B6;font:600 12.5px/1 var(--corps);font-variant-numeric:tabular-nums}
+.exam-corps{padding:18px 16px 2px}
+.exam-corps .q-texte{margin-top:0;font-size:17px}
+.opt{display:flex;align-items:flex-start;gap:10px;margin-top:9px;padding:10px 12px;border-radius:11px;border:1px solid #EEEBF4;font:500 13px/1.4 var(--corps);color:var(--doux)}
+.opt .rad{flex:none;margin-top:1px;width:15px;height:15px;border-radius:50%;border:1.5px solid #CFCADB}
+.opt.sel{border-color:#C4B5FD;background:#FAF7FF;color:var(--ink)}
+.opt.sel .rad{border:4.5px solid var(--violet-2)}
+.exam-pied{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px 16px}
+.drap{display:inline-flex;align-items:center;gap:7px;padding:8px 13px 8px 10px;border-radius:999px;border:1px solid #F5E2A8;background:#FFFBEB;color:#78350F;font:600 12px/1 var(--corps)}
+.suivant{display:inline-flex;align-items:center;gap:6px;color:var(--violet);font:600 12.5px/1 var(--corps)}
+.choix{margin-top:10px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.choix span{display:grid;place-items:center;height:64px;border-radius:14px;border:1px solid #E9E5F2;color:var(--doux);font:600 26px/1 var(--sans);letter-spacing:-.03em}
+.choix .on{border-color:var(--violet-2);background:#FAF7FF;color:var(--violet);box-shadow:0 0 0 3px rgba(124,58,237,.12)}
+.p-note{margin-top:12px;display:flex;align-items:center;gap:7px;font:500 11.5px/1.35 var(--corps);color:var(--texte)}
+.p-note svg{flex:none;color:var(--violet)}
+.pile{position:relative;width:100%;max-width:300px;height:226px}
+.fiche{position:absolute;left:0;right:0;border-radius:18px;background:#fff;border:1px solid rgba(76,52,140,.10)}
+.fiche.f3{top:0;left:30px;right:30px;height:60px;background:#EFEAFB}
+.fiche.f2{top:12px;left:15px;right:15px;height:60px;background:#F8F6FE;box-shadow:0 -6px 16px -10px rgba(46,16,101,.18)}
+.fiche.f1{top:26px;bottom:0;padding:16px 18px;box-shadow:0 0 0 6px rgba(255,255,255,.55),0 26px 50px -22px rgba(46,16,101,.34)}
+.fiche-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 10px 5px 7px;border-radius:999px;background:var(--lilas);color:var(--violet);font:600 11px/1 var(--corps)}
+.fiche-titre{margin-top:12px;font:600 22px/1.15 var(--sans);letter-spacing:-.025em;color:var(--ink)}
+.fiche .sk{margin-top:10px}
+.fiche-pied{position:absolute;left:18px;right:18px;bottom:15px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.puce-lilas{padding:6px 10px;border-radius:999px;background:#F1EBFF;color:#5B21B6;font:600 11px/1 var(--corps);white-space:nowrap}
+
+/* ---------- les thèmes ---------- */
+.bande{position:relative;isolation:isolate;border-radius:36px;overflow:hidden;background:var(--degrade);padding:clamp(48px,6vw,84px) clamp(16px,4vw,56px)}
+.bande .pastille{background:rgba(255,255,255,.78);color:#5B21B6}
+.bande .tete p{color:#4B3F6B}
+.tuiles{margin-top:clamp(32px,4vw,48px);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.tuiles li{display:flex;flex-direction:column;gap:18px;padding:22px 20px 24px;border-radius:22px;background:#fff;box-shadow:0 22px 44px -28px rgba(46,16,101,.4)}
+.ic{flex:none;width:48px;height:48px;border-radius:15px;background:var(--lilas);color:var(--violet);display:grid;place-items:center}
+.tuiles .nom{font:600 17.5px/1.25 var(--sans);letter-spacing:-.014em;color:var(--ink)}
+
+/* ---------- tarifs ---------- */
+.prix-g{margin-top:clamp(40px,5vw,56px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.prix{display:flex;flex-direction:column;padding:28px 28px 30px;border-radius:28px;background:#fff;border:1px solid var(--bord);box-shadow:var(--ombre-carte)}
+.duree{align-self:flex-start;padding:7px 12px;border-radius:999px;background:var(--lilas);color:var(--violet);font:600 13px/1 var(--corps)}
+.montant{margin-top:22px;display:flex;align-items:baseline;gap:8px}
+.montant b{font:600 clamp(46px,4.6vw,60px)/1 var(--sans);letter-spacing:-.045em;color:var(--ink)}
+.montant span{font:600 15px/1 var(--corps);color:var(--texte)}
+.ttc{margin-top:10px;font:500 14px/1.4 var(--corps);color:var(--muet)}
+.prix ul{margin-top:22px;padding-top:20px;border-top:1px solid #F0EDF6;display:grid;gap:11px}
+.prix li{display:flex;align-items:center;gap:10px;font:500 15px/1.35 var(--corps);color:var(--doux)}
+.prix li svg{flex:none;color:var(--vert)}
+.prix-pied{margin-top:16px;display:flex;align-items:center;flex-wrap:wrap;gap:14px 28px;padding:14px 14px 14px 26px;border-radius:24px;background:#fff;border:1px solid var(--bord)}
+.prix-pied > span{display:inline-flex;align-items:center;gap:9px;font:500 15px/1.35 var(--corps);color:var(--doux)}
+.prix-pied > span svg{flex:none;color:var(--violet)}
+.prix-pied .bouton{margin-left:auto}
+
+/* ---------- questions fréquentes ---------- */
+.faq-g{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(32px,6vw,80px);align-items:start}
+.faq-g .titre-2{margin-top:18px}
+.contact{margin-top:28px;display:flex;align-items:center;gap:14px;padding:18px 20px;border-radius:22px;background:#fff;border:1px solid var(--bord);font:500 15px/1.45 var(--corps);color:var(--texte)}
+.contact .ic{width:44px;height:44px;border-radius:14px}
+.contact a{display:block;color:var(--violet);font-weight:600}
+.accordeon{display:grid;gap:10px}
+.accordeon details{border-radius:20px;background:#fff;border:1px solid var(--bord);transition:box-shadow .2s ease}
+.accordeon details[open]{box-shadow:0 24px 44px -30px rgba(46,16,101,.42)}
+.accordeon summary{display:flex;align-items:center;gap:16px;padding:20px 22px;cursor:pointer;list-style:none;border-radius:20px;font:600 16.5px/1.35 var(--corps);color:var(--ink)}
+.accordeon summary::-webkit-details-marker{display:none}
+.plus{margin-left:auto;flex:none;width:30px;height:30px;border-radius:50%;background:var(--lilas);color:var(--violet);display:grid;place-items:center;transition:transform .2s ease,background-color .2s ease,color .2s ease}
+.accordeon details[open] .plus{transform:rotate(45deg);background:var(--ink);color:#fff}
+.reponse{padding:0 22px 22px;margin-top:-6px;font-size:16px;line-height:1.6;color:var(--texte)}
+
+/* ---------- essai : le bloc sombre ---------- */
+.nuit{position:relative;isolation:isolate;border-radius:36px;overflow:hidden;padding:clamp(40px,6vw,80px) clamp(18px,5vw,72px);color:#fff;background:radial-gradient(70% 90% at 100% 0%,rgba(124,58,237,.75),transparent 62%),radial-gradient(60% 80% at 0% 100%,rgba(251,180,40,.30),transparent 62%),radial-gradient(50% 60% at 50% 50%,rgba(185,163,255,.12),transparent 70%),var(--nuit)}
+.essai-g{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(32px,5vw,64px);align-items:center}
+.pastille-nuit{background:rgba(255,255,255,.1);color:#DDD3FF}
+.pastille-nuit::before{background:#C4B5FD}
+.nuit .titre-2{margin-top:18px;color:#fff}
+.nuit .titre-2 em{color:#C4B5FD}
+.essai-txt > p{margin-top:18px;max-width:440px;font-size:18px;color:#CFC7E2}
+.etapes{margin-top:32px;display:grid;gap:10px}
+.etapes li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;align-items:center;padding:14px 18px 14px 14px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)}
+.etapes .no{width:44px;height:44px;border-radius:14px;background:#fff;color:var(--ink);display:grid;place-items:center;font:600 18px/1 var(--sans)}
+.etapes b{display:block;font:600 17px/1.3 var(--sans);letter-spacing:-.01em;color:#fff}
+.etapes small{display:block;margin-top:3px;font:400 14.5px/1.45 var(--corps);color:#CFC7E2}
+.formulaire{padding:clamp(24px,3vw,36px);border-radius:28px;background:#fff;color:var(--ink);box-shadow:0 40px 80px -30px rgba(0,0,0,.55)}
+.formulaire h3{font-size:26px;line-height:1.15;letter-spacing:-.028em}
+.sous-f{margin-top:8px;font-size:15px;color:var(--texte)}
+.formulaire label{display:block;margin-top:16px;font:600 13.5px/1.2 var(--corps);color:var(--doux)}
+.formulaire input{display:block;width:100%;margin-top:7px;padding:13px 14px;border-radius:13px;border:1px solid #E2DDED;background:#FBFAFE;font:500 15.5px/1.2 var(--corps);color:var(--ink);transition:border-color .15s,box-shadow .15s,background-color .15s}
+.formulaire input::placeholder{color:#B3ADC2}
+.formulaire input:focus{outline:none;border-color:var(--violet-3);background:#fff;box-shadow:0 0 0 4px rgba(167,139,250,.25)}
+.formulaire .bouton{width:100%;margin-top:24px;padding:17px 24px}
+.form-note{margin-top:12px;text-align:center;font:500 13.5px/1.45 var(--corps);color:var(--muet)}
+
+/* ---------- pied de page ---------- */
+.pied{display:flex;align-items:center;flex-wrap:wrap;gap:16px 32px;margin-top:clamp(56px,7vw,96px);padding-block:32px 48px;border-top:1px solid #E6E1F0}
+.pied img{height:34px;width:auto}
+.pied-liens{display:flex;flex-wrap:wrap;gap:6px 22px;font:500 14px/1.4 var(--corps);color:var(--texte)}
+.pied-liens a:hover{color:var(--violet)}
+.pied small{margin-left:auto;font:500 14px/1.4 var(--corps);color:var(--muet)}
+
+/* ---------- largeurs intermédiaires et mobile ---------- */
+@media (max-width:1180px){
+  .ln{grid-template-columns:minmax(0,1.15fr) minmax(0,1.15fr) minmax(0,1.5fr) minmax(0,1fr) minmax(0,1.1fr)}
+  .c-tests,.solde{display:none}
+}
+@media (max-width:1040px){
+  .q-carte{width:244px;left:-48px}
+  .v-app{width:79%}
+  .ln{grid-template-columns:minmax(0,1.1fr) minmax(0,1.5fr) minmax(0,1fr) minmax(0,1.1fr)}
+  .c-parcours{display:none}
+}
+@media (max-width:900px){
+  .q-carte{display:none}
+  .v-app{left:0;right:0;margin:0 auto;width:100%}
+  .constat-g,.modes-tete,.faq-g,.essai-g{grid-template-columns:minmax(0,1fr)}
+  .modes-tete img{justify-self:center}
+  .trois,.bento{grid-template-columns:minmax(0,1fr)}
+  .b-grand{grid-row:auto}
+  .tuiles{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .tuiles li{grid-column:span 2}
+  .tuiles li:nth-child(n+4){grid-column:span 3}
+}
+@media (max-width:760px){
+  .nav .liens{display:none}
+  .nav .bouton{margin-left:auto}
+  .deja{display:block}
+  .prix-g{grid-template-columns:minmax(0,1fr)}
+  .prix-pied{padding:18px 18px 18px 20px}
+  .prix-pied .bouton{margin-left:0;width:100%}
+  .pied small{margin-left:0}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding-inline:16px}
+  .hero{padding:8px 8px 0}
+  .cadre{padding:80px 8px 20px;border-radius:28px}
+  .carte-hero{border-radius:24px}
+  .hero h1 .l{display:inline}
+  .demo{height:400px;margin-top:48px}
+  .seg,.solde,.c-theme,.toast,.demo .plume,.b-grand .plume{display:none}
+  .b-grand .visuel{padding-top:132px}
+  .resultat{left:18px;right:auto}
+  .ln{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr) auto;column-gap:10px}
+  .st{padding:5px 8px;font-size:10.5px}
+  .chiffre{padding:16px 12px 15px;border-radius:18px}
+  .chiffre .u{font-size:9.5px;letter-spacing:.07em}
+  .tuiles{grid-template-columns:minmax(0,1fr)}
+  .tuiles li,.tuiles li:nth-child(n+4){grid-column:auto;flex-direction:row;align-items:center;gap:14px;padding:14px 16px}
+  .bande,.nuit{border-radius:28px}
+  .peines li{grid-template-columns:44px minmax(0,1fr);gap:14px;padding:18px}
+  .peines .no{height:44px;border-radius:13px}
+  .visuel{min-height:0;padding:28px 18px}
+  .txt{padding:22px 22px 26px}
+}
+@media (max-width:420px){
+  .ctas .bouton{width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- pictogrammes : un repère par thème du programme officiel, et quelques icônes -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="g-valeurs" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="stroke-width:var(--sw,4.4)"><circle cx="32" cy="32" r="24"/><circle cx="32" cy="32" r="13"/><circle cx="32" cy="32" r="4" fill="currentColor" stroke="none"/></g></symbol>
+  <symbol id="g-institutions" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="stroke-width:var(--sw,4.4)"><path d="M8 25 32 11l24 14"/><path d="M14 25v22M24 25v22M40 25v22M50 25v22"/><path d="M8 52h48"/></g></symbol>
+  <symbol id="g-droits" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="stroke-width:var(--sw,4.4)"><path d="M32 13v33M14 20h36"/><path d="M14 20 8 33h12z"/><path d="M50 20 44 33h12z"/><path d="M22 47h20"/></g></symbol>
+  <symbol id="g-histoire" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="stroke-width:var(--sw,4.4)"><path d="M32 8 54 20v24L32 56 10 44V20Z"/><circle cx="32" cy="32" r="4" fill="currentColor" stroke="none"/></g></symbol>
+  <symbol id="g-societe" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="stroke-width:var(--sw,4.4)"><circle cx="32" cy="19" r="7"/><path d="M20 45c0-7 5.4-12 12-12s12 5 12 12"/><circle cx="13" cy="29" r="5.5"/><path d="M4 48c0-6 4-10 9-10"/><circle cx="51" cy="29" r="5.5"/><path d="M60 48c0-6-4-10-9-10"/></g></symbol>
+  <symbol id="i-coche" viewBox="0 0 12 12"><path d="M2.5 6.3 4.9 8.6 9.6 3.6" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-fleche" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 16 16"><path d="M8 3.5v9M3.5 8h9" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-horloge" viewBox="0 0 16 16"><circle cx="8" cy="9" r="5.6" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 6.4V9l1.8 1.2M6.4 1.8h3.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-drapeau" viewBox="0 0 16 16"><path d="M3.5 14.5V2" fill="none" stroke="#78350F" stroke-width="1.6" stroke-linecap="round"/><path d="M3.5 2.6h8.4l-1.9 3 1.9 3H3.5z" fill="#FBCE08" stroke="#78350F" stroke-width="1.4" stroke-linejoin="round"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7.5 8 5.5 8-5.5"/></g></symbol>
+  <symbol id="i-hasard" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h3.2c2 0 3.2.9 4.2 2.7l2.6 4.6c1 1.8 2.2 2.7 4.2 2.7H21"/><path d="M3 17h3.2c1.3 0 2.3-.4 3.1-1.2M14.6 8.2c.8-.8 1.8-1.2 3-1.2H21"/><path d="m18 4 3 3-3 3M18 14l3 3-3 3"/></g></symbol>
+  <symbol id="i-cadeau" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="8" width="17" height="4" rx="1"/><path d="M5 12v7.5A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V12M12 8v13M12 8S10.5 3.5 8 3.5a2.25 2.25 0 0 0 0 4.5M12 8s1.5-4.5 4-4.5a2.25 2.25 0 0 1 0 4.5"/></g></symbol>
+  <symbol id="i-carte" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6.5 15h3.5"/></g></symbol>
+  <symbol id="i-banque" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 4l9 5.5M5 10v7M9.5 10v7M14.5 10v7M19 10v7M3 20h18"/></g></symbol>
+  <symbol id="i-bulle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></g></symbol>
+</svg>
+
+<nav class="nav" aria-label="Navigation principale">
+  <a class="logo" href="#"><img src="img/logo-civicap.png" width="313" height="111" alt="CiviCap"></a>
+  <div class="liens">
+    <a href="#">Espace stagiaire</a>
+    <a href="#">Espace organisme</a>
+  </div>
+  <a class="bouton b-noir" href="#essai">Tester gratuitement</a>
+</nav>
+
+<header class="hero">
+  <div class="cadre">
+    <div class="carte-hero">
+      <span class="badge"><span class="rond"><svg width="11" height="11"><use href="#i-coche"/></svg></span>Pour les organismes de formation</span>
+      <h1><span class="l">Préparez vos stagiaires</span> <span class="l">à l’examen civique,</span> <span class="l v">et suivez leur <em>progression.</em></span></h1>
+      <p class="sous">835&nbsp;questions officielles, une correction expliquée à chaque réponse, des examens blancs aux conditions réelles et un espace formateur pour suivre chaque stagiaire.</p>
+      <div class="ctas">
+        <a class="bouton b-noir" href="#essai">Tester gratuitement<svg width="15" height="15"><use href="#i-fleche"/></svg></a>
+        <a class="bouton b-blanc" href="#tarifs">Voir les tarifs</a>
+      </div>
+      <p class="micro"><span><svg width="13" height="13"><use href="#i-coche"/></svg>5&nbsp;licences offertes</span><span><svg width="13" height="13"><use href="#i-coche"/></svg>Sans engagement</span></p>
+      <p class="deja">Déjà inscrit&nbsp;? <a href="#">Espace organisme</a> · <a href="#">Espace stagiaire</a></p>
+
+      <div class="demo" role="img" aria-label="Exemple d’espace organisme : la liste des stagiaires avec leur parcours, leur dernier examen blanc face au seuil de 32 sur 40, le thème à revoir, le nombre de tests passés et leur statut. Devant, une question d’entraînement corrigée et expliquée.">
+        <div class="halo"></div>
+        <div class="verre v-app">
+          <div class="fen">
+            <div class="app-haut">
+              <span class="app-titre">Mes stagiaires <span class="tag">Exemple</span></span>
+              <span class="seg"><span class="on">Tous · 12</span><span>Prêts · 4</span><span>À accompagner · 3</span></span>
+              <span class="app-droite"><span class="solde"><b>18</b> licences disponibles</span><span class="mini-noir"><svg width="11" height="11"><use href="#i-plus"/></svg>Inviter</span></span>
+            </div>
+            <div class="app-table">
+              <div class="ln th"><span>Stagiaire</span><span class="c-parcours">Parcours</span><span>Dernier examen blanc</span><span class="c-theme">Thème à revoir</span><span class="c-tests">Tests</span><span>Statut</span></div>
+              <div class="ln"><span class="qui"><span class="av" style="--f:#EDE7FF;--e:#5B21B6">AM</span><i class="sk" style="width:62px"></i></span><span class="c-parcours">Naturalisation</span><span class="sc"><b>36</b><small>/40</small><span class="j" style="--c:#7C3AED"><i style="width:90%"></i><u></u></span></span><span class="c-theme vide">—</span><span class="c-tests nb">9</span><span class="st s-ok">Prêt</span></div>
+              <div class="ln"><span class="qui"><span class="av" style="--f:#DCFCE7;--e:#166534">KD</span><i class="sk" style="width:54px"></i></span><span class="c-parcours">Carte de résident</span><span class="sc"><b>33</b><small>/40</small><span class="j" style="--c:#7C3AED"><i style="width:82.5%"></i><u></u></span></span><span class="c-theme vide">—</span><span class="c-tests nb">7</span><span class="st s-ok">Prêt</span></div>
+              <div class="ln"><span class="qui"><span class="av" style="--f:#FCE7F3;--e:#9D174D">SB</span><i class="sk" style="width:58px"></i></span><span class="c-parcours">Carte de séjour</span><span class="sc"><b>29</b><small>/40</small><span class="j" style="--c:#A78BFA"><i style="width:72.5%"></i><u></u></span></span><span class="c-theme faible"><svg width="14" height="14" style="--sw:6"><use href="#g-histoire"/></svg>Histoire</span><span class="c-tests nb">6</span><span class="st s-cours">En progrès</span></div>
+              <div class="ln"><span class="qui"><span class="av" style="--f:#E0F2FE;--e:#075985">YN</span><i class="sk" style="width:48px"></i></span><span class="c-parcours">Naturalisation</span><span class="sc"><b>27</b><small>/40</small><span class="j" style="--c:#A78BFA"><i style="width:67.5%"></i><u></u></span></span><span class="c-theme faible"><svg width="14" height="14" style="--sw:6"><use href="#g-institutions"/></svg>Institutions</span><span class="c-tests nb">5</span><span class="st s-cours">En progrès</span></div>
+              <div class="ln"><span class="qui"><span class="av" style="--f:#FEF3C7;--e:#92400E">LT</span><i class="sk" style="width:60px"></i></span><span class="c-parcours">Carte de séjour</span><span class="sc"><b>22</b><small>/40</small><span class="j" style="--c:#F59E0B"><i style="width:55%"></i><u></u></span></span><span class="c-theme faible"><svg width="14" height="14" style="--sw:6"><use href="#g-histoire"/></svg>Histoire</span><span class="c-tests nb">3</span><span class="st s-aide">À accompagner</span></div>
+              <div class="ln"><span class="qui"><span class="av" style="--f:#FFE4E6;--e:#9F1239">FR</span><i class="sk" style="width:52px"></i></span><span class="c-parcours">Carte de résident</span><span class="sc"><b>31</b><small>/40</small><span class="j" style="--c:#A78BFA"><i style="width:77.5%"></i><u></u></span></span><span class="c-theme faible"><svg width="14" height="14" style="--sw:6"><use href="#g-valeurs"/></svg>Valeurs</span><span class="c-tests nb">4</span><span class="st s-cours">En progrès</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="carte q-carte flotte lent">
+          <div class="q-barre"><svg width="13" height="13" style="--sw:6"><use href="#g-histoire"/></svg><b>Entraînement libre</b><span class="num">7 / 15<span class="prog"><i style="width:46%"></i></span></span></div>
+          <div class="q-corps">
+            <span class="eti">Question 7</span>
+            <p class="q-texte">Que commémore la fête nationale du 14&nbsp;juillet&nbsp;?</p>
+            <p class="rep"><span class="ok"><svg width="10" height="10"><use href="#i-coche"/></svg></span>La prise de la Bastille (1789)</p>
+            <div class="sep"></div>
+            <span class="eti">Explication</span>
+            <p class="ex">Le 14&nbsp;juillet est la fête nationale française. Il commémore la prise de la Bastille en&nbsp;1789, symbole de la fin de la monarchie absolue, ainsi que la fête de la Fédération de&nbsp;1790.</p>
+          </div>
+        </div>
+        <div class="carte toast flotte"><span class="ok"><svg width="10" height="10"><use href="#i-coche"/></svg></span>4&nbsp;stagiaires prêts pour l’examen</div>
+        <span class="plume" style="left:27%;top:-6px;transform:rotate(-3deg)"><i>✦</i>tout le groupe, d’un coup d’œil</span>
+        <div class="fondu"></div>
+      </div>
+    </div>
+
+    <div class="parcours">
+      <p class="surtitre">Trois parcours · 835 questions officielles</p>
+      <div class="trio">
+        <div class="chiffre"><div class="n">235</div><div class="u">Questions officielles</div><div class="l">Carte de séjour pluriannuelle</div></div>
+        <div class="chiffre"><div class="n">257</div><div class="u">Questions officielles</div><div class="l">Carte de résident</div></div>
+        <div class="chiffre"><div class="n">343</div><div class="u">Questions officielles</div><div class="l">Naturalisation</div></div>
+      </div>
+      <p class="legende">Chaque stagiaire s’entraîne sur le parcours qui correspond à sa démarche.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="section" id="constat">
+    <div class="wrap constat-g">
+      <div class="constat-txt">
+        <span class="pastille">Le constat</span>
+        <h2 class="titre-2">Un examen désormais <em>incontournable</em></h2>
+        <p>Depuis le 1<sup>er</sup>&nbsp;janvier 2026, l’examen civique conditionne la carte de séjour pluriannuelle, la carte de résident et la naturalisation.</p>
+      </div>
+      <ol class="peines">
+        <li><span class="no">01</span><div><h3>Des niveaux très hétérogènes</h3><p>Vos stagiaires n’arrivent pas tous au même point.</p></div></li>
+        <li><span class="no">02</span><div><h3>Un échec coûte cher</h3><p>Une nouvelle session à passer, et un dossier retardé.</p></div></li>
+        <li><span class="no">03</span><div><h3>Pas toujours d’outil dédié</h3><p>Pour les préparer, et vérifier où ils en sont.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="formateurs">
+    <div class="wrap">
+      <div class="tete">
+        <span class="pastille">Côté formateur</span>
+        <h2 class="titre-2">Une méthode simple, pensée pour <em>les formateurs</em></h2>
+      </div>
+      <div class="trois">
+        <article class="carte-f">
+          <div class="visuel" role="img" aria-label="Exemple d’invitations envoyées par e-mail à trois stagiaires.">
+            <div class="panneau">
+              <div class="p-titre">Inviter des stagiaires</div>
+              <div class="champ"><svg width="16" height="16"><use href="#i-mail"/></svg><span>Adresse e-mail du stagiaire</span><span class="mini-noir">Inviter</span></div>
+              <ul class="invites">
+                <li><span class="av" style="--f:#EDE7FF;--e:#5B21B6">AM</span><i class="sk" style="width:92px"></i><span class="envoyee"><span class="ok"><svg width="8" height="8"><use href="#i-coche"/></svg></span>Invitation envoyée</span></li>
+                <li><span class="av" style="--f:#DCFCE7;--e:#166534">KD</span><i class="sk" style="width:74px"></i><span class="envoyee"><span class="ok"><svg width="8" height="8"><use href="#i-coche"/></svg></span>Invitation envoyée</span></li>
+                <li><span class="av" style="--f:#E0F2FE;--e:#075985">YN</span><i class="sk" style="width:84px"></i><span class="envoyee"><span class="ok"><svg width="8" height="8"><use href="#i-coche"/></svg></span>Invitation envoyée</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="txt"><h3>Vous créez vos stagiaires en quelques clics</h3><p>Invitation par e-mail, aucune inscription à gérer de leur côté.</p></div>
+        </article>
+        <article class="carte-f">
+          <div class="visuel" role="img" aria-label="Exemple de fiche stagiaire : dernier examen blanc à 29 sur 40, six tests passés, et un bilan par thème où l’histoire est en retrait.">
+            <div class="panneau">
+              <div class="fiche-tete"><span class="av" style="--f:#FCE7F3;--e:#9D174D">SB</span><div><i class="sk" style="width:84px"></i><span class="mini-tag">Carte de séjour</span></div><span class="tag">Exemple</span></div>
+              <div class="kpis"><div><b>29</b><small>/40</small><span>Dernier examen blanc</span></div><div><b>6</b><span>Tests passés</span></div></div>
+              <div class="barres">
+                <div class="barre"><svg width="14" height="14" style="--sw:6"><use href="#g-valeurs"/></svg><span>Valeurs</span><span class="tr"><i style="width:88%"></i></span></div>
+                <div class="barre"><svg width="14" height="14" style="--sw:6"><use href="#g-institutions"/></svg><span>Institutions</span><span class="tr"><i style="width:74%"></i></span></div>
+                <div class="barre"><svg width="14" height="14" style="--sw:6"><use href="#g-droits"/></svg><span>Droits</span><span class="tr"><i style="width:91%"></i></span></div>
+                <div class="barre bas"><svg width="14" height="14" style="--sw:6"><use href="#g-histoire"/></svg><span>Histoire</span><span class="tr"><i style="width:46%"></i></span></div>
+                <div class="barre"><svg width="14" height="14" style="--sw:6"><use href="#g-societe"/></svg><span>Société</span><span class="tr"><i style="width:83%"></i></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="txt"><h3>Vous suivez leur progression</h3><p>Scores, thèmes faibles, tests passés.</p></div>
+        </article>
+        <article class="carte-f">
+          <div class="visuel" role="img" aria-label="Exemple de commande de licences : un solde de 18 licences, une durée de 30 jours, 20 licences pour 199,80 euros hors taxes, réglées par carte bancaire ou par virement.">
+            <div class="panneau">
+              <div class="p-titre">Licences</div>
+              <div class="lic-solde"><b>18</b><span>licences<br>disponibles</span></div>
+              <div class="seg seg-l"><span>7 jours</span><span class="on">30 jours</span><span>90 jours</span></div>
+              <div class="lic-ligne"><span>20 licences × 9,99&nbsp;€&nbsp;HT</span><b>199,80&nbsp;€&nbsp;HT</b></div>
+              <span class="mini-large">Commander</span>
+              <div class="paiement"><span><svg width="13" height="13"><use href="#i-carte"/></svg>Carte bancaire</span><span><svg width="13" height="13"><use href="#i-banque"/></svg>Virement</span></div>
+            </div>
+          </div>
+          <div class="txt"><h3>Vous maîtrisez vos licences</h3><p>Achat par lot, solde toujours visible, choix de la durée de licence.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="modes">
+    <div class="wrap">
+      <div class="modes-tete">
+        <div>
+          <span class="pastille">Côté stagiaire</span>
+          <h2 class="titre-2">Trois modes pour s’entraîner <em>à son rythme</em></h2>
+          <p>Chaque stagiaire s’entraîne sur son parcours&nbsp;: librement, en examen blanc ou thème par thème.</p>
+        </div>
+        <img src="img/entete-photo.jpg" width="528" height="316" alt="Une formatrice montre l’écran de son ordinateur portable à une personne en formation, qui sourit ; à l’écran, l’entraînement libre en est à la question 7 sur 15.">
+      </div>
+      <div class="bento">
+        <article class="b b-grand">
+          <div class="visuel" role="img" aria-label="L’écran d’examen blanc : question 12 sur 40, le compte à rebours à 32 minutes 14, une réponse sélectionnée et le drapeau « à revoir ».">
+            <div class="verre v-exam">
+              <div class="fen">
+                <div class="exam-haut"><span class="num">Question <b>12</b> / 40</span><span class="prog"><i style="width:30%"></i></span><span class="chrono"><svg width="12" height="12"><use href="#i-horloge"/></svg>32:14</span></div>
+                <div class="exam-corps">
+                  <p class="q-texte">Qu’est-ce que la laïcité&nbsp;?</p>
+                  <div class="opt"><span class="rad"></span>L’obligation pour tous les citoyens de pratiquer la même religion</div>
+                  <div class="opt sel"><span class="rad"></span>Le principe qui sépare les Églises et l’État, garantit la liberté de conscience et la neutralité de l’État en matière religieuse</div>
+                  <div class="opt"><span class="rad"></span>L’interdiction de pratiquer une religion en dehors de chez soi</div>
+                  <div class="opt"><span class="rad"></span>La règle qui impose à chaque citoyen de déclarer sa religion à l’État</div>
+                </div>
+                <div class="exam-pied"><span class="drap"><svg width="13" height="13"><use href="#i-drapeau"/></svg>À revoir</span><span class="suivant">Question suivante<svg width="13" height="13"><use href="#i-fleche"/></svg></span></div>
+              </div>
+            </div>
+            <span class="plume" style="left:22px;top:20px;transform:rotate(-3deg)"><i>✦</i>comme le jour J</span>
+            <div class="carte resultat flotte"><span class="eti">Dernier examen blanc</span><div class="res-n">34<small>/40</small></div><span class="res-ok"><span class="ok"><svg width="8" height="8"><use href="#i-coche"/></svg></span>Seuil de 32/40 atteint</span></div>
+          </div>
+          <div class="txt"><h3>Examen blanc, conditions réelles</h3><p>40&nbsp;questions, 45&nbsp;minutes chronométrées, seuil de réussite à 80&nbsp;%. Exactement le format de l’épreuve officielle.</p></div>
+        </article>
+        <article class="b">
+          <div class="visuel" role="img" aria-label="Le choix du nombre de questions d’un entraînement libre : 15, 25 ou 40, tirées au hasard parmi les 835 questions officielles.">
+            <div class="panneau">
+              <div class="p-titre">Nouvel entraînement</div>
+              <span class="eti" style="margin-top:14px">Nombre de questions</span>
+              <div class="choix"><span>15</span><span class="on">25</span><span>40</span></div>
+              <p class="p-note"><svg width="15" height="15"><use href="#i-hasard"/></svg>Tirées au hasard parmi les 835 questions officielles</p>
+              <span class="mini-large">Commencer</span>
+            </div>
+          </div>
+          <div class="txt"><h3>Entraînement libre</h3><p>15, 25 ou 40&nbsp;questions, tirées au hasard parmi les 835&nbsp;questions officielles. Correction immédiate après chaque réponse.</p></div>
+        </article>
+        <article class="b">
+          <div class="visuel" role="img" aria-label="Une pile de cartes mémoire : sur le dessus, la laïcité, à revoir dans trois jours.">
+            <div class="pile">
+              <div class="fiche f3"></div><div class="fiche f2"></div>
+              <div class="fiche f1">
+                <span class="fiche-tag"><svg width="13" height="13" style="--sw:6"><use href="#g-valeurs"/></svg>Principes et valeurs</span>
+                <p class="fiche-titre">La laïcité</p>
+                <i class="sk" style="width:92%"></i><i class="sk" style="width:76%"></i><i class="sk" style="width:58%"></i>
+                <div class="fiche-pied"><span class="eti">Carte mémoire</span><span class="puce-lilas">À revoir dans 3&nbsp;jours</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="txt"><h3>Révision par thème</h3><p>Fiches de révision, cartes mémoire à répétition espacée et entraînement par thème pour cibler les points faibles.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="themes">
+    <div class="wrap">
+      <div class="bande">
+        <div class="tete">
+          <span class="pastille">Le programme</span>
+          <h2 class="titre-2">5 thèmes officiels, <em>aucune impasse</em></h2>
+          <p>Le programme complet de l’examen civique.</p>
+        </div>
+        <ul class="tuiles">
+          <li><span class="ic"><svg width="24" height="24"><use href="#g-valeurs"/></svg></span><span class="nom">Principes et valeurs de la République</span></li>
+          <li><span class="ic"><svg width="24" height="24"><use href="#g-institutions"/></svg></span><span class="nom">Système institutionnel et politique</span></li>
+          <li><span class="ic"><svg width="24" height="24"><use href="#g-droits"/></svg></span><span class="nom">Droits et devoirs</span></li>
+          <li><span class="ic"><svg width="24" height="24"><use href="#g-histoire"/></svg></span><span class="nom">Histoire, géographie et culture</span></li>
+          <li><span class="ic"><svg width="24" height="24"><use href="#g-societe"/></svg></span><span class="nom">Vivre dans la société française</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="tarifs">
+    <div class="wrap">
+      <div class="tete">
+        <span class="pastille">Tarifs</span>
+        <h2 class="titre-2">Des licences simples, <em>sans engagement</em></h2>
+        <p>Une licence donne à un stagiaire l’accès aux trois parcours pendant la durée choisie. Achetez uniquement ce dont vous avez besoin, quand vous en avez besoin.</p>
+      </div>
+      <div class="prix-g">
+        <article class="prix">
+          <span class="duree">7 jours</span>
+          <div class="montant"><b>4,99&nbsp;€</b><span>HT</span></div>
+          <p class="ttc">soit 5,99&nbsp;€&nbsp;TTC, par licence</p>
+          <ul><li><svg width="14" height="14"><use href="#i-coche"/></svg>Un stagiaire</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Les trois parcours</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Accès pendant 7&nbsp;jours</li></ul>
+        </article>
+        <article class="prix">
+          <span class="duree">30 jours</span>
+          <div class="montant"><b>9,99&nbsp;€</b><span>HT</span></div>
+          <p class="ttc">soit 11,99&nbsp;€&nbsp;TTC, par licence</p>
+          <ul><li><svg width="14" height="14"><use href="#i-coche"/></svg>Un stagiaire</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Les trois parcours</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Accès pendant 30&nbsp;jours</li></ul>
+        </article>
+        <article class="prix">
+          <span class="duree">90 jours</span>
+          <div class="montant"><b>24,99&nbsp;€</b><span>HT</span></div>
+          <p class="ttc">soit 29,99&nbsp;€&nbsp;TTC, par licence</p>
+          <ul><li><svg width="14" height="14"><use href="#i-coche"/></svg>Un stagiaire</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Les trois parcours</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Accès pendant 90&nbsp;jours</li></ul>
+        </article>
+      </div>
+      <div class="prix-pied">
+        <span><svg width="20" height="20"><use href="#i-cadeau"/></svg>5&nbsp;licences offertes pour tester</span>
+        <span><svg width="20" height="20"><use href="#i-carte"/></svg>Carte bancaire ou virement</span>
+        <a class="bouton b-noir" href="#essai">Tester gratuitement<svg width="15" height="15"><use href="#i-fleche"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="wrap faq-g">
+      <div>
+        <span class="pastille">FAQ</span>
+        <h2 class="titre-2">Questions <em>fréquentes</em></h2>
+        <div class="contact"><span class="ic"><svg width="22" height="22"><use href="#i-bulle"/></svg></span><div>Une autre question&nbsp;? Écrivez-nous&nbsp;: <a href="mailto:support@civicap.app">support@civicap.app</a></div></div>
+      </div>
+      <div class="accordeon">
+        <details name="faq" open>
+          <summary>Combien de licences sont offertes&nbsp;?<span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
+          <p class="reponse">Cinq. Elles sont créditées dès la création de votre espace organisme&nbsp;: vous pouvez créer vos premiers stagiaires tout de suite.</p>
+        </details>
+        <details name="faq">
+          <summary>Que se passe-t-il à la fin de l’essai&nbsp;?<span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
+          <p class="reponse">Vous commandez des licences si le service vous convient, uniquement ce dont vous avez besoin&nbsp;: 7, 30 ou 90&nbsp;jours par stagiaire. Sans engagement.</p>
+        </details>
+        <!-- « Faut-il une carte bancaire pour l’essai ? » : la réponse n'apparaît pas sur les captures du site actuel. À reprendre du site avant de remettre la question. -->
+        <details name="faq">
+          <summary>Mes stagiaires doivent-ils s’inscrire eux-mêmes&nbsp;?<span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
+          <p class="reponse">Non. Vous les créez depuis votre espace en quelques clics, et chacun reçoit une invitation par e-mail. Aucune inscription à gérer de leur côté.</p>
+        </details>
+        <details name="faq">
+          <summary>Comment régler mes commandes de licences&nbsp;?<span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
+          <p class="reponse">Par carte bancaire ou par virement. Les licences s’achètent par lot, et votre solde reste toujours visible dans votre espace.</p>
+        </details>
+        <!-- « Où sont hébergées les données ? » : réponse absente des captures. À reprendre du site actuel. -->
+        <details name="faq">
+          <summary>Cette plateforme est-elle un site officiel&nbsp;?<span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
+          <p class="reponse">Non. CiviCap est un outil d’entraînement indépendant&nbsp;: il n’est affilié ni au ministère de l’Intérieur, ni à France Éducation international, ni aux CCI. Les questions de connaissance viennent des listes officielles publiées par le ministère de l’Intérieur. L’inscription au véritable examen se fait uniquement sur les plateformes officielles.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="essai">
+    <div class="wrap">
+      <div class="nuit">
+        <div class="essai-g">
+          <div class="essai-txt">
+            <span class="pastille pastille-nuit">Essai gratuit</span>
+            <h2 class="titre-2">Créez votre espace <em>en une minute.</em></h2>
+            <p>Vos 5&nbsp;licences offertes sont créditées immédiatement.</p>
+            <ol class="etapes">
+              <li><span class="no">1</span><div><b>Demandez votre essai</b><small>Un formulaire d’une minute, accès immédiat.</small></div></li>
+              <li><span class="no">2</span><div><b>Créez vos stagiaires</b><small>Vos 5&nbsp;licences offertes sont déjà créditées.</small></div></li>
+              <li><span class="no">3</span><div><b>Suivez leurs résultats</b><small>Puis commandez des licences si le service vous convient.</small></div></li>
+            </ol>
+          </div>
+          <form class="formulaire" action="#" method="post" novalidate>
+            <h3>Demandez votre essai gratuit</h3>
+            <p class="sous-f">Votre espace organisme est prêt dans la minute.</p>
+            <!-- Champs à aligner sur le formulaire réel : seul « Nom de l'organisme » apparaît sur les captures. -->
+            <label>Nom de l’organisme<input name="organisme" autocomplete="organization" placeholder="Nom de votre organisme" required></label>
+            <label>Votre nom<input name="nom" autocomplete="name" placeholder="Prénom Nom" required></label>
+            <label>E-mail professionnel<input type="email" name="email" autocomplete="email" placeholder="vous@organisme.fr" required></label>
+            <button class="bouton b-noir" type="submit">Créer mon espace d’essai<svg width="15" height="15"><use href="#i-fleche"/></svg></button>
+            <p class="form-note">5&nbsp;licences offertes · Sans engagement</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap pied">
+  <a href="#"><img src="img/logo-civicap.png" width="313" height="111" alt="CiviCap"></a>
+  <nav class="pied-liens" aria-label="Liens du pied de page">
+    <a href="#">Espace stagiaire</a><a href="#">Espace organisme</a><a href="#">Mentions légales</a><a href="#">CGV</a><a href="#">Confidentialité</a>
+  </nav>
+  <small>© 2026 CiviCap</small>
+</footer>
+
+<script>
+  // Maquette : le formulaire n'est relié à rien ; on le dit au lieu de faire semblant d'envoyer.
+  document.querySelector('.formulaire').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var note = this.querySelector('.form-note');
+    note.textContent = 'Maquette : ce formulaire sera relié à la création de l’espace organisme.';
+    note.style.color = '#6D28D9';
+  });
+</script>
+</body>
+</html>

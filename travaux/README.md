@@ -10,6 +10,7 @@ Dossier accessible depuis la plaque « Travail en cours » de la page d'accueil.
 | Gagnants d'appels d'offre FLE | `gagnants-fle/` — la table des 45 organismes |
 | Mailing des gagnants | `mailing-gagnants/` — OFII puis FLE, les deux campagnes |
 | Newsletter CiviCap | `newsletter-civicap/` — objets, e-mail, version texte |
+| Page organismes CiviCap | `page-civicap/` — la refonte de la page « organismes » |
 | Poster Octobre Rose | `poster-octobre-rose.webp` |
 | Mailing FLE Plateforme | `mailing-fle-plateforme.pdf` |
 | Poster FICA | `poster-fica.webp` |
@@ -33,8 +34,9 @@ deux fonds en JPEG (`fond-hero.jpg`, le dégradé de marque quadrillé du bandea
 `fond-cta.jpg`, l'aurore du bloc final), l'en-tête photo de la carte blanche
 (`entete-photo.jpg`), la coche du badge (`coche.png`, en image pour un alignement exact)
 et cinq fragments d'interface en PNG double densité : la démonstration du 14 juillet en
-pile de questions, l'examen blanc, le bilan par thème, la jauge de préparation, le suivi
-d'un groupe côté formateur. Chaque visuel est une page HTML/CSS rendue par Chromium.
+pile de questions, puis les trois modes de la page organismes (l'entraînement libre,
+l'examen blanc, la révision par thème en cartes mémoire) et le suivi des stagiaires côté
+formateur. Chaque visuel est une page HTML/CSS rendue par Chromium.
 
 Typographie de l'e-mail : titres et chiffres en Instrument Sans, mots mis en valeur en Instrument
 Serif italique, texte en Inter, chargés depuis Google Fonts là où la messagerie le permet
@@ -49,11 +51,13 @@ version de 400 px de large : le réseau de l'environnement de travail bloquait
 `images.unsplash.com`. Elle est montrée à sa taille, jamais étirée ; pour un original plus
 grand, le déposer sous le même nom et régénérer.
 
-Le contenu vient de ce que CiviCap montre sur son propre site, sauf le suivi côté
-formateur, que la copie du site ne décrit pas : il illustre la rubrique demandée et doit
-être confirmé. Le bilan, la jauge et le suivi portent la mention « Exemple ».
-L'explication du 14 juillet est traduite de sa version arabe, la seule présente dans la
-copie du site transmise : à remplacer par le texte exact de CiviCap. Le script télécharge
+Les informations reprennent la page « organismes » de CiviCap (captures fournies le
+7 octobre) : les trois modes, l'espace formateur (scores, thèmes faibles, tests passés),
+les licences de 7, 30 ou 90 jours et l'essai de 5 licences. Les niveaux A2/B1/B2 et la jauge
+de préparation, repris de civicap.app (le site grand public), ont été retirés : la page
+organismes ne les mentionne pas. Le suivi porte la mention « Exemple ». L'explication du
+14 juillet est traduite de sa version arabe, la seule présente dans la copie du site
+transmise : à remplacer par le texte exact de CiviCap. Le script télécharge
 Inter et Caveat depuis Google Fonts au premier lancement : il faut un accès réseau pour
 régénérer.
 
@@ -61,6 +65,37 @@ Le logo `logo-civicap.png` est un recadrage de la capture d'écran fournie
 (313 × 111 px, fond ramené au blanc pur par remplissage depuis les bords) :
 il dépanne à l'écran, il faudra le fichier d'origine avant l'envoi. Dans
 l'outil d'envoi, son chemin devra aussi devenir une adresse absolue.
+
+## Page organismes CiviCap
+
+`page-civicap/index.html` est la refonte de la page « Pour les organismes de formation »
+de CiviCap, dans le langage visuel de la newsletter : le dégradé de marque quadrillé, des
+cartes blanches, des titres en Instrument Sans avec un mot en Instrument Serif italique,
+des fragments d'interface sous verre et un bloc final sombre. Page autonome (HTML, CSS et
+pictogrammes en ligne, polices Google Fonts), lisible de 390 à 1440 px.
+
+Les textes viennent des captures de la page actuelle : accroche, constat, méthode pensée
+pour les formateurs, trois parcours, trois modes, cinq thèmes, tarifs, étapes, questions
+fréquentes. La réponse à « Cette plateforme est-elle un site officiel ? » reprend la
+mention de civicap.app. Les fragments d'interface (espace organisme, fiche stagiaire,
+licences, écran d'examen) sont des illustrations, pas des captures : initiales seulement,
+mention « Exemple » sur les données de stagiaires. La question sur la laïcité et ses
+quatre réponses sont celles de la démonstration de civicap.app.
+
+À compléter avant de la mettre en ligne :
+
+- deux questions fréquentes ont été laissées de côté, faute de réponse visible sur les
+  captures (accordéons fermés) : « Faut-il une carte bancaire pour l'essai ? » et « Où
+  sont hébergées les données ? ». Leur place est marquée en commentaire dans le HTML ;
+- le formulaire d'essai : seul le champ « Nom de l'organisme » était visible. « Votre nom »
+  et « E-mail professionnel » sont des hypothèses, à aligner sur le vrai formulaire. Il
+  n'envoie rien : un message le dit si on le soumet ;
+- les liens « Espace stagiaire », « Espace organisme », « Mentions légales », « CGV » et
+  « Confidentialité » pointent sur `#`.
+
+`img/logo-civicap.png` est le logo de la newsletter détouré (fond blanc rendu
+transparent) pour se poser sur la barre de verre ; `img/entete-photo.jpg` est l'en-tête
+photo de la newsletter, recopié tel quel.
 
 ## Les sources de données
 
