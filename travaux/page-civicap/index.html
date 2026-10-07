@@ -217,7 +217,9 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
 .paiement{margin-top:11px;display:flex;justify-content:center;gap:14px;font:500 11px/1 var(--corps);color:var(--pale)}
 .paiement span{display:inline-flex;align-items:center;gap:5px}
 
-/* ---------- les trois modes ---------- */
+/* ---------- les trois modes, sur une plaque blanche ---------- */
+.plaque{border-radius:36px;background:#fff;padding:clamp(32px,5.5vw,72px) clamp(16px,4.5vw,64px);box-shadow:0 40px 90px -60px rgba(46,16,101,.45)}
+.plaque .b:not(.b-grand){background:#F7F5FC;border-color:transparent;box-shadow:none}
 .modes-tete{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(32px,5vw,64px);align-items:center}
 .modes-tete .titre-2{margin-top:18px}
 .modes-tete p{margin-top:20px;max-width:460px;font-size:18px;color:var(--texte)}
@@ -250,8 +252,8 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
 .opt.sel{border-color:#C4B5FD;background:#FAF7FF;color:var(--ink)}
 .opt.sel .rad{border:4.5px solid var(--violet-2)}
 .exam-pied{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px 16px}
-.drap{display:inline-flex;align-items:center;gap:7px;padding:8px 13px 8px 10px;border-radius:999px;border:1px solid #F5E2A8;background:#FFFBEB;color:#78350F;font:600 12px/1 var(--corps)}
-.suivant{display:inline-flex;align-items:center;gap:6px;color:var(--violet);font:600 12.5px/1 var(--corps)}
+.drap{display:inline-flex;align-items:center;gap:7px;padding:8px 13px 8px 10px;white-space:nowrap;border-radius:999px;border:1px solid #F5E2A8;background:#FFFBEB;color:#78350F;font:600 12px/1 var(--corps)}
+.suivant{display:inline-flex;align-items:center;gap:6px;color:var(--violet);font:600 12.5px/1 var(--corps);white-space:nowrap}
 .choix{margin-top:10px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .choix span{display:grid;place-items:center;height:64px;border-radius:14px;border:1px solid #E9E5F2;color:var(--doux);font:600 26px/1 var(--sans);letter-spacing:-.03em}
 .choix .on{border-color:var(--violet-2);background:#FAF7FF;color:var(--violet);box-shadow:0 0 0 3px rgba(124,58,237,.12)}
@@ -382,11 +384,14 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
   .resultat{left:18px;right:auto}
   .ln{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr) auto;column-gap:10px}
   .st{padding:5px 8px;font-size:10.5px}
+  .exam-pied{padding:12px 12px 14px}
+  .drap{padding:7px 10px 7px 8px;font-size:11.5px}
+  .suivant{font-size:12px}
   .chiffre{padding:16px 12px 15px;border-radius:18px}
   .chiffre .u{font-size:9.5px;letter-spacing:.07em}
   .tuiles{grid-template-columns:minmax(0,1fr)}
   .tuiles li,.tuiles li:nth-child(n+4){grid-column:auto;flex-direction:row;align-items:center;gap:14px;padding:14px 16px}
-  .bande,.nuit{border-radius:28px}
+  .bande,.nuit,.plaque{border-radius:28px}
   .peines li{grid-template-columns:44px minmax(0,1fr);gap:14px;padding:18px}
   .peines .no{height:44px;border-radius:13px}
   .visuel{min-height:0;padding:28px 18px}
@@ -563,6 +568,7 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
 
   <section class="section" id="modes">
     <div class="wrap">
+      <div class="plaque">
       <div class="modes-tete">
         <div>
           <span class="pastille">Côté stagiaire</span>
@@ -618,6 +624,7 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
           </div>
           <div class="txt"><h3>Révision par thème</h3><p>Fiches de révision, cartes mémoire à répétition espacée et entraînement par thème pour cibler les points faibles.</p></div>
         </article>
+      </div>
       </div>
     </div>
   </section>

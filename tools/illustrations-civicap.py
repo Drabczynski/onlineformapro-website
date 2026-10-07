@@ -135,8 +135,12 @@ def glyphe(cle, taille=22, epaisseur=4.4):
 
 
 def fond_hero():
-    """Le fond du bandeau de tête : le dégradé de marque, quadrillé, plus dense sur les bords."""
-    w, h = 600, 1200
+    """Le fond du bandeau de tête : le dégradé de marque, quadrillé, plus dense sur les bords.
+
+    Plus haut que le bandeau (1 228 px sur ordinateur) : s'il était plus court, la couleur de
+    repli apparaîtrait en bande sous les trois parcours. Garder de la marge.
+    """
+    w, h = 600, 1320
     css = """
 .d{position:absolute;inset:0;background:""" + DEGRADE + """}
 .g{position:absolute;inset:0;""" + GRILLE + """;
