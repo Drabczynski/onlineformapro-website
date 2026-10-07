@@ -11,6 +11,7 @@ Dossier accessible depuis la plaque « Travail en cours » de la page d'accueil.
 | Mailing des gagnants | `mailing-gagnants/` — OFII puis FLE, les deux campagnes |
 | Newsletter CiviCap | `newsletter-civicap/` — objets, e-mail, version texte |
 | Page organismes CiviCap | `page-civicap/` — la refonte de la page « organismes » |
+| Site des modules IA | https://module-ia-pink.vercel.app/site/ — lien externe |
 | Poster Octobre Rose | `poster-octobre-rose.webp` |
 | Mailing FLE Plateforme | `mailing-fle-plateforme.pdf` |
 | Poster FICA | `poster-fica.webp` |
