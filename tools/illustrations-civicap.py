@@ -438,7 +438,7 @@ def fiches():
 /* le fondu du bas : une copie exacte du fond (dégradé et quadrillage), opaque en bas,
    posée sur les fiches, qui s'y dissolvent au lieu d'être coupées par le cadre */
 .voile{position:absolute;inset:0;z-index:4;border-radius:24px;overflow:hidden;background:""" + DEGRADE + """;
-  -webkit-mask-image:linear-gradient(180deg,transparent 48%,rgba(0,0,0,.55) 70%,#000 90%)}
+  -webkit-mask-image:linear-gradient(180deg,transparent 28%,rgba(0,0,0,.5) 50%,rgba(0,0,0,.88) 68%,#000 80%)}
 .voile::after{content:"";position:absolute;inset:0;""" + GRILLE + """;
   -webkit-mask-image:radial-gradient(ellipse 60% 55% at 50% 45%,transparent 35%,#000 85%)}
 .tele{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;align-items:center;gap:7px;
