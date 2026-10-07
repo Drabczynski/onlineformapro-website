@@ -27,6 +27,7 @@ import base64, json, pathlib, re, subprocess, tempfile, textwrap
 RACINE = pathlib.Path(__file__).resolve().parent.parent
 SORTIE = RACINE / "travaux" / "newsletter-civicap" / "img"
 CACHE = pathlib.Path(tempfile.gettempdir()) / "civicap-polices"
+PHOTOS = RACINE / "travaux" / "newsletter-civicap" / "photos"   # Unsplash, voir README
 PLAYWRIGHT = "/opt/node22/lib/node_modules/playwright/index.js"
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36"
 
@@ -64,6 +65,11 @@ def polices_css():
 
 COCHE = ('<svg width="{s}" height="{s}" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.3 4.9 8.6 9.6 3.6" '
          'stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+
+
+def photo(nom):
+    """Une photo du dossier photos/, en URI de données pour la page de rendu."""
+    return "data:image/jpeg;base64," + base64.b64encode((PHOTOS / nom).read_bytes()).decode()
 
 # le dégradé de marque : jaune-pêche à gauche, lilas-violet à droite
 DEGRADE = """radial-gradient(75% 60% at 0% 0%,#FFB45C 0%,rgba(255,180,92,0) 70%),
@@ -154,17 +160,23 @@ def fond_cta():
 
 
 def hero():
-    """La démonstration de CiviCap dans un cadre de verre, avec ses détails flottants.
+    """La démonstration de CiviCap : une pile de questions dans un cadre de verre.
 
     Fond blanc : le visuel se pose dans la carte blanche du bandeau et s'y fond par le bas.
+    Les questions 8 et 9 dépassent derrière la question 7 : il y en a d'autres à suivre.
     """
-    w, h = 488, 340
+    w, h = 488, 360
     css = """
-.halo{position:absolute;left:30px;right:30px;top:60px;bottom:-40px;filter:blur(26px);
+.halo{position:absolute;left:30px;right:30px;top:70px;bottom:-40px;filter:blur(26px);
   background:radial-gradient(60% 70% at 15% 70%,rgba(255,170,110,.75),transparent 70%),
              radial-gradient(60% 70% at 85% 25%,rgba(167,139,250,.85),transparent 70%),
              radial-gradient(50% 50% at 55% 55%,rgba(196,181,253,.6),transparent 70%)}
-.verre{left:30px;top:40px;width:412px;height:360px}
+.verre{left:24px;top:30px;width:440px;height:400px;padding-top:40px}
+.fantome{position:absolute;height:60px;border-radius:15px;border:1px solid rgba(76,52,140,.10);
+  font-size:8.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#A39DB5;padding:4px 14px}
+.f2{left:41px;right:41px;top:10px;background:#EFEAFB}
+.f1{left:25px;right:25px;top:24px;background:#F8F6FE;box-shadow:0 -6px 16px -10px rgba(46,16,101,.18)}
+.fen{position:relative;box-shadow:0 -8px 20px -12px rgba(46,16,101,.22)}
 .barre{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid #F0EDF6;font-size:10.5px;white-space:nowrap}
 .barre .pas{color:#8A8499}
 .barre b{font-weight:600;color:#3D3850}
@@ -177,14 +189,14 @@ def hero():
   background:#EEFBF3;border:1px solid #C6F0D5;font-size:12.5px;font-weight:600;color:#14532D}
 .sep{margin:12px 0 9px;height:1px;background:#EEEBF4}
 .ex{margin-top:8px;font-size:12px;line-height:1.62;color:#3D3850}
-.toast{left:4px;top:22px;display:flex;align-items:center;gap:8px;padding:8px 12px 8px 9px;border-radius:999px;
-  font-size:11.5px;font-weight:600}
-.toast .ok{width:16px;height:16px}
-.fondu{position:absolute;left:0;right:0;bottom:0;height:96px;background:linear-gradient(rgba(255,255,255,0),#fff 88%)}
+.fondu{position:absolute;left:0;right:0;bottom:0;height:100px;background:linear-gradient(rgba(255,255,255,0),#fff 88%)}
 """
     corps = f"""
 <div class="halo"></div>
-<div class="verre"><div class="fen">
+<div class="verre">
+  <div class="fantome f2">Question 9</div>
+  <div class="fantome f1">Question 8</div>
+  <div class="fen">
   <div class="barre"><span style="color:#6D28D9">{glyphe("Histoire", 13, 6)}</span><b>Entraînement libre</b>
     <span class="pas">›</span><span class="pas">Histoire, géographie, culture</span>
     <span class="num">7 / 15<span class="prog"><i></i></span></span></div>
@@ -197,15 +209,12 @@ def hero():
       <div class="seg"><span>A2</span><span class="on">B1</span><span>B2</span></div></div>
     <div class="ex">{EXPLICATION}</div>
   </div>
-</div></div>
-<div class="carte toast"><span class="ok">{COCHE.format(s=9)}</span>Corrigée à l’instant</div>
-<div class="main" style="right:8px;top:14px;transform:rotate(3deg)"><i>✦</i>au niveau de chacun</div>
-<div class="tuile" style="left:420px;top:176px">{glyphe("Institutions")}</div>
-<div class="tuile" style="left:420px;top:232px">{glyphe("Valeurs")}</div>
+  </div>
+</div>
+<div class="main" style="right:6px;top:16px;transform:rotate(3deg)"><i>✦</i>au niveau de chacun</div>
 <div class="fondu"></div>
 """
     return w, h, css, corps
-
 
 def examen():
     """L'examen blanc : écran sobre, compte à rebours, drapeau « à revoir »."""
@@ -246,69 +255,6 @@ def examen():
   </div>
   <div class="drap">{drapeau}À revoir</div>
   <div class="main" style="left:16px;top:14px;transform:rotate(-3deg)"><i>✦</i>comme le jour J</div>
-</div>
-"""
-    return w, h, css, corps
-
-
-def bilan():
-    """Le bilan par thème, sur un exemple : ce qui tient, ce qui décroche."""
-    w, h = 258, 170
-    css = """
-.pan{left:18px;right:18px;top:16px;height:170px;padding:12px 13px}
-.t{font-size:11px;font-weight:650}
-.row{display:flex;align-items:center;gap:7px;margin-top:7px}
-.row svg{flex:none;color:#6D28D9}
-.lab{width:62px;font-size:9.5px;font-weight:500;color:#4B4658;white-space:nowrap}
-.tr{flex:1;height:5px;border-radius:9px;background:#EFECF6;overflow:hidden}
-.tr i{display:block;height:100%;border-radius:9px;background:#7C3AED}
-.tr i.bas{background:#F59E0B}
-.row.bas svg{color:#B45309}
-"""
-    valeurs = [("Valeurs", 88), ("Institutions", 74), ("Droits", 91), ("Histoire", 46),
-               ("Société", 83), ("Situations", 67)]
-    lignes = "".join(
-        f'<div class="row{" bas" if v < 50 else ""}">{glyphe(n, 12, 5)}'
-        f'<span class="lab">{n}</span><div class="tr"><i class="{"bas" if v < 50 else ""}" style="width:{v}%"></i></div></div>'
-        for n, v in valeurs)
-    corps = f"""
-<div class="fond-carte">
-  <div class="panneau pan"><div class="ligne"><span class="t">Bilan par thème</span><span class="tag">Exemple</span></div>{lignes}</div>
-</div>
-"""
-    return w, h, css, corps
-
-
-def jauge():
-    """La jauge de préparation, sur un exemple : quand on passe régulièrement le seuil."""
-    w, h = 258, 170
-    css = """
-.pan{left:18px;right:18px;top:20px;height:170px;padding:12px 13px}
-.t{font-size:11px;font-weight:650}
-.etat{display:inline-flex;align-items:center;gap:6px;margin-top:6px;font-size:10px;font-weight:600;
-  color:#166534;background:#EAF8EF;border-radius:999px;padding:4px 9px 4px 7px}
-.etat i{width:6px;height:6px;border-radius:50%;background:#16A34A}
-"""
-    pts = [(10, 70), (40, 63), (70, 58), (100, 45), (130, 31), (160, 27), (190, 22)]
-    trace = " ".join(f"{x},{y}" for x, y in pts)
-    aire = f"M{pts[0][0]},84 L" + " L".join(f"{x},{y}" for x, y in pts) + f" L{pts[-1][0]},84 Z"
-    points = "".join(f'<circle cx="{x}" cy="{y}" r="2.6" fill="#fff" stroke="#7C3AED" stroke-width="1.6"/>'
-                     for x, y in pts[:-1])
-    x, y = pts[-1]
-    graphe = f"""<svg width="200" height="86" viewBox="0 0 200 86" style="display:block;margin-top:8px;overflow:visible">
-  <defs><linearGradient id="a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7C3AED" stop-opacity=".18"/>
-    <stop offset="1" stop-color="#7C3AED" stop-opacity="0"/></linearGradient></defs>
-  <path d="M0 84H200" stroke="#EEEBF4" stroke-width="1"/>
-  <path d="{aire}" fill="url(#a)"/>
-  <path d="M0 34H200" stroke="#16A34A" stroke-width="1.2" stroke-dasharray="3 3"/>
-  <text x="0" y="29" font-family="Inter" font-size="8.5" font-weight="600" fill="#166534">32/40 · seuil de réussite</text>
-  <polyline points="{trace}" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  {points}<circle cx="{x}" cy="{y}" r="4.4" fill="#7C3AED" stroke="#fff" stroke-width="2"/>
-</svg>"""
-    corps = f"""
-<div class="fond-carte" style="background:radial-gradient(70% 95% at 0% 0%,rgba(185,163,255,.48),transparent 62%),radial-gradient(60% 95% at 100% 100%,rgba(255,180,92,.30),transparent 60%),#F7F5FC">
-  <div class="panneau pan"><div class="ligne"><span class="t">Jauge de préparation</span><span class="tag">Exemple</span></div>
-    {graphe}<span class="etat"><i></i>Au-dessus du seuil</span></div>
 </div>
 """
     return w, h, css, corps
@@ -372,11 +318,114 @@ def pilotage():
     return w, h, css, corps
 
 
+
+def bilan_large():
+    """Le bilan par thème en pleine largeur, sur un exemple."""
+    w, h = 528, 220
+    css = """
+.pan{left:40px;width:336px;top:24px;height:220px;padding:14px 16px}
+.t{font-size:12px;font-weight:650}
+.row{display:flex;align-items:center;gap:9px;margin-top:9px}
+.row svg{flex:none;color:#6D28D9}
+.lab{width:78px;font-size:10.5px;font-weight:500;color:#4B4658;white-space:nowrap}
+.tr{flex:1;height:6px;border-radius:9px;background:#EFECF6;overflow:hidden}
+.tr i{display:block;height:100%;border-radius:9px;background:#7C3AED}
+.tr i.bas{background:#F59E0B}
+.row.bas svg{color:#B45309}
+"""
+    valeurs = [("Valeurs", 88), ("Institutions", 74), ("Droits", 91), ("Histoire", 46),
+               ("Société", 83), ("Situations", 67)]
+    lignes = "".join(
+        f'<div class="row{" bas" if v < 50 else ""}">{glyphe(n, 13, 5)}'
+        f'<span class="lab">{n}</span><div class="tr"><i class="{"bas" if v < 50 else ""}" style="width:{v}%"></i></div></div>'
+        for n, v in valeurs)
+    corps = f"""
+<div class="fond-carte">
+  <div class="panneau pan"><div class="ligne"><span class="t">Bilan par thème</span><span class="tag">Exemple</span></div>{lignes}</div>
+  <div class="main" style="left:300px;top:122px;transform:rotate(-3deg)"><i>✦</i>c'est ici que ça décroche</div>
+</div>
+"""
+    return w, h, css, corps
+
+
+def jauge_large():
+    """La jauge de préparation en pleine largeur, sur un exemple."""
+    w, h = 528, 220
+    css = """
+.pan{left:40px;width:336px;top:24px;height:220px;padding:14px 16px}
+.t{font-size:12px;font-weight:650}
+.etat{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:10.5px;font-weight:600;
+  color:#166534;background:#EAF8EF;border-radius:999px;padding:4px 10px 4px 8px}
+.etat i{width:6px;height:6px;border-radius:50%;background:#16A34A}
+"""
+    pts = [(14, 78), (60, 70), (106, 64), (152, 50), (198, 35), (244, 30), (290, 24)]
+    trace = " ".join(f"{x},{y}" for x, y in pts)
+    aire = f"M{pts[0][0]},94 L" + " L".join(f"{x},{y}" for x, y in pts) + f" L{pts[-1][0]},94 Z"
+    points = "".join(f'<circle cx="{x}" cy="{y}" r="3" fill="#fff" stroke="#7C3AED" stroke-width="1.7"/>'
+                     for x, y in pts[:-1])
+    x, y = pts[-1]
+    graphe = f"""<svg width="302" height="96" viewBox="0 0 326 96" style="display:block;margin-top:10px;overflow:visible">
+  <defs><linearGradient id="a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7C3AED" stop-opacity=".18"/>
+    <stop offset="1" stop-color="#7C3AED" stop-opacity="0"/></linearGradient></defs>
+  <path d="M0 94H326" stroke="#EEEBF4" stroke-width="1"/>
+  <path d="{aire}" fill="url(#a)"/>
+  <path d="M0 38H326" stroke="#16A34A" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <text x="0" y="32" font-family="Inter" font-size="9.5" font-weight="600" fill="#166534">32/40 · seuil de réussite</text>
+  <polyline points="{trace}" fill="none" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  {points}<circle cx="{x}" cy="{y}" r="4.8" fill="#7C3AED" stroke="#fff" stroke-width="2"/>
+</svg>"""
+    corps = f"""
+<div class="fond-carte" style="background:radial-gradient(70% 95% at 0% 0%,rgba(185,163,255,.48),transparent 62%),radial-gradient(60% 95% at 100% 100%,rgba(255,180,92,.30),transparent 60%),#F7F5FC">
+  <div class="panneau pan"><div class="ligne"><span class="t">Jauge de préparation</span><span class="tag">Exemple</span></div>
+    {graphe}<span class="etat"><i></i>Au-dessus du seuil</span></div>
+  <div class="main" style="left:368px;top:62px;transform:rotate(-4deg)"><i>✦</i>pas qu'une fois</div>
+</div>
+"""
+    return w, h, css, corps
+
+
+def entete_photo():
+    """L'en-tête du bloc blanc : une formatrice aux côtés d'une apprenante, dans un cadre.
+
+    La photo (Unsplash) n'existe ici qu'en 400 px de large : elle est montrée à sa taille,
+    jamais agrandie au-delà, et les éléments d'interface qui l'entourent restent nets.
+    """
+    w, h = 528, 316
+    css = """
+.fond{position:absolute;inset:0;border-radius:24px;overflow:hidden;background:""" + DEGRADE + """}
+.fond::after{content:"";position:absolute;inset:0;""" + GRILLE + """;
+  -webkit-mask-image:radial-gradient(ellipse 60% 60% at 50% 50%,transparent 35%,#000 85%)}
+.ph{position:absolute;left:64px;top:28px;width:400px;height:260px;border-radius:20px;
+  background:url(""" + photo("accompagnement.jpg") + """) center/cover no-repeat;
+  box-shadow:0 0 0 7px rgba(255,255,255,.55),0 30px 60px -22px rgba(46,16,101,.45)}
+.mini{left:20px;top:206px;width:198px;padding:11px 13px 12px}
+.mini .h{display:flex;align-items:center;justify-content:space-between;font-size:10px;font-weight:600;color:#3D3850}
+.mini .h span{color:#8A8499;font-weight:500}
+.mini .prog{margin-top:8px;height:5px;border-radius:9px;background:#EFECF6;overflow:hidden}
+.mini .prog i{display:block;width:46%;height:100%;background:#7C3AED;border-radius:9px}
+"""
+    corps = """
+<div class="fond"></div>
+<div class="ph"></div>
+<div class="carte mini"><div class="h">Entraînement libre<span>7 / 15</span></div><div class="prog"><i></i></div></div>
+<div class="main" style="right:18px;top:20px;transform:rotate(3deg)"><i>✦</i>à son rythme</div>
+"""
+    return w, h, css, corps, {"jpeg": 86, "echelle": 2}
+
+
+def coche_badge():
+    """La coche du badge de tête, en image : alignée au pixel dans toutes les messageries."""
+    w, h = 18, 18
+    css = ".r{position:absolute;inset:0;border-radius:50%;background:#6D28D9;display:grid;place-items:center}"
+    return w, h, css, f'<div class="r">{COCHE.format(s=10)}</div>'
+
+
 def main():
     SORTIE.mkdir(parents=True, exist_ok=True)
     polices = polices_css()
-    pieces = {"fond-hero": fond_hero(), "hero": hero(), "examen": examen(), "bilan": bilan(),
-              "jauge": jauge(), "pilotage": pilotage(), "fond-cta": fond_cta()}
+    pieces = {"fond-hero": fond_hero(), "hero": hero(), "coche": coche_badge(),
+              "entete-photo": entete_photo(), "examen": examen(), "bilan": bilan_large(),
+              "jauge": jauge_large(), "pilotage": pilotage(), "fond-cta": fond_cta()}
     taches = []
     with tempfile.TemporaryDirectory() as tmp:
         for nom, piece in pieces.items():

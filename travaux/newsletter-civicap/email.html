@@ -8,13 +8,16 @@
 <meta name="supported-color-schemes" content="light">
 <title>CiviCap — l’examen civique, préparé</title>
 <!--[if mso]><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml>
-<style>table,td,div,h1,h2,p,a,span{font-family:'Segoe UI',Arial,sans-serif!important}</style><![endif]-->
-<!--[if !mso]><!--><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><!--<![endif]-->
+<style>table,td,div,h1,h2,p,a,span{font-family:'Segoe UI',Arial,sans-serif!important}
+.serif{font-family:Georgia,serif!important;font-style:italic!important}</style><![endif]-->
+<!--[if !mso]><!--><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><!--<![endif]-->
 <style>
   /* Les messageries ignorent une partie du CSS : tout ce qui compte est en style= sur chaque
-     balise. Inter n'est chargée que là où c'est possible (Apple Mail, iOS) ; ailleurs la pile
-     système prend le relais, et Outlook est forcé sur Segoe UI plus haut. Les fonds en image
-     ont tous une couleur de repli, et le bandeau de tête un fond VML pour Outlook. */
+     balise. Les titres sont en Instrument Sans, les mots mis en valeur en Instrument Serif
+     italique, le texte en Inter : ces polices ne se chargent que là où c'est possible
+     (Apple Mail, iOS) ; ailleurs, la pile système prend le relais et l'italique retombe sur
+     Georgia, y compris dans Outlook. Les fonds en image ont tous une couleur de repli, et le
+     bandeau de tête un fond VML pour Outlook. */
   body{margin:0;padding:0;width:100%!important;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
   table{border-collapse:collapse}
   img{border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic}
@@ -24,14 +27,13 @@
     .hero{padding:12px 12px 18px!important;border-radius:24px!important}
     .ph{padding-left:18px!important;padding-right:18px!important}
     .pad{padding-left:20px!important;padding-right:20px!important}
-    .h1{font-size:29px!important}
-    .h2{font-size:25px!important}
+    .h1{font-size:35px!important}
+    .h2{font-size:28px!important}
     .bt{display:block!important;padding:5px 0!important}
-    .demi{display:block!important;width:auto!important;margin:0 0 12px!important}
-    .sp{display:none!important}
-    .img-demi{max-width:100%!important}
-    .chiffre{font-size:21px!important}
-    .puce{padding:12px 4px 11px!important}
+    .chiffre{font-size:36px!important}
+    .puce{padding:14px 11px 13px!important}
+    .lib{font-size:13px!important}
+    .txt{padding:20px 20px 22px!important}
   }
 </style>
 </head>
@@ -52,7 +54,7 @@
   <tr><td class="hero" background="img/fond-hero.jpg" bgcolor="#F1E6F8" valign="top"
           style="background-color:#F1E6F8;background-image:url('img/fond-hero.jpg');background-repeat:no-repeat;background-position:center top;background-size:600px auto;border-radius:30px;padding:28px 28px 30px;">
     <!--[if gte mso 9]>
-    <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:600px;height:1060px;">
+    <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:600px;height:1200px;">
     <v:fill type="frame" src="img/fond-hero.jpg" color="#F1E6F8" />
     <v:textbox style="mso-fit-shape-to-text:true" inset="28px,28px,28px,30px">
     <![endif]-->
@@ -64,7 +66,7 @@
           <tr>
             <td style="padding:7px 8px 7px 16px;"><img src="logo-civicap.png" width="96" height="34" alt="CiviCap" style="display:block;width:96px;height:auto;border:0;"></td>
             <td align="right" style="padding:7px 7px 7px 8px;">
-              <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#0F0A1A" style="border-radius:999px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;"><tr><td bgcolor="#0F0A1A" style="border-radius:999px;">
                 <a href="https://civicap.fr/" style="display:inline-block;padding:9px 16px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:600;color:#FFFFFF;border-radius:999px;">civicap.fr&nbsp;↗</a>
               </td></tr></table>
             </td>
@@ -73,60 +75,69 @@
       </td></tr>
       <!-- accroche -->
       <tr><td class="ph" align="center" style="padding:34px 20px 0;">
-        <p style="margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;color:#6D28D9;"><span style="display:inline-block;width:18px;height:18px;line-height:18px;border-radius:9px;background:#6D28D9;color:#FFFFFF;font-size:10px;font-weight:700;text-align:center;vertical-align:-4px;margin-right:8px;">✓</span>Pour les organismes FLE, <span style="white-space:nowrap;">insertion et primo-arrivants</span></p>
-        <h1 class="h1" style="margin:18px 0 0;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:34px;line-height:1.1;letter-spacing:-.045em;font-weight:700;color:#0F0A1A;">
-          L’examen civique est&nbsp;obligatoire.<br><span style="color:#6D28D9;">Votre préparation est&nbsp;prête.</span></h1>
-        <p style="margin:18px auto 0;max-width:430px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#57516B;">
+        <table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;margin:0 auto;"><tr>
+          <td bgcolor="#F5F0FF" style="background:#F5F0FF;border:1px solid #E7DCFF;border-radius:999px;padding:5px 14px 5px 5px;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+              <td valign="middle" style="padding-right:8px;"><img src="img/coche.png" width="18" height="18" alt="" style="display:block;width:18px;height:18px;border:0;"></td>
+              <td valign="middle" style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12.5px;line-height:18px;font-weight:600;color:#5B21B6;white-space:nowrap;">FLE · insertion · primo-arrivants</td>
+            </tr></table>
+          </td></tr></table>
+        <h1 class="h1" style="margin:22px 0 0;font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:46px;line-height:1.02;letter-spacing:-.04em;font-weight:600;color:#0F0A1A;">
+          L’examen civique<br>est obligatoire.<br><span style="color:#6D28D9;">Votre préparation<br>est <span class="serif" style="font-family:'Instrument Serif',Georgia,'Times New Roman',serif;font-style:italic;font-weight:400;font-size:1.12em;letter-spacing:-.01em;color:#6D28D9;">prête.</span></span></h1>
+        <p style="margin:20px auto 0;max-width:430px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#57516B;">
           Depuis le 1<sup style="font-size:.7em;line-height:0;">er</sup>&nbsp;janvier&nbsp;2026, pas de carte de séjour pluriannuelle, de carte
           de résident ni de naturalisation sans l’attestation de l’examen civique. CiviCap entraîne
           vos apprenants à l’obtenir.</p>
         <table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="margin:28px auto 0;"><tr>
-          <td class="bt" align="center" style="padding:0 5px;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" bgcolor="#0F0A1A" style="border-radius:999px;"><a href="https://civicap.fr/" style="display:inline-block;padding:13px 22px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;letter-spacing:-.01em;color:#FFFFFF;border-radius:999px;white-space:nowrap;">Essayer gratuitement</a></td></tr></table></td>
+          <td class="bt" align="center" style="padding:0 5px;"><table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;"><tr><td align="center" bgcolor="#0F0A1A" style="border-radius:999px;"><a href="https://civicap.fr/" style="display:inline-block;padding:13px 22px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;letter-spacing:-.01em;color:#FFFFFF;border-radius:999px;white-space:nowrap;">Essayer gratuitement</a></td></tr></table></td>
           <td class="bt" align="center" style="padding:0 5px;"><table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;"><tr><td align="center" bgcolor="#FFFFFF" style="border-radius:999px;border:1px solid #E4DFEE;"><a href="https://civicap.fr/" style="display:inline-block;padding:12px 21px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;letter-spacing:-.01em;color:#0F0A1A;border-radius:999px;white-space:nowrap;">Demander une démo</a></td></tr></table></td>
         </tr></table>
       </td></tr>
-      <!-- le produit, dans son cadre de verre -->
-      <tr><td class="ph" style="padding:30px 28px 4px;">
-        <img src="img/hero.png" width="488" height="340"
-             alt="La question « Que commémore la fête nationale du 14 juillet ? », sa bonne réponse corrigée à l’instant, son explication et le choix du niveau A2, B1 ou B2."
+      <!-- la démonstration : une pile de questions dans un cadre de verre -->
+      <tr><td class="ph" style="padding:28px 28px 4px;">
+        <img src="img/hero.png" width="488" height="360"
+             alt="La question 7, « Que commémore la fête nationale du 14 juillet ? », sa bonne réponse et son explication au niveau B1 ; les questions 8 et 9 attendent derrière."
              style="display:block;width:100%;max-width:488px;height:auto;border:0;">
       </td></tr>
     </table>
     <!-- les trois parcours, posés sur le dégradé -->
-    <p style="margin:26px 0 12px;text-align:center;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#4C1D95;">
+    <p style="margin:28px 0 14px;text-align:center;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#4C1D95;">
       835&nbsp;questions&nbsp;officielles · trois&nbsp;parcours</p>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;"><tr>
-      <td class="puce" width="33%" align="center" valign="top" bgcolor="#FFFFFF" style="background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.95);border-radius:18px;padding:15px 8px 14px;"><div class="chiffre" style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:27px;line-height:1.05;font-weight:700;letter-spacing:-.035em;color:#0F0A1A;">235</div><div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:1.35;color:#4B4658;padding-top:5px;">Carte de séjour pluriannuelle</div></td><td width="10" style="width:10px;font-size:0;line-height:0;">&nbsp;</td><td class="puce" width="33%" align="center" valign="top" bgcolor="#FFFFFF" style="background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.95);border-radius:18px;padding:15px 8px 14px;"><div class="chiffre" style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:27px;line-height:1.05;font-weight:700;letter-spacing:-.035em;color:#0F0A1A;">257</div><div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:1.35;color:#4B4658;padding-top:5px;">Carte de résident</div></td><td width="10" style="width:10px;font-size:0;line-height:0;">&nbsp;</td><td class="puce" width="33%" align="center" valign="top" bgcolor="#FFFFFF" style="background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.95);border-radius:18px;padding:15px 8px 14px;"><div class="chiffre" style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:27px;line-height:1.05;font-weight:700;letter-spacing:-.035em;color:#0F0A1A;">343</div><div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:1.35;color:#4B4658;padding-top:5px;">Naturalisation</div></td>
+      <td class="puce" width="33%" valign="top" bgcolor="#FFFFFF" style="background:#FFFFFF;border-radius:20px;padding:18px 18px 17px;"><div class="chiffre serif" style="font-family:'Instrument Serif',Georgia,'Times New Roman',serif;font-style:italic;font-weight:400;font-size:48px;line-height:.92;letter-spacing:-.01em;color:#6D28D9;">235</div><div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#8A8499;padding-top:9px;">questions</div><div class="lib" style="font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.25;font-weight:600;letter-spacing:-.012em;color:#0F0A1A;padding-top:11px;">Carte de séjour pluriannuelle</div></td><td width="10" style="width:10px;font-size:0;line-height:0;">&nbsp;</td><td class="puce" width="33%" valign="top" bgcolor="#FFFFFF" style="background:#FFFFFF;border-radius:20px;padding:18px 18px 17px;"><div class="chiffre serif" style="font-family:'Instrument Serif',Georgia,'Times New Roman',serif;font-style:italic;font-weight:400;font-size:48px;line-height:.92;letter-spacing:-.01em;color:#6D28D9;">257</div><div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#8A8499;padding-top:9px;">questions</div><div class="lib" style="font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.25;font-weight:600;letter-spacing:-.012em;color:#0F0A1A;padding-top:11px;">Carte de résident</div></td><td width="10" style="width:10px;font-size:0;line-height:0;">&nbsp;</td><td class="puce" width="33%" valign="top" bgcolor="#FFFFFF" style="background:#FFFFFF;border-radius:20px;padding:18px 18px 17px;"><div class="chiffre serif" style="font-family:'Instrument Serif',Georgia,'Times New Roman',serif;font-style:italic;font-weight:400;font-size:48px;line-height:.92;letter-spacing:-.01em;color:#6D28D9;">343</div><div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#8A8499;padding-top:9px;">questions</div><div class="lib" style="font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.25;font-weight:600;letter-spacing:-.012em;color:#0F0A1A;padding-top:11px;">Naturalisation</div></td>
     </tr></table>
     </div>
     <!--[if gte mso 9]></v:textbox></v:rect><![endif]-->
   </td></tr>
 
-  <tr><td style="height:14px;line-height:14px;font-size:0;">&nbsp;</td></tr>
+  <tr><td style="height:16px;line-height:16px;font-size:0;">&nbsp;</td></tr>
 
-  <!-- ===================== carte blanche : apprenant, puis formateur ===================== -->
+  <!-- ===================== carte blanche : une photo, puis l'apprenant, puis le formateur ===================== -->
   <tr><td>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF" style="background:#FFFFFF;border-radius:30px;">
-      <tr><td class="pad" align="center" style="padding:50px 36px 0;">
-        <p style="margin:0 0 10px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#6D28D9;">Côté apprenant</p><h2 class="h2" style="margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:30px;line-height:1.1;letter-spacing:-.04em;font-weight:700;color:#0F0A1A;">Ce que CiviCap fait à&nbsp;votre&nbsp;place</h2><p style="margin:12px auto 0;max-width:430px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#57516B;">Il fait passer les examens blancs, corrige chaque réponse et montre à chacun où il en est. Vos formateurs gardent leur temps pour enseigner.</p>
+      <tr><td class="pad" style="padding:36px 36px 0;">
+        <img src="img/entete-photo.jpg" width="528" height="316"
+             alt="Une formatrice aux côtés d’une apprenante devant un ordinateur ; à l’écran, l’entraînement libre en est à la question 7 sur 15."
+             style="display:block;width:100%;max-width:528px;height:auto;border:0;">
       </td></tr>
-      <tr><td class="pad" style="padding:30px 36px 0;">
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-          <tr><td class="" width="528" valign="top" bgcolor="#F7F5FC" style="width:528px;background:#F7F5FC;border-radius:22px;"><img src="img/examen.png" width="528" height="210" alt="L’écran d’examen blanc : question 12 sur 40, le compte à rebours et le drapeau « à revoir »." style="display:block;width:100%;max-width:528px;height:auto;border:0;border-radius:22px 22px 0 0;"><div style="padding:16px 20px 21px;"><div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.3;font-weight:700;letter-spacing:-.02em;color:#0F0A1A;">L’examen blanc, comme le vrai</div><div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:13.5px;line-height:1.55;color:#57516B;padding-top:5px;">40&nbsp;questions en 45&nbsp;minutes, avec les règles de l’examen officiel. Vos apprenants découvrent l’épreuve avant le jour&nbsp;J, pas pendant.</div></div></td></tr>
-        </table>
-        <div style="height:12px;line-height:12px;font-size:0;">&nbsp;</div>
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            <td class="demi" width="258" valign="top" bgcolor="#F7F5FC" style="width:258px;background:#F7F5FC;border-radius:22px;"><img class="img-demi" src="img/bilan.png" width="258" height="170" alt="Exemple de bilan : une barre par thème, le thème Histoire en retrait." style="display:block;width:100%;max-width:258px;height:auto;border:0;border-radius:22px 22px 0 0;"><div style="padding:16px 20px 21px;"><div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.3;font-weight:700;letter-spacing:-.02em;color:#0F0A1A;">Le bilan par thème</div><div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:13.5px;line-height:1.55;color:#57516B;padding-top:5px;">Les six thèmes du programme officiel, un par un&nbsp;: où l’apprenant décroche, et quoi revoir ensuite.</div></div></td>
-            <td class="sp" width="12" style="width:12px;font-size:0;line-height:0;">&nbsp;</td>
-            <td class="demi" width="258" valign="top" bgcolor="#F7F5FC" style="width:258px;background:#F7F5FC;border-radius:22px;"><img class="img-demi" src="img/jauge.png" width="258" height="170" alt="Exemple de jauge : les derniers examens blancs passent au-dessus du seuil de réussite." style="display:block;width:100%;max-width:258px;height:auto;border:0;border-radius:22px 22px 0 0;"><div style="padding:16px 20px 21px;"><div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.3;font-weight:700;letter-spacing:-.02em;color:#0F0A1A;">La jauge de préparation</div><div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:13.5px;line-height:1.55;color:#57516B;padding-top:5px;">Elle montre quand l’apprenant obtient régulièrement 32/40, le score exigé à l’examen. Il s’inscrit quand il est prêt.</div></div></td>
-          </tr>
-        </table>
+      <tr><td class="pad" align="center" style="padding:56px 36px 0;">
+        <table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;margin:0 auto;"><tr><td bgcolor="#F3EEFF" style="background:#F3EEFF;border-radius:999px;padding:6px 13px 6px 11px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:16px;font-weight:600;color:#6D28D9;"><span style="display:inline-block;width:6px;height:6px;border-radius:6px;background:#6D28D9;vertical-align:1px;margin-right:7px;"></span>Côté apprenant</td></tr></table>
+        <h2 class="h2" style="margin:18px 0 0;font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:36px;line-height:1.06;letter-spacing:-.035em;font-weight:600;color:#0F0A1A;">Ce que CiviCap fait à <span class="serif" style="font-family:'Instrument Serif',Georgia,'Times New Roman',serif;font-style:italic;font-weight:400;font-size:1.12em;letter-spacing:-.01em;color:#6D28D9;">votre&nbsp;place</span></h2>
+        <p style="margin:16px auto 0;max-width:440px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#57516B;">Il fait passer les examens blancs, corrige chaque réponse et montre à chacun où il en est. Vos formateurs gardent leur temps pour enseigner.</p>
       </td></tr>
-      <tr><td class="pad" align="center" style="padding:60px 36px 0;">
-        <p style="margin:0 0 10px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#6D28D9;">Côté formateur</p><h2 class="h2" style="margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:30px;line-height:1.1;letter-spacing:-.04em;font-weight:700;color:#0F0A1A;">Pilotez la progression de&nbsp;chaque&nbsp;apprenant</h2><p style="margin:12px auto 0;max-width:430px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#57516B;">Pour chacun, son dernier score et sa position face au seuil de 32/40. Vous savez qui présenter à l’examen, et qui accompagner.</p>
+      <tr><td class="pad" style="padding:44px 36px 0;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;"><tr><td bgcolor="#F7F5FC" style="background:#F7F5FC;border-radius:24px;"><img src="img/examen.png" width="528" height="210" alt="L’écran d’examen blanc : question 12 sur 40, le compte à rebours et le drapeau « à revoir »." style="display:block;width:100%;max-width:528px;height:auto;border:0;border-radius:24px 24px 0 0;"><div class="txt" style="padding:24px 28px 28px;"><div style="font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:21px;line-height:1.2;font-weight:600;letter-spacing:-.012em;word-spacing:.05em;color:#0F0A1A;">L’examen blanc, comme le&nbsp;vrai</div><div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#57516B;padding-top:8px;">40&nbsp;questions en 45&nbsp;minutes, avec les règles de l’examen officiel. Vos apprenants découvrent l’épreuve avant le jour&nbsp;J, pas pendant.</div></div></td></tr></table>
+        <div style="height:20px;line-height:20px;font-size:0;">&nbsp;</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;"><tr><td bgcolor="#F7F5FC" style="background:#F7F5FC;border-radius:24px;"><img src="img/bilan.png" width="528" height="220" alt="Exemple de bilan : une barre par thème, le thème Histoire en retrait." style="display:block;width:100%;max-width:528px;height:auto;border:0;border-radius:24px 24px 0 0;"><div class="txt" style="padding:24px 28px 28px;"><div style="font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:21px;line-height:1.2;font-weight:600;letter-spacing:-.012em;word-spacing:.05em;color:#0F0A1A;">Le bilan par thème</div><div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#57516B;padding-top:8px;">Les six thèmes du programme officiel, un par un&nbsp;: où l’apprenant décroche, et quoi revoir ensuite.</div></div></td></tr></table>
+        <div style="height:20px;line-height:20px;font-size:0;">&nbsp;</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;"><tr><td bgcolor="#F7F5FC" style="background:#F7F5FC;border-radius:24px;"><img src="img/jauge.png" width="528" height="220" alt="Exemple de jauge : les derniers examens blancs passent au-dessus du seuil de réussite." style="display:block;width:100%;max-width:528px;height:auto;border:0;border-radius:24px 24px 0 0;"><div class="txt" style="padding:24px 28px 28px;"><div style="font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:21px;line-height:1.2;font-weight:600;letter-spacing:-.012em;word-spacing:.05em;color:#0F0A1A;">La jauge de préparation</div><div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#57516B;padding-top:8px;">Elle montre quand l’apprenant obtient régulièrement 32/40, le score exigé à l’examen. Il s’inscrit quand il est prêt.</div></div></td></tr></table>
       </td></tr>
-      <tr><td class="pad" style="padding:30px 36px 40px;">
+      <tr><td class="pad" align="center" style="padding:96px 36px 0;">
+        <table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;margin:0 auto;"><tr><td bgcolor="#F3EEFF" style="background:#F3EEFF;border-radius:999px;padding:6px 13px 6px 11px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:16px;font-weight:600;color:#6D28D9;"><span style="display:inline-block;width:6px;height:6px;border-radius:6px;background:#6D28D9;vertical-align:1px;margin-right:7px;"></span>Côté formateur</td></tr></table>
+        <h2 class="h2" style="margin:18px 0 0;font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:36px;line-height:1.06;letter-spacing:-.035em;font-weight:600;color:#0F0A1A;">Pilotez la progression<br>de <span class="serif" style="font-family:'Instrument Serif',Georgia,'Times New Roman',serif;font-style:italic;font-weight:400;font-size:1.12em;letter-spacing:-.01em;color:#6D28D9;">chaque&nbsp;apprenant</span></h2>
+        <p style="margin:16px auto 0;max-width:440px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#57516B;">Pour chacun, son dernier score et sa position face au seuil de 32/40. Vous savez qui présenter à l’examen, et qui accompagner.</p>
+      </td></tr>
+      <tr><td class="pad" style="padding:44px 36px 56px;">
         <img src="img/pilotage.png" width="528" height="336"
              alt="Exemple de suivi d’un groupe : pour chaque apprenant, son score au dernier examen blanc, sa jauge face au seuil de 32 sur 40 et son statut."
              style="display:block;width:100%;max-width:528px;height:auto;border:0;">
@@ -134,18 +145,18 @@
     </table>
   </td></tr>
 
-  <tr><td style="height:14px;line-height:14px;font-size:0;">&nbsp;</td></tr>
+  <tr><td style="height:16px;line-height:16px;font-size:0;">&nbsp;</td></tr>
 
   <!-- ===================== l'offre : une aurore sur nuit ===================== -->
   <tr><td class="pad" align="center" background="img/fond-cta.jpg" bgcolor="#120A24"
-          style="background-color:#120A24;background-image:url('img/fond-cta.jpg');background-repeat:no-repeat;background-position:center;background-size:cover;border-radius:30px;padding:50px 40px 48px;">
-    <p style="margin:0 0 12px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C4B5FD;">Pour votre organisme</p>
-    <h2 class="h2" style="margin:0 auto;max-width:440px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:30px;line-height:1.12;letter-spacing:-.04em;font-weight:700;color:#FFFFFF;text-wrap:balance;">
-      Ajoutez vos apprenants quand vous le&nbsp;voulez.</h2>
-    <p style="margin:14px auto 28px;max-width:400px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#CFC7E2;">
+          style="background-color:#120A24;background-image:url('img/fond-cta.jpg');background-repeat:no-repeat;background-position:center;background-size:cover;border-radius:30px;padding:56px 40px 54px;">
+    <table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;margin:0 auto;"><tr><td bgcolor="#2A1D4A" style="background:#2A1D4A;border-radius:999px;padding:6px 13px 6px 11px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:16px;font-weight:600;color:#DDD3FF;"><span style="display:inline-block;width:6px;height:6px;border-radius:6px;background:#C4B5FD;vertical-align:1px;margin-right:7px;"></span>Pour votre organisme</td></tr></table>
+    <h2 class="h2" style="margin:20px auto 0;max-width:460px;font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:36px;line-height:1.06;letter-spacing:-.035em;font-weight:600;color:#FFFFFF;">
+      Ajoutez vos apprenants<br><span class="serif" style="font-family:'Instrument Serif',Georgia,'Times New Roman',serif;font-style:italic;font-weight:400;font-size:1.12em;letter-spacing:-.01em;color:#C4B5FD;">quand vous le voulez.</span></h2>
+    <p style="margin:16px auto 30px;max-width:400px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#CFC7E2;">
       Au fil des entrées en formation&nbsp;: chacun s’entraîne dès son arrivée.</p>
     <table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0"><tr>
-      <td class="" align="center" style="padding:0 5px;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" bgcolor="#FFFFFF" style="border-radius:999px;"><a href="https://civicap.fr/" style="display:inline-block;padding:13px 22px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;letter-spacing:-.01em;color:#0F0A1A;border-radius:999px;white-space:nowrap;">Demander une démo &nbsp;→</a></td></tr></table></td>
+      <td class="" align="center" style="padding:0 5px;"><table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;"><tr><td align="center" bgcolor="#FFFFFF" style="border-radius:999px;"><a href="https://civicap.fr/" style="display:inline-block;padding:13px 22px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;letter-spacing:-.01em;color:#0F0A1A;border-radius:999px;white-space:nowrap;">Demander une démo &nbsp;→</a></td></tr></table></td>
     </tr></table>
   </td></tr>
 
