@@ -280,7 +280,7 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
 .tuiles .nom{font:600 clamp(15px,1.2vw,17px)/1.25 var(--sans);letter-spacing:-.014em;color:var(--ink)}
 
 /* ---------- tarifs ---------- */
-.prix-g{margin-top:clamp(40px,5vw,56px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.prix-g{max-width:800px;margin:clamp(40px,5vw,56px) auto 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .prix{display:flex;flex-direction:column;padding:28px 28px 30px;border-radius:28px;background:#fff;border:1px solid var(--bord);box-shadow:var(--ombre-carte)}
 .duree{align-self:flex-start;padding:7px 12px;border-radius:999px;background:var(--lilas);color:var(--violet);font:600 13px/1 var(--corps)}
 .montant{margin-top:22px;display:flex;align-items:baseline;gap:8px}
@@ -290,7 +290,7 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
 .prix ul{margin-top:22px;padding-top:20px;border-top:1px solid #F0EDF6;display:grid;gap:11px}
 .prix li{display:flex;align-items:center;gap:10px;font:500 15px/1.35 var(--corps);color:var(--doux)}
 .prix li svg{flex:none;color:var(--vert)}
-.prix-pied{margin-top:16px;display:flex;align-items:center;flex-wrap:wrap;gap:14px 28px;padding:14px 14px 14px 26px;border-radius:24px;background:#fff;border:1px solid var(--bord)}
+.prix-pied{max-width:800px;margin:16px auto 0;display:flex;align-items:center;flex-wrap:wrap;gap:14px 28px;padding:14px 14px 14px 26px;border-radius:24px;background:#fff;border:1px solid var(--bord)}
 .prix-pied > span{display:inline-flex;align-items:center;gap:9px;font:500 15px/1.35 var(--corps);color:var(--doux)}
 .prix-pied > span svg{flex:none;color:var(--violet)}
 .prix-pied .bouton{margin-left:auto}
@@ -573,12 +573,12 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
           <div class="txt"><h3>Vous suivez leur progression</h3><p>Scores, thèmes faibles, tests&nbsp;passés.</p></div>
         </article>
         <article class="carte-f">
-          <div class="visuel" role="img" aria-label="Exemple de commande de licences : un solde de 18 licences, une durée de 30 jours, 20 licences pour 199,80 euros hors taxes, réglées par carte bancaire ou par virement.">
+          <div class="visuel" role="img" aria-label="Exemple de commande de licences : un solde de 18 licences, une durée de 30 jours, 20 licences pour 180 euros hors taxes, réglées par carte bancaire ou par virement.">
             <div class="panneau">
               <div class="p-titre">Licences</div>
               <div class="lic-solde"><b>18</b><span>licences<br>disponibles</span></div>
-              <div class="seg seg-l"><span>7&nbsp;jours</span><span class="on">30&nbsp;jours</span><span>90&nbsp;jours</span></div>
-              <div class="lic-ligne"><span>20&nbsp;licences × 9,99&nbsp;€&nbsp;HT</span><b>199,80&nbsp;€&nbsp;HT</b></div>
+              <div class="seg seg-l"><span class="on">30&nbsp;jours</span><span>90&nbsp;jours</span></div>
+              <div class="lic-ligne"><span>20&nbsp;licences × 9,00&nbsp;€&nbsp;HT</span><b>180,00&nbsp;€&nbsp;HT</b></div>
               <span class="mini-large">Commander</span>
               <div class="paiement"><span><svg width="13" height="13"><use href="#i-carte"/></svg>Carte bancaire</span><span><svg width="13" height="13"><use href="#i-banque"/></svg>Virement</span></div>
             </div>
@@ -680,21 +680,15 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
       </div>
       <div class="prix-g">
         <article class="prix">
-          <span class="duree">7&nbsp;jours</span>
-          <div class="montant"><b>4,99&nbsp;€</b><span>HT</span></div>
-          <p class="ttc">soit 5,99&nbsp;€&nbsp;TTC, par&nbsp;licence</p>
-          <ul><li><svg width="14" height="14"><use href="#i-coche"/></svg>Un&nbsp;stagiaire</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Les&nbsp;trois parcours</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Accès pendant 7&nbsp;jours</li></ul>
-        </article>
-        <article class="prix">
           <span class="duree">30&nbsp;jours</span>
-          <div class="montant"><b>9,99&nbsp;€</b><span>HT</span></div>
-          <p class="ttc">soit 11,99&nbsp;€&nbsp;TTC, par&nbsp;licence</p>
+          <div class="montant"><b>9,00&nbsp;€</b><span>HT</span></div>
+          <p class="ttc">soit 10,80&nbsp;€ TTC, par&nbsp;licence</p>
           <ul><li><svg width="14" height="14"><use href="#i-coche"/></svg>Un&nbsp;stagiaire</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Les&nbsp;trois parcours</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Accès pendant 30&nbsp;jours</li></ul>
         </article>
         <article class="prix">
           <span class="duree">90&nbsp;jours</span>
-          <div class="montant"><b>24,99&nbsp;€</b><span>HT</span></div>
-          <p class="ttc">soit 29,99&nbsp;€&nbsp;TTC, par&nbsp;licence</p>
+          <div class="montant"><b>20,00&nbsp;€</b><span>HT</span></div>
+          <p class="ttc">soit 24,00&nbsp;€ TTC, par&nbsp;licence</p>
           <ul><li><svg width="14" height="14"><use href="#i-coche"/></svg>Un&nbsp;stagiaire</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Les&nbsp;trois parcours</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Accès pendant 90&nbsp;jours</li></ul>
         </article>
       </div>
@@ -720,7 +714,7 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
         </details>
         <details name="faq">
           <summary>Que&nbsp;se passe&#8209;t&#8209;il à&nbsp;la&nbsp;fin de&nbsp;l’essai&nbsp;?<span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
-          <p class="reponse">Vous commandez des&nbsp;licences si le&nbsp;service vous convient, uniquement ce&nbsp;dont vous avez besoin&nbsp;: 7,&nbsp;30&nbsp;ou&nbsp;90&nbsp;jours par&nbsp;stagiaire. Sans&nbsp;engagement.</p>
+          <p class="reponse">Vous commandez des&nbsp;licences si le&nbsp;service vous convient, uniquement ce&nbsp;dont vous avez besoin&nbsp;: 30&nbsp;ou&nbsp;90&nbsp;jours par&nbsp;stagiaire. Sans&nbsp;engagement.</p>
         </details>
         <details name="faq">
           <summary>Faut&#8209;il une&nbsp;carte bancaire pour&nbsp;l’essai&nbsp;?<span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>

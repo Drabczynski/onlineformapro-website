@@ -58,7 +58,7 @@ coupé, aucune ligne qui finit sur un mot court, aucun texte qui déborde.
 
 Les informations reprennent la page « organismes » de CiviCap (captures fournies le
 7 octobre) : les trois modes, l'espace formateur (scores, thèmes faibles, tests passés),
-les licences de 7, 30 ou 90 jours et l'essai de 5 licences. Les niveaux A2/B1/B2 et la jauge
+les licences de 30 ou 90 jours et l'essai de 5 licences. Les niveaux A2/B1/B2 et la jauge
 de préparation, repris de civicap.app (le site grand public), ont été retirés : la page
 organismes ne les mentionne pas. Le suivi porte la mention « Exemple ». L'explication du
 14 juillet est traduite de sa version arabe, la seule présente dans la copie du site
