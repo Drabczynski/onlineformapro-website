@@ -22,7 +22,11 @@ Polices : Inter et Caveat (étiquettes manuscrites), téléchargées depuis Goog
 premier lancement (curl), mises en cache, puis intégrées en base64. Régénérer demande donc
 un accès réseau la première fois.
 """
-import base64, json, pathlib, re, subprocess, tempfile, textwrap
+import base64, json, pathlib, re, subprocess, sys, tempfile, textwrap
+
+sys.dont_write_bytecode = True  # pas de __pycache__ dans tools/
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from insecables import texte as insecables  # mêmes règles de coupure que l'e-mail
 
 RACINE = pathlib.Path(__file__).resolve().parent.parent
 SORTIE = RACINE / "travaux" / "newsletter-civicap" / "img"
@@ -210,7 +214,7 @@ def hero():
     <div class="rep"><span class="ok">{COCHE.format(s=10)}</span>La prise de la Bastille (1789)</div>
     <div class="sep"></div>
     <div class="eti">Explication</div>
-    <div class="ex">{EXPLICATION}</div>
+    <div class="ex">{insecables(EXPLICATION).replace("égalité, fraternité.", "égalité,&nbsp;fraternité.")}</div>
   </div>
   </div>
 </div>

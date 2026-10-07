@@ -110,7 +110,7 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
 .solde b{font-weight:700;color:var(--ink)}
 .mini-noir{flex:none;display:inline-flex;align-items:center;gap:5px;padding:8px 12px;border-radius:999px;background:var(--ink);color:#fff;font:600 12px/1 var(--corps);white-space:nowrap}
 .app-table{padding:4px 18px 18px}
-.ln{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1.15fr) minmax(0,1.5fr) minmax(0,1fr) 34px minmax(0,1.1fr);column-gap:14px;align-items:center;padding:11px 0;border-top:1px solid #F3F0F8;font:500 13px/1.2 var(--corps);color:var(--doux)}
+.ln{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1.15fr) minmax(0,1.5fr) minmax(0,1fr) 42px minmax(0,1.1fr);column-gap:14px;align-items:center;padding:11px 0;border-top:1px solid #F3F0F8;font:500 13px/1.2 var(--corps);color:var(--doux)}
 .ln.th{padding:10px 0 8px;border-top:0;font:600 10px/1.2 var(--corps);letter-spacing:.08em;text-transform:uppercase;color:var(--pale)}
 .qui{display:flex;align-items:center;gap:10px;min-width:0}
 .av{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--f);color:var(--e);font:700 11px/1 var(--corps)}
@@ -173,7 +173,7 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
 /* ---------- cartes à visuel ---------- */
 .trois{margin-top:clamp(40px,5vw,56px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .carte-f,.b{display:flex;flex-direction:column;border-radius:28px;overflow:hidden;background:#fff;border:1px solid var(--bord);box-shadow:var(--ombre-carte)}
-.visuel{position:relative;isolation:isolate;flex:1;display:grid;place-items:center;min-height:300px;padding:30px 24px;background:var(--degrade-doux);overflow:hidden}
+.visuel{position:relative;isolation:isolate;flex:1;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;min-height:300px;padding:30px 24px;background:var(--degrade-doux);overflow:hidden}
 .txt{padding:24px 28px 30px}
 .carte-f .visuel{flex:none;height:340px}
 .carte-f .txt{flex:1}
@@ -275,9 +275,9 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
 .bande .pastille{background:rgba(255,255,255,.78);color:#5B21B6}
 .bande .tete p{color:#4B3F6B}
 .tuiles{margin-top:clamp(32px,4vw,48px);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
-.tuiles li{display:flex;flex-direction:column;gap:18px;padding:22px 20px 24px;border-radius:22px;background:#fff;box-shadow:0 22px 44px -28px rgba(46,16,101,.4)}
+.tuiles li{display:flex;flex-direction:column;gap:18px;padding:22px 18px 24px;border-radius:22px;background:#fff;box-shadow:0 22px 44px -28px rgba(46,16,101,.4)}
 .ic{flex:none;width:48px;height:48px;border-radius:15px;background:var(--lilas);color:var(--violet);display:grid;place-items:center}
-.tuiles .nom{font:600 17.5px/1.25 var(--sans);letter-spacing:-.014em;color:var(--ink)}
+.tuiles .nom{font:600 clamp(15px,1.2vw,17px)/1.25 var(--sans);letter-spacing:-.014em;color:var(--ink)}
 
 /* ---------- tarifs ---------- */
 .prix-g{margin-top:clamp(40px,5vw,56px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
@@ -351,6 +351,11 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
   .ln{grid-template-columns:minmax(0,1.1fr) minmax(0,1.5fr) minmax(0,1fr) minmax(0,1.1fr)}
   .c-parcours{display:none}
 }
+@media (max-width:1180px){
+  .tuiles{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .tuiles li{grid-column:span 2}
+  .tuiles li:nth-child(n+4){grid-column:span 3}
+}
 @media (max-width:900px){
   .q-carte{display:none}
   .v-app{left:0;right:0;margin:0 auto;width:100%}
@@ -358,9 +363,6 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
   .modes-tete img{justify-self:center}
   .trois,.bento{grid-template-columns:minmax(0,1fr)}
   .b-grand{grid-row:auto}
-  .tuiles{grid-template-columns:repeat(6,minmax(0,1fr))}
-  .tuiles li{grid-column:span 2}
-  .tuiles li:nth-child(n+4){grid-column:span 3}
 }
 @media (max-width:760px){
   .nav .liens{display:none}
@@ -387,8 +389,7 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
   .exam-pied{padding:12px 12px 14px}
   .drap{padding:7px 10px 7px 8px;font-size:11.5px}
   .suivant{font-size:12px}
-  .chiffre{padding:16px 12px 15px;border-radius:18px}
-  .chiffre .u{font-size:9.5px;letter-spacing:.07em}
+  .ln.th{font-size:9.5px;letter-spacing:.05em}
   .tuiles{grid-template-columns:minmax(0,1fr)}
   .tuiles li,.tuiles li:nth-child(n+4){grid-column:auto;flex-direction:row;align-items:center;gap:14px;padding:14px 16px}
   .bande,.nuit,.plaque{border-radius:28px}
@@ -397,8 +398,20 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
   .visuel{min-height:0;padding:28px 18px}
   .txt{padding:22px 22px 26px}
 }
+@media (max-width:520px){
+  .trio{grid-template-columns:minmax(0,1fr);gap:8px}
+  .chiffre{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:18px;align-items:center;padding:16px 20px;border-radius:20px}
+  .chiffre .n{grid-row:span 2;font-size:46px}
+  .chiffre .u{margin-top:0;align-self:end}
+  .chiffre .l{margin-top:5px;align-self:start;font-size:17px}
+}
 @media (max-width:420px){
   .ctas .bouton{width:100%}
+}
+@media (max-width:360px){
+  .titre-2{font-size:32px}
+  .hero h1{font-size:34px}
+  .badge{gap:7px;padding-right:12px;font-size:12px;white-space:nowrap}
 }
 </style>
 </head>
@@ -427,8 +440,8 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
 <nav class="nav" aria-label="Navigation principale">
   <a class="logo" href="#"><img src="img/logo-civicap.png" width="313" height="111" alt="CiviCap"></a>
   <div class="liens">
-    <a href="#">Espace stagiaire</a>
-    <a href="#">Espace organisme</a>
+    <a href="#">Espace&nbsp;stagiaire</a>
+    <a href="#">Espace&nbsp;organisme</a>
   </div>
   <a class="bouton b-noir" href="#essai">Tester gratuitement</a>
 </nav>
@@ -436,15 +449,15 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
 <header class="hero">
   <div class="cadre">
     <div class="carte-hero">
-      <span class="badge"><span class="rond"><svg width="11" height="11"><use href="#i-coche"/></svg></span>Pour les organismes de formation</span>
-      <h1><span class="l">Préparez vos stagiaires</span> <span class="l">à l’examen civique,</span> <span class="l v">et suivez leur <em>progression.</em></span></h1>
-      <p class="sous">835&nbsp;questions officielles, une correction expliquée à chaque réponse, des examens blancs aux conditions réelles et un espace formateur pour suivre chaque stagiaire.</p>
+      <span class="badge"><span class="rond"><svg width="11" height="11"><use href="#i-coche"/></svg></span>Pour&nbsp;les&nbsp;organismes de&nbsp;formation</span>
+      <h1><span class="l">Préparez vos&nbsp;stagiaires</span> <span class="l">à&nbsp;l’examen civique,</span> <span class="l v">et&nbsp;suivez leur&nbsp;<em>progression.</em></span></h1>
+      <p class="sous">835&nbsp;questions officielles, une&nbsp;correction expliquée à&nbsp;chaque réponse, des&nbsp;examens blancs aux&nbsp;conditions réelles et&nbsp;un&nbsp;espace formateur pour&nbsp;suivre chaque&nbsp;stagiaire.</p>
       <div class="ctas">
         <a class="bouton b-noir" href="#essai">Tester gratuitement<svg width="15" height="15"><use href="#i-fleche"/></svg></a>
-        <a class="bouton b-blanc" href="#tarifs">Voir les tarifs</a>
+        <a class="bouton b-blanc" href="#tarifs">Voir les&nbsp;tarifs</a>
       </div>
-      <p class="micro"><span><svg width="13" height="13"><use href="#i-coche"/></svg>5&nbsp;licences offertes</span><span><svg width="13" height="13"><use href="#i-coche"/></svg>Sans engagement</span></p>
-      <p class="deja">Déjà inscrit&nbsp;? <a href="#">Espace organisme</a> · <a href="#">Espace stagiaire</a></p>
+      <p class="micro"><span><svg width="13" height="13"><use href="#i-coche"/></svg>5&nbsp;licences offertes</span><span><svg width="13" height="13"><use href="#i-coche"/></svg>Sans&nbsp;engagement</span></p>
+      <p class="deja">Déjà inscrit&nbsp;? <a href="#">Espace&nbsp;organisme</a> · <a href="#">Espace&nbsp;stagiaire</a></p>
 
       <div class="demo" role="img" aria-label="Exemple d’espace organisme : la liste des stagiaires avec leur parcours, leur dernier examen blanc face au seuil de 32 sur 40, le thème à revoir, le nombre de tests passés et leur statut. Devant, une question d’entraînement corrigée et expliquée.">
         <div class="halo"></div>
@@ -452,17 +465,17 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
           <div class="fen">
             <div class="app-haut">
               <span class="app-titre">Mes stagiaires <span class="tag">Exemple</span></span>
-              <span class="seg"><span class="on">Tous · 12</span><span>Prêts · 4</span><span>À accompagner · 3</span></span>
+              <span class="seg"><span class="on">Tous · 12</span><span>Prêts · 4</span><span>À&nbsp;accompagner · 3</span></span>
               <span class="app-droite"><span class="solde"><b>18</b> licences disponibles</span><span class="mini-noir"><svg width="11" height="11"><use href="#i-plus"/></svg>Inviter</span></span>
             </div>
             <div class="app-table">
-              <div class="ln th"><span>Stagiaire</span><span class="c-parcours">Parcours</span><span>Dernier examen blanc</span><span class="c-theme">Thème à revoir</span><span class="c-tests">Tests</span><span>Statut</span></div>
+              <div class="ln th"><span>Stagiaire</span><span class="c-parcours">Parcours</span><span>Dernier examen blanc</span><span class="c-theme">Thème à&nbsp;revoir</span><span class="c-tests">Tests</span><span>Statut</span></div>
               <div class="ln"><span class="qui"><span class="av" style="--f:#EDE7FF;--e:#5B21B6">AM</span><i class="sk" style="width:62px"></i></span><span class="c-parcours">Naturalisation</span><span class="sc"><b>36</b><small>/40</small><span class="j" style="--c:#7C3AED"><i style="width:90%"></i><u></u></span></span><span class="c-theme vide">—</span><span class="c-tests nb">9</span><span class="st s-ok">Prêt</span></div>
-              <div class="ln"><span class="qui"><span class="av" style="--f:#DCFCE7;--e:#166534">KD</span><i class="sk" style="width:54px"></i></span><span class="c-parcours">Carte de résident</span><span class="sc"><b>33</b><small>/40</small><span class="j" style="--c:#7C3AED"><i style="width:82.5%"></i><u></u></span></span><span class="c-theme vide">—</span><span class="c-tests nb">7</span><span class="st s-ok">Prêt</span></div>
-              <div class="ln"><span class="qui"><span class="av" style="--f:#FCE7F3;--e:#9D174D">SB</span><i class="sk" style="width:58px"></i></span><span class="c-parcours">Carte de séjour</span><span class="sc"><b>29</b><small>/40</small><span class="j" style="--c:#A78BFA"><i style="width:72.5%"></i><u></u></span></span><span class="c-theme faible"><svg width="14" height="14" style="--sw:6"><use href="#g-histoire"/></svg>Histoire</span><span class="c-tests nb">6</span><span class="st s-cours">En progrès</span></div>
-              <div class="ln"><span class="qui"><span class="av" style="--f:#E0F2FE;--e:#075985">YN</span><i class="sk" style="width:48px"></i></span><span class="c-parcours">Naturalisation</span><span class="sc"><b>27</b><small>/40</small><span class="j" style="--c:#A78BFA"><i style="width:67.5%"></i><u></u></span></span><span class="c-theme faible"><svg width="14" height="14" style="--sw:6"><use href="#g-institutions"/></svg>Institutions</span><span class="c-tests nb">5</span><span class="st s-cours">En progrès</span></div>
-              <div class="ln"><span class="qui"><span class="av" style="--f:#FEF3C7;--e:#92400E">LT</span><i class="sk" style="width:60px"></i></span><span class="c-parcours">Carte de séjour</span><span class="sc"><b>22</b><small>/40</small><span class="j" style="--c:#F59E0B"><i style="width:55%"></i><u></u></span></span><span class="c-theme faible"><svg width="14" height="14" style="--sw:6"><use href="#g-histoire"/></svg>Histoire</span><span class="c-tests nb">3</span><span class="st s-aide">À accompagner</span></div>
-              <div class="ln"><span class="qui"><span class="av" style="--f:#FFE4E6;--e:#9F1239">FR</span><i class="sk" style="width:52px"></i></span><span class="c-parcours">Carte de résident</span><span class="sc"><b>31</b><small>/40</small><span class="j" style="--c:#A78BFA"><i style="width:77.5%"></i><u></u></span></span><span class="c-theme faible"><svg width="14" height="14" style="--sw:6"><use href="#g-valeurs"/></svg>Valeurs</span><span class="c-tests nb">4</span><span class="st s-cours">En progrès</span></div>
+              <div class="ln"><span class="qui"><span class="av" style="--f:#DCFCE7;--e:#166534">KD</span><i class="sk" style="width:54px"></i></span><span class="c-parcours">Carte de&nbsp;résident</span><span class="sc"><b>33</b><small>/40</small><span class="j" style="--c:#7C3AED"><i style="width:82.5%"></i><u></u></span></span><span class="c-theme vide">—</span><span class="c-tests nb">7</span><span class="st s-ok">Prêt</span></div>
+              <div class="ln"><span class="qui"><span class="av" style="--f:#FCE7F3;--e:#9D174D">SB</span><i class="sk" style="width:58px"></i></span><span class="c-parcours">Carte de&nbsp;séjour</span><span class="sc"><b>29</b><small>/40</small><span class="j" style="--c:#A78BFA"><i style="width:72.5%"></i><u></u></span></span><span class="c-theme faible"><svg width="14" height="14" style="--sw:6"><use href="#g-histoire"/></svg>Histoire</span><span class="c-tests nb">6</span><span class="st s-cours">En&nbsp;progrès</span></div>
+              <div class="ln"><span class="qui"><span class="av" style="--f:#E0F2FE;--e:#075985">YN</span><i class="sk" style="width:48px"></i></span><span class="c-parcours">Naturalisation</span><span class="sc"><b>27</b><small>/40</small><span class="j" style="--c:#A78BFA"><i style="width:67.5%"></i><u></u></span></span><span class="c-theme faible"><svg width="14" height="14" style="--sw:6"><use href="#g-institutions"/></svg>Institutions</span><span class="c-tests nb">5</span><span class="st s-cours">En&nbsp;progrès</span></div>
+              <div class="ln"><span class="qui"><span class="av" style="--f:#FEF3C7;--e:#92400E">LT</span><i class="sk" style="width:60px"></i></span><span class="c-parcours">Carte de&nbsp;séjour</span><span class="sc"><b>22</b><small>/40</small><span class="j" style="--c:#F59E0B"><i style="width:55%"></i><u></u></span></span><span class="c-theme faible"><svg width="14" height="14" style="--sw:6"><use href="#g-histoire"/></svg>Histoire</span><span class="c-tests nb">3</span><span class="st s-aide">À&nbsp;accompagner</span></div>
+              <div class="ln"><span class="qui"><span class="av" style="--f:#FFE4E6;--e:#9F1239">FR</span><i class="sk" style="width:52px"></i></span><span class="c-parcours">Carte de&nbsp;résident</span><span class="sc"><b>31</b><small>/40</small><span class="j" style="--c:#A78BFA"><i style="width:77.5%"></i><u></u></span></span><span class="c-theme faible"><svg width="14" height="14" style="--sw:6"><use href="#g-valeurs"/></svg>Valeurs</span><span class="c-tests nb">4</span><span class="st s-cours">En&nbsp;progrès</span></div>
             </div>
           </div>
         </div>
@@ -470,27 +483,27 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
           <div class="q-barre"><svg width="13" height="13" style="--sw:6"><use href="#g-histoire"/></svg><b>Entraînement libre</b><span class="num">7 / 15<span class="prog"><i style="width:46%"></i></span></span></div>
           <div class="q-corps">
             <span class="eti">Question 7</span>
-            <p class="q-texte">Que commémore la fête nationale du 14&nbsp;juillet&nbsp;?</p>
-            <p class="rep"><span class="ok"><svg width="10" height="10"><use href="#i-coche"/></svg></span>La prise de la Bastille (1789)</p>
+            <p class="q-texte">Que&nbsp;commémore la&nbsp;fête nationale du&nbsp;14&nbsp;juillet&nbsp;?</p>
+            <p class="rep"><span class="ok"><svg width="10" height="10"><use href="#i-coche"/></svg></span>La&nbsp;prise de&nbsp;la&nbsp;Bastille&nbsp;(1789)</p>
             <div class="sep"></div>
             <span class="eti">Explication</span>
-            <p class="ex">Le 14&nbsp;juillet est la fête nationale française. Il commémore la prise de la Bastille en&nbsp;1789, symbole de la fin de la monarchie absolue, ainsi que la fête de la Fédération de&nbsp;1790.</p>
+            <p class="ex">Le&nbsp;14&nbsp;juillet est la&nbsp;fête nationale française. Il&nbsp;commémore la&nbsp;prise de&nbsp;la&nbsp;Bastille en&nbsp;1789, symbole de&nbsp;la&nbsp;fin de&nbsp;la&nbsp;monarchie absolue, ainsi que&nbsp;la&nbsp;fête de&nbsp;la&nbsp;Fédération de&nbsp;1790.</p>
           </div>
         </div>
-        <div class="carte toast flotte"><span class="ok"><svg width="10" height="10"><use href="#i-coche"/></svg></span>4&nbsp;stagiaires prêts pour l’examen</div>
-        <span class="plume" style="left:27%;top:-6px;transform:rotate(-3deg)"><i>✦</i>tout le groupe, d’un coup d’œil</span>
+        <div class="carte toast flotte"><span class="ok"><svg width="10" height="10"><use href="#i-coche"/></svg></span>4&nbsp;stagiaires prêts pour&nbsp;l’examen</div>
+        <span class="plume" style="left:27%;top:-6px;transform:rotate(-3deg)"><i>✦</i>tout le&nbsp;groupe, d’un coup d’œil</span>
         <div class="fondu"></div>
       </div>
     </div>
 
     <div class="parcours">
-      <p class="surtitre">Trois parcours · 835 questions officielles</p>
+      <p class="surtitre">Trois&nbsp;parcours · 835&nbsp;questions&nbsp;officielles</p>
       <div class="trio">
-        <div class="chiffre"><div class="n">235</div><div class="u">Questions officielles</div><div class="l">Carte de séjour pluriannuelle</div></div>
-        <div class="chiffre"><div class="n">257</div><div class="u">Questions officielles</div><div class="l">Carte de résident</div></div>
-        <div class="chiffre"><div class="n">343</div><div class="u">Questions officielles</div><div class="l">Naturalisation</div></div>
+        <div class="chiffre"><div class="n">235</div><div class="u">Questions</div><div class="l">Carte de&nbsp;séjour pluriannuelle</div></div>
+        <div class="chiffre"><div class="n">257</div><div class="u">Questions</div><div class="l">Carte de&nbsp;résident</div></div>
+        <div class="chiffre"><div class="n">343</div><div class="u">Questions</div><div class="l">Naturalisation</div></div>
       </div>
-      <p class="legende">Chaque stagiaire s’entraîne sur le parcours qui correspond à sa démarche.</p>
+      <p class="legende">Chaque stagiaire s’entraîne sur&nbsp;le&nbsp;parcours qui&nbsp;correspond à&nbsp;sa&nbsp;démarche.</p>
     </div>
   </div>
 </header>
@@ -500,14 +513,14 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
   <section class="section" id="constat">
     <div class="wrap constat-g">
       <div class="constat-txt">
-        <span class="pastille">Le constat</span>
-        <h2 class="titre-2">Un examen désormais <em>incontournable</em></h2>
-        <p>Depuis le 1<sup>er</sup>&nbsp;janvier 2026, l’examen civique conditionne la carte de séjour pluriannuelle, la carte de résident et la naturalisation.</p>
+        <span class="pastille">Le&nbsp;constat</span>
+        <h2 class="titre-2">Un&nbsp;examen désormais <em>incontournable</em></h2>
+        <p>Depuis le&nbsp;1<sup>er</sup>&nbsp;janvier 2026, l’examen civique conditionne la&nbsp;carte de&nbsp;séjour pluriannuelle, la&nbsp;carte de&nbsp;résident et&nbsp;la&nbsp;naturalisation.</p>
       </div>
       <ol class="peines">
-        <li><span class="no">01</span><div><h3>Des niveaux très hétérogènes</h3><p>Vos stagiaires n’arrivent pas tous au même point.</p></div></li>
-        <li><span class="no">02</span><div><h3>Un échec coûte cher</h3><p>Une nouvelle session à passer, et un dossier retardé.</p></div></li>
-        <li><span class="no">03</span><div><h3>Pas toujours d’outil dédié</h3><p>Pour les préparer, et vérifier où ils en sont.</p></div></li>
+        <li><span class="no">01</span><div><h3>Des&nbsp;niveaux très&nbsp;hétérogènes</h3><p>Vos&nbsp;stagiaires n’arrivent pas tous au&nbsp;même&nbsp;point.</p></div></li>
+        <li><span class="no">02</span><div><h3>Un&nbsp;échec coûte cher</h3><p>Une&nbsp;nouvelle session à&nbsp;passer, et&nbsp;un&nbsp;dossier&nbsp;retardé.</p></div></li>
+        <li><span class="no">03</span><div><h3>Pas toujours d’outil dédié</h3><p>Pour&nbsp;les&nbsp;préparer, et&nbsp;vérifier où ils en&nbsp;sont.</p></div></li>
       </ol>
     </div>
   </section>
@@ -516,14 +529,14 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
     <div class="wrap">
       <div class="tete">
         <span class="pastille">Côté formateur</span>
-        <h2 class="titre-2">Une méthode simple, pensée pour <em>les formateurs</em></h2>
+        <h2 class="titre-2">Une&nbsp;méthode simple, pensée pour&nbsp;<em>les&nbsp;formateurs</em></h2>
       </div>
       <div class="trois">
         <article class="carte-f">
           <div class="visuel" role="img" aria-label="Exemple d’invitations envoyées par e-mail à trois stagiaires.">
             <div class="panneau">
-              <div class="p-titre">Inviter des stagiaires</div>
-              <div class="champ"><svg width="16" height="16"><use href="#i-mail"/></svg><span>Adresse e-mail du stagiaire</span><span class="mini-noir">Inviter</span></div>
+              <div class="p-titre">Inviter des&nbsp;stagiaires</div>
+              <div class="champ"><svg width="16" height="16"><use href="#i-mail"/></svg><span>Adresse e&#8209;mail du&nbsp;stagiaire</span><span class="mini-noir">Inviter</span></div>
               <ul class="invites">
                 <li><span class="av" style="--f:#EDE7FF;--e:#5B21B6">AM</span><i class="sk" style="width:92px"></i><span class="envoyee"><span class="ok"><svg width="8" height="8"><use href="#i-coche"/></svg></span>Invitation envoyée</span></li>
                 <li><span class="av" style="--f:#DCFCE7;--e:#166534">KD</span><i class="sk" style="width:74px"></i><span class="envoyee"><span class="ok"><svg width="8" height="8"><use href="#i-coche"/></svg></span>Invitation envoyée</span></li>
@@ -531,12 +544,12 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
               </ul>
             </div>
           </div>
-          <div class="txt"><h3>Vous créez vos stagiaires en quelques clics</h3><p>Invitation par e-mail, aucune inscription à gérer de leur côté.</p></div>
+          <div class="txt"><h3>Vous créez vos&nbsp;stagiaires en&nbsp;quelques clics</h3><p>Invitation par&nbsp;e&#8209;mail, aucune inscription à&nbsp;gérer de&nbsp;leur&nbsp;côté.</p></div>
         </article>
         <article class="carte-f">
           <div class="visuel" role="img" aria-label="Exemple de fiche stagiaire : dernier examen blanc à 29 sur 40, six tests passés, et un bilan par thème où l’histoire est en retrait.">
             <div class="panneau">
-              <div class="fiche-tete"><span class="av" style="--f:#FCE7F3;--e:#9D174D">SB</span><div><i class="sk" style="width:84px"></i><span class="mini-tag">Carte de séjour</span></div><span class="tag">Exemple</span></div>
+              <div class="fiche-tete"><span class="av" style="--f:#FCE7F3;--e:#9D174D">SB</span><div><i class="sk" style="width:84px"></i><span class="mini-tag">Carte de&nbsp;séjour</span></div><span class="tag">Exemple</span></div>
               <div class="kpis"><div><b>29</b><small>/40</small><span>Dernier examen blanc</span></div><div><b>6</b><span>Tests passés</span></div></div>
               <div class="barres">
                 <div class="barre"><svg width="14" height="14" style="--sw:6"><use href="#g-valeurs"/></svg><span>Valeurs</span><span class="tr"><i style="width:88%"></i></span></div>
@@ -547,20 +560,20 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
               </div>
             </div>
           </div>
-          <div class="txt"><h3>Vous suivez leur progression</h3><p>Scores, thèmes faibles, tests passés.</p></div>
+          <div class="txt"><h3>Vous suivez leur progression</h3><p>Scores, thèmes faibles, tests&nbsp;passés.</p></div>
         </article>
         <article class="carte-f">
           <div class="visuel" role="img" aria-label="Exemple de commande de licences : un solde de 18 licences, une durée de 30 jours, 20 licences pour 199,80 euros hors taxes, réglées par carte bancaire ou par virement.">
             <div class="panneau">
               <div class="p-titre">Licences</div>
               <div class="lic-solde"><b>18</b><span>licences<br>disponibles</span></div>
-              <div class="seg seg-l"><span>7 jours</span><span class="on">30 jours</span><span>90 jours</span></div>
-              <div class="lic-ligne"><span>20 licences × 9,99&nbsp;€&nbsp;HT</span><b>199,80&nbsp;€&nbsp;HT</b></div>
+              <div class="seg seg-l"><span>7&nbsp;jours</span><span class="on">30&nbsp;jours</span><span>90&nbsp;jours</span></div>
+              <div class="lic-ligne"><span>20&nbsp;licences × 9,99&nbsp;€&nbsp;HT</span><b>199,80&nbsp;€&nbsp;HT</b></div>
               <span class="mini-large">Commander</span>
               <div class="paiement"><span><svg width="13" height="13"><use href="#i-carte"/></svg>Carte bancaire</span><span><svg width="13" height="13"><use href="#i-banque"/></svg>Virement</span></div>
             </div>
           </div>
-          <div class="txt"><h3>Vous maîtrisez vos licences</h3><p>Achat par lot, solde toujours visible, choix de la durée de licence.</p></div>
+          <div class="txt"><h3>Vous maîtrisez vos&nbsp;licences</h3><p>Achat par&nbsp;lot, solde toujours visible, choix de&nbsp;la&nbsp;durée de&nbsp;licence.</p></div>
         </article>
       </div>
     </div>
@@ -572,8 +585,8 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
       <div class="modes-tete">
         <div>
           <span class="pastille">Côté stagiaire</span>
-          <h2 class="titre-2">Trois modes pour s’entraîner <em>à son rythme</em></h2>
-          <p>Chaque stagiaire s’entraîne sur son parcours&nbsp;: librement, en examen blanc ou thème par thème.</p>
+          <h2 class="titre-2">Trois modes pour&nbsp;s’entraîner <em>à&nbsp;son&nbsp;rythme</em></h2>
+          <p>Chaque stagiaire s’entraîne sur&nbsp;son&nbsp;parcours&nbsp;: librement, en&nbsp;examen blanc ou&nbsp;thème par&nbsp;thème.</p>
         </div>
         <img src="img/entete-photo.jpg" width="528" height="316" alt="Une formatrice montre l’écran de son ordinateur portable à une personne en formation, qui sourit ; à l’écran, l’entraînement libre en est à la question 7 sur 15.">
       </div>
@@ -584,45 +597,45 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
               <div class="fen">
                 <div class="exam-haut"><span class="num">Question <b>12</b> / 40</span><span class="prog"><i style="width:30%"></i></span><span class="chrono"><svg width="12" height="12"><use href="#i-horloge"/></svg>32:14</span></div>
                 <div class="exam-corps">
-                  <p class="q-texte">Qu’est-ce que la laïcité&nbsp;?</p>
-                  <div class="opt"><span class="rad"></span>L’obligation pour tous les citoyens de pratiquer la même religion</div>
-                  <div class="opt sel"><span class="rad"></span>Le principe qui sépare les Églises et l’État, garantit la liberté de conscience et la neutralité de l’État en matière religieuse</div>
-                  <div class="opt"><span class="rad"></span>L’interdiction de pratiquer une religion en dehors de chez soi</div>
-                  <div class="opt"><span class="rad"></span>La règle qui impose à chaque citoyen de déclarer sa religion à l’État</div>
+                  <p class="q-texte">Qu’est&#8209;ce que&nbsp;la&nbsp;laïcité&nbsp;?</p>
+                  <div class="opt"><span class="rad"></span>L’obligation pour&nbsp;tous les&nbsp;citoyens de&nbsp;pratiquer la&nbsp;même religion</div>
+                  <div class="opt sel"><span class="rad"></span>Le&nbsp;principe qui&nbsp;sépare les&nbsp;Églises et&nbsp;l’État, garantit la&nbsp;liberté de&nbsp;conscience et&nbsp;la&nbsp;neutralité de&nbsp;l’État en&nbsp;matière religieuse</div>
+                  <div class="opt"><span class="rad"></span>L’interdiction de&nbsp;pratiquer une&nbsp;religion en&nbsp;dehors de&nbsp;chez soi</div>
+                  <div class="opt"><span class="rad"></span>La&nbsp;règle qui&nbsp;impose à&nbsp;chaque citoyen de&nbsp;déclarer sa&nbsp;religion à&nbsp;l’État</div>
                 </div>
-                <div class="exam-pied"><span class="drap"><svg width="13" height="13"><use href="#i-drapeau"/></svg>À revoir</span><span class="suivant">Question suivante<svg width="13" height="13"><use href="#i-fleche"/></svg></span></div>
+                <div class="exam-pied"><span class="drap"><svg width="13" height="13"><use href="#i-drapeau"/></svg>À&nbsp;revoir</span><span class="suivant">Question suivante<svg width="13" height="13"><use href="#i-fleche"/></svg></span></div>
               </div>
             </div>
-            <span class="plume" style="left:22px;top:20px;transform:rotate(-3deg)"><i>✦</i>comme le jour J</span>
-            <div class="carte resultat flotte"><span class="eti">Dernier examen blanc</span><div class="res-n">34<small>/40</small></div><span class="res-ok"><span class="ok"><svg width="8" height="8"><use href="#i-coche"/></svg></span>Seuil de 32/40 atteint</span></div>
+            <span class="plume" style="left:22px;top:20px;transform:rotate(-3deg)"><i>✦</i>comme le&nbsp;jour J</span>
+            <div class="carte resultat flotte"><span class="eti">Dernier examen blanc</span><div class="res-n">34<small>/40</small></div><span class="res-ok"><span class="ok"><svg width="8" height="8"><use href="#i-coche"/></svg></span>Seuil de&nbsp;32/40&nbsp;atteint</span></div>
           </div>
-          <div class="txt"><h3>Examen blanc, conditions réelles</h3><p>40&nbsp;questions, 45&nbsp;minutes chronométrées, seuil de réussite à 80&nbsp;%. Exactement le format de l’épreuve officielle.</p></div>
+          <div class="txt"><h3>Examen blanc, conditions réelles</h3><p>40&nbsp;questions, 45&nbsp;minutes chronométrées, seuil de&nbsp;réussite à&nbsp;80&nbsp;%. Exactement le&nbsp;format de&nbsp;l’épreuve&nbsp;officielle.</p></div>
         </article>
         <article class="b">
           <div class="visuel" role="img" aria-label="Le choix du nombre de questions d’un entraînement libre : 15, 25 ou 40, tirées au hasard parmi les 835 questions officielles.">
             <div class="panneau">
               <div class="p-titre">Nouvel entraînement</div>
-              <span class="eti" style="margin-top:14px">Nombre de questions</span>
+              <span class="eti" style="margin-top:14px">Nombre de&nbsp;questions</span>
               <div class="choix"><span>15</span><span class="on">25</span><span>40</span></div>
-              <p class="p-note"><svg width="15" height="15"><use href="#i-hasard"/></svg>Tirées au hasard parmi les 835 questions officielles</p>
+              <p class="p-note"><svg width="15" height="15"><use href="#i-hasard"/></svg>Tirées au&nbsp;hasard parmi les&nbsp;835&nbsp;questions&nbsp;officielles</p>
               <span class="mini-large">Commencer</span>
             </div>
           </div>
-          <div class="txt"><h3>Entraînement libre</h3><p>15, 25 ou 40&nbsp;questions, tirées au hasard parmi les 835&nbsp;questions officielles. Correction immédiate après chaque réponse.</p></div>
+          <div class="txt"><h3>Entraînement libre</h3><p>15, 25&nbsp;ou&nbsp;40&nbsp;questions, tirées au&nbsp;hasard parmi les&nbsp;835&nbsp;questions officielles. Correction immédiate après chaque&nbsp;réponse.</p></div>
         </article>
         <article class="b">
           <div class="visuel" role="img" aria-label="Une pile de cartes mémoire : sur le dessus, la laïcité, à revoir dans trois jours.">
             <div class="pile">
               <div class="fiche f3"></div><div class="fiche f2"></div>
               <div class="fiche f1">
-                <span class="fiche-tag"><svg width="13" height="13" style="--sw:6"><use href="#g-valeurs"/></svg>Principes et valeurs</span>
-                <p class="fiche-titre">La laïcité</p>
+                <span class="fiche-tag"><svg width="13" height="13" style="--sw:6"><use href="#g-valeurs"/></svg>Principes et&nbsp;valeurs</span>
+                <p class="fiche-titre">La&nbsp;laïcité</p>
                 <i class="sk" style="width:92%"></i><i class="sk" style="width:76%"></i><i class="sk" style="width:58%"></i>
-                <div class="fiche-pied"><span class="eti">Carte mémoire</span><span class="puce-lilas">À revoir dans 3&nbsp;jours</span></div>
+                <div class="fiche-pied"><span class="eti">Carte mémoire</span><span class="puce-lilas">À&nbsp;revoir dans 3&nbsp;jours</span></div>
               </div>
             </div>
           </div>
-          <div class="txt"><h3>Révision par thème</h3><p>Fiches de révision, cartes mémoire à répétition espacée et entraînement par thème pour cibler les points faibles.</p></div>
+          <div class="txt"><h3>Révision par&nbsp;thème</h3><p>Fiches de&nbsp;révision, cartes mémoire à&nbsp;répétition espacée et&nbsp;entraînement par&nbsp;thème pour&nbsp;cibler les&nbsp;points&nbsp;faibles.</p></div>
         </article>
       </div>
       </div>
@@ -633,16 +646,16 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
     <div class="wrap">
       <div class="bande">
         <div class="tete">
-          <span class="pastille">Le programme</span>
-          <h2 class="titre-2">5 thèmes officiels, <em>aucune impasse</em></h2>
-          <p>Le programme complet de l’examen civique.</p>
+          <span class="pastille">Le&nbsp;programme</span>
+          <h2 class="titre-2">5&nbsp;thèmes officiels, <em>aucune impasse</em></h2>
+          <p>Le&nbsp;programme complet de&nbsp;l’examen&nbsp;civique.</p>
         </div>
         <ul class="tuiles">
-          <li><span class="ic"><svg width="24" height="24"><use href="#g-valeurs"/></svg></span><span class="nom">Principes et valeurs de la République</span></li>
-          <li><span class="ic"><svg width="24" height="24"><use href="#g-institutions"/></svg></span><span class="nom">Système institutionnel et politique</span></li>
-          <li><span class="ic"><svg width="24" height="24"><use href="#g-droits"/></svg></span><span class="nom">Droits et devoirs</span></li>
-          <li><span class="ic"><svg width="24" height="24"><use href="#g-histoire"/></svg></span><span class="nom">Histoire, géographie et culture</span></li>
-          <li><span class="ic"><svg width="24" height="24"><use href="#g-societe"/></svg></span><span class="nom">Vivre dans la société française</span></li>
+          <li><span class="ic"><svg width="24" height="24"><use href="#g-valeurs"/></svg></span><span class="nom">Principes et&nbsp;valeurs de&nbsp;la&nbsp;République</span></li>
+          <li><span class="ic"><svg width="24" height="24"><use href="#g-institutions"/></svg></span><span class="nom">Système institutionnel et&nbsp;politique</span></li>
+          <li><span class="ic"><svg width="24" height="24"><use href="#g-droits"/></svg></span><span class="nom">Droits et&nbsp;devoirs</span></li>
+          <li><span class="ic"><svg width="24" height="24"><use href="#g-histoire"/></svg></span><span class="nom">Histoire, géographie et&nbsp;culture</span></li>
+          <li><span class="ic"><svg width="24" height="24"><use href="#g-societe"/></svg></span><span class="nom">Vivre dans la&nbsp;société&nbsp;française</span></li>
         </ul>
       </div>
     </div>
@@ -652,32 +665,32 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
     <div class="wrap">
       <div class="tete">
         <span class="pastille">Tarifs</span>
-        <h2 class="titre-2">Des licences simples, <em>sans engagement</em></h2>
-        <p>Une licence donne à un stagiaire l’accès aux trois parcours pendant la durée choisie. Achetez uniquement ce dont vous avez besoin, quand vous en avez besoin.</p>
+        <h2 class="titre-2">Des&nbsp;licences simples, <em>sans&nbsp;engagement</em></h2>
+        <p>Une&nbsp;licence donne à&nbsp;un&nbsp;stagiaire l’accès aux&nbsp;trois parcours pendant la&nbsp;durée choisie. Achetez uniquement ce&nbsp;dont vous avez besoin, quand vous en&nbsp;avez&nbsp;besoin.</p>
       </div>
       <div class="prix-g">
         <article class="prix">
-          <span class="duree">7 jours</span>
+          <span class="duree">7&nbsp;jours</span>
           <div class="montant"><b>4,99&nbsp;€</b><span>HT</span></div>
-          <p class="ttc">soit 5,99&nbsp;€&nbsp;TTC, par licence</p>
-          <ul><li><svg width="14" height="14"><use href="#i-coche"/></svg>Un stagiaire</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Les trois parcours</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Accès pendant 7&nbsp;jours</li></ul>
+          <p class="ttc">soit 5,99&nbsp;€&nbsp;TTC, par&nbsp;licence</p>
+          <ul><li><svg width="14" height="14"><use href="#i-coche"/></svg>Un&nbsp;stagiaire</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Les&nbsp;trois parcours</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Accès pendant 7&nbsp;jours</li></ul>
         </article>
         <article class="prix">
-          <span class="duree">30 jours</span>
+          <span class="duree">30&nbsp;jours</span>
           <div class="montant"><b>9,99&nbsp;€</b><span>HT</span></div>
-          <p class="ttc">soit 11,99&nbsp;€&nbsp;TTC, par licence</p>
-          <ul><li><svg width="14" height="14"><use href="#i-coche"/></svg>Un stagiaire</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Les trois parcours</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Accès pendant 30&nbsp;jours</li></ul>
+          <p class="ttc">soit 11,99&nbsp;€&nbsp;TTC, par&nbsp;licence</p>
+          <ul><li><svg width="14" height="14"><use href="#i-coche"/></svg>Un&nbsp;stagiaire</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Les&nbsp;trois parcours</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Accès pendant 30&nbsp;jours</li></ul>
         </article>
         <article class="prix">
-          <span class="duree">90 jours</span>
+          <span class="duree">90&nbsp;jours</span>
           <div class="montant"><b>24,99&nbsp;€</b><span>HT</span></div>
-          <p class="ttc">soit 29,99&nbsp;€&nbsp;TTC, par licence</p>
-          <ul><li><svg width="14" height="14"><use href="#i-coche"/></svg>Un stagiaire</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Les trois parcours</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Accès pendant 90&nbsp;jours</li></ul>
+          <p class="ttc">soit 29,99&nbsp;€&nbsp;TTC, par&nbsp;licence</p>
+          <ul><li><svg width="14" height="14"><use href="#i-coche"/></svg>Un&nbsp;stagiaire</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Les&nbsp;trois parcours</li><li><svg width="14" height="14"><use href="#i-coche"/></svg>Accès pendant 90&nbsp;jours</li></ul>
         </article>
       </div>
       <div class="prix-pied">
-        <span><svg width="20" height="20"><use href="#i-cadeau"/></svg>5&nbsp;licences offertes pour tester</span>
-        <span><svg width="20" height="20"><use href="#i-carte"/></svg>Carte bancaire ou virement</span>
+        <span><svg width="20" height="20"><use href="#i-cadeau"/></svg>5&nbsp;licences offertes pour&nbsp;tester</span>
+        <span><svg width="20" height="20"><use href="#i-carte"/></svg>Carte bancaire ou&nbsp;virement</span>
         <a class="bouton b-noir" href="#essai">Tester gratuitement<svg width="15" height="15"><use href="#i-fleche"/></svg></a>
       </div>
     </div>
@@ -688,30 +701,30 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
       <div>
         <span class="pastille">FAQ</span>
         <h2 class="titre-2">Questions <em>fréquentes</em></h2>
-        <div class="contact"><span class="ic"><svg width="22" height="22"><use href="#i-bulle"/></svg></span><div>Une autre question&nbsp;? Écrivez-nous&nbsp;: <a href="mailto:support@civicap.app">support@civicap.app</a></div></div>
+        <div class="contact"><span class="ic"><svg width="22" height="22"><use href="#i-bulle"/></svg></span><div>Une&nbsp;autre question&nbsp;? Écrivez&#8209;nous&nbsp;: <a href="mailto:support@civicap.app">support@civicap.app</a></div></div>
       </div>
       <div class="accordeon">
         <details name="faq" open>
-          <summary>Combien de licences sont offertes&nbsp;?<span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
-          <p class="reponse">Cinq. Elles sont créditées dès la création de votre espace organisme&nbsp;: vous pouvez créer vos premiers stagiaires tout de suite.</p>
+          <summary>Combien de&nbsp;licences sont offertes&nbsp;?<span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
+          <p class="reponse">Cinq. Elles sont créditées dès&nbsp;la&nbsp;création de&nbsp;votre espace organisme&nbsp;: vous pouvez créer vos&nbsp;premiers stagiaires tout de&nbsp;suite.</p>
         </details>
         <details name="faq">
-          <summary>Que se passe-t-il à la fin de l’essai&nbsp;?<span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
-          <p class="reponse">Vous commandez des licences si le service vous convient, uniquement ce dont vous avez besoin&nbsp;: 7, 30 ou 90&nbsp;jours par stagiaire. Sans engagement.</p>
+          <summary>Que&nbsp;se passe&#8209;t&#8209;il à&nbsp;la&nbsp;fin de&nbsp;l’essai&nbsp;?<span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
+          <p class="reponse">Vous commandez des&nbsp;licences si le&nbsp;service vous convient, uniquement ce&nbsp;dont vous avez besoin&nbsp;: 7,&nbsp;30&nbsp;ou&nbsp;90&nbsp;jours par&nbsp;stagiaire. Sans&nbsp;engagement.</p>
         </details>
         <!-- « Faut-il une carte bancaire pour l’essai ? » : la réponse n'apparaît pas sur les captures du site actuel. À reprendre du site avant de remettre la question. -->
         <details name="faq">
-          <summary>Mes stagiaires doivent-ils s’inscrire eux-mêmes&nbsp;?<span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
-          <p class="reponse">Non. Vous les créez depuis votre espace en quelques clics, et chacun reçoit une invitation par e-mail. Aucune inscription à gérer de leur côté.</p>
+          <summary>Mes stagiaires doivent&#8209;ils s’inscrire eux&#8209;mêmes&nbsp;?<span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
+          <p class="reponse">Non. Vous les&nbsp;créez depuis votre espace en&nbsp;quelques clics, et&nbsp;chacun reçoit une&nbsp;invitation par&nbsp;e&#8209;mail. Aucune inscription à&nbsp;gérer de&nbsp;leur&nbsp;côté.</p>
         </details>
         <details name="faq">
-          <summary>Comment régler mes commandes de licences&nbsp;?<span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
-          <p class="reponse">Par carte bancaire ou par virement. Les licences s’achètent par lot, et votre solde reste toujours visible dans votre espace.</p>
+          <summary>Comment régler mes commandes de&nbsp;licences&nbsp;?<span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
+          <p class="reponse">Par&nbsp;carte bancaire ou&nbsp;par&nbsp;virement. Les&nbsp;licences s’achètent par&nbsp;lot, et&nbsp;votre solde reste toujours visible dans votre&nbsp;espace.</p>
         </details>
         <!-- « Où sont hébergées les données ? » : réponse absente des captures. À reprendre du site actuel. -->
         <details name="faq">
-          <summary>Cette plateforme est-elle un site officiel&nbsp;?<span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
-          <p class="reponse">Non. CiviCap est un outil d’entraînement indépendant&nbsp;: il n’est affilié ni au ministère de l’Intérieur, ni à France Éducation international, ni aux CCI. Les questions de connaissance viennent des listes officielles publiées par le ministère de l’Intérieur. L’inscription au véritable examen se fait uniquement sur les plateformes officielles.</p>
+          <summary>Cette plateforme est&#8209;elle un&nbsp;site officiel&nbsp;?<span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
+          <p class="reponse">Non. CiviCap est un&nbsp;outil d’entraînement indépendant&nbsp;: il&nbsp;n’est affilié ni&nbsp;au&nbsp;ministère de&nbsp;l’Intérieur, ni&nbsp;à&nbsp;France Éducation international, ni&nbsp;aux&nbsp;CCI. Les&nbsp;questions de&nbsp;connaissance viennent des&nbsp;listes officielles publiées par&nbsp;le&nbsp;ministère de&nbsp;l’Intérieur. L’inscription au&nbsp;véritable examen se fait uniquement sur&nbsp;les&nbsp;plateformes&nbsp;officielles.</p>
         </details>
       </div>
     </div>
@@ -723,23 +736,23 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
         <div class="essai-g">
           <div class="essai-txt">
             <span class="pastille pastille-nuit">Essai gratuit</span>
-            <h2 class="titre-2">Créez votre espace <em>en une minute.</em></h2>
-            <p>Vos 5&nbsp;licences offertes sont créditées immédiatement.</p>
+            <h2 class="titre-2">Créez votre espace <em>en&nbsp;une&nbsp;minute.</em></h2>
+            <p>Vos&nbsp;5&nbsp;licences offertes sont créditées&nbsp;immédiatement.</p>
             <ol class="etapes">
-              <li><span class="no">1</span><div><b>Demandez votre essai</b><small>Un formulaire d’une minute, accès immédiat.</small></div></li>
-              <li><span class="no">2</span><div><b>Créez vos stagiaires</b><small>Vos 5&nbsp;licences offertes sont déjà créditées.</small></div></li>
-              <li><span class="no">3</span><div><b>Suivez leurs résultats</b><small>Puis commandez des licences si le service vous convient.</small></div></li>
+              <li><span class="no">1</span><div><b>Demandez votre&nbsp;essai</b><small>Un&nbsp;formulaire d’une minute, accès&nbsp;immédiat.</small></div></li>
+              <li><span class="no">2</span><div><b>Créez vos&nbsp;stagiaires</b><small>Vos&nbsp;5&nbsp;licences offertes sont déjà&nbsp;créditées.</small></div></li>
+              <li><span class="no">3</span><div><b>Suivez leurs&nbsp;résultats</b><small>Puis commandez des&nbsp;licences si le&nbsp;service vous&nbsp;convient.</small></div></li>
             </ol>
           </div>
           <form class="formulaire" action="#" method="post" novalidate>
             <h3>Demandez votre essai gratuit</h3>
-            <p class="sous-f">Votre espace organisme est prêt dans la minute.</p>
+            <p class="sous-f">Votre espace organisme est prêt dans la&nbsp;minute.</p>
             <!-- Champs à aligner sur le formulaire réel : seul « Nom de l'organisme » apparaît sur les captures. -->
-            <label>Nom de l’organisme<input name="organisme" autocomplete="organization" placeholder="Nom de votre organisme" required></label>
+            <label>Nom de&nbsp;l’organisme<input name="organisme" autocomplete="organization" placeholder="Nom de votre organisme" required></label>
             <label>Votre nom<input name="nom" autocomplete="name" placeholder="Prénom Nom" required></label>
-            <label>E-mail professionnel<input type="email" name="email" autocomplete="email" placeholder="vous@organisme.fr" required></label>
+            <label>E&#8209;mail professionnel<input type="email" name="email" autocomplete="email" placeholder="vous@organisme.fr" required></label>
             <button class="bouton b-noir" type="submit">Créer mon espace d’essai<svg width="15" height="15"><use href="#i-fleche"/></svg></button>
-            <p class="form-note">5&nbsp;licences offertes · Sans engagement</p>
+            <p class="form-note">5&nbsp;licences offertes · Sans&nbsp;engagement</p>
           </form>
         </div>
       </div>
@@ -751,9 +764,9 @@ h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-size
 <footer class="wrap pied">
   <a href="#"><img src="img/logo-civicap.png" width="313" height="111" alt="CiviCap"></a>
   <nav class="pied-liens" aria-label="Liens du pied de page">
-    <a href="#">Espace stagiaire</a><a href="#">Espace organisme</a><a href="#">Mentions légales</a><a href="#">CGV</a><a href="#">Confidentialité</a>
+    <a href="#">Espace&nbsp;stagiaire</a><a href="#">Espace&nbsp;organisme</a><a href="#">Mentions légales</a><a href="#">CGV</a><a href="#">Confidentialité</a>
   </nav>
-  <small>© 2026 CiviCap</small>
+  <small>© 2026&nbsp;CiviCap</small>
 </footer>
 
 <script>

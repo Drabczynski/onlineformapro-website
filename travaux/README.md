@@ -51,6 +51,11 @@ version de 400 px de large : le réseau de l'environnement de travail bloquait
 `images.unsplash.com`. Elle est montrée à sa taille, jamais étirée ; pour un original plus
 grand, le déposer sous le même nom et régénérer.
 
+Coupures de ligne : `tools/insecables.py` pose les espaces insécables du texte de
+l'e-mail (voir la page organismes, plus bas) ; l'explication du visuel de tête passe par
+les mêmes règles. Vérifié de 320 à 700 px, polices web et polices de repli : aucun mot
+coupé, aucune ligne qui finit sur un mot court, aucun texte qui déborde.
+
 Les informations reprennent la page « organismes » de CiviCap (captures fournies le
 7 octobre) : les trois modes, l'espace formateur (scores, thèmes faibles, tests passés),
 les licences de 7, 30 ou 90 jours et l'essai de 5 licences. Les niveaux A2/B1/B2 et la jauge
@@ -92,6 +97,12 @@ quatre réponses sont celles de la démonstration de civicap.app.
   n'envoie rien : un message le dit si on le soumet ;
 - les liens « Espace stagiaire », « Espace organisme », « Mentions légales », « CGV » et
   « Confidentialité » pointent sur `#`.
+
+Les coupures de ligne suivent les règles de la typographie française, posées par
+`tools/insecables.py` (à relancer après chaque modification de texte, sur la page comme
+sur l'e-mail) : insécable après les mots courts (« à », « de », « et »…), entre un nombre
+et son unité, avant « : ; ! ? % € », traits d'union insécables, et les deux derniers mots
+de chaque paragraphe ensemble. Les titres et libellés courts sont réglés à la main.
 
 `img/logo-civicap.png` est le logo de la newsletter détouré (fond blanc rendu
 transparent) pour se poser sur la barre de verre ; `img/entete-photo.jpg` est l'en-tête
