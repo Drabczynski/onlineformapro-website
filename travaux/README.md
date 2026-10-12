@@ -74,31 +74,30 @@ Le logo `logo-civicap.png` est un recadrage de la capture d'écran fournie
 il dépanne à l'écran, il faudra le fichier d'origine avant l'envoi. Dans
 l'outil d'envoi, son chemin devra aussi devenir une adresse absolue.
 
-### Kit d'import Beefree
+### Dans Beefree : un bloc HTML
 
-`newsletter-civicap/beefree/` : un fichier, une action. `civicap-beefree.html` s'importe
-dans Beefree (import HTML) ; `index.html` le dit en deux étapes.
+`newsletter-civicap/beefree/` : la newsletter en un seul bloc « HTML » de Beefree. La page
+`index.html` donne les trois gestes (e-mail vide, bloc HTML, coller) et le code, avec un
+bouton « Copier le code » ; `bloc-html.txt` est le même code.
 
-Le premier essai, l'e-mail d'origine importé tel quel, est arrivé en pièces : l'importeur
-ne sait pas lire des cartes emboîtées dans un cadre (cartes perdues, pastilles éclatées,
-titre d'un seul style). Le fichier est donc réécrit comme Beefree écrit ses propres
-e-mails : des rangées, des colonnes, une pile de blocs par colonne (image, titre,
-paragraphe, bouton) et un seul style par bloc. Le titre à deux couleurs devient deux blocs
-de titre ; les accents en italique, une seconde ligne en Instrument Serif ; les pastilles,
-de petites images (`beefree/img/`) ; les trois chiffres, trois colonnes blanches sur une
-rangée lilas, séparées par des bordures (si Beefree les ignore, les cartes se touchent et
-restent lisibles) ; les deux boutons du bandeau, l'un sous l'autre. Les fonds en image
-deviennent des couleurs unies (`#F2DBF3`, `#1A1028`) : Beefree ne les importe pas.
+    python3 tools/beefree-civicap.py
 
-    python3 tools/beefree-civicap.py images   # pastilles et cartes des modes, puis committer et pousser
-    python3 tools/beefree-civicap.py          # le fichier à importer
+Pourquoi un bloc HTML : l'import HTML de Beefree reconstruit l'e-mail en blocs, et deux
+essais sont arrivés en pièces (cartes emboîtées perdues, pastilles éclatées, titre d'un
+seul style). Le bloc HTML garde le code tel quel : le rendu est celui de l'original. Il
+fait partie des offres payantes de Beefree d'après sa documentation.
 
-Les images sont servies depuis `raw.githubusercontent.com`, figées sur le dernier commit qui
-les a modifiées : le script refuse de tourner si une image est modifiée sans être committée.
-L'import n'a pas été essayé de ce côté, faute d'accès à Beefree.
+Le script garde le corps de `email.html` (Beefree fournit l'en-tête), rend le conteneur
+fluide (600 px au plus), passe les images en adresses absolues vers
+`raw.githubusercontent.com`, figées sur le dernier commit qui les a modifiées (il refuse
+de tourner si une image est modifiée sans être committée), préfixe les classes du réglage
+mobile par `cc-` (Beefree a sa propre classe `pad`), pose `text-decoration:none` sur
+chaque lien (l'en-tête de l'original le faisait) et retire le VML, les commentaires et le
+texte d'aperçu caché (il se règle dans Brevo). Vérifié dans une page bâtie comme celles de
+Beefree, à 700 et 390 px : rendu identique à l'original.
 
-`tools/insecables.py` ne touche plus au contenu des balises `<code>` et `<pre>` : un nom de
-fichier ou une version texte doit se copier tel quel.
+`tools/insecables.py` ne touche plus au contenu des balises `<code>`, `<pre>` et `<textarea>` :
+un nom de fichier, une version texte ou un code doit se copier tel quel.
 
 ## Page organismes CiviCap
 

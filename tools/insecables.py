@@ -6,7 +6,7 @@ un nombre séparé de son unité (« 40 / questions », « 4,99 / € »), une p
 rejetée en début de ligne, un mot composé coupé à son trait d'union (« e- / mail »).
 
 Ne touche ni aux balises ni à leurs attributs, ni aux commentaires (donc ni aux blocs
-conditionnels d'Outlook), ni au contenu de <style>, <script>, <title>, <code> et <pre> (un nom
+conditionnels d'Outlook), ni au contenu de <style>, <script>, <title>, <code>, <pre> et <textarea> (un nom
 de fichier ou une version texte se copie tel quel). Idempotent : on
 le relance après chaque modification de texte.
 
@@ -70,7 +70,7 @@ def page(html):
     for k, m in enumerate(morceaux):
         if m.startswith("<"):
             nom = re.match(r"</?([a-zA-Z0-9]+)", m)
-            if nom and nom.group(1).lower() in ("style", "script", "title", "code", "pre"):
+            if nom and nom.group(1).lower() in ("style", "script", "title", "code", "pre", "textarea"):
                 dans = None if m.startswith("</") else nom.group(1).lower()
             sortie.append(m)
         elif dans or not m.strip():

@@ -10,19 +10,27 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="../../travaux.css">
 <style>
-.etapes{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:10px;counter-reset:e;max-width:640px}
+.etapes{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:10px;counter-reset:e;max-width:680px}
 .etapes li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:baseline;
   background:var(--cream-0);border:1px solid var(--line);border-radius:14px;padding:18px 20px;
   font-size:1rem;line-height:1.55;color:var(--ink-2);counter-increment:e}
 .etapes li::before{content:counter(e);font-family:var(--mono);font-size:11px;color:var(--red)}
 .etapes b{color:var(--ink);font-weight:600}
-.note{margin:22px 0 0;font-size:.92rem;line-height:1.6;color:var(--ink-2);max-width:640px}
+.code{margin-top:22px;max-width:680px}
+.code-h{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.code-h span{font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.copier{margin-left:auto;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--cream-0);background:var(--ink);cursor:pointer;
+  border:1px solid var(--ink);border-radius:999px;padding:10px 18px;transition:background .18s,border-color .18s}
+.copier:hover{background:var(--red);border-color:var(--red)}
+.copier.ok{background:var(--green);border-color:var(--green)}
+textarea{display:block;width:100%;height:190px;resize:vertical;padding:16px 18px;border-radius:14px;
+  border:1px solid var(--line);background:var(--cream-0);color:var(--ink-2);font-family:var(--mono);
+  font-size:11px;line-height:1.6;white-space:pre;overflow:auto}
+.note{margin:22px 0 0;font-size:.92rem;line-height:1.6;color:var(--ink-2);max-width:680px}
 .note + .note{margin-top:10px}
 .note b{color:var(--ink);font-weight:600}
-.pieces{display:flex;flex-wrap:wrap;gap:10px}
-.pieces .piece{margin-top:0}
-.piece.fort{color:var(--cream-0);background:var(--ink);border-color:var(--ink)}
-.piece.fort:hover{background:var(--red);border-color:var(--red);color:var(--cream-0)}
+.note code{font-family:var(--mono);font-size:.84em;background:var(--cream-2);border-radius:5px;padding:1px 5px}
 </style>
 </head>
 <body>
@@ -30,25 +38,168 @@
   <a class="retour" href="../"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M7 4 3 8l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Newsletter CiviCap</a>
 
   <h1>Newsletter CiviCap dans Beefree</h1>
-  <span class="compte">Un&nbsp;fichier · une&nbsp;action</span>
-
-  <div class="pieces">
-    <a class="piece fort" href="civicap-beefree.html" download>Télécharger le&nbsp;fichier
-      <svg width="9" height="9" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v9M4 7l4 4 4-4M3 14h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-    <a class="piece" href="civicap-beefree.html" target="_blank" rel="noopener">Voir ce&nbsp;que&nbsp;ça donne
-      <svg width="9" height="9" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3h7v7M13 3 4 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-  </div>
+  <span class="compte">Un&nbsp;bloc HTML · trois gestes</span>
 
   <ol class="etapes">
-    <li><span>Dans Beefree, <b>importer un&nbsp;fichier HTML</b> (depuis le&nbsp;tableau de&nbsp;bord des&nbsp;projets ou&nbsp;le&nbsp;catalogue de&nbsp;modèles) et&nbsp;choisir <b>civicap&#8209;beefree.html</b>.</span></li>
-    <li><span><b>C'est prêt.</b> Textes, images, liens et&nbsp;couleurs sont déjà dedans&nbsp;: il&nbsp;n'y
-      a&nbsp;rien à&nbsp;installer ni&nbsp;à&nbsp;remettre.</span></li>
+    <li><span>Dans Beefree, <b>créer un&nbsp;e&#8209;mail vide</b>.</span></li>
+    <li><span>Glisser un&nbsp;<b>bloc «&nbsp;HTML&nbsp;»</b> dans la&nbsp;rangée.</span></li>
+    <li><span>Cliquer sur&nbsp;<b>Copier le&nbsp;code</b> ci&#8209;dessous, puis le&nbsp;<b>coller dans le&nbsp;bloc</b>.
+      La&nbsp;newsletter apparaît entière, telle quelle.</span></li>
   </ol>
 
-  <p class="note"><b>Avant d'envoyer</b>, remplacer dans le&nbsp;pied le&nbsp;lien «&nbsp;Se&nbsp;désabonner&nbsp;»
-    et&nbsp;«&nbsp;[Raison sociale, adresse postale]&nbsp;».</p>
-  <p class="note"><b>Un&nbsp;bloc arrive de&nbsp;travers&nbsp;?</b> Une&nbsp;capture d'écran suffit&nbsp;: je
-    corrige le&nbsp;fichier.</p>
+  <div class="code">
+    <div class="code-h"><span>Le&nbsp;code de&nbsp;la&nbsp;newsletter</span>
+      <button class="copier" type="button" id="copier">Copier le&nbsp;code</button></div>
+    <textarea id="code" readonly spellcheck="false" aria-label="Code HTML de la newsletter">&lt;style&gt;
+  @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&amp;family=Instrument+Serif:ital@1&amp;family=Inter:wght@400;500;600;700&amp;display=swap');
+  @media only screen and (max-width:620px){
+    .cc-hero{padding:12px 12px 18px!important;border-radius:24px!important}
+    .cc-ph{padding-left:18px!important;padding-right:18px!important}
+    .cc-pad{padding-left:20px!important;padding-right:20px!important}
+    .cc-h1{font-size:35px!important}
+    .cc-h2{font-size:28px!important}
+    .cc-bt{display:block!important;padding:5px 0!important}
+    .cc-chiffre{font-size:36px!important}
+    .cc-puce{padding:14px 11px 13px!important}
+    .cc-lib{font-size:13px!important}
+    .cc-txt{padding:20px 20px 22px!important}
+  }
+&lt;/style&gt;
+&lt;table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F3F1F8" style="background:#F3F1F8;"&gt;
+&lt;tr&gt;&lt;td align="center" style="padding:24px 10px 30px;"&gt;
+&lt;table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;margin:0 auto;"&gt;
+
+  &lt;tr&gt;&lt;td class="cc-hero" background="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/cf595785a0b1aedc127901b5792eb4a507f84973/travaux/newsletter-civicap/img/fond-hero.jpg" bgcolor="#F1E6F8" valign="top"
+          style="background-color:#F1E6F8;background-image:url('https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/cf595785a0b1aedc127901b5792eb4a507f84973/travaux/newsletter-civicap/img/fond-hero.jpg');background-repeat:no-repeat;background-position:center top;background-size:600px auto;border-radius:30px;padding:28px 28px 30px;"&gt;
+    &lt;table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF" style="background:#FFFFFF;border-radius:26px;"&gt;
+      &lt;tr&gt;&lt;td style="padding:14px 14px 0;"&gt;
+        &lt;table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;border:1px solid #EEEAF5;border-radius:999px;"&gt;
+          &lt;tr&gt;
+            &lt;td style="padding:7px 8px 7px 16px;"&gt;&lt;img src="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/cf595785a0b1aedc127901b5792eb4a507f84973/travaux/newsletter-civicap/logo-civicap.png" width="96" height="34" alt="CiviCap" style="display:block;width:96px;height:auto;border:0;"&gt;&lt;/td&gt;
+            &lt;td align="right" style="padding:7px 7px 7px 8px;"&gt;
+              &lt;table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;"&gt;&lt;tr&gt;&lt;td bgcolor="#0F0A1A" style="border-radius:999px;"&gt;
+                &lt;a href="https://civicap.fr/" style="text-decoration:none;display:inline-block;padding:9px 16px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:600;color:#FFFFFF;border-radius:999px;"&gt;civicap.fr&amp;nbsp;↗&lt;/a&gt;
+              &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/table&gt;
+      &lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td class="cc-ph" align="center" style="padding:34px 20px 0;"&gt;
+        &lt;table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;margin:0 auto;"&gt;&lt;tr&gt;
+          &lt;td bgcolor="#F5F0FF" style="background:#F5F0FF;border:1px solid #E7DCFF;border-radius:999px;padding:5px 14px 5px 5px;"&gt;
+            &lt;table role="presentation" cellpadding="0" cellspacing="0" border="0"&gt;&lt;tr&gt;
+              &lt;td valign="middle" style="padding-right:8px;"&gt;&lt;img src="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/cf595785a0b1aedc127901b5792eb4a507f84973/travaux/newsletter-civicap/img/coche.png" width="18" height="18" alt="" style="display:block;width:18px;height:18px;border:0;"&gt;&lt;/td&gt;
+              &lt;td valign="middle" style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12.5px;line-height:18px;font-weight:600;color:#5B21B6;white-space:nowrap;"&gt;FLE · insertion · primo&amp;#8209;arrivants&lt;/td&gt;
+            &lt;/tr&gt;&lt;/table&gt;
+          &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        &lt;h1 class="cc-h1" style="margin:22px 0 0;font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:46px;line-height:1.02;letter-spacing:-.04em;font-weight:600;color:#0F0A1A;"&gt;
+          L’examen civique&lt;br&gt;est obligatoire.&lt;br&gt;&lt;span style="color:#6D28D9;"&gt;Votre préparation&lt;br&gt;est &lt;span class="cc-serif" style="font-family:'Instrument Serif',Georgia,'Times New Roman',serif;font-style:italic;font-weight:400;font-size:1.12em;letter-spacing:-.01em;color:#6D28D9;"&gt;prête.&lt;/span&gt;&lt;/span&gt;&lt;/h1&gt;
+        &lt;p style="margin:20px auto 0;max-width:430px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#57516B;"&gt;
+          L’examen civique est désormais exigé pour&amp;nbsp;les&amp;nbsp;titres de&amp;nbsp;séjour, les&amp;nbsp;cartes de&amp;nbsp;résident
+          et&amp;nbsp;la&amp;nbsp;naturalisation. Vos&amp;nbsp;stagiaires arrivent avec des&amp;nbsp;niveaux très&amp;nbsp;hétérogènes. Un&amp;nbsp;échec
+          leur coûte une&amp;nbsp;nouvelle session et&amp;nbsp;retarde leur&amp;nbsp;dossier.&lt;/p&gt;
+        &lt;table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="margin:28px auto 0;"&gt;&lt;tr&gt;
+          &lt;td class="cc-bt" align="center" style="padding:0 5px;"&gt;&lt;table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;"&gt;&lt;tr&gt;&lt;td align="center" bgcolor="#0F0A1A" style="border-radius:999px;"&gt;&lt;a href="https://civicap.fr/" style="text-decoration:none;display:inline-block;padding:13px 22px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;letter-spacing:-.01em;color:#FFFFFF;border-radius:999px;white-space:nowrap;"&gt;Tester gratuitement&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;
+          &lt;td class="cc-bt" align="center" style="padding:0 5px;"&gt;&lt;table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;"&gt;&lt;tr&gt;&lt;td align="center" bgcolor="#FFFFFF" style="border-radius:999px;border:1px solid #E4DFEE;"&gt;&lt;a href="https://civicap.fr/" style="text-decoration:none;display:inline-block;padding:12px 21px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;letter-spacing:-.01em;color:#0F0A1A;border-radius:999px;white-space:nowrap;"&gt;Voir les&amp;nbsp;tarifs&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;/table&gt;
+        &lt;p style="margin:16px 0 0;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:13px;line-height:1.4;font-weight:500;color:#57516B;"&gt;&lt;span style="color:#16A34A;"&gt;✓&lt;/span&gt;&amp;nbsp;5&amp;nbsp;licences&amp;nbsp;offertes&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;span style="color:#16A34A;"&gt;✓&lt;/span&gt;&amp;nbsp;Sans&amp;nbsp;engagement&lt;/p&gt;
+      &lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td class="cc-ph" style="padding:28px 28px 4px;"&gt;
+        &lt;img src="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/cf595785a0b1aedc127901b5792eb4a507f84973/travaux/newsletter-civicap/img/hero.png" width="488" height="360"
+             alt="La question 7, « Que commémore la fête nationale du 14 juillet ? », sa bonne réponse et son explication ; les questions 8 et 9 attendent derrière."
+             style="display:block;width:100%;max-width:488px;height:auto;border:0;"&gt;
+      &lt;/td&gt;&lt;/tr&gt;
+    &lt;/table&gt;
+    &lt;p style="margin:28px 0 14px;text-align:center;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#4C1D95;"&gt;
+      835&amp;nbsp;questions&amp;nbsp;officielles · trois&amp;nbsp;parcours&lt;/p&gt;
+    &lt;table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;"&gt;&lt;tr&gt;
+      &lt;td class="cc-puce" width="33%" valign="top" bgcolor="#FFFFFF" style="background:#FFFFFF;border-radius:20px;padding:18px 18px 17px;"&gt;&lt;div class="cc-chiffre" style="font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:46px;line-height:1;letter-spacing:-.03em;font-weight:600;color:#0F0A1A;"&gt;235&lt;/div&gt;&lt;div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#8A8499;padding-top:9px;"&gt;questions&lt;/div&gt;&lt;div class="cc-lib" style="font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.25;font-weight:600;letter-spacing:-.012em;color:#0F0A1A;padding-top:11px;"&gt;Carte de&amp;nbsp;séjour pluriannuelle&lt;/div&gt;&lt;/td&gt;&lt;td width="10" style="width:10px;font-size:0;line-height:0;"&gt;&amp;nbsp;&lt;/td&gt;&lt;td class="cc-puce" width="33%" valign="top" bgcolor="#FFFFFF" style="background:#FFFFFF;border-radius:20px;padding:18px 18px 17px;"&gt;&lt;div class="cc-chiffre" style="font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:46px;line-height:1;letter-spacing:-.03em;font-weight:600;color:#0F0A1A;"&gt;257&lt;/div&gt;&lt;div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#8A8499;padding-top:9px;"&gt;questions&lt;/div&gt;&lt;div class="cc-lib" style="font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.25;font-weight:600;letter-spacing:-.012em;color:#0F0A1A;padding-top:11px;"&gt;Carte de&amp;nbsp;résident&lt;/div&gt;&lt;/td&gt;&lt;td width="10" style="width:10px;font-size:0;line-height:0;"&gt;&amp;nbsp;&lt;/td&gt;&lt;td class="cc-puce" width="33%" valign="top" bgcolor="#FFFFFF" style="background:#FFFFFF;border-radius:20px;padding:18px 18px 17px;"&gt;&lt;div class="cc-chiffre" style="font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:46px;line-height:1;letter-spacing:-.03em;font-weight:600;color:#0F0A1A;"&gt;343&lt;/div&gt;&lt;div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#8A8499;padding-top:9px;"&gt;questions&lt;/div&gt;&lt;div class="cc-lib" style="font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.25;font-weight:600;letter-spacing:-.012em;color:#0F0A1A;padding-top:11px;"&gt;Naturalisation&lt;/div&gt;&lt;/td&gt;
+    &lt;/tr&gt;&lt;/table&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+
+  &lt;tr&gt;&lt;td style="height:16px;line-height:16px;font-size:0;"&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+
+  &lt;tr&gt;&lt;td&gt;
+    &lt;table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF" style="background:#FFFFFF;border-radius:30px;"&gt;
+      &lt;tr&gt;&lt;td class="cc-pad" style="padding:36px 36px 0;"&gt;
+        &lt;img src="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/cf595785a0b1aedc127901b5792eb4a507f84973/travaux/newsletter-civicap/img/entete-photo.jpg" width="528" height="316"
+             alt="Une formatrice montre l’écran de son ordinateur portable à une personne en formation, qui sourit ; à l’écran, l’entraînement libre en est à la question 7 sur 15."
+             style="display:block;width:100%;max-width:528px;height:auto;border:0;"&gt;
+      &lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td class="cc-pad" align="center" style="padding:56px 36px 0;"&gt;
+        &lt;table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;margin:0 auto;"&gt;&lt;tr&gt;&lt;td bgcolor="#F3EEFF" style="background:#F3EEFF;border-radius:999px;padding:6px 13px 6px 11px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:16px;font-weight:600;color:#6D28D9;"&gt;&lt;span style="display:inline-block;width:6px;height:6px;border-radius:6px;background:#6D28D9;vertical-align:1px;margin-right:7px;"&gt;&lt;/span&gt;Côté stagiaire&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        &lt;h2 class="cc-h2" style="margin:18px 0 0;font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:36px;line-height:1.06;letter-spacing:-.035em;font-weight:600;color:#0F0A1A;"&gt;Ce&amp;nbsp;que&amp;nbsp;CiviCap fait à&amp;nbsp;&lt;span class="cc-serif" style="font-family:'Instrument Serif',Georgia,'Times New Roman',serif;font-style:italic;font-weight:400;font-size:1.12em;letter-spacing:-.01em;color:#6D28D9;"&gt;votre&amp;nbsp;place&lt;/span&gt;&lt;/h2&gt;
+        &lt;p style="margin:16px auto 0;max-width:440px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#57516B;"&gt;Il&amp;nbsp;fait passer les&amp;nbsp;examens blancs, corrige et&amp;nbsp;explique chaque réponse, et&amp;nbsp;cible les&amp;nbsp;points faibles de&amp;nbsp;chacun. Vos&amp;nbsp;formateurs gardent leur temps pour&amp;nbsp;enseigner.&lt;/p&gt;
+      &lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td class="cc-pad" style="padding:44px 36px 0;"&gt;
+        &lt;table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;"&gt;&lt;tr&gt;&lt;td bgcolor="#F7F5FC" style="background:#F7F5FC;border-radius:24px;"&gt;&lt;img src="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/cf595785a0b1aedc127901b5792eb4a507f84973/travaux/newsletter-civicap/img/entrainement.png" width="528" height="210" alt="Un nouvel entraînement : 15, 25 ou 40 questions, tirées au hasard parmi les 835 questions officielles." style="display:block;width:100%;max-width:528px;height:auto;border:0;border-radius:24px 24px 0 0;"&gt;&lt;div class="cc-txt" style="padding:24px 28px 28px;"&gt;&lt;div style="font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:21px;line-height:1.2;font-weight:600;letter-spacing:-.012em;word-spacing:.05em;color:#0F0A1A;"&gt;Entraînement libre&lt;/div&gt;&lt;div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#57516B;padding-top:8px;"&gt;15, 25&amp;nbsp;ou&amp;nbsp;40&amp;nbsp;questions, tirées au&amp;nbsp;hasard parmi les&amp;nbsp;835&amp;nbsp;questions officielles. Correction immédiate après chaque&amp;nbsp;réponse.&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        &lt;div style="height:20px;line-height:20px;font-size:0;"&gt;&amp;nbsp;&lt;/div&gt;
+        &lt;table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;"&gt;&lt;tr&gt;&lt;td bgcolor="#F7F5FC" style="background:#F7F5FC;border-radius:24px;"&gt;&lt;img src="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/cf595785a0b1aedc127901b5792eb4a507f84973/travaux/newsletter-civicap/img/examen.png" width="528" height="210" alt="L’écran d’examen blanc : question 12 sur 40, le compte à rebours et le drapeau « à revoir »." style="display:block;width:100%;max-width:528px;height:auto;border:0;border-radius:24px 24px 0 0;"&gt;&lt;div class="cc-txt" style="padding:24px 28px 28px;"&gt;&lt;div style="font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:21px;line-height:1.2;font-weight:600;letter-spacing:-.012em;word-spacing:.05em;color:#0F0A1A;"&gt;Examen blanc, conditions&amp;nbsp;réelles&lt;/div&gt;&lt;div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#57516B;padding-top:8px;"&gt;40&amp;nbsp;questions, 45&amp;nbsp;minutes chronométrées, seuil de&amp;nbsp;réussite à&amp;nbsp;80&amp;nbsp;%&amp;nbsp;: exactement le&amp;nbsp;format de&amp;nbsp;l’épreuve&amp;nbsp;officielle.&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        &lt;div style="height:20px;line-height:20px;font-size:0;"&gt;&amp;nbsp;&lt;/div&gt;
+        &lt;table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;"&gt;&lt;tr&gt;&lt;td bgcolor="#F7F5FC" style="background:#F7F5FC;border-radius:24px;"&gt;&lt;img src="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/cf595785a0b1aedc127901b5792eb4a507f84973/travaux/newsletter-civicap/img/revision.png" width="528" height="220" alt="Une carte mémoire sur la laïcité, à revoir dans trois jours." style="display:block;width:100%;max-width:528px;height:auto;border:0;border-radius:24px 24px 0 0;"&gt;&lt;div class="cc-txt" style="padding:24px 28px 28px;"&gt;&lt;div style="font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:21px;line-height:1.2;font-weight:600;letter-spacing:-.012em;word-spacing:.05em;color:#0F0A1A;"&gt;Révision par&amp;nbsp;thème&lt;/div&gt;&lt;div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#57516B;padding-top:8px;"&gt;Fiches de&amp;nbsp;révision, cartes mémoire à&amp;nbsp;répétition espacée et&amp;nbsp;entraînement par&amp;nbsp;thème pour&amp;nbsp;cibler les&amp;nbsp;points&amp;nbsp;faibles.&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+      &lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td class="cc-pad" align="center" style="padding:96px 36px 0;"&gt;
+        &lt;table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;margin:0 auto;"&gt;&lt;tr&gt;&lt;td bgcolor="#F3EEFF" style="background:#F3EEFF;border-radius:999px;padding:6px 13px 6px 11px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:16px;font-weight:600;color:#6D28D9;"&gt;&lt;span style="display:inline-block;width:6px;height:6px;border-radius:6px;background:#6D28D9;vertical-align:1px;margin-right:7px;"&gt;&lt;/span&gt;Côté formateur&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        &lt;h2 class="cc-h2" style="margin:18px 0 0;font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:36px;line-height:1.06;letter-spacing:-.035em;font-weight:600;color:#0F0A1A;"&gt;Pilotez la&amp;nbsp;progression&lt;br&gt;de&amp;nbsp;&lt;span class="cc-serif" style="font-family:'Instrument Serif',Georgia,'Times New Roman',serif;font-style:italic;font-weight:400;font-size:1.12em;letter-spacing:-.01em;color:#6D28D9;"&gt;chaque&amp;nbsp;stagiaire&lt;/span&gt;&lt;/h2&gt;
+        &lt;p style="margin:16px auto 0;max-width:440px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#57516B;"&gt;Vous créez vos&amp;nbsp;stagiaires en&amp;nbsp;quelques clics, par&amp;nbsp;invitation e&amp;#8209;mail. Puis vous suivez leur progression&amp;nbsp;: scores, thèmes&amp;nbsp;faibles, tests&amp;nbsp;passés.&lt;/p&gt;
+      &lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td class="cc-pad" style="padding:44px 36px 0;"&gt;
+        &lt;img src="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/cf595785a0b1aedc127901b5792eb4a507f84973/travaux/newsletter-civicap/img/pilotage.png" width="528" height="336"
+             alt="Exemple de suivi des stagiaires : pour chacun, son score au dernier examen blanc, son thème faible, le nombre de tests passés et son statut."
+             style="display:block;width:100%;max-width:528px;height:auto;border:0;"&gt;
+      &lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td class="cc-pad" align="center" style="padding:96px 36px 0;"&gt;
+        &lt;table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;margin:0 auto;"&gt;&lt;tr&gt;&lt;td bgcolor="#F3EEFF" style="background:#F3EEFF;border-radius:999px;padding:6px 13px 6px 11px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:16px;font-weight:600;color:#6D28D9;"&gt;&lt;span style="display:inline-block;width:6px;height:6px;border-radius:6px;background:#6D28D9;vertical-align:1px;margin-right:7px;"&gt;&lt;/span&gt;À&amp;nbsp;télécharger&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        &lt;h2 class="cc-h2" style="margin:18px 0 0;font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:36px;line-height:1.06;letter-spacing:-.035em;font-weight:600;color:#0F0A1A;"&gt;Des&amp;nbsp;fiches formatives&lt;br&gt;&lt;span class="cc-serif" style="font-family:'Instrument Serif',Georgia,'Times New Roman',serif;font-style:italic;font-weight:400;font-size:1.12em;letter-spacing:-.01em;color:#6D28D9;"&gt;à&amp;nbsp;télécharger&lt;/span&gt;&lt;/h2&gt;
+        &lt;p style="margin:16px auto 0;max-width:440px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#57516B;"&gt;Une&amp;nbsp;notion par&amp;nbsp;fiche, illustrée et&amp;nbsp;classée par&amp;nbsp;thème&amp;nbsp;: les&amp;nbsp;devoirs du&amp;nbsp;citoyen, le&amp;nbsp;droit des&amp;nbsp;femmes, le&amp;nbsp;Parlement, la&amp;nbsp;Constitution, travailler en&amp;nbsp;France…&lt;/p&gt;
+      &lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td class="cc-pad" style="padding:44px 36px 56px;"&gt;
+        &lt;img src="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/cf595785a0b1aedc127901b5792eb4a507f84973/travaux/newsletter-civicap/img/fiches.jpg" width="528" height="300"
+             alt="Cinq fiches formatives en éventail : la Constitution, le droit des femmes en France, les devoirs du citoyen, le Parlement, travailler en France."
+             style="display:block;width:100%;max-width:528px;height:auto;border:0;"&gt;
+      &lt;/td&gt;&lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+
+  &lt;tr&gt;&lt;td style="height:16px;line-height:16px;font-size:0;"&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+
+  &lt;tr&gt;&lt;td class="cc-pad" align="center" background="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/cf595785a0b1aedc127901b5792eb4a507f84973/travaux/newsletter-civicap/img/fond-cta.jpg" bgcolor="#120A24"
+          style="background-color:#120A24;background-image:url('https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/cf595785a0b1aedc127901b5792eb4a507f84973/travaux/newsletter-civicap/img/fond-cta.jpg');background-repeat:no-repeat;background-position:center;background-size:cover;border-radius:30px;padding:56px 40px 54px;"&gt;
+    &lt;table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;margin:0 auto;"&gt;&lt;tr&gt;&lt;td bgcolor="#2A1D4A" style="background:#2A1D4A;border-radius:999px;padding:6px 13px 6px 11px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:16px;font-weight:600;color:#DDD3FF;"&gt;&lt;span style="display:inline-block;width:6px;height:6px;border-radius:6px;background:#C4B5FD;vertical-align:1px;margin-right:7px;"&gt;&lt;/span&gt;Pour&amp;nbsp;votre organisme&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+    &lt;h2 class="cc-h2" style="margin:20px auto 0;max-width:460px;font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:36px;line-height:1.06;letter-spacing:-.035em;font-weight:600;color:#FFFFFF;"&gt;
+      Ajoutez vos&amp;nbsp;stagiaires&lt;br&gt;&lt;span class="cc-serif" style="font-family:'Instrument Serif',Georgia,'Times New Roman',serif;font-style:italic;font-weight:400;font-size:1.12em;letter-spacing:-.01em;color:#C4B5FD;"&gt;quand vous le&amp;nbsp;voulez.&lt;/span&gt;&lt;/h2&gt;
+    &lt;p style="margin:16px auto 30px;max-width:400px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#CFC7E2;"&gt;
+      5&amp;nbsp;licences offertes pour&amp;nbsp;tester. Ensuite, des&amp;nbsp;licences de&amp;nbsp;30&amp;nbsp;ou&amp;nbsp;90&amp;nbsp;jours dès&amp;nbsp;9,00&amp;nbsp;€&amp;nbsp;HT, sans&amp;nbsp;engagement.&lt;/p&gt;
+    &lt;table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0"&gt;&lt;tr&gt;
+      &lt;td align="center" style="padding:0 5px;"&gt;&lt;table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;"&gt;&lt;tr&gt;&lt;td align="center" bgcolor="#FFFFFF" style="border-radius:999px;"&gt;&lt;a href="https://civicap.fr/" style="text-decoration:none;display:inline-block;padding:13px 22px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;letter-spacing:-.01em;color:#0F0A1A;border-radius:999px;white-space:nowrap;"&gt;Créer mon espace d’essai &amp;nbsp;→&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;
+    &lt;/tr&gt;&lt;/table&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+
+  &lt;tr&gt;&lt;td align="center" style="padding:26px 30px 0;"&gt;
+    &lt;p style="margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:11.5px;line-height:1.65;color:#8A8499;"&gt;
+      &lt;a href="[LIEN_DESABONNEMENT]" style="color:#6D28D9;text-decoration:underline;"&gt;Se désabonner&lt;/a&gt;
+      &amp;nbsp;·&amp;nbsp; [Raison sociale, adresse&amp;nbsp;postale]&lt;/p&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+
+&lt;/table&gt;
+&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+</textarea>
+  </div>
+
+  <p class="note"><b>Avant l'envoi par&nbsp;Brevo</b>, il&nbsp;reste le&nbsp;pied de&nbsp;l'e&#8209;mail&nbsp;: le&nbsp;lien
+    «&nbsp;Se désabonner&nbsp;» (<code>[LIEN_DESABONNEMENT]</code> dans le&nbsp;code) et&nbsp;l'adresse&nbsp;postale.</p>
+  <p class="note"><b>Pas de&nbsp;bloc «&nbsp;HTML&nbsp;» dans la&nbsp;liste&nbsp;?</b> D'après la&nbsp;documentation de&nbsp;Beefree, il&nbsp;fait partie des&nbsp;offres payantes. Dis&#8209;le&#8209;moi, on&nbsp;passera par&nbsp;Brevo&nbsp;directement.</p>
 </div>
+<script>
+document.getElementById('copier').addEventListener('click', async function () {
+  var zone = document.getElementById('code'), b = this;
+  try { await navigator.clipboard.writeText(zone.value); }
+  catch (e) { zone.focus(); zone.select(); document.execCommand('copy'); }
+  b.textContent = 'Copié';
+  b.classList.add('ok');
+  setTimeout(function () { b.textContent = 'Copier le code'; b.classList.remove('ok'); }, 2200);
+});
+</script>
 </body>
 </html>
