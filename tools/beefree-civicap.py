@@ -13,8 +13,6 @@ email.html (placées dans l'en-tête) n'y tiennent pas, et Gmail ignore une feui
 posée dans le corps. Le modèle est donc écrit pour s'adapter seul, sans ces règles :
 
 - le titre du bandeau est une image (titre.png) qui suit la largeur de l'écran ;
-- les deux boutons sont deux blocs en ligne : ils passent l'un sous l'autre quand la place
-  manque ;
 - les trois cartes chiffres sont des blocs en ligne de 180 px au plus : trois de front sur
   ordinateur, l'une sous l'autre sur téléphone ;
 - les titres de section se coupent d'eux-mêmes, les marges sont réduites.

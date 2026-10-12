@@ -91,8 +91,8 @@ offres payantes de Beefree d'après sa documentation.
 Pourquoi un modèle à part : le bloc n'a pas d'en-tête, donc pas les règles mobiles de
 `email.html`, et Gmail ignore une feuille de style posée dans le corps. Le modèle s'adapte
 seul : le titre du bandeau est une image fluide (`beefree/img/titre.png`, rendue depuis les
-polices de la marque) ; les deux boutons et les trois cartes chiffres sont des blocs en
-ligne qui passent l'un sous l'autre quand la place manque ; les titres de section sont en
+polices de la marque) ; les trois cartes chiffres sont des blocs en ligne qui passent
+l'une sous l'autre quand la place manque ; les titres de section sont en
 30 px et sans longs groupes insécables ; les marges sont réduites. Les règles mobiles
 restent dans le bloc pour les messageries qui les lisent, classes préfixées `cc-` (Beefree
 a sa propre classe `pad`). Chaque lien porte `text-decoration:none`. Vérifié sans les
