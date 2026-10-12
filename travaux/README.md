@@ -78,23 +78,29 @@ l'outil d'envoi, son chemin devra aussi devenir une adresse absolue.
 
 `newsletter-civicap/beefree/` : la newsletter en un seul bloc « HTML » de Beefree. La page
 `index.html` donne les trois gestes (e-mail vide, bloc HTML, coller) et le code, avec un
-bouton « Copier le code » ; `bloc-html.txt` est le même code.
+bouton « Copier le code » ; `bloc-html.txt` est le même code, fabriqué à partir de
+`bloc-modele.html` (images en `{{BASE}}`).
 
-    python3 tools/beefree-civicap.py
+    python3 tools/beefree-civicap.py images   # titre.png, puis committer et pousser
+    python3 tools/beefree-civicap.py          # le code à coller
 
 Pourquoi un bloc HTML : l'import HTML de Beefree reconstruit l'e-mail en blocs, et deux
-essais sont arrivés en pièces (cartes emboîtées perdues, pastilles éclatées, titre d'un
-seul style). Le bloc HTML garde le code tel quel : le rendu est celui de l'original. Il
-fait partie des offres payantes de Beefree d'après sa documentation.
+essais sont arrivés en pièces. Le bloc HTML garde le code tel quel ; il fait partie des
+offres payantes de Beefree d'après sa documentation.
 
-Le script garde le corps de `email.html` (Beefree fournit l'en-tête), rend le conteneur
-fluide (600 px au plus), passe les images en adresses absolues vers
-`raw.githubusercontent.com`, figées sur le dernier commit qui les a modifiées (il refuse
-de tourner si une image est modifiée sans être committée), préfixe les classes du réglage
-mobile par `cc-` (Beefree a sa propre classe `pad`), pose `text-decoration:none` sur
-chaque lien (l'en-tête de l'original le faisait) et retire le VML, les commentaires et le
-texte d'aperçu caché (il se règle dans Brevo). Vérifié dans une page bâtie comme celles de
-Beefree, à 700 et 390 px : rendu identique à l'original.
+Pourquoi un modèle à part : le bloc n'a pas d'en-tête, donc pas les règles mobiles de
+`email.html`, et Gmail ignore une feuille de style posée dans le corps. Le modèle s'adapte
+seul : le titre du bandeau est une image fluide (`beefree/img/titre.png`, rendue depuis les
+polices de la marque) ; les deux boutons et les trois cartes chiffres sont des blocs en
+ligne qui passent l'un sous l'autre quand la place manque ; les titres de section sont en
+30 px et sans longs groupes insécables ; les marges sont réduites. Les règles mobiles
+restent dans le bloc pour les messageries qui les lisent, classes préfixées `cc-` (Beefree
+a sa propre classe `pad`). Chaque lien porte `text-decoration:none`. Vérifié sans les
+règles mobiles et sans les polices web (le cas de Gmail), à 320, 390 et 700 px : aucun
+débordement.
+
+Les images sont servies depuis `raw.githubusercontent.com`, figées sur le dernier commit qui
+les a modifiées : le script refuse de tourner si une image est modifiée sans être committée.
 
 `tools/insecables.py` ne touche plus au contenu des balises `<code>`, `<pre>` et `<textarea>` :
 un nom de fichier, une version texte ou un code doit se copier tel quel.

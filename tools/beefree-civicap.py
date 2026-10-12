@@ -1,39 +1,91 @@
 #!/usr/bin/env python3
 """La newsletter CiviCap en un bloc HTML, à coller dans Beefree.
 
-    python3 tools/beefree-civicap.py
+    python3 tools/beefree-civicap.py images   # 1. le titre en image, puis committer et pousser
+    python3 tools/beefree-civicap.py          # 2. le code à coller
 
-  travaux/newsletter-civicap/email.html → travaux/newsletter-civicap/beefree/bloc-html.txt
-                                         et le même code dans beefree/index.html (bouton « Copier »)
+  beefree/bloc-modele.html → beefree/bloc-html.txt, et le même code dans beefree/index.html
+                             (bouton « Copier le code »)
 
-L'import HTML de Beefree reconstruit l'e-mail en blocs et casse sa mise en page (cartes
-emboîtées perdues, pastilles éclatées). Le bloc « HTML » de Beefree, lui, garde le code tel
-quel : on colle l'e-mail entier dans un seul bloc, le rendu est celui de l'original.
+L'import HTML de Beefree reconstruit l'e-mail en blocs et casse sa mise en page. Le bloc
+« HTML » garde le code tel quel. Mais il n'a pas d'en-tête : les règles mobiles de
+email.html (placées dans l'en-tête) n'y tiennent pas, et Gmail ignore une feuille de style
+posée dans le corps. Le modèle est donc écrit pour s'adapter seul, sans ces règles :
 
-Ce qui change par rapport à email.html : seul le corps est gardé (Beefree fournit l'en-tête
-et la page) ; le conteneur devient fluide (600 px au plus, il suit la largeur réglée dans
-Beefree) ; les images passent en adresses absolues, vers leurs copies publiques du dépôt
-GitHub, figées sur le dernier commit qui les a modifiées ; les classes du réglage mobile
-prennent le préfixe « cc- » (Beefree utilise lui-même une classe « pad » : la nôtre aurait
-élargi ses marges) ; le fond VML d'Outlook, les commentaires et le texte d'aperçu caché
-sont retirés (l'aperçu se règle dans Brevo).
+- le titre du bandeau est une image (titre.png) qui suit la largeur de l'écran ;
+- les deux boutons sont deux blocs en ligne : ils passent l'un sous l'autre quand la place
+  manque ;
+- les trois cartes chiffres sont des blocs en ligne de 180 px au plus : trois de front sur
+  ordinateur, l'une sous l'autre sur téléphone ;
+- les titres de section se coupent d'eux-mêmes, les marges sont réduites.
+
+Les règles mobiles restent dans le bloc, en bonus, pour les messageries qui les lisent
+(Apple Mail, iPhone) ; leurs classes portent le préfixe « cc- » (Beefree a sa propre classe
+« pad »). Les images sont servies depuis le dépôt GitHub public, figées sur le dernier
+commit qui les a modifiées : {{BASE}} dans le modèle.
 """
-import html as H
-import pathlib
-import re
-import subprocess
-import sys
+import base64, html as H, pathlib, re, subprocess, sys, tempfile, textwrap
 
 RACINE = pathlib.Path(__file__).resolve().parent.parent
 NL = RACINE / "travaux" / "newsletter-civicap"
-SOURCE = NL / "email.html"
+MODELE = NL / "beefree" / "bloc-modele.html"
 CODE = NL / "beefree" / "bloc-html.txt"
 PAGE = NL / "beefree" / "index.html"
+IMG = NL / "beefree" / "img"
 DEPOT = "https://raw.githubusercontent.com/Drabczynski/onlineformapro-website"
-IMAGES = ["logo-civicap.png", "img"]
-CLASSES = ["hero", "ph", "pad", "h1", "h2", "bt", "chiffre", "puce", "lib", "txt", "serif"]
-POLICES = ("https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700"
-           "&family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600;700&display=swap")
+IMAGES = ["logo-civicap.png", "img", "beefree/img"]
+PLAYWRIGHT = "/opt/node22/lib/node_modules/playwright/index.js"
+CACHE = pathlib.Path(tempfile.gettempdir()) / "civicap-polices"
+POLICES = {  # fichier en cache : (famille Google Fonts, nom CSS, graisses, style)
+    "instrument-sans-latin.woff2": ("Instrument+Sans:wght@400..700", "Instrument Sans", "400 700", "normal"),
+    "instrument-serif-italic-latin.woff2": ("Instrument+Serif:ital@1", "Instrument Serif", "400", "italic"),
+}
+
+
+def polices_css():
+    CACHE.mkdir(parents=True, exist_ok=True)
+    css = []
+    for fichier, (famille, nom, graisses, style) in POLICES.items():
+        cible = CACHE / fichier
+        if not cible.exists():
+            feuille = subprocess.run(["curl", "-sS", "-A", "Mozilla/5.0 Chrome/126.0",
+                                      f"https://fonts.googleapis.com/css2?family={famille}&display=swap"],
+                                     check=True, capture_output=True, text=True).stdout
+            url = re.search(r"/\* latin \*/\s*@font-face\s*\{[^}]*?src:\s*url\(([^)]+)\)", feuille, re.S).group(1)
+            subprocess.run(["curl", "-sS", url, "-o", str(cible)], check=True)
+        b64 = base64.b64encode(cible.read_bytes()).decode()
+        css.append(f"@font-face{{font-family:'{nom}';font-weight:{graisses};font-style:{style};"
+                   f"src:url(data:font/woff2;base64,{b64}) format('woff2')}}")
+    return "".join(css)
+
+
+def images():
+    """Le titre du bandeau, tel que dans email.html, en PNG double densité sur blanc."""
+    IMG.mkdir(parents=True, exist_ok=True)
+    page = (f"<!doctype html><meta charset='utf-8'><style>{polices_css()}"
+            "body{margin:0;background:#fff;-webkit-font-smoothing:antialiased}"
+            "#scene{width:360px;padding:2px 0 4px;background:#fff;text-align:center}"
+            "h1{margin:0;font-family:'Instrument Sans';font-size:46px;line-height:1.02;letter-spacing:-.04em;"
+            "font-weight:600;color:#0F0A1A}"
+            ".v{color:#6D28D9}.s{font-family:'Instrument Serif';font-style:italic;font-weight:400;"
+            "font-size:1.12em;letter-spacing:-.01em}</style>"
+            "<div id='scene'><h1>L’examen civique<br>est obligatoire.<br><span class='v'>Votre préparation"
+            "<br>est <span class='s'>prête.</span></span></h1></div>")
+    with tempfile.TemporaryDirectory() as tmp:
+        fichier = pathlib.Path(tmp) / "titre.html"
+        fichier.write_text(page, encoding="utf-8")
+        script = pathlib.Path(tmp) / "rendu.mjs"
+        script.write_text(textwrap.dedent(f"""
+            import pw from '{PLAYWRIGHT}';
+            const b = await pw.chromium.launch();
+            const p = await b.newPage({{ viewport: {{ width: 400, height: 300 }}, deviceScaleFactor: 2 }});
+            await p.goto('file://{fichier}');
+            await p.evaluate(() => document.fonts.ready);
+            await (await p.$('#scene')).screenshot({{ path: '{IMG / "titre.png"}' }});
+            await b.close();
+        """), encoding="utf-8")
+        subprocess.run(["node", str(script)], check=True)
+    print("beefree/img/titre.png")
 
 
 def git(*args):
@@ -53,42 +105,11 @@ def commit_des_images():
     return sha
 
 
-def bloc(source, base):
-    # le réglage mobile de l'original, classes préfixées
-    mobile = re.search(r"@media[^{]*\{(.*?)\n  \}", source, re.S).group(1)
-    mobile = "\n".join(l for l in mobile.splitlines() if l.strip() and ".conteneur" not in l)
-    # le corps : le conteneur de 600 px et tout ce qu'il porte
-    debut = source.index('<table role="presentation" class="conteneur"')
-    fin = source.index("\n</table>\n\n</td></tr>\n</table>\n</body>") + len("\n</table>")
-    corps = source[debut:fin]
-    corps = re.sub(r"[ \t]*<!--.*?-->\n?", "", corps, flags=re.S)
-    corps = re.sub(r"\n    <div>\n|\n    </div>\n", "\n", corps)     # l'enveloppe du VML
-    corps = corps.replace('class="conteneur" width="600" cellpadding="0" cellspacing="0" border="0" '
-                          'style="width:600px;max-width:600px;"',
-                          'width="100%" cellpadding="0" cellspacing="0" border="0" '
-                          'style="width:100%;max-width:600px;margin:0 auto;"')
-    corps = corps.replace(' class=""', "")
-    for c in CLASSES:
-        corps = corps.replace(f'class="{c}"', f'class="cc-{c}"')
-        mobile = mobile.replace(f".{c}{{", f".cc-{c}{{")
-    # l'en-tête de l'original retirait le soulignement des liens ; ici, chaque lien le porte
-    corps = re.sub(r'(<a [^>]*style=")(?![^"]*text-decoration)', r"\1text-decoration:none;", corps)
-    relatif = r"(?!https?:|data:|mailto:|#|\[)"
-    corps = re.sub(rf'\b(src|background)="{relatif}([^"]+)"', rf'\1="{base}\2"', corps)
-    corps = re.sub(rf"url\('{relatif}([^']+)'\)", rf"url('{base}\1')", corps)
-    style = (f"<style>\n  @import url('{POLICES}');\n"
-             f"  @media only screen and (max-width:620px){{\n{mobile}\n  }}\n</style>\n")
-    return (style
-            + '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" '
-              'bgcolor="#F3F1F8" style="background:#F3F1F8;">\n'
-              '<tr><td align="center" style="padding:24px 10px 30px;">\n'
-            + corps + "\n</td></tr>\n</table>\n")
-
-
-def verifie(code):
+def verifie(code, base):
     for attr in re.findall(r'\b(?:src|background)="([^"]+)"', code):
-        assert attr.startswith("https://"), f"chemin relatif : {attr}"
-    assert "<!--" not in code and "mso" not in code and "conteneur" not in code
+        assert attr.startswith(base), f"chemin relatif : {attr}"
+        assert (NL / attr[len(base):]).exists(), f"image absente : {attr}"
+    assert "{{" not in code and "<!--" not in code
     assert not re.search(r'class="(?!cc-)', code), "classe sans préfixe"
     assert code.count("<table") == code.count("</table>"), "tableaux mal fermés"
     for lien in re.findall(r"<a [^>]*>", code):
@@ -96,9 +117,13 @@ def verifie(code):
 
 
 if __name__ == "__main__":
+    if sys.argv[1:] == ["images"]:
+        images()
+        sys.exit()
     sha = commit_des_images()
-    code = bloc(SOURCE.read_text(encoding="utf-8"), f"{DEPOT}/{sha}/{NL.relative_to(RACINE)}/")
-    verifie(code)
+    base = f"{DEPOT}/{sha}/{NL.relative_to(RACINE)}/"
+    code = MODELE.read_text(encoding="utf-8").replace("{{BASE}}", base)
+    verifie(code, base)
     CODE.write_text(code, encoding="utf-8")
     page = PAGE.read_text(encoding="utf-8")
     page, n = re.subn(r'(<textarea id="code"[^>]*>).*?(</textarea>)',
