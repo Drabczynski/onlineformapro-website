@@ -10,59 +10,19 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="../../travaux.css">
 <style>
+.etapes{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:10px;counter-reset:e;max-width:640px}
+.etapes li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:baseline;
+  background:var(--cream-0);border:1px solid var(--line);border-radius:14px;padding:18px 20px;
+  font-size:1rem;line-height:1.55;color:var(--ink-2);counter-increment:e}
+.etapes li::before{content:counter(e);font-family:var(--mono);font-size:11px;color:var(--red)}
+.etapes b{color:var(--ink);font-weight:600}
+.note{margin:22px 0 0;font-size:.92rem;line-height:1.6;color:var(--ink-2);max-width:640px}
+.note + .note{margin-top:10px}
+.note b{color:var(--ink);font-weight:600}
 .pieces{display:flex;flex-wrap:wrap;gap:10px}
 .pieces .piece{margin-top:0}
-.pieces + .bloc{margin-top:clamp(30px,4.5vw,40px)}
-.bloc{margin-top:clamp(34px,5vw,46px)}
-.bloc h2{font-size:1.18rem;font-weight:600;letter-spacing:-.025em;margin:0 0 8px}
-.bloc h2 i{font-family:var(--mono);font-style:normal;font-size:.8rem;font-weight:500;color:var(--red);
-  margin-right:10px;vertical-align:2px}
-.bloc > p{margin:0;font-size:.92rem;line-height:1.6;color:var(--ink-2);max-width:72ch}
-.bloc > p + p{margin-top:12px}
-.etapes{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:9px;counter-reset:e}
-.etapes li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:12px;align-items:baseline;
-  background:var(--cream-0);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
-  font-size:.92rem;line-height:1.55;color:var(--ink-2);counter-increment:e}
-.etapes li::before{content:counter(e);font-family:var(--mono);font-size:10px;color:var(--ink-3)}
-.etapes b{color:var(--ink);font-weight:600}
-.manques{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
-.manques li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;
-  font-size:.92rem;line-height:1.55;color:var(--ink-2)}
-.manques li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);margin-top:8px}
-.manques li.ok::before{background:var(--green)}
-.manques b{color:var(--ink);font-weight:600}
-.bloc .tbl-wrap{margin-top:16px;max-height:none}
-.bloc .tbl-wrap table{min-width:680px}
-.bloc .tbl-wrap th{position:static}
-.bloc .tbl-wrap td{color:var(--ink-2)}
-.bloc .tbl-wrap td:first-child{color:var(--ink);font-weight:600;width:22%}
-.bloc .tbl-wrap td p{margin:0}
-.bloc .tbl-wrap td p + p{margin-top:6px}
-.ex{color:var(--ink);font-weight:500}
-code{font-family:var(--mono);font-size:.82em;background:var(--cream-2);border-radius:5px;padding:1px 5px;
-  white-space:nowrap}
-.pastille{display:inline-block;width:11px;height:11px;border-radius:3px;border:1px solid rgba(0,0,0,.14);
-  vertical-align:-1px;margin-right:6px}
-.palette{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px;
-  grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
-.palette li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:11px;align-items:center;
-  background:var(--cream-0);border:1px solid var(--line);border-radius:12px;padding:9px 12px;
-  font-size:.84rem;line-height:1.35;color:var(--ink-2)}
-.bloc a:not(.piece){text-decoration:underline;text-decoration-color:var(--trait);text-underline-offset:3px}
-.bloc a:not(.piece):hover{text-decoration-color:var(--red)}
-@media (max-width:620px){
-  .bloc .tbl-wrap table{min-width:0}
-  .bloc .tbl-wrap thead{display:none}
-  .bloc .tbl-wrap tr{display:block;padding:13px 0 12px;border-bottom:1px solid var(--cream-2)}
-  .bloc .tbl-wrap tbody tr:last-child{border-bottom:0}
-  .bloc .tbl-wrap td{display:block;width:auto!important;border:0;padding:3px 15px}
-  .bloc .tbl-wrap td:first-child{padding-bottom:6px}
-  .bloc .tbl-wrap td[data-l]::before{content:attr(data-l);display:block;margin:4px 0 2px;
-    font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
-  .bloc .tbl-wrap code{white-space:normal;word-break:break-word}
-}
-.palette li span{width:30px;height:30px;border-radius:8px;border:1px solid rgba(0,0,0,.1)}
-.palette b{display:block;font-family:var(--mono);font-size:.76rem;font-weight:500;color:var(--ink)}
+.piece.fort{color:var(--cream-0);background:var(--ink);border-color:var(--ink)}
+.piece.fort:hover{background:var(--red);border-color:var(--red);color:var(--cream-0)}
 </style>
 </head>
 <body>
@@ -70,231 +30,25 @@ code{font-family:var(--mono);font-size:.82em;background:var(--cream-2);border-ra
   <a class="retour" href="../"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M7 4 3 8l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Newsletter CiviCap</a>
 
   <h1>Newsletter CiviCap dans Beefree</h1>
-  <span class="compte">Kit d'import · 2&nbsp;fichiers</span>
-  <p class="chapeau">Beefree transforme un&nbsp;e&#8209;mail HTML en&nbsp;modèle modifiable par&nbsp;glisser&#8209;déposer.
-    Ce&nbsp;kit prépare la&nbsp;newsletter pour&nbsp;son&nbsp;importeur&nbsp;: <b>un&nbsp;fichier HTML</b> dont les&nbsp;images
-    pointent vers des&nbsp;adresses publiques, <b>le&nbsp;ZIP des&nbsp;images</b>, et&nbsp;ce&nbsp;qui&nbsp;reste à&nbsp;faire à&nbsp;la&nbsp;main dans Beefree. Je n'ai pas accès à&nbsp;Beefree&nbsp;: l'import n'a pas été essayé, le&nbsp;fichier
-    suit les&nbsp;conditions de&nbsp;sa&nbsp;documentation.</p>
+  <span class="compte">Un&nbsp;fichier · une&nbsp;action</span>
 
   <div class="pieces">
-    <a class="piece" href="civicap-beefree.html" download>Fichier à&nbsp;importer · HTML
+    <a class="piece fort" href="civicap-beefree.html" download>Télécharger le&nbsp;fichier
       <svg width="9" height="9" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v9M4 7l4 4 4-4M3 14h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-    <a class="piece" href="civicap-images.zip" download>Images · ZIP · 11&nbsp;fichiers
-      <svg width="9" height="9" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v9M4 7l4 4 4-4M3 14h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-    <a class="piece" href="../email.html" target="_blank" rel="noopener">L'original
+    <a class="piece" href="civicap-beefree.html" target="_blank" rel="noopener">Voir ce&nbsp;que&nbsp;ça donne
       <svg width="9" height="9" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3h7v7M13 3 4 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
   </div>
 
-  <section class="bloc">
-    <h2><i>1</i>Importer le&nbsp;fichier</h2>
-    <ol class="etapes">
-      <li><span>Télécharger <code>civicap-beefree.html</code> (bouton ci&#8209;dessus).</span></li>
-      <li><span>Dans Beefree, depuis le&nbsp;<b>tableau de&nbsp;bord des&nbsp;projets</b> ou&nbsp;le&nbsp;<b>catalogue de&nbsp;modèles</b>, choisir l'import HTML et&nbsp;déposer le&nbsp;fichier.</span></li>
-      <li><span>Beefree découpe l'e&#8209;mail en&nbsp;rangées et&nbsp;en&nbsp;blocs modifiables. Sa&nbsp;documentation
-        prévient que&nbsp;<b>quelques retouches peuvent rester nécessaires</b>&nbsp;: la&nbsp;fiche de&nbsp;montage, en&nbsp;bas de&nbsp;page, donne de&nbsp;quoi refaire n'importe quel bloc à&nbsp;l'identique.</span></li>
-    </ol>
-    <p style="margin-top:16px">Le&nbsp;fichier remplit les&nbsp;conditions de&nbsp;l'importeur&nbsp;:
-      déclaration <code>&lt;!DOCTYPE html&gt;</code>, balises <code>html</code> et
-      <code>body</code>, <code>meta charset</code> dans l'en&#8209;tête, images en&nbsp;adresses publiques.
-      J'en ai retiré ce&nbsp;que&nbsp;Beefree régénère lui&#8209;même&nbsp;: le&nbsp;fond VML et&nbsp;les&nbsp;blocs
-      conditionnels destinés à&nbsp;Outlook, et&nbsp;le&nbsp;texte d'aperçu caché (il&nbsp;se règle dans l'outil
-      d'envoi, voir l'étape&nbsp;4). Pour&nbsp;le&nbsp;reste, c'est l'e&#8209;mail d'origine&nbsp;: même rendu,
-      vérifié au&nbsp;pixel&nbsp;près.</p>
-  </section>
+  <ol class="etapes">
+    <li><span>Dans Beefree, <b>importer un&nbsp;fichier HTML</b> (depuis le&nbsp;tableau de&nbsp;bord des&nbsp;projets ou&nbsp;le&nbsp;catalogue de&nbsp;modèles) et&nbsp;choisir <b>civicap&#8209;beefree.html</b>.</span></li>
+    <li><span><b>C'est prêt.</b> Textes, images, liens et&nbsp;couleurs sont déjà dedans&nbsp;: il&nbsp;n'y
+      a&nbsp;rien à&nbsp;installer ni&nbsp;à&nbsp;remettre.</span></li>
+  </ol>
 
-  <section class="bloc">
-    <h2><i>2</i>Remettre les&nbsp;deux fonds</h2>
-    <p>L'importeur ne&nbsp;reprend pas les&nbsp;images de&nbsp;fond. Après l'import, le&nbsp;bandeau de&nbsp;tête et&nbsp;le&nbsp;bloc final s'affichent dans leur couleur de&nbsp;repli&nbsp;; si elle manque aussi, la&nbsp;poser.
-      Les&nbsp;images sont dans le&nbsp;ZIP.</p>
-    <div class="tbl-wrap"><table>
-      <thead><tr><th>Zone</th><th>Image</th><th>Couleur de&nbsp;repli</th><th>Réglages</th></tr></thead>
-      <tbody>
-        <tr><td>Bandeau de&nbsp;tête<br><span style="font-weight:400;color:var(--ink-3)">du&nbsp;logo aux&nbsp;trois cartes chiffres</span></td>
-          <td data-l="Image"><code>civicap-fond-hero.jpg</code><br>600 × 1320&nbsp;px</td>
-          <td data-l="Couleur de repli"><span class="pastille" style="background:#F1E6F8"></span><code>#F1E6F8</code></td>
-          <td data-l="Réglages"><p>En&nbsp;haut, centrée, sans&nbsp;répétition, 600&nbsp;px de&nbsp;large. Coins arrondis 30&nbsp;px.</p>
-            <p>Si l'import a&nbsp;découpé le&nbsp;bandeau en&nbsp;plusieurs rangées, le&nbsp;dégradé ne&nbsp;court plus
-              d'un seul tenant&nbsp;: garder alors la&nbsp;couleur unie, la&nbsp;carte blanche reste&nbsp;lisible.</p></td></tr>
-        <tr><td>Bloc final<br><span style="font-weight:400;color:var(--ink-3)">«&nbsp;Pour&nbsp;votre organisme&nbsp;»</span></td>
-          <td data-l="Image"><code>civicap-fond-cta.jpg</code><br>1056 × 600&nbsp;px</td>
-          <td data-l="Couleur de repli"><span class="pastille" style="background:#120A24"></span><code>#120A24</code></td>
-          <td data-l="Réglages"><p>Centrée, couvrant toute la&nbsp;zone. Coins arrondis 30&nbsp;px.</p>
-            <p>Le&nbsp;texte y&nbsp;est blanc&nbsp;: la&nbsp;couleur de&nbsp;repli doit rester&nbsp;foncée.</p></td></tr>
-      </tbody>
-    </table></div>
-    <p style="margin-top:14px">Dans un&nbsp;e&#8209;mail sorti de&nbsp;Beefree, Outlook sur&nbsp;Windows n'affiche ni&nbsp;les&nbsp;images de&nbsp;fond ni&nbsp;les&nbsp;coins arrondis&nbsp;: il&nbsp;montre les&nbsp;couleurs de&nbsp;repli et&nbsp;des&nbsp;angles
-      droits. C'est prévu, la&nbsp;lecture&nbsp;tient.</p>
-  </section>
-
-  <section class="bloc">
-    <h2><i>3</i>Les&nbsp;polices</h2>
-    <div class="tbl-wrap"><table>
-      <thead><tr><th>Rôle</th><th>Police</th><th>Graisse</th><th>Repli</th></tr></thead>
-      <tbody>
-        <tr><td>Titres, chiffres, libellés des&nbsp;cartes</td><td data-l="Police">Instrument Sans</td><td data-l="Graisse">600</td><td data-l="Repli">Arial, Helvetica</td></tr>
-        <tr><td>Mots mis en&nbsp;valeur</td><td data-l="Police">Instrument Serif, italique<br><span style="color:var(--ink-3)">«&nbsp;prête.&nbsp;», «&nbsp;votre place&nbsp;», «&nbsp;chaque stagiaire&nbsp;», «&nbsp;à&nbsp;télécharger&nbsp;», «&nbsp;quand vous le&nbsp;voulez.&nbsp;»</span></td><td data-l="Graisse">400</td><td data-l="Repli">Georgia italique</td></tr>
-        <tr><td>Texte courant, boutons, pastilles</td><td data-l="Police">Inter</td><td data-l="Graisse">400, 500, 600, 700</td><td data-l="Repli">Arial, Helvetica</td></tr>
-      </tbody>
-    </table></div>
-    <p style="margin-top:14px">Les&nbsp;trois sont sur&nbsp;Google Fonts. Dans Beefree, une&nbsp;police Google
-      absente de&nbsp;sa&nbsp;liste arrive en&nbsp;police personnalisée, avec une&nbsp;seule graisse, et&nbsp;les&nbsp;polices
-      personnalisées demandent une&nbsp;offre payante. Sans&nbsp;elles, choisir la&nbsp;police la&nbsp;plus proche
-      dans la&nbsp;liste de&nbsp;Beefree, et&nbsp;Georgia italique pour&nbsp;les&nbsp;mots mis en&nbsp;valeur&nbsp;: la&nbsp;mise en&nbsp;page a&nbsp;été vérifiée avec les&nbsp;polices de&nbsp;repli, le&nbsp;titre tient sur&nbsp;ses&nbsp;quatre&nbsp;lignes.</p>
-  </section>
-
-  <section class="bloc">
-    <h2><i>4</i>Liens, aperçu et&nbsp;mentions</h2>
-    <div class="tbl-wrap"><table>
-      <thead><tr><th>Élément</th><th>À&nbsp;renseigner</th></tr></thead>
-      <tbody>
-        <tr><td>Bouton «&nbsp;civicap.fr ↗&nbsp;»</td><td data-l="À renseigner"><code>https://civicap.fr/</code></td></tr>
-        <tr><td>«&nbsp;Tester gratuitement&nbsp;»</td><td data-l="À renseigner"><code>https://civicap.fr/</code></td></tr>
-        <tr><td>«&nbsp;Voir les&nbsp;tarifs&nbsp;»</td><td data-l="À renseigner"><code>https://civicap.fr/</code></td></tr>
-        <tr><td>«&nbsp;Créer mon espace d’essai&nbsp;→&nbsp;»</td><td data-l="À renseigner"><code>https://civicap.fr/</code></td></tr>
-        <tr><td>«&nbsp;Se désabonner&nbsp;»</td><td data-l="À renseigner"><p><code>[LIEN_DESABONNEMENT]</code>, à&nbsp;remplacer par&nbsp;la&nbsp;balise de&nbsp;désabonnement de&nbsp;l'outil d'envoi. <b>Obligatoire.</b></p></td></tr>
-        <tr><td>Pied de&nbsp;l'e&#8209;mail</td><td data-l="À renseigner"><p><code>[Raison sociale, adresse postale]</code>, à&nbsp;fournir. <b>Obligatoire.</b></p></td></tr>
-        <tr><td>Texte d'aperçu</td><td data-l="À renseigner"><p class="ex">Examens blancs, correction expliquée, suivi de&nbsp;chaque stagiaire&nbsp;: CiviCap s’en charge pour&nbsp;vous.</p>
-          <p>Dans le&nbsp;champ «&nbsp;texte d'aperçu&nbsp;» (preheader) de&nbsp;l'outil&nbsp;d'envoi.</p></td></tr>
-        <tr><td>Objet</td><td data-l="À renseigner"><p class="ex">L’examen civique est obligatoire. Votre préparation est&nbsp;prête.</p>
-          <p>L'objet retenu&nbsp;; deux variantes sur&nbsp;<a href="../">la&nbsp;page de&nbsp;la&nbsp;newsletter</a>.</p></td></tr>
-        <tr><td>Version texte</td><td data-l="À renseigner">Sur&nbsp;<a href="../">la&nbsp;page de&nbsp;la&nbsp;newsletter</a>, à&nbsp;coller dans le&nbsp;champ «&nbsp;version texte&nbsp;» de&nbsp;l'outil d'envoi.</td></tr>
-      </tbody>
-    </table></div>
-    <p style="margin-top:14px">Les&nbsp;quatre boutons mènent à&nbsp;l'accueil de&nbsp;civicap.fr. À&nbsp;baliser si
-      vous suivez les&nbsp;campagnes.</p>
-  </section>
-
-  <section class="bloc">
-    <h2><i>5</i>Sur&nbsp;mobile</h2>
-    <p>L'original resserre quelques réglages sous 620&nbsp;px de&nbsp;large. Beefree gère son&nbsp;propre
-      affichage mobile&nbsp;: vérifier son&nbsp;aperçu mobile et, si besoin, reprendre ces&nbsp;valeurs.</p>
-    <div class="tbl-wrap"><table>
-      <thead><tr><th>Élément</th><th>Ordinateur</th><th>Mobile</th></tr></thead>
-      <tbody>
-        <tr><td>Titre principal</td><td data-l="Ordinateur">46&nbsp;px</td><td data-l="Mobile">35&nbsp;px</td></tr>
-        <tr><td>Titres de&nbsp;section</td><td data-l="Ordinateur">36&nbsp;px</td><td data-l="Mobile">28&nbsp;px</td></tr>
-        <tr><td>Chiffres 235, 257, 343</td><td data-l="Ordinateur">46&nbsp;px</td><td data-l="Mobile">36&nbsp;px, libellés en&nbsp;13&nbsp;px</td></tr>
-        <tr><td>Marge du&nbsp;bandeau de&nbsp;tête</td><td data-l="Ordinateur">28&nbsp;px</td><td data-l="Mobile">12&nbsp;px</td></tr>
-        <tr><td>Marges des&nbsp;cartes blanches</td><td data-l="Ordinateur">36&nbsp;px</td><td data-l="Mobile">20&nbsp;px</td></tr>
-        <tr><td>Boutons du&nbsp;bandeau</td><td data-l="Ordinateur">côte à&nbsp;côte</td><td data-l="Mobile">l'un sous l'autre</td></tr>
-        <tr><td>Trois cartes chiffres</td><td data-l="Ordinateur">côte à&nbsp;côte</td><td data-l="Mobile">côte à&nbsp;côte dans l'original&nbsp;; empilées, elles restent lisibles</td></tr>
-      </tbody>
-    </table></div>
-  </section>
-
-  <section class="bloc">
-    <h2><i>6</i>Avant l'envoi réel</h2>
-    <ul class="manques">
-      <li><span><b>Héberger les&nbsp;images.</b> Le&nbsp;fichier d'import va les&nbsp;chercher dans le&nbsp;dépôt
-        GitHub public, figées sur&nbsp;une&nbsp;version&nbsp;: c'est suffisant pour&nbsp;monter et&nbsp;tester.
-        Pour&nbsp;l'envoi, déposer le&nbsp;ZIP dans le&nbsp;gestionnaire de&nbsp;fichiers de&nbsp;Beefree (ou&nbsp;de&nbsp;l'outil
-        d'envoi) et&nbsp;remplacer les&nbsp;images bloc par&nbsp;bloc&nbsp;: un&nbsp;dépôt GitHub n'est pas fait
-        pour&nbsp;servir des&nbsp;milliers d'ouvertures, et&nbsp;s'il repasse en&nbsp;privé, les&nbsp;images
-        disparaissent.</span></li>
-      <li><span><b>Le&nbsp;lien de&nbsp;désabonnement et&nbsp;l'adresse postale</b>, voir l'étape&nbsp;4.</span></li>
-      <li><span><b>Le&nbsp;logo d'origine.</b> Celui du&nbsp;kit est un&nbsp;recadrage de&nbsp;capture d'écran
-        (313 × 111&nbsp;px)&nbsp;: fournir le&nbsp;fichier d'origine pour&nbsp;un&nbsp;rendu net.</span></li>
-      <li><span><b>L'explication du&nbsp;14&nbsp;juillet</b>, dans l'image du&nbsp;bandeau, est une&nbsp;traduction&nbsp;: à&nbsp;remplacer par&nbsp;le&nbsp;texte français exact de&nbsp;CiviCap.</span></li>
-      <li><span><b>Un&nbsp;envoi test</b> vers Gmail, Outlook sur&nbsp;Windows et&nbsp;un&nbsp;iPhone, puis un&nbsp;avec les&nbsp;images bloquées&nbsp;: titres, textes, chiffres et&nbsp;boutons sont du&nbsp;texte, ils
-        doivent rester lisibles.</span></li>
-    </ul>
-  </section>
-
-  <section class="bloc">
-    <h2>Fiche de&nbsp;montage</h2>
-    <p>Si un&nbsp;bloc passe mal à&nbsp;l'import, de&nbsp;quoi le&nbsp;refaire à&nbsp;l'identique&nbsp;: textes exacts,
-      polices, tailles, couleurs. Fond de&nbsp;l'e&#8209;mail <code>#F3F1F8</code>, contenu sur&nbsp;600&nbsp;px
-      de&nbsp;large, 16&nbsp;px entre les&nbsp;trois grands&nbsp;blocs.</p>
-    <div class="tbl-wrap"><table>
-      <thead><tr><th>Bloc</th><th>Contenu</th><th>Réglages</th></tr></thead>
-      <tbody>
-        <tr><td>Bandeau · cadre</td><td data-l="Contenu">Carte blanche (coins 26&nbsp;px) posée sur&nbsp;le&nbsp;dégradé, puis les&nbsp;trois cartes chiffres.</td>
-          <td data-l="Réglages">Fond <code>civicap-fond-hero.jpg</code>, repli <code>#F1E6F8</code>, coins 30&nbsp;px, marge 28&nbsp;px.</td></tr>
-        <tr><td>Barre du&nbsp;haut</td><td data-l="Contenu"><p>Logo <code>civicap-logo.png</code> à&nbsp;gauche&nbsp;; à&nbsp;droite, le&nbsp;bouton <span class="ex">civicap.fr ↗</span>.</p></td>
-          <td data-l="Réglages"><p>Gélule bordée <code>#EEEAF5</code>. Logo 96&nbsp;px de&nbsp;large.</p><p>Bouton&nbsp;: fond <code>#0F0A1A</code>, texte blanc, Inter 12,5&nbsp;px,&nbsp;600.</p></td></tr>
-        <tr><td>Badge</td><td data-l="Contenu"><p>Coche <code>civicap-coche.png</code> (18&nbsp;px) et&nbsp;<span class="ex">FLE · insertion · primo&#8209;arrivants</span></p></td>
-          <td data-l="Réglages">Inter 12,5&nbsp;px, 600, <code>#5B21B6</code>&nbsp;; fond <code>#F5F0FF</code>, bordure <code>#E7DCFF</code>, gélule.</td></tr>
-        <tr><td>Titre principal</td><td data-l="Contenu"><p class="ex">L’examen civique / est obligatoire. / Votre préparation / est&nbsp;prête.</p><p>Quatre lignes, les&nbsp;barres marquent les&nbsp;retours à&nbsp;la&nbsp;ligne.</p></td>
-          <td data-l="Réglages"><p>Instrument Sans&nbsp;46&nbsp;px, 600, interligne 1,02, approche −0,04&nbsp;em, <code>#0F0A1A</code>.</p><p>«&nbsp;Votre préparation est&nbsp;» en <code>#6D28D9</code>&nbsp;; «&nbsp;prête.&nbsp;» en&nbsp;Instrument Serif italique, 400, 12&nbsp;% plus grand, <code>#6D28D9</code>.</p></td></tr>
-        <tr><td>Sous&#8209;titre</td><td data-l="Contenu"><p class="ex">L’examen civique est désormais exigé pour&nbsp;les&nbsp;titres de&nbsp;séjour, les&nbsp;cartes de&nbsp;résident et&nbsp;la&nbsp;naturalisation. Vos&nbsp;stagiaires arrivent avec des&nbsp;niveaux très hétérogènes. Un&nbsp;échec leur coûte une&nbsp;nouvelle session et&nbsp;retarde leur&nbsp;dossier.</p></td>
-          <td data-l="Réglages">Inter 16&nbsp;px, interligne 1,6, <code>#57516B</code>, 430&nbsp;px de&nbsp;large au&nbsp;plus, centré.</td></tr>
-        <tr><td>Deux boutons</td><td data-l="Contenu"><p><span class="ex">Tester gratuitement</span> · <span class="ex">Voir les&nbsp;tarifs</span></p></td>
-          <td data-l="Réglages"><p>Inter 14&nbsp;px, 600, gélules, marges 13 × 22&nbsp;px.</p><p>Le&nbsp;premier&nbsp;: fond <code>#0F0A1A</code>, texte blanc. Le&nbsp;second&nbsp;: fond blanc, bordure <code>#E4DFEE</code>, texte <code>#0F0A1A</code>.</p></td></tr>
-        <tr><td>Réassurance</td><td data-l="Contenu"><p class="ex">✓ 5&nbsp;licences offertes &nbsp; ✓ Sans&nbsp;engagement</p></td>
-          <td data-l="Réglages">Inter 13&nbsp;px, 500, <code>#57516B</code>&nbsp;; coches <code>#16A34A</code>.</td></tr>
-        <tr><td>Démonstration</td><td data-l="Contenu">Image <code>civicap-hero.png</code></td>
-          <td data-l="Réglages">488&nbsp;px de&nbsp;large, marges 28&nbsp;px.</td></tr>
-        <tr><td>Surtitre des&nbsp;chiffres</td><td data-l="Contenu"><p class="ex">835&nbsp;questions officielles · trois&nbsp;parcours</p></td>
-          <td data-l="Réglages">Inter 11&nbsp;px, 700, capitales, espacement 0,14&nbsp;em, <code>#4C1D95</code>, centré, sur&nbsp;le&nbsp;dégradé.</td></tr>
-        <tr><td>Trois cartes chiffres</td><td data-l="Contenu"><p><span class="ex">235</span> questions · <span class="ex">Carte de&nbsp;séjour pluriannuelle</span></p><p><span class="ex">257</span> questions · <span class="ex">Carte de&nbsp;résident</span></p><p><span class="ex">343</span> questions · <span class="ex">Naturalisation</span></p></td>
-          <td data-l="Réglages"><p>Cartes blanches, coins 20&nbsp;px, 10&nbsp;px&nbsp;d'écart.</p><p>Chiffre&nbsp;: Instrument Sans&nbsp;46&nbsp;px, 600, approche −0,03&nbsp;em. «&nbsp;questions&nbsp;»&nbsp;: Inter 10,5&nbsp;px, 700, capitales, <code>#8A8499</code>. Libellé&nbsp;: Instrument Sans&nbsp;15&nbsp;px, 600, <code>#0F0A1A</code>.</p></td></tr>
-        <tr><td>Carte blanche · cadre</td><td data-l="Contenu">Photo, puis trois sections&nbsp;: côté stagiaire, côté formateur, fiches à&nbsp;télécharger.</td>
-          <td data-l="Réglages">Fond blanc, coins 30&nbsp;px, marges 36&nbsp;px&nbsp;; 56&nbsp;px sous la&nbsp;photo, 96&nbsp;px entre les&nbsp;sections.</td></tr>
-        <tr><td>Photo</td><td data-l="Contenu">Image <code>civicap-entete-photo.jpg</code></td><td data-l="Réglages">528&nbsp;px de&nbsp;large.</td></tr>
-        <tr><td>Pastilles de&nbsp;section</td><td data-l="Contenu"><p><span class="ex">Côté stagiaire</span> · <span class="ex">Côté formateur</span> · <span class="ex">À&nbsp;télécharger</span></p></td>
-          <td data-l="Réglages">Inter 12&nbsp;px, 600, <code>#6D28D9</code>, fond <code>#F3EEFF</code>, gélule, point violet de&nbsp;6&nbsp;px devant.</td></tr>
-        <tr><td>Côté stagiaire</td><td data-l="Contenu"><p class="ex">Ce&nbsp;que&nbsp;CiviCap fait à&nbsp;votre&nbsp;place</p><p class="ex">Il&nbsp;fait passer les&nbsp;examens blancs, corrige et&nbsp;explique chaque réponse, et&nbsp;cible les&nbsp;points faibles de&nbsp;chacun. Vos&nbsp;formateurs gardent leur temps pour&nbsp;enseigner.</p></td>
-          <td data-l="Réglages"><p>Titre&nbsp;: Instrument Sans&nbsp;36&nbsp;px, 600, interligne 1,06, approche −0,035&nbsp;em&nbsp;; «&nbsp;votre place&nbsp;» en&nbsp;Instrument Serif italique <code>#6D28D9</code>.</p><p>Texte&nbsp;: Inter 16&nbsp;px, <code>#57516B</code>, 440&nbsp;px au&nbsp;plus.</p></td></tr>
-        <tr><td>Trois cartes modes</td><td data-l="Contenu"><p><span class="ex">Entraînement libre</span>&nbsp;: <span class="ex">15, 25&nbsp;ou&nbsp;40&nbsp;questions, tirées au&nbsp;hasard parmi les&nbsp;835&nbsp;questions officielles. Correction immédiate après chaque réponse.</span></p>
-            <p><span class="ex">Examen blanc, conditions réelles</span>&nbsp;: <span class="ex">40&nbsp;questions, 45&nbsp;minutes chronométrées, seuil de&nbsp;réussite à&nbsp;80&nbsp;%&nbsp;: exactement le&nbsp;format de&nbsp;l’épreuve officielle.</span></p>
-            <p><span class="ex">Révision par&nbsp;thème</span>&nbsp;: <span class="ex">Fiches de&nbsp;révision, cartes mémoire à&nbsp;répétition espacée et&nbsp;entraînement par&nbsp;thème pour&nbsp;cibler les&nbsp;points faibles.</span></p></td>
-          <td data-l="Réglages"><p>Fond <code>#F7F5FC</code>, coins 24&nbsp;px, 20&nbsp;px d'écart. Image en&nbsp;haut (<code>civicap-entrainement.png</code>, <code>civicap-examen.png</code>, <code>civicap-revision.png</code>, 528&nbsp;px).</p><p>Titre&nbsp;: Instrument Sans&nbsp;21&nbsp;px, 600. Texte&nbsp;: Inter 15&nbsp;px, <code>#57516B</code>. Marges 24 × 28&nbsp;px.</p></td></tr>
-        <tr><td>Côté formateur</td><td data-l="Contenu"><p class="ex">Pilotez la&nbsp;progression / de&nbsp;chaque&nbsp;stagiaire</p><p class="ex">Vous créez vos&nbsp;stagiaires en&nbsp;quelques clics, par&nbsp;invitation e&#8209;mail. Puis vous suivez leur progression&nbsp;: scores, thèmes faibles, tests&nbsp;passés.</p><p>Puis l'image <code>civicap-pilotage.png</code>.</p></td>
-          <td data-l="Réglages">Comme «&nbsp;Côté stagiaire&nbsp;»&nbsp;; «&nbsp;chaque stagiaire&nbsp;» en&nbsp;Instrument Serif italique. Image 528&nbsp;px.</td></tr>
-        <tr><td>Fiches à&nbsp;télécharger</td><td data-l="Contenu"><p class="ex">Des&nbsp;fiches formatives / à&nbsp;télécharger</p><p class="ex">Une&nbsp;notion par&nbsp;fiche, illustrée et&nbsp;classée par&nbsp;thème&nbsp;: les&nbsp;devoirs du&nbsp;citoyen, le&nbsp;droit des&nbsp;femmes, le&nbsp;Parlement, la&nbsp;Constitution, travailler en&nbsp;France…</p><p>Puis l'image <code>civicap-fiches.jpg</code>.</p></td>
-          <td data-l="Réglages">Comme «&nbsp;Côté stagiaire&nbsp;»&nbsp;; «&nbsp;à&nbsp;télécharger&nbsp;» en&nbsp;Instrument Serif italique. Image 528&nbsp;px, 56&nbsp;px de&nbsp;marge sous elle.</td></tr>
-        <tr><td>Bloc final</td><td data-l="Contenu"><p>Pastille <span class="ex">Pour&nbsp;votre organisme</span></p><p class="ex">Ajoutez vos&nbsp;stagiaires / quand vous le&nbsp;voulez.</p><p class="ex">5&nbsp;licences offertes pour&nbsp;tester. Ensuite, des&nbsp;licences de&nbsp;30&nbsp;ou&nbsp;90&nbsp;jours dès&nbsp;9,00&nbsp;€ HT, sans&nbsp;engagement.</p><p>Bouton <span class="ex">Créer mon espace d’essai&nbsp;→</span></p></td>
-          <td data-l="Réglages"><p>Fond <code>civicap-fond-cta.jpg</code>, repli <code>#120A24</code>, coins 30&nbsp;px, marges 56 × 40&nbsp;px,&nbsp;centré.</p><p>Pastille <code>#DDD3FF</code> sur <code>#2A1D4A</code>, point <code>#C4B5FD</code>. Titre blanc, «&nbsp;quand vous le&nbsp;voulez.&nbsp;» en&nbsp;Instrument Serif italique <code>#C4B5FD</code>. Texte <code>#CFC7E2</code>, 400&nbsp;px au&nbsp;plus. Bouton blanc, texte <code>#0F0A1A</code>.</p></td></tr>
-        <tr><td>Pied</td><td data-l="Contenu"><p><span class="ex">Se désabonner</span> · <span class="ex">[Raison sociale, adresse postale]</span></p></td>
-          <td data-l="Réglages">Inter 11,5&nbsp;px, <code>#8A8499</code>, centré&nbsp;; lien en <code>#6D28D9</code>, souligné.</td></tr>
-      </tbody>
-    </table></div>
-  </section>
-
-  <section class="bloc">
-    <h2>Les&nbsp;images</h2>
-    <p>Les&nbsp;fichiers sont plus larges que&nbsp;leur affichage, en&nbsp;général du&nbsp;double, pour&nbsp;rester nets
-      sur&nbsp;les&nbsp;écrans à&nbsp;haute densité&nbsp;; seul le&nbsp;fond du&nbsp;bandeau est à&nbsp;sa&nbsp;taille. Dans Beefree,
-      fixer la&nbsp;largeur du&nbsp;bloc image, pas celle du&nbsp;fichier.
-      Les&nbsp;textes alternatifs passent avec l'import&nbsp;; les&nbsp;voici pour&nbsp;un&nbsp;bloc&nbsp;refait.</p>
-    <div class="tbl-wrap"><table>
-      <thead><tr><th>Fichier</th><th>Affichée</th><th>Texte alternatif</th></tr></thead>
-      <tbody>
-        <tr><td><code>civicap-logo.png</code></td><td data-l="Affichée">96&nbsp;px</td><td data-l="Texte alternatif">CiviCap</td></tr>
-        <tr><td><code>civicap-coche.png</code></td><td data-l="Affichée">18&nbsp;px</td><td data-l="Texte alternatif">vide (décorative)</td></tr>
-        <tr><td><code>civicap-hero.png</code></td><td data-l="Affichée">488&nbsp;px</td><td data-l="Texte alternatif">La&nbsp;question 7, «&nbsp;Que&nbsp;commémore la&nbsp;fête nationale du&nbsp;14&nbsp;juillet&nbsp;?&nbsp;», sa&nbsp;bonne réponse et&nbsp;son&nbsp;explication&nbsp;; les&nbsp;questions 8&nbsp;et&nbsp;9&nbsp;attendent derrière.</td></tr>
-        <tr><td><code>civicap-entete-photo.jpg</code></td><td data-l="Affichée">528&nbsp;px</td><td data-l="Texte alternatif">Une&nbsp;formatrice montre l’écran de&nbsp;son&nbsp;ordinateur portable à&nbsp;une&nbsp;personne en&nbsp;formation, qui&nbsp;sourit&nbsp;; à&nbsp;l’écran, l’entraînement libre en&nbsp;est à&nbsp;la&nbsp;question 7&nbsp;sur&nbsp;15.</td></tr>
-        <tr><td><code>civicap-entrainement.png</code></td><td data-l="Affichée">528&nbsp;px</td><td data-l="Texte alternatif">Un&nbsp;nouvel entraînement&nbsp;: 15, 25&nbsp;ou&nbsp;40&nbsp;questions, tirées au&nbsp;hasard parmi les&nbsp;835&nbsp;questions officielles.</td></tr>
-        <tr><td><code>civicap-examen.png</code></td><td data-l="Affichée">528&nbsp;px</td><td data-l="Texte alternatif">L’écran d’examen blanc&nbsp;: question 12&nbsp;sur&nbsp;40, le&nbsp;compte à&nbsp;rebours et&nbsp;le&nbsp;drapeau «&nbsp;à&nbsp;revoir&nbsp;».</td></tr>
-        <tr><td><code>civicap-revision.png</code></td><td data-l="Affichée">528&nbsp;px</td><td data-l="Texte alternatif">Une&nbsp;carte mémoire sur&nbsp;la&nbsp;laïcité, à&nbsp;revoir dans trois jours.</td></tr>
-        <tr><td><code>civicap-pilotage.png</code></td><td data-l="Affichée">528&nbsp;px</td><td data-l="Texte alternatif">Exemple de&nbsp;suivi des&nbsp;stagiaires&nbsp;: pour&nbsp;chacun, son&nbsp;score au&nbsp;dernier examen blanc, son&nbsp;thème faible, le&nbsp;nombre de&nbsp;tests passés et&nbsp;son&nbsp;statut.</td></tr>
-        <tr><td><code>civicap-fiches.jpg</code></td><td data-l="Affichée">528&nbsp;px</td><td data-l="Texte alternatif">Cinq fiches formatives en&nbsp;éventail&nbsp;: la&nbsp;Constitution, le&nbsp;droit des&nbsp;femmes en&nbsp;France, les&nbsp;devoirs du&nbsp;citoyen, le&nbsp;Parlement, travailler en&nbsp;France.</td></tr>
-        <tr><td><code>civicap-fond-hero.jpg</code></td><td data-l="Affichée">fond, 600&nbsp;px</td><td data-l="Texte alternatif">aucun (image de&nbsp;fond)</td></tr>
-        <tr><td><code>civicap-fond-cta.jpg</code></td><td data-l="Affichée">fond, 600&nbsp;px</td><td data-l="Texte alternatif">aucun (image de&nbsp;fond)</td></tr>
-      </tbody>
-    </table></div>
-  </section>
-
-  <section class="bloc">
-    <h2>La&nbsp;palette</h2>
-    <ul class="palette">
-      <li><span style="background:#F3F1F8"></span><div><b>#F3F1F8</b>Fond de&nbsp;l'e&#8209;mail</div></li>
-      <li><span style="background:#F1E6F8"></span><div><b>#F1E6F8</b>Repli du&nbsp;bandeau</div></li>
-      <li><span style="background:#FFFFFF"></span><div><b>#FFFFFF</b>Cartes</div></li>
-      <li><span style="background:#F7F5FC"></span><div><b>#F7F5FC</b>Cartes des&nbsp;trois modes</div></li>
-      <li><span style="background:#0F0A1A"></span><div><b>#0F0A1A</b>Titres, boutons</div></li>
-      <li><span style="background:#57516B"></span><div><b>#57516B</b>Texte courant</div></li>
-      <li><span style="background:#8A8499"></span><div><b>#8A8499</b>Texte discret, pied</div></li>
-      <li><span style="background:#6D28D9"></span><div><b>#6D28D9</b>Violet&nbsp;: mots mis en&nbsp;valeur, liens</div></li>
-      <li><span style="background:#5B21B6"></span><div><b>#5B21B6</b>Texte du&nbsp;badge</div></li>
-      <li><span style="background:#4C1D95"></span><div><b>#4C1D95</b>Surtitre des&nbsp;chiffres</div></li>
-      <li><span style="background:#F3EEFF"></span><div><b>#F3EEFF</b>Fond des&nbsp;pastilles</div></li>
-      <li><span style="background:#16A34A"></span><div><b>#16A34A</b>Coches</div></li>
-      <li><span style="background:#120A24"></span><div><b>#120A24</b>Repli du&nbsp;bloc final</div></li>
-      <li><span style="background:#C4B5FD"></span><div><b>#C4B5FD</b>Violet clair du&nbsp;bloc final</div></li>
-      <li><span style="background:#CFC7E2"></span><div><b>#CFC7E2</b>Texte du&nbsp;bloc final</div></li>
-    </ul>
-  </section>
+  <p class="note"><b>Avant d'envoyer</b>, remplacer dans le&nbsp;pied le&nbsp;lien «&nbsp;Se&nbsp;désabonner&nbsp;»
+    et&nbsp;«&nbsp;[Raison sociale, adresse postale]&nbsp;».</p>
+  <p class="note"><b>Un&nbsp;bloc arrive de&nbsp;travers&nbsp;?</b> Une&nbsp;capture d'écran suffit&nbsp;: je
+    corrige le&nbsp;fichier.</p>
 </div>
 </body>
 </html>

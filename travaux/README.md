@@ -76,21 +76,20 @@ l'outil d'envoi, son chemin devra aussi devenir une adresse absolue.
 
 ### Kit d'import Beefree
 
-`newsletter-civicap/beefree/` prépare l'e-mail pour l'importeur HTML de Beefree :
-`civicap-beefree.html` (le fichier à importer), `civicap-images.zip` (les images,
-préfixées `civicap-`, pour le gestionnaire de fichiers) et `index.html`, le guide : les
-deux fonds à remettre à la main (l'importeur ne reprend pas les images de fond), les
-polices, les liens et mentions, les réglages mobiles, une fiche de montage bloc par bloc
-et la palette. Les deux fichiers se régénèrent après toute modification de l'e-mail :
+`newsletter-civicap/beefree/` : un fichier, une action. `civicap-beefree.html` s'importe
+tel quel dans Beefree (import HTML) ; `index.html` le dit en deux étapes. Le fichier se
+régénère après toute modification de l'e-mail :
 
     python3 tools/beefree-civicap.py
 
 Le script pointe les images vers leurs copies publiques sur `raw.githubusercontent.com`,
-figées sur le dernier commit qui les a modifiées : il refuse de tourner si une image est
-modifiée sans être committée, et prévient si ce commit n'est pas encore poussé. Il retire
-ce que Beefree régénère (fond VML, blocs conditionnels Outlook, texte d'aperçu caché,
-commentaires). Le rendu est identique à l'original, vérifié au pixel près à 700 et 390 px.
-L'import lui-même n'a pas été essayé, faute d'accès à Beefree.
+figées sur le dernier commit qui les a modifiées (il refuse de tourner si une image est
+modifiée sans être committée). Beefree n'importe pas les images de fond : les deux fonds
+deviennent des couleurs unies, la teinte médiane de chaque image (`#F2DBF3` pour le
+dégradé du bandeau, `#1A1028` pour l'aurore du bloc final), si bien que le fichier montre
+exactement ce que Beefree recevra. Il retire aussi ce que Beefree génère lui-même : fond
+VML, blocs conditionnels Outlook, texte d'aperçu caché, commentaires. L'import n'a pas été
+essayé, faute d'accès à Beefree.
 
 `tools/insecables.py` ne touche plus au contenu des balises `<code>` et `<pre>` : un nom de
 fichier ou une version texte doit se copier tel quel.

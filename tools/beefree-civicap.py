@@ -1,37 +1,35 @@
 #!/usr/bin/env python3
-"""Prépare la newsletter CiviCap pour l'importeur HTML de Beefree.
+"""Prépare la newsletter CiviCap pour l'import HTML de Beefree : un fichier, rien à refaire.
 
     python3 tools/beefree-civicap.py
 
   travaux/newsletter-civicap/email.html → travaux/newsletter-civicap/beefree/civicap-beefree.html
-  logo + img/                           → travaux/newsletter-civicap/beefree/civicap-images.zip
 
-L'importeur de Beefree garde les adresses d'images telles quelles : un chemin relatif
-(« img/hero.png ») arrive en bloc image vide. Les images passent donc en adresses absolues,
-vers les copies publiques du dépôt GitHub, figées sur le dernier commit qui les a modifiées
-(une image régénérée ne change pas un e-mail déjà monté).
+Beefree garde les adresses d'images telles quelles : un chemin relatif (« img/hero.png »)
+arriverait en bloc image vide. Les images passent donc en adresses absolues, vers leurs
+copies publiques du dépôt GitHub, figées sur le dernier commit qui les a modifiées.
 
-Le reste ne sert qu'à Outlook ou à l'envoi direct, et Beefree régénère le sien : le fond VML
-du bandeau, les blocs conditionnels mso, le texte d'aperçu caché (il se règle dans l'outil
-d'envoi, le guide le donne), les commentaires. L'importeur ne reprend pas les images de
-fond : elles restent dans le code, avec leurs couleurs de repli, et le guide explique
-comment les remettre.
+Beefree n'importe pas les images de fond : les deux fonds (le dégradé du bandeau, l'aurore
+du bloc final) deviennent des couleurs unies, la teinte médiane de chaque image. Ce qu'on
+voit en ouvrant le fichier est ce qu'on obtient dans Beefree, sans retouche.
 
-Le ZIP porte les mêmes images, préfixées « civicap- », pour le gestionnaire de fichiers de
-Beefree. Il est reproductible : mêmes images, même fichier.
+Le reste ne sert qu'à Outlook ou à l'envoi direct, et Beefree génère le sien : le fond VML,
+les blocs conditionnels mso, le texte d'aperçu caché, les commentaires.
 """
 import pathlib
 import re
 import subprocess
 import sys
-import zipfile
 
 RACINE = pathlib.Path(__file__).resolve().parent.parent
 NL = RACINE / "travaux" / "newsletter-civicap"
 SOURCE = NL / "email.html"
-SORTIE = NL / "beefree"
+SORTIE = NL / "beefree" / "civicap-beefree.html"
 DEPOT = "https://raw.githubusercontent.com/Drabczynski/onlineformapro-website"
 IMAGES = ["logo-civicap.png", "img"]
+# couleur de repli de l'original → teinte médiane de l'image de fond qu'elle remplace
+FONDS = {"#F1E6F8": "#F2DBF3",   # fond-hero.jpg
+         "#120A24": "#1A1028"}   # fond-cta.jpg
 
 
 def git(*args):
@@ -60,9 +58,15 @@ def pour_beefree(html, base):
     html = re.sub(r"<!-- texte d'aperçu.*?</div>\s*", "", html, flags=re.S)
     html = re.sub(r"[ \t]*<!--.*?-->\n?", "", html, flags=re.S)
     html = re.sub(r"[ \t]*/\*.*?\*/\n?", "", html, flags=re.S)
+    html = re.sub(r"\n    <div>\n|\n    </div>\n", "\n", html)    # l'enveloppe du VML
+    # les fonds en image deviennent des couleurs unies
+    html = re.sub(r'\s+background="[^"]+"', "", html)
+    html = re.sub(r"background-image:url\('[^']+'\);background-repeat:[^;]+;"
+                  r"background-position:[^;]+;background-size:[^;]+;", "", html)
+    for repli, teinte in FONDS.items():
+        html = html.replace(repli, teinte)
     relatif = r"(?!https?:|data:|mailto:|#|\[)"
-    html = re.sub(rf'\b(src|background)="{relatif}([^"]+)"', rf'\1="{base}\2"', html)
-    html = re.sub(rf"url\('{relatif}([^']+)'\)", rf"url('{base}\1')", html)
+    html = re.sub(rf'\bsrc="{relatif}([^"]+)"', rf'src="{base}\1"', html)
     return html
 
 
@@ -70,25 +74,10 @@ def verifie(html):
     assert html.startswith("<!DOCTYPE html>"), "DOCTYPE"
     assert re.search(r"<head>.*<meta charset=\"utf-8\">.*</head>", html, re.S), "meta charset"
     assert "<body" in html and "</html>" in html, "html / body"
-    for attr in re.findall(r'\b(?:src|background)="([^"]+)"', html):
-        assert attr.startswith("https://"), f"chemin relatif : {attr}"
+    for src in re.findall(r'\bsrc="([^"]+)"', html):
+        assert src.startswith("https://"), f"chemin relatif : {src}"
+    assert "background-image" not in html and 'background="' not in html, "image de fond"
     assert "<!--" not in html and "mso" not in html, "reste Outlook"
-
-
-def images():
-    for i in IMAGES:
-        chemin = NL / i
-        yield from (sorted(chemin.iterdir()) if chemin.is_dir() else [chemin])
-
-
-def zip_images(dest):
-    with zipfile.ZipFile(dest, "w", zipfile.ZIP_STORED) as z:
-        for f in images():
-            nom = "civicap-" + f.name.replace("logo-civicap", "logo")
-            info = zipfile.ZipInfo(nom, date_time=(2026, 1, 1, 0, 0, 0))
-            info.external_attr = 0o644 << 16
-            z.writestr(info, f.read_bytes())
-            print(f"  {nom}")
 
 
 if __name__ == "__main__":
@@ -96,8 +85,6 @@ if __name__ == "__main__":
     base = f"{DEPOT}/{sha}/{NL.relative_to(RACINE)}/"
     html = pour_beefree(SOURCE.read_text(encoding="utf-8"), base)
     verifie(html)
-    SORTIE.mkdir(exist_ok=True)
-    (SORTIE / "civicap-beefree.html").write_text(html, encoding="utf-8")
-    print(f"civicap-beefree.html : images servies depuis le commit {sha[:7]}")
-    print("civicap-images.zip :")
-    zip_images(SORTIE / "civicap-images.zip")
+    SORTIE.parent.mkdir(exist_ok=True)
+    SORTIE.write_text(html, encoding="utf-8")
+    print(f"{SORTIE.name} : images servies depuis le commit {sha[:7]}")
