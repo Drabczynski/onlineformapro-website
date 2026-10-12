@@ -168,6 +168,15 @@ marqueurs les délimitent : `COUNT:OFII` / `LISTE:OFII` pour la première,
 d'une section un `h2`, celui d'un organisme un `h3` — ne pas remonter ce niveau, la
 hiérarchie est ce qui sépare les deux listes pour un lecteur d'écran.
 
+`mailing-gagnants/contacts-mailing.csv` (lien « Toutes les adresses en CSV » en haut de
+la page) réunit les adresses envoyables des deux sections, régénéré par le même script :
+exactement celles que les boutons « Copier » donnent, soit ni AKSIS (« Ne pas contacter »)
+ni les domaines sans messagerie, et chaque adresse une seule fois (colonne `liste` à
+« OFII + FLE » quand elle figure dans les deux). Colonnes : email, organisme, domaine,
+liste, nom, fonction, décideur, confiance (indice OFII). Point-virgule et UTF-8 avec BOM,
+pour Excel en français. La colonne `nom` hérite du défaut de l'export OFII signalé sur la
+page : pas de publipostage sur le prénom.
+
 Un domaine partagé sert plusieurs organismes : `greta-cfa.ac-lyon.fr` apparaît
 sous GRETA CFA Loire et sous GRETA CFA de l'Ain, avec les mêmes fiches
 académiques. C'est voulu, les deux sont joignables à ces adresses.

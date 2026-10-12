@@ -6,6 +6,7 @@
   travaux/prospection-fle.csv                        → travaux/gagnants-fle/
   travaux/mails-fle.csv + travaux/contacts-hunter.csv → travaux/mailing-gagnants/
   travaux/contacts-ofii.csv                          → travaux/mailing-ofii/
+  les deux listes d'adresses, filtrées         → travaux/mailing-gagnants/contacts-mailing.csv
 
 Les deux sources d'adresses sont fusionnées sur le nom de domaine. Quand la
 même adresse figure dans les deux, la fiche de contacts-hunter.csv l'emporte :
@@ -28,6 +29,7 @@ CSV_MAILS = RACINE / "travaux" / "mails-fle.csv"
 CSV_HUNTER = RACINE / "travaux" / "contacts-hunter.csv"
 CSV_OFII = RACINE / "travaux" / "contacts-ofii.csv"
 PAGE_MAILS = RACINE / "travaux" / "mailing-gagnants" / "index.html"
+CSV_EXPORT = RACINE / "travaux" / "mailing-gagnants" / "contacts-mailing.csv"
 ZONES = {
     "COUNT:PROSPECTION-FLE": None,   # le compteur, sous le titre
     "TABLE:PROSPECTION-FLE": None,   # la table, sous le chapeau
@@ -182,8 +184,9 @@ def main():
     PAGE.write_text(page, encoding="utf-8")
     print(f"{len(lignes)} lignes écrites dans {PAGE.relative_to(RACINE)} "
           f"(A {n['A']} · B {n['B']} · C {n['C']})")
-    page_mails()
-    page_ofii()
+    fle = page_mails()
+    ofii = page_ofii()
+    export_csv(ofii, fle)
 
 
 # ---------------------------------------------------------------- mailing ---
@@ -389,6 +392,7 @@ def page_mails():
     injecte(PAGE_MAILS, ZONES_MAILS)
     print(f"FLE  : {len(fiches)} organismes et {total} adresses ({len(sans)} sans contact, "
           f"{len(ecartees)} adresses gabarit écartées, {nb_exclus} organisme à exclure)")
+    return fiches
 
 
 # ------------------------------------------------------------------ OFII ---
@@ -491,6 +495,39 @@ def page_ofii():
     print(f"OFII : {len(fiches)} organismes et {total} adresses ({envoyables} envoyables, "
           f"{nb_sansmx} domaines sans messagerie, {len(invalides)} adresse mal formée, "
           f"{nb_croise} domaines déjà dans la campagne FLE)")
+    return fiches
+
+
+def export_csv(ofii, fle):
+    """Toutes les adresses envoyables de la page, en un fichier pour le tableur.
+
+    Mêmes filtres que la page : ni les organismes à ne pas contacter (EXCLUS), ni
+    les domaines sans serveur de messagerie ; les adresses mal formées et les
+    gabarits sont déjà écartés en amont. Une adresse présente dans les deux listes
+    n'apparaît qu'une fois, avec « OFII + FLE ». Point-virgule et UTF-8 avec BOM :
+    Excel en français l'ouvre tel quel.
+    """
+    lignes, index = [], {}
+    for liste, fiches in (("OFII", ofii), ("FLE", fle)):
+        for f in fiches:
+            if f.get("sansmx") or EXCLUS.get(_cle(f["of"])):
+                continue
+            for c in f["contacts"]:
+                if c["adr"] in index:   # déjà vue : on note seulement la seconde liste
+                    if liste not in index[c["adr"]]["liste"]:
+                        index[c["adr"]]["liste"] += " + " + liste
+                    continue
+                ligne = {"email": c["adr"], "organisme": f["of"], "domaine": f["domaine"],
+                         "liste": liste, "nom": c["nom"], "fonction": c["fonction"],
+                         "decideur": "oui" if c.get("decideur") else "",
+                         "confiance": c.get("score") if c.get("score") is not None else ""}
+                index[c["adr"]] = ligne
+                lignes.append(ligne)
+    with CSV_EXPORT.open("w", encoding="utf-8-sig", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=list(lignes[0]), delimiter=";")
+        w.writeheader()
+        w.writerows(lignes)
+    print(f"CSV  : {len(lignes)} adresses dans {CSV_EXPORT.relative_to(RACINE)}")
 
 
 def injecte(page, zones):
