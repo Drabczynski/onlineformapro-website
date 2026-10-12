@@ -77,19 +77,25 @@ l'outil d'envoi, son chemin devra aussi devenir une adresse absolue.
 ### Kit d'import Beefree
 
 `newsletter-civicap/beefree/` : un fichier, une action. `civicap-beefree.html` s'importe
-tel quel dans Beefree (import HTML) ; `index.html` le dit en deux étapes. Le fichier se
-régénère après toute modification de l'e-mail :
+dans Beefree (import HTML) ; `index.html` le dit en deux étapes.
 
-    python3 tools/beefree-civicap.py
+Le premier essai, l'e-mail d'origine importé tel quel, est arrivé en pièces : l'importeur
+ne sait pas lire des cartes emboîtées dans un cadre (cartes perdues, pastilles éclatées,
+titre d'un seul style). Le fichier est donc réécrit comme Beefree écrit ses propres
+e-mails : des rangées, des colonnes, une pile de blocs par colonne (image, titre,
+paragraphe, bouton) et un seul style par bloc. Le titre à deux couleurs devient deux blocs
+de titre ; les accents en italique, une seconde ligne en Instrument Serif ; les pastilles,
+de petites images (`beefree/img/`) ; les trois chiffres, trois colonnes blanches sur une
+rangée lilas, séparées par des bordures (si Beefree les ignore, les cartes se touchent et
+restent lisibles) ; les deux boutons du bandeau, l'un sous l'autre. Les fonds en image
+deviennent des couleurs unies (`#F2DBF3`, `#1A1028`) : Beefree ne les importe pas.
 
-Le script pointe les images vers leurs copies publiques sur `raw.githubusercontent.com`,
-figées sur le dernier commit qui les a modifiées (il refuse de tourner si une image est
-modifiée sans être committée). Beefree n'importe pas les images de fond : les deux fonds
-deviennent des couleurs unies, la teinte médiane de chaque image (`#F2DBF3` pour le
-dégradé du bandeau, `#1A1028` pour l'aurore du bloc final), si bien que le fichier montre
-exactement ce que Beefree recevra. Il retire aussi ce que Beefree génère lui-même : fond
-VML, blocs conditionnels Outlook, texte d'aperçu caché, commentaires. L'import n'a pas été
-essayé, faute d'accès à Beefree.
+    python3 tools/beefree-civicap.py images   # pastilles et cartes des modes, puis committer et pousser
+    python3 tools/beefree-civicap.py          # le fichier à importer
+
+Les images sont servies depuis `raw.githubusercontent.com`, figées sur le dernier commit qui
+les a modifiées : le script refuse de tourner si une image est modifiée sans être committée.
+L'import n'a pas été essayé de ce côté, faute d'accès à Beefree.
 
 `tools/insecables.py` ne touche plus au contenu des balises `<code>` et `<pre>` : un nom de
 fichier ou une version texte doit se copier tel quel.
