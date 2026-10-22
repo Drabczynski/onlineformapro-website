@@ -124,6 +124,16 @@ Chaque image est une page HTML rendue par Chromium à un instant donné, puis en
 par ffmpeg (sans ffmpeg installé : `pip install imageio-ffmpeg` en fournit un). `--essai`
 sort quelques images fixes pour vérifier un réglage sans tout rendre.
 
+### Montage face caméra
+
+`tools/montage-plateforme-fle.py` monte la vidéo face caméra sur la Plateforme FLE
+(30 s de parole, 9:16) : sous-titres mot à mot (transcription Whisper « base » en local,
+via le paquet npm `sts-whisper-base` et transformers.js, texte corrigé à la main sur son
+minutage), zooms à chaque phrase, captures de la plateforme posées sur le buste au moment
+où elles sont nommées, carte de fin « Demandez vos accès démo », son à -14 LUFS. Ni la
+vidéo source ni le montage ne sont dans le dépôt : on y voit la personne qui parle, et le
+dépôt est public.
+
 ## Page organismes CiviCap
 
 `page-civicap/index.html` est la refonte de la page « Pour les organismes de formation »
