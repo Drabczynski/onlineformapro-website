@@ -11,6 +11,7 @@ Dossier accessible depuis la plaque « Travail en cours » de la page d'accueil.
 | Mailing des gagnants | `mailing-gagnants/` — OFII puis FLE, les deux campagnes |
 | Newsletter CiviCap | `newsletter-civicap/` — objets, e-mail, version texte |
 | Page organismes CiviCap | `page-civicap/` — la refonte de la page « organismes » |
+| Vidéo Plateforme FLE | `video-plateforme-fle/` — 23 s, 4:5, à partir des cinq visuels |
 | Site des modules IA | https://module-ia-pink.vercel.app/site/ — lien externe |
 | Poster Octobre Rose | `poster-octobre-rose.webp` |
 | Mailing FLE Plateforme | `mailing-fle-plateforme.pdf` |
@@ -104,6 +105,24 @@ les a modifiées : le script refuse de tourner si une image est modifiée sans �
 
 `tools/insecables.py` ne touche plus au contenu des balises `<code>`, `<pre>` et `<textarea>` :
 un nom de fichier, une version texte ou un code doit se copier tel quel.
+
+## Vidéo Plateforme FLE
+
+`video-plateforme-fle/plateforme-fle.mp4` : 23 secondes en 1080 × 1350 (4:5, le format qui
+prend le plus de place dans un fil Facebook ou Instagram), 30 images par seconde, sans son.
+Elle est faite des cinq visuels Onlineformapro fournis (`visuels/`, dans l'ordre de la
+vidéo : ressources, parcours, vocabulaire, battles, évaluation). Les cinq partagent le même
+en-tête au même endroit ; la vidéo le garde fixe, pris sur un seul visuel en pleine
+résolution, et fait monter d'un visuel à l'autre le sous-titre et les captures, qui avancent
+doucement pendant qu'ils sont à l'écran. La première image est déjà un visuel complet (la
+vignette de Facebook). La fin reprend l'appel du mailing Plateforme FLE, « Demandez vos accès
+démo », avec onlineformapro.com et projet@onlineformapro.com, adresses tirées du même mailing.
+
+    FFMPEG=/chemin/vers/ffmpeg python3 tools/video-plateforme-fle.py [--essai]
+
+Chaque image est une page HTML rendue par Chromium à un instant donné, puis encodée en H.264
+par ffmpeg (sans ffmpeg installé : `pip install imageio-ffmpeg` en fournit un). `--essai`
+sort quelques images fixes pour vérifier un réglage sans tout rendre.
 
 ## Page organismes CiviCap
 
