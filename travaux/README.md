@@ -12,6 +12,7 @@ Dossier accessible depuis la plaque « Travail en cours » de la page d'accueil.
 | Newsletter CiviCap | `newsletter-civicap/` — objets, e-mail, version texte |
 | Page organismes CiviCap | `page-civicap/` — la refonte de la page « organismes » |
 | Vidéo Plateforme FLE | `video-plateforme-fle/` — 23 s, 4:5, à partir des cinq visuels |
+| Newsletter Outils Google | `newsletter-google/` — e-mail pour Brevo, d'après la maquette fournie |
 | Site des modules IA | https://module-ia-pink.vercel.app/site/ — lien externe |
 | Poster Octobre Rose | `poster-octobre-rose.webp` |
 | Mailing FLE Plateforme | `mailing-fle-plateforme.pdf` |
@@ -133,6 +134,23 @@ minutage), zooms à chaque phrase, captures de la plateforme posées sur le bust
 où elles sont nommées, carte de fin « Demandez vos accès démo », son à -14 LUFS. Ni la
 vidéo source ni le montage ne sont dans le dépôt : on y voit la personne qui parle, et le
 dépôt est public.
+
+## Newsletter Outils Google
+
+`newsletter-google/` : la maquette fournie (`maquette.jpg`, 556 px de large) écrite en e-mail
+pour Brevo. `brevo.html` est le code à coller (« Coller votre code »), `email.html` le même
+avec des images en chemins relatifs pour l'aperçu, `index.html` la page avec le bouton
+« Copier le code », les étapes, l'objet et l'aperçu proposés.
+
+    python3 tools/newsletter-google.py images   # recadre les visuels, puis committer et pousser
+    python3 tools/newsletter-google.py          # écrit email.html, brevo.html et la zone de code
+
+Titres, cartes, pastilles et boutons sont du vrai texte ; le logo Google, les icônes et la
+photo du bas sont recadrés dans la maquette, bords fondus dans la couleur de leur bloc. Les
+cartes sont des blocs en ligne de 260 px : deux de front sur ordinateur, l'une sous l'autre
+sur téléphone, sans dépendre des règles mobiles. Vérifié de 320 à 640 px, avec et sans la
+police Plus Jakarta Sans. « Contactez-nous » ouvre un e-mail vers projet@onlineformapro.com,
+à confirmer ; le pied utilise `{{ mirror }}` et `{{ unsubscribe }}` de Brevo.
 
 ## Page organismes CiviCap
 

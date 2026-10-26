@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Newsletter Outils Google — Onlineformapro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../travaux.css">
+<style>
+.pieces{display:flex;flex-wrap:wrap;gap:10px}
+.pieces .piece{margin-top:0}
+.piece.fort{color:var(--cream-0);background:var(--ink);border-color:var(--ink)}
+.piece.fort:hover{background:var(--red);border-color:var(--red);color:var(--cream-0)}
+.etapes{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:10px;counter-reset:e;max-width:720px}
+.etapes li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:baseline;
+  background:var(--cream-0);border:1px solid var(--line);border-radius:14px;padding:18px 20px;
+  font-size:1rem;line-height:1.55;color:var(--ink-2);counter-increment:e}
+.etapes li::before{content:counter(e);font-family:var(--mono);font-size:11px;color:var(--red)}
+.etapes b{color:var(--ink);font-weight:600}
+.code{margin-top:22px;max-width:720px}
+.code-h{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.code-h span{font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.copier{margin-left:auto;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--cream-0);background:var(--ink);cursor:pointer;
+  border:1px solid var(--ink);border-radius:999px;padding:10px 18px;transition:background .18s,border-color .18s}
+.copier:hover{background:var(--red);border-color:var(--red)}
+.copier.ok{background:var(--green);border-color:var(--green)}
+textarea{display:block;width:100%;height:190px;resize:vertical;padding:16px 18px;border-radius:14px;
+  border:1px solid var(--line);background:var(--cream-0);color:var(--ink-2);font-family:var(--mono);
+  font-size:11px;line-height:1.6;white-space:pre;overflow:auto}
+.bloc{margin-top:clamp(34px,5vw,46px);max-width:720px}
+.bloc h2{font-size:1.18rem;font-weight:600;letter-spacing:-.025em;margin:0 0 8px}
+.bloc > p{margin:0;font-size:.92rem;line-height:1.6;color:var(--ink-2)}
+.manques{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:10px}
+.manques li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;font-size:.92rem;line-height:1.55;color:var(--ink-2)}
+.manques li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);margin-top:8px}
+.manques b{color:var(--ink);font-weight:600}
+.manques code{font-family:var(--mono);font-size:.84em;background:var(--cream-2);border-radius:5px;padding:1px 5px}
+</style>
+</head>
+<body>
+<div class="wrap moyen">
+  <a class="retour" href="../"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M7 4 3 8l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Travail en&nbsp;cours</a>
+
+  <h1>Newsletter Outils Google</h1>
+  <span class="compte">Pour&nbsp;Brevo · 17&nbsp;modules</span>
+  <p class="chapeau">La&nbsp;maquette fournie, écrite en&nbsp;e&#8209;mail&nbsp;: les&nbsp;titres, les&nbsp;neuf cartes et&nbsp;les&nbsp;boutons sont du&nbsp;vrai texte, net sur&nbsp;tous les&nbsp;écrans&nbsp;; le&nbsp;logo Google, les&nbsp;icônes et&nbsp;la&nbsp;photo
+    du&nbsp;bas sont repris de&nbsp;la&nbsp;maquette. Les&nbsp;cartes passent l'une sous l'autre sur&nbsp;téléphone.</p>
+
+  <div class="pieces">
+    <a class="piece fort" href="email.html" target="_blank" rel="noopener">Voir l'e&#8209;mail
+      <svg width="9" height="9" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3h7v7M13 3 4 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a class="piece" href="maquette.jpg" target="_blank" rel="noopener">La&nbsp;maquette
+      <svg width="9" height="9" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3h7v7M13 3 4 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+
+  <ol class="etapes">
+    <li><span>Dans Brevo, créer une&nbsp;campagne e&#8209;mail et, à&nbsp;l'étape du&nbsp;contenu, choisir
+      <b>«&nbsp;Coller votre code&nbsp;»</b>.</span></li>
+    <li><span>Cliquer sur&nbsp;<b>Copier le&nbsp;code</b> ci&#8209;dessous et&nbsp;le&nbsp;<b>coller</b> dans l'éditeur.</span></li>
+    <li><span>Renseigner l'<b>objet</b> et&nbsp;le&nbsp;<b>texte d'aperçu</b> (propositions plus bas), puis
+      s'envoyer un&nbsp;<b>test</b>.</span></li>
+  </ol>
+
+  <div class="code">
+    <div class="code-h"><span>Le&nbsp;code de&nbsp;la&nbsp;newsletter</span>
+      <button class="copier" type="button" id="copier">Copier le&nbsp;code</button></div>
+    <textarea id="code" readonly spellcheck="false" aria-label="Code HTML de la newsletter">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+&lt;meta name="x-apple-disable-message-reformatting"&gt;
+&lt;title&gt;Nouvelles formations : les outils collaboratifs Google&lt;/title&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"&gt;
+&lt;style&gt;
+  body{margin:0;padding:0;width:100%!important;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
+  table{border-collapse:collapse}
+  img{border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic}
+  a{text-decoration:none}
+  @media only screen and (max-width:575px){
+    .conteneur{width:100%!important}
+    .h1{font-size:44px!important}
+    .h2{font-size:27px!important}
+    .px{padding-left:18px!important;padding-right:18px!important}
+    .carte{max-width:none!important}
+    .carte table{height:auto!important}
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body style="margin:0;padding:0;background:#EEF3F8;"&gt;
+&lt;table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#EEF3F8" style="background:#EEF3F8;"&gt;
+&lt;tr&gt;&lt;td align="center" style="padding:24px 0;"&gt;
+&lt;table role="presentation" class="conteneur" width="556" cellpadding="0" cellspacing="0" border="0" style="width:556px;max-width:556px;background:#FFFFFF;"&gt;
+
+  &lt;tr&gt;&lt;td class="px" align="center" bgcolor="#F7FAFD" style="background:#F7FAFD;padding:44px 24px 0;"&gt;
+    &lt;p style="margin:0;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:22px;line-height:1.2;font-weight:700;letter-spacing:-.01em;color:#1F6FE5;"&gt;Nouvelles formations&lt;/p&gt;
+    &lt;h1 class="h1" style="margin:12px 0 0;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:58px;line-height:1.0;font-weight:800;letter-spacing:-.035em;color:#001A3F;"&gt;Les&amp;nbsp;outils&lt;br&gt;collaboratifs&lt;/h1&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td bgcolor="#F7FAFD" style="background:#F7FAFD;font-size:0;line-height:0;"&gt;
+    &lt;img src="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/35d242504ba16e55f5593b9afa9d64baa5fd7869/travaux/newsletter-google/img/google.png" width="556" alt="Google : Gmail, Drive, Docs, Sheets, Agenda, Tasks et Keep" style="display:block;width:100%;max-width:556px;height:auto;border:0;"&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td class="px" align="center" bgcolor="#F7FAFD" style="background:#F7FAFD;padding:6px 24px 46px;"&gt;
+    &lt;table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:separate;margin:0 auto;width:100%;max-width:396px;" class="bouton"&gt;&lt;tr&gt;&lt;td align="center" bgcolor="#0C71FD" style="background:#0C71FD;border-radius:999px;box-shadow:0 10px 24px -8px rgba(12,113,253,.55);"&gt;&lt;a href="https://onlineformapro.com/formations/outils_google/demo" target="_blank" style="display:block;padding:17px 24px;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:20px;line-height:24px;font-weight:700;letter-spacing:-.01em;color:#FFFFFF;text-decoration:none;border-radius:999px;"&gt;Testez gratuitement&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+
+  &lt;tr&gt;&lt;td class="px" align="center" style="padding:46px 24px 0;"&gt;
+    &lt;h2 class="h2" style="margin:0 auto;max-width:470px;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:33px;line-height:1.14;font-weight:800;letter-spacing:-.03em;color:#0E163B;"&gt;&lt;span style="color:#0B78FB;"&gt;17&amp;nbsp;modules&lt;/span&gt; pour&amp;nbsp;maîtriser les&amp;nbsp;outils Google&lt;/h2&gt;
+    &lt;p style="margin:12px 0 0;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.5;color:#757982;"&gt;Un&amp;nbsp;parcours pour&amp;nbsp;chaque usage du&amp;nbsp;quotidien.&lt;/p&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td align="center" style="padding:22px 10px 0;font-size:0;line-height:0;"&gt;
+    &lt;div class="carte" style="display:inline-block;width:100%;max-width:260px;vertical-align:top;font-size:14px;"&gt;&lt;div style="padding:4px;"&gt;&lt;table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F1F7FC" style="background:#F1F7FC;border-radius:18px;border-collapse:separate;height:168px;"&gt;&lt;tr&gt;&lt;td width="112" valign="middle" style="width:112px;padding:0 0 0 4px;"&gt;&lt;img src="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/35d242504ba16e55f5593b9afa9d64baa5fd7869/travaux/newsletter-google/img/compte-drive.png" width="112" alt="" style="display:block;width:112px;height:auto;border:0;"&gt;&lt;/td&gt;&lt;td valign="middle" align="left" style="padding:14px 12px 14px 4px;text-align:left;"&gt;&lt;div style="font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.22;font-weight:800;color:#0C0F2C;"&gt;Compte Google &amp;amp; Drive&lt;/div&gt;&lt;table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;margin:9px 0 8px;"&gt;&lt;tr&gt;&lt;td bgcolor="#DDEEFE" style="background:#DDEEFE;border-radius:999px;padding:4px 12px 5px;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12.5px;line-height:16px;font-weight:700;color:#2B6DB9;white-space:nowrap;"&gt;2&amp;nbsp;modules&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;div style="font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:1.42;color:#6E7682;"&gt;Créer son&amp;nbsp;compte, ranger et&amp;nbsp;partager ses&amp;nbsp;fichiers.&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="carte" style="display:inline-block;width:100%;max-width:260px;vertical-align:top;font-size:14px;"&gt;&lt;div style="padding:4px;"&gt;&lt;table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F1F7FC" style="background:#F1F7FC;border-radius:18px;border-collapse:separate;height:168px;"&gt;&lt;tr&gt;&lt;td width="112" valign="middle" style="width:112px;padding:0 0 0 4px;"&gt;&lt;img src="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/35d242504ba16e55f5593b9afa9d64baa5fd7869/travaux/newsletter-google/img/gmail.png" width="112" alt="" style="display:block;width:112px;height:auto;border:0;"&gt;&lt;/td&gt;&lt;td valign="middle" align="left" style="padding:14px 12px 14px 4px;text-align:left;"&gt;&lt;div style="font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.22;font-weight:800;color:#0C0F2C;"&gt;Gmail&lt;/div&gt;&lt;table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;margin:9px 0 8px;"&gt;&lt;tr&gt;&lt;td bgcolor="#DDEEFE" style="background:#DDEEFE;border-radius:999px;padding:4px 12px 5px;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12.5px;line-height:16px;font-weight:700;color:#2B6DB9;white-space:nowrap;"&gt;3&amp;nbsp;modules&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;div style="font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:1.42;color:#6E7682;"&gt;Écrire, organiser sa&amp;nbsp;boîte et&amp;nbsp;protéger ses&amp;nbsp;échanges.&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="carte" style="display:inline-block;width:100%;max-width:260px;vertical-align:top;font-size:14px;"&gt;&lt;div style="padding:4px;"&gt;&lt;table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F1F7FC" style="background:#F1F7FC;border-radius:18px;border-collapse:separate;height:168px;"&gt;&lt;tr&gt;&lt;td width="112" valign="middle" style="width:112px;padding:0 0 0 4px;"&gt;&lt;img src="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/35d242504ba16e55f5593b9afa9d64baa5fd7869/travaux/newsletter-google/img/agenda.png" width="112" alt="" style="display:block;width:112px;height:auto;border:0;"&gt;&lt;/td&gt;&lt;td valign="middle" align="left" style="padding:14px 12px 14px 4px;text-align:left;"&gt;&lt;div style="font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.22;font-weight:800;color:#0C0F2C;"&gt;Agenda, Tasks &amp;amp; Keep&lt;/div&gt;&lt;table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;margin:9px 0 8px;"&gt;&lt;tr&gt;&lt;td bgcolor="#DDEEFE" style="background:#DDEEFE;border-radius:999px;padding:4px 12px 5px;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12.5px;line-height:16px;font-weight:700;color:#2B6DB9;white-space:nowrap;"&gt;1&amp;nbsp;module&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;div style="font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:1.42;color:#6E7682;"&gt;Planifier ses&amp;nbsp;journées et&amp;nbsp;suivre ses&amp;nbsp;tâches.&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="carte" style="display:inline-block;width:100%;max-width:260px;vertical-align:top;font-size:14px;"&gt;&lt;div style="padding:4px;"&gt;&lt;table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F1F7FC" style="background:#F1F7FC;border-radius:18px;border-collapse:separate;height:168px;"&gt;&lt;tr&gt;&lt;td width="112" valign="middle" style="width:112px;padding:0 0 0 4px;"&gt;&lt;img src="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/35d242504ba16e55f5593b9afa9d64baa5fd7869/travaux/newsletter-google/img/meet.png" width="112" alt="" style="display:block;width:112px;height:auto;border:0;"&gt;&lt;/td&gt;&lt;td valign="middle" align="left" style="padding:14px 12px 14px 4px;text-align:left;"&gt;&lt;div style="font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.22;font-weight:800;color:#0C0F2C;"&gt;Google Meet&lt;/div&gt;&lt;table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;margin:9px 0 8px;"&gt;&lt;tr&gt;&lt;td bgcolor="#DDEEFE" style="background:#DDEEFE;border-radius:999px;padding:4px 12px 5px;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12.5px;line-height:16px;font-weight:700;color:#2B6DB9;white-space:nowrap;"&gt;1&amp;nbsp;module&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;div style="font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:1.42;color:#6E7682;"&gt;Organiser et&amp;nbsp;rejoindre des&amp;nbsp;réunions en&amp;nbsp;ligne.&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="carte" style="display:inline-block;width:100%;max-width:260px;vertical-align:top;font-size:14px;"&gt;&lt;div style="padding:4px;"&gt;&lt;table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F1F7FC" style="background:#F1F7FC;border-radius:18px;border-collapse:separate;height:168px;"&gt;&lt;tr&gt;&lt;td width="112" valign="middle" style="width:112px;padding:0 0 0 4px;"&gt;&lt;img src="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/35d242504ba16e55f5593b9afa9d64baa5fd7869/travaux/newsletter-google/img/chat-forms.png" width="112" alt="" style="display:block;width:112px;height:auto;border:0;"&gt;&lt;/td&gt;&lt;td valign="middle" align="left" style="padding:14px 12px 14px 4px;text-align:left;"&gt;&lt;div style="font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.22;font-weight:800;color:#0C0F2C;"&gt;Google Chat &amp;amp; Forms&lt;/div&gt;&lt;table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;margin:9px 0 8px;"&gt;&lt;tr&gt;&lt;td bgcolor="#DDEEFE" style="background:#DDEEFE;border-radius:999px;padding:4px 12px 5px;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12.5px;line-height:16px;font-weight:700;color:#2B6DB9;white-space:nowrap;"&gt;1&amp;nbsp;module&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;div style="font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:1.42;color:#6E7682;"&gt;Échanger en&amp;nbsp;équipe et&amp;nbsp;créer des&amp;nbsp;formulaires.&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="carte" style="display:inline-block;width:100%;max-width:260px;vertical-align:top;font-size:14px;"&gt;&lt;div style="padding:4px;"&gt;&lt;table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F1F7FC" style="background:#F1F7FC;border-radius:18px;border-collapse:separate;height:168px;"&gt;&lt;tr&gt;&lt;td width="112" valign="middle" style="width:112px;padding:0 0 0 4px;"&gt;&lt;img src="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/35d242504ba16e55f5593b9afa9d64baa5fd7869/travaux/newsletter-google/img/sheets.png" width="112" alt="" style="display:block;width:112px;height:auto;border:0;"&gt;&lt;/td&gt;&lt;td valign="middle" align="left" style="padding:14px 12px 14px 4px;text-align:left;"&gt;&lt;div style="font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.22;font-weight:800;color:#0C0F2C;"&gt;Google Sheets&lt;/div&gt;&lt;table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;margin:9px 0 8px;"&gt;&lt;tr&gt;&lt;td bgcolor="#DDEEFE" style="background:#DDEEFE;border-radius:999px;padding:4px 12px 5px;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12.5px;line-height:16px;font-weight:700;color:#2B6DB9;white-space:nowrap;"&gt;3&amp;nbsp;modules&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;div style="font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:1.42;color:#6E7682;"&gt;Saisir des&amp;nbsp;données, calculer et&amp;nbsp;collaborer.&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="carte" style="display:inline-block;width:100%;max-width:260px;vertical-align:top;font-size:14px;"&gt;&lt;div style="padding:4px;"&gt;&lt;table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F1F7FC" style="background:#F1F7FC;border-radius:18px;border-collapse:separate;height:168px;"&gt;&lt;tr&gt;&lt;td width="112" valign="middle" style="width:112px;padding:0 0 0 4px;"&gt;&lt;img src="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/35d242504ba16e55f5593b9afa9d64baa5fd7869/travaux/newsletter-google/img/docs.png" width="112" alt="" style="display:block;width:112px;height:auto;border:0;"&gt;&lt;/td&gt;&lt;td valign="middle" align="left" style="padding:14px 12px 14px 4px;text-align:left;"&gt;&lt;div style="font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.22;font-weight:800;color:#0C0F2C;"&gt;Google Docs&lt;/div&gt;&lt;table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;margin:9px 0 8px;"&gt;&lt;tr&gt;&lt;td bgcolor="#DDEEFE" style="background:#DDEEFE;border-radius:999px;padding:4px 12px 5px;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12.5px;line-height:16px;font-weight:700;color:#2B6DB9;white-space:nowrap;"&gt;2&amp;nbsp;modules&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;div style="font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:1.42;color:#6E7682;"&gt;Rédiger, structurer et&amp;nbsp;enrichir ses&amp;nbsp;documents.&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="carte" style="display:inline-block;width:100%;max-width:260px;vertical-align:top;font-size:14px;"&gt;&lt;div style="padding:4px;"&gt;&lt;table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F1F7FC" style="background:#F1F7FC;border-radius:18px;border-collapse:separate;height:168px;"&gt;&lt;tr&gt;&lt;td width="112" valign="middle" style="width:112px;padding:0 0 0 4px;"&gt;&lt;img src="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/35d242504ba16e55f5593b9afa9d64baa5fd7869/travaux/newsletter-google/img/slides.png" width="112" alt="" style="display:block;width:112px;height:auto;border:0;"&gt;&lt;/td&gt;&lt;td valign="middle" align="left" style="padding:14px 12px 14px 4px;text-align:left;"&gt;&lt;div style="font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.22;font-weight:800;color:#0C0F2C;"&gt;Google Slides&lt;/div&gt;&lt;table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;margin:9px 0 8px;"&gt;&lt;tr&gt;&lt;td bgcolor="#DDEEFE" style="background:#DDEEFE;border-radius:999px;padding:4px 12px 5px;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12.5px;line-height:16px;font-weight:700;color:#2B6DB9;white-space:nowrap;"&gt;2&amp;nbsp;modules&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;div style="font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:1.42;color:#6E7682;"&gt;Créer, animer et&amp;nbsp;partager ses&amp;nbsp;présentations.&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td align="center" style="padding:0 10px 40px;font-size:0;line-height:0;"&gt;
+    &lt;div class="carte" style="display:inline-block;width:100%;max-width:528px;vertical-align:top;font-size:14px;"&gt;&lt;div style="padding:4px;"&gt;&lt;table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F1F7FC" style="background:#F1F7FC;border-radius:18px;border-collapse:separate;height:130px;"&gt;&lt;tr&gt;&lt;td width="40%" valign="middle" style="width:40%;padding:0 0 0 4px;"&gt;&lt;img src="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/35d242504ba16e55f5593b9afa9d64baa5fd7869/travaux/newsletter-google/img/gemini.png" width="210" alt="" style="display:block;width:100%;max-width:210px;height:auto;border:0;"&gt;&lt;/td&gt;&lt;td valign="middle" align="left" style="padding:14px 12px 14px 4px;text-align:left;"&gt;&lt;div style="font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.22;font-weight:800;color:#0C0F2C;"&gt;Gemini&lt;/div&gt;&lt;table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;margin:9px 0 8px;"&gt;&lt;tr&gt;&lt;td bgcolor="#DDEEFE" style="background:#DDEEFE;border-radius:999px;padding:4px 12px 5px;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12.5px;line-height:16px;font-weight:700;color:#2B6DB9;white-space:nowrap;"&gt;2&amp;nbsp;modules&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;div style="font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:1.42;color:#6E7682;"&gt;Formuler ses&amp;nbsp;demandes, créer et&amp;nbsp;vérifier les&amp;nbsp;réponses.&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+
+  &lt;tr&gt;&lt;td class="px" align="center" bgcolor="#0D141F" style="background:#0D141F;padding:44px 24px 4px;"&gt;
+    &lt;table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:separate;margin:0 auto;width:100%;max-width:396px;" class="bouton"&gt;&lt;tr&gt;&lt;td align="center" bgcolor="#0C71FD" style="background:#0C71FD;border-radius:999px;box-shadow:0 10px 24px -8px rgba(12,113,253,.55);"&gt;&lt;a href="mailto:projet@onlineformapro.com" target="_blank" style="display:block;padding:17px 24px;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:20px;line-height:24px;font-weight:700;letter-spacing:-.01em;color:#FFFFFF;text-decoration:none;border-radius:999px;"&gt;Contactez&amp;#8209;nous&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td bgcolor="#0D141F" style="background:#0D141F;font-size:0;line-height:0;"&gt;
+    &lt;img src="https://raw.githubusercontent.com/Drabczynski/onlineformapro-website/35d242504ba16e55f5593b9afa9d64baa5fd7869/travaux/newsletter-google/img/equipe.jpg" width="556" alt="Une équipe au travail autour d'ordinateurs, entourée des icônes Google Meet, Agenda et Drive" style="display:block;width:100%;max-width:556px;height:auto;border:0;"&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td class="px" align="center" bgcolor="#0D141F" style="background:#0D141F;padding:10px 24px 34px;"&gt;
+    &lt;p style="margin:0;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;font-weight:700;color:#C9D4E3;"&gt;Onlineformapro&lt;/p&gt;
+    &lt;p style="margin:2px 0 0;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:1.6;color:#8392A8;"&gt;+33 (0)3 84 76 52&amp;nbsp;44&lt;/p&gt;
+    &lt;p style="margin:14px 0 0;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:1.6;color:#8392A8;"&gt;
+      &lt;a href="{{ mirror }}" target="_blank" style="color:#AFC0D6;text-decoration:underline;"&gt;Voir la&amp;nbsp;version en&amp;nbsp;ligne&lt;/a&gt;
+      &amp;nbsp;·&amp;nbsp; &lt;a href="{{ unsubscribe }}" target="_blank" style="color:#AFC0D6;text-decoration:underline;"&gt;Se désabonner&lt;/a&gt;&lt;/p&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+
+&lt;/table&gt;
+&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</textarea>
+  </div>
+
+  <section class="bloc">
+    <h2>Objet et&nbsp;texte d'aperçu</h2>
+    <p><b>Objet&nbsp;:</b> Nouvelles formations&nbsp;: les&nbsp;outils collaboratifs Google<br>
+      <b>Aperçu&nbsp;:</b> 17&nbsp;modules pour&nbsp;maîtriser Gmail, Drive, Docs, Sheets, Meet, Gemini… Testez&nbsp;gratuitement.</p>
+  </section>
+
+  <section class="bloc">
+    <h2>À&nbsp;vérifier avant l'envoi</h2>
+    <ul class="manques">
+      <li><span><b>«&nbsp;Contactez&#8209;nous&nbsp;» ouvre un&nbsp;e&#8209;mail vers projet@onlineformapro.com</b>,
+        l'adresse du&nbsp;mailing Plateforme FLE. À&nbsp;remplacer si les&nbsp;formations Google ont un&nbsp;autre
+        contact ou&nbsp;une&nbsp;page dédiée.</span></li>
+      <li><span><b>«&nbsp;Testez gratuitement&nbsp;»</b> mène à
+        <code>onlineformapro.com/formations/outils_google/demo</code>.</span></li>
+      <li><span><b>Le&nbsp;pied</b> porte les&nbsp;balises de&nbsp;Brevo <code>{{ mirror }}</code> (version en&nbsp;ligne)
+        et <code>{{ unsubscribe }}</code> (désabonnement)&nbsp;: Brevo les&nbsp;remplace à&nbsp;l'envoi. S'il
+        signale un&nbsp;lien de&nbsp;désabonnement manquant, c'est que&nbsp;la&nbsp;balise n'a pas été reconnue.</span></li>
+      <li><span><b>Les&nbsp;visuels viennent de&nbsp;la&nbsp;maquette</b>, qui&nbsp;fait 556&nbsp;px de&nbsp;large&nbsp;: nets à&nbsp;l'écran, un&nbsp;peu doux sur&nbsp;un&nbsp;téléphone récent. Avec les&nbsp;fichiers d'origine en&nbsp;double
+        résolution, ils seraient parfaitement nets. La&nbsp;maquette s'arrête au&nbsp;milieu de&nbsp;la&nbsp;photo du&nbsp;bas&nbsp;: le&nbsp;bas de&nbsp;la&nbsp;photo se fond dans le&nbsp;fond sombre.</span></li>
+    </ul>
+  </section>
+</div>
+<script>
+document.getElementById('copier').addEventListener('click', async function () {
+  var zone = document.getElementById('code'), b = this;
+  try { await navigator.clipboard.writeText(zone.value); }
+  catch (e) { zone.focus(); zone.select(); document.execCommand('copy'); }
+  b.textContent = 'Copié';
+  b.classList.add('ok');
+  setTimeout(function () { b.textContent = 'Copier le code'; b.classList.remove('ok'); }, 2200);
+});
+</script>
+</body>
+</html>
