@@ -4,7 +4,8 @@
     python3 tools/newsletter-google.py images   # 1. les visuels, puis committer et pousser
     python3 tools/newsletter-google.py          # 2. l'e-mail
 
-  travaux/newsletter-google/maquette.jpg  la maquette fournie (556 px de large)
+  travaux/newsletter-google/maquette.jpg  la maquette fournie, dernière version (556 px de large)
+  maquette-v1.jpg                         la première, qui montre plus de la photo du bas
   → img/                                  les visuels recadrés dans la maquette
   → email.html                            l'e-mail, images en chemins relatifs (aperçu)
   → brevo.html                            le même, images en adresses absolues : à coller dans Brevo
@@ -34,18 +35,21 @@ CONTACT = "mailto:projet@onlineformapro.com"
 FOND_HAUT, FOND_CARTE, FOND_NUIT = "#F7FAFD", "#F1F7FC", "#0D141F"
 
 # boîtes dans la maquette (x0, y0, x1, y1), couleur de fond où fondre les bords, fondus
+# [, autre fichier source]
 VISUELS = {
-    "google.png": ((0, 222, 556, 535), FOND_HAUT, dict(haut=28, bas=30)),
-    "compte-drive.png": ((22, 814, 142, 964), FOND_CARTE, dict(tout=10)),
-    "gmail.png": ((285, 814, 405, 964), FOND_CARTE, dict(tout=10)),
-    "agenda.png": ((22, 979, 142, 1130), FOND_CARTE, dict(tout=10)),
-    "meet.png": ((285, 979, 405, 1130), FOND_CARTE, dict(tout=10)),
-    "chat-forms.png": ((22, 1144, 142, 1297), FOND_CARTE, dict(tout=10)),
-    "sheets.png": ((285, 1144, 405, 1297), FOND_CARTE, dict(tout=10)),
-    "docs.png": ((22, 1311, 142, 1463), FOND_CARTE, dict(tout=10)),
-    "slides.png": ((285, 1311, 405, 1463), FOND_CARTE, dict(tout=10)),
-    "gemini.png": ((22, 1476, 252, 1603), FOND_CARTE, dict(tout=10)),
-    "equipe.jpg": ((0, 1745, 556, 2000), FOND_NUIT, dict(haut=22, bas=80)),
+    "entete.png": ((0, 0, 556, 86), FOND_HAUT, dict(bas=16)),
+    "google.png": ((0, 249, 556, 562), FOND_HAUT, dict(haut=28, bas=30)),
+    "compte-drive.png": ((22, 841, 142, 991), FOND_CARTE, dict(tout=10)),
+    "gmail.png": ((285, 841, 405, 991), FOND_CARTE, dict(tout=10)),
+    "agenda.png": ((22, 1006, 142, 1157), FOND_CARTE, dict(tout=10)),
+    "meet.png": ((285, 1006, 405, 1157), FOND_CARTE, dict(tout=10)),
+    "chat-forms.png": ((22, 1171, 142, 1324), FOND_CARTE, dict(tout=10)),
+    "sheets.png": ((285, 1171, 405, 1324), FOND_CARTE, dict(tout=10)),
+    "docs.png": ((22, 1338, 142, 1490), FOND_CARTE, dict(tout=10)),
+    "slides.png": ((285, 1338, 405, 1490), FOND_CARTE, dict(tout=10)),
+    "gemini.png": ((22, 1503, 252, 1630), FOND_CARTE, dict(tout=10)),
+    # la nouvelle maquette coupe la photo 27 px plus haut : elle est prise dans la première
+    "equipe.jpg": ((0, 1745, 556, 2000), FOND_NUIT, dict(haut=22, bas=80), "maquette-v1.jpg"),
 }
 
 # les cartes : visuel, titre, nombre de modules, description (textes de la maquette)
@@ -64,10 +68,9 @@ GEMINI = ("gemini.png", "Gemini", "2 modules", "Formuler ses demandes, créer et
 
 def images():
     from PIL import Image, ImageDraw
-    maquette = Image.open(DOSSIER / "maquette.jpg").convert("RGB")
     (DOSSIER / "img").mkdir(exist_ok=True)
-    for nom, (boite, couleur, f) in VISUELS.items():
-        im = maquette.crop(boite)
+    for nom, (boite, couleur, f, *source) in VISUELS.items():
+        im = Image.open(DOSSIER / (source[0] if source else "maquette.jpg")).convert("RGB").crop(boite)
         w, h = im.size
         masque = Image.new("L", (w, h), 255)
         d = ImageDraw.Draw(masque)
@@ -164,7 +167,10 @@ def email(base):
 <tr><td align="center" style="padding:24px 0;">
 <table role="presentation" class="conteneur" width="556" cellpadding="0" cellspacing="0" border="0" style="width:556px;max-width:556px;background:#FFFFFF;">
 
-  <tr><td class="px" align="center" bgcolor="{FOND_HAUT}" style="background:{FOND_HAUT};padding:44px 24px 0;">
+  <tr><td bgcolor="{FOND_HAUT}" style="background:{FOND_HAUT};font-size:0;line-height:0;">
+    <a href="https://onlineformapro.com/" target="_blank" style="text-decoration:none;"><img src="{base}img/entete.png" width="556" alt="Onlineformapro" style="display:block;width:100%;max-width:556px;height:auto;border:0;"></a>
+  </td></tr>
+  <tr><td class="px" align="center" bgcolor="{FOND_HAUT}" style="background:{FOND_HAUT};padding:2px 24px 0;">
     <p style="margin:0;font-family:{POLICE};font-size:22px;line-height:1.2;font-weight:700;letter-spacing:-.01em;color:#1F6FE5;">Nouvelles formations</p>
     <h1 class="h1" style="margin:12px 0 0;font-family:{POLICE};font-size:58px;line-height:1.0;font-weight:800;letter-spacing:-.035em;color:#001A3F;">Les outils<br>collaboratifs</h1>
   </td></tr>
@@ -194,7 +200,6 @@ def email(base):
   </td></tr>
   <tr><td class="px" align="center" bgcolor="{FOND_NUIT}" style="background:{FOND_NUIT};padding:10px 24px 34px;">
     <p style="margin:0;font-family:{POLICE};font-size:13px;line-height:1.6;font-weight:700;color:#C9D4E3;">Onlineformapro</p>
-    <p style="margin:2px 0 0;font-family:{POLICE};font-size:12px;line-height:1.6;color:#8392A8;">+33 (0)3 84 76 52 44</p>
     <p style="margin:14px 0 0;font-family:{POLICE};font-size:12px;line-height:1.6;color:#8392A8;">
       <a href="{{{{ mirror }}}}" target="_blank" style="color:#AFC0D6;text-decoration:underline;">Voir la version en ligne</a>
       &nbsp;·&nbsp; <a href="{{{{ unsubscribe }}}}" target="_blank" style="color:#AFC0D6;text-decoration:underline;">Se désabonner</a></p>
