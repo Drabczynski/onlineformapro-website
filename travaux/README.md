@@ -165,11 +165,15 @@ millions d'apprenants), la ligne droite puis l'éventail de lignes (la demande d
 Textes et liens repris du site officiel, aucun visuel. La partie plus classique du site
 viendra avec le prochain modèle.
 
-À l'arrivée, le Ó du logo est dessiné en routes, aux proportions du logo : l'anneau en route
-circulaire à trois paires de voies où la lumière circule, l'accent en bretelle aux bouts
-arrondis, et des arcs de cercle autour, comme au croisement en X. Les titres sont plus
-serrés que ceux du modèle (interlettrage négatif) ; ceux des chapitres, plus petits, ont
-leurs retours à la ligne choisis.
+L'accueil adopte une composition centrée, à la manière des pages produit SaaS actuelles :
+une pastille d'annonce (le catalogue en accès libre), le titre en Geist (graisse moyenne,
+interlettrage serré, « orchestrée par l'IA » dans un dégradé corail-lilas), le sous-titre,
+deux boutons en pastilles (« Demandez votre démo », « Découvrir la solution »). Les mots du
+titre montent en se défloutant, en cascade, puis les blocs suivants. En bas de l'écran, le
+Ó du logo est dessiné en routes, aux proportions du logo : l'anneau en route circulaire à
+trois paires de voies où la lumière circule, l'accent en bretelle aux bouts arrondis, des
+arcs de cercle de part et d'autre. Titres de chapitre et de cartes aussi en Geist, serrés,
+avec leurs retours à la ligne choisis.
 
 Les objets, d'après les croquis, sont dessinés comme le camion du modèle : des traits de
 lumière fins à angles vifs sur leurs arêtes, et leur volume, de la couleur exacte du fond,
