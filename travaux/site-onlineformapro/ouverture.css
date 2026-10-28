@@ -50,8 +50,6 @@ h1, h2, h3, p { margin: 0; }
 .menu a { display: block; padding: 9px 10px; border-radius: 4px; font-size: 14px; }
 .menu a:hover { background: rgba(255, 255, 255, .1); }
 .entete-appel { width: calc(206 * var(--u)); height: 100%; background: var(--accent); border-radius: 5px; padding: 0 calc(14 * var(--u)); display: flex; align-items: center; justify-content: center; gap: calc(10 * var(--u)); font-size: max(11px, calc(13 * var(--u))); }
-.bascule { position: fixed; right: var(--m); bottom: calc(33 * var(--u)); width: calc(50 * var(--u)); min-width: 36px; height: calc(50 * var(--u)); min-height: 36px; border: 0; color: #fff; display: grid; place-items: center; cursor: pointer; }
-.bascule[aria-pressed="false"] svg { opacity: .45; }
 
 /* ------------------------------------------------------------------ l'expérience */
 .experience { display: grid; }

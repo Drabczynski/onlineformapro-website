@@ -10,13 +10,12 @@
 // il s'allume en y entrant, s'éteint en sortant. Titres : lettre par lettre ; paragraphes :
 // mot par mot ; encadrés : un scintillement. Les cartes se dévoilent de bas en haut.
 //
-// Animations réduites (réglage du système, ou bouton de l'en-tête, retenu) : défilement
-// natif, textes affichés d'un coup, caméra posée à la station la plus proche du chapitre.
+// Animations réduites (réglage « réduire les animations » du système) : défilement natif,
+// textes affichés d'un coup, caméra posée à la station la plus proche du chapitre.
 import { creerMonde } from './monde.js';
 import Lenis from './vendor/lenis.mjs';
 
 const racine = document.documentElement;
-const bouton = document.getElementById('animations');
 let anime = !racine.classList.contains('mouvement-reduit');
 const svh = () => innerHeight / 100;
 
@@ -99,17 +98,19 @@ function eteindre(el) {
 
 // les cartes : dévoilées de bas en haut à l'aller, effacées vers le haut ensuite. Chaque
 // passage anime le cadre (découpe, échelle) et le contenu (opacité, position) vers leur
-// état d'arrivée ; s'il en interrompt un autre (on remonte en cours de route), il repart
-// de l'état atteint au lieu de sauter au début.
-const COURBE = 'cubic-bezier(0.6, 0, 0.4, 1)';
+// état d'arrivée. Le dévoilement démarre vite et ralentit à la fin : la carte est presque
+// entière en une demi-seconde. Un passage qui en interrompt un autre repart de l'état
+// atteint ; une carte qui s'en va avant d'être entière achève de s'ouvrir en 0,3 s pendant
+// que son contenu s'efface (jamais de demi-carte).
+const ENTREE = 'cubic-bezier(0.22, 1, 0.36, 1)', SORTIE = 'cubic-bezier(0.4, 0, 0.2, 1)';
 const corps = (c) => c.querySelector('.carte-corps');
 const OUVERTE = { clipPath: 'inset(0% 0% 0% 0%)', transform: 'scale(1)' }, FERMEE = { clipPath: 'inset(100% 0% 0% 0%)', transform: 'scale(1.05)' };
 const PLEIN = { opacity: 1, transform: 'translateY(0)' }, EFFACE = { opacity: 0, transform: 'translateY(-2.5svh)' };
-const PASSAGES = {                                     // [cadre : départ, arrivée], [contenu : départ, arrivée]
-  entree: [[FERMEE, OUVERTE], [PLEIN, PLEIN]],
-  entreeRetour: [[OUVERTE, OUVERTE], [EFFACE, PLEIN]],
-  sortie: [[OUVERTE, OUVERTE], [PLEIN, EFFACE]],
-  sortieRetour: [[OUVERTE, FERMEE], [PLEIN, PLEIN]],
+const PASSAGES = {                     // le cadre, puis le contenu : [départ, arrivée, durée (ms), courbe]
+  entree: [[FERMEE, OUVERTE, 1200, ENTREE], [PLEIN, PLEIN, 300, ENTREE]],
+  entreeRetour: [[OUVERTE, OUVERTE, 300, ENTREE], [EFFACE, PLEIN, 1000, ENTREE]],
+  sortie: [[OUVERTE, OUVERTE, 300, ENTREE], [PLEIN, EFFACE, 800, SORTIE]],
+  sortieRetour: [[OUVERTE, FERMEE, 1000, SORTIE], [PLEIN, PLEIN, 300, ENTREE]],
 };
 function animerCarte(carte, sorte) {
   const c = corps(carte), animations = carte.getAnimations().concat(c.getAnimations());
@@ -120,11 +121,11 @@ function animerCarte(carte, sorte) {
   for (const a of animations) a.cancel();
   if (!anime) { carte.classList.toggle('est-visible', sorte.startsWith('entree')); return; }
   carte.classList.add('est-visible');
-  const options = { duration: 1600, easing: COURBE, fill: 'both' };
-  let fin;
+  let fin = null;
   [carte, c].forEach((el, k) => {
-    const [depart, arrivee] = PASSAGES[sorte][k];
-    fin = el.animate([enCours ? atteint[k] : depart, arrivee], options);
+    const [depart, arrivee, duration, easing] = PASSAGES[sorte][k];
+    const a = el.animate([enCours ? atteint[k] : depart, arrivee], { duration, easing, fill: 'both' });
+    if (!fin || duration > fin.effect.getTiming().duration) fin = a;
   });
   if (sorte.startsWith('sortie')) fin.finished.then(() => { carte.classList.remove('est-visible'); for (const x of carte.getAnimations().concat(c.getAnimations())) x.cancel(); }).catch(() => {});
 }
@@ -272,21 +273,13 @@ function image(ms) {
 }
 
 // -------------------------------------------------------------------- réglage des animations
+// celui du système, suivi s'il change en cours de visite
 function appliquer(etat) {
   anime = etat;
   racine.classList.toggle('mouvement-reduit', !anime);
-  bouton.setAttribute('aria-pressed', String(anime));
-  bouton.setAttribute('aria-label', anime ? 'Animations activées' : 'Animations désactivées');
   defilementDoux(anime);
 }
-bouton.addEventListener('click', () => {
-  try { localStorage.setItem('ofp-animations', anime ? 'non' : 'oui'); } catch (e) {}
-  appliquer(!anime);
-});
-matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => {
-  let v = null; try { v = localStorage.getItem('ofp-animations'); } catch (er) {}
-  if (!v) appliquer(!e.matches);
-});
+matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => appliquer(!e.matches));
 
 // -------------------------------------------------------------------- départ
 document.querySelectorAll('[data-revele="title"], [data-revele="text"]').forEach(el => { el._morceaux = decouper(el, el.dataset.revele); });

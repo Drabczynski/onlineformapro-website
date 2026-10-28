@@ -184,33 +184,32 @@ l'éventail, le bâtiment de la R&D, qui apparaît avec la carte « Vous avez un
 Objets construits en code, sans fichier 3D : `objets.js`.
 
 Les cartes portent en haut une grande image, sur toute leur largeur (`img/cartes/`, visuels
-fournis par Onlineformapro), décodée dès le chargement pour être prête au dévoilement. Une
-carte interrompue (on remonte en cours de route) repart de l'état atteint, sans saut ; leur
-fond est dense plutôt que flouté, le flou recalculé sur la 3D en mouvement faisant sauter
-les images. Textes des cartes repris du site officiel ; celui de « Marque
+fournis par Onlineformapro), décodée dès le chargement pour être prête au dévoilement. Le
+dévoilement démarre vite et ralentit à la fin (la carte est presque entière en une
+demi-seconde) ; une carte interrompue repart de l'état atteint, et celle qui s'en va avant
+d'être entière achève de s'ouvrir en 0,3 s pendant qu'elle s'efface. Leur fond est dense
+plutôt que flouté, le flou recalculé sur la 3D en mouvement faisant sauter les images. Textes des cartes repris du site officiel ; celui de « Marque
 blanche » est rédigé d'après la demande et la page du LMS (entreprise étendue), à valider.
 
 Le code et les tracés sont les nôtres ; la mécanique et les réglages sont relevés sur le
 modèle : hauteurs des blocs en svh, caméra quasi arrêtée (5 % d'avance) pendant les cartes
 de chaque chapitre, défilement amorti par Lenis (`lerp` 0,1), apparitions des titres et
-des textes lettre par lettre (mêmes images clés), cartes qui se dévoilent de bas en haut en
-1,6 s, tubes fins dont la lumière pulse le long des routes, brouillard, tonalité ACES, halo,
+des textes lettre par lettre (mêmes images clés), cartes qui se dévoilent de bas en haut,
+tubes fins dont la lumière pulse le long des routes, brouillard, tonalité ACES, halo,
 deux lueurs bleues. Couleurs : le bleu, l'orangé et le blanc du modèle ; pour passer au
 rouge de la marque, changer `rouge` dans `COULEURS` (en tête de `monde.js`).
 
 `monde.js` : le décor (logo, routes, carrefours, pics, anneaux, éventail), les stations de
 la caméra et le rendu ; `objets.js` : les objets. `ouverture.js` : les mesures de la page,
-le calage des stations et des modules du cube sur les textes, les apparitions, les cartes,
-le bouton « Animations ». `ouverture.css` : la mise en
-page, à l'échelle d'un écran de 1440 × 900. three.js 0.170.0 (et ses passes d'effets) et
+le calage des stations et des modules du cube sur les textes, les apparitions, les cartes.
+`ouverture.css` : la mise en page, à l'échelle d'un écran de 1440 × 900. three.js 0.170.0 (et ses passes d'effets) et
 Lenis 1.3.23 sont copiés dans `vendor/` (licences MIT jointes) et chargés par une importmap :
 rien ne dépend d'un CDN. Modules JavaScript : la page se sert par http, elle ne s'ouvre pas
 en `file://`.
 
 Accessibilité : la scène est décorative, tout le texte est dans la page, dans l'ordre de
 lecture (les titres découpés pour l'animation gardent une copie lisible). Réglage « réduire
-les animations » du système, ou bouton « Animations » (retenu dans le navigateur) : ni
-défilement amorti, ni apparitions, et la caméra passe d'une vue à l'autre sans glisser.
+les animations » du système (suivi s'il change en cours de visite) : ni défilement amorti, ni apparitions, et la caméra passe d'une vue à l'autre sans glisser.
 Sans WebGL, les textes restent sur le fond bleu. Sur téléphone, les cartes deviennent des
 vitres en bas de l'écran, la caméra centre les objets et les traits sont plus épais.
 Vérifié à 1440 × 900 et 390 × 844, avec et sans animations, sans débordement horizontal.
