@@ -31,7 +31,10 @@ function defilementDoux(actif) {
 // lettres (titres) ou mots (paragraphes) dans des <span>, cachés aux lecteurs d'écran qui
 // lisent une copie intacte
 function decouper(el, mode) {
-  const texte = el.textContent.replace(/\s+/g, ' ').trim();
+  // le texte lu par les lecteurs d'écran (un retour à la ligne y compte pour une espace)
+  const copie = el.cloneNode(true);
+  copie.querySelectorAll('br').forEach(b => b.replaceWith(' '));
+  const texte = copie.textContent.replace(/\s+/g, ' ').trim();
   let lettres = 0, mots = 0;
   const parcourir = (noeud) => {
     for (const n of [...noeud.childNodes]) {

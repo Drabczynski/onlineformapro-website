@@ -204,7 +204,7 @@ const VOIES_FINES = [[-1.8, R], [-0.9, B, 0.013], [0.9, W, 0.013], [1.8, B]];
 // -------------------------------------------------------------------- le décor
 // Le parcours, dans l'ordre : l'autoroute de l'ouverture et ses lacets, le graphique de pics
 // (l'IA), le carrefour vu d'en haut (la solution modulaire), le croisement en X et ses
-// anneaux (les utilisateurs), la ligne droite et l'éventail (la démonstration).
+// anneaux (les apprenants), la ligne droite et l'éventail (la démonstration).
 // le logo : le Ó d'Onlineformapro dessiné en routes, comme un échangeur vu d'en haut, aux
 // proportions du logo (en unités du dessin du logo, × k). L'anneau du O est une route
 // circulaire à trois paires de voies où la lumière circule ; l'accent, une bretelle droite
@@ -227,10 +227,6 @@ function logo(groupe, centre) {
   for (const [dv, couleur] of [[0.2, W], [-0.2, R]]) {
     tube(groupe, new THREE.CatmullRomCurve3(sur([new THREE.Vector2(-L / 2 + 1.1, dv), new THREE.Vector2(L / 2 - 1.1, dv)])), { couleur, rayon: 0.026, route: dv > 0 });
   }
-  // la bretelle : elle quitte l'anneau sur sa droite et rejoint l'autoroute, en contrebas
-  const depart = centre.clone().addScaledVector(dir(-20), R0 - e / 2);
-  route(groupe, [[depart.x, depart.z], [depart.x + 0.75, depart.z + 3.9], [depart.x + 3, depart.z + 10.4], [depart.x + 6.5, depart.z + 16.4], [depart.x + 10.5, depart.z + 20.8], [depart.x + 15.5, depart.z + 23.7]],
-    [[-0.2, W, 0.03], [0.2, R, 0.03]], { bouts: [0, 1] });
   // les arcs : à gauche et à droite de l'anneau, et au-dessus de l'accent (angles en degrés)
   [[10.3, 165, 230, R], [13.3, 160, 225, R], [17.2, 170, 218, W], [10.3, -55, 40, R], [13.3, -48, 46, R], [17.2, -40, 38, R], [19.4, 62, 150, R], [22.8, 70, 140, B]].forEach(([r, a0, a1, couleur]) => {
     const pts = [];
@@ -304,12 +300,12 @@ function decor(groupe) {
     }
     tube(groupe, new THREE.CatmullRomCurve3(pts), { couleur: [R, B, W, B, R, B][k % 6], rayon: k % 2 ? 0.022 : 0.03, route: k % 2 === 0, bouts: [1, 0] });
   }
-  // le logo, à gauche du virage de l'accueil ; sa bretelle rejoint l'autoroute
+  // le logo, à gauche du virage de l'accueil
   const L0 = new THREE.Vector3(-38, 0, -26);
   logo(groupe, L0);
   return { C1, P2, sens, F, L0 };
 }
-// la planète des utilisateurs, au-dessus du croisement en X
+// la planète des apprenants, au-dessus du croisement en X
 const PLANETE = { hauteur: 11, rayon: 7.5 };
 
 // -------------------------------------------------------------------- dégradés bleus (passe)
@@ -348,7 +344,6 @@ export function creerMonde(toile) {
   scene.add(groupe);
   const { C1, P2, sens, F, L0 } = decor(groupe);
   const objets = creerObjets(groupe, {
-    appareils: { position: [0.5, 0, -1.5], cap: -0.2, echelle: 0.85 },
     cube: { centre: C1.clone().setY(7.5) },
     planete: { centre: P2.clone().setY(PLANETE.hauteur), rayon: PLANETE.rayon },
     batiment: { entree: F, sens },
@@ -374,19 +369,19 @@ export function creerMonde(toile) {
   const auBout = (d, lat, h) => P2.clone().addScaledVector(sens, d).addScaledVector(gauche, lat).setY(h);
   const STATIONS = [
     // [progression, position, point visé, point visé sur écran en hauteur (l'objet, centré)]
-    [0.00, tab(L0.clone().add(new THREE.Vector3(6, 40, 36))), tab(L0.clone().add(new THREE.Vector3(8, 0, 1))), tab(L0.clone().add(new THREE.Vector3(0, 0, -3)))],   // l'ouverture : le logo dessiné en routes
+    [0.00, tab(L0.clone().add(new THREE.Vector3(4, 31, 28))), tab(L0.clone().add(new THREE.Vector3(5.5, 0, 1.6))), tab(L0.clone().add(new THREE.Vector3(0, 0, -3)))],   // l'ouverture : le logo dessiné en routes
     [0.05, [-16, 15, 32], [-2, 0, 2]],                   // la caméra descend vers l'autoroute
-    [0.12, [-14, 6.5, 30], [10.5, 1.6, -1], [0.8, 8, 2]],   // les appareils, dans le virage
+    [0.12, [-8, 4.5, 22], [6, 0, 2]],                    // l'autoroute balaie le bas de l'écran
     [0.20, [44, 3.5, -60], [14, 0.5, -112]],             // les lacets
     [0.27, [4, 2.6, -150], [-6, 1.6, -230]],
     [0.33, [-1, 3.0, -226], [-14, 4.0, -268]],            // le graphique s'élève (l'IA)
     [0.37, [3, 3.4, -236], [-14, 4.4, -276]],            // arrêt devant les pics
     [0.44, [4, 12, -345], [0, 0, -405]],                 // la caméra s'élève au-dessus de la route
-    [0.52, tab(C1.clone().add(new THREE.Vector3(-28, 26, 28))), tab(C1.clone().add(new THREE.Vector3(-5.5, 7, -5.5))), tab(C1.clone().setY(5))],   // le carrefour et le cube modulaire (la solution globale et modulaire)
+    [0.52, tab(C1.clone().add(new THREE.Vector3(-28, 26, 28))), tab(C1.clone().add(new THREE.Vector3(-7.5, 7, -7.5))), tab(C1.clone().setY(5))],   // le carrefour et le cube modulaire (la solution globale et modulaire)
     [0.57, tab(C1.clone().add(new THREE.Vector3(-22, 22, 30))), tab(C1.clone().add(new THREE.Vector3(4.5, 7.5, 3))), tab(C1.clone().setY(5))],
     [0.60, tab(C1.clone().add(new THREE.Vector3(-18, 21, 32))), tab(C1.clone().add(new THREE.Vector3(3, 7, 3))), tab(C1.clone().setY(6))],      // le cube complet
     [0.64, [110, 10, -385], [170, 0, -405]],             // la liaison vers le croisement
-    [0.72, tab(P2.clone().add(new THREE.Vector3(-58, 22, 6))), tab(P2.clone().add(new THREE.Vector3(0, 8, -9))), tab(P2.clone().setY(9))],    // le croisement en X, ses anneaux et la planète (les utilisateurs)
+    [0.72, tab(P2.clone().add(new THREE.Vector3(-58, 22, 6))), tab(P2.clone().add(new THREE.Vector3(0, 8, -9))), tab(P2.clone().setY(9))],    // le croisement en X, ses anneaux et la planète (les apprenants)
     [0.78, tab(P2.clone().add(new THREE.Vector3(-52, 20, -14))), tab(P2.clone().add(new THREE.Vector3(0, 8, 12))), tab(P2.clone().setY(9))],
     [0.86, tab(auBout(14, 1.6, 4)), tab(auBout(27.4, 4.5, 0))],          // la ligne droite (la démonstration)
     [0.92, tab(auBout(150, 6, 2.5)), tab(F.clone().addScaledVector(gauche, -30).setY(8))],   // l'éventail

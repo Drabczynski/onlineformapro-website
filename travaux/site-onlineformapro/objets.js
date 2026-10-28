@@ -1,9 +1,8 @@
 // Les objets du parcours, dessinés comme le camion du modèle (voir « objets dessinés » dans
-// monde.js) : un ordinateur, un smartphone et une tablette dans le virage de l'accueil ; un
-// cube dont les modules s'emboîtent au-dessus du carrefour (la solution globale et
-// modulaire) ; une planète entourée de particules au-dessus du croisement en X (les
-// utilisateurs) ; le bâtiment de la R&D au bout de la ligne droite (les développements sur
-// mesure).
+// monde.js) : un cube dont les modules s'emboîtent au-dessus du carrefour (la solution
+// globale et modulaire) ; une planète entourée de particules au-dessus du croisement en X
+// (les 22 millions d'apprenants) ; le bâtiment de la R&D au bout de la ligne droite (les
+// développements sur mesure).
 //
 // Chaque objet est construit dans son propre repère (en unités du monde : la route fait
 // environ 4,4 de large), puis posé. L'épaisseur des traits suit la distance d'où la caméra
@@ -27,17 +26,8 @@ export function rectangle(l, h, r = 0, n = 5) {
   });
   return pts;
 }
-const cercle = (r, n = 24) => Array.from({ length: n }, (_, j) => new THREE.Vector2(r * Math.cos(j / n * 2 * Math.PI), r * Math.sin(j / n * 2 * Math.PI)));
-const decaler = (pts, dx, dy) => pts.map(p => new THREE.Vector2(p.x + dx, p.y + dy));
 // un plan : son centre O, ses axes A (u) et B (v) ; place des points 2D dans l'espace
 const plan = (O, A, B) => (pts) => pts.map(p => O.clone().addScaledVector(A, p.x).addScaledVector(B, p.y));
-// un volume plat : la forme 2D extrudée de « epaisseur » selon A × B, posée sur le plan
-function plaque(d, pts, epaisseur, O, A, B) {
-  const g = new THREE.ExtrudeGeometry(new THREE.Shape(pts), { depth: epaisseur, bevelEnabled: false, curveSegments: 4 });
-  const C = A.clone().cross(B);
-  g.applyMatrix4(new THREE.Matrix4().makeBasis(A, B, C).setPosition(O));
-  d.volume(g);
-}
 // une boîte : ses douze arêtes, et son volume si demandé
 function boite(d, [x0, x1], [y0, y1], [z0, z1], couleur, rayon, volume = true) {
   for (const y of [y0, y1]) d.trait([V(x0, y, z0), V(x1, y, z0), V(x1, y, z1), V(x0, y, z1)], couleur, rayon, true);
@@ -48,76 +38,6 @@ function boite(d, [x0, x1], [y0, y1], [z0, z1], couleur, rayon, volume = true) {
     d.volume(g);
   }
 }
-// pose un objet : position, rotation autour de la verticale, puis inclinaison éventuelle
-function poser(groupe, objet, [x, y, z], cap = 0) {
-  objet.position.set(x, y, z);
-  objet.rotation.y = cap;
-  groupe.add(objet);
-  return objet;
-}
-
-// -------------------------------------------------------------------- l'ordinateur portable
-// Le socle à plat, l'écran ouvert ; dessus en bleu, dessous et dos de l'écran en orangé,
-// comme sur le croquis.
-function ordinateur() {
-  const d = dessin(), L = 6.4, P = 4.4, e = 0.16, r = 0.3, h = 4.1, es = 0.11, inclinaison = 16 * RAD;
-  const fort = 0.02, fin = 0.013;
-  const X = V(1, 0, 0), arriere = V(0, 0, -1), haut = V(0, 1, 0);
-  // le socle
-  d.trait(plan(V(0, e, 0), X, arriere)(rectangle(L, P, r)), B, fort, true);
-  d.trait(plan(V(0, 0.01, 0), X, arriere)(rectangle(L, P, r)), R, fort, true);
-  plaque(d, rectangle(L - 0.04, P - 0.04, r - 0.02), e - 0.02, V(0, 0.01, 0), X, arriere);
-  // le clavier : quatre rangées de treize touches, et la barre d'espace au premier rang
-  const dessus = plan(V(0, e + 0.004, 0), X, arriere), pas = 0.4, touche = 0.32;
-  for (let rang = 0; rang < 5; rang++) {
-    const v = 0.15 + rang * pas;
-    for (let k = 0; k < 13; k++) {
-      if (rang === 0 && k >= 4 && k <= 8) continue;
-      d.trait(dessus(decaler(rectangle(touche, touche, 0.04, 2), (k - 6) * pas, v)), B, fin, true);
-    }
-  }
-  d.trait(dessus(decaler(rectangle(5 * pas - (pas - touche), touche, 0.04, 2), 0, 0.15)), B, fin, true);
-  // le pavé tactile, les prises sur le flanc gauche
-  d.trait(dessus(decaler(rectangle(2.7, 1.35, 0.12), 0, -1.2)), B, fin, true);
-  const flanc = plan(V(-L / 2 - 0.004, e / 2, 0), arriere, haut);
-  for (const u of [-1.5, -1.05, -0.6]) d.trait(flanc(decaler(rectangle(0.3, 0.06, 0.03, 2), u, 0)), B, fin * 0.8, true);
-  // l'écran : la charnière au bord arrière du socle
-  const H = V(0, e, -P / 2 + 0.14), U = V(0, Math.cos(inclinaison), -Math.sin(inclinaison)), N = V(0, Math.sin(inclinaison), Math.cos(inclinaison));
-  const face = plan(H.clone().addScaledVector(U, h / 2).addScaledVector(N, es + 0.004), X, U);
-  d.trait(face(rectangle(L, h, r)), B, fort, true);
-  d.trait(plan(H.clone().addScaledVector(U, h / 2), X, U)(rectangle(L, h, r)), R, fort, true);
-  d.trait(face(decaler(rectangle(L - 0.5, h - 0.62, 0.06), 0, 0.03)), B, fin, true);
-  d.trait(face(decaler(cercle(0.055, 12), 0, h / 2 - 0.17)), B, fin, true);
-  plaque(d, rectangle(L - 0.04, h - 0.04, r - 0.02), es - 0.01, H.clone().addScaledVector(U, h / 2).addScaledVector(N, 0.005), X, U);
-  return d.finir(new THREE.Group());
-}
-
-// -------------------------------------------------------------------- smartphone et tablette
-// Debout, légèrement penchés en arrière, posés sur leur tranche. Face avant en bleu, dos en
-// orangé ; l'écran, la caméra, les boutons sur les flancs.
-function appareil({ l, h, ep, r, inclinaison, ecran, encoche, boutonsG = [], boutonsD = [] }) {
-  const d = dessin(), fort = 0.02, fin = 0.013;
-  const X = V(1, 0, 0), U = V(0, Math.cos(inclinaison * RAD), -Math.sin(inclinaison * RAD)), N = V(0, Math.sin(inclinaison * RAD), Math.cos(inclinaison * RAD));
-  const centre = V(0, 0, 0).addScaledVector(U, h / 2);
-  const face = plan(centre.clone().addScaledVector(N, ep + 0.004), X, U);
-  d.trait(face(rectangle(l, h, r)), B, fort, true);
-  d.trait(plan(centre, X, U)(rectangle(l, h, r)), R, fort, true);
-  d.trait(face(rectangle(l - 2 * ecran, h - 2 * ecran, Math.max(0.05, r - ecran))), B, fin, true);
-  if (encoche) {
-    // l'encoche du haut : sa découpe, le haut-parleur et la caméra
-    d.trait(face(decaler(rectangle(0.62, 0.17, 0.08), 0, h / 2 - ecran - 0.08)), B, fin, true);
-    d.trait(face(decaler(rectangle(0.24, 0.035, 0.017, 2), -0.05, h / 2 - ecran - 0.07)), B, fin * 0.8, true);
-    d.trait(face(decaler(cercle(0.03, 10), 0.15, h / 2 - ecran - 0.07)), B, fin * 0.8, true);
-  } else d.trait(face(decaler(cercle(0.045, 12), 0, h / 2 - ecran / 2)), B, fin, true);
-  // les boutons, sur les flancs (u le long de la hauteur, v dans l'épaisseur)
-  for (const [cote, liste] of [[-1, boutonsG], [1, boutonsD]]) {
-    const flanc = plan(centre.clone().addScaledVector(N, ep / 2).addScaledVector(X, cote * (l / 2 + 0.004)), U, N);
-    for (const [u, longueur] of liste) d.trait(flanc(decaler(rectangle(longueur, 0.06, 0.03, 2), u, 0)), B, fin, true);
-  }
-  plaque(d, rectangle(l - 0.04, h - 0.04, r - 0.02), ep - 0.01, centre.clone().addScaledVector(N, 0.005), X, U);
-  return d.finir(new THREE.Group());
-}
-
 // -------------------------------------------------------------------- la planète
 // Méridiens et parallèles sur une sphère qui masque sa face cachée ; un liseré qui suit le
 // contour vu de la caméra, avec deux arcs orangés ; des particules en orbite.
@@ -335,25 +255,16 @@ function cubeModulaire() {
 }
 
 // -------------------------------------------------------------------- mise en place
-// poses : appareils { position, cap, echelle }, cube { centre }, planete { centre, rayon },
-// batiment { entree, sens }
+// poses : cube { centre }, planete { centre, rayon }, batiment { entree, sens }
 export function creerObjets(scene, poses, outils) {
   ({ dessin } = outils);
   ({ bleu: B, rouge: R } = outils.couleurs);
-  // l'accueil : l'ordinateur, le smartphone et la tablette, dans le virage de l'autoroute
-  const appareils = new THREE.Group();
-  poser(appareils, ordinateur(), [-4.4, 0, 0.6], 0.35);
-  poser(appareils, appareil({ l: 1.75, h: 3.6, ep: 0.17, r: 0.3, inclinaison: 10, ecran: 0.09, encoche: true, boutonsG: [[0.95, 0.42], [0.42, 0.42]], boutonsD: [[0.7, 0.62]] }), [1.3, 0, 2.2], 0.3);
-  poser(appareils, appareil({ l: 5.4, h: 3.8, ep: 0.14, r: 0.32, inclinaison: 14, ecran: 0.26, boutonsD: [[1.1, 0.5], [0.45, 0.5]] }), [6.2, 0, -0.2], -0.6);
-  appareils.scale.setScalar(poses.appareils.echelle);
-  poser(scene, appareils, poses.appareils.position, poses.appareils.cap);
-
   // la solution globale et modulaire : le cube, au-dessus du carrefour
   const cube = cubeModulaire();
   cube.groupe.position.copy(poses.cube.centre);
   scene.add(cube.groupe);
 
-  // les 17 millions d'utilisateurs : la planète au-dessus du croisement
+  // les 22 millions d'apprenants : la planète au-dessus du croisement
   const terre = planete(poses.planete.rayon);
   terre.groupe.position.copy(poses.planete.centre);
   scene.add(terre.groupe);

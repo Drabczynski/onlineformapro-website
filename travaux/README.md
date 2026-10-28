@@ -160,21 +160,20 @@ madarplatform.com pour pouvoir ensuite l'ajuster par petites touches. Une scène
 épinglée à l'écran ; la caméra y parcourt un monde fixe de lignes de lumière (three.js)
 pendant que les textes défilent. Les vues suivent celles du modèle : le logo de l'accueil,
 l'autoroute et ses lacets, le graphique de pics (la puissance de l'IA), le carrefour vu
-d'en haut (la solution globale et modulaire), le croisement en X entouré d'anneaux (17
-millions d'utilisateurs), la ligne droite puis l'éventail de lignes (la demande de démo).
+d'en haut (la solution globale et modulaire), le croisement en X entouré d'anneaux (22
+millions d'apprenants), la ligne droite puis l'éventail de lignes (la demande de démo).
 Textes et liens repris du site officiel, aucun visuel. La partie plus classique du site
 viendra avec le prochain modèle.
 
 À l'arrivée, le Ó du logo est dessiné en routes, aux proportions du logo : l'anneau en route
 circulaire à trois paires de voies où la lumière circule, l'accent en bretelle aux bouts
-arrondis, des arcs de cercle autour (comme au croisement en X) et une bretelle qui rejoint
-l'autoroute. La caméra descend ensuite vers les appareils, qui accompagnent le texte « 25 ans
-de pédagogie ».
+arrondis, et des arcs de cercle autour, comme au croisement en X. Les titres sont plus
+serrés que ceux du modèle (interlettrage négatif) ; ceux des chapitres, plus petits, ont
+leurs retours à la ligne choisis.
 
 Les objets, d'après les croquis, sont dessinés comme le camion du modèle : des traits de
 lumière fins à angles vifs sur leurs arêtes, et leur volume, de la couleur exacte du fond,
-qui cache les traits situés derrière (d'où l'impression d'objet plein). Dans le virage de
-l'autoroute, un ordinateur portable, un smartphone et une tablette. Au-dessus du carrefour,
+qui cache les traits situés derrière (d'où l'impression d'objet plein). Au-dessus du carrefour,
 un cube aux arêtes adoucies : au titre, ses trois modules orangés sont détachés, avec des
 pointillés vers leur place ; chacun s'emboîte à l'entrée de sa carte (LMS OnlineManager,
 OnlineAgora, OnlineVisio) et brille tant qu'elle est à l'écran ; à la troisième, le cube est

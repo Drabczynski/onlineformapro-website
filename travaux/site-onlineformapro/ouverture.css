@@ -49,8 +49,7 @@ h1, h2, h3, p { margin: 0; }
 .menu ul { list-style: none; margin: 0; padding: 0; }
 .menu a { display: block; padding: 9px 10px; border-radius: 4px; font-size: 14px; }
 .menu a:hover { background: rgba(255, 255, 255, .1); }
-.entete-appel { width: calc(206 * var(--u)); height: 100%; background: var(--accent); border-radius: 5px; padding: calc(12 * var(--u)) calc(14 * var(--u)); display: flex; flex-direction: column; justify-content: space-between; font-size: max(11px, calc(13 * var(--u))); }
-.entete-appel svg { align-self: flex-end; }
+.entete-appel { width: calc(206 * var(--u)); height: 100%; background: var(--accent); border-radius: 5px; padding: 0 calc(14 * var(--u)); display: flex; align-items: center; justify-content: center; gap: calc(10 * var(--u)); font-size: max(11px, calc(13 * var(--u))); }
 .bascule { position: fixed; right: var(--m); bottom: calc(33 * var(--u)); width: calc(50 * var(--u)); min-width: 36px; height: calc(50 * var(--u)); min-height: 36px; border: 0; color: #fff; display: grid; place-items: center; cursor: pointer; }
 .bascule[aria-pressed="false"] svg { opacity: .45; }
 
@@ -80,7 +79,7 @@ h1, h2, h3, p { margin: 0; }
 .accent { color: var(--accent); }
 
 /* l'ouverture : le titre en haut à droite, l'encadré en bas à gauche */
-.accueil-titre { position: absolute; right: var(--m); top: var(--m); width: calc(820 * var(--u)); text-align: right; font-size: calc(84 * var(--u)); line-height: calc(78 * var(--u)); }
+.accueil-titre { position: absolute; right: var(--m); top: var(--m); width: calc(820 * var(--u)); text-align: right; font-size: calc(84 * var(--u)); line-height: calc(78 * var(--u)); letter-spacing: -.045em; }
 .accueil-encadre { position: absolute; left: var(--m); bottom: var(--m); width: calc(467 * var(--u)); }
 .accueil-encadre-corps { position: relative; padding: var(--m); }
 .accueil-encadre .chapeau { padding-bottom: calc(100 * var(--u)); padding-inline-end: calc(10 * var(--u)); }
@@ -94,7 +93,7 @@ h1, h2, h3, p { margin: 0; }
 .presentation .moyen { margin-top: calc(40 * var(--u)); }
 
 /* les grands titres de chapitre, à gauche */
-.chapitre-titre { margin-inline-start: var(--m); width: calc(933 * var(--u)); }
+.chapitre-titre { margin-inline-start: var(--m); width: calc(933 * var(--u)); font-size: calc(92 * var(--u)); line-height: calc(88 * var(--u)); letter-spacing: -.045em; }
 
 /* les cartes : le panneau à droite, sur toute la hauteur */
 .carte { position: absolute; right: var(--m); top: var(--m); width: calc(583 * var(--u)); height: calc(860 * var(--u)); }
@@ -149,7 +148,7 @@ h1, h2, h3, p { margin: 0; }
   .accueil-encadre .chapeau { font-size: 17px; line-height: 1.3; padding-bottom: 60px; }
   .presentation { margin: 0 var(--m); width: auto; padding: 0; }
   .moyen { font-size: 24px; line-height: 1.12; }
-  .chapitre-titre { width: auto; margin-inline-end: var(--m); align-self: start; margin-top: calc(var(--m) + 80px); font-size: calc(100 * var(--u)); line-height: 1; }
+  .chapitre-titre { width: auto; margin-inline-end: var(--m); align-self: start; margin-top: calc(var(--m) + 80px); font-size: calc(84 * var(--u)); line-height: 1.02; }
   .carte { left: var(--m); right: var(--m); top: auto; bottom: var(--m); width: auto; height: auto; min-height: 44svh; }
   .carte p { font-size: 15px; padding-bottom: 20px; }
   .progression { right: auto; left: var(--m); top: calc(var(--m) + 70px); grid-auto-flow: column; }
