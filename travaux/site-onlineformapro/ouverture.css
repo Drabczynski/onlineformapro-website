@@ -4,8 +4,8 @@
 :root {
   color-scheme: dark;
   --u: min(calc(100vw / 1440), calc(100svh / 900));
-  --nuit: #000835;
-  --marine: 23, 46, 100;
+  --nuit: #0d0738;
+  --marine: 36, 34, 104;
   --accent: #ff2d4b;
   --encre: #ffffff;
   --doux: rgba(255, 255, 255, .72);
@@ -55,7 +55,7 @@ h1, h2, h3, p { margin: 0; }
 .experience { display: grid; }
 .scene, .chapitres { grid-area: 1 / 1; min-width: 0; }
 .scene { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; align-self: start; }
-.scene-fond { position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 100%, rgba(255, 45, 75, .14), transparent 60%), radial-gradient(100% 70% at 30% 90%, rgba(19, 103, 254, .18), transparent 55%), radial-gradient(90% 60% at 50% 0%, #0b1264, transparent 70%), var(--nuit); transition: opacity .6s ease; }
+.scene-fond { position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 100%, rgba(255, 45, 75, .14), transparent 60%), radial-gradient(100% 70% at 30% 90%, rgba(19, 103, 254, .18), transparent 55%), radial-gradient(90% 60% at 50% 0%, #1d0f6c, transparent 70%), var(--nuit); transition: opacity .6s ease; }
 #monde { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity .6s ease; }
 .avec-webgl #monde { opacity: 1; }
 .avec-webgl .scene-fond { opacity: 0; }

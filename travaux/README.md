@@ -198,8 +198,10 @@ modèle : hauteurs des blocs en svh, caméra quasi arrêtée (5 % d'avance) pend
 de chaque chapitre, défilement amorti par Lenis (`lerp` 0,1), apparitions des titres et
 des textes lettre par lettre (mêmes images clés), cartes qui se dévoilent de bas en haut,
 tubes fins dont la lumière pulse le long des routes, brouillard, tonalité ACES, halo,
-deux lueurs bleues. Couleurs : le bleu, l'orangé et le blanc du modèle ; pour passer au
-rouge de la marque, changer `rouge` dans `COULEURS` (en tête de `monde.js`).
+deux lueurs. Couleurs des lignes : le bleu, l'orangé et le blanc du modèle ; pour passer
+au rouge de la marque, changer `rouge` dans `COULEURS` (en tête de `monde.js`). La nuit du
+fond, ses lueurs et les cartes sont un bleu nuit à peine tiré vers le violet (`NUIT` dans
+`monde.js`, `--nuit` et `--marine` dans `ouverture.css`).
 
 `monde.js` : le décor (logo, routes, carrefours, pics, anneaux, éventail), les stations de
 la caméra et le rendu ; `objets.js` : les objets. `ouverture.js` : les mesures de la page,

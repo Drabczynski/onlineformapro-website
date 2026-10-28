@@ -19,7 +19,7 @@ import { creerObjets, rectangle } from './objets.js';
 
 // les couleurs du modèle (bleu, orangé, blanc) ; pour passer au rouge de la marque, changer « rouge »
 export const COULEURS = { bleu: '#1367FE', rouge: '#FF4300', blanc: '#FFFFFF' };
-const NUIT = '#000835';
+const NUIT = '#140838';                       // la nuit : un bleu nuit à peine tiré vers le violet
 
 // -------------------------------------------------------------------- tracés
 const alea = (i, k) => { const x = Math.sin(i * 127.1 + k * 311.7) * 43758.5453; return x - Math.floor(x); };
@@ -318,7 +318,7 @@ const DegradeNuanceur = {
     float lueur(vec2 c, float echelle) { vec2 d = (vUv - c) * vec2(uRapport, 1.0); return pow(max(0.0, 1.0 - length(d) / echelle), 2.0); }
     void main() {
       vec4 t = texture2D(tDiffuse, vUv);
-      vec3 bleu = vec3(0.0431, 0.0706, 0.3922);
+      vec3 bleu = vec3(0.1250, 0.0590, 0.4000);
       t.rgb += bleu * (lueur(vec2(0.5, 1.0), 1.28) * 0.77 + lueur(vec2(0.0, 0.66), 0.9) * 0.48);
       gl_FragColor = t;
     }`,
