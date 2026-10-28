@@ -12,7 +12,7 @@ Dossier accessible depuis la plaque « Travail en cours » de la page d'accueil.
 | Newsletter CiviCap | `newsletter-civicap/` — objets, e-mail, version texte |
 | Page organismes CiviCap | `page-civicap/` — la refonte de la page « organismes » |
 | Ouverture 3D du site | `site-onlineformapro/` — l'ouverture de l'accueil, traces de lumière au défilement |
-| Illustrations de l'ouverture | `site-onlineformapro/illustrations/` — scènes 3D et panneaux, à valider |
+| Illustrations de l'ouverture | `site-onlineformapro/illustrations/` — scènes en lignes et panneaux, à valider |
 | Vidéo Plateforme FLE | `video-plateforme-fle/` — 23 s, 4:5, à partir des cinq visuels |
 | Newsletter Outils Google | `newsletter-google/` — e-mail pour Brevo, d'après la maquette fournie |
 | Site des modules IA | https://module-ia-pink.vercel.app/site/ — lien externe |
@@ -178,12 +178,13 @@ ni apparitions, et les dessins changent d'un coup. Sur téléphone, le dessin oc
 de l'écran et les textes défilent dans une vitre. Vérifié à 1440 × 900 et 390 × 844, avec et
 sans animations, sans débordement horizontal.
 
-`illustrations/` : la planche à valider avant l'animation complète. Quatre scènes 3D low poly
-(arêtes lumineuses, traces au sol), rendues par le même moteur que l'ouverture et qui
-tournent autour de leur structure au fil du défilement : l'open space (proposé pour la
-solution modulaire, à la place des tuiles), la salle de formation en îlots, le siège (un
-bâtiment imaginé, avec le Ó au sommet), et le Ó final dessiné comme un échangeur, que la
-caméra révèle en montant au-dessus. Puis six illustrations de panneaux, cliquables, dans le
+`illustrations/` : la planche à valider avant l'animation complète. Quatre scènes en 3D
+minimaliste, comme le camion du modèle : aucun volume plein, seulement des contours de
+lumière (polylignes 3D élargies face à la caméra, même lumière que les traces), qui se
+tracent quand la scène paraît et autour desquels la caméra tourne au fil du défilement :
+l'open space (proposé pour la solution modulaire, à la place des tuiles), la salle de
+formation en îlots, le siège (un bâtiment imaginé, le Ó en façade), et le Ó final dessiné
+comme un échangeur, que la caméra révèle en montant au-dessus. Puis six illustrations de panneaux, cliquables, dans le
 style du modèle (cadre corail, nœuds, traits schématiques), qui se tracent au survol.
 `scenes.js` construit les scènes ; il garde le réglage d'animations de l'ouverture.
 
