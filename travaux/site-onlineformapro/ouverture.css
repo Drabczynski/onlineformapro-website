@@ -97,8 +97,11 @@ h1, h2, h3, p { margin: 0; }
 
 /* les cartes : le panneau à droite, sur toute la hauteur */
 .carte { position: absolute; right: var(--m); top: var(--m); width: calc(583 * var(--u)); height: calc(860 * var(--u)); }
-.carte-corps { height: 100%; padding: var(--m) 0; display: flex; flex-direction: column; background: rgba(var(--marine), .6); }
-.carte h3 { padding-inline: var(--m); }
+/* sans flou d'arrière-plan : recalculé à chaque image sur la 3D qui bouge, il faisait
+   sauter le dévoilement ; un fond plus dense le remplace */
+.carte-corps { height: 100%; padding: var(--m) 0; display: flex; flex-direction: column; background: rgba(var(--marine), .86); -webkit-backdrop-filter: none; backdrop-filter: none; }
+.carte { will-change: clip-path, transform; }
+.carte h3 { padding-inline: var(--m); font-weight: 500; letter-spacing: -.03em; }
 /* l'image d'une carte : en haut, sur toute la largeur, collée aux bords */
 .carte-image { display: block; width: 100%; height: calc(500 * var(--u)); margin: calc(-1 * var(--m)) 0 var(--m); object-fit: cover; border-radius: 5px 5px 0 0; }
 .carte-bas { margin-top: auto; padding-inline: var(--m); display: grid; }
@@ -116,6 +119,8 @@ h1, h2, h3, p { margin: 0; }
 .est-cache { opacity: 0; }
 .js .chapitres [data-fenetre] { opacity: 0; }
 .js .chapitres [data-fenetre].est-visible { opacity: 1; }
+/* les éléments sans animation propre (barres de progression) apparaissent en fondu */
+.js .chapitres [data-fenetre]:not([data-revele]):not(.carte) { transition: opacity .6s var(--courbe); }
 .lisible { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .word { display: inline-block; }
 .char, .word-wrap { display: inline-block; }

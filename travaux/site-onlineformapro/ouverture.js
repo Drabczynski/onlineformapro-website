@@ -97,22 +97,39 @@ function eteindre(el) {
   el._minuteur = setTimeout(() => { nettoyer(el); el.classList.remove('est-visible'); }, duree + 50);
 }
 
-// les cartes : dévoilées de bas en haut à l'aller, effacées vers le haut ensuite
+// les cartes : dévoilées de bas en haut à l'aller, effacées vers le haut ensuite. Chaque
+// passage anime le cadre (découpe, échelle) et le contenu (opacité, position) vers leur
+// état d'arrivée ; s'il en interrompt un autre (on remonte en cours de route), il repart
+// de l'état atteint au lieu de sauter au début.
 const COURBE = 'cubic-bezier(0.6, 0, 0.4, 1)';
 const corps = (c) => c.querySelector('.carte-corps');
+const OUVERTE = { clipPath: 'inset(0% 0% 0% 0%)', transform: 'scale(1)' }, FERMEE = { clipPath: 'inset(100% 0% 0% 0%)', transform: 'scale(1.05)' };
+const PLEIN = { opacity: 1, transform: 'translateY(0)' }, EFFACE = { opacity: 0, transform: 'translateY(-2.5svh)' };
+const PASSAGES = {                                     // [cadre : départ, arrivée], [contenu : départ, arrivée]
+  entree: [[FERMEE, OUVERTE], [PLEIN, PLEIN]],
+  entreeRetour: [[OUVERTE, OUVERTE], [EFFACE, PLEIN]],
+  sortie: [[OUVERTE, OUVERTE], [PLEIN, EFFACE]],
+  sortieRetour: [[OUVERTE, FERMEE], [PLEIN, PLEIN]],
+};
 function animerCarte(carte, sorte) {
-  for (const a of carte.getAnimations().concat(corps(carte).getAnimations())) a.cancel();
+  const c = corps(carte), animations = carte.getAnimations().concat(c.getAnimations());
+  const enCours = animations.some(a => a.playState === 'running');
+  const sc = getComputedStyle(carte), sb = getComputedStyle(c);
+  const atteint = [{ clipPath: sc.clipPath === 'none' ? OUVERTE.clipPath : sc.clipPath, transform: sc.transform === 'none' ? 'scale(1)' : sc.transform },
+    { opacity: +sb.opacity, transform: sb.transform === 'none' ? 'translateY(0)' : sb.transform }];
+  for (const a of animations) a.cancel();
   if (!anime) { carte.classList.toggle('est-visible', sorte.startsWith('entree')); return; }
   carte.classList.add('est-visible');
-  const etapes = {
-    entree: [carte, [{ clipPath: 'inset(100% 0 0 0)', transform: 'scale(1.05)' }, { clipPath: 'inset(0 0 0 0)', transform: 'scale(1)' }]],
-    entreeRetour: [corps(carte), [{ transform: 'translateY(-2.5svh)', opacity: 0 }, { transform: 'translateY(0)', opacity: 1 }]],
-    sortie: [corps(carte), [{ opacity: 1 }, { transform: 'translateY(-2.5svh)', opacity: 0 }]],
-    sortieRetour: [carte, [{ clipPath: 'inset(0 0 0 0)' }, { clipPath: 'inset(100% 0 0 0)', transform: 'scale(1.05)' }]],
-  }[sorte];
-  const a = etapes[0].animate(etapes[1], { duration: 1600, easing: COURBE, fill: 'both' });
-  if (sorte.startsWith('sortie')) a.finished.then(() => { carte.classList.remove('est-visible'); for (const x of carte.getAnimations().concat(corps(carte).getAnimations())) x.cancel(); }).catch(() => {});
+  const options = { duration: 1600, easing: COURBE, fill: 'both' };
+  let fin;
+  [carte, c].forEach((el, k) => {
+    const [depart, arrivee] = PASSAGES[sorte][k];
+    fin = el.animate([enCours ? atteint[k] : depart, arrivee], options);
+  });
+  if (sorte.startsWith('sortie')) fin.finished.then(() => { carte.classList.remove('est-visible'); for (const x of carte.getAnimations().concat(c.getAnimations())) x.cancel(); }).catch(() => {});
 }
+// les images des cartes, décodées d'avance : elles sont prêtes quand la carte se dévoile
+addEventListener('load', () => { for (const img of document.querySelectorAll('.carte-image')) img.decode?.().catch(() => {}); });
 
 // -------------------------------------------------------------------- mise en page
 const blocs = [...document.querySelectorAll('.bloc')];

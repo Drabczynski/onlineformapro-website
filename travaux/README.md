@@ -184,7 +184,10 @@ l'éventail, le bâtiment de la R&D, qui apparaît avec la carte « Vous avez un
 Objets construits en code, sans fichier 3D : `objets.js`.
 
 Les cartes portent en haut une grande image, sur toute leur largeur (`img/cartes/`, visuels
-fournis par Onlineformapro). Textes des cartes repris du site officiel ; celui de « Marque
+fournis par Onlineformapro), décodée dès le chargement pour être prête au dévoilement. Une
+carte interrompue (on remonte en cours de route) repart de l'état atteint, sans saut ; leur
+fond est dense plutôt que flouté, le flou recalculé sur la 3D en mouvement faisant sauter
+les images. Textes des cartes repris du site officiel ; celui de « Marque
 blanche » est rédigé d'après la demande et la page du LMS (entreprise étendue), à valider.
 
 Le code et les tracés sont les nôtres ; la mécanique et les réglages sont relevés sur le
