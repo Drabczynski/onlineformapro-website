@@ -99,6 +99,8 @@ h1, h2, h3, p { margin: 0; }
 .carte { position: absolute; right: var(--m); top: var(--m); width: calc(583 * var(--u)); height: calc(860 * var(--u)); }
 .carte-corps { height: 100%; padding: var(--m) 0; display: flex; flex-direction: column; background: rgba(var(--marine), .6); }
 .carte h3 { padding-inline: var(--m); }
+/* l'image d'une carte : en haut, sur toute la largeur, collée aux bords */
+.carte-image { display: block; width: 100%; height: calc(500 * var(--u)); margin: calc(-1 * var(--m)) 0 var(--m); object-fit: cover; border-radius: 5px 5px 0 0; }
 .carte-bas { margin-top: auto; padding-inline: var(--m); display: grid; }
 .carte p { font-weight: 300; font-size: max(13px, calc(18 * var(--u))); line-height: 1.22; padding-top: var(--m); padding-bottom: calc(40 * var(--u)); }
 .bouton-blanc { justify-self: end; width: calc(200 * var(--u)); min-width: 150px; height: calc(50 * var(--u)); min-height: 38px; background: #fff; color: #172e64; border-radius: 5px; padding: calc(10 * var(--u)); display: flex; flex-direction: column; justify-content: space-between; font-size: max(11px, calc(13 * var(--u))); }
@@ -151,6 +153,7 @@ h1, h2, h3, p { margin: 0; }
   .chapitre-titre { width: auto; margin-inline-end: var(--m); align-self: start; margin-top: calc(var(--m) + 80px); font-size: calc(84 * var(--u)); line-height: 1.02; }
   .carte { left: var(--m); right: var(--m); top: auto; bottom: var(--m); width: auto; height: auto; min-height: 44svh; }
   .carte p { font-size: 15px; padding-bottom: 20px; }
+  .carte-image { height: 22svh; }
   .progression { right: auto; left: var(--m); top: calc(var(--m) + 70px); grid-auto-flow: column; }
   .progression span { width: 30px; height: 1px; }
   .progression i { transform-origin: 0 50%; transform: scaleX(var(--remplissage, 0)); }

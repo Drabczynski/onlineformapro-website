@@ -174,13 +174,18 @@ leurs retours à la ligne choisis.
 Les objets, d'après les croquis, sont dessinés comme le camion du modèle : des traits de
 lumière fins à angles vifs sur leurs arêtes, et leur volume, de la couleur exacte du fond,
 qui cache les traits situés derrière (d'où l'impression d'objet plein). Au-dessus du carrefour,
-un cube aux arêtes adoucies : au titre, ses trois modules orangés sont détachés, avec des
-pointillés vers leur place ; chacun s'emboîte à l'entrée de sa carte (LMS OnlineManager,
-OnlineAgora, OnlineVisio) et brille tant qu'elle est à l'écran ; à la troisième, le cube est
-complet. Au croisement en X, une planète (méridiens, parallèles, un liseré qui suit son
+un cube aux arêtes adoucies : au titre, ses quatre modules orangés sont détachés, avec des
+pointillés vers leur place. Le socle bleu (le LMS) brille avec la carte LMS OnlineManager ;
+chaque module s'emboîte ensuite à l'entrée de sa carte (Reporting intégré, Catalogue de
+formation, Marque blanche, OnlineVisio) et brille tant qu'elle est à l'écran ; à la
+dernière, le cube est complet. Au croisement en X, une planète (méridiens, parallèles, un liseré qui suit son
 contour avec deux arcs orangés) dans une poussière fine de particules. Au bout de
 l'éventail, le bâtiment de la R&D, qui apparaît avec la carte « Vous avez un projet ? ».
 Objets construits en code, sans fichier 3D : `objets.js`.
+
+Les cartes portent en haut une grande image, sur toute leur largeur (`img/cartes/`, visuels
+fournis par Onlineformapro). Textes des cartes repris du site officiel ; celui de « Marque
+blanche » est rédigé d'après la demande et la page du LMS (entreprise étendue), à valider.
 
 Le code et les tracés sont les nôtres ; la mécanique et les réglages sont relevés sur le
 modèle : hauteurs des blocs en svh, caméra quasi arrêtée (5 % d'avance) pendant les cartes

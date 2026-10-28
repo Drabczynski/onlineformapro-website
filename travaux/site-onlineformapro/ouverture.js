@@ -154,13 +154,15 @@ function stations() {
   return [0, 0.35, 1.3, 2.0, c1 - 0.5, c1 + 0.4, g1.de, g1.a + 0.9, c2 + 0.3, g2.de, g2.a, g2.a + 0.9, c3 + 0.3, g3.de, c4 + 0.3, g4.de, g4.de + 0.9, finExperience].map(progressionDe);
 }
 
-// les moments du cube modulaire (chapitre 2) : chaque module s'emboîte à l'entrée de sa
-// carte, et brille tant qu'elle est à l'écran
+// les moments du cube modulaire (chapitre 2) : le socle brille avec la première carte (le
+// LMS) ; chaque module s'emboîte à l'entrée de la sienne (les suivantes) et brille tant
+// qu'elle est à l'écran
 function moments() {
-  const g = gel[1], carte = (k) => g.de + 0.75 * k;
+  const g = gel[1], carte = (k) => g.de + 0.75 * k, modules = [1, 2, 3, 4];
   return {
-    modules: [0, 1, 2].map(k => [progressionDe(carte(k) - 0.15), progressionDe(carte(k) + 0.45)]),
-    cartes: [0, 1, 2].map(k => [progressionDe(carte(k)), progressionDe(carte(k + 1))]),
+    socle: [progressionDe(carte(0)), progressionDe(carte(1))],
+    modules: modules.map(k => [progressionDe(carte(k) - 0.15), progressionDe(carte(k) + 0.45)]),
+    cartes: modules.map(k => [progressionDe(carte(k)), progressionDe(carte(k + 1))]),
   };
 }
 

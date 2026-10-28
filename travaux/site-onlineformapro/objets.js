@@ -177,9 +177,9 @@ function batiment() {
 }
 
 // -------------------------------------------------------------------- le cube modulaire
-// Un cube de 2 × 2 × 2 cellules aux arêtes adoucies. Quatre cellules bleues forment le socle ;
-// trois modules orangés viennent s'y emboîter, un par carte du chapitre : un cube par la
-// gauche, un cube par le haut, un tiroir de deux cellules par l'avant. Des pointillés
+// Un cube de 2 × 2 × 2 cellules aux arêtes adoucies. Quatre cellules bleues forment le socle
+// (le LMS, qui brille avec sa carte) ; quatre modules orangés viennent s'y emboîter, un par
+// carte suivante : par la gauche, par le haut, par l'avant, par la droite. Des pointillés
 // montrent leur chemin tant qu'ils sont détachés ; le module de la carte à l'écran brille.
 // Repère : la caméra le regarde depuis -x, +y, +z.
 const CELLULE = 3, PAS = 3.22, ADOUCI = 0.28;
@@ -204,15 +204,18 @@ function pointilles(d, a, b, couleur, rayon, tiret = 0.35, vide = 0.3) {
 }
 function cubeModulaire() {
   const groupe = new THREE.Group(), fort = 0.03, fin = 0.022;
-  const socle = dessin();
+  const socle = dessin({ propre: true });
   for (const c of [[0, 0, 0], [0, 1, 0], [0, 1, 1], [1, 1, 1]]) pave(socle, cellule(...c), [CELLULE, CELLULE, CELLULE], B, fort);
   socle.finir(groupe);
-  // les modules, dans l'ordre des cartes : place, taille, d'où il vient
+  const teinteSocle = socle.matieres.map(m => m.uniforms.uCouleur.value.clone());
+  // les modules, dans l'ordre des cartes : leur place, d'où ils viennent
   const modules = [
-    { place: cellule(0, 0, 1), taille: [CELLULE, CELLULE, CELLULE], depart: V(-6, 0, 0) },
-    { place: cellule(1, 1, 0), taille: [CELLULE, CELLULE, CELLULE], depart: V(0, 6, 0) },
-    { place: cellule(1, 0, 0).add(cellule(1, 0, 1)).multiplyScalar(0.5), taille: [CELLULE, CELLULE, CELLULE + PAS], depart: V(0, 0, 7.5) },
-  ].map(({ place, taille, depart }) => {
+    { place: cellule(0, 0, 1), depart: V(-6, 0, 0) },
+    { place: cellule(1, 1, 0), depart: V(0, 6, 0) },
+    { place: cellule(1, 0, 1), depart: V(0, 0, 6) },
+    { place: cellule(1, 0, 0), depart: V(5.5, 0, 0) },
+  ].map(({ place, depart }) => {
+    const taille = [CELLULE, CELLULE, CELLULE];
     const objet = new THREE.Group(), d = dessin({ propre: true }), sens = depart.clone().normalize().negate();
     pave(d, V(0, 0, 0), taille, R, fort);
     // l'ergot d'emboîtement, sur la face qui entre la première
@@ -242,6 +245,8 @@ function cubeModulaire() {
     placer(m) { moments = m; },
     animer(progression, anime) {
       if (!moments) return;
+      const [a0, b0] = moments.socle, brilleSocle = progression >= a0 && progression < b0 ? 1.7 : 1;
+      socle.matieres.forEach((m, j) => m.uniforms.uCouleur.value.copy(teinteSocle[j]).multiplyScalar(brilleSocle));
       modules.forEach((mod, k) => {
         let e = aide(progression, moments.modules[k]);
         if (!anime) e = e < 0.5 ? 0 : 1;
