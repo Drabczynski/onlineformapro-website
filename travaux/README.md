@@ -11,8 +11,7 @@ Dossier accessible depuis la plaque « Travail en cours » de la page d'accueil.
 | Mailing des gagnants | `mailing-gagnants/` — OFII puis FLE, les deux campagnes |
 | Newsletter CiviCap | `newsletter-civicap/` — objets, e-mail, version texte |
 | Page organismes CiviCap | `page-civicap/` — la refonte de la page « organismes » |
-| Ouverture 3D du site | `site-onlineformapro/` — l'ouverture de l'accueil, traces de lumière au défilement |
-| Illustrations de l'ouverture | `site-onlineformapro/illustrations/` — scènes en lignes et panneaux, à valider |
+| Ouverture 3D du site | `site-onlineformapro/` — l'ouverture de l'accueil, lignes de lumière au défilement |
 | Vidéo Plateforme FLE | `video-plateforme-fle/` — 23 s, 4:5, à partir des cinq visuels |
 | Newsletter Outils Google | `newsletter-google/` — e-mail pour Brevo, d'après la maquette fournie |
 | Site des modules IA | https://module-ia-pink.vercel.app/site/ — lien externe |
@@ -156,37 +155,39 @@ police Plus Jakarta Sans. « Contactez-nous » ouvre un e-mail vers projet@onlin
 
 ## Ouverture 3D du site Onlineformapro
 
-`site-onlineformapro/` : maquette de l'ouverture de la page d'accueil, sur le modèle de
-madarplatform.com. Une scène reste épinglée à l'écran pendant que les messages défilent ;
-huit traces de lumière (three.js) y dessinent une forme par étape : le flux (titre
-d'accueil), la route (25 ans d'innovation), six tuiles (la solution modulaire), l'onde (l'IA),
-le globe (17 millions d'utilisateurs), la coche (l'évaluation de France Education
-International), puis le Ó du logo (demande de démo). Textes et chiffres repris de la page
-d'accueil actuelle, aucun visuel. La partie plus classique du site viendra avec le prochain
-modèle.
+`site-onlineformapro/` : maquette de l'ouverture de la page d'accueil, au plus près de
+madarplatform.com pour pouvoir ensuite l'ajuster par petites touches. Une scène reste
+épinglée à l'écran ; la caméra y parcourt un monde fixe de lignes de lumière (three.js)
+pendant que les textes défilent. Les vues suivent celles du modèle : l'autoroute de
+l'accueil et ses lacets, le graphique de pics (la puissance de l'IA), le carrefour vu d'en
+haut (la solution globale et modulaire), le croisement en X entouré d'anneaux (17 millions
+d'utilisateurs), la ligne droite puis l'éventail de lignes (la demande de démo). Textes et
+liens repris du site officiel, aucun visuel. La partie plus classique du site viendra avec
+le prochain modèle.
 
-`scene.js` : les dessins, le passage de l'un à l'autre au défilement, le cadrage (attribut
-`data-cadre` de chaque moment : le dessin se décale du côté où le texte laisse de la place).
-`site.js` : le bouton « Animations », les apparitions, l'en-tête. three.js 0.170.0 est copié
-dans `vendor/` (licence MIT jointe) et chargé par une importmap : rien ne dépend d'un CDN.
-Modules JavaScript : la page se sert par http, elle ne s'ouvre pas en `file://`.
+Le code et les tracés sont les nôtres ; la mécanique et les réglages sont relevés sur le
+modèle : hauteurs des blocs en svh, caméra quasi arrêtée (5 % d'avance) pendant les cartes
+de chaque chapitre, défilement amorti par Lenis (`lerp` 0,1), apparitions des titres et
+des textes lettre par lettre (mêmes images clés), cartes qui se dévoilent de bas en haut en
+1,6 s, tubes fins dont la lumière pulse le long des routes, brouillard, tonalité ACES, halo,
+deux lueurs bleues. Couleurs : le bleu, l'orangé et le blanc du modèle ; pour passer au
+rouge de la marque, changer `rouge` dans `COULEURS` (en tête de `monde.js`).
 
-Accessibilité : la scène est décorative (`aria-hidden`), tout le texte est dans la page, dans
-l'ordre de lecture. Réglage « réduire les animations » du système, ou bouton « Animations »
-de l'en-tête (retenu dans le navigateur) : ni tracé au chargement, ni respiration, ni éclats,
-ni apparitions, et les dessins changent d'un coup. Sur téléphone, le dessin occupe le haut
-de l'écran et les textes défilent dans une vitre. Vérifié à 1440 × 900 et 390 × 844, avec et
-sans animations, sans débordement horizontal.
+`monde.js` : le décor (routes, carrefours, pics, anneaux, éventail), les stations de la
+caméra et le rendu. `ouverture.js` : les mesures de la page, le calage des stations sur les
+textes, les apparitions, les cartes, le bouton « Animations ». `ouverture.css` : la mise en
+page, à l'échelle d'un écran de 1440 × 900. three.js 0.170.0 (et ses passes d'effets) et
+Lenis 1.3.23 sont copiés dans `vendor/` (licences MIT jointes) et chargés par une importmap :
+rien ne dépend d'un CDN. Modules JavaScript : la page se sert par http, elle ne s'ouvre pas
+en `file://`.
 
-`illustrations/` : la planche à valider avant l'animation complète. Quatre scènes en 3D
-minimaliste, comme le camion du modèle : aucun volume plein, seulement des contours de
-lumière (polylignes 3D élargies face à la caméra, même lumière que les traces), qui se
-tracent quand la scène paraît et autour desquels la caméra tourne au fil du défilement :
-l'open space (proposé pour la solution modulaire, à la place des tuiles), la salle de
-formation en îlots, le siège (un bâtiment imaginé, le Ó en façade), et le Ó final dessiné
-comme un échangeur, que la caméra révèle en montant au-dessus. Puis six illustrations de panneaux, cliquables, dans le
-style du modèle (cadre corail, nœuds, traits schématiques), qui se tracent au survol.
-`scenes.js` construit les scènes ; il garde le réglage d'animations de l'ouverture.
+Accessibilité : la scène est décorative, tout le texte est dans la page, dans l'ordre de
+lecture (les titres découpés pour l'animation gardent une copie lisible). Réglage « réduire
+les animations » du système, ou bouton « Animations » (retenu dans le navigateur) : ni
+défilement amorti, ni apparitions, et la caméra passe d'une vue à l'autre sans glisser.
+Sans WebGL, les textes restent sur le fond bleu. Sur téléphone, les cartes deviennent des
+vitres en bas de l'écran. Vérifié à 1440 × 900 et 390 × 844, avec et sans animations, sans
+débordement horizontal.
 
 ## Page organismes CiviCap
 
