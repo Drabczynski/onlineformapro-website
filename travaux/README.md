@@ -11,7 +11,7 @@ Dossier accessible depuis la plaque « Travail en cours » de la page d'accueil.
 | Mailing des gagnants | `mailing-gagnants/` — OFII puis FLE, les deux campagnes |
 | Newsletter CiviCap | `newsletter-civicap/` — objets, e-mail, version texte |
 | Page organismes CiviCap | `page-civicap/` — la refonte de la page « organismes » |
-| Ouverture 3D du site | `site-onlineformapro/` — l'ouverture de l'accueil, lignes de lumière au défilement |
+| Site Onlineformapro | `site-onlineformapro/` — l'ouverture 3D de l'accueil et six pages (LMS, outils IA, catalogue, blog, démo, contact) |
 | Vidéo Plateforme FLE | `video-plateforme-fle/` — 23 s, 4:5, à partir des cinq visuels |
 | Newsletter Outils Google | `newsletter-google/` — e-mail pour Brevo, d'après la maquette fournie |
 | Site des modules IA | https://module-ia-pink.vercel.app/site/ — lien externe |
@@ -219,6 +219,35 @@ les animations » du système (suivi s'il change en cours de visite) : ni défil
 Sans WebGL, les textes restent sur le fond bleu. Sur téléphone, les cartes deviennent des
 vitres en bas de l'écran, la caméra centre les objets et les traits sont plus épais.
 Vérifié à 1440 × 900 et 390 × 844, avec et sans animations, sans débordement horizontal.
+
+### Les pages du site (modèle Vectura)
+
+Six pages, dans le langage du modèle vectura.framer.website (relevé sur le modèle à 1440 px :
+mesures, typographie, couleurs, mises en page), avec notre propre code : fond blanc, Geist en
+graisse légère et interlettrage serré, étiquettes en Chivo Mono, blocs arrondis de 16 px sur
+des tons crème, pierre et gris bleuté, boutons en pastilles noires, pied de page noir.
+
+| Page | Contenu |
+|---|---|
+| `lms.html` | LMS OnlineManager : côté administration (prise en main, analyse des données, marque blanche) et côté apprenant (Lisy, OnlineAgora, outils collaboratifs) sur une même page ; références, cas France Education International, spécifications techniques |
+| `outils-ia.html` | FastFormation, FastQuiz, Learning Podcast, RolePlay IA : liste qui suit le défilement, puis un bloc par outil |
+| `catalogue.html` | Présentation du catalogue : chiffres, les 12 familles, les outils Google, la pédagogie ; liens vers le catalogue en accès libre |
+| `blog.html` | Les 9 derniers articles du blog officiel, filtrables par catégorie, et l'inscription à la lettre |
+| `demo.html` | Demande de démonstration : réservation de 30 min par l'agenda Calendly, comme sur le site actuel |
+| `contact.html` | Coordonnées, formulaire (champs du formulaire actuel), informations légales |
+
+Textes, chiffres et coordonnées repris du site officiel ; le chiffre des apprenants est celui
+donné par Onlineformapro (22 millions). Images : les visuels produits fournis par
+Onlineformapro (`img/cartes/`) et des vues fixes du monde de lignes de l'ouverture
+(`img/visuels/`), en guise de photos ; aucune image du site officiel ni du modèle. Les
+formulaires sont des maquettes : ils n'envoient rien et renvoient vers ceux du site actuel.
+L'ouverture (`index.html`) mène à ces pages : menu, bouton de démo, cartes et leurs images.
+
+`pages.css` et `pages.js` (menu sur téléphone, en-tête qui blanchit au défilement,
+apparitions, liste active, filtres du blog, formulaires) sont communs aux six pages ; l'en-tête
+et le pied de page sont répétés dans chacune. Le logo pour fond clair
+(`img/logo-noir-rouge.svg`) est celui du site, texte en noir. Vérifié de 320 à 1440 px de
+large sans débordement, liens internes et images contrôlés.
 
 ## Page organismes CiviCap
 
