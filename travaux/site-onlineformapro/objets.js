@@ -146,11 +146,12 @@ function planete(rayon) {
   dl.finir(liseré);
   groupe.add(liseré);
 
-  // les particules : une coquille autour de la planète, quelques-unes orangées ou blanches
-  const n = 900, pos = new Float32Array(n * 3), coul = new Float32Array(n * 3), phase = new Float32Array(n);
+  // les particules : une poussière fine, plus dense près de la surface, quelques grains
+  // orangés ou blancs
+  const n = 1600, pos = new Float32Array(n * 3), coul = new Float32Array(n * 3), phase = new Float32Array(n);
   const teintes = [B, B, B, B, B, B, '#FFFFFF', '#FFFFFF', R].map(c => new THREE.Color().setHex(parseInt(c.slice(1), 16), THREE.LinearSRGBColorSpace));
   for (let k = 0; k < n; k++) {
-    const u = Math.random() * 2 - 1, t = Math.random() * 2 * Math.PI, r = rayon * (1.08 + 0.75 * Math.random() ** 2), s = Math.sqrt(1 - u * u);
+    const u = Math.random() * 2 - 1, t = Math.random() * 2 * Math.PI, r = rayon * (1.03 + 0.55 * Math.random() ** 2.5), s = Math.sqrt(1 - u * u);
     pos.set([r * s * Math.cos(t), r * u * 0.8, r * s * Math.sin(t)], k * 3);
     coul.set(teintes[k % teintes.length].toArray(), k * 3);
     phase[k] = Math.random();
@@ -169,9 +170,9 @@ function planete(rayon) {
       #include <fog_pars_vertex>
       void main() {
         vCouleur = couleur;
-        vEclat = 0.55 + 0.45 * sin(uTemps * 1.6 + phase * 6.2832);
+        vEclat = 0.3 + 0.7 * pow(0.5 + 0.5 * sin(uTemps * 1.6 + phase * 6.2832), 2.0);
         vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-        gl_PointSize = uEchelle / -mvPosition.z;
+        gl_PointSize = max(1.5, uEchelle / -mvPosition.z);
         gl_Position = projectionMatrix * mvPosition;
         #include <fog_vertex>
       }`,
@@ -180,7 +181,7 @@ function planete(rayon) {
       #include <fog_pars_fragment>
       void main() {
         float a = smoothstep(0.5, 0.1, length(gl_PointCoord - 0.5)) * vEclat;
-        gl_FragColor = vec4(vCouleur * 1.6, a);
+        gl_FragColor = vec4(vCouleur * 1.5, a);
         #include <fog_fragment>
       }`,
   });
@@ -202,7 +203,7 @@ function planete(rayon) {
       liseré.scale.setScalar(Math.sqrt(1 - k * k));
       liseré.quaternion.copy(camera.quaternion);
     },
-    taille(echelle) { matiere.uniforms.uEchelle.value = 0.22 * echelle; },
+    taille(echelle) { matiere.uniforms.uEchelle.value = 0.12 * echelle; },
   };
 }
 
