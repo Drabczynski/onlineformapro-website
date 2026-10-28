@@ -99,13 +99,16 @@ h1, h2, h3, p { margin: 0; }
    sauter le dévoilement ; un fond plus dense le remplace */
 .carte-corps { height: 100%; padding: var(--m) 0; display: flex; flex-direction: column; background: rgba(var(--marine), .86); -webkit-backdrop-filter: none; backdrop-filter: none; }
 .carte { will-change: clip-path, transform; }
-.carte h3 { padding-inline: var(--m); font-weight: 500; letter-spacing: -.03em; }
-/* l'image d'une carte : en haut, sur toute la largeur, collée aux bords */
-.carte-image { display: block; width: 100%; height: calc(500 * var(--u)); margin: calc(-1 * var(--m)) 0 var(--m); object-fit: cover; border-radius: 5px 5px 0 0; }
+.carte h3 { padding-inline: var(--m); font-weight: 500; letter-spacing: -.03em; text-wrap: pretty; }
+.carte p, .chapeau, .presentation .moyen { text-wrap: pretty; }
+/* l'image d'une carte : en haut, sur toute la largeur, collée aux bords ; c'est un lien,
+   vers la même page que le bouton de la carte */
+.carte-lien { display: block; margin: calc(-1 * var(--m)) 0 var(--m); border-radius: 5px 5px 0 0; overflow: hidden; }
+.carte-image { display: block; width: 100%; height: calc(500 * var(--u)); object-fit: cover; transition: transform .8s var(--courbe); }
+.carte-lien:hover .carte-image { transform: scale(1.03); }
 .carte-bas { margin-top: auto; padding-inline: var(--m); display: grid; }
 .carte p { font-weight: 300; font-size: max(13px, calc(18 * var(--u))); line-height: 1.22; padding-top: var(--m); padding-bottom: calc(40 * var(--u)); }
-.bouton-blanc { justify-self: end; width: calc(200 * var(--u)); min-width: 150px; height: calc(50 * var(--u)); min-height: 38px; background: #fff; color: #172e64; border-radius: 5px; padding: calc(10 * var(--u)); display: flex; flex-direction: column; justify-content: space-between; font-size: max(11px, calc(13 * var(--u))); }
-.bouton-blanc svg { align-self: flex-end; }
+.bouton-blanc { justify-self: end; width: calc(200 * var(--u)); min-width: 150px; height: calc(50 * var(--u)); min-height: 38px; background: #fff; color: #172e64; border-radius: 5px; padding: 0 calc(16 * var(--u)); display: flex; align-items: center; justify-content: space-between; gap: calc(12 * var(--u)); font-size: max(11px, calc(13 * var(--u))); }
 .bouton-blanc:hover { background: #e9edff; }
 .progression { position: absolute; top: var(--m); right: calc(20 * var(--u) + 583 * var(--u) + 20 * var(--u)); display: grid; gap: calc(10 * var(--u)); }
 .progression span { display: block; width: 1px; height: calc(30 * var(--u)); background: rgba(255, 255, 255, .2); overflow: hidden; }

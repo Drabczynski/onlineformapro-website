@@ -184,7 +184,9 @@ l'éventail, le bâtiment de la R&D, qui apparaît avec la carte « Vous avez un
 Objets construits en code, sans fichier 3D : `objets.js`.
 
 Les cartes portent en haut une grande image, sur toute leur largeur (`img/cartes/`, visuels
-fournis par Onlineformapro), décodée dès le chargement pour être prête au dévoilement. Le
+fournis par Onlineformapro), qui mène à la même page que le bouton de la carte ; elle est
+décodée dès le chargement pour être prête au dévoilement. Titres et textes des cartes
+évitent le mot seul en fin de ligne. Le
 dévoilement démarre vite et ralentit à la fin (la carte est presque entière en une
 demi-seconde) ; une carte interrompue repart de l'état atteint, et celle qui s'en va avant
 d'être entière achève de s'ouvrir en 0,3 s pendant qu'elle s'efface. Leur fond est dense
@@ -204,8 +206,10 @@ la caméra et le rendu ; `objets.js` : les objets. `ouverture.js` : les mesures 
 le calage des stations et des modules du cube sur les textes, les apparitions, les cartes.
 `ouverture.css` : la mise en page, à l'échelle d'un écran de 1440 × 900. three.js 0.170.0 (et ses passes d'effets) et
 Lenis 1.3.23 sont copiés dans `vendor/` (licences MIT jointes) et chargés par une importmap :
-rien ne dépend d'un CDN. Modules JavaScript : la page se sert par http, elle ne s'ouvre pas
-en `file://`.
+rien ne dépend d'un CDN. La 3D se charge à part, en parallèle : le titre d'accueil apparaît
+presque aussitôt, puis le monde se crée (la préparation des nuanceurs occupe le navigateur
+un instant) et apparaît en fondu. Modules JavaScript : la page se sert par http, elle ne
+s'ouvre pas en `file://`.
 
 Accessibilité : la scène est décorative, tout le texte est dans la page, dans l'ordre de
 lecture (les titres découpés pour l'animation gardent une copie lisible). Réglage « réduire

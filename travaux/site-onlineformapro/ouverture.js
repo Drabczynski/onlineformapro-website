@@ -12,7 +12,6 @@
 //
 // Animations réduites (réglage « réduire les animations » du système) : défilement natif,
 // textes affichés d'un coup, caméra posée à la station la plus proche du chapitre.
-import { creerMonde } from './monde.js';
 import Lenis from './vendor/lenis.mjs';
 
 const racine = document.documentElement;
@@ -185,15 +184,23 @@ function moments() {
 }
 
 // -------------------------------------------------------------------- monde 3D
-let monde = null;
+// chargé à part (three.js pèse lourd) : les textes n'attendent pas la 3D. Sa création
+// occupe le navigateur un instant (préparation des nuanceurs) : elle attend que le titre
+// d'accueil soit affiché, puis le monde apparaît en fondu. L'arrivée de la caméra se compte
+// à partir de là.
+let monde = null, debutMonde = null, signalerTitre;
+const titreAffiche = new Promise((r) => { signalerTitre = r; });
 const toile = document.getElementById('monde');
-try {
+import('./monde.js').then(async ({ creerMonde }) => {
+  await titreAffiche;
   monde = creerMonde(toile);
   racine.classList.add('avec-webgl');
-} catch (e) {
+  monde.taille();
+  monde.placer(stations(), moments());
+}).catch((e) => {
   racine.classList.add('sans-webgl');
   console.warn('WebGL indisponible :', e);
-}
+});
 
 // -------------------------------------------------------------------- l'indicateur 01 / 04
 const indicateur = document.querySelector('.indicateur'), indicateurNum = indicateur.querySelector('.indicateur-num');
@@ -250,14 +257,15 @@ function image(ms) {
   tPrec = t;
   if (lenis) lenis.raf(ms);
   if (debut === null) debut = t;
-  const intro = anime ? Math.min(1, (t - debut) / 3) : 1;
-  // les textes d'ouverture s'allument deux secondes après l'arrivée (tout de suite sans animation)
-  if (!introFaite && (t - debut > (anime ? 2 : 0) || scrollY > 10)) introFaite = true;
+  // les textes d'ouverture s'allument presque aussitôt (tout de suite sans animation)
+  if (!introFaite && (t - debut > (anime ? 0.35 : 0) || scrollY > 10)) { introFaite = true; setTimeout(signalerTitre, anime ? 700 : 0); }
   const s = scrollY / svh();
   majFenetres(s);
   const cible = progressionDe(s / 100);
   progression = anime ? amortir(progression, cible, 0.2, dt) : cible;
   if (!monde) return;
+  if (debutMonde === null) debutMonde = t;
+  const intro = anime ? Math.min(1, (t - debutMonde) / 3) : 1;
   const scene = toile.getBoundingClientRect();
   if (scene.bottom <= 0) return;                             // l'ouverture est passée
   souris.x += (sourisCible.x - souris.x) * Math.min(1, dt * 6);
