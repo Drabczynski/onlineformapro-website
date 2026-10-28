@@ -12,7 +12,6 @@
   --trait: rgba(255, 255, 255, .2);
   --m: calc(20 * var(--u));
   --courbe: cubic-bezier(.7, 0, .3, 1);
-  --titre: Geist, Inter, "Helvetica Neue", Arial, sans-serif;
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { background: var(--nuit); }
@@ -50,7 +49,7 @@ h1, h2, h3, p { margin: 0; }
 .menu ul { list-style: none; margin: 0; padding: 0; }
 .menu a { display: block; padding: 9px 10px; border-radius: 4px; font-size: 14px; }
 .menu a:hover { background: rgba(255, 255, 255, .1); }
-.entete-appel { width: calc(206 * var(--u)); height: 100%; background: var(--accent); border-radius: 999px; font-weight: 500; padding: 0 calc(14 * var(--u)); display: flex; align-items: center; justify-content: center; gap: calc(10 * var(--u)); font-size: max(11px, calc(13 * var(--u))); }
+.entete-appel { width: calc(206 * var(--u)); height: 100%; background: var(--accent); border-radius: 5px; padding: 0 calc(14 * var(--u)); display: flex; align-items: center; justify-content: center; gap: calc(10 * var(--u)); font-size: max(11px, calc(13 * var(--u))); }
 
 /* ------------------------------------------------------------------ l'expérience */
 .experience { display: grid; }
@@ -60,7 +59,7 @@ h1, h2, h3, p { margin: 0; }
 #monde { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity .6s ease; }
 .avec-webgl #monde { opacity: 1; }
 .avec-webgl .scene-fond { opacity: 0; }
-.indicateur { opacity: 0; position: absolute; left: var(--m); bottom: calc(33 * var(--u)); width: calc(80 * var(--u)); height: calc(50 * var(--u)); min-width: 56px; min-height: 36px; padding: calc(10 * var(--u)); background: rgba(255, 255, 255, .1); display: grid; grid-template-columns: 1fr 1fr; font-size: max(11px, calc(13 * var(--u))); font-variant-numeric: tabular-nums; }
+.indicateur { position: absolute; left: var(--m); bottom: calc(33 * var(--u)); width: calc(80 * var(--u)); height: calc(50 * var(--u)); min-width: 56px; min-height: 36px; padding: calc(10 * var(--u)); background: rgba(255, 255, 255, .1); display: grid; grid-template-columns: 1fr 1fr; font-size: max(11px, calc(13 * var(--u))); font-variant-numeric: tabular-nums; }
 .indicateur-total { align-self: end; justify-self: end; opacity: .4; }
 .indicateur-num { position: relative; }
 .indicateur::after { content: ""; position: absolute; left: 50%; top: 18%; bottom: 18%; width: 1px; background: var(--trait); }
@@ -69,33 +68,21 @@ h1, h2, h3, p { margin: 0; }
 .bloc { position: relative; height: calc(var(--h) * 1svh); margin-top: calc(var(--mt) * 1svh); pointer-events: none; }
 .colle { position: sticky; top: 0; height: 100vh; height: 100svh; }
 .colle-centre { display: grid; align-items: center; }
-.colle a, .colle button, .colle .carte { pointer-events: auto; }
+.colle a, .colle button, .colle .carte, .colle .accueil-encadre { pointer-events: auto; }
 
 /* les tailles de texte du modèle */
 .grand { font-weight: 300; font-size: calc(120 * var(--u)); line-height: calc(110 * var(--u)); letter-spacing: -.02em; }
 .moyen { font-weight: 300; font-size: calc(37 * var(--u)); line-height: calc(40 * var(--u)); }
 .chapeau { font-weight: 300; font-size: calc(22 * var(--u)); line-height: calc(26 * var(--u)); }
+.accent { color: var(--accent); }
 
 /* l'ouverture : le titre en haut à droite, l'encadré en bas à gauche */
-/* l'accueil : composition centrée, à la manière des pages produit actuelles. Une pastille
-   d'annonce, le titre (le dégradé de la marque sur la fin), le sous-titre, deux boutons,
-   et une ligne de chiffres en bas ; le logo dessiné en routes s'étend dessous. */
-.accueil { display: flex; flex-direction: column; align-items: center; padding: calc(118 * var(--u)) var(--m) 0; text-align: center; isolation: isolate; }
-.accueil::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(60% 46% at 50% 38%, rgba(0, 8, 53, .82), rgba(0, 8, 53, 0) 74%); }
-.annonce { display: inline-flex; align-items: center; gap: 10px; padding: 5px 14px 5px 5px; border-radius: 999px; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .14); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); font-size: max(12px, calc(14 * var(--u))); color: var(--doux); transition: background .3s, border-color .3s; }
-.annonce:hover { background: rgba(255, 255, 255, .1); border-color: rgba(255, 255, 255, .24); }
-.annonce-pastille { padding: 4px 10px; border-radius: 999px; background: var(--accent); color: #fff; font-weight: 500; font-size: .86em; }
-.annonce svg { opacity: .7; }
-.accueil-titre { margin-top: calc(30 * var(--u)); max-width: calc(1180 * var(--u)); font-family: var(--titre); font-weight: 500; font-size: calc(96 * var(--u)); line-height: .98; letter-spacing: -.055em; }
-.degrade { background: linear-gradient(92deg, #ff2d4b 0%, #ff6a3d 38%, #b9a6ff 78%, #8fb8ff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: .08em; }
-.accueil-sous-titre { margin-top: calc(26 * var(--u)); max-width: calc(720 * var(--u)); font-size: max(15px, calc(20 * var(--u))); line-height: 1.45; color: var(--doux); text-wrap: balance; }
-.accueil-actions { margin-top: calc(32 * var(--u)); display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-.bouton-plein, .bouton-vitre { display: inline-flex; align-items: center; gap: 10px; height: max(44px, calc(52 * var(--u))); padding: 0 max(18px, calc(26 * var(--u))); border-radius: 999px; font-size: max(14px, calc(15 * var(--u))); font-weight: 500; transition: transform .3s var(--courbe), background .3s, box-shadow .3s; }
-.bouton-plein { background: var(--accent); color: #fff; box-shadow: 0 10px 34px rgba(255, 45, 75, .35), inset 0 1px 0 rgba(255, 255, 255, .28); }
-.bouton-plein:hover { transform: translateY(-1px); box-shadow: 0 14px 40px rgba(255, 45, 75, .45), inset 0 1px 0 rgba(255, 255, 255, .28); }
-.bouton-vitre { background: rgba(255, 255, 255, .07); border: 1px solid rgba(255, 255, 255, .18); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
-.bouton-vitre:hover { background: rgba(255, 255, 255, .12); }
-
+.accueil-titre { position: absolute; right: var(--m); top: var(--m); width: calc(820 * var(--u)); text-align: right; font-size: calc(84 * var(--u)); line-height: calc(78 * var(--u)); letter-spacing: -.045em; }
+.accueil-encadre { position: absolute; left: var(--m); bottom: var(--m); width: calc(467 * var(--u)); }
+.accueil-encadre-corps { position: relative; padding: var(--m); }
+.accueil-encadre .chapeau { padding-bottom: calc(100 * var(--u)); padding-inline-end: calc(10 * var(--u)); }
+.carre { position: absolute; right: var(--m); bottom: var(--m); width: calc(50 * var(--u)); height: calc(50 * var(--u)); min-width: 34px; min-height: 34px; display: grid; place-items: center; border-radius: 5px; background: rgba(255, 255, 255, .1); }
+.carre:hover { background: rgba(255, 255, 255, .2); }
 
 /* 25 ans : la moitié droite, au milieu */
 .presentation { margin-inline-start: calc(720 * var(--u)); width: calc(700 * var(--u)); padding-inline-end: var(--m); }
@@ -104,7 +91,7 @@ h1, h2, h3, p { margin: 0; }
 .presentation .moyen { margin-top: calc(40 * var(--u)); }
 
 /* les grands titres de chapitre, à gauche */
-.chapitre-titre { margin-inline-start: var(--m); width: calc(933 * var(--u)); font-family: var(--titre); font-weight: 500; font-size: calc(92 * var(--u)); line-height: calc(88 * var(--u)); letter-spacing: -.055em; }
+.chapitre-titre { margin-inline-start: var(--m); width: calc(933 * var(--u)); font-size: calc(92 * var(--u)); line-height: calc(88 * var(--u)); letter-spacing: -.045em; }
 
 /* les cartes : le panneau à droite, sur toute la hauteur */
 .carte { position: absolute; right: var(--m); top: var(--m); width: calc(583 * var(--u)); height: calc(860 * var(--u)); }
@@ -112,7 +99,7 @@ h1, h2, h3, p { margin: 0; }
    sauter le dévoilement ; un fond plus dense le remplace */
 .carte-corps { height: 100%; padding: var(--m) 0; display: flex; flex-direction: column; background: rgba(var(--marine), .86); -webkit-backdrop-filter: none; backdrop-filter: none; }
 .carte { will-change: clip-path, transform; }
-.carte h3 { padding-inline: var(--m); font-family: var(--titre); font-weight: 500; letter-spacing: -.035em; text-wrap: pretty; }
+.carte h3 { padding-inline: var(--m); font-weight: 500; letter-spacing: -.03em; text-wrap: pretty; }
 .carte p, .chapeau, .presentation .moyen { text-wrap: pretty; }
 /* l'image d'une carte : en haut, sur toute la largeur, collée aux bords ; c'est un lien,
    vers la même page que le bouton de la carte */
@@ -130,7 +117,7 @@ h1, h2, h3, p { margin: 0; }
 /* ------------------------------------------------------------------ apparitions (comme le modèle) */
 /* masqué mais lu par les lecteurs d'écran ; le texte découpé en lettres ou en mots est,
    lui, caché aux lecteurs d'écran, qui lisent la copie intacte */
-.indicateur.est-visible { opacity: 1; }
+.est-cache { opacity: 0; }
 .js .chapitres [data-fenetre] { opacity: 0; }
 .js .chapitres [data-fenetre].est-visible { opacity: 1; }
 /* les éléments sans animation propre (barres de progression) apparaissent en fondu */
@@ -148,12 +135,6 @@ h1, h2, h3, p { margin: 0; }
 .animation--text-out--active .word-wrap { animation: flicker-text var(--courbe) .2s both reverse; animation-delay: calc(var(--word-index) * 10ms); }
 .animation--flicker-in--active { animation: flicker-in var(--courbe) .3s both; }
 .animation--flicker-out--active { animation: flicker-in var(--courbe) .3s both reverse; }
-/* l'accueil : chaque mot monte en se défloutant, puis les blocs suivants, en cascade */
-@keyframes monte { from { opacity: 0; filter: blur(10px); transform: translateY(.45em); } to { opacity: 1; filter: blur(0); transform: none; } }
-.animation--mots--inactive .word-wrap, .animation--monte--inactive { opacity: 0; }
-.animation--mots--active .word-wrap { animation: monte .9s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(var(--word-index) * 55ms + var(--retard, 0ms)); }
-.animation--mots-out--active .word-wrap, .animation--monte-out--active { animation: monte .2s ease both reverse; }
-.animation--monte--active { animation: monte .9s cubic-bezier(.2, .7, .2, 1) both; animation-delay: var(--retard, 0ms); }
 .mouvement-reduit [class*="animation--"] .char, .mouvement-reduit [class*="animation--"] .word-wrap, .mouvement-reduit [class*="animation--"] { animation: none !important; }
 
 /* ------------------------------------------------------------------ suite et pied */
@@ -170,10 +151,9 @@ h1, h2, h3, p { margin: 0; }
   :root { --u: calc(100vw / 760); }
   .entete-marque { width: auto; }
   .entete-appel { width: auto; min-width: 150px; }
-  .accueil { padding-top: calc(var(--m) + 96px); }
-  .accueil-titre { font-size: calc(84 * var(--u)); letter-spacing: -.05em; text-wrap: balance; }
-  .accueil-titre br { display: none; }
-  .accueil-sous-titre { font-size: 15px; max-width: 34em; }
+  .accueil-titre { left: var(--m); right: var(--m); top: calc(var(--m) + 70px); width: auto; text-align: left; font-size: calc(76 * var(--u)); line-height: calc(72 * var(--u)); }
+  .accueil-encadre { right: var(--m); width: auto; }
+  .accueil-encadre .chapeau { font-size: 17px; line-height: 1.3; padding-bottom: 60px; }
   .presentation { margin: 0 var(--m); width: auto; padding: 0; }
   .moyen { font-size: 24px; line-height: 1.12; }
   .chapitre-titre { width: auto; margin-inline-end: var(--m); align-self: start; margin-top: calc(var(--m) + 80px); font-size: calc(84 * var(--u)); line-height: 1.02; }

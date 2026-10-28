@@ -227,8 +227,8 @@ function logo(groupe, centre) {
   for (const [dv, couleur] of [[0.2, W], [-0.2, R]]) {
     tube(groupe, new THREE.CatmullRomCurve3(sur([new THREE.Vector2(-L / 2 + 1.1, dv), new THREE.Vector2(L / 2 - 1.1, dv)])), { couleur, rayon: 0.026, route: dv > 0 });
   }
-  // les arcs : à gauche et à droite de l'anneau (angles en degrés)
-  [[10.3, 165, 230, R], [13.3, 160, 225, R], [17.2, 170, 218, W], [10.3, -55, 40, R], [13.3, -48, 46, R], [17.2, -40, 38, R]].forEach(([r, a0, a1, couleur]) => {
+  // les arcs : à gauche et à droite de l'anneau, et au-dessus de l'accent (angles en degrés)
+  [[10.3, 165, 230, R], [13.3, 160, 225, R], [17.2, 170, 218, W], [10.3, -55, 40, R], [13.3, -48, 46, R], [17.2, -40, 38, R], [19.4, 62, 150, R], [22.8, 70, 140, B]].forEach(([r, a0, a1, couleur]) => {
     const pts = [];
     for (let j = 0; j <= 48; j++) pts.push(centre.clone().addScaledVector(dir(a0 + (a1 - a0) * j / 48), r).setY(y));
     tube(groupe, new THREE.CatmullRomCurve3(pts), { couleur, rayon: 0.036, route: false });
@@ -369,7 +369,7 @@ export function creerMonde(toile) {
   const auBout = (d, lat, h) => P2.clone().addScaledVector(sens, d).addScaledVector(gauche, lat).setY(h);
   const STATIONS = [
     // [progression, position, point visé, point visé sur écran en hauteur (l'objet, centré)]
-    [0.00, tab(L0.clone().add(new THREE.Vector3(-1.4, 14, 31))), tab(L0.clone().add(new THREE.Vector3(-1.8, 0, -50))), tab(L0.clone().add(new THREE.Vector3(-1.4, 0, -62)))],   // l’ouverture : le logo dessiné en routes, en bas de l’écran
+    [0.00, tab(L0.clone().add(new THREE.Vector3(4, 31, 28))), tab(L0.clone().add(new THREE.Vector3(5.5, 0, 1.6))), tab(L0.clone().add(new THREE.Vector3(0, 0, -3)))],   // l'ouverture : le logo dessiné en routes
     [0.05, [-16, 15, 32], [-2, 0, 2]],                   // la caméra descend vers l'autoroute
     [0.12, [-8, 4.5, 22], [6, 0, 2]],                    // l'autoroute balaie le bas de l'écran
     [0.20, [44, 3.5, -60], [14, 0.5, -112]],             // les lacets

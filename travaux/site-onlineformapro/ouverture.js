@@ -55,13 +55,6 @@ function decouper(el, mode) {
           mot.appendChild(enveloppe); frag.appendChild(mot);
         }
         noeud.replaceChild(frag, n);
-      } else if (n.nodeType === Node.ELEMENT_NODE && n.hasAttribute('data-entier')) {
-        // un morceau d'un seul tenant (le dégradé du titre d'accueil, qui ne se découpe pas)
-        const mot = document.createElement('span'), enveloppe = document.createElement('span');
-        mot.className = 'word'; enveloppe.className = 'word-wrap';
-        enveloppe.style.setProperty('--word-index', mots++);
-        noeud.replaceChild(mot, n);
-        enveloppe.appendChild(n); mot.appendChild(enveloppe);
       } else if (n.nodeType === Node.ELEMENT_NODE && n.tagName !== 'BR') parcourir(n);
     }
   };
@@ -220,6 +213,7 @@ function majIndicateur(s) {
     indicateurVisible = visible;
     indicateur.dataset.revele = 'flicker-in';
     visible ? allumer(indicateur) : eteindre(indicateur);
+    indicateur.classList.toggle('est-cache', false);
   }
   if (n && n !== indicateurValeur) { indicateurValeur = n; indicateurNum.textContent = String(n).padStart(2, '0'); }
 }
@@ -296,7 +290,7 @@ function appliquer(etat) {
 matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => appliquer(!e.matches));
 
 // -------------------------------------------------------------------- départ
-document.querySelectorAll('[data-revele="title"], [data-revele="text"], [data-revele="mots"]').forEach(el => { el._morceaux = decouper(el, el.dataset.revele === 'title' ? 'title' : 'text'); });
+document.querySelectorAll('[data-revele="title"], [data-revele="text"]').forEach(el => { el._morceaux = decouper(el, el.dataset.revele); });
 appliquer(anime);
 function redimensionner() { if (monde) monde.taille(); mesurer(); }
 addEventListener('resize', redimensionner);
