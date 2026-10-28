@@ -37,9 +37,12 @@ function decouper(el, mode) {
     for (const n of [...noeud.childNodes]) {
       if (n.nodeType === Node.TEXT_NODE) {
         const frag = document.createDocumentFragment();
-        // les espaces insécables restent dans le mot : « de l’IA » ne se coupe pas
-        for (const morceau of n.textContent.match(/[^ \t\n\r\f]+|[ \t\n\r\f]+/g) || []) {
-          if (/^[ \t\n\r\f]+$/.test(morceau)) { frag.appendChild(document.createTextNode(morceau)); continue; }
+        // dans les textes, les espaces insécables restent dans le mot (« de l’IA » ne se coupe
+        // pas) ; dans les grands titres, elles redeviennent des espaces : deux mots soudés y
+        // seraient parfois plus larges que la ligne, et se couperaient entre deux lettres
+        const motif = mode === 'title' ? /\S+|\s+/g : /[^ \t\n\r\f]+|[ \t\n\r\f]+/g, blanc = mode === 'title' ? /^\s+$/ : /^[ \t\n\r\f]+$/;
+        for (const morceau of n.textContent.match(motif) || []) {
+          if (blanc.test(morceau)) { frag.appendChild(document.createTextNode(morceau.replace(/\u00a0/g, ' '))); continue; }
           const mot = document.createElement('span'), enveloppe = document.createElement('span');
           mot.className = 'word'; enveloppe.className = 'word-wrap';
           enveloppe.style.setProperty('--word-index', mots++);
@@ -129,7 +132,7 @@ function mesurer() {
   const dernier = paquets[paquets.length - 1];
   finExperience = (dernier.haut + 100 + 75 * dernier.n) / 100 + 0.75;
   total = avance(finExperience);
-  if (monde) monde.placer(stations());
+  if (monde) monde.placer(stations(), moments());
 }
 // l'avance de la caméra pour une position de défilement (en écrans), arrêts compris
 function avance(e) {
@@ -141,11 +144,21 @@ function avance(e) {
   return ajuste;
 }
 const progressionDe = (e) => Math.min(1, Math.max(0, avance(e) / total));
-// les dix-sept stations de la caméra, calées sur les textes (positions en écrans)
+// les dix-huit stations de la caméra, calées sur les textes (positions en écrans)
 function stations() {
   const [c1, c2, c3, c4] = chapitres.map(v => v / 100);
   const [g1, g2, g3, g4] = gel;
-  return [0, 0.22, 0.6, 1.6, c1 - 0.5, c1 + 0.4, g1.de, g1.a + 0.9, c2 + 0.3, g2.de, g2.a + 0.9, c3 + 0.3, g3.de, c4 + 0.3, g4.de, g4.de + 0.9, finExperience].map(progressionDe);
+  return [0, 0.35, 1.3, 2.0, c1 - 0.5, c1 + 0.4, g1.de, g1.a + 0.9, c2 + 0.3, g2.de, g2.a, g2.a + 0.9, c3 + 0.3, g3.de, c4 + 0.3, g4.de, g4.de + 0.9, finExperience].map(progressionDe);
+}
+
+// les moments du cube modulaire (chapitre 2) : chaque module s'emboîte à l'entrée de sa
+// carte, et brille tant qu'elle est à l'écran
+function moments() {
+  const g = gel[1], carte = (k) => g.de + 0.75 * k;
+  return {
+    modules: [0, 1, 2].map(k => [progressionDe(carte(k) - 0.15), progressionDe(carte(k) + 0.45)]),
+    cartes: [0, 1, 2].map(k => [progressionDe(carte(k)), progressionDe(carte(k + 1))]),
+  };
 }
 
 // -------------------------------------------------------------------- monde 3D

@@ -158,21 +158,30 @@ police Plus Jakarta Sans. « Contactez-nous » ouvre un e-mail vers projet@onlin
 `site-onlineformapro/` : maquette de l'ouverture de la page d'accueil, au plus près de
 madarplatform.com pour pouvoir ensuite l'ajuster par petites touches. Une scène reste
 épinglée à l'écran ; la caméra y parcourt un monde fixe de lignes de lumière (three.js)
-pendant que les textes défilent. Les vues suivent celles du modèle : l'autoroute de
-l'accueil et ses lacets, le graphique de pics (la puissance de l'IA), le carrefour vu d'en
-haut (la solution globale et modulaire), le croisement en X entouré d'anneaux (17 millions
-d'utilisateurs), la ligne droite puis l'éventail de lignes (la demande de démo). Textes et
-liens repris du site officiel, aucun visuel. La partie plus classique du site viendra avec
-le prochain modèle.
+pendant que les textes défilent. Les vues suivent celles du modèle : le logo de l'accueil,
+l'autoroute et ses lacets, le graphique de pics (la puissance de l'IA), le carrefour vu
+d'en haut (la solution globale et modulaire), le croisement en X entouré d'anneaux (17
+millions d'utilisateurs), la ligne droite puis l'éventail de lignes (la demande de démo).
+Textes et liens repris du site officiel, aucun visuel. La partie plus classique du site
+viendra avec le prochain modèle.
 
-Trois objets, d'après les croquis, sont dessinés comme le camion du modèle : des traits de
+À l'arrivée, le Ó du logo est dessiné en routes, aux proportions du logo : l'anneau en route
+circulaire à trois paires de voies où la lumière circule, l'accent en bretelle aux bouts
+arrondis, des arcs de cercle autour (comme au croisement en X) et une bretelle qui rejoint
+l'autoroute. La caméra descend ensuite vers les appareils, qui accompagnent le texte « 25 ans
+de pédagogie ».
+
+Les objets, d'après les croquis, sont dessinés comme le camion du modèle : des traits de
 lumière fins à angles vifs sur leurs arêtes, et leur volume, de la couleur exacte du fond,
-qui cache les traits situés derrière (d'où l'impression d'objet plein). À l'accueil, un
-ordinateur portable, un smartphone et une tablette dans le virage de l'autoroute ; au
-croisement en X, une planète (méridiens, parallèles, un liseré qui suit son contour avec
-deux arcs orangés) entourée de particules ; au bout de l'éventail, le bâtiment de la R&D,
-qui apparaît avec la carte « Vous avez un projet ? ». Objets construits en code, sans
-fichier 3D : `objets.js`.
+qui cache les traits situés derrière (d'où l'impression d'objet plein). Dans le virage de
+l'autoroute, un ordinateur portable, un smartphone et une tablette. Au-dessus du carrefour,
+un cube aux arêtes adoucies : au titre, ses trois modules orangés sont détachés, avec des
+pointillés vers leur place ; chacun s'emboîte à l'entrée de sa carte (LMS OnlineManager,
+OnlineAgora, OnlineVisio) et brille tant qu'elle est à l'écran ; à la troisième, le cube est
+complet. Au croisement en X, une planète (méridiens, parallèles, un liseré qui suit son
+contour avec deux arcs orangés) dans une poussière fine de particules. Au bout de
+l'éventail, le bâtiment de la R&D, qui apparaît avec la carte « Vous avez un projet ? ».
+Objets construits en code, sans fichier 3D : `objets.js`.
 
 Le code et les tracés sont les nôtres ; la mécanique et les réglages sont relevés sur le
 modèle : hauteurs des blocs en svh, caméra quasi arrêtée (5 % d'avance) pendant les cartes
@@ -182,9 +191,10 @@ des textes lettre par lettre (mêmes images clés), cartes qui se dévoilent de 
 deux lueurs bleues. Couleurs : le bleu, l'orangé et le blanc du modèle ; pour passer au
 rouge de la marque, changer `rouge` dans `COULEURS` (en tête de `monde.js`).
 
-`monde.js` : le décor (routes, carrefours, pics, anneaux, éventail), les stations de la
-caméra et le rendu ; `objets.js` : les trois objets. `ouverture.js` : les mesures de la page, le calage des stations sur les
-textes, les apparitions, les cartes, le bouton « Animations ». `ouverture.css` : la mise en
+`monde.js` : le décor (logo, routes, carrefours, pics, anneaux, éventail), les stations de
+la caméra et le rendu ; `objets.js` : les objets. `ouverture.js` : les mesures de la page,
+le calage des stations et des modules du cube sur les textes, les apparitions, les cartes,
+le bouton « Animations ». `ouverture.css` : la mise en
 page, à l'échelle d'un écran de 1440 × 900. three.js 0.170.0 (et ses passes d'effets) et
 Lenis 1.3.23 sont copiés dans `vendor/` (licences MIT jointes) et chargés par une importmap :
 rien ne dépend d'un CDN. Modules JavaScript : la page se sert par http, elle ne s'ouvre pas
@@ -195,8 +205,8 @@ lecture (les titres découpés pour l'animation gardent une copie lisible). Rég
 les animations » du système, ou bouton « Animations » (retenu dans le navigateur) : ni
 défilement amorti, ni apparitions, et la caméra passe d'une vue à l'autre sans glisser.
 Sans WebGL, les textes restent sur le fond bleu. Sur téléphone, les cartes deviennent des
-vitres en bas de l'écran, la caméra centre les objets et les traits sont plus épais. Vérifié à 1440 × 900 et 390 × 844, avec et sans animations, sans
-débordement horizontal.
+vitres en bas de l'écran, la caméra centre les objets et les traits sont plus épais.
+Vérifié à 1440 × 900 et 390 × 844, avec et sans animations, sans débordement horizontal.
 
 ## Page organismes CiviCap
 

@@ -1,7 +1,9 @@
 // Les objets du parcours, dessinés comme le camion du modèle (voir « objets dessinés » dans
-// monde.js) : un ordinateur, un smartphone et une tablette dans le virage de l'accueil ; une
-// planète entourée de particules au-dessus du croisement en X (les utilisateurs) ; le
-// bâtiment de la R&D au bout de la ligne droite (les développements sur mesure).
+// monde.js) : un ordinateur, un smartphone et une tablette dans le virage de l'accueil ; un
+// cube dont les modules s'emboîtent au-dessus du carrefour (la solution globale et
+// modulaire) ; une planète entourée de particules au-dessus du croisement en X (les
+// utilisateurs) ; le bâtiment de la R&D au bout de la ligne droite (les développements sur
+// mesure).
 //
 // Chaque objet est construit dans son propre repère (en unités du monde : la route fait
 // environ 4,4 de large), puis posé. L'épaisseur des traits suit la distance d'où la caméra
@@ -15,7 +17,7 @@ const RAD = Math.PI / 180;
 
 // -------------------------------------------------------------------- formes planes
 // un rectangle aux coins arrondis (l × h, rayon r), centré : ses points, dans l'ordre
-function rectangle(l, h, r = 0, n = 5) {
+export function rectangle(l, h, r = 0, n = 5) {
   const pts = [], cx = l / 2 - r, cy = h / 2 - r, m = r > 0 ? n : 0;
   [[1, 1], [-1, 1], [-1, -1], [1, -1]].forEach(([sx, sy], k) => {
     for (let j = 0; j <= m; j++) {
@@ -254,8 +256,87 @@ function batiment() {
   return d.finir(new THREE.Group());
 }
 
+// -------------------------------------------------------------------- le cube modulaire
+// Un cube de 2 × 2 × 2 cellules aux arêtes adoucies. Quatre cellules bleues forment le socle ;
+// trois modules orangés viennent s'y emboîter, un par carte du chapitre : un cube par la
+// gauche, un cube par le haut, un tiroir de deux cellules par l'avant. Des pointillés
+// montrent leur chemin tant qu'ils sont détachés ; le module de la carte à l'écran brille.
+// Repère : la caméra le regarde depuis -x, +y, +z.
+const CELLULE = 3, PAS = 3.22, ADOUCI = 0.28;
+// une boîte aux arêtes adoucies : le contour de chacune de ses faces, en retrait des arêtes
+// (les contours de deux faces voisines dessinent l'arête en double trait)
+function pave(d, c, [lx, ly, lz], couleur, rayon) {
+  for (const [n, u, v, demi, lu, lv] of [
+    [V(1, 0, 0), V(0, 0, -1), V(0, 1, 0), lx / 2, lz, ly], [V(-1, 0, 0), V(0, 0, 1), V(0, 1, 0), lx / 2, lz, ly],
+    [V(0, 1, 0), V(1, 0, 0), V(0, 0, -1), ly / 2, lx, lz], [V(0, -1, 0), V(1, 0, 0), V(0, 0, 1), ly / 2, lx, lz],
+    [V(0, 0, 1), V(1, 0, 0), V(0, 1, 0), lz / 2, lx, ly], [V(0, 0, -1), V(-1, 0, 0), V(0, 1, 0), lz / 2, lx, ly],
+  ]) {
+    const a = Math.min(ADOUCI, lu / 4, lv / 4);
+    d.trait(plan(c.clone().addScaledVector(n, demi + 0.004), u, v)(rectangle(lu - 2 * a, lv - 2 * a, Math.min(0.14, a), 3)), couleur, rayon, true);
+  }
+  d.volume(new THREE.BoxGeometry(lx - 0.03, ly - 0.03, lz - 0.03).translate(c.x, c.y, c.z));
+}
+const cellule = (i, j, k) => V((i - 0.5) * PAS, (j - 0.5) * PAS, (k - 0.5) * PAS);
+// un trait en pointillés de a à b
+function pointilles(d, a, b, couleur, rayon, tiret = 0.35, vide = 0.3) {
+  const L = a.distanceTo(b), dir = b.clone().sub(a).normalize();
+  for (let t = 0; t < L; t += tiret + vide) d.trait([a.clone().addScaledVector(dir, t), a.clone().addScaledVector(dir, Math.min(L, t + tiret))], couleur, rayon);
+}
+function cubeModulaire() {
+  const groupe = new THREE.Group(), fort = 0.03, fin = 0.022;
+  const socle = dessin();
+  for (const c of [[0, 0, 0], [0, 1, 0], [0, 1, 1], [1, 1, 1]]) pave(socle, cellule(...c), [CELLULE, CELLULE, CELLULE], B, fort);
+  socle.finir(groupe);
+  // les modules, dans l'ordre des cartes : place, taille, d'où il vient
+  const modules = [
+    { place: cellule(0, 0, 1), taille: [CELLULE, CELLULE, CELLULE], depart: V(-6, 0, 0) },
+    { place: cellule(1, 1, 0), taille: [CELLULE, CELLULE, CELLULE], depart: V(0, 6, 0) },
+    { place: cellule(1, 0, 0).add(cellule(1, 0, 1)).multiplyScalar(0.5), taille: [CELLULE, CELLULE, CELLULE + PAS], depart: V(0, 0, 7.5) },
+  ].map(({ place, taille, depart }) => {
+    const objet = new THREE.Group(), d = dessin({ propre: true }), sens = depart.clone().normalize().negate();
+    pave(d, V(0, 0, 0), taille, R, fort);
+    // l'ergot d'emboîtement, sur la face qui entre la première
+    const demi = Math.abs(sens.dot(V(...taille))) / 2, ergot = [1.1, 1.1, 1.1].map((l, a) => (Math.abs(sens.getComponent(a)) > 0.5 ? 0.5 : l));
+    pave(d, sens.clone().multiplyScalar(demi + 0.25), ergot, R, fin);
+    d.finir(objet);
+    objet.position.copy(place).add(depart);
+    groupe.add(objet);
+    // les pointillés : des coins de la face d'entrée jusqu'à la place
+    const g = new THREE.Group(), dg = dessin({ propre: true });
+    const axes = [0, 1, 2].filter(a => Math.abs(sens.getComponent(a)) < 0.5);
+    for (const [s1, s2] of [[-1, -1], [-1, 1], [1, 1], [1, -1]]) {
+      const coin = V(0, 0, 0).addScaledVector(sens, demi);
+      coin.setComponent(axes[0], s1 * (taille[axes[0]] / 2 - ADOUCI));
+      coin.setComponent(axes[1], s2 * (taille[axes[1]] / 2 - ADOUCI));
+      pointilles(dg, coin.clone().add(place), coin.clone().add(place).add(depart), R, fin * 0.8);
+    }
+    dg.finir(g);
+    groupe.add(g);
+    return { objet, place, depart, lignes: d.matieres, guides: dg.matieres, teinte: d.matieres.map(m => m.uniforms.uCouleur.value.clone()) };
+  });
+
+  let moments = null;
+  const aide = (p, [a, b]) => { const t = Math.min(1, Math.max(0, (p - a) / Math.max(1e-6, b - a))); return t * t * (3 - 2 * t); };
+  return {
+    groupe,
+    placer(m) { moments = m; },
+    animer(progression, anime) {
+      if (!moments) return;
+      modules.forEach((mod, k) => {
+        let e = aide(progression, moments.modules[k]);
+        if (!anime) e = e < 0.5 ? 0 : 1;
+        mod.objet.position.copy(mod.place).addScaledVector(mod.depart, 1 - e);
+        const [a, b] = moments.cartes[k], brille = progression >= a && progression < b ? 1.7 : 1;
+        mod.lignes.forEach((m, j) => m.uniforms.uCouleur.value.copy(mod.teinte[j]).multiplyScalar(brille));
+        for (const m of mod.guides) m.uniforms.uAlpha.value = 0.7 * (1 - e);
+      });
+    },
+  };
+}
+
 // -------------------------------------------------------------------- mise en place
-// poses : appareils { position, cap, echelle }, planete { centre, rayon }, batiment { entree, sens }
+// poses : appareils { position, cap, echelle }, cube { centre }, planete { centre, rayon },
+// batiment { entree, sens }
 export function creerObjets(scene, poses, outils) {
   ({ dessin } = outils);
   ({ bleu: B, rouge: R } = outils.couleurs);
@@ -266,6 +347,11 @@ export function creerObjets(scene, poses, outils) {
   poser(appareils, appareil({ l: 5.4, h: 3.8, ep: 0.14, r: 0.32, inclinaison: 14, ecran: 0.26, boutonsD: [[1.1, 0.5], [0.45, 0.5]] }), [6.2, 0, -0.2], -0.6);
   appareils.scale.setScalar(poses.appareils.echelle);
   poser(scene, appareils, poses.appareils.position, poses.appareils.cap);
+
+  // la solution globale et modulaire : le cube, au-dessus du carrefour
+  const cube = cubeModulaire();
+  cube.groupe.position.copy(poses.cube.centre);
+  scene.add(cube.groupe);
 
   // les 17 millions d'utilisateurs : la planète au-dessus du croisement
   const terre = planete(poses.planete.rayon);
@@ -281,7 +367,8 @@ export function creerObjets(scene, poses, outils) {
   scene.add(siege);
 
   return {
-    animer: (temps, camera, anime) => terre.animer(temps, camera, anime),
+    animer: (temps, camera, anime, progression) => { terre.animer(temps, camera, anime); cube.animer(progression, anime); },
     taille: (echelle) => terre.taille(echelle),
+    placer: (moments) => cube.placer(moments),
   };
 }

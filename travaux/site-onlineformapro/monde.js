@@ -15,7 +15,7 @@ import { UnrealBloomPass } from './vendor/addons/postprocessing/UnrealBloomPass.
 import { ShaderPass } from './vendor/addons/postprocessing/ShaderPass.js';
 import { OutputPass } from './vendor/addons/postprocessing/OutputPass.js';
 import { FXAAShader } from './vendor/addons/shaders/FXAAShader.js';
-import { creerObjets } from './objets.js';
+import { creerObjets, rectangle } from './objets.js';
 
 // les couleurs du modèle (bleu, orangé, blanc) ; pour passer au rouge de la marque, changer « rouge »
 export const COULEURS = { bleu: '#1367FE', rouge: '#FF4300', blanc: '#FFFFFF' };
@@ -87,9 +87,9 @@ function matiere(couleur, longueur, route, bouts) {
   matieres.push(m);
   return m;
 }
-function tube(groupe, c, { couleur, rayon = 0.016, route = true, bouts = [1, 1] }) {
+function tube(groupe, c, { couleur, rayon = 0.016, route = true, bouts = [1, 1], ferme = false }) {
   const L = c.getLength();
-  const mesh = new THREE.Mesh(new THREE.TubeGeometry(c, Math.min(900, Math.max(40, Math.round(L * 2.2))), rayon * epaisseur, 5, false), matiere(couleur, L, route, bouts));
+  const mesh = new THREE.Mesh(new THREE.TubeGeometry(c, Math.min(900, Math.max(40, Math.round(L * 2.2))), rayon * epaisseur, 5, ferme), matiere(couleur, L, route, bouts));
   groupe.add(mesh);
   return mesh;
 }
@@ -122,9 +122,12 @@ function fusionner(geos, avecIndex) {
   if (avecIndex) { r.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); r.setIndex(new THREE.BufferAttribute(idx, 1)); }
   return r;
 }
-function dessin() {
+// « propre » : des matières à lui seul (pour en régler l'éclat ou la transparence), dans
+// « matieres » une fois fini
+function dessin({ propre = false } = {}) {
   const traits = new Map(), volumes = [];
   return {
+    matieres: [],
     // un trait par des points (Vector3) : des segments droits, refermé si « ferme »
     trait(pts, couleur, rayon, ferme = false) {
       const c = new THREE.CatmullRomCurve3(pts, ferme);
@@ -137,7 +140,11 @@ function dessin() {
     // un volume qui masque (géométrie déjà placée)
     volume(g) { volumes.push(g.index ? g.toNonIndexed() : g); },
     finir(groupe) {
-      for (const [couleur, geos] of traits) groupe.add(new THREE.Mesh(fusionner(geos, true), matiereFixe(couleur)));
+      for (const [couleur, geos] of traits) {
+        const m = propre ? matiere(couleur, 1, false, [0, 0]) : matiereFixe(couleur);
+        if (propre) this.matieres.push(m);
+        groupe.add(new THREE.Mesh(fusionner(geos, true), m));
+      }
       if (volumes.length) groupe.add(new THREE.Mesh(fusionner(volumes, false), MASQUE));
       return groupe;
     },
@@ -198,6 +205,40 @@ const VOIES_FINES = [[-1.8, R], [-0.9, B, 0.013], [0.9, W, 0.013], [1.8, B]];
 // Le parcours, dans l'ordre : l'autoroute de l'ouverture et ses lacets, le graphique de pics
 // (l'IA), le carrefour vu d'en haut (la solution modulaire), le croisement en X et ses
 // anneaux (les utilisateurs), la ligne droite et l'éventail (la démonstration).
+// le logo : le Ó d'Onlineformapro dessiné en routes, comme un échangeur vu d'en haut, aux
+// proportions du logo (en unités du dessin du logo, × k). L'anneau du O est une route
+// circulaire à trois paires de voies où la lumière circule ; l'accent, une bretelle droite
+// aux bouts arrondis ; autour, des arcs de cercle, comme au croisement en X.
+function logo(groupe, centre) {
+  const k = 0.1, R0 = 77 * k, r0 = 32 * k, m = (R0 + r0) / 2, y = 0.03, e = 0.4;
+  [[R0, B, 0.036], [R0 - e, W, 0.03], [m + 0.2, R, 0.032], [m - 0.2, W, 0.03], [r0 + e, W, 0.03], [r0, R, 0.036]].forEach(([r, couleur, rayon], n) => {
+    const pts = [];
+    for (let j = 0; j < 120; j++) pts.push(centre.clone().addScaledVector(dir(j * 3), r).setY(y));
+    tube(groupe, new THREE.CatmullRomCurve3(pts, true), { couleur, rayon, route: n % 2 === 0, bouts: [0, 0], ferme: true });
+  });
+  // l'accent : un rectangle tourné de 29,4°, son centre en (86,8 ; 63,3) dans le dessin
+  const c = centre.clone().add(new THREE.Vector3((86.77 - 111) * k, y, (63.27 - 175.5) * k));
+  const u = new THREE.Vector3(0.8714, 0, -0.4906), v = new THREE.Vector3(0.4906, 0, 0.8714), L = 134.3 * k, l = 41.1 * k;
+  const sur = (pts) => pts.map(p => c.clone().addScaledVector(u, p.x).addScaledVector(v, p.y));
+  for (const [dl, arrondi, couleur, rayon] of [[0, 0.8, B, 0.036], [2 * e, 0.45, R, 0.028]]) {
+    const pts = sur(rectangle(L - dl, l - dl, arrondi));
+    tube(groupe, new THREE.CatmullRomCurve3(pts, true), { couleur, rayon, route: false, bouts: [0, 0], ferme: true });
+  }
+  for (const [dv, couleur] of [[0.2, W], [-0.2, R]]) {
+    tube(groupe, new THREE.CatmullRomCurve3(sur([new THREE.Vector2(-L / 2 + 1.1, dv), new THREE.Vector2(L / 2 - 1.1, dv)])), { couleur, rayon: 0.026, route: dv > 0 });
+  }
+  // la bretelle : elle quitte l'anneau sur sa droite et rejoint l'autoroute, en contrebas
+  const depart = centre.clone().addScaledVector(dir(-20), R0 - e / 2);
+  route(groupe, [[depart.x, depart.z], [depart.x + 0.75, depart.z + 3.9], [depart.x + 3, depart.z + 10.4], [depart.x + 6.5, depart.z + 16.4], [depart.x + 10.5, depart.z + 20.8], [depart.x + 15.5, depart.z + 23.7]],
+    [[-0.2, W, 0.03], [0.2, R, 0.03]], { bouts: [0, 1] });
+  // les arcs : à gauche et à droite de l'anneau, et au-dessus de l'accent (angles en degrés)
+  [[10.3, 165, 230, R], [13.3, 160, 225, R], [17.2, 170, 218, W], [10.3, -55, 40, R], [13.3, -48, 46, R], [17.2, -40, 38, R], [19.4, 62, 150, R], [22.8, 70, 140, B]].forEach(([r, a0, a1, couleur]) => {
+    const pts = [];
+    for (let j = 0; j <= 48; j++) pts.push(centre.clone().addScaledVector(dir(a0 + (a1 - a0) * j / 48), r).setY(y));
+    tube(groupe, new THREE.CatmullRomCurve3(pts), { couleur, rayon: 0.036, route: false });
+  });
+}
+
 function decor(groupe) {
   const zc = -420, C1 = new THREE.Vector3(0, 0, zc);
   // l'ouverture : l'autoroute arrive de l'horizon, à gauche, passe tout près, en bas de
@@ -263,7 +304,10 @@ function decor(groupe) {
     }
     tube(groupe, new THREE.CatmullRomCurve3(pts), { couleur: [R, B, W, B, R, B][k % 6], rayon: k % 2 ? 0.022 : 0.03, route: k % 2 === 0, bouts: [1, 0] });
   }
-  return { C1, P2, sens, F };
+  // le logo, à gauche du virage de l'accueil ; sa bretelle rejoint l'autoroute
+  const L0 = new THREE.Vector3(-38, 0, -26);
+  logo(groupe, L0);
+  return { C1, P2, sens, F, L0 };
 }
 // la planète des utilisateurs, au-dessus du croisement en X
 const PLANETE = { hauteur: 11, rayon: 7.5 };
@@ -302,9 +346,10 @@ export function creerMonde(toile) {
   const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 240);
   const groupe = new THREE.Group();
   scene.add(groupe);
-  const { C1, P2, sens, F } = decor(groupe);
+  const { C1, P2, sens, F, L0 } = decor(groupe);
   const objets = creerObjets(groupe, {
     appareils: { position: [0.5, 0, -1.5], cap: -0.2, echelle: 0.85 },
+    cube: { centre: C1.clone().setY(7.5) },
     planete: { centre: P2.clone().setY(PLANETE.hauteur), rayon: PLANETE.rayon },
     batiment: { entree: F, sens },
   }, { dessin, couleurs: COULEURS });
@@ -329,16 +374,17 @@ export function creerMonde(toile) {
   const auBout = (d, lat, h) => P2.clone().addScaledVector(sens, d).addScaledVector(gauche, lat).setY(h);
   const STATIONS = [
     // [progression, position, point visé, point visé sur écran en hauteur (l'objet, centré)]
-    [0.00, [-9, 5, 23], [5.5, 1.6, -1], [0.8, 1.6, -1]], // l'ouverture : l'autoroute balaie le bas de l'écran, les appareils
-    [0.05, [8, 2.0, 22], [30, 0.6, -25]],                // la caméra se tourne vers l'horizon
-    [0.12, [27, 1.6, 0], [31, 0.6, -60]],                // elle file sur la route
+    [0.00, tab(L0.clone().add(new THREE.Vector3(6, 40, 36))), tab(L0.clone().add(new THREE.Vector3(8, 0, 1))), tab(L0.clone().add(new THREE.Vector3(0, 0, -3)))],   // l'ouverture : le logo dessiné en routes
+    [0.05, [-16, 15, 32], [-2, 0, 2]],                   // la caméra descend vers l'autoroute
+    [0.12, [-14, 6.5, 30], [10.5, 1.6, -1], [0.8, 8, 2]],   // les appareils, dans le virage
     [0.20, [44, 3.5, -60], [14, 0.5, -112]],             // les lacets
     [0.27, [4, 2.6, -150], [-6, 1.6, -230]],
     [0.33, [-1, 3.0, -226], [-14, 4.0, -268]],            // le graphique s'élève (l'IA)
     [0.37, [3, 3.4, -236], [-14, 4.4, -276]],            // arrêt devant les pics
     [0.44, [4, 12, -345], [0, 0, -405]],                 // la caméra s'élève au-dessus de la route
-    [0.52, tab(C1.clone().add(new THREE.Vector3(-20, 30, 16))), tab(C1.clone().add(new THREE.Vector3(2, 0, -6)))],   // le carrefour vu d'en haut (la solution modulaire)
-    [0.57, tab(C1.clone().add(new THREE.Vector3(-10, 30, 22))), tab(C1.clone().add(new THREE.Vector3(7, 0, -2)))],
+    [0.52, tab(C1.clone().add(new THREE.Vector3(-28, 26, 28))), tab(C1.clone().add(new THREE.Vector3(-5.5, 7, -5.5))), tab(C1.clone().setY(5))],   // le carrefour et le cube modulaire (la solution globale et modulaire)
+    [0.57, tab(C1.clone().add(new THREE.Vector3(-22, 22, 30))), tab(C1.clone().add(new THREE.Vector3(4.5, 7.5, 3))), tab(C1.clone().setY(5))],
+    [0.60, tab(C1.clone().add(new THREE.Vector3(-18, 21, 32))), tab(C1.clone().add(new THREE.Vector3(3, 7, 3))), tab(C1.clone().setY(6))],      // le cube complet
     [0.64, [110, 10, -385], [170, 0, -405]],             // la liaison vers le croisement
     [0.72, tab(P2.clone().add(new THREE.Vector3(-58, 22, 6))), tab(P2.clone().add(new THREE.Vector3(0, 8, -9))), tab(P2.clone().setY(9))],    // le croisement en X, ses anneaux et la planète (les utilisateurs)
     [0.78, tab(P2.clone().add(new THREE.Vector3(-52, 20, -14))), tab(P2.clone().add(new THREE.Vector3(0, 8, 12))), tab(P2.clone().setY(9))],
@@ -403,7 +449,7 @@ export function creerMonde(toile) {
     camera.position.copy(vise).add(d);
     camera.lookAt(vise);
     for (const m of matieres) m.uniforms.uTemps.value = anime ? temps * 2 : 0;
-    objets.animer(temps, camera, anime);
+    objets.animer(temps, camera, anime, progression);
     composeur.render();
   }
 
@@ -416,8 +462,10 @@ export function creerMonde(toile) {
     return niveau <= 2;
   }
 
-  // les moments des stations, calés sur les textes par la page (une valeur par station)
-  function placer(valeurs) {
+  // les moments des stations, calés sur les textes par la page (une valeur par station), et
+  // ceux des objets (les modules du cube)
+  function placer(valeurs, moments) {
+    objets.placer(moments);
     let prec = -1;
     valeurs.forEach((v, k) => { STATIONS[k][0] = Math.max(v, prec + 1e-4); prec = STATIONS[k][0]; });
   }
