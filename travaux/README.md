@@ -165,6 +165,15 @@ d'utilisateurs), la ligne droite puis l'éventail de lignes (la demande de démo
 liens repris du site officiel, aucun visuel. La partie plus classique du site viendra avec
 le prochain modèle.
 
+Trois objets, d'après les croquis, sont dessinés comme le camion du modèle : des traits de
+lumière fins à angles vifs sur leurs arêtes, et leur volume, de la couleur exacte du fond,
+qui cache les traits situés derrière (d'où l'impression d'objet plein). À l'accueil, un
+ordinateur portable, un smartphone et une tablette dans le virage de l'autoroute ; au
+croisement en X, une planète (méridiens, parallèles, un liseré qui suit son contour avec
+deux arcs orangés) entourée de particules ; au bout de l'éventail, le bâtiment de la R&D,
+qui apparaît avec la carte « Vous avez un projet ? ». Objets construits en code, sans
+fichier 3D : `objets.js`.
+
 Le code et les tracés sont les nôtres ; la mécanique et les réglages sont relevés sur le
 modèle : hauteurs des blocs en svh, caméra quasi arrêtée (5 % d'avance) pendant les cartes
 de chaque chapitre, défilement amorti par Lenis (`lerp` 0,1), apparitions des titres et
@@ -174,7 +183,7 @@ deux lueurs bleues. Couleurs : le bleu, l'orangé et le blanc du modèle ; pour 
 rouge de la marque, changer `rouge` dans `COULEURS` (en tête de `monde.js`).
 
 `monde.js` : le décor (routes, carrefours, pics, anneaux, éventail), les stations de la
-caméra et le rendu. `ouverture.js` : les mesures de la page, le calage des stations sur les
+caméra et le rendu ; `objets.js` : les trois objets. `ouverture.js` : les mesures de la page, le calage des stations sur les
 textes, les apparitions, les cartes, le bouton « Animations ». `ouverture.css` : la mise en
 page, à l'échelle d'un écran de 1440 × 900. three.js 0.170.0 (et ses passes d'effets) et
 Lenis 1.3.23 sont copiés dans `vendor/` (licences MIT jointes) et chargés par une importmap :
@@ -186,7 +195,7 @@ lecture (les titres découpés pour l'animation gardent une copie lisible). Rég
 les animations » du système, ou bouton « Animations » (retenu dans le navigateur) : ni
 défilement amorti, ni apparitions, et la caméra passe d'une vue à l'autre sans glisser.
 Sans WebGL, les textes restent sur le fond bleu. Sur téléphone, les cartes deviennent des
-vitres en bas de l'écran. Vérifié à 1440 × 900 et 390 × 844, avec et sans animations, sans
+vitres en bas de l'écran, la caméra centre les objets et les traits sont plus épais. Vérifié à 1440 × 900 et 390 × 844, avec et sans animations, sans
 débordement horizontal.
 
 ## Page organismes CiviCap

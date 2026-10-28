@@ -141,11 +141,11 @@ function avance(e) {
   return ajuste;
 }
 const progressionDe = (e) => Math.min(1, Math.max(0, avance(e) / total));
-// les seize stations de la caméra, calées sur les textes (positions en écrans)
+// les dix-sept stations de la caméra, calées sur les textes (positions en écrans)
 function stations() {
   const [c1, c2, c3, c4] = chapitres.map(v => v / 100);
   const [g1, g2, g3, g4] = gel;
-  return [0, 0.22, 0.6, 1.6, c1 - 0.5, c1 + 0.4, g1.de, g1.a + 0.9, c2 + 0.3, g2.de, g2.a + 0.9, c3 + 0.3, g3.de, c4 + 0.3, g4.de, finExperience].map(progressionDe);
+  return [0, 0.22, 0.6, 1.6, c1 - 0.5, c1 + 0.4, g1.de, g1.a + 0.9, c2 + 0.3, g2.de, g2.a + 0.9, c3 + 0.3, g3.de, c4 + 0.3, g4.de, g4.de + 0.9, finExperience].map(progressionDe);
 }
 
 // -------------------------------------------------------------------- monde 3D

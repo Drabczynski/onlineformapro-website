@@ -15,6 +15,7 @@ import { UnrealBloomPass } from './vendor/addons/postprocessing/UnrealBloomPass.
 import { ShaderPass } from './vendor/addons/postprocessing/ShaderPass.js';
 import { OutputPass } from './vendor/addons/postprocessing/OutputPass.js';
 import { FXAAShader } from './vendor/addons/shaders/FXAAShader.js';
+import { creerObjets } from './objets.js';
 
 // les couleurs du modèle (bleu, orangé, blanc) ; pour passer au rouge de la marque, changer « rouge »
 export const COULEURS = { bleu: '#1367FE', rouge: '#FF4300', blanc: '#FFFFFF' };
@@ -69,6 +70,8 @@ const nuanceur = {
     }`,
 };
 const matieres = [];
+// sur petit écran, des traits plus épais (comme le modèle), sinon ils s'émiettent
+let epaisseur = 1;
 function matiere(couleur, longueur, route, bouts) {
   // comme le modèle : la valeur hexadécimale prise telle quelle en couleur linéaire (plus
   // lumineuse et plus chaude une fois à l'écran : l'orangé tire sur le jaune, le bleu sur le cyan)
@@ -86,10 +89,61 @@ function matiere(couleur, longueur, route, bouts) {
 }
 function tube(groupe, c, { couleur, rayon = 0.016, route = true, bouts = [1, 1] }) {
   const L = c.getLength();
-  const mesh = new THREE.Mesh(new THREE.TubeGeometry(c, Math.min(900, Math.max(40, Math.round(L * 2.2))), rayon, 5, false), matiere(couleur, L, route, bouts));
+  const mesh = new THREE.Mesh(new THREE.TubeGeometry(c, Math.min(900, Math.max(40, Math.round(L * 2.2))), rayon * epaisseur, 5, false), matiere(couleur, L, route, bouts));
   groupe.add(mesh);
   return mesh;
 }
+// -------------------------------------------------------------------- objets dessinés
+// La technique du camion du modèle : des traits de lumière fins, à angles vifs et sans
+// pulsation, sur les arêtes d'un objet ; et son volume, de la couleur exacte du fond, donc
+// invisible, qui cache les traits situés derrière lui. Les traits d'une même couleur sont
+// fusionnés en un seul maillage, les volumes aussi.
+const fixes = {};
+const matiereFixe = (couleur) => (fixes[couleur] ||= matiere(couleur, 1, false, [0, 0]));
+const MASQUE = new THREE.MeshBasicMaterial({ color: NUIT, polygonOffset: true, polygonOffsetFactor: 2, polygonOffsetUnits: 2 });
+function fusionner(geos, avecIndex) {
+  let nv = 0, ni = 0;
+  for (const g of geos) { nv += g.attributes.position.count; if (avecIndex) ni += g.index.count; }
+  const pos = new Float32Array(nv * 3), uv = avecIndex ? new Float32Array(nv * 2) : null, idx = avecIndex ? new Uint32Array(ni) : null;
+  let ov = 0, oi = 0;
+  for (const g of geos) {
+    pos.set(g.attributes.position.array, ov * 3);
+    if (avecIndex) {
+      uv.set(g.attributes.uv.array, ov * 2);
+      const ix = g.index.array;
+      for (let k = 0; k < ix.length; k++) idx[oi + k] = ix[k] + ov;
+      oi += ix.length;
+    }
+    ov += g.attributes.position.count;
+    g.dispose();
+  }
+  const r = new THREE.BufferGeometry();
+  r.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  if (avecIndex) { r.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); r.setIndex(new THREE.BufferAttribute(idx, 1)); }
+  return r;
+}
+function dessin() {
+  const traits = new Map(), volumes = [];
+  return {
+    // un trait par des points (Vector3) : des segments droits, refermé si « ferme »
+    trait(pts, couleur, rayon, ferme = false) {
+      const c = new THREE.CatmullRomCurve3(pts, ferme);
+      c.getPointAt = (u, o) => c.getPoint(u, o);
+      c.getTangentAt = (u, o) => c.getTangent(u, o);
+      const g = new THREE.TubeGeometry(c, ferme ? pts.length : pts.length - 1, rayon * epaisseur, 5, ferme);
+      if (!traits.has(couleur)) traits.set(couleur, []);
+      traits.get(couleur).push(g);
+    },
+    // un volume qui masque (géométrie déjà placée)
+    volume(g) { volumes.push(g.index ? g.toNonIndexed() : g); },
+    finir(groupe) {
+      for (const [couleur, geos] of traits) groupe.add(new THREE.Mesh(fusionner(geos, true), matiereFixe(couleur)));
+      if (volumes.length) groupe.add(new THREE.Mesh(fusionner(volumes, false), MASQUE));
+      return groupe;
+    },
+  };
+}
+
 // une ligne lisse par des points (Vector3)
 const ligne = (groupe, pts, options) => tube(groupe, new THREE.CatmullRomCurve3(pts, false, 'centripetal'), options);
 // une route : plusieurs voies parallèles, chacune sa couleur
@@ -211,6 +265,8 @@ function decor(groupe) {
   }
   return { C1, P2, sens, F };
 }
+// la planète des utilisateurs, au-dessus du croisement en X
+const PLANETE = { hauteur: 11, rayon: 7.5 };
 
 // -------------------------------------------------------------------- dégradés bleus (passe)
 // Deux lueurs bleues ajoutées à l'image : l'une en haut, au centre, l'autre à gauche.
@@ -230,6 +286,7 @@ const DegradeNuanceur = {
 
 // -------------------------------------------------------------------- le monde
 export function creerMonde(toile) {
+  epaisseur = Math.min(innerWidth, innerHeight) < 600 ? 1.7 : 1;
   const rendu = new THREE.WebGLRenderer({ canvas: toile, antialias: false, powerPreference: 'high-performance' });
   rendu.setClearColor(NUIT);
   rendu.toneMapping = THREE.ACESFilmicToneMapping;
@@ -246,6 +303,11 @@ export function creerMonde(toile) {
   const groupe = new THREE.Group();
   scene.add(groupe);
   const { C1, P2, sens, F } = decor(groupe);
+  const objets = creerObjets(groupe, {
+    appareils: { position: [0.5, 0, -1.5], cap: -0.2, echelle: 0.85 },
+    planete: { centre: P2.clone().setY(PLANETE.hauteur), rayon: PLANETE.rayon },
+    batiment: { entree: F, sens },
+  }, { dessin, couleurs: COULEURS });
 
   // la chaîne de rendu, dans l'ordre du modèle : l'image, sa tonalité (sortie en couleurs
   // d'écran), le halo, les dégradés bleus, l'anticrénelage
@@ -266,8 +328,8 @@ export function creerMonde(toile) {
   const gauche = sens.clone().cross(HAUT).negate();
   const auBout = (d, lat, h) => P2.clone().addScaledVector(sens, d).addScaledVector(gauche, lat).setY(h);
   const STATIONS = [
-    // [progression, position, point visé]
-    [0.00, [-8, 4.5, 22], [6, 0, 2]],                    // l'ouverture : l'autoroute balaie le bas de l'écran
+    // [progression, position, point visé, point visé sur écran en hauteur (l'objet, centré)]
+    [0.00, [-9, 5, 23], [5.5, 1.6, -1], [0.8, 1.6, -1]], // l'ouverture : l'autoroute balaie le bas de l'écran, les appareils
     [0.05, [8, 2.0, 22], [30, 0.6, -25]],                // la caméra se tourne vers l'horizon
     [0.12, [27, 1.6, 0], [31, 0.6, -60]],                // elle file sur la route
     [0.20, [44, 3.5, -60], [14, 0.5, -112]],             // les lacets
@@ -278,14 +340,17 @@ export function creerMonde(toile) {
     [0.52, tab(C1.clone().add(new THREE.Vector3(-20, 30, 16))), tab(C1.clone().add(new THREE.Vector3(2, 0, -6)))],   // le carrefour vu d'en haut (la solution modulaire)
     [0.57, tab(C1.clone().add(new THREE.Vector3(-10, 30, 22))), tab(C1.clone().add(new THREE.Vector3(7, 0, -2)))],
     [0.64, [110, 10, -385], [170, 0, -405]],             // la liaison vers le croisement
-    [0.72, tab(P2.clone().add(new THREE.Vector3(-42, 24, 0))), tab(P2.clone().add(new THREE.Vector3(4, 0, 0)))],    // le croisement en X et ses anneaux (les utilisateurs)
-    [0.78, tab(P2.clone().add(new THREE.Vector3(-38, 22, 12))), tab(P2.clone().add(new THREE.Vector3(6, 0, -2)))],
+    [0.72, tab(P2.clone().add(new THREE.Vector3(-58, 22, 6))), tab(P2.clone().add(new THREE.Vector3(0, 8, -9))), tab(P2.clone().setY(9))],    // le croisement en X, ses anneaux et la planète (les utilisateurs)
+    [0.78, tab(P2.clone().add(new THREE.Vector3(-52, 20, -14))), tab(P2.clone().add(new THREE.Vector3(0, 8, 12))), tab(P2.clone().setY(9))],
     [0.86, tab(auBout(14, 1.6, 4)), tab(auBout(27.4, 4.5, 0))],          // la ligne droite (la démonstration)
-    [0.94, tab(auBout(150, 6, 2.5)), tab(F.clone().addScaledVector(gauche, -30).setY(8))],   // l'éventail
-    [1.00, tab(auBout(170, 6, 2.5)), tab(F.clone().addScaledVector(gauche, -30).addScaledVector(sens, 20).setY(8))],
+    [0.92, tab(auBout(150, 6, 2.5)), tab(F.clone().addScaledVector(gauche, -30).setY(8))],   // l'éventail
+    [0.96, tab(auBout(212, 20, 8)), tab(F.clone().addScaledVector(sens, 6).addScaledVector(gauche, -12).setY(4)), tab(F.clone().addScaledVector(sens, 6).setY(-1.5))],   // le bâtiment de la R&D (les développements sur mesure)
+    [1.00, tab(auBout(228, 22, 9)), tab(F.clone().addScaledVector(sens, 6).addScaledVector(gauche, -9).setY(3.5)), tab(F.clone().addScaledVector(sens, 6).setY(-1.5))],
   ];
   const cheminP = new THREE.CatmullRomCurve3(STATIONS.map(s => new THREE.Vector3(...s[1])), false, 'centripetal');
   const cheminV = new THREE.CatmullRomCurve3(STATIONS.map(s => new THREE.Vector3(...s[2])), false, 'centripetal');
+  const cheminVHauteur = new THREE.CatmullRomCurve3(STATIONS.map(s => new THREE.Vector3(...(s[3] || s[2]))), false, 'centripetal');
+  let enHauteur = false;
   // progression du défilement → paramètre des courbes (les stations y sont équidistantes)
   function parametre(p) {
     for (let k = 1; k < STATIONS.length; k++) if (p <= STATIONS[k][0]) {
@@ -313,10 +378,12 @@ export function creerMonde(toile) {
     composeur.setPixelRatio(ratio);
     composeur.setSize(l, h);
     camera.aspect = l / h;
+    enHauteur = l < h;
     camera.fov = l < 568 ? 65 : l < 980 ? 50 : 35;
     camera.updateProjectionMatrix();
     degrade.uniforms.uRapport.value = l / h;
     fxaa.material.uniforms.resolution.value.set(1 / (l * ratio), 1 / (h * ratio));
+    objets.taille(h * ratio / (2 * Math.tan(camera.fov * Math.PI / 360)));   // pixels par unité, à une unité de distance
   }
 
   // une image : progression du parcours (0 → 1), souris (-0,5 → 0,5), temps, réglage
@@ -324,7 +391,7 @@ export function creerMonde(toile) {
     const p = anime ? progression : stationProche(progression)[0];
     const t = parametre(p);
     cheminP.getPoint(t, cibleP);
-    cheminV.getPoint(t, cibleV);
+    (enHauteur ? cheminVHauteur : cheminV).getPoint(t, cibleV);
     // l'arrivée : depuis un peu plus haut et plus loin, la caméra se pose sur la première station
     if (intro < 1) { const e = 1 - intro; cibleP.add(new THREE.Vector3(-6 * e, 3.5 * e, 10 * e)); }
     if (premiere || !anime) { pos.copy(cibleP); vise.copy(cibleV); premiere = false; }
@@ -336,6 +403,7 @@ export function creerMonde(toile) {
     camera.position.copy(vise).add(d);
     camera.lookAt(vise);
     for (const m of matieres) m.uniforms.uTemps.value = anime ? temps * 2 : 0;
+    objets.animer(temps, camera, anime);
     composeur.render();
   }
 
