@@ -18,8 +18,14 @@
   --nuit: #0d0738;           /* le fond de l'ouverture, pour les visuels en lignes */
   --titre: Geist, "Helvetica Neue", Arial, sans-serif;
   --mono: "Chivo Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --marge: 40px;             /* le retrait des contenus */
-  --bord: 24px;              /* le retrait des grands blocs arrondis */
+  --marge: 40px;             /* le retrait minimal des contenus */
+  --bord: 24px;              /* le retrait minimal des grands blocs arrondis */
+  /* le conteneur central : 1280 px de contenu, centré. Les fonds et les visuels restent en
+     pleine largeur ; seuls les retraits grandissent sur les grands écrans (le pourcentage
+     se rapporte à la largeur du bloc parent, ici toute la page) */
+  --large: 1280px;
+  --gouttiere: max(var(--marge), calc((100% - var(--large)) / 2));
+  --gouttiere-bloc: max(var(--bord), calc((100% - var(--large)) / 2 - 24px));
   --rayon: 16px;
   --courbe: cubic-bezier(.2, .7, .2, 1);
 }
@@ -70,7 +76,7 @@ section[id], article[id] { scroll-margin-top: 88px; }
 .boutons { display: flex; flex-wrap: wrap; gap: 12px; }
 
 /* -------------------------------------------------------------------- en-tête */
-.entete { position: sticky; top: 0; z-index: 30; height: 72px; display: flex; align-items: center; gap: 48px; padding: 0 var(--marge); background: rgba(255, 255, 255, .92); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border-bottom: 1px solid var(--ligne); transition: background .3s, border-color .3s, color .3s; }
+.entete { position: sticky; top: 0; z-index: 30; height: 72px; display: flex; align-items: center; gap: 48px; padding: 0 var(--gouttiere); background: rgba(255, 255, 255, .92); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border-bottom: 1px solid var(--ligne); transition: background .3s, border-color .3s, color .3s; }
 .entete-logo img { height: 34px; width: auto; }
 .entete-logo .logo-clair { display: none; }
 .entete-nav { display: flex; align-items: center; gap: 24px; font-size: 16px; color: var(--texte); }
@@ -93,9 +99,9 @@ section[id], article[id] { scroll-margin-top: 88px; }
 .entete--visuel.est-defile .bouton-noir { background: var(--encre); color: #fff; }
 
 /* -------------------------------------------------------------------- sections */
-.section { padding: 120px var(--marge); }
-.section-serree { padding: 64px var(--marge); }
-.bloc { margin: 0 var(--bord); border-radius: var(--rayon); background: var(--creme); padding: 64px calc(var(--marge) - var(--bord) + 16px); }
+.section { padding: 120px var(--gouttiere); }
+.section-serree { padding: 64px var(--gouttiere); }
+.bloc { margin: 0 var(--gouttiere-bloc); border-radius: var(--rayon); background: var(--creme); padding: 64px calc(var(--marge) - var(--bord) + 16px); }
 .sombre { background: var(--encre); color: #fff; }
 .centre { text-align: center; margin-inline: auto; }
 .chapeau-section { display: grid; gap: 24px; max-width: 780px; }
@@ -110,14 +116,14 @@ section[id], article[id] { scroll-margin-top: 88px; }
 
 /* -------------------------------------------------------------------- visuel d'ouverture */
 /* plein écran sous l'en-tête transparent (pages produit, blog) */
-.visuel { position: relative; min-height: 100svh; display: flex; align-items: flex-end; padding: 160px var(--marge) 64px; color: #fff; overflow: hidden; background: var(--nuit); }
+.visuel { position: relative; min-height: 100svh; display: flex; align-items: flex-end; padding: 160px var(--gouttiere) 64px; color: #fff; overflow: hidden; background: var(--nuit); }
 .visuel > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .visuel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, .35) 0%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, .1) 55%, rgba(0, 0, 0, .62) 100%); }
 .visuel-texte { position: relative; z-index: 1; display: grid; gap: 24px; max-width: 760px; }
 .visuel-texte .titre-1 { color: #fff; }
 .visuel-texte .texte-grand { max-width: 560px; color: rgba(255, 255, 255, .88); }
 /* centré dans un grand bloc arrondi (accueil du modèle) */
-.visuel--bloc { margin: 12px var(--bord) 0; min-height: calc(100svh - 96px); border-radius: var(--rayon); align-items: center; justify-content: center; text-align: center; padding-top: 64px; }
+.visuel--bloc { margin: 12px var(--gouttiere-bloc) 0; min-height: calc(100svh - 96px); border-radius: var(--rayon); align-items: center; justify-content: center; text-align: center; padding-top: 64px; }
 .visuel--bloc .visuel-texte { justify-items: center; }
 
 /* -------------------------------------------------------------------- citation et chiffres */
@@ -221,7 +227,7 @@ section[id], article[id] { scroll-margin-top: 88px; }
 .question-reponse { padding: 0 48px 26px 0; font-size: 17px; color: var(--doux); display: grid; gap: 10px; }
 
 /* -------------------------------------------------------------------- appel final */
-.final { position: relative; margin: 0 var(--marge); min-height: 760px; border-radius: var(--rayon); overflow: hidden; display: flex; justify-content: flex-end; align-items: center; padding: 30px; background: var(--nuit); }
+.final { position: relative; margin: 0 var(--gouttiere); min-height: 760px; border-radius: var(--rayon); overflow: hidden; display: flex; justify-content: flex-end; align-items: center; padding: 30px; background: var(--nuit); }
 .final > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .final-panneau { position: relative; width: min(468px, 100%); min-height: 640px; border-radius: var(--rayon); background: rgba(0, 0, 0, .78); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); color: #fff; padding: 40px; display: flex; flex-direction: column; gap: 24px; }
 .final-panneau .titre-3 { color: #fff; }
@@ -265,7 +271,7 @@ section[id], article[id] { scroll-margin-top: 88px; }
 [hidden] { display: none !important; }
 
 /* -------------------------------------------------------------------- formulaires */
-.formulaire-bloc { margin: 0 var(--marge); border: 1px solid var(--ligne); border-radius: var(--rayon); background: #fff; padding: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+.formulaire-bloc { margin: 0 var(--gouttiere); border: 1px solid var(--ligne); border-radius: var(--rayon); background: #fff; padding: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
 .formulaire-gauche { display: grid; gap: 32px; align-content: start; }
 .coches { display: grid; gap: 14px; font-size: 19px; color: var(--encre); }
 .coches li { display: flex; gap: 14px; align-items: flex-start; }
@@ -305,7 +311,7 @@ section[id], article[id] { scroll-margin-top: 88px; }
 @media (max-width: 860px) { .contact-carte, .reservation { padding: 24px; min-height: 0; } .contact-carte { min-height: 220px; } }
 
 /* -------------------------------------------------------------------- pied de page */
-.pied { margin-top: 120px; background: var(--encre); color: #fff; padding: 64px var(--marge) 40px; }
+.pied { margin-top: 120px; background: var(--encre); color: #fff; padding: 64px var(--gouttiere) 40px; }
 .pied-haut { display: flex; justify-content: space-between; gap: 48px; flex-wrap: wrap; }
 .pied-marque { display: grid; gap: 22px; align-content: start; }
 .pied-marque img { height: 46px; width: auto; }
@@ -345,7 +351,7 @@ section[id], article[id] { scroll-margin-top: 88px; }
 @media (max-width: 860px) {
   :root { --marge: 20px; --bord: 12px; }
   body { font-size: 17px; }
-  .section { padding: 80px var(--marge); }
+  .section { padding: 80px var(--gouttiere); }
   .entete { gap: 16px; }
   .entete-nav, .entete > .bouton { display: none; }
   .entete-burger { display: block; }

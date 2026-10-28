@@ -225,7 +225,10 @@ Vérifié à 1440 × 900 et 390 × 844, avec et sans animations, sans débordeme
 Six pages, dans le langage du modèle vectura.framer.website (relevé sur le modèle à 1440 px :
 mesures, typographie, couleurs, mises en page), avec notre propre code : fond blanc, Geist en
 graisse légère et interlettrage serré, étiquettes en Chivo Mono, blocs arrondis de 16 px sur
-des tons crème, pierre et gris bleuté, boutons en pastilles noires, pied de page noir.
+des tons crème, pierre et gris bleuté, boutons en pastilles noires, pied de page noir. Un
+conteneur central de 1280 px aligne en-tête, contenus, blocs et pied de page ; les fonds et
+les visuels d'ouverture restent en pleine largeur (variables `--large` et `--gouttiere` en
+tête de `pages.css`).
 
 | Page | Contenu |
 |---|---|
