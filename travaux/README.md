@@ -11,6 +11,7 @@ Dossier accessible depuis la plaque « Travail en cours » de la page d'accueil.
 | Mailing des gagnants | `mailing-gagnants/` — OFII puis FLE, les deux campagnes |
 | Newsletter CiviCap | `newsletter-civicap/` — objets, e-mail, version texte |
 | Page organismes CiviCap | `page-civicap/` — la refonte de la page « organismes » |
+| Ouverture 3D du site | `site-onlineformapro/` — l'ouverture de l'accueil, traces de lumière au défilement |
 | Vidéo Plateforme FLE | `video-plateforme-fle/` — 23 s, 4:5, à partir des cinq visuels |
 | Newsletter Outils Google | `newsletter-google/` — e-mail pour Brevo, d'après la maquette fournie |
 | Site des modules IA | https://module-ia-pink.vercel.app/site/ — lien externe |
@@ -151,6 +152,30 @@ cartes sont des blocs en ligne de 260 px : deux de front sur ordinateur, l'une s
 sur téléphone, sans dépendre des règles mobiles. Vérifié de 320 à 640 px, avec et sans la
 police Plus Jakarta Sans. « Contactez-nous » ouvre un e-mail vers projet@onlineformapro.com,
 à confirmer ; le pied utilise `{{ mirror }}` et `{{ unsubscribe }}` de Brevo.
+
+## Ouverture 3D du site Onlineformapro
+
+`site-onlineformapro/` : maquette de l'ouverture de la page d'accueil, sur le modèle de
+madarplatform.com. Une scène reste épinglée à l'écran pendant que les messages défilent ;
+huit traces de lumière (three.js) y dessinent une forme par étape : le flux (titre
+d'accueil), la route (25 ans d'innovation), six tuiles (la solution modulaire), l'onde (l'IA),
+le globe (17 millions d'utilisateurs), la coche (l'évaluation de France Education
+International), puis le Ó du logo (demande de démo). Textes et chiffres repris de la page
+d'accueil actuelle, aucun visuel. La partie plus classique du site viendra avec le prochain
+modèle.
+
+`scene.js` : les dessins, le passage de l'un à l'autre au défilement, le cadrage (attribut
+`data-cadre` de chaque moment : le dessin se décale du côté où le texte laisse de la place).
+`site.js` : le bouton « Animations », les apparitions, l'en-tête. three.js 0.170.0 est copié
+dans `vendor/` (licence MIT jointe) et chargé par une importmap : rien ne dépend d'un CDN.
+Modules JavaScript : la page se sert par http, elle ne s'ouvre pas en `file://`.
+
+Accessibilité : la scène est décorative (`aria-hidden`), tout le texte est dans la page, dans
+l'ordre de lecture. Réglage « réduire les animations » du système, ou bouton « Animations »
+de l'en-tête (retenu dans le navigateur) : ni tracé au chargement, ni respiration, ni éclats,
+ni apparitions, et les dessins changent d'un coup. Sur téléphone, le dessin occupe le haut
+de l'écran et les textes défilent dans une vitre. Vérifié à 1440 × 900 et 390 × 844, avec et
+sans animations, sans débordement horizontal.
 
 ## Page organismes CiviCap
 

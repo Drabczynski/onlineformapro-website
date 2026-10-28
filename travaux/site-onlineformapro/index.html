@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Onlineformapro – ouverture 3D</title>
+<meta name="description" content="Maquette de l'ouverture du site Onlineformapro : des traces de lumière en 3D qui dessinent, au défilement, chaque étape du message.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#060935">
+<script>
+  // avant tout affichage : animations ou non (choix retenu par site.js, sinon le système)
+  (function () {
+    var r = document.documentElement, v = null;
+    try { v = localStorage.getItem('ofp-animations'); } catch (e) {}
+    var anime = v ? v === 'oui' : !matchMedia('(prefers-reduced-motion: reduce)').matches;
+    r.className += ' js' + (anime ? '' : ' mouvement-reduit');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&display=swap">
+<link rel="stylesheet" href="site.css">
+<script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js" } }</script>
+<script type="module" src="scene.js"></script>
+<script src="site.js" defer></script>
+</head>
+<body>
+<a class="evitement" href="#contenu">Aller au&nbsp;contenu</a>
+
+<header class="entete">
+  <a class="marque" href="https://www.onlineformapro.com/"><img src="img/logo-blanc-rouge.svg" alt="Onlineformapro, accueil" width="841" height="353"></a>
+  <nav class="nav" aria-label="Navigation principale">
+    <ul>
+      <li><a href="https://www.onlineformapro.com/onlinecompetences-espace-apprenant-2/">LMS</a></li>
+      <li><a href="https://www.onlineformapro.com/solutions-e-learning-onlineformapro/">Solutions</a></li>
+      <li><a href="https://www.onlineformapro.com/outils-auteur-formation-ia/">IA</a></li>
+      <li><a href="https://www.onlineformapro.com/catalogue-elearning-onlineformapro/">Catalogue</a></li>
+      <li><a href="https://www.onlineformapro.com/societe/">Société</a></li>
+      <li><a href="https://www.onlineformapro.com/blog/">Blog</a></li>
+    </ul>
+  </nav>
+  <div class="actions">
+    <button id="animations" class="bascule" type="button" aria-pressed="true">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M2 14c3-6 6-6 9 0s6 6 9 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span class="libelle">Animations&nbsp;: <span class="etat">activées</span></span>
+    </button>
+    <a class="bouton rouge petit demo-entete" href="https://www.onlineformapro.com/demonstration/">Demandez votre démo</a>
+    <details class="menu">
+      <summary>Menu</summary>
+      <nav aria-label="Menu">
+        <ul>
+          <li><a href="https://www.onlineformapro.com/onlinecompetences-espace-apprenant-2/">LMS</a></li>
+          <li><a href="https://www.onlineformapro.com/solutions-e-learning-onlineformapro/">Solutions</a></li>
+          <li><a href="https://www.onlineformapro.com/outils-auteur-formation-ia/">IA</a></li>
+          <li><a href="https://www.onlineformapro.com/catalogue-elearning-onlineformapro/">Catalogue</a></li>
+          <li><a href="https://www.onlineformapro.com/societe/">Société</a></li>
+          <li><a href="https://www.onlineformapro.com/blog/">Blog</a></li>
+          <li><a href="https://www.onlineformapro.com/demonstration/">Demandez votre démo</a></li>
+          <li><a href="https://www.onlineformapro.com/contact/">Contact</a></li>
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main id="contenu">
+  <section class="ouverture" aria-labelledby="titre-accueil">
+    <div class="plateau">
+      <canvas id="scene" aria-hidden="true"></canvas>
+      <p class="compteur" aria-hidden="true"><span class="compteur-num">01</span> / 07 <span class="compteur-nom">Ouverture</span></p>
+    </div>
+    <div class="etapes">
+      <!-- 0 · le flux -->
+      <div class="etape" data-forme="0" data-nom="Ouverture">
+        <div class="moment moment-accueil" data-cadre="0 0" data-cadre-mobile="0 0.08">
+          <div class="accueil-titre">
+            <p class="surtitre">Digital learning &amp;&nbsp;development</p>
+            <h1 id="titre-accueil" class="geant"><span class="ligne">Première solution</span> <span class="ligne">globale digital learning</span> <span class="ligne accent">orchestrée par&nbsp;l’IA</span></h1>
+          </div>
+          <div class="vitre accueil-texte">
+            <p>L’innovation technologique couplée à&nbsp;une&nbsp;ingénierie pédagogique de&nbsp;pointe dans une&nbsp;solution globale intégrée, intuitive et&nbsp;intelligente.</p>
+            <div class="appels">
+              <a class="bouton rouge" href="https://www.onlineformapro.com/demonstration/">Demandez votre démo</a>
+              <a class="bouton contour" href="https://catalogue.onlineformapro.com/">Accéder au&nbsp;catalogue</a>
+            </div>
+          </div>
+          <a class="defiler" href="#etape-route">Découvrir</a>
+        </div>
+      </div>
+
+      <!-- 1 · la route -->
+      <div class="etape" id="etape-route" data-forme="1" data-nom="25 ans d’innovation">
+        <div class="moment moment-droite" data-cadre="-0.34 0">
+          <div class="bloc apparait">
+            <h2 class="etiquette">25&nbsp;ans de&nbsp;pédagogie et&nbsp;d’innovation technologique</h2>
+            <p class="grand-texte">Lauréate du&nbsp;concours «&nbsp;Entreprises innovantes&nbsp;» dès&nbsp;sa&nbsp;création en&nbsp;1999, Onlineformapro s’est rapidement imposée comme le&nbsp;leader de&nbsp;la&nbsp;solution globale digital&nbsp;learning.</p>
+            <p class="grand-texte doux">Onlineformapro accélère la&nbsp;mutation de&nbsp;la&nbsp;formation via des&nbsp;solutions innovantes et&nbsp;adaptées à&nbsp;vos&nbsp;besoins.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 · les tuiles -->
+      <div class="etape" data-forme="2" data-nom="Solution modulaire">
+        <div class="moment moment-gauche" data-cadre="0.38 -0.3">
+          <div class="bloc apparait">
+            <h2 class="titre-grand">Une&nbsp;solution globale <em>et&nbsp;modulaire</em></h2>
+            <p class="sous-titre">de&nbsp;formation, dopée à&nbsp;l’intelligence artificielle. Quel que&nbsp;soit votre besoin de&nbsp;formation, notre gamme d’outils s’adapte à&nbsp;tous les&nbsp;besoins et&nbsp;tous les&nbsp;usages.</p>
+          </div>
+        </div>
+        <div class="moment moment-panneau" data-cadre="-0.36 0">
+          <div class="vitre panneau apparait de-droite">
+            <h3>Notre gamme d’outils</h3>
+            <ul class="liste">
+              <li><strong>LMS OnlineManager</strong> L’efficacité, la&nbsp;convivialité et&nbsp;la&nbsp;simplicité pour&nbsp;gérer, diffuser et&nbsp;suivre vos&nbsp;formations en&nbsp;ligne.</li>
+              <li><strong>Plateforme collaborative OnlineAgora</strong> Mettez en&nbsp;place très rapidement et&nbsp;très simplement des&nbsp;portails collaboratifs ou&nbsp;des&nbsp;portails communautaires.</li>
+              <li><strong>6000&nbsp;h de&nbsp;modules interactifs</strong> Bureautique, Management, Comptabilité, Savoirs de&nbsp;base, Langues…</li>
+              <li><strong>Outils Auteur</strong> Une&nbsp;suite complète d’outils full Web pour&nbsp;créer vos&nbsp;évaluations et&nbsp;vos&nbsp;modules de&nbsp;formation en&nbsp;ligne.</li>
+              <li><strong>OnlineVisio webconférences</strong> Organisez en&nbsp;quelques clics une&nbsp;séance de&nbsp;regroupement virtuelle.</li>
+              <li><strong>Modules sur&nbsp;mesure</strong> Des&nbsp;formations adaptées à&nbsp;vos&nbsp;métiers, votre culture d’entreprise et&nbsp;à&nbsp;vos&nbsp;besoins.</li>
+            </ul>
+            <a class="lien-fleche" href="https://www.onlineformapro.com/solutions-e-learning-onlineformapro/">Découvrir les&nbsp;solutions</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 · l'onde -->
+      <div class="etape" data-forme="3" data-nom="Intelligence artificielle">
+        <div class="moment moment-gauche" data-cadre="0.36 0">
+          <div class="bloc apparait">
+            <h2 class="titre-grand">La&nbsp;puissance <em>de&nbsp;l’IA</em></h2>
+            <p class="sous-titre">au&nbsp;service de&nbsp;la&nbsp;formation et&nbsp;de&nbsp;l’apprentissage. Découvrez les&nbsp;innovations d’Onlineformapro et&nbsp;tirez profit de&nbsp;la&nbsp;révolution des&nbsp;IA&nbsp;génératives.</p>
+          </div>
+        </div>
+        <div class="moment moment-panneau court" data-cadre="-0.36 0">
+          <div class="vitre panneau apparait de-droite">
+            <p class="panneau-num">01</p>
+            <h3>Générez vos&nbsp;formations avec l’IA</h3>
+            <p>Générez vos&nbsp;modules de&nbsp;formation, co&#8209;créez avec l’intelligence artificielle et&nbsp;gagnez de&nbsp;précieuses heures de&nbsp;création.</p>
+            <a class="lien-fleche" href="https://www.onlineformapro.com/outil-auteur-ia-fastformation/">En&nbsp;savoir plus</a>
+          </div>
+        </div>
+        <div class="moment moment-panneau court" data-cadre="-0.36 0">
+          <div class="vitre panneau apparait de-droite">
+            <p class="panneau-num">02</p>
+            <h3>L’IA dans nos&nbsp;outils auteur</h3>
+            <p>Automatisez la&nbsp;création de&nbsp;contenu&nbsp;pédagogique.</p>
+            <a class="lien-fleche" href="https://www.onlineformapro.com/outils-auteur-formation-ia/">En&nbsp;savoir plus</a>
+          </div>
+        </div>
+        <div class="moment moment-panneau court" data-cadre="-0.36 0">
+          <div class="vitre panneau apparait de-droite">
+            <p class="panneau-num">03</p>
+            <h3>Simulations d’apprentissage</h3>
+            <p>Transformez votre apprentissage avec des&nbsp;expériences de&nbsp;formation personnalisées, immersives et&nbsp;individualisées, conçues pour&nbsp;maximiser&nbsp;l’engagement.</p>
+            <a class="lien-fleche" href="https://www.onlineformapro.com/modules-formations-ia/">En&nbsp;savoir plus</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 · le globe -->
+      <div class="etape" data-forme="4" data-nom="17 millions d’utilisateurs">
+        <div class="moment moment-gauche" data-cadre="0.36 0">
+          <div class="bloc apparait">
+            <h2><span class="geant-chiffre">17&nbsp;millions&nbsp;+</span> <span class="etiquette">Utilisateurs de&nbsp;OnlineManager – LMS</span></h2>
+            <p class="sous-titre">13&nbsp;pays, 3&nbsp;continents.</p>
+          </div>
+        </div>
+        <div class="moment moment-panneau" data-cadre="-0.36 0">
+          <div class="vitre panneau apparait de-droite">
+            <ul class="chiffres">
+              <li><strong>2000 +</strong> <span>Clients de&nbsp;tous les&nbsp;horizons</span> <small>Entreprises, organismes de&nbsp;formation…</small></li>
+              <li><strong>6000 +</strong> <span>Heures de&nbsp;formation</span> <small>Modules du&nbsp;catalogue, prêts à&nbsp;l’emploi</small></li>
+              <li><strong>230</strong> <span>Collaborateurs dédiés à&nbsp;vos&nbsp;besoins</span> <small>Organisme de&nbsp;formation et&nbsp;studio de&nbsp;production</small></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 · la coche -->
+      <div class="etape" data-forme="5" data-nom="Évaluation">
+        <div class="moment moment-gauche" data-cadre="0.36 -0.22">
+          <div class="bloc apparait">
+            <h2 class="titre-moyen">France Education International a&nbsp;évalué <em>900 000&nbsp;élèves en&nbsp;9&nbsp;semaines</em> avec OnlineManager.</h2>
+          </div>
+        </div>
+        <div class="moment moment-panneau" data-cadre="-0.3 0">
+          <figure class="vitre panneau apparait de-droite">
+            <blockquote>
+              <p>Nous avions besoin d’une solution robuste et&nbsp;flexible, capable de&nbsp;s’adapter à&nbsp;divers établissements tout en&nbsp;offrant une&nbsp;évaluation précise pour&nbsp;les&nbsp;élèves. Le&nbsp;défi était de&nbsp;taille, mais crucial pour&nbsp;moderniser notre approche des&nbsp;tests. Tout cela a&nbsp;été rendu possible grâce aux&nbsp;équipes d’Onlineformapro, avec qui&nbsp;nous avons établi une&nbsp;véritable relation&nbsp;partenariale.</p>
+            </blockquote>
+            <figcaption>Sébastien Georges – Chef de&nbsp;projet Ev@lang chez FEI</figcaption>
+            <a class="lien-fleche" href="https://blog.onlineformapro.com/clients-formation/france-education-international-evalue-900000-eleves-en-9-semaines-lms-onlineformapro/">Consulter le&nbsp;cas client</a>
+          </figure>
+        </div>
+      </div>
+
+      <!-- 6 · le Ó du logo -->
+      <div class="etape" data-forme="6" data-nom="Démonstration">
+        <div class="moment moment-gauche dernier" data-cadre="0.42 0" data-cadre-mobile="0 0.32">
+          <div class="bloc apparait">
+            <h2 class="titre-grand">Demandez une&nbsp;<em>démonstration</em></h2>
+            <p class="sous-titre">La&nbsp;révolution de&nbsp;la&nbsp;gestion de&nbsp;la&nbsp;formation, le&nbsp;tout orchestré par&nbsp;le&nbsp;plus brillant des&nbsp;maestros&nbsp;: l’intelligence&nbsp;artificielle.</p>
+            <div class="appels">
+              <a class="bouton rouge" href="https://www.onlineformapro.com/demonstration/">Demander une&nbsp;démo</a>
+              <a class="bouton contour" href="https://www.onlineformapro.com/contact/">Vous avez un&nbsp;projet&nbsp;? Contactez&#8209;nous</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="suite" aria-labelledby="titre-suite">
+    <h2 id="titre-suite">Suite de&nbsp;la&nbsp;page</h2>
+    <p>La&nbsp;partie plus classique du&nbsp;site (offre, références, actualités) sera construite à&nbsp;partir du&nbsp;prochain&nbsp;modèle.</p>
+  </section>
+</main>
+
+<footer class="pied">
+  <img class="pied-logo" src="img/logo-blanc-rouge.svg" alt="Onlineformapro" width="841" height="353" loading="lazy">
+  <address>19&nbsp;rue du&nbsp;Praley, 70000&nbsp;Vesoul · <a href="mailto:projet@onlineformapro.com">projet@onlineformapro.com</a></address>
+  <p class="note">Maquette de&nbsp;l’ouverture&nbsp;: textes et&nbsp;chiffres repris de&nbsp;la&nbsp;page d’accueil actuelle. Animation&nbsp;:&nbsp;three.js.</p>
+</footer>
+</body>
+</html>
