@@ -254,11 +254,20 @@ sont ceux du modèle, communs aux sept pages.
 - **LMS, Outils IA, Blog et Démo** gardent leur construction d'avant (préférée), conteneur de
   1280 px : feuille `pages.css`.
 
+Par-dessus, sur toutes les pages, `marque.css` donne l'identité d'Onlineformapro, reprise du
+logo et de l'ouverture 3D : une encre de nuit `#1b1636` (un noir tiré vers le violet) au lieu
+du noir pur pour les titres, les boutons et les cartes sombres ; des titres d'une graisse à
+peine plus forte (400 pour les plus grands, 480 pour les autres ; Geist chargée en police
+variable) ; le rouge du logo `#d31e44` en accent, avec l'accent du Ó (un trait arrondi incliné
+de 29,4°) devant les étiquettes et sous la page courante du menu ; la nuit violette de
+l'ouverture `#140a3a` pour les passages sombres, les cartes d'appel et le pied de page, où le
+Ó du logo est dessiné en lignes de lumière.
+
 Les changements de fond du modèle s'appliquent partout : toute la page passe du blanc au
 pierre ou au noir quand une section marquée `data-fond` franchit 40 % de la hauteur de
 l'écran (`pages.js`), et son titre passe en blanc sur le noir. Pierre : références et
-témoignage du LMS, lettre du blog. Noir : RolePlay IA sur la page Outils IA, la solution
-globale sur la page Démo.
+témoignage du LMS, lettre du blog. Nuit (le noir du modèle, passé au violet de la marque) :
+RolePlay IA sur la page Outils IA, la solution globale sur la page Démo.
 
 | Page | Contenu |
 |---|---|
@@ -279,6 +288,10 @@ et, en attendant d'autres photos d'Onlineformapro, des photos du modèle Vectura
 autres ouvertures et appels finaux (`img/modele/`, provisoires, à remplacer). La vidéo des outils Google est celle de la
 page Catalogue du site officiel, lue depuis download.onlineformation.com ; tant qu'elle n'est
 pas chargée, le bloc montre le visuel Google de la newsletter (`img/site/cat-google.webp`).
+Elle est agrandie de 3,6 % dans son cadre, pour que ses bandes rouges du haut et du bas en
+sortent. Pour sauter son introduction, régler `DEBUT_GOOGLE` (en secondes) dans le générateur
+du catalogue : la vidéo commence alors à ce moment et y revient à chaque tour (`data-debut`,
+géré par `pages.js`). Il vaut 0 tant que le moment du titre de la gamme n'est pas connu.
 `img/EMPLACEMENTS.md` liste chaque emplacement, son image et le format conseillé ;
 `img/depot/` reçoit les images à placer (voir sa notice). Les formulaires sont des maquettes :
 ils n'envoient rien et renvoient vers ceux du site actuel. L'ouverture (`index.html`) mène à

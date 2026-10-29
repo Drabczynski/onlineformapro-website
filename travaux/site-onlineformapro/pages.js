@@ -53,9 +53,19 @@ if ('IntersectionObserver' in window) {
 } else apparitions.forEach(el => el.classList.add('est-visible'));
 
 // -------------------------------------------------------------------- vidéos en boucle
-// arrêtées quand le visiteur a demandé moins d'animations
+// arrêtées quand le visiteur a demandé moins d'animations ; celles qui ont un data-debut (en
+// secondes) commencent à ce moment et y reviennent à chaque tour (leur introduction sautée)
 if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
   for (const v of document.querySelectorAll('video[autoplay]')) { v.removeAttribute('autoplay'); v.pause(); }
+}
+for (const v of document.querySelectorAll('video[data-debut]')) {
+  const debut = +v.dataset.debut || 0;
+  if (!debut) continue;
+  v.loop = false;
+  const caler = () => { if (v.currentTime < debut) v.currentTime = debut; };
+  v.addEventListener('loadedmetadata', caler);
+  if (v.readyState >= 1) caler();
+  v.addEventListener('ended', () => { v.currentTime = debut; v.play().catch(() => {}); });
 }
 
 // -------------------------------------------------------------------- onglets du blog

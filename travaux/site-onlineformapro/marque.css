@@ -1,0 +1,54 @@
+/* La marque Onlineformapro, par-dessus le modèle Vectura (chargée après pages.css ou
+   modele.css, sur toutes les pages). Le modèle donne la construction ; cette couche donne
+   l'identité, reprise du logo et de l'ouverture 3D :
+   - une encre de nuit (un noir tiré vers le violet de l'ouverture) au lieu du noir pur, pour
+     les titres, les boutons et les cartes sombres ;
+   - des titres d'une graisse à peine plus forte ;
+   - le rouge du logo en accent : l'accent du Ó devant les étiquettes, la page courante ;
+   - la nuit violette de l'ouverture pour les passages sombres et le pied de page, où les
+     anneaux du Ó sont dessinés en lignes de lumière, comme à l'arrivée de l'ouverture. */
+:root {
+  --encre: #1b1636;          /* titres, boutons, cartes sombres */
+  --nuit: #140a3a;           /* passages sombres, pied de page */
+  --rouge: #d31e44;          /* le rouge du logo */
+}
+
+/* -------------------------------------------------------------------- titres */
+.titre-1 { font-weight: 400; }
+.titre-2, .titre-3, .titre-4, .titre-5, .titre-6 { font-weight: 480; }
+
+/* -------------------------------------------------------------------- le rouge du logo */
+/* l'accent du Ó (un trait arrondi incliné de 29,4°, comme dans le logo) devant les
+   étiquettes sans pictogramme ; les pictogrammes des étiquettes passent au rouge */
+.puce:not(:has(svg))::before,
+.chapeau-section > p.etiquette:first-child::before,
+.entete-section > p.etiquette:first-child::before {
+  content: ""; flex: none; width: 11px; height: 4px; border-radius: 2px; background: var(--rouge); transform: rotate(-29.4deg);
+}
+.chapeau-section > p.etiquette:first-child, .entete-section > p.etiquette:first-child { display: inline-flex; align-items: center; gap: 10px; }
+.puce svg { color: var(--rouge); }
+.entete-nav a[aria-current="page"] { text-decoration-color: var(--rouge); text-decoration-thickness: 2px; }
+.bouton-noir:hover { background: #2d2656; }
+
+/* -------------------------------------------------------------------- la nuit de l'ouverture */
+body.fond-noir { background: var(--nuit); }
+.sombre { background: var(--nuit); }
+.final-panneau { background: rgba(20, 10, 58, .8); }
+.carte-appel { background: var(--nuit); }
+
+/* le pied de page : la nuit, et les anneaux du Ó en lignes de lumière (lavande, blanc, rouge),
+   dans l'espace libre entre la marque et les colonnes */
+.pied {
+  background: var(--nuit) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 560' fill='none'%3E%3Cg opacity='.5' stroke-width='2'%3E%3Ccircle cx='300' cy='330' r='154' stroke='%238f80ff'/%3E%3Ccircle cx='300' cy='330' r='145' stroke='%23fff' stroke-opacity='.45'/%3E%3Ccircle cx='300' cy='330' r='113' stroke='%23d31e44'/%3E%3Ccircle cx='300' cy='330' r='105' stroke='%23fff' stroke-opacity='.45'/%3E%3Ccircle cx='300' cy='330' r='73' stroke='%23fff' stroke-opacity='.45'/%3E%3Ccircle cx='300' cy='330' r='64' stroke='%23d31e44'/%3E%3Cg transform='translate(251.5 105.5) rotate(-29.4)'%3E%3Crect x='-134' y='-41' width='268' height='82' rx='41' stroke='%238f80ff'/%3E%3Crect x='-124' y='-31' width='248' height='62' rx='31' stroke='%23d31e44'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat left 52% top 24px / 420px auto;
+}
+
+/* -------------------------------------------------------------------- le témoignage de FEI (LMS) */
+/* une photo à droite du témoignage, sur toute sa hauteur ; au-dessus sur petit écran */
+.temoignage--photo { grid-template-columns: minmax(0, 1fr) minmax(0, 340px); column-gap: 48px; }
+.temoignage--photo > :not(.temoignage-photo) { grid-column: 1; }
+.temoignage-photo { grid-column: 2; grid-row: 1 / span 3; width: 100%; height: 100%; min-height: 0; object-fit: cover; border-radius: calc(var(--rayon) - 4px); }
+@media (max-width: 860px) {
+  .temoignage--photo { grid-template-columns: minmax(0, 1fr); }
+  .temoignage-photo { grid-column: 1; grid-row: 1; height: auto; aspect-ratio: 16 / 9; }
+  .pied { background-size: 300px auto; background-position: right -90px top 0; }
+}

@@ -38,7 +38,8 @@ Les cartes à droite de l'écran : image en haut, 583 × 500 environ (rapport 7:
 | Marque blanche | `cartes/marque-blanche.webp` | fournie | — |
 | Côté apprenant (grand visuel) | `site/lms-apprenant.webp` | fournie (OnlineCompétences sur trois appareils) | — |
 | Lisy, le coach IA (tuile) | `site/lms-lisy.webp` | fournie | une version de 1400 px serait plus nette |
-| Témoignage France Education International | initiales | — | une photo de Sébastien Georges |
+| Témoignage France Education International : photo à droite | `site/acc-fei.webp` | site (accueil, deux élèves) | — |
+| Témoignage France Education International : auteur | initiales | — | une photo de Sébastien Georges |
 | Appel final | `photos/bureau-sourire.webp` | fournie (une utilisatrice souriante à son bureau) | — |
 
 ## Outils IA (`outils-ia.html`)
