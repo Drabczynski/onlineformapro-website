@@ -241,9 +241,15 @@ tête de `pages.css`).
 
 Textes, chiffres et coordonnées repris du site officiel ; le chiffre des apprenants est celui
 donné par Onlineformapro (22 millions). Images : les visuels produits fournis par
-Onlineformapro (`img/cartes/`) et des vues fixes du monde de lignes de l'ouverture
-(`img/visuels/`), en guise de photos ; aucune image du site officiel ni du modèle. Les
-formulaires sont des maquettes : ils n'envoient rien et renvoient vers ceux du site actuel.
+Onlineformapro (`img/cartes/`), des images reprises de onlineformapro.com (`img/site/` :
+Learning Podcast, RolePlay IA, Lisy, OnlineAgora, FastFormation, FastQuiz, les photos des
+familles du catalogue, les vignettes des articles du blog, les cartes de l'accueil) et,
+pour les bandeaux d'ouverture et les appels finaux, des vues fixes du monde de lignes
+(`img/visuels/`). Deux images sont construites : la carte ANSSI (le logo du site sur le
+dégradé de l'ouverture) et la famille Prévention, sans photo sur le site. `img/EMPLACEMENTS.md`
+liste chaque emplacement, son image et le format conseillé ; `img/depot/` reçoit les images
+à placer (voir sa notice). Les formulaires sont des maquettes : ils n'envoient rien et
+renvoient vers ceux du site actuel.
 L'ouverture (`index.html`) mène à ces pages : menu, bouton de démo, cartes et leurs images.
 
 `pages.css` et `pages.js` (menu sur téléphone, en-tête qui blanchit au défilement,
