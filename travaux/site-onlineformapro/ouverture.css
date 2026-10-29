@@ -6,7 +6,7 @@
   --u: min(calc(100vw / 1440), calc(100svh / 900));
   --nuit: #120836;            /* la nuit et les panneaux : un bleu à peine violet */
   --marine: 50, 30, 112;
-  --accent: #ff2d4b;
+  --accent: #ff5a78;          /* le rouge de la marque, adouci vers le rose sur la nuit */
   --encre: #ffffff;
   --doux: rgba(255, 255, 255, .72);
   --trait: rgba(255, 255, 255, .2);
@@ -57,7 +57,7 @@ h1, h2, h3 { font-family: var(--titre); }
 .experience { display: grid; }
 .scene, .chapitres { grid-area: 1 / 1; min-width: 0; }
 .scene { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; align-self: start; }
-.scene-fond { position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 100%, rgba(255, 45, 75, .14), transparent 60%), radial-gradient(100% 70% at 30% 90%, rgba(122, 104, 255, .2), transparent 55%), radial-gradient(90% 60% at 50% 0%, #2a0f6c, transparent 70%), var(--nuit); transition: opacity .6s ease; }
+.scene-fond { position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 100%, rgba(255, 90, 120, .14), transparent 60%), radial-gradient(100% 70% at 30% 90%, rgba(122, 104, 255, .2), transparent 55%), radial-gradient(90% 60% at 50% 0%, #2a0f6c, transparent 70%), var(--nuit); transition: opacity .6s ease; }
 #monde { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity .6s ease; }
 .avec-webgl #monde { opacity: 1; }
 .avec-webgl .scene-fond { opacity: 0; }
@@ -80,13 +80,11 @@ h1, h2, h3 { font-family: var(--titre); }
 
 /* l'ouverture : la pastille et le titre en haut à droite, l'encadré en bas à gauche */
 .accueil-pastille { position: absolute; right: var(--m); top: var(--m); display: flex; align-items: center; gap: calc(10 * var(--u)); height: calc(36 * var(--u)); min-height: 28px; padding: 0 calc(16 * var(--u)) 0 calc(14 * var(--u)); border: 1px solid rgba(255, 255, 255, .16); border-radius: 999px; background: rgba(var(--marine), .35); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); font-size: max(11px, calc(13 * var(--u))); color: rgba(255, 255, 255, .88); white-space: nowrap; }
-.accueil-pastille-point { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(255, 45, 75, .18), 0 0 12px rgba(255, 45, 75, .8); animation: pouls 2.4s ease-in-out infinite; }
-@keyframes pouls { 50% { box-shadow: 0 0 0 7px rgba(255, 45, 75, 0), 0 0 18px rgba(255, 45, 75, .9); } }
-/* le titre : appuyé, serré, mot par mot (une lettre par élément casserait le crénage et
-   l'écarterait), chaque mot en dégradé du blanc au lavande, l'accent du rouge au rose */
+.accueil-pastille-point { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(255, 90, 120, .18), 0 0 12px rgba(255, 90, 120, .8); animation: pouls 2.4s ease-in-out infinite; }
+@keyframes pouls { 50% { box-shadow: 0 0 0 7px rgba(255, 90, 120, 0), 0 0 18px rgba(255, 90, 120, .9); } }
+/* le titre : appuyé, serré, en blanc et l'accent en rouge ; il s'allume mot par mot (une
+   lettre par élément casserait le crénage et l'écarterait) */
 .accueil-titre { position: absolute; right: var(--m); top: calc(var(--m) + 56 * var(--u)); width: calc(1000 * var(--u)); text-align: right; font-weight: 500; font-size: calc(104 * var(--u)); line-height: calc(96 * var(--u)); letter-spacing: -.055em; }
-.accueil-titre .word-wrap { padding-block: .06em .18em; margin-block: -.06em -.18em; background: linear-gradient(180deg, #fff 35%, #d6cfff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.accueil-titre .accent .word-wrap { background-image: linear-gradient(180deg, #ff6f86 10%, #ff2d4b 55%, #e0338a 100%); }
 .accueil-encadre { position: absolute; left: var(--m); bottom: var(--m); width: calc(467 * var(--u)); }
 .accueil-encadre-corps { position: relative; padding: var(--m); }
 .accueil-encadre .chapeau { padding-bottom: calc(100 * var(--u)); padding-inline-end: calc(10 * var(--u)); }

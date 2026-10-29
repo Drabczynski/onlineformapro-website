@@ -171,7 +171,7 @@ circulaire à trois paires de voies où la lumière circule, l'accent en bretell
 arrondis, et des arcs de cercle autour, comme au croisement en X. Les titres sont plus
 serrés que ceux du modèle (interlettrage négatif) ; ceux des chapitres, plus petits, ont
 leurs retours à la ligne choisis. Le titre d'ouverture est plus affirmé : graisse 500, plus
-grand, chaque mot en dégradé du blanc au lavande (l'accent du rouge au rose), sous une
+grand, en blanc avec l'accent en rouge, sous une
 pastille « 22 millions d'apprenants · 25 ans d'innovation » ; il s'allume mot par mot, le
 découpage en lettres cassant le crénage. « Demandez une démonstration » reste affiché
 jusqu'aux cartes de la démo.
@@ -189,15 +189,13 @@ l'éventail, le bâtiment de la R&D, qui apparaît avec la carte « Vous avez un
 Objets construits en code, sans fichier 3D : `objets.js`.
 
 Les données de l'intelligence artificielle accompagnent la traversée (`particules.js`), en
-traits et en points nets, sans brume : quatre fibres de lumière longent tout le trajet de la
-caméra, de part et d'autre, et des paquets de données y filent en comètes dans le sens de la
-marche (plus vite quand on défile) ; trente petites constellations, des nœuds reliés à leurs
-deux plus proches voisins comme un réseau de neurones, sont posées le long du trajet, des
-impulsions parcourent leurs liens et leurs nœuds s'allument tour à tour ; des paquets
-circulent sur les routes (blancs et lavande dans un sens, rouges et orangés dans l'autre) ;
-quelques milliers de points nets donnent la profondeur. Moins de points sur petit écran ; si
-la machine peine, le rendu baisse d'abord sa résolution, puis garde la moitié des points,
-puis coupe le halo.
+un seul système net et régulier : une matrice de points serrés (un tous les 0,9 unité) posée
+sous les routes, sur 45 unités de part et d'autre du trajet de la caméra ; des ondes en
+partent, centrées sur la caméra, et l'accompagnent tout du long ; çà et là un point
+s'allume un instant, comme une donnée. Des paquets circulent sur les routes (blancs et
+lavande dans un sens, roses et orangés dans l'autre), plus vite quand on défile. Grille moins
+serrée et moins de paquets sur petit écran ; si la machine peine, le rendu baisse d'abord sa
+résolution, puis garde la moitié des paquets, puis coupe le halo.
 
 Les cartes portent en haut une grande image, sur toute leur largeur (`img/cartes/`, visuels
 fournis par Onlineformapro), qui mène à la même page que le bouton de la carte ; elle est
@@ -261,10 +259,11 @@ Par-dessus, sur toutes les pages, `marque.css` donne l'identité d'Onlineformapr
 logo et de l'ouverture 3D : une encre de nuit `#1b1636` (un noir tiré vers le violet) au lieu
 du noir pur pour les titres, les boutons et les cartes sombres ; des titres d'une graisse à
 peine plus forte (400 pour les plus grands, 480 pour les autres ; Geist chargée en police
-variable) ; le rouge du logo `#d31e44` en accent, avec l'accent du Ó (un trait arrondi incliné
-de 29,4°) devant les étiquettes et sous la page courante du menu ; la nuit violette de
-l'ouverture `#140a3a` pour les passages sombres, les cartes d'appel et le pied de page, où le
-Ó du logo est dessiné en lignes de lumière.
+variable) ; le rouge du logo, adouci (`#d4486c`), en accent, avec l'accent du Ó (un trait
+arrondi incliné de 29,4°) devant les étiquettes et sous la page courante du menu ; la nuit
+violette de l'ouverture `#140a3a` pour les passages sombres, les cartes d'appel et le pied de
+page. Le pied est signé du nom « onlineformapro » en très grand, à peine plus clair que la
+nuit et rogné par le bas, l'accent du Ó posé sur le premier o en seule touche de couleur.
 
 Les changements de fond du modèle s'appliquent partout : toute la page passe du blanc au
 pierre ou au noir quand une section marquée `data-fond` franchit 40 % de la hauteur de

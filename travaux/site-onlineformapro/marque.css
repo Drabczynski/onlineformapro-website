@@ -4,13 +4,13 @@
    - une encre de nuit (un noir tiré vers le violet de l'ouverture) au lieu du noir pur, pour
      les titres, les boutons et les cartes sombres ;
    - des titres d'une graisse à peine plus forte ;
-   - le rouge du logo en accent : l'accent du Ó devant les étiquettes, la page courante ;
-   - la nuit violette de l'ouverture pour les passages sombres et le pied de page, où les
-     anneaux du Ó sont dessinés en lignes de lumière, comme à l'arrivée de l'ouverture. */
+   - le rouge du logo, adouci, en accent : l'accent du Ó devant les étiquettes, la page courante ;
+   - la nuit violette de l'ouverture pour les passages sombres et le pied de page, signé du
+     nom d'Onlineformapro en très grand, l'accent du Ó en seule touche de couleur. */
 :root {
   --encre: #1b1636;          /* titres, boutons, cartes sombres */
   --nuit: #140a3a;           /* passages sombres, pied de page */
-  --rouge: #d31e44;          /* le rouge du logo */
+  --rouge: #d4486c;          /* le rouge du logo, adouci */
 }
 
 /* -------------------------------------------------------------------- titres */
@@ -36,11 +36,14 @@ body.fond-noir { background: var(--nuit); }
 .final-panneau { background: rgba(20, 10, 58, .8); }
 .carte-appel { background: var(--nuit); }
 
-/* le pied de page : la nuit, et les anneaux du Ó en lignes de lumière (lavande, blanc, rouge),
-   dans l'espace libre entre la marque et les colonnes */
-.pied {
-  background: var(--nuit) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 560' fill='none'%3E%3Cg opacity='.5' stroke-width='2'%3E%3Ccircle cx='300' cy='330' r='154' stroke='%238f80ff'/%3E%3Ccircle cx='300' cy='330' r='145' stroke='%23fff' stroke-opacity='.45'/%3E%3Ccircle cx='300' cy='330' r='113' stroke='%23d31e44'/%3E%3Ccircle cx='300' cy='330' r='105' stroke='%23fff' stroke-opacity='.45'/%3E%3Ccircle cx='300' cy='330' r='73' stroke='%23fff' stroke-opacity='.45'/%3E%3Ccircle cx='300' cy='330' r='64' stroke='%23d31e44'/%3E%3Cg transform='translate(251.5 105.5) rotate(-29.4)'%3E%3Crect x='-134' y='-41' width='268' height='82' rx='41' stroke='%238f80ff'/%3E%3Crect x='-124' y='-31' width='248' height='62' rx='31' stroke='%23d31e44'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat left 52% top 24px / 420px auto;
-}
+/* le pied de page : la nuit, et pour signature le nom en très grand, à peine plus clair que
+   le fond, rogné par le bas de la page ; seule touche de couleur, l'accent du Ó posé sur le
+   premier o */
+.pied { background: var(--nuit); overflow: hidden; }
+/* sa taille : la largeur du contenu (le mot fait 6,3 fois sa taille de police) */
+.pied-signature { --signature: min(calc((100vw - 80px) / 6.3), 254px); margin: -40px 0 calc(-80px - .12em); font: 500 var(--signature)/.9 var(--titre); letter-spacing: -.06em; color: rgba(255, 255, 255, .07); white-space: nowrap; text-align: center; -webkit-user-select: none; user-select: none; }
+.pied-signature span { position: relative; }
+.pied-signature span::before { content: ""; position: absolute; left: 40%; bottom: .84em; width: .4em; height: .085em; border-radius: .0425em; background: var(--rouge); opacity: .8; transform: rotate(-29.4deg); }
 
 /* -------------------------------------------------------------------- le témoignage de FEI (LMS) */
 /* une photo à droite du témoignage, sur toute sa hauteur ; au-dessus sur petit écran */
@@ -50,5 +53,5 @@ body.fond-noir { background: var(--nuit); }
 @media (max-width: 860px) {
   .temoignage--photo { grid-template-columns: minmax(0, 1fr); }
   .temoignage-photo { grid-column: 1; grid-row: 1; height: auto; aspect-ratio: 16 / 9; }
-  .pied { background-size: 300px auto; background-position: right -90px top 0; }
+  .pied-signature { --signature: calc((100vw - 40px) / 6.3); margin: -20px 0 calc(-60px - .12em); }
 }
