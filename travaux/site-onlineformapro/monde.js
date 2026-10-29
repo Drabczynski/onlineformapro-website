@@ -6,8 +6,8 @@
 // défilement, avec un léger amortissement et un léger suivi de la souris.
 //
 // Le rendu : des tubes très fins, une lumière qui pulse le long des routes, un brouillard
-// qui les fond dans la nuit, puis la tonalité filmique, un halo (bloom), deux dégradés
-// bleus et l'anticrénelage.
+// qui les fond dans la nuit, des nuées de particules autour du parcours (particules.js),
+// puis la tonalité filmique, un halo (bloom), deux dégradés violets et l'anticrénelage.
 import * as THREE from 'three';
 import { EffectComposer } from './vendor/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from './vendor/addons/postprocessing/RenderPass.js';
@@ -16,10 +16,12 @@ import { ShaderPass } from './vendor/addons/postprocessing/ShaderPass.js';
 import { OutputPass } from './vendor/addons/postprocessing/OutputPass.js';
 import { FXAAShader } from './vendor/addons/shaders/FXAAShader.js';
 import { creerObjets, rectangle } from './objets.js';
+import { creerParticules } from './particules.js';
 
-// les couleurs du modèle (bleu, orangé, blanc) ; pour passer au rouge de la marque, changer « rouge »
-export const COULEURS = { bleu: '#1367FE', rouge: '#FF4300', blanc: '#FFFFFF' };
-const NUIT = '#140838';                       // la nuit : un bleu nuit à peine tiré vers le violet
+// les couleurs du modèle (bleu, orangé, blanc), le bleu tiré vers le violet (un bleu pur
+// paraissait cyan à l'écran) ; pour passer au rouge de la marque, changer « rouge »
+export const COULEURS = { bleu: '#3A33FF', rouge: '#FF4300', blanc: '#FFFFFF' };
+const NUIT = '#1c0a3c';                       // la nuit : un bleu nuit tiré vers le violet
 
 // -------------------------------------------------------------------- tracés
 const alea = (i, k) => { const x = Math.sin(i * 127.1 + k * 311.7) * 43758.5453; return x - Math.floor(x); };
@@ -236,11 +238,11 @@ function logo(groupe, centre) {
 }
 
 function decor(groupe) {
-  const zc = -420, C1 = new THREE.Vector3(0, 0, zc);
+  const zc = -420, C1 = new THREE.Vector3(0, 0, zc), routes = [];
   // l'ouverture : l'autoroute arrive de l'horizon, à gauche, passe tout près, en bas de
   // l'écran, puis tourne, file vers l'horizon et entre droit dans le carrefour
-  route(groupe, [[-210, -90], [-110, -40], [-50, -10], [-14, 6], [8, 12], [22, 6], [30, -14], [33, -50], [26, -95], [6, -135], [-6, -178], [6, -218], [12, -252], [6, -300], [0, -350], [0, zc + 30]], VOIES, { bouts: [1, 0] });
-  route(groupe, [[130, 34], [70, 26], [42, 18], [32, 6], [31, -14]], VOIES_FINES);
+  routes.push(route(groupe, [[-210, -90], [-110, -40], [-50, -10], [-14, 6], [8, 12], [22, 6], [30, -14], [33, -50], [26, -95], [6, -135], [-6, -178], [6, -218], [12, -252], [6, -300], [0, -350], [0, zc + 30]], VOIES, { bouts: [1, 0] }));
+  routes.push(route(groupe, [[130, 34], [70, 26], [42, 18], [32, 6], [31, -14]], VOIES_FINES));
 
   // le graphique : des lignes qui longent la route et s'élèvent en pics, sur deux rangs
   for (let r = 0; r < 7; r++) {
@@ -271,8 +273,8 @@ function decor(groupe) {
   // par le bras en bas à droite, le bras en haut à gauche file vers l'éventail
   const P2 = new THREE.Vector3(200, 0, zc);
   const arrivee = P2.clone().addScaledVector(dir(235), 45), sens = dir(55);
-  route(groupe, [[60, zc], [72, zc], [98, zc + 6], [122, zc + 28], [146, zc + 54], [arrivee.x - sens.x * 14, arrivee.z - sens.z * 14], [arrivee.x, arrivee.z]],
-    [[-2.2, W, 0.018], [-1.7, B, 0.024], [1.7, R, 0.024], [2.2, B, 0.018]], { bouts: [0, 0] });
+  routes.push(route(groupe, [[60, zc], [72, zc], [98, zc + 6], [122, zc + 28], [146, zc + 54], [arrivee.x - sens.x * 14, arrivee.z - sens.z * 14], [arrivee.x, arrivee.z]],
+    [[-2.2, W, 0.018], [-1.7, B, 0.024], [1.7, R, 0.024], [2.2, B, 0.018]], { bouts: [0, 0] }));
   carrefour(groupe, P2, [
     { angle: 55, longueur: 270, ouvert: true }, { angle: 125, longueur: 80, ouvert: true },
     { angle: 235, longueur: 45 }, { angle: 305, longueur: 80, ouvert: true },
@@ -292,6 +294,8 @@ function decor(groupe) {
   // l'éventail : au bout de la ligne droite, des lignes partent d'un même point de l'horizon
   // et s'ouvrent en revenant vers la caméra, de plus en plus haut, sur sa droite
   const F = P2.clone().addScaledVector(sens, 270), droite = sens.clone().cross(HAUT);
+  // la ligne droite, du croisement à l'éventail
+  routes.push(new THREE.LineCurve3(P2.clone().addScaledVector(sens, 8).setY(0.03), F.clone().setY(0.03)));
   for (let k = 0; k < 16; k++) {
     const fin = F.clone().addScaledVector(sens, -160).addScaledVector(droite, 4 + 2.6 * k + 0.15 * k * k), haut = 0.4 * k ** 1.8, pts = [];
     for (let j = 0; j <= 60; j++) {
@@ -303,13 +307,13 @@ function decor(groupe) {
   // le logo, à gauche du virage de l'accueil
   const L0 = new THREE.Vector3(-38, 0, -26);
   logo(groupe, L0);
-  return { C1, P2, sens, F, L0 };
+  return { C1, P2, sens, F, L0, routes };
 }
 // la planète des apprenants, au-dessus du croisement en X
 const PLANETE = { hauteur: 11, rayon: 7.5 };
 
-// -------------------------------------------------------------------- dégradés bleus (passe)
-// Deux lueurs bleues ajoutées à l'image : l'une en haut, au centre, l'autre à gauche.
+// -------------------------------------------------------------------- dégradés violets (passe)
+// Deux lueurs bleu-violet ajoutées à l'image : l'une en haut, au centre, l'autre à gauche.
 const DegradeNuanceur = {
   uniforms: { tDiffuse: { value: null }, uRapport: { value: 1.6 } },
   vertexShader: `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
@@ -318,7 +322,7 @@ const DegradeNuanceur = {
     float lueur(vec2 c, float echelle) { vec2 d = (vUv - c) * vec2(uRapport, 1.0); return pow(max(0.0, 1.0 - length(d) / echelle), 2.0); }
     void main() {
       vec4 t = texture2D(tDiffuse, vUv);
-      vec3 bleu = vec3(0.1250, 0.0590, 0.4000);
+      vec3 bleu = vec3(0.2400, 0.0550, 0.4000);     // un bleu à peine violet
       t.rgb += bleu * (lueur(vec2(0.5, 1.0), 1.28) * 0.77 + lueur(vec2(0.0, 0.66), 0.9) * 0.48);
       gl_FragColor = t;
     }`,
@@ -342,7 +346,7 @@ export function creerMonde(toile) {
   const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 240);
   const groupe = new THREE.Group();
   scene.add(groupe);
-  const { C1, P2, sens, F, L0 } = decor(groupe);
+  const { C1, P2, sens, F, L0, routes } = decor(groupe);
   const objets = creerObjets(groupe, {
     cube: { centre: C1.clone().setY(7.5) },
     planete: { centre: P2.clone().setY(PLANETE.hauteur), rayon: PLANETE.rayon },
@@ -350,7 +354,7 @@ export function creerMonde(toile) {
   }, { dessin, couleurs: COULEURS });
 
   // la chaîne de rendu, dans l'ordre du modèle : l'image, sa tonalité (sortie en couleurs
-  // d'écran), le halo, les dégradés bleus, l'anticrénelage
+  // d'écran), le halo, les dégradés violets, l'anticrénelage
   const composeur = new EffectComposer(rendu);
   composeur.addPass(new RenderPass(scene, camera));
   composeur.addPass(new OutputPass());
@@ -391,6 +395,9 @@ export function creerMonde(toile) {
   const cheminP = new THREE.CatmullRomCurve3(STATIONS.map(s => new THREE.Vector3(...s[1])), false, 'centripetal');
   const cheminV = new THREE.CatmullRomCurve3(STATIONS.map(s => new THREE.Vector3(...s[2])), false, 'centripetal');
   const cheminVHauteur = new THREE.CatmullRomCurve3(STATIONS.map(s => new THREE.Vector3(...(s[3] || s[2]))), false, 'centripetal');
+  // les nuées de particules, semées le long du trajet de la caméra et des routes (trois fois
+  // moins sur les petits écrans)
+  const particules = creerParticules(scene, { chemin: cheminP, routes, facteur: epaisseur > 1 ? 0.35 : 1 });
   let enHauteur = false;
   // progression du défilement → paramètre des courbes (les stations y sont équidistantes)
   function parametre(p) {
@@ -402,7 +409,7 @@ export function creerMonde(toile) {
   }
   const pos = new THREE.Vector3(), vise = new THREE.Vector3(), cibleP = new THREE.Vector3(), cibleV = new THREE.Vector3();
   const vitP = new THREE.Vector3(), vitV = new THREE.Vector3();
-  let premiere = true;
+  let premiere = true, pPrec = 0;
   // amortissement critique (comme SmoothDamp) d'un vecteur vers sa cible
   function amortir(v, cible, vitesse, duree, dt) {
     const o = 2 / duree, x = o * dt, e = 1 / (1 + x + 0.48 * x * x + 0.235 * x * x * x);
@@ -425,6 +432,7 @@ export function creerMonde(toile) {
     degrade.uniforms.uRapport.value = l / h;
     fxaa.material.uniforms.resolution.value.set(1 / (l * ratio), 1 / (h * ratio));
     objets.taille(h * ratio / (2 * Math.tan(camera.fov * Math.PI / 360)));   // pixels par unité, à une unité de distance
+    particules.taille(h * ratio / (2 * Math.tan(camera.fov * Math.PI / 360)), ratio);
   }
 
   // une image : progression du parcours (0 → 1), souris (-0,5 → 0,5), temps, réglage
@@ -445,16 +453,20 @@ export function creerMonde(toile) {
     camera.lookAt(vise);
     for (const m of matieres) m.uniforms.uTemps.value = anime ? temps * 2 : 0;
     objets.animer(temps, camera, anime, progression);
+    particules.animer(temps, dt, camera, (p - pPrec) / Math.max(dt, 1e-3), anime);
+    pPrec = p;
     composeur.render();
   }
 
-  // dégradation si la machine peine : moins de pixels, puis plus de halo
+  // dégradation si la machine peine : moins de pixels, puis moitié moins de particules,
+  // puis plus de halo
   let niveau = 0;
   function alleger() {
     niveau++;
     if (niveau === 1) { ratio = Math.min(ratio, 1); taille(); }
-    else if (niveau === 2) halo.enabled = false;
-    return niveau <= 2;
+    else if (niveau === 2) particules.alleger();
+    else if (niveau === 3) halo.enabled = false;
+    return niveau <= 3;
   }
 
   // les moments des stations, calés sur les textes par la page (une valeur par station), et
