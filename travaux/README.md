@@ -164,6 +164,7 @@ d'en haut (la solution globale et modulaire), le croisement en X entouré d'anne
 millions d'apprenants), la ligne droite puis l'éventail de lignes (la demande de démo).
 Textes et liens repris du site officiel, aucun visuel. La partie plus classique du site
 viendra avec le prochain modèle.
+Les titres sont en Geist, comme dans les pages du site ; le reste du texte reste en Inter.
 
 À l'arrivée, le Ó du logo est dessiné en routes, aux proportions du logo : l'anneau en route
 circulaire à trois paires de voies où la lumière circule, l'accent en bretelle aux bouts
@@ -182,15 +183,6 @@ dernière, le cube est complet. Au croisement en X, une planète (méridiens, pa
 contour avec deux arcs orangés) dans une poussière fine de particules. Au bout de
 l'éventail, le bâtiment de la R&D, qui apparaît avec la carte « Vous avez un projet ? ».
 Objets construits en code, sans fichier 3D : `objets.js`.
-
-Des pastilles sont accrochées aux objets, comme sur le camion du modèle : un rond voilé, un
-point et un libellé, posés sur un point de l'objet projeté à l'écran à chaque image. Chacune
-n'apparaît que pendant sa scène et tant que son objet n'est pas perdu dans la brume : sur le
-logo (22 M d'apprenants, 6000 h de formation, 2000+ clients), sur les pics de l'IA (les
-quatre outils), sur le cube (le LMS et ses quatre modules), sur la planète (13 pays,
-3 continents, 15 langues) et sur le bâtiment (pôle R&D, ingénierie pédagogique, 230
-collaborateurs). Au survol, le rond s'ouvre et les lignes concernées s'allument ; un clic
-mène à la page correspondante. Sur téléphone, seuls les ronds s'affichent.
 
 Les cartes portent en haut une grande image, sur toute leur largeur (`img/cartes/`, visuels
 fournis par Onlineformapro), qui mène à la même page que le bouton de la carte ; elle est
@@ -241,7 +233,7 @@ tête de `pages.css`).
 
 | Page | Contenu |
 |---|---|
-| `lms.html` | LMS OnlineManager : côté administration (prise en main, analyse des données, marque blanche) et côté apprenant (Lisy, OnlineAgora, outils collaboratifs) sur une même page ; références, cas France Education International, spécifications techniques |
+| `lms.html` | LMS OnlineManager : bandeau avec le montage des écrans (iMac, MacBook, iPad, iPhone) sur le fond bleu violet de l'ouverture ; côté administration (prise en main, analyse des données, marque blanche) et côté apprenant (Lisy, OnlineAgora, outils collaboratifs) sur une même page ; références, cas France Education International, spécifications techniques |
 | `outils-ia.html` | FastFormation, FastQuiz, Learning Podcast, RolePlay IA : sous le titre « La puissance de l'IA au service de la formation et de l'apprentissage », un bloc par outil (texte, visuel, quatre atouts), chacun avec son ancre (`#fastformation`, `#fastquiz`, `#learning-podcast`, `#roleplay`) |
 | `catalogue.html` | Présentation du catalogue : d'abord toutes les catégories, avec en tête la nouveauté des outils collaboratifs Google (grand bloc et sa vidéo), puis le témoignage SNCF et les chiffres, la pédagogie ; liens vers le catalogue en accès libre |
 | `blog.html` | Les 9 derniers articles du blog officiel, filtrables par catégorie, et l'inscription à la lettre |
@@ -254,7 +246,9 @@ Onlineformapro (`img/cartes/`), des images reprises de onlineformapro.com (`img/
 Learning Podcast, RolePlay IA, Lisy, OnlineAgora, FastFormation, FastQuiz, les photos des
 familles du catalogue, les vignettes des articles du blog, les cartes de l'accueil) et,
 pour les bandeaux d'ouverture et les appels finaux, des vues fixes du monde de lignes
-(`img/visuels/`), à remplacer par des photos dans les bandeaux. La vidéo des outils Google
+(`img/visuels/`), à remplacer dans les bandeaux. Les montages d'écrans détourés fournis
+par Onlineformapro habillent la page LMS : bandeau, OnlineManager, OnlineCompétences sur trois
+appareils, Lisy et OnlineAgora. La vidéo des outils Google
 est celle de la page Catalogue du site officiel, lue depuis download.onlineformation.com ;
 tant qu'elle n'est pas chargée, le bloc montre le visuel Google de la newsletter
 (`img/site/cat-google.webp`). Deux images sont construites : la carte ANSSI (le logo du site sur le

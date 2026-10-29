@@ -197,52 +197,10 @@ import('./monde.js').then(async ({ creerMonde }) => {
   racine.classList.add('avec-webgl');
   monde.taille();
   monde.placer(stations(), moments());
-  creerPastilles(monde.pastilles);
 }).catch((e) => {
   racine.classList.add('sans-webgl');
   console.warn('WebGL indisponible :', e);
 });
-
-// -------------------------------------------------------------------- les pastilles
-// Accrochées aux objets du monde (le monde calcule leur place à l'écran à chaque image).
-// Chacune n'apparaît que pendant sa scène : le logo à l'arrivée, les pics de l'IA, le cube,
-// la planète, le bâtiment. Au survol, elle s'ouvre et les lignes concernées s'allument ; un
-// clic mène à la page correspondante.
-const calquePastilles = document.querySelector('.pastilles');
-let pastilles = [];
-function creerPastilles(liste) {
-  pastilles = liste.map((p) => {
-    const a = document.createElement('a');
-    a.className = 'pastille';
-    a.href = p.lien;
-    a.tabIndex = -1;                                   // un raccourci visuel : les cartes portent déjà ces liens
-    a.setAttribute('aria-hidden', 'true');
-    a.innerHTML = `<span class="pastille-rond"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19.5"/><circle class="pastille-arc" cx="20" cy="20" r="19.5"/></svg><i></i></span><span class="pastille-libelle">${p.libelle}</span>`;
-    a.addEventListener('pointerenter', () => { p.survol = true; a.classList.add('est-survolee'); });
-    a.addEventListener('pointerleave', () => { p.survol = false; a.classList.remove('est-survolee'); });
-    calquePastilles.append(a);
-    return { ...p, el: a, donnees: p, visible: false };
-  });
-}
-// les scènes, en hauteurs d'écran de défilement : [début, fin]
-function scenesPastilles() {
-  const [c1, c2, c3] = chapitres.map(v => v / 100), [g1, g2, g3, g4] = gel;
-  return { logo: [-1, 0.3], ia: [c1 - 0.3, g1.a], modulaire: [c2 - 0.3, g2.a], planete: [c3 - 0.3, g3.a], batiment: [g4.de + 0.75, finExperience] };
-}
-function majPastilles(e) {
-  if (!pastilles.length) return;
-  const scenes = scenesPastilles(), l = innerWidth, h = innerHeight;
-  for (const p of pastilles) {
-    const d = p.donnees, [a, b] = scenes[d.scene];
-    const visible = e >= a && e <= b && d.devant && !d.loin && d.x > 0 && d.x < l && d.y > 0 && d.y < h;
-    p.el.style.transform = `translate(${d.x.toFixed(1)}px, ${d.y.toFixed(1)}px)`;
-    if (visible !== p.visible) {
-      p.visible = visible;
-      p.el.classList.toggle('est-visible', visible);
-      if (!visible) { d.survol = false; p.el.classList.remove('est-survolee'); }
-    }
-  }
-}
 
 // -------------------------------------------------------------------- l'indicateur 01 / 04
 const indicateur = document.querySelector('.indicateur'), indicateurNum = indicateur.querySelector('.indicateur-num');
@@ -313,7 +271,6 @@ function image(ms) {
   souris.x += (sourisCible.x - souris.x) * Math.min(1, dt * 6);
   souris.y += (sourisCible.y - souris.y) * Math.min(1, dt * 6);
   monde.image({ progression, souris, temps: t, dt, anime, intro });
-  majPastilles(s / 100);
   // si la machine peine (plus de 28 ms par image en moyenne), on allège le rendu
   mesures.push(dt);
   if (mesures.length >= 90) {

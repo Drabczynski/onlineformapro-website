@@ -125,6 +125,12 @@ section[id], article[id] { scroll-margin-top: 88px; }
 /* centré dans un grand bloc arrondi (accueil du modèle) */
 .visuel--bloc { margin: 12px var(--gouttiere-bloc) 0; min-height: calc(100svh - 96px); border-radius: var(--rayon); align-items: center; justify-content: center; text-align: center; padding-top: 64px; }
 .visuel--bloc .visuel-texte { justify-items: center; }
+/* bandeau avec un montage d'écrans détouré : le texte à gauche, les écrans à droite, sur le
+   fond bleu violet de l'ouverture */
+.visuel--montage { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: center; gap: 48px; padding-top: 140px; background: radial-gradient(55% 65% at 72% 52%, rgba(124, 92, 255, .42), rgba(124, 92, 255, 0) 70%), linear-gradient(180deg, #140838 0%, #1c1058 100%); }
+.visuel--montage::after { display: none; }
+.visuel--montage .titre-1 { font-size: clamp(32px, 4vw, 60px); }
+.visuel > img.visuel-montage { position: relative; inset: auto; z-index: 1; width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 40px 60px rgba(4, 0, 30, .45)); }
 
 /* -------------------------------------------------------------------- citation et chiffres */
 .citation { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: end; padding: 0 24px; }
@@ -159,6 +165,14 @@ section[id], article[id] { scroll-margin-top: 88px; }
 .mosaique { display: grid; grid-template-columns: 843fr 497fr; gap: 20px; }
 .mosaique > :nth-child(4n+3) { grid-column: 1; }
 .mosaique .inverse { grid-template-columns: 497fr 843fr; }
+.mosaique--inverse { grid-template-columns: 497fr 843fr; }
+/* une image entière, déjà mise en carte (coins arrondis, fond dégradé) : la tuile prend ses
+   proportions et ne la recadre pas */
+.tuile.tuile-maquette { padding: 0; min-height: 0; aspect-ratio: 682 / 534; background: none; }
+.tuile-maquette img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* un montage d'écrans en grand, sur le fond de l'ouverture */
+.vitrine { margin-top: 64px; padding: 56px; border-radius: var(--rayon); background: radial-gradient(70% 90% at 50% 100%, rgba(124, 92, 255, .45), rgba(124, 92, 255, 0) 70%), #140838; }
+.vitrine img { width: 100%; height: auto; }
 .tuile { position: relative; min-height: 537px; border-radius: var(--rayon); overflow: hidden; padding: 40px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; }
 .tuile-texte { background: #f9fafb; color: var(--encre); }
 .tuile-pierre { background: var(--pierre); }
@@ -352,7 +366,9 @@ section[id], article[id] { scroll-margin-top: 88px; }
   .defile { grid-template-columns: 1fr; gap: 32px; }
   .defile-liste { position: static; }
   .defile-liste a::before { width: 1.1em; }
-  .mosaique, .mosaique .inverse { grid-template-columns: 1fr; }
+  .mosaique, .mosaique .inverse, .mosaique--inverse { grid-template-columns: 1fr; }
+  .visuel--montage { grid-template-columns: 1fr; gap: 40px; padding-top: 120px; }
+  .vitrine { padding: 24px; }
   .mosaique > * { grid-column: auto !important; }
   .tuile { min-height: 420px; }
   .g4, .g6 { grid-template-columns: repeat(3, 1fr); }

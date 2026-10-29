@@ -60,12 +60,12 @@ const nuanceur = {
       #include <fog_vertex>
     }`,
   fragmentShader: `
-    uniform vec3 uCouleur; uniform float uAlpha; uniform vec2 uBouts; uniform float uFondu; uniform float uEclat;
+    uniform vec3 uCouleur; uniform float uAlpha; uniform vec2 uBouts; uniform float uFondu;
     varying vec2 vUv; varying float vPulse;
     #include <fog_pars_fragment>
     void main() {
       float bouts = mix(1.0, smoothstep(0.0, uFondu, vUv.x), uBouts.x) * mix(1.0, smoothstep(1.0, 1.0 - uFondu, vUv.x), uBouts.y);
-      gl_FragColor = vec4(mix(uCouleur, uCouleur * 3.0, vPulse) * uEclat, uAlpha * bouts);
+      gl_FragColor = vec4(mix(uCouleur, uCouleur * 3.0, vPulse), uAlpha * bouts);
       #include <fog_fragment>
     }`,
 };
@@ -81,7 +81,7 @@ function matiere(couleur, longueur, route, bouts) {
     ...nuanceur, fog: true, transparent: true, depthWrite: false,
     uniforms: THREE.UniformsUtils.merge([THREE.UniformsLib.fog, {
       uCouleur: { value: c }, uTemps: { value: 0 }, uTaille: { value: Math.max(2, longueur * 0.3) },
-      uVitesse: { value: route ? 1 : 0 }, uAlpha: { value: 1 }, uEclat: { value: 1 },
+      uVitesse: { value: route ? 1 : 0 }, uAlpha: { value: 1 },
       uBouts: { value: new THREE.Vector2(...bouts) }, uFondu: { value: Math.min(0.1, 25 / longueur) } }]),
   });
   matieres.push(m);
@@ -233,7 +233,6 @@ function logo(groupe, centre) {
     for (let j = 0; j <= 48; j++) pts.push(centre.clone().addScaledVector(dir(a0 + (a1 - a0) * j / 48), r).setY(y));
     tube(groupe, new THREE.CatmullRomCurve3(pts), { couleur, rayon: 0.036, route: false });
   });
-  return { accent: c, rayon: R0 };
 }
 
 function decor(groupe) {
@@ -244,7 +243,6 @@ function decor(groupe) {
   route(groupe, [[130, 34], [70, 26], [42, 18], [32, 6], [31, -14]], VOIES_FINES);
 
   // le graphique : des lignes qui longent la route et s'élèvent en pics, sur deux rangs
-  const pics = [];
   for (let r = 0; r < 7; r++) {
     const x0 = -9 - r * 1.8, pts = [];
     for (let k = 0; k <= 120; k++) {
@@ -253,10 +251,7 @@ function decor(groupe) {
       const y = 0.05 + pic(-262 - alea(r, 1) * 16, 4 + 7 * alea(r, 2), 4 + 3 * alea(r, 3)) + pic(-292 - alea(r, 4) * 10, 2.5 + 6 * alea(r, 5), 3 + 2 * alea(r, 6));
       pts.push(new THREE.Vector3(x0 + Math.sin(k * 0.05 + r) * 0.4, y, z));
     }
-    const ligne = tube(groupe, new THREE.CatmullRomCurve3(pts), { couleur: [B, R, W, R, B, W, R][r], rayon: 0.028 });
-    // ses deux sommets : le grand pic, puis le second, plus au fond
-    const max = (liste) => liste.reduce((a, b) => (b.y > a.y ? b : a));
-    pics.push({ ligne, sommet: max(pts.filter(p => p.z > -282)), second: max(pts.filter(p => p.z <= -282)) });
+    tube(groupe, new THREE.CatmullRomCurve3(pts), { couleur: [B, R, W, R, B, W, R][r], rayon: 0.028 });
   }
 
   // le carrefour : l'autoroute (bras du bas) y entre, une route transversale le traverse ;
@@ -307,8 +302,8 @@ function decor(groupe) {
   }
   // le logo, à gauche du virage de l'accueil
   const L0 = new THREE.Vector3(-38, 0, -26);
-  const marque = logo(groupe, L0);
-  return { C1, P2, sens, F, L0, marque, pics };
+  logo(groupe, L0);
+  return { C1, P2, sens, F, L0 };
 }
 // la planète des apprenants, au-dessus du croisement en X
 const PLANETE = { hauteur: 11, rayon: 7.5 };
@@ -347,59 +342,12 @@ export function creerMonde(toile) {
   const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 240);
   const groupe = new THREE.Group();
   scene.add(groupe);
-  const { C1, P2, sens, F, L0, marque, pics } = decor(groupe);
+  const { C1, P2, sens, F, L0 } = decor(groupe);
   const objets = creerObjets(groupe, {
     cube: { centre: C1.clone().setY(7.5) },
     planete: { centre: P2.clone().setY(PLANETE.hauteur), rayon: PLANETE.rayon },
     batiment: { entree: F, sens },
   }, { dessin, couleurs: COULEURS });
-
-  // -------------------------------------------------------------- les pastilles
-  // Comme sur le camion du modèle : des pastilles accrochées à un point de chaque objet,
-  // projetées à l'écran à chaque image. La page les pose, les montre pendant leur scène et
-  // signale le survol ; les lignes concernées (« eclat ») s'allument alors. Libellés et
-  // chiffres repris du site officiel.
-  const V = (x, y, z) => new THREE.Vector3(x, y, z);
-  const surSol = (centre, angle, r, h = 0.2) => () => centre.clone().addScaledVector(dir(angle), r).setY(h);
-  // un outil IA par sommet, bien espacés : les deux plus hauts grands pics, puis les deux plus
-  // hauts seconds pics des autres lignes (plus au fond)
-  const parGrand = pics.map((p, k) => k).sort((a, b) => pics[b].sommet.y - pics[a].sommet.y);
-  const parSecond = parGrand.slice(2).sort((a, b) => pics[b].second.y - pics[a].second.y);
-  const sommets = [[parGrand[0], 'sommet'], [parGrand[1], 'sommet'], [parSecond[0], 'second'], [parSecond[1], 'second']];
-  const { ancres } = objets;
-  const pastilles = [
-    { scene: 'logo', libelle: '22 M<br>d’apprenants', lien: 'lms.html', point: surSol(L0, 168, marque.rayon) },
-    { scene: 'logo', libelle: '6000 h<br>de formation', lien: 'catalogue.html', point: () => marque.accent.clone().setY(0.2) },
-    { scene: 'logo', libelle: '2000+<br>clients', lien: 'lms.html', point: surSol(L0, -12, marque.rayon) },
-    ...['FastFormation', 'FastQuiz', 'Learning<br>Podcast', 'RolePlay IA'].map((libelle, j) => ({
-      scene: 'ia', libelle, lien: 'outils-ia.html#' + ['fastformation', 'fastquiz', 'learning-podcast', 'roleplay'][j],
-      point: () => pics[sommets[j][0]][sommets[j][1]].clone().add(V(0, 0.35, 0)), eclat: [pics[sommets[j][0]].ligne.material] })),
-    { scene: 'modulaire', libelle: 'LMS<br>OnlineManager', lien: 'lms.html', point: ancres.socle, eclat: ancres.eclatSocle },
-    ...['Reporting<br>intégré', 'Catalogue<br>de formation', 'Marque<br>blanche', 'OnlineVisio'].map((libelle, k) => ({
-      scene: 'modulaire', libelle, lien: ['lms.html#administration', 'catalogue.html', 'lms.html#administration', 'lms.html#apprenant'][k],
-      point: () => ancres.module(k), eclat: ancres.eclatModule(k) })),
-    { scene: 'planete', libelle: '13 pays', lien: 'lms.html', point: () => ancres.planete(V(-0.75, 0.55, 0.35)) },
-    { scene: 'planete', libelle: '3 continents', lien: 'lms.html', point: () => ancres.planete(V(-0.95, -0.05, -0.3)) },
-    { scene: 'planete', libelle: '15 langues<br>intégrées', lien: 'lms.html', point: () => ancres.planete(V(-0.7, -0.6, 0.4)) },
-    { scene: 'batiment', libelle: 'Pôle R&amp;D', lien: 'contact.html', point: () => ancres.siege(8, 15.6, -8) },
-    { scene: 'batiment', libelle: 'Ingénierie<br>pédagogique', lien: 'contact.html', point: () => ancres.siege(-12, 10.5, 0.2) },
-    { scene: 'batiment', libelle: '230<br>collaborateurs', lien: 'contact.html', point: () => ancres.siege(0, 4.8, 2.6) },
-  ].map(p => ({ ...p, x: 0, y: 0, devant: false, loin: true, survol: false, eclatActuel: 1 }));
-  const projete = new THREE.Vector3();
-  function projeterPastilles(dt) {
-    const l = toile.clientWidth, h = toile.clientHeight;
-    camera.updateMatrixWorld();
-    for (const p of pastilles) {
-      projete.copy(p.point()).project(camera);
-      p.x = (projete.x + 1) / 2 * l; p.y = (1 - projete.y) / 2 * h; p.devant = projete.z < 1;
-      p.loin = camera.position.distanceTo(p.point()) > scene.fog.far * 0.6;   // l'objet se perd encore dans la brume
-      // l'éclat des lignes concernées suit le survol, en douceur
-      if (p.eclat) {
-        p.eclatActuel += ((p.survol ? 2.2 : 1) - p.eclatActuel) * Math.min(1, dt * 8);
-        for (const m of p.eclat) m.uniforms.uEclat.value = p.eclatActuel;
-      }
-    }
-  }
 
   // la chaîne de rendu, dans l'ordre du modèle : l'image, sa tonalité (sortie en couleurs
   // d'écran), le halo, les dégradés bleus, l'anticrénelage
@@ -497,7 +445,6 @@ export function creerMonde(toile) {
     camera.lookAt(vise);
     for (const m of matieres) m.uniforms.uTemps.value = anime ? temps * 2 : 0;
     objets.animer(temps, camera, anime, progression);
-    projeterPastilles(dt);
     composeur.render();
   }
 
@@ -518,5 +465,5 @@ export function creerMonde(toile) {
     valeurs.forEach((v, k) => { STATIONS[k][0] = Math.max(v, prec + 1e-4); prec = STATIONS[k][0]; });
   }
 
-  return { taille, image, alleger, placer, pastilles };
+  return { taille, image, alleger, placer };
 }
