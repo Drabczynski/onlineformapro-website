@@ -47,9 +47,9 @@ Les cartes à droite de l'écran : image en haut, 583 × 500 environ (rapport 7:
 |---|---|---|---|
 | Photo d'ouverture | `photos/ordinateur-sourire.webp` | fournie (une apprenante à son ordinateur) | — |
 | FastFormation (pleine largeur, 16:9) | `site/ff-outil.webp` | site (page FastFormation) | une version de 2400 × 1350 serait plus nette |
-| FastQuiz (pleine largeur, 16:9) | `site/fq-questions.webp` | site (page Outils auteur IA) | une version de 2400 × 1350 serait plus nette |
+| FastQuiz (pleine largeur, 16:9) | `site/fastquiz-sources.webp` | fournie (le choix des sources, 1411 px) | une version de 2400 × 1350 serait plus nette |
 | Learning Podcast (pleine largeur, 16:9) | `site/lp-show.webp` | site (article Learning Podcast) | — |
-| RolePlay IA (pleine largeur, 16:9, fond noir) | `site/rp-vente.webp` | site (article Simulations IA, 957 px) | une version de 2400 × 1350 : celle du site est agrandie |
+| RolePlay IA (pleine largeur, 16:9, fond noir) | `site/roleplay-avatars.webp` | fournie (le téléphone et les personnages, 2000 px) | — |
 | Appel final | `modele/tablette-ville.webp` | modèle | une photo de 1500 × 860 |
 
 ## Catalogue (`catalogue.html`)
