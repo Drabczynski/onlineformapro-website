@@ -188,14 +188,16 @@ contour avec deux arcs orangés) dans une poussière fine de particules. Au bout
 l'éventail, le bâtiment de la R&D, qui apparaît avec la carte « Vous avez un projet ? ».
 Objets construits en code, sans fichier 3D : `objets.js`.
 
-Des nuées de particules accompagnent la traversée (`particules.js`, environ 500 000 points
-calculés par la carte graphique) : une poussière semée autour du trajet de la caméra, des
-amas en nuages et en spirales qui tournent sur eux-mêmes, des flux de lumière sur les routes
-(blanc et lavande dans un sens, rouge et orangé dans l'autre), un champ qui entoure toujours
-la caméra, et six essaims en hélice qui volent à ses côtés, s'écartent dans les virages et
-filent plus vite quand on défile. Trois fois moins de points sur petit écran ; si la machine
-peine, le rendu baisse d'abord sa résolution, puis garde la moitié des points, puis coupe le
-halo.
+Les données de l'intelligence artificielle accompagnent la traversée (`particules.js`), en
+traits et en points nets, sans brume : quatre fibres de lumière longent tout le trajet de la
+caméra, de part et d'autre, et des paquets de données y filent en comètes dans le sens de la
+marche (plus vite quand on défile) ; trente petites constellations, des nœuds reliés à leurs
+deux plus proches voisins comme un réseau de neurones, sont posées le long du trajet, des
+impulsions parcourent leurs liens et leurs nœuds s'allument tour à tour ; des paquets
+circulent sur les routes (blancs et lavande dans un sens, rouges et orangés dans l'autre) ;
+quelques milliers de points nets donnent la profondeur. Moins de points sur petit écran ; si
+la machine peine, le rendu baisse d'abord sa résolution, puis garde la moitié des points,
+puis coupe le halo.
 
 Les cartes portent en haut une grande image, sur toute leur largeur (`img/cartes/`, visuels
 fournis par Onlineformapro), qui mène à la même page que le bouton de la carte ; elle est
