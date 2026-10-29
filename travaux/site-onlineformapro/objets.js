@@ -239,9 +239,12 @@ function cubeModulaire() {
   });
 
   let moments = null;
+  // les points d'accroche des pastilles : le dessus du socle, la face extérieure de chaque module
+  const ancreSocle = () => groupe.localToWorld(cellule(0, 1, 0).add(V(0, CELLULE / 2 + 0.5, 0)));
+  const ancreModule = (k) => { const m = modules[k]; return groupe.localToWorld(m.objet.position.clone().addScaledVector(m.depart.clone().normalize(), CELLULE / 2 + 0.5)); };
   const aide = (p, [a, b]) => { const t = Math.min(1, Math.max(0, (p - a) / Math.max(1e-6, b - a))); return t * t * (3 - 2 * t); };
   return {
-    groupe,
+    groupe, socle: socle.matieres, modules, ancreSocle, ancreModule,
     placer(m) { moments = m; },
     animer(progression, anime) {
       if (!moments) return;
@@ -286,5 +289,12 @@ export function creerObjets(scene, poses, outils) {
     animer: (temps, camera, anime, progression) => { terre.animer(temps, camera, anime); cube.animer(progression, anime); },
     taille: (echelle) => terre.taille(echelle),
     placer: (moments) => cube.placer(moments),
+    // pour les pastilles : où les accrocher, quelles lignes allumer au survol
+    ancres: {
+      socle: cube.ancreSocle, module: cube.ancreModule,
+      eclatSocle: cube.socle, eclatModule: (k) => cube.modules[k].lignes,
+      planete: (d) => terre.groupe.localToWorld(d.clone().normalize().multiplyScalar(poses.planete.rayon * 1.03)),
+      siege: (x, y, z) => siege.localToWorld(V(x, y, z)),
+    },
   };
 }

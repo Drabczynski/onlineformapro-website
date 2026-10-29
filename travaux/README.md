@@ -183,6 +183,15 @@ contour avec deux arcs orangés) dans une poussière fine de particules. Au bout
 l'éventail, le bâtiment de la R&D, qui apparaît avec la carte « Vous avez un projet ? ».
 Objets construits en code, sans fichier 3D : `objets.js`.
 
+Des pastilles sont accrochées aux objets, comme sur le camion du modèle : un rond voilé, un
+point et un libellé, posés sur un point de l'objet projeté à l'écran à chaque image. Chacune
+n'apparaît que pendant sa scène et tant que son objet n'est pas perdu dans la brume : sur le
+logo (22 M d'apprenants, 6000 h de formation, 2000+ clients), sur les pics de l'IA (les
+quatre outils), sur le cube (le LMS et ses quatre modules), sur la planète (13 pays,
+3 continents, 15 langues) et sur le bâtiment (pôle R&D, ingénierie pédagogique, 230
+collaborateurs). Au survol, le rond s'ouvre et les lignes concernées s'allument ; un clic
+mène à la page correspondante. Sur téléphone, seuls les ronds s'affichent.
+
 Les cartes portent en haut une grande image, sur toute leur largeur (`img/cartes/`, visuels
 fournis par Onlineformapro), qui mène à la même page que le bouton de la carte ; elle est
 décodée dès le chargement pour être prête au dévoilement. Titres et textes des cartes
