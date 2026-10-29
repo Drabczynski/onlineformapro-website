@@ -1,15 +1,15 @@
 /* La marque Onlineformapro, par-dessus le modèle Vectura (chargée après pages.css ou
    modele.css, sur toutes les pages). Le modèle donne la construction ; cette couche donne
    l'identité, reprise du logo et de l'ouverture 3D :
-   - une encre de nuit (un noir tiré vers le violet de l'ouverture) au lieu du noir pur, pour
-     les titres, les boutons et les cartes sombres ;
+   - un gris très foncé au lieu du noir pur, pour les titres, les boutons et les cartes
+     sombres (le bleu nuit reste propre à l'ouverture) ;
    - des titres d'une graisse à peine plus forte ;
    - le rouge du logo, adouci, en accent : l'accent du Ó devant les étiquettes, la page courante ;
-   - la nuit violette de l'ouverture pour les passages sombres et le pied de page, signé du
-     nom d'Onlineformapro en très grand, l'accent du Ó en seule touche de couleur. */
+   - un gris presque noir pour les passages sombres et le pied de page, signé du nom
+     d'Onlineformapro en très grand. */
 :root {
-  --encre: #1b1636;          /* titres, boutons, cartes sombres */
-  --nuit: #140a3a;           /* passages sombres, pied de page */
+  --encre: #2a2a2c;          /* titres, boutons, cartes sombres : un gris très foncé */
+  --nuit: #1c1c1e;           /* passages sombres, pied de page : un gris presque noir */
   --rouge: #d4486c;          /* le rouge du logo, adouci */
 }
 
@@ -28,22 +28,19 @@
 .chapeau-section > p.etiquette:first-child, .entete-section > p.etiquette:first-child { display: inline-flex; align-items: center; gap: 10px; }
 .puce svg { color: var(--rouge); }
 .entete-nav a[aria-current="page"] { text-decoration-color: var(--rouge); text-decoration-thickness: 2px; }
-.bouton-noir:hover { background: #2d2656; }
+.bouton-noir:hover { background: #414144; }
 
-/* -------------------------------------------------------------------- la nuit de l'ouverture */
+/* -------------------------------------------------------------------- les passages sombres */
 body.fond-noir { background: var(--nuit); }
 .sombre { background: var(--nuit); }
-.final-panneau { background: rgba(20, 10, 58, .8); }
+.final-panneau { background: rgba(28, 28, 30, .8); }
 .carte-appel { background: var(--nuit); }
 
-/* le pied de page : la nuit, et pour signature le nom en très grand, à peine plus clair que
-   le fond, rogné par le bas de la page ; seule touche de couleur, l'accent du Ó posé sur le
-   premier o */
+/* le pied de page : gris presque noir, et pour signature le nom en très grand, à peine plus
+   clair que le fond, rogné par le bas de la page */
 .pied { background: var(--nuit); overflow: hidden; }
 /* sa taille : la largeur du contenu (le mot fait 6,3 fois sa taille de police) */
 .pied-signature { --signature: min(calc((100vw - 80px) / 6.3), 254px); margin: -40px 0 calc(-80px - .12em); font: 500 var(--signature)/.9 var(--titre); letter-spacing: -.06em; color: rgba(255, 255, 255, .07); white-space: nowrap; text-align: center; -webkit-user-select: none; user-select: none; }
-.pied-signature span { position: relative; }
-.pied-signature span::before { content: ""; position: absolute; left: 40%; bottom: .84em; width: .4em; height: .085em; border-radius: .0425em; background: var(--rouge); opacity: .8; transform: rotate(-29.4deg); }
 
 /* -------------------------------------------------------------------- le témoignage de FEI (LMS) */
 /* une photo à droite du témoignage, sur toute sa hauteur ; au-dessus sur petit écran */

@@ -255,21 +255,20 @@ sont ceux du modèle, communs aux sept pages.
 - **LMS, Outils IA, Blog et Démo** gardent leur construction d'avant (préférée), conteneur de
   1280 px : feuille `pages.css`.
 
-Par-dessus, sur toutes les pages, `marque.css` donne l'identité d'Onlineformapro, reprise du
-logo et de l'ouverture 3D : une encre de nuit `#1b1636` (un noir tiré vers le violet) au lieu
-du noir pur pour les titres, les boutons et les cartes sombres ; des titres d'une graisse à
-peine plus forte (400 pour les plus grands, 480 pour les autres ; Geist chargée en police
-variable) ; le rouge du logo, adouci (`#d4486c`), en accent, avec l'accent du Ó (un trait
-arrondi incliné de 29,4°) devant les étiquettes et sous la page courante du menu ; la nuit
-violette de l'ouverture `#140a3a` pour les passages sombres, les cartes d'appel et le pied de
-page. Le pied est signé du nom « onlineformapro » en très grand, à peine plus clair que la
-nuit et rogné par le bas, l'accent du Ó posé sur le premier o en seule touche de couleur.
+Par-dessus, sur toutes les pages, `marque.css` donne l'identité d'Onlineformapro : un gris
+très foncé `#2a2a2c` au lieu du noir pur pour les titres, les boutons et les cartes sombres ;
+des titres d'une graisse à peine plus forte (400 pour les plus grands, 480 pour les autres ;
+Geist chargée en police variable) ; le rouge du logo, adouci (`#d4486c`), en accent, avec
+l'accent du Ó (un trait arrondi incliné de 29,4°) devant les étiquettes et sous la page
+courante du menu ; un gris presque noir `#1c1c1e` pour les passages sombres, les cartes
+d'appel et le pied de page (le bleu nuit reste propre à l'ouverture). Le pied est signé du nom
+« onlineformapro » en très grand, à peine plus clair que le fond et rogné par le bas.
 
 Les changements de fond du modèle s'appliquent partout : toute la page passe du blanc au
 pierre ou au noir quand une section marquée `data-fond` franchit 40 % de la hauteur de
 l'écran (`pages.js`), et son titre passe en blanc sur le noir. Pierre : références et
-témoignage du LMS, lettre du blog. Nuit (le noir du modèle, passé au violet de la marque) :
-RolePlay IA sur la page Outils IA, la solution globale sur la page Démo.
+témoignage du LMS, lettre du blog. Sombre (gris presque noir) : RolePlay IA sur la page
+Outils IA, la solution globale sur la page Démo.
 
 | Page | Contenu |
 |---|---|
