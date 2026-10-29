@@ -125,14 +125,15 @@ section[id], article[id] { scroll-margin-top: 88px; }
 /* centré dans un grand bloc arrondi (accueil du modèle) */
 .visuel--bloc { margin: 12px var(--gouttiere-bloc) 0; min-height: calc(100svh - 96px); border-radius: var(--rayon); align-items: center; justify-content: center; text-align: center; padding-top: 64px; }
 .visuel--bloc .visuel-texte { justify-items: center; }
-/* ouverture claire d'une page produit : le titre et son texte, puis un montage d'écrans
-   détouré en grand, sur fond blanc */
-.tete-produit { padding: 96px var(--gouttiere) 0; }
-.tete-produit-texte { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 32px 64px; align-items: end; }
+/* ouverture claire d'une page produit, centrée : le titre, son texte et les boutons, puis un
+   montage d'écrans détouré en grand, sur fond blanc */
+.tete-produit { padding: 96px var(--gouttiere) 0; text-align: center; }
+.tete-produit-texte { display: grid; justify-items: center; gap: 28px; }
 .tete-produit-texte > * { min-width: 0; }
-.tete-produit-texte .chapeau-section { max-width: none; }
-.tete-produit-cote { display: grid; gap: 28px; }
-.tete-produit-visuel { width: 100%; height: auto; margin-top: 64px; }
+.tete-produit-texte .titre-1 { max-width: 1180px; }
+.tete-produit-texte .texte-grand { max-width: 620px; }
+.tete-produit-texte .boutons { justify-content: center; margin-top: 8px; }
+.tete-produit-visuel { width: 100%; height: auto; margin-top: 72px; }
 
 /* -------------------------------------------------------------------- citation et chiffres */
 .citation { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: end; padding: 0 24px; }
@@ -206,7 +207,7 @@ section[id], article[id] { scroll-margin-top: 88px; }
 .produit-visuel--plein { padding: 0; }
 .produit-visuel--plein img { object-fit: cover; border-radius: 0; }
 .produit--inverse .produit-texte { order: 2; }
-.produit-ample-visuel { display: grid; justify-items: center; }
+.produit-ample-visuel { display: grid; justify-items: center; margin-bottom: 48px; }
 .produit-ample-visuel img { width: 100%; max-width: 1200px; height: auto; }
 .produit-texte--large { min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px 64px; align-items: end; }
 .produit-texte--large > div { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
@@ -377,7 +378,7 @@ section[id], article[id] { scroll-margin-top: 88px; }
   .defile-liste a::before { width: 1.1em; }
   .mosaique, .mosaique .inverse { grid-template-columns: 1fr; }
   .tete-produit { padding-top: 56px; }
-  .tete-produit-texte, .produit-texte--large { grid-template-columns: 1fr; }
+  .produit-texte--large { grid-template-columns: 1fr; }
   .tete-produit-visuel { margin-top: 40px; }
   .mosaique > * { grid-column: auto !important; }
   .tuile { min-height: 420px; }

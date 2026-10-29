@@ -233,7 +233,7 @@ tête de `pages.css`).
 
 | Page | Contenu |
 |---|---|
-| `lms.html` | LMS OnlineManager : ouverture claire, le titre puis le montage des écrans (iMac, MacBook, iPad, iPhone) en grand sur fond blanc ; côté administration (prise en main avec OnlineManager en pleine largeur, analyse des données, marque blanche) et côté apprenant (OnlineCompétences sur trois appareils, Lisy, outils de la plateforme) sur une même page ; références, cas France Education International, spécifications techniques |
+| `lms.html` | LMS OnlineManager : ouverture claire et centrée, le titre puis le montage des écrans (iMac, MacBook, iPad, iPhone) en grand sur fond blanc ; côté administration (prise en main avec OnlineManager en pleine largeur, analyse des données, marque blanche) et côté apprenant (OnlineCompétences sur trois appareils, Lisy, outils de la plateforme) sur une même page ; références, cas France Education International, spécifications techniques |
 | `outils-ia.html` | FastFormation, FastQuiz, Learning Podcast, RolePlay IA : sous le titre « La puissance de l'IA au service de la formation et de l'apprentissage », un bloc par outil (texte, visuel, quatre atouts), chacun avec son ancre (`#fastformation`, `#fastquiz`, `#learning-podcast`, `#roleplay`) |
 | `catalogue.html` | Présentation du catalogue : d'abord toutes les catégories, avec en tête la nouveauté des outils collaboratifs Google (bloc noir, la vidéo entière en 16:9), puis le témoignage SNCF et les chiffres, la pédagogie ; liens vers le catalogue en accès libre |
 | `blog.html` | Les 9 derniers articles du blog officiel, filtrables par catégorie, et l'inscription à la lettre |
