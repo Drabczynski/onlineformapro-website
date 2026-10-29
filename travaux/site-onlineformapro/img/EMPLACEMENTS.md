@@ -72,6 +72,14 @@ Les cartes à droite de l'écran : image en haut, 583 × 500 environ (rapport 7:
 | Photo d'ouverture | `modele/cafe-ordinateur.webp` | modèle | une photo de 2400 × 1500, avec quelqu'un |
 | Les 9 vignettes | `site/blog-0.webp` … `blog-8.webp` | site (vignettes des articles) | mises à jour avec les articles |
 
+## Article (`article-lms.html`, la lecture d'un article)
+
+| Emplacement | Image | Origine | Conseil |
+|---|---|---|---|
+| Grande image de l'article (1360 × 760, 16:9) | `site/blog-0-grand.webp` | site (l'image de l'article « Les 10 fonctionnalités indispensables d'un LMS », 4378 px, réduite à 2000) | — |
+| Autrice (Eva Guerrin) et auteur des autres articles (Alan Drabczynski) | initiales sur fond pierre | construite (pas de portrait sur le blog) | un portrait carré de 200 × 200 chacun |
+| Trois autres articles (cartes du modèle) | `site/blog-1.webp` à `site/blog-3.webp` | site (vignettes du blog) | — |
+
 ## Démo et contact (`demo.html`, `contact.html`)
 
 Démo : `photos/ordinateur-concentree.webp` (fournie, 464 px, affichée à sa taille sous la liste). Possibles aussi : les photos des

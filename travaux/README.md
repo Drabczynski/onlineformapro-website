@@ -170,7 +170,11 @@ Les titres sont en Geist, comme dans les pages du site ; le reste du texte reste
 circulaire à trois paires de voies où la lumière circule, l'accent en bretelle aux bouts
 arrondis, et des arcs de cercle autour, comme au croisement en X. Les titres sont plus
 serrés que ceux du modèle (interlettrage négatif) ; ceux des chapitres, plus petits, ont
-leurs retours à la ligne choisis.
+leurs retours à la ligne choisis. Le titre d'ouverture est plus affirmé : graisse 500, plus
+grand, chaque mot en dégradé du blanc au lavande (l'accent du rouge au rose), sous une
+pastille « 22 millions d'apprenants · 25 ans d'innovation » ; il s'allume mot par mot, le
+découpage en lettres cassant le crénage. « Demandez une démonstration » reste affiché
+jusqu'aux cartes de la démo.
 
 Les objets, d'après les croquis, sont dessinés comme le camion du modèle : des traits de
 lumière fins à angles vifs sur leurs arêtes, et leur volume, de la couleur exacte du fond,
@@ -184,6 +188,15 @@ contour avec deux arcs orangés) dans une poussière fine de particules. Au bout
 l'éventail, le bâtiment de la R&D, qui apparaît avec la carte « Vous avez un projet ? ».
 Objets construits en code, sans fichier 3D : `objets.js`.
 
+Des nuées de particules accompagnent la traversée (`particules.js`, environ 500 000 points
+calculés par la carte graphique) : une poussière semée autour du trajet de la caméra, des
+amas en nuages et en spirales qui tournent sur eux-mêmes, des flux de lumière sur les routes
+(blanc et lavande dans un sens, rouge et orangé dans l'autre), un champ qui entoure toujours
+la caméra, et six essaims en hélice qui volent à ses côtés, s'écartent dans les virages et
+filent plus vite quand on défile. Trois fois moins de points sur petit écran ; si la machine
+peine, le rendu baisse d'abord sa résolution, puis garde la moitié des points, puis coupe le
+halo.
+
 Les cartes portent en haut une grande image, sur toute leur largeur (`img/cartes/`, visuels
 fournis par Onlineformapro), qui mène à la même page que le bouton de la carte ; elle est
 décodée dès le chargement pour être prête au dévoilement. Titres et textes des cartes
@@ -193,19 +206,24 @@ demi-seconde) ; une carte interrompue repart de l'état atteint, et celle qui s'
 d'être entière achève de s'ouvrir en 0,3 s pendant qu'elle s'efface. Leur fond est dense
 plutôt que flouté, le flou recalculé sur la 3D en mouvement faisant sauter les images. Textes des cartes repris du site officiel ; celui de « Marque
 blanche » est rédigé d'après la demande et la page du LMS (entreprise étendue), à valider.
+Chaque carte a pour titre une promesse (« De la ressource au module, en quelques minutes »,
+« Vos quiz générés en quelques secondes »…), tirée de sa description ou des pages du site,
+sans chiffre nouveau ; le nom de l'outil passe en étiquette au-dessus. Promesses à valider.
 
 Le code et les tracés sont les nôtres ; la mécanique et les réglages sont relevés sur le
 modèle : hauteurs des blocs en svh, caméra quasi arrêtée (5 % d'avance) pendant les cartes
 de chaque chapitre, défilement amorti par Lenis (`lerp` 0,1), apparitions des titres et
 des textes lettre par lettre (mêmes images clés), cartes qui se dévoilent de bas en haut,
 tubes fins dont la lumière pulse le long des routes, brouillard, tonalité ACES, halo,
-deux lueurs. Couleurs des lignes : le bleu, l'orangé et le blanc du modèle ; pour passer
-au rouge de la marque, changer `rouge` dans `COULEURS` (en tête de `monde.js`). La nuit du
-fond, ses lueurs et les cartes sont un bleu nuit à peine tiré vers le violet (`NUIT` dans
-`monde.js`, `--nuit` et `--marine` dans `ouverture.css`).
+deux lueurs. Couleurs des lignes : l'orangé et le blanc du modèle, et son bleu tiré vers
+le violet (le bleu pur paraissait cyan à l'écran) ; pour passer au rouge de la marque,
+changer `rouge` dans `COULEURS` (en tête de `monde.js`). La nuit du fond, ses lueurs et les
+cartes sont un bleu nuit à peine violet (`NUIT` et les lueurs dans `monde.js`, `--nuit` et
+`--marine` dans `ouverture.css`).
 
 `monde.js` : le décor (logo, routes, carrefours, pics, anneaux, éventail), les stations de
-la caméra et le rendu ; `objets.js` : les objets. `ouverture.js` : les mesures de la page,
+la caméra et le rendu ; `objets.js` : les objets ; `particules.js` : les nuées de
+particules. `ouverture.js` : les mesures de la page,
 le calage des stations et des modules du cube sur les textes, les apparitions, les cartes.
 `ouverture.css` : la mise en page, à l'échelle d'un écran de 1440 × 900. three.js 0.170.0 (et ses passes d'effets) et
 Lenis 1.3.23 sont copiés dans `vendor/` (licences MIT jointes) et chargés par une importmap :
@@ -223,15 +241,16 @@ Vérifié à 1440 × 900 et 390 × 844, avec et sans animations, sans débordeme
 
 ### Les pages du site (modèle Vectura)
 
-Six pages dans le langage du modèle vectura.framer.website : Geist en graisse légère et
+Sept pages dans le langage du modèle vectura.framer.website : Geist en graisse légère et
 interlettrage serré, Chivo Mono pour les étiquettes, palette du modèle (blanc, crème
 `#fbfaf9`, gris `#f9fafb`, gris bleuté `#e8edf3`, pierre `#f2ece8`, ardoise `#415371`, noir),
 blocs arrondis de 16 px, boutons en pastilles, pied de page noir. L'en-tête et le pied de page
-sont ceux du modèle, communs aux six pages.
+sont ceux du modèle, communs aux sept pages.
 
 - **Catalogue et Contact** sont calqués exactement sur le modèle (gabarits « accueil » et
   « Contact », relevés élément par élément à 1440, 1920 et 390 px), conteneur de 1600 px :
-  feuille `modele.css`.
+  feuille `modele.css`. La **page article** aussi (gabarit « Blog post », relevé de même ;
+  conteneur de 1400 px).
 - **LMS, Outils IA, Blog et Démo** gardent leur construction d'avant (préférée), conteneur de
   1280 px : feuille `pages.css`.
 
@@ -245,10 +264,11 @@ globale sur la page Démo.
 |---|---|
 | `lms.html` | ouverture claire et centrée, le montage des écrans en grand ; Saint-Gobain et chiffres ; côté administration (prise en main avec OnlineManager en pleine largeur, analyse des données, marque blanche) ; côté apprenant (OnlineCompétences, Lisy, outils) ; références ; témoignage France Education International ; spécifications techniques ; appel final |
 | `outils-ia.html` | photo d'ouverture ; « La puissance de l'IA… » ; un bloc par outil (visuel en grand, carte de texte, quatre atouts), RolePlay IA sur fond noir ; « Innover pour l'équité » ; appel final. Ancres `#fastformation`, `#fastquiz`, `#learning-podcast`, `#roleplay` |
-| `catalogue.html` | ouverture en bloc arrondi ; toutes les catégories (la nouveauté Google et sa vidéo en 16:9, puis les familles en cartes d'article) ; bloc crème : témoignage SNCF et chiffres ; pédagogie ; appel final |
+| `catalogue.html` | ouverture en bloc arrondi ; toutes les catégories (la nouveauté Google et sa vidéo en 16:9, puis les familles en cartes d'article) ; bloc crème sur photo voilée : témoignage SNCF et chiffres ; pédagogie (la grande image en pleine colonne) ; appel final |
 | `blog.html` | photo d'ouverture ; les 9 derniers articles du blog officiel, filtrables par catégorie ; l'inscription à la lettre |
 | `demo.html` | réservation de 30 min par l'agenda Calendly, comme sur le site actuel ; la solution globale ; témoignages |
 | `contact.html` | titre, trois cartes (e-mail, démonstration, téléphone), formulaire (champs du formulaire actuel), la société en questions |
+| `article-lms.html` | la lecture d'un article, ouverte depuis la première carte du blog : « Les 10 fonctionnalités indispensables d'un LMS » (Eva Guerrin, 23 septembre 2026), texte intégral repris de l'article officiel ; catégorie, date, temps de lecture (calculé, 200 mots par minute), chapeau, sujets, grande image ; sommaire et partage qui restent à l'écran, la partie lue en gras ; les trois articles que le blog propose ensuite |
 
 Textes, chiffres et coordonnées repris du site officiel ; le chiffre des apprenants est celui
 donné par Onlineformapro (22 millions). Aucune image de l'ouverture 3D dans ces pages. Images :
@@ -266,7 +286,7 @@ ces pages : menu, bouton de démo, cartes et leurs images.
 
 `pages.js` (menu sur téléphone, en-tête transparent sur les photos d'ouverture, changements
 de fond, apparitions, onglets du blog, formulaires, vidéos arrêtées si le visiteur a demandé
-moins d'animations) est commun aux six pages. Vérifié de 320 à 1440 px de large : aucun
+moins d'animations) est commun aux sept pages. Vérifié de 320 à 1440 px de large : aucun
 débordement, aucun mot coupé dans les titres, liens internes et images contrôlés.
 
 ## Page organismes CiviCap
