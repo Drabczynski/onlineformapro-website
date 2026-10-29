@@ -32,24 +32,24 @@ Les cartes à droite de l'écran : image en haut, 583 × 500 environ (rapport 7:
 
 | Emplacement | Image | Origine | Conseil |
 |---|---|---|---|
-| Photo d'ouverture (plein écran, texte blanc en bas à gauche) | `modele/bureau-echange.webp` | modèle | une photo de 2400 × 1500, plus sombre en bas |
-| Prise en main | `site/lms-onlinemanager.webp` | fournie (OnlineManager sur iMac et MacBook) | — |
+| Ouverture (sous le titre, sur fond blanc) | `site/lms-appareils.webp` | fournie (iMac, MacBook, iPad, iPhone, détourés) | une version de 2000 px de large serait plus nette |
+| Prise en main (pleine largeur, au-dessus du texte) | `site/lms-onlinemanager.webp` | fournie (OnlineManager sur iMac et MacBook) | — |
 | Analyse des données | `cartes/reporting.webp` | fournie | — |
 | Marque blanche | `cartes/marque-blanche.webp` | fournie | — |
-| Côté apprenant : la plateforme | `site/lms-appareils.webp` | fournie (iMac, MacBook, iPad, iPhone, détourés) | — |
-| Côté apprenant : Lisy | `site/lms-lisy.webp` | fournie | une version de 1400 px serait plus nette |
-| Côté apprenant : sur tous vos appareils | `site/lms-apprenant.webp` | fournie (OnlineCompétences sur trois appareils) | — |
-| Citation Saint-Gobain, témoignage France Education International | initiales | — | les photos de Christophe Evans et de Sébastien Georges |
+| Côté apprenant (grand visuel) | `site/lms-apprenant.webp` | fournie (OnlineCompétences sur trois appareils) | — |
+| Lisy, le coach IA (tuile) | `site/lms-lisy.webp` | fournie | une version de 1400 px serait plus nette |
+| Témoignage France Education International | initiales | — | une photo de Sébastien Georges |
+| Appel final | `modele/bureau-echange.webp` | modèle | une photo de 2400 × 1500 |
 
 ## Outils IA (`outils-ia.html`)
 
 | Emplacement | Image | Origine | Conseil |
 |---|---|---|---|
 | Photo d'ouverture | `modele/cafe-ordinateur.webp` | modèle | une photo de 2400 × 1500, ou la bannière FastFormation (écran incliné) |
-| FastFormation (plein cadre, 700 × 650) | `site/ff-outil.webp` | site (page FastFormation) | — |
-| FastQuiz | `site/fq-questions.webp` | site (page Outils auteur IA) | — |
-| Learning Podcast | `site/lp-show.webp` | site (article Learning Podcast) | — |
-| RolePlay IA (colonne verticale, 462 × 940, fond noir) | `modele/bureau-etude.webp` | modèle | une photo verticale liée aux simulations |
+| FastFormation (pleine largeur, 16:9) | `site/ff-outil.webp` | site (page FastFormation) | une version de 2400 × 1350 serait plus nette |
+| FastQuiz (pleine largeur, 16:9) | `site/fq-questions.webp` | site (page Outils auteur IA) | une version de 2400 × 1350 serait plus nette |
+| Learning Podcast (pleine largeur, 16:9) | `site/lp-show.webp` | site (article Learning Podcast) | — |
+| RolePlay IA (pleine largeur, 16:9, fond noir) | `site/rp-vente.webp` | site (article Simulations IA, 957 px) | une version de 2400 × 1350 : celle du site est agrandie |
 | Appel final | `modele/tablette-ville.webp` | modèle | une photo de 1500 × 860 |
 
 ## Catalogue (`catalogue.html`)
@@ -73,7 +73,8 @@ Les cartes à droite de l'écran : image en haut, 583 × 500 environ (rapport 7:
 
 ## Démo et contact (`demo.html`, `contact.html`)
 
-Pas d'image, comme les pages « Contact sales » et « Contact » du modèle.
+Pas d'image. Possibles pour la démo : les photos des auteurs des témoignages (Jacky Portal,
+ESTC Marseille ; Lydia David Duluc, Banque Populaire).
 
 ## Disponibles sur le site, pas encore utilisées
 
