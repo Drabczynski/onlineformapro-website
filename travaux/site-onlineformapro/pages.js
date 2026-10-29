@@ -25,6 +25,12 @@ if ('IntersectionObserver' in window) {
   apparitions.forEach(el => obs.observe(el));
 } else apparitions.forEach(el => el.classList.add('est-visible'));
 
+// -------------------------------------------------------------------- vidéos en boucle
+// arrêtées quand le visiteur a demandé moins d'animations
+if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  for (const v of document.querySelectorAll('video[autoplay]')) { v.removeAttribute('autoplay'); v.pause(); }
+}
+
 // -------------------------------------------------------------------- liste active (écrans qui défilent)
 for (const liste of document.querySelectorAll('.defile-liste')) {
   const liens = [...liste.querySelectorAll('a[href^="#"]')];

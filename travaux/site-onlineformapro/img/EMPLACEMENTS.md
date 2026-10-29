@@ -45,10 +45,6 @@ Les cartes à droite de l'écran : image en haut, 583 × 500 environ (rapport 7:
 | Emplacement | Image | Origine | Conseil |
 |---|---|---|---|
 | Bandeau d'ouverture | `visuels/pics.webp` | 3D | ou une photo plein écran, 2400 × 1500 |
-| Liste : FastFormation | `cartes/fastformation.webp` | fournie | — |
-| Liste : FastQuiz | `cartes/fastquiz.webp` | fournie | — |
-| Liste : Learning Podcast | `site/lp-editeur.webp` | site (article Learning Podcast) | — |
-| Liste : RolePlay IA | `cartes/simulation-ia.webp` | fournie | — |
 | Bloc FastFormation | `site/ff-outil.webp` | site (page FastFormation) | — |
 | Bloc FastQuiz | `site/fq-questions.webp` | site (page Outils auteur IA) | — |
 | Bloc Learning Podcast | `site/lp-show.webp` | site (article Learning Podcast) | — |
@@ -60,6 +56,8 @@ Les cartes à droite de l'écran : image en haut, 583 × 500 environ (rapport 7:
 | Emplacement | Image | Origine | Conseil |
 |---|---|---|---|
 | Bandeau d'ouverture | `visuels/cube.webp` | 3D | ou une photo plein écran, 2400 × 1500 |
+| Nouveauté outils Google : vidéo | `outils-collaboratifs-google.mp4` | site (page Catalogue, lue depuis download.onlineformation.com) | — |
+| Nouveauté outils Google : affiche | `site/cat-google.webp` | visuel de la newsletter Outils Google (556 px) | une version plus grande, ou une image tirée de la vidéo, 1500 × 1100 |
 | Les 12 familles | `site/cat-*.webp` | site (page Catalogue) | les photos du site font 435 px : une version 900 px serait plus nette |
 | Famille Prévention | pictogramme | construite (pas de photo sur le site) | une photo, 900 × 465 (rapport 2:1) |
 | Pédagogie | `cartes/catalogue.webp` | fournie | — |

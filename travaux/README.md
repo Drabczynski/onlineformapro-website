@@ -242,8 +242,8 @@ tête de `pages.css`).
 | Page | Contenu |
 |---|---|
 | `lms.html` | LMS OnlineManager : côté administration (prise en main, analyse des données, marque blanche) et côté apprenant (Lisy, OnlineAgora, outils collaboratifs) sur une même page ; références, cas France Education International, spécifications techniques |
-| `outils-ia.html` | FastFormation, FastQuiz, Learning Podcast, RolePlay IA : liste qui suit le défilement, puis un bloc par outil |
-| `catalogue.html` | Présentation du catalogue : chiffres, les 12 familles, les outils Google, la pédagogie ; liens vers le catalogue en accès libre |
+| `outils-ia.html` | FastFormation, FastQuiz, Learning Podcast, RolePlay IA : sous le titre « La puissance de l'IA au service de la formation et de l'apprentissage », un bloc par outil (texte, visuel, quatre atouts), chacun avec son ancre (`#fastformation`, `#fastquiz`, `#learning-podcast`, `#roleplay`) |
+| `catalogue.html` | Présentation du catalogue : d'abord toutes les catégories, avec en tête la nouveauté des outils collaboratifs Google (grand bloc et sa vidéo), puis le témoignage SNCF et les chiffres, la pédagogie ; liens vers le catalogue en accès libre |
 | `blog.html` | Les 9 derniers articles du blog officiel, filtrables par catégorie, et l'inscription à la lettre |
 | `demo.html` | Demande de démonstration : réservation de 30 min par l'agenda Calendly, comme sur le site actuel |
 | `contact.html` | Coordonnées, formulaire (champs du formulaire actuel), informations légales |
@@ -254,7 +254,10 @@ Onlineformapro (`img/cartes/`), des images reprises de onlineformapro.com (`img/
 Learning Podcast, RolePlay IA, Lisy, OnlineAgora, FastFormation, FastQuiz, les photos des
 familles du catalogue, les vignettes des articles du blog, les cartes de l'accueil) et,
 pour les bandeaux d'ouverture et les appels finaux, des vues fixes du monde de lignes
-(`img/visuels/`). Deux images sont construites : la carte ANSSI (le logo du site sur le
+(`img/visuels/`), à remplacer par des photos dans les bandeaux. La vidéo des outils Google
+est celle de la page Catalogue du site officiel, lue depuis download.onlineformation.com ;
+tant qu'elle n'est pas chargée, le bloc montre le visuel Google de la newsletter
+(`img/site/cat-google.webp`). Deux images sont construites : la carte ANSSI (le logo du site sur le
 dégradé de l'ouverture) et la famille Prévention, sans photo sur le site. `img/EMPLACEMENTS.md`
 liste chaque emplacement, son image et le format conseillé ; `img/depot/` reçoit les images
 à placer (voir sa notice). Les formulaires sont des maquettes : ils n'envoient rien et
@@ -262,7 +265,7 @@ renvoient vers ceux du site actuel.
 L'ouverture (`index.html`) mène à ces pages : menu, bouton de démo, cartes et leurs images.
 
 `pages.css` et `pages.js` (menu sur téléphone, en-tête qui blanchit au défilement,
-apparitions, liste active, filtres du blog, formulaires) sont communs aux six pages ; l'en-tête
+apparitions, liste active, filtres du blog, formulaires, vidéos arrêtées si le visiteur a demandé moins d'animations) sont communs aux six pages ; l'en-tête
 et le pied de page sont répétés dans chacune. Le logo pour fond clair
 (`img/logo-noir-rouge.svg`) est celui du site, texte en noir. Vérifié de 320 à 1440 px de
 large sans débordement, liens internes et images contrôlés.

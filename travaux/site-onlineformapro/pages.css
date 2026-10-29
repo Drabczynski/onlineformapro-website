@@ -243,17 +243,21 @@ section[id], article[id] { scroll-margin-top: 88px; }
 .famille-corps { flex: 1; display: grid; align-content: start; gap: 10px; padding: 24px 28px 28px; }
 .famille-corps p { font-size: 16px; color: var(--doux); }
 
-/* -------------------------------------------------------------------- annonce dans une page */
-.nouveaute { margin-top: 56px; display: grid; grid-template-columns: auto 1fr auto; grid-template-areas: "puce titre chiffres" "puce texte chiffres"; gap: 6px 24px; align-items: center; padding: 28px 32px; border-radius: var(--rayon); background: var(--brume); transition: background .3s; }
-.nouveaute:hover { background: #dfe6ef; }
-.nouveaute .puce { grid-area: puce; }
-.nouveaute .titre-4 { grid-area: titre; }
-.nouveaute .doux { grid-area: texte; font-size: 17px; }
-.nouveaute-chiffres { grid-area: chiffres; font-size: 17px; color: var(--doux); white-space: nowrap; }
-.nouveaute-chiffres strong { font-weight: 400; font-size: 32px; letter-spacing: -.03em; color: var(--encre); margin: 0 6px 0 16px; }
+/* --------------------------------------------- nouveauté mise en avant, avec sa vidéo */
+.vedette { margin-top: 56px; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 12px; }
+.vedette-texte { display: flex; flex-direction: column; gap: 24px; min-height: 560px; padding: 40px; border-radius: var(--rayon); background: var(--encre); color: #fff; }
+.vedette-texte .puce { background: #fff; color: var(--encre); }
+.vedette-texte .titre-3 { color: #fff; max-width: 400px; }
+.vedette-texte .texte-grand { color: rgba(255, 255, 255, .72); max-width: 420px; margin-top: auto; }
+.vedette-chiffres { display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: 17px; color: rgba(255, 255, 255, .6); }
+.vedette-chiffres strong { font-weight: 400; font-size: clamp(40px, 4vw, 56px); line-height: 1; letter-spacing: -.04em; color: #fff; margin-right: 8px; }
+.vedette-texte .bouton { align-self: flex-start; }
+.vedette-video { position: relative; min-height: 320px; border-radius: var(--rayon); overflow: hidden; background: var(--brume); }
+.vedette-video video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 @media (max-width: 860px) {
-  .nouveaute { grid-template-columns: 1fr; grid-template-areas: "puce" "titre" "texte" "chiffres"; padding: 24px; }
-  .nouveaute-chiffres strong { margin-left: 0; }
+  .vedette { grid-template-columns: 1fr; }
+  .vedette-texte { min-height: 0; padding: 28px; }
+  .vedette-video { min-height: 0; aspect-ratio: 16 / 9; }
 }
 
 /* -------------------------------------------------------------------- blog */
