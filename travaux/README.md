@@ -249,8 +249,9 @@ sont ceux du modèle, communs aux sept pages.
 
 - **Catalogue et Contact** sont calqués exactement sur le modèle (gabarits « accueil » et
   « Contact », relevés élément par élément à 1440, 1920 et 390 px), conteneur de 1600 px :
-  feuille `modele.css`. La **page article** aussi (gabarit « Blog post », relevé de même ;
-  conteneur de 1400 px).
+  feuille `modele.css`. La **page article** aussi (gabarit « Blog post », relevé de même),
+  mais resserrée et aérée : conteneur de 1180 px, sommaire de 290 px (deux lignes par partie),
+  texte de 680 px en 18 px, interligne 1,7.
 - **LMS, Outils IA, Blog et Démo** gardent leur construction d'avant (préférée), conteneur de
   1280 px : feuille `pages.css`.
 

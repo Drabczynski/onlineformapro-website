@@ -527,7 +527,8 @@ section[id], article[id] { scroll-margin-top: 72px; }
    les sujets sur le dernier quart, puis la grande image), le texte sur fond gris clair (un
    tiers pour le sommaire et le partage, qui restent à l'écran, deux tiers pour le texte),
    puis trois autres articles. Le conteneur fait 1400 px au plus. */
-.billet-tete { display: flex; flex-direction: column; gap: 64px; padding: 128px max(40px, calc((100% - 1400px) / 2)) 96px; }
+/* un conteneur resserré (1180 px) et un texte aéré : la page se lit, elle ne s'entasse pas */
+.billet-tete { display: flex; flex-direction: column; gap: 64px; padding: 128px max(40px, calc((100% - 1180px) / 2)) 96px; }
 .billet-tete-haut { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
 .billet-colonne { flex: 0 1 75%; display: flex; flex-direction: column; gap: 48px; min-width: 0; }
 .billet-titre { display: flex; flex-direction: column; gap: 16px; }
@@ -548,30 +549,32 @@ section[id], article[id] { scroll-margin-top: 72px; }
 .billet-image img { width: 100%; height: 100%; object-fit: cover; }
 
 /* le texte, sur fond gris clair */
-.billet-contenu { padding: 96px max(40px, calc((100% - 1400px) / 2)); background: #fafafa; }
-.billet-grille { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 64px; align-items: start; }
+.billet-contenu { padding: 120px max(40px, calc((100% - 1180px) / 2)); background: #fafafa; }
+.billet-grille { display: grid; grid-template-columns: minmax(0, 290px) minmax(0, 680px); justify-content: space-between; gap: 80px; align-items: start; }
 .billet-cote { display: flex; flex-direction: column; gap: 16px; }
-@media (min-width: 1200px) and (min-height: 800px) {
+/* collée seulement si elle tient dans l'écran (750 px de haut, sous l'en-tête) */
+@media (min-width: 1200px) and (min-height: 880px) {
   .billet-cote { position: sticky; top: 112px; }
 }
 .billet-sommaire, .billet-partage { border-radius: var(--rayon); background: #fff; }
-.billet-sommaire { display: flex; flex-direction: column; gap: 24px; padding: 48px 40px 40px; }
-.billet-sommaire ol { display: flex; flex-direction: column; gap: 16px; }
-/* une ligne par partie (les titres de l'article sont longs) : le titre entier en infobulle */
-.billet-sommaire a { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 19px; line-height: 1.2; letter-spacing: -.02em; color: rgba(0, 0, 0, .6); transition: color .2s; }
+.billet-sommaire { display: flex; flex-direction: column; gap: 20px; padding: 32px 28px; }
+.billet-sommaire ol { display: flex; flex-direction: column; gap: 12px; }
+/* deux lignes au plus par partie (les titres de l'article sont longs) : le titre entier en infobulle */
+.billet-sommaire a { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; font-size: 15px; line-height: 1.35; letter-spacing: -.01em; color: rgba(0, 0, 0, .55); transition: color .2s; }
 .billet-sommaire a:hover, .billet-sommaire a[aria-current] { color: var(--encre); }
 .billet-sommaire a[aria-current] { font-weight: 500; }
-.billet-partage { display: flex; justify-content: space-between; align-items: flex-start; padding: 40px; }
-.billet-partage strong { font-weight: 400; font-size: 19px; line-height: 1.4; letter-spacing: -.01em; color: var(--texte); }
+.billet-partage { display: flex; justify-content: space-between; align-items: center; padding: 24px 28px; }
+.billet-partage strong { font-weight: 400; font-size: 16px; line-height: 1.4; letter-spacing: -.01em; color: var(--texte); }
 .billet-partage div { display: flex; align-items: center; gap: 12px; }
 .billet-partage a { display: block; width: 20px; height: 20px; color: var(--encre); transition: opacity .2s; }
 .billet-partage a:hover { opacity: .6; }
 .billet-partage svg { width: 20px; height: 20px; }
 /* le gris du modèle (#8a8a8a) foncé d'un cran : sur un long texte, il restait trop pâle */
-.billet-texte { min-width: 0; font-size: 19px; line-height: 1.4; letter-spacing: -.01em; color: #6b6b6b; }
-.billet-texte > * + * { margin-top: 20px; }
-.billet-texte > h2 { margin-top: 40px; font-weight: 400; font-size: 32px; line-height: 1.2; letter-spacing: -.02em; color: var(--encre); scroll-margin-top: 112px; text-wrap: pretty; }
-.billet-texte > .billet-accroche { font-size: 40px; line-height: 1.2; letter-spacing: -.05em; color: var(--encre); text-wrap: pretty; }
+.billet-texte { min-width: 0; font-size: 18px; line-height: 1.7; letter-spacing: -.005em; color: #5f5f66; }
+.billet-texte > * + * { margin-top: 28px; }
+.billet-texte > h2 { margin-top: 72px; font-weight: 400; font-size: 28px; line-height: 1.25; letter-spacing: -.02em; color: var(--encre); scroll-margin-top: 112px; text-wrap: pretty; }
+.billet-texte > .billet-accroche { font-size: 28px; line-height: 1.4; letter-spacing: -.03em; color: var(--encre); text-wrap: pretty; }
+.billet-texte > .billet-accroche + * { margin-top: 40px; }
 .billet-texte strong { font-weight: 500; color: var(--encre); }
 .billet-mots { padding-top: 12px; }
 
@@ -604,12 +607,13 @@ section[id], article[id] { scroll-margin-top: 72px; }
   .billet-sommaire { padding: 24px; }
   .billet-sommaire .etiquette { font-size: 10px; }
   .billet-sommaire ol { gap: 12px; }
-  .billet-sommaire a { font-size: 16px; }
+  .billet-sommaire a { font-size: 15px; }
   .billet-partage { padding: 24px; }
   .billet-partage strong { font-size: 16px; }
-  .billet-texte { font-size: 16px; }
-  .billet-texte > h2 { font-size: 24px; }
-  .billet-texte > .billet-accroche { font-size: 26px; }
+  .billet-texte { font-size: 16px; line-height: 1.65; }
+  .billet-texte > * + * { margin-top: 22px; }
+  .billet-texte > h2 { margin-top: 48px; font-size: 22px; }
+  .billet-texte > .billet-accroche { font-size: 21px; }
   .billet-autres-tete { gap: 24px; }
   .billet-autres-tete .titre-2 { font-size: min(36px, 9.4vw); }
 }
