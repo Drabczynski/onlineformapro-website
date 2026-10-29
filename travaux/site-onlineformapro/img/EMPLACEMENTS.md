@@ -59,9 +59,10 @@ Les cartes à droite de l'écran : image en haut, 583 × 500 environ (rapport 7:
 | Ouverture (bloc arrondi, texte centré) | `modele/apprenantes-canape.webp` | modèle | une photo de 2400 × 1500, ou la bannière bureautique (Excel, PowerPoint) |
 | Nouveauté outils Google : vidéo | `outils-collaboratifs-google.mp4` | site (page Catalogue, lue depuis download.onlineformation.com) | — |
 | Nouveauté outils Google : affiche | `site/cat-google.webp` | visuel de la newsletter Outils Google (556 px) | une image tirée de la vidéo, 1500 × 845 |
-| Les 12 familles (cartes de 440 × 320) | `site/cat-*.webp` | site (page Catalogue) | les photos du site font 435 px : une version 900 px serait plus nette |
+| Les 12 familles (quatre colonnes, 385 × 199 au plus) | `site/cat-*.webp` | site (page Catalogue) | les photos du site font 435 × 225 : la page ne les agrandit plus ; une version 900 px permettrait des cartes plus grandes |
 | Famille Prévention | pictogramme | construite (pas de photo sur le site) | une photo, 900 × 650 |
-| Pédagogie | `cartes/catalogue.webp` | fournie | — |
+| Témoignage SNCF : photo de fond, voilée de crème | `modele/bureau-flou.webp` | modèle (un bureau flou, sans visage net : un portrait passerait pour la personne citée) | une photo d'ambiance de 2000 × 1500 (un train, une gare, une salle de formation) |
+| Pédagogie (pleine colonne, 900 × 650) | `site/pedagogie-logiciels.webp` | fournie (PowerPoint, Excel et un tutoriel, 2000 px) | — |
 | Appel final | `modele/tablette-ville.webp` | modèle | une photo de 1500 × 860 |
 
 ## Blog (`blog.html`)

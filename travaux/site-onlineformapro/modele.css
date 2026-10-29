@@ -160,6 +160,9 @@ section[id], article[id] { scroll-margin-top: 72px; }
 /* l'illustration remplit toute la colonne */
 .colonne-visuel--plein { padding: 0; }
 .colonne-visuel--plein > img { position: absolute; inset: 0; width: 100%; height: 100%; max-height: none; object-fit: cover; }
+/* une grande photo (2000 px) : la colonne d'illustration prend la place, le texte garde 620 px */
+.ligne--photo .colonne-texte { flex: 1 0 620px; }
+.ligne--photo .colonne-visuel { flex: 0 1 900px; }
 
 /* sous la ligne : la carte citation et quatre petites cartes (« Before Vectura… ») */
 .cartes { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 20px; }
@@ -211,9 +214,14 @@ section[id], article[id] { scroll-margin-top: 72px; }
 /* -------------------------------------------------------------------- bloc d'introduction (crème) */
 .intro { padding: 0 var(--gouttiere-bloc) 24px; }
 .intro-bloc { display: flex; flex-direction: column; gap: 120px; padding: 64px 40px; border-radius: var(--rayon); background: var(--creme); }
+.intro-bloc--photo { position: relative; overflow: hidden; isolation: isolate; }
+.intro-fond { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+.intro-bloc--photo::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(100deg, rgba(251, 250, 249, .93) 0%, rgba(251, 250, 249, .82) 55%, rgba(251, 250, 249, .55) 100%); }
 .intro-haut { display: flex; flex-direction: column; gap: 80px; }
 .intro-citation { display: flex; align-items: flex-end; gap: 24px; }
-.intro-citation blockquote { flex: 0 1 860px; font-size: 58px; line-height: 1.2; letter-spacing: -.05em; color: var(--encre); text-wrap: pretty; }
+.intro-citation blockquote { flex: 0 1 1060px; font-size: 58px; line-height: 1.2; letter-spacing: -.05em; color: var(--encre); text-wrap: balance; }
+/* des groupes de mots qui restent sur la même ligne */
+.ensemble { white-space: nowrap; }
 .intro-citation .auteur { flex: 1; padding-bottom: 8px; gap: 4px; }
 .intro-citation .texte-grand { flex: 1; max-width: 520px; }
 .chiffres { display: flex; gap: 24px; }
@@ -284,6 +292,12 @@ section[id], article[id] { scroll-margin-top: 72px; }
 .article-meta .puce { padding: 8px 13px; }
 .article-corps p { font-size: 16px; line-height: 1.4; color: var(--texte); }
 .article-pied { display: flex; align-items: center; gap: 10px; font-size: 16px; color: var(--texte); }
+/* les familles du catalogue : les photos du site font 435 × 225 px ; quatre colonnes et leur
+   proportion d'origine, pour qu'elles ne soient jamais affichées plus grandes (pixellisées) */
+.articles--familles { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.articles--familles .article { min-height: 0; }
+.articles--familles .article-image { height: auto; aspect-ratio: 435 / 225; }
+.articles--familles .titre-5 { font-size: 24px; }
 /* la famille Prévention, sans photo sur le site officiel : son pictogramme sur fond pierre */
 .article-image--picto { display: grid; place-items: center; background: var(--pierre); color: var(--encre); }
 .article-image--picto svg { width: 64px; height: 64px; stroke-width: 1.1; }
@@ -295,13 +309,13 @@ section[id], article[id] { scroll-margin-top: 72px; }
 .filtres button[aria-pressed="true"] { color: var(--encre); border-color: var(--encre); }
 
 /* -------------------------------------------------------------------- nouveauté Google, avec sa vidéo */
-.vedette { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 8fr); align-items: center; gap: 12px; padding: 12px; margin-bottom: 20px; border-radius: var(--rayon); background: var(--encre); color: #fff; }
+.vedette { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 8fr); align-items: center; gap: 12px; padding: 12px; margin-bottom: 20px; border-radius: var(--rayon); background: var(--pierre); color: var(--texte); }
 .vedette-texte { display: flex; flex-direction: column; gap: 24px; padding: 28px; }
 .vedette-texte .puce { background: #fff; color: var(--encre); }
-.vedette-texte .titre-3 { color: #fff; max-width: 400px; }
-.vedette-texte .texte { color: rgba(255, 255, 255, .7); max-width: 420px; }
-.vedette-chiffres { display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: 17px; color: rgba(255, 255, 255, .6); }
-.vedette-chiffres strong { font-weight: 400; font-size: 56px; line-height: 1; letter-spacing: -.05em; color: #fff; margin-right: 8px; }
+.vedette-texte .titre-3 { max-width: 400px; }
+.vedette-texte .texte { color: var(--doux); max-width: 420px; }
+.vedette-chiffres { display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: 17px; color: var(--doux); }
+.vedette-chiffres strong { font-weight: 400; font-size: 56px; line-height: 1; letter-spacing: -.05em; color: var(--encre); margin-right: 8px; }
 .vedette-texte .bouton { align-self: flex-start; }
 .vedette-video { position: relative; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; background: #e6e9f1; }
 .vedette-video video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
@@ -400,6 +414,9 @@ section[id], article[id] { scroll-margin-top: 72px; }
   .quatuor { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .clients { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .articles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .articles--familles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ligne--photo .colonne-texte, .ligne--photo .colonne-visuel { flex: none; }
+  .colonne-visuel--photo { min-height: 0; aspect-ratio: 16 / 9; }
   .entete-section--droite { padding-left: 0; }
   .intro-citation { flex-direction: column; align-items: flex-start; }
   .intro-citation blockquote { font-size: 48px; flex: none; }
@@ -479,6 +496,12 @@ section[id], article[id] { scroll-margin-top: 72px; }
   .articles { grid-template-columns: 1fr; }
   .article { min-height: 0; }
   .article-image { height: 240px; }
+  .articles--familles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .articles--familles .article-image { height: auto; }
+  .articles--familles .article-corps { padding: 16px 16px 20px; gap: 16px; }
+  .articles--familles .titre-5 { font-size: 20px; }
+  .colonne-visuel--photo { aspect-ratio: 4 / 3; min-height: 0; }
+  .colonne-visuel--plein > img { max-height: none; }
   .filtres { margin-bottom: 40px; }
   .filtres button { padding: 8px 12px; font-size: 17px; }
   .vedette-texte { padding: 16px 16px 20px; }
@@ -489,4 +512,9 @@ section[id], article[id] { scroll-margin-top: 72px; }
   .champ-double { grid-template-columns: 1fr; }
   .pied { padding: 60px 20px; gap: 80px; }
   .pied-colonnes { gap: 40px; flex-wrap: wrap; }
+}
+
+/* petits téléphones : une famille par ligne (440 px de large au plus, la taille des photos) */
+@media (max-width: 479px) {
+  .articles--familles { grid-template-columns: 1fr; }
 }
