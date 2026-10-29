@@ -207,8 +207,12 @@ section[id], article[id] { scroll-margin-top: 88px; }
 .produit-visuel--plein { padding: 0; }
 .produit-visuel--plein img { object-fit: cover; border-radius: 0; }
 .produit--inverse .produit-texte { order: 2; }
-.produit-ample-visuel { display: grid; justify-items: center; margin-bottom: 48px; }
+/* un visuel en grand sur toute la largeur, au-dessus de sa carte de texte */
+.produit-ample { display: grid; gap: 12px; }
+.produit-ample-visuel { display: grid; justify-items: center; margin-bottom: 36px; }
 .produit-ample-visuel img { width: 100%; max-width: 1200px; height: auto; }
+.produit-ample-photo { aspect-ratio: 16 / 9; border-radius: var(--rayon); overflow: hidden; background: var(--brume); }
+.produit-ample-photo img { width: 100%; height: 100%; object-fit: cover; }
 .produit-texte--large { min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px 64px; align-items: end; }
 .produit-texte--large > div { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
 .produit-texte--large .texte-grand { margin-top: 0; }
@@ -379,6 +383,7 @@ section[id], article[id] { scroll-margin-top: 88px; }
   .mosaique, .mosaique .inverse { grid-template-columns: 1fr; }
   .tete-produit { padding-top: 56px; }
   .produit-texte--large { grid-template-columns: 1fr; }
+  .produit-ample-photo { aspect-ratio: 4 / 3; }
   .tete-produit-visuel { margin-top: 40px; }
   .mosaique > * { grid-column: auto !important; }
   .tuile { min-height: 420px; }

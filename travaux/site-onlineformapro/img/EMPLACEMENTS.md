@@ -45,10 +45,10 @@ Les cartes à droite de l'écran : image en haut, 583 × 500 environ (rapport 7:
 | Emplacement | Image | Origine | Conseil |
 |---|---|---|---|
 | Bandeau d'ouverture | `visuels/pics.webp` | 3D | ou une photo plein écran, 2400 × 1500 |
-| Bloc FastFormation | `site/ff-outil.webp` | site (page FastFormation) | — |
-| Bloc FastQuiz | `site/fq-questions.webp` | site (page Outils auteur IA) | — |
-| Bloc Learning Podcast | `site/lp-show.webp` | site (article Learning Podcast) | — |
-| Bloc RolePlay IA | `site/rp-vente.webp` | site (article Simulations IA) | — |
+| Bloc FastFormation (pleine largeur, 16:9) | `site/ff-outil.webp` | site (page FastFormation) | une version de 2400 × 1350 serait plus nette |
+| Bloc FastQuiz (pleine largeur, 16:9) | `site/fq-questions.webp` | site (page Outils auteur IA) | une version de 2400 × 1350 serait plus nette |
+| Bloc Learning Podcast (pleine largeur, 16:9) | `site/lp-show.webp` | site (article Learning Podcast) | — |
+| Bloc RolePlay IA (pleine largeur, 16:9) | `site/rp-vente.webp` | site (article Simulations IA, 957 px) | une version de 2400 × 1350 : celle du site est agrandie |
 | Appel final | `visuels/route.webp` | 3D | — |
 
 ## Catalogue (`catalogue.html`)
