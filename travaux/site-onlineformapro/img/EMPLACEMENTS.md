@@ -31,13 +31,12 @@ Les cartes à droite de l'écran : image en haut, 583 × 500 environ (rapport 7:
 
 | Emplacement | Image | Origine | Conseil |
 |---|---|---|---|
-| Bandeau d'ouverture | `site/lms-appareils.webp` | fournie (iMac, MacBook, iPad, iPhone, détourés) | une version de 2000 px de large serait plus nette |
-| Prise en main | `site/lms-onlinemanager.webp` | fournie (OnlineManager sur iMac et MacBook) | — |
+| Ouverture (sous le titre, sur fond blanc) | `site/lms-appareils.webp` | fournie (iMac, MacBook, iPad, iPhone, détourés) | une version de 2000 px de large serait plus nette |
+| Prise en main (pleine largeur, au-dessus du texte) | `site/lms-onlinemanager.webp` | fournie (OnlineManager sur iMac et MacBook) | — |
 | Analyse des données | `cartes/reporting.webp` | fournie | — |
 | Marque blanche | `cartes/marque-blanche.webp` | fournie | — |
 | Côté apprenant (grand visuel) | `site/lms-apprenant.webp` | fournie (OnlineCompétences sur MacBook, iPhone, iPad) | — |
 | Lisy, le coach IA (tuile) | `site/lms-lisy.webp` | fournie | une version de 1400 px serait plus nette |
-| OnlineAgora (tuile) | `site/lms-agora.webp` | fournie | une version de 1400 px serait plus nette |
 | Témoignage France Education International | initiales | — | une photo de Sébastien Georges, ou le logo FEI en couleur sur fond clair |
 | Appel final | `visuels/logo.webp` | 3D | — |
 

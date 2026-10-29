@@ -233,9 +233,9 @@ tête de `pages.css`).
 
 | Page | Contenu |
 |---|---|
-| `lms.html` | LMS OnlineManager : bandeau avec le montage des écrans (iMac, MacBook, iPad, iPhone) sur le fond bleu violet de l'ouverture ; côté administration (prise en main, analyse des données, marque blanche) et côté apprenant (Lisy, OnlineAgora, outils collaboratifs) sur une même page ; références, cas France Education International, spécifications techniques |
+| `lms.html` | LMS OnlineManager : ouverture claire, le titre puis le montage des écrans (iMac, MacBook, iPad, iPhone) en grand sur fond blanc ; côté administration (prise en main avec OnlineManager en pleine largeur, analyse des données, marque blanche) et côté apprenant (OnlineCompétences sur trois appareils, Lisy, outils de la plateforme) sur une même page ; références, cas France Education International, spécifications techniques |
 | `outils-ia.html` | FastFormation, FastQuiz, Learning Podcast, RolePlay IA : sous le titre « La puissance de l'IA au service de la formation et de l'apprentissage », un bloc par outil (texte, visuel, quatre atouts), chacun avec son ancre (`#fastformation`, `#fastquiz`, `#learning-podcast`, `#roleplay`) |
-| `catalogue.html` | Présentation du catalogue : d'abord toutes les catégories, avec en tête la nouveauté des outils collaboratifs Google (grand bloc et sa vidéo), puis le témoignage SNCF et les chiffres, la pédagogie ; liens vers le catalogue en accès libre |
+| `catalogue.html` | Présentation du catalogue : d'abord toutes les catégories, avec en tête la nouveauté des outils collaboratifs Google (bloc noir, la vidéo entière en 16:9), puis le témoignage SNCF et les chiffres, la pédagogie ; liens vers le catalogue en accès libre |
 | `blog.html` | Les 9 derniers articles du blog officiel, filtrables par catégorie, et l'inscription à la lettre |
 | `demo.html` | Demande de démonstration : réservation de 30 min par l'agenda Calendly, comme sur le site actuel |
 | `contact.html` | Coordonnées, formulaire (champs du formulaire actuel), informations légales |
@@ -247,8 +247,8 @@ Learning Podcast, RolePlay IA, Lisy, OnlineAgora, FastFormation, FastQuiz, les p
 familles du catalogue, les vignettes des articles du blog, les cartes de l'accueil) et,
 pour les bandeaux d'ouverture et les appels finaux, des vues fixes du monde de lignes
 (`img/visuels/`), à remplacer dans les bandeaux. Les montages d'écrans détourés fournis
-par Onlineformapro habillent la page LMS : bandeau, OnlineManager, OnlineCompétences sur trois
-appareils, Lisy et OnlineAgora. La vidéo des outils Google
+par Onlineformapro habillent la page LMS, en grand sur fond blanc : ouverture, OnlineManager,
+OnlineCompétences sur trois appareils, Lisy. La vidéo des outils Google
 est celle de la page Catalogue du site officiel, lue depuis download.onlineformation.com ;
 tant qu'elle n'est pas chargée, le bloc montre le visuel Google de la newsletter
 (`img/site/cat-google.webp`). Deux images sont construites : la carte ANSSI (le logo du site sur le
