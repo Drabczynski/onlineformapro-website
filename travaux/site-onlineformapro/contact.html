@@ -28,55 +28,59 @@
       <a href="blog.html">Blog</a>
       <a href="contact.html" aria-current="page">Contact</a>
     </nav>
-    <a class="bouton bouton-noir bouton-petit" href="demo.html">Demander une&nbsp;démo</a>
+    <a class="bouton bouton-noir bouton-moyen" href="demo.html">Demander une&nbsp;démo</a>
     <button class="entete-burger" type="button" aria-expanded="false" aria-label="Menu"><span></span><span></span></button>
   </header>
 <main id="contenu">
 
-  <section class="section" style="padding-top:128px;padding-bottom:96px" aria-labelledby="titre-contact">
-    <div class="chapeau-section">
-      <p class="etiquette">Contact</p>
-      <h1 class="titre-1" id="titre-contact">Vous avez un&nbsp;projet ou&nbsp;une&nbsp;question&nbsp;?</h1>
-      <p class="texte-grand">Contactez&#8209;nous maintenant&nbsp;: par&nbsp;téléphone, par&nbsp;e&#8209;mail ou&nbsp;avec le&nbsp;formulaire&nbsp;ci&#8209;dessous.</p>
+  <section class="heros-clair" aria-labelledby="titre-contact">
+    <p class="etiquette-grande">Contact</p>
+    <h1 class="titre-1" id="titre-contact">Vous avez un&nbsp;projet ou&nbsp;une&nbsp;question&nbsp;?</h1>
+    <p class="texte-grand">Contactez&#8209;nous maintenant&nbsp;: par&nbsp;téléphone, par&nbsp;e&#8209;mail ou&nbsp;avec le&nbsp;formulaire&nbsp;ci&#8209;dessous.</p>
+  </section>
+
+  <section class="section-96 fond-creme" aria-label="Nous joindre">
+    <div class="cartes-contact">
+      <div class="carte-contact apparait">
+        <div class="carte-contact-texte">
+          <h2 class="titre-4">Par&nbsp;e&#8209;mail</h2>
+          <p class="texte-grand">Décrivez&#8209;nous votre projet de&nbsp;formation à&nbsp;<strong>projet@onlineformapro.com</strong></p>
+        </div>
+        <a class="bouton bouton-noir" href="#formulaire">Écrire votre demande</a>
+      </div>
+      <div class="carte-contact carte-contact--pierre apparait">
+        <div class="carte-contact-texte">
+          <h2 class="titre-4">Démonstration</h2>
+          <p class="texte-grand">30&nbsp;min pour&nbsp;découvrir Onlineformapro, sur&nbsp;mesure selon vos&nbsp;objectifs.</p>
+        </div>
+        <a class="bouton bouton-blanc" href="demo.html">Réserver un&nbsp;créneau</a>
+      </div>
+      <div class="carte-contact carte-contact--argent apparait">
+        <div class="carte-contact-texte">
+          <h2 class="titre-4">Par&nbsp;téléphone</h2>
+          <p class="texte-grand">Onlineformapro, Vesoul (70)&nbsp;: <strong>+33 (0)3 84 76 52 44</strong></p>
+        </div>
+        <a class="bouton bouton-blanc" href="tel:+33384765244">Appeler</a>
+      </div>
     </div>
   </section>
 
-  <section class="section" style="background:var(--creme);padding-top:96px" aria-label="Nous joindre">
-    <div class="grille g3">
-      <a class="contact-carte apparait" href="tel:+33384765244" style="background:#fff">
-        <h2 class="titre-4">Par&nbsp;téléphone</h2>
-        <p class="doux">Onlineformapro, Vesoul&nbsp;(70).</p>
-        <span class="contact-valeur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>+33 (0)3 84 76 52 44</span>
-      </a>
-      <a class="contact-carte apparait" href="mailto:projet@onlineformapro.com" style="background:var(--pierre)">
-        <h2 class="titre-4">Par&nbsp;e&#8209;mail</h2>
-        <p class="doux">Décrivez&#8209;nous votre projet de&nbsp;formation.</p>
-        <span class="contact-valeur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></svg>projet@onlineformapro.com</span>
-      </a>
-      <a class="contact-carte apparait" href="demo.html" style="background:var(--gris-carte)">
-        <h2 class="titre-4">Démonstration</h2>
-        <p class="doux">30&nbsp;min pour&nbsp;découvrir Onlineformapro, sur&nbsp;mesure selon vos&nbsp;objectifs.</p>
-        <span class="contact-valeur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Réserver un&nbsp;créneau</span>
-      </a>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="titre-formulaire">
-    <div class="formulaire-bloc" style="margin:0">
-      <div class="formulaire-gauche">
-        <h2 class="titre-2" id="titre-formulaire">Votre demande</h2>
-        <ul class="coches">
-          <li>Un&nbsp;projet de&nbsp;plateforme LMS</li>
-          <li>Des&nbsp;formations sur&nbsp;mesure</li>
-          <li>Une&nbsp;question sur&nbsp;nos&nbsp;solutions</li>
-        </ul>
-        <div class="doux" style="display:grid;gap:6px;margin-top:24px">
-          <span>Onlineformapro</span>
-          <span>19&nbsp;rue du&nbsp;Praley, 70000&nbsp;Vesoul</span>
-          <span>Tél. +33 (0)3 84 76 52 44</span>
+  <section class="section-96 fond-creme" id="formulaire" style="padding-top:0" aria-labelledby="titre-formulaire">
+    <div class="vente-bloc">
+      <div class="vente-gauche">
+        <div class="vente-titre">
+          <h2 class="titre-2" id="titre-formulaire">Votre demande</h2>
+          <ul class="coches">
+            <li>Un&nbsp;projet de&nbsp;plateforme LMS</li>
+            <li>Des&nbsp;formations sur&nbsp;mesure</li>
+            <li>Une&nbsp;question sur&nbsp;nos&nbsp;solutions</li>
+          </ul>
+        </div>
+        <div class="vente-aide">
+          <p>Onlineformapro<br>19&nbsp;rue du&nbsp;Praley, 70000&nbsp;Vesoul<br>Tél. +33 (0)3 84 76 52&nbsp;44</p>
         </div>
       </div>
-      <form class="formulaire" data-maquette="https://www.onlineformapro.com/contact/">
+      <form class="vente-droite formulaire" data-maquette="https://www.onlineformapro.com/contact/">
         <div class="champ-double">
           <div class="champ"><label for="c-nom">Nom *</label><input id="c-nom" autocomplete="family-name" required></div>
           <div class="champ"><label for="c-prenom">Prénom *</label><input id="c-prenom" autocomplete="given-name" required></div>
@@ -93,22 +97,19 @@
         </div>
         <div class="champ"><label for="c-demande">Votre demande</label><textarea id="c-demande"></textarea></div>
         <button class="bouton bouton-noir" type="submit">Envoyer</button>
-        <p class="formulaire-note">* champs&nbsp;obligatoires</p>
       </form>
     </div>
   </section>
 
-  <section class="section" style="padding-top:0" aria-labelledby="titre-societe">
-    <div class="questions">
-      <div class="questions-gauche">
-        <h2 class="titre-2" id="titre-societe">La&nbsp;société</h2>
-        <p class="texte-grand doux">Onlineformapro est une&nbsp;société anonyme cotée sur&nbsp;Euronext Access Paris, organisme de&nbsp;formation certifié&nbsp;Qualiopi.</p>
-      </div>
-      <div>
-        <details class="question" open><summary>Informations légales</summary><div class="question-reponse"><p>Onlineformapro – S.A. au&nbsp;capital de&nbsp;1 100 000&nbsp;€, immatriculée sous le&nbsp;n° 424 780 336&nbsp;au&nbsp;Registre du&nbsp;Commerce et&nbsp;des&nbsp;Sociétés de&nbsp;Vesoul, siège social&nbsp;: 19, rue du&nbsp;Praley, 70000&nbsp;Vesoul.</p><p>N° Siret&nbsp;: 424 780 336 00014 · Code APE&nbsp;: 8559&nbsp;A&nbsp;· N° TVA intracommunautaire&nbsp;: FR&nbsp;28424780336.</p></div></details>
-        <details class="question"><summary>Organisme de&nbsp;formation</summary><div class="question-reponse"><p>Numéro de&nbsp;déclaration d’activité auprès du&nbsp;Préfet de&nbsp;la&nbsp;Région Franche&#8209;Comté&nbsp;: 43 7000&nbsp;41070.</p><p>Code DATADOCK&nbsp;: 0012531 · Certificat QUALIOPI&nbsp;:&nbsp;00296.</p></div></details>
-        <details class="question"><summary>Relations investisseurs</summary><div class="question-reponse"><p>Société cotée en&nbsp;bourse sur&nbsp;le&nbsp;Marché Libre – Euronext&nbsp;; la&nbsp;société est inscrite sur&nbsp;Euronext Access&nbsp;Paris.</p><p>Code ISIN&nbsp;: FR0004174712 · Code mnémonique&nbsp;:&nbsp;MLONL.</p></div></details>
-      </div>
+  <section class="section-96 fond-creme" aria-labelledby="titre-societe">
+    <div class="entete-section entete-section--centre">
+      <h2 class="titre-2" id="titre-societe">La&nbsp;société</h2>
+      <p class="texte-grand" style="max-width:640px">Onlineformapro est une&nbsp;société anonyme cotée sur&nbsp;Euronext Access Paris, organisme de&nbsp;formation certifié&nbsp;Qualiopi.</p>
+    </div>
+    <div class="questions questions--centre">
+      <details class="question"><summary>Informations légales</summary><div class="question-reponse"><p>Onlineformapro – S.A. au&nbsp;capital de&nbsp;1 100 000&nbsp;€, immatriculée sous le&nbsp;n° 424 780 336&nbsp;au&nbsp;Registre du&nbsp;Commerce et&nbsp;des&nbsp;Sociétés de&nbsp;Vesoul, siège social&nbsp;: 19, rue du&nbsp;Praley, 70000&nbsp;Vesoul.</p><p>N° Siret&nbsp;: 424 780 336 00014 · Code APE&nbsp;: 8559&nbsp;A&nbsp;· N° TVA intracommunautaire&nbsp;: FR&nbsp;28424780336.</p></div></details>
+      <details class="question"><summary>Organisme de&nbsp;formation</summary><div class="question-reponse"><p>Numéro de&nbsp;déclaration d’activité auprès du&nbsp;Préfet de&nbsp;la&nbsp;Région Franche&#8209;Comté&nbsp;: 43 7000&nbsp;41070.</p><p>Code DATADOCK&nbsp;: 0012531 · Certificat QUALIOPI&nbsp;:&nbsp;00296.</p></div></details>
+      <details class="question"><summary>Relations investisseurs</summary><div class="question-reponse"><p>Société cotée en&nbsp;bourse sur&nbsp;le&nbsp;Marché Libre – Euronext&nbsp;; la&nbsp;société est inscrite sur&nbsp;Euronext Access&nbsp;Paris.</p><p>Code ISIN&nbsp;: FR0004174712 · Code mnémonique&nbsp;:&nbsp;MLONL.</p></div></details>
     </div>
   </section>
 
@@ -117,7 +118,7 @@
     <div class="pied-haut">
       <div class="pied-marque">
         <img src="img/logo-blanc-rouge.svg" alt="Onlineformapro" width="841" height="353" loading="lazy">
-        <p>25&nbsp;ans de&nbsp;pédagogie et&nbsp;d’innovation&nbsp;technologique.</p>
+        <p class="titre-6">25&nbsp;ans de&nbsp;pédagogie et&nbsp;d’innovation&nbsp;technologique.</p>
         <div class="pied-contact">
           <a href="tel:+33384765244"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>+33 (0)3 84 76 52 44</a>
           <a href="mailto:projet@onlineformapro.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></svg>projet@onlineformapro.com</a>
@@ -128,6 +129,7 @@
           <h2>Solutions</h2>
           <ul>
             <li><a href="lms.html">LMS OnlineManager</a></li>
+            <li><a href="lms.html#apprenant">Espace apprenant</a></li>
             <li><a href="outils-ia.html">Outils IA</a></li>
             <li><a href="catalogue.html">Catalogue</a></li>
           </ul>
@@ -135,32 +137,31 @@
         <div>
           <h2>Onlineformapro</h2>
           <ul>
+            <li><a href="index.html">Accueil</a></li>
             <li><a href="blog.html">Blog</a></li>
             <li><a href="demo.html">Demander une&nbsp;démo</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="index.html">Accueil</a></li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="pied-milieu">
-      <nav aria-label="Réseaux sociaux" style="display:flex;gap:18px">
-        <a href="https://www.linkedin.com/company/onlineformapro/">LinkedIn</a>
-        <a href="https://www.facebook.com/Onlineformapro/">Facebook</a>
-        <a href="https://twitter.com/onlineformapro?lang=fr">X</a>
-      </nav>
-      <span style="display:flex;align-items:center;gap:8px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>19&nbsp;rue du&nbsp;Praley, 70000&nbsp;Vesoul</span>
+    <div class="pied-bas-bloc">
+      <div class="pied-rangee">
+        <nav class="pied-reseaux" aria-label="Réseaux sociaux"><a href="https://www.linkedin.com/company/onlineformapro/" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.5 8.5h3v11h-3zM6 3.5a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5zM10 8.5h2.9v1.5h.04c.4-.76 1.38-1.56 2.85-1.56 3.05 0 3.61 2 3.61 4.6v6.46h-3v-5.73c0-1.37-.02-3.13-1.9-3.13-1.91 0-2.2 1.49-2.2 3.03v5.83H10z"/></svg></a><a href="https://www.facebook.com/Onlineformapro/" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.87.24-1.46 1.49-1.46H16.6V4.46A21 21 0 0 0 14.3 4.3c-2.28 0-3.84 1.39-3.84 3.95v2.25H8v3h2.46V21z"/></svg></a><a href="https://twitter.com/onlineformapro?lang=fr" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.2 3.5h3l-6.6 7.5 7.7 10h-6l-4.7-6.1-5.4 6.1h-3l7-8L1.8 3.5h6.2l4.3 5.6zm-1 15.7h1.7L7.1 5.2H5.3z"/></svg></a></nav>
+        <span class="pied-lieu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>19&nbsp;rue du&nbsp;Praley, 70000&nbsp;Vesoul</span>
+      </div>
+      <div class="pied-rangee pied-bas">
+        <span>© 2026&nbsp;Onlineformapro. Tous droits réservés</span>
+        <nav aria-label="Informations légales">
+          <a href="https://www.onlineformapro.com/mentions-legales/">Mentions légales</a>
+          <a href="https://www.onlineformapro.com/mentions-legales-rgpd/">RGPD</a>
+          <a href="https://www.onlineformapro.com/wp-content/uploads/2025/10/Conditions_Generales_Vente.pdf">CGV</a>
+          <a href="https://www.onlineformapro.com/certification-qualiopi/">Qualiopi</a>
+        </nav>
+      </div>
+      <p class="pied-mention">Onlineformapro – S.A. au&nbsp;capital de&nbsp;1 100 000&nbsp;€, immatriculée sous le&nbsp;n° 424 780 336&nbsp;au&nbsp;Registre du&nbsp;Commerce et&nbsp;des&nbsp;Sociétés de&nbsp;Vesoul, siège social&nbsp;: 19, rue du&nbsp;Praley, 70000&nbsp;Vesoul. Organisme de&nbsp;formation certifié Qualiopi (certificat n° 00296), numéro de&nbsp;déclaration d’activité&nbsp;: 43 7000&nbsp;41070.</p>
+      <p class="pied-mention">Permettre au&nbsp;plus grand nombre d’accéder librement, sans&nbsp;contrainte de&nbsp;lieu, de&nbsp;temps ou&nbsp;de&nbsp;rythme à&nbsp;des&nbsp;formations modulaires et&nbsp;souples.</p>
     </div>
-    <div class="pied-bas">
-      <span>© 2026&nbsp;Onlineformapro</span>
-      <nav aria-label="Informations légales">
-        <a href="https://www.onlineformapro.com/mentions-legales/">Mentions légales</a>
-        <a href="https://www.onlineformapro.com/mentions-legales-rgpd/">RGPD</a>
-        <a href="https://www.onlineformapro.com/wp-content/uploads/2025/10/Conditions_Generales_Vente.pdf">CGV</a>
-        <a href="https://www.onlineformapro.com/certification-qualiopi/">Certification Qualiopi</a>
-      </nav>
-    </div>
-    <p class="pied-mention">Permettre au&nbsp;plus grand nombre d’accéder librement, sans&nbsp;contrainte de&nbsp;lieu, de&nbsp;temps ou&nbsp;de&nbsp;rythme à&nbsp;des&nbsp;formations modulaires et&nbsp;souples.</p>
   </footer>
 </body>
 </html>

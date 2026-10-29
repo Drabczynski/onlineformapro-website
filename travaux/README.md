@@ -223,46 +223,48 @@ Vérifié à 1440 × 900 et 390 × 844, avec et sans animations, sans débordeme
 
 ### Les pages du site (modèle Vectura)
 
-Six pages, dans le langage du modèle vectura.framer.website (relevé sur le modèle à 1440 px :
-mesures, typographie, couleurs, mises en page), avec notre propre code : fond blanc, Geist en
-graisse légère et interlettrage serré, étiquettes en Chivo Mono, blocs arrondis de 16 px sur
-des tons crème, pierre et gris bleuté, boutons en pastilles noires, pied de page noir. Un
-conteneur central de 1280 px aligne en-tête, contenus, blocs et pied de page ; les fonds et
-les visuels d'ouverture restent en pleine largeur (variables `--large` et `--gouttiere` en
-tête de `pages.css`).
+Six pages calquées sur le modèle vectura.framer.website, relevé élément par élément à 1440,
+1920 et 390 px (boîtes, marges, espacements, typographie, couleurs) : mêmes sections, mêmes
+mesures, même palette, avec notre propre code. Geist (titres de 80, 58, 40, 32, 28 et 24 px,
+interlettrage serré), Chivo Mono pour les étiquettes ; blanc, crème `#fbfaf9`, gris
+`#f9fafb`, gris bleuté `#e8edf3`, pierre `#f2ece8`, ardoise `#415371`, noir ; blocs arrondis de
+16 px ; boutons en pastilles ; pied de page noir. Conteneur de 1600 px au plus, 40 px de
+marge (l'en-tête va jusqu'à 1660 px), comme le modèle.
 
-| Page | Contenu |
-|---|---|
-| `lms.html` | LMS OnlineManager : ouverture claire et centrée, le titre puis le montage des écrans (iMac, MacBook, iPad, iPhone) en grand sur fond blanc ; côté administration (prise en main avec OnlineManager en pleine largeur, analyse des données, marque blanche) et côté apprenant (OnlineCompétences sur trois appareils, Lisy, outils de la plateforme) sur une même page ; références, cas France Education International, spécifications techniques |
-| `outils-ia.html` | FastFormation, FastQuiz, Learning Podcast, RolePlay IA : sous le titre « La puissance de l'IA au service de la formation et de l'apprentissage », un bloc par outil (son visuel en grand sur toute la largeur, la carte de texte, quatre atouts), chacun avec son ancre (`#fastformation`, `#fastquiz`, `#learning-podcast`, `#roleplay`) |
-| `catalogue.html` | Présentation du catalogue : d'abord toutes les catégories, avec en tête la nouveauté des outils collaboratifs Google (bloc noir, la vidéo entière en 16:9), puis le témoignage SNCF et les chiffres, la pédagogie ; liens vers le catalogue en accès libre |
-| `blog.html` | Les 9 derniers articles du blog officiel, filtrables par catégorie, et l'inscription à la lettre |
-| `demo.html` | Demande de démonstration : réservation de 30 min par l'agenda Calendly, comme sur le site actuel |
-| `contact.html` | Coordonnées, formulaire (champs du formulaire actuel), informations légales |
+Les changements de fond du modèle sont repris : toute la page passe du blanc au pierre (lignes
+« côté apprenant » et témoignage de la page LMS) ou au noir (RolePlay IA sur la page Outils
+IA), quand la section franchit 40 % de la hauteur de l'écran (`data-fond` sur la section,
+`pages.js`). Les lignes « gestion », voilées à 60 %, s'allument au centre de l'écran.
+
+| Page | Gabarit du modèle | Contenu |
+|---|---|---|
+| `lms.html` | Product | photo d'ouverture ; lignes produit (prise en main avec OnlineManager, analyse des données, marque blanche), citation Saint-Gobain et cartes ; côté apprenant en lignes « gestion » sur fond pierre (OnlineCompétences, Lisy, sur tous les appareils) ; témoignage France Education International ; références ; spécifications techniques en questions, avec la carte « Vous avez un projet ? » |
+| `outils-ia.html` | Product et accueil | photo d'ouverture ; titre « La puissance de l'IA… » ; FastFormation, FastQuiz, Learning Podcast en lignes produit (visuel plein cadre, quatre atouts) ; RolePlay IA en section « avantages » sur fond noir ; bloc crème « Innover pour l'équité » ; appel final. Ancres `#fastformation`, `#fastquiz`, `#learning-podcast`, `#roleplay` |
+| `catalogue.html` | Accueil | ouverture en bloc arrondi ; toutes les catégories (la nouveauté Google et sa vidéo en 16:9, puis les familles en cartes d'article) ; bloc crème : témoignage SNCF et chiffres ; pédagogie en ligne produit ; appel final |
+| `blog.html` | Blog | photo d'ouverture ; onglets par catégorie ; les 9 derniers articles du blog officiel |
+| `demo.html` | Contact sales | la réservation de 30 min par l'agenda Calendly, comme sur le site actuel |
+| `contact.html` | Contact | titre, trois cartes (e-mail, démonstration, téléphone), formulaire (champs du formulaire actuel), la société en questions |
 
 Textes, chiffres et coordonnées repris du site officiel ; le chiffre des apprenants est celui
-donné par Onlineformapro (22 millions). Images : les visuels produits fournis par
-Onlineformapro (`img/cartes/`), des images reprises de onlineformapro.com (`img/site/` :
-Learning Podcast, RolePlay IA, Lisy, OnlineAgora, FastFormation, FastQuiz, les photos des
-familles du catalogue, les vignettes des articles du blog, les cartes de l'accueil) et,
-pour les bandeaux d'ouverture et les appels finaux, des vues fixes du monde de lignes
-(`img/visuels/`), à remplacer dans les bandeaux. Les montages d'écrans détourés fournis
-par Onlineformapro habillent la page LMS, en grand sur fond blanc : ouverture, OnlineManager,
-OnlineCompétences sur trois appareils, Lisy. La vidéo des outils Google
-est celle de la page Catalogue du site officiel, lue depuis download.onlineformation.com ;
-tant qu'elle n'est pas chargée, le bloc montre le visuel Google de la newsletter
-(`img/site/cat-google.webp`). Deux images sont construites : la carte ANSSI (le logo du site sur le
-dégradé de l'ouverture) et la famille Prévention, sans photo sur le site. `img/EMPLACEMENTS.md`
-liste chaque emplacement, son image et le format conseillé ; `img/depot/` reçoit les images
-à placer (voir sa notice). Les formulaires sont des maquettes : ils n'envoient rien et
-renvoient vers ceux du site actuel.
+donné par Onlineformapro (22 millions). Aucune image de l'ouverture 3D dans ces pages. Images :
+les visuels produits et montages d'écrans fournis par Onlineformapro (`img/cartes/`,
+`img/site/lms-*`), des images reprises de onlineformapro.com (`img/site/` : FastFormation,
+FastQuiz, Learning Podcast, photos des familles du catalogue, vignettes du blog) et, en
+attendant les photos d'Onlineformapro, cinq photos du modèle Vectura dans les ouvertures et
+les appels finaux (`img/modele/`, provisoires, à remplacer). La vidéo des outils Google est
+celle de la page Catalogue du site officiel, lue depuis download.onlineformation.com ; tant
+qu'elle n'est pas chargée, le bloc montre le visuel Google de la newsletter
+(`img/site/cat-google.webp`). `img/EMPLACEMENTS.md` liste chaque emplacement, son image et le
+format conseillé ; `img/depot/` reçoit les images à placer (voir sa notice). Les formulaires
+sont des maquettes : ils n'envoient rien et renvoient vers ceux du site actuel.
 L'ouverture (`index.html`) mène à ces pages : menu, bouton de démo, cartes et leurs images.
 
-`pages.css` et `pages.js` (menu sur téléphone, en-tête qui blanchit au défilement,
-apparitions, liste active, filtres du blog, formulaires, vidéos arrêtées si le visiteur a demandé moins d'animations) sont communs aux six pages ; l'en-tête
-et le pied de page sont répétés dans chacune. Le logo pour fond clair
-(`img/logo-noir-rouge.svg`) est celui du site, texte en noir. Vérifié de 320 à 1440 px de
-large sans débordement, liens internes et images contrôlés.
+`pages.css` et `pages.js` (menu sur téléphone, en-tête transparent sur les photos
+d'ouverture, changements de fond, lignes qui s'allument, apparitions, onglets du blog,
+formulaires, vidéos arrêtées si le visiteur a demandé moins d'animations) sont communs aux six
+pages ; l'en-tête et le pied de page sont répétés dans chacune. Vérifié de 320 à 1920 px de
+large : aucun débordement, aucun mot coupé dans les titres, liens internes et images
+contrôlés.
 
 ## Page organismes CiviCap
 

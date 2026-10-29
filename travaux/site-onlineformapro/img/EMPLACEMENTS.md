@@ -4,9 +4,10 @@ Chaque image du site, page par page : ce qui l'occupe aujourd'hui, d'où elle vi
 format conseillé pour la remplacer. Pour proposer une image, déposez-la dans `depot/`
 (voir `depot/LISEZMOI.md`).
 
-Origine : **fournie** (envoyée par Onlineformapro, `cartes/`), **site** (reprise de
-onlineformapro.com, `site/`), **construite** (fabriquée pour la maquette), **3D** (vue fixe
-du monde de lignes de l'ouverture, `visuels/`).
+Origine : **fournie** (envoyée par Onlineformapro, `cartes/`, `site/lms-*`), **site** (reprise
+de onlineformapro.com, `site/`), **construite** (fabriquée pour la maquette), **modèle**
+(photo du modèle Vectura, `modele/` : provisoire, à remplacer par une photo d'Onlineformapro ;
+les pages n'utilisent aucune image de l'ouverture 3D).
 
 ## Accueil (`index.html`, l'ouverture 3D)
 
@@ -31,50 +32,48 @@ Les cartes à droite de l'écran : image en haut, 583 × 500 environ (rapport 7:
 
 | Emplacement | Image | Origine | Conseil |
 |---|---|---|---|
-| Ouverture (sous le titre, sur fond blanc) | `site/lms-appareils.webp` | fournie (iMac, MacBook, iPad, iPhone, détourés) | une version de 2000 px de large serait plus nette |
-| Prise en main (pleine largeur, au-dessus du texte) | `site/lms-onlinemanager.webp` | fournie (OnlineManager sur iMac et MacBook) | — |
+| Photo d'ouverture (plein écran, texte blanc en bas à gauche) | `modele/bureau-echange.webp` | modèle | une photo de 2400 × 1500, plus sombre en bas |
+| Prise en main | `site/lms-onlinemanager.webp` | fournie (OnlineManager sur iMac et MacBook) | — |
 | Analyse des données | `cartes/reporting.webp` | fournie | — |
 | Marque blanche | `cartes/marque-blanche.webp` | fournie | — |
-| Côté apprenant (grand visuel) | `site/lms-apprenant.webp` | fournie (OnlineCompétences sur MacBook, iPhone, iPad) | — |
-| Lisy, le coach IA (tuile) | `site/lms-lisy.webp` | fournie | une version de 1400 px serait plus nette |
-| Témoignage France Education International | initiales | — | une photo de Sébastien Georges, ou le logo FEI en couleur sur fond clair |
-| Appel final | `visuels/logo.webp` | 3D | — |
+| Côté apprenant : la plateforme | `site/lms-appareils.webp` | fournie (iMac, MacBook, iPad, iPhone, détourés) | — |
+| Côté apprenant : Lisy | `site/lms-lisy.webp` | fournie | une version de 1400 px serait plus nette |
+| Côté apprenant : sur tous vos appareils | `site/lms-apprenant.webp` | fournie (OnlineCompétences sur trois appareils) | — |
+| Citation Saint-Gobain, témoignage France Education International | initiales | — | les photos de Christophe Evans et de Sébastien Georges |
 
 ## Outils IA (`outils-ia.html`)
 
 | Emplacement | Image | Origine | Conseil |
 |---|---|---|---|
-| Bandeau d'ouverture | `visuels/pics.webp` | 3D | ou une photo plein écran, 2400 × 1500 |
-| Bloc FastFormation (pleine largeur, 16:9) | `site/ff-outil.webp` | site (page FastFormation) | une version de 2400 × 1350 serait plus nette |
-| Bloc FastQuiz (pleine largeur, 16:9) | `site/fq-questions.webp` | site (page Outils auteur IA) | une version de 2400 × 1350 serait plus nette |
-| Bloc Learning Podcast (pleine largeur, 16:9) | `site/lp-show.webp` | site (article Learning Podcast) | — |
-| Bloc RolePlay IA (pleine largeur, 16:9) | `site/rp-vente.webp` | site (article Simulations IA, 957 px) | une version de 2400 × 1350 : celle du site est agrandie |
-| Appel final | `visuels/route.webp` | 3D | — |
+| Photo d'ouverture | `modele/cafe-ordinateur.webp` | modèle | une photo de 2400 × 1500, ou la bannière FastFormation (écran incliné) |
+| FastFormation (plein cadre, 700 × 650) | `site/ff-outil.webp` | site (page FastFormation) | — |
+| FastQuiz | `site/fq-questions.webp` | site (page Outils auteur IA) | — |
+| Learning Podcast | `site/lp-show.webp` | site (article Learning Podcast) | — |
+| RolePlay IA (colonne verticale, 462 × 940, fond noir) | `modele/bureau-etude.webp` | modèle | une photo verticale liée aux simulations |
+| Appel final | `modele/tablette-ville.webp` | modèle | une photo de 1500 × 860 |
 
 ## Catalogue (`catalogue.html`)
 
 | Emplacement | Image | Origine | Conseil |
 |---|---|---|---|
-| Bandeau d'ouverture | `visuels/cube.webp` | 3D | ou une photo plein écran, 2400 × 1500 |
+| Ouverture (bloc arrondi, texte centré) | `modele/apprenantes-canape.webp` | modèle | une photo de 2400 × 1500, ou la bannière bureautique (Excel, PowerPoint) |
 | Nouveauté outils Google : vidéo | `outils-collaboratifs-google.mp4` | site (page Catalogue, lue depuis download.onlineformation.com) | — |
-| Nouveauté outils Google : affiche | `site/cat-google.webp` | visuel de la newsletter Outils Google (556 px) | une version plus grande, ou une image tirée de la vidéo, 1500 × 1100 |
-| Les 12 familles | `site/cat-*.webp` | site (page Catalogue) | les photos du site font 435 px : une version 900 px serait plus nette |
-| Famille Prévention | pictogramme | construite (pas de photo sur le site) | une photo, 900 × 465 (rapport 2:1) |
+| Nouveauté outils Google : affiche | `site/cat-google.webp` | visuel de la newsletter Outils Google (556 px) | une image tirée de la vidéo, 1500 × 845 |
+| Les 12 familles (cartes de 440 × 320) | `site/cat-*.webp` | site (page Catalogue) | les photos du site font 435 px : une version 900 px serait plus nette |
+| Famille Prévention | pictogramme | construite (pas de photo sur le site) | une photo, 900 × 650 |
 | Pédagogie | `cartes/catalogue.webp` | fournie | — |
-| Appel final | `visuels/cube.webp` | 3D | — |
+| Appel final | `modele/tablette-ville.webp` | modèle | une photo de 1500 × 860 |
 
 ## Blog (`blog.html`)
 
 | Emplacement | Image | Origine | Conseil |
 |---|---|---|---|
-| Bandeau d'ouverture | `visuels/route.webp` | 3D | — |
+| Photo d'ouverture | `modele/bureau-plantes.webp` | modèle | une photo de 2400 × 1500 |
 | Les 9 vignettes | `site/blog-0.webp` … `blog-8.webp` | site (vignettes des articles) | mises à jour avec les articles |
 
 ## Démo et contact (`demo.html`, `contact.html`)
 
-Pas d'image pour l'instant. Possibles : les photos des auteurs des témoignages (Jacky
-Portal, ESTC Marseille ; Lydia David Duluc, Banque Populaire), un visuel de l'agenda de
-réservation.
+Pas d'image, comme les pages « Contact sales » et « Contact » du modèle.
 
 ## Disponibles sur le site, pas encore utilisées
 

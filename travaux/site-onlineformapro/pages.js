@@ -1,6 +1,7 @@
-// Les pages du site : menu sur téléphone, en-tête qui blanchit au premier défilement au-dessus
-// d'un visuel, apparitions au fil du défilement, liste active à côté des écrans d'interface,
-// filtres du blog, formulaires (maquette : rien n'est envoyé).
+// Les pages du site : menu sur téléphone, en-tête transparent au-dessus d'une photo
+// d'ouverture, changements de fond au défilement (comme le modèle Vectura), lignes « gestion »
+// qui s'allument au centre de l'écran, apparitions, onglets du blog, formulaires (maquette :
+// rien n'est envoyé).
 document.documentElement.classList.add('js');
 
 // -------------------------------------------------------------------- en-tête
@@ -10,11 +11,37 @@ if (burger) burger.addEventListener('click', () => {
   const ouvert = entete.classList.toggle('menu-ouvert');
   burger.setAttribute('aria-expanded', String(ouvert));
 });
-if (entete && entete.classList.contains('entete--visuel')) {
+if (entete && entete.classList.contains('entete--photo')) {
   const maj = () => entete.classList.toggle('est-defile', scrollY > 24);
   addEventListener('scroll', maj, { passive: true });
   maj();
 }
+
+// -------------------------------------------------------------------- changements de fond
+// une section marquée data-fond="noir" ou "chaud" fait passer toute la page à ce fond quand
+// elle franchit la ligne située à 40 % de la hauteur de l'écran ; la page redevient blanche
+// quand plus aucune ne la franchit
+const fonds = [...document.querySelectorAll('[data-fond]')];
+if (fonds.length && 'IntersectionObserver' in window) {
+  const actives = new Set();
+  const obs = new IntersectionObserver((entrees) => {
+    for (const e of entrees) e.isIntersecting ? actives.add(e.target) : actives.delete(e.target);
+    const f = [...actives][0]?.dataset.fond;
+    document.body.classList.toggle('fond-noir', f === 'noir');
+    document.body.classList.toggle('fond-chaud', f === 'chaud');
+  }, { rootMargin: '-40% 0px -60% 0px' });
+  fonds.forEach(s => obs.observe(s));
+}
+
+// -------------------------------------------------------------------- lignes « gestion »
+// voilées à 60 %, elles s'allument quand elles passent au centre de l'écran
+const lignes = document.querySelectorAll('.gestion-ligne');
+if (lignes.length && 'IntersectionObserver' in window) {
+  const obs = new IntersectionObserver((entrees) => {
+    for (const e of entrees) e.target.classList.toggle('est-active', e.isIntersecting);
+  }, { rootMargin: '-30% 0px -30% 0px' });
+  lignes.forEach(l => obs.observe(l));
+} else lignes.forEach(l => l.classList.add('est-active'));
 
 // -------------------------------------------------------------------- apparitions
 const apparitions = document.querySelectorAll('.apparait');
@@ -31,20 +58,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
   for (const v of document.querySelectorAll('video[autoplay]')) { v.removeAttribute('autoplay'); v.pause(); }
 }
 
-// -------------------------------------------------------------------- liste active (écrans qui défilent)
-for (const liste of document.querySelectorAll('.defile-liste')) {
-  const liens = [...liste.querySelectorAll('a[href^="#"]')];
-  const panneaux = liens.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-  const activer = (id) => liens.forEach(a => a.classList.toggle('est-actif', a.getAttribute('href') === '#' + id));
-  const obs = new IntersectionObserver((entrees) => {
-    const vus = entrees.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-    if (vus.length) activer(vus[0].target.id);
-  }, { rootMargin: '-35% 0px -55% 0px' });
-  panneaux.forEach(p => obs.observe(p));
-  if (panneaux[0]) activer(panneaux[0].id);
-}
-
-// -------------------------------------------------------------------- filtres du blog
+// -------------------------------------------------------------------- onglets du blog
 const filtres = document.querySelector('.filtres');
 if (filtres) {
   const articles = [...document.querySelectorAll('[data-categorie]')];
