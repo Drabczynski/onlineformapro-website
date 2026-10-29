@@ -4,7 +4,7 @@ Chaque image du site, page par page : ce qui l'occupe aujourd'hui, d'où elle vi
 format conseillé pour la remplacer. Pour proposer une image, déposez-la dans `depot/`
 (voir `depot/LISEZMOI.md`).
 
-Origine : **fournie** (envoyée par Onlineformapro, `cartes/`, `site/lms-*`), **site** (reprise
+Origine : **fournie** (envoyée par Onlineformapro, `cartes/`, `site/lms-*`, `photos/`), **site** (reprise
 de onlineformapro.com, `site/`), **construite** (fabriquée pour la maquette), **modèle**
 (photo du modèle Vectura, `modele/` : provisoire, à remplacer par une photo d'Onlineformapro ;
 les pages n'utilisent aucune image de l'ouverture 3D).
@@ -39,13 +39,13 @@ Les cartes à droite de l'écran : image en haut, 583 × 500 environ (rapport 7:
 | Côté apprenant (grand visuel) | `site/lms-apprenant.webp` | fournie (OnlineCompétences sur trois appareils) | — |
 | Lisy, le coach IA (tuile) | `site/lms-lisy.webp` | fournie | une version de 1400 px serait plus nette |
 | Témoignage France Education International | initiales | — | une photo de Sébastien Georges |
-| Appel final | `modele/bureau-echange.webp` | modèle | une photo de 2400 × 1500 |
+| Appel final | `photos/bureau-sourire.webp` | fournie (une utilisatrice souriante à son bureau) | — |
 
 ## Outils IA (`outils-ia.html`)
 
 | Emplacement | Image | Origine | Conseil |
 |---|---|---|---|
-| Photo d'ouverture | `modele/cafe-ordinateur.webp` | modèle | une photo de 2400 × 1500, ou la bannière FastFormation (écran incliné) |
+| Photo d'ouverture | `photos/ordinateur-sourire.webp` | fournie (une apprenante à son ordinateur) | — |
 | FastFormation (pleine largeur, 16:9) | `site/ff-outil.webp` | site (page FastFormation) | une version de 2400 × 1350 serait plus nette |
 | FastQuiz (pleine largeur, 16:9) | `site/fq-questions.webp` | site (page Outils auteur IA) | une version de 2400 × 1350 serait plus nette |
 | Learning Podcast (pleine largeur, 16:9) | `site/lp-show.webp` | site (article Learning Podcast) | — |
@@ -68,13 +68,14 @@ Les cartes à droite de l'écran : image en haut, 583 × 500 environ (rapport 7:
 
 | Emplacement | Image | Origine | Conseil |
 |---|---|---|---|
-| Photo d'ouverture | `modele/bureau-plantes.webp` | modèle | une photo de 2400 × 1500 |
+| Photo d'ouverture | `modele/cafe-ordinateur.webp` | modèle | une photo de 2400 × 1500, avec quelqu'un |
 | Les 9 vignettes | `site/blog-0.webp` … `blog-8.webp` | site (vignettes des articles) | mises à jour avec les articles |
 
 ## Démo et contact (`demo.html`, `contact.html`)
 
-Pas d'image. Possibles pour la démo : les photos des auteurs des témoignages (Jacky Portal,
-ESTC Marseille ; Lydia David Duluc, Banque Populaire).
+Démo : `photos/ordinateur-concentree.webp` (fournie, 464 px, affichée à sa taille sous la liste). Possibles aussi : les photos des
+auteurs des témoignages (Jacky Portal, ESTC Marseille ; Lydia David Duluc, Banque Populaire).
+Contact : pas d'image, comme la page « Contact » du modèle.
 
 ## Disponibles sur le site, pas encore utilisées
 

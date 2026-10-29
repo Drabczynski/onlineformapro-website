@@ -253,9 +253,10 @@ globale sur la page Démo.
 Textes, chiffres et coordonnées repris du site officiel ; le chiffre des apprenants est celui
 donné par Onlineformapro (22 millions). Aucune image de l'ouverture 3D dans ces pages. Images :
 les visuels produits et montages d'écrans fournis par Onlineformapro (`img/cartes/`,
-`img/site/lms-*`), des images reprises de onlineformapro.com (`img/site/`) et, en attendant
-les photos d'Onlineformapro, des photos du modèle Vectura dans les ouvertures et les appels
-finaux (`img/modele/`, provisoires, à remplacer). La vidéo des outils Google est celle de la
+`img/site/lms-*`), les photos fournies par Onlineformapro (`img/photos/` : ouverture d'Outils
+IA, appel final du LMS, page démo), des images reprises de onlineformapro.com (`img/site/`)
+et, en attendant d'autres photos d'Onlineformapro, des photos du modèle Vectura dans les
+autres ouvertures et appels finaux (`img/modele/`, provisoires, à remplacer). La vidéo des outils Google est celle de la
 page Catalogue du site officiel, lue depuis download.onlineformation.com ; tant qu'elle n'est
 pas chargée, le bloc montre le visuel Google de la newsletter (`img/site/cat-google.webp`).
 `img/EMPLACEMENTS.md` liste chaque emplacement, son image et le format conseillé ;

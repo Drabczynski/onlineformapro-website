@@ -124,7 +124,8 @@ section[id], article[id] { scroll-margin-top: 88px; }
 /* plein écran sous l'en-tête transparent (pages produit, blog) */
 .visuel { position: relative; min-height: 100svh; display: flex; align-items: flex-end; padding: 160px var(--gouttiere) 64px; color: #fff; overflow: hidden; background: var(--nuit); }
 .visuel > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.visuel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, .35) 0%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, .1) 55%, rgba(0, 0, 0, .62) 100%); }
+/* le texte blanc reste lisible sur les photos claires : voile en bas et sur la gauche, sous le titre */
+.visuel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0, 0, 0, .35) 0%, rgba(0, 0, 0, 0) 55%), linear-gradient(180deg, rgba(0, 0, 0, .35) 0%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, .1) 55%, rgba(0, 0, 0, .62) 100%); }
 .visuel-texte { position: relative; z-index: 1; display: grid; gap: 24px; max-width: 760px; }
 .visuel-texte .titre-1 { color: #fff; }
 .visuel-texte .texte-grand { max-width: 560px; color: rgba(255, 255, 255, .88); }
@@ -337,6 +338,10 @@ section[id], article[id] { scroll-margin-top: 88px; }
 .formulaire-note { font-size: 15px; color: var(--doux); }
 .formulaire-message { padding: 16px 18px; border-radius: 10px; background: var(--brume); font-size: 16px; color: var(--encre); }
 
+/* la photo de la page démo, à sa taille réelle */
+.photo-demo { max-width: 464px; border-radius: var(--rayon); overflow: hidden; }
+.photo-demo img { width: 100%; height: auto; }
+
 /* -------------------------------------------------------------------- démo : la réservation */
 .reservation { display: flex; flex-direction: column; gap: 20px; padding: 40px; border-radius: var(--rayon); background: var(--perle); }
 .reservation-tete { display: flex; justify-content: space-between; align-items: center; }
@@ -441,6 +446,7 @@ section[id], article[id] { scroll-margin-top: 88px; }
   .temoignage { padding: 28px; }
   .temoignage-chiffres div { border: 0; padding: 0; }
   .visuel { padding-bottom: 40px; }
+  .visuel::after { background: linear-gradient(180deg, rgba(0, 0, 0, .35) 0%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, .35) 50%, rgba(0, 0, 0, .8) 100%); }
   .bouton { white-space: normal; text-align: center; padding: 0 24px; font-size: 17px; }
   .titre-1 { font-size: clamp(32px, 10.5vw, 44px); }
   .titre-2 { font-size: clamp(28px, 8.8vw, 36px); }
