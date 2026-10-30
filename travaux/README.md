@@ -160,8 +160,8 @@ madarplatform.com pour pouvoir ensuite l'ajuster par petites touches. Une scène
 épinglée à l'écran ; la caméra y parcourt un monde fixe de lignes de lumière (three.js)
 pendant que les textes défilent. Les vues suivent celles du modèle : le logo de l'accueil,
 l'autoroute et ses lacets, le graphique de pics (la puissance de l'IA), le carrefour vu
-d'en haut (la solution globale et modulaire), le croisement en X entouré d'anneaux (22
-millions d'apprenants), la ligne droite puis l'éventail de lignes (la demande de démo).
+d'en haut (la solution globale et modulaire), le croisement en X entouré d'anneaux
+(« Éprouvée par 22 millions d'apprenants »), la ligne droite puis l'éventail de lignes (la demande de démo).
 Textes et liens repris du site officiel, aucun visuel. La partie plus classique du site
 viendra avec le prochain modèle.
 
