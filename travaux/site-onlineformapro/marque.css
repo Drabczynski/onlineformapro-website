@@ -66,7 +66,7 @@
 .entete-menu > a { position: relative; display: block; }
 .entete-menu > a::after { content: ""; position: absolute; left: -8px; right: -8px; top: 100%; height: 26px; }
 .mega { position: absolute; top: 100%; left: 0; right: 0; z-index: 3; padding: 28px max(40px, calc((100% - 1660px) / 2)) 36px; background: #fff; box-shadow: inset 0 1px 0 rgba(20, 20, 24, .06), 0 40px 60px -40px rgba(20, 20, 30, .4); color: var(--texte); opacity: 0; visibility: hidden; transform: translateY(-6px); pointer-events: none; transition: opacity .18s ease, transform .3s cubic-bezier(.2, .8, .2, 1), visibility 0s linear .18s; }
-.entete-menu:is(:hover, :focus-within):not(.mega-repli) .mega { opacity: 1; visibility: visible; transform: none; pointer-events: auto; transition: opacity .25s ease .06s, transform .45s cubic-bezier(.2, .8, .2, 1) .06s, visibility 0s; }
+.entete-menu:is(.est-ouvert, :focus-within):not(.mega-repli) .mega { opacity: 1; visibility: visible; transform: none; pointer-events: auto; transition: opacity .25s ease .06s, transform .45s cubic-bezier(.2, .8, .2, 1) .06s, visibility 0s; }
 .mega-cadre { display: grid; grid-template-columns: minmax(0, 290px) minmax(0, 1fr); gap: 48px; }
 .mega-intro { display: flex; flex-direction: column; gap: 12px; min-width: 0; padding-top: 2px; overflow-wrap: break-word; }
 .mega-etiquette { font: 400 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: rgba(20, 20, 24, .55); }
@@ -96,7 +96,7 @@
 /* deux cartes seulement (Contact) : sur toute la largeur, en 16:9 */
 .mega-cartes--duo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .mega-cartes--duo .mega-image { aspect-ratio: 16 / 9; }
-.entete-menu:is(:hover, :focus-within):not(.mega-repli) :is(.mega-carte, .mega-aussi) { animation: vue-entree .45s cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(.05s + var(--n, 8) * .04s); }
+.entete-menu:is(.est-ouvert, :focus-within):not(.mega-repli) :is(.mega-carte, .mega-aussi) { animation: vue-entree .45s cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(.05s + var(--n, 8) * .04s); }
 .entete-menu > a[aria-current="page"] + .mega .mega-etiquette { color: var(--rouge); }
 
 /* le champ */

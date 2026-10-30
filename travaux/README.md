@@ -306,7 +306,10 @@ qui tend la tablette, pour « Côté apprenant », est posée sur un panneau cla
 cascade (les quatre volets du LMS ; FastFormation, FastQuiz, Learning Podcast,
 RolePlay IA ; huit familles du catalogue ; pour Contact, la prise de démonstration, le
 formulaire ; pour Blog, les quatre derniers articles, lus dans la page Blog). La page se voile
-et se floute derrière, comme quand on ouvre la recherche. Les données en sont dans
+et se floute derrière, comme quand on ouvre la recherche. Les méga-menus sont indulgents
+(`entete.js`) : un menu ouvert le reste 0,4 s après que la souris en est sortie (le temps de
+rejoindre ses cartes en diagonale) et un autre ne le remplace qu'après 0,15 s de survol (on
+traverse les liens voisins sans les ouvrir). Les données en sont dans
 `commun.py` (`MEGA`) ; un clic sur l'un de leurs liens les replie. Les accordéons (spécifications
 techniques, questions) se déplient et se replient en douceur. Un lien du panneau de l'assistant le referme aussi. Un clic sur la
 recherche, ou Ctrl K (⌘ K sur Mac), la déploie : le champ s'élargit, les liens s'effacent, la
