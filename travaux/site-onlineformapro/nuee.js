@@ -42,8 +42,9 @@
   // unités/s) ; brume : les grains lointains pâlissent (début, longueur)
   const PLANS = {
     anneau: { forme: 0, n: [360000, 120000], pose: (h, l, asp) => {
-      const R = asp > 1.1 ? h * 1.15 : h * 0.78;
-      return { cible: asp > 1.1 ? [h * 1.37 - l * 0.06, -h * 0.06, -D] : [l * 0.95, h * 0.62, -D], pivot: [0, 0, 0],
+      // en étroit (téléphone), l'anneau dans le haut de l'ouverture, au-dessus du texte
+      const R = asp > 1.1 ? h * 1.15 : h * 0.62;
+      return { cible: asp > 1.1 ? [h * 1.37 - l * 0.06, -h * 0.06, -D] : [l * 0.85, h * 0.6, -D], pivot: [0, 0, 0],
         R: R * 0.96, larg: R * 0.8, epais: R, rot: [0.42, -0.55, 0], tour: [0, Math.PI * 2], vit: 0.03, taille: 1.12, brume: [3.4, 6] };
     } },
     'gros-plan': { forme: 0, n: [400000, 140000], pose: () => ({ cible: [0.3, -0.05, -3.6], pivot: [7, 0, 0],

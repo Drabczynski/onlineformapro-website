@@ -377,6 +377,16 @@ l'animation s'arrête hors de l'écran et reste figée si le visiteur a demandé
 d'animations. Sur
 téléphone, vignettes et étapes défilent au doigt.
 
+Sur téléphone (640 px de large au plus, `marque.css`) : les chiffres s'affichent deux par
+rangée (LMS, Catalogue ; le premier sur toute la largeur s'ils sont en nombre impair), les
+familles du catalogue aussi (onze écrans au lieu de quatorze), aucun texte ne descend sous
+12 px (les étiquettes de l'article, entre autres), et les liens du pied, de partage et des
+réseaux ont une zone de 40 px pour le doigt. Sur Contact, l'anneau reste dans le haut de
+l'ouverture et s'efface avant le titre. Dans l'ouverture, le flou des cartes est ramené à
+32 px (l'écran étant plus petit, l'effet reste aussi marqué, et le calcul est plus léger), et
+sur un téléphone assez haut la tablette du premier écran revient, collée au bord droit,
+entre le titre et l'accroche.
+
 Les changements de fond du modèle s'appliquent partout : toute la page passe du blanc au
 pierre ou au noir quand une section marquée `data-fond` franchit 40 % de la hauteur de
 l'écran (`pages.js`), et son titre passe en blanc sur le noir. Pierre : références et
