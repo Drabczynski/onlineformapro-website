@@ -325,8 +325,11 @@ tend la tablette OnlineCompétences, puis le parcours en trois étapes (position
 finale, dont les barres montent à l'arrivée) ; sur LMS et Démo, les 48 logos clients en deux
 onglets (« Des clients de tout horizon », « Éducation et formation », au clic ou aux flèches du
 clavier ; la grille insérée par `commun.py` à la place du repère `<!--LOGOS-->`) ; sur Contact,
-une photo sous « Votre demande » ; l'ouverture de Contact reste sobre, en attendant une idée
-qui marie vraiment l'intro et les pages (les rayons essayés n'ont pas convaincu). Sur
+une photo sous « Votre demande » ; en ouverture de Contact, le bâtiment de la R&D sur lequel
+finit l'intro (« Vous avez un projet ? »), en traits de lumière sur la nuit violette, avec ses
+routes : une image de la scène 3D elle-même (`img/site/contact-batiment.webp`, prise à
+l'écran 23,46 de l'ouverture, textes cachés), en pleine page sous l'en-tête transparent, le
+texte à droite sur le ciel (en bas, sous le bâtiment, en dessous de 1200 px). Sur
 téléphone, vignettes et étapes défilent au doigt.
 
 Les changements de fond du modèle s'appliquent partout : toute la page passe du blanc au

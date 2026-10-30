@@ -355,3 +355,19 @@ body.fond-noir { background: var(--nuit); }
 /* sur un petit téléphone, les groupes de mots de la citation peuvent se couper */
 @media (max-width: 480px) { .intro-bloc--pierre .ensemble { white-space: normal; } }
 
+/* ------------------------------------------------------------ l'ouverture de Contact */
+/* le bâtiment de la R&D sur lequel finit l'ouverture 3D (une image de la scène elle-même), à
+   gauche ; le texte à droite, sur le ciel de nuit, comme la carte « Vous avez un projet ? » */
+.heros--batiment { justify-content: flex-start; align-items: flex-end; padding-top: 168px; background: #1a0a5c; }
+.heros--batiment > img { object-position: 0% 50%; }
+.heros--batiment::before { background: linear-gradient(270deg, rgba(16, 6, 60, .55) 0%, rgba(16, 6, 60, 0) 52%), linear-gradient(180deg, rgba(16, 6, 60, .45) 0%, rgba(16, 6, 60, 0) 22%); }
+.heros--batiment .heros-texte { width: min(500px, 36%); gap: 20px; }
+.heros--batiment .titre-1 { font-size: clamp(40px, 4.2vw, 68px); }
+.heros--batiment .etiquette-grande { color: rgba(255, 255, 255, .8); }
+/* plus étroit, le texte passe en bas, sous le bâtiment, sur un fond qui s'assombrit */
+@media (max-width: 1200px) {
+  .heros--batiment { justify-content: flex-end; align-items: stretch; padding-top: 120px; }
+  .heros--batiment::before { background: linear-gradient(180deg, rgba(16, 6, 60, .45) 0%, rgba(16, 6, 60, 0) 22%, rgba(16, 6, 60, .2) 48%, rgba(16, 6, 60, .85) 100%); }
+  .heros--batiment .heros-texte { width: auto; max-width: 640px; }
+}
+@media (max-width: 860px) { .heros--batiment > img { object-position: 24% 50%; } }
