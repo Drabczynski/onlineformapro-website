@@ -102,7 +102,7 @@ function eteindre(el) {
 // atteint ; une carte qui s'en va avant d'être entière achève de s'ouvrir en 0,3 s pendant
 // que son contenu s'efface (jamais de demi-carte).
 const ENTREE = 'cubic-bezier(0.22, 1, 0.36, 1)', SORTIE = 'cubic-bezier(0.4, 0, 0.2, 1)';
-const corps = (c) => c.querySelector('.carte-corps');
+const corps = (c) => c.querySelector('.carte-corps, .presentation-image-corps');
 const OUVERTE = { clipPath: 'inset(0% 0% 0% 0%)', transform: 'scale(1)' }, FERMEE = { clipPath: 'inset(100% 0% 0% 0%)', transform: 'scale(1.05)' };
 const PLEIN = { opacity: 1, transform: 'translateY(0)' }, EFFACE = { opacity: 0, transform: 'translateY(-2.5svh)' };
 const PASSAGES = {                     // le cadre, puis le contenu : [départ, arrivée, durée (ms), courbe]
@@ -142,7 +142,8 @@ function mesurer() {
     const h = haut(b);
     for (const el of b.querySelectorAll('[data-fenetre]')) {
       const [a, z] = el.dataset.fenetre.split(' ').map(Number);
-      elements.push({ el, debut: h + a, fin: h + z, carte: el.classList.contains('carte'), etat: el._etat || false });
+      // les cartes, et la grande image du passage « 25 ans », se dévoilent par découpe
+      elements.push({ el, debut: h + a, fin: h + z, carte: el.matches('.carte, .presentation-image'), etat: el._etat || false });
     }
   }
   paquets = [...document.querySelectorAll('.paquet')].map(p => ({ haut: haut(p), n: +p.dataset.cartes, barres: [...p.querySelectorAll('.progression i')] }));

@@ -28,6 +28,12 @@ Les cartes à droite de l'écran : image en haut, 583 × 500 environ (rapport 7:
 | Demander une démo | `site/acc-rdv.webp` | site (articles du blog) | — |
 | Vous avez un projet ? | `site/acc-sur-mesure.webp` | site (accueil) | une image plus grande (celle du site fait 702 px) |
 
+Hors des cartes :
+
+| Emplacement | Image | Origine | Conseil |
+|---|---|---|---|
+| Passage « 25 ans » (« Lauréate du concours… ») : grande image en face du texte, à gauche | `site/lms-appareils.webp` | fournie (iMac, MacBook, iPad, iPhone, détourés) | une version de 2000 px de large serait plus nette |
+
 ## LMS (`lms.html`)
 
 | Emplacement | Image | Origine | Conseil |
