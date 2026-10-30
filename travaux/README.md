@@ -346,6 +346,14 @@ travers de l'anneau, des bandes qui se mêlent (brume rose et lilas au bord int�
 cœur bleu nuit piqueté de rose et d'orangé, pêche, rose, bleu lavande : les couleurs de
 l'intro) et au bord extérieur une poussière pastel qui s'éloigne et renaît ; les grains tournent lentement le long de l'anneau,
 qui ondule et suit à peine la souris ; à l'arrivée, ils se rassemblent depuis un nuage épars.
+Les grains sont ombrés comme de petites billes (éclairées en haut à gauche, un reflet).
+`nuee.js` sait montrer ces particules sous quatre points de vue, au choix par l'attribut
+`data-nuee` de l'élément qui les reçoit : `anneau` (celui de Contact), `gros-plan` (la caméra
+contre l'anneau : un épais boudin de grains traverse l'écran en diagonale, ses bandes filent
+le long de lui), `tres-gros-plan` (de grosses billes emplissent l'écran) et `vagues` (une nappe
+de grains en larges bandes obliques, qui ondule comme un relief et file) ; seule la part
+visible de la forme est semée, d'où la densité des gros plans. La page d'essai `nuees.html`
+les montre l'un sous l'autre, en direct, pour choisir.
 Les trois cartes « Nous joindre » remontent sur le bas de l'anneau (240 px, 120 sur téléphone),
 qui s'efface derrière elles. Sur téléphone, l'anneau passe en haut, le texte dessous ;
 l'animation s'arrête hors de l'écran et reste figée si le visiteur a demandé moins
