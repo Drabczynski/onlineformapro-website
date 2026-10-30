@@ -35,9 +35,11 @@ Les cartes à droite de l'écran : image en haut, 583 × 500 environ (rapport 7:
 | Ouverture (sous le titre, sur fond blanc) | `site/lms-appareils.webp` | fournie (iMac, MacBook, iPad, iPhone, détourés) | une version de 2000 px de large serait plus nette |
 | Prise en main (pleine largeur, au-dessus du texte) | `site/lms-onlinemanager.webp` | fournie (OnlineManager sur iMac et MacBook) | — |
 | Analyse des données | `cartes/reporting.webp` | fournie | — |
+| Analyse des données : la jauge posée en bas à droite | `site/progression-76.webp` | fournie (la carte « 76 % », 588 × 660) | — |
 | Marque blanche | `cartes/marque-blanche.webp` | fournie | — |
-| Côté apprenant (grand visuel) | `site/lms-apprenant.webp` | fournie (OnlineCompétences sur trois appareils) | — |
+| Côté apprenant : le panneau du chapeau, la tablette à droite | `site/onlinecompetences-tablette.webp` | fournie (une main tient la tablette OnlineCompétences, détourée, 1134 × 1103) | — |
 | Lisy, le coach IA (tuile) | `site/lms-lisy.webp` | fournie | une version de 1400 px serait plus nette |
+| Quelques références : les logos, en deux onglets | `logos/*.webp` (48) | fournies (les planches « Des clients de tout horizon » et « Éducation et formation », chaque logo découpé à 204 × 120) | des logos en SVG seraient plus nets |
 | Témoignage France Education International : photo à droite | `site/acc-fei.webp` | site (accueil, deux élèves) | — |
 | Témoignage France Education International : auteur | initiales | — | une photo de Sébastien Georges |
 | Appel final | `photos/bureau-sourire.webp` | fournie (une utilisatrice souriante à son bureau) | — |
@@ -48,9 +50,11 @@ Les cartes à droite de l'écran : image en haut, 583 × 500 environ (rapport 7:
 |---|---|---|---|
 | Photo d'ouverture | `photos/ordinateur-sourire.webp` | fournie (une apprenante à son ordinateur) | — |
 | FastFormation (pleine largeur, 16:9) | `site/ff-outil.webp` | site (page FastFormation) | une version de 2400 × 1350 serait plus nette |
+| FastFormation : trois vignettes légendées | `site/ff-question.webp`, `ff-cartes.webp`, `ff-ressources.webp` | fournies (la planche Fastformation, 606 × 708) | des versions de 1200 px seraient plus nettes sur écran Retina |
 | FastQuiz (pleine largeur, 16:9) | `site/fastquiz-sources.webp` | fournie (le choix des sources, 1411 px) | une version de 2400 × 1350 serait plus nette |
 | Learning Podcast (pleine largeur, 16:9) | `site/lp-show.webp` | site (article Learning Podcast) | — |
 | RolePlay IA (pleine largeur, 16:9, fond noir) | `site/roleplay-avatars.webp` | fournie (le téléphone et les personnages, 2000 px) | — |
+| RolePlay IA : trois vignettes légendées | `site/roleplay-creez.webp`, `roleplay-coach.webp`, `roleplay-agent.webp` | fournies (la planche RolePlay IA, 619 × 740) | des versions de 1200 px seraient plus nettes sur écran Retina |
 | Appel final | `modele/tablette-ville.webp` | modèle | une photo de 1500 × 860 |
 
 ## Catalogue (`catalogue.html`)
@@ -64,6 +68,9 @@ Les cartes à droite de l'écran : image en haut, 583 × 500 environ (rapport 7:
 | Famille Prévention | pictogramme | construite (pas de photo sur le site) | une photo, 900 × 650 |
 | Témoignage SNCF : photo de fond, voilée de crème | `modele/bureau-flou.webp` | modèle (un bureau flou, sans visage net : un portrait passerait pour la personne citée) | une photo d'ambiance de 2000 × 1500 (un train, une gare, une salle de formation) |
 | Pédagogie (pleine colonne, 900 × 650) | `site/pedagogie-logiciels.webp` | fournie (PowerPoint, Excel et un tutoriel, 2000 px) | — |
+| Parcours : Positionnement | `photos/positionnement.webp` | fournie (588 × 660) | — |
+| Parcours : Formation individualisée | `photos/route-foret.webp` | fournie (une route en lacets vue du ciel, 588 × 660) | — |
+| Parcours : Évaluation finale | graphique en barres et « 89 % » | construit d'après la planche d'Onlineformapro | — |
 | Appel final | `modele/tablette-ville.webp` | modèle | une photo de 1500 × 860 |
 
 ## Blog (`blog.html`)
@@ -84,10 +91,15 @@ Les cartes à droite de l'écran : image en haut, 583 × 500 environ (rapport 7:
 ## Démo et contact (`demo.html`, `contact.html`)
 
 Démo : `photos/ordinateur-concentree.webp` (fournie, 464 px, affichée à sa taille sous la liste). Possibles aussi : les photos des
-auteurs des témoignages (Jacky Portal, ESTC Marseille ; Lydia David Duluc, Banque Populaire).
-Contact : pas d'image, comme la page « Contact » du modèle.
+auteurs des témoignages (Jacky Portal, ESTC Marseille ; Lydia David Duluc, Banque Populaire). Sous « Ils nous font
+confiance », les mêmes logos que sur LMS (`logos/*.webp`, deux onglets).
+Contact : `photos/conseillere.webp` (fournie, une femme en pull orange qui explique, 588 × 660), sous la liste
+« Votre demande », recadrée en 6:5.
 
 ## Disponibles sur le site, pas encore utilisées
+
+Fournie et retirée de la page LMS : `site/lms-apprenant.webp` (OnlineCompétences sur trois appareils), remplacée
+par la tablette en main, plus nette ; gardée dans le dossier.
 
 Repérées en parcourant onlineformapro.com, prêtes à servir si un emplacement s'ouvre :
 les appareils OnlineCompétences (ordinateur, tablette, téléphone), la grille d'évaluation

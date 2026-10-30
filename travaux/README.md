@@ -284,6 +284,16 @@ menu ; sur téléphone, le logo, la recherche et le menu. À l'arrivée sur une 
 s'éclaircissant), le titre monte mot par mot (découpé par `pages.js`), puis l'étiquette, le
 texte et les boutons ; rien si le visiteur a demandé moins d'animations.
 
+Les illustrations fournies par Onlineformapro ont leurs composants, dans `marque.css` : sur Outils
+IA, trois vignettes légendées en haut (comme sur les planches de la marque) sous FastFormation
+et sous RolePlay IA ; sur LMS, le chapeau « Côté apprenant » dans un panneau clair où une main
+tend la tablette OnlineCompétences, et la jauge « 76 % » qui se pose sur le reporting ; sur le
+Catalogue, le parcours en trois étapes (positionnement, formation individualisée, évaluation
+finale, dont les barres montent à l'arrivée) ; sur LMS et Démo, les 48 logos clients en deux
+onglets (« Des clients de tout horizon », « Éducation et formation », au clic ou aux flèches du
+clavier ; la grille insérée par `commun.py` à la place du repère `<!--LOGOS-->`) ; sur Contact,
+une photo sous « Votre demande ». Sur téléphone, vignettes et étapes défilent au doigt.
+
 Les changements de fond du modèle s'appliquent partout : toute la page passe du blanc au
 pierre ou au noir quand une section marquée `data-fond` franchit 40 % de la hauteur de
 l'écran (`pages.js`), et son titre passe en blanc sur le noir. Pierre : références et
@@ -292,12 +302,12 @@ Outils IA, la solution globale sur la page Démo.
 
 | Page | Contenu |
 |---|---|
-| `lms.html` | ouverture claire et centrée, le montage des écrans en grand ; Saint-Gobain et chiffres ; côté administration (prise en main avec OnlineManager en pleine largeur, analyse des données, marque blanche) ; côté apprenant (OnlineCompétences, Lisy, outils) ; références ; témoignage France Education International ; spécifications techniques ; appel final |
-| `outils-ia.html` | photo d'ouverture ; « La puissance de l'IA… » ; un bloc par outil (visuel en grand, carte de texte, quatre atouts), RolePlay IA sur fond noir ; « Innover pour l'équité » ; appel final. Ancres `#fastformation`, `#fastquiz`, `#learning-podcast`, `#roleplay` |
-| `catalogue.html` | ouverture en pleine page ; toutes les catégories (la nouveauté Google et sa vidéo en 16:9, puis les familles en cartes d'article) ; bloc crème sur photo voilée : témoignage SNCF et chiffres ; pédagogie (la grande image en pleine colonne) ; appel final |
+| `lms.html` | ouverture claire et centrée, le montage des écrans en grand ; Saint-Gobain et chiffres ; côté administration (prise en main avec OnlineManager en pleine largeur, analyse des données avec la jauge 76 %, marque blanche) ; côté apprenant (panneau avec la tablette OnlineCompétences, Lisy, outils) ; références (48 logos en deux onglets, et les autres noms du site officiel) ; témoignage France Education International ; spécifications techniques ; appel final |
+| `outils-ia.html` | photo d'ouverture ; « La puissance de l'IA… » ; un bloc par outil (visuel en grand, carte de texte, trois vignettes légendées pour FastFormation et RolePlay IA, quatre atouts), RolePlay IA sur fond noir ; « Innover pour l'équité » ; appel final. Ancres `#fastformation`, `#fastquiz`, `#learning-podcast`, `#roleplay` |
+| `catalogue.html` | ouverture en pleine page ; toutes les catégories (la nouveauté Google et sa vidéo en 16:9, puis les familles en cartes d'article) ; bloc crème sur photo voilée : témoignage SNCF et chiffres ; pédagogie (la grande image en pleine colonne) ; parcours en trois étapes, du positionnement à l'attestation ; appel final |
 | `blog.html` | photo d'ouverture ; les 9 derniers articles du blog officiel, filtrables par catégorie ; l'inscription à la lettre |
-| `demo.html` | réservation de 30 min par l'agenda Calendly, comme sur le site actuel ; la solution globale ; témoignages |
-| `contact.html` | titre, trois cartes (e-mail, démonstration, téléphone), formulaire (champs du formulaire actuel), la société en questions |
+| `demo.html` | réservation de 30 min par l'agenda Calendly, comme sur le site actuel ; la solution globale ; les logos clients et les témoignages |
+| `contact.html` | titre, trois cartes (e-mail, démonstration, téléphone), formulaire (champs du formulaire actuel, une photo à gauche), la société en questions |
 | `article-lms.html` | la lecture d'un article, ouverte depuis la première carte du blog : « Les 10 fonctionnalités indispensables d'un LMS » (Eva Guerrin, 23 septembre 2026), texte intégral repris de l'article officiel ; catégorie, date, temps de lecture (calculé, 200 mots par minute), chapeau, sujets, grande image ; sommaire et partage qui restent à l'écran, la partie lue en gras ; les trois articles que le blog propose ensuite |
 
 Textes, chiffres et coordonnées repris du site officiel ; le chiffre des apprenants est celui

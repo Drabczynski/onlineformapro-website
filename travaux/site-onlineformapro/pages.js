@@ -114,3 +114,24 @@ for (const f of document.querySelectorAll('form[data-maquette]')) {
     m.innerHTML = `Maquette : ce formulaire n’envoie encore rien. En attendant, utilisez <a href="${f.dataset.maquette}" style="text-decoration:underline">celui du site actuel</a>.`;
   });
 }
+
+// -------------------------------------------------------------------- onglets des logos clients
+for (const bloc of document.querySelectorAll('.logos')) {
+  const onglets = [...bloc.querySelectorAll('[role="tab"]')];
+  const choisir = (o) => {
+    for (const x of onglets) {
+      const actif = x === o;
+      x.setAttribute('aria-selected', String(actif));
+      x.tabIndex = actif ? 0 : -1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden = !actif;
+    }
+  };
+  bloc.addEventListener('click', (e) => { const o = e.target.closest('[role="tab"]'); if (o) choisir(o); });
+  bloc.addEventListener('keydown', (e) => {
+    const i = onglets.indexOf(document.activeElement);
+    if (i < 0 || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) return;
+    const o = onglets[(i + (e.key === 'ArrowRight' ? 1 : onglets.length - 1)) % onglets.length];
+    choisir(o);
+    o.focus();
+  });
+}
