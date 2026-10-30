@@ -96,26 +96,29 @@ function eteindre(el) {
 }
 
 // les cartes : dévoilées de bas en haut à l'aller, effacées vers le haut ensuite. Chaque
-// passage anime le cadre (découpe, échelle) et le contenu (opacité, position) vers leur
-// état d'arrivée. Le dévoilement démarre vite et ralentit à la fin : la carte est presque
+// passage anime le cadre (découpe, échelle, opacité) et le contenu (opacité, position) vers
+// leur état d'arrivée. Le dévoilement démarre vite et ralentit à la fin : la carte est presque
 // entière en une demi-seconde. Un passage qui en interrompt un autre repart de l'état
-// atteint ; une carte qui s'en va avant d'être entière achève de s'ouvrir en 0,3 s pendant
-// que son contenu s'efface (jamais de demi-carte).
+// atteint ; une carte qui s'en va avant d'être entière achève de s'ouvrir pendant que son
+// contenu s'efface (jamais de demi-carte). À la sortie, le cadre s'efface avec le contenu :
+// c'est lui qui porte le flou du fond, qui sinon resterait seul à l'écran puis disparaîtrait
+// d'un coup.
 const ENTREE = 'cubic-bezier(0.22, 1, 0.36, 1)', SORTIE = 'cubic-bezier(0.4, 0, 0.2, 1)';
 const corps = (c) => c.querySelector('.carte-corps, .presentation-image-corps');
-const OUVERTE = { clipPath: 'inset(0% 0% 0% 0%)', transform: 'scale(1)' }, FERMEE = { clipPath: 'inset(100% 0% 0% 0%)', transform: 'scale(1.05)' };
+const OUVERTE = { clipPath: 'inset(0% 0% 0% 0%)', transform: 'scale(1)', opacity: 1 }, FERMEE = { clipPath: 'inset(100% 0% 0% 0%)', transform: 'scale(1.05)', opacity: 1 };
+const EFFACEE = { ...OUVERTE, opacity: 0 };
 const PLEIN = { opacity: 1, transform: 'translateY(0)' }, EFFACE = { opacity: 0, transform: 'translateY(-2.5svh)' };
 const PASSAGES = {                     // le cadre, puis le contenu : [départ, arrivée, durée (ms), courbe]
   entree: [[FERMEE, OUVERTE, 1200, ENTREE], [PLEIN, PLEIN, 300, ENTREE]],
   entreeRetour: [[OUVERTE, OUVERTE, 300, ENTREE], [EFFACE, PLEIN, 1000, ENTREE]],
-  sortie: [[OUVERTE, OUVERTE, 300, ENTREE], [PLEIN, EFFACE, 800, SORTIE]],
+  sortie: [[OUVERTE, EFFACEE, 800, SORTIE], [PLEIN, EFFACE, 800, SORTIE]],
   sortieRetour: [[OUVERTE, FERMEE, 1000, SORTIE], [PLEIN, PLEIN, 300, ENTREE]],
 };
 function animerCarte(carte, sorte) {
   const c = corps(carte), animations = carte.getAnimations().concat(c.getAnimations());
   const enCours = animations.some(a => a.playState === 'running');
   const sc = getComputedStyle(carte), sb = getComputedStyle(c);
-  const atteint = [{ clipPath: sc.clipPath === 'none' ? OUVERTE.clipPath : sc.clipPath, transform: sc.transform === 'none' ? 'scale(1)' : sc.transform },
+  const atteint = [{ clipPath: sc.clipPath === 'none' ? OUVERTE.clipPath : sc.clipPath, transform: sc.transform === 'none' ? 'scale(1)' : sc.transform, opacity: +sc.opacity },
     { opacity: +sb.opacity, transform: sb.transform === 'none' ? 'translateY(0)' : sb.transform }];
   for (const a of animations) a.cancel();
   if (!anime) { carte.classList.toggle('est-visible', sorte.startsWith('entree')); return; }
