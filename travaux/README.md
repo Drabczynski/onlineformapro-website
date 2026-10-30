@@ -238,7 +238,11 @@ cartes sont un bleu nuit à peine violet (`NUIT` et les lueurs dans `monde.js`, 
 la caméra et le rendu ; `objets.js` : les objets ; `particules.js` : les nuées de
 particules. `ouverture.js` : les mesures de la page,
 le calage des stations et des modules du cube sur les textes, les apparitions, les cartes.
-`ouverture.css` : la mise en page, à l'échelle d'un écran de 1440 × 900. three.js 0.170.0 (et ses passes d'effets) et
+`ouverture.css` : la mise en page, à l'échelle d'un écran de 1440 × 900. L'en-tête est celui des
+pages (recherche « Décrivez votre projet », méga-menus, `entete.js`, `recherche.js`), en version
+nuit : un verre sombre sur la 3D, qui ne passe en blanc que menu ou méga-menu ouvert ; ses règles
+de base sont dans `entete.css` (celles que les pages tiennent de `pages.css`), le reste dans
+`marque.css`, comme sur les pages. three.js 0.170.0 (et ses passes d'effets) et
 Lenis 1.3.23 sont copiés dans `vendor/` (licences MIT jointes) et chargés par une importmap :
 rien ne dépend d'un CDN. La 3D se charge à part, en parallèle : le titre d'accueil apparaît
 presque aussitôt, puis le monde se crée (la préparation des nuanceurs occupe le navigateur
@@ -272,8 +276,8 @@ Par-dessus, sur toutes les pages, `marque.css` donne l'identité d'Onlineformapr
 très foncé `#2a2a2c` au lieu du noir pur pour les titres, les boutons et les cartes sombres ;
 des titres d'une graisse à peine plus forte (400 pour les plus grands, 480 pour les autres ;
 Geist chargée en police variable) ; le rouge du logo, adouci (`#d4486c`), en accent, avec
-l'accent du Ó (un biais aux bords carrés, incliné de 29,4°) devant le titre de chaque partie et
-sous la page courante du menu ; un gris presque noir `#1c1c1e` pour les passages sombres, les cartes
+l'accent du Ó (un biais aux bords carrés, incliné de 29,4°) au-dessus du titre de chaque partie,
+comme l'accent au-dessus du O, et sous la page courante du menu ; un gris presque noir `#1c1c1e` pour les passages sombres, les cartes
 d'appel et le pied de page (le bleu nuit reste propre à l'ouverture). Le pied est signé du nom
 « onlineformapro » en très grand, à peine plus clair que le fond et rogné par le bas.
 L'en-tête a trois parts : le logo et les liens à gauche, au centre exact la recherche
@@ -318,19 +322,21 @@ tend la tablette OnlineCompétences, puis le parcours en trois étapes (position
 finale, dont les barres montent à l'arrivée) ; sur LMS et Démo, les 48 logos clients en deux
 onglets (« Des clients de tout horizon », « Éducation et formation », au clic ou aux flèches du
 clavier ; la grille insérée par `commun.py` à la place du repère `<!--LOGOS-->`) ; sur Contact,
-une photo sous « Votre demande ». Sur téléphone, vignettes et étapes défilent au doigt.
+une photo sous « Votre demande », et derrière le titre, les rayons de l'ouverture sur fond blanc
+(une gerbe de lignes aux couleurs des routes lumineuses, où filent des éclats de lumière). Sur
+téléphone, vignettes et étapes défilent au doigt.
 
 Les changements de fond du modèle s'appliquent partout : toute la page passe du blanc au
 pierre ou au noir quand une section marquée `data-fond` franchit 40 % de la hauteur de
 l'écran (`pages.js`), et son titre passe en blanc sur le noir. Pierre : références et
-témoignage du LMS, lettre du blog. Sombre (gris presque noir) : RolePlay IA sur la page
-Outils IA, la solution globale sur la page Démo.
+témoignage du LMS, lettre du blog. Sombre (gris presque noir) : la solution globale sur la
+page Démo.
 
 | Page | Contenu |
 |---|---|
 | `lms.html` | ouverture claire et centrée, le montage des écrans en grand ; Saint-Gobain et chiffres ; côté administration (prise en main avec OnlineManager en pleine largeur, analyse des données, marque blanche) ; côté apprenant (panneau avec la tablette OnlineCompétences, Lisy, outils) ; parcours en trois étapes, du positionnement à l'attestation ; références (48 logos en deux onglets, et les autres noms du site officiel) ; témoignage France Education International ; spécifications techniques ; appel final |
-| `outils-ia.html` | photo d'ouverture ; « La puissance de l'IA… » ; un bloc par outil (visuel en grand, carte de texte, trois vignettes légendées pour FastFormation et RolePlay IA, quatre atouts), RolePlay IA sur fond noir ; « Innover pour l'équité » ; appel final. Ancres `#fastformation`, `#fastquiz`, `#learning-podcast`, `#roleplay` |
-| `catalogue.html` | ouverture en pleine page ; toutes les catégories (la nouveauté Google et sa vidéo en 16:9, puis les familles en cartes d'article) ; bloc crème sur photo voilée : témoignage SNCF et chiffres ; pédagogie (la grande image en pleine colonne) ; appel final |
+| `outils-ia.html` | photo d'ouverture ; « La puissance de l'IA… » ; un bloc par outil (visuel en grand, carte de texte, trois vignettes légendées pour FastFormation et RolePlay IA, quatre atouts) ; appel final. Ancres `#fastformation`, `#fastquiz`, `#learning-podcast`, `#roleplay` |
+| `catalogue.html` | ouverture en pleine page ; toutes les catégories (la nouveauté Google et sa vidéo en 16:9, puis les familles en cartes d'article) ; bloc pierre : témoignage SNCF et chiffres ; pédagogie (la grande image en pleine colonne) ; appel final |
 | `blog.html` | photo d'ouverture ; les 9 derniers articles du blog officiel, filtrables par catégorie ; l'inscription à la lettre |
 | `demo.html` | réservation de 30 min par l'agenda Calendly, comme sur le site actuel ; la solution globale ; les logos clients et les témoignages |
 | `contact.html` | titre, trois cartes (e-mail, démonstration, téléphone), formulaire (champs du formulaire actuel, une photo à gauche), la société en questions |

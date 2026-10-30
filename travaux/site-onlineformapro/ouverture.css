@@ -38,20 +38,13 @@ h1, h2, h3 { font-family: var(--titre); }
 }
 
 /* ------------------------------------------------------------------ en-tête */
-.entete { position: fixed; z-index: 20; inset: var(--m) var(--m) auto var(--m); height: calc(50 * var(--u)); display: flex; gap: calc(10 * var(--u)); pointer-events: none; }
-.entete > * { pointer-events: auto; }
-.entete-marque { width: calc(250 * var(--u)); height: 100%; display: flex; align-items: center; padding-inline: calc(15 * var(--u)); gap: calc(15 * var(--u)); }
-.entete-logo img { width: calc(110 * var(--u)); min-width: 70px; }
-.entete-separation { align-self: stretch; width: 1px; background: var(--trait); margin-inline-start: auto; }
-.menu { position: relative; }
-.menu summary { list-style: none; cursor: pointer; width: calc(40 * var(--u)); min-width: 28px; height: calc(50 * var(--u)); display: grid; align-content: center; gap: 5px; justify-items: center; }
-.menu summary::-webkit-details-marker { display: none; }
-.menu summary span { width: 18px; height: 1px; background: #fff; }
-.menu nav { position: absolute; left: calc(-15 * var(--u)); top: calc(60 * var(--u)); min-width: 220px; padding: 10px; border-radius: 5px; background: rgba(var(--marine), .85); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); }
-.menu ul { list-style: none; margin: 0; padding: 0; }
-.menu a { display: block; padding: 9px 10px; border-radius: 4px; font-size: 14px; }
-.menu a:hover { background: rgba(255, 255, 255, .1); }
-.entete-appel { width: calc(206 * var(--u)); height: 100%; background: var(--accent); border-radius: 5px; padding: 0 calc(14 * var(--u)); display: flex; align-items: center; justify-content: center; gap: calc(10 * var(--u)); font-size: max(11px, calc(13 * var(--u))); }
+/* celui des pages (entete.css, marque.css, entete.js), en version nuit : un verre sombre sur la
+   3D, le texte blanc ; il ne passe en blanc que menu ou méga-menu ouvert */
+.entete--nuit:not(.est-defile)::before { opacity: 1; background: rgba(18, 8, 54, .4); box-shadow: 0 1px 0 rgba(255, 255, 255, .08); }
+.entete--nuit { z-index: 30; }
+/* l'ouverture redéfinit l'encre en blanc : l'en-tête, son panneau et ses méga-menus reprennent
+   les couleurs, la police et le rythme des pages */
+.entete { --encre: #2a2a2c; --doux: rgba(0, 0, 0, .6); --courbe: cubic-bezier(.2, .7, .2, 1); --titre: Geist, "Helvetica Neue", Arial, sans-serif; color-scheme: light; font-size: 15px; line-height: 1.4; }
 
 /* ------------------------------------------------------------------ l'expérience */
 .experience { display: grid; }
@@ -79,12 +72,12 @@ h1, h2, h3 { font-family: var(--titre); }
 .accent { color: var(--accent); }
 
 /* l'ouverture : la pastille et le titre en haut à droite, l'encadré en bas à gauche */
-.accueil-pastille { position: absolute; right: var(--m); top: var(--m); display: flex; align-items: center; gap: calc(10 * var(--u)); height: calc(36 * var(--u)); min-height: 28px; padding: 0 calc(16 * var(--u)) 0 calc(14 * var(--u)); border: 1px solid rgba(255, 255, 255, .16); border-radius: 999px; background: rgba(var(--marine), .35); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); font-size: max(11px, calc(13 * var(--u))); color: rgba(255, 255, 255, .88); white-space: nowrap; }
+.accueil-pastille { position: absolute; right: var(--m); top: calc(72px + var(--m)); display: flex; align-items: center; gap: calc(10 * var(--u)); height: calc(36 * var(--u)); min-height: 28px; padding: 0 calc(16 * var(--u)) 0 calc(14 * var(--u)); border: 1px solid rgba(255, 255, 255, .16); border-radius: 999px; background: rgba(var(--marine), .35); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); font-size: max(11px, calc(13 * var(--u))); color: rgba(255, 255, 255, .88); white-space: nowrap; }
 .accueil-pastille-point { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(255, 90, 120, .18), 0 0 12px rgba(255, 90, 120, .8); animation: pouls 2.4s ease-in-out infinite; }
 @keyframes pouls { 50% { box-shadow: 0 0 0 7px rgba(255, 90, 120, 0), 0 0 18px rgba(255, 90, 120, .9); } }
 /* le titre : appuyé, serré, en blanc et l'accent en rouge ; il s'allume mot par mot (une
    lettre par élément casserait le crénage et l'écarterait) */
-.accueil-titre { position: absolute; right: var(--m); top: calc(var(--m) + 56 * var(--u)); width: calc(1000 * var(--u)); text-align: right; font-weight: 500; font-size: calc(104 * var(--u)); line-height: calc(96 * var(--u)); letter-spacing: -.055em; }
+.accueil-titre { position: absolute; right: var(--m); top: calc(72px + var(--m) + 46 * var(--u)); width: calc(1000 * var(--u)); text-align: right; font-weight: 500; font-size: calc(104 * var(--u)); line-height: calc(96 * var(--u)); letter-spacing: -.055em; }
 .accueil-encadre { position: absolute; left: var(--m); bottom: var(--m); width: calc(467 * var(--u)); }
 .accueil-encadre-corps { position: relative; padding: var(--m); }
 .accueil-encadre .chapeau { padding-bottom: calc(100 * var(--u)); padding-inline-end: calc(10 * var(--u)); }
@@ -158,10 +151,8 @@ h1, h2, h3 { font-family: var(--titre); }
 /* ------------------------------------------------------------------ petits écrans */
 @media (max-width: 979px) {
   :root { --u: calc(100vw / 760); }
-  .entete-marque { width: auto; }
-  .entete-appel { width: auto; min-width: 150px; }
-  .accueil-pastille { right: auto; left: var(--m); top: calc(var(--m) + 66px); }
-  .accueil-titre { left: var(--m); right: var(--m); top: calc(var(--m) + 112px); width: auto; text-align: left; font-size: calc(80 * var(--u)); line-height: calc(76 * var(--u)); }
+  .accueil-pastille { right: auto; left: var(--m); top: calc(var(--m) + 70px); }
+  .accueil-titre { left: var(--m); right: var(--m); top: calc(var(--m) + 116px); width: auto; text-align: left; font-size: calc(80 * var(--u)); line-height: calc(76 * var(--u)); }
   .accueil-encadre { right: var(--m); width: auto; }
   .accueil-encadre .chapeau { font-size: 17px; line-height: 1.3; padding-bottom: 60px; }
   .presentation { margin: 0 var(--m); width: auto; padding: 0; }

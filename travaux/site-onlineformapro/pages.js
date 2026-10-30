@@ -1,35 +1,8 @@
-// Les pages du site : menu sur téléphone, en-tête transparent au-dessus d'une photo
-// d'ouverture, titres d'ouverture découpés en mots, changements de fond au défilement (comme
-// le modèle Vectura), lignes « gestion » qui s'allument au centre de l'écran, apparitions,
-// onglets du blog, formulaires (maquette : rien n'est envoyé).
+// Les pages du site (l'en-tête est dans entete.js) : titres d'ouverture découpés en mots,
+// changements de fond au défilement (comme le modèle Vectura), lignes « gestion » qui
+// s'allument au centre de l'écran, apparitions, onglets du blog et des logos, accordéons,
+// formulaires (maquette : rien n'est envoyé).
 document.documentElement.classList.add('js');
-
-// -------------------------------------------------------------------- en-tête
-const entete = document.querySelector('.entete');
-const burger = document.querySelector('.entete-burger');
-if (burger) burger.addEventListener('click', () => {
-  const ouvert = entete.classList.toggle('menu-ouvert');
-  burger.setAttribute('aria-expanded', String(ouvert));
-  majEntete();
-});
-// les méga-menus s'ouvrent au survol (marque.css) ; au-dessus d'une photo, l'en-tête prend alors
-// son fond clair, comme quand le menu est ouvert ; un clic sur l'un de leurs liens les replie jusqu'à ce que la souris en sorte
-// (une ancre de la même page reste visible)
-let megaOuvert = false;
-function majEntete() { if (entete && entete.classList.contains('entete--photo')) entete.classList.toggle('est-defile', scrollY > 24 || megaOuvert || entete.classList.contains('menu-ouvert')); }
-for (const menu of document.querySelectorAll('.entete-menu')) {
-  const ouvrir = (oui) => { megaOuvert = oui; if (entete) entete.classList.toggle('mega-actif', oui); document.body.classList.toggle('mega-ouverte', oui); majEntete(); };
-  menu.addEventListener('mouseenter', () => ouvrir(true));
-  menu.addEventListener('mouseleave', () => { ouvrir(false); menu.classList.remove('mega-repli'); });
-  menu.addEventListener('focusin', () => ouvrir(true));
-  menu.addEventListener('focusout', (e) => { if (!menu.contains(e.relatedTarget)) ouvrir(false); });
-  menu.addEventListener('click', (e) => { if (e.target.closest('.mega a')) { menu.classList.add('mega-repli'); document.activeElement.blur(); ouvrir(false); } });
-  menu.addEventListener('keydown', (e) => { if (e.key === 'Escape') { menu.classList.add('mega-repli'); document.activeElement.blur(); ouvrir(false); } });
-}
-if (entete && entete.classList.contains('entete--photo')) {
-  addEventListener('scroll', majEntete, { passive: true });
-  majEntete();
-}
 
 // -------------------------------------------------------------------- titres d'ouverture
 // découpés en mots (les espaces insécables gardent leurs groupes ensemble), que marque.css

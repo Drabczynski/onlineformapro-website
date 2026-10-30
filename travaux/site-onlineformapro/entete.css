@@ -1,0 +1,40 @@
+/* L'en-tête des pages, repris sur l'ouverture 3D (index.html) : ses règles de base, celles que
+   les pages tiennent de pages.css ; marque.css, chargée ensuite, en fait l'en-tête complet
+   (recherche « Décrivez votre projet », méga-menus), et ouverture.css sa version nuit. */
+:root {
+  --blanc: #ffffff;
+  --pierre: #f2ece8;
+  --texte: #222222;
+  --doux: rgba(0, 0, 0, .6);
+  --titre: Geist, "Helvetica Neue", Arial, sans-serif;
+  --mono: "Chivo Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --rayon: 16px;
+  --courbe: cubic-bezier(.2, .7, .2, 1);
+}
+
+/* boutons */
+.bouton { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; padding: 0 34px; border-radius: 64px; border: 0; font-size: 19px; line-height: 1; letter-spacing: -.01em; cursor: pointer; transition: background .3s, color .3s, transform .3s var(--courbe); white-space: nowrap; }
+.bouton:hover { transform: translateY(-1px); }
+.bouton-noir { background: var(--encre); color: #fff; }
+
+/* l'en-tête */
+.entete { position: sticky; top: 0; z-index: 30; height: 72px; display: flex; align-items: center; gap: 64px; padding: 0 max(40px, calc((100% - 1660px) / 2)); background: #fff; color: var(--texte); font-family: var(--titre); letter-spacing: -.01em; transition: background-color .3s, color .3s; }
+.entete-logo img { height: 30px; width: auto; }
+.entete-logo .logo-clair { display: none; }
+.entete-nav { flex: 1; display: flex; align-items: center; font-size: 16px; line-height: 1.4; letter-spacing: -.01em; }
+.entete-nav a { padding: 12px 12px; transition: opacity .2s; }
+.entete .bouton-moyen { min-height: 50px; padding: 0 32px; font-size: 17px; letter-spacing: 0; }
+.entete-burger { display: none; margin-left: auto; width: 44px; height: 44px; border: 0; background: none; padding: 0; cursor: pointer; color: inherit; }
+.entete-burger span { display: block; width: 22px; height: 1.5px; margin: 6px auto; background: currentColor; transition: transform .3s; }
+.entete--photo { position: fixed; left: 0; right: 0; background: transparent; color: #fff; }
+.entete--photo .logo-sombre { display: none; }
+.entete--photo .logo-clair { display: block; }
+.entete--photo.est-defile { background: #fff; color: var(--texte); }
+.entete--photo.est-defile .logo-sombre { display: block; }
+.entete--photo.est-defile .logo-clair { display: none; }
+@media (max-width: 860px) {
+  .entete { gap: 16px; padding: 0 20px; }
+  .entete-burger { display: block; }
+  .entete.menu-ouvert .logo-sombre { display: block; }
+  .entete.menu-ouvert .logo-clair { display: none; }
+}
