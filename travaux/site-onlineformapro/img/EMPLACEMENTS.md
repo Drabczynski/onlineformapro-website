@@ -98,7 +98,7 @@ Hors des cartes :
 Démo : `photos/ordinateur-concentree.webp` (fournie, 464 px, affichée à sa taille sous la liste). Possibles aussi : les photos des
 auteurs des témoignages (Jacky Portal, ESTC Marseille ; Lydia David Duluc, Banque Populaire). Sous « Ils nous font
 confiance », les mêmes logos que sur LMS (`logos/*.webp`, deux onglets).
-Contact : en ouverture, `site/contact-batiment.webp` (construite : le bâtiment de la R&D de l'ouverture 3D, capture de la scène à 2880 px réduite à 2400 × 1500 ; à refaire si le bâtiment change). Puis `photos/conseillere.webp` (fournie, une femme en pull orange qui explique, 588 × 660), sous la liste
+Contact : en ouverture, aucune image (l'anneau de particules est dessiné par `nuee.js`). Puis `photos/conseillere.webp` (fournie, une femme en pull orange qui explique, 588 × 660), sous la liste
 « Votre demande », recadrée en 6:5.
 
 ## Disponibles sur le site, pas encore utilisées
