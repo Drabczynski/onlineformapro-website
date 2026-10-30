@@ -89,12 +89,12 @@ h1, h2, h3 { font-family: var(--titre); }
 .presentation-etiquette { font-size: max(11px, calc(13 * var(--u))); font-weight: 400; line-height: 1.25; margin-bottom: calc(10 * var(--u)); }
 .deco { height: calc(10 * var(--u)); border: 1px solid var(--trait); border-bottom: 0; border-radius: 4px 4px 0 0; }
 .presentation .moyen { margin-top: calc(40 * var(--u)); }
-/* en face, à gauche, une grande image de la plateforme sur tous les écrans, dévoilée comme les
-   cartes (de bas en haut) et effacée avec le texte */
+/* en face, à gauche, une grande photo (bords francs), dévoilée comme les cartes (de bas en
+   haut) et effacée avec le texte */
 .colle-centre:has(.presentation-image) { grid-template-columns: 1fr; }
 .colle-centre:has(.presentation-image) .presentation { margin-inline-start: calc(770 * var(--u)); width: calc(650 * var(--u)); }
 .presentation-image { position: absolute; left: var(--m); top: 50%; width: calc(710 * var(--u)); margin: 0; translate: 0 -50%; will-change: clip-path, transform; }
-.presentation-image img { width: 100%; height: auto; filter: drop-shadow(0 calc(30 * var(--u)) calc(60 * var(--u)) rgba(8, 2, 30, .55)); }
+.presentation-image img { display: block; width: 100%; height: auto; box-shadow: 0 calc(30 * var(--u)) calc(70 * var(--u)) rgba(8, 2, 30, .5); }
 
 /* les grands titres de chapitre, à gauche */
 .chapitre-titre { margin-inline-start: var(--m); width: calc(933 * var(--u)); font-size: calc(92 * var(--u)); line-height: calc(88 * var(--u)); letter-spacing: -.045em; }

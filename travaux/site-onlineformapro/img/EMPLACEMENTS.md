@@ -32,7 +32,7 @@ Hors des cartes :
 
 | Emplacement | Image | Origine | Conseil |
 |---|---|---|---|
-| Passage « 25 ans » (« Lauréate du concours… ») : grande image en face du texte, à gauche | `site/lms-appareils.webp` | fournie (iMac, MacBook, iPad, iPhone, détourés) | une version de 2000 px de large serait plus nette |
+| Passage « 25 ans » (« Lauréate du concours… ») : grande photo en face du texte, à gauche (3:2) | `photos/ordinateur-sourire.webp` | fournie (une apprenante souriante à son ordinateur, 2000 px ; aussi sur Outils IA) | une photo propre à ce passage : l'équipe, les locaux, un moment de la société |
 
 ## LMS (`lms.html`)
 

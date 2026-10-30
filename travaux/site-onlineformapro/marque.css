@@ -355,15 +355,3 @@ body.fond-noir { background: var(--nuit); }
 /* sur un petit téléphone, les groupes de mots de la citation peuvent se couper */
 @media (max-width: 480px) { .intro-bloc--pierre .ensemble { white-space: normal; } }
 
-/* -------------------------------------------------------------------- les rayons (Contact) */
-/* les routes lumineuses de l'ouverture, sur fond blanc, animées par rayons.js derrière le titre :
-   rubans de fibres, comètes, poussière de particules, matrice de points et ondes, halo et éclat
-   à l'horizon ; deux canevas, le net et la lueur (floutée ici) ; un voile blanc sous le texte */
-.heros-rayons { position: relative; overflow: hidden; isolation: isolate; min-height: 640px; justify-content: center; }
-.rayons { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
-.rayons canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-.rayons-lueur { filter: blur(14px); opacity: .9; }
-.heros-rayons::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(90deg, rgba(255, 255, 255, .92), rgba(255, 255, 255, .7) 40%, rgba(255, 255, 255, 0) 66%); }
-@media (max-width: 700px) { .heros-rayons::after { background: linear-gradient(180deg, rgba(255, 255, 255, 0) 18%, rgba(255, 255, 255, .7) 42%, rgba(255, 255, 255, .85)); } }
-@media (prefers-reduced-motion: no-preference) { .heros-rayons > .rayons { animation: rayons-arrivee 1.6s ease both; } }
-@keyframes rayons-arrivee { from { opacity: 0; } }

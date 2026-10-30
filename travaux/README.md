@@ -174,9 +174,9 @@ leurs retours à la ligne choisis. Le titre d'ouverture est plus affirmé : grai
 grand, en blanc avec l'accent en rouge, sous une
 pastille « 22 millions d'apprenants · 25 ans d'innovation » ; il s'allume mot par mot, le
 découpage en lettres cassant le crénage. Au passage « 25 ans de pédagogie et d'innovation
-technologique » (« Lauréate du concours… »), une grande image de la plateforme sur tous les
-écrans (iMac, MacBook, iPad, iPhone) lui fait face, à gauche, dévoilée de bas en haut comme
-les cartes ; elle s'efface avec le texte, et le filet au-dessus du message aussi. « Demander
+technologique » (« Lauréate du concours… »), une grande photo lui fait face, à gauche, aux
+bords francs, dévoilée de bas en haut comme les cartes ; elle s'efface avec le texte, et le
+filet au-dessus du message aussi. « Demander
 une démonstration », sur deux lignes, reste affiché jusqu'aux cartes de la démo.
 
 Les objets, d'après les croquis, sont dessinés comme le camion du modèle : des traits de
@@ -325,14 +325,8 @@ tend la tablette OnlineCompétences, puis le parcours en trois étapes (position
 finale, dont les barres montent à l'arrivée) ; sur LMS et Démo, les 48 logos clients en deux
 onglets (« Des clients de tout horizon », « Éducation et formation », au clic ou aux flèches du
 clavier ; la grille insérée par `commun.py` à la place du repère `<!--LOGOS-->`) ; sur Contact,
-une photo sous « Votre demande », et derrière le titre, les routes lumineuses de l'ouverture sur
-fond blanc (`rayons.js`, deux canevas 2D, rien à charger) : quatre rubans de fibres fines aux
-couleurs de l'intro (bleu à peine violet, lavande, rose, orangé) qui balaient l'écran depuis
-les bords et filent vers un point de l'horizon, à droite, dans un halo lumineux ; des comètes
-qui les parcourent, avec leur lueur ; une poussière de particules carrées qui dérive vers
-nous en scintillant ; au sol, une matrice de points que parcourent des ondes ; à l'horizon un
-éclat horizontal. Un voile blanc garde le titre lisible ; la scène suit un peu la souris,
-s'arrête hors de l'écran et reste figée si le visiteur a demandé moins d'animations. Sur
+une photo sous « Votre demande » ; l'ouverture de Contact reste sobre, en attendant une idée
+qui marie vraiment l'intro et les pages (les rayons essayés n'ont pas convaincu). Sur
 téléphone, vignettes et étapes défilent au doigt.
 
 Les changements de fond du modèle s'appliquent partout : toute la page passe du blanc au
