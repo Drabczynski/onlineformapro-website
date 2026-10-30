@@ -1,0 +1,8 @@
+{
+  "name": "assistant-onlineformapro",
+  "private": true,
+  "type": "module",
+  "description": "L'assistant IA de la recherche du site : sert les pages et répond aux questions avec Claude",
+  "scripts": { "start": "node serveur.mjs" },
+  "dependencies": { "@anthropic-ai/sdk": "^1.3.0" }
+}

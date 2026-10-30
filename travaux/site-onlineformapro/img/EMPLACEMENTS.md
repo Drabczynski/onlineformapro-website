@@ -35,7 +35,6 @@ Les cartes à droite de l'écran : image en haut, 583 × 500 environ (rapport 7:
 | Ouverture (sous le titre, sur fond blanc) | `site/lms-appareils.webp` | fournie (iMac, MacBook, iPad, iPhone, détourés) | une version de 2000 px de large serait plus nette |
 | Prise en main (pleine largeur, au-dessus du texte) | `site/lms-onlinemanager.webp` | fournie (OnlineManager sur iMac et MacBook) | — |
 | Analyse des données | `cartes/reporting.webp` | fournie | — |
-| Analyse des données : la jauge posée en bas à droite | `site/progression-76.webp` | fournie (la carte « 76 % », 588 × 660) | — |
 | Marque blanche | `cartes/marque-blanche.webp` | fournie | — |
 | Côté apprenant : le panneau du chapeau, la tablette à droite | `site/onlinecompetences-tablette.webp` | fournie (une main tient la tablette OnlineCompétences, détourée, 1134 × 1103) | — |
 | Lisy, le coach IA (tuile) | `site/lms-lisy.webp` | fournie | une version de 1400 px serait plus nette |
@@ -97,6 +96,9 @@ Contact : `photos/conseillere.webp` (fournie, une femme en pull orange qui expli
 « Votre demande », recadrée en 6:5.
 
 ## Disponibles sur le site, pas encore utilisées
+
+Fournie, retirée du reporting à la demande d'Onlineformapro : `site/progression-76.webp` (la carte « 76 % »,
+588 × 660), gardée dans le dossier.
 
 Fournie et retirée de la page LMS : `site/lms-apprenant.webp` (OnlineCompétences sur trois appareils), remplacée
 par la tablette en main, plus nette ; gardée dans le dossier.

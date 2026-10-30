@@ -279,13 +279,24 @@ L'en-tête a trois parts : le logo et les liens à gauche, au centre exact la re
 « Décrivez votre projet » (`recherche.js`), à droite le bouton de démo rouge. Un clic sur la
 recherche, ou Ctrl K (⌘ K sur Mac), la déploie : le champ s'élargit, les liens s'effacent, la
 page se voile, le panneau se déplie depuis le champ et son contenu arrive en cascade (accès
-rapides, suggestions illustrées, exemples de demandes). En tapant, les accès se filtrent et l'on peut demander à l'assistant IA, qui répond et
-oriente vers les pages qui conviennent (liens), la conversation continuant dans le panneau.
-Dans la maquette, l'assistant répond à partir des textes des pages, en reconnaissant le sujet
-de la demande à ses mots (outils auteur, quiz, jeux de rôle, LMS, catalogue, sur-mesure, démo,
-contact…) ; pour le brancher sur une vraie IA, servir un point d'accès et l'indiquer dans
-`<html data-assistant="…">` (il reçoit les messages et rend une réponse et des liens) : en cas
-d'échec, l'assistant de la maquette prend le relais. Sous 1360 px, les liens passent dans le
+rapides, suggestions illustrées, exemples de demandes). En tapant, les accès se filtrent et l'on peut demander à l'assistant IA. La conversation
+continue dans le panneau, une réponse à la fois : à chaque question, l'échange précédent
+s'efface vers le haut et la réponse, en grand, apparaît mot à mot ; dessous, discrets, un lien
+« Découvrir… » choisi selon la demande (la démonstration seulement quand on parle de tarifs ou
+d'essai) et deux relances. Dans la maquette, l'assistant répond à partir des textes des pages :
+il reconnaît le sujet d'une demande à ses mots, suit le fil (« et sur mobile ? » après une
+question sur le LMS parle du LMS ; « dites-m'en plus » donne la précision suivante), ne répète
+pas ce qu'il a déjà dit et, à égalité, privilégie le sujet de la page où l'on est. Pour une
+vraie conversation, `travaux/assistant/` le branche sur Claude : `npm install`, puis
+`ANTHROPIC_API_KEY=… npm start` sert le site sur http://localhost:8787 avec le point d'accès
+`/api/assistant` (les pages reçoivent `data-assistant` à la volée). Claude (Opus 5.5, effort
+faible pour des réponses rapides) répond à partir du texte des pages, relu au démarrage, en une à
+trois phrases, sans rien inventer ; il choisit le lien parmi les pages du site (tout autre lien
+est écarté) et propose deux relances. Le texte des pages reste en cache d'une question à
+l'autre ; si un filtre de sécurité décline une demande, un autre modèle la reprend (`fallbacks:
+"default"`). Sans clé, ou en cas d'échec, l'assistant de la maquette prend le relais. Pour la
+mise en ligne, servir ce point d'accès (ou son équivalent) derrière le site, avec une limite de
+débit. Sous 1360 px, les liens passent dans le
 menu ; sur téléphone, le logo, la recherche et le menu. À l'arrivée sur une page, la photo d'ouverture se pose (zoom arrière en
 s'éclaircissant), le titre monte mot par mot (découpé par `pages.js`), puis l'étiquette, le
 texte et les boutons ; rien si le visiteur a demandé moins d'animations.
@@ -293,7 +304,7 @@ texte et les boutons ; rien si le visiteur a demandé moins d'animations.
 Les illustrations fournies par Onlineformapro ont leurs composants, dans `marque.css` : sur Outils
 IA, trois vignettes légendées en haut (comme sur les planches de la marque) sous FastFormation
 et sous RolePlay IA ; sur LMS, le chapeau « Côté apprenant » dans un panneau clair où une main
-tend la tablette OnlineCompétences, et la jauge « 76 % » qui se pose sur le reporting ; sur le
+tend la tablette OnlineCompétences ; sur le
 Catalogue, le parcours en trois étapes (positionnement, formation individualisée, évaluation
 finale, dont les barres montent à l'arrivée) ; sur LMS et Démo, les 48 logos clients en deux
 onglets (« Des clients de tout horizon », « Éducation et formation », au clic ou aux flèches du
@@ -308,7 +319,7 @@ Outils IA, la solution globale sur la page Démo.
 
 | Page | Contenu |
 |---|---|
-| `lms.html` | ouverture claire et centrée, le montage des écrans en grand ; Saint-Gobain et chiffres ; côté administration (prise en main avec OnlineManager en pleine largeur, analyse des données avec la jauge 76 %, marque blanche) ; côté apprenant (panneau avec la tablette OnlineCompétences, Lisy, outils) ; références (48 logos en deux onglets, et les autres noms du site officiel) ; témoignage France Education International ; spécifications techniques ; appel final |
+| `lms.html` | ouverture claire et centrée, le montage des écrans en grand ; Saint-Gobain et chiffres ; côté administration (prise en main avec OnlineManager en pleine largeur, analyse des données, marque blanche) ; côté apprenant (panneau avec la tablette OnlineCompétences, Lisy, outils) ; références (48 logos en deux onglets, et les autres noms du site officiel) ; témoignage France Education International ; spécifications techniques ; appel final |
 | `outils-ia.html` | photo d'ouverture ; « La puissance de l'IA… » ; un bloc par outil (visuel en grand, carte de texte, trois vignettes légendées pour FastFormation et RolePlay IA, quatre atouts), RolePlay IA sur fond noir ; « Innover pour l'équité » ; appel final. Ancres `#fastformation`, `#fastquiz`, `#learning-podcast`, `#roleplay` |
 | `catalogue.html` | ouverture en pleine page ; toutes les catégories (la nouveauté Google et sa vidéo en 16:9, puis les familles en cartes d'article) ; bloc crème sur photo voilée : témoignage SNCF et chiffres ; pédagogie (la grande image en pleine colonne) ; parcours en trois étapes, du positionnement à l'attestation ; appel final |
 | `blog.html` | photo d'ouverture ; les 9 derniers articles du blog officiel, filtrables par catégorie ; l'inscription à la lettre |
