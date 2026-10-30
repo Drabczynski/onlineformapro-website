@@ -235,9 +235,10 @@ demi-seconde) ; une carte interrompue repart de l'état atteint, et celle qui s'
 d'être entière achève de s'ouvrir en 0,3 s pendant qu'elle s'efface. Leur fond est dense
 plutôt que flouté, le flou recalculé sur la 3D en mouvement faisant sauter les images. Textes des cartes repris du site officiel ; celui de « Marque
 blanche » est rédigé d'après la demande et la page du LMS (entreprise étendue), à valider.
-Chaque carte a pour titre une promesse (« De la ressource au module, en quelques minutes »,
-« Vos quiz générés en quelques secondes »…), tirée de sa description ou des pages du site,
-sans chiffre nouveau ; le nom de l'outil passe en étiquette au-dessus. Promesses à valider.
+Chaque carte a pour titre une promesse (« Générez vos formations à partir de vos documents
+pédagogiques », « Vos quiz générés en quelques secondes », « Créez des mises en situation
+pédagogiques pour vos apprenants »…), tirée de sa description ou des pages du site, ou donnée
+par Onlineformapro, sans chiffre nouveau ; le nom de l'outil passe en étiquette au-dessus.
 
 Le code et les tracés sont les nôtres ; la mécanique et les réglages sont relevés sur le
 modèle : hauteurs des blocs en svh, caméra quasi arrêtée (5 % d'avance) pendant les cartes
