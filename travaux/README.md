@@ -269,9 +269,17 @@ l'accent du Ó (un trait arrondi incliné de 29,4°) devant les étiquettes et s
 courante du menu ; un gris presque noir `#1c1c1e` pour les passages sombres, les cartes
 d'appel et le pied de page (le bleu nuit reste propre à l'ouverture). Le pied est signé du nom
 « onlineformapro » en très grand, à peine plus clair que le fond et rogné par le bas.
-L'en-tête est une capsule flottante en verre dépoli (sombre sur les photos d'ouverture, claire
-dès qu'on défile) : menu en pastilles, page courante marquée d'un point rouge, bouton de démo
-rouge avec sa flèche. À l'arrivée sur une page, la photo d'ouverture se pose (zoom arrière en
+L'en-tête a trois parts : le logo et les liens à gauche, au centre la recherche « Décrivez
+votre projet » (`recherche.js`), à droite le bouton de démo rouge. Un clic sur la recherche, ou
+Ctrl K (⌘ K sur Mac), ouvre un panneau : accès rapides, suggestions illustrées, exemples de
+demandes. En tapant, les accès se filtrent et l'on peut demander à l'assistant IA, qui répond et
+oriente vers les pages qui conviennent (liens), la conversation continuant dans le panneau.
+Dans la maquette, l'assistant répond à partir des textes des pages, en reconnaissant le sujet
+de la demande à ses mots (outils auteur, quiz, jeux de rôle, LMS, catalogue, sur-mesure, démo,
+contact…) ; pour le brancher sur une vraie IA, servir un point d'accès et l'indiquer dans
+`<html data-assistant="…">` (il reçoit les messages et rend une réponse et des liens) : en cas
+d'échec, l'assistant de la maquette prend le relais. Sous 1180 px, les liens passent dans le
+menu ; sur téléphone, le logo, la recherche et le menu. À l'arrivée sur une page, la photo d'ouverture se pose (zoom arrière en
 s'éclaircissant), le titre monte mot par mot (découpé par `pages.js`), puis l'étiquette, le
 texte et les boutons ; rien si le visiteur a demandé moins d'animations.
 

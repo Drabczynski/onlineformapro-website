@@ -14,24 +14,51 @@
 <link rel="stylesheet" href="marque.css">
 <script>document.documentElement.classList.add('js')</script>
 <script src="pages.js" defer></script>
+<script src="recherche.js" defer></script>
 </head>
 <body>
 <a class="evitement" href="#contenu">Aller au&nbsp;contenu</a>
   <header class="entete entete--photo">
-    <a class="entete-logo" href="index.html" aria-label="Onlineformapro, accueil">
-      <img class="logo-sombre" src="img/logo-noir-rouge.svg" alt="" width="841" height="353">
-      <img class="logo-clair" src="img/logo-blanc-rouge.svg" alt="" width="841" height="353">
-    </a>
-    <nav class="entete-nav" aria-label="Navigation principale">
-      <a href="lms.html">LMS</a>
-      <a href="outils-ia.html">Outils IA</a>
-      <a href="catalogue.html" aria-current="page">Catalogue</a>
-      <a href="blog.html">Blog</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <a class="bouton bouton-noir bouton-moyen" href="demo.html">Demander une&nbsp;démo</a>
-    <button class="entete-burger" type="button" aria-expanded="false" aria-label="Menu"><span></span><span></span></button>
+    <div class="entete-gauche">
+      <a class="entete-logo" href="index.html" aria-label="Onlineformapro, accueil">
+        <img class="logo-sombre" src="img/logo-noir-rouge.svg" alt="" width="841" height="353">
+        <img class="logo-clair" src="img/logo-blanc-rouge.svg" alt="" width="841" height="353">
+      </a>
+      <nav class="entete-nav" aria-label="Navigation principale">
+        <a href="lms.html">LMS</a>
+        <a href="outils-ia.html">Outils IA</a>
+        <a href="catalogue.html" aria-current="page">Catalogue</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        <a class="entete-nav-demo" href="demo.html">Demander une&nbsp;démo</a>
+      </nav>
+    </div>
+    <form class="recherche" role="search" action="#" autocomplete="off">
+      <label class="recherche-champ">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+        <input type="search" name="q" placeholder="Décrivez votre projet" aria-label="Décrivez votre projet : l’assistant IA vous oriente" aria-controls="recherche-panneau" aria-expanded="false" enterkeyhint="send">
+        <kbd class="recherche-touche">Ctrl K</kbd>
+      </label>
+      <div class="recherche-panneau" id="recherche-panneau" hidden>
+        <div class="recherche-accueil">
+          <button class="recherche-demander" type="submit" hidden><span class="recherche-ia" aria-hidden="true"></span><span>Demander à&nbsp;l’assistant&nbsp;: <strong></strong></span><kbd>Entrée</kbd></button>
+          <p class="recherche-titre">Accès rapide</p>
+          <div class="recherche-puces"><a class="recherche-puce" href="lms.html">LMS OnlineManager</a><a class="recherche-puce" href="outils-ia.html">Outils IA</a><a class="recherche-puce" href="catalogue.html">Catalogue</a><a class="recherche-puce" href="blog.html">Blog</a><a class="recherche-puce" href="demo.html">Demander une&nbsp;démo</a><a class="recherche-puce" href="contact.html">Contact</a></div>
+          <p class="recherche-titre">Suggestions</p>
+          <div class="recherche-cartes"><a class="recherche-carte" href="outils-ia.html#fastformation"><span class="recherche-carte-image"><img src="img/cartes/fastformation.webp" alt="" loading="lazy"></span><span>FastFormation</span></a><a class="recherche-carte" href="outils-ia.html#fastquiz"><span class="recherche-carte-image"><img src="img/site/fastquiz-sources.webp" alt="" loading="lazy"></span><span>FastQuiz</span></a><a class="recherche-carte" href="outils-ia.html#roleplay"><span class="recherche-carte-image"><img src="img/site/roleplay-avatars.webp" alt="" loading="lazy"></span><span>RolePlay IA</span></a><a class="recherche-carte" href="catalogue.html"><span class="recherche-carte-image"><img src="img/site/pedagogie-logiciels.webp" alt="" loading="lazy"></span><span>Catalogue</span></a></div>
+          <p class="recherche-titre">Demandez à&nbsp;l’assistant</p>
+          <div class="recherche-puces"><button class="recherche-puce recherche-exemple" type="button">Créer un&nbsp;module à&nbsp;partir de&nbsp;mes documents</button><button class="recherche-puce recherche-exemple" type="button">Évaluer mes apprenants rapidement</button><button class="recherche-puce recherche-exemple" type="button">Entraîner mes vendeurs à&nbsp;l’oral</button><button class="recherche-puce recherche-exemple" type="button">Une&nbsp;plateforme aux&nbsp;couleurs de&nbsp;mon organisme</button></div>
+        </div>
+        <div class="recherche-conversation" hidden aria-live="polite"></div>
+        <p class="recherche-note"><span class="recherche-ia" aria-hidden="true"></span>Assistant IA · il&nbsp;répond à&nbsp;partir des&nbsp;pages d’Onlineformapro et&nbsp;vous&nbsp;oriente</p>
+      </div>
+    </form>
+    <div class="entete-droite">
+      <a class="bouton bouton-noir bouton-moyen" href="demo.html">Demander une&nbsp;démo</a>
+      <button class="entete-burger" type="button" aria-expanded="false" aria-label="Menu"><span></span><span></span></button>
+    </div>
   </header>
+  <div class="recherche-voile" hidden></div>
 <main id="contenu">
 
   <section class="heros-bloc" aria-labelledby="titre-catalogue">
