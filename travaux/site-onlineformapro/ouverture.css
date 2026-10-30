@@ -163,6 +163,8 @@ h1, h2, h3 { font-family: var(--titre); }
 .accueil-logo { width: auto; height: calc(58 * var(--u)); min-height: 36px; }
 .accueil-pile .accueil-titre { width: auto; text-align: left; font-size: calc(84 * var(--u)); line-height: calc(80 * var(--u)); }
 [data-variante="ondes"] .accueil-encadre { left: auto; right: var(--m); }
+/* les titres des chapitres, alignés eux aussi sur le logo de l'en-tête */
+@media (min-width: 980px) { [data-variante="ondes"] .chapitre-titre { margin-inline-start: max(40px, calc((100% - 1660px) / 2)); } }
 
 /* ------------------------------------------------------------------ petits écrans */
 @media (max-width: 979px) {
