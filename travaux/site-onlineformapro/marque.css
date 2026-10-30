@@ -39,7 +39,7 @@
 .entete-gauche { display: flex; align-items: center; gap: 28px; min-width: 0; }
 .entete-droite { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
 .entete-logo { flex: none; }
-.entete-logo img { height: 28px; }
+.entete-logo img { height: 34px; }
 .entete-nav { flex: none; display: flex; align-items: center; gap: 2px; font-size: 15px; }
 .entete-nav a { padding: 8px 10px; color: rgba(20, 20, 24, .55); transition: color .2s; }
 .entete-nav a:hover { opacity: 1; color: var(--encre); }
@@ -57,35 +57,39 @@
 .entete, .entete--photo.est-defile { background: transparent; isolation: isolate; }
 .entete::before { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(255, 255, 255, .72); -webkit-backdrop-filter: saturate(1.8) blur(18px); backdrop-filter: saturate(1.8) blur(18px); box-shadow: 0 1px 0 rgba(20, 20, 24, .06); transition: opacity .3s; }
 .entete--photo:not(.est-defile)::before { opacity: 0; }
+/* un méga-menu ouvert : l'en-tête et son panneau en blanc plein */
+.entete.mega-actif::before { background: #fff; opacity: 1; }
 
 /* -------------------------------------------------------------------- les méga-menus */
-/* au survol de LMS, Outils IA, Catalogue ou Contact : un panneau en verre dépoli sous l'en-tête,
-   une introduction à gauche, les produits en images qui arrivent en cascade */
+/* au survol de LMS, Outils IA, Catalogue ou Contact : un panneau blanc sous l'en-tête, une
+   introduction à gauche, les produits en grandes images qui arrivent en cascade */
 .entete-menu > a { position: relative; display: block; }
 .entete-menu > a::after { content: ""; position: absolute; left: -8px; right: -8px; top: 100%; height: 26px; }
-.mega { position: absolute; top: 100%; left: 0; right: 0; z-index: 3; padding: 28px max(40px, calc((100% - 1660px) / 2)) 32px; background: rgba(255, 255, 255, .9); -webkit-backdrop-filter: saturate(1.8) blur(24px); backdrop-filter: saturate(1.8) blur(24px); box-shadow: inset 0 1px 0 rgba(20, 20, 24, .06), 0 40px 60px -40px rgba(20, 20, 30, .4); color: var(--texte); opacity: 0; visibility: hidden; transform: translateY(-6px); pointer-events: none; transition: opacity .18s ease, transform .3s cubic-bezier(.2, .8, .2, 1), visibility 0s linear .18s; }
+.mega { position: absolute; top: 100%; left: 0; right: 0; z-index: 3; padding: 28px max(40px, calc((100% - 1660px) / 2)) 36px; background: #fff; box-shadow: inset 0 1px 0 rgba(20, 20, 24, .06), 0 40px 60px -40px rgba(20, 20, 30, .4); color: var(--texte); opacity: 0; visibility: hidden; transform: translateY(-6px); pointer-events: none; transition: opacity .18s ease, transform .3s cubic-bezier(.2, .8, .2, 1), visibility 0s linear .18s; }
 .entete-menu:is(:hover, :focus-within):not(.mega-repli) .mega { opacity: 1; visibility: visible; transform: none; pointer-events: auto; transition: opacity .25s ease .06s, transform .45s cubic-bezier(.2, .8, .2, 1) .06s, visibility 0s; }
-.mega-cadre { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 48px; max-width: 1280px; }
+.mega-cadre { display: grid; grid-template-columns: minmax(0, 290px) minmax(0, 1fr); gap: 48px; }
 .mega-intro { display: flex; flex-direction: column; gap: 12px; padding-top: 2px; }
 .mega-etiquette { font: 400 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: rgba(20, 20, 24, .55); }
-.mega-texte { font: 400 21px/1.3 var(--titre); letter-spacing: -.02em; color: var(--encre); text-wrap: balance; }
+.mega-texte { font: 400 28px/1.2 var(--titre); letter-spacing: -.03em; color: var(--encre); text-wrap: balance; }
 .entete .entete-nav .mega a { padding: 0; opacity: 1; color: var(--encre); font-weight: 400; }
 .entete .entete-nav .mega .mega-tout { margin-top: auto; font-size: 14px; text-decoration: underline; text-decoration-color: rgba(20, 20, 24, .25); text-underline-offset: 4px; }
 .mega-tout::after { content: " →"; }
 .entete .entete-nav .mega .mega-tout:hover { text-decoration-color: currentColor; }
-.mega-cartes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.mega-cartes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
 .mega-carte { display: grid; align-content: start; gap: 6px; }
-.mega-image { aspect-ratio: 16 / 10; border-radius: 12px; overflow: hidden; background: var(--pierre); }
+.mega-image { aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; background: var(--pierre); }
 .mega-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
 .mega-carte:hover .mega-image img { transform: scale(1.06); }
 .mega-image img[src$="conseillere.webp"] { object-position: 78% 28%; }
-.mega-image img[src$="onlinecompetences-tablette.webp"] { object-position: 100% 30%; }
-.mega-image--texte { display: flex; align-items: flex-end; padding: 14px; font: 400 17px/1.25 var(--titre); letter-spacing: -.01em; color: var(--encre); }
-.mega-titre { margin-top: 4px; font-size: 15px; font-weight: 500; letter-spacing: -.01em; }
-.mega-desc { font-size: 13px; line-height: 1.4; color: rgba(20, 20, 24, .55); }
-.mega-cartes--compact { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px 14px; }
-.mega-cartes--compact .mega-image { aspect-ratio: 2 / 1; }
-.mega-cartes--compact .mega-titre { margin-top: 2px; font-size: 14px; font-weight: 400; }
+/* l'écran d'OnlineManager en plein cadre, sans le fond blanc autour du moniteur */
+.mega-image img[src$="onlinemanager.webp"] { object-position: 70% 20%; scale: 1.5; transform-origin: 70% 20%; }
+.mega-image img[src$="lisy-tuteur.webp"] { object-position: 50% 100%; }
+.mega-image--texte { display: flex; align-items: flex-end; padding: 18px; font: 400 22px/1.2 var(--titre); letter-spacing: -.02em; color: var(--encre); }
+.mega-titre { margin-top: 6px; font-size: 17px; font-weight: 500; letter-spacing: -.015em; }
+.mega-desc { font-size: 14px; line-height: 1.4; color: rgba(20, 20, 24, .55); }
+.mega-cartes--compact { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px 20px; }
+.mega-cartes--compact .mega-image { aspect-ratio: 16 / 9; }
+.mega-cartes--compact .mega-titre { margin-top: 2px; font-size: 16px; }
 .mega-aussi { grid-column: 1 / -1; font-size: 13px; color: rgba(20, 20, 24, .55); }
 .entete-menu:is(:hover, :focus-within):not(.mega-repli) :is(.mega-carte, .mega-aussi) { animation: vue-entree .45s cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(.05s + var(--n, 8) * .04s); }
 .entete-menu > a[aria-current="page"] + .mega .mega-etiquette { color: var(--rouge); }
@@ -210,7 +214,7 @@
   .entete { height: 64px; gap: 12px; padding: 0 12px 0 20px; }
   .entete.menu-ouvert { height: 64px; }
   .entete-droite .bouton { display: none; }
-  .entete-logo img { height: 24px; }
+  .entete-logo img { height: 28px; }
   .recherche-champ { height: 42px; padding: 0 12px; }
   .recherche-touche { display: none; }
   .recherche, .recherche-ouverte .recherche { position: relative; left: auto; top: auto; grid-column: 2; width: auto; transform: none; }

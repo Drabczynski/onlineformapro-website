@@ -37,7 +37,7 @@ Les cartes à droite de l'écran : image en haut, 583 × 500 environ (rapport 7:
 | Analyse des données | `cartes/reporting.webp` | fournie | — |
 | Marque blanche | `cartes/marque-blanche.webp` | fournie | — |
 | Côté apprenant : le panneau du chapeau, la tablette à droite | `site/onlinecompetences-tablette.webp` | fournie (une main tient la tablette OnlineCompétences, détourée, 1134 × 1103) | — |
-| Lisy, le coach IA (tuile) | `site/lms-lisy.webp` | fournie | une version de 1400 px serait plus nette |
+| Lisy, le coach IA (tuile) | `site/lisy-tuteur.webp` | fournie (une apprenante et Lisy, son tuteur d’apprentissage IA, 768 × 513) | une version de 1600 px serait plus nette |
 | Quelques références : les logos, en deux onglets | `logos/*.webp` (48) | fournies (les planches « Des clients de tout horizon » et « Éducation et formation », chaque logo découpé à 204 × 120) | des logos en SVG seraient plus nets |
 | Témoignage France Education International : photo à droite | `site/acc-fei.webp` | site (accueil, deux élèves) | — |
 | Témoignage France Education International : auteur | initiales | — | une photo de Sébastien Georges |
@@ -99,6 +99,8 @@ Contact : `photos/conseillere.webp` (fournie, une femme en pull orange qui expli
 
 Fournie, retirée du reporting à la demande d'Onlineformapro : `site/progression-76.webp` (la carte « 76 % »,
 588 × 660), gardée dans le dossier.
+
+Fournie, remplacée dans la tuile Lisy par `site/lisy-tuteur.webp` : `site/lms-lisy.webp`, gardée dans le dossier.
 
 Fournie et retirée de la page LMS : `site/lms-apprenant.webp` (OnlineCompétences sur trois appareils), remplacée
 par la tablette en main, plus nette ; gardée dans le dossier.

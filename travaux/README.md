@@ -278,9 +278,9 @@ d'appel et le pied de page (le bleu nuit reste propre à l'ouverture). Le pied e
 L'en-tête a trois parts : le logo et les liens à gauche, au centre exact la recherche
 « Décrivez votre projet » (`recherche.js`), à droite le bouton de démo rouge. Son fond est un
 blanc translucide et flouté qui laisse deviner la page (absent au-dessus d'une photo d'ouverture
-tant qu'on n'a pas défilé). Au survol de LMS, Outils IA, Catalogue ou Contact, un méga-menu en
-verre dépoli se déplie sous l'en-tête : une introduction à gauche et les produits en images qui
-arrivent en cascade (les quatre volets du LMS ; FastFormation, FastQuiz, Learning Podcast,
+tant qu'on n'a pas défilé). Au survol de LMS, Outils IA, Catalogue ou Contact, l'en-tête passe en
+blanc plein et un méga-menu blanc se déplie dessous : une introduction à gauche et les produits
+en grandes images (jamais d'images détourées) qui arrivent en cascade (les quatre volets du LMS ; FastFormation, FastQuiz, Learning Podcast,
 RolePlay IA ; huit familles du catalogue ; pour Contact, la prise de démonstration, le
 formulaire, le téléphone et la société). Les données en sont dans `commun.py` (`MEGA`) ; un
 clic sur l'un de leurs liens les replie. Un lien du panneau de l'assistant le referme aussi. Un clic sur la

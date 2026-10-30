@@ -18,7 +18,7 @@ if (burger) burger.addEventListener('click', () => {
 let megaOuvert = false;
 function majEntete() { if (entete && entete.classList.contains('entete--photo')) entete.classList.toggle('est-defile', scrollY > 24 || megaOuvert || entete.classList.contains('menu-ouvert')); }
 for (const menu of document.querySelectorAll('.entete-menu')) {
-  const ouvrir = (oui) => { megaOuvert = oui; majEntete(); };
+  const ouvrir = (oui) => { megaOuvert = oui; if (entete) entete.classList.toggle('mega-actif', oui); majEntete(); };
   menu.addEventListener('mouseenter', () => ouvrir(true));
   menu.addEventListener('mouseleave', () => { ouvrir(false); menu.classList.remove('mega-repli'); });
   menu.addEventListener('focusin', () => ouvrir(true));
