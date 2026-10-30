@@ -77,13 +77,15 @@
 .entete .entete-nav .mega .mega-tout:hover { text-decoration-color: currentColor; }
 .mega-cartes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
 .mega-carte { display: grid; align-content: start; gap: 6px; }
-.mega-image { aspect-ratio: 4 / 3; overflow: hidden; background: var(--pierre); }
+.mega-image { aspect-ratio: 4 / 3; overflow: hidden; border-radius: 6px; background: var(--pierre); }
 .mega-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
 .mega-carte:hover .mega-image img { transform: scale(1.06); }
 .mega-image img[src$="conseillere.webp"] { object-position: 78% 28%; }
 /* l'écran d'OnlineManager en plein cadre, sans le fond blanc autour du moniteur */
 .mega-image img[src$="onlinemanager.webp"] { object-position: 70% 20%; scale: 1.5; transform-origin: 70% 20%; }
-.mega-image img[src$="lisy-tuteur.webp"] { object-position: 50% 100%; }
+/* la main qui tend la tablette (image détourée) : posée sur un panneau clair, comme sur la page LMS */
+.mega-image:has(img[src$="onlinecompetences-tablette.webp"]) { background: radial-gradient(70% 90% at 70% 40%, rgba(255, 255, 255, .9), rgba(255, 255, 255, 0) 70%), var(--pierre); }
+.mega-image img[src$="onlinecompetences-tablette.webp"] { object-fit: contain; object-position: 18% 100%; scale: 1.12; transform-origin: 18% 100%; }
 .mega-image--texte { display: flex; align-items: flex-end; padding: 18px; font: 400 22px/1.2 var(--titre); letter-spacing: -.02em; color: var(--encre); }
 .mega-titre { margin-top: 6px; font-size: 17px; font-weight: 500; letter-spacing: -.015em; }
 .mega-desc { font-size: 14px; line-height: 1.4; color: rgba(20, 20, 24, .55); }
@@ -363,4 +365,13 @@ body.fond-noir { background: var(--nuit); }
 .heros-nuee .texte-grand { max-width: 520px; }
 .nuee { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; pointer-events: none; }
 .heros-clair.heros-nuee > .nuee { animation: none; }
-@media (max-width: 860px) { .heros-nuee { justify-content: flex-end; min-height: max(680px, calc(100svh - 72px)); } }
+.heros-nuee + .section-96 .carte-contact { box-shadow: 0 0 0 1px rgba(20, 20, 24, .05), 0 28px 60px -28px rgba(40, 24, 110, .3); }
+/* les cartes « Nous joindre » remontent sur le bas de l'anneau, qui s'efface derrière elles */
+.heros-nuee, .heros-nuee + .section-96 { --chevauche: 240px; }
+.heros-nuee { padding-bottom: calc(96px + var(--chevauche)); }
+.nuee { -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent 100%); mask-image: linear-gradient(180deg, #000 70%, transparent 100%); }
+.heros-nuee + .section-96 { position: relative; z-index: 1; margin-top: calc(-1 * var(--chevauche)); padding-top: 0; background: linear-gradient(180deg, rgba(251, 250, 249, 0) 0, var(--creme) calc(var(--chevauche) + 40px)); }
+@media (max-width: 860px) {
+  .heros-nuee, .heros-nuee + .section-96 { --chevauche: 120px; }
+  .heros-nuee { justify-content: flex-end; min-height: max(680px, calc(100svh - 72px)); padding-bottom: calc(60px + var(--chevauche)); }
+}

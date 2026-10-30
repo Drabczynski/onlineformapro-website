@@ -1,8 +1,8 @@
 // L'ouverture de Contact : un grand anneau de particules sur fond blanc, vu de biais, dont on
-// voit la moitié gauche. En travers de l'anneau, des bandes de couleur qui se mêlent : au bord
-// intérieur une brume rose et lilas, puis du violet, un cœur bleu nuit piqueté de jaune-vert,
-// une bande vert anis, du rose, du bleu lavande, et au bord extérieur une poussière pastel qui
-// s'éloigne et renaît. Les grains tournent lentement le long de l'anneau (plus vite au cœur),
+// voit la moitié gauche. En travers de l'anneau, des bandes de couleur qui se mêlent, celles de
+// l'ouverture : au bord intérieur une brume rose et lilas, puis du violet, un cœur bleu nuit
+// piqueté de rose et d'orangé, une bande pêche, du rose, du bleu lavande, et au bord extérieur
+// une poussière pastel qui s'éloigne et renaît. Les grains tournent lentement le long de l'anneau (plus vite au cœur),
 // l'anneau ondule un peu, et suit à peine la souris ; à l'arrivée, les grains se rassemblent.
 // WebGL 2 sans bibliothèque : tout le mouvement est calculé par la carte graphique. À l'arrêt
 // hors de l'écran, figé si le visiteur a demandé moins d'animations.
@@ -23,11 +23,11 @@
   const BANDES = [
     { de: -0.3, a: 0.08, poids: 0.05, teintes: ['#8d74e8', '#a58cf0', '#c9b3f2', '#e3c6ec', '#d9c2ef', '#efd3ea'], brume: true },
     { de: 0.04, a: 0.28, poids: 0.16, teintes: ['#6b56e2', '#7c62ea', '#5d6fe6', '#8a6ef0', '#4f5fd8'] },
-    { de: 0.24, a: 0.5, poids: 0.26, teintes: ['#1d1e6c', '#262385', '#30289c', '#232f8f', '#3a2fb2', '#1a2a78'], piquets: ['#d9ec6e', '#e6f08a', '#b9a4ff'] },
-    { de: 0.49, a: 0.62, poids: 0.11, teintes: ['#c3e75c', '#b4dd6b', '#d5ef85', '#a8d870'] },
+    { de: 0.24, a: 0.5, poids: 0.26, teintes: ['#1d1e6c', '#262385', '#30289c', '#232f8f', '#3a2fb2', '#1a2a78'], piquets: ['#ff8fb1', '#ffb088', '#b9a4ff'] },
+    { de: 0.49, a: 0.62, poids: 0.11, teintes: ['#ffb088', '#ff9d7a', '#ffc39e', '#f7a27f'] },
     { de: 0.6, a: 0.73, poids: 0.13, teintes: ['#ee9cd2', '#f5b6dd', '#e88bc6', '#f3a8c8'] },
     { de: 0.7, a: 0.88, poids: 0.15, teintes: ['#a3b2f1', '#92bcf0', '#b8c0f5', '#8ea6ee', '#a9d0f3'] },
-    { de: 0.86, a: 1.9, poids: 0.14, teintes: ['#c9c2f6', '#f4c0df', '#bfe8d8', '#a9c6f5', '#d7d3f7', '#9fb3f2'], poussiere: true },
+    { de: 0.86, a: 1.9, poids: 0.14, teintes: ['#c9c2f6', '#f4c0df', '#ffd3c2', '#a9c6f5', '#d7d3f7', '#9fb3f2'], poussiere: true },
   ];
   const rvb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
   let graine = 20260;

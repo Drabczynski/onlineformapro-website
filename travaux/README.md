@@ -300,7 +300,9 @@ L'en-tête a trois parts : le logo et les liens à gauche, au centre exact la re
 blanc translucide et flouté qui laisse deviner la page (absent au-dessus d'une photo d'ouverture
 tant qu'on n'a pas défilé). Au survol de LMS, Outils IA, Catalogue ou Contact, l'en-tête passe en
 blanc plein et un méga-menu blanc se déplie dessous : une introduction à gauche et les produits
-en grandes images (jamais d'images détourées) qui arrivent en cascade (les quatre volets du LMS ; FastFormation, FastQuiz, Learning Podcast,
+en grandes images aux coins à peine arrondis (6 px), jamais d'images détourées sur blanc (la main
+qui tend la tablette, pour « Côté apprenant », est posée sur un panneau clair), qui arrivent en
+cascade (les quatre volets du LMS ; FastFormation, FastQuiz, Learning Podcast,
 RolePlay IA ; huit familles du catalogue ; pour Contact, la prise de démonstration, le
 formulaire ; pour Blog, les quatre derniers articles, lus dans la page Blog). La page se voile
 et se floute derrière, comme quand on ouvre la recherche. Les données en sont dans
@@ -341,11 +343,13 @@ une photo sous « Votre demande » ; en ouverture de Contact, sur fond blanc, à
 titre, un grand anneau de particules vu de biais, qui occupe la moitié de l'écran et sort du
 cadre (`nuee.js`, WebGL 2 sans bibliothèque, 360 000 grains, 120 000 sur téléphone, tout le mouvement calculé par la carte graphique) : en
 travers de l'anneau, des bandes qui se mêlent (brume rose et lilas au bord intérieur, violet,
-cœur bleu nuit piqueté de jaune-vert, vert anis, rose, bleu lavande) et au bord extérieur une
-poussière pastel qui s'éloigne et renaît ; les grains tournent lentement le long de l'anneau,
+cœur bleu nuit piqueté de rose et d'orangé, pêche, rose, bleu lavande : les couleurs de
+l'intro) et au bord extérieur une poussière pastel qui s'éloigne et renaît ; les grains tournent lentement le long de l'anneau,
 qui ondule et suit à peine la souris ; à l'arrivée, ils se rassemblent depuis un nuage épars.
-Sur téléphone, l'anneau passe en haut, le texte dessous ; l'animation s'arrête hors de l'écran
-et reste figée si le visiteur a demandé moins d'animations. Sur
+Les trois cartes « Nous joindre » remontent sur le bas de l'anneau (240 px, 120 sur téléphone),
+qui s'efface derrière elles. Sur téléphone, l'anneau passe en haut, le texte dessous ;
+l'animation s'arrête hors de l'écran et reste figée si le visiteur a demandé moins
+d'animations. Sur
 téléphone, vignettes et étapes défilent au doigt.
 
 Les changements de fond du modèle s'appliquent partout : toute la page passe du blanc au
