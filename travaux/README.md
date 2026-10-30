@@ -162,8 +162,7 @@ pendant que les textes défilent. Les vues suivent celles du modèle : le logo d
 l'autoroute et ses lacets, le graphique de pics (la puissance de l'IA), le carrefour vu
 d'en haut (la solution globale et modulaire), le croisement en X entouré d'anneaux
 (« Éprouvée par 22 millions d'apprenants »), la ligne droite puis l'éventail de lignes (la demande de démo).
-Textes et liens repris du site officiel, aucun visuel. La partie plus classique du site
-viendra avec le prochain modèle.
+Textes et liens repris du site officiel.
 
 **Essai en cours : l'ouverture qui part des ondes.** `index.html` est un essai : ni le logo
 dessiné en routes, ni l'autoroute, ni le passage « 25 ans » (« Lauréate… ») ; la caméra part
@@ -172,11 +171,16 @@ sur la route, un peu avant le graphique de pics, qu'on voit déjà s'élever à 
 transparent. Au premier écran, empilés à gauche (alignés sur le logo de l'en-tête) : le logo, le titre
 « Première solution globale digital learning orchestrée par l'IA » (moins grand) et la
 pastille ; l'accroche « L'innovation technologique… » en bas à droite ; les titres des
-chapitres s'alignent eux aussi sur le logo de l'en-tête. L'essai est porté par
+chapitres s'alignent eux aussi sur le logo de l'en-tête. Au premier écran, deux images
+s'effacent avec le titre : la tablette OnlineCompétences en haut à droite, sur son fond blanc,
+et une photo d'équipe en bas à gauche (masquées sur téléphone). L'essai est porté par
 `data-variante="ondes"` sur `<html>` : `monde.js` ne dessine pas le logo et remplace les cinq
 premières stations par une seule, `ouverture.js` cale seize stations au lieu de vingt.
 **L'ouverture complète reste dans `intro-complete.html`** (mêmes scripts, sans l'attribut),
-telle que décrite ci-dessous.
+telle que décrite ci-dessous. Après l'ouverture, dans les deux fichiers, les sections du site
+défilent l'une sous l'autre : les cinq méga-menus de l'en-tête en grand (LMS, Outils IA,
+Catalogue, Blog, Contact), sur fond blanc ; le bloc est produit par `plan()` dans `commun.py`,
+à partir des mêmes données que les menus (`MEGA`).
 Les titres sont en Geist, comme dans les pages du site ; le reste du texte reste en Inter.
 
 À l'arrivée, le Ó du logo est dessiné en routes, aux proportions du logo : l'anneau en route

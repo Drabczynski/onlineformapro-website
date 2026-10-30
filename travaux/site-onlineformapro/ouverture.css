@@ -146,9 +146,22 @@ h1, h2, h3 { font-family: var(--titre); }
 .mouvement-reduit [class*="animation--"] .char, .mouvement-reduit [class*="animation--"] .word-wrap, .mouvement-reduit [class*="animation--"] { animation: none !important; }
 
 /* ------------------------------------------------------------------ suite et pied */
-.suite { position: relative; z-index: 1; padding: 120px 20px; text-align: center; background: var(--nuit); border-top: 1px solid var(--trait); display: grid; gap: 12px; justify-items: center; font-size: 16px; }
-.suite h2 { font-weight: 300; font-size: clamp(28px, 3vw, 40px); }
-.suite p { color: var(--doux); max-width: 36rem; line-height: 1.5; }
+/* la suite de l'ouverture : les sections du site, l'une sous l'autre (les méga-menus de
+   l'en-tête, en grand : commun.py, plan()) */
+.plan { position: relative; z-index: 1; --encre: #2a2a2c; --doux: rgba(0, 0, 0, .6); color-scheme: light; padding: 104px max(40px, calc((100% - 1660px) / 2)); background: #fff; color: var(--encre); font-size: 15px; line-height: 1.4; }
+.plan-bloc + .plan-bloc { margin-top: 80px; padding-top: 80px; border-top: 1px solid rgba(20, 20, 24, .08); }
+.plan .mega-cadre { grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 56px; }
+.plan .mega-texte { font-size: clamp(28px, 2.4vw, 38px); }
+.plan .mega-tout { margin-top: auto; padding-top: 24px; font-size: 15px; text-decoration: underline; text-decoration-color: rgba(20, 20, 24, .25); text-underline-offset: 4px; }
+.plan .mega-tout:hover { text-decoration-color: currentColor; }
+@media (max-width: 1100px) {
+  .plan .mega-cadre { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .plan .mega-cartes, .plan .mega-cartes--compact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .plan { padding: 64px 20px; }
+  .plan-bloc + .plan-bloc { margin-top: 56px; padding-top: 56px; }
+}
 .pied { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; padding: 32px 20px; border-top: 1px solid var(--trait); color: var(--doux); font-size: 14px; }
 .pied-logo { width: 104px; }
 .pied address { font-style: normal; }
@@ -158,11 +171,18 @@ h1, h2, h3 { font-family: var(--titre); }
    (moins grand, ferré à gauche) et la pastille, empilés à gauche, alignés sur le logo de
    l'en-tête ; l'accroche en bas à droite */
 [data-variante="ondes"] .entete--nuit:not(.est-defile)::before { opacity: 0; box-shadow: none; }
-.accueil-pile { position: absolute; left: max(40px, calc((100% - 1660px) / 2)); top: calc(50% + 36px); translate: 0 -50%; width: calc(820 * var(--u)); display: flex; flex-direction: column; align-items: flex-start; gap: calc(30 * var(--u)); }
+.accueil-pile { position: absolute; left: max(40px, calc((100% - 1660px) / 2)); top: calc(50% + 36px - 90 * var(--u)); translate: 0 -50%; width: calc(820 * var(--u)); display: flex; flex-direction: column; align-items: flex-start; gap: calc(30 * var(--u)); }
 .accueil-pile > * { position: static; }
 .accueil-logo { width: auto; height: calc(58 * var(--u)); min-height: 36px; }
 .accueil-pile .accueil-titre { width: auto; text-align: left; font-size: calc(84 * var(--u)); line-height: calc(80 * var(--u)); }
 [data-variante="ondes"] .accueil-encadre { left: auto; right: var(--m); }
+/* deux images au premier écran, qui s'effacent avec le titre : la tablette OnlineCompétences en
+   haut à droite, sur son fond blanc, et une photo d'équipe en bas à gauche (masquées en étroit) */
+.accueil-photo { position: absolute; margin: 0; overflow: hidden; }
+.accueil-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.accueil-photo--tablette { right: var(--m); top: calc(72px + var(--m)); width: calc(290 * var(--u)); aspect-ratio: 394 / 510; background: #fff; }
+.accueil-photo--tablette img { object-position: 0% 50%; }
+.accueil-photo--equipe { left: var(--m); bottom: var(--m); width: calc(485 * var(--u)); aspect-ratio: 657 / 268; }
 /* les titres des chapitres, alignés eux aussi sur le logo de l'en-tête */
 @media (min-width: 980px) { [data-variante="ondes"] .chapitre-titre { margin-inline-start: max(40px, calc((100% - 1660px) / 2)); } }
 
@@ -175,6 +195,7 @@ h1, h2, h3 { font-family: var(--titre); }
   .accueil-pile { left: var(--m); right: var(--m); top: calc(var(--m) + 92px); width: auto; translate: none; gap: 22px; }
   .accueil-pile .accueil-titre { font-size: calc(80 * var(--u)); line-height: calc(76 * var(--u)); }
   [data-variante="ondes"] .accueil-encadre { left: var(--m); }
+  .accueil-photo { display: none; }
   .accueil-encadre .chapeau { font-size: 17px; line-height: 1.3; padding-bottom: 60px; }
   .presentation { margin: 0 var(--m); width: auto; padding: 0; }
   .presentation-image { top: 84px; left: 50%; width: 84%; translate: -50% 0; }

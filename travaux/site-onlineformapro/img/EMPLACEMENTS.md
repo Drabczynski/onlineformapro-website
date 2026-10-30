@@ -32,6 +32,8 @@ Hors des cartes :
 
 | Emplacement | Image | Origine | Conseil |
 |---|---|---|---|
+| Premier écran (essai « ondes ») : en haut à droite, sur fond blanc | `site/onlinecompetences-tablette.webp` | fournie (la main tient la tablette OnlineCompétences) | — |
+| Premier écran (essai « ondes ») : en bas à gauche | `photos/equipe-ordinateur.webp` | fournie (trois collègues autour d’un ordinateur portable, 657 × 268) | une version de 1400 px de large serait plus nette |
 | Passage « 25 ans » (« Lauréate du concours… ») : grande photo en face du texte, à gauche (3:2) | `photos/ordinateur-sourire.webp` | fournie (une apprenante souriante à son ordinateur, 2000 px ; aussi sur Outils IA) | une photo propre à ce passage : l'équipe, les locaux, un moment de la société |
 
 ## LMS (`lms.html`)
