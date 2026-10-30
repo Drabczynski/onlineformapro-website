@@ -9,7 +9,10 @@
 //    dans un sens, rouges et orangés dans l'autre), plus vite quand on fait défiler ;
 //  - au chapitre « La puissance de l'IA pour la formation », autour du graphique de pics : des
 //    nuées de points serrés le long des courbes, où filent des paquets de données, et sous elles
-//    des colonnes de points qui montent de la grille, comme des données qui alimentent l'IA.
+//    des colonnes de points qui montent de la grille, comme des données qui alimentent l'IA ;
+//    quand la caméra les traverse, les points proches se relient en triangles, discrètement ;
+//  - les mêmes nuées le long des lignes du logo de l'ouverture, de la planète et du cube
+//    (nueeLignes, posée par monde.js et objets.js), et des colonnes montantes sous chacun.
 import * as THREE from 'three';
 
 // un tirage pseudo-aléatoire reproductible (le même ciel à chaque visite)
@@ -117,10 +120,104 @@ function points(mode, n, remplir, { opacite = 1, proche = 30, loin = 170, pas = 
   return o;
 }
 
+// -------------------------------------------------------------------- les nuées des lignes
+// des points serrés le long de lignes données, un peu dispersés, où filent des paquets de
+// données (comme autour des pics) ; dans le repère de qui les pose (le monde, la planète, un
+// module du cube), pour qu'ils suivent ses mouvements ; densité en points par unité de ligne
+export function nueeLignes(courbes, { facteur = 1, densite = 14, dispersion = 0.12, teintes = [['blanc', 3], ['lavande', 4], ['orange', 1]], taille = [0.024, 0.024], graine = 1, proche = 20, loin = 110 } = {}) {
+  const r = tirage(20261030 + graine);
+  const comptes = courbes.map(c => Math.max(6, Math.round(c.getLength() * densite * facteur)));
+  return points(4, comptes.reduce((a, b) => a + b, 0), (ecrire) => {
+    const p = new THREE.Vector3();
+    let i = 0;
+    courbes.forEach((c, k) => {
+      for (let j = 0; j < comptes[k]; j++, i++) {
+        const u = (j + r()) / comptes[k];
+        c.getPointAt(u, p).add(new THREE.Vector3(gauss(r), gauss(r), gauss(r)).multiplyScalar(dispersion));
+        ecrire(i, p, teinte(r, teintes), taille[0] + taille[1] * r(), [u, k]);
+      }
+    });
+  }, { proche, loin });
+}
+
+// -------------------------------------------------------------------- le réseau des pics
+// Quand la caméra traverse le graphique, les points proches se relient en triangles : des
+// nœuds le long de chaque courbe (un tous les 1,6 unité environ, un peu décalés), cousus d'une
+// courbe à la suivante en fermeture éclair. Chaque segment se déploie depuis l'un de ses nœuds
+// quand la caméra arrive à sa portée (entre 10 et 20 unités, tirée au sort), et se replie
+// quand elle s'éloigne ; les nœuds reliés s'allument. Traits d'un pixel, à peine visibles.
+const RESEAU_SOMMETS = `
+  uniform vec3 uCamera; uniform float uTemps;
+  attribute vec3 aDepart; attribute vec3 aMilieu; attribute float aSeuil;
+  varying float vAlpha;
+  void main() {
+    float g = 1.0 - smoothstep(aSeuil - 4.0, aSeuil, distance(uCamera, aMilieu));
+    vAlpha = g * (0.7 + 0.3 * sin(uTemps * 1.7 + aSeuil * 9.0));
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(mix(aDepart, position, g), 1.0);
+  }`;
+const NOEUDS_SOMMETS = `
+  uniform vec3 uCamera; uniform float uEchelle; uniform float uTailleMax;
+  varying float vAlpha;
+  void main() {
+    float g = 1.0 - smoothstep(12.0, 18.0, distance(uCamera, position));
+    vec4 mv = modelViewMatrix * vec4(position, 1.0);
+    gl_PointSize = clamp(0.05 * uEchelle / max(0.001, -mv.z), 1.5, uTailleMax * 0.4);
+    vAlpha = g;
+    gl_Position = projectionMatrix * mv;
+  }`;
+function creerReseau(pics, r) {
+  if (!pics.length) return [];
+  const noeuds = pics.map(c => {
+    const n = Math.round(c.getLength() / 1.6), liste = [];
+    for (let i = 0; i < n; i++) liste.push(c.getPointAt(Math.min(1, Math.max(0, (i + 0.5 + (r() - 0.5) * 0.7) / n))).add(new THREE.Vector3(gauss(r), gauss(r), gauss(r)).multiplyScalar(0.12)));
+    return liste;
+  });
+  const segments = [];
+  const relier = (a, b) => segments.push(r() < 0.5 ? [a, b] : [b, a]);
+  for (const liste of noeuds) for (let i = 1; i < liste.length; i++) relier(liste[i - 1], liste[i]);
+  // d'une courbe à la suivante : on avance sur celle dont le prochain nœud vient le premier
+  // (les courbes filent vers -z) ; chaque pas ferme un triangle
+  for (let k = 0; k + 1 < noeuds.length; k++) {
+    const A = noeuds[k], C = noeuds[k + 1];
+    let i = 0, j = 0;
+    relier(A[0], C[0]);
+    while (i < A.length - 1 || j < C.length - 1) {
+      if (j >= C.length - 1 || (i < A.length - 1 && A[i + 1].z > C[j + 1].z)) i++; else j++;
+      relier(A[i], C[j]);
+    }
+  }
+  const n = segments.length, pos = new Float32Array(n * 6), depart = new Float32Array(n * 6), milieu = new Float32Array(n * 6), seuil = new Float32Array(n * 2);
+  segments.forEach(([a, b], k) => {
+    const m = a.clone().add(b).multiplyScalar(0.5), s = 10 + 10 * r();
+    pos.set([a.x, a.y, a.z, b.x, b.y, b.z], k * 6);
+    depart.set([a.x, a.y, a.z, a.x, a.y, a.z], k * 6);
+    milieu.set([m.x, m.y, m.z, m.x, m.y, m.z], k * 6);
+    seuil.set([s, s], k * 2);
+  });
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  g.setAttribute('aDepart', new THREE.BufferAttribute(depart, 3));
+  g.setAttribute('aMilieu', new THREE.BufferAttribute(milieu, 3));
+  g.setAttribute('aSeuil', new THREE.BufferAttribute(seuil, 1));
+  const fragments = (couleur, opacite) => `varying float vAlpha; void main() { gl_FragColor = vec4(${couleur}, vAlpha * ${opacite}); }`;
+  const melange = { transparent: true, depthWrite: false, blending: THREE.AdditiveBlending };
+  const traits = new THREE.LineSegments(g, new THREE.ShaderMaterial({ vertexShader: RESEAU_SOMMETS, fragmentShader: fragments('vec3(0.62, 0.58, 1.0)', '0.3'), uniforms: communs, ...melange }));
+  const tous = noeuds.flat(), gn = new THREE.BufferGeometry();
+  gn.setAttribute('position', new THREE.BufferAttribute(new Float32Array(tous.flatMap(p => [p.x, p.y, p.z])), 3));
+  const ronds = new THREE.Points(gn, new THREE.ShaderMaterial({
+    vertexShader: NOEUDS_SOMMETS, uniforms: communs, ...melange,
+    fragmentShader: `varying float vAlpha; void main() { float d = length(gl_PointCoord - 0.5) * 2.0; gl_FragColor = vec4(vec3(1.0), (1.0 - smoothstep(0.4, 1.0, d)) * vAlpha * 0.75); }`,
+  }));
+  traits.frustumCulled = ronds.frustumCulled = false;
+  return [traits, ronds];
+}
+
 // -------------------------------------------------------------------- la grille et les flux
-// chemin : le trajet de la caméra ; routes : les axes des routes ; facteur : la part du
+// chemin : le trajet de la caméra ; routes : les axes des routes ; pics : les courbes du
+// graphique ; lignes : d'autres lignes à garnir de nuées (le logo) ; foyers : les objets sous
+// lesquels montent des colonnes ({ centre au sol, rayon, hauteur }) ; facteur : la part du
 // nombre de points (moins sur les petits écrans)
-export function creerParticules(scene, { chemin, routes, pics = [], facteur = 1 }) {
+export function creerParticules(scene, { chemin, routes, pics = [], lignes = [], foyers = [], facteur = 1 }) {
   const r = tirage(20261029);
   const P = new THREE.Vector3(), T = new THREE.Vector3(), N = new THREE.Vector3(), HAUT = new THREE.Vector3(0, 1, 0);
   const repere = (courbe, u) => { courbe.getPointAt(u, P); courbe.getTangentAt(u, T); N.crossVectors(T, HAUT).normalize(); };
@@ -181,22 +278,36 @@ export function creerParticules(scene, { chemin, routes, pics = [], facteur = 1 
     }
   }, { proche: 20, loin: 110 });
   // et sous les pics, des colonnes de points qui montent de la grille (aux nœuds de la grille)
+  // (colonnes : x, z, hauteur la plus basse, hauteur la plus haute)
   const colonnes = [];
   if (pics.length) {
     const boite = new THREE.Box3();
     for (const c of pics) for (const q of c.getSpacedPoints(60)) boite.expandByPoint(q);
     for (let x = Math.ceil((boite.min.x - 3) / PAS) * PAS; x <= boite.max.x + 3; x += PAS) {
-      for (let z = Math.ceil(boite.min.z / PAS) * PAS; z <= boite.max.z; z += PAS) for (let d = 0; d < 2; d++) if (r() < facteur) colonnes.push(x, z);
+      for (let z = Math.ceil(boite.min.z / PAS) * PAS; z <= boite.max.z; z += PAS) for (let d = 0; d < 2; d++) if (r() < facteur) colonnes.push(x, z, 3, 12);
     }
   }
-  const montee = points(5, colonnes.length / 2, (ecrire, n) => {
+  // de même sous le logo, la planète et le cube : sur un disque, jusqu'à leur base
+  for (const { centre, rayon, hauteur } of foyers) {
+    for (let x = Math.ceil((centre.x - rayon) / PAS) * PAS; x <= centre.x + rayon; x += PAS) {
+      for (let z = Math.ceil((centre.z - rayon) / PAS) * PAS; z <= centre.z + rayon; z += PAS) {
+        if ((x - centre.x) ** 2 + (z - centre.z) ** 2 > rayon * rayon) continue;
+        for (let d = 0; d < 2; d++) if (r() < facteur) colonnes.push(x, z, hauteur * 0.45, hauteur);
+      }
+    }
+  }
+  const montee = points(5, colonnes.length / 4, (ecrire, n) => {
     const p = new THREE.Vector3();
     for (let i = 0; i < n; i++) {
-      ecrire(i, p.set(colonnes[2 * i], Y, colonnes[2 * i + 1]), teinte(r, [['lavande', 4], ['blanc', 3], ['orange', 1]]), 0.05, [1.4 + 2.2 * r(), 3 + 9 * r()]);
+      const [x, z, h0, h1] = colonnes.slice(4 * i, 4 * i + 4);
+      ecrire(i, p.set(x, Y, z), teinte(r, [['lavande', 4], ['blanc', 3], ['orange', 1]]), 0.05, [1.4 + 2.2 * r(), h0 + (h1 - h0) * r()]);
     }
   }, { proche: 20, loin: 110 });
+  // les nuées des autres lignes (le logo) et le réseau des pics
+  const autres = lignes.map(({ courbes, ...options }, k) => nueeLignes(courbes, { facteur, graine: 10 + k, ...options }));
+  const reseau = creerReseau(pics, r);
 
-  const nuees = [grille, flux, longPics, montee];
+  const nuees = [grille, flux, longPics, montee, ...autres, ...reseau];
   for (const o of nuees) scene.add(o);
   return {
     // pixels par unité à une unité de distance, et la densité de pixels

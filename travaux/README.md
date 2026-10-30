@@ -197,9 +197,15 @@ lavande dans un sens, roses et orangés dans l'autre), plus vite quand on défil
 « La puissance de l'IA pour la formation », le graphique de pics se charge de données : des
 points serrés le long de ses courbes, où filent des paquets, et des colonnes de points qui
 montent de la grille sous lui ; après l'arrêt devant lui, la caméra entre dans ses courbes, y
-reste pendant les cartes du chapitre, puis en ressort vers le carrefour. Pendant les cartes du
-chapitre 3, elle s'approche tout près de la planète : le haut de sa courbe occupe le bas gauche
-de l'écran, le reste hors champ. Grille moins
+reste pendant les cartes du chapitre, puis en ressort vers le carrefour. Pendant qu'elle les
+traverse, les points proches se relient en triangles, d'une courbe à la suivante : chaque trait
+se déploie depuis un nœud quand la caméra arrive à sa portée (10 à 20 unités) et se replie
+quand elle s'éloigne ; traits d'un pixel, à peine visibles. Les mêmes nuées de données
+garnissent les lignes du logo dès le premier écran, les méridiens et parallèles de la planète
+(elles tournent avec elle) et les contours des faces du cube (celles des modules les suivent
+quand ils s'emboîtent), avec des colonnes de points qui montent sous chacun. Pendant les cartes du
+chapitre 3, la caméra s'approche tout près de la planète : le haut de sa courbe occupe le bas gauche
+de l'écran, le reste hors champ ; au chapitre 4, elle s'avance près du bâtiment. Grille moins
 serrée et moins de paquets sur petit écran ; si la machine peine, le rendu baisse d'abord sa
 résolution, puis garde la moitié des paquets, puis coupe le halo.
 

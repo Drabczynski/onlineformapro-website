@@ -9,8 +9,9 @@
 // les regarde : environ deux pixels à l'écran.
 import * as THREE from 'three';
 
-// fournis par monde.js à la création (dessin : voir « objets dessinés » ; les couleurs)
-let dessin, B, R;
+// fournis par monde.js à la création (dessin : voir « objets dessinés » ; les couleurs ; nuee :
+// des points de données le long de lignes, voir particules.js)
+let dessin, B, R, nuee;
 const V = (x, y, z) => new THREE.Vector3(x, y, z);
 const RAD = Math.PI / 180;
 
@@ -25,6 +26,13 @@ export function rectangle(l, h, r = 0, n = 5) {
     }
   });
   return pts;
+}
+// une ligne brisée (Vector3), refermée si « ferme » : la courbe que suivent les nuées
+function brisee(pts, ferme = false) {
+  const c = new THREE.CurvePath();
+  const liste = ferme ? [...pts, pts[0]] : pts;
+  for (let k = 1; k < liste.length; k++) c.add(new THREE.LineCurve3(liste[k - 1], liste[k]));
+  return c;
 }
 // un plan : son centre O, ses axes A (u) et B (v) ; place des points 2D dans l'espace
 const plan = (O, A, B) => (pts) => pts.map(p => O.clone().addScaledVector(A, p.x).addScaledVector(B, p.y));
@@ -43,19 +51,24 @@ function boite(d, [x0, x1], [y0, y1], [z0, z1], couleur, rayon, volume = true) {
 // contour vu de la caméra, avec deux arcs orangés ; des particules en orbite.
 function planete(rayon) {
   const groupe = new THREE.Group(), globe = new THREE.Group(), fin = 0.03;
-  const d = dessin();
+  const d = dessin(), lignes = [];
   for (let k = 0; k < 9; k++) {
     const phi = k * 20 * RAD, pts = [];
     for (let j = 0; j < 72; j++) { const t = j / 72 * 2 * Math.PI; pts.push(V(rayon * Math.cos(t) * Math.cos(phi), rayon * Math.sin(t), rayon * Math.cos(t) * Math.sin(phi))); }
     d.trait(pts, B, fin, true);
+    lignes.push(brisee(pts, true));
   }
   for (const lat of [-75, -60, -40, -20, 0, 20, 40, 60, 75, 84]) {
     const rr = rayon * Math.cos(lat * RAD), y = rayon * Math.sin(lat * RAD), n = Math.max(16, Math.round(72 * Math.cos(lat * RAD))), pts = [];
     for (let j = 0; j < n; j++) { const t = j / n * 2 * Math.PI; pts.push(V(rr * Math.cos(t), y, rr * Math.sin(t))); }
     d.trait(pts, B, fin, true);
+    lignes.push(brisee(pts, true));
   }
   d.volume(new THREE.SphereGeometry(rayon - 0.08, 48, 32));
   d.finir(globe);
+  // les données, comme autour des pics : des points serrés le long des méridiens et des
+  // parallèles, à peine au-dessus de la surface, où filent des paquets
+  if (nuee) globe.add(nuee(lignes, { densite: 13, dispersion: 0.07, taille: [0.026, 0.024], graine: 2 }));
   groupe.add(globe);
 
   // le liseré : des arcs dans le plan face à la caméra (réorientés à chaque image)
@@ -185,14 +198,16 @@ function batiment() {
 const CELLULE = 3, PAS = 3.22, ADOUCI = 0.28;
 // une boîte aux arêtes adoucies : le contour de chacune de ses faces, en retrait des arêtes
 // (les contours de deux faces voisines dessinent l'arête en double trait)
-function pave(d, c, [lx, ly, lz], couleur, rayon) {
+function pave(d, c, [lx, ly, lz], couleur, rayon, lignes = null) {
   for (const [n, u, v, demi, lu, lv] of [
     [V(1, 0, 0), V(0, 0, -1), V(0, 1, 0), lx / 2, lz, ly], [V(-1, 0, 0), V(0, 0, 1), V(0, 1, 0), lx / 2, lz, ly],
     [V(0, 1, 0), V(1, 0, 0), V(0, 0, -1), ly / 2, lx, lz], [V(0, -1, 0), V(1, 0, 0), V(0, 0, 1), ly / 2, lx, lz],
     [V(0, 0, 1), V(1, 0, 0), V(0, 1, 0), lz / 2, lx, ly], [V(0, 0, -1), V(-1, 0, 0), V(0, 1, 0), lz / 2, lx, ly],
   ]) {
     const a = Math.min(ADOUCI, lu / 4, lv / 4);
-    d.trait(plan(c.clone().addScaledVector(n, demi + 0.004), u, v)(rectangle(lu - 2 * a, lv - 2 * a, Math.min(0.14, a), 3)), couleur, rayon, true);
+    const pts = plan(c.clone().addScaledVector(n, demi + 0.004), u, v)(rectangle(lu - 2 * a, lv - 2 * a, Math.min(0.14, a), 3));
+    d.trait(pts, couleur, rayon, true);
+    if (lignes) lignes.push(brisee(pts, true));
   }
   d.volume(new THREE.BoxGeometry(lx - 0.03, ly - 0.03, lz - 0.03).translate(c.x, c.y, c.z));
 }
@@ -204,9 +219,12 @@ function pointilles(d, a, b, couleur, rayon, tiret = 0.35, vide = 0.3) {
 }
 function cubeModulaire() {
   const groupe = new THREE.Group(), fort = 0.03, fin = 0.022;
-  const socle = dessin({ propre: true });
-  for (const c of [[0, 0, 0], [0, 1, 0], [0, 1, 1], [1, 1, 1]]) pave(socle, cellule(...c), [CELLULE, CELLULE, CELLULE], B, fort);
+  const socle = dessin({ propre: true }), lignesSocle = [];
+  for (const c of [[0, 0, 0], [0, 1, 0], [0, 1, 1], [1, 1, 1]]) pave(socle, cellule(...c), [CELLULE, CELLULE, CELLULE], B, fort, lignesSocle);
   socle.finir(groupe);
+  // les données, comme autour des pics : lavande et blanches sur le socle, orangées sur les modules
+  const NUEE_CUBE = { densite: 18, dispersion: 0.1, taille: [0.05, 0.045] };
+  if (nuee) groupe.add(nuee(lignesSocle, { ...NUEE_CUBE, teintes: [['blanc', 3], ['lavande', 5]], graine: 3 }));
   const teinteSocle = socle.matieres.map(m => m.uniforms.uCouleur.value.clone());
   // les modules, dans l'ordre des cartes : leur place, d'où ils viennent
   const modules = [
@@ -214,14 +232,15 @@ function cubeModulaire() {
     { place: cellule(1, 1, 0), depart: V(0, 6, 0) },
     { place: cellule(1, 0, 1), depart: V(0, 0, 6) },
     { place: cellule(1, 0, 0), depart: V(5.5, 0, 0) },
-  ].map(({ place, depart }) => {
+  ].map(({ place, depart }, k) => {
     const taille = [CELLULE, CELLULE, CELLULE];
-    const objet = new THREE.Group(), d = dessin({ propre: true }), sens = depart.clone().normalize().negate();
-    pave(d, V(0, 0, 0), taille, R, fort);
+    const objet = new THREE.Group(), d = dessin({ propre: true }), sens = depart.clone().normalize().negate(), lignesModule = [];
+    pave(d, V(0, 0, 0), taille, R, fort, lignesModule);
     // l'ergot d'emboîtement, sur la face qui entre la première
     const demi = Math.abs(sens.dot(V(...taille))) / 2, ergot = [1.1, 1.1, 1.1].map((l, a) => (Math.abs(sens.getComponent(a)) > 0.5 ? 0.5 : l));
     pave(d, sens.clone().multiplyScalar(demi + 0.25), ergot, R, fin);
     d.finir(objet);
+    if (nuee) objet.add(nuee(lignesModule, { ...NUEE_CUBE, teintes: [['orange', 4], ['rose', 3], ['blanc', 2]], graine: 4 + k }));
     objet.position.copy(place).add(depart);
     groupe.add(objet);
     // les pointillés : des coins de la face d'entrée jusqu'à la place
@@ -262,7 +281,7 @@ function cubeModulaire() {
 // -------------------------------------------------------------------- mise en place
 // poses : cube { centre }, planete { centre, rayon }, batiment { entree, sens }
 export function creerObjets(scene, poses, outils) {
-  ({ dessin } = outils);
+  ({ dessin, nuee } = outils);
   ({ bleu: B, rouge: R } = outils.couleurs);
   // la solution globale et modulaire : le cube, au-dessus du carrefour
   const cube = cubeModulaire();

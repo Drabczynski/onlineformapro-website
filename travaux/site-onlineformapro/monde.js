@@ -16,7 +16,7 @@ import { ShaderPass } from './vendor/addons/postprocessing/ShaderPass.js';
 import { OutputPass } from './vendor/addons/postprocessing/OutputPass.js';
 import { FXAAShader } from './vendor/addons/shaders/FXAAShader.js';
 import { creerObjets, rectangle } from './objets.js';
-import { creerParticules } from './particules.js';
+import { creerParticules, nueeLignes } from './particules.js';
 
 // les couleurs du modèle (bleu, orangé, blanc), le bleu tiré vers le violet (un bleu pur
 // paraissait cyan à l'écran) ; pour passer au rouge de la marque, changer « rouge »
@@ -212,11 +212,12 @@ const VOIES_FINES = [[-1.8, R], [-0.9, B, 0.013], [0.9, W, 0.013], [1.8, B]];
 // circulaire à trois paires de voies où la lumière circule ; l'accent, une bretelle droite
 // aux bouts arrondis ; autour, des arcs de cercle, comme au croisement en X.
 function logo(groupe, centre) {
+  const courbes = [], trace = (c, options) => { courbes.push(c); tube(groupe, c, options); };
   const k = 0.1, R0 = 77 * k, r0 = 32 * k, m = (R0 + r0) / 2, y = 0.03, e = 0.4;
   [[R0, B, 0.036], [R0 - e, W, 0.03], [m + 0.2, R, 0.032], [m - 0.2, W, 0.03], [r0 + e, W, 0.03], [r0, R, 0.036]].forEach(([r, couleur, rayon], n) => {
     const pts = [];
     for (let j = 0; j < 120; j++) pts.push(centre.clone().addScaledVector(dir(j * 3), r).setY(y));
-    tube(groupe, new THREE.CatmullRomCurve3(pts, true), { couleur, rayon, route: n % 2 === 0, bouts: [0, 0], ferme: true });
+    trace(new THREE.CatmullRomCurve3(pts, true), { couleur, rayon, route: n % 2 === 0, bouts: [0, 0], ferme: true });
   });
   // l'accent : un rectangle tourné de 29,4°, son centre en (86,8 ; 63,3) dans le dessin
   const c = centre.clone().add(new THREE.Vector3((86.77 - 111) * k, y, (63.27 - 175.5) * k));
@@ -224,17 +225,18 @@ function logo(groupe, centre) {
   const sur = (pts) => pts.map(p => c.clone().addScaledVector(u, p.x).addScaledVector(v, p.y));
   for (const [dl, arrondi, couleur, rayon] of [[0, 0.8, B, 0.036], [2 * e, 0.45, R, 0.028]]) {
     const pts = sur(rectangle(L - dl, l - dl, arrondi));
-    tube(groupe, new THREE.CatmullRomCurve3(pts, true), { couleur, rayon, route: false, bouts: [0, 0], ferme: true });
+    trace(new THREE.CatmullRomCurve3(pts, true), { couleur, rayon, route: false, bouts: [0, 0], ferme: true });
   }
   for (const [dv, couleur] of [[0.2, W], [-0.2, R]]) {
-    tube(groupe, new THREE.CatmullRomCurve3(sur([new THREE.Vector2(-L / 2 + 1.1, dv), new THREE.Vector2(L / 2 - 1.1, dv)])), { couleur, rayon: 0.026, route: dv > 0 });
+    trace(new THREE.CatmullRomCurve3(sur([new THREE.Vector2(-L / 2 + 1.1, dv), new THREE.Vector2(L / 2 - 1.1, dv)])), { couleur, rayon: 0.026, route: dv > 0 });
   }
   // les arcs : à gauche et à droite de l'anneau, et au-dessus de l'accent (angles en degrés)
   [[10.3, 165, 230, R], [13.3, 160, 225, R], [17.2, 170, 218, W], [10.3, -55, 40, R], [13.3, -48, 46, R], [17.2, -40, 38, R], [19.4, 62, 150, R], [22.8, 70, 140, B]].forEach(([r, a0, a1, couleur]) => {
     const pts = [];
     for (let j = 0; j <= 48; j++) pts.push(centre.clone().addScaledVector(dir(a0 + (a1 - a0) * j / 48), r).setY(y));
-    tube(groupe, new THREE.CatmullRomCurve3(pts), { couleur, rayon: 0.036, route: false });
+    trace(new THREE.CatmullRomCurve3(pts), { couleur, rayon: 0.036, route: false });
   });
+  return courbes;
 }
 
 function decor(groupe) {
@@ -308,8 +310,8 @@ function decor(groupe) {
   }
   // le logo, à gauche du virage de l'accueil
   const L0 = new THREE.Vector3(-38, 0, -26);
-  logo(groupe, L0);
-  return { C1, P2, sens, F, L0, routes, pics };
+  const lignesLogo = logo(groupe, L0);
+  return { C1, P2, sens, F, L0, routes, pics, lignesLogo };
 }
 // la planète des apprenants, au-dessus du croisement en X
 const PLANETE = { hauteur: 11, rayon: 7.5 };
@@ -348,12 +350,14 @@ export function creerMonde(toile) {
   const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 240);
   const groupe = new THREE.Group();
   scene.add(groupe);
-  const { C1, P2, sens, F, L0, routes, pics } = decor(groupe);
+  const { C1, P2, sens, F, L0, routes, pics, lignesLogo } = decor(groupe);
+  // la part des points des nuées (trois fois moins sur les petits écrans)
+  const facteur = epaisseur > 1 ? 0.35 : 1;
   const objets = creerObjets(groupe, {
     cube: { centre: C1.clone().setY(7.5) },
     planete: { centre: P2.clone().setY(PLANETE.hauteur), rayon: PLANETE.rayon },
     batiment: { entree: F, sens },
-  }, { dessin, couleurs: COULEURS });
+  }, { dessin, couleurs: COULEURS, nuee: (courbes, options) => nueeLignes(courbes, { facteur, ...options }) });
 
   // la chaîne de rendu, dans l'ordre du modèle : l'image, sa tonalité (sortie en couleurs
   // d'écran), le halo, les dégradés violets, l'anticrénelage
@@ -395,15 +399,23 @@ export function creerMonde(toile) {
     [0.78, tab(P2.clone().add(new THREE.Vector3(4.42, 20, 12.86))), tab(P2.clone().add(new THREE.Vector3(7.9, 18.61, -6.78))), tab(P2.clone().add(new THREE.Vector3(5.64, 10.15, -4.5)))],
     [0.86, tab(auBout(30, 1.6, 4)), tab(auBout(43.4, 4.5, 0))],          // la ligne droite (la démonstration), un peu plus loin pour ne pas traverser la planète
     [0.92, tab(auBout(150, 6, 2.5)), tab(F.clone().addScaledVector(gauche, -30).setY(8))],   // l'éventail
-    [0.96, tab(auBout(212, 20, 8)), tab(F.clone().addScaledVector(sens, 6).addScaledVector(gauche, -12).setY(4)), tab(F.clone().addScaledVector(sens, 6).setY(-1.5))],   // le bâtiment de la R&D (les développements sur mesure)
-    [1.00, tab(auBout(228, 22, 9)), tab(F.clone().addScaledVector(sens, 6).addScaledVector(gauche, -9).setY(3.5)), tab(F.clone().addScaledVector(sens, 6).setY(-1.5))],
+    [0.96, tab(auBout(226, 16, 7.5)), tab(F.clone().addScaledVector(sens, 6).addScaledVector(gauche, -9).setY(4)), tab(F.clone().addScaledVector(sens, 6).setY(-0.5))],   // le bâtiment de la R&D (les développements sur mesure), de près
+    [1.00, tab(auBout(236, 12, 6.5)), tab(F.clone().addScaledVector(sens, 6).addScaledVector(gauche, -3).setY(3.8)), tab(F.clone().addScaledVector(sens, 6).setY(-0.5))],
   ];
   const cheminP = new THREE.CatmullRomCurve3(STATIONS.map(s => new THREE.Vector3(...s[1])), false, 'centripetal');
   const cheminV = new THREE.CatmullRomCurve3(STATIONS.map(s => new THREE.Vector3(...s[2])), false, 'centripetal');
   const cheminVHauteur = new THREE.CatmullRomCurve3(STATIONS.map(s => new THREE.Vector3(...(s[3] || s[2]))), false, 'centripetal');
-  // les nuées de particules, semées le long du trajet de la caméra et des routes (trois fois
-  // moins sur les petits écrans)
-  const particules = creerParticules(scene, { chemin: cheminP, routes, pics, facteur: epaisseur > 1 ? 0.35 : 1 });
+  // les nuées de particules, semées le long du trajet de la caméra et des routes, autour des
+  // pics et du logo ; des colonnes montent sous le logo, la planète et le cube
+  const particules = creerParticules(scene, {
+    chemin: cheminP, routes, pics, facteur,
+    lignes: [{ courbes: lignesLogo, densite: 22, dispersion: 0.2, taille: [0.055, 0.05] }],
+    foyers: [
+      { centre: L0, rayon: 8.5, hauteur: 4.5 },
+      { centre: P2, rayon: 6.5, hauteur: PLANETE.hauteur - PLANETE.rayon + 0.4 },
+      { centre: C1, rayon: 4.5, hauteur: 7.5 - 1.61 - 1.5 + 0.4 },
+    ],
+  });
   let enHauteur = false;
   // progression du défilement → paramètre des courbes (les stations y sont équidistantes)
   function parametre(p) {
