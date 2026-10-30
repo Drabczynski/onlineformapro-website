@@ -55,6 +55,14 @@
     document.body.classList.remove('recherche-ouverte');
   }
   tete.querySelector('.recherche-fermer').addEventListener('click', (e) => { e.stopPropagation(); fermer(); champ.blur(); });
+  // sur téléphone, un toucher sur le champ fermé ouvre l'assistant en plein écran sans le
+  // clavier : on voit d'abord toutes les propositions ; le clavier ne vient qu'en touchant le
+  // champ, en bas de la feuille
+  form.querySelector('.recherche-champ').addEventListener('touchend', (e) => {
+    if (!telephone.matches || ouvert()) return;
+    e.preventDefault();
+    ouvrir();
+  }, { passive: false });
   champ.addEventListener('focus', ouvrir);
   champ.addEventListener('click', ouvrir);
   voile.addEventListener('click', () => { fermer(); champ.blur(); });

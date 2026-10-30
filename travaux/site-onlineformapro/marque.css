@@ -229,14 +229,15 @@
 }
 
 /* l'assistant sur téléphone : une feuille plein écran (la partie visible de l'écran, au-dessus
-   du clavier : --vv-h et --vv-top, posés par recherche.js), un bandeau avec Fermer, le contenu
+   du clavier : --vv-h et --vv-top, posés par recherche.js ; du blanc déborde au-dessus et
+   au-dessous, sous les barres translucides de Safari), un bandeau avec Fermer, le contenu
    qui défile, le champ en bas avec Envoyer ; tout à 16 px au moins dans le champ (sinon
    l'iPhone zoome la page en y entrant), des cibles de 40 à 52 px */
 .recherche-tete, .recherche-envoyer { display: none; }
 @media (max-width: 860px) {
   .recherche-champ input { font-size: 16px; }
   html:has(body.recherche-ouverte), body.recherche-ouverte { overflow: hidden; }
-  .recherche-ouverte .entete .recherche { position: fixed; left: 0; right: 0; top: var(--vv-top, 0px); z-index: 5; height: var(--vv-h, 100dvh); display: flex; flex-direction: column; background: #fff; color: var(--encre); animation: feuille-entree .35s cubic-bezier(.2, .8, .2, 1) both; }
+  .recherche-ouverte .entete .recherche { position: fixed; left: 0; right: 0; top: var(--vv-top, 0px); z-index: 5; height: var(--vv-h, 100dvh); display: flex; flex-direction: column; background: #fff; box-shadow: 0 -60vh 0 #fff, 0 60vh 0 #fff; color: var(--encre); animation: feuille-entree .35s cubic-bezier(.2, .8, .2, 1) both; }
   .recherche-ouverte .recherche-tete { display: flex; align-items: center; gap: 10px; flex: none; min-height: 60px; padding: env(safe-area-inset-top, 0px) 8px 0 20px; border-bottom: 1px solid rgba(20, 20, 24, .08); font-size: 16px; letter-spacing: -.01em; }
   .recherche-tete strong { font-weight: 500; }
   .recherche-fermer { display: grid; place-items: center; width: 44px; height: 44px; margin-left: auto; padding: 0; border: 0; border-radius: 50%; background: none; color: var(--encre); cursor: pointer; }

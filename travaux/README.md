@@ -384,11 +384,13 @@ familles du catalogue aussi (onze écrans au lieu de quatorze), aucun texte ne d
 réseaux ont une zone de 40 px pour le doigt. Sur Contact, l'anneau reste dans le haut de
 l'ouverture et s'efface avant le titre. Dans l'ouverture, le flou des cartes est ramené à
 32 px (l'écran étant plus petit, l'effet reste aussi marqué, et le calcul est plus léger) ; les
-cartes y sont compactes (image de 13 % de la hauteur, titre de 20 px, description sur trois
-lignes) pour laisser voir la 3D, les images du premier écran restent masquées, et la scène
+cartes y deviennent des bandeaux compacts au bas de l'écran (l'image carrée à gauche, le texte
+en face, la description coupée à deux lignes, toute la carte cliquable) pour laisser voir la 3D, les images du premier écran restent masquées, et la scène
 couvre aussi la zone de la barre de Safari (100lvh), sans bande sombre en bas.
 
-**L'assistant sur téléphone** s'ouvre en plein écran : un bandeau « Assistant
+**L'assistant sur téléphone** s'ouvre en plein écran dès qu'on touche le champ, sans faire
+monter le clavier (on voit d'abord toutes les propositions ; le clavier vient en touchant le
+champ du bas) : un bandeau « Assistant
 Onlineformapro » avec un bouton Fermer, le contenu qui défile (accès rapides, suggestions,
 exemples, puis la conversation), et le champ en bas, collé au-dessus du clavier (la feuille
 suit la partie visible de l'écran, `visualViewport`), avec un bouton Envoyer. Le champ est à
