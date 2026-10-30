@@ -22,6 +22,8 @@ import { creerParticules, nueeLignes, reseauSphere } from './particules.js';
 // paraissait cyan à l'écran) ; pour passer au rouge de la marque, changer « rouge »
 export const COULEURS = { bleu: '#3A33FF', rouge: '#FF4300', blanc: '#FFFFFF' };
 const NUIT = '#1c0a3c';                       // la nuit : un bleu nuit tiré vers le violet
+// l'essai d'ouverture qui part juste avant les pics (index.html), ou l'ouverture complète
+const VARIANTE = document.documentElement.dataset.variante;
 
 // -------------------------------------------------------------------- tracés
 const alea = (i, k) => { const x = Math.sin(i * 127.1 + k * 311.7) * 43758.5453; return x - Math.floor(x); };
@@ -308,9 +310,9 @@ function decor(groupe) {
     }
     tube(groupe, new THREE.CatmullRomCurve3(pts), { couleur: [R, B, W, B, R, B][k % 6], rayon: k % 2 ? 0.022 : 0.03, route: k % 2 === 0, bouts: [1, 0] });
   }
-  // le logo, à gauche du virage de l'accueil
+  // le logo, à gauche du virage de l'accueil (pas dans l'essai « ondes »)
   const L0 = new THREE.Vector3(-38, 0, -26);
-  const lignesLogo = logo(groupe, L0);
+  const lignesLogo = VARIANTE === 'ondes' ? [] : logo(groupe, L0);
   return { C1, P2, sens, F, L0, routes, pics, lignesLogo };
 }
 // la planète des apprenants, au-dessus du croisement en X
@@ -402,6 +404,10 @@ export function creerMonde(toile) {
     [0.96, tab(auBout(226, 16, 7.5)), tab(F.clone().addScaledVector(sens, 6).addScaledVector(gauche, -9).setY(4)), tab(F.clone().addScaledVector(sens, 6).setY(-0.5))],   // le bâtiment de la R&D (les développements sur mesure), de près
     [1.00, tab(auBout(236, 12, 6.5)), tab(F.clone().addScaledVector(sens, 6).addScaledVector(gauche, -3).setY(3.8)), tab(F.clone().addScaledVector(sens, 6).setY(-0.5))],
   ];
+  // l'essai « ondes » : ni logo, ni autoroute, ni lacets ; on part sur la route, un peu avant
+  // les pics, qu'on voit déjà s'élever devant soi, à droite du titre (au centre sur un écran
+  // en hauteur, sous le titre)
+  if (VARIANTE === 'ondes') STATIONS.splice(0, 5, [0, [6, 3.4, -194], [-34, 4.6, -262], [-16, 4, -268]]);
   const cheminP = new THREE.CatmullRomCurve3(STATIONS.map(s => new THREE.Vector3(...s[1])), false, 'centripetal');
   const cheminV = new THREE.CatmullRomCurve3(STATIONS.map(s => new THREE.Vector3(...s[2])), false, 'centripetal');
   const cheminVHauteur = new THREE.CatmullRomCurve3(STATIONS.map(s => new THREE.Vector3(...(s[3] || s[2]))), false, 'centripetal');
@@ -410,9 +416,9 @@ export function creerMonde(toile) {
   const particules = creerParticules(scene, {
     chemin: cheminP, routes, pics, facteur,
     // (vue de loin : une nuée large, comme celle des pics vue de près)
-    lignes: [{ courbes: lignesLogo, densite: 12, dispersion: 0.9, taille: [0.06, 0.06] }],
+    lignes: lignesLogo.length ? [{ courbes: lignesLogo, densite: 12, dispersion: 0.9, taille: [0.06, 0.06] }] : [],
     foyers: [
-      { centre: L0, rayon: 8.5, hauteur: 4.5 },
+      ...(lignesLogo.length ? [{ centre: L0, rayon: 8.5, hauteur: 4.5 }] : []),
       { centre: P2, rayon: 6.5, hauteur: PLANETE.hauteur - PLANETE.rayon + 0.4 },
       { centre: C1, rayon: 4.5, hauteur: 7.5 - 1.61 - 1.5 + 0.4 },
     ],

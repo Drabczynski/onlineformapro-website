@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-variante="ondes">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -85,11 +85,15 @@
     </div>
 
     <div class="chapitres">
-      <!-- l'ouverture : 200 svh -->
+      <!-- l'ouverture : 200 svh ; essai « ondes » : on part juste avant les pics de l'IA, sans
+           le logo en routes ni le passage « 25 ans » (l'ouverture complète : intro-complete.html) -->
       <div class="bloc" style="--h: 200; --mt: 0">
         <div class="colle">
-          <p class="accueil-pastille" data-fenetre="0 10" data-revele="flicker-in"><span class="accueil-pastille-point" aria-hidden="true"></span>22&nbsp;millions d’apprenants · 25&nbsp;ans d’innovation</p>
-          <h1 class="accueil-titre grand" data-fenetre="0 10" data-revele="text"><span class="accent">Première solution</span><br>globale digital<br>learning orchestrée<br>par&nbsp;l’IA</h1>
+          <div class="accueil-pile">
+            <img class="accueil-logo" src="img/logo-blanc-rouge.svg" alt="Onlineformapro" width="841" height="353" data-fenetre="0 10" data-revele="flicker-in">
+            <h1 class="accueil-titre grand" data-fenetre="0 10" data-revele="text"><span class="accent">Première solution</span><br>globale digital<br>learning orchestrée<br>par&nbsp;l’IA</h1>
+            <p class="accueil-pastille" data-fenetre="0 10" data-revele="flicker-in"><span class="accueil-pastille-point" aria-hidden="true"></span>22&nbsp;millions d’apprenants · 25&nbsp;ans d’innovation</p>
+          </div>
           <div class="accueil-encadre" data-fenetre="0 10" data-revele="flicker-in">
             <div class="accueil-encadre-corps vitre">
               <p class="chapeau">L’innovation technologique couplée à&nbsp;une&nbsp;ingénierie pédagogique de&nbsp;pointe dans une&nbsp;solution globale intégrée, intuitive et&nbsp;intelligente.</p>
@@ -99,20 +103,8 @@
         </div>
       </div>
 
-      <!-- 25 ans : 300 svh, 100 svh avant la fin du précédent -->
-      <div class="bloc" id="suite" style="--h: 300; --mt: -100">
-        <div class="colle colle-centre">
-          <figure class="presentation-image" data-fenetre="0 75"><div class="presentation-image-corps"><img src="img/photos/ordinateur-sourire.webp" alt="Une apprenante souriante qui suit sa formation sur son ordinateur portable" width="2000" height="1333" loading="lazy"></div></figure>
-          <div class="presentation">
-            <h2 class="presentation-etiquette" data-fenetre="0 75" data-revele="flicker-in">25&nbsp;ans de&nbsp;pédagogie et&nbsp;d’innovation technologique</h2>
-            <div class="deco" data-fenetre="0 75" aria-hidden="true"></div>
-            <p class="moyen" data-fenetre="0 75" data-revele="text">Lauréate du&nbsp;concours «&nbsp;Entreprises innovantes&nbsp;» dès&nbsp;sa&nbsp;création en&nbsp;1999, Onlineformapro s’est rapidement imposée comme le&nbsp;leader de&nbsp;la&nbsp;solution globale digital&nbsp;learning.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- chapitre 01 -->
-      <div class="bloc" style="--h: 350; --mt: -250" data-chapitre="1">
+      <!-- chapitre 01 : il commence 160 svh avant la fin de l'ouverture -->
+      <div class="bloc" id="suite" style="--h: 350; --mt: -160" data-chapitre="1">
         <div class="colle colle-centre"><h2 class="chapitre-titre grand" data-fenetre="115 230" data-revele="title">La&nbsp;puissance<br>de&nbsp;l’IA pour<br>la&nbsp;formation</h2></div>
       </div>
       <div class="bloc paquet" style="--h: 575; --mt: -195" data-cartes="3">

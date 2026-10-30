@@ -164,6 +164,18 @@ d'en haut (la solution globale et modulaire), le croisement en X entouré d'anne
 millions d'apprenants), la ligne droite puis l'éventail de lignes (la demande de démo).
 Textes et liens repris du site officiel, aucun visuel. La partie plus classique du site
 viendra avec le prochain modèle.
+
+**Essai en cours : l'ouverture qui part des ondes.** `index.html` est un essai : ni le logo
+dessiné en routes, ni l'autoroute, ni le passage « 25 ans » (« Lauréate… ») ; la caméra part
+sur la route, un peu avant le graphique de pics, qu'on voit déjà s'élever à droite du titre
+(sous le titre sur téléphone), et les ondes de l'IA sont la première étape. L'en-tête est
+transparent. Au premier écran, empilés au centre et ferrés à gauche : le logo, le titre
+« Première solution globale digital learning orchestrée par l'IA » (moins grand) et la
+pastille ; l'accroche « L'innovation technologique… » en bas à droite. L'essai est porté par
+`data-variante="ondes"` sur `<html>` : `monde.js` ne dessine pas le logo et remplace les cinq
+premières stations par une seule, `ouverture.js` cale seize stations au lieu de vingt.
+**L'ouverture complète reste dans `intro-complete.html`** (mêmes scripts, sans l'attribut),
+telle que décrite ci-dessous.
 Les titres sont en Geist, comme dans les pages du site ; le reste du texte reste en Inter.
 
 À l'arrivée, le Ó du logo est dessiné en routes, aux proportions du logo : l'anneau en route
