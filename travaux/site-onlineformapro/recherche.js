@@ -19,15 +19,15 @@
   if (/Mac|iPhone|iPad/.test(navigator.platform)) touche.textContent = '⌘ K';
 
   // ------------------------------------------------------------------ ouvrir, fermer
-  const ouvert = () => !panneau.hidden;
+  // la classe recherche-ouverte (sur <body>) déplie le panneau, élargit le champ et voile la
+  // page, en transitions (marque.css)
+  const ouvert = () => document.body.classList.contains('recherche-ouverte');
   function ouvrir() {
     if (ouvert()) return;
-    panneau.hidden = false; voile.hidden = false;
     champ.setAttribute('aria-expanded', 'true');
     document.body.classList.add('recherche-ouverte');
   }
   function fermer() {
-    panneau.hidden = true; voile.hidden = true;
     champ.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('recherche-ouverte');
   }
