@@ -356,9 +356,9 @@ body.fond-noir { background: var(--nuit); }
 @media (max-width: 480px) { .intro-bloc--pierre .ensemble { white-space: normal; } }
 
 /* ------------------------------------------------------------ l'ouverture de Contact */
-/* sur fond lavande, à droite du texte, un grand anneau de particules animé par nuee.js (WebGL) ;
+/* sur fond blanc, à droite du texte, un grand anneau de particules animé par nuee.js (WebGL) ;
    en étroit, l'anneau en haut et le texte dessous */
-.heros-nuee { position: relative; overflow: hidden; isolation: isolate; min-height: max(640px, calc(100svh - 72px)); justify-content: center; background: #f0effa; }
+.heros-nuee { position: relative; overflow: hidden; isolation: isolate; min-height: max(640px, calc(100svh - 72px)); justify-content: center; background: #fff; }
 .heros-nuee .titre-1 { max-width: 660px; }
 .heros-nuee .texte-grand { max-width: 520px; }
 .nuee { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; pointer-events: none; }

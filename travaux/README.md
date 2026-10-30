@@ -325,9 +325,9 @@ tend la tablette OnlineCompétences, puis le parcours en trois étapes (position
 finale, dont les barres montent à l'arrivée) ; sur LMS et Démo, les 48 logos clients en deux
 onglets (« Des clients de tout horizon », « Éducation et formation », au clic ou aux flèches du
 clavier ; la grille insérée par `commun.py` à la place du repère `<!--LOGOS-->`) ; sur Contact,
-une photo sous « Votre demande » ; en ouverture de Contact, sur fond lavande, à droite du
-titre, un grand anneau de particules vu de biais (`nuee.js`, WebGL 2 sans bibliothèque,
-260 000 grains, 90 000 sur téléphone, tout le mouvement calculé par la carte graphique) : en
+une photo sous « Votre demande » ; en ouverture de Contact, sur fond blanc, à droite du
+titre, un grand anneau de particules vu de biais, qui occupe la moitié de l'écran et sort du
+cadre (`nuee.js`, WebGL 2 sans bibliothèque, 360 000 grains, 120 000 sur téléphone, tout le mouvement calculé par la carte graphique) : en
 travers de l'anneau, des bandes qui se mêlent (brume rose et lilas au bord intérieur, violet,
 cœur bleu nuit piqueté de jaune-vert, vert anis, rose, bleu lavande) et au bord extérieur une
 poussière pastel qui s'éloigne et renaît ; les grains tournent lentement le long de l'anneau,

@@ -1,4 +1,4 @@
-// L'ouverture de Contact : un grand anneau de particules sur fond lavande, vu de biais, dont on
+// L'ouverture de Contact : un grand anneau de particules sur fond blanc, vu de biais, dont on
 // voit la moitié gauche. En travers de l'anneau, des bandes de couleur qui se mêlent : au bord
 // intérieur une brume rose et lilas, puis du violet, un cœur bleu nuit piqueté de jaune-vert,
 // une bande vert anis, du rose, du bleu lavande, et au bord extérieur une poussière pastel qui
@@ -16,12 +16,12 @@
   const gl = toile.getContext('webgl2', { antialias: false, premultipliedAlpha: true });
   if (!gl) { toile.remove(); return; }
   const calme = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const N = matchMedia('(max-width: 860px)').matches ? 90000 : 260000;
-  const FOND = [240, 239, 250].map((x) => x / 255);
+  const N = matchMedia('(max-width: 860px)').matches ? 120000 : 360000;
+  const FOND = [1, 1, 1];
 
   // les bandes, du bord intérieur (s = 0) au bord extérieur (s = 1), et au-delà la poussière
   const BANDES = [
-    { de: -0.45, a: 0.08, poids: 0.07, teintes: ['#8d74e8', '#a58cf0', '#c9b3f2', '#e3c6ec', '#d9c2ef', '#efd3ea'], brume: true },
+    { de: -0.3, a: 0.08, poids: 0.05, teintes: ['#8d74e8', '#a58cf0', '#c9b3f2', '#e3c6ec', '#d9c2ef', '#efd3ea'], brume: true },
     { de: 0.04, a: 0.28, poids: 0.16, teintes: ['#6b56e2', '#7c62ea', '#5d6fe6', '#8a6ef0', '#4f5fd8'] },
     { de: 0.24, a: 0.5, poids: 0.26, teintes: ['#1d1e6c', '#262385', '#30289c', '#232f8f', '#3a2fb2', '#1a2a78'], piquets: ['#d9ec6e', '#e6f08a', '#b9a4ff'] },
     { de: 0.49, a: 0.62, poids: 0.11, teintes: ['#c3e75c', '#b4dd6b', '#d5ef85', '#a8d870'] },
@@ -126,9 +126,10 @@
     gl.uniformMatrix4fv(u.uProj, false, [f / asp, 0, 0, 0, 0, f, 0, 0, 0, 0, (loin + pres) / (pres - loin), -1, 0, 0, (2 * loin * pres) / (pres - loin), 0]);
     const h = demi * D, l = h * asp;
     // en large, l'anneau à droite du texte ; en étroit (téléphone), en haut, le texte dessous
-    if (asp > 1.1) gl.uniform3fv(u.uCentre, [l * 0.95, -h * 0.1, -D]), gl.uniform1f(u.uR, h);
-    else gl.uniform3fv(u.uCentre, [l * 0.9, h * 0.55, -D]), gl.uniform1f(u.uR, h * 0.62);
-    gl.uniform1f(u.uPx, dpr * Math.min(1.4, Math.max(0.75, H / 800)));
+    // l'anneau en grand : ses bandes commencent juste après le texte et sortent du cadre
+    if (asp > 1.1) gl.uniform3fv(u.uCentre, [h * 1.37 - l * 0.06, -h * 0.06, -D]), gl.uniform1f(u.uR, h * 1.15);
+    else gl.uniform3fv(u.uCentre, [l * 0.95, h * 0.62, -D]), gl.uniform1f(u.uR, h * 0.78);
+    gl.uniform1f(u.uPx, 1.12 * dpr * Math.min(1.4, Math.max(0.75, H / 800)));
   }
   function rotation() {
     souris[0] += (cible[0] - souris[0]) * 0.04; souris[1] += (cible[1] - souris[1]) * 0.04;
