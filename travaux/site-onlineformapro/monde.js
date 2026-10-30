@@ -238,7 +238,7 @@ function logo(groupe, centre) {
 }
 
 function decor(groupe) {
-  const zc = -420, C1 = new THREE.Vector3(0, 0, zc), routes = [];
+  const zc = -420, C1 = new THREE.Vector3(0, 0, zc), routes = [], pics = [];
   // l'ouverture : l'autoroute arrive de l'horizon, à gauche, passe tout près, en bas de
   // l'écran, puis tourne, file vers l'horizon et entre droit dans le carrefour
   routes.push(route(groupe, [[-210, -90], [-110, -40], [-50, -10], [-14, 6], [8, 12], [22, 6], [30, -14], [33, -50], [26, -95], [6, -135], [-6, -178], [6, -218], [12, -252], [6, -300], [0, -350], [0, zc + 30]], VOIES, { bouts: [1, 0] }));
@@ -253,7 +253,9 @@ function decor(groupe) {
       const y = 0.05 + pic(-262 - alea(r, 1) * 16, 4 + 7 * alea(r, 2), 4 + 3 * alea(r, 3)) + pic(-292 - alea(r, 4) * 10, 2.5 + 6 * alea(r, 5), 3 + 2 * alea(r, 6));
       pts.push(new THREE.Vector3(x0 + Math.sin(k * 0.05 + r) * 0.4, y, z));
     }
-    tube(groupe, new THREE.CatmullRomCurve3(pts), { couleur: [B, R, W, R, B, W, R][r], rayon: 0.028 });
+    const c = new THREE.CatmullRomCurve3(pts);
+    pics.push(c);
+    tube(groupe, c, { couleur: [B, R, W, R, B, W, R][r], rayon: 0.028 });
   }
 
   // le carrefour : l'autoroute (bras du bas) y entre, une route transversale le traverse ;
@@ -307,7 +309,7 @@ function decor(groupe) {
   // le logo, à gauche du virage de l'accueil
   const L0 = new THREE.Vector3(-38, 0, -26);
   logo(groupe, L0);
-  return { C1, P2, sens, F, L0, routes };
+  return { C1, P2, sens, F, L0, routes, pics };
 }
 // la planète des apprenants, au-dessus du croisement en X
 const PLANETE = { hauteur: 11, rayon: 7.5 };
@@ -346,7 +348,7 @@ export function creerMonde(toile) {
   const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 240);
   const groupe = new THREE.Group();
   scene.add(groupe);
-  const { C1, P2, sens, F, L0, routes } = decor(groupe);
+  const { C1, P2, sens, F, L0, routes, pics } = decor(groupe);
   const objets = creerObjets(groupe, {
     cube: { centre: C1.clone().setY(7.5) },
     planete: { centre: P2.clone().setY(PLANETE.hauteur), rayon: PLANETE.rayon },
@@ -397,7 +399,7 @@ export function creerMonde(toile) {
   const cheminVHauteur = new THREE.CatmullRomCurve3(STATIONS.map(s => new THREE.Vector3(...(s[3] || s[2]))), false, 'centripetal');
   // les nuées de particules, semées le long du trajet de la caméra et des routes (trois fois
   // moins sur les petits écrans)
-  const particules = creerParticules(scene, { chemin: cheminP, routes, facteur: epaisseur > 1 ? 0.35 : 1 });
+  const particules = creerParticules(scene, { chemin: cheminP, routes, pics, facteur: epaisseur > 1 ? 0.35 : 1 });
   let enHauteur = false;
   // progression du défilement → paramètre des courbes (les stations y sont équidistantes)
   function parametre(p) {

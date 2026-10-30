@@ -6,7 +6,10 @@
 //    de part et d'autre du trajet de la caméra ; des ondes en partent, centrées sur la caméra, et
 //    l'accompagnent tout du long ; çà et là, un point s'allume un instant, comme une donnée ;
 //  - les flux : des paquets qui circulent sur les routes, entre les voies (blancs et lavande
-//    dans un sens, rouges et orangés dans l'autre), plus vite quand on fait défiler.
+//    dans un sens, rouges et orangés dans l'autre), plus vite quand on fait défiler ;
+//  - au chapitre « La puissance de l'IA pour la formation », autour du graphique de pics : des
+//    nuées de points serrés le long des courbes, où filent des paquets de données, et sous elles
+//    des colonnes de points qui montent de la grille, comme des données qui alimentent l'IA.
 import * as THREE from 'three';
 
 // un tirage pseudo-aléatoire reproductible (le même ciel à chaque visite)
@@ -30,7 +33,9 @@ function teinte(r, poids) {
 
 // -------------------------------------------------------------------- nuanceurs
 // MODE 2 : paquets des routes (glissement le long de aAxe, en boucle sur une courte longueur ;
-// aParam : vitesse, longueur) ; MODE 3 : la grille (ondes autour de la caméra, clignotements)
+// aParam : vitesse, longueur) ; MODE 3 : la grille (ondes autour de la caméra, clignotements) ;
+// MODE 4 : le long des pics (aParam : position sur la courbe de 0 à 1, numéro de la courbe) ;
+// MODE 5 : colonnes montantes sous les pics (aParam : vitesse, hauteur)
 const SOMMETS = `
   uniform float uTemps; uniform float uFlux; uniform float uEchelle; uniform float uTailleMax;
   uniform float uProche; uniform float uLoin; uniform vec3 uCamera; uniform float uPas; uniform float uMax;
@@ -45,6 +50,17 @@ const SOMMETS = `
       float f = fract(g * 7.31 + uFlux * aParam.x / aParam.y);
       p += aAxe * (f - 0.5) * aParam.y;
       eclat = sin(3.14159 * f);
+    #elif MODE == 4
+      // des paquets filent le long des courbes : une grande vague d'éclat et de petits paquets
+      float vague = exp(-fract(aParam.x * 3.0 - uFlux * 0.35 + aParam.y * 0.17) * 16.0);
+      float paquet = exp(-fract(aParam.x * 11.0 - uFlux * 0.9 + g * 3.0) * 30.0);
+      eclat = 0.3 + 2.6 * vague + 1.6 * paquet;
+      couleur = mix(couleur, vec3(1.0), min(vague + paquet, 1.0) * 0.7);
+    #elif MODE == 5
+      // les données montent de la grille, s'allument en partant et s'éteignent en arrivant
+      float f = fract(g * 5.13 + uTemps * aParam.x / aParam.y);
+      p.y += f * aParam.y;
+      eclat = smoothstep(0.0, 0.1, f) * (1.0 - f) * 3.0;
     #else
       // les ondes : un front net tous les 26 unités, qui s'éloigne de la caméra à 9 unités par
       // seconde, suivi d'une traîne lumineuse vers l'intérieur
@@ -104,7 +120,7 @@ function points(mode, n, remplir, { opacite = 1, proche = 30, loin = 170, pas = 
 // -------------------------------------------------------------------- la grille et les flux
 // chemin : le trajet de la caméra ; routes : les axes des routes ; facteur : la part du
 // nombre de points (moins sur les petits écrans)
-export function creerParticules(scene, { chemin, routes, facteur = 1 }) {
+export function creerParticules(scene, { chemin, routes, pics = [], facteur = 1 }) {
   const r = tirage(20261029);
   const P = new THREE.Vector3(), T = new THREE.Vector3(), N = new THREE.Vector3(), HAUT = new THREE.Vector3(0, 1, 0);
   const repere = (courbe, u) => { courbe.getPointAt(u, P); courbe.getTangentAt(u, T); N.crossVectors(T, HAUT).normalize(); };
@@ -154,7 +170,33 @@ export function creerParticules(scene, { chemin, routes, facteur = 1 }) {
     }
   }, { loin: 140 });
 
-  const nuees = [grille, flux];
+  // autour du graphique de pics : des points serrés le long de chaque courbe, un peu dispersés
+  const parCourbe = Math.round(2400 * facteur);
+  const longPics = points(4, parCourbe * pics.length, (ecrire, n) => {
+    const p = new THREE.Vector3();
+    for (let i = 0; i < n; i++) {
+      const k = Math.floor(i / parCourbe), u = ((i % parCourbe) + r()) / parCourbe;
+      pics[k].getPointAt(u, p).add(new THREE.Vector3(gauss(r), gauss(r), gauss(r)).multiplyScalar(0.22));
+      ecrire(i, p, teinte(r, [['blanc', 3], ['lavande', 4], ['orange', 1]]), 0.024 + 0.024 * r(), [u, k]);
+    }
+  }, { proche: 20, loin: 110 });
+  // et sous les pics, des colonnes de points qui montent de la grille (aux nœuds de la grille)
+  const colonnes = [];
+  if (pics.length) {
+    const boite = new THREE.Box3();
+    for (const c of pics) for (const q of c.getSpacedPoints(60)) boite.expandByPoint(q);
+    for (let x = Math.ceil((boite.min.x - 3) / PAS) * PAS; x <= boite.max.x + 3; x += PAS) {
+      for (let z = Math.ceil(boite.min.z / PAS) * PAS; z <= boite.max.z; z += PAS) for (let d = 0; d < 2; d++) if (r() < facteur) colonnes.push(x, z);
+    }
+  }
+  const montee = points(5, colonnes.length / 2, (ecrire, n) => {
+    const p = new THREE.Vector3();
+    for (let i = 0; i < n; i++) {
+      ecrire(i, p.set(colonnes[2 * i], Y, colonnes[2 * i + 1]), teinte(r, [['lavande', 4], ['blanc', 3], ['orange', 1]]), 0.05, [1.4 + 2.2 * r(), 3 + 9 * r()]);
+    }
+  }, { proche: 20, loin: 110 });
+
+  const nuees = [grille, flux, longPics, montee];
   for (const o of nuees) scene.add(o);
   return {
     // pixels par unité à une unité de distance, et la densité de pixels

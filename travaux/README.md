@@ -193,7 +193,10 @@ un seul système net et régulier : une matrice de points serrés (un tous les 0
 sous les routes, sur 45 unités de part et d'autre du trajet de la caméra ; des ondes en
 partent, centrées sur la caméra, et l'accompagnent tout du long ; çà et là un point
 s'allume un instant, comme une donnée. Des paquets circulent sur les routes (blancs et
-lavande dans un sens, roses et orangés dans l'autre), plus vite quand on défile. Grille moins
+lavande dans un sens, roses et orangés dans l'autre), plus vite quand on défile. Au chapitre
+« La puissance de l'IA pour la formation », le graphique de pics se charge de données : des
+points serrés le long de ses courbes, où filent des paquets, et des colonnes de points qui
+montent de la grille sous lui. Grille moins
 serrée et moins de paquets sur petit écran ; si la machine peine, le rendu baisse d'abord sa
 résolution, puis garde la moitié des paquets, puis coupe le halo.
 
