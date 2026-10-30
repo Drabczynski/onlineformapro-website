@@ -355,7 +355,7 @@ de grains en larges bandes obliques, qui ondule comme un relief et file) ; seule
 visible de la forme est semée, d'où la densité des gros plans. La page d'essai `nuees.html`
 les montre l'un sous l'autre, en direct, pour choisir.
 Les trois cartes « Nous joindre » remontent sur le bas de l'anneau (240 px, 120 sur téléphone),
-qui s'efface derrière elles. Sur téléphone, l'anneau passe en haut, le texte dessous ;
+qui s'efface derrière elles (un filet, sans ombre, les détache). Sur téléphone, l'anneau passe en haut, le texte dessous ;
 l'animation s'arrête hors de l'écran et reste figée si le visiteur a demandé moins
 d'animations. Sur
 téléphone, vignettes et étapes défilent au doigt.
