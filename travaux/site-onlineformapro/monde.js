@@ -394,9 +394,9 @@ export function creerMonde(toile) {
     [0.60, tab(C1.clone().add(new THREE.Vector3(-18, 21, 32))), tab(C1.clone().add(new THREE.Vector3(3, 7, 3))), tab(C1.clone().setY(6))],      // le cube complet
     [0.64, [110, 10, -385], [170, 0, -405]],             // la liaison vers le croisement
     [0.72, tab(P2.clone().add(new THREE.Vector3(-58, 22, 6))), tab(P2.clone().add(new THREE.Vector3(0, 8, -9))), tab(P2.clone().setY(9))],    // le croisement en X, ses anneaux et la planète (les apprenants)
-    // tout près de la planète, pendant les cartes : le haut de sa courbe occupe le bas gauche de
-    // l'écran, le reste hors champ (sur un écran en hauteur, sa courbe à gauche, au milieu)
-    [0.78, tab(P2.clone().add(new THREE.Vector3(4.42, 20, 12.86))), tab(P2.clone().add(new THREE.Vector3(7.9, 18.61, -6.78))), tab(P2.clone().add(new THREE.Vector3(5.64, 10.15, -4.5)))],
+    // près de la planète, pendant les cartes : sa courbe occupe la moitié basse gauche de l'écran,
+    // le reste hors champ (sur un écran en hauteur, sa courbe à gauche, au milieu)
+    [0.78, tab(P2.clone().add(new THREE.Vector3(5.6, 22.6, 16.3))), tab(P2.clone().add(new THREE.Vector3(7.4, 14.6, -6.2))), tab(P2.clone().add(new THREE.Vector3(5.64, 10.15, -4.5)))],
     [0.86, tab(auBout(30, 1.6, 4)), tab(auBout(43.4, 4.5, 0))],          // la ligne droite (la démonstration), un peu plus loin pour ne pas traverser la planète
     [0.92, tab(auBout(150, 6, 2.5)), tab(F.clone().addScaledVector(gauche, -30).setY(8))],   // l'éventail
     [0.96, tab(auBout(226, 16, 7.5)), tab(F.clone().addScaledVector(sens, 6).addScaledVector(gauche, -9).setY(4)), tab(F.clone().addScaledVector(sens, 6).setY(-0.5))],   // le bâtiment de la R&D (les développements sur mesure), de près
@@ -409,7 +409,8 @@ export function creerMonde(toile) {
   // pics et du logo ; des colonnes montent sous le logo, la planète et le cube
   const particules = creerParticules(scene, {
     chemin: cheminP, routes, pics, facteur,
-    lignes: [{ courbes: lignesLogo, densite: 22, dispersion: 0.2, taille: [0.055, 0.05] }],
+    // (vue de loin : une nuée large, comme celle des pics vue de près)
+    lignes: [{ courbes: lignesLogo, densite: 12, dispersion: 0.9, taille: [0.06, 0.06] }],
     foyers: [
       { centre: L0, rayon: 8.5, hauteur: 4.5 },
       { centre: P2, rayon: 6.5, hauteur: PLANETE.hauteur - PLANETE.rayon + 0.4 },

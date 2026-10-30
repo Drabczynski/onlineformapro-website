@@ -223,7 +223,7 @@ function cubeModulaire() {
   for (const c of [[0, 0, 0], [0, 1, 0], [0, 1, 1], [1, 1, 1]]) pave(socle, cellule(...c), [CELLULE, CELLULE, CELLULE], B, fort, lignesSocle);
   socle.finir(groupe);
   // les données, comme autour des pics : lavande et blanches sur le socle, orangées sur les modules
-  const NUEE_CUBE = { densite: 18, dispersion: 0.1, taille: [0.05, 0.045] };
+  const NUEE_CUBE = { densite: 12, dispersion: 0.55, taille: [0.05, 0.05] };
   if (nuee) groupe.add(nuee(lignesSocle, { ...NUEE_CUBE, teintes: [['blanc', 3], ['lavande', 5]], graine: 3 }));
   const teinteSocle = socle.matieres.map(m => m.uniforms.uCouleur.value.clone());
   // les modules, dans l'ordre des cartes : leur place, d'où ils viennent
