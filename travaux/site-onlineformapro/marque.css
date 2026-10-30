@@ -228,6 +228,53 @@
   .entete.menu-ouvert .entete-nav { padding-inline: 20px; }
 }
 
+/* l'assistant sur téléphone : une feuille plein écran (la partie visible de l'écran, au-dessus
+   du clavier : --vv-h et --vv-top, posés par recherche.js), un bandeau avec Fermer, le contenu
+   qui défile, le champ en bas avec Envoyer ; tout à 16 px au moins dans le champ (sinon
+   l'iPhone zoome la page en y entrant), des cibles de 40 à 52 px */
+.recherche-tete, .recherche-envoyer { display: none; }
+@media (max-width: 860px) {
+  .recherche-champ input { font-size: 16px; }
+  html:has(body.recherche-ouverte), body.recherche-ouverte { overflow: hidden; }
+  .recherche-ouverte .entete .recherche { position: fixed; left: 0; right: 0; top: var(--vv-top, 0px); z-index: 5; height: var(--vv-h, 100dvh); display: flex; flex-direction: column; background: #fff; color: var(--encre); animation: feuille-entree .35s cubic-bezier(.2, .8, .2, 1) both; }
+  .recherche-ouverte .recherche-tete { display: flex; align-items: center; gap: 10px; flex: none; min-height: 60px; padding: env(safe-area-inset-top, 0px) 8px 0 20px; border-bottom: 1px solid rgba(20, 20, 24, .08); font-size: 16px; letter-spacing: -.01em; }
+  .recherche-tete strong { font-weight: 500; }
+  .recherche-fermer { display: grid; place-items: center; width: 44px; height: 44px; margin-left: auto; padding: 0; border: 0; border-radius: 50%; background: none; color: var(--encre); cursor: pointer; }
+  .recherche-fermer:active { background: #f2f2f4; }
+  .recherche-ouverte .entete .recherche-panneau { position: static; flex: 1; min-height: 0; max-height: none; align-content: start; overflow: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; padding: 20px 20px 12px; border-radius: 0; box-shadow: none; clip-path: none; transform: none; opacity: 1; visibility: visible; transition: none; }
+  .recherche-ouverte .entete .recherche > .recherche-champ { order: 3; flex: none; height: 52px; margin: 8px 12px calc(10px + env(safe-area-inset-bottom, 0px)); padding: 0 6px 0 18px; border: 1px solid rgba(20, 20, 24, .1); border-radius: 26px; background: #f6f6f8; box-shadow: none; color: rgba(20, 20, 24, .5); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .recherche-ouverte .entete .recherche-champ input, .recherche-ouverte .entete .recherche-champ input::placeholder { color: var(--encre); }
+  .recherche-ouverte .entete .recherche-champ input::placeholder { color: rgba(20, 20, 24, .45); }
+  .recherche-ouverte .recherche-envoyer { display: grid; place-items: center; flex: none; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; background: linear-gradient(135deg, var(--rouge), #7a68ff); color: #fff; cursor: pointer; }
+  .recherche-ouverte .recherche-champ > svg { display: none; }
+  /* le contenu : puces et suggestions faciles à toucher */
+  .recherche-puces { align-items: flex-start; }
+  .recherche-puce { display: inline-flex; align-items: center; min-height: 40px; padding: 8px 16px; font-size: 15px; }
+  .recherche-titre { font-size: 12px; }
+  .recherche-demander { min-height: 52px; font-size: 15px; }
+  .recherche-demander kbd { display: none; }
+  .recherche-note { font-size: 12px; }
+  /* la conversation */
+  .recherche-conversation { align-content: start; }
+  .recherche-retour { align-self: start; display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px; border-radius: 999px; background: #f2f2f4; font-size: 14px; color: var(--encre); }
+  .echange-question { font-size: 16px; }
+  .echange-texte { font-size: 19px; line-height: 1.45; }
+  .echange-reponse { gap: 16px 12px; }
+  .echange-suite { gap: 12px; }
+  .echange-lien::after { content: "→"; }
+  .echange-lien { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 999px; background: var(--encre); color: #fff; text-decoration: none; font-size: 15px; }
+  .echange-relances { display: flex; flex-wrap: wrap; gap: 8px; font-size: 13px; }
+  .echange-relances-titre { flex-basis: 100%; }
+  .echange-sep { display: none; }
+  .echange-relances button { display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border-radius: 999px; background: #f2f2f4; text-decoration: none; font-size: 14px; color: var(--encre); text-align: left; }
+}
+@keyframes feuille-entree { from { opacity: 0; transform: translateY(24px); } }
+@media (prefers-reduced-motion: reduce) { .recherche-ouverte .entete .recherche { animation: none; } }
+
+/* une icône en tête d'élément de liste, sans taille propre : 24 px (Safari l'agrandirait
+   sinon) ; toute règle plus précise l'emporte */
+:where(li > svg:first-child:not([width])) { width: 24px; height: 24px; flex: none; }
+
 /* -------------------------------------------------------------------- l'arrivée des ouvertures */
 /* la photo se pose (de 1,12 à 1, en s'éclaircissant), le titre monte mot par mot (découpé par
    pages.js), puis l'étiquette, le texte et les boutons, un à un ; rien si le visiteur a

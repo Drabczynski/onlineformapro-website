@@ -49,7 +49,9 @@ h1, h2, h3 { font-family: var(--titre); }
 /* ------------------------------------------------------------------ l'expérience */
 .experience { display: grid; }
 .scene, .chapitres { grid-area: 1 / 1; min-width: 0; }
-.scene { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; align-self: start; }
+/* la scène couvre toute la hauteur de l'écran, barre d'outils comprise (sur iPhone, la barre de
+   Safari flotte sur la page : 100lvh, sans quoi une bande sombre reste sous la 3D) */
+.scene { position: sticky; top: 0; height: 100vh; height: 100lvh; overflow: hidden; align-self: start; }
 .scene-fond { position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 100%, rgba(255, 90, 120, .14), transparent 60%), radial-gradient(100% 70% at 30% 90%, rgba(122, 104, 255, .2), transparent 55%), radial-gradient(90% 60% at 50% 0%, #2a0f6c, transparent 70%), var(--nuit); transition: opacity .6s ease; }
 #monde { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity .6s ease; }
 .avec-webgl #monde { opacity: 1; }
@@ -215,17 +217,16 @@ h1, h2, h3 { font-family: var(--titre); }
   .colle-centre:has(.presentation-image) .presentation { margin: 0 var(--m); width: auto; translate: 0 56px; }
   .moyen { font-size: 24px; line-height: 1.12; }
   .chapitre-titre { width: auto; margin-inline-end: var(--m); align-self: start; margin-top: calc(var(--m) + 80px); font-size: calc(84 * var(--u)); line-height: 1.02; }
-  .carte { left: var(--m); right: var(--m); top: auto; bottom: var(--m); width: auto; height: auto; min-height: 44svh; }
-  .carte p { font-size: 15px; padding-bottom: 20px; }
-  .carte-image { height: 22svh; }
+  /* les cartes, compactes en bas de l'écran (un tiers environ) : la 3D reste visible */
+  .carte { left: var(--m); right: var(--m); top: auto; bottom: var(--m); width: auto; height: auto; min-height: 0; }
+  .carte-image { height: 13svh; }
+  .carte h3 { font-size: 20px; line-height: 1.15; }
+  .carte-produit { margin-bottom: 6px; font-size: 11px; }
+  .carte-bas { padding-top: 12px; }
+  .carte p { font-size: 14px; line-height: 1.32; padding: 0; margin: 10px 0 12px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden; }
+  .carte .bouton-blanc { height: 38px; }
   .progression { right: auto; left: var(--m); top: calc(var(--m) + 70px); grid-auto-flow: column; }
   .progression span { width: 30px; height: 1px; }
   .progression i { transform-origin: 0 50%; transform: scaleX(var(--remplissage, 0)); }
   .pied .note { margin-inline-start: 0; }
-}
-
-/* sur un téléphone assez haut, la tablette du premier écran revient, collée au bord droit,
-   entre le titre et l'accroche */
-@media (max-width: 979px) and (min-height: 760px) and (max-aspect-ratio: 3/4) {
-  [data-variante="ondes"] .accueil-photo--tablette { display: block; top: auto; bottom: calc(var(--m) + 196px); width: 38%; max-width: 220px; }
 }

@@ -23,16 +23,38 @@
   // ------------------------------------------------------------------ ouvrir, fermer
   // la classe recherche-ouverte (sur <body>) déplie le panneau, élargit le champ et voile la
   // page, en transitions (marque.css)
+  // Sur téléphone (marque.css), l'assistant s'ouvre en plein écran : un bandeau avec un bouton
+  // Fermer, le contenu qui défile, et le champ en bas, collé au-dessus du clavier (la feuille
+  // suit la partie visible de l'écran, visualViewport), avec un bouton Envoyer
+  const telephone = matchMedia('(max-width: 860px)');
+  const tete = document.createElement('div');
+  tete.className = 'recherche-tete';
+  tete.innerHTML = '<span class="recherche-ia" aria-hidden="true"></span><strong>Assistant Onlineformapro</strong><button class="recherche-fermer" type="button" aria-label="Fermer l’assistant"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
+  form.prepend(tete);
+  const envoyer = document.createElement('button');
+  envoyer.className = 'recherche-envoyer'; envoyer.type = 'submit'; envoyer.setAttribute('aria-label', 'Envoyer à l’assistant');
+  envoyer.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>';
+  form.querySelector('.recherche-champ').append(envoyer);
+  const racine = document.documentElement, vue = window.visualViewport;
+  function suivreVue() {
+    if (!vue || !ouvert() || !telephone.matches) return;
+    racine.style.setProperty('--vv-h', `${Math.round(vue.height)}px`);
+    racine.style.setProperty('--vv-top', `${Math.round(vue.offsetTop)}px`);
+  }
+  if (vue) { vue.addEventListener('resize', suivreVue); vue.addEventListener('scroll', suivreVue); }
+
   const ouvert = () => document.body.classList.contains('recherche-ouverte');
   function ouvrir() {
     if (ouvert()) return;
     champ.setAttribute('aria-expanded', 'true');
     document.body.classList.add('recherche-ouverte');
+    suivreVue();
   }
   function fermer() {
     champ.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('recherche-ouverte');
   }
+  tete.querySelector('.recherche-fermer').addEventListener('click', (e) => { e.stopPropagation(); fermer(); champ.blur(); });
   champ.addEventListener('focus', ouvrir);
   champ.addEventListener('click', ouvrir);
   voile.addEventListener('click', () => { fermer(); champ.blur(); });
@@ -315,9 +337,10 @@
       suite.append(a);
     }
     if (r.relances && r.relances.length) {
-      const p = nouveau('p', 'echange-relances', 'Vous pouvez aussi demander : ');
+      const p = nouveau('p', 'echange-relances');
+      p.append(nouveau('span', 'echange-relances-titre', 'Vous pouvez aussi demander : '));
       r.relances.forEach((t, k) => {
-        if (k) p.append(' · ');
+        if (k) p.append(nouveau('span', 'echange-sep', ' · '));
         const b = nouveau('button', '', t);
         b.type = 'button';
         b.addEventListener('click', () => { champ.value = t; poser(); });
@@ -367,6 +390,9 @@
     }
     historique.push({ role: 'user', content: question });
     champ.value = ''; demander.hidden = true;
+    // sur téléphone, le clavier se replie : la réponse a tout l'écran (un toucher sur le champ
+    // pour la question suivante)
+    if (telephone.matches) champ.blur();
     for (const el of accueil.querySelectorAll('[hidden]:not(.recherche-demander)')) el.hidden = false;
     const r = await afficher(question, repondre(question));
     historique.push({ role: 'assistant', content: r.texte });

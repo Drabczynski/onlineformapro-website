@@ -383,9 +383,19 @@ familles du catalogue aussi (onze écrans au lieu de quatorze), aucun texte ne d
 12 px (les étiquettes de l'article, entre autres), et les liens du pied, de partage et des
 réseaux ont une zone de 40 px pour le doigt. Sur Contact, l'anneau reste dans le haut de
 l'ouverture et s'efface avant le titre. Dans l'ouverture, le flou des cartes est ramené à
-32 px (l'écran étant plus petit, l'effet reste aussi marqué, et le calcul est plus léger), et
-sur un téléphone assez haut la tablette du premier écran revient, collée au bord droit,
-entre le titre et l'accroche.
+32 px (l'écran étant plus petit, l'effet reste aussi marqué, et le calcul est plus léger) ; les
+cartes y sont compactes (image de 13 % de la hauteur, titre de 20 px, description sur trois
+lignes) pour laisser voir la 3D, les images du premier écran restent masquées, et la scène
+couvre aussi la zone de la barre de Safari (100lvh), sans bande sombre en bas.
+
+**L'assistant sur téléphone** s'ouvre en plein écran : un bandeau « Assistant
+Onlineformapro » avec un bouton Fermer, le contenu qui défile (accès rapides, suggestions,
+exemples, puis la conversation), et le champ en bas, collé au-dessus du clavier (la feuille
+suit la partie visible de l'écran, `visualViewport`), avec un bouton Envoyer. Le champ est à
+16 px (en dessous, l'iPhone zoome toute la page quand on y entre : logo coupé, panneau
+décalé). Après l'envoi, le clavier se replie pour laisser tout l'écran à la réponse ; le
+lien « Découvrir… » devient un bouton, les relances des puces de 40 px, « Nouvelle
+recherche » aussi ; la page derrière ne défile plus.
 
 Les changements de fond du modèle s'appliquent partout : toute la page passe du blanc au
 pierre ou au noir quand une section marquée `data-fond` franchit 40 % de la hauteur de
