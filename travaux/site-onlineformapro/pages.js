@@ -18,7 +18,7 @@ if (burger) burger.addEventListener('click', () => {
 let megaOuvert = false;
 function majEntete() { if (entete && entete.classList.contains('entete--photo')) entete.classList.toggle('est-defile', scrollY > 24 || megaOuvert || entete.classList.contains('menu-ouvert')); }
 for (const menu of document.querySelectorAll('.entete-menu')) {
-  const ouvrir = (oui) => { megaOuvert = oui; if (entete) entete.classList.toggle('mega-actif', oui); majEntete(); };
+  const ouvrir = (oui) => { megaOuvert = oui; if (entete) entete.classList.toggle('mega-actif', oui); document.body.classList.toggle('mega-ouverte', oui); majEntete(); };
   menu.addEventListener('mouseenter', () => ouvrir(true));
   menu.addEventListener('mouseleave', () => { ouvrir(false); menu.classList.remove('mega-repli'); });
   menu.addEventListener('focusin', () => ouvrir(true));
@@ -116,6 +116,24 @@ if (filtres) {
     for (const x of filtres.querySelectorAll('button')) x.setAttribute('aria-pressed', String(x === b));
     const c = b.dataset.filtre;
     for (const a of articles) a.hidden = c !== 'tout' && a.dataset.categorie !== c;
+  });
+}
+
+// -------------------------------------------------------------------- accordéons
+// la réponse se déplie et se replie en douceur (hauteur, marge, fondu) ; le chevron tourne (CSS)
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) for (const d of document.querySelectorAll('details.question')) {
+  const resume = d.querySelector('summary'), corps = d.querySelector('.question-reponse');
+  if (!resume || !corps) continue;
+  let anim = null;
+  resume.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (anim) anim.cancel();
+    const ouvrir = !d.open;
+    if (ouvrir) d.open = true;
+    const h = corps.scrollHeight, bas = getComputedStyle(corps).paddingBottom, ferme = { height: '0px', paddingBottom: '0px', opacity: 0, transform: 'translateY(-6px)' }, plein = { height: h + 'px', paddingBottom: bas, opacity: 1, transform: 'none' };
+    corps.style.overflow = 'hidden';
+    anim = corps.animate(ouvrir ? [ferme, plein] : [plein, ferme], { duration: ouvrir ? 450 : 320, easing: 'cubic-bezier(.2, .8, .2, 1)' });
+    anim.onfinish = () => { if (!ouvrir) d.open = false; corps.style.overflow = ''; anim = null; };
   });
 }
 

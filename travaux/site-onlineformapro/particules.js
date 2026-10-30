@@ -140,31 +140,61 @@ export function nueeLignes(courbes, { facteur = 1, densite = 14, dispersion = 0.
   }, { proche, loin });
 }
 
-// -------------------------------------------------------------------- le réseau des pics
-// Quand la caméra traverse le graphique, les points proches se relient en triangles : des
-// nœuds le long de chaque courbe (un tous les 1,6 unité environ, un peu décalés), cousus d'une
-// courbe à la suivante en fermeture éclair. Chaque segment se déploie depuis l'un de ses nœuds
-// quand la caméra arrive à sa portée (entre 10 et 20 unités, tirée au sort), et se replie
-// quand elle s'éloigne ; les nœuds reliés s'allument. Traits d'un pixel, à peine visibles.
+// -------------------------------------------------------------------- les réseaux
+// Quand la caméra s'approche, les points proches se relient en triangles : dans le graphique
+// de pics, des nœuds le long de chaque courbe (un tous les 1,6 unité environ, un peu décalés),
+// cousus d'une courbe à la suivante en fermeture éclair ; sur la planète, des nœuds répartis
+// sur la sphère, reliés à leurs voisins (reseauSphere). Chaque segment se déploie depuis l'un
+// de ses nœuds quand la caméra arrive à sa portée (tirée au sort dans un intervalle), et se
+// replie quand elle s'éloigne ; les nœuds reliés s'allument. Traits d'un pixel, à peine
+// visibles. Les distances se mesurent dans le monde (le réseau de la planète tourne avec elle).
 const RESEAU_SOMMETS = `
   uniform vec3 uCamera; uniform float uTemps;
   attribute vec3 aDepart; attribute vec3 aMilieu; attribute float aSeuil;
   varying float vAlpha;
   void main() {
-    float g = 1.0 - smoothstep(aSeuil - 4.0, aSeuil, distance(uCamera, aMilieu));
+    float g = 1.0 - smoothstep(aSeuil - 4.0, aSeuil, distance(uCamera, (modelMatrix * vec4(aMilieu, 1.0)).xyz));
     vAlpha = g * (0.7 + 0.3 * sin(uTemps * 1.7 + aSeuil * 9.0));
     gl_Position = projectionMatrix * modelViewMatrix * vec4(mix(aDepart, position, g), 1.0);
   }`;
 const NOEUDS_SOMMETS = `
-  uniform vec3 uCamera; uniform float uEchelle; uniform float uTailleMax;
+  uniform vec3 uCamera; uniform float uEchelle; uniform float uTailleMax; uniform vec2 uPortee;
   varying float vAlpha;
   void main() {
-    float g = 1.0 - smoothstep(12.0, 18.0, distance(uCamera, position));
+    float g = 1.0 - smoothstep(uPortee.x, uPortee.y, distance(uCamera, (modelMatrix * vec4(position, 1.0)).xyz));
     vec4 mv = modelViewMatrix * vec4(position, 1.0);
     gl_PointSize = clamp(0.05 * uEchelle / max(0.001, -mv.z), 1.5, uTailleMax * 0.4);
     vAlpha = g;
     gl_Position = projectionMatrix * mv;
   }`;
+// les traits et les nœuds d'un réseau ; portee : l'intervalle des portées des segments
+function dessinerReseau(noeuds, segments, r, [p0, p1] = [10, 20], opacite = 0.3) {
+  const n = segments.length, pos = new Float32Array(n * 6), depart = new Float32Array(n * 6), milieu = new Float32Array(n * 6), seuil = new Float32Array(n * 2);
+  segments.forEach(([a, b], k) => {
+    const m = a.clone().add(b).multiplyScalar(0.5), s = p0 + (p1 - p0) * r();
+    pos.set([a.x, a.y, a.z, b.x, b.y, b.z], k * 6);
+    depart.set([a.x, a.y, a.z, a.x, a.y, a.z], k * 6);
+    milieu.set([m.x, m.y, m.z, m.x, m.y, m.z], k * 6);
+    seuil.set([s, s], k * 2);
+  });
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  g.setAttribute('aDepart', new THREE.BufferAttribute(depart, 3));
+  g.setAttribute('aMilieu', new THREE.BufferAttribute(milieu, 3));
+  g.setAttribute('aSeuil', new THREE.BufferAttribute(seuil, 1));
+  const melange = { transparent: true, depthWrite: false, blending: THREE.AdditiveBlending };
+  const traits = new THREE.LineSegments(g, new THREE.ShaderMaterial({ vertexShader: RESEAU_SOMMETS, uniforms: communs, ...melange,
+    fragmentShader: `varying float vAlpha; void main() { gl_FragColor = vec4(vec3(0.62, 0.58, 1.0), vAlpha * ${opacite.toFixed(2)}); }` }));
+  const gn = new THREE.BufferGeometry();
+  gn.setAttribute('position', new THREE.BufferAttribute(new Float32Array(noeuds.flatMap(p => [p.x, p.y, p.z])), 3));
+  const ronds = new THREE.Points(gn, new THREE.ShaderMaterial({
+    vertexShader: NOEUDS_SOMMETS, uniforms: { ...communs, uPortee: { value: new THREE.Vector2(p0 + 2, p1 - 2) } }, ...melange,
+    fragmentShader: 'varying float vAlpha; void main() { float d = length(gl_PointCoord - 0.5) * 2.0; gl_FragColor = vec4(vec3(1.0), (1.0 - smoothstep(0.4, 1.0, d)) * vAlpha * 0.75); }',
+  }));
+  traits.frustumCulled = ronds.frustumCulled = false;
+  return [traits, ronds];
+}
+// le réseau du graphique de pics
 function creerReseau(pics, r) {
   if (!pics.length) return [];
   const noeuds = pics.map(c => {
@@ -186,30 +216,20 @@ function creerReseau(pics, r) {
       relier(A[i], C[j]);
     }
   }
-  const n = segments.length, pos = new Float32Array(n * 6), depart = new Float32Array(n * 6), milieu = new Float32Array(n * 6), seuil = new Float32Array(n * 2);
-  segments.forEach(([a, b], k) => {
-    const m = a.clone().add(b).multiplyScalar(0.5), s = 10 + 10 * r();
-    pos.set([a.x, a.y, a.z, b.x, b.y, b.z], k * 6);
-    depart.set([a.x, a.y, a.z, a.x, a.y, a.z], k * 6);
-    milieu.set([m.x, m.y, m.z, m.x, m.y, m.z], k * 6);
-    seuil.set([s, s], k * 2);
-  });
-  const g = new THREE.BufferGeometry();
-  g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-  g.setAttribute('aDepart', new THREE.BufferAttribute(depart, 3));
-  g.setAttribute('aMilieu', new THREE.BufferAttribute(milieu, 3));
-  g.setAttribute('aSeuil', new THREE.BufferAttribute(seuil, 1));
-  const fragments = (couleur, opacite) => `varying float vAlpha; void main() { gl_FragColor = vec4(${couleur}, vAlpha * ${opacite}); }`;
-  const melange = { transparent: true, depthWrite: false, blending: THREE.AdditiveBlending };
-  const traits = new THREE.LineSegments(g, new THREE.ShaderMaterial({ vertexShader: RESEAU_SOMMETS, fragmentShader: fragments('vec3(0.62, 0.58, 1.0)', '0.3'), uniforms: communs, ...melange }));
-  const tous = noeuds.flat(), gn = new THREE.BufferGeometry();
-  gn.setAttribute('position', new THREE.BufferAttribute(new Float32Array(tous.flatMap(p => [p.x, p.y, p.z])), 3));
-  const ronds = new THREE.Points(gn, new THREE.ShaderMaterial({
-    vertexShader: NOEUDS_SOMMETS, uniforms: communs, ...melange,
-    fragmentShader: `varying float vAlpha; void main() { float d = length(gl_PointCoord - 0.5) * 2.0; gl_FragColor = vec4(vec3(1.0), (1.0 - smoothstep(0.4, 1.0, d)) * vAlpha * 0.75); }`,
-  }));
-  traits.frustumCulled = ronds.frustumCulled = false;
-  return [traits, ronds];
+  return dessinerReseau(noeuds.flat(), segments, r);
+}
+
+// le réseau d'une sphère (la planète) : n nœuds répartis en spirale de Fibonacci, à peine au-dessus
+// de la surface, chacun relié à ses voisins proches ; à poser dans le repère de la sphère
+export function reseauSphere(rayon, { n = 240, graine = 7, portee = [10, 19], opacite = 0.3 } = {}) {
+  const r = tirage(20261031 + graine), noeuds = [], or = Math.PI * (3 - Math.sqrt(5));
+  for (let i = 0; i < n; i++) {
+    const y = 1 - (2 * (i + 0.5)) / n, rr = Math.sqrt(1 - y * y), t = i * or + (r() - 0.5) * 0.25;
+    noeuds.push(new THREE.Vector3(Math.cos(t) * rr, y, Math.sin(t) * rr).multiplyScalar(rayon * 1.015));
+  }
+  const pas = Math.sqrt((4 * Math.PI) / n) * rayon, segments = [];
+  for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) if (noeuds[i].distanceTo(noeuds[j]) < pas * 1.25) segments.push(r() < 0.5 ? [noeuds[i], noeuds[j]] : [noeuds[j], noeuds[i]]);
+  return dessinerReseau(noeuds, segments, r, portee, opacite);
 }
 
 // -------------------------------------------------------------------- la grille et les flux

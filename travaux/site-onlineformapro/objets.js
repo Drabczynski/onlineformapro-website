@@ -10,8 +10,9 @@
 import * as THREE from 'three';
 
 // fournis par monde.js à la création (dessin : voir « objets dessinés » ; les couleurs ; nuee :
-// des points de données le long de lignes, voir particules.js)
-let dessin, B, R, nuee;
+// des points de données le long de lignes ; reseau : les triangles qui se tissent à l'approche de
+// la caméra, voir particules.js)
+let dessin, B, R, nuee, reseau;
 const V = (x, y, z) => new THREE.Vector3(x, y, z);
 const RAD = Math.PI / 180;
 
@@ -69,6 +70,8 @@ function planete(rayon) {
   // les données, comme autour des pics : des points serrés le long des méridiens et des
   // parallèles, à peine au-dessus de la surface, où filent des paquets
   if (nuee) globe.add(nuee(lignes, { densite: 13, dispersion: 0.07, taille: [0.026, 0.024], graine: 2 }));
+  // de près, comme dans les pics, les points de sa surface se relient en triangles
+  if (reseau) globe.add(...reseau(rayon));
   groupe.add(globe);
 
   // le liseré : des arcs dans le plan face à la caméra (réorientés à chaque image)
@@ -281,7 +284,7 @@ function cubeModulaire() {
 // -------------------------------------------------------------------- mise en place
 // poses : cube { centre }, planete { centre, rayon }, batiment { entree, sens }
 export function creerObjets(scene, poses, outils) {
-  ({ dessin, nuee } = outils);
+  ({ dessin, nuee, reseau } = outils);
   ({ bleu: B, rouge: R } = outils.couleurs);
   // la solution globale et modulaire : le cube, au-dessus du carrefour
   const cube = cubeModulaire();

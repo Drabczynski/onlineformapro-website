@@ -200,7 +200,8 @@ montent de la grille sous lui ; après l'arrêt devant lui, la caméra entre dan
 reste pendant les cartes du chapitre, puis en ressort vers le carrefour. Pendant qu'elle les
 traverse, les points proches se relient en triangles, d'une courbe à la suivante : chaque trait
 se déploie depuis un nœud quand la caméra arrive à sa portée (10 à 20 unités) et se replie
-quand elle s'éloigne ; traits d'un pixel, à peine visibles. Les mêmes nuées de données
+quand elle s'éloigne ; traits d'un pixel, à peine visibles ; de même, de près, sur la surface
+de la planète (un réseau de nœuds qui tourne avec elle). Les mêmes nuées de données
 garnissent les lignes du logo dès le premier écran, les méridiens et parallèles de la planète
 (elles tournent avec elle) et les contours des faces du cube (celles des modules les suivent
 quand ils s'emboîtent), avec des colonnes de points qui montent sous chacun. Pendant les cartes du
@@ -271,8 +272,8 @@ Par-dessus, sur toutes les pages, `marque.css` donne l'identité d'Onlineformapr
 très foncé `#2a2a2c` au lieu du noir pur pour les titres, les boutons et les cartes sombres ;
 des titres d'une graisse à peine plus forte (400 pour les plus grands, 480 pour les autres ;
 Geist chargée en police variable) ; le rouge du logo, adouci (`#d4486c`), en accent, avec
-l'accent du Ó (un trait arrondi incliné de 29,4°) devant les étiquettes et sous la page
-courante du menu ; un gris presque noir `#1c1c1e` pour les passages sombres, les cartes
+l'accent du Ó (un biais aux bords carrés, incliné de 29,4°) devant le titre de chaque partie et
+sous la page courante du menu ; un gris presque noir `#1c1c1e` pour les passages sombres, les cartes
 d'appel et le pied de page (le bleu nuit reste propre à l'ouverture). Le pied est signé du nom
 « onlineformapro » en très grand, à peine plus clair que le fond et rogné par le bas.
 L'en-tête a trois parts : le logo et les liens à gauche, au centre exact la recherche
@@ -282,8 +283,10 @@ tant qu'on n'a pas défilé). Au survol de LMS, Outils IA, Catalogue ou Contact,
 blanc plein et un méga-menu blanc se déplie dessous : une introduction à gauche et les produits
 en grandes images (jamais d'images détourées) qui arrivent en cascade (les quatre volets du LMS ; FastFormation, FastQuiz, Learning Podcast,
 RolePlay IA ; huit familles du catalogue ; pour Contact, la prise de démonstration, le
-formulaire, le téléphone et la société). Les données en sont dans `commun.py` (`MEGA`) ; un
-clic sur l'un de leurs liens les replie. Un lien du panneau de l'assistant le referme aussi. Un clic sur la
+formulaire ; pour Blog, les quatre derniers articles, lus dans la page Blog). La page se voile
+et se floute derrière, comme quand on ouvre la recherche. Les données en sont dans
+`commun.py` (`MEGA`) ; un clic sur l'un de leurs liens les replie. Les accordéons (spécifications
+techniques, questions) se déplient et se replient en douceur. Un lien du panneau de l'assistant le referme aussi. Un clic sur la
 recherche, ou Ctrl K (⌘ K sur Mac), la déploie : le champ s'élargit, les liens s'effacent, la
 page se voile, le panneau se déplie depuis le champ et son contenu arrive en cascade (accès
 rapides, suggestions illustrées, exemples de demandes). En tapant, les accès se filtrent et l'on peut demander à l'assistant IA. La conversation
@@ -311,8 +314,7 @@ texte et les boutons ; rien si le visiteur a demandé moins d'animations.
 Les illustrations fournies par Onlineformapro ont leurs composants, dans `marque.css` : sur Outils
 IA, trois vignettes légendées en haut (comme sur les planches de la marque) sous FastFormation
 et sous RolePlay IA ; sur LMS, le chapeau « Côté apprenant » dans un panneau clair où une main
-tend la tablette OnlineCompétences ; sur le
-Catalogue, le parcours en trois étapes (positionnement, formation individualisée, évaluation
+tend la tablette OnlineCompétences, puis le parcours en trois étapes (positionnement, formation individualisée, évaluation
 finale, dont les barres montent à l'arrivée) ; sur LMS et Démo, les 48 logos clients en deux
 onglets (« Des clients de tout horizon », « Éducation et formation », au clic ou aux flèches du
 clavier ; la grille insérée par `commun.py` à la place du repère `<!--LOGOS-->`) ; sur Contact,
@@ -326,9 +328,9 @@ Outils IA, la solution globale sur la page Démo.
 
 | Page | Contenu |
 |---|---|
-| `lms.html` | ouverture claire et centrée, le montage des écrans en grand ; Saint-Gobain et chiffres ; côté administration (prise en main avec OnlineManager en pleine largeur, analyse des données, marque blanche) ; côté apprenant (panneau avec la tablette OnlineCompétences, Lisy, outils) ; références (48 logos en deux onglets, et les autres noms du site officiel) ; témoignage France Education International ; spécifications techniques ; appel final |
+| `lms.html` | ouverture claire et centrée, le montage des écrans en grand ; Saint-Gobain et chiffres ; côté administration (prise en main avec OnlineManager en pleine largeur, analyse des données, marque blanche) ; côté apprenant (panneau avec la tablette OnlineCompétences, Lisy, outils) ; parcours en trois étapes, du positionnement à l'attestation ; références (48 logos en deux onglets, et les autres noms du site officiel) ; témoignage France Education International ; spécifications techniques ; appel final |
 | `outils-ia.html` | photo d'ouverture ; « La puissance de l'IA… » ; un bloc par outil (visuel en grand, carte de texte, trois vignettes légendées pour FastFormation et RolePlay IA, quatre atouts), RolePlay IA sur fond noir ; « Innover pour l'équité » ; appel final. Ancres `#fastformation`, `#fastquiz`, `#learning-podcast`, `#roleplay` |
-| `catalogue.html` | ouverture en pleine page ; toutes les catégories (la nouveauté Google et sa vidéo en 16:9, puis les familles en cartes d'article) ; bloc crème sur photo voilée : témoignage SNCF et chiffres ; pédagogie (la grande image en pleine colonne) ; parcours en trois étapes, du positionnement à l'attestation ; appel final |
+| `catalogue.html` | ouverture en pleine page ; toutes les catégories (la nouveauté Google et sa vidéo en 16:9, puis les familles en cartes d'article) ; bloc crème sur photo voilée : témoignage SNCF et chiffres ; pédagogie (la grande image en pleine colonne) ; appel final |
 | `blog.html` | photo d'ouverture ; les 9 derniers articles du blog officiel, filtrables par catégorie ; l'inscription à la lettre |
 | `demo.html` | réservation de 30 min par l'agenda Calendly, comme sur le site actuel ; la solution globale ; les logos clients et les témoignages |
 | `contact.html` | titre, trois cartes (e-mail, démonstration, téléphone), formulaire (champs du formulaire actuel, une photo à gauche), la société en questions |

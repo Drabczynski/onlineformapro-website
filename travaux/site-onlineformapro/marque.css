@@ -20,14 +20,12 @@
 .titre-2, .titre-3, .titre-4, .titre-5, .titre-6 { font-weight: 480; }
 
 /* -------------------------------------------------------------------- le rouge du logo */
-/* l'accent du Ó (un trait arrondi incliné de 29,4°, comme dans le logo) devant les
-   étiquettes sans pictogramme ; les pictogrammes des étiquettes passent au rouge */
-.puce:not(:has(svg))::before,
-.chapeau-section > p.etiquette:first-child::before,
-.entete-section > p.etiquette:first-child::before {
-  content: ""; flex: none; width: 11px; height: 4px; border-radius: 2px; background: var(--rouge); transform: rotate(-29.4deg);
+/* l'accent du Ó (un biais aux bords carrés, incliné de 29,4° comme dans le logo) devant le
+   titre de chaque partie et les étiquettes sans pictogramme ; les pictogrammes passent au rouge */
+.titre-2::before {
+  content: ""; display: inline-block; width: .36em; height: .1em; margin-right: .3em; background: var(--rouge); vertical-align: middle; transform: translateY(-.06em) rotate(-29.4deg);
 }
-.chapeau-section > p.etiquette:first-child, .entete-section > p.etiquette:first-child { display: inline-flex; align-items: center; gap: 10px; }
+.puce:not(:has(svg))::before { content: ""; flex: none; width: 11px; height: 4px; background: var(--rouge); transform: rotate(-29.4deg); }
 .puce svg { color: var(--rouge); }
 .entete-nav a[aria-current="page"] { text-decoration-color: var(--rouge); text-decoration-thickness: 2px; }
 .bouton-noir:hover { background: #414144; }
@@ -68,7 +66,7 @@
 .mega { position: absolute; top: 100%; left: 0; right: 0; z-index: 3; padding: 28px max(40px, calc((100% - 1660px) / 2)) 36px; background: #fff; box-shadow: inset 0 1px 0 rgba(20, 20, 24, .06), 0 40px 60px -40px rgba(20, 20, 30, .4); color: var(--texte); opacity: 0; visibility: hidden; transform: translateY(-6px); pointer-events: none; transition: opacity .18s ease, transform .3s cubic-bezier(.2, .8, .2, 1), visibility 0s linear .18s; }
 .entete-menu:is(:hover, :focus-within):not(.mega-repli) .mega { opacity: 1; visibility: visible; transform: none; pointer-events: auto; transition: opacity .25s ease .06s, transform .45s cubic-bezier(.2, .8, .2, 1) .06s, visibility 0s; }
 .mega-cadre { display: grid; grid-template-columns: minmax(0, 290px) minmax(0, 1fr); gap: 48px; }
-.mega-intro { display: flex; flex-direction: column; gap: 12px; padding-top: 2px; }
+.mega-intro { display: flex; flex-direction: column; gap: 12px; min-width: 0; padding-top: 2px; overflow-wrap: break-word; }
 .mega-etiquette { font: 400 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: rgba(20, 20, 24, .55); }
 .mega-texte { font: 400 28px/1.2 var(--titre); letter-spacing: -.03em; color: var(--encre); text-wrap: balance; }
 .entete .entete-nav .mega a { padding: 0; opacity: 1; color: var(--encre); font-weight: 400; }
@@ -77,7 +75,7 @@
 .entete .entete-nav .mega .mega-tout:hover { text-decoration-color: currentColor; }
 .mega-cartes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
 .mega-carte { display: grid; align-content: start; gap: 6px; }
-.mega-image { aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; background: var(--pierre); }
+.mega-image { aspect-ratio: 4 / 3; overflow: hidden; background: var(--pierre); }
 .mega-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
 .mega-carte:hover .mega-image img { transform: scale(1.06); }
 .mega-image img[src$="conseillere.webp"] { object-position: 78% 28%; }
@@ -91,6 +89,9 @@
 .mega-cartes--compact .mega-image { aspect-ratio: 16 / 9; }
 .mega-cartes--compact .mega-titre { margin-top: 2px; font-size: 16px; }
 .mega-aussi { grid-column: 1 / -1; font-size: 13px; color: rgba(20, 20, 24, .55); }
+/* deux cartes seulement (Contact) : sur toute la largeur, en 16:9 */
+.mega-cartes--duo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.mega-cartes--duo .mega-image { aspect-ratio: 16 / 9; }
 .entete-menu:is(:hover, :focus-within):not(.mega-repli) :is(.mega-carte, .mega-aussi) { animation: vue-entree .45s cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(.05s + var(--n, 8) * .04s); }
 .entete-menu > a[aria-current="page"] + .mega .mega-etiquette { color: var(--rouge); }
 
@@ -184,7 +185,7 @@
 
 /* le voile sous l'en-tête quand le panneau est ouvert */
 .recherche-voile { position: fixed; inset: 0; z-index: 25; background: rgba(20, 20, 24, .3); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); opacity: 0; visibility: hidden; transition: opacity .3s, visibility 0s linear .3s; }
-.recherche-ouverte .recherche-voile { opacity: 1; visibility: visible; transition: opacity .45s; }
+.recherche-ouverte .recherche-voile, .mega-ouverte .recherche-voile { opacity: 1; visibility: visible; transition: opacity .45s; }
 @media (prefers-reduced-motion: reduce) {
   .recherche, .recherche-panneau, .recherche-voile, .recherche-accueil > *, .recherche-carte, .recherche-note { transition: none !important; }
   .echange, .echange--sortie, .mot-ia, .echange-suite, .recherche-conversation, .mega-carte, .mega-aussi { animation: none !important; }

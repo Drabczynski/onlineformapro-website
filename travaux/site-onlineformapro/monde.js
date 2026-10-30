@@ -16,7 +16,7 @@ import { ShaderPass } from './vendor/addons/postprocessing/ShaderPass.js';
 import { OutputPass } from './vendor/addons/postprocessing/OutputPass.js';
 import { FXAAShader } from './vendor/addons/shaders/FXAAShader.js';
 import { creerObjets, rectangle } from './objets.js';
-import { creerParticules, nueeLignes } from './particules.js';
+import { creerParticules, nueeLignes, reseauSphere } from './particules.js';
 
 // les couleurs du modèle (bleu, orangé, blanc), le bleu tiré vers le violet (un bleu pur
 // paraissait cyan à l'écran) ; pour passer au rouge de la marque, changer « rouge »
@@ -357,7 +357,7 @@ export function creerMonde(toile) {
     cube: { centre: C1.clone().setY(7.5) },
     planete: { centre: P2.clone().setY(PLANETE.hauteur), rayon: PLANETE.rayon },
     batiment: { entree: F, sens },
-  }, { dessin, couleurs: COULEURS, nuee: (courbes, options) => nueeLignes(courbes, { facteur, ...options }) });
+  }, { dessin, couleurs: COULEURS, nuee: (courbes, options) => nueeLignes(courbes, { facteur, ...options }), reseau: (rayon) => reseauSphere(rayon, { opacite: 0.4, portee: [21, 33] }) });
 
   // la chaîne de rendu, dans l'ordre du modèle : l'image, sa tonalité (sortie en couleurs
   // d'écran), le halo, les dégradés violets, l'anticrénelage
