@@ -382,14 +382,18 @@ export function creerMonde(toile) {
     [0.27, [4, 2.6, -150], [-6, 1.6, -230]],
     [0.33, [-1, 3.0, -226], [-14, 4.0, -268]],            // le graphique s'élève (l'IA)
     [0.37, [3, 3.4, -236], [-14, 4.4, -276]],            // arrêt devant les pics
-    [0.44, [4, 12, -345], [0, 0, -405]],                 // la caméra s'élève au-dessus de la route
+    [0.39, [-11, 4.0, -252], [-14.5, 4.6, -300]],        // la caméra entre dans les pics et leurs données
+    [0.41, [-14.6, 4.6, -284], [-13.5, 4.2, -335]],      // au milieu des courbes, pendant les cartes du chapitre
+    [0.45, [-11, 7.5, -326], [-2, 3, -395]],             // elle en ressort et s'élève vers le carrefour
     [0.52, tab(C1.clone().add(new THREE.Vector3(-28, 26, 28))), tab(C1.clone().add(new THREE.Vector3(-7.5, 7, -7.5))), tab(C1.clone().setY(5))],   // le carrefour et le cube modulaire (la solution globale et modulaire)
     [0.57, tab(C1.clone().add(new THREE.Vector3(-22, 22, 30))), tab(C1.clone().add(new THREE.Vector3(4.5, 7.5, 3))), tab(C1.clone().setY(5))],
     [0.60, tab(C1.clone().add(new THREE.Vector3(-18, 21, 32))), tab(C1.clone().add(new THREE.Vector3(3, 7, 3))), tab(C1.clone().setY(6))],      // le cube complet
     [0.64, [110, 10, -385], [170, 0, -405]],             // la liaison vers le croisement
     [0.72, tab(P2.clone().add(new THREE.Vector3(-58, 22, 6))), tab(P2.clone().add(new THREE.Vector3(0, 8, -9))), tab(P2.clone().setY(9))],    // le croisement en X, ses anneaux et la planète (les apprenants)
-    [0.78, tab(P2.clone().add(new THREE.Vector3(-52, 20, -14))), tab(P2.clone().add(new THREE.Vector3(0, 8, 12))), tab(P2.clone().setY(9))],
-    [0.86, tab(auBout(14, 1.6, 4)), tab(auBout(27.4, 4.5, 0))],          // la ligne droite (la démonstration)
+    // tout près de la planète, pendant les cartes : le haut de sa courbe occupe le bas gauche de
+    // l'écran, le reste hors champ (sur un écran en hauteur, sa courbe à gauche, au milieu)
+    [0.78, tab(P2.clone().add(new THREE.Vector3(4.42, 20, 12.86))), tab(P2.clone().add(new THREE.Vector3(7.9, 18.61, -6.78))), tab(P2.clone().add(new THREE.Vector3(5.64, 10.15, -4.5)))],
+    [0.86, tab(auBout(30, 1.6, 4)), tab(auBout(43.4, 4.5, 0))],          // la ligne droite (la démonstration), un peu plus loin pour ne pas traverser la planète
     [0.92, tab(auBout(150, 6, 2.5)), tab(F.clone().addScaledVector(gauche, -30).setY(8))],   // l'éventail
     [0.96, tab(auBout(212, 20, 8)), tab(F.clone().addScaledVector(sens, 6).addScaledVector(gauche, -12).setY(4)), tab(F.clone().addScaledVector(sens, 6).setY(-1.5))],   // le bâtiment de la R&D (les développements sur mesure)
     [1.00, tab(auBout(228, 22, 9)), tab(F.clone().addScaledVector(sens, 6).addScaledVector(gauche, -9).setY(3.5)), tab(F.clone().addScaledVector(sens, 6).setY(-1.5))],

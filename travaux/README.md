@@ -196,7 +196,10 @@ s'allume un instant, comme une donnée. Des paquets circulent sur les routes (bl
 lavande dans un sens, roses et orangés dans l'autre), plus vite quand on défile. Au chapitre
 « La puissance de l'IA pour la formation », le graphique de pics se charge de données : des
 points serrés le long de ses courbes, où filent des paquets, et des colonnes de points qui
-montent de la grille sous lui. Grille moins
+montent de la grille sous lui ; après l'arrêt devant lui, la caméra entre dans ses courbes, y
+reste pendant les cartes du chapitre, puis en ressort vers le carrefour. Pendant les cartes du
+chapitre 3, elle s'approche tout près de la planète : le haut de sa courbe occupe le bas gauche
+de l'écran, le reste hors champ. Grille moins
 serrée et moins de paquets sur petit écran ; si la machine peine, le rendu baisse d'abord sa
 résolution, puis garde la moitié des paquets, puis coupe le halo.
 
