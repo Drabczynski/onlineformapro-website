@@ -103,8 +103,11 @@ h1, h2, h3 { font-family: var(--titre); }
 .carte { position: absolute; right: var(--m); top: var(--m); width: calc(583 * var(--u)); height: calc(860 * var(--u)); }
 /* sans flou d'arrière-plan : recalculé à chaque image sur la 3D qui bouge, il faisait
    sauter le dévoilement ; un fond plus dense le remplace */
-/* le fond des cartes : un verre teinté qui floute la 3D derrière lui */
-.carte-corps { height: 100%; padding: var(--m) 0; display: flex; flex-direction: column; background: rgba(var(--marine), .5); -webkit-backdrop-filter: blur(22px) saturate(1.4); backdrop-filter: blur(22px) saturate(1.4); }
+/* le fond des cartes : un verre teinté qui floute fortement la 3D derrière lui. Le flou est
+   porté par la carte elle-même : sa découpe animée (clip-path) isole ses enfants, un flou posé
+   sur .carte-corps ne verrait rien derrière lui */
+.carte { -webkit-backdrop-filter: blur(56px) saturate(1.5); backdrop-filter: blur(56px) saturate(1.5); border-radius: 5px; }
+.carte-corps { height: 100%; padding: var(--m) 0; display: flex; flex-direction: column; background: rgba(var(--marine), .42); -webkit-backdrop-filter: none; backdrop-filter: none; }
 .carte { will-change: clip-path, transform; }
 .carte h3 { padding-inline: var(--m); font-weight: 500; letter-spacing: -.03em; text-wrap: pretty; }
 /* le nom de l'outil, en étiquette au-dessus de sa promesse */

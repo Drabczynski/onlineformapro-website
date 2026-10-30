@@ -241,7 +241,8 @@ décodée dès le chargement pour être prête au dévoilement. Titres et textes
 dévoilement démarre vite et ralentit à la fin (la carte est presque entière en une
 demi-seconde) ; une carte interrompue repart de l'état atteint, et celle qui s'en va avant
 d'être entière achève de s'ouvrir en 0,3 s pendant qu'elle s'efface. Leur fond est un verre
-teinté qui floute la 3D (sur une machine qui peine, le flou recalculé à chaque image peut
+teinté qui floute fortement la 3D (56 px), flou porté par la carte elle-même : sa découpe
+animée isole ses enfants, un flou posé à l'intérieur ne verrait rien (sur une machine qui peine, le flou recalculé à chaque image peut
 ralentir le défilement : revenir alors à un fond dense, sans flou). Textes des cartes repris du site officiel ; celui de « Marque
 blanche » est rédigé d'après la demande et la page du LMS (entreprise étendue), à valider.
 Chaque carte a pour titre une promesse (« Générez vos formations à partir de vos documents
