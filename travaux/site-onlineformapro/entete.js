@@ -18,8 +18,10 @@
   let megaOuvert = false, ouvert = null, minuteur = null;
   function majEntete() {
     if (!entete || !entete.classList.contains('entete--photo')) return;
-    // sur l'ouverture 3D (entete--nuit), l'en-tête reste sombre au défilement
-    const defile = scrollY > 24 && !entete.classList.contains('entete--nuit');
+    // sur l'ouverture 3D (entete--nuit), l'en-tête reste sombre au défilement, et passe au clair
+    // quand les sections blanches du site arrivent sous lui
+    const nuit = entete.classList.contains('entete--nuit'), plan = nuit && document.querySelector('.plan');
+    const defile = nuit ? !!plan && plan.getBoundingClientRect().top <= entete.offsetHeight : scrollY > 24;
     entete.classList.toggle('est-defile', defile || megaOuvert || entete.classList.contains('menu-ouvert'));
   }
   const ouvrir = (oui) => { megaOuvert = oui; if (entete) entete.classList.toggle('mega-actif', oui); document.body.classList.toggle('mega-ouverte', oui); majEntete(); };

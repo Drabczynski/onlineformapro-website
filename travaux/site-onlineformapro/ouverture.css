@@ -103,7 +103,8 @@ h1, h2, h3 { font-family: var(--titre); }
 .carte { position: absolute; right: var(--m); top: var(--m); width: calc(583 * var(--u)); height: calc(860 * var(--u)); }
 /* sans flou d'arrière-plan : recalculé à chaque image sur la 3D qui bouge, il faisait
    sauter le dévoilement ; un fond plus dense le remplace */
-.carte-corps { height: 100%; padding: var(--m) 0; display: flex; flex-direction: column; background: rgba(var(--marine), .86); -webkit-backdrop-filter: none; backdrop-filter: none; }
+/* le fond des cartes : un verre teinté qui floute la 3D derrière lui */
+.carte-corps { height: 100%; padding: var(--m) 0; display: flex; flex-direction: column; background: rgba(var(--marine), .5); -webkit-backdrop-filter: blur(22px) saturate(1.4); backdrop-filter: blur(22px) saturate(1.4); }
 .carte { will-change: clip-path, transform; }
 .carte h3 { padding-inline: var(--m); font-weight: 500; letter-spacing: -.03em; text-wrap: pretty; }
 /* le nom de l'outil, en étiquette au-dessus de sa promesse */
@@ -114,7 +115,7 @@ h1, h2, h3 { font-family: var(--titre); }
 .carte-lien { display: block; margin: calc(-1 * var(--m)) 0 var(--m); border-radius: 5px 5px 0 0; overflow: hidden; }
 .carte-image { display: block; width: 100%; height: calc(500 * var(--u)); object-fit: cover; transition: transform .8s var(--courbe); }
 .carte-lien:hover .carte-image { transform: scale(1.03); }
-.carte-bas { margin-top: auto; padding-inline: var(--m); display: grid; }
+.carte-bas { margin-top: auto; padding-top: calc(28 * var(--u)); padding-inline: var(--m); display: grid; }
 .carte p { font-weight: 300; font-size: max(13px, calc(18 * var(--u))); line-height: 1.22; padding-top: var(--m); padding-bottom: calc(40 * var(--u)); }
 .bouton-blanc { justify-self: end; width: calc(200 * var(--u)); min-width: 150px; height: calc(50 * var(--u)); min-height: 38px; background: #fff; color: #172e64; border-radius: 5px; padding: 0 calc(16 * var(--u)); display: flex; align-items: center; justify-content: space-between; gap: calc(12 * var(--u)); font-size: max(11px, calc(13 * var(--u))); }
 .bouton-blanc:hover { background: #e9edff; }
@@ -162,7 +163,9 @@ h1, h2, h3 { font-family: var(--titre); }
   .plan { padding: 64px 20px; }
   .plan-bloc + .plan-bloc { margin-top: 56px; padding-top: 56px; }
 }
-.pied { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; padding: 32px 20px; border-top: 1px solid var(--trait); color: var(--doux); font-size: 14px; }
+/* le pied, blanc comme les sections du site qu'il suit */
+.pied { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; padding: 32px max(40px, calc((100% - 1660px) / 2)); border-top: 1px solid rgba(20, 20, 24, .08); background: #fff; color: rgba(20, 20, 24, .6); font-size: 14px; }
+.pied a { color: #2a2a2c; }
 .pied-logo { width: 104px; }
 .pied address { font-style: normal; }
 .pied .note { margin-inline-start: auto; font-size: 12px; }
@@ -176,15 +179,19 @@ h1, h2, h3 { font-family: var(--titre); }
 .accueil-logo { width: auto; height: calc(58 * var(--u)); min-height: 36px; }
 .accueil-pile .accueil-titre { width: auto; text-align: left; font-size: calc(84 * var(--u)); line-height: calc(80 * var(--u)); }
 [data-variante="ondes"] .accueil-encadre { left: auto; right: var(--m); }
-/* deux images au premier écran, qui s'effacent avec le titre : la tablette OnlineCompétences en
-   haut à droite, sur son fond blanc, et une photo d'équipe en bas à gauche (masquées en étroit) */
+/* deux images au premier écran, qui s'effacent avec le titre, collées aux bords de l'écran : la
+   tablette OnlineCompétences en haut à droite, sous l'en-tête, sur son fond blanc, et une photo
+   d'équipe en bas à gauche (masquées en étroit) */
 .accueil-photo { position: absolute; margin: 0; overflow: hidden; }
 .accueil-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.accueil-photo--tablette { right: var(--m); top: calc(72px + var(--m)); width: calc(290 * var(--u)); aspect-ratio: 394 / 510; background: #fff; }
+.accueil-photo--tablette { right: 0; top: 72px; width: calc(290 * var(--u)); aspect-ratio: 394 / 510; background: #fff; }
 .accueil-photo--tablette img { object-position: 0% 50%; }
-.accueil-photo--equipe { left: var(--m); bottom: var(--m); width: calc(485 * var(--u)); aspect-ratio: 657 / 268; }
+.accueil-photo--equipe { left: 0; bottom: 0; width: calc(485 * var(--u)); aspect-ratio: 657 / 268; }
 /* les titres des chapitres, alignés eux aussi sur le logo de l'en-tête */
 @media (min-width: 980px) { [data-variante="ondes"] .chapitre-titre { margin-inline-start: max(40px, calc((100% - 1660px) / 2)); } }
+/* « La puissance de l'IA pour la formation » : à droite, la gauche de l'écran est prise par les
+   pics et leurs données */
+@media (min-width: 980px) { [data-variante="ondes"] [data-chapitre="1"] .chapitre-titre { margin-inline: auto max(40px, calc((100% - 1660px) / 2)); text-align: right; } }
 
 /* ------------------------------------------------------------------ petits écrans */
 @media (max-width: 979px) {

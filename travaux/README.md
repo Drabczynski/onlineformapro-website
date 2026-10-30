@@ -172,15 +172,19 @@ transparent. Au premier écran, empilés à gauche (alignés sur le logo de l'en
 « Première solution globale digital learning orchestrée par l'IA » (moins grand) et la
 pastille ; l'accroche « L'innovation technologique… » en bas à droite ; les titres des
 chapitres s'alignent eux aussi sur le logo de l'en-tête. Au premier écran, deux images
-s'effacent avec le titre : la tablette OnlineCompétences en haut à droite, sur son fond blanc,
-et une photo d'équipe en bas à gauche (masquées sur téléphone). L'essai est porté par
+s'effacent avec le titre, collées aux bords de l'écran : la tablette OnlineCompétences en haut
+à droite, sous l'en-tête, sur son fond blanc, et une photo d'équipe en bas à gauche (masquées sur
+téléphone). « La puissance de l'IA pour la formation » passe à droite, la gauche étant prise par
+les pics et leurs données. L'essai est porté par
 `data-variante="ondes"` sur `<html>` : `monde.js` ne dessine pas le logo et remplace les cinq
 premières stations par une seule, `ouverture.js` cale seize stations au lieu de vingt.
 **L'ouverture complète reste dans `intro-complete.html`** (mêmes scripts, sans l'attribut),
 telle que décrite ci-dessous. Après l'ouverture, dans les deux fichiers, les sections du site
 défilent l'une sous l'autre : les cinq méga-menus de l'en-tête en grand (LMS, Outils IA,
 Catalogue, Blog, Contact), sur fond blanc ; le bloc est produit par `plan()` dans `commun.py`,
-à partir des mêmes données que les menus (`MEGA`).
+à partir des mêmes données que les menus (`MEGA`). L'en-tête passe au clair quand elles
+arrivent sous lui, et le pied est blanc lui aussi. Les cartes de l'ouverture ont un fond de
+verre teinté qui floute la 3D derrière elles.
 Les titres sont en Geist, comme dans les pages du site ; le reste du texte reste en Inter.
 
 À l'arrivée, le Ó du logo est dessiné en routes, aux proportions du logo : l'anneau en route
@@ -236,8 +240,9 @@ décodée dès le chargement pour être prête au dévoilement. Titres et textes
 évitent le mot seul en fin de ligne. Le
 dévoilement démarre vite et ralentit à la fin (la carte est presque entière en une
 demi-seconde) ; une carte interrompue repart de l'état atteint, et celle qui s'en va avant
-d'être entière achève de s'ouvrir en 0,3 s pendant qu'elle s'efface. Leur fond est dense
-plutôt que flouté, le flou recalculé sur la 3D en mouvement faisant sauter les images. Textes des cartes repris du site officiel ; celui de « Marque
+d'être entière achève de s'ouvrir en 0,3 s pendant qu'elle s'efface. Leur fond est un verre
+teinté qui floute la 3D (sur une machine qui peine, le flou recalculé à chaque image peut
+ralentir le défilement : revenir alors à un fond dense, sans flou). Textes des cartes repris du site officiel ; celui de « Marque
 blanche » est rédigé d'après la demande et la page du LMS (entreprise étendue), à valider.
 Chaque carte a pour titre une promesse (« Générez vos formations à partir de vos documents
 pédagogiques », « Vos quiz générés en quelques secondes », « Créez des mises en situation
