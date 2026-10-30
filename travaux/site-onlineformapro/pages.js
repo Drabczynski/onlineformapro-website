@@ -10,11 +10,25 @@ const burger = document.querySelector('.entete-burger');
 if (burger) burger.addEventListener('click', () => {
   const ouvert = entete.classList.toggle('menu-ouvert');
   burger.setAttribute('aria-expanded', String(ouvert));
+  majEntete();
 });
+// les méga-menus s'ouvrent au survol (marque.css) ; au-dessus d'une photo, l'en-tête prend alors
+// son fond clair, comme quand le menu est ouvert ; un clic sur l'un de leurs liens les replie jusqu'à ce que la souris en sorte
+// (une ancre de la même page reste visible)
+let megaOuvert = false;
+function majEntete() { if (entete && entete.classList.contains('entete--photo')) entete.classList.toggle('est-defile', scrollY > 24 || megaOuvert || entete.classList.contains('menu-ouvert')); }
+for (const menu of document.querySelectorAll('.entete-menu')) {
+  const ouvrir = (oui) => { megaOuvert = oui; majEntete(); };
+  menu.addEventListener('mouseenter', () => ouvrir(true));
+  menu.addEventListener('mouseleave', () => { ouvrir(false); menu.classList.remove('mega-repli'); });
+  menu.addEventListener('focusin', () => ouvrir(true));
+  menu.addEventListener('focusout', (e) => { if (!menu.contains(e.relatedTarget)) ouvrir(false); });
+  menu.addEventListener('click', (e) => { if (e.target.closest('.mega a')) { menu.classList.add('mega-repli'); document.activeElement.blur(); ouvrir(false); } });
+  menu.addEventListener('keydown', (e) => { if (e.key === 'Escape') { menu.classList.add('mega-repli'); document.activeElement.blur(); ouvrir(false); } });
+}
 if (entete && entete.classList.contains('entete--photo')) {
-  const maj = () => entete.classList.toggle('est-defile', scrollY > 24);
-  addEventListener('scroll', maj, { passive: true });
-  maj();
+  addEventListener('scroll', majEntete, { passive: true });
+  majEntete();
 }
 
 // -------------------------------------------------------------------- titres d'ouverture

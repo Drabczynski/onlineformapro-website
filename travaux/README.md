@@ -276,7 +276,14 @@ courante du menu ; un gris presque noir `#1c1c1e` pour les passages sombres, les
 d'appel et le pied de page (le bleu nuit reste propre à l'ouverture). Le pied est signé du nom
 « onlineformapro » en très grand, à peine plus clair que le fond et rogné par le bas.
 L'en-tête a trois parts : le logo et les liens à gauche, au centre exact la recherche
-« Décrivez votre projet » (`recherche.js`), à droite le bouton de démo rouge. Un clic sur la
+« Décrivez votre projet » (`recherche.js`), à droite le bouton de démo rouge. Son fond est un
+blanc translucide et flouté qui laisse deviner la page (absent au-dessus d'une photo d'ouverture
+tant qu'on n'a pas défilé). Au survol de LMS, Outils IA, Catalogue ou Contact, un méga-menu en
+verre dépoli se déplie sous l'en-tête : une introduction à gauche et les produits en images qui
+arrivent en cascade (les quatre volets du LMS ; FastFormation, FastQuiz, Learning Podcast,
+RolePlay IA ; huit familles du catalogue ; pour Contact, la prise de démonstration, le
+formulaire, le téléphone et la société). Les données en sont dans `commun.py` (`MEGA`) ; un
+clic sur l'un de leurs liens les replie. Un lien du panneau de l'assistant le referme aussi. Un clic sur la
 recherche, ou Ctrl K (⌘ K sur Mac), la déploie : le champ s'élargit, les liens s'effacent, la
 page se voile, le panneau se déplie depuis le champ et son contenu arrive en cascade (accès
 rapides, suggestions illustrées, exemples de demandes). En tapant, les accès se filtrent et l'on peut demander à l'assistant IA. La conversation

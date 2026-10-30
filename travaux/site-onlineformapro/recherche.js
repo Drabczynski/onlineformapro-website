@@ -36,6 +36,9 @@
   champ.addEventListener('focus', ouvrir);
   champ.addEventListener('click', ouvrir);
   voile.addEventListener('click', () => { fermer(); champ.blur(); });
+  // un lien du panneau (accès, suggestion, « Découvrir… ») mène à sa page : le panneau se
+  // referme, y compris pour une ancre de la page où l'on est
+  panneau.addEventListener('click', (e) => { if (e.target.closest('a')) { fermer(); champ.blur(); } });
   document.addEventListener('click', (e) => { if (ouvert() && !form.contains(e.target)) fermer(); });
   addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); champ.focus(); ouvrir(); }
