@@ -354,7 +354,11 @@ Les grains sont ombrés comme de petites billes (éclairées en haut à gauche, 
 `nuee.js` sait montrer ces particules sous quatre points de vue, au choix par l'attribut
 `data-nuee` de l'élément qui les reçoit : `anneau` (celui de Contact), `gros-plan` (la caméra
 contre l'anneau : un épais boudin de grains traverse l'écran en diagonale, ses bandes filent
-le long de lui), `tres-gros-plan` (de grosses billes emplissent l'écran) et `vagues` (une nappe
+le long de lui), `halo` (l'anneau vu de face, centré sur le titre de la page LMS, assez grand
+pour que le titre tienne dans son trou, ses bandes dans les marges, un voile blanc ovale derrière
+le texte ; la plateforme sur tous les écrans passe par-dessus le bas de l'anneau ; sur téléphone,
+l'anneau entoure l'image et le titre reste sur le blanc), `tres-gros-plan` (de grosses billes
+emplissent l'écran) et `vagues` (une nappe
 de grains en larges bandes obliques, qui ondule comme un relief et file) ; seule la part
 visible de la forme est semée, d'où la densité des gros plans. La page d'essai `nuees.html`
 les montre l'un sous l'autre, en direct, pour choisir.

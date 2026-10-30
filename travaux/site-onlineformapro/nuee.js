@@ -2,6 +2,8 @@
 // petites billes, aux couleurs de l'ouverture (bleu nuit, violet, bleu, pêche, rose, lavande).
 // Chaque élément [data-nuee] en reçoit une, vue selon son plan :
 //   anneau : un grand anneau vu de biais, dont on voit la moitié gauche (l'ouverture de Contact).
+//   halo : le même anneau vu de face, centré sur le texte de l'élément, assez grand pour que le
+//     texte tienne dans son trou, sur le blanc (l'ouverture de la page LMS).
 //     En travers de l'anneau, des bandes qui se mêlent : au bord intérieur une brume rose et
 //     lilas, puis du violet, un cœur bleu nuit piqueté de rose et d'orangé, une bande pêche, du
 //     rose, du bleu lavande, et au bord extérieur une poussière pastel qui s'éloigne et renaît ;
@@ -35,7 +37,8 @@
     ['#ffb088', '#ff9d7a', '#ffc39e'], ['#a3b2f1', '#b8c0f5', '#c9c2f6'], ['#262385', '#30289c', '#3a2fb2'], ['#4f5fd8', '#6b56e2', '#5d6fe6']];
 
   // les plans : forme, nombre de grains (ordinateur, téléphone), et leur pose selon le format
-  // (h et l : la demi-hauteur et la demi-largeur visibles à la distance D). cible : où va le
+  // (h et l : la demi-hauteur et la demi-largeur visibles à la distance D ; H : la hauteur de
+  // l'élément en pixels). cible : où va le
   // pivot (point de la forme) ; rot : inclinaisons (x, y, roulis) ; tour : la part de
   // l'anneau semée (début, longueur) ou la longueur de la nappe ; vit : vitesse (rad/s ou
   // unités/s) ; brume : les grains lointains pâlissent (début, longueur)
@@ -44,6 +47,23 @@
       const R = asp > 1.1 ? h * 1.15 : h * 0.78;
       return { cible: asp > 1.1 ? [h * 1.37 - l * 0.06, -h * 0.06, -D] : [l * 0.95, h * 0.62, -D], pivot: [0, 0, 0],
         R: R * 0.96, larg: R * 0.8, epais: R, rot: [0.42, -0.55, 0], tour: [0, Math.PI * 2], vit: 0.03, taille: 1.12, brume: [3.4, 6] };
+    } },
+    halo: { forme: 0, n: [360000, 120000], pose: (h, l, asp, H, zone) => {
+      // en large, autour du texte : le trou le contient, les bandes tiennent dans les marges ;
+      // en étroit (téléphone), autour de l'image, le texte reste sur le blanc
+      const px = H / 2 / h, demiL = l * px, cadre = zone.getBoundingClientRect(), large = innerWidth > 860;
+      const ancre = (zone.querySelector(large ? '.tete-produit-texte' : '.tete-produit-visuel') || zone.querySelector('h1'))?.getBoundingClientRect();
+      const cy = ancre ? ancre.top + ancre.height / 2 - cadre.top : H * 0.35;
+      // la demi-largeur du titre : celle de sa plus longue ligne
+      const titre = zone.querySelector('h1'), plage = document.createRange();
+      if (titre) plage.selectNodeContents(titre);
+      const demiTexte = titre ? plage.getBoundingClientRect().width / 2 : demiL * 0.6;
+      const trou = large ? Math.min(470, Math.max(demiTexte + 30, demiL * 0.6)) : demiL * 0.62;
+      const bande = large ? Math.max(120, Math.min(300, demiL - trou - 10)) : demiL * 0.55;
+      // un voile blanc ovale derrière le texte (marque.css) : les grains s'y effacent
+      if (ancre) for (const [nom, v] of [['--voile-cy', cy], ['--voile-l', demiTexte + 90], ['--voile-h', ancre.height / 2 + 60]]) zone.style.setProperty(nom, `${Math.round(v)}px`);
+      return { cible: [0, h - cy / px, -D], pivot: [0, 0, 0], R: (trou + 0.45 * bande) / px, larg: bande / px, epais: (trou + bande) / px * 0.4,
+        rot: [0.18, 0.14, 0], tour: [0, Math.PI * 2], vit: 0.025, taille: 1.05, brume: [3.4, 6] };
     } },
     'gros-plan': { forme: 0, n: [400000, 140000], pose: () => ({ cible: [0.3, -0.05, -3.6], pivot: [7, 0, 0],
       R: 7, larg: 1.6, epais: 1.3, rot: [0.95, -0.25, 0.65], tour: [-0.62, 1.24], vit: 0.006, taille: 1.25, brume: [3.2, 7] }) },
@@ -158,7 +178,7 @@
     gl.linkProgram(prog);
     if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { toile.remove(); return; }
     gl.useProgram(prog);
-    let pose = plan.pose(1, 1, 1.6);
+    let pose = plan.pose(1, 1, 1.6, 800, zone);
     const { pos, coul } = semer(plan, N, pose.tour);
     gl.bindVertexArray(gl.createVertexArray());
     [[pos, 0, gl.FLOAT, false], [coul, 1, gl.UNSIGNED_BYTE, true]].forEach(([donnees, attribut, type, normalise]) => {
@@ -184,7 +204,7 @@
       gl.viewport(0, 0, toile.width, toile.height);
       const asp = b.width / b.height, f = 1 / DEMI, pres = 0.05, loin = 40;
       gl.uniformMatrix4fv(u.uProj, false, [f / asp, 0, 0, 0, 0, f, 0, 0, 0, 0, (loin + pres) / (pres - loin), -1, 0, 0, (2 * loin * pres) / (pres - loin), 0]);
-      pose = plan.pose(DEMI * D, DEMI * D * asp, asp);
+      pose = plan.pose(DEMI * D, DEMI * D * asp, asp, b.height, zone);
       gl.uniform1f(u.uR, pose.R); gl.uniform1f(u.uLarg, pose.larg); gl.uniform1f(u.uEpais, pose.epais);
       gl.uniform1f(u.uTour0, pose.tour[0]); gl.uniform1f(u.uTourL, pose.tour[1]); gl.uniform1f(u.uVit, pose.vit);
       gl.uniform1f(u.uDisp, pose.larg * 1.125);

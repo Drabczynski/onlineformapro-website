@@ -367,6 +367,12 @@ body.fond-noir { background: var(--nuit); }
 .heros-clair.heros-nuee > .nuee { animation: none; }
 /* un simple filet, sans ombre, pour que la carte blanche se détache du fond blanc */
 .heros-nuee + .section-96 .carte-contact { box-shadow: 0 0 0 1px rgba(20, 20, 24, .07); }
+/* l'ouverture de la page LMS : l'anneau vu de face (nuee.js, plan « halo »), le titre dans son
+   trou, la plateforme sur tous les écrans par-dessus le bas de l'anneau */
+.tete-nuee { position: relative; overflow: hidden; isolation: isolate; }
+@media (min-width: 861px) {
+  .tete-nuee::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(var(--voile-l, 560px) var(--voile-h, 330px) at 50% var(--voile-cy, 340px), #fff 0%, rgba(255, 255, 255, .92) 62%, rgba(255, 255, 255, 0) 100%); }
+}
 /* les cartes « Nous joindre » remontent sur le bas de l'anneau, qui s'efface derrière elles */
 .heros-nuee, .heros-nuee + .section-96 { --chevauche: 240px; }
 .heros-nuee { padding-bottom: calc(96px + var(--chevauche)); }
