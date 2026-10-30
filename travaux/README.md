@@ -266,6 +266,11 @@ l'accent du Ó (un trait arrondi incliné de 29,4°) devant les étiquettes et s
 courante du menu ; un gris presque noir `#1c1c1e` pour les passages sombres, les cartes
 d'appel et le pied de page (le bleu nuit reste propre à l'ouverture). Le pied est signé du nom
 « onlineformapro » en très grand, à peine plus clair que le fond et rogné par le bas.
+L'en-tête est une capsule flottante en verre dépoli (sombre sur les photos d'ouverture, claire
+dès qu'on défile) : menu en pastilles, page courante marquée d'un point rouge, bouton de démo
+rouge avec sa flèche. À l'arrivée sur une page, la photo d'ouverture se pose (zoom arrière en
+s'éclaircissant), le titre monte mot par mot (découpé par `pages.js`), puis l'étiquette, le
+texte et les boutons ; rien si le visiteur a demandé moins d'animations.
 
 Les changements de fond du modèle s'appliquent partout : toute la page passe du blanc au
 pierre ou au noir quand une section marquée `data-fond` franchit 40 % de la hauteur de
@@ -277,7 +282,7 @@ Outils IA, la solution globale sur la page Démo.
 |---|---|
 | `lms.html` | ouverture claire et centrée, le montage des écrans en grand ; Saint-Gobain et chiffres ; côté administration (prise en main avec OnlineManager en pleine largeur, analyse des données, marque blanche) ; côté apprenant (OnlineCompétences, Lisy, outils) ; références ; témoignage France Education International ; spécifications techniques ; appel final |
 | `outils-ia.html` | photo d'ouverture ; « La puissance de l'IA… » ; un bloc par outil (visuel en grand, carte de texte, quatre atouts), RolePlay IA sur fond noir ; « Innover pour l'équité » ; appel final. Ancres `#fastformation`, `#fastquiz`, `#learning-podcast`, `#roleplay` |
-| `catalogue.html` | ouverture en bloc arrondi ; toutes les catégories (la nouveauté Google et sa vidéo en 16:9, puis les familles en cartes d'article) ; bloc crème sur photo voilée : témoignage SNCF et chiffres ; pédagogie (la grande image en pleine colonne) ; appel final |
+| `catalogue.html` | ouverture en pleine page ; toutes les catégories (la nouveauté Google et sa vidéo en 16:9, puis les familles en cartes d'article) ; bloc crème sur photo voilée : témoignage SNCF et chiffres ; pédagogie (la grande image en pleine colonne) ; appel final |
 | `blog.html` | photo d'ouverture ; les 9 derniers articles du blog officiel, filtrables par catégorie ; l'inscription à la lettre |
 | `demo.html` | réservation de 30 min par l'agenda Calendly, comme sur le site actuel ; la solution globale ; témoignages |
 | `contact.html` | titre, trois cartes (e-mail, démonstration, téléphone), formulaire (champs du formulaire actuel), la société en questions |

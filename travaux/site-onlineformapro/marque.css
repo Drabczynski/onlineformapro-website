@@ -6,7 +6,8 @@
    - des titres d'une graisse à peine plus forte ;
    - le rouge du logo, adouci, en accent : l'accent du Ó devant les étiquettes, la page courante ;
    - un gris presque noir pour les passages sombres et le pied de page, signé du nom
-     d'Onlineformapro en très grand. */
+     d'Onlineformapro en très grand ;
+   - un en-tête en capsule de verre, au bouton de démo rouge. */
 :root {
   --encre: #2a2a2c;          /* titres, boutons, cartes sombres : un gris très foncé */
   --nuit: #1c1c1e;           /* passages sombres, pied de page : un gris presque noir */
@@ -29,6 +30,61 @@
 .puce svg { color: var(--rouge); }
 .entete-nav a[aria-current="page"] { text-decoration-color: var(--rouge); text-decoration-thickness: 2px; }
 .bouton-noir:hover { background: #414144; }
+
+/* -------------------------------------------------------------------- l'en-tête */
+/* une capsule flottante en verre dépoli : le logo, le menu en pastilles (au survol, et pour la
+   page courante, marquée d'un point rouge), le bouton de démo en rouge avec sa flèche */
+.entete {
+  top: 12px; width: min(1640px, calc(100% - 32px)); height: 64px; margin: 12px auto 0; padding: 0 8px 0 24px; gap: 40px;
+  border: 1px solid rgba(20, 20, 24, .07); border-radius: 999px;
+  background: rgba(255, 255, 255, .76); -webkit-backdrop-filter: blur(18px) saturate(1.5); backdrop-filter: blur(18px) saturate(1.5);
+  box-shadow: 0 12px 32px -14px rgba(20, 20, 30, .22), inset 0 1px 0 rgba(255, 255, 255, .6);
+  transition: background-color .3s, border-color .3s, box-shadow .3s, color .3s;
+}
+.entete-logo img { height: 28px; }
+.entete-nav { gap: 4px; font-size: 15px; }
+.entete-nav a { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; transition: background-color .2s; }
+.entete-nav a:hover { opacity: 1; background: rgba(20, 20, 24, .06); }
+.entete-nav a[aria-current="page"] { text-decoration: none; background: rgba(20, 20, 24, .07); }
+.entete-nav a[aria-current="page"]::before { content: ""; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--rouge); box-shadow: 0 0 0 3px rgba(212, 72, 108, .2); }
+.entete > .bouton.bouton-noir, .entete--photo > .bouton.bouton-noir, .entete--photo.est-defile > .bouton.bouton-noir {
+  min-height: 48px; padding: 0 22px 0 26px; background: var(--rouge); color: #fff; font-size: 16px;
+}
+.entete > .bouton.bouton-noir::after { content: "→"; transition: transform .25s; }
+.entete > .bouton.bouton-noir:hover { background: #c23a5e; }
+.entete > .bouton.bouton-noir:hover::after { transform: translateX(3px); }
+/* sur une photo d'ouverture : verre sombre, puis clair dès qu'on défile */
+.entete--photo { margin-top: 0; background: rgba(18, 18, 22, .26); border-color: rgba(255, 255, 255, .16); box-shadow: none; }
+.entete--photo .entete-nav a:hover, .entete--photo .entete-nav a[aria-current="page"] { background: rgba(255, 255, 255, .14); }
+.entete--photo.est-defile { background: rgba(255, 255, 255, .8); border-color: rgba(20, 20, 24, .07); box-shadow: 0 12px 32px -14px rgba(20, 20, 30, .22); }
+.entete--photo.est-defile .entete-nav a:hover, .entete--photo.est-defile .entete-nav a[aria-current="page"] { background: rgba(20, 20, 24, .07); }
+@media (max-width: 860px) {
+  .entete { top: 10px; width: calc(100% - 20px); height: 56px; margin-top: 10px; padding: 0 6px 0 18px; gap: 4px 16px; }
+  .entete--photo { margin-top: 0; }
+  .entete.menu-ouvert { height: auto; border-radius: 24px; background: #fff; padding: 0 18px 16px; }
+  .entete.menu-ouvert .entete-burger { min-height: 56px; }
+  .entete.menu-ouvert .entete-nav { flex: 1 0 100%; }        /* sur sa propre ligne, sous le logo */
+  .entete.menu-ouvert .entete-nav a { padding: 10px 0; background: none; }
+  .entete.menu-ouvert > .bouton.bouton-noir { background: var(--rouge); color: #fff; }
+}
+
+/* -------------------------------------------------------------------- l'arrivée des ouvertures */
+/* la photo se pose (de 1,12 à 1, en s'éclaircissant), le titre monte mot par mot (découpé par
+   pages.js), puis l'étiquette, le texte et les boutons, un à un ; rien si le visiteur a
+   demandé moins d'animations */
+@media (prefers-reduced-motion: no-preference) {
+  .visuel > img, .heros > img, .heros-bloc-media > img, .billet-image img { animation: ouverture-photo 1.8s cubic-bezier(.2, .7, .2, 1) both; }
+  .tete-produit-visuel { animation: ouverture-texte 1.2s cubic-bezier(.2, .7, .2, 1) .5s both; }
+  :is(.visuel-texte, .heros-texte, .tete-produit-texte, .heros-clair, .billet-titre, .billet-chapeau) > :not(.titre-mots),
+  .heros-bloc-media .boutons { animation: ouverture-texte .9s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(.5s + var(--rang, 0) * .12s); }
+  :is(.visuel-texte, .heros-texte, .tete-produit-texte, .heros-clair, .billet-titre) > :nth-child(2) { --rang: 1; }
+  :is(.visuel-texte, .heros-texte, .tete-produit-texte, .heros-clair, .billet-titre) > :nth-child(3) { --rang: 2; }
+  :is(.visuel-texte, .heros-texte, .tete-produit-texte, .heros-clair, .billet-titre) > :nth-child(4), .heros-bloc-media .boutons { --rang: 3; }
+  .titre-mots .mot { display: inline-block; animation: ouverture-mot 1s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(.35s + var(--i) * .055s); }
+}
+@keyframes ouverture-photo { from { transform: scale(1.12); filter: brightness(.55) saturate(.8); } to { transform: none; filter: none; } }
+@keyframes ouverture-texte { from { opacity: 0; transform: translateY(24px); } }
+@keyframes ouverture-mot { from { opacity: 0; transform: translateY(.45em); filter: blur(8px); } }
 
 /* -------------------------------------------------------------------- les passages sombres */
 body.fond-noir { background: var(--nuit); }

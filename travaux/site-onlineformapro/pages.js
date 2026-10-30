@@ -1,7 +1,7 @@
 // Les pages du site : menu sur téléphone, en-tête transparent au-dessus d'une photo
-// d'ouverture, changements de fond au défilement (comme le modèle Vectura), lignes « gestion »
-// qui s'allument au centre de l'écran, apparitions, onglets du blog, formulaires (maquette :
-// rien n'est envoyé).
+// d'ouverture, titres d'ouverture découpés en mots, changements de fond au défilement (comme
+// le modèle Vectura), lignes « gestion » qui s'allument au centre de l'écran, apparitions,
+// onglets du blog, formulaires (maquette : rien n'est envoyé).
 document.documentElement.classList.add('js');
 
 // -------------------------------------------------------------------- en-tête
@@ -15,6 +15,30 @@ if (entete && entete.classList.contains('entete--photo')) {
   const maj = () => entete.classList.toggle('est-defile', scrollY > 24);
   addEventListener('scroll', maj, { passive: true });
   maj();
+}
+
+// -------------------------------------------------------------------- titres d'ouverture
+// découpés en mots (les espaces insécables gardent leurs groupes ensemble), que marque.css
+// fait monter un à un à l'arrivée sur la page
+for (const titre of document.querySelectorAll(':is(.visuel-texte, .heros-texte, .tete-produit-texte, .heros-clair, .billet-titre) > .titre-1')) {
+  let i = 0;
+  const parcourir = (noeud) => {
+    for (const n of [...noeud.childNodes]) {
+      if (n.nodeType === Node.ELEMENT_NODE) { parcourir(n); continue; }
+      if (n.nodeType !== Node.TEXT_NODE) continue;
+      const frag = document.createDocumentFragment();
+      for (const morceau of n.textContent.split(/( +)/)) {
+        if (!morceau) continue;
+        if (/^ +$/.test(morceau)) { frag.append(morceau); continue; }
+        const mot = document.createElement('span');
+        mot.className = 'mot'; mot.style.setProperty('--i', i++); mot.textContent = morceau;
+        frag.append(mot);
+      }
+      n.replaceWith(frag);
+    }
+  };
+  parcourir(titre);
+  titre.classList.add('titre-mots');
 }
 
 // -------------------------------------------------------------------- changements de fond

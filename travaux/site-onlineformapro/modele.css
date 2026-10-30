@@ -128,10 +128,10 @@ section[id], article[id] { scroll-margin-top: 72px; }
 .heros-texte .texte-grand { color: #fff; max-width: 510px; }
 .heros--blog .heros-texte { gap: 24px; }
 
-/* ouverture « accueil » : la photo dans un grand bloc arrondi, le texte centré en bas */
-/* sous l'en-tête (72 px), comme le bloc du modèle qui démarre sous son en-tête fixe */
-.heros-bloc { height: calc(100svh - 72px); min-height: 568px; padding: 0 var(--gouttiere-bloc) 24px; display: flex; }
-.heros-bloc-media { position: relative; flex: 1; border-radius: var(--rayon); overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 32px; padding: 40px 40px 120px; color: #fff; text-align: center; background: #1c1c1f; }
+/* ouverture « accueil » : la photo en pleine page, sous l'en-tête transparent (comme les
+   ouvertures des autres pages), le texte centré en bas */
+.heros-bloc { height: 100svh; min-height: 640px; padding: 0; display: flex; }
+.heros-bloc-media { position: relative; flex: 1; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 32px; padding: 40px 40px 120px; color: #fff; text-align: center; background: #1c1c1f; }
 .heros-bloc-media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .heros-bloc-media::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(0, 0, 0, .2) 0%, rgba(0, 0, 0, .1) 40%, rgba(0, 0, 0, .55) 100%); }
 .heros-bloc-media > :not(img) { position: relative; z-index: 2; }
@@ -160,6 +160,8 @@ section[id], article[id] { scroll-margin-top: 72px; }
 /* l'illustration remplit toute la colonne */
 .colonne-visuel--plein { padding: 0; }
 .colonne-visuel--plein > img { position: absolute; inset: 0; width: 100%; height: 100%; max-height: none; object-fit: cover; }
+/* une photo dont la gauche est vide : zoomée vers sa droite (--zoom, --foyer) */
+.colonne-visuel--photo > img { transform: scale(var(--zoom, 1)); transform-origin: var(--foyer, 50% 50%); }
 /* une grande photo (2000 px) : la colonne d'illustration prend la place, le texte garde 620 px */
 .ligne--photo .colonne-texte { flex: 1 0 620px; }
 .ligne--photo .colonne-visuel { flex: 0 1 900px; }
@@ -456,7 +458,6 @@ section[id], article[id] { scroll-margin-top: 72px; }
   .entete.menu-ouvert .entete-burger span:last-child { transform: translateY(-3.75px) rotate(-45deg); }
   .bouton { padding: 15px 30px; font-size: 17px; white-space: normal; text-align: center; }
   .heros { padding: 40px 20px 60px; }
-  .heros-bloc { padding: 0 12px 12px; }
   .heros-bloc-media { padding: 24px 20px 48px; }
   .heros-clair { padding: 140px 20px 60px; }
   .entete-section { margin-bottom: 40px; }
