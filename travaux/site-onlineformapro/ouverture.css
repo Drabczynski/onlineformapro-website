@@ -155,9 +155,10 @@ h1, h2, h3 { font-family: var(--titre); }
 .pied .note { margin-inline-start: auto; font-size: 12px; }
 
 /* l'essai « ondes » (index.html) : l'en-tête transparent ; au premier écran, le logo, le titre
-   (moins grand, ferré à gauche) et la pastille, empilés au centre ; l'accroche en bas à droite */
+   (moins grand, ferré à gauche) et la pastille, empilés à gauche, alignés sur le logo de
+   l'en-tête ; l'accroche en bas à droite */
 [data-variante="ondes"] .entete--nuit:not(.est-defile)::before { opacity: 0; box-shadow: none; }
-.accueil-pile { position: absolute; left: 50%; top: calc(50% + 36px); translate: -50% -50%; width: calc(820 * var(--u)); display: flex; flex-direction: column; align-items: flex-start; gap: calc(30 * var(--u)); }
+.accueil-pile { position: absolute; left: max(40px, calc((100% - 1660px) / 2)); top: calc(50% + 36px); translate: 0 -50%; width: calc(820 * var(--u)); display: flex; flex-direction: column; align-items: flex-start; gap: calc(30 * var(--u)); }
 .accueil-pile > * { position: static; }
 .accueil-logo { width: auto; height: calc(58 * var(--u)); min-height: 36px; }
 .accueil-pile .accueil-titre { width: auto; text-align: left; font-size: calc(84 * var(--u)); line-height: calc(80 * var(--u)); }

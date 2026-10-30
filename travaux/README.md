@@ -169,7 +169,7 @@ viendra avec le prochain modèle.
 dessiné en routes, ni l'autoroute, ni le passage « 25 ans » (« Lauréate… ») ; la caméra part
 sur la route, un peu avant le graphique de pics, qu'on voit déjà s'élever à droite du titre
 (sous le titre sur téléphone), et les ondes de l'IA sont la première étape. L'en-tête est
-transparent. Au premier écran, empilés au centre et ferrés à gauche : le logo, le titre
+transparent. Au premier écran, empilés à gauche (alignés sur le logo de l'en-tête) : le logo, le titre
 « Première solution globale digital learning orchestrée par l'IA » (moins grand) et la
 pastille ; l'accroche « L'innovation technologique… » en bas à droite. L'essai est porté par
 `data-variante="ondes"` sur `<html>` : `monde.js` ne dessine pas le logo et remplace les cinq
