@@ -395,6 +395,8 @@ export function creerMonde(toile) {
     [0.57, tab(C1.clone().add(new THREE.Vector3(-22, 22, 30))), tab(C1.clone().add(new THREE.Vector3(4.5, 7.5, 3))), tab(C1.clone().setY(5))],
     [0.60, tab(C1.clone().add(new THREE.Vector3(-18, 21, 32))), tab(C1.clone().add(new THREE.Vector3(3, 7, 3))), tab(C1.clone().setY(6))],      // le cube complet
     [0.64, [110, 10, -385], [170, 0, -405]],             // la liaison vers le croisement
+    [0.66, [116, 11, -388], [122, 9, -470]],             // le catalogue : la caméra lève les yeux au-dessus de la liaison,
+    [0.68, [119, 12, -392], [124, 11, -476]],            // le ciel derrière le ruban (ruban.js) pendant qu'il tourne
     [0.72, tab(P2.clone().add(new THREE.Vector3(-58, 22, 6))), tab(P2.clone().add(new THREE.Vector3(0, 8, -9))), tab(P2.clone().setY(9))],    // le croisement en X, ses anneaux et la planète (les apprenants)
     // près de la planète, pendant les cartes : sa courbe occupe la moitié basse gauche de l'écran,
     // le reste hors champ (sur un écran en hauteur, sa courbe à gauche, au milieu)

@@ -81,7 +81,8 @@
     <div class="scene">
       <div class="scene-fond" aria-hidden="true"></div>
       <canvas id="monde" aria-hidden="true"></canvas>
-      <p class="indicateur vitre est-cache" aria-hidden="true"><span class="indicateur-num">01</span><span class="indicateur-total">04</span></p>
+      <canvas id="ruban" aria-hidden="true"></canvas>
+      <p class="indicateur vitre est-cache" aria-hidden="true"><span class="indicateur-num">01</span><span class="indicateur-total">05</span></p>
     </div>
 
     <div class="chapitres">
@@ -173,8 +174,21 @@
         </div>
       </div>
 
-      <!-- chapitre 03 -->
+      <!-- chapitre 03 : le catalogue, ses familles sur un ruban en hélice (ruban.js) qui tourne au
+           défilement pendant les 600 svh du paquet -->
       <div class="bloc" style="--h: 350; --mt: -272.5" data-chapitre="3">
+        <div class="colle colle-centre"><h2 class="chapitre-titre grand" data-fenetre="115 230" data-revele="title">6000&nbsp;h<br>de&nbsp;formations<br>interactives</h2></div>
+      </div>
+      <div class="bloc paquet" style="--h: 950; --mt: -100" data-cartes="8" data-ruban>
+        <div class="colle">
+          <ol class="ruban-liste" data-fenetre="60 760" aria-label="Les&nbsp;familles du&nbsp;catalogue"><li data-image="img/site/cat-bureautique.webp">Bureautique</li><li data-image="img/site/cat-base-info.webp">Bases informatiques</li><li data-image="img/site/cat-cognitif.webp">Entraînement cognitif</li><li data-image="img/site/cat-sante.webp">Santé</li><li data-image="img/site/cat-langues.webp">Langues</li><li data-image="img/site/cat-savoir-base.webp">Savoirs de&nbsp;base</li><li data-image="img/site/cat-orientation.webp">Orientation</li><li data-image="">Prévention</li><li data-image="img/site/cat-tertiaire.webp">Tertiaire</li><li data-image="img/site/cat-cao-dao.webp">CAO&#8209;DAO</li><li data-image="img/site/cat-pao.webp">PAO</li><li data-image="img/site/cat-dev.webp">Développement</li></ol>
+          <p class="ruban-compteur" data-fenetre="60 760" aria-hidden="true"><b>01</b><span>/12</span></p>
+          <a class="ruban-bouton bouton-blanc" href="catalogue.html#titre-categories" data-fenetre="60 760"><span>Voir le&nbsp;catalogue</span><svg width="7" height="12" viewBox="0 0 7 12" fill="none" aria-hidden="true"><path d="M1 1l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a>
+        </div>
+      </div>
+
+      <!-- chapitre 04 -->
+      <div class="bloc" style="--h: 350; --mt: -272.5" data-chapitre="4">
         <div class="colle colle-centre"><h2 class="chapitre-titre grand" data-fenetre="115 230" data-revele="title">Éprouvée<br>par 22&nbsp;millions<br>d’apprenants</h2></div>
       </div>
       <div class="bloc paquet" style="--h: 500; --mt: -100" data-cartes="2">
@@ -195,8 +209,8 @@
         </div>
       </div>
 
-      <!-- chapitre 04 : un bloc plus haut, le titre reste affiché jusqu'aux cartes -->
-      <div class="bloc" style="--h: 470; --mt: -257.5" data-chapitre="4">
+      <!-- chapitre 05 : un bloc plus haut, le titre reste affiché jusqu'aux cartes -->
+      <div class="bloc" style="--h: 470; --mt: -257.5" data-chapitre="5">
         <div class="colle colle-centre"><h2 class="chapitre-titre grand" data-fenetre="115 355" data-revele="title">Demander<br>une&nbsp;démonstration</h2></div>
       </div>
       <div class="bloc paquet" style="--h: 500; --mt: -200" data-cartes="2">

@@ -54,6 +54,9 @@ h1, h2, h3 { font-family: var(--titre); }
 .scene { position: sticky; top: 0; height: 100vh; height: 100lvh; overflow: hidden; align-self: start; }
 .scene-fond { position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 100%, rgba(255, 90, 120, .14), transparent 60%), radial-gradient(100% 70% at 30% 90%, rgba(122, 104, 255, .2), transparent 55%), radial-gradient(90% 60% at 50% 0%, #2a0f6c, transparent 70%), var(--nuit); transition: opacity .6s ease; }
 #monde { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity .6s ease; }
+/* le ruban du catalogue, dans son propre canevas, posé sur la scène (ruban.js) */
+#ruban { position: absolute; inset: 0; width: 100%; height: 100%; display: block; visibility: hidden; }
+.experience.sur-ruban { cursor: pointer; }
 .avec-webgl #monde { opacity: 1; }
 .avec-webgl .scene-fond { opacity: 0; }
 .indicateur { position: absolute; left: var(--m); bottom: calc(33 * var(--u)); width: calc(80 * var(--u)); height: calc(50 * var(--u)); min-width: 56px; min-height: 36px; padding: calc(10 * var(--u)); background: rgba(255, 255, 255, .1); display: grid; grid-template-columns: 1fr 1fr; font-size: max(11px, calc(13 * var(--u))); font-variant-numeric: tabular-nums; }
@@ -198,6 +201,25 @@ h1, h2, h3 { font-family: var(--titre); }
    pics et leurs données */
 @media (min-width: 980px) { [data-variante="ondes"] [data-chapitre="1"] .chapitre-titre { margin-inline: auto max(40px, calc((100% - 1660px) / 2)); text-align: right; } }
 
+/* le chapitre du catalogue : à droite, la liste des familles qui roule (la famille au premier
+   plan au milieu, ses voisines au-dessus et dessous, ouverture.js) ; en bas, le compteur et
+   l'accès au catalogue. Peu de texte : les images du ruban parlent */
+.ruban-liste { --pas-ruban: calc(62 * var(--u)); position: absolute; right: max(40px, calc((100% - 1660px) / 2)); top: 50%; width: calc(440 * var(--u)); height: 0; padding: 0; list-style: none; }
+.ruban-liste li { position: absolute; left: 0; right: 0; top: 0; translate: 0 -50%; text-align: center; font: 500 calc(42 * var(--u))/1.05 var(--titre); letter-spacing: -.035em; text-transform: uppercase; color: rgba(255, 255, 255, .45); white-space: nowrap; transform-origin: 50% 50%; will-change: transform, opacity; }
+.ruban-liste li.est-actif { color: #fff; }
+.ruban-compteur { position: absolute; left: calc(var(--m) + max(56px, 80 * var(--u)) + 24px); bottom: var(--m); display: flex; align-items: flex-end; gap: 6px; font-variant-numeric: tabular-nums; }
+.ruban-compteur b { font: 300 calc(96 * var(--u))/.8 var(--titre); letter-spacing: -.06em; color: rgba(170, 160, 255, .85); }
+.ruban-compteur span { padding-bottom: 4px; font-size: max(12px, calc(14 * var(--u))); color: rgba(255, 255, 255, .55); }
+.ruban-bouton { position: absolute; right: max(40px, calc((100% - 1660px) / 2)); bottom: var(--m); }
+/* la mosaïque, au clic sur le ruban : des carrés couvrent l'écran, le nom de la famille au milieu */
+.mosaique-catalogue { position: fixed; inset: 0; z-index: 1000; display: grid; grid-template-columns: repeat(var(--cols), 1fr); grid-template-rows: repeat(var(--rangs), 1fr); pointer-events: none; }
+.mosaique-catalogue i { display: block; animation: carre-entree .32s steps(3) both; }
+.mosaique-catalogue i.creux { box-shadow: inset 0 0 0 6px #c9c2f6; }
+@keyframes carre-entree { from { opacity: 0; transform: scale(.3); } }
+.mosaique-catalogue-titre { position: absolute; left: 0; right: 0; top: 50%; translate: 0 -50%; display: grid; justify-items: center; gap: 12px; text-align: center; animation: carre-entree .3s .35s both; }
+.mosaique-catalogue-titre small { padding: 6px 10px; background: #1d1e6c; font: 400 12px/1 "Chivo Mono", ui-monospace, monospace; letter-spacing: .12em; text-transform: uppercase; color: #fff; }
+.mosaique-catalogue-titre strong { padding: 4px 22px 10px; background: #e3375e; font: 600 clamp(36px, 6vw, 84px)/1 var(--titre); letter-spacing: -.045em; text-transform: uppercase; color: #fff; }
+
 /* ------------------------------------------------------------------ petits écrans */
 @media (max-width: 979px) {
   :root { --u: calc(100vw / 760); }
@@ -208,6 +230,11 @@ h1, h2, h3 { font-family: var(--titre); }
   .accueil-pile .accueil-titre { font-size: calc(80 * var(--u)); line-height: calc(76 * var(--u)); }
   [data-variante="ondes"] .accueil-encadre { left: var(--m); }
   .accueil-photo { display: none; }
+  /* le catalogue sur téléphone : le ruban en haut (ruban.js), la liste dessous */
+  .ruban-liste { --pas-ruban: 40px; left: var(--m); right: var(--m); top: 64%; width: auto; }
+  .ruban-liste li { font-size: 28px; }
+  .ruban-compteur { left: calc(var(--m) + 76px); }
+  .ruban-compteur b { font-size: 48px; }
   /* sur téléphone, un flou un peu moins large : l'écran est plus petit (l'effet reste aussi
      marqué) et le calcul plus léger pour la carte graphique */
   .carte { -webkit-backdrop-filter: blur(32px) saturate(1.5); backdrop-filter: blur(32px) saturate(1.5); }

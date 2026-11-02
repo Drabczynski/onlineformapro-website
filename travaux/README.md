@@ -177,16 +177,20 @@ s'effacent avec le titre, collées aux bords de l'écran : la tablette OnlineCom
 téléphone). « La puissance de l'IA pour la formation » passe à droite, la gauche étant prise par
 les pics et leurs données. L'essai est porté par
 `data-variante="ondes"` sur `<html>` : `monde.js` ne dessine pas le logo et remplace les cinq
-premières stations par une seule, `ouverture.js` cale seize stations au lieu de vingt.
-**Maquette à valider : la phase « Catalogue de formation ».** `maquette-catalogue.html`
-montre en écrans figés une étape à ajouter après « Une solution globale et modulaire » : les
-douze familles du catalogue sur un ruban de vignettes enroulé en hélice (d'après une vidéo de
-référence), qui tournerait au défilement ; à droite la famille au premier plan et ses
-voisines, à gauche les chiffres du catalogue, en bas un compteur (01 / 12) et l'accès au
-catalogue ; au clic, une mosaïque de carrés mène à la famille. Les écrans sont posés sur une
-capture de la scène 3D à cet endroit (`img/maquette/`) ; l'hélice y est en 3D CSS, chaque
-image de famille courbée sur deux segments du ruban. Textes et chiffres repris de la page
-Catalogue.
+premières stations par une seule, `ouverture.js` cale dix-huit stations au lieu de vingt-deux.
+**La phase « Catalogue de formation »** suit « Une solution globale et modulaire », dans les
+deux fichiers (chapitre 03 sur 05). Après le titre « 6000 h de formations interactives », les
+douze familles du catalogue défilent sur un seul ruban lisse de vignettes enroulé en hélice,
+qui tourne au défilement (une famille au premier plan à la fois). Un réseau de particules
+reliées entoure le ruban, aux couleurs de la marque. À droite, la liste des familles roule avec
+le ruban ; en bas, un compteur (01 / 12) et le bouton « Voir le catalogue ». Un clic sur le ruban
+ou sur le bouton couvre l'écran d'une mosaïque de carrés, avec le nom de la famille au premier
+plan, puis ouvre le catalogue à ses familles. Sans animations, le clic y mène directement.
+Le ruban est dans `ruban.js`, sur sa propre toile (`canvas#ruban`), sans tonalité ni halo, pour que
+les photos gardent leurs couleurs. Les images sont celles des familles (`img/site/cat-*.webp`).
+Prévention n'a pas d'image : sa vignette est un dégradé violet avec un bouclier. La liste est dans
+la page (`ol.ruban-liste`, attribut `data-image`), pour l'ajout ou le retrait d'une famille.
+`maquette-catalogue.html` garde les écrans figés validés avant l'intégration.
 
 **L'ouverture complète reste dans `intro-complete.html`** (mêmes scripts, sans l'attribut),
 telle que décrite ci-dessous. Après l'ouverture, dans les deux fichiers, les sections du site
@@ -274,7 +278,7 @@ cartes sont un bleu nuit à peine violet (`NUIT` et les lueurs dans `monde.js`, 
 
 `monde.js` : le décor (logo, routes, carrefours, pics, anneaux, éventail), les stations de
 la caméra et le rendu ; `objets.js` : les objets ; `particules.js` : les nuées de
-particules. `ouverture.js` : les mesures de la page,
+particules ; `ruban.js` : le ruban du catalogue et son réseau. `ouverture.js` : les mesures de la page,
 le calage des stations et des modules du cube sur les textes, les apparitions, les cartes.
 `ouverture.css` : la mise en page, à l'échelle d'un écran de 1440 × 900. L'en-tête est celui des
 pages (recherche « Décrivez votre projet », méga-menus, `entete.js`, `recherche.js`), en version
