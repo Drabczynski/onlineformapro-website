@@ -454,6 +454,25 @@ body.fond-noir { background: var(--nuit); }
   .tete-video .tete-produit-visuel { margin-top: 32px; }
 }
 
+/* les pictogrammes des cartes : une tuile au dégradé du titre de l'ouverture LMS (rose,
+   violet, bleu), le trait blanc, sans ombre */
+:is(.atout, .carte-icone) .pictogramme { width: 48px; height: 48px; border: 0; border-radius: 14px; color: #fff; background: linear-gradient(135deg, #c63adf 0%, #8f45ec 52%, #4f58ee 100%); }
+:is(.atout, .carte-icone) .pictogramme svg { width: 24px; height: 24px; stroke-width: 1.7; }
+/* les titres des cartes à pictogramme alignés d'une carte à l'autre, quelle que soit la longueur du texte */
+.carte-icone .titre-4 { margin-top: 28px; }
+/* une ligne image + texte d'un seul tenant : les deux moitiés collées, arrondies à l'extérieur */
+.produit--uni { gap: 0; }
+.produit--uni .produit-visuel--plein { padding: 0; }
+.produit--uni .produit-texte { border-radius: var(--rayon) 0 0 var(--rayon); }
+.produit--uni .produit-visuel { border-radius: 0 var(--rayon) var(--rayon) 0; }
+.produit--uni.produit--inverse .produit-texte { border-radius: 0 var(--rayon) var(--rayon) 0; }
+.produit--uni.produit--inverse .produit-visuel { border-radius: var(--rayon) 0 0 var(--rayon); }
+@media (max-width: 860px) {
+  .produit--uni .produit-texte, .produit--uni.produit--inverse .produit-texte { border-radius: var(--rayon) var(--rayon) 0 0; }
+  .produit--uni .produit-visuel, .produit--uni.produit--inverse .produit-visuel { border-radius: 0 0 var(--rayon) var(--rayon); }
+}
+.avatar-photo { object-fit: cover; background: var(--brume, #e8edf3); }
+
 /* ------------------------------------------------------------ chiffres et données */
 /* Les blocs de chiffres semés dans les pages (donnees.py), chacun dans son style ; pages.js les
    anime à leur arrivée (est-visible) et fait défiler leurs nombres. Les barres, anneaux et
