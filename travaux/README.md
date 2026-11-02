@@ -326,14 +326,19 @@ L'en-tête a trois parts : le logo et les liens à gauche, au centre exact la re
 « Décrivez votre projet » (`recherche.js`), à droite le bouton de démo, au rouge pur du logo
 (`#d31e44`, `--rouge-vif`), plus saturé que l'accent. Son fond est un
 blanc translucide et flouté qui laisse deviner la page (absent au-dessus d'une photo d'ouverture
-tant qu'on n'a pas défilé). Au survol de LMS, Outils IA, Catalogue ou Contact, l'en-tête passe en
+tant qu'on n'a pas défilé). Les liens : LMS, Outils IA, Catalogue, Ressources (qui mène au blog),
+Contact. Au survol de l'un d'eux, l'en-tête passe en
 blanc plein et un méga-menu blanc se déplie dessous : une introduction à gauche et les produits
 en grandes images aux coins à peine arrondis (6 px), jamais d'images détourées sur blanc (la main
 qui tend la tablette, pour « Côté apprenant », est posée sur un panneau clair, la tablette
 calée dans le coin haut droit pour sortir de la vignette comme les autres images), qui arrivent en
 cascade (les quatre volets du LMS ; FastFormation, FastQuiz, Learning Podcast,
 RolePlay IA ; huit familles du catalogue ; pour Contact, la prise de démonstration, le
-formulaire ; pour Blog, les quatre derniers articles, lus dans la page Blog). La page se voile
+formulaire ; pour Ressources, le blog (l'image de son dernier article), la presse et le livre
+blanc « Former à l'ère de l'IA » (pages du site officiel), et la Lettre IA de la formation, qui
+mène à l'inscription en bas de la page Blog, `blog.html#lettre` ; ses vignettes Presse et Lettre
+sont `site/ressources-presse.webp`, la une du Parisien, et `site/ressources-lettre.webp`, le logo
+de la Lettre sur un dégradé violet). La page se voile
 et se floute derrière, comme quand on ouvre la recherche. Les méga-menus sont indulgents
 (`entete.js`) : un menu ouvert le reste 0,4 s après que la souris en est sortie (le temps de
 rejoindre ses cartes en diagonale) et un autre ne le remplace qu'après 0,15 s de survol (on
@@ -359,8 +364,9 @@ est écarté) et propose deux relances. Le texte des pages reste en cache d'une 
 l'autre ; si un filtre de sécurité décline une demande, un autre modèle la reprend (`fallbacks:
 "default"`). Sans clé, ou en cas d'échec, l'assistant de la maquette prend le relais. Pour la
 mise en ligne, servir ce point d'accès (ou son équivalent) derrière le site, avec une limite de
-débit. Sous 1360 px, les liens passent dans le
-menu ; sur téléphone, le logo, la recherche et le menu. À l'arrivée sur une page, la photo d'ouverture se pose (zoom arrière en
+débit. Sous 1480 px (les cinq liens et le champ centré ne tiennent plus côte à côte), les
+liens passent dans le menu, où « Ressources » montre ses quatre entrées en retrait (`sous()`
+dans `commun.py`) ; sur téléphone, le logo, la recherche et le menu. À l'arrivée sur une page, la photo d'ouverture se pose (zoom arrière en
 s'éclaircissant), le titre monte mot par mot (découpé par `pages.js`), puis l'étiquette, le
 texte et les boutons ; rien si le visiteur a demandé moins d'animations.
 

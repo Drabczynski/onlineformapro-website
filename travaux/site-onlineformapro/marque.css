@@ -42,6 +42,7 @@
 .entete-logo { flex: none; }
 .entete-logo img { height: 40px; }
 .entete-nav { flex: none; display: flex; align-items: center; gap: 2px; font-size: 15px; }
+.entete-sous { display: none; }
 .entete-nav a { padding: 8px 10px; color: rgba(20, 20, 24, .55); transition: color .2s; }
 .entete-nav a:hover { opacity: 1; color: var(--encre); }
 .entete-nav a[aria-current="page"] { color: var(--encre); font-weight: 500; text-decoration: none; }
@@ -103,7 +104,7 @@
 /* le champ */
 /* au centre exact de l'en-tête, aussi large que le permettent les liens (520 px au plus) ;
    ouvert, il s'élargit à 680 px et les liens s'effacent */
-.recherche { position: absolute; left: 50%; top: 50%; z-index: 2; width: min(520px, calc(100vw - 1040px)); transform: translate(-50%, -50%); transition: width .5s cubic-bezier(.2, .8, .2, 1); }
+.recherche { position: absolute; left: 50%; top: 50%; z-index: 2; width: min(500px, calc(100vw - 1168px)); transform: translate(-50%, -50%); transition: width .5s cubic-bezier(.2, .8, .2, 1); }
 .recherche-ouverte .recherche { width: min(680px, calc(100vw - 32px)); }
 .entete-droite { grid-column: 3; }
 .entete-gauche, .entete-droite { transition: opacity .3s; }
@@ -198,8 +199,9 @@
 }
 .recherche-ouverte .entete--photo { background: rgba(255, 255, 255, 0); }
 
-/* écrans moyens : les liens passent dans le menu, le champ s'élargit d'autant */
-@media (max-width: 1360px) {
+/* écrans moyens : les liens passent dans le menu, le champ s'élargit d'autant (sous 1480 px,
+   les cinq liens et le champ centré ne tiennent plus côte à côte) */
+@media (max-width: 1480px) {
   .recherche { width: min(520px, calc(100vw - 640px)); }
   .entete-nav { display: none; }
   .entete-menu { display: contents; }
@@ -210,6 +212,9 @@
   .entete.menu-ouvert .logo-clair { display: none; }
   .entete.menu-ouvert .entete-nav { display: grid; position: absolute; top: 100%; left: 0; right: 0; width: auto; gap: 0; padding: 8px max(40px, calc((100% - 1660px) / 2)) 20px; background: #fff; font-size: 20px; box-shadow: 0 24px 40px -24px rgba(20, 20, 30, .3); }
   .entete.menu-ouvert .entete-nav a { padding: 10px 0; color: var(--encre); }
+  /* sous « Ressources », ses quatre entrées, en retrait et plus petites */
+  .entete.menu-ouvert .entete-nav .entete-sous { display: grid; margin: -4px 0 6px; padding-left: 16px; border-left: 1px solid rgba(20, 20, 24, .1); }
+  .entete.menu-ouvert .entete-nav .entete-sous a { padding: 7px 0; font-size: 16px; color: rgba(20, 20, 24, .62); }
   .entete.menu-ouvert .entete-nav .entete-nav-demo { display: flex; justify-content: center; margin-top: 12px; padding: 14px 20px; border-radius: 999px; background: var(--rouge-vif); color: #fff; font-size: 16px; }
   .entete.menu-ouvert .entete-burger { min-height: 0; }
   .entete.menu-ouvert .entete-burger span:first-child { transform: translateY(3.75px) rotate(45deg); }
