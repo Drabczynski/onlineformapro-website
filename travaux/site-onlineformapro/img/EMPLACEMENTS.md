@@ -72,7 +72,7 @@ Hors des cartes :
 
 | Emplacement | Image | Origine | Conseil |
 |---|---|---|---|
-| Ouverture (bloc arrondi, texte centré) | `modele/apprenantes-canape.webp` | modèle | une photo de 2400 × 1500, ou la bannière bureautique (Excel, PowerPoint) |
+| Ouverture (bloc arrondi, texte centré) | `photos/catalogue-trio.webp` | fournie (trois personnes assises autour d’un ordinateur portable, 1536 × 1024) | une version de 2400 px serait plus nette sur grand écran |
 | Nouveauté outils Google : vidéo | `outils-collaboratifs-google.mp4` | site (page Catalogue, lue depuis download.onlineformation.com) | — |
 | Nouveauté outils Google : affiche | `site/cat-google.webp` | visuel de la newsletter Outils Google (556 px) | une image tirée de la vidéo, 1500 × 845 |
 | Les 12 familles (quatre colonnes, 385 × 199 au plus) | `site/cat-*.webp` | site (page Catalogue) | les photos du site font 435 × 225 : la page ne les agrandit plus ; une version 900 px permettrait des cartes plus grandes |
