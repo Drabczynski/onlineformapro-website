@@ -383,6 +383,23 @@ emplissent l'écran) et `vagues` (une nappe
 de grains en larges bandes obliques, qui ondule comme un relief et file) ; seule la part
 visible de la forme est semée, d'où la densité des gros plans. La page d'essai `nuees.html`
 les montre l'un sous l'autre, en direct, pour choisir.
+**L'ouverture de LMS en vidéo.** Sur fond blanc, un petit nuage de données naît au centre,
+s'étale en une spirale de billes bleues, violettes et roses, puis s'élève en fines barres. La
+vidéo fournie (4 s) est ralentie en courbe : vitesse normale pendant 1,6 s, puis une
+décélération douce jusqu'à l'arrêt sur sa dernière image, en 6,4 s. Les images intermédiaires
+de la fin sont des fondus entre images voisines, pour que le ralenti reste fluide. Fichiers dans
+`img/site/` :
+- `lms-donnees.webm` et `.mp4` (1920 px) ;
+- `lms-donnees-1280.webm` et `.mp4` (téléphone) ;
+- `lms-donnees-fin.webp` (la dernière image).
+
+La vidéo est calée en bas de l'ouverture, sur toute la largeur. Son blanc est fondu dans celui
+de la page (mode produit, haut effacé), et le texte est ferré à gauche dans le blanc du haut.
+Elle se joue une fois et reste sur sa dernière image (`pages.js`, attribut `data-fin`). Si le
+visiteur a demandé moins d'animations, ou si le navigateur refuse la lecture, la dernière image
+s'affiche d'emblée. Sur téléphone, la vidéo passe sous le texte. Règles dans `marque.css`
+(`.tete-video`).
+
 **Des chiffres semés dans les pages**, chacun dans un style différent, tous animés à leur
 arrivée à l'écran : les barres, anneaux et courbes se remplissent, et les nombres défilent
 jusqu'à leur valeur (`pages.js`, rien ne bouge si le visiteur a demandé moins d'animations).
@@ -442,7 +459,7 @@ page Démo.
 
 | Page | Contenu |
 |---|---|
-| `lms.html` | ouverture claire et centrée, le montage des écrans en grand ; Saint-Gobain et chiffres ; côté administration (prise en main avec OnlineManager en pleine largeur, analyse des données, marque blanche) ; côté apprenant (panneau avec la tablette OnlineCompétences, Lisy, outils) ; parcours en trois étapes, du positionnement à l'attestation ; références (48 logos en deux onglets, et les autres noms du site officiel) ; témoignage France Education International ; spécifications techniques ; appel final |
+| `lms.html` | ouverture en vidéo, le texte ferré à gauche (la première ligne du titre en dégradé rose, violet, bleu), puis le montage des écrans en grand ; Saint-Gobain et chiffres ; côté administration (prise en main avec OnlineManager en pleine largeur, analyse des données, marque blanche) ; côté apprenant (panneau avec la tablette OnlineCompétences, Lisy, outils) ; parcours en trois étapes, du positionnement à l'attestation ; références (48 logos en deux onglets, et les autres noms du site officiel) ; témoignage France Education International ; spécifications techniques ; appel final |
 | `outils-ia.html` | photo d'ouverture ; « La puissance de l'IA… » ; un bloc par outil (visuel en grand, carte de texte, trois vignettes légendées pour FastFormation et RolePlay IA, quatre atouts) ; appel final. Ancres `#fastformation`, `#fastquiz`, `#learning-podcast`, `#roleplay` |
 | `catalogue.html` | ouverture en pleine page ; toutes les catégories (la nouveauté Google et sa vidéo en 16:9, puis les familles en cartes d'article) ; bloc pierre : témoignage SNCF et chiffres ; pédagogie (la grande image en pleine colonne) ; appel final |
 | `blog.html` | photo d'ouverture ; les 9 derniers articles du blog officiel, filtrables par catégorie ; l'inscription à la lettre |

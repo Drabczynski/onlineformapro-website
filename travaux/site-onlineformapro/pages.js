@@ -89,6 +89,18 @@ if (blocsDonnees.length) {
   }
 }
 
+// -------------------------------------------------------------------- vidéos jouées une fois
+// une vidéo marquée data-fin (l'ouverture LMS) se joue une fois et reste sur sa dernière image ;
+// si le visiteur a demandé moins d'animations, ou si la lecture est refusée, elle montre
+// d'emblée cette dernière image (data-fin)
+for (const v of document.querySelectorAll('video[data-fin]')) {
+  const figer = () => { v.poster = v.dataset.fin; v.removeAttribute('autoplay'); v.pause(); v.preload = 'none'; };
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { figer(); continue; }
+  v.muted = true;
+  const p = v.play();
+  if (p && p.catch) p.catch(figer);
+}
+
 // -------------------------------------------------------------------- vidéos en boucle
 // arrêtées quand le visiteur a demandé moins d'animations ; celles qui ont un data-debut (en
 // secondes) commencent à ce moment et y reviennent à chaque tour (leur introduction sautée)
