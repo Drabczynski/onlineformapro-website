@@ -178,8 +178,10 @@ téléphone). « La puissance de l'IA pour la formation » passe à droite, la g
 les pics et leurs données. L'essai est porté par
 `data-variante="ondes"` sur `<html>` : `monde.js` ne dessine pas le logo et remplace les cinq
 premières stations par une seule, `ouverture.js` cale dix-sept stations au lieu de vingt et une.
-**Le chapitre de l'IA prend son temps.** Ses trois cartes (FastFormation, FastQuiz,
-RolePlay IA) restent chacune à l'écran 1,5 écran de défilement, deux fois plus que les autres.
+**Le chapitre de l'IA prend son temps.** Ses quatre cartes (FastFormation, FastQuiz,
+Learning Podcast, RolePlay IA, dans l'ordre du menu) restent chacune à l'écran 1,5 écran de
+défilement, deux fois plus que les autres. La carte Learning Podcast reprend l'image et le texte
+de sa partie sur Outils IA (`img/cartes/learning-podcast.webp`, recadrée de `site/lp-show.webp`).
 Pendant ce temps, la caméra ne s'arrête pas : elle traverse lentement les ondes, des premiers
 pics aux seconds, jusqu'au bout des courbes, puis en sort et s'élève vers le carrefour. C'est
 réglé par paquet de cartes : `data-pas` (le défilement par carte, en svh, 75 par défaut) et
@@ -441,11 +443,7 @@ Sur les autres pages :
 Les chiffres sont ceux du site. Les barres, anneaux et courbes les illustrent sans être à
 l'échelle. Les blocs sont produits par `donnees.py` (à côté de `commun.py`) à la place des
 repères `<!--DONNEES:clé-->` ; leurs règles sont dans `marque.css` (« chiffres et données »).
-Les trois cartes « Nous joindre » remontent sur le bas de l'anneau (240 px, 120 sur téléphone),
-qui s'efface derrière elles (un filet, sans ombre, les détache). Sur téléphone, l'anneau passe en haut, le texte dessous ;
-l'animation s'arrête hors de l'écran et reste figée si le visiteur a demandé moins
-d'animations. Sur
-téléphone, vignettes et étapes défilent au doigt.
+Sur téléphone, vignettes et étapes défilent au doigt.
 
 Sur téléphone (640 px de large au plus, `marque.css`) : les chiffres s'affichent deux par
 rangée (LMS, Catalogue ; le premier sur toute la largeur s'ils sont en nombre impair), les
