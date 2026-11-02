@@ -100,7 +100,7 @@ Hors des cartes :
 Démo : `photos/ordinateur-concentree.webp` (fournie, 464 px, affichée à sa taille sous la liste). Possibles aussi : les photos des
 auteurs des témoignages (Jacky Portal, ESTC Marseille ; Lydia David Duluc, Banque Populaire). Sous « Ils nous font
 confiance », les mêmes logos que sur LMS (`logos/*.webp`, deux onglets).
-Contact : en ouverture, aucune image (l'anneau de particules est dessiné par `nuee.js`). Puis `photos/conseillere.webp` (fournie, une femme en pull orange qui explique, 588 × 660), sous la liste
+Contact : en ouverture, la vidéo `site/contact-anneau.*` (fournie, un anneau de données qui naît d'une étincelle), avec sa dernière image `site/contact-anneau-fin.webp`. Puis `photos/conseillere.webp` (fournie, une femme en pull orange qui explique, 588 × 660), sous la liste
 « Votre demande », recadrée en 6:5.
 
 ## Disponibles sur le site, pas encore utilisées

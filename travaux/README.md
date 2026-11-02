@@ -326,7 +326,8 @@ blanc translucide et flouté qui laisse deviner la page (absent au-dessus d'une 
 tant qu'on n'a pas défilé). Au survol de LMS, Outils IA, Catalogue ou Contact, l'en-tête passe en
 blanc plein et un méga-menu blanc se déplie dessous : une introduction à gauche et les produits
 en grandes images aux coins à peine arrondis (6 px), jamais d'images détourées sur blanc (la main
-qui tend la tablette, pour « Côté apprenant », est posée sur un panneau clair), qui arrivent en
+qui tend la tablette, pour « Côté apprenant », est posée sur un panneau clair, la tablette
+calée dans le coin haut droit pour sortir de la vignette comme les autres images), qui arrivent en
 cascade (les quatre volets du LMS ; FastFormation, FastQuiz, Learning Podcast,
 RolePlay IA ; huit familles du catalogue ; pour Contact, la prise de démonstration, le
 formulaire ; pour Blog, les quatre derniers articles, lus dans la page Blog). La page se voile
@@ -367,22 +368,10 @@ tend la tablette OnlineCompétences, puis le parcours en trois étapes (position
 finale, dont les barres montent à l'arrivée) ; sur LMS et Démo, les 48 logos clients en deux
 onglets (« Des clients de tout horizon », « Éducation et formation », au clic ou aux flèches du
 clavier ; la grille insérée par `commun.py` à la place du repère `<!--LOGOS-->`) ; sur Contact,
-une photo sous « Votre demande » ; en ouverture de Contact, sur fond blanc, à droite du
-titre, un grand anneau de particules vu de biais, qui occupe la moitié de l'écran et sort du
-cadre (`nuee.js`, WebGL 2 sans bibliothèque, 360 000 grains, 120 000 sur téléphone, tout le mouvement calculé par la carte graphique) : en
-travers de l'anneau, des bandes qui se mêlent (brume rose et lilas au bord intérieur, violet,
-cœur bleu nuit piqueté de rose et d'orangé, pêche, rose, bleu lavande : les couleurs de
-l'intro) et au bord extérieur une poussière pastel qui s'éloigne et renaît ; les grains tournent lentement le long de l'anneau,
-qui ondule et suit à peine la souris ; à l'arrivée, ils se rassemblent depuis un nuage épars.
-Les grains sont ombrés comme de petites billes (éclairées en haut à gauche, un reflet).
-`nuee.js` sait montrer ces particules sous quatre points de vue, au choix par l'attribut
-`data-nuee` de l'élément qui les reçoit : `anneau` (celui de Contact), `gros-plan` (la caméra
-contre l'anneau : un épais boudin de grains traverse l'écran en diagonale, ses bandes filent
-le long de lui), `tres-gros-plan` (de grosses billes
-emplissent l'écran) et `vagues` (une nappe
-de grains en larges bandes obliques, qui ondule comme un relief et file) ; seule la part
-visible de la forme est semée, d'où la densité des gros plans. La page d'essai `nuees.html`
-les montre l'un sous l'autre, en direct, pour choisir.
+une photo sous « Votre demande ».
+`nuee.js` (un anneau de particules en WebGL 2, qui ouvrait Contact) n'est plus utilisé que par
+la page d'essai `nuees.html`, qui montre ses quatre points de vue (`anneau`, `gros-plan`,
+`tres-gros-plan`, `vagues`, au choix par l'attribut `data-nuee`).
 **L'ouverture de LMS en vidéo.** Sur fond blanc, un nuage de données naît au centre, s'étale
 en une spirale de billes bleues, violettes et roses, puis s'élève en fines barres. La vidéo
 fournie (9 s) a un fond gris lavande très léger, remonté au blanc pur image par image (niveaux).
@@ -406,6 +395,16 @@ Elle se joue une fois et reste sur sa dernière image (`pages.js`, attribut `dat
 visiteur a demandé moins d'animations, ou si le navigateur refuse la lecture, la dernière image
 s'affiche d'emblée. Sur téléphone, la vidéo passe sous le texte. Règles dans `marque.css`
 (`.tete-video`).
+
+**L'ouverture de Contact en vidéo**, de la même manière : sur fond blanc, une étincelle bleue
+s'ouvre en ondes, puis en un large anneau de billes roses, violettes et bleues hérissé de fines
+tiges. La vidéo fournie (9 s, fond presque blanc remonté au blanc pur) est traitée comme celle
+de LMS : allure normale 7 s, puis ralenti en cosinus jusqu'à l'arrêt, 10,9 s en tout. Fichiers
+`img/site/contact-anneau.webm`, `.mp4`, `-1280.webm`, `-1280.mp4` et `contact-anneau-fin.webp`.
+Le texte est ferré à gauche, « Vous avez un projet » en dégradé ; la vidéo est posée au ras du
+bas, son pied fondu dans le blanc, et les trois cartes « Nous joindre » remontent dessus
+(`.tete-video--contact` dans `marque.css`, qui reprend aussi la base du bloc de texte, Contact
+chargeant `modele.css` et non `pages.css`).
 
 **Des chiffres semés dans les pages**, chacun dans un style différent, tous animés à leur
 arrivée à l'écran : les barres, anneaux et courbes se remplissent, et les nombres défilent
@@ -469,7 +468,7 @@ page Démo.
 | `catalogue.html` | ouverture en pleine page ; toutes les catégories (la nouveauté Google et sa vidéo en 16:9, puis les familles en cartes d'article) ; bloc pierre : témoignage SNCF et chiffres ; pédagogie (la grande image en pleine colonne) ; appel final |
 | `blog.html` | photo d'ouverture ; les 9 derniers articles du blog officiel, filtrables par catégorie ; l'inscription à la lettre |
 | `demo.html` | réservation de 30 min par l'agenda Calendly, comme sur le site actuel ; la solution globale ; les logos clients et les témoignages |
-| `contact.html` | titre, trois cartes (e-mail, démonstration, téléphone), formulaire (champs du formulaire actuel, une photo à gauche), la société en questions |
+| `contact.html` | ouverture en vidéo (un anneau de données), le texte ferré à gauche ; trois cartes (e-mail, démonstration, téléphone), formulaire (champs du formulaire actuel, une photo à gauche), la société en questions |
 | `article-lms.html` | la lecture d'un article, ouverte depuis la première carte du blog : « Les 10 fonctionnalités indispensables d'un LMS » (Eva Guerrin, 23 septembre 2026), texte intégral repris de l'article officiel ; catégorie, date, temps de lecture (calculé, 200 mots par minute), chapeau, sujets, grande image ; sommaire et partage qui restent à l'écran, la partie lue en gras ; les trois articles que le blog propose ensuite |
 
 Textes, chiffres et coordonnées repris du site officiel ; le chiffre des apprenants est celui
