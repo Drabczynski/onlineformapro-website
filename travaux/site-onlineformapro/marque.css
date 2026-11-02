@@ -703,3 +703,30 @@ body.fond-noir { background: var(--nuit); }
   /* les quatre lignes tiennent sur la largeur : la plus longue fait environ 13,4 fois la taille */
   .equite-titre { font-size: min(40px, calc((100vw - 40px) / 13.4)); }
 }
+
+/* ------------------------------------------------------------ Catalogue : la vitrine Google */
+/* la vidéo en grand, sur toute la largeur, sans panneau autour ; dessous, le titre à gauche, le
+   texte, les chiffres et le bouton à droite. La vidéo est agrandie de 3,6 % pour que ses bandes
+   rouges (haut et bas) et son filet sombre (à gauche) sortent du cadre : modele.css borne les
+   vidéos à 100 % de large, ce qui faisait rogner deux fois plus à gauche (le « Ó » du logo) et
+   laissait une bande claire à droite, d'où max-width: none. */
+.vedette--vitrine { display: block; margin-bottom: 72px; padding: 0; border-radius: 0; background: none; }
+.vedette--vitrine .vedette-video { border-radius: 16px; background: var(--nuit, #1c1c1e); }
+.vedette--vitrine .vedette-video video { max-width: none; }
+.vedette--vitrine .vedette-texte { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; gap: 24px clamp(32px, 6vw, 96px); padding: 36px 0 0; }
+.vedette-tete { display: grid; justify-items: start; gap: 18px; }
+.vedette--vitrine .puce { background: var(--pierre); }
+.vedette--vitrine .titre-2 { max-width: 520px; }
+.vedette--vitrine .titre-2::before { display: none; }   /* la puce « Nouveauté » porte déjà le biais rouge */
+.vedette-detail { display: grid; gap: 28px; }
+.vedette--vitrine .texte { max-width: 460px; font-size: 19px; line-height: 1.45; }
+.vedette-pied { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px; padding-top: 24px; border-top: 1px solid rgba(20, 20, 24, .1); }
+.vedette--vitrine .vedette-chiffres { gap: 8px 28px; }
+.vedette--vitrine .vedette-chiffres strong { font-size: 44px; }
+@media (max-width: 860px) {
+  .vedette--vitrine { margin-bottom: 48px; }
+  .vedette--vitrine .vedette-video { border-radius: 12px; }
+  .vedette--vitrine .vedette-texte { grid-template-columns: minmax(0, 1fr); padding-top: 24px; }
+  .vedette--vitrine .texte { font-size: 17px; }
+  .vedette-pied { justify-content: flex-start; }
+}

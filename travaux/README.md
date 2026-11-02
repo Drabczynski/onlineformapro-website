@@ -505,13 +505,18 @@ Textes, chiffres et coordonnées repris du site officiel ; le chiffre des appren
 donné par Onlineformapro (22 millions). Aucune image de l'ouverture 3D dans ces pages. Images :
 les visuels produits et montages d'écrans fournis par Onlineformapro (`img/cartes/`,
 `img/site/lms-*`), les photos fournies par Onlineformapro (`img/photos/` : ouverture d'Outils
-IA, appel final du LMS, page démo), des images reprises de onlineformapro.com (`img/site/`)
+IA, appel final du LMS, page démo, ouverture du Catalogue), des images reprises de onlineformapro.com (`img/site/`)
 et, en attendant d'autres photos d'Onlineformapro, des photos du modèle Vectura dans les
 autres ouvertures et appels finaux (`img/modele/`, provisoires, à remplacer). La vidéo des outils Google est celle de la
 page Catalogue du site officiel, lue depuis download.onlineformation.com ; tant qu'elle n'est
 pas chargée, le bloc montre le visuel Google de la newsletter (`img/site/cat-google.webp`).
-Elle est agrandie de 3,6 % dans son cadre, pour que ses bandes rouges du haut et du bas en
-sortent. Pour sauter son introduction, régler `DEBUT_GOOGLE` (en secondes) dans le générateur
+Elle est agrandie de 3,6 % dans son cadre (1,8 % rognés de chaque côté), pour que ses bandes
+rouges du haut et du bas et son filet sombre à gauche en sortent ; `max-width: none` est
+indispensable, `modele.css` bornant les vidéos à 100 % (sinon elle était rognée deux fois plus
+à gauche, le « Ó » du logo coupé, avec une bande claire à droite). L'encart est une vitrine : la
+vidéo sur toute la largeur, arrondie, sans panneau autour ; dessous, « Nouveauté » et le titre à
+gauche, le texte, les chiffres (17 modules, 7 thématiques) et le bouton à droite au-dessus d'un
+filet (`.vedette--vitrine` dans `marque.css`). Pour sauter son introduction, régler `DEBUT_GOOGLE` (en secondes) dans le générateur
 du catalogue : la vidéo commence alors à ce moment et y revient à chaque tour (`data-debut`,
 géré par `pages.js`). Il vaut 0 tant que le moment du titre de la gamme n'est pas connu.
 `img/EMPLACEMENTS.md` liste chaque emplacement, son image et le format conseillé ;
