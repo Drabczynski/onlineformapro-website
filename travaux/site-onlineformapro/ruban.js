@@ -1,18 +1,20 @@
-// Le ruban du catalogue (chapitre « Catalogue » de l'ouverture) : les familles du catalogue sur
-// un ruban continu enroulé en hélice, qui tourne au défilement pour amener chaque famille au
-// premier plan ; autour, un réseau de particules connectées, aux couleurs de l'ouverture.
+// Le ruban du catalogue (chapitre « Catalogue » de l'ouverture) : les familles du catalogue
+// défilent sur le ruban qui monte en hélice du rond-point de la liaison (helice.js) ; autour,
+// un réseau de particules connectées, aux couleurs de l'ouverture.
 //
-// Un canevas à part, posé sur la scène 3D : sa propre caméra, sans la tonalité ni le halo de la
-// scène, pour que les images gardent leurs couleurs. Le ruban est une seule surface, subdivisée
-// finement (18 pas par famille) : il est lisse. Chaque image de famille en couvre un sixième de
-// tour ; l'envers du ruban est assombri, le fond s'enfonce dans la nuit, les bouts s'effacent.
+// Le ruban est un lieu du monde, vu par la caméra du monde (monde.js), mais dessiné sur un
+// canevas à part, posé sur la scène : sans la tonalité ni le halo de la scène, les images
+// gardent leurs couleurs. Il est fixe, comme tout le décor : ce sont les images qui glissent
+// le long du ruban au défilement ; elles sortent de la route, montent et se perdent dans le
+// ciel, et la famille au premier plan (f) s'arrête face à la caméra. Ses bords lumineux sont
+// des lignes du monde : là où ils passent devant le ruban, ce canevas s'efface pour les laisser
+// voir. Le brouillard du monde (de 18 à 150 unités) l'efface au loin.
 import * as THREE from 'three';
+import { HELICE, HAUT, lieu, point, courbesBords } from './helice.js';
 
-const R = 6, HAUTEUR = 3.3, PAS = 5.6;                  // rayon, hauteur de la bande, pas d'un tour
-const PAR_TOUR = 6, DELTA = Math.PI * 2 / PAR_TOUR;     // six familles par tour
-const SUBDIV = 18;                                      // pas par famille : la courbe est lisse
-const DEBUT = -4, FIN = 16;                             // familles posées (au-delà des 12, elles se répètent)
+const SUBDIV = 24;                                      // pas par famille : la courbe est lisse
 const NUIT = [28 / 255, 10 / 255, 60 / 255];
+const BROUILLARD = [18, 150];                           // celui du monde
 
 // l'atlas : les images des familles, recadrées dans des cases de 512 × 256 (4 × 4)
 function atlas(familles) {
@@ -49,40 +51,37 @@ function atlas(familles) {
   return texture;
 }
 
-// la surface du ruban : pour chaque famille posée, une bande de SUBDIV pas, ses coordonnées
-// dans l'atlas (les sommets des bords communs sont doublés : même place, autre image)
-function surface(n) {
-  const pos = [], uv = [], angle = [], index = [];
-  const marge = 2 / 512;                                // pour ne pas déborder sur la case voisine
-  for (let k = DEBUT, base = 0; k < FIN; k++) {
-    const c = ((k % n) + n) % n, u0 = (c % 4) / 4, v0 = 1 - (Math.floor(c / 4) + 1) / 4;
-    for (let s = 0; s <= SUBDIV; s++) {
-      const t = s / SUBDIV, a = (k + t) * DELTA, y = -PAS * a / (Math.PI * 2);
-      for (const v of [0, 1]) {
-        pos.push(R * Math.sin(a), y + (v - 0.5) * HAUTEUR, R * Math.cos(a));
-        uv.push(u0 + marge + t * (0.25 - 2 * marge), v0 + marge + v * (0.25 - 2 * marge));
-        angle.push(a);
-      }
-      if (s < SUBDIV) { const i = base + s * 2; index.push(i, i + 2, i + 1, i + 1, i + 2, i + 3); }
+// la surface du ruban, du ciel (s = 0) à l'anneau (s = vertical + pose) : s et v (0 → 1, du
+// bord du bas au bord du haut) servent à y poser les images dans le nuanceur
+function surface() {
+  const pos = [], ss = [], vv = [], tt = [], index = [], P = new THREE.Vector3();
+  const n = (HELICE.vertical + HELICE.pose) * SUBDIV;
+  for (let i = 0; i <= n; i++) {
+    const s = i / SUBDIV, { t } = lieu(s);
+    for (const v of [0, 1]) {
+      point(s, v * 2 - 1, P);
+      pos.push(P.x, P.y, P.z); ss.push(s); vv.push(v); tt.push(t);
     }
-    base += (SUBDIV + 1) * 2;
+    if (i < n) { const j = i * 2; index.push(j, j + 2, j + 1, j + 1, j + 2, j + 3); }
   }
   const g = new THREE.BufferGeometry();
   g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
-  g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
-  g.setAttribute('aAngle', new THREE.Float32BufferAttribute(angle, 1));
+  g.setAttribute('aS', new THREE.Float32BufferAttribute(ss, 1));
+  g.setAttribute('aV', new THREE.Float32BufferAttribute(vv, 1));
+  g.setAttribute('aT', new THREE.Float32BufferAttribute(tt, 1));
   g.setIndex(index);
   return g;
 }
 
-// le réseau : des points semés dans une coque autour du ruban, reliés à leurs voisins proches
+// le réseau : des points semés dans une coque autour du ruban (autour de son axe, du sol au
+// ciel), reliés à leurs voisins proches
 function reseau() {
   let graine = 7;
   const hasard = () => ((graine = (graine * 16807) % 2147483647) / 2147483647);
   const COULEURS = [[1, 1, 1], [0.69, 0.64, 1], [1, 0.45, 0.6], [0.56, 0.52, 1]];
   const noeuds = [];
   for (let i = 0; i < 110; i++) {
-    const a = hasard() * Math.PI * 2, r = R + 1.2 + hasard() * 5, y = (hasard() - 0.5) * 20;
+    const a = hasard() * Math.PI * 2, r = HELICE.rayon + 1.6 + hasard() * 5.5, y = 0.6 + hasard() * (HAUT + 3);
     noeuds.push([r * Math.sin(a), y, r * Math.cos(a)]);
   }
   const pts = [], couleurs = [], tailles = [], phases = [], lignes = [], alphas = [];
@@ -111,65 +110,85 @@ export function creerRuban(toile, familles) {
   const ratio = Math.min(devicePixelRatio || 1, 2);
   rendu.setPixelRatio(ratio);
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 200);
-  camera.position.set(0, 0, 36);
-  const tenue = new THREE.Group(), axe = new THREE.Group(), nuee = new THREE.Group();
-  tenue.add(axe, nuee); scene.add(tenue);
+  // la caméra : une copie de celle du monde, à chaque image
+  const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 240);
+  const K = HELICE.centre, n = familles.length;
 
   const uniforms = {
-    uAtlas: { value: atlas(familles) }, uCentre: { value: 0 }, uPresence: { value: 0 },
-    uNuit: { value: new THREE.Vector3(...NUIT) }, uFond: { value: 36 },
+    uAtlas: { value: atlas(familles) }, uF: { value: 0 }, uN: { value: n }, uSFace: { value: HELICE.sFace },
+    uNuit: { value: new THREE.Vector3(...NUIT) }, uFond: { value: 35 }, uBrouillard: { value: new THREE.Vector2(...BROUILLARD) },
   };
-  const ruban = new THREE.Mesh(surface(familles.length), new THREE.ShaderMaterial({
-    uniforms, side: THREE.DoubleSide, transparent: true, premultipliedAlpha: true,
+  const ruban = new THREE.Mesh(surface(), new THREE.ShaderMaterial({
+    uniforms, side: THREE.DoubleSide, transparent: true, depthWrite: true, premultipliedAlpha: true,
     vertexShader: `
-      attribute float aAngle;
-      varying vec2 vUv; varying float vAngle; varying float vProf;
+      attribute float aS, aV, aT;
+      varying float vS, vV, vT, vProf;
       void main() {
-        vUv = uv; vAngle = aAngle;
+        vS = aS; vV = aV; vT = aT;
         vec4 mv = modelViewMatrix * vec4(position, 1.0);
         vProf = -mv.z;
         gl_Position = projectionMatrix * mv;
       }`,
     fragmentShader: `
-      uniform sampler2D uAtlas; uniform float uCentre, uPresence, uFond; uniform vec3 uNuit;
-      varying vec2 vUv; varying float vAngle; varying float vProf;
+      uniform sampler2D uAtlas; uniform float uF, uN, uSFace, uFond; uniform vec3 uNuit; uniform vec2 uBrouillard;
+      varying float vS, vV, vT, vProf;
       void main() {
-        vec3 c = texture2D(uAtlas, vUv).rgb;
-        // en tours depuis la famille au premier plan : les bouts du ruban s'effacent
-        float d = abs(vAngle - uCentre) / 6.2832;
-        float a = smoothstep(1.3, 0.75, d) * uPresence;
+        // la famille sous ce point : f au premier plan, les suivantes plus bas, vers la route
+        float t = uF + (vS - uSFace) + 0.5;
+        float c = mod(floor(t), uN);
+        const float m = 2.0 / 512.0, l = 0.25 - 2.0 * m;
+        vec2 base = vec2(mod(c, 4.0) / 4.0, 1.0 - (floor(c / 4.0) + 1.0) / 4.0) + m;
+        vec2 cont = vec2(t, vV) * l;                 // continu : la bonne finesse aux changements d'image
+        vec3 col = textureGrad(uAtlas, base + vec2(fract(t), vV) * l, dFdx(cont), dFdy(cont)).rgb;
+        // le haut se perd dans le ciel ; en se couchant, le ruban redevient la route
+        float a = smoothstep(0.0, 3.0, vS) * (1.0 - smoothstep(0.35, 0.95, vT));
+        a *= 1.0 - smoothstep(uBrouillard.x, uBrouillard.y, vProf);
         // l'envers assombri, le fond du ruban dans la nuit
         float dos = gl_FrontFacing ? 0.0 : 0.5;
-        float brume = clamp((vProf - uFond) / 14.0, 0.0, 0.55);
-        c = mix(c, uNuit, max(dos, brume));
-        gl_FragColor = vec4(c * a, a);
+        float brume = clamp((vProf - uFond) / 14.0, 0.0, 0.45);
+        col = mix(col, uNuit, max(dos, brume));
+        gl_FragColor = vec4(col * a, a);
       }`,
   }));
-  axe.add(ruban);
+  scene.add(ruban);
 
+  // là où un bord lumineux (une ligne du monde, sous ce canevas) passe devant le ruban, le
+  // canevas s'efface
+  const petit = Math.min(innerWidth, innerHeight) < 600 ? 1.7 : 1;
+  const gomme = new THREE.ShaderMaterial({
+    transparent: true, blending: THREE.NoBlending, depthWrite: false,
+    vertexShader: 'void main() { gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+    fragmentShader: 'void main() { gl_FragColor = vec4(0.0); }',
+  });
+  for (const c of courbesBords()) {
+    const g = new THREE.Mesh(new THREE.TubeGeometry(c, 600, 0.022 * petit * 1.8, 5, false), gomme);
+    g.renderOrder = 1;
+    scene.add(g);
+  }
+
+  const nuee = new THREE.Group();
+  nuee.position.set(K.x, 0, K.z);
+  scene.add(nuee);
   const { gp, gl } = reseau();
-  const uReseau = { uTemps: { value: 0 }, uPresence: { value: 0 }, uEchelle: { value: 300 }, uFond: { value: 36 } };
+  const uReseau = { uTemps: { value: 0 }, uEchelle: { value: 300 }, uBrouillard: uniforms.uBrouillard };
   const points = new THREE.Points(gp, new THREE.ShaderMaterial({
     uniforms: uReseau, transparent: true, depthWrite: false, premultipliedAlpha: true,
     vertexShader: `
       attribute vec3 aCouleur; attribute float aTaille, aPhase;
-      uniform float uTemps, uEchelle;
+      uniform float uTemps, uEchelle; uniform vec2 uBrouillard;
       varying vec3 vCouleur; varying float vEclat;
       void main() {
         vec4 mv = modelViewMatrix * vec4(position, 1.0);
         vCouleur = aCouleur;
-        vEclat = 0.55 + 0.45 * sin(uTemps * 1.6 + aPhase);
+        vEclat = (0.55 + 0.45 * sin(uTemps * 1.6 + aPhase)) * (1.0 - smoothstep(uBrouillard.x, uBrouillard.y, -mv.z));
         gl_PointSize = aTaille * uEchelle / -mv.z;
         gl_Position = projectionMatrix * mv;
       }`,
     fragmentShader: `
-      uniform float uPresence;
       varying vec3 vCouleur; varying float vEclat;
       void main() {
         float r = length(gl_PointCoord - 0.5);
-        float a = smoothstep(0.5, 0.0, r);
-        float k = a * vEclat * uPresence;
+        float k = smoothstep(0.5, 0.0, r) * vEclat;
         gl_FragColor = vec4(vCouleur * k, k);
       }`,
   }));
@@ -177,72 +196,59 @@ export function creerRuban(toile, familles) {
     uniforms: uReseau, transparent: true, depthWrite: false, premultipliedAlpha: true,
     vertexShader: `
       attribute float aAlpha;
+      uniform vec2 uBrouillard;
       varying float vAlpha;
       void main() {
         vec4 mv = modelViewMatrix * vec4(position, 1.0);
-        vAlpha = aAlpha * clamp(1.2 - (-mv.z - 30.0) / 18.0, 0.15, 1.0);
+        vAlpha = aAlpha * clamp(1.2 - (-mv.z - 30.0) / 18.0, 0.15, 1.0) * (1.0 - smoothstep(uBrouillard.x, uBrouillard.y, -mv.z));
         gl_Position = projectionMatrix * mv;
       }`,
     fragmentShader: `
-      uniform float uPresence;
       varying float vAlpha;
-      void main() { float k = vAlpha * 0.5 * uPresence; gl_FragColor = vec4(vec3(0.72, 0.68, 1.0) * k, k); }`,
+      void main() { float k = vAlpha * 0.5; gl_FragColor = vec4(vec3(0.72, 0.68, 1.0) * k, k); }`,
   }));
-  points.renderOrder = liens.renderOrder = 1;
+  points.renderOrder = liens.renderOrder = 2;
   nuee.add(liens, points);
 
-  let largeur = 1, hauteur = 1, enHauteur = false;
+  let largeur = 1, hauteur = 1;
   function taille() {
     largeur = toile.clientWidth; hauteur = toile.clientHeight;
     rendu.setSize(largeur, hauteur, false);
-    camera.aspect = largeur / hauteur;
-    enHauteur = largeur / hauteur < 1;
-    camera.updateProjectionMatrix();
-    uReseau.uEchelle.value = hauteur * ratio / (2 * Math.tan(17.5 * Math.PI / 180)) * 0.09;
   }
 
-  // une image : presence (0 → 1, l'apparition), entree (0 → 1, l'arrivée du ruban, de loin et
-  // de côté, à la place qu'il garde pendant le chapitre), f (la famille au premier plan, en
-  // continu), le temps et la souris (-0,5 → 0,5)
+  // une image, vue par la caméra du monde : f (la famille au premier plan, en continu), le temps
+  const zone = new THREE.Sphere(K.clone().setY(HAUT / 2 + 1), 16), cone = new THREE.Frustum(), m4 = new THREE.Matrix4();
   let vu = false;
-  function image({ presence, entree, f, temps, souris, anime }) {
-    if (presence <= 0.001) { if (vu) { rendu.clear(); vu = false; } toile.style.visibility = 'hidden'; return; }
-    toile.style.visibility = 'visible'; vu = true;
-    const vis = 2 * 36 * Math.tan(17.5 * Math.PI / 180), visL = vis * camera.aspect;
-    const e = 1 - Math.pow(1 - entree, 3);
-    if (enHauteur) {
-      // téléphone : le ruban en haut, plus petit (il arrive sous le titre)
-      tenue.scale.setScalar(0.62);
-      tenue.position.set(0, vis * (0.2 - 0.18 * (1 - e)), -16 * (1 - e));
-    } else {
-      tenue.scale.setScalar(1);
-      tenue.position.set(visL * (0.33 * (1 - e) - 0.06), -0.3, -18 * (1 - e));
+  function image({ vue, f, temps, anime }) {
+    camera.position.copy(vue.position); camera.quaternion.copy(vue.quaternion);
+    if (camera.fov !== vue.fov || camera.aspect !== vue.aspect) {
+      camera.fov = vue.fov; camera.aspect = vue.aspect; camera.updateProjectionMatrix();
+      uReseau.uEchelle.value = hauteur * ratio / (2 * Math.tan(camera.fov * Math.PI / 360)) * 0.09;
     }
-    tenue.rotation.set(0.32 + souris.y * 0.05, souris.x * 0.12, 0.2);
-    const centre = (f + 0.5) * DELTA;
-    axe.rotation.y = -centre;
-    axe.position.y = PAS * centre / (Math.PI * 2);
-    nuee.rotation.y = anime ? temps * 0.05 - centre * 0.25 : -centre * 0.25;
-    uniforms.uCentre.value = centre;
-    uniforms.uPresence.value = presence;
-    uniforms.uFond.value = 36 + 18 * (1 - e);
+    camera.updateMatrixWorld();
+    // hors du champ, ou dans le brouillard : rien à dessiner
+    cone.setFromProjectionMatrix(m4.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));
+    const loin = camera.position.distanceTo(zone.center) - zone.radius > BROUILLARD[1];
+    if (loin || !cone.intersectsSphere(zone)) { if (vu) { rendu.clear(); vu = false; toile.style.visibility = 'hidden'; } return; }
+    if (!vu) { toile.style.visibility = 'visible'; vu = true; }
+    uniforms.uF.value = f;
+    uniforms.uFond.value = Math.hypot(camera.position.x - K.x, camera.position.z - K.z);
+    nuee.rotation.y = anime ? temps * 0.04 : 0;
     uReseau.uTemps.value = anime ? temps : 0;
-    uReseau.uPresence.value = presence;
     rendu.render(scene, camera);
   }
 
-  // le pointeur (en px dans la toile) est-il sur une partie visible du ruban ?
+  // le pointeur (en px dans la toile) est-il sur une image du ruban, assez près ?
   const lancer = new THREE.Raycaster(), visee = new THREE.Vector2();
-  const angles = ruban.geometry.getAttribute('aAngle');
+  const ss = ruban.geometry.getAttribute('aS'), ts = ruban.geometry.getAttribute('aT');
   function sous(x, y) {
-    if (!vu || uniforms.uPresence.value < 0.6) return false;
+    if (!vu || camera.position.distanceTo(zone.center) > 70) return false;
     visee.set(x / largeur * 2 - 1, -(y / hauteur) * 2 + 1);
     lancer.setFromCamera(visee, camera);
     for (const t of lancer.intersectObject(ruban)) {
-      const d = Math.abs(angles.getX(t.face.a) - uniforms.uCentre.value) / (Math.PI * 2);
-      if (d < 1.05) return true;
+      if (ss.getX(t.face.a) > 1.5 && ts.getX(t.face.a) < 0.6) return true;
     }
     return false;
   }
-  return { taille, image, sous };
+  return { taille, image, sous, get visible() { return vu; } };
 }
