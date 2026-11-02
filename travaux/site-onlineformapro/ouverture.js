@@ -149,12 +149,15 @@ function mesurer() {
       elements.push({ el, debut: h + a, fin: h + z, carte: el.matches('.carte, .presentation-image'), etat: el._etat || false });
     }
   }
-  paquets = [...document.querySelectorAll('.paquet')].map(p => ({ haut: haut(p), n: +p.dataset.cartes, barres: [...p.querySelectorAll('.progression i')] }));
+  // chaque paquet : ses cartes, la longueur de défilement de chacune (data-pas, en svh, 75 par
+  // défaut) et la part de son avance que la caméra perd pendant les cartes (data-arret, 0,95
+  // par défaut : elle marque l'arrêt ; au chapitre de l'IA, elle continue lentement dans les ondes)
+  paquets = [...document.querySelectorAll('.paquet')].map(p => ({ haut: haut(p), n: +p.dataset.cartes, pas: +(p.dataset.pas || 75), arret: +(p.dataset.arret || 0.95), barres: [...p.querySelectorAll('.progression i')] }));
   chapitres = [...document.querySelectorAll('[data-chapitre]')].map(c => haut(c) + 115);
   // les arrêts de la caméra : pendant les cartes de chaque chapitre (en hauteurs d'écran)
-  gel = paquets.map(p => ({ de: (p.haut + 100) / 100, a: (p.haut + 100 + 75 * p.n) / 100, part: 0.95 }));
+  gel = paquets.map(p => ({ de: (p.haut + 100) / 100, a: (p.haut + 100 + p.pas * p.n) / 100, part: p.arret }));
   const dernier = paquets[paquets.length - 1];
-  finExperience = (dernier.haut + 100 + 75 * dernier.n) / 100 + 0.75;
+  finExperience = (dernier.haut + 100 + dernier.pas * dernier.n) / 100 + 0.75;
   total = avance(finExperience);
   if (monde) monde.placer(stations(), moments());
 }
@@ -168,13 +171,14 @@ function avance(e) {
   return ajuste;
 }
 const progressionDe = (e) => Math.min(1, Math.max(0, avance(e) / total));
-// les stations de la caméra, calées sur les textes (positions en écrans) : vingt pour
-// l'ouverture complète, seize pour l'essai « ondes » qui part juste avant les pics
+// les stations de la caméra, calées sur les textes (positions en écrans) : vingt et une pour
+// l'ouverture complète, dix-sept pour l'essai « ondes » qui part juste avant les pics
 function ecransDesStations() {
   const [c1, c2, c3, c4] = chapitres.map(v => v / 100);
   const [g1, g2, g3, g4] = gel;
-  // au chapitre 1 : l'arrêt devant les pics, l'entrée dedans, les cartes au milieu d'eux, la sortie
-  const suite = [c1 + 0.4, (c1 + 0.4 + g1.de) / 2, g1.de, g1.a + 0.35, g1.a + 0.9, c2 + 0.3, g2.de, g2.a, g2.a + 0.9, c3 + 0.3, g3.de, c4 + 0.3, g4.de, g4.de + 0.9, finExperience];
+  // au chapitre 1 : l'arrêt devant les pics, l'entrée dedans ; pendant les cartes, la caméra
+  // traverse lentement les ondes jusqu'à leur fin, puis en sort et s'élève
+  const suite = [c1 + 0.4, (c1 + 0.4 + g1.de) / 2, g1.de, (g1.de + g1.a) / 2, g1.a, g1.a + 1.1, c2 + 0.3, g2.de, g2.a, g2.a + 0.9, c3 + 0.3, g3.de, c4 + 0.3, g4.de, g4.de + 0.9, finExperience];
   // avant : le logo, la descente vers l'autoroute, l'autoroute, les lacets, l'approche des pics
   return racine.dataset.variante === 'ondes' ? [0, ...suite] : [0, 0.35, 1.3, 2.0, c1 - 0.5, ...suite];
 }
@@ -184,7 +188,7 @@ const stations = () => ecransDesStations().map(progressionDe);
 // LMS) ; chaque module s'emboîte à l'entrée de la sienne (les suivantes) et brille tant
 // qu'elle est à l'écran
 function moments() {
-  const g = gel[1], carte = (k) => g.de + 0.75 * k, modules = [1, 2, 3, 4];
+  const g = gel[1], carte = (k) => g.de + paquets[1].pas / 100 * k, modules = [1, 2, 3, 4];
   return {
     socle: [progressionDe(carte(0)), progressionDe(carte(1))],
     modules: modules.map(k => [progressionDe(carte(k) - 0.15), progressionDe(carte(k) + 0.45)]),
@@ -241,7 +245,7 @@ function majFenetres(s) {
     else dedans ? allumer(e.el) : eteindre(e.el);
   }
   for (const p of paquets) p.barres.forEach((b, i) => {
-    const f = Math.min(1, Math.max(0, (s - (p.haut + 100 + 75 * i)) / 75));
+    const f = Math.min(1, Math.max(0, (s - (p.haut + 100 + p.pas * i)) / p.pas));
     b.style.setProperty('--remplissage', f.toFixed(3));
   });
   majIndicateur(s);

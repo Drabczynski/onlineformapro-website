@@ -177,7 +177,14 @@ s'effacent avec le titre, collées aux bords de l'écran : la tablette OnlineCom
 téléphone). « La puissance de l'IA pour la formation » passe à droite, la gauche étant prise par
 les pics et leurs données. L'essai est porté par
 `data-variante="ondes"` sur `<html>` : `monde.js` ne dessine pas le logo et remplace les cinq
-premières stations par une seule, `ouverture.js` cale seize stations au lieu de vingt.
+premières stations par une seule, `ouverture.js` cale dix-sept stations au lieu de vingt et une.
+**Le chapitre de l'IA prend son temps.** Ses trois cartes (FastFormation, FastQuiz,
+RolePlay IA) restent chacune à l'écran 1,5 écran de défilement, deux fois plus que les autres.
+Pendant ce temps, la caméra ne s'arrête pas : elle traverse lentement les ondes, des premiers
+pics aux seconds, jusqu'au bout des courbes, puis en sort et s'élève vers le carrefour. C'est
+réglé par paquet de cartes : `data-pas` (le défilement par carte, en svh, 75 par défaut) et
+`data-arret` (la part de l'avance que la caméra perd pendant les cartes, 0,95 par défaut ;
+0,55 ici).
 **En réserve : la phase « Catalogue de formation ».** Le ruban de vignettes du catalogue,
 monté en hélice d'un rond-point entre le cube et la planète, est mis de côté pour plus tard
 dans `site-onlineformapro/reserve/ruban-catalogue/`. Il n'est chargé par aucune page. Le

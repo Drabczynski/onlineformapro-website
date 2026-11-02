@@ -389,7 +389,8 @@ export function creerMonde(toile) {
     [0.33, [-1, 3.0, -226], [-14, 4.0, -268]],            // le graphique s'élève (l'IA)
     [0.37, [3, 3.4, -236], [-14, 4.4, -276]],            // arrêt devant les pics
     [0.39, [-11, 4.0, -252], [-14.5, 4.6, -300]],        // la caméra entre dans les pics et leurs données
-    [0.41, [-14.6, 4.6, -284], [-13.5, 4.2, -335]],      // au milieu des courbes, pendant les cartes du chapitre
+    [0.405, [-14.0, 4.4, -272], [-13.5, 4.3, -322]],     // pendant les cartes, elle avance lentement dans les ondes :
+    [0.42, [-14.6, 4.8, -297], [-11, 4.2, -345]],        // les premiers pics, puis les seconds, jusqu'au bout des courbes
     [0.45, [-11, 7.5, -326], [-2, 3, -395]],             // elle en ressort et s'élève vers le carrefour
     [0.52, tab(C1.clone().add(new THREE.Vector3(-28, 26, 28))), tab(C1.clone().add(new THREE.Vector3(-7.5, 7, -7.5))), tab(C1.clone().setY(5))],   // le carrefour et le cube modulaire (la solution globale et modulaire)
     [0.57, tab(C1.clone().add(new THREE.Vector3(-22, 22, 30))), tab(C1.clone().add(new THREE.Vector3(4.5, 7.5, 3))), tab(C1.clone().setY(5))],
