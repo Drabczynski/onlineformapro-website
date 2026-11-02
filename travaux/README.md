@@ -445,12 +445,19 @@ l'échelle. Les blocs sont produits par `donnees.py` (à côté de `commun.py`) 
 repères `<!--DONNEES:clé-->` ; leurs règles sont dans `marque.css` (« chiffres et données »).
 Sur téléphone, vignettes et étapes défilent au doigt.
 
+**Sur téléphone, l'accueil est la page LMS.** Un script en tête de `index.html`, avant tout
+chargement, envoie les téléphones sur `lms.html` (`location.replace` : le bouton Retour ne
+ramène pas à l'ouverture). Un téléphone, c'est un écran tactile dont le petit côté fait moins de
+600 px, en portrait comme en paysage ; les tablettes et les ordinateurs, même dans une fenêtre
+étroite, gardent l'ouverture 3D. Avant de partir, le téléphone ne charge que la page et deux
+feuilles de style, rien de la 3D. `index.html?intro` montre l'ouverture quand même, pour la
+revoir sur téléphone ; `intro-complete.html` n'est pas redirigée.
+
 Sur téléphone (640 px de large au plus, `marque.css`) : les chiffres s'affichent deux par
 rangée (LMS, Catalogue ; le premier sur toute la largeur s'ils sont en nombre impair), les
 familles du catalogue aussi (onze écrans au lieu de quatorze), aucun texte ne descend sous
 12 px (les étiquettes de l'article, entre autres), et les liens du pied, de partage et des
-réseaux ont une zone de 40 px pour le doigt. Sur Contact, l'anneau reste dans le haut de
-l'ouverture et s'efface avant le titre. Dans l'ouverture, le flou des cartes est ramené à
+réseaux ont une zone de 40 px pour le doigt. Sur Contact, la vidéo passe sous le texte. Dans l'ouverture, le flou des cartes est ramené à
 32 px (l'écran étant plus petit, l'effet reste aussi marqué, et le calcul est plus léger) ; les
 cartes y deviennent des bandeaux compacts au bas de l'écran (l'image carrée à gauche, le texte
 en face, la description coupée à deux lignes, toute la carte cliquable) pour laisser voir la 3D, les images du premier écran restent masquées, et la scène

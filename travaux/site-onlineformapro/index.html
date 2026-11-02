@@ -8,6 +8,15 @@
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#120836">
 <script>
+  // sur téléphone, l'accueil est la page LMS : on y part tout de suite, avant de charger
+  // l'ouverture 3D (écran tactile dont le petit côté fait moins de 600 px ; tablettes et
+  // ordinateurs gardent l'ouverture). index.html?intro la montre quand même.
+  (function () {
+    var tel = matchMedia('(pointer: coarse)').matches && Math.min(screen.width, screen.height) < 600;
+    if (tel && !/[?&]intro(=|&|$)/.test(location.search)) location.replace('lms.html');
+  })();
+</script>
+<script>
   // avant tout affichage : animations ou non, selon le réglage du système
   (function () {
     var anime = !matchMedia('(prefers-reduced-motion: reduce)').matches;
