@@ -341,8 +341,8 @@ traverse les liens voisins sans les ouvrir). Les données en sont dans
 `commun.py` (`MEGA`) ; un clic sur l'un de leurs liens les replie. Les accordéons (spécifications
 techniques, questions) se déplient et se replient en douceur. Un lien du panneau de l'assistant le referme aussi. Un clic sur la
 recherche, ou Ctrl K (⌘ K sur Mac), la déploie : le champ s'élargit, les liens s'effacent, la
-page se voile, le panneau se déplie depuis le champ et son contenu arrive en cascade (accès
-rapides, suggestions illustrées, exemples de demandes). En tapant, les accès se filtrent et l'on peut demander à l'assistant IA. La conversation
+page se voile, le panneau se déplie depuis le champ et son contenu arrive en cascade : d'abord
+« Demandez à l'assistant » (exemples de demandes), puis les suggestions illustrées. En tapant, les suggestions se filtrent et l'on peut demander à l'assistant IA. La conversation
 continue dans le panneau, une réponse à la fois : à chaque question, l'échange précédent
 s'efface vers le haut et la réponse, en grand, apparaît mot à mot ; dessous, discrets, un lien
 « Découvrir… » choisi selon la demande (la démonstration seulement quand on parle de tarifs ou
@@ -457,10 +457,10 @@ en face, la description coupée à deux lignes, toute la carte cliquable) pour l
 couvre aussi la zone de la barre de Safari (100lvh), sans bande sombre en bas.
 
 **L'assistant sur téléphone** s'ouvre en plein écran dès qu'on touche le champ, sans faire
-monter le clavier (on voit d'abord les suggestions ; le clavier vient en touchant le champ du
+monter le clavier (on voit d'abord les exemples et les suggestions ; le clavier vient en touchant le champ du
 bas) : un bandeau « Assistant
 Onlineformapro » avec un bouton Fermer, le contenu qui défile (seules les quatre suggestions
-illustrées, en tête, sans les accès rapides, les exemples ni la note ; puis la conversation), et le champ en bas, collé au-dessus du clavier (la feuille
+les exemples de demandes puis les quatre suggestions illustrées, sans la note ; puis la conversation), et le champ en bas, collé au-dessus du clavier (la feuille
 suit la partie visible de l'écran, `visualViewport`), avec un bouton Envoyer. Le champ est à
 16 px (en dessous, l'iPhone zoome toute la page quand on y entre : logo coupé, panneau
 décalé). Après l'envoi, le clavier se replie pour laisser tout l'écran à la réponse ; le
