@@ -436,7 +436,7 @@ body.fond-noir { background: var(--nuit); }
    est ferré à gauche, la première ligne du titre en dégradé. Sur téléphone, la vidéo passe
    sous le texte. */
 .tete-video { padding: 0; text-align: left; }
-.tete-video-scene { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; min-height: min(calc(100svh - 72px), 1000px); padding: clamp(56px, 12svh, 136px) var(--gouttiere) 0; }
+.tete-video-scene { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; min-height: min(calc(100svh - 72px), 1000px); padding: clamp(28px, 5.5svh, 64px) var(--gouttiere) 0; }
 .tete-video-film { position: absolute; left: 0; right: 0; bottom: calc(-1 * min(6vw, 96px)); z-index: -1; display: block; width: 100%; height: auto; mix-blend-mode: multiply; filter: brightness(1.02); pointer-events: none;
   -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 22%); mask-image: linear-gradient(180deg, transparent 0, #000 22%); }
 .tete-video .tete-produit-visuel { display: block; width: calc(100% - 2 * var(--gouttiere)); margin-inline: auto; }
@@ -449,7 +449,7 @@ body.fond-noir { background: var(--nuit); }
 .titre-degrade { --degrade: linear-gradient(90deg, #c63adf 0%, #8f45ec 48%, #4f58ee 100%); background: var(--degrade); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .titre-degrade .mot { background: var(--degrade) no-repeat; background-size: var(--degrade-l, 100%) 100%; background-position: calc(-1 * var(--degrade-x, 0px)) 0; -webkit-background-clip: text; background-clip: text; color: transparent; }
 @media (max-width: 860px) {
-  .tete-video-scene { min-height: 0; padding-top: 48px; }
+  .tete-video-scene { min-height: 0; padding-top: 32px; }
   .tete-video-film { position: relative; bottom: auto; order: 2; width: calc(100% + 2 * var(--gouttiere)); height: max(240px, 66vw); margin: 28px calc(-1 * var(--gouttiere)) 0; object-fit: cover; object-position: 68% 100%; }
   .tete-video .tete-produit-visuel { margin-top: 32px; }
 }
