@@ -394,7 +394,7 @@ intermédiaires de la fin sont des fondus entre images voisines, pour que le ral
 - `lms-donnees-1280.webm` et `.mp4` (téléphone) ;
 - `lms-donnees-fin.webp` (la dernière image).
 
-La vidéo est calée en bas de l'ouverture, sur toute la largeur, un peu descendue pour que ses barres passent sous les boutons. Le dégradé du titre court sur toute la phrase : chaque mot en montre sa part (`pages.js`, `.titre-degrade`). Après « La plateforme LMS », le titre change d'argument toutes les 3,8 s : « que les apprenants
+La vidéo est calée en bas de l'ouverture, sur toute la largeur, un peu descendue pour que ses barres passent sous les boutons. Le dégradé du titre court sur toute la phrase : chaque mot en montre sa part (`pages.js`, `.titre-degrade`). Après « La plateforme LMS », le titre change d’argument toutes les 2,8 s (le premier changement vers 2,8 s) : « que les apprenants
 et administrateurs adorent », « qui accompagne 22 millions d'apprenants », « qui s'habille aux
 couleurs de votre entreprise », « qui rend chaque progression visible d'un coup d'œil », « qui
 parle 15 langues ». L'argument affiché s'efface mot à mot vers le haut, le suivant monte ; ils

@@ -43,26 +43,33 @@ if (degrades.length) {
   addEventListener('resize', caler);
 }
 
-// le titre qui change d'argument (LMS) : toutes les 3,8 s, l'argument affiché s'efface mot à mot
-// et le suivant monte ; à l'arrêt quand le titre n'est pas à l'écran ou l'onglet caché, immobile
-// (le premier argument) si le visiteur a demandé moins d'animations
+// le titre qui change d'argument (LMS) : toutes les 2,8 s, l'argument affiché s'efface mot à mot
+// et le suivant monte. L'animation d'arrivée des mots est libérée dès qu'elle est finie (sinon le
+// premier changement serait brutal) ; à l'arrêt quand le titre n'est pas à l'écran ou l'onglet
+// caché, immobile (le premier argument) si le visiteur a demandé moins d'animations
 for (const bloc of document.querySelectorAll('.titre-arguments')) {
   const args = [...bloc.querySelectorAll('.titre-argument')];
   args.forEach((arg) => arg.querySelectorAll('.mot').forEach((m, j) => m.style.setProperty('--j', j)));
   if (args.length < 2 || matchMedia('(prefers-reduced-motion: reduce)').matches) continue;
   let k = 0, visible = true;
   new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(bloc);
+  const mots = [...args[0].querySelectorAll('.mot')];
+  const liberer = () => bloc.classList.add('tourne');
+  // la fin de l'arrivée du dernier mot (ou, à défaut, 2,2 s)
+  const dernier = mots[mots.length - 1];
+  if (dernier) dernier.addEventListener('animationend', liberer, { once: true });
+  setTimeout(liberer, 2200);
   const suivant = () => {
     if (!visible || document.hidden) return;
-    bloc.classList.add('tourne');
+    liberer();
     const avant = args[k];
     k = (k + 1) % args.length;
     avant.classList.add('sort');
     avant.classList.remove('est-actif');
-    setTimeout(() => avant.classList.remove('sort'), 1100);
+    setTimeout(() => avant.classList.remove('sort'), 1000);
     args[k].classList.add('est-actif');
   };
-  setTimeout(() => setInterval(suivant, 3800), 1200);
+  setTimeout(() => { suivant(); setInterval(suivant, 2800); }, 2800);
 }
 
 // -------------------------------------------------------------------- changements de fond

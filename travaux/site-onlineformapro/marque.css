@@ -451,9 +451,9 @@ body.fond-noir { background: var(--nuit); }
 .titre-arguments { display: grid; }
 .titre-argument { grid-area: 1 / 1; text-wrap: balance; }
 .titre-arguments.tourne .mot { animation: none; }
-.js .titre-argument .mot { transition: opacity .5s ease, transform .75s cubic-bezier(.2, .7, .2, 1), filter .5s ease; transition-delay: calc(.32s + var(--j, 0) * 55ms); }
+.js .titre-argument .mot { transition: opacity .45s ease, transform .65s cubic-bezier(.2, .7, .2, 1), filter .45s ease; transition-delay: calc(.28s + var(--j, 0) * 45ms); }
 .js .titre-argument:not(.est-actif) .mot { opacity: 0; transform: translateY(.38em); filter: blur(8px); }
-.js .titre-argument.sort .mot { transform: translateY(-.32em); transition-delay: calc(var(--j, 0) * 28ms); }
+.js .titre-argument.sort .mot { transform: translateY(-.32em); transition-delay: calc(var(--j, 0) * 24ms); }
 /* le dégradé court sur toute la phrase : chaque mot (découpé par pages.js) en montre sa part */
 .titre-degrade { --degrade: linear-gradient(90deg, #c63adf 0%, #8f45ec 48%, #4f58ee 100%); background: var(--degrade); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .titre-degrade .mot { background: var(--degrade) no-repeat; background-size: var(--degrade-l, 100%) 100%; background-position: calc(-1 * var(--degrade-x, 0px)) 0; -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -490,9 +490,12 @@ body.fond-noir { background: var(--nuit); }
 .donnees [data-compte] { font-variant-numeric: tabular-nums; }
 
 /* l'escalier (LMS) : des marches de barres, de plus en plus hautes */
-.donnees-escalier { display: grid; grid-template-columns: clamp(240px, 26vw, 360px) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); align-items: end; padding: 140px var(--gouttiere) 120px; }
-.escalier-tete { align-self: start; display: grid; gap: 20px; min-width: 0; }
-.escalier-tete .texte-grand { font-size: clamp(16px, 1.35vw, 19px); }
+.donnees-escalier { display: grid; grid-template-columns: minmax(0, 1fr); gap: 80px; padding: 140px var(--gouttiere) 120px; }
+/* le titre au-dessus de l'escalier, sur toute la largeur (deux lignes, pas de césures), le texte à sa droite */
+.escalier-tete { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); column-gap: clamp(32px, 6vw, 96px); row-gap: 20px; align-items: end; min-width: 0; }
+.escalier-tete .etiquette { grid-column: 1 / -1; }
+.escalier-tete .titre-2 { grid-column: 1; max-width: 720px; }
+.escalier-tete .texte-grand { grid-column: 2; max-width: 460px; font-size: clamp(16px, 1.35vw, 19px); }
 .escalier-tete .titre-2 { margin: 0; }
 .escalier-marches { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: end; }
 .escalier-marches li { padding: 24px clamp(14px, 2.4vw, 36px) 0; border-left: 1px solid var(--d-trait); }
@@ -596,6 +599,8 @@ body.fond-noir { background: var(--nuit); }
 
 @media (max-width: 860px) {
   .donnees-escalier { grid-template-columns: minmax(0, 1fr); gap: 48px; padding: 96px var(--gouttiere) 72px; }
+  .escalier-tete { grid-template-columns: minmax(0, 1fr); }
+  .escalier-tete .texte-grand { grid-column: 1; }
   .escalier-marches { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 44px; }
   .escalier-barres { gap: 5px; margin-top: 22px; }
   .escalier-barres i { height: 8px; }
