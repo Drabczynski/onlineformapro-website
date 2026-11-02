@@ -13,6 +13,7 @@
   --encre: #2a2a2c;          /* titres, boutons, cartes sombres : un gris très foncé */
   --nuit: #1c1c1e;           /* passages sombres, pied de page : un gris presque noir */
   --rouge: #d4486c;          /* le rouge du logo, adouci */
+  --rouge-vif: #d31e44;      /* le rouge du logo, pur : le bouton de démo */
 }
 
 /* -------------------------------------------------------------------- titres */
@@ -45,9 +46,9 @@
 .entete-nav a:hover { opacity: 1; color: var(--encre); }
 .entete-nav a[aria-current="page"] { color: var(--encre); font-weight: 500; text-decoration: none; }
 .entete-nav .entete-nav-demo { display: none; }
-.entete-droite .bouton.bouton-noir, .entete--photo .entete-droite .bouton.bouton-noir { min-height: 46px; padding: 0 20px 0 22px; background: var(--rouge); color: #fff; font-size: 15px; }
+.entete-droite .bouton.bouton-noir, .entete--photo .entete-droite .bouton.bouton-noir { min-height: 46px; padding: 0 20px 0 22px; background: var(--rouge-vif); color: #fff; font-size: 15px; }
 .entete-droite .bouton.bouton-noir::after { content: "→"; transition: transform .25s; }
-.entete-droite .bouton.bouton-noir:hover { background: #c23a5e; }
+.entete-droite .bouton.bouton-noir:hover { background: #b9173a; }
 .entete-droite .bouton.bouton-noir:hover::after { transform: translateX(3px); }
 .entete--photo:not(.est-defile) .entete-nav a { color: rgba(255, 255, 255, .72); }
 .entete--photo:not(.est-defile) .entete-nav a:hover, .entete--photo:not(.est-defile) .entete-nav a[aria-current="page"] { color: #fff; }
@@ -209,7 +210,7 @@
   .entete.menu-ouvert .logo-clair { display: none; }
   .entete.menu-ouvert .entete-nav { display: grid; position: absolute; top: 100%; left: 0; right: 0; width: auto; gap: 0; padding: 8px max(40px, calc((100% - 1660px) / 2)) 20px; background: #fff; font-size: 20px; box-shadow: 0 24px 40px -24px rgba(20, 20, 30, .3); }
   .entete.menu-ouvert .entete-nav a { padding: 10px 0; color: var(--encre); }
-  .entete.menu-ouvert .entete-nav .entete-nav-demo { display: flex; justify-content: center; margin-top: 12px; padding: 14px 20px; border-radius: 999px; background: var(--rouge); color: #fff; font-size: 16px; }
+  .entete.menu-ouvert .entete-nav .entete-nav-demo { display: flex; justify-content: center; margin-top: 12px; padding: 14px 20px; border-radius: 999px; background: var(--rouge-vif); color: #fff; font-size: 16px; }
   .entete.menu-ouvert .entete-burger { min-height: 0; }
   .entete.menu-ouvert .entete-burger span:first-child { transform: translateY(3.75px) rotate(45deg); }
   .entete.menu-ouvert .entete-burger span:last-child { transform: translateY(-3.75px) rotate(-45deg); }
@@ -420,7 +421,10 @@ body.fond-noir { background: var(--nuit); }
 .tete-video--contact .texte-grand { font-size: clamp(18px, 1.5vw, 21px); }
 .tete-video--contact .doux { color: var(--doux); }
 .tete-video--contact, .tete-video--contact + .section-96 { --chevauche: 160px; }
-.tete-video--contact .tete-video-scene { min-height: min(calc(100svh - 72px + var(--chevauche) / 2), 1060px); }
+/* la hauteur suit le texte, et non l'écran : la vidéo (2,5:1) fait 40 % de la largeur en hauteur ;
+   sous le texte, l'anneau commence à 40 % de sa hauteur, 48 px sous le paragraphe, et ses tiges
+   montent à droite du titre. Le bas de la scène est donc 48 px + 60 % × 40 % de la largeur. */
+.tete-video--contact .tete-video-scene { min-height: 0; padding-bottom: calc(48px + 24%); }
 .tete-video--contact + .section-96 { position: relative; z-index: 1; margin-top: calc(-1 * var(--chevauche)); padding-top: 0; background: linear-gradient(180deg, rgba(251, 250, 249, 0) 0, var(--creme) calc(var(--chevauche) + 40px)); }
 /* la vidéo posée au ras du bas, son pied fondu dans le blanc (les cartes passent devant) ;
    modele.css borne les vidéos à 100 % : sur téléphone, elle doit déborder dans les gouttières */
@@ -429,7 +433,7 @@ body.fond-noir { background: var(--nuit); }
 .tete-video--contact + .section-96 .carte-contact { box-shadow: 0 0 0 1px rgba(20, 20, 24, .07); }
 @media (max-width: 860px) {
   .tete-video--contact, .tete-video--contact + .section-96 { --chevauche: 64px; }
-  .tete-video--contact .tete-video-scene { min-height: 0; }
+  .tete-video--contact .tete-video-scene { padding-bottom: 0; }
 }
 
 /* LMS : l'ouverture en vidéo. Des données naissent au centre, s'étalent en spirale et

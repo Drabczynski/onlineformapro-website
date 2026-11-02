@@ -321,7 +321,8 @@ comme l'accent au-dessus du O, et sous la page courante du menu ; un gris presqu
 d'appel et le pied de page (le bleu nuit reste propre à l'ouverture). Le pied est signé du nom
 « onlineformapro » en très grand, à peine plus clair que le fond et rogné par le bas.
 L'en-tête a trois parts : le logo et les liens à gauche, au centre exact la recherche
-« Décrivez votre projet » (`recherche.js`), à droite le bouton de démo rouge. Son fond est un
+« Décrivez votre projet » (`recherche.js`), à droite le bouton de démo, au rouge pur du logo
+(`#d31e44`, `--rouge-vif`), plus saturé que l'accent. Son fond est un
 blanc translucide et flouté qui laisse deviner la page (absent au-dessus d'une photo d'ouverture
 tant qu'on n'a pas défilé). Au survol de LMS, Outils IA, Catalogue ou Contact, l'en-tête passe en
 blanc plein et un méga-menu blanc se déplie dessous : une introduction à gauche et les produits
@@ -401,8 +402,10 @@ s'ouvre en ondes, puis en un large anneau de billes roses, violettes et bleues h
 tiges. La vidéo fournie (9 s, fond presque blanc remonté au blanc pur) est traitée comme celle
 de LMS : allure normale 7 s, puis ralenti en cosinus jusqu'à l'arrêt, 10,9 s en tout. Fichiers
 `img/site/contact-anneau.webm`, `.mp4`, `-1280.webm`, `-1280.mp4` et `contact-anneau-fin.webp`.
-Le texte est ferré à gauche, « Vous avez un projet » en dégradé ; la vidéo est posée au ras du
-bas, son pied fondu dans le blanc, et les trois cartes « Nous joindre » remontent dessus
+Le texte est ferré à gauche, le titre en noir. La hauteur de l'ouverture suit le texte et non
+l'écran : sous le texte, l'anneau commence 48 px sous le paragraphe, et ses tiges montent à
+droite du titre. La vidéo est posée au ras du bas, son pied fondu dans le blanc, et les trois
+cartes « Nous joindre » remontent dessus
 (`.tete-video--contact` dans `marque.css`, qui reprend aussi la base du bloc de texte, Contact
 chargeant `modele.css` et non `pages.css`).
 
