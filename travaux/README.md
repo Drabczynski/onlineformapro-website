@@ -414,8 +414,6 @@ Sur les autres pages :
 - **Catalogue** : quatre cartes, chacune avec son petit graphique. Un cadran qui se referme
   (1 h par module), des barres de leçons (4 à 7), douze carrés de couleur (12 familles) et
   un champ de points qui se remplit (6000+ heures).
-- **Outils IA** : une frise dont la courbe se trace de 1999 (lauréate du concours « Entreprises
-  innovantes ») à 2013 (Saint-Gobain), puis à aujourd'hui (22 M d'apprenants, 4 outils IA).
 - **Démo** : quatre anneaux concentriques qui se referment, avec leur légende (22 M, 6000 h,
   25 ans, 30 min).
 - **Contact** : une bande de grands chiffres qui défile, et s'arrête au survol.
