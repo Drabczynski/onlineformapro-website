@@ -383,18 +383,6 @@ emplissent l'écran) et `vagues` (une nappe
 de grains en larges bandes obliques, qui ondule comme un relief et file) ; seule la part
 visible de la forme est semée, d'où la densité des gros plans. La page d'essai `nuees.html`
 les montre l'un sous l'autre, en direct, pour choisir.
-**Essai de direction artistique « neuro » (maquette).** `maquette-neuro.html` est la page LMS
-avec une autre ouverture, en image figée, à valider. Le texte est ferré à gauche ; à droite, des
-réseaux de neurones sur fond blanc (`neurones.js`, d'après la collection « Neurones » de
-Colorpong, sur fond noir). Un grand neurone dont on voit le nœud déploie des faisceaux de fibres
-violettes qui s'ouvrent en éventails colorés (rose, vert, cyan, rouge, ambre), ponctués de
-points ; deux autres neurones entrent par les coins. Là où vit le texte, les fibres
-s'éteignent. Le violet profond de l'ouverture (#2d0b9e) y est la couleur principale (étiquette,
-bouton). Le dessin est tiré d'une graine fixe, toujours le même. Sur téléphone, un neurone
-occupe le haut de l'écran et le texte vient dessous. `neurones.js` sait aussi une composition
-« centre » (le texte centré, les neurones sur les bords). Aucune page du site ne charge encore
-cet essai.
-
 **Des chiffres semés dans les pages**, chacun dans un style différent, tous animés à leur
 arrivée à l'écran : les barres, anneaux et courbes se remplissent, et les nombres défilent
 jusqu'à leur valeur (`pages.js`, rien ne bouge si le visiteur a demandé moins d'animations).
