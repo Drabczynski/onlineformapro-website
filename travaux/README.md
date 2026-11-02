@@ -376,6 +376,29 @@ emplissent l'écran) et `vagues` (une nappe
 de grains en larges bandes obliques, qui ondule comme un relief et file) ; seule la part
 visible de la forme est semée, d'où la densité des gros plans. La page d'essai `nuees.html`
 les montre l'un sous l'autre, en direct, pour choisir.
+**Des chiffres semés dans les pages**, chacun dans un style différent, tous animés à leur
+arrivée à l'écran : les barres, anneaux et courbes se remplissent, et les nombres défilent
+jusqu'à leur valeur (`pages.js`, rien ne bouge si le visiteur a demandé moins d'animations).
+Sur LMS, deux blocs :
+- un escalier de barres violettes qui montent de marche en marche : 13 pays, 15 langues,
+  2000+ clients, 22 M d'apprenants ;
+- avant les spécifications, un bloc nuit « Sécurité et hébergement » : une grille de cent cases
+  dont dix s'allument en rose (10 % du budget de développement consacré à la cybersécurité),
+  un cadran de 24 traits (hébergement 24 h/24) et une semaine cochée (une sauvegarde chaque jour).
+
+Sur les autres pages :
+- **Catalogue** : quatre cartes, chacune avec son petit graphique. Un cadran qui se referme
+  (1 h par module), des barres de leçons (4 à 7), douze carrés de couleur (12 familles) et
+  un champ de points qui se remplit (6000+ heures).
+- **Outils IA** : une frise dont la courbe se trace de 1999 (lauréate du concours « Entreprises
+  innovantes ») à 2013 (Saint-Gobain), puis à aujourd'hui (22 M d'apprenants, 4 outils IA).
+- **Démo** : quatre anneaux concentriques qui se referment, avec leur légende (22 M, 6000 h,
+  25 ans, 30 min).
+- **Contact** : une bande de grands chiffres qui défile, et s'arrête au survol.
+
+Les chiffres sont ceux du site. Les barres, anneaux et courbes les illustrent sans être à
+l'échelle. Les blocs sont produits par `donnees.py` (à côté de `commun.py`) à la place des
+repères `<!--DONNEES:clé-->` ; leurs règles sont dans `marque.css` (« chiffres et données »).
 Les trois cartes « Nous joindre » remontent sur le bas de l'anneau (240 px, 120 sur téléphone),
 qui s'efface derrière elles (un filet, sans ombre, les détache). Sur téléphone, l'anneau passe en haut, le texte dessous ;
 l'animation s'arrête hors de l'écran et reste figée si le visiteur a demandé moins

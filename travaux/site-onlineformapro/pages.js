@@ -63,6 +63,32 @@ if ('IntersectionObserver' in window) {
   apparitions.forEach(el => obs.observe(el));
 } else apparitions.forEach(el => el.classList.add('est-visible'));
 
+// -------------------------------------------------------------------- chiffres et données
+// les blocs de chiffres (donnees.py) s'animent à leur arrivée à l'écran (est-visible) ; leurs
+// nombres défilent de 0 à leur valeur. Tout est affiché d'emblée si le visiteur a demandé
+// moins d'animations.
+const blocsDonnees = document.querySelectorAll('.donnees');
+if (blocsDonnees.length) {
+  const ecrire = (el, v) => { const n = Math.round(v); el.textContent = n >= 10000 ? n.toLocaleString('fr-FR') : String(n); };
+  const compter = (bloc) => bloc.querySelectorAll('[data-compte]').forEach((el, i) => {
+    const cible = +el.dataset.compte, duree = 1500, debut = performance.now() + 250 + i * 140;
+    const pas = (t) => {
+      const x = Math.min(1, Math.max(0, (t - debut) / duree));
+      ecrire(el, cible * (1 - Math.pow(1 - x, 3)));
+      if (x < 1) requestAnimationFrame(pas);
+    };
+    requestAnimationFrame(pas);
+  });
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) blocsDonnees.forEach(b => b.classList.add('est-visible'));
+  else {
+    blocsDonnees.forEach(b => b.querySelectorAll('[data-compte]').forEach(el => ecrire(el, 0)));
+    const obs = new IntersectionObserver((entrees) => {
+      for (const e of entrees) if (e.isIntersecting) { e.target.classList.add('est-visible'); compter(e.target); obs.unobserve(e.target); }
+    }, { threshold: 0.25 });
+    blocsDonnees.forEach(b => obs.observe(b));
+  }
+}
+
 // -------------------------------------------------------------------- vidéos en boucle
 // arrêtées quand le visiteur a demandé moins d'animations ; celles qui ont un data-debut (en
 // secondes) commencent à ce moment et y reviennent à chaque tour (leur introduction sautée)

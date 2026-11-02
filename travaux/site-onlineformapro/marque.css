@@ -430,6 +430,184 @@ body.fond-noir { background: var(--nuit); }
   .heros-nuee { justify-content: flex-end; min-height: max(680px, calc(100svh - 72px)); padding-bottom: calc(60px + var(--chevauche)); }
 }
 
+/* ------------------------------------------------------------ chiffres et données */
+/* Les blocs de chiffres semés dans les pages (donnees.py), chacun dans son style ; pages.js les
+   anime à leur arrivée (est-visible) et fait défiler leurs nombres. Les barres, anneaux et
+   courbes illustrent les chiffres sans être à l'échelle. */
+.donnees { --d-violet: #6b56e2; --d-vide: #e6e3ef; --d-rose: #ff7aa2; --d-trait: var(--ligne, #e4e4e7); --d-doux: var(--doux, rgba(0, 0, 0, .6)); }
+.donnees p { margin: 0; }
+.donnees [data-compte] { font-variant-numeric: tabular-nums; }
+
+/* l'escalier (LMS) : des marches de barres, de plus en plus hautes */
+.donnees-escalier { display: grid; grid-template-columns: clamp(240px, 26vw, 360px) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); align-items: end; padding: 140px var(--gouttiere) 120px; }
+.escalier-tete { align-self: start; display: grid; gap: 20px; min-width: 0; }
+.escalier-tete .texte-grand { font-size: clamp(16px, 1.35vw, 19px); }
+.escalier-tete .titre-2 { margin: 0; }
+.escalier-marches { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: end; }
+.escalier-marches li { padding: 24px clamp(14px, 2.4vw, 36px) 0; border-left: 1px solid var(--d-trait); }
+.escalier-valeur { font: 300 clamp(38px, 4vw, 58px)/1 var(--titre); letter-spacing: -.035em; white-space: nowrap; }
+.escalier-libelle { margin-top: 12px !important; min-height: 2.7em; font-size: 15px; line-height: 1.35; color: var(--d-doux); }
+.escalier-barres { display: grid; gap: 8px; margin-top: 36px; }
+.escalier-barres i { display: block; height: 12px; background: var(--d-vide); transform-origin: left; }
+.escalier-barres i.plein { background: var(--d-violet); }
+
+/* les cartes (Catalogue) : chaque chiffre avec son petit graphique */
+.donnees-cartes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.donnee-carte { display: flex; flex-direction: column; gap: 10px; padding: 28px 24px; border-radius: var(--rayon, 16px); background: #fff; }
+.donnee-viz { height: 120px; display: flex; align-items: center; margin-bottom: 20px; }
+.donnee-valeur { font: 400 clamp(36px, 3.6vw, 56px)/1 var(--titre); letter-spacing: -.04em; color: var(--encre, #000); white-space: nowrap; }
+.donnee-libelle { font-size: 15px; line-height: 1.4; color: var(--d-doux); max-width: 240px; }
+.viz-cadran { width: 120px; height: 120px; overflow: visible; }
+.viz-traits line { stroke: #cfc9e6; stroke-width: 2; stroke-linecap: round; }
+.viz-piste, .viz-arc { fill: none; stroke-width: 10; }
+.viz-piste { stroke: var(--d-vide); }
+.viz-arc { stroke: var(--d-violet); stroke-linecap: round; stroke-dasharray: 100; transform: rotate(-90deg); transform-origin: 60px 60px; }
+.viz-lecons { display: flex; align-items: flex-end; gap: 7px; height: 72px; }
+.viz-lecons i { width: 20px; height: 100%; border-radius: 6px; background: var(--d-violet); transform-origin: bottom; }
+.viz-lecons i.possible { height: 78%; background: repeating-linear-gradient(135deg, rgba(107, 86, 226, .5) 0 3px, transparent 3px 7px); box-shadow: inset 0 0 0 1.5px rgba(107, 86, 226, .55); }
+.viz-familles { display: grid; grid-template-columns: repeat(4, 26px); gap: 7px; }
+.viz-familles i { width: 26px; height: 26px; border-radius: 6px; }
+.viz-points { position: relative; display: block; width: 100%; height: 96px; background: radial-gradient(circle, #d9d4ea 0 1.6px, transparent 2.1px) 0 0 / 9px 9px; }
+.viz-points span { position: absolute; inset: 0; background: radial-gradient(circle, var(--d-violet) 0 1.8px, transparent 2.3px) 0 0 / 9px 9px; }
+
+/* les jauges (LMS, sécurité) : sur fond nuit, une grille de cent cases, un cadran de 24 h, une semaine */
+.donnees-jauges { padding: 0 var(--gouttiere-bloc, 24px) 120px; }
+.jauges-bloc { border-radius: var(--rayon, 16px); padding: 72px clamp(24px, 5vw, 72px); color: #fff;
+  background: radial-gradient(50% 70% at 88% 0%, rgba(122, 104, 255, .38), transparent 70%), radial-gradient(40% 60% at 0% 100%, rgba(238, 156, 210, .22), transparent 70%), linear-gradient(160deg, #150c3f, #22135f); }
+.jauges-tete .etiquette { color: rgba(255, 255, 255, .62); }
+.jauges-tete .titre-3 { margin: 14px 0 0; color: #fff; }
+.jauges-liste { list-style: none; margin: 64px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.jauges-liste li { padding: 0 clamp(16px, 3vw, 40px); border-left: 1px solid rgba(255, 255, 255, .14); }
+.jauge-viz { height: 150px; display: flex; align-items: center; margin-bottom: 32px; }
+.jauge-valeur { font: 300 clamp(40px, 4vw, 60px)/1 var(--titre); letter-spacing: -.035em; white-space: nowrap; }
+.jauge-libelle { margin-top: 14px !important; max-width: 300px; font-size: 15px; line-height: 1.4; color: rgba(255, 255, 255, .68); }
+.viz-cent { display: grid; grid-template-columns: repeat(10, 11px); gap: 3px; }
+.viz-cent i { width: 11px; height: 11px; border-radius: 2px; background: rgba(255, 255, 255, .13); }
+.viz-cent i.plein { background: var(--d-rose); box-shadow: 0 0 10px rgba(255, 122, 162, .7); }
+.viz-24 { position: relative; display: block; width: 140px; height: 140px; }
+.viz-24 i { position: absolute; left: 50%; top: 50%; width: 4px; height: 16px; margin: -8px 0 0 -2px; border-radius: 2px; background: #a3b2f1; box-shadow: 0 0 8px rgba(163, 178, 241, .8); transform: rotate(calc(var(--j) * 15deg)) translateY(-56px); }
+.viz-24 b { position: absolute; inset: 0; display: grid; place-items: center; font: 400 13px/1 var(--mono); letter-spacing: .06em; color: rgba(255, 255, 255, .7); }
+.viz-semaine { display: flex; gap: 10px; }
+.viz-semaine > span { display: flex; flex-direction: column; align-items: center; gap: 10px; font: 400 12px/1 var(--mono); color: rgba(255, 255, 255, .6); }
+.viz-semaine i { position: relative; width: 28px; height: 28px; border-radius: 50%; background: #ffb088; box-shadow: 0 0 12px rgba(255, 176, 136, .6); }
+.viz-semaine i::after { content: ""; position: absolute; left: 10px; top: 7px; width: 6px; height: 11px; border: solid #22135f; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+
+/* la frise (Outils IA) : une courbe qui se trace de 1999 à aujourd'hui */
+.donnees-frise { display: grid; grid-template-columns: minmax(0, 1fr); gap: 64px; padding: 140px var(--gouttiere) 120px; }
+.frise-tete { display: grid; gap: 20px; max-width: 680px; }
+.frise-tete .titre-2 { margin: 0; }
+.frise-zone { position: relative; aspect-ratio: 1000 / 360; margin-top: 72px; }
+.frise-graphe, .frise-points { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.frise-grille line { stroke: var(--d-trait); stroke-width: 1.5; stroke-dasharray: 4 8; }
+.frise-courbe { fill: none; stroke: var(--d-violet); stroke-width: 3.5; stroke-linecap: round; stroke-dasharray: 100; }
+.frise-points circle { fill: #fff; stroke: var(--d-violet); stroke-width: 3.5; transform-box: fill-box; transform-origin: center; }
+.frise-points circle:last-child { fill: var(--rouge, #d4486c); stroke: #fff; }
+.frise-reperes { list-style: none; margin: 0; padding: 0; }
+.frise-reperes li { position: absolute; left: var(--x); top: var(--y); width: max-content; max-width: 260px; display: grid; gap: 8px; transform: translate(-50%, calc(-100% - 22px)); text-align: center; }
+.frise-reperes li:first-child { transform: translate(-14px, calc(-100% - 22px)); text-align: left; }
+.frise-reperes li:last-child { transform: translate(calc(-100% + 14px), calc(-100% - 22px)); text-align: right; }
+.frise-annee { font: 400 12px/1.2 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--d-violet); }
+.frise-texte { font-size: 17px; line-height: 1.35; letter-spacing: -.01em; }
+.frise-reperes li:last-child .frise-texte { font-size: clamp(22px, 2.2vw, 30px); line-height: 1.15; letter-spacing: -.03em; }
+
+/* les anneaux (Démo) : des anneaux concentriques qui se referment, et leur légende */
+.donnees-anneaux { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(40px, 6vw, 96px); align-items: center; padding: 140px var(--gouttiere) 120px; }
+.anneaux-graphe svg { display: block; width: 100%; max-width: 440px; margin: 0 auto; transform: rotate(-90deg); }
+.anneau-piste, .anneau-arc { fill: none; stroke-width: 16; }
+.anneau-piste { stroke: #efedf5; }
+.anneau-arc { stroke-linecap: round; stroke-dasharray: var(--part) 100; }
+.anneaux-texte .titre-2 { margin: 16px 0 0; }
+.anneaux-legende { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 40px; }
+.anneaux-legende li { display: grid; grid-template-columns: 12px minmax(0, 1fr); column-gap: 14px; row-gap: 8px; align-items: baseline; }
+.anneau-pastille { width: 12px; height: 12px; border-radius: 50%; align-self: center; }
+.anneau-valeur { font: 300 clamp(36px, 3.6vw, 52px)/1 var(--titre); letter-spacing: -.035em; white-space: nowrap; }
+.anneau-libelle { grid-column: 2; font-size: 15px; line-height: 1.4; color: var(--d-doux); }
+
+/* la bande défilante (Contact) */
+.donnees-defilant { overflow: hidden; padding: 64px 0; border-block: 1px solid var(--d-trait); background: var(--creme, #fbfaf9); }
+.defilant-piste { display: flex; width: max-content; animation: defiler 46s linear infinite; }
+.donnees-defilant:hover .defilant-piste { animation-play-state: paused; }
+.defilant-suite { display: flex; list-style: none; margin: 0; padding: 0; }
+.defilant-suite li { position: relative; display: flex; align-items: baseline; gap: 16px; padding-right: 88px; white-space: nowrap; }
+.defilant-suite li::after { content: ""; position: absolute; right: 36px; top: 52%; width: 14px; height: 4px; background: var(--rouge, #d4486c); transform: rotate(-29.4deg); }
+.defilant-suite strong { font: 300 clamp(48px, 7vw, 104px)/1 var(--titre); letter-spacing: -.045em; color: var(--encre, #000); }
+.defilant-suite span { font: 400 13px/1.2 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--d-doux); }
+@keyframes defiler { to { transform: translateX(-50%); } }
+
+/* l'arrivée à l'écran */
+@media (prefers-reduced-motion: no-preference) {
+  .js .donnees-escalier li { opacity: 0; transform: translateY(16px); transition: opacity .7s var(--courbe), transform .7s var(--courbe); transition-delay: calc(var(--k) * .16s); }
+  .js .donnees-escalier .escalier-barres i { transform: scaleX(0); transition: transform .5s cubic-bezier(.2, .7, .2, 1); transition-delay: calc(var(--k) * .16s + .25s + var(--j) * .035s); }
+  .js .donnee-carte { opacity: 0; transform: translateY(20px); transition: opacity .7s var(--courbe), transform .7s var(--courbe); transition-delay: calc(var(--k) * .12s); }
+  .js .viz-arc { stroke-dashoffset: 100; transition: stroke-dashoffset 1.6s cubic-bezier(.3, .6, .2, 1) .3s; }
+  .js .viz-lecons i { transform: scaleY(0); transition: transform .5s cubic-bezier(.2, .7, .2, 1); transition-delay: calc(.4s + var(--j) * .08s); }
+  .js .viz-familles i { transform: scale(0); transition: transform .45s cubic-bezier(.3, 1.4, .5, 1); transition-delay: calc(.5s + var(--j) * .05s); }
+  .js .viz-points span { clip-path: inset(0 100% 0 0); transition: clip-path 1.8s cubic-bezier(.3, .6, .2, 1) .6s; }
+  .js .jauges-liste li { opacity: 0; transform: translateY(16px); transition: opacity .7s var(--courbe), transform .7s var(--courbe); transition-delay: calc(var(--k) * .15s); }
+  .js .viz-cent i.plein { background: rgba(255, 255, 255, .13); box-shadow: none; transition: background-color .3s, box-shadow .3s; transition-delay: calc(.5s + var(--j) * .07s); }
+  .js .viz-24 i { background: rgba(255, 255, 255, .15); box-shadow: none; transition: background-color .25s, box-shadow .25s; transition-delay: calc(.6s + var(--j) * .045s); }
+  .js .viz-semaine i { transform: scale(0); transition: transform .4s cubic-bezier(.3, 1.4, .5, 1); transition-delay: calc(.7s + var(--j) * .09s); }
+  .js .frise-courbe { stroke-dashoffset: 100; transition: stroke-dashoffset 2s cubic-bezier(.45, 0, .3, 1) .2s; }
+  .js .frise-aire { opacity: 0; transition: opacity 1.2s ease 1.2s; }
+  .js .frise-points circle { transform: scale(0); transition: transform .45s cubic-bezier(.3, 1.5, .5, 1); transition-delay: calc(.25s + var(--k) * .85s); }
+  .js .frise-reperes li { opacity: 0; transition: opacity .6s ease; transition-delay: calc(.35s + var(--k) * .85s); }
+  .js .anneau-arc { stroke-dashoffset: var(--part); transition: stroke-dashoffset 1.6s cubic-bezier(.3, .6, .2, 1); transition-delay: calc(.2s + var(--k) * .18s); }
+  .js .anneaux-legende li { opacity: 0; transform: translateY(12px); transition: opacity .6s var(--courbe), transform .6s var(--courbe); transition-delay: calc(.3s + var(--k) * .14s); }
+  .js .donnees.est-visible :is(.escalier-marches li, .jauges-liste li, .anneaux-legende li, .donnee-carte, .viz-lecons i, .viz-familles i, .viz-semaine i, .frise-points circle, .escalier-barres i) { opacity: 1; transform: none; }
+  .js .donnees.est-visible .frise-reperes li { opacity: 1; }
+  .js .donnees.est-visible :is(.viz-arc, .frise-courbe, .anneau-arc) { stroke-dashoffset: 0; }
+  .js .donnees.est-visible .viz-points span { clip-path: inset(0 0 0 0); }
+  .js .donnees.est-visible .frise-aire { opacity: 1; }
+  .js .donnees.est-visible .viz-cent i.plein { background: var(--d-rose); box-shadow: 0 0 10px rgba(255, 122, 162, .7); }
+  .js .donnees.est-visible .viz-24 i { background: #a3b2f1; box-shadow: 0 0 8px rgba(163, 178, 241, .8); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .defilant-piste { animation: none; flex-wrap: wrap; width: auto; padding: 0 var(--gouttiere); row-gap: 24px; }
+  .defilant-suite[aria-hidden] { display: none; }
+  .defilant-suite { flex-wrap: wrap; row-gap: 24px; }
+}
+
+@media (max-width: 860px) {
+  .donnees-escalier { grid-template-columns: minmax(0, 1fr); gap: 48px; padding: 96px var(--gouttiere) 72px; }
+  .escalier-marches { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 44px; }
+  .escalier-barres { gap: 5px; margin-top: 22px; }
+  .escalier-barres i { height: 8px; }
+  .escalier-libelle { font-size: 14px; }
+  .donnees-cartes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .donnee-carte { padding: 20px 16px; }
+  .donnee-viz { height: 96px; margin-bottom: 8px; }
+  .viz-cadran { width: 92px; height: 92px; }
+  .viz-lecons { gap: 5px; height: 60px; }
+  .viz-lecons i { width: 12px; border-radius: 4px; }
+  .viz-familles { grid-template-columns: repeat(4, 22px); gap: 5px; }
+  .viz-familles i { width: 22px; height: 22px; }
+  .donnee-libelle { font-size: 13px; }
+  .donnees-jauges { padding: 0 0 72px; }
+  .jauges-bloc { border-radius: 0; padding: 56px 20px; }
+  .jauges-liste { grid-template-columns: 1fr; gap: 44px; margin-top: 40px; }
+  .jauges-liste li { padding: 0 0 0 20px; }
+  .jauge-viz { height: auto; margin-bottom: 20px; }
+  .donnees-frise { gap: 40px; padding: 96px var(--gouttiere) 72px; }
+  .frise-zone { aspect-ratio: auto; margin-top: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .frise-graphe, .frise-points { width: 100%; }
+  .frise-graphe, .frise-points { position: relative; inset: auto; grid-area: 1 / 1; aspect-ratio: 1000 / 360; height: auto; }
+  .frise-courbe, .frise-points circle { stroke-width: 7; }
+  .frise-points circle { r: 12; }
+  .frise-reperes { display: grid; gap: 22px; padding-left: 18px; border-left: 2px solid var(--d-vide); }
+  .frise-reperes li, .frise-reperes li:first-child, .frise-reperes li:last-child { position: static; width: auto; max-width: none; transform: none; text-align: left; }
+  .donnees-anneaux { grid-template-columns: 1fr; gap: 40px; padding: 96px var(--gouttiere) 72px; }
+  .anneaux-graphe svg { max-width: 260px; }
+  .anneaux-legende { gap: 28px 20px; margin-top: 32px; }
+  .anneau-libelle { font-size: 14px; }
+  .anneaux-legende { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .donnees-defilant { padding: 44px 0; }
+  .defilant-suite li { padding-right: 64px; gap: 12px; }
+  .defilant-suite li::after { right: 24px; }
+}
+@media (max-width: 520px) {
+  .anneaux-legende { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+}
+
 /* ------------------------------------------------------------ téléphone */
 /* sur téléphone : les chiffres deux par rangée, les familles du catalogue aussi, aucun texte
    sous 12 px, des liens assez grands pour le doigt (40 px de zone utile) */
