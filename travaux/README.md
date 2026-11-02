@@ -364,7 +364,8 @@ est écarté) et propose deux relances. Le texte des pages reste en cache d'une 
 l'autre ; si un filtre de sécurité décline une demande, un autre modèle la reprend (`fallbacks:
 "default"`). Sans clé, ou en cas d'échec, l'assistant de la maquette prend le relais. Pour la
 mise en ligne, servir ce point d'accès (ou son équivalent) derrière le site, avec une limite de
-débit. Sous 1480 px (les cinq liens et le champ centré ne tiennent plus côte à côte), les
+débit. Les liens sont serrés (14,5 px, 7 px de part et d'autre) pour tenir, avec le champ
+centré, jusqu'à 1401 px de large ; sous 1400 px, les
 liens passent dans le menu, où « Ressources » montre ses quatre entrées en retrait (`sous()`
 dans `commun.py`) ; sur téléphone, le logo, la recherche et le menu. À l'arrivée sur une page, la photo d'ouverture se pose (zoom arrière en
 s'éclaircissant), le titre monte mot par mot (découpé par `pages.js`), puis l'étiquette, le
@@ -416,6 +417,10 @@ droite du titre. La vidéo est posée au ras du bas, son pied fondu dans le blan
 cartes « Nous joindre » remontent dessus
 (`.tete-video--contact` dans `marque.css`, qui reprend aussi la base du bloc de texte, Contact
 chargeant `modele.css` et non `pages.css`).
+
+**Le parcours de formation (LMS)** s'ouvre sur ce que la plateforme intègre : évaluations de
+positionnement, parcours individualisés et évaluations finales, du niveau réel de chaque
+apprenant jusqu'à son attestation de formation et de compétences ; puis les trois étapes.
 
 **« Innover pour l'équité » (LMS)**, entre « Côté apprenant » et le parcours de formation : la
 photo fournie en plein écran (une personne rit, écouteurs aux oreilles, devant son ordinateur,

@@ -37,13 +37,13 @@
 /* trois parts : le logo et les liens à gauche, la recherche « Décrivez votre projet » au
    centre (avec l'assistant IA, recherche.js), le bouton de démo rouge à droite */
 .entete { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 24px; height: 72px; }
-.entete-gauche { display: flex; align-items: center; gap: 28px; min-width: 0; }
+.entete-gauche { display: flex; align-items: center; gap: 20px; min-width: 0; }
 .entete-droite { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
 .entete-logo { flex: none; }
 .entete-logo img { height: 40px; }
-.entete-nav { flex: none; display: flex; align-items: center; gap: 2px; font-size: 15px; }
+.entete-nav { flex: none; display: flex; align-items: center; gap: 2px; font-size: 14.5px; }
 .entete-sous { display: none; }
-.entete-nav a { padding: 8px 10px; color: rgba(20, 20, 24, .55); transition: color .2s; }
+.entete-nav a { padding: 8px 7px; color: rgba(20, 20, 24, .55); transition: color .2s; }
 .entete-nav a:hover { opacity: 1; color: var(--encre); }
 .entete-nav a[aria-current="page"] { color: var(--encre); font-weight: 500; text-decoration: none; }
 .entete-nav .entete-nav-demo { display: none; }
@@ -104,7 +104,7 @@
 /* le champ */
 /* au centre exact de l'en-tête, aussi large que le permettent les liens (520 px au plus) ;
    ouvert, il s'élargit à 680 px et les liens s'effacent */
-.recherche { position: absolute; left: 50%; top: 50%; z-index: 2; width: min(500px, calc(100vw - 1168px)); transform: translate(-50%, -50%); transition: width .5s cubic-bezier(.2, .8, .2, 1); }
+.recherche { position: absolute; left: 50%; top: 50%; z-index: 2; width: min(500px, calc(100vw - 1072px)); transform: translate(-50%, -50%); transition: width .5s cubic-bezier(.2, .8, .2, 1); }
 .recherche-ouverte .recherche { width: min(680px, calc(100vw - 32px)); }
 .entete-droite { grid-column: 3; }
 .entete-gauche, .entete-droite { transition: opacity .3s; }
@@ -199,9 +199,9 @@
 }
 .recherche-ouverte .entete--photo { background: rgba(255, 255, 255, 0); }
 
-/* écrans moyens : les liens passent dans le menu, le champ s'élargit d'autant (sous 1480 px,
+/* écrans moyens : les liens passent dans le menu, le champ s'élargit d'autant (sous 1400 px,
    les cinq liens et le champ centré ne tiennent plus côte à côte) */
-@media (max-width: 1480px) {
+@media (max-width: 1400px) {
   .recherche { width: min(520px, calc(100vw - 640px)); }
   .entete-nav { display: none; }
   .entete-menu { display: contents; }
