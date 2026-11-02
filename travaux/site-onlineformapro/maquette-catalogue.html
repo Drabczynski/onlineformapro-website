@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maquette – phase Catalogue de l’ouverture</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400&family=Geist:wght@300..600&family=Inter:wght@300;400;500&display=swap">
+<style>
+  /* Écrans figés d'une nouvelle phase de l'ouverture, entre « Une solution globale et
+     modulaire » et « Éprouvée par 22 millions d'apprenants » : le catalogue de formation en
+     ruban de vignettes enroulé en hélice (d'après la vidéo de référence). Chaque écran est
+     une image arrêtée, à l'échelle d'un écran de 1440 × 900 (ou d'un téléphone de 390 × 844),
+     sur une capture de la scène 3D à cet endroit du parcours. L'hélice est en 3D CSS. */
+  :root { --nuit: #1c0a3c; --texte: #2a2a2c; --doux: #6b6b72; --violet: #8f84ff; --rouge: #e3375e; --titre: Geist, Inter, "Helvetica Neue", Arial, sans-serif; --mono: "Chivo Mono", ui-monospace, monospace; }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: #f4f3f7; color: var(--texte); font: 16px/1.5 Inter, "Helvetica Neue", Arial, sans-serif; }
+  .page { max-width: 1240px; margin: 0 auto; padding: 56px 20px 96px; display: grid; gap: 56px; }
+  .tete h1 { font: 500 clamp(30px, 4vw, 46px)/1.08 var(--titre); letter-spacing: -.035em; }
+  .tete p { max-width: 760px; margin-top: 16px; color: var(--doux); }
+  .tete ol { margin-top: 20px; padding-left: 20px; color: var(--doux); display: grid; gap: 4px; }
+  figure { display: grid; gap: 14px; }
+  figcaption { display: grid; gap: 4px; max-width: 820px; }
+  figcaption strong { font: 400 12px/1.3 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--texte); }
+  figcaption span { color: var(--doux); font-size: 15px; }
+  .duo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: 32px; align-items: start; }
+  @media (max-width: 900px) { .duo { grid-template-columns: 1fr; } }
+
+  /* le cadre : l'écran à sa taille réelle, réduit à la largeur disponible */
+  .cadre { position: relative; width: 100%; aspect-ratio: var(--l) / var(--h); overflow: hidden; border-radius: 10px; box-shadow: 0 30px 60px -30px rgba(20, 10, 60, .45); background: var(--nuit); }
+  .cadre--tel { max-width: 340px; border-radius: 28px; }
+  .ecran { position: absolute; left: 0; top: 0; width: calc(var(--l) * 1px); height: calc(var(--h) * 1px); transform: scale(var(--k, 1)); transform-origin: 0 0; overflow: hidden; color: #fff; font-family: Inter, "Helvetica Neue", Arial, sans-serif; }
+  .ecran > .fond { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .ecran > .fond + .voile { position: absolute; inset: 0; background: radial-gradient(60% 70% at 46% 55%, rgba(28, 10, 60, 0), rgba(28, 10, 60, .35)); }
+
+  /* l'hélice : des vignettes posées sur un ruban qui s'enroule autour d'un axe vertical */
+  .scene3d { position: absolute; perspective: 1500px; perspective-origin: 50% 45%; }
+  .helice { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform-style: preserve-3d; }
+  .vignette { position: absolute; left: calc(var(--w) * -.5px); top: calc(var(--hc) * -.5px); width: calc(var(--w) * 1px); height: calc(var(--hc) * 1px); backface-visibility: visible; background: #2a1a6a no-repeat; }
+  .vignette::after { content: ""; position: absolute; inset: 0; background: var(--nuit); opacity: var(--brume, 0); }
+
+  /* les textes de la phase */
+  .liste { position: absolute; display: grid; gap: 0; text-align: center; }
+  .liste .voisin { font: 500 22px/1.1 var(--titre); letter-spacing: -.02em; text-transform: uppercase; color: rgba(255, 255, 255, .28); }
+  .liste .voisin--loin { font-size: 18px; color: rgba(255, 255, 255, .14); }
+  .liste .actif { margin: 26px 0; display: grid; gap: 10px; justify-items: center; }
+  .liste .surtitre { font: 400 11px/1.2 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: rgba(255, 255, 255, .62); }
+  .liste .nom { font: 600 40px/1 var(--titre); letter-spacing: -.035em; text-transform: uppercase; color: #fff; }
+  .liste .trait { width: 22px; height: 1px; background: rgba(255, 255, 255, .5); }
+  .liste .desc { max-width: 300px; font-size: 14px; line-height: 1.4; color: rgba(255, 255, 255, .72); text-wrap: balance; }
+  .meta { position: absolute; display: grid; grid-template-columns: auto auto; gap: 14px 22px; font-size: 13px; line-height: 1.35; }
+  .meta dt { font: 400 11px/1.6 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: rgba(255, 255, 255, .45); }
+  .meta dd { color: rgba(255, 255, 255, .88); }
+  .compteur { position: absolute; display: flex; align-items: flex-end; gap: 10px; }
+  .compteur small { font: 400 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: rgba(255, 255, 255, .55); padding-bottom: 14px; }
+  .compteur b { font: 300 92px/.8 var(--titre); letter-spacing: -.06em; color: rgba(160, 150, 255, .75); }
+  .compteur i { font-style: normal; font-size: 14px; color: rgba(255, 255, 255, .55); padding-bottom: 8px; }
+  .bouton { position: absolute; display: inline-flex; align-items: center; justify-content: space-between; gap: 18px; height: 50px; padding: 0 18px; border-radius: 5px; background: #fff; color: #172e64; font-size: 14px; }
+  .fil { position: absolute; display: flex; gap: 22px; font: 400 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: rgba(255, 255, 255, .5); }
+  .fil b { font-weight: 400; color: #fff; }
+  .indicateur { position: absolute; left: 20px; bottom: 33px; display: grid; grid-template-columns: 1fr 1fr; width: 80px; height: 50px; padding: 10px; background: rgba(255, 255, 255, .1); font-size: 13px; }
+  .indicateur span + span { color: rgba(255, 255, 255, .5); align-self: end; justify-self: end; }
+  .chapitre { position: absolute; font: 300 92px/88px var(--titre); letter-spacing: -.045em; }
+  .pastille { position: absolute; display: flex; align-items: center; gap: 10px; height: 36px; padding: 0 16px 0 14px; border: 1px solid rgba(255, 255, 255, .16); border-radius: 999px; background: rgba(40, 20, 110, .35); font-size: 13px; color: rgba(255, 255, 255, .88); }
+  .pastille::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #ff5a78; box-shadow: 0 0 0 4px rgba(255, 90, 120, .18); }
+
+  /* la transition au clic : une mosaïque de carrés aux couleurs de l'ouverture */
+  .mosaique { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(16, 1fr); grid-template-rows: repeat(10, 1fr); }
+  .mosaique i { display: block; }
+  .mosaique-titre { position: absolute; left: 0; right: 0; top: 50%; translate: 0 -50%; display: grid; gap: 14px; justify-items: center; text-align: center; }
+  .mosaique-titre small { font: 400 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: rgba(255, 255, 255, .85); }
+  .mosaique-titre small { padding: 6px 10px; background: #1d1e6c; }
+  .mosaique-titre strong { padding: 4px 22px 10px; background: #e3375e; font: 600 84px/1 var(--titre); letter-spacing: -.045em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="tete">
+    <h1>Phase «&nbsp;Catalogue de&nbsp;formation&nbsp;»&nbsp;: écrans figés</h1>
+    <p>Une&nbsp;nouvelle étape de&nbsp;l’ouverture, juste après «&nbsp;Une&nbsp;solution globale et&nbsp;modulaire&nbsp;». Les&nbsp;familles du&nbsp;catalogue s’enroulent en&nbsp;un&nbsp;ruban de&nbsp;vignettes, comme dans la&nbsp;vidéo de&nbsp;référence. Au&nbsp;défilement, le&nbsp;ruban tourne&nbsp;: la&nbsp;famille au&nbsp;premier plan s’affiche à&nbsp;droite, les&nbsp;autres défilent au&#8209;dessus et&nbsp;au&#8209;dessous, le&nbsp;compteur avance. Les&nbsp;vignettes sont celles du&nbsp;catalogue&nbsp;; les&nbsp;textes sont repris de&nbsp;la&nbsp;page&nbsp;Catalogue.</p>
+    <ol>
+      <li>Le&nbsp;titre du&nbsp;chapitre, le&nbsp;ruban arrive au&nbsp;loin</li>
+      <li>Le&nbsp;ruban en&nbsp;grand, la&nbsp;première famille au&nbsp;premier plan</li>
+      <li>Quelques défilements plus loin, le&nbsp;ruban a&nbsp;tourné</li>
+      <li>Au&nbsp;clic sur&nbsp;une&nbsp;vignette, la&nbsp;mosaïque mène à&nbsp;la&nbsp;famille, dans le&nbsp;catalogue</li>
+      <li>Sur&nbsp;téléphone</li>
+    </ol>
+  </header>
+
+  <figure>
+    <div class="cadre" style="--l:1440;--h:900"><div class="ecran" data-ecran="titre"></div></div>
+    <figcaption><strong>01 · Entrée du&nbsp;chapitre</strong><span>Le&nbsp;titre s’allume comme ceux des&nbsp;autres chapitres&nbsp;; le&nbsp;ruban arrive au&nbsp;loin, à&nbsp;droite, et&nbsp;commence à&nbsp;tourner.</span></figcaption>
+  </figure>
+
+  <figure>
+    <div class="cadre" style="--l:1440;--h:900"><div class="ecran" data-ecran="famille" data-actif="0"></div></div>
+    <figcaption><strong>02 · Le&nbsp;ruban, Bureautique au&nbsp;premier plan</strong><span>À&nbsp;gauche, les&nbsp;chiffres du&nbsp;catalogue&nbsp;; à&nbsp;droite, la&nbsp;famille au&nbsp;premier plan et&nbsp;ses&nbsp;voisines&nbsp;; en&nbsp;bas, le&nbsp;compteur et&nbsp;l’accès au&nbsp;catalogue.</span></figcaption>
+  </figure>
+
+  <figure>
+    <div class="cadre" style="--l:1440;--h:900"><div class="ecran" data-ecran="famille" data-actif="4"></div></div>
+    <figcaption><strong>03 · Le&nbsp;ruban a&nbsp;tourné&nbsp;: Langues</strong><span>Chaque cran de&nbsp;défilement amène la&nbsp;famille suivante au&nbsp;premier plan&nbsp;; la&nbsp;liste et&nbsp;le&nbsp;compteur suivent.</span></figcaption>
+  </figure>
+
+  <figure>
+    <div class="cadre" style="--l:1440;--h:900"><div class="ecran" data-ecran="mosaique"></div></div>
+    <figcaption><strong>04 · Au&nbsp;clic&nbsp;: la&nbsp;mosaïque</strong><span>Comme dans la&nbsp;référence, des&nbsp;carrés couvrent l’écran puis s’effacent sur&nbsp;la&nbsp;famille, dans la&nbsp;page Catalogue.</span></figcaption>
+  </figure>
+
+  <figure class="duo">
+    <div class="cadre cadre--tel" style="--l:390;--h:844"><div class="ecran" data-ecran="tel" data-actif="2"></div></div>
+    <figcaption><strong>05 · Sur&nbsp;téléphone</strong><span>Le&nbsp;ruban en&nbsp;haut, plus petit&nbsp;; la&nbsp;famille au&nbsp;premier plan dessous, avec ses&nbsp;voisines, le&nbsp;compteur et&nbsp;l’accès au&nbsp;catalogue.</span></figcaption>
+  </figure>
+</main>
+
+<script>
+  // les familles du catalogue (catalogue.html) ; Prévention n'a pas d'image : une vignette picto
+  const F = [
+    ['Bureautique', 'cat-bureautique', 'Des modules de formation pour tous les logiciels principaux de la suite Microsoft Office.'],
+    ['Bases informatiques', 'cat-base-info', 'Des modules pour se familiariser avec les différents éléments de l’ordinateur, du système d’exploitation Windows et de la messagerie.'],
+    ['Entraînement cognitif', 'cat-cognitif', 'Des modules ludiques pour exercer votre mémoire, votre concentration, votre fluidité verbale, votre raisonnement logique.'],
+    ['Santé', 'cat-sante', 'Mettez toutes les chances de votre côté afin d’intégrer les écoles paramédicales.'],
+    ['Langues', 'cat-langues', 'Découvrez nos méthodes d’apprentissage des langues anglaise, espagnole et allemande.'],
+    ['Savoirs de base', 'cat-savoir-base', 'Des parcours de formation adaptés à chacun sur les compétences de base en maths et en français.'],
+    ['Orientation', 'cat-orientation', 'Outils de mise en adéquation des carrières avec les choix vocationnels.'],
+    ['Prévention', null, 'Apprendre les gestes qui sauvent, se former pour mieux sécuriser, connaître les risques professionnels…'],
+    ['Tertiaire', 'cat-tertiaire', 'Des contenus au service du développement des compétences des collaborateurs.'],
+    ['CAO‑DAO', 'cat-cao-dao', 'Toutes nos formations Autocad et Revit pour apprendre à créer vos plans 2D ou 3D.'],
+    ['PAO', 'cat-pao', 'Préparer des documents destinés à l’impression ou la publication en ligne (flyers, logos, sites).'],
+    ['Développement', 'cat-dev', 'Apprenez les langages de développement les plus utilisés pour réaliser tous vos projets web.'],
+  ];
+    const el = (balise, classe, html) => { const e = document.createElement(balise); if (classe) e.className = classe; if (html != null) e.innerHTML = html; return e; };
+  const deux = (n) => String(n).padStart(2, '0');
+
+  // le ruban : une bande continue enroulée en hélice (k segments par tour, rayon R, hauteur hc,
+  // pas d'un tour) ; chaque image de famille s'étend sur deux segments, courbée avec la bande ;
+  // la famille « actif » face à nous. Les segments sont cisaillés (skewY) selon la pente de
+  // l'hélice : leurs bords se rejoignent, la bande reste continue
+  const fondPicto = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100"><defs><linearGradient id="g" x2="1" y2="1"><stop offset="0" stop-color="#6b56e2"/><stop offset="1" stop-color="#262385"/></linearGradient></defs><rect width="200" height="100" fill="url(#g)"/><g transform="translate(86 36) scale(1.2)" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.4-3.4 8.2-8 9-4.6-.8-8-4.6-8-9V6l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></g></svg>');
+  function helice({ actif = 0, segments = 28, k = 12, R = 330, hc = 186, tour = 300, inclinaison = [-20, 0, -12], echelle = 1, recul = 0 }) {
+    const pas = 360 / k, w = 2 * Math.PI * R / k, dy = tour / k;
+    const pente = Math.atan2(dy, w) * 180 / Math.PI;
+    const h = el('div', 'helice');
+    h.style.transform = `translateZ(${recul}px) scale(${echelle}) rotateX(${inclinaison[0]}deg) rotateY(${inclinaison[1]}deg) rotateZ(${inclinaison[2]}deg)`;
+    const centre = 2 * actif + .5, premier = Math.round(centre - segments / 2);
+    for (let i = 0; i < segments; i++) {
+      const j = premier + i, f = F[((Math.floor(j / 2) % F.length) + F.length) % F.length];
+      const a = (j - centre) * pas, y = (j - centre) * dy;
+      const v = el('div', 'vignette');
+      v.style.setProperty('--w', (w + 2.5).toFixed(1)); v.style.setProperty('--hc', hc);
+      v.style.backgroundImage = `url("${f[1] ? `img/site/${f[1]}.webp` : fondPicto}")`;
+      v.style.backgroundSize = '200% 100%';
+      v.style.backgroundPosition = ((j % 2) + 2) % 2 ? '100% 50%' : '0% 50%';
+      v.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0) rotateY(${a.toFixed(2)}deg) translateZ(${R}px) skewY(${pente.toFixed(2)}deg)`;
+      // la brume : le dos du ruban et ses deux bouts s'enfoncent dans la nuit
+      const face = Math.cos(a * Math.PI / 180), bout = Math.min(i, segments - 1 - i);
+      v.style.setProperty('--brume', Math.min(.9, (1 - face) * .3 + (bout < 4 ? (4 - bout) * .16 : 0)).toFixed(2));
+      v.style.opacity = bout === 0 ? .25 : bout === 1 ? .55 : bout === 2 ? .85 : 1;
+      h.append(v);
+    }
+    return h;
+  }
+  function scene(ecran, cadre, options) {
+    const s = el('div', 'scene3d');
+    Object.assign(s.style, cadre);
+    s.append(helice(options));
+    ecran.append(s);
+  }
+  function fond(ecran, src) { ecran.append(Object.assign(el('img', 'fond'), { src, alt: '' }), el('div', 'voile')); }
+  function liste(ecran, actif, style, tel) {
+    const l = el('div', 'liste'); Object.assign(l.style, style);
+    const nom = (d) => F[((actif + d) % F.length + F.length) % F.length][0];
+    if (!tel) l.append(el('p', 'voisin voisin--loin', nom(-2)));
+    l.append(el('p', 'voisin', nom(-1)));
+    const a = el('div', 'actif');
+    a.append(el('p', 'surtitre', `Famille de formation · ${deux(actif + 1)}`), el('p', 'nom', F[actif][0]), el('span', 'trait'), el('p', 'desc', F[actif][2]));
+    l.append(a, el('p', 'voisin', nom(1)));
+    if (!tel) l.append(el('p', 'voisin voisin--loin', nom(2)));
+    ecran.append(l);
+  }
+  function compteur(ecran, actif, style, taille) {
+    const c = el('div', 'compteur', `<small>Familles</small><b>${deux(actif + 1)}</b><i>/${F.length}</i>`);
+    Object.assign(c.style, style);
+    if (taille) c.querySelector('b').style.fontSize = taille;
+    ecran.append(c);
+  }
+  function bouton(ecran, style) {
+    const b = el('span', 'bouton', 'Accéder au&nbsp;catalogue <svg width="7" height="12" viewBox="0 0 7 12" fill="none"><path d="M1 1l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg>');
+    Object.assign(b.style, style); ecran.append(b);
+  }
+
+  const ECRANS = {
+    titre(e) {
+      fond(e, 'img/maquette/scene-catalogue.webp');
+      scene(e, { left: '640px', top: '120px', width: '760px', height: '700px' }, { actif: 0, echelle: .62, recul: -260, inclinaison: [-16, 0, -11] });
+      e.querySelectorAll('.vignette').forEach((v) => { v.style.opacity = (+v.style.opacity * .8).toFixed(2); });
+      const t = el('h2', 'chapitre', '6000&nbsp;h<br>de&nbsp;formations<br>interactives');
+      Object.assign(t.style, { left: '40px', top: '300px' }); e.append(t);
+      const p = el('p', 'pastille', 'Catalogue de&nbsp;formation · 12&nbsp;familles');
+      Object.assign(p.style, { left: '40px', top: '600px' }); e.append(p);
+      e.append(el('div', 'indicateur', '<span>03</span><span>05</span>'));
+    },
+    famille(e) {
+      const actif = +e.dataset.actif;
+      fond(e, 'img/maquette/scene-catalogue.webp');
+      scene(e, { left: '290px', top: '100px', width: '760px', height: '760px' }, { actif, echelle: .8, segments: 26 });
+      const m = el('dl', 'meta', '<dt>Catalogue</dt><dd>6000&nbsp;h de&nbsp;modules<br>e‑learning interactifs</dd><dt>Module</dt><dd>1&nbsp;h en&nbsp;moyenne,<br>4 à&nbsp;7&nbsp;leçons</dd><dt>Leçon</dt><dd>Un&nbsp;objectif pédagogique<br>précis</dd>');
+      Object.assign(m.style, { left: '40px', top: '330px' }); e.append(m);
+      liste(e, actif, { right: '70px', top: '235px', width: '360px' });
+      compteur(e, actif, { left: '40px', bottom: '40px' });
+      const fil = el('div', 'fil', '<b>Défilez</b><span>pour faire tourner le&nbsp;catalogue</span>');
+      Object.assign(fil.style, { right: '70px', bottom: '112px' }); e.append(fil);
+      bouton(e, { right: '70px', bottom: '40px' });
+    },
+    mosaique(e) {
+      e.style.background = '#2b1c7a';
+      const m = el('div', 'mosaique');
+      const pal = ['#6b56e2', '#262385', '#8a6ef0', '#a3b2f1', '#ee9cd2', '#ffb088', '#1d1e6c', '#4f5fd8', '#c9c2f6'];
+      let g = 7; const hasard = () => ((g = (g * 16807) % 2147483647) / 2147483647);
+      for (let i = 0; i < 160; i++) {
+        const c = el('i'), r = hasard();
+        if (r < .14) c.style.boxShadow = 'inset 0 0 0 6px #c9c2f6';
+        else if (r < .78) c.style.background = pal[Math.floor(hasard() * pal.length)];
+        m.append(c);
+      }
+      e.append(m);
+      const t = el('div', 'mosaique-titre', '<small>Famille de&nbsp;formation</small><strong>Bureautique</strong>');
+      e.append(t);
+    },
+    tel(e) {
+      const actif = +e.dataset.actif;
+      fond(e, 'img/maquette/scene-catalogue-mobile.webp');
+      scene(e, { left: '-60px', top: '80px', width: '510px', height: '380px' }, { actif, echelle: .4, segments: 22, inclinaison: [-18, 0, -12] });
+      liste(e, actif, { left: '20px', right: '20px', top: '470px' }, true);
+      e.querySelector('.liste .nom').style.fontSize = '30px';
+      compteur(e, actif, { left: '20px', bottom: '28px' }, '44px');
+      e.querySelector('.compteur small').remove();
+      bouton(e, { right: '20px', bottom: '24px', height: '44px', fontSize: '13px', gap: '10px' });
+    },
+  };
+  for (const e of document.querySelectorAll('[data-ecran]')) ECRANS[e.dataset.ecran](e);
+
+  // chaque écran garde sa taille réelle, réduit à la largeur de son cadre
+  const ajuster = () => document.querySelectorAll('.cadre').forEach((c) => c.firstElementChild.style.setProperty('--k', c.clientWidth / +getComputedStyle(c).getPropertyValue('--l')));
+  addEventListener('resize', ajuster); ajuster();
+</script>
+</body>
+</html>

@@ -178,6 +178,16 @@ téléphone). « La puissance de l'IA pour la formation » passe à droite, la g
 les pics et leurs données. L'essai est porté par
 `data-variante="ondes"` sur `<html>` : `monde.js` ne dessine pas le logo et remplace les cinq
 premières stations par une seule, `ouverture.js` cale seize stations au lieu de vingt.
+**Maquette à valider : la phase « Catalogue de formation ».** `maquette-catalogue.html`
+montre en écrans figés une étape à ajouter après « Une solution globale et modulaire » : les
+douze familles du catalogue sur un ruban de vignettes enroulé en hélice (d'après une vidéo de
+référence), qui tournerait au défilement ; à droite la famille au premier plan et ses
+voisines, à gauche les chiffres du catalogue, en bas un compteur (01 / 12) et l'accès au
+catalogue ; au clic, une mosaïque de carrés mène à la famille. Les écrans sont posés sur une
+capture de la scène 3D à cet endroit (`img/maquette/`) ; l'hélice y est en 3D CSS, chaque
+image de famille courbée sur deux segments du ruban. Textes et chiffres repris de la page
+Catalogue.
+
 **L'ouverture complète reste dans `intro-complete.html`** (mêmes scripts, sans l'attribut),
 telle que décrite ci-dessous. Après l'ouverture, dans les deux fichiers, les sections du site
 défilent l'une sous l'autre : les cinq méga-menus de l'en-tête en grand (LMS, Outils IA,
