@@ -399,8 +399,8 @@ s'affiche d'emblée. Sur téléphone, la vidéo passe sous le texte. Règles dan
 
 **L'ouverture de Contact en vidéo**, de la même manière : sur fond blanc, une étincelle bleue
 s'ouvre en ondes, puis en un large anneau de billes roses, violettes et bleues hérissé de fines
-tiges. La vidéo fournie (9 s, fond presque blanc remonté au blanc pur) est traitée comme celle
-de LMS : allure normale 7 s, puis ralenti en cosinus jusqu'à l'arrêt, 10,9 s en tout. Fichiers
+tiges. La vidéo fournie (9 s, fond presque blanc remonté au blanc pur) passe à son allure
+normale, sans ralenti, une fois, puis reste sur sa dernière image. Fichiers
 `img/site/contact-anneau.webm`, `.mp4`, `-1280.webm`, `-1280.mp4` et `contact-anneau-fin.webp`.
 Le texte est ferré à gauche, le titre en noir. La hauteur de l'ouverture suit le texte et non
 l'écran : sous le texte, l'anneau commence 48 px sous le paragraphe, et ses tiges montent à
