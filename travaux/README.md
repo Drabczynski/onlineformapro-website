@@ -409,6 +409,17 @@ cartes « Nous joindre » remontent dessus
 (`.tete-video--contact` dans `marque.css`, qui reprend aussi la base du bloc de texte, Contact
 chargeant `modele.css` et non `pages.css`).
 
+**« Innover pour l'équité » (LMS)**, entre « Côté apprenant » et le parcours de formation : la
+photo fournie en plein écran (une personne rit, écouteurs aux oreilles, devant son ordinateur,
+à droite dans un flou chaud), un voile sombre à gauche et en bas, et le texte blanc ferré à
+gauche, sous la hauteur du visage : l'étiquette « Innover pour l'équité », le titre sur quatre
+lignes (« Donner à chacun / les moyens d'apprendre / avec les technologies d'IA, / c'est déjà
+changer demain ») et le paragraphe sur l'IA levier d'équité. À l'arrivée, la photo se pose
+(léger recul) et les lignes du titre montent l'une après l'autre (`pages.js`, rien ne bouge si
+le visiteur a demandé moins d'animations). Sur téléphone, la photo en haut, fondue dans le
+sombre, le texte dessous ; la taille du titre suit la largeur pour garder les quatre lignes.
+Règles `.equite` dans `marque.css`.
+
 **Des chiffres semés dans les pages**, chacun dans un style différent, tous animés à leur
 arrivée à l'écran : les barres, anneaux et courbes se remplissent, et les nombres défilent
 jusqu'à leur valeur (`pages.js`, rien ne bouge si le visiteur a demandé moins d'animations).
@@ -466,7 +477,7 @@ page Démo.
 
 | Page | Contenu |
 |---|---|
-| `lms.html` | ouverture en vidéo, le texte ferré à gauche (la première ligne du titre en dégradé rose, violet, bleu), puis le montage des écrans en grand ; Saint-Gobain et chiffres ; côté administration (prise en main avec OnlineManager en pleine largeur, analyse des données, marque blanche) ; côté apprenant (panneau avec la tablette OnlineCompétences, Lisy, outils) ; parcours en trois étapes, du positionnement à l'attestation ; références (48 logos en deux onglets, et les autres noms du site officiel) ; témoignage France Education International ; spécifications techniques ; appel final |
+| `lms.html` | ouverture en vidéo, le texte ferré à gauche (la première ligne du titre en dégradé rose, violet, bleu), puis le montage des écrans en grand ; Saint-Gobain et chiffres ; côté administration (prise en main avec OnlineManager en pleine largeur, analyse des données, marque blanche) ; côté apprenant (panneau avec la tablette OnlineCompétences, Lisy, outils) ; « Innover pour l'équité » en photo plein écran ; parcours en trois étapes, du positionnement à l'attestation ; références (48 logos en deux onglets, et les autres noms du site officiel) ; témoignage France Education International ; spécifications techniques ; appel final |
 | `outils-ia.html` | photo d'ouverture ; « La puissance de l'IA… » ; un bloc par outil (visuel en grand, carte de texte, trois vignettes légendées pour FastFormation et RolePlay IA, quatre atouts) ; appel final. Ancres `#fastformation`, `#fastquiz`, `#learning-podcast`, `#roleplay` |
 | `catalogue.html` | ouverture en pleine page ; toutes les catégories (la nouveauté Google et sa vidéo en 16:9, puis les familles en cartes d'article) ; bloc pierre : témoignage SNCF et chiffres ; pédagogie (la grande image en pleine colonne) ; appel final |
 | `blog.html` | photo d'ouverture ; les 9 derniers articles du blog officiel, filtrables par catégorie ; l'inscription à la lettre |

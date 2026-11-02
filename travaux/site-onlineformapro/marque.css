@@ -663,3 +663,38 @@ body.fond-noir { background: var(--nuit); }
   .pied-reseaux { gap: 4px; }
   .pied-reseaux a { display: grid; place-items: center; width: 40px; height: 40px; margin-inline: -10px 0; }
 }
+
+/* ------------------------------------------------------------ LMS : « Innover pour l'équité » */
+/* une photo plein écran (une personne rit devant son ordinateur, à droite, dans un flou chaud) ;
+   un voile sombre à gauche et en bas, le texte blanc ferré à gauche, sous la hauteur du visage.
+   À l'arrivée, la photo se pose (léger recul) et les quatre lignes du titre montent l'une après
+   l'autre. Sur téléphone, la photo en haut, le texte dessous sur le sombre de la photo. */
+.equite { position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: flex-end; min-height: 100svh; padding: 120px var(--gouttiere) clamp(64px, 11svh, 120px); background: #0b1012; color: #fff; }
+.equite-photo { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 62% 40%; }
+.equite::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(90deg, rgba(8, 12, 14, .78) 0%, rgba(8, 12, 14, .5) 34%, rgba(8, 12, 14, 0) 58%),
+              linear-gradient(180deg, rgba(8, 12, 14, 0) 45%, rgba(8, 12, 14, .55) 100%); }
+.equite-texte { display: grid; gap: 28px; max-width: min(46vw, 720px); }
+.equite .etiquette { color: rgba(255, 255, 255, .72); }
+.equite-titre { margin: 0; font-weight: 300; font-size: clamp(32px, 3.4vw, 56px); line-height: 1.08; letter-spacing: -.035em; color: #fff; }
+.equite-titre .ligne { display: block; text-wrap: balance; }
+.equite-chapeau { max-width: 520px; margin: 0; font-size: clamp(17px, 1.3vw, 19px); line-height: 1.5; color: rgba(255, 255, 255, .82); }
+/* la photo se pose, le texte monte ligne à ligne (la classe est-visible vient de pages.js) */
+.js .equite-photo.apparait { opacity: 1; transform: scale(1.06); transition: transform 2.6s cubic-bezier(.2, .7, .2, 1); }
+.js .equite-photo.apparait.est-visible { transform: none; }
+.js .equite-texte.apparait { opacity: 1; transform: none; }
+.js .equite-texte.apparait > :is(.etiquette, .equite-chapeau), .js .equite-texte.apparait .ligne { opacity: 0; transform: translateY(.5em); transition: opacity 1s cubic-bezier(.2, .7, .2, 1), transform 1s cubic-bezier(.2, .7, .2, 1); }
+.js .equite-texte.apparait .ligne { transition-delay: calc(.15s + var(--l) * .12s); }
+.js .equite-texte.apparait > .equite-chapeau { transform: translateY(16px); transition-delay: .75s; }
+.js .equite-texte.apparait.est-visible > :is(.etiquette, .equite-chapeau), .js .equite-texte.apparait.est-visible .ligne { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .js .equite-photo.apparait, .js .equite-texte.apparait > :is(.etiquette, .equite-chapeau), .js .equite-texte.apparait .ligne { opacity: 1; transform: none; transition: none; }
+}
+@media (max-width: 860px) {
+  .equite { display: block; min-height: 0; padding: 0 0 64px; }
+  .equite-photo { position: relative; inset: auto; z-index: auto; height: min(78svh, 128vw); object-position: 66% 40%; -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%); mask-image: linear-gradient(180deg, #000 55%, transparent 100%); }
+  .equite::before { display: none; }
+  .equite-texte { position: relative; z-index: 1; max-width: none; margin-top: -72px; padding: 0 var(--gouttiere); gap: 22px; }
+  /* les quatre lignes tiennent sur la largeur : la plus longue fait environ 13,4 fois la taille */
+  .equite-titre { font-size: min(40px, calc((100vw - 40px) / 13.4)); }
+}

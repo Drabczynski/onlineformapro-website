@@ -45,6 +45,7 @@ Hors des cartes :
 | Analyse des données | `cartes/reporting.webp` | fournie | — |
 | Marque blanche | `cartes/marque-blanche.webp` | fournie | — |
 | Côté apprenant : le panneau du chapeau, la tablette à droite (et la carte « Côté apprenant » du méga-menu LMS) | `site/onlinecompetences-tablette.webp` | fournie (une main tient la tablette OnlineCompétences, détourée, 1134 × 1103) | — |
+| « Innover pour l'équité », entre « Côté apprenant » et le parcours : photo plein écran | `photos/equite-ecouteurs.webp` | fournie (une personne rit, écouteurs aux oreilles, devant son ordinateur, 1456 × 816) | une version plus grande (2560 px) serait plus nette en plein écran |
 | Lisy, le coach IA (tuile) | `site/lisy-tuteur.webp` | fournie (une apprenante et Lisy, son tuteur d’apprentissage IA, 768 × 513) | une version de 1600 px serait plus nette |
 | Parcours : Positionnement | `photos/positionnement.webp` | fournie (588 × 660) | — |
 | Parcours : Formation individualisée | `photos/route-foret.webp` | fournie (une route en lacets vue du ciel, 588 × 660) | — |
