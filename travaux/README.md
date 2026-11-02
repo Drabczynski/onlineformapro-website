@@ -389,10 +389,10 @@ en face, la description coupée à deux lignes, toute la carte cliquable) pour l
 couvre aussi la zone de la barre de Safari (100lvh), sans bande sombre en bas.
 
 **L'assistant sur téléphone** s'ouvre en plein écran dès qu'on touche le champ, sans faire
-monter le clavier (on voit d'abord toutes les propositions ; le clavier vient en touchant le
-champ du bas) : un bandeau « Assistant
-Onlineformapro » avec un bouton Fermer, le contenu qui défile (accès rapides, suggestions,
-exemples, puis la conversation), et le champ en bas, collé au-dessus du clavier (la feuille
+monter le clavier (on voit d'abord les suggestions ; le clavier vient en touchant le champ du
+bas) : un bandeau « Assistant
+Onlineformapro » avec un bouton Fermer, le contenu qui défile (seules les quatre suggestions
+illustrées, en tête, sans les accès rapides, les exemples ni la note ; puis la conversation), et le champ en bas, collé au-dessus du clavier (la feuille
 suit la partie visible de l'écran, `visualViewport`), avec un bouton Envoyer. Le champ est à
 16 px (en dessous, l'iPhone zoome toute la page quand on y entre : logo coupé, panneau
 décalé). Après l'envoi, le clavier se replie pour laisser tout l'écran à la réponse ; le
