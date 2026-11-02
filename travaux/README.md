@@ -376,6 +376,16 @@ emplissent l'écran) et `vagues` (une nappe
 de grains en larges bandes obliques, qui ondule comme un relief et file) ; seule la part
 visible de la forme est semée, d'où la densité des gros plans. La page d'essai `nuees.html`
 les montre l'un sous l'autre, en direct, pour choisir.
+En ouverture de LMS, derrière le titre centré, une nappe de fils de lumière (`fils.js`, WebGL 2
+sans bibliothèque) sur un ciel bleu pâle avec des lueurs rose et pêche. Les fils sont blancs et
+bleu pâle, avec quelques groupes pêche, roses et dorés. Ils viennent du bas de l'écran et se
+soulèvent en une vague en biais, basse à gauche, haute à droite. Ils passent sa crête, qui
+s'allume, et filent vers un horizon brumeux. De courtes fibres s'échappent de la crête et
+flottent, des éclats courent le long des fils, la vague ondule et suit à peine la souris. Le
+fond se fond dans la page sous les appareils et tire vers le blanc au défilement (variable CSS
+`--blanc`, réglée par `fils.js`) ; les règles sont dans `marque.css` (`.tete-fils`,
+`.fils-fond`). L'animation s'arrête hors de l'écran et reste figée si le visiteur a demandé
+moins d'animations ; sans WebGL 2, le fond dégradé reste seul.
 Les trois cartes « Nous joindre » remontent sur le bas de l'anneau (240 px, 120 sur téléphone),
 qui s'efface derrière elles (un filet, sans ombre, les détache). Sur téléphone, l'anneau passe en haut, le texte dessous ;
 l'animation s'arrête hors de l'écran et reste figée si le visiteur a demandé moins
@@ -412,7 +422,7 @@ page Démo.
 
 | Page | Contenu |
 |---|---|
-| `lms.html` | ouverture claire et centrée, le montage des écrans en grand ; Saint-Gobain et chiffres ; côté administration (prise en main avec OnlineManager en pleine largeur, analyse des données, marque blanche) ; côté apprenant (panneau avec la tablette OnlineCompétences, Lisy, outils) ; parcours en trois étapes, du positionnement à l'attestation ; références (48 logos en deux onglets, et les autres noms du site officiel) ; témoignage France Education International ; spécifications techniques ; appel final |
+| `lms.html` | ouverture centrée sur une nappe de fils de lumière qui tire vers le blanc au défilement (`fils.js`), le montage des écrans en grand ; Saint-Gobain et chiffres ; côté administration (prise en main avec OnlineManager en pleine largeur, analyse des données, marque blanche) ; côté apprenant (panneau avec la tablette OnlineCompétences, Lisy, outils) ; parcours en trois étapes, du positionnement à l'attestation ; références (48 logos en deux onglets, et les autres noms du site officiel) ; témoignage France Education International ; spécifications techniques ; appel final |
 | `outils-ia.html` | photo d'ouverture ; « La puissance de l'IA… » ; un bloc par outil (visuel en grand, carte de texte, trois vignettes légendées pour FastFormation et RolePlay IA, quatre atouts) ; appel final. Ancres `#fastformation`, `#fastquiz`, `#learning-podcast`, `#roleplay` |
 | `catalogue.html` | ouverture en pleine page ; toutes les catégories (la nouveauté Google et sa vidéo en 16:9, puis les familles en cartes d'article) ; bloc pierre : témoignage SNCF et chiffres ; pédagogie (la grande image en pleine colonne) ; appel final |
 | `blog.html` | photo d'ouverture ; les 9 derniers articles du blog officiel, filtrables par catégorie ; l'inscription à la lettre |
