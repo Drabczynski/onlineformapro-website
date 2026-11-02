@@ -393,7 +393,7 @@ de la fin sont des fondus entre images voisines, pour que le ralenti reste fluid
 - `lms-donnees-1280.webm` et `.mp4` (téléphone) ;
 - `lms-donnees-fin.webp` (la dernière image).
 
-La vidéo est calée en bas de l'ouverture, sur toute la largeur. Son blanc est fondu dans celui
+La vidéo est calée en bas de l'ouverture, sur toute la largeur, un peu descendue pour que ses barres passent sous les boutons. Le dégradé du titre court sur toute la phrase : chaque mot en montre sa part (`pages.js`, `.titre-degrade`). Le bouton clair est blanc, sur un flou de ce qu'il couvre. Son blanc est fondu dans celui
 de la page (mode produit, haut effacé), et le texte est ferré à gauche dans le blanc du haut.
 Elle se joue une fois et reste sur sa dernière image (`pages.js`, attribut `data-fin`). Si le
 visiteur a demandé moins d'animations, ou si le navigateur refuse la lecture, la dernière image

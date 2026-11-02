@@ -28,6 +28,21 @@ for (const titre of document.querySelectorAll(':is(.visuel-texte, .heros-texte, 
   titre.classList.add('titre-mots');
 }
 
+// un dégradé posé sur une phrase du titre (.titre-degrade) court sur toute la phrase : chaque
+// mot en montre sa part (sa place et la largeur de la phrase, en variables CSS), recalée quand
+// les polices arrivent et quand la fenêtre change de taille
+const degrades = document.querySelectorAll('.titre-degrade');
+if (degrades.length) {
+  const caler = () => degrades.forEach((d) => {
+    const r = d.getBoundingClientRect();
+    d.style.setProperty('--degrade-l', `${r.width.toFixed(1)}px`);
+    d.querySelectorAll('.mot').forEach((m) => m.style.setProperty('--degrade-x', `${(m.getBoundingClientRect().left - r.left).toFixed(1)}px`));
+  });
+  caler();
+  document.fonts?.ready.then(caler);
+  addEventListener('resize', caler);
+}
+
 // -------------------------------------------------------------------- changements de fond
 // une section marquée data-fond="noir" ou "chaud" fait passer toute la page à ce fond quand
 // elle franchit la ligne située à 40 % de la hauteur de l'écran ; la page redevient blanche

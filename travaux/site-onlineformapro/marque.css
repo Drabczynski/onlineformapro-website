@@ -437,18 +437,20 @@ body.fond-noir { background: var(--nuit); }
    sous le texte. */
 .tete-video { padding: 0; text-align: left; }
 .tete-video-scene { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; min-height: min(calc(100svh - 72px), 1000px); padding: clamp(56px, 12svh, 136px) var(--gouttiere) 0; }
-.tete-video-film { position: absolute; left: 0; right: 0; bottom: 0; z-index: -1; display: block; width: 100%; height: auto; mix-blend-mode: multiply; filter: brightness(1.02); pointer-events: none;
+.tete-video-film { position: absolute; left: 0; right: 0; bottom: calc(-1 * min(6vw, 96px)); z-index: -1; display: block; width: 100%; height: auto; mix-blend-mode: multiply; filter: brightness(1.02); pointer-events: none;
   -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 22%); mask-image: linear-gradient(180deg, transparent 0, #000 22%); }
 .tete-video .tete-produit-visuel { display: block; width: calc(100% - 2 * var(--gouttiere)); margin-inline: auto; }
 .tete-video .tete-produit-texte { justify-items: start; max-width: 920px; }
 .tete-video .tete-produit-texte .titre-1 { max-width: none; font-size: clamp(40px, 4.7vw, 72px); text-wrap: initial; }
 .tete-video .tete-produit-texte .texte-grand { max-width: 560px; }
 .tete-video .tete-produit-texte .boutons { justify-content: flex-start; }
-.titre-degrade { background: linear-gradient(90deg, #c63adf 0%, #8f45ec 48%, #4f58ee 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.titre-degrade .mot { background: inherit; -webkit-background-clip: text; background-clip: text; }
+.tete-video .bouton-clair { background: rgba(255, 255, 255, .74); box-shadow: inset 0 0 0 1px rgba(20, 20, 40, .08); -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2); }
+/* le dégradé court sur toute la phrase : chaque mot (découpé par pages.js) en montre sa part */
+.titre-degrade { --degrade: linear-gradient(90deg, #c63adf 0%, #8f45ec 48%, #4f58ee 100%); background: var(--degrade); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.titre-degrade .mot { background: var(--degrade) no-repeat; background-size: var(--degrade-l, 100%) 100%; background-position: calc(-1 * var(--degrade-x, 0px)) 0; -webkit-background-clip: text; background-clip: text; color: transparent; }
 @media (max-width: 860px) {
   .tete-video-scene { min-height: 0; padding-top: 48px; }
-  .tete-video-film { position: relative; order: 2; width: calc(100% + 2 * var(--gouttiere)); height: max(240px, 66vw); margin: 28px calc(-1 * var(--gouttiere)) 0; object-fit: cover; object-position: 68% 100%; }
+  .tete-video-film { position: relative; bottom: auto; order: 2; width: calc(100% + 2 * var(--gouttiere)); height: max(240px, 66vw); margin: 28px calc(-1 * var(--gouttiere)) 0; object-fit: cover; object-position: 68% 100%; }
   .tete-video .tete-produit-visuel { margin-top: 32px; }
 }
 
