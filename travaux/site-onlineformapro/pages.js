@@ -43,6 +43,28 @@ if (degrades.length) {
   addEventListener('resize', caler);
 }
 
+// le titre qui change d'argument (LMS) : toutes les 3,8 s, l'argument affiché s'efface mot à mot
+// et le suivant monte ; à l'arrêt quand le titre n'est pas à l'écran ou l'onglet caché, immobile
+// (le premier argument) si le visiteur a demandé moins d'animations
+for (const bloc of document.querySelectorAll('.titre-arguments')) {
+  const args = [...bloc.querySelectorAll('.titre-argument')];
+  args.forEach((arg) => arg.querySelectorAll('.mot').forEach((m, j) => m.style.setProperty('--j', j)));
+  if (args.length < 2 || matchMedia('(prefers-reduced-motion: reduce)').matches) continue;
+  let k = 0, visible = true;
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(bloc);
+  const suivant = () => {
+    if (!visible || document.hidden) return;
+    bloc.classList.add('tourne');
+    const avant = args[k];
+    k = (k + 1) % args.length;
+    avant.classList.add('sort');
+    avant.classList.remove('est-actif');
+    setTimeout(() => avant.classList.remove('sort'), 1100);
+    args[k].classList.add('est-actif');
+  };
+  setTimeout(() => setInterval(suivant, 3800), 1200);
+}
+
 // -------------------------------------------------------------------- changements de fond
 // une section marquée data-fond="noir" ou "chaud" fait passer toute la page à ce fond quand
 // elle franchit la ligne située à 40 % de la hauteur de l'écran ; la page redevient blanche

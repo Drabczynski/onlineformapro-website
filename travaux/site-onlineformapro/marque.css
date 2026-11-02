@@ -445,6 +445,15 @@ body.fond-noir { background: var(--nuit); }
 .tete-video .tete-produit-texte .texte-grand { max-width: 560px; }
 .tete-video .tete-produit-texte .boutons { justify-content: flex-start; }
 .tete-video .bouton-clair { background: rgba(255, 255, 255, .74); box-shadow: inset 0 0 0 1px rgba(20, 20, 40, .08); -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2); }
+/* le titre qui change d'argument : après « La plateforme LMS », les arguments s'empilent au
+   même endroit (la place du plus long) ; l'argument affiché s'efface mot à mot vers le haut, le
+   suivant monte (pages.js) */
+.titre-arguments { display: grid; }
+.titre-argument { grid-area: 1 / 1; text-wrap: balance; }
+.titre-arguments.tourne .mot { animation: none; }
+.js .titre-argument .mot { transition: opacity .5s ease, transform .75s cubic-bezier(.2, .7, .2, 1), filter .5s ease; transition-delay: calc(.32s + var(--j, 0) * 55ms); }
+.js .titre-argument:not(.est-actif) .mot { opacity: 0; transform: translateY(.38em); filter: blur(8px); }
+.js .titre-argument.sort .mot { transform: translateY(-.32em); transition-delay: calc(var(--j, 0) * 28ms); }
 /* le dégradé court sur toute la phrase : chaque mot (découpé par pages.js) en montre sa part */
 .titre-degrade { --degrade: linear-gradient(90deg, #c63adf 0%, #8f45ec 48%, #4f58ee 100%); background: var(--degrade); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .titre-degrade .mot { background: var(--degrade) no-repeat; background-size: var(--degrade-l, 100%) 100%; background-position: calc(-1 * var(--degrade-x, 0px)) 0; -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -454,10 +463,9 @@ body.fond-noir { background: var(--nuit); }
   .tete-video .tete-produit-visuel { margin-top: 32px; }
 }
 
-/* les pictogrammes des cartes : une tuile au dégradé du titre de l'ouverture LMS (rose,
-   violet, bleu), le trait blanc, sans ombre */
-:is(.atout, .carte-icone) .pictogramme { width: 48px; height: 48px; border: 0; border-radius: 14px; color: #fff; background: linear-gradient(135deg, #c63adf 0%, #8f45ec 52%, #4f58ee 100%); }
-:is(.atout, .carte-icone) .pictogramme svg { width: 24px; height: 24px; stroke-width: 1.7; }
+/* les pictogrammes des cartes : une tuile blanche au fin contour, le trait noir, plus grands */
+:is(.atout, .carte-icone) .pictogramme { width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--ligne, #e4e4e7); background: #fff; color: var(--encre, #000); }
+:is(.atout, .carte-icone) .pictogramme svg { width: 22px; height: 22px; stroke-width: 1.5; }
 /* les titres des cartes à pictogramme alignés d'une carte à l'autre, quelle que soit la longueur du texte */
 .carte-icone .titre-4 { margin-top: 28px; }
 /* une ligne image + texte d'un seul tenant : les deux moitiés collées, arrondies à l'extérieur */

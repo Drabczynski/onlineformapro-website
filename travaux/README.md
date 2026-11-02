@@ -383,17 +383,24 @@ emplissent l'écran) et `vagues` (une nappe
 de grains en larges bandes obliques, qui ondule comme un relief et file) ; seule la part
 visible de la forme est semée, d'où la densité des gros plans. La page d'essai `nuees.html`
 les montre l'un sous l'autre, en direct, pour choisir.
-**L'ouverture de LMS en vidéo.** Sur fond blanc, un petit nuage de données naît au centre,
-s'étale en une spirale de billes bleues, violettes et roses, puis s'élève en fines barres. La
-vidéo fournie (4 s) est ralentie en courbe : vitesse normale pendant 1,6 s, puis une
-décélération douce jusqu'à l'arrêt sur sa dernière image, en 6,4 s. Les images intermédiaires
-de la fin sont des fondus entre images voisines, pour que le ralenti reste fluide. Fichiers dans
+**L'ouverture de LMS en vidéo.** Sur fond blanc, un nuage de données naît au centre, s'étale
+en une spirale de billes bleues, violettes et roses, puis s'élève en fines barres. La vidéo
+fournie (9 s) a un fond gris lavande très léger, remonté au blanc pur image par image (niveaux).
+Elle joue à son allure normale pendant 7 s, puis ralentit en douceur, en cosinus, jusqu'à
+l'arrêt sur sa dernière image, pour ne pas couper sec ; l'ensemble dure 10,9 s. Les images
+intermédiaires de la fin sont des fondus entre images voisines, pour que le ralenti reste fluide. Fichiers dans
 `img/site/` :
 - `lms-donnees.webm` et `.mp4` (1920 px) ;
 - `lms-donnees-1280.webm` et `.mp4` (téléphone) ;
 - `lms-donnees-fin.webp` (la dernière image).
 
-La vidéo est calée en bas de l'ouverture, sur toute la largeur, un peu descendue pour que ses barres passent sous les boutons. Le dégradé du titre court sur toute la phrase : chaque mot en montre sa part (`pages.js`, `.titre-degrade`). Le bouton clair est blanc, sur un flou de ce qu'il couvre. Son blanc est fondu dans celui
+La vidéo est calée en bas de l'ouverture, sur toute la largeur, un peu descendue pour que ses barres passent sous les boutons. Le dégradé du titre court sur toute la phrase : chaque mot en montre sa part (`pages.js`, `.titre-degrade`). Après « La plateforme LMS », le titre change d'argument toutes les 3,8 s : « que les apprenants
+et administrateurs adorent », « qui accompagne 22 millions d'apprenants », « qui s'habille aux
+couleurs de votre entreprise », « qui rend chaque progression visible d'un coup d'œil », « qui
+parle 15 langues ». L'argument affiché s'efface mot à mot vers le haut, le suivant monte ; ils
+sont empilés au même endroit, à la place du plus long, pour que rien ne bouge en dessous. La
+rotation s'arrête hors de l'écran et n'a pas lieu si le visiteur a demandé moins d'animations
+(`pages.js`, `.titre-arguments`). Les lecteurs d'écran ne lisent que le premier argument. Le bouton clair est blanc, sur un flou de ce qu'il couvre. Son blanc est fondu dans celui
 de la page (mode produit, haut effacé), et le texte est ferré à gauche dans le blanc du haut.
 Elle se joue une fois et reste sur sa dernière image (`pages.js`, attribut `data-fin`). Si le
 visiteur a demandé moins d'animations, ou si le navigateur refuse la lecture, la dernière image
