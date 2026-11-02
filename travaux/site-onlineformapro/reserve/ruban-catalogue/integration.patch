@@ -1,0 +1,438 @@
+diff --git a/travaux/site-onlineformapro/index.html b/travaux/site-onlineformapro/index.html
+index a464cb2..d627859 100644
+--- a/travaux/site-onlineformapro/index.html
++++ b/travaux/site-onlineformapro/index.html
+@@ -81,7 +81,8 @@
+     <div class="scene">
+       <div class="scene-fond" aria-hidden="true"></div>
+       <canvas id="monde" aria-hidden="true"></canvas>
+-      <p class="indicateur vitre est-cache" aria-hidden="true"><span class="indicateur-num">01</span><span class="indicateur-total">04</span></p>
++      <canvas id="ruban" aria-hidden="true"></canvas>
++      <p class="indicateur vitre est-cache" aria-hidden="true"><span class="indicateur-num">01</span><span class="indicateur-total">05</span></p>
+     </div>
+ 
+     <div class="chapitres">
+@@ -173,8 +174,21 @@
+         </div>
+       </div>
+ 
+-      <!-- chapitre 03 -->
++      <!-- chapitre 03 : le catalogue, ses familles sur un ruban en hélice (ruban.js) qui tourne au
++           défilement pendant les 600 svh du paquet -->
+       <div class="bloc" style="--h: 350; --mt: -272.5" data-chapitre="3">
++        <div class="colle colle-centre"><h2 class="chapitre-titre grand" data-fenetre="115 230" data-revele="title">6000&nbsp;h<br>de&nbsp;formations<br>interactives</h2></div>
++      </div>
++      <div class="bloc paquet" style="--h: 950; --mt: -100" data-cartes="8" data-ruban>
++        <div class="colle">
++          <ol class="ruban-liste" data-fenetre="60 760" aria-label="Les&nbsp;familles du&nbsp;catalogue"><li data-image="img/site/cat-bureautique.webp">Bureautique</li><li data-image="img/site/cat-base-info.webp">Bases informatiques</li><li data-image="img/site/cat-cognitif.webp">Entraînement cognitif</li><li data-image="img/site/cat-sante.webp">Santé</li><li data-image="img/site/cat-langues.webp">Langues</li><li data-image="img/site/cat-savoir-base.webp">Savoirs de&nbsp;base</li><li data-image="img/site/cat-orientation.webp">Orientation</li><li data-image="">Prévention</li><li data-image="img/site/cat-tertiaire.webp">Tertiaire</li><li data-image="img/site/cat-cao-dao.webp">CAO&#8209;DAO</li><li data-image="img/site/cat-pao.webp">PAO</li><li data-image="img/site/cat-dev.webp">Développement</li></ol>
++          <p class="ruban-compteur" data-fenetre="60 760" aria-hidden="true"><b>01</b><span>/12</span></p>
++          <a class="ruban-bouton bouton-blanc" href="catalogue.html#titre-categories" data-fenetre="60 760"><span>Voir le&nbsp;catalogue</span><svg width="7" height="12" viewBox="0 0 7 12" fill="none" aria-hidden="true"><path d="M1 1l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a>
++        </div>
++      </div>
++
++      <!-- chapitre 04 -->
++      <div class="bloc" style="--h: 350; --mt: -272.5" data-chapitre="4">
+         <div class="colle colle-centre"><h2 class="chapitre-titre grand" data-fenetre="115 230" data-revele="title">Éprouvée<br>par 22&nbsp;millions<br>d’apprenants</h2></div>
+       </div>
+       <div class="bloc paquet" style="--h: 500; --mt: -100" data-cartes="2">
+@@ -195,8 +209,8 @@
+         </div>
+       </div>
+ 
+-      <!-- chapitre 04 : un bloc plus haut, le titre reste affiché jusqu'aux cartes -->
+-      <div class="bloc" style="--h: 470; --mt: -257.5" data-chapitre="4">
++      <!-- chapitre 05 : un bloc plus haut, le titre reste affiché jusqu'aux cartes -->
++      <div class="bloc" style="--h: 470; --mt: -257.5" data-chapitre="5">
+         <div class="colle colle-centre"><h2 class="chapitre-titre grand" data-fenetre="115 355" data-revele="title">Demander<br>une&nbsp;démonstration</h2></div>
+       </div>
+       <div class="bloc paquet" style="--h: 500; --mt: -200" data-cartes="2">
+diff --git a/travaux/site-onlineformapro/intro-complete.html b/travaux/site-onlineformapro/intro-complete.html
+index a596abe..cc99bc4 100644
+--- a/travaux/site-onlineformapro/intro-complete.html
++++ b/travaux/site-onlineformapro/intro-complete.html
+@@ -81,7 +81,8 @@
+     <div class="scene">
+       <div class="scene-fond" aria-hidden="true"></div>
+       <canvas id="monde" aria-hidden="true"></canvas>
+-      <p class="indicateur vitre est-cache" aria-hidden="true"><span class="indicateur-num">01</span><span class="indicateur-total">04</span></p>
++      <canvas id="ruban" aria-hidden="true"></canvas>
++      <p class="indicateur vitre est-cache" aria-hidden="true"><span class="indicateur-num">01</span><span class="indicateur-total">05</span></p>
+     </div>
+ 
+     <div class="chapitres">
+@@ -179,8 +180,21 @@
+         </div>
+       </div>
+ 
+-      <!-- chapitre 03 -->
++      <!-- chapitre 03 : le catalogue, ses familles sur un ruban en hélice (ruban.js) qui tourne au
++           défilement pendant les 600 svh du paquet -->
+       <div class="bloc" style="--h: 350; --mt: -272.5" data-chapitre="3">
++        <div class="colle colle-centre"><h2 class="chapitre-titre grand" data-fenetre="115 230" data-revele="title">6000&nbsp;h<br>de&nbsp;formations<br>interactives</h2></div>
++      </div>
++      <div class="bloc paquet" style="--h: 950; --mt: -100" data-cartes="8" data-ruban>
++        <div class="colle">
++          <ol class="ruban-liste" data-fenetre="60 760" aria-label="Les&nbsp;familles du&nbsp;catalogue"><li data-image="img/site/cat-bureautique.webp">Bureautique</li><li data-image="img/site/cat-base-info.webp">Bases informatiques</li><li data-image="img/site/cat-cognitif.webp">Entraînement cognitif</li><li data-image="img/site/cat-sante.webp">Santé</li><li data-image="img/site/cat-langues.webp">Langues</li><li data-image="img/site/cat-savoir-base.webp">Savoirs de&nbsp;base</li><li data-image="img/site/cat-orientation.webp">Orientation</li><li data-image="">Prévention</li><li data-image="img/site/cat-tertiaire.webp">Tertiaire</li><li data-image="img/site/cat-cao-dao.webp">CAO&#8209;DAO</li><li data-image="img/site/cat-pao.webp">PAO</li><li data-image="img/site/cat-dev.webp">Développement</li></ol>
++          <p class="ruban-compteur" data-fenetre="60 760" aria-hidden="true"><b>01</b><span>/12</span></p>
++          <a class="ruban-bouton bouton-blanc" href="catalogue.html#titre-categories" data-fenetre="60 760"><span>Voir le&nbsp;catalogue</span><svg width="7" height="12" viewBox="0 0 7 12" fill="none" aria-hidden="true"><path d="M1 1l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a>
++        </div>
++      </div>
++
++      <!-- chapitre 04 -->
++      <div class="bloc" style="--h: 350; --mt: -272.5" data-chapitre="4">
+         <div class="colle colle-centre"><h2 class="chapitre-titre grand" data-fenetre="115 230" data-revele="title">Éprouvée<br>par 22&nbsp;millions<br>d’apprenants</h2></div>
+       </div>
+       <div class="bloc paquet" style="--h: 500; --mt: -100" data-cartes="2">
+@@ -201,8 +215,8 @@
+         </div>
+       </div>
+ 
+-      <!-- chapitre 04 : un bloc plus haut, le titre reste affiché jusqu'aux cartes -->
+-      <div class="bloc" style="--h: 470; --mt: -257.5" data-chapitre="4">
++      <!-- chapitre 05 : un bloc plus haut, le titre reste affiché jusqu'aux cartes -->
++      <div class="bloc" style="--h: 470; --mt: -257.5" data-chapitre="5">
+         <div class="colle colle-centre"><h2 class="chapitre-titre grand" data-fenetre="115 355" data-revele="title">Demander<br>une&nbsp;démonstration</h2></div>
+       </div>
+       <div class="bloc paquet" style="--h: 500; --mt: -200" data-cartes="2">
+diff --git a/travaux/site-onlineformapro/monde.js b/travaux/site-onlineformapro/monde.js
+index 577e7a4..98e5c57 100644
+--- a/travaux/site-onlineformapro/monde.js
++++ b/travaux/site-onlineformapro/monde.js
+@@ -17,6 +17,7 @@ import { OutputPass } from './vendor/addons/postprocessing/OutputPass.js';
+ import { FXAAShader } from './vendor/addons/shaders/FXAAShader.js';
+ import { creerObjets, rectangle } from './objets.js';
+ import { creerParticules, nueeLignes, reseauSphere } from './particules.js';
++import { HELICE, MILIEU, MARGE_BORDS, courbesBords, versLExterieur } from './helice.js';
+ 
+ // les couleurs du modèle (bleu, orangé, blanc), le bleu tiré vers le violet (un bleu pur
+ // paraissait cyan à l'écran) ; pour passer au rouge de la marque, changer « rouge »
+@@ -205,9 +206,53 @@ const { bleu: B, rouge: R, blanc: W } = COULEURS;
+ const VOIES = [[-2.2, B], [-1.7, W, 0.013], [1.7, R], [2.2, B, 0.013]];
+ const VOIES_FINES = [[-1.8, R], [-0.9, B, 0.013], [0.9, W, 0.013], [1.8, B]];
+ 
++// -------------------------------------------------------------------- le rond-point du catalogue
++// L'anneau du rond-point : trois lignes au sol. Les deux premières bordent le ruban une fois
++// couché (helice.js) : ses bords lumineux s'en détachent, se redressent et montent en hélice
++// jusqu'au ciel. Les routes s'arrêtent sur la troisième.
++const ANNEAUX_RUBAN = [
++  [HELICE.rayon - HELICE.largeur / 2 - MARGE_BORDS, R, 0.018],
++  [HELICE.rayon + HELICE.largeur / 2 + MARGE_BORDS, W, 0.014],
++  [HELICE.rayon + HELICE.largeur / 2 + 0.75, B, 0.014],
++];
++// les bords lumineux du ruban (bas, haut) : [couleur, pulsé]
++const BORDS_RUBAN = [[R, true], [W, false]];
++function rondPointRuban(groupe) {
++  const K = HELICE.centre;
++  for (const [r, couleur, rayon] of ANNEAUX_RUBAN) {
++    const pts = [];
++    for (let j = 0; j < 96; j++) { const a = j / 96 * Math.PI * 2; pts.push(new THREE.Vector3(K.x + r * Math.sin(a), 0.03, K.z + r * Math.cos(a))); }
++    tube(groupe, new THREE.CatmullRomCurve3(pts, true), { couleur, rayon, route: false, bouts: [0, 0], ferme: true });
++  }
++  courbesBords().forEach((c, k) => tube(groupe, c, { couleur: BORDS_RUBAN[k][0], rayon: 0.022, route: BORDS_RUBAN[k][1], bouts: [1, 0] }));
++}
++// une route qui entre dans un anneau (ou en sort) : chaque voie s'arrête sur le cercle de
++// rayon « r » autour de « K » ; l'autre bout rejoint un carrefour (aucun bout ne s'efface)
++function routeAnneau(groupe, points, voies, K, r, { y = 0.03, rayon = 0.018 } = {}) {
++  const centre = courbe(points, y), n = Math.round(centre.getLength() * 1.4);
++  const dedans = (p) => Math.hypot(p.x - K.x, p.z - K.z) < r;
++  voies.forEach(([decal, couleur, rv], k) => {
++    const v = voie(centre, decal, n), l = v.getPoints(n), garde = [];
++    let entre = null;
++    for (let j = 0; j < l.length; j++) {
++      if (!dedans(l[j])) { garde.push(l[j]); continue; }
++      // le point où la voie croise le cercle, entre un point dehors et un point dedans
++      const voisin = j > 0 && !dedans(l[j - 1]) ? l[j - 1] : j < l.length - 1 && !dedans(l[j + 1]) ? l[j + 1] : null;
++      if (!voisin) continue;
++      let a = voisin.clone(), b = l[j].clone();
++      for (let i = 0; i < 24; i++) { const m = a.clone().lerp(b, 0.5); if (dedans(m)) b = m; else a = m; }
++      if (voisin === l[j - 1]) garde.push(a); else entre = a;
++    }
++    if (entre) garde.unshift(entre);
++    tube(groupe, new THREE.CatmullRomCurve3(garde), { couleur, rayon: rv || rayon, route: k % 2 === 0, bouts: [0, 0] });
++  });
++  return centre;
++}
++
+ // -------------------------------------------------------------------- le décor
+ // Le parcours, dans l'ordre : l'autoroute de l'ouverture et ses lacets, le graphique de pics
+-// (l'IA), le carrefour vu d'en haut (la solution modulaire), le croisement en X et ses
++// (l'IA), le carrefour vu d'en haut (la solution modulaire), le rond-point d'où le ruban du
++// catalogue monte en hélice (helice.js), le croisement en X et ses
+ // anneaux (les apprenants), la ligne droite et l'éventail (la démonstration).
+ // le logo : le Ó d'Onlineformapro dessiné en routes, comme un échangeur vu d'en haut, aux
+ // proportions du logo (en unités du dessin du logo, × k). L'anneau du O est une route
+@@ -279,8 +324,13 @@ function decor(groupe) {
+   // par le bras en bas à droite, le bras en haut à gauche file vers l'éventail
+   const P2 = new THREE.Vector3(200, 0, zc);
+   const arrivee = P2.clone().addScaledVector(dir(235), 45), sens = dir(55);
+-  routes.push(route(groupe, [[60, zc], [72, zc], [98, zc + 6], [122, zc + 28], [146, zc + 54], [arrivee.x - sens.x * 14, arrivee.z - sens.z * 14], [arrivee.x, arrivee.z]],
+-    [[-2.2, W, 0.018], [-1.7, B, 0.024], [1.7, R, 0.024], [2.2, B, 0.018]], { bouts: [0, 0] }));
++  // la liaison passe par le rond-point du catalogue (helice.js) : elle y entre par l'ouest et
++  // en ressort vers le croisement
++  const VOIES_LIAISON = [[-2.2, W, 0.018], [-1.7, B, 0.024], [1.7, R, 0.024], [2.2, B, 0.018]];
++  const K = HELICE.centre;
++  routes.push(routeAnneau(groupe, [[60, zc], [72, zc], [K.x, K.z]], VOIES_LIAISON, K, ANNEAUX_RUBAN[2][0]));
++  routes.push(routeAnneau(groupe, [[K.x, K.z], [112, zc + 10], [130, zc + 26], [148, zc + 42], [arrivee.x - sens.x * 14, arrivee.z - sens.z * 14], [arrivee.x, arrivee.z]], VOIES_LIAISON, K, ANNEAUX_RUBAN[2][0]));
++  rondPointRuban(groupe);
+   carrefour(groupe, P2, [
+     { angle: 55, longueur: 270, ouvert: true }, { angle: 125, longueur: 80, ouvert: true },
+     { angle: 235, longueur: 45 }, { angle: 305, longueur: 80, ouvert: true },
+@@ -379,6 +429,8 @@ export function creerMonde(toile) {
+   const tab = (p) => p.toArray();
+   const gauche = sens.clone().cross(HAUT).negate();
+   const auBout = (d, lat, h) => P2.clone().addScaledVector(sens, d).addScaledVector(gauche, lat).setY(h);
++  // le ruban du catalogue : la direction de la caméra de l'arrêt (vue de l'axe), et la droite de l'écran
++  const K = HELICE.centre, face = versLExterieur(HELICE.face), droiteK = face.clone().negate().cross(HAUT);
+   const STATIONS = [
+     // [progression, position, point visé, point visé sur écran en hauteur (l'objet, centré)]
+     [0.00, tab(L0.clone().add(new THREE.Vector3(4, 31, 28))), tab(L0.clone().add(new THREE.Vector3(5.5, 0, 1.6))), tab(L0.clone().add(new THREE.Vector3(0, 0, -3)))],   // l'ouverture : le logo dessiné en routes
+@@ -394,7 +446,15 @@ export function creerMonde(toile) {
+     [0.52, tab(C1.clone().add(new THREE.Vector3(-28, 26, 28))), tab(C1.clone().add(new THREE.Vector3(-7.5, 7, -7.5))), tab(C1.clone().setY(5))],   // le carrefour et le cube modulaire (la solution globale et modulaire)
+     [0.57, tab(C1.clone().add(new THREE.Vector3(-22, 22, 30))), tab(C1.clone().add(new THREE.Vector3(4.5, 7.5, 3))), tab(C1.clone().setY(5))],
+     [0.60, tab(C1.clone().add(new THREE.Vector3(-18, 21, 32))), tab(C1.clone().add(new THREE.Vector3(3, 7, 3))), tab(C1.clone().setY(6))],      // le cube complet
+-    [0.64, [110, 10, -385], [170, 0, -405]],             // la liaison vers le croisement
++    // le catalogue : la caméra suit la liaison jusqu'au rond-point, d'où le ruban monte en
++    // hélice (helice.js) ; il est à droite pendant le titre, puis elle s'arrête face à lui,
++    // un peu au-dessus, pendant que les familles y défilent (à gauche du centre, la liste à
++    // droite ; en haut sur un écran en hauteur, la liste dessous) ; elle s'en approche un peu,
++    // puis repart à côté de son sommet vers le croisement
++    [0.63, [14, 16, -400], [100, 8, -442], tab(K.clone().setY(5))],
++    [0.645, [40, 16, -405], [100, 9, -436], tab(K.clone().setY(4))],
++    [0.66, tab(K.clone().addScaledVector(face, HELICE.distance).setY(HELICE.hauteurVue)), tab(K.clone().addScaledVector(droiteK, 2.2).setY(MILIEU)), tab(K.clone().setY(MILIEU - 9))],
++    [0.68, tab(K.clone().addScaledVector(versLExterieur(HELICE.face + 0.1), HELICE.distance - 4).setY(HELICE.hauteurVue - 1)), tab(K.clone().addScaledVector(droiteK, 2.2).setY(MILIEU)), tab(K.clone().setY(MILIEU - 8.5))],
+     [0.72, tab(P2.clone().add(new THREE.Vector3(-58, 22, 6))), tab(P2.clone().add(new THREE.Vector3(0, 8, -9))), tab(P2.clone().setY(9))],    // le croisement en X, ses anneaux et la planète (les apprenants)
+     // près de la planète, pendant les cartes : sa courbe occupe la moitié basse gauche de l'écran,
+     // le reste hors champ (sur un écran en hauteur, sa courbe à gauche, au milieu)
+@@ -502,5 +562,5 @@ export function creerMonde(toile) {
+     valeurs.forEach((v, k) => { STATIONS[k][0] = Math.max(v, prec + 1e-4); prec = STATIONS[k][0]; });
+   }
+ 
+-  return { taille, image, alleger, placer };
++  return { taille, image, alleger, placer, camera };
+ }
+diff --git a/travaux/site-onlineformapro/ouverture.css b/travaux/site-onlineformapro/ouverture.css
+index 88ea03d..16f0230 100644
+--- a/travaux/site-onlineformapro/ouverture.css
++++ b/travaux/site-onlineformapro/ouverture.css
+@@ -54,6 +54,9 @@ h1, h2, h3 { font-family: var(--titre); }
+ .scene { position: sticky; top: 0; height: 100vh; height: 100lvh; overflow: hidden; align-self: start; }
+ .scene-fond { position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 100%, rgba(255, 90, 120, .14), transparent 60%), radial-gradient(100% 70% at 30% 90%, rgba(122, 104, 255, .2), transparent 55%), radial-gradient(90% 60% at 50% 0%, #2a0f6c, transparent 70%), var(--nuit); transition: opacity .6s ease; }
+ #monde { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity .6s ease; }
++/* le ruban du catalogue, dans son propre canevas, posé sur la scène (ruban.js) */
++#ruban { position: absolute; inset: 0; width: 100%; height: 100%; display: block; visibility: hidden; }
++.experience.sur-ruban { cursor: pointer; }
+ .avec-webgl #monde { opacity: 1; }
+ .avec-webgl .scene-fond { opacity: 0; }
+ .indicateur { position: absolute; left: var(--m); bottom: calc(33 * var(--u)); width: calc(80 * var(--u)); height: calc(50 * var(--u)); min-width: 56px; min-height: 36px; padding: calc(10 * var(--u)); background: rgba(255, 255, 255, .1); display: grid; grid-template-columns: 1fr 1fr; font-size: max(11px, calc(13 * var(--u))); font-variant-numeric: tabular-nums; }
+@@ -198,6 +201,25 @@ h1, h2, h3 { font-family: var(--titre); }
+    pics et leurs données */
+ @media (min-width: 980px) { [data-variante="ondes"] [data-chapitre="1"] .chapitre-titre { margin-inline: auto max(40px, calc((100% - 1660px) / 2)); text-align: right; } }
+ 
++/* le chapitre du catalogue : à droite, la liste des familles qui roule (la famille au premier
++   plan au milieu, ses voisines au-dessus et dessous, ouverture.js) ; en bas, le compteur et
++   l'accès au catalogue. Peu de texte : les images du ruban parlent */
++.ruban-liste { --pas-ruban: calc(62 * var(--u)); position: absolute; right: max(40px, calc((100% - 1660px) / 2)); top: 50%; width: calc(440 * var(--u)); height: 0; padding: 0; list-style: none; }
++.ruban-liste li { position: absolute; left: 0; right: 0; top: 0; translate: 0 -50%; text-align: center; font: 500 calc(42 * var(--u))/1.05 var(--titre); letter-spacing: -.035em; text-transform: uppercase; color: rgba(255, 255, 255, .45); white-space: nowrap; transform-origin: 50% 50%; will-change: transform, opacity; }
++.ruban-liste li.est-actif { color: #fff; }
++.ruban-compteur { position: absolute; left: calc(var(--m) + max(56px, 80 * var(--u)) + 24px); bottom: var(--m); display: flex; align-items: flex-end; gap: 6px; font-variant-numeric: tabular-nums; }
++.ruban-compteur b { font: 300 calc(96 * var(--u))/.8 var(--titre); letter-spacing: -.06em; color: rgba(170, 160, 255, .85); }
++.ruban-compteur span { padding-bottom: 4px; font-size: max(12px, calc(14 * var(--u))); color: rgba(255, 255, 255, .55); }
++.ruban-bouton { position: absolute; right: max(40px, calc((100% - 1660px) / 2)); bottom: var(--m); }
++/* la mosaïque, au clic sur le ruban : des carrés couvrent l'écran, le nom de la famille au milieu */
++.mosaique-catalogue { position: fixed; inset: 0; z-index: 1000; display: grid; grid-template-columns: repeat(var(--cols), 1fr); grid-template-rows: repeat(var(--rangs), 1fr); pointer-events: none; }
++.mosaique-catalogue i { display: block; animation: carre-entree .32s steps(3) both; }
++.mosaique-catalogue i.creux { box-shadow: inset 0 0 0 6px #c9c2f6; }
++@keyframes carre-entree { from { opacity: 0; transform: scale(.3); } }
++.mosaique-catalogue-titre { position: absolute; left: 0; right: 0; top: 50%; translate: 0 -50%; display: grid; justify-items: center; gap: 12px; text-align: center; animation: carre-entree .3s .35s both; }
++.mosaique-catalogue-titre small { padding: 6px 10px; background: #1d1e6c; font: 400 12px/1 "Chivo Mono", ui-monospace, monospace; letter-spacing: .12em; text-transform: uppercase; color: #fff; }
++.mosaique-catalogue-titre strong { padding: 4px 22px 10px; background: #e3375e; font: 600 clamp(36px, 6vw, 84px)/1 var(--titre); letter-spacing: -.045em; text-transform: uppercase; color: #fff; }
++
+ /* ------------------------------------------------------------------ petits écrans */
+ @media (max-width: 979px) {
+   :root { --u: calc(100vw / 760); }
+@@ -208,6 +230,11 @@ h1, h2, h3 { font-family: var(--titre); }
+   .accueil-pile .accueil-titre { font-size: calc(80 * var(--u)); line-height: calc(76 * var(--u)); }
+   [data-variante="ondes"] .accueil-encadre { left: var(--m); }
+   .accueil-photo { display: none; }
++  /* le catalogue sur téléphone : le ruban en haut (ruban.js), la liste dessous */
++  .ruban-liste { --pas-ruban: 40px; left: var(--m); right: var(--m); top: 64%; width: auto; }
++  .ruban-liste li { font-size: 28px; }
++  .ruban-compteur { left: calc(var(--m) + 76px); }
++  .ruban-compteur b { font-size: 48px; }
+   /* sur téléphone, un flou un peu moins large : l'écran est plus petit (l'effet reste aussi
+      marqué) et le calcul plus léger pour la carte graphique */
+   .carte { -webkit-backdrop-filter: blur(32px) saturate(1.5); backdrop-filter: blur(32px) saturate(1.5); }
+diff --git a/travaux/site-onlineformapro/ouverture.js b/travaux/site-onlineformapro/ouverture.js
+index 4919457..fb678cf 100644
+--- a/travaux/site-onlineformapro/ouverture.js
++++ b/travaux/site-onlineformapro/ouverture.js
+@@ -136,7 +136,7 @@ addEventListener('load', () => { for (const img of document.querySelectorAll('.c
+ 
+ // -------------------------------------------------------------------- mise en page
+ const blocs = [...document.querySelectorAll('.bloc')];
+-let elements = [], paquets = [], chapitres = [], gel = [], total = 1, finExperience = 0;
++let elements = [], paquets = [], chapitres = [], gel = [], total = 1, finExperience = 0, phaseRuban = null;
+ function mesurer() {
+   const y = scrollY, u = svh();
+   const haut = (el) => (el.getBoundingClientRect().top + y) / u;            // en svh
+@@ -149,12 +149,15 @@ function mesurer() {
+       elements.push({ el, debut: h + a, fin: h + z, carte: el.matches('.carte, .presentation-image'), etat: el._etat || false });
+     }
+   }
+-  paquets = [...document.querySelectorAll('.paquet')].map(p => ({ haut: haut(p), n: +p.dataset.cartes, barres: [...p.querySelectorAll('.progression i')] }));
++  paquets = [...document.querySelectorAll('.paquet')].map(p => ({ haut: haut(p), n: +p.dataset.cartes, barres: [...p.querySelectorAll('.progression i')], ruban: p.hasAttribute('data-ruban') }));
+   chapitres = [...document.querySelectorAll('[data-chapitre]')].map(c => haut(c) + 115);
+   // les arrêts de la caméra : pendant les cartes de chaque chapitre (en hauteurs d'écran)
+   gel = paquets.map(p => ({ de: (p.haut + 100) / 100, a: (p.haut + 100 + 75 * p.n) / 100, part: 0.95 }));
+   const dernier = paquets[paquets.length - 1];
+   finExperience = (dernier.haut + 100 + 75 * dernier.n) / 100 + 0.75;
++  // le chapitre du catalogue : son titre, et l'arrêt pendant lequel le ruban tourne
++  const r = paquets.findIndex(p => p.ruban);
++  phaseRuban = r < 0 ? null : { titre: chapitres[2] / 100, de: gel[r].de, a: gel[r].a };
+   total = avance(finExperience);
+   if (monde) monde.placer(stations(), moments());
+ }
+@@ -168,13 +171,15 @@ function avance(e) {
+   return ajuste;
+ }
+ const progressionDe = (e) => Math.min(1, Math.max(0, avance(e) / total));
+-// les stations de la caméra, calées sur les textes (positions en écrans) : vingt pour
+-// l'ouverture complète, seize pour l'essai « ondes » qui part juste avant les pics
++// les stations de la caméra, calées sur les textes (positions en écrans) : vingt-trois pour
++// l'ouverture complète, dix-neuf pour l'essai « ondes » qui part juste avant les pics
+ function ecransDesStations() {
+-  const [c1, c2, c3, c4] = chapitres.map(v => v / 100);
+-  const [g1, g2, g3, g4] = gel;
+-  // au chapitre 1 : l'arrêt devant les pics, l'entrée dedans, les cartes au milieu d'eux, la sortie
+-  const suite = [c1 + 0.4, (c1 + 0.4 + g1.de) / 2, g1.de, g1.a + 0.35, g1.a + 0.9, c2 + 0.3, g2.de, g2.a, g2.a + 0.9, c3 + 0.3, g3.de, c4 + 0.3, g4.de, g4.de + 0.9, finExperience];
++  const [c1, c2, cr, c3, c4] = chapitres.map(v => v / 100);
++  const [g1, g2, gr, g3, g4] = gel;
++  // au chapitre 1 : l'arrêt devant les pics, l'entrée dedans, les cartes au milieu d'eux, la
++  // sortie ; au chapitre du catalogue, la caméra suit la liaison jusqu'au rond-point du ruban
++  // (pendant le titre), s'arrête face au ruban le temps des familles, puis repart
++  const suite = [c1 + 0.4, (c1 + 0.4 + g1.de) / 2, g1.de, g1.a + 0.35, g1.a + 0.9, c2 + 0.3, g2.de, g2.a, g2.a + 0.9, cr + 1.0, gr.de, gr.a, c3 + 0.3, g3.de, c4 + 0.3, g4.de, g4.de + 0.9, finExperience];
+   // avant : le logo, la descente vers l'autoroute, l'autoroute, les lacets, l'approche des pics
+   return racine.dataset.variante === 'ondes' ? [0, ...suite] : [0, 0.35, 1.3, 2.0, c1 - 0.5, ...suite];
+ }
+@@ -206,11 +211,104 @@ import('./monde.js').then(async ({ creerMonde }) => {
+   racine.classList.add('avec-webgl');
+   monde.taille();
+   monde.placer(stations(), moments());
++  chargerRuban();
+ }).catch((e) => {
+   racine.classList.add('sans-webgl');
+   console.warn('WebGL indisponible :', e);
+ });
+ 
++// -------------------------------------------------------------------- le ruban du catalogue
++// chargé après le monde, dans son propre canevas (ruban.js), vu par la caméra du monde : il
++// monte du rond-point de la liaison, entre le cube et la planète (helice.js). Pendant l'arrêt
++// du chapitre, le défilement fait glisser les images le long du ruban : la famille au premier
++// plan (f, en continu) commande la liste qui roule à droite et le compteur. Un clic sur le
++// ruban, ou sur « Voir le catalogue », couvre l'écran d'une mosaïque de carrés et mène au
++// catalogue
++const toileRuban = document.getElementById('ruban');
++const listeRuban = [...document.querySelectorAll('.ruban-liste li')];
++const compteurRuban = document.querySelector('.ruban-compteur b');
++let ruban = null, familleAffichee = -1, rubanActif = false, familleRuban = 0;
++function chargerRuban() {
++  if (!toileRuban || !listeRuban.length) return;
++  import('./ruban.js').then(({ creerRuban }) => {
++    ruban = creerRuban(toileRuban, listeRuban.map(li => [li.textContent, li.dataset.image || null]));
++    ruban.taille();
++  }).catch((e) => console.warn('Ruban indisponible :', e));
++}
++function majRuban(e, t) {
++  if (!phaseRuban || !listeRuban.length) return;
++  const { titre, de, a } = phaseRuban, n = listeRuban.length;
++  // le clic sur le ruban : du titre du chapitre à un peu après l'arrêt
++  rubanActif = e > titre - 0.3 && e < a + 0.6;
++  familleRuban = Math.min(1, Math.max(0, (e - de) / (a - de))) * (n - 1);
++  if (ruban && monde) ruban.image({ vue: monde.camera, f: familleRuban, temps: t, anime });
++  if (!rubanActif) survolRuban(false); else revoirSurvol();
++  // la liste roule : la famille au premier plan au milieu, ses voisines au-dessus et dessous
++  listeRuban.forEach((li, i) => {
++    const d = i - familleRuban, ad = Math.abs(d);
++    li.style.transform = `translateY(calc(${d.toFixed(3)} * var(--pas-ruban))) scale(${(1 - Math.min(ad, 2.5) * 0.16).toFixed(3)})`;
++    li.style.opacity = ad > 2.6 ? 0 : (1 - ad * 0.36).toFixed(3);
++  });
++  const k = Math.round(familleRuban);
++  if (k !== familleAffichee) {
++    familleAffichee = k;
++    compteurRuban.textContent = String(k + 1).padStart(2, '0');
++    listeRuban.forEach((li, i) => li.classList.toggle('est-actif', i === k));
++  }
++}
++function versCatalogue(e, depuisRuban = false) {
++  const adresse = 'catalogue.html#titre-categories';
++  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;   // un nouvel onglet : le navigateur s'en charge
++  // sans animations : directement au catalogue
++  if (!anime) { if (depuisRuban) location.href = adresse; return; }
++  e.preventDefault();
++  const nom = listeRuban[Math.round(familleRuban)].textContent, m = document.createElement('div');
++  m.className = 'mosaique-catalogue';
++  const etroit = innerWidth < innerHeight, cols = etroit ? 8 : 16, rangs = etroit ? 14 : 10;
++  m.style.setProperty('--cols', cols); m.style.setProperty('--rangs', rangs);
++  const COULEURS = ['#6b56e2', '#262385', '#8a6ef0', '#a3b2f1', '#ee9cd2', '#ffb088', '#1d1e6c', '#4f5fd8', '#c9c2f6'];
++  for (let i = 0; i < cols * rangs; i++) {
++    const c = document.createElement('i'), r = Math.random();
++    if (r < 0.14) c.className = 'creux'; else c.style.background = COULEURS[Math.floor(Math.random() * COULEURS.length)];
++    c.style.animationDelay = `${Math.round(Math.random() * 380)}ms`;
++    m.append(c);
++  }
++  const titre = document.createElement('p');
++  titre.className = 'mosaique-catalogue-titre';
++  titre.innerHTML = `<small>Famille de formation</small><strong></strong>`;
++  titre.querySelector('strong').textContent = nom;
++  m.append(titre);
++  document.body.append(m);
++  setTimeout(() => { location.href = adresse; }, 900);
++}
++// la toile du ruban est sous les chapitres : on vise le ruban lui-même (un rayon sur sa surface
++// visible), hors liens, boutons et cartes. La scène bouge sous un pointeur immobile (la caméra
++// suit la souris) : le survol se revérifie aussi de temps en temps, image après image
++const experienceRuban = toileRuban?.closest('.experience') || document.body;
++let surRuban = false, pointeurRuban = null, tourSurvol = 0;
++function viseRuban(x, y, cible) {
++  if (!ruban || !rubanActif || !cible) return false;
++  if (cible.closest('a, button, input, textarea, .carte, .entete, dialog')) return false;
++  const r = toileRuban.getBoundingClientRect();
++  return ruban.sous(x - r.left, y - r.top);
++}
++function survolRuban(v) { if (v !== surRuban) { surRuban = v; experienceRuban.classList.toggle('sur-ruban', v); } }
++function revoirSurvol() {
++  if (!pointeurRuban || !rubanActif || ++tourSurvol % 6) return;
++  survolRuban(viseRuban(pointeurRuban.x, pointeurRuban.y, document.elementFromPoint(pointeurRuban.x, pointeurRuban.y)));
++}
++if (toileRuban) {
++  addEventListener('pointermove', (e) => {
++    if (e.pointerType !== 'mouse') return;
++    pointeurRuban = { x: e.clientX, y: e.clientY };
++    if (surRuban || rubanActif) survolRuban(viseRuban(e.clientX, e.clientY, e.target));
++  }, { passive: true });
++  addEventListener('click', (e) => { if (viseRuban(e.clientX, e.clientY, e.target)) versCatalogue(e, true); });
++}
++document.querySelector('.ruban-bouton')?.addEventListener('click', versCatalogue);
++// au retour arrière depuis le catalogue, la page revient sans sa mosaïque
++addEventListener('pageshow', () => document.querySelectorAll('.mosaique-catalogue').forEach(m => m.remove()));
++
+ // -------------------------------------------------------------------- l'indicateur 01 / 04
+ const indicateur = document.querySelector('.indicateur'), indicateurNum = indicateur.querySelector('.indicateur-num');
+ let indicateurVisible = false, indicateurValeur = 1;
+@@ -280,6 +378,7 @@ function image(ms) {
+   souris.x += (sourisCible.x - souris.x) * Math.min(1, dt * 6);
+   souris.y += (sourisCible.y - souris.y) * Math.min(1, dt * 6);
+   monde.image({ progression, souris, temps: t, dt, anime, intro });
++  majRuban(s / 100, t);
+   // si la machine peine (plus de 28 ms par image en moyenne), on allège le rendu
+   mesures.push(dt);
+   if (mesures.length >= 90) {
+@@ -301,7 +400,7 @@ matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) =>
+ // -------------------------------------------------------------------- départ
+ document.querySelectorAll('[data-revele="title"], [data-revele="text"]').forEach(el => { el._morceaux = decouper(el, el.dataset.revele); });
+ appliquer(anime);
+-function redimensionner() { if (monde) monde.taille(); mesurer(); }
++function redimensionner() { if (monde) monde.taille(); if (ruban) ruban.taille(); mesurer(); }
+ addEventListener('resize', redimensionner);
+ redimensionner();
+ requestAnimationFrame(image);

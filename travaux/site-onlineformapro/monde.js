@@ -17,7 +17,6 @@ import { OutputPass } from './vendor/addons/postprocessing/OutputPass.js';
 import { FXAAShader } from './vendor/addons/shaders/FXAAShader.js';
 import { creerObjets, rectangle } from './objets.js';
 import { creerParticules, nueeLignes, reseauSphere } from './particules.js';
-import { HELICE, MILIEU, MARGE_BORDS, courbesBords, versLExterieur } from './helice.js';
 
 // les couleurs du modèle (bleu, orangé, blanc), le bleu tiré vers le violet (un bleu pur
 // paraissait cyan à l'écran) ; pour passer au rouge de la marque, changer « rouge »
@@ -206,53 +205,9 @@ const { bleu: B, rouge: R, blanc: W } = COULEURS;
 const VOIES = [[-2.2, B], [-1.7, W, 0.013], [1.7, R], [2.2, B, 0.013]];
 const VOIES_FINES = [[-1.8, R], [-0.9, B, 0.013], [0.9, W, 0.013], [1.8, B]];
 
-// -------------------------------------------------------------------- le rond-point du catalogue
-// L'anneau du rond-point : trois lignes au sol. Les deux premières bordent le ruban une fois
-// couché (helice.js) : ses bords lumineux s'en détachent, se redressent et montent en hélice
-// jusqu'au ciel. Les routes s'arrêtent sur la troisième.
-const ANNEAUX_RUBAN = [
-  [HELICE.rayon - HELICE.largeur / 2 - MARGE_BORDS, R, 0.018],
-  [HELICE.rayon + HELICE.largeur / 2 + MARGE_BORDS, W, 0.014],
-  [HELICE.rayon + HELICE.largeur / 2 + 0.75, B, 0.014],
-];
-// les bords lumineux du ruban (bas, haut) : [couleur, pulsé]
-const BORDS_RUBAN = [[R, true], [W, false]];
-function rondPointRuban(groupe) {
-  const K = HELICE.centre;
-  for (const [r, couleur, rayon] of ANNEAUX_RUBAN) {
-    const pts = [];
-    for (let j = 0; j < 96; j++) { const a = j / 96 * Math.PI * 2; pts.push(new THREE.Vector3(K.x + r * Math.sin(a), 0.03, K.z + r * Math.cos(a))); }
-    tube(groupe, new THREE.CatmullRomCurve3(pts, true), { couleur, rayon, route: false, bouts: [0, 0], ferme: true });
-  }
-  courbesBords().forEach((c, k) => tube(groupe, c, { couleur: BORDS_RUBAN[k][0], rayon: 0.022, route: BORDS_RUBAN[k][1], bouts: [1, 0] }));
-}
-// une route qui entre dans un anneau (ou en sort) : chaque voie s'arrête sur le cercle de
-// rayon « r » autour de « K » ; l'autre bout rejoint un carrefour (aucun bout ne s'efface)
-function routeAnneau(groupe, points, voies, K, r, { y = 0.03, rayon = 0.018 } = {}) {
-  const centre = courbe(points, y), n = Math.round(centre.getLength() * 1.4);
-  const dedans = (p) => Math.hypot(p.x - K.x, p.z - K.z) < r;
-  voies.forEach(([decal, couleur, rv], k) => {
-    const v = voie(centre, decal, n), l = v.getPoints(n), garde = [];
-    let entre = null;
-    for (let j = 0; j < l.length; j++) {
-      if (!dedans(l[j])) { garde.push(l[j]); continue; }
-      // le point où la voie croise le cercle, entre un point dehors et un point dedans
-      const voisin = j > 0 && !dedans(l[j - 1]) ? l[j - 1] : j < l.length - 1 && !dedans(l[j + 1]) ? l[j + 1] : null;
-      if (!voisin) continue;
-      let a = voisin.clone(), b = l[j].clone();
-      for (let i = 0; i < 24; i++) { const m = a.clone().lerp(b, 0.5); if (dedans(m)) b = m; else a = m; }
-      if (voisin === l[j - 1]) garde.push(a); else entre = a;
-    }
-    if (entre) garde.unshift(entre);
-    tube(groupe, new THREE.CatmullRomCurve3(garde), { couleur, rayon: rv || rayon, route: k % 2 === 0, bouts: [0, 0] });
-  });
-  return centre;
-}
-
 // -------------------------------------------------------------------- le décor
 // Le parcours, dans l'ordre : l'autoroute de l'ouverture et ses lacets, le graphique de pics
-// (l'IA), le carrefour vu d'en haut (la solution modulaire), le rond-point d'où le ruban du
-// catalogue monte en hélice (helice.js), le croisement en X et ses
+// (l'IA), le carrefour vu d'en haut (la solution modulaire), le croisement en X et ses
 // anneaux (les apprenants), la ligne droite et l'éventail (la démonstration).
 // le logo : le Ó d'Onlineformapro dessiné en routes, comme un échangeur vu d'en haut, aux
 // proportions du logo (en unités du dessin du logo, × k). L'anneau du O est une route
@@ -324,13 +279,8 @@ function decor(groupe) {
   // par le bras en bas à droite, le bras en haut à gauche file vers l'éventail
   const P2 = new THREE.Vector3(200, 0, zc);
   const arrivee = P2.clone().addScaledVector(dir(235), 45), sens = dir(55);
-  // la liaison passe par le rond-point du catalogue (helice.js) : elle y entre par l'ouest et
-  // en ressort vers le croisement
-  const VOIES_LIAISON = [[-2.2, W, 0.018], [-1.7, B, 0.024], [1.7, R, 0.024], [2.2, B, 0.018]];
-  const K = HELICE.centre;
-  routes.push(routeAnneau(groupe, [[60, zc], [72, zc], [K.x, K.z]], VOIES_LIAISON, K, ANNEAUX_RUBAN[2][0]));
-  routes.push(routeAnneau(groupe, [[K.x, K.z], [112, zc + 10], [130, zc + 26], [148, zc + 42], [arrivee.x - sens.x * 14, arrivee.z - sens.z * 14], [arrivee.x, arrivee.z]], VOIES_LIAISON, K, ANNEAUX_RUBAN[2][0]));
-  rondPointRuban(groupe);
+  routes.push(route(groupe, [[60, zc], [72, zc], [98, zc + 6], [122, zc + 28], [146, zc + 54], [arrivee.x - sens.x * 14, arrivee.z - sens.z * 14], [arrivee.x, arrivee.z]],
+    [[-2.2, W, 0.018], [-1.7, B, 0.024], [1.7, R, 0.024], [2.2, B, 0.018]], { bouts: [0, 0] }));
   carrefour(groupe, P2, [
     { angle: 55, longueur: 270, ouvert: true }, { angle: 125, longueur: 80, ouvert: true },
     { angle: 235, longueur: 45 }, { angle: 305, longueur: 80, ouvert: true },
@@ -429,8 +379,6 @@ export function creerMonde(toile) {
   const tab = (p) => p.toArray();
   const gauche = sens.clone().cross(HAUT).negate();
   const auBout = (d, lat, h) => P2.clone().addScaledVector(sens, d).addScaledVector(gauche, lat).setY(h);
-  // le ruban du catalogue : la direction de la caméra de l'arrêt (vue de l'axe), et la droite de l'écran
-  const K = HELICE.centre, face = versLExterieur(HELICE.face), droiteK = face.clone().negate().cross(HAUT);
   const STATIONS = [
     // [progression, position, point visé, point visé sur écran en hauteur (l'objet, centré)]
     [0.00, tab(L0.clone().add(new THREE.Vector3(4, 31, 28))), tab(L0.clone().add(new THREE.Vector3(5.5, 0, 1.6))), tab(L0.clone().add(new THREE.Vector3(0, 0, -3)))],   // l'ouverture : le logo dessiné en routes
@@ -446,15 +394,7 @@ export function creerMonde(toile) {
     [0.52, tab(C1.clone().add(new THREE.Vector3(-28, 26, 28))), tab(C1.clone().add(new THREE.Vector3(-7.5, 7, -7.5))), tab(C1.clone().setY(5))],   // le carrefour et le cube modulaire (la solution globale et modulaire)
     [0.57, tab(C1.clone().add(new THREE.Vector3(-22, 22, 30))), tab(C1.clone().add(new THREE.Vector3(4.5, 7.5, 3))), tab(C1.clone().setY(5))],
     [0.60, tab(C1.clone().add(new THREE.Vector3(-18, 21, 32))), tab(C1.clone().add(new THREE.Vector3(3, 7, 3))), tab(C1.clone().setY(6))],      // le cube complet
-    // le catalogue : la caméra suit la liaison jusqu'au rond-point, d'où le ruban monte en
-    // hélice (helice.js) ; il est à droite pendant le titre, puis elle s'arrête face à lui,
-    // un peu au-dessus, pendant que les familles y défilent (à gauche du centre, la liste à
-    // droite ; en haut sur un écran en hauteur, la liste dessous) ; elle s'en approche un peu,
-    // puis repart à côté de son sommet vers le croisement
-    [0.63, [14, 16, -400], [100, 8, -442], tab(K.clone().setY(5))],
-    [0.645, [40, 16, -405], [100, 9, -436], tab(K.clone().setY(4))],
-    [0.66, tab(K.clone().addScaledVector(face, HELICE.distance).setY(HELICE.hauteurVue)), tab(K.clone().addScaledVector(droiteK, 2.2).setY(MILIEU)), tab(K.clone().setY(MILIEU - 9))],
-    [0.68, tab(K.clone().addScaledVector(versLExterieur(HELICE.face + 0.1), HELICE.distance - 4).setY(HELICE.hauteurVue - 1)), tab(K.clone().addScaledVector(droiteK, 2.2).setY(MILIEU)), tab(K.clone().setY(MILIEU - 8.5))],
+    [0.64, [110, 10, -385], [170, 0, -405]],             // la liaison vers le croisement
     [0.72, tab(P2.clone().add(new THREE.Vector3(-58, 22, 6))), tab(P2.clone().add(new THREE.Vector3(0, 8, -9))), tab(P2.clone().setY(9))],    // le croisement en X, ses anneaux et la planète (les apprenants)
     // près de la planète, pendant les cartes : sa courbe occupe la moitié basse gauche de l'écran,
     // le reste hors champ (sur un écran en hauteur, sa courbe à gauche, au milieu)
@@ -562,5 +502,5 @@ export function creerMonde(toile) {
     valeurs.forEach((v, k) => { STATIONS[k][0] = Math.max(v, prec + 1e-4); prec = STATIONS[k][0]; });
   }
 
-  return { taille, image, alleger, placer, camera };
+  return { taille, image, alleger, placer };
 }

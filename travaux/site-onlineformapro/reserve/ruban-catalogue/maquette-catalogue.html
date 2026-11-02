@@ -150,7 +150,7 @@
       const a = (j - centre) * pas, y = (j - centre) * dy;
       const v = el('div', 'vignette');
       v.style.setProperty('--w', (w + 2.5).toFixed(1)); v.style.setProperty('--hc', hc);
-      v.style.backgroundImage = `url("${f[1] ? `img/site/${f[1]}.webp` : fondPicto}")`;
+      v.style.backgroundImage = `url("${f[1] ? `../../img/site/${f[1]}.webp` : fondPicto}")`;
       v.style.backgroundSize = '200% 100%';
       v.style.backgroundPosition = ((j % 2) + 2) % 2 ? '100% 50%' : '0% 50%';
       v.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0) rotateY(${a.toFixed(2)}deg) translateZ(${R}px) skewY(${pente.toFixed(2)}deg)`;
@@ -193,7 +193,7 @@
 
   const ECRANS = {
     titre(e) {
-      fond(e, 'img/maquette/scene-catalogue.webp');
+      fond(e, 'img/scene-catalogue.webp');
       scene(e, { left: '640px', top: '120px', width: '760px', height: '700px' }, { actif: 0, echelle: .62, recul: -260, inclinaison: [-16, 0, -11] });
       e.querySelectorAll('.vignette').forEach((v) => { v.style.opacity = (+v.style.opacity * .8).toFixed(2); });
       const t = el('h2', 'chapitre', '6000&nbsp;h<br>de&nbsp;formations<br>interactives');
@@ -204,7 +204,7 @@
     },
     famille(e) {
       const actif = +e.dataset.actif;
-      fond(e, 'img/maquette/scene-catalogue.webp');
+      fond(e, 'img/scene-catalogue.webp');
       scene(e, { left: '290px', top: '100px', width: '760px', height: '760px' }, { actif, echelle: .8, segments: 26 });
       const m = el('dl', 'meta', '<dt>Catalogue</dt><dd>6000&nbsp;h de&nbsp;modules<br>e‑learning interactifs</dd><dt>Module</dt><dd>1&nbsp;h en&nbsp;moyenne,<br>4 à&nbsp;7&nbsp;leçons</dd><dt>Leçon</dt><dd>Un&nbsp;objectif pédagogique<br>précis</dd>');
       Object.assign(m.style, { left: '40px', top: '330px' }); e.append(m);
@@ -231,7 +231,7 @@
     },
     tel(e) {
       const actif = +e.dataset.actif;
-      fond(e, 'img/maquette/scene-catalogue-mobile.webp');
+      fond(e, 'img/scene-catalogue-mobile.webp');
       scene(e, { left: '-60px', top: '80px', width: '510px', height: '380px' }, { actif, echelle: .4, segments: 22, inclinaison: [-18, 0, -12] });
       liste(e, actif, { left: '20px', right: '20px', top: '470px' }, true);
       e.querySelector('.liste .nom').style.fontSize = '30px';

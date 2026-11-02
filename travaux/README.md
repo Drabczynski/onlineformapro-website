@@ -177,31 +177,12 @@ s'effacent avec le titre, collées aux bords de l'écran : la tablette OnlineCom
 téléphone). « La puissance de l'IA pour la formation » passe à droite, la gauche étant prise par
 les pics et leurs données. L'essai est porté par
 `data-variante="ondes"` sur `<html>` : `monde.js` ne dessine pas le logo et remplace les cinq
-premières stations par une seule, `ouverture.js` cale dix-neuf stations au lieu de vingt-trois.
-**La phase « Catalogue de formation »** suit « Une solution globale et modulaire », dans les
-deux fichiers (chapitre 03 sur 05). C'est un lieu du parcours, comme le cube ou la planète :
-la liaison du cube à la planète passe par un rond-point, dont l'anneau se soulève, se redresse
-et monte en hélice, un seul ruban lisse bordé de deux lignes de lumière. La caméra suit la
-route jusqu'à lui pendant le titre « 6000 h de formations interactives », s'arrête face au
-ruban, un peu au-dessus, puis repart à côté de son sommet vers la planète. Pendant l'arrêt,
-les vignettes des douze familles glissent le long du ruban au défilement. Elles sortent de la
-route, montent et se perdent dans le ciel, et une famille à la fois s'arrête au premier plan.
-Un réseau de particules reliées entoure le ruban, aux couleurs de la marque. À droite, la
-liste des familles roule avec le ruban ; en bas, un compteur (01 / 12) et le bouton « Voir le
-catalogue ». Un clic sur le ruban ou sur le bouton couvre l'écran d'une mosaïque de carrés,
-avec le nom de la famille au premier plan, puis ouvre le catalogue à ses familles. Sans
-animations, le clic y mène directement.
-La forme du ruban (place, rayon, pas, pose sur l'anneau, angle face à la caméra) est dans
-`helice.js`, partagé par `monde.js` (le rond-point, les bords lumineux, les stations de la
-caméra) et `ruban.js` (les images). Les images sont dessinées sur leur propre toile
-(`canvas#ruban`), vue par la caméra du monde, sans tonalité ni halo, pour que les photos
-gardent leurs couleurs ; le brouillard du monde les efface au loin, et la toile s'efface là où
-un bord lumineux passe devant le ruban. Les images sont celles des familles
-(`img/site/cat-*.webp`). Prévention n'a pas d'image : sa vignette est un dégradé violet avec un
-bouclier. La liste est dans la page (`ol.ruban-liste`, attribut `data-image`), pour l'ajout ou
-le retrait d'une famille.
-`maquette-catalogue.html` garde les écrans figés validés avant l'intégration.
-
+premières stations par une seule, `ouverture.js` cale seize stations au lieu de vingt.
+**En réserve : la phase « Catalogue de formation ».** Le ruban de vignettes du catalogue,
+monté en hélice d'un rond-point entre le cube et la planète, est mis de côté pour plus tard
+dans `site-onlineformapro/reserve/ruban-catalogue/`. Il n'est chargé par aucune page. Le
+dossier contient ses scripts, les écrans figés de la maquette, une planche de captures, et
+`LISEZMOI.md`, qui explique comment le remettre dans l'ouverture.
 **L'ouverture complète reste dans `intro-complete.html`** (mêmes scripts, sans l'attribut),
 telle que décrite ci-dessous. Après l'ouverture, dans les deux fichiers, les sections du site
 défilent l'une sous l'autre : les cinq méga-menus de l'en-tête en grand (LMS, Outils IA,
@@ -288,7 +269,7 @@ cartes sont un bleu nuit à peine violet (`NUIT` et les lueurs dans `monde.js`, 
 
 `monde.js` : le décor (logo, routes, carrefours, pics, anneaux, éventail), les stations de
 la caméra et le rendu ; `objets.js` : les objets ; `particules.js` : les nuées de
-particules ; `helice.js` et `ruban.js` : le ruban du catalogue, sa forme et ses images. `ouverture.js` : les mesures de la page,
+particules. `ouverture.js` : les mesures de la page,
 le calage des stations et des modules du cube sur les textes, les apparitions, les cartes.
 `ouverture.css` : la mise en page, à l'échelle d'un écran de 1440 × 900. L'en-tête est celui des
 pages (recherche « Décrivez votre projet », méga-menus, `entete.js`, `recherche.js`), en version

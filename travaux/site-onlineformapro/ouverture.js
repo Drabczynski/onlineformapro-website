@@ -136,7 +136,7 @@ addEventListener('load', () => { for (const img of document.querySelectorAll('.c
 
 // -------------------------------------------------------------------- mise en page
 const blocs = [...document.querySelectorAll('.bloc')];
-let elements = [], paquets = [], chapitres = [], gel = [], total = 1, finExperience = 0, phaseRuban = null;
+let elements = [], paquets = [], chapitres = [], gel = [], total = 1, finExperience = 0;
 function mesurer() {
   const y = scrollY, u = svh();
   const haut = (el) => (el.getBoundingClientRect().top + y) / u;            // en svh
@@ -149,15 +149,12 @@ function mesurer() {
       elements.push({ el, debut: h + a, fin: h + z, carte: el.matches('.carte, .presentation-image'), etat: el._etat || false });
     }
   }
-  paquets = [...document.querySelectorAll('.paquet')].map(p => ({ haut: haut(p), n: +p.dataset.cartes, barres: [...p.querySelectorAll('.progression i')], ruban: p.hasAttribute('data-ruban') }));
+  paquets = [...document.querySelectorAll('.paquet')].map(p => ({ haut: haut(p), n: +p.dataset.cartes, barres: [...p.querySelectorAll('.progression i')] }));
   chapitres = [...document.querySelectorAll('[data-chapitre]')].map(c => haut(c) + 115);
   // les arrêts de la caméra : pendant les cartes de chaque chapitre (en hauteurs d'écran)
   gel = paquets.map(p => ({ de: (p.haut + 100) / 100, a: (p.haut + 100 + 75 * p.n) / 100, part: 0.95 }));
   const dernier = paquets[paquets.length - 1];
   finExperience = (dernier.haut + 100 + 75 * dernier.n) / 100 + 0.75;
-  // le chapitre du catalogue : son titre, et l'arrêt pendant lequel le ruban tourne
-  const r = paquets.findIndex(p => p.ruban);
-  phaseRuban = r < 0 ? null : { titre: chapitres[2] / 100, de: gel[r].de, a: gel[r].a };
   total = avance(finExperience);
   if (monde) monde.placer(stations(), moments());
 }
@@ -171,15 +168,13 @@ function avance(e) {
   return ajuste;
 }
 const progressionDe = (e) => Math.min(1, Math.max(0, avance(e) / total));
-// les stations de la caméra, calées sur les textes (positions en écrans) : vingt-trois pour
-// l'ouverture complète, dix-neuf pour l'essai « ondes » qui part juste avant les pics
+// les stations de la caméra, calées sur les textes (positions en écrans) : vingt pour
+// l'ouverture complète, seize pour l'essai « ondes » qui part juste avant les pics
 function ecransDesStations() {
-  const [c1, c2, cr, c3, c4] = chapitres.map(v => v / 100);
-  const [g1, g2, gr, g3, g4] = gel;
-  // au chapitre 1 : l'arrêt devant les pics, l'entrée dedans, les cartes au milieu d'eux, la
-  // sortie ; au chapitre du catalogue, la caméra suit la liaison jusqu'au rond-point du ruban
-  // (pendant le titre), s'arrête face au ruban le temps des familles, puis repart
-  const suite = [c1 + 0.4, (c1 + 0.4 + g1.de) / 2, g1.de, g1.a + 0.35, g1.a + 0.9, c2 + 0.3, g2.de, g2.a, g2.a + 0.9, cr + 1.0, gr.de, gr.a, c3 + 0.3, g3.de, c4 + 0.3, g4.de, g4.de + 0.9, finExperience];
+  const [c1, c2, c3, c4] = chapitres.map(v => v / 100);
+  const [g1, g2, g3, g4] = gel;
+  // au chapitre 1 : l'arrêt devant les pics, l'entrée dedans, les cartes au milieu d'eux, la sortie
+  const suite = [c1 + 0.4, (c1 + 0.4 + g1.de) / 2, g1.de, g1.a + 0.35, g1.a + 0.9, c2 + 0.3, g2.de, g2.a, g2.a + 0.9, c3 + 0.3, g3.de, c4 + 0.3, g4.de, g4.de + 0.9, finExperience];
   // avant : le logo, la descente vers l'autoroute, l'autoroute, les lacets, l'approche des pics
   return racine.dataset.variante === 'ondes' ? [0, ...suite] : [0, 0.35, 1.3, 2.0, c1 - 0.5, ...suite];
 }
@@ -211,103 +206,10 @@ import('./monde.js').then(async ({ creerMonde }) => {
   racine.classList.add('avec-webgl');
   monde.taille();
   monde.placer(stations(), moments());
-  chargerRuban();
 }).catch((e) => {
   racine.classList.add('sans-webgl');
   console.warn('WebGL indisponible :', e);
 });
-
-// -------------------------------------------------------------------- le ruban du catalogue
-// chargé après le monde, dans son propre canevas (ruban.js), vu par la caméra du monde : il
-// monte du rond-point de la liaison, entre le cube et la planète (helice.js). Pendant l'arrêt
-// du chapitre, le défilement fait glisser les images le long du ruban : la famille au premier
-// plan (f, en continu) commande la liste qui roule à droite et le compteur. Un clic sur le
-// ruban, ou sur « Voir le catalogue », couvre l'écran d'une mosaïque de carrés et mène au
-// catalogue
-const toileRuban = document.getElementById('ruban');
-const listeRuban = [...document.querySelectorAll('.ruban-liste li')];
-const compteurRuban = document.querySelector('.ruban-compteur b');
-let ruban = null, familleAffichee = -1, rubanActif = false, familleRuban = 0;
-function chargerRuban() {
-  if (!toileRuban || !listeRuban.length) return;
-  import('./ruban.js').then(({ creerRuban }) => {
-    ruban = creerRuban(toileRuban, listeRuban.map(li => [li.textContent, li.dataset.image || null]));
-    ruban.taille();
-  }).catch((e) => console.warn('Ruban indisponible :', e));
-}
-function majRuban(e, t) {
-  if (!phaseRuban || !listeRuban.length) return;
-  const { titre, de, a } = phaseRuban, n = listeRuban.length;
-  // le clic sur le ruban : du titre du chapitre à un peu après l'arrêt
-  rubanActif = e > titre - 0.3 && e < a + 0.6;
-  familleRuban = Math.min(1, Math.max(0, (e - de) / (a - de))) * (n - 1);
-  if (ruban && monde) ruban.image({ vue: monde.camera, f: familleRuban, temps: t, anime });
-  if (!rubanActif) survolRuban(false); else revoirSurvol();
-  // la liste roule : la famille au premier plan au milieu, ses voisines au-dessus et dessous
-  listeRuban.forEach((li, i) => {
-    const d = i - familleRuban, ad = Math.abs(d);
-    li.style.transform = `translateY(calc(${d.toFixed(3)} * var(--pas-ruban))) scale(${(1 - Math.min(ad, 2.5) * 0.16).toFixed(3)})`;
-    li.style.opacity = ad > 2.6 ? 0 : (1 - ad * 0.36).toFixed(3);
-  });
-  const k = Math.round(familleRuban);
-  if (k !== familleAffichee) {
-    familleAffichee = k;
-    compteurRuban.textContent = String(k + 1).padStart(2, '0');
-    listeRuban.forEach((li, i) => li.classList.toggle('est-actif', i === k));
-  }
-}
-function versCatalogue(e, depuisRuban = false) {
-  const adresse = 'catalogue.html#titre-categories';
-  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;   // un nouvel onglet : le navigateur s'en charge
-  // sans animations : directement au catalogue
-  if (!anime) { if (depuisRuban) location.href = adresse; return; }
-  e.preventDefault();
-  const nom = listeRuban[Math.round(familleRuban)].textContent, m = document.createElement('div');
-  m.className = 'mosaique-catalogue';
-  const etroit = innerWidth < innerHeight, cols = etroit ? 8 : 16, rangs = etroit ? 14 : 10;
-  m.style.setProperty('--cols', cols); m.style.setProperty('--rangs', rangs);
-  const COULEURS = ['#6b56e2', '#262385', '#8a6ef0', '#a3b2f1', '#ee9cd2', '#ffb088', '#1d1e6c', '#4f5fd8', '#c9c2f6'];
-  for (let i = 0; i < cols * rangs; i++) {
-    const c = document.createElement('i'), r = Math.random();
-    if (r < 0.14) c.className = 'creux'; else c.style.background = COULEURS[Math.floor(Math.random() * COULEURS.length)];
-    c.style.animationDelay = `${Math.round(Math.random() * 380)}ms`;
-    m.append(c);
-  }
-  const titre = document.createElement('p');
-  titre.className = 'mosaique-catalogue-titre';
-  titre.innerHTML = `<small>Famille de formation</small><strong></strong>`;
-  titre.querySelector('strong').textContent = nom;
-  m.append(titre);
-  document.body.append(m);
-  setTimeout(() => { location.href = adresse; }, 900);
-}
-// la toile du ruban est sous les chapitres : on vise le ruban lui-même (un rayon sur sa surface
-// visible), hors liens, boutons et cartes. La scène bouge sous un pointeur immobile (la caméra
-// suit la souris) : le survol se revérifie aussi de temps en temps, image après image
-const experienceRuban = toileRuban?.closest('.experience') || document.body;
-let surRuban = false, pointeurRuban = null, tourSurvol = 0;
-function viseRuban(x, y, cible) {
-  if (!ruban || !rubanActif || !cible) return false;
-  if (cible.closest('a, button, input, textarea, .carte, .entete, dialog')) return false;
-  const r = toileRuban.getBoundingClientRect();
-  return ruban.sous(x - r.left, y - r.top);
-}
-function survolRuban(v) { if (v !== surRuban) { surRuban = v; experienceRuban.classList.toggle('sur-ruban', v); } }
-function revoirSurvol() {
-  if (!pointeurRuban || !rubanActif || ++tourSurvol % 6) return;
-  survolRuban(viseRuban(pointeurRuban.x, pointeurRuban.y, document.elementFromPoint(pointeurRuban.x, pointeurRuban.y)));
-}
-if (toileRuban) {
-  addEventListener('pointermove', (e) => {
-    if (e.pointerType !== 'mouse') return;
-    pointeurRuban = { x: e.clientX, y: e.clientY };
-    if (surRuban || rubanActif) survolRuban(viseRuban(e.clientX, e.clientY, e.target));
-  }, { passive: true });
-  addEventListener('click', (e) => { if (viseRuban(e.clientX, e.clientY, e.target)) versCatalogue(e, true); });
-}
-document.querySelector('.ruban-bouton')?.addEventListener('click', versCatalogue);
-// au retour arrière depuis le catalogue, la page revient sans sa mosaïque
-addEventListener('pageshow', () => document.querySelectorAll('.mosaique-catalogue').forEach(m => m.remove()));
 
 // -------------------------------------------------------------------- l'indicateur 01 / 04
 const indicateur = document.querySelector('.indicateur'), indicateurNum = indicateur.querySelector('.indicateur-num');
@@ -378,7 +280,6 @@ function image(ms) {
   souris.x += (sourisCible.x - souris.x) * Math.min(1, dt * 6);
   souris.y += (sourisCible.y - souris.y) * Math.min(1, dt * 6);
   monde.image({ progression, souris, temps: t, dt, anime, intro });
-  majRuban(s / 100, t);
   // si la machine peine (plus de 28 ms par image en moyenne), on allège le rendu
   mesures.push(dt);
   if (mesures.length >= 90) {
@@ -400,7 +301,7 @@ matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) =>
 // -------------------------------------------------------------------- départ
 document.querySelectorAll('[data-revele="title"], [data-revele="text"]').forEach(el => { el._morceaux = decouper(el, el.dataset.revele); });
 appliquer(anime);
-function redimensionner() { if (monde) monde.taille(); if (ruban) ruban.taille(); mesurer(); }
+function redimensionner() { if (monde) monde.taille(); mesurer(); }
 addEventListener('resize', redimensionner);
 redimensionner();
 requestAnimationFrame(image);
