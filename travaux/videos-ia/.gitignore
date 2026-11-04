@@ -1,3 +1,4 @@
 sorties/**/*.mp4
 sorties/**/*.part
 sorties/**/_vignettes/
+__pycache__/
