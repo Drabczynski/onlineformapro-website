@@ -1,0 +1,25 @@
+{
+  "_note": "Exemple de structure, à remplacer par les 5 thèmes et leurs scènes. Les personnages d'un thème sont décrits une fois et repris dans chacune de ses scènes, pour que les mêmes personnes reviennent. Compter environ 2,5 mots par seconde de dialogue.",
+  "duree": 8,
+  "themes": {
+    "hotel": {
+      "lieu": "le hall d'un hôtel moderne et chaleureux, comptoir de réception en bois sombre, lampes suspendues, grandes baies vitrées",
+      "personnages": {
+        "Réceptionniste": "femme d'une trentaine d'années, cheveux bruns en chignon, tailleur bleu marine, chemisier blanc, souriante",
+        "Client": "homme d'une quarantaine d'années, cheveux courts poivre et sel, pull gris"
+      },
+      "style": "Ambiance calme, couleurs chaudes, profondeur de champ légère."
+    }
+  },
+  "scenes": [
+    {
+      "id": "hotel-01",
+      "theme": "hotel",
+      "situation": "le client arrive à la réception pour son séjour",
+      "dialogue": [
+        ["Réceptionniste", "Bonjour monsieur, bienvenue. Avez-vous une réservation ?"],
+        ["Client", "Oui, au nom de Martin, pour deux nuits."]
+      ]
+    }
+  ]
+}
