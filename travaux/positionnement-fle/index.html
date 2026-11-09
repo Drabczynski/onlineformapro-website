@@ -1,0 +1,884 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#9748fe">
+<title>Test de niveau de français</title>
+<meta name="description" content="Test de positionnement en français, du niveau A1 au niveau B1, adaptatif, sur mobile.">
+<meta property="og:title" content="Test de niveau de français">
+<meta property="og:description" content="Test de positionnement adaptatif, du niveau A1 au niveau B1, environ 10 minutes.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@600;700;800;900&display=swap">
+<style>
+/* Direction artistique relevée sur la capture de référence (jeu de lettres en alvéoles) :
+   fond uni violet → bleu, sans motif ni taches de couleur ; tuiles hexagonales à plat, coins
+   arrondis, face blanche lavande et tranche lavande ; jaune citron pour la réponse choisie ;
+   vert, cyan et rose réservés aux boutons ronds et aux niveaux. Panneaux ton sur ton, sans bordure.
+   Couleurs relevées au pixel sur la capture. */
+:root {
+  --fond-1: #9748fe; --fond-2: #8745fd; --fond-3: #6d6cf8; --fond-4: #5f76f7;
+  --ton: rgba(52, 22, 176, .24);
+  --ton-fort: rgba(44, 16, 150, .34);
+  --ombre: rgba(50, 18, 160, .2);
+  --encre: #46288c;
+  --encre-douce: #8676bf;
+  --lavande: #ece4fd;
+  --blanc-levre: #d6bff9;
+  --citron-1: #fffc96; --citron-2: #ffe35a; --citron-levre: #f0b03a;
+  --vert-1: #cdfc2a; --vert-2: #8fe60c; --vert-levre: #5fae0c;
+  --cyan-1: #78fdf8; --cyan-2: #42d8ff; --cyan-levre: #2d92e6;
+  --rose-1: #ffadf6; --rose-2: #ea62de; --rose-levre: #b53cae;
+  --titre: "Baloo 2", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --texte: "Nunito", "Segoe UI", system-ui, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { height: 100%; }
+body { margin: 0; color: #fff; font: 700 15px/1.5 var(--texte); overflow: hidden; background: #eef1fc;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 16px; display: grid; place-items: center; }
+button { font: inherit; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; border-radius: 14px; }
+
+/* l'écran d'ordinateur : le téléphone posé sur un fond clair, de grands hexagones pastel derrière */
+.decor { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.decor svg { position: absolute; }
+.decor path { fill: var(--c); }
+
+/* ------------------------------------------------------------ le téléphone */
+.appli { position: relative; z-index: 1; width: min(400px, 100%); height: min(860px, 100%); display: flex; flex-direction: column; overflow: hidden;
+  border: 10px solid #fff; border-radius: 48px; outline: 1px solid #dcd7f2;
+  background: linear-gradient(180deg, var(--fond-1) 0%, var(--fond-2) 40%, var(--fond-3) 80%, var(--fond-4) 100%); }
+.ecran { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; animation: entre .35s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes entre { from { opacity: 0; transform: translateX(24px); } }
+.defile { flex: 1; min-height: 0; display: flex; flex-direction: column; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+.defile > * { flex-shrink: 0; }
+.defile, .feuille { scrollbar-width: none; }
+.defile::-webkit-scrollbar, .feuille::-webkit-scrollbar { display: none; }
+
+/* ------------------------------------------------------------ les tuiles hexagonales (SVG) */
+.tuile { --w: 120px; position: relative; display: block; flex: none; width: var(--w); aspect-ratio: 120 / 112.92; padding: 0; border: 0; background: none; color: var(--encre); }
+.tuile .socle { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.tuile .dessus { position: absolute; left: 0; top: 0; width: 100%; aspect-ratio: 120 / 103.92; transition: translate .1s; }
+.tuile .dessus svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.tuile .mot { position: absolute; inset: 0; display: grid; place-items: center; padding: 0 13%; text-align: center; font: 800 calc(var(--w) * .17)/1.05 var(--titre); }
+.tuile .ombre { fill: var(--ombre); }
+.blanc .face { fill: url(#g-blanc); } .blanc .levre { fill: var(--blanc-levre); }
+.citron .face { fill: url(#g-citron); } .citron .levre { fill: var(--citron-levre); }
+.vert .face { fill: url(#g-vert); } .vert .levre { fill: var(--vert-levre); }
+.cyan .face { fill: url(#g-cyan); } .cyan .levre { fill: var(--cyan-levre); }
+.rose .face { fill: url(#g-rose); } .rose .levre { fill: var(--rose-levre); }
+.ton .face { fill: rgba(255, 255, 255, .14); } .ton .levre { fill: rgba(40, 14, 140, .22); } .ton .ombre { fill: none; } .ton .mot { color: rgba(255, 255, 255, .6); }
+@keyframes pose { from { opacity: 0; transform: scale(.6); } }
+@keyframes choisi { 45% { scale: 1.07; } }
+
+/* ------------------------------------------------------------ la barre du haut */
+.haut { display: grid; grid-template-columns: 40px 1fr 40px; align-items: center; gap: 8px; padding: 16px 16px 0; }
+.rond { flex: none; display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; background: var(--ton); color: #fff; }
+.rond svg { width: 17px; height: 17px; }
+.cases { display: flex; justify-content: center; gap: 3px; min-width: 0; }
+.cases i { flex: 0 1 11px; min-width: 5px; height: 11px; border-radius: 3px; background: rgba(255, 255, 255, .22); }
+.cases i.saut { margin-left: 8px; }
+.cases i.fait { background: #fff; }
+.cases i.ici { background: linear-gradient(var(--citron-1), var(--citron-2)); box-shadow: 0 2px 0 var(--citron-levre); animation: pose .4s cubic-bezier(.2, 1.6, .4, 1) both; }
+
+/* ------------------------------------------------------------ la carte du support (ton sur ton) */
+.visuel { position: relative; margin: 18px 16px 0; min-height: 150px; padding: 20px 18px; display: grid; place-items: center; align-content: center; gap: 12px; border-radius: 26px; text-align: center; background: var(--ton);
+  animation: monte .4s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes monte { from { opacity: 0; transform: translateY(12px); } }
+.etiquette { font-size: 12.5px; font-weight: 800; letter-spacing: .03em; color: rgba(255, 255, 255, .78); }
+.panneau { padding: 14px 22px; border-radius: 12px; background: #fff; color: #d0193f; border: 5px solid #d0193f; font: 800 23px/1.1 var(--titre); letter-spacing: .06em; transform: rotate(-3deg); }
+.sms { justify-self: stretch; display: grid; justify-items: start; gap: 6px; text-align: left; }
+.sms p { margin: 0; padding: 12px 16px; border-radius: 20px 20px 20px 6px; background: #fff; color: var(--encre); font-size: 17px; font-weight: 800; box-shadow: 0 4px 0 var(--blanc-levre); }
+.phrase { font: 800 24px/1.6 var(--texte); text-wrap: balance; }
+.trou { display: inline-block; min-width: 92px; margin: 0 4px; padding: 0 12px; border-radius: 10px; background: rgba(255, 255, 255, .2); box-shadow: inset 0 -3px 0 rgba(255, 255, 255, .5); line-height: 1.4; }
+.trou.rempli { background: linear-gradient(var(--citron-1), var(--citron-2)); color: var(--encre); box-shadow: 0 4px 0 var(--citron-levre); animation: pop .35s cubic-bezier(.2, 1.7, .4, 1); }
+@keyframes pop { from { transform: scale(.6); } }
+.indice { display: inline-flex; padding: 4px 12px; border-radius: 999px; background: var(--ton); font-size: 13px; }
+.grande { padding: 12px 22px; border-radius: 18px; background: #fff; color: var(--encre); font: 800 24px/1.3 var(--texte); box-shadow: 0 5px 0 var(--blanc-levre); }
+.fleche { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; background: linear-gradient(var(--cyan-1), var(--cyan-2)); box-shadow: 0 4px 0 var(--cyan-levre); color: var(--encre); font-size: 15px; font-weight: 900; }
+.replique { display: flex; align-items: center; gap: 14px; text-align: left; }
+.visage { flex: none; width: 84px; height: 84px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 5px 0 var(--blanc-levre); background: #fff; }
+.bulle.vocale { grid-auto-flow: column; align-items: center; gap: 12px; padding: 12px 18px 12px 12px; }
+.mini-lecteur { display: grid; place-items: center; width: 46px; height: 46px; padding: 0; border: 0; border-radius: 50%; color: #fff; background: linear-gradient(var(--cyan-1), var(--cyan-2)); box-shadow: inset 0 0 0 4px rgba(255, 255, 255, .45), 0 3px 0 var(--cyan-levre); }
+.mini-lecteur svg { width: 20px; height: 20px; margin-left: 3px; }
+.mini-lecteur:active { translate: 0 2px; box-shadow: inset 0 0 0 4px rgba(255, 255, 255, .45), 0 1px 0 var(--cyan-levre); }
+.mini-lecteur.parle { animation: appel 1s ease-in-out infinite; }
+.vague.sombre i { background: var(--encre); opacity: .55; }
+.lire-consigne { display: inline-grid; place-items: center; width: 32px; height: 32px; margin-left: 4px; padding: 0; border: 0; border-radius: 50%; vertical-align: -6px; color: #fff; background: var(--ton-fort); }
+.lire-consigne svg { width: 16px; height: 16px; }
+.lire-consigne.parle { background: linear-gradient(var(--cyan-1), var(--cyan-2)); color: var(--encre); }
+.avatar { flex: none; display: grid; place-items: center; width: 58px; height: 58px; border-radius: 50%; background: #fff; box-shadow: 0 4px 0 var(--blanc-levre); font-size: 30px; }
+.bulle { display: grid; gap: 8px; padding: 12px 16px; border-radius: 20px 20px 20px 6px; background: #fff; color: var(--encre); box-shadow: 0 4px 0 var(--blanc-levre); }
+.bulle strong { font-size: 18px; line-height: 1.3; font-weight: 900; }
+.mini-son { justify-self: start; display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border: 0; border-radius: 999px; background: linear-gradient(var(--cyan-1), var(--cyan-2)); box-shadow: 0 3px 0 var(--cyan-levre); color: var(--encre); font-size: 12.5px; font-weight: 900; }
+.mini-son svg { width: 15px; height: 15px; }
+.scene-emoji { font-size: 60px; line-height: 1; }
+.situation { margin: 0; max-width: 300px; font-size: 18px; font-weight: 800; line-height: 1.4; }
+/* le bouton d'écoute : un bouton rond de bonus, avec sa pastille de compteur */
+.lecteur { position: relative; display: grid; place-items: center; width: 96px; height: 96px; padding: 0; border: 0; border-radius: 50%; color: #fff;
+  background: linear-gradient(var(--cyan-1), var(--cyan-2)); box-shadow: inset 0 0 0 6px rgba(255, 255, 255, .4), 0 6px 0 var(--cyan-levre); }
+.lecteur::before { content: ""; position: absolute; inset: -10px; border-radius: 50%; border: 3px solid rgba(255, 255, 255, .35); animation: onde 2.2s ease-out infinite; }
+.lecteur.parle::before { animation-duration: .9s; }
+@keyframes onde { from { transform: scale(.88); opacity: 1; } to { transform: scale(1.28); opacity: 0; } }
+.lecteur svg { width: 40px; height: 40px; margin-left: 5px; }
+.lecteur:active:not(:disabled) { translate: 0 4px; box-shadow: inset 0 0 0 6px rgba(255, 255, 255, .4), 0 2px 0 var(--cyan-levre); }
+.lecteur:disabled { filter: saturate(.3); opacity: .55; cursor: default; }
+.lecteur:disabled::before { animation: none; opacity: 0; }
+.pastille { position: absolute; top: -4px; right: -4px; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #fff; color: var(--encre); box-shadow: 0 3px 0 var(--blanc-levre); font: 800 16px/1 var(--titre); }
+.vague { display: flex; align-items: center; gap: 4px; height: 26px; }
+.vague i { width: 5px; height: 8px; border-radius: 3px; background: rgba(255, 255, 255, .85); }
+.vague i:nth-child(3n+1) { height: 12px; } .vague i:nth-child(3n+2) { height: 18px; } .vague i:nth-child(4n) { height: 8px; }
+.vague.active i { animation: barre .7s ease-in-out infinite; }
+.vague i:nth-child(2n) { animation-delay: -.2s; } .vague i:nth-child(3n) { animation-delay: -.45s; }
+@keyframes barre { 50% { height: 24px; } }
+.doc-mini { display: grid; justify-items: center; gap: 10px; }
+.doc-mini .icone-doc { display: grid; place-items: center; width: 70px; height: 80px; border-radius: 16px; background: #fff; box-shadow: 0 5px 0 var(--blanc-levre); font-size: 36px; }
+.doc-mini strong { font-size: 16px; }
+.pilule { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: 0; border-radius: 999px; background: #fff; box-shadow: 0 4px 0 var(--blanc-levre); color: var(--encre); font-size: 13.5px; font-weight: 900; }
+.pilule svg { width: 16px; height: 16px; }
+.transcription { padding: 12px 14px; border-radius: 14px; background: #fff; color: var(--encre); font-size: 14px; text-align: left; }
+
+.question { margin: 26px 22px 0; font: 800 22px/1.2 var(--titre); text-align: center; text-wrap: balance; animation: monte .4s cubic-bezier(.2, .8, .2, 1) .05s both; }
+
+.progression { display: flex; align-items: center; justify-content: center; gap: 10px; min-width: 0; }
+.progression .tuile.puce { --w: 42px; }
+.progression .puce .mot { font-size: 14px; padding: 0; }
+.progression .cases { gap: 5px; }
+.progression .cases i { flex: 0 1 14px; height: 12px; }
+.panneau.sortie { display: inline-flex; align-items: center; gap: 12px; background: #11905a; color: #fff; border-color: #0b6a42; transform: none; }
+.panneau.sortie span { font-size: 30px; }
+.panneau.interdit { display: grid; justify-items: center; gap: 8px; color: #d0193f; border-color: #fff; transform: none; }
+.rond-interdit { position: relative; display: grid; place-items: center; width: 64px; height: 64px; border: 6px solid #d0193f; border-radius: 50%; font-size: 30px; }
+.rond-interdit::after { content: ""; position: absolute; width: 6px; height: 64px; background: #d0193f; transform: rotate(45deg); }
+.prix { position: relative; display: grid; justify-items: center; gap: 2px; min-width: 170px; padding: 18px 24px 16px; border-radius: 14px; background: #fff7d6; color: var(--encre); box-shadow: 0 5px 0 #e9cf7a; transform: rotate(-3deg); }
+.prix strong { font: 800 20px/1.1 var(--titre); }
+.prix b { font: 800 34px/1 var(--titre); color: #d0193f; }
+.prix small { font-size: 14px; font-weight: 800; }
+.trou-prix { position: absolute; top: 8px; width: 12px; height: 12px; border-radius: 50%; background: var(--fond-2); }
+.affiche, .menu, .papier-court { justify-self: stretch; display: grid; gap: 4px; padding: 0 0 14px; overflow: hidden; border-radius: 16px; background: #fff; color: var(--encre); text-align: center; box-shadow: 0 5px 0 var(--blanc-levre); }
+.affiche strong, .menu strong { padding: 10px; background: #26357a; color: #fff; font: 800 20px/1.1 var(--titre); letter-spacing: .08em; }
+.affiche p, .menu p { margin: 4px 14px 0; font-size: 16px; font-weight: 800; }
+.menu strong { background: #2f7d4f; letter-spacing: .02em; }
+.menu em { margin-top: 6px; font-style: normal; font-weight: 900; color: var(--encre-douce); }
+.papier-court { padding: 14px 18px; text-align: left; }
+.papier-court strong { font: 800 18px/1.2 var(--titre); text-transform: none; }
+.papier-court p { margin: 0; font-size: 16px; font-weight: 700; }
+.papier-court ul { margin: 2px 0 0; padding-left: 20px; font-size: 16px; font-weight: 700; }
+.plaque { display: grid; gap: 2px; padding: 16px 26px; border-radius: 10px; color: #3c3f46; text-align: center; background: linear-gradient(160deg, #f4f5f7, #c9ccd3 55%, #eef0f3); box-shadow: inset 0 0 0 2px #a9adb6, 0 5px 0 rgba(40, 14, 140, .25); }
+.plaque strong { font: 800 20px/1.2 var(--titre); }
+.plaque p { margin: 0; font-size: 15px; font-weight: 800; }
+.mots { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.mots span { padding: 8px 16px; border-radius: 12px; background: #fff; color: var(--encre); font: 800 20px/1.2 var(--texte); box-shadow: 0 4px 0 var(--blanc-levre); }
+.situation.petit { font-size: 15px; font-weight: 700; }
+.cite { padding: 0 8px; border-radius: 8px; background: #fff; color: var(--encre); }
+.pictos .mot { font-size: 15px; line-height: 1.15; }
+.alveoles.longs .mot { font-size: 17px; padding: 0 6%; }
+.picto { display: block; font-size: 30px; line-height: 1.1; }
+
+/* ------------------------------------------------------------ les réponses */
+.reponses { padding: 24px 16px 14px; }
+/* les alvéoles sont placées en absolu : l'écart vient d'une marge, pas d'un remplissage */
+.reponses.alveoles { padding: 0; margin: 36px auto 18px; }
+.ecran-question .defile > :first-child { margin-top: auto; }
+.ecran-question .defile > :last-child { margin-bottom: auto; }
+/* réponses courtes : quatre alvéoles en fleur, symétriques (haut, gauche, droite, bas) */
+.alveoles { --w: 124px; --g: 10px; position: relative; width: calc(var(--w) * 2.5 + var(--g) * 1.732); height: calc(var(--w) * 1.807 + var(--g)); margin-inline: auto; padding: 0; }
+.alveoles .rep { position: absolute; --w: inherit; animation: pose .45s cubic-bezier(.2, 1.4, .4, 1) both; animation-delay: calc(.08s + var(--n) * .06s); }
+.alveoles .rep:nth-child(1) { left: calc(50% - var(--w) / 2); top: 0; }
+.alveoles .rep:nth-child(2) { left: 0; top: calc(var(--w) * .433 + var(--g) / 2); }
+.alveoles .rep:nth-child(3) { right: 0; top: calc(var(--w) * .433 + var(--g) / 2); }
+.alveoles .rep:nth-child(4) { left: calc(50% - var(--w) / 2); top: calc(var(--w) * .866 + var(--g)); }
+.alveoles .rep:active .dessus { translate: 0 4px; }
+.rep[aria-checked="true"] .face { fill: url(#g-citron); }
+.rep[aria-checked="true"] .levre { fill: var(--citron-levre); }
+.rep[aria-checked="true"] .dessus { animation: choisi .3s cubic-bezier(.2, 1.6, .4, 1); }
+/* réponses longues : pastilles blanches, une marque hexagonale à gauche */
+.bonbons { display: grid; gap: 14px; }
+.bonbons .rep { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 56px; padding: 12px 16px; border: 0; border-radius: 18px; text-align: left; color: var(--encre); font: 800 16.5px/1.3 var(--texte);
+  background: linear-gradient(#ffffff, #f2ebff); box-shadow: 0 5px 0 var(--blanc-levre), 0 9px 0 var(--ombre); animation: monte .4s cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(.08s + var(--n) * .05s); transition: translate .1s; }
+.bonbons .rep:active { translate: 0 4px; box-shadow: 0 1px 0 var(--blanc-levre), 0 5px 0 var(--ombre); }
+.bonbons .rep[aria-checked="true"] { background: linear-gradient(var(--citron-1), var(--citron-2)); box-shadow: 0 5px 0 var(--citron-levre), 0 9px 0 var(--ombre); animation: choisi .3s cubic-bezier(.2, 1.6, .4, 1); }
+.marque-h { flex: none; width: 24px; height: 21px; }
+.marque-h path { fill: #e3d8fb; }
+.marque-h .coche { fill: none; stroke: #fff; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
+.rep[aria-checked="true"] .marque-h path:first-child { fill: var(--encre); }
+.rep[aria-checked="true"] .marque-h .coche { opacity: 1; }
+.rep.envoyee .dessus, .bonbons .rep.envoyee { animation: envoi .4s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes envoi { 40% { scale: 1.08; } 100% { scale: 1; } }
+
+/* ------------------------------------------------------------ le bas */
+.bas { display: grid; gap: 2px; padding: 10px 16px calc(12px + env(safe-area-inset-bottom, 0px)); }
+.bouton { display: grid; place-items: center; width: 100%; min-height: 58px; padding: 0 20px; border: 0; border-radius: 20px; font: 800 21px/1 var(--titre); letter-spacing: .05em; text-transform: uppercase; color: var(--encre);
+  background: linear-gradient(var(--vert-1), var(--vert-2)); box-shadow: 0 5px 0 var(--vert-levre), 0 9px 0 var(--ombre); transition: translate .1s; }
+.bouton:active:not(:disabled) { translate: 0 4px; box-shadow: 0 1px 0 var(--vert-levre), 0 5px 0 var(--ombre); }
+.bouton.blanc { background: linear-gradient(#ffffff, #f2ebff); box-shadow: 0 5px 0 var(--blanc-levre), 0 9px 0 var(--ombre); }
+.bouton:disabled { background: rgba(255, 255, 255, .16); color: rgba(255, 255, 255, .55); box-shadow: none; cursor: default; }
+.lien { justify-self: center; margin-top: 8px; padding: 8px 12px; border: 0; background: none; color: rgba(255, 255, 255, .85); font-size: 14px; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ------------------------------------------------------------ la lecture d'un document */
+.papier { margin: 14px 16px 0; padding: 22px 20px; border-radius: 24px; background: #fff; color: var(--encre); box-shadow: 0 6px 0 var(--blanc-levre), 0 10px 0 var(--ombre); animation: monte .4s cubic-bezier(.2, .8, .2, 1) both; }
+.papier-tete { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.papier-tete span { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 14px; background: var(--lavande); font-size: 23px; }
+.papier-tete strong { display: block; font: 800 20px/1.2 var(--titre); }
+.papier-tete small { color: var(--encre-douce); font-size: 12.5px; }
+.papier p { margin: 0 0 12px; font-size: 16.5px; line-height: 1.65; font-weight: 600; }
+.papier p:last-child { margin-bottom: 0; }
+.papier.courrier p { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: 17px; }
+.papier.info { box-shadow: inset 7px 0 0 var(--cyan-2), 0 6px 0 var(--blanc-levre), 0 10px 0 var(--ombre); }
+.consigne-lecture { margin: 20px 26px 0; color: rgba(255, 255, 255, .82); font-size: 13.5px; text-align: center; }
+
+/* ------------------------------------------------------------ l'accueil */
+.accueil { display: grid; justify-items: center; gap: 12px; padding: 4px 20px 16px; text-align: center; margin-block: auto; }
+.logo { --w: min(50px, calc((100vw - 56px) / 6.7)); --g: 3px; position: relative; width: calc(var(--w) * 6.25 + var(--g) * 6.06); height: calc(var(--w) * 1.374 + var(--g) / 2); margin-bottom: 8px; }
+.logo .tuile { --w: inherit; position: absolute; top: 0; left: calc(var(--k) * (var(--w) * .75 + var(--g) * .866)); animation: pose .4s cubic-bezier(.2, 1.5, .4, 1) both; animation-delay: calc(.1s + var(--k) * .06s); }
+.logo .tuile:nth-child(2n) { top: calc(var(--w) * .433 + var(--g) / 2); }
+.logo .mot { font-size: calc(var(--w) * .48); padding: 0; }
+.logo .tuile.trouve .face { fill: url(#g-citron); } .logo .tuile.trouve .levre { fill: var(--citron-levre); }
+.logo .tuile.trouve .dessus { animation: choisi .3s cubic-bezier(.2, 1.6, .4, 1); }
+.titre-accueil { margin: 0; font: 800 42px/1 var(--titre); letter-spacing: .01em; }
+.sous-titre { margin: -2px 0 0; font-size: 12px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; color: rgba(255, 255, 255, .78); }
+.niveaux { display: flex; justify-content: center; gap: 16px; margin-top: 10px; }
+.niveau-h { display: grid; justify-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: rgba(255, 255, 255, .85); }
+.niveau-h .tuile { --w: 76px; animation: pose .45s cubic-bezier(.2, 1.5, .4, 1) both; animation-delay: calc(.6s + var(--n) * .1s); }
+.niveau-h .mot { font-size: 25px; }
+.regles { display: grid; gap: 12px; width: 100%; margin-top: 12px; padding: 16px; border-radius: 22px; background: var(--ton); text-align: left; }
+.regle { display: flex; align-items: center; gap: 12px; font-size: 14.5px; line-height: 1.35; }
+.bulle-ronde { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; color: #fff; background: linear-gradient(var(--h1), var(--h2)); box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .45), 0 3px 0 var(--b); }
+.bulle-ronde svg { width: 20px; height: 20px; }
+.bulle-ronde.cyan { --h1: var(--cyan-1); --h2: var(--cyan-2); --b: var(--cyan-levre); }
+.bulle-ronde.vert { --h1: var(--vert-1); --h2: var(--vert-2); --b: var(--vert-levre); }
+.bulle-ronde.rose { --h1: var(--rose-1); --h2: var(--rose-2); --b: var(--rose-levre); }
+.bulle-ronde.citron { --h1: var(--citron-1); --h2: var(--citron-2); --b: var(--citron-levre); color: var(--encre); }
+
+/* ------------------------------------------------------------ la fête de fin de niveau */
+.fete { position: absolute; inset: 0; z-index: 4; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 30px 24px calc(26px + env(safe-area-inset-bottom, 0px)); overflow: hidden; text-align: center;
+  background: linear-gradient(180deg, var(--fond-1) 0%, var(--fond-2) 40%, var(--fond-3) 80%, var(--fond-4) 100%); }
+.rayons { position: absolute; left: 50%; top: 34%; width: 900px; height: 900px; margin: -450px 0 0 -450px; border-radius: 50%; opacity: .16;
+  background: repeating-conic-gradient(from 0deg, #fff 0deg 7deg, transparent 7deg 20deg);
+  -webkit-mask-image: radial-gradient(closest-side, #000 15%, transparent 70%); mask-image: radial-gradient(closest-side, #000 15%, transparent 70%);
+  animation: tourne 22s linear infinite, apparait .8s ease-out both; }
+@keyframes tourne { to { transform: rotate(360deg); } }
+@keyframes apparait { from { opacity: 0; transform: scale(.6); } }
+.lueur { position: absolute; left: 50%; top: 34%; width: 300px; height: 300px; margin: -150px 0 0 -150px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 255, 255, .35), rgba(255, 255, 255, 0)); animation: respire 2.6s ease-in-out infinite; }
+@keyframes respire { 50% { transform: scale(1.12); opacity: .75; } }
+#confettis { position: absolute; inset: 0; z-index: 3; width: 100%; height: 100%; pointer-events: none; }
+.medaille { position: relative; z-index: 2; animation: medaille 1s cubic-bezier(.2, 1.4, .3, 1) .15s both; }
+.medaille .tuile { --w: 170px; }
+.medaille .mot { font-size: 62px; }
+@keyframes medaille { 0% { transform: scale(.2) rotate(-200deg); opacity: 0; } 70% { transform: scale(1.1) rotate(8deg); opacity: 1; } 100% { transform: scale(1) rotate(0); } }
+.medaille-coche { position: absolute; z-index: 3; right: -4px; bottom: 6px; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(var(--vert-1), var(--vert-2)); box-shadow: inset 0 0 0 3px #fff, 0 4px 0 var(--vert-levre); animation: pop .45s cubic-bezier(.2, 1.8, .4, 1) 1.05s both; }
+.medaille-coche svg { width: 24px; height: 24px; }
+.medaille-coche path { stroke: var(--encre); }
+.etoiles { position: relative; z-index: 2; display: flex; align-items: flex-end; gap: 10px; }
+.etoiles svg { width: 52px; height: 52px; opacity: 0; animation: etoile .5s cubic-bezier(.2, 1.8, .4, 1) both; }
+.etoiles svg:nth-child(1) { animation-delay: 1.15s; }
+.etoiles svg:nth-child(2) { width: 68px; height: 68px; animation-delay: 1.45s; }
+.etoiles svg:nth-child(3) { animation-delay: 1.75s; }
+@keyframes etoile { 0% { opacity: 0; transform: scale(0) rotate(-120deg); } 100% { opacity: 1; transform: scale(1) rotate(0); } }
+.grand-titre { position: relative; z-index: 2; margin: 0; font: 800 54px/1 var(--titre); text-shadow: 0 4px 0 rgba(46, 16, 150, .3); animation: rebond .6s cubic-bezier(.2, 1.6, .4, 1) .55s both; }
+@keyframes rebond { from { opacity: 0; transform: translateY(20px) scale(.7); } }
+.fete p { position: relative; z-index: 2; margin: 0; max-width: 300px; font-size: 16px; animation: rebond .5s cubic-bezier(.2, 1.4, .4, 1) .8s both; }
+.chemin { position: relative; z-index: 2; display: flex; align-items: center; margin: 8px 0 4px; animation: rebond .5s cubic-bezier(.2, 1.4, .4, 1) 1.9s both; }
+.chemin .tuile { --w: 48px; }
+.chemin .mot { font-size: 16px; }
+.chemin .suivante { animation: appel 1.2s ease-in-out 2.6s infinite; }
+@keyframes appel { 50% { transform: scale(1.14); } }
+.trait { position: relative; width: 42px; height: 6px; margin-top: -4px; border-radius: 3px; background: rgba(255, 255, 255, .22); overflow: hidden; }
+.trait i { position: absolute; inset: 0; background: #fff; transform-origin: left; transform: scaleX(var(--p, 0)); }
+.trait.remplit i { animation: remplit .6s cubic-bezier(.2, .8, .2, 1) 2.3s both; }
+@keyframes remplit { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.fete .bouton { position: relative; z-index: 2; width: min(300px, 100%); margin-top: 12px; animation: rebond .5s cubic-bezier(.2, 1.6, .4, 1) 2.4s both; }
+
+/* ------------------------------------------------------------ le résultat : le niveau atteint, seul */
+.resultat-seul { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; overflow: hidden; padding: 20px; text-align: center; }
+.resultat-seul .rayons, .resultat-seul .lueur { top: 42%; }
+.resultat-seul small { position: relative; z-index: 2; margin-top: 16px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; font-weight: 900; color: rgba(255, 255, 255, .8); animation: rebond .5s cubic-bezier(.2, 1.4, .4, 1) .5s both; }
+.resultat-seul .grand-titre { font-size: 52px; }
+/* les feuilles (relire, quitter) */
+.voile { position: absolute; inset: 0; z-index: 6; display: grid; align-items: end; background: rgba(40, 14, 120, .45); animation: fondu .2s both; }
+@keyframes fondu { from { opacity: 0; } }
+.feuille { display: grid; gap: 12px; max-height: 86%; overflow-y: auto; padding: 22px 20px calc(22px + env(safe-area-inset-bottom, 0px)); border-radius: 28px 28px 0 0; background: #fff; color: var(--encre); animation: monte .3s cubic-bezier(.2, .8, .2, 1) both; }
+.feuille h2 { margin: 0; font: 800 23px/1.2 var(--titre); }
+.feuille > p { margin: 0 0 4px; color: var(--encre-douce); font-weight: 600; }
+.feuille .papier { margin: 0; padding: 0; box-shadow: none; animation: none; }
+.feuille .bouton { box-shadow: 0 5px 0 var(--vert-levre); }
+.feuille .lien { color: var(--encre-douce); }
+
+@media (max-width: 520px) {
+  body { padding: 0; }
+  .appli { width: 100%; height: 100%; border: 0; border-radius: 0; outline: 0; }
+  .haut { padding-top: calc(12px + env(safe-area-inset-top, 0px)); }
+}
+@media (max-width: 860px) { .decor { display: none; } }
+@media (max-width: 370px) { .alveoles { --w: 112px; } }
+@media (max-width: 335px) { .alveoles { --w: 102px; } .alveoles .mot { font-size: 17px; } }
+@media (max-height: 720px) { .visuel { min-height: 120px; padding: 14px 16px; margin-top: 12px; } .question { margin-top: 18px; } .reponses { padding-top: 18px; } .reponses.alveoles { --w: 106px; margin-top: 28px; } .lecteur { width: 80px; height: 80px; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .etoiles svg { opacity: 1; }
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="g-blanc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#f1eaff"/></linearGradient>
+    <linearGradient id="g-citron" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffc96"/><stop offset="1" stop-color="#ffe35a"/></linearGradient>
+    <linearGradient id="g-vert" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cdfc2a"/><stop offset="1" stop-color="#8fe60c"/></linearGradient>
+    <linearGradient id="g-cyan" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#78fdf8"/><stop offset="1" stop-color="#42d8ff"/></linearGradient>
+    <linearGradient id="g-rose" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffadf6"/><stop offset="1" stop-color="#ea62de"/></linearGradient>
+  </defs>
+</svg>
+<div class="decor" id="decor" aria-hidden="true"></div>
+<main class="appli" id="appli" aria-live="polite"></main>
+
+<script>
+// ------------------------------------------------------------------------------ la banque
+// Les 142 QCM du fichier « Test de positionnement FLE – A1 à B1 – 200 questions » (les 58 productions écrites
+// et orales, corrigées à la main ou par IA, n'entrent pas dans ce test automatique). Chaque question garde ses tags :
+// n = N° (ordre de difficulté dans son épreuve), niveau CECRL, épreuve (CO, CE, EE, EO), tag grammaire-lexique,
+// composante détaillée, critère du Tableau 3 CECRL, et « groupe » (questions qui portent sur le même document ou le
+// même enregistrement). « bonne » est l'indice de la bonne réponse dans la liste du fichier (A = 0) ; l'ordre affiché
+// est mélangé, comme le fichier le permet. Le reste dit comment présenter le support.
+const BANQUE = [{"id":"CE-01","n":1,"niveau":"A1","epreuve":"CE","groupe":"CE-01","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Quand le magasin est-il fermé ?","choix":["Le lundi","Le samedi","Le dimanche","Tous les jours"],"bonne":2,"t":"panneau","style":"ferme","etiquette":"Sur la porte d'un magasin","texte":"FERMÉ LE DIMANCHE"},{"id":"CE-02","n":2,"niveau":"A1","epreuve":"CE","groupe":"CE-02","tag":"Lexique","composante":"Lexique (signalétique)","critere":"— (compréhension)","question":"Que montre ce panneau ?","choix":["L'entrée","La sortie","Les toilettes","L'accueil"],"bonne":1,"t":"panneau","style":"sortie","texte":"SORTIE"},{"id":"CE-03","n":3,"niveau":"A1","epreuve":"CE","groupe":"CE-03","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Où est le rendez-vous ?","choix":["Devant la poste","Devant la mairie","À la gare","Chez Léa"],"bonne":1,"t":"sms","etiquette":"SMS de Léa","texte":"Salut ! Rendez-vous à 15 h devant la mairie. Léa"},{"id":"CE-04","n":4,"niveau":"A1","epreuve":"CE","groupe":"CE-03","tag":"Lexique","composante":"Lexique (heure)","critere":"— (compréhension)","question":"À quelle heure est le rendez-vous ?","choix":["5 h","13 h","15 h","16 h"],"bonne":2,"t":"sms","etiquette":"SMS de Léa","texte":"Salut ! Rendez-vous à 15 h devant la mairie. Léa"},{"id":"CE-05","n":5,"niveau":"A1","epreuve":"CE","groupe":"CE-05","tag":"Lexique","composante":"Lexique (prix)","critere":"— (compréhension)","question":"Combien coûtent les tomates ?","choix":["2,50 € le kilo","25 € le kilo","2,50 € la tomate","5,20 € le kilo"],"bonne":0,"t":"prix","produit":"Tomates","prix":"2,50 €","unite":"le kilo"},{"id":"CE-06","n":6,"niveau":"A1","epreuve":"CE","groupe":"CE-06","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Quel est le prénom de la personne ?","choix":["Diallo","Fatou","Dijon","Sénégal"],"bonne":1,"t":"court","titre":"Fiche d'inscription","lignes":["Nom : DIALLO","Prénom : Fatou","Nationalité : sénégalaise","Ville : Dijon"]},{"id":"CE-07","n":7,"niveau":"A1","epreuve":"CE","groupe":"CE-06","tag":"Lexique","composante":"Lexique (nationalités)","critere":"— (compréhension)","question":"Quelle est la nationalité de la personne ?","choix":["Française","Sénégalaise","Malienne","Dijonnaise"],"bonne":1,"t":"court","titre":"Fiche d'inscription","lignes":["Nom : DIALLO","Prénom : Fatou","Nationalité : sénégalaise","Ville : Dijon"]},{"id":"CE-08","n":8,"niveau":"A1","epreuve":"CE","groupe":"CE-08","tag":"Lexique","composante":"Lexique (jours)","critere":"— (compréhension)","question":"La mairie est-elle ouverte le samedi ?","choix":["Oui, le matin","Oui, l'après-midi","Non","Oui, toute la journée"],"bonne":2,"t":"affiche","titre":"MAIRIE","lignes":["Ouverte du lundi au vendredi","de 9 h à 12 h et de 14 h à 17 h"]},{"id":"CE-09","n":9,"niveau":"A1","epreuve":"CE","groupe":"CE-08","tag":"Lexique","composante":"Lexique (heure)","critere":"— (compréhension)","question":"Peut-on aller à la mairie le mardi à 13 h ?","choix":["Oui","Non","Seulement sur rendez-vous","On ne sait pas"],"bonne":1,"t":"affiche","titre":"MAIRIE","lignes":["Ouverte du lundi au vendredi","de 9 h à 12 h et de 14 h à 17 h"]},{"id":"CE-10","n":10,"niveau":"A1","epreuve":"CE","groupe":"CE-10","tag":"Lexique","composante":"Lexique (alimentation)","critere":"— (compréhension)","question":"Quel est le dessert du lundi ?","choix":["Le riz","Le poulet","Le yaourt","Un fruit"],"bonne":2,"t":"menu","titre":"Menu de la cantine","jour":"Lundi","plats":["poulet","riz","yaourt"]},{"id":"CE-11","n":11,"niveau":"A1","epreuve":"CE","groupe":"CE-11","tag":"Lexique","composante":"Lexique (météo)","critere":"— (compréhension)","question":"Quel temps fait-il à Nice ?","choix":["Il pleut","Il fait beau et chaud","Il fait froid","Il neige"],"bonne":1,"t":"court","etiquette":"Carte postale","lignes":["Bonjour de Nice ! Il fait beau et chaud. La mer est super. Bisous, Ali"]},{"id":"CE-12","n":12,"niveau":"A1","epreuve":"CE","groupe":"CE-12","tag":"Lexique","composante":"Lexique (signalétique)","critere":"— (compréhension)","question":"Qu'est-ce qui est interdit ?","choix":["Manger","Fumer","Téléphoner","Entrer"],"bonne":1,"t":"panneau","style":"interdit","texte":"INTERDIT DE FUMER"},{"id":"CE-13","n":13,"niveau":"A1","epreuve":"CE","groupe":"CE-13","tag":"Lexique","composante":"Lexique (nombres)","critere":"— (compréhension)","question":"Combien d'œufs faut-il acheter ?","choix":["2","4","6","12"],"bonne":2,"t":"court","titre":"Liste de courses","lignes":["lait","pain","6 œufs","pommes"],"liste":true},{"id":"CE-14","n":14,"niveau":"A1","epreuve":"CE","groupe":"CE-14","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Où est le cabinet médical ?","choix":["Au rez-de-chaussée, porte B","Au 2e étage, porte B","Au 2e étage, porte D","Au 1er étage, porte B"],"bonne":1,"t":"plaque","etiquette":"Plaque à l'entrée","lignes":["Cabinet médical","2e étage – porte B"]},{"id":"CE-15","n":15,"niveau":"A1","epreuve":"CE","groupe":"CE-15","tag":"—","composante":"Compréhension globale","critere":"— (compréhension)","question":"C'est une invitation pour quelle fête ?","choix":["Un mariage","Un anniversaire","Une fête des voisins","Une naissance"],"bonne":1,"t":"court","titre":"Invitation","lignes":["Anniversaire de Yasmine","Samedi 12 mai – 16 h","5, rue des Lilas"]},{"id":"CE-16","n":16,"niveau":"A1","epreuve":"CE","groupe":"CE-15","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Quelle est l'adresse de la fête ?","choix":["12, rue des Lilas","5, rue des Lilas","16, rue des Lilas","5, rue de Mai"],"bonne":1,"t":"court","titre":"Invitation","lignes":["Anniversaire de Yasmine","Samedi 12 mai – 16 h","5, rue des Lilas"]},{"id":"CE-17","n":17,"niveau":"A1","epreuve":"CE","groupe":"CE-17","tag":"—","composante":"Compréhension globale","critere":"— (compréhension)","question":"Pourquoi Samir ne vient-il pas au cours ?","choix":["Il est en retard","Il est malade","Il travaille","Il est en vacances"],"bonne":1,"t":"sms","etiquette":"SMS de Samir","texte":"Je suis malade, je ne viens pas au cours aujourd'hui. Samir"},{"id":"CE-18","n":18,"niveau":"A2","epreuve":"CE","groupe":"CE-18","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Quel poste est proposé ?","choix":["Cuisinier","Serveur","Plongeur","Caissier"],"bonne":2,"t":"document","titre":"Annonce d'emploi","emoji":"📋","style":"","lignes":["Restaurant Le Saint-Jean recherche un(e) plongeur(se).","CDD de 3 mois, 35 heures par semaine.","Travail du mardi au samedi, le midi et le soir.","Débutant accepté.","Envoyer votre CV à contact@lesaintjean.fr ou vous présenter au restaurant le matin."]},{"id":"CE-19","n":19,"niveau":"A2","epreuve":"CE","groupe":"CE-18","tag":"Lexique","composante":"Lexique (emploi)","critere":"— (compréhension)","question":"Quel est le type de contrat ?","choix":["Un CDI","Un CDD de 3 mois","Un stage","Une mission d'intérim"],"bonne":1,"t":"document","titre":"Annonce d'emploi","emoji":"📋","style":"","lignes":["Restaurant Le Saint-Jean recherche un(e) plongeur(se).","CDD de 3 mois, 35 heures par semaine.","Travail du mardi au samedi, le midi et le soir.","Débutant accepté.","Envoyer votre CV à contact@lesaintjean.fr ou vous présenter au restaurant le matin."]},{"id":"CE-20","n":20,"niveau":"A2","epreuve":"CE","groupe":"CE-18","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Faut-il avoir de l'expérience ?","choix":["Oui, 2 ans","Oui, 1 an","Non, les débutants sont acceptés","Ce n'est pas précisé"],"bonne":2,"t":"document","titre":"Annonce d'emploi","emoji":"📋","style":"","lignes":["Restaurant Le Saint-Jean recherche un(e) plongeur(se).","CDD de 3 mois, 35 heures par semaine.","Travail du mardi au samedi, le midi et le soir.","Débutant accepté.","Envoyer votre CV à contact@lesaintjean.fr ou vous présenter au restaurant le matin."]},{"id":"CE-21","n":21,"niveau":"A2","epreuve":"CE","groupe":"CE-18","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Comment peut-on se porter candidat ?","choix":["Par téléphone uniquement","En envoyant un CV par courriel ou en se présentant le matin","Par lettre à la poste","Sur un site internet"],"bonne":1,"t":"document","titre":"Annonce d'emploi","emoji":"📋","style":"","lignes":["Restaurant Le Saint-Jean recherche un(e) plongeur(se).","CDD de 3 mois, 35 heures par semaine.","Travail du mardi au samedi, le midi et le soir.","Débutant accepté.","Envoyer votre CV à contact@lesaintjean.fr ou vous présenter au restaurant le matin."]},{"id":"CE-22","n":22,"niveau":"A2","epreuve":"CE","groupe":"CE-22","tag":"—","composante":"Compréhension globale","critere":"— (compréhension)","question":"Que va-t-il se passer dans l'immeuble ?","choix":["L'ascenseur va être réparé","L'escalier va être repeint","Le propriétaire va changer","Les appartements vont être nettoyés"],"bonne":1,"t":"document","titre":"Courriel","emoji":"✉️","style":"","lignes":["Bonjour Monsieur Haddad,","Je vous informe que des travaux de peinture auront lieu dans l'escalier de l'immeuble du 3 au 7 juin. Pendant ces travaux, merci de ne pas laisser vos vélos dans le hall. L'ascenseur fonctionnera normalement.","Cordialement,","Mme Perrin, propriétaire"]},{"id":"CE-23","n":23,"niveau":"A2","epreuve":"CE","groupe":"CE-22","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Que demande Mme Perrin ?","choix":["De payer le loyer plus tôt","De ne pas laisser les vélos dans le hall","De ne pas prendre l'ascenseur","D'être présent pendant les travaux"],"bonne":1,"t":"document","titre":"Courriel","emoji":"✉️","style":"","lignes":["Bonjour Monsieur Haddad,","Je vous informe que des travaux de peinture auront lieu dans l'escalier de l'immeuble du 3 au 7 juin. Pendant ces travaux, merci de ne pas laisser vos vélos dans le hall. L'ascenseur fonctionnera normalement.","Cordialement,","Mme Perrin, propriétaire"]},{"id":"CE-24","n":24,"niveau":"A2","epreuve":"CE","groupe":"CE-24","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Combien de comprimés faut-il prendre par jour ?","choix":["1","2","3","5"],"bonne":1,"t":"document","titre":"Notice du médicament","emoji":"💊","style":"","lignes":["Posologie : prendre 1 comprimé matin et soir, pendant le repas, pendant 5 jours.","Ne pas donner aux enfants de moins de 12 ans.","Ne pas conduire après avoir pris ce médicament."]},{"id":"CE-25","n":25,"niveau":"A2","epreuve":"CE","groupe":"CE-24","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Qu'est-ce qui est interdit après avoir pris ce médicament ?","choix":["Manger","Conduire","Dormir","Boire de l'eau"],"bonne":1,"t":"document","titre":"Notice du médicament","emoji":"💊","style":"","lignes":["Posologie : prendre 1 comprimé matin et soir, pendant le repas, pendant 5 jours.","Ne pas donner aux enfants de moins de 12 ans.","Ne pas conduire après avoir pris ce médicament."]},{"id":"CE-26","n":26,"niveau":"A2","epreuve":"CE","groupe":"CE-26","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Que faut-il apporter pour s'inscrire ?","choix":["Une photo et 10 €","Une pièce d'identité et un justificatif de domicile","Une carte bancaire","Une lettre de motivation"],"bonne":1,"t":"document","titre":"Médiathèque municipale","emoji":"📌","style":"affiche","lignes":["Inscription gratuite pour les habitants de la commune.","Apportez une pièce d'identité et un justificatif de domicile.","Vous pouvez emprunter 5 livres et 2 DVD pendant 3 semaines.","Atelier de conversation en français : chaque mercredi à 14 h."]},{"id":"CE-27","n":27,"niveau":"A2","epreuve":"CE","groupe":"CE-26","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Combien de temps peut-on garder les livres ?","choix":["1 semaine","2 semaines","3 semaines","5 semaines"],"bonne":2,"t":"document","titre":"Médiathèque municipale","emoji":"📌","style":"affiche","lignes":["Inscription gratuite pour les habitants de la commune.","Apportez une pièce d'identité et un justificatif de domicile.","Vous pouvez emprunter 5 livres et 2 DVD pendant 3 semaines.","Atelier de conversation en français : chaque mercredi à 14 h."]},{"id":"CE-28","n":28,"niveau":"A2","epreuve":"CE","groupe":"CE-26","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Quand a lieu l'atelier de conversation ?","choix":["Le lundi à 14 h","Le mercredi à 14 h","Le mercredi à 4 h","Le samedi à 14 h"],"bonne":1,"t":"document","titre":"Médiathèque municipale","emoji":"📌","style":"affiche","lignes":["Inscription gratuite pour les habitants de la commune.","Apportez une pièce d'identité et un justificatif de domicile.","Vous pouvez emprunter 5 livres et 2 DVD pendant 3 semaines.","Atelier de conversation en français : chaque mercredi à 14 h."]},{"id":"CE-29","n":29,"niveau":"A2","epreuve":"CE","groupe":"CE-29","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Où Céline a-t-elle passé ses vacances ?","choix":["À la mer","À l'hôtel, à la montagne","Dans un camping au bord d'un lac","Chez des amis"],"bonne":2,"t":"document","titre":"Courriel d'une amie","emoji":"✉️","style":"","lignes":["Salut Nadia,","Je suis rentrée de vacances hier. On a passé une semaine dans un camping au bord d'un lac, dans le Jura. Les enfants se sont baignés tous les jours et mon mari a pêché. Le seul problème : il a plu les deux derniers jours !","On se voit la semaine prochaine ?","Bises,","Céline"]},{"id":"CE-30","n":30,"niveau":"A2","epreuve":"CE","groupe":"CE-29","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Quel problème y a-t-il eu ?","choix":["Les enfants ont été malades","Il a plu","Le camping était fermé","La voiture est tombée en panne"],"bonne":1,"t":"document","titre":"Courriel d'une amie","emoji":"✉️","style":"","lignes":["Salut Nadia,","Je suis rentrée de vacances hier. On a passé une semaine dans un camping au bord d'un lac, dans le Jura. Les enfants se sont baignés tous les jours et mon mari a pêché. Le seul problème : il a plu les deux derniers jours !","On se voit la semaine prochaine ?","Bises,","Céline"]},{"id":"CE-31","n":31,"niveau":"A2","epreuve":"CE","groupe":"CE-29","tag":"—","composante":"Compréhension globale","critere":"— (compréhension)","question":"Que propose Céline à Nadia ?","choix":["De partir ensemble","De se voir la semaine prochaine","De téléphoner ce soir","D'aller dans le Jura"],"bonne":1,"t":"document","titre":"Courriel d'une amie","emoji":"✉️","style":"","lignes":["Salut Nadia,","Je suis rentrée de vacances hier. On a passé une semaine dans un camping au bord d'un lac, dans le Jura. Les enfants se sont baignés tous les jours et mon mari a pêché. Le seul problème : il a plu les deux derniers jours !","On se voit la semaine prochaine ?","Bises,","Céline"]},{"id":"CE-32","n":32,"niveau":"A2","epreuve":"CE","groupe":"CE-32","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Un enfant de 8 ans peut-il venir seul à la piscine ?","choix":["Oui","Non","Oui, le matin seulement","Oui, avec un bonnet"],"bonne":1,"t":"document","titre":"Piscine – règlement","emoji":"🏊","style":"affiche","lignes":["• Bonnet de bain obligatoire.","• Shorts interdits.","• Les enfants de moins de 10 ans doivent être accompagnés d'un adulte.","• Douche obligatoire avant d'entrer dans le bassin."]},{"id":"CE-33","n":33,"niveau":"A2","epreuve":"CE","groupe":"CE-32","tag":"Lexique","composante":"Lexique (vêtements)","critere":"— (compréhension)","question":"Quelle tenue est interdite ?","choix":["Le maillot de bain","Le bonnet de bain","Le short","Les lunettes de natation"],"bonne":2,"t":"document","titre":"Piscine – règlement","emoji":"🏊","style":"affiche","lignes":["• Bonnet de bain obligatoire.","• Shorts interdits.","• Les enfants de moins de 10 ans doivent être accompagnés d'un adulte.","• Douche obligatoire avant d'entrer dans le bassin."]},{"id":"CE-34","n":34,"niveau":"A2","epreuve":"CE","groupe":"CE-34","tag":"—","composante":"Compréhension globale","critere":"— (compréhension)","question":"Que se passe-t-il du 10 au 14 mars ?","choix":["Les trains sont remplacés par des cars","Les trains sont en retard","La gare est fermée","Les billets sont plus chers"],"bonne":0,"t":"document","titre":"Info trafic","emoji":"🚆","style":"info","lignes":["En raison de travaux, les trains entre besançon et vesoul sont remplacés par des cars du 10 au 14 mars. départ devant la gare routière."]},{"id":"CE-35","n":35,"niveau":"B1","epreuve":"CE","groupe":"CE-35","tag":"—","composante":"Compréhension globale","critere":"— (compréhension)","question":"Quel est le thème principal de l'article ?","choix":["Une nouvelle ligne de bus","Le développement du covoiturage en zone rurale","Le prix de l'essence","Les accidents de la route"],"bonne":1,"t":"document","titre":"Article","emoji":"📰","style":"","lignes":["Le covoiturage séduit de plus en plus les habitants des zones rurales. En Haute-Saône, une plateforme créée par le département met en relation les conducteurs et les passagers qui font le même trajet, notamment pour aller travailler. Pour les passagers, le service est gratuit ; les conducteurs, eux, reçoivent une petite participation aux frais d'essence. Selon les organisateurs, plus de 2 000 personnes sont déjà inscrites. Mais certains habitants restent méfiants : ils hésitent à monter dans la voiture d'un inconnu. Pour les rassurer, chaque utilisateur doit désormais vérifier son identité lors de l'inscription."]},{"id":"CE-36","n":36,"niveau":"B1","epreuve":"CE","groupe":"CE-35","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Qu'est-ce qui est vrai à propos de l'argent ?","choix":["Les passagers ne paient rien et les conducteurs reçoivent une participation","Tout le monde paie un abonnement","Les conducteurs paient le service","Le département paie les passagers"],"bonne":0,"t":"document","titre":"Article","emoji":"📰","style":"","lignes":["Le covoiturage séduit de plus en plus les habitants des zones rurales. En Haute-Saône, une plateforme créée par le département met en relation les conducteurs et les passagers qui font le même trajet, notamment pour aller travailler. Pour les passagers, le service est gratuit ; les conducteurs, eux, reçoivent une petite participation aux frais d'essence. Selon les organisateurs, plus de 2 000 personnes sont déjà inscrites. Mais certains habitants restent méfiants : ils hésitent à monter dans la voiture d'un inconnu. Pour les rassurer, chaque utilisateur doit désormais vérifier son identité lors de l'inscription."]},{"id":"CE-37","n":37,"niveau":"B1","epreuve":"CE","groupe":"CE-35","tag":"—","composante":"Inférence","critere":"— (compréhension)","question":"Pourquoi certains habitants hésitent-ils à utiliser le service ?","choix":["C'est trop cher","Ils ont peur de monter dans la voiture d'un inconnu","Ils n'ont pas de voiture","L'inscription est trop compliquée"],"bonne":1,"t":"document","titre":"Article","emoji":"📰","style":"","lignes":["Le covoiturage séduit de plus en plus les habitants des zones rurales. En Haute-Saône, une plateforme créée par le département met en relation les conducteurs et les passagers qui font le même trajet, notamment pour aller travailler. Pour les passagers, le service est gratuit ; les conducteurs, eux, reçoivent une petite participation aux frais d'essence. Selon les organisateurs, plus de 2 000 personnes sont déjà inscrites. Mais certains habitants restent méfiants : ils hésitent à monter dans la voiture d'un inconnu. Pour les rassurer, chaque utilisateur doit désormais vérifier son identité lors de l'inscription."]},{"id":"CE-38","n":38,"niveau":"B1","epreuve":"CE","groupe":"CE-35","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Quelle solution a été mise en place pour rassurer les utilisateurs ?","choix":["Une assurance gratuite","La vérification de l'identité à l'inscription","Des conducteurs professionnels","Des trajets plus courts"],"bonne":1,"t":"document","titre":"Article","emoji":"📰","style":"","lignes":["Le covoiturage séduit de plus en plus les habitants des zones rurales. En Haute-Saône, une plateforme créée par le département met en relation les conducteurs et les passagers qui font le même trajet, notamment pour aller travailler. Pour les passagers, le service est gratuit ; les conducteurs, eux, reçoivent une petite participation aux frais d'essence. Selon les organisateurs, plus de 2 000 personnes sont déjà inscrites. Mais certains habitants restent méfiants : ils hésitent à monter dans la voiture d'un inconnu. Pour les rassurer, chaque utilisateur doit désormais vérifier son identité lors de l'inscription."]},{"id":"CE-39","n":39,"niveau":"B1","epreuve":"CE","groupe":"CE-35","tag":"Lexique","composante":"Lexique (sens en contexte)","critere":"— (compréhension)","question":"Dans le texte, « méfiants » signifie :","choix":["Qui n'ont pas confiance","Fatigués","Enthousiastes","Pressés"],"bonne":0,"t":"document","titre":"Article","emoji":"📰","style":"","lignes":["Le covoiturage séduit de plus en plus les habitants des zones rurales. En Haute-Saône, une plateforme créée par le département met en relation les conducteurs et les passagers qui font le même trajet, notamment pour aller travailler. Pour les passagers, le service est gratuit ; les conducteurs, eux, reçoivent une petite participation aux frais d'essence. Selon les organisateurs, plus de 2 000 personnes sont déjà inscrites. Mais certains habitants restent méfiants : ils hésitent à monter dans la voiture d'un inconnu. Pour les rassurer, chaque utilisateur doit désormais vérifier son identité lors de l'inscription."]},{"id":"CE-40","n":40,"niveau":"B1","epreuve":"CE","groupe":"CE-40","tag":"—","composante":"Compréhension globale","critere":"— (compréhension)","question":"Pourquoi la personne reçoit-elle ce courrier ?","choix":["Sa demande est acceptée","Son dossier est incomplet","Sa demande est refusée","Elle a un rendez-vous"],"bonne":1,"t":"document","titre":"Courrier reçu","emoji":"✉️","style":"courrier","lignes":["Madame,","Votre dossier de demande d'aide au logement est incomplet. Afin de poursuivre son traitement, nous vous remercions de nous faire parvenir, avant le 30 novembre, une copie de votre bail ainsi que votre dernier avis d'imposition. Sans ces documents, votre demande ne pourra pas être étudiée.","Vous pouvez les déposer sur votre espace personnel en ligne ou les envoyer par courrier.","Le service Prestations"]},{"id":"CE-41","n":41,"niveau":"B1","epreuve":"CE","groupe":"CE-40","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Quels documents sont demandés ?","choix":["Le bail et le dernier avis d'imposition","Les trois dernières fiches de paie","Une pièce d'identité","Un relevé d'identité bancaire"],"bonne":0,"t":"document","titre":"Courrier reçu","emoji":"✉️","style":"courrier","lignes":["Madame,","Votre dossier de demande d'aide au logement est incomplet. Afin de poursuivre son traitement, nous vous remercions de nous faire parvenir, avant le 30 novembre, une copie de votre bail ainsi que votre dernier avis d'imposition. Sans ces documents, votre demande ne pourra pas être étudiée.","Vous pouvez les déposer sur votre espace personnel en ligne ou les envoyer par courrier.","Le service Prestations"]},{"id":"CE-42","n":42,"niveau":"B1","epreuve":"CE","groupe":"CE-40","tag":"—","composante":"Inférence","critere":"— (compréhension)","question":"Que se passe-t-il si les documents ne sont pas envoyés avant le 30 novembre ?","choix":["La personne paie une amende","La demande ne sera pas étudiée","Un rendez-vous est obligatoire","L'aide est réduite de moitié"],"bonne":1,"t":"document","titre":"Courrier reçu","emoji":"✉️","style":"courrier","lignes":["Madame,","Votre dossier de demande d'aide au logement est incomplet. Afin de poursuivre son traitement, nous vous remercions de nous faire parvenir, avant le 30 novembre, une copie de votre bail ainsi que votre dernier avis d'imposition. Sans ces documents, votre demande ne pourra pas être étudiée.","Vous pouvez les déposer sur votre espace personnel en ligne ou les envoyer par courrier.","Le service Prestations"]},{"id":"CE-43","n":43,"niveau":"B1","epreuve":"CE","groupe":"CE-40","tag":"Lexique","composante":"Lexique (sens en contexte)","critere":"— (compréhension)","question":"« Afin de poursuivre son traitement » signifie :","choix":["Pour continuer à étudier votre dossier","Pour soigner votre maladie","Pour payer votre aide","Pour annuler votre demande"],"bonne":0,"t":"document","titre":"Courrier reçu","emoji":"✉️","style":"courrier","lignes":["Madame,","Votre dossier de demande d'aide au logement est incomplet. Afin de poursuivre son traitement, nous vous remercions de nous faire parvenir, avant le 30 novembre, une copie de votre bail ainsi que votre dernier avis d'imposition. Sans ces documents, votre demande ne pourra pas être étudiée.","Vous pouvez les déposer sur votre espace personnel en ligne ou les envoyer par courrier.","Le service Prestations"]},{"id":"CE-44","n":44,"niveau":"B1","epreuve":"CE","groupe":"CE-44","tag":"—","composante":"Opinion","critere":"— (compréhension)","question":"Que pensait Laura au début ?","choix":["Que le marché était plus cher","Que les produits étaient meilleurs","Que le marché était trop loin","Que c'était ennuyeux"],"bonne":0,"t":"document","titre":"Témoignage","emoji":"💬","style":"","lignes":["Depuis un an, je fais mes courses une fois par semaine au marché de producteurs de mon village. Au début, je pensais que c'était plus cher qu'au supermarché. En réalité, comme j'achète uniquement ce dont j'ai besoin, je dépense moins. Et puis, je sais d'où viennent les produits. Le seul inconvénient, c'est l'horaire : le marché a lieu le jeudi matin, ce qui n'est pas pratique quand on travaille. J'aimerais qu'il y ait aussi un marché le samedi. — Laura, 38 ans"]},{"id":"CE-45","n":45,"niveau":"B1","epreuve":"CE","groupe":"CE-44","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Que constate-t-elle aujourd'hui ?","choix":["Elle dépense plus","Elle dépense moins","Elle dépense la même chose","Elle ne sait pas"],"bonne":1,"t":"document","titre":"Témoignage","emoji":"💬","style":"","lignes":["Depuis un an, je fais mes courses une fois par semaine au marché de producteurs de mon village. Au début, je pensais que c'était plus cher qu'au supermarché. En réalité, comme j'achète uniquement ce dont j'ai besoin, je dépense moins. Et puis, je sais d'où viennent les produits. Le seul inconvénient, c'est l'horaire : le marché a lieu le jeudi matin, ce qui n'est pas pratique quand on travaille. J'aimerais qu'il y ait aussi un marché le samedi. — Laura, 38 ans"]},{"id":"CE-46","n":46,"niveau":"B1","epreuve":"CE","groupe":"CE-44","tag":"—","composante":"Opinion","critere":"— (compréhension)","question":"Que souhaite Laura ?","choix":["Un marché aussi le samedi","Un marché plus grand","Plus de produits bio","Un supermarché dans le village"],"bonne":0,"t":"document","titre":"Témoignage","emoji":"💬","style":"","lignes":["Depuis un an, je fais mes courses une fois par semaine au marché de producteurs de mon village. Au début, je pensais que c'était plus cher qu'au supermarché. En réalité, comme j'achète uniquement ce dont j'ai besoin, je dépense moins. Et puis, je sais d'où viennent les produits. Le seul inconvénient, c'est l'horaire : le marché a lieu le jeudi matin, ce qui n'est pas pratique quand on travaille. J'aimerais qu'il y ait aussi un marché le samedi. — Laura, 38 ans"]},{"id":"CE-47","n":47,"niveau":"B1","epreuve":"CE","groupe":"CE-44","tag":"—","composante":"Inférence (ton)","critere":"— (compréhension)","question":"Quel est le ton général du texte ?","choix":["Plutôt positif, avec une réserve","Très négatif","Neutre, sans opinion","En colère"],"bonne":0,"t":"document","titre":"Témoignage","emoji":"💬","style":"","lignes":["Depuis un an, je fais mes courses une fois par semaine au marché de producteurs de mon village. Au début, je pensais que c'était plus cher qu'au supermarché. En réalité, comme j'achète uniquement ce dont j'ai besoin, je dépense moins. Et puis, je sais d'où viennent les produits. Le seul inconvénient, c'est l'horaire : le marché a lieu le jeudi matin, ce qui n'est pas pratique quand on travaille. J'aimerais qu'il y ait aussi un marché le samedi. — Laura, 38 ans"]},{"id":"CE-48","n":48,"niveau":"B1","epreuve":"CE","groupe":"CE-48","tag":"—","composante":"Inférence","critere":"— (compréhension)","question":"Un salarié est malade le lundi matin. Il doit transmettre son arrêt de travail au plus tard :","choix":["Le lundi soir","Le mercredi","À la fin de la semaine","Le jour de son retour"],"bonne":1,"t":"document","titre":"Règlement intérieur – extrait","emoji":"📜","style":"affiche","lignes":["• Tout retard doit être signalé au responsable avant le début du poste.","• Les absences pour maladie doivent être justifiées par un arrêt de travail transmis dans les 48 heures.","• Les congés payés sont posés au moins un mois à l'avance, sauf accord exceptionnel de la direction.","• L'usage du téléphone personnel est toléré pendant les pauses uniquement."]},{"id":"CE-49","n":49,"niveau":"B1","epreuve":"CE","groupe":"CE-48","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Peut-on poser un congé une semaine à l'avance ?","choix":["Oui, toujours","Non, jamais","Seulement avec un accord exceptionnel de la direction","Seulement si un collègue est d'accord"],"bonne":2,"t":"document","titre":"Règlement intérieur – extrait","emoji":"📜","style":"affiche","lignes":["• Tout retard doit être signalé au responsable avant le début du poste.","• Les absences pour maladie doivent être justifiées par un arrêt de travail transmis dans les 48 heures.","• Les congés payés sont posés au moins un mois à l'avance, sauf accord exceptionnel de la direction.","• L'usage du téléphone personnel est toléré pendant les pauses uniquement."]},{"id":"CE-50","n":50,"niveau":"B1","epreuve":"CE","groupe":"CE-48","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Que dit le règlement sur le téléphone personnel ?","choix":["Il est interdit","Il est autorisé tout le temps","Il est toléré pendant les pauses","Il est réservé aux urgences"],"bonne":2,"t":"document","titre":"Règlement intérieur – extrait","emoji":"📜","style":"affiche","lignes":["• Tout retard doit être signalé au responsable avant le début du poste.","• Les absences pour maladie doivent être justifiées par un arrêt de travail transmis dans les 48 heures.","• Les congés payés sont posés au moins un mois à l'avance, sauf accord exceptionnel de la direction.","• L'usage du téléphone personnel est toléré pendant les pauses uniquement."]},{"id":"CO-01","n":1,"niveau":"A1","epreuve":"CO","groupe":"CO-01","tag":"Lexique","composante":"Lexique (nombres)","critere":"— (compréhension)","question":"Quel âge a Karim ?","choix":["22 ans","32 ans","42 ans","23 ans"],"bonne":1,"t":"ecoute","audio":"CO-01","script":["Bonjour, je m'appelle Karim. J'ai trente-deux ans."],"etiquette":""},{"id":"CO-02","n":2,"niveau":"A1","epreuve":"CO","groupe":"CO-02","tag":"Lexique","composante":"Lexique (heure)","critere":"— (compréhension)","question":"À quelle heure part le bus ?","choix":["8 h 15","8 h 30","15 h 30","18 h 30"],"bonne":1,"t":"ecoute","audio":"CO-02","script":["Le bus numéro 15 part à 8 heures 30."],"etiquette":""},{"id":"CO-03","n":3,"niveau":"A1","epreuve":"CO","groupe":"CO-03","tag":"Lexique","composante":"Lexique (prix)","critere":"— (compréhension)","question":"Combien coûte la baguette ?","choix":["1,20 €","2,10 €","1,02 €","12 €"],"bonne":0,"t":"ecoute","audio":"CO-03","script":["Une baguette, s'il vous plaît.","Voilà. 1 euro 20."],"etiquette":""},{"id":"CO-04","n":4,"niveau":"A1","epreuve":"CO","groupe":"CO-04","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Que faut-il faire ?","choix":["Fermer la porte","Ouvrir le livre","Écrire son nom","Écouter la radio"],"bonne":1,"t":"ecoute","audio":"CO-04","script":["Ouvrez votre livre page 12."],"etiquette":""},{"id":"CO-05","n":5,"niveau":"A1","epreuve":"CO","groupe":"CO-05","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Où habite la personne ?","choix":["Au Maroc","À Paris","À Besançon","À Lyon"],"bonne":2,"t":"ecoute","audio":"CO-05","script":["Je suis né au Maroc, mais j'habite à Besançon."],"etiquette":""},{"id":"CO-06","n":6,"niveau":"A1","epreuve":"CO","groupe":"CO-06","tag":"Lexique","composante":"Lexique (localisation)","critere":"— (compréhension)","question":"Où est la pharmacie ?","choix":["À droite","À gauche","En face","Derrière"],"bonne":1,"t":"ecoute","audio":"CO-06","script":["La pharmacie est à gauche, après la boulangerie."],"etiquette":"","pictos":["➡️","⬅️","⬆️","↩️"]},{"id":"CO-07","n":7,"niveau":"A1","epreuve":"CO","groupe":"CO-07","tag":"Lexique","composante":"Lexique (jours)","critere":"— (compréhension)","question":"Quel jour est le rendez-vous ?","choix":["Lundi","Mardi","Mercredi","Jeudi"],"bonne":2,"t":"ecoute","audio":"CO-07","script":["Aujourd'hui, nous sommes mardi. Le rendez-vous est demain."],"etiquette":""},{"id":"CO-08","n":8,"niveau":"A1","epreuve":"CO","groupe":"CO-08","tag":"Lexique","composante":"Lexique (nombres)","critere":"— (compréhension)","question":"Quel est le numéro ?","choix":["06 45 78 12 30","06 54 78 12 30","06 45 87 12 30","06 45 78 20 30"],"bonne":0,"t":"ecoute","audio":"CO-08","script":["Mon numéro de téléphone, c'est le 06 45 78 12 30."],"etiquette":""},{"id":"CO-09","n":9,"niveau":"A1","epreuve":"CO","groupe":"CO-09","tag":"Lexique","composante":"Lexique (famille)","critere":"— (compréhension)","question":"Combien d'enfants a la personne ?","choix":["Un","Deux","Trois","Quatre"],"bonne":1,"t":"ecoute","audio":"CO-09","script":["J'ai deux enfants : un garçon et une fille."],"etiquette":""},{"id":"CO-10","n":10,"niveau":"A1","epreuve":"CO","groupe":"CO-10","tag":"Lexique","composante":"Lexique (météo)","critere":"— (compréhension)","question":"Quel temps fait-il ?","choix":["Il fait soleil","Il pleut","Il neige","Il fait chaud"],"bonne":2,"t":"ecoute","audio":"CO-10","script":["Il fait froid aujourd'hui. Il neige."],"etiquette":"","pictos":["☀️","🌧️","❄️","🥵"]},{"id":"CO-11","n":11,"niveau":"A1","epreuve":"CO","groupe":"CO-11","tag":"Sociolinguistique","composante":"Sociolinguistique","critere":"— (compréhension)","question":"À quel moment de la journée parle cette personne ?","choix":["Le matin","Le soir","À midi","On ne sait pas"],"bonne":1,"t":"ecoute","audio":"CO-11","script":["Bonsoir madame, comment allez-vous ?"],"etiquette":""},{"id":"CO-12","n":12,"niveau":"A1","epreuve":"CO","groupe":"CO-12","tag":"Lexique","composante":"Lexique (heure)","critere":"— (compréhension)","question":"À quelle heure finit le cours ?","choix":["9 h","10 h","12 h","14 h"],"bonne":2,"t":"ecoute","audio":"CO-12","script":["Le cours de français commence à 9 heures et finit à midi."],"etiquette":""},{"id":"CO-13","n":13,"niveau":"A1","epreuve":"CO","groupe":"CO-13","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Le train part de quelle voie ?","choix":["Voie 2","Voie 3","Voie 13","Voie 30"],"bonne":1,"t":"ecoute","audio":"CO-13","script":["Attention, le train pour Dijon part voie 3."],"etiquette":"Annonce en gare"},{"id":"CO-14","n":14,"niveau":"A1","epreuve":"CO","groupe":"CO-14","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Qu'est-ce que la personne veut boire ?","choix":["Du thé","Du café","De l'eau","Du jus"],"bonne":1,"t":"ecoute","audio":"CO-14","script":["Vous voulez du thé ou du café ?","Un café, merci."],"etiquette":""},{"id":"CO-15","n":15,"niveau":"A1","epreuve":"CO","groupe":"CO-15","tag":"Lexique","composante":"Lexique (métiers)","critere":"— (compréhension)","question":"Quel est son métier ?","choix":["Serveur","Boulanger","Cuisinier","Vendeur"],"bonne":2,"t":"ecoute","audio":"CO-15","script":["Je travaille dans un restaurant. Je suis cuisinier."],"etiquette":""},{"id":"CO-16","n":16,"niveau":"A1","epreuve":"CO","groupe":"CO-16","tag":"Lexique","composante":"Lexique (prix)","critere":"— (compréhension)","question":"Combien coûtent les pommes ?","choix":["2 € le kilo","12 € le kilo","2 € la pomme","20 € le kilo"],"bonne":0,"t":"ecoute","audio":"CO-16","script":["Les pommes sont à 2 euros le kilo."],"etiquette":""},{"id":"CO-17","n":17,"niveau":"A1","epreuve":"CO","groupe":"CO-17","tag":"Lexique","composante":"Lexique (description)","critere":"— (compréhension)","question":"Comment sont les cheveux d'Amina ?","choix":["Courts et noirs","Longs et noirs","Longs et blonds","Courts et blonds"],"bonne":1,"t":"ecoute","audio":"CO-17","script":["Ma sœur s'appelle Amina. Elle a les cheveux longs et noirs."],"etiquette":""},{"id":"CO-18","n":18,"niveau":"A2","epreuve":"CO","groupe":"CO-18","tag":"—","composante":"Compréhension globale","critere":"— (compréhension)","question":"Qui appelle ?","choix":["La pharmacie","Le cabinet médical","L'école","La mairie"],"bonne":1,"t":"ecoute","audio":"CO-19","script":["Bonjour, ici le cabinet du docteur Martin. Votre rendez-vous de jeudi 14 heures est annulé. Le docteur vous propose vendredi à 10 heures. Merci de rappeler le 03 84 56 22 10 pour confirmer."],"etiquette":"Message sur votre répondeur"},{"id":"CO-19","n":19,"niveau":"A2","epreuve":"CO","groupe":"CO-18","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Quel rendez-vous est annulé ?","choix":["Jeudi à 14 h","Jeudi à 10 h","Vendredi à 14 h","Vendredi à 10 h"],"bonne":0,"t":"ecoute","audio":"CO-19","script":["Bonjour, ici le cabinet du docteur Martin. Votre rendez-vous de jeudi 14 heures est annulé. Le docteur vous propose vendredi à 10 heures. Merci de rappeler le 03 84 56 22 10 pour confirmer."],"etiquette":"Message sur votre répondeur"},{"id":"CO-20","n":20,"niveau":"A2","epreuve":"CO","groupe":"CO-18","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Que doit faire la personne ?","choix":["Aller chez le docteur jeudi","Rappeler pour confirmer","Envoyer un courriel","Rien"],"bonne":1,"t":"ecoute","audio":"CO-19","script":["Bonjour, ici le cabinet du docteur Martin. Votre rendez-vous de jeudi 14 heures est annulé. Le docteur vous propose vendredi à 10 heures. Merci de rappeler le 03 84 56 22 10 pour confirmer."],"etiquette":"Message sur votre répondeur"},{"id":"CO-21","n":21,"niveau":"A2","epreuve":"CO","groupe":"CO-21","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Quels produits sont en promotion ?","choix":["La viande","Les fruits et légumes","Les vêtements","Les boissons"],"bonne":1,"t":"ecoute","audio":"CO-21","script":["Chers clients, cette semaine, profitez de nos promotions : les fruits et légumes à moins 30 %. Attention, ce samedi, le magasin fermera exceptionnellement à 19 heures. Bonne journée !"],"etiquette":"Annonce dans un magasin"},{"id":"CO-22","n":22,"niveau":"A2","epreuve":"CO","groupe":"CO-21","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Que se passe-t-il ce samedi ?","choix":["Le magasin est fermé toute la journée","Le magasin ferme à 19 h","Le magasin ouvre à 19 h","Le magasin ferme à 21 h"],"bonne":1,"t":"ecoute","audio":"CO-21","script":["Chers clients, cette semaine, profitez de nos promotions : les fruits et légumes à moins 30 %. Attention, ce samedi, le magasin fermera exceptionnellement à 19 heures. Bonne journée !"],"etiquette":"Annonce dans un magasin"},{"id":"CO-23","n":23,"niveau":"A2","epreuve":"CO","groupe":"CO-23","tag":"Lexique","composante":"Lexique (logement)","critere":"— (compréhension)","question":"Combien de pièces a l'appartement ?","choix":["Une","Deux","Trois","Cinq"],"bonne":1,"t":"ecoute","audio":"CO-23","script":["Bonjour, j'appelle pour l'appartement à louer. Il est toujours disponible ?","Oui. C'est un deux-pièces au troisième étage, sans ascenseur. Le loyer est de 520 euros, charges comprises.","Je peux le visiter quand ?","Demain à 18 heures, ça vous va ?","Parfait, merci."],"etiquette":"Appel pour un logement"},{"id":"CO-24","n":24,"niveau":"A2","epreuve":"CO","groupe":"CO-23","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Qu'est-ce qui est vrai ?","choix":["Il y a un ascenseur","Il n'y a pas d'ascenseur","L'appartement est au rez-de-chaussée","L'appartement est au 5e étage"],"bonne":1,"t":"ecoute","audio":"CO-23","script":["Bonjour, j'appelle pour l'appartement à louer. Il est toujours disponible ?","Oui. C'est un deux-pièces au troisième étage, sans ascenseur. Le loyer est de 520 euros, charges comprises.","Je peux le visiter quand ?","Demain à 18 heures, ça vous va ?","Parfait, merci."],"etiquette":"Appel pour un logement"},{"id":"CO-25","n":25,"niveau":"A2","epreuve":"CO","groupe":"CO-23","tag":"Lexique","composante":"Lexique (logement)","critere":"— (compréhension)","question":"Combien coûte le loyer ?","choix":["520 € sans les charges","520 € charges comprises","250 € charges comprises","502 € sans les charges"],"bonne":1,"t":"ecoute","audio":"CO-23","script":["Bonjour, j'appelle pour l'appartement à louer. Il est toujours disponible ?","Oui. C'est un deux-pièces au troisième étage, sans ascenseur. Le loyer est de 520 euros, charges comprises.","Je peux le visiter quand ?","Demain à 18 heures, ça vous va ?","Parfait, merci."],"etiquette":"Appel pour un logement"},{"id":"CO-26","n":26,"niveau":"A2","epreuve":"CO","groupe":"CO-23","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Quand a lieu la visite ?","choix":["Aujourd'hui à 18 h","Demain à 18 h","Demain à 8 h","Samedi"],"bonne":1,"t":"ecoute","audio":"CO-23","script":["Bonjour, j'appelle pour l'appartement à louer. Il est toujours disponible ?","Oui. C'est un deux-pièces au troisième étage, sans ascenseur. Le loyer est de 520 euros, charges comprises.","Je peux le visiter quand ?","Demain à 18 heures, ça vous va ?","Parfait, merci."],"etiquette":"Appel pour un logement"},{"id":"CO-27","n":27,"niveau":"A2","epreuve":"CO","groupe":"CO-27","tag":"—","composante":"Compréhension globale","critere":"— (compréhension)","question":"Pourquoi la collègue ne vient-elle pas au travail demain ?","choix":["Elle est malade","Son fils est malade","Elle part en vacances","Elle a un rendez-vous"],"bonne":1,"t":"ecoute","audio":"CO-27","script":["Salut Paulo ! Demain, je ne peux pas venir au travail, mon fils est malade. Tu peux me remplacer le matin ? Si tu veux, je te remplace lundi."],"etiquette":"Message d'une collègue"},{"id":"CO-28","n":28,"niveau":"A2","epreuve":"CO","groupe":"CO-27","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Que propose-t-elle à Paulo ?","choix":["De le payer","De le remplacer lundi","De l'inviter au restaurant","De changer d'équipe"],"bonne":1,"t":"ecoute","audio":"CO-27","script":["Salut Paulo ! Demain, je ne peux pas venir au travail, mon fils est malade. Tu peux me remplacer le matin ? Si tu veux, je te remplace lundi."],"etiquette":"Message d'une collègue"},{"id":"CO-29","n":29,"niveau":"A2","epreuve":"CO","groupe":"CO-29","tag":"—","composante":"Compréhension globale","critere":"— (compréhension)","question":"À qui s'adresse ce message ?","choix":["Aux élèves","Aux parents","Aux enseignants","Au directeur"],"bonne":1,"t":"ecoute","audio":"CO-29","script":["Bonjour à tous les parents. La réunion de rentrée aura lieu le mardi 15 septembre à 17 h 30 dans la classe de votre enfant. Pensez à apporter l'attestation d'assurance scolaire."],"etiquette":"Annonce de l'école"},{"id":"CO-30","n":30,"niveau":"A2","epreuve":"CO","groupe":"CO-29","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Que faut-il apporter à la réunion ?","choix":["Une photo","L'attestation d'assurance scolaire","Un cahier","De l'argent"],"bonne":1,"t":"ecoute","audio":"CO-29","script":["Bonjour à tous les parents. La réunion de rentrée aura lieu le mardi 15 septembre à 17 h 30 dans la classe de votre enfant. Pensez à apporter l'attestation d'assurance scolaire."],"etiquette":"Annonce de l'école"},{"id":"CO-31","n":31,"niveau":"A2","epreuve":"CO","groupe":"CO-31","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Quel temps fera-t-il demain matin ?","choix":["Du soleil","De la pluie","De la neige","Du vent"],"bonne":1,"t":"ecoute","audio":"CO-31","script":["Demain matin, il va pleuvoir dans tout l'est de la France. L'après-midi, le soleil revient, avec des températures autour de 18 degrés."],"etiquette":"La météo à la radio"},{"id":"CO-32","n":32,"niveau":"A2","epreuve":"CO","groupe":"CO-31","tag":"Lexique","composante":"Lexique (nombres)","critere":"— (compréhension)","question":"Quelle température est annoncée l'après-midi ?","choix":["8 degrés","16 degrés","18 degrés","28 degrés"],"bonne":2,"t":"ecoute","audio":"CO-31","script":["Demain matin, il va pleuvoir dans tout l'est de la France. L'après-midi, le soleil revient, avec des températures autour de 18 degrés."],"etiquette":"La météo à la radio"},{"id":"CO-33","n":33,"niveau":"A2","epreuve":"CO","groupe":"CO-33","tag":"Grammaire","composante":"Grammaire (repérage du temps)","critere":"— (compréhension)","question":"Quand la personne est-elle allée à Lyon ?","choix":["Ce week-end","Le week-end dernier","Le week-end prochain","Pendant les vacances d'été"],"bonne":1,"t":"ecoute","audio":"CO-33","script":["Le week-end dernier, je suis allée chez mes cousins à Lyon. Nous avons visité le vieux quartier et, le soir, on a mangé au restaurant."],"etiquette":"Un récit"},{"id":"CO-34","n":34,"niveau":"A2","epreuve":"CO","groupe":"CO-34","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Comment aller à la gare ?","choix":["Première rue à gauche, puis tout droit","Première rue à droite, puis tout droit","Tout droit, puis à droite","Prendre le bus"],"bonne":1,"t":"ecoute","audio":"CO-34","script":["Excusez-moi, pour aller à la gare, c'est loin ?","Non, c'est à cinq minutes à pied. Prenez la première rue à droite, puis continuez tout droit."],"etiquette":"Dans la rue"},{"id":"CO-35","n":35,"niveau":"B1","epreuve":"CO","groupe":"CO-35","tag":"—","composante":"Compréhension globale","critere":"— (compréhension)","question":"De quoi parle cette information ?","choix":["D'une nouvelle ligne de bus","D'un service de vélos en libre-service","De travaux à la gare","De la fermeture de l'hôpital"],"bonne":1,"t":"ecoute","audio":"CO-35","script":["La ville de Vesoul lance un nouveau service de vélos en libre-service. À partir du 1er octobre, une vingtaine de stations seront installées près de la gare, de l'hôpital et dans les principaux quartiers. L'abonnement annuel coûtera 30 euros, mais il sera gratuit pour les étudiants et les demandeurs d'emploi. Selon le maire, l'objectif est de réduire la circulation en centre-ville."],"etiquette":"À la radio"},{"id":"CO-36","n":36,"niveau":"B1","epreuve":"CO","groupe":"CO-35","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Pour qui l'abonnement sera-t-il gratuit ?","choix":["Pour les retraités","Pour les enfants","Pour les étudiants et les demandeurs d'emploi","Pour tout le monde le premier mois"],"bonne":2,"t":"ecoute","audio":"CO-35","script":["La ville de Vesoul lance un nouveau service de vélos en libre-service. À partir du 1er octobre, une vingtaine de stations seront installées près de la gare, de l'hôpital et dans les principaux quartiers. L'abonnement annuel coûtera 30 euros, mais il sera gratuit pour les étudiants et les demandeurs d'emploi. Selon le maire, l'objectif est de réduire la circulation en centre-ville."],"etiquette":"À la radio"},{"id":"CO-37","n":37,"niveau":"B1","epreuve":"CO","groupe":"CO-35","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Quel est l'objectif de ce projet, selon le maire ?","choix":["Réduire la circulation en centre-ville","Attirer des touristes","Créer des emplois","Financer l'hôpital"],"bonne":0,"t":"ecoute","audio":"CO-35","script":["La ville de Vesoul lance un nouveau service de vélos en libre-service. À partir du 1er octobre, une vingtaine de stations seront installées près de la gare, de l'hôpital et dans les principaux quartiers. L'abonnement annuel coûtera 30 euros, mais il sera gratuit pour les étudiants et les demandeurs d'emploi. Selon le maire, l'objectif est de réduire la circulation en centre-ville."],"etiquette":"À la radio"},{"id":"CO-38","n":38,"niveau":"B1","epreuve":"CO","groupe":"CO-38","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Quelle expérience la candidate a-t-elle en France ?","choix":["Trois ans comme aide-soignante","Un stage de six mois en maison de retraite","Aucune","Un CDD à l'hôpital"],"bonne":1,"t":"ecoute","audio":"CO-38","script":["Alors, parlez-moi de votre expérience.","J'ai travaillé trois ans comme aide-soignante dans mon pays, puis j'ai fait un stage de six mois dans une maison de retraite à Besançon.","Et pourquoi voulez-vous ce poste ?","J'aime m'occuper des personnes âgées, et ici, je pourrais travailler à temps plein, ce qui n'était pas le cas pendant mon stage.","Vous êtes disponible le week-end ?","Oui, sans problème. Par contre, je préférerais ne pas travailler de nuit, à cause de mes enfants."],"etiquette":"Un entretien d'embauche"},{"id":"CO-39","n":39,"niveau":"B1","epreuve":"CO","groupe":"CO-38","tag":"—","composante":"Inférence","critere":"— (compréhension)","question":"Pourquoi la candidate veut-elle ce poste ?","choix":["Parce qu'il est mieux payé","Parce qu'il est à temps plein","Parce qu'il est près de chez elle","Parce qu'elle aime travailler la nuit"],"bonne":1,"t":"ecoute","audio":"CO-38","script":["Alors, parlez-moi de votre expérience.","J'ai travaillé trois ans comme aide-soignante dans mon pays, puis j'ai fait un stage de six mois dans une maison de retraite à Besançon.","Et pourquoi voulez-vous ce poste ?","J'aime m'occuper des personnes âgées, et ici, je pourrais travailler à temps plein, ce qui n'était pas le cas pendant mon stage.","Vous êtes disponible le week-end ?","Oui, sans problème. Par contre, je préférerais ne pas travailler de nuit, à cause de mes enfants."],"etiquette":"Un entretien d'embauche"},{"id":"CO-40","n":40,"niveau":"B1","epreuve":"CO","groupe":"CO-38","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Quelle contrainte la candidate exprime-t-elle ?","choix":["Elle ne veut pas travailler le week-end","Elle préfère ne pas travailler de nuit","Elle ne peut pas commencer le matin","Elle ne veut pas d'un temps plein"],"bonne":1,"t":"ecoute","audio":"CO-38","script":["Alors, parlez-moi de votre expérience.","J'ai travaillé trois ans comme aide-soignante dans mon pays, puis j'ai fait un stage de six mois dans une maison de retraite à Besançon.","Et pourquoi voulez-vous ce poste ?","J'aime m'occuper des personnes âgées, et ici, je pourrais travailler à temps plein, ce qui n'était pas le cas pendant mon stage.","Vous êtes disponible le week-end ?","Oui, sans problème. Par contre, je préférerais ne pas travailler de nuit, à cause de mes enfants."],"etiquette":"Un entretien d'embauche"},{"id":"CO-41","n":41,"niveau":"B1","epreuve":"CO","groupe":"CO-41","tag":"—","composante":"Opinion","critere":"— (compréhension)","question":"Que pense Ahmed de la fermeture de l'épicerie ?","choix":["Il est content","Il la regrette","Ça lui est égal","Il pense que c'est une rumeur"],"bonne":1,"t":"ecoute","audio":"CO-41","script":["Tu as vu ? Ils vont fermer la petite épicerie du quartier.","Oui, c'est dommage. Moi, j'y allais tous les jours. Au supermarché, c'est moins cher, d'accord, mais on ne connaît personne.","C'est vrai, mais pour les jeunes, le supermarché est plus pratique : il est ouvert jusqu'à 21 heures.","Peut-être, mais pour les personnes âgées qui n'ont pas de voiture, ça va être compliqué."],"etiquette":"Discussion entre voisins"},{"id":"CO-42","n":42,"niveau":"B1","epreuve":"CO","groupe":"CO-41","tag":"—","composante":"Opinion","critere":"— (compréhension)","question":"Quel argument Sophie donne-t-elle en faveur du supermarché ?","choix":["Il est moins cher","Il est ouvert plus tard","Il est plus proche","Ses produits sont meilleurs"],"bonne":1,"t":"ecoute","audio":"CO-41","script":["Tu as vu ? Ils vont fermer la petite épicerie du quartier.","Oui, c'est dommage. Moi, j'y allais tous les jours. Au supermarché, c'est moins cher, d'accord, mais on ne connaît personne.","C'est vrai, mais pour les jeunes, le supermarché est plus pratique : il est ouvert jusqu'à 21 heures.","Peut-être, mais pour les personnes âgées qui n'ont pas de voiture, ça va être compliqué."],"etiquette":"Discussion entre voisins"},{"id":"CO-43","n":43,"niveau":"B1","epreuve":"CO","groupe":"CO-41","tag":"—","composante":"Opinion","critere":"— (compréhension)","question":"Quelle inquiétude Ahmed exprime-t-il à la fin ?","choix":["L'augmentation des prix","La situation des personnes âgées sans voiture","La perte d'emplois","Le bruit dans le quartier"],"bonne":1,"t":"ecoute","audio":"CO-41","script":["Tu as vu ? Ils vont fermer la petite épicerie du quartier.","Oui, c'est dommage. Moi, j'y allais tous les jours. Au supermarché, c'est moins cher, d'accord, mais on ne connaît personne.","C'est vrai, mais pour les jeunes, le supermarché est plus pratique : il est ouvert jusqu'à 21 heures.","Peut-être, mais pour les personnes âgées qui n'ont pas de voiture, ça va être compliqué."],"etiquette":"Discussion entre voisins"},{"id":"CO-44","n":44,"niveau":"B1","epreuve":"CO","groupe":"CO-44","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Si l'alarme sonne, que faut-il faire en premier ?","choix":["Appeler les secours","Arrêter sa machine","Prendre l'ascenseur","Prévenir le chef d'équipe"],"bonne":1,"t":"ecoute","audio":"CO-44","script":["Avant de commencer, quelques consignes. Les chaussures de sécurité sont obligatoires dans l'atelier. Si vous entendez l'alarme, arrêtez immédiatement votre machine et rejoignez le point de rassemblement, sur le parking. N'utilisez jamais l'ascenseur. En cas d'accident, prévenez votre chef d'équipe avant d'appeler les secours."],"etiquette":"Consignes de sécurité"},{"id":"CO-45","n":45,"niveau":"B1","epreuve":"CO","groupe":"CO-44","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Où se trouve le point de rassemblement ?","choix":["Dans l'atelier","Sur le parking","À l'accueil","À la cafétéria"],"bonne":1,"t":"ecoute","audio":"CO-44","script":["Avant de commencer, quelques consignes. Les chaussures de sécurité sont obligatoires dans l'atelier. Si vous entendez l'alarme, arrêtez immédiatement votre machine et rejoignez le point de rassemblement, sur le parking. N'utilisez jamais l'ascenseur. En cas d'accident, prévenez votre chef d'équipe avant d'appeler les secours."],"etiquette":"Consignes de sécurité"},{"id":"CO-46","n":46,"niveau":"B1","epreuve":"CO","groupe":"CO-44","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"En cas d'accident, que faut-il faire ?","choix":["Appeler les secours, puis le chef d'équipe","Prévenir le chef d'équipe avant d'appeler les secours","Quitter l'atelier","Remplir un formulaire"],"bonne":1,"t":"ecoute","audio":"CO-44","script":["Avant de commencer, quelques consignes. Les chaussures de sécurité sont obligatoires dans l'atelier. Si vous entendez l'alarme, arrêtez immédiatement votre machine et rejoignez le point de rassemblement, sur le parking. N'utilisez jamais l'ascenseur. En cas d'accident, prévenez votre chef d'équipe avant d'appeler les secours."],"etiquette":"Consignes de sécurité"},{"id":"CO-47","n":47,"niveau":"B1","epreuve":"CO","groupe":"CO-47","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Depuis combien de temps cet homme vit-il en France ?","choix":["Six mois","Un an","Deux ans","Cinq ans"],"bonne":2,"t":"ecoute","audio":"CO-47","script":["Quand je suis arrivé en France, il y a deux ans, je ne parlais pas du tout français. Au début, c'était vraiment difficile : je ne comprenais pas les courriers administratifs et j'avais peur de téléphoner. Grâce aux cours, et surtout grâce à mon club de football, j'ai fait beaucoup de progrès. Aujourd'hui, je comprends presque tout, même si j'ai encore du mal avec l'écrit."],"etiquette":"Un témoignage"},{"id":"CO-48","n":48,"niveau":"B1","epreuve":"CO","groupe":"CO-47","tag":"—","composante":"Inférence","critere":"— (compréhension)","question":"Qu'est-ce qui l'a le plus aidé à progresser, selon lui ?","choix":["La télévision","Son club de football","Ses voisins","Son travail"],"bonne":1,"t":"ecoute","audio":"CO-47","script":["Quand je suis arrivé en France, il y a deux ans, je ne parlais pas du tout français. Au début, c'était vraiment difficile : je ne comprenais pas les courriers administratifs et j'avais peur de téléphoner. Grâce aux cours, et surtout grâce à mon club de football, j'ai fait beaucoup de progrès. Aujourd'hui, je comprends presque tout, même si j'ai encore du mal avec l'écrit."],"etiquette":"Un témoignage"},{"id":"CO-49","n":49,"niveau":"B1","epreuve":"CO","groupe":"CO-47","tag":"—","composante":"Information précise","critere":"— (compréhension)","question":"Quelle difficulté a-t-il encore aujourd'hui ?","choix":["Comprendre les gens à l'oral","Téléphoner","Écrire","Lire les panneaux"],"bonne":2,"t":"ecoute","audio":"CO-47","script":["Quand je suis arrivé en France, il y a deux ans, je ne parlais pas du tout français. Au début, c'était vraiment difficile : je ne comprenais pas les courriers administratifs et j'avais peur de téléphoner. Grâce aux cours, et surtout grâce à mon club de football, j'ai fait beaucoup de progrès. Aujourd'hui, je comprends presque tout, même si j'ai encore du mal avec l'écrit."],"etiquette":"Un témoignage"},{"id":"CO-50","n":50,"niveau":"B1","epreuve":"CO","groupe":"CO-50","tag":"—","composante":"Inférence (implicite)","critere":"— (compréhension)","question":"Que répond la personne invitée ?","choix":["Elle accepte","Elle refuse poliment","Elle propose d'y aller demain","Elle ne sait pas encore"],"bonne":1,"t":"ecoute","audio":"CO-50","script":["Tu viens au cinéma ce soir ?","Ce soir… J'ai une réunion qui finit tard, et demain je me lève à cinq heures.","Ah, je vois. Une autre fois, alors !"],"etiquette":"Deux amis parlent"},{"id":"EE-01","n":1,"niveau":"A1","epreuve":"EE","groupe":"EE-01","tag":"Lexique","composante":"Lexique","critere":"Étendue","question":"Que devez-vous écrire ?","choix":["12/03/1990","Besançon","06 12 34 56 78","Française"],"bonne":0,"t":"enonce","avant":"Sur un formulaire, vous lisez :","citation":"Date de naissance : ______","apres":""},{"id":"EE-02","n":2,"niveau":"A1","epreuve":"EE","groupe":"EE-02","tag":"Lexique","composante":"Lexique","critere":"Étendue","question":"Que devez-vous écrire ?","choix":["Maroc","Marocaine","Rabat","Arabe"],"bonne":1,"t":"enonce","avant":"Sur un formulaire, vous lisez :","citation":"Nationalité : ______","apres":"Vous êtes née au Maroc et vous êtes marocaine."},{"id":"EE-03","n":3,"niveau":"A1","epreuve":"EE","groupe":"EE-03","tag":"Grammaire","composante":"Grammaire","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["m'appelle","appelle","s'appelle","t'appelles"],"bonne":0,"t":"trou","etiquette":"Complétez :","phrase":"Je ______ Mariam.","indice":""},{"id":"EE-04","n":4,"niveau":"A1","epreuve":"EE","groupe":"EE-04","tag":"Grammaire","composante":"Grammaire","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["suis","ai","a","es"],"bonne":1,"t":"trou","etiquette":"Complétez :","phrase":"J'______ 25 ans.","indice":""},{"id":"EE-05","n":5,"niveau":"A1","epreuve":"EE","groupe":"EE-05","tag":"Grammaire","composante":"Grammaire","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["habite","habitons","habitez","habitent"],"bonne":1,"t":"trou","etiquette":"Complétez :","phrase":"Nous ______ à Vesoul.","indice":"(habiter)"},{"id":"EE-06","n":6,"niveau":"A1","epreuve":"EE","groupe":"EE-06","tag":"Orthographe","composante":"Orthographe","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["bonjour","bonjoure","bonjur","bojour"],"bonne":0,"t":"enonce","avant":"Quel mot est bien écrit ?","citation":null,"apres":""},{"id":"EE-07","n":7,"niveau":"A1","epreuve":"EE","groupe":"EE-07","tag":"Lexique","composante":"Lexique (nombres)","critere":"Étendue","question":"Choisissez la bonne réponse.","choix":["cinq","cinquante","quinze","quatorze"],"bonne":2,"t":"enonce","avant":"Comment écrit-on","citation":"15","apres":"en lettres ?"},{"id":"EE-08","n":8,"niveau":"A1","epreuve":"EE","groupe":"EE-08","tag":"Sociolinguistique","composante":"Sociolinguistique","critere":"Étendue","question":"Quel mot choisissez-vous pour commencer ?","choix":["Salut !","Madame, Monsieur,","Veuillez agréer…","Cordialement,"],"bonne":0,"t":"enonce","avant":"Vous écrivez un SMS à un ami.","citation":null,"apres":""},{"id":"EE-09","n":9,"niveau":"A1","epreuve":"EE","groupe":"EE-09","tag":"Grammaire","composante":"Grammaire (prépositions)","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["à","en","au","aux"],"bonne":1,"t":"trou","etiquette":"Complétez :","phrase":"J'habite ______ France.","indice":""},{"id":"EE-10","n":10,"niveau":"A1","epreuve":"EE","groupe":"EE-10","tag":"Grammaire","composante":"Grammaire (articles)","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["le","la","les","une"],"bonne":0,"t":"trou","etiquette":"Complétez :","phrase":"J'aime ______ café.","indice":""},{"id":"EE-11","n":11,"niveau":"A1","epreuve":"EE","groupe":"EE-11","tag":"Grammaire","composante":"Grammaire (ordre des mots)","critere":"Cohérence","question":"Quelle phrase est correcte ?","choix":["Je content suis.","Suis je content.","Je suis content.","Content je suis."],"bonne":2,"t":"mots","etiquette":"Remettez les mots dans l'ordre :","mots":["suis","je","content"]},{"id":"EE-12","n":12,"niveau":"A1","epreuve":"EE","groupe":"EE-12","tag":"Orthographe","composante":"Orthographe (pluriel)","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["pomme","pommes","pommé","pommet"],"bonne":1,"t":"trou","etiquette":"Complétez :","phrase":"J'achète deux ______.","indice":""},{"id":"EE-13","n":13,"niveau":"A1","epreuve":"EE","groupe":"EE-13","tag":"Grammaire","composante":"Grammaire (accord adjectif)","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["gentil","gentille","gentils","gentilles"],"bonne":1,"t":"trou","etiquette":"Complétez :","phrase":"Ma voisine est très ______.","indice":""},{"id":"EE-18","n":18,"niveau":"A2","epreuve":"EE","groupe":"EE-18","tag":"Grammaire","composante":"Grammaire (passé composé)","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["sommes allés","avons allé","allons","sommes aller"],"bonne":0,"t":"trou","etiquette":"Complétez :","phrase":"Hier, nous ______ au marché.","indice":"(aller)"},{"id":"EE-19","n":19,"niveau":"A2","epreuve":"EE","groupe":"EE-19","tag":"Grammaire","composante":"Grammaire (passé composé)","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["ai mangé","suis mangé","mange","mangerai"],"bonne":0,"t":"trou","etiquette":"Complétez :","phrase":"Samedi dernier, j'______ au restaurant.","indice":"(manger)"},{"id":"EE-20","n":20,"niveau":"A2","epreuve":"EE","groupe":"EE-20","tag":"Grammaire","composante":"Grammaire (futur proche)","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["vais","va","suis","ai"],"bonne":0,"t":"trou","etiquette":"Complétez :","phrase":"Demain, je ______ appeler le médecin.","indice":""},{"id":"EE-21","n":21,"niveau":"A2","epreuve":"EE","groupe":"EE-21","tag":"Discours","composante":"Discours (connecteurs)","critere":"Cohérence","question":"Choisissez la bonne réponse.","choix":["mais","parce que","et","alors"],"bonne":1,"t":"trou","etiquette":"Complétez :","phrase":"Je ne peux pas venir ______ je suis malade.","indice":""},{"id":"EE-22","n":22,"niveau":"A2","epreuve":"EE","groupe":"EE-22","tag":"Discours","composante":"Discours (connecteurs)","critere":"Cohérence","question":"Choisissez la bonne réponse.","choix":["parce que","alors","mais","ou"],"bonne":1,"t":"trou","etiquette":"Complétez :","phrase":"Il pleut, ______ je prends mon parapluie.","indice":""},{"id":"EE-23","n":23,"niveau":"A2","epreuve":"EE","groupe":"EE-23","tag":"Sociolinguistique","composante":"Sociolinguistique","critere":"Étendue","question":"Comment commencez-vous ?","choix":["Salut prof !","Bonjour Madame,","Coucou,","Hé !"],"bonne":1,"t":"enonce","avant":"Vous écrivez un courriel à votre formatrice.","citation":null,"apres":""},{"id":"EE-24","n":24,"niveau":"A2","epreuve":"EE","groupe":"EE-24","tag":"Sociolinguistique","composante":"Sociolinguistique","critere":"Étendue","question":"Comment terminez-vous ?","choix":["Bisous","Cordialement","À plus !","Ciao"],"bonne":1,"t":"enonce","avant":"Vous écrivez un courriel à la mairie.","citation":null,"apres":""},{"id":"EE-25","n":25,"niveau":"A2","epreuve":"EE","groupe":"EE-25","tag":"Grammaire","composante":"Grammaire (pronoms COD)","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["le","la","lui","les"],"bonne":1,"t":"enonce","avant":"","citation":"Tu connais Marie ? — Oui, je ______ connais.","apres":""},{"id":"EE-26","n":26,"niveau":"A2","epreuve":"EE","groupe":"EE-26","tag":"Grammaire","composante":"Grammaire (comparatif)","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["plus… que","plus… de","très… que","autant… de"],"bonne":0,"t":"trou","etiquette":"Complétez :","phrase":"Le train est ______ rapide ______ le bus.","indice":""},{"id":"EE-27","n":27,"niveau":"A2","epreuve":"EE","groupe":"EE-27","tag":"Grammaire","composante":"Grammaire (quantité)","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["beaucoup des","beaucoup de","beaucoup","très"],"bonne":1,"t":"trou","etiquette":"Complétez :","phrase":"Il y a ______ personnes dans la salle d'attente.","indice":""},{"id":"EE-28","n":28,"niveau":"A2","epreuve":"EE","groupe":"EE-28","tag":"Orthographe","composante":"Orthographe (homophones)","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["son","sont","sons","sonts"],"bonne":1,"t":"trou","etiquette":"Complétez :","phrase":"Mes enfants ______ à l'école.","indice":""},{"id":"EE-29","n":29,"niveau":"A2","epreuve":"EE","groupe":"EE-29","tag":"Grammaire","composante":"Grammaire (négation)","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["Je n'ai pas du travail.","Je n'ai pas de travail.","Je ai pas de travail.","Je n'ai de travail."],"bonne":1,"t":"transformer","vers":"Mettez la phrase à la forme négative :","phrase":"J'ai du travail."},{"id":"EE-30","n":30,"niveau":"A2","epreuve":"EE","groupe":"EE-30","tag":"Sociolinguistique","composante":"Sociolinguistique","critere":"Correction","question":"Quelle phrase est correcte ?","choix":["Excusez-moi pour le retard.","Excuse-toi le retard.","Pardon de retard moi.","Je excuse retard."],"bonne":0,"t":"enonce","avant":"Vous arrivez en retard et vous laissez un mot.","citation":null,"apres":""},{"id":"EE-35","n":35,"niveau":"B1","epreuve":"EE","groupe":"EE-35","tag":"Grammaire","composante":"Grammaire (passé composé / imparfait)","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["suis arrivé / pleuvait","arrivais / a plu","suis arrivé / a plu","arrivais / pleuvait"],"bonne":0,"t":"trou","etiquette":"Complétez :","phrase":"Quand je ______ (arriver), il ______ (pleuvoir).","indice":""},{"id":"EE-36","n":36,"niveau":"B1","epreuve":"EE","groupe":"EE-36","tag":"Grammaire","composante":"Grammaire (pronoms relatifs)","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["que","qui","où","dont"],"bonne":2,"t":"trou","etiquette":"Complétez :","phrase":"C'est la ville ______ je suis né.","indice":""},{"id":"EE-37","n":37,"niveau":"B1","epreuve":"EE","groupe":"EE-37","tag":"Grammaire","composante":"Grammaire (pronoms relatifs)","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["que","dont","où","qui"],"bonne":1,"t":"trou","etiquette":"Complétez :","phrase":"Le livre ______ je t'ai parlé est sur la table.","indice":""},{"id":"EE-38","n":38,"niveau":"B1","epreuve":"EE","groupe":"EE-38","tag":"Grammaire","composante":"Grammaire (subjonctif)","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["remplis","remplisses","rempliras","remplir"],"bonne":1,"t":"trou","etiquette":"Complétez :","phrase":"Il faut que tu ______ ce formulaire avant vendredi.","indice":""},{"id":"EE-39","n":39,"niveau":"B1","epreuve":"EE","groupe":"EE-39","tag":"Sociolinguistique","composante":"Sociolinguistique (conditionnel de politesse)","critere":"Correction","question":"Choisissez la forme la plus polie.","choix":["Pouvez","Pourriez","Pourrez","Pouviez"],"bonne":1,"t":"trou","etiquette":"Complétez :","phrase":"______-vous m'envoyer le document, s'il vous plaît ?","indice":""},{"id":"EE-40","n":40,"niveau":"B1","epreuve":"EE","groupe":"EE-40","tag":"Discours","composante":"Discours (articulateurs)","critere":"Cohérence","question":"Choisissez la bonne réponse.","choix":["donc","en revanche","parce que","ensuite"],"bonne":1,"t":"trou","etiquette":"Complétez :","phrase":"Le logement est petit ; ______, il est très lumineux.","indice":""},{"id":"EE-41","n":41,"niveau":"B1","epreuve":"EE","groupe":"EE-41","tag":"Discours","composante":"Discours (articulateurs)","critere":"Cohérence","question":"Choisissez la bonne réponse.","choix":["c'est pourquoi","pourtant","bien que","afin que"],"bonne":0,"t":"trou","etiquette":"Complétez :","phrase":"Le bus était en retard, ______ j'ai raté mon rendez-vous.","indice":""},{"id":"EE-42","n":42,"niveau":"B1","epreuve":"EE","groupe":"EE-42","tag":"Grammaire","composante":"Grammaire (hypothèse)","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["ferai","ferais","fais","faisais"],"bonne":1,"t":"trou","etiquette":"Complétez :","phrase":"Si j'avais plus de temps, je ______ du sport.","indice":""},{"id":"EE-43","n":43,"niveau":"B1","epreuve":"EE","groupe":"EE-43","tag":"Orthographe","composante":"Orthographe grammaticale","critere":"Correction","question":"Choisissez la bonne réponse.","choix":["écrit","écrits","écrite","écrites"],"bonne":3,"t":"trou","etiquette":"Complétez :","phrase":"Les lettres que j'ai ______ sont sur le bureau.","indice":""},{"id":"EE-44","n":44,"niveau":"B1","epreuve":"EE","groupe":"EE-44","tag":"Grammaire","composante":"Grammaire (discours rapporté)","critere":"Correction","question":"Quelle phrase rapporte correctement ces paroles (le lendemain) ?","choix":["Il m'a dit qu'il viendrait le lendemain.","Il m'a dit qu'il viendra demain.","Il m'a dit qu'il venait hier.","Il m'a dit que je viendrai demain."],"bonne":0,"t":"enonce","avant":"Il m'a dit :","citation":"Je viendrai demain.","apres":""},{"id":"EE-45","n":45,"niveau":"B1","epreuve":"EE","groupe":"EE-45","tag":"Sociolinguistique","composante":"Sociolinguistique (registre)","critere":"Étendue","question":"Où place-t-on cette phrase ?","choix":["Au début d'une lettre formelle","À la fin d'une lettre formelle","Dans un SMS à un ami","Sur une carte postale"],"bonne":1,"t":"enonce","avant":"","citation":"Je vous prie d'agréer, Madame, l'expression de mes salutations distinguées.","apres":""},{"id":"EE-46","n":46,"niveau":"B1","epreuve":"EE","groupe":"EE-46","tag":"Discours","composante":"Discours (expression du but)","critere":"Cohérence","question":"Quelle phrase exprime un but ?","choix":["Je prends des cours pour trouver un travail.","Je prends des cours parce que j'ai le temps.","Je prends des cours, donc je progresse.","Je prends des cours, mais c'est difficile."],"bonne":0,"t":"aucun"},{"id":"EO-17","n":17,"niveau":"A1","epreuve":"EO","groupe":"EO-17","tag":"Sociolinguistique","composante":"Sociolinguistique","critere":"Interaction","question":"Que répondez-vous ?","choix":["De rien.","Bonjour.","Au revoir.","S'il vous plaît."],"bonne":0,"t":"replique","photo":"homme","audio":"EO-17","replique":"Merci beaucoup !"},{"id":"EO-31","n":31,"niveau":"A2","epreuve":"EO","groupe":"EO-31","tag":"Sociolinguistique","composante":"Sociolinguistique","critere":"Interaction","question":"Que faites-vous ?","choix":["Je raccroche.","J'attends.","Je rappelle demain.","Je dis au revoir."],"bonne":1,"t":"replique","photo":"secretaire","audio":"EO-31","etiquette":"La secrétaire, au téléphone","replique":"Ne quittez pas, je vous passe le service."},{"id":"EO-32","n":32,"niveau":"A2","epreuve":"EO","groupe":"EO-32","tag":"Sociolinguistique","composante":"Sociolinguistique","critere":"Interaction","question":"Que dites-vous ?","choix":["Excusez-moi pour le retard.","Vous êtes en retard.","Salut, ça va ?","C'est pas grave."],"bonne":0,"t":"situation","emoji":"⏰","etiquette":"Situation","texte":"Vous arrivez en retard à un rendez-vous.","audio":"EO-32"},{"id":"EO-49","n":49,"niveau":"B1","epreuve":"EO","groupe":"EO-49","tag":"Sociolinguistique","composante":"Sociolinguistique","critere":"Interaction","question":"Que dites-vous pour prendre la parole poliment ?","choix":["Excusez-moi, je peux ajouter quelque chose ?","Taisez-vous, c'est à moi.","Moi, je parle maintenant.","Attendez, je dis."],"bonne":0,"t":"situation","emoji":"💼","etiquette":"Situation","texte":"Pendant une réunion de travail, vous voulez donner votre avis.","audio":"EO-49"}];
+
+const NIVEAUX = {
+  A1: { teinte: "cyan", nom: "Découverte" },
+  A2: { teinte: "vert", nom: "Survie" },
+  B1: { teinte: "rose", nom: "Seuil" },
+};
+const CECRL = {
+  A1: "Peut comprendre et utiliser des expressions familières et quotidiennes, se présenter et répondre à des questions simples, si l'interlocuteur parle lentement et distinctement.",
+  A2: "Peut comprendre des phrases et des expressions fréquentes (informations personnelles, achats, environnement proche, travail) et communiquer lors de tâches simples et habituelles.",
+  B1: "Peut comprendre les points essentiels d'un langage clair et standard sur des sujets familiers, se débrouiller dans la plupart des situations et raconter un événement en donnant son avis.",
+};
+const COMPETENCES = {
+  ecouter: { teinte: "cyan", nom: "Écouter", long: "Compréhension orale", icone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="5" height="7" rx="2"/><rect x="16" y="14" width="5" height="7" rx="2"/></svg>' },
+  lire: { teinte: "vert", nom: "Lire", long: "Compréhension écrite", icone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H2zM22 5h-7a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h8z"/></svg>' },
+  ecrire: { teinte: "citron", nom: "Écrire", long: "Expression écrite", icone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>' },
+  parler: { teinte: "rose", nom: "Parler", long: "Expression orale (réaction)", icone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>' },
+};
+const ICONE = {
+  fermer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+  son: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>',
+  muet: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path d="M17 9l5 5M22 9l-5 5"/></svg>',
+  jouer: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10.5-6.5a1 1 0 0 0 0-1.8L9.5 4.6A1 1 0 0 0 8 5.5z"/></svg>',
+  oeil: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
+  casque: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="5" height="7" rx="2" fill="currentColor"/><rect x="16" y="14" width="5" height="7" rx="2" fill="currentColor"/></svg>',
+  aide: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 9a3.5 3.5 0 1 1 5 3.2c-.9.4-1.5 1.2-1.5 2.3"/><path d="M12 19h.01"/></svg>',
+  coupe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v5a5 5 0 0 1-10 0z" fill="currentColor"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4M12 14v4M8 20h8"/></svg>',
+  coche: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+};
+// Photos Unsplash (licence Unsplash, usage libre) : Marcos Paulo Prado (0pOlBhSsF80), BaljkanN4 (wnpf3Q5pkXA).
+const PHOTOS = {
+  homme: "data:image/webp;base64,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",
+  secretaire: "data:image/webp;base64,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",
+};
+// Sons enregistrés avec ElevenLabs (modèle Multilingual v2), débit 0,85 en A1, 0,95 en A2, 1 en B1.
+// Version web : chaque son est un fichier MP3 du dossier sons/, chargé quand la question s'affiche.
+// Clé = identifiant de l'enregistrement (partagé par les questions d'un même groupe), « q: » + texte pour une
+// consigne A1 lue, « p: » + libellé pour un pictogramme lu.
+const AUDIO = {
+  "CO-01": "sons/CO-01.mp3",
+  "CO-02": "sons/CO-02.mp3",
+  "CO-03": "sons/CO-03.mp3",
+  "CO-04": "sons/CO-04.mp3",
+  "CO-05": "sons/CO-05.mp3",
+  "CO-06": "sons/CO-06.mp3",
+  "CO-07": "sons/CO-07.mp3",
+  "CO-08": "sons/CO-08.mp3",
+  "CO-09": "sons/CO-09.mp3",
+  "CO-10": "sons/CO-10.mp3",
+  "CO-11": "sons/CO-11.mp3",
+  "CO-12": "sons/CO-12.mp3",
+  "CO-13": "sons/CO-13.mp3",
+  "CO-14": "sons/CO-14.mp3",
+  "CO-15": "sons/CO-15.mp3",
+  "CO-16": "sons/CO-16.mp3",
+  "CO-17": "sons/CO-17.mp3",
+  "CO-19": "sons/CO-19.mp3",
+  "CO-21": "sons/CO-21.mp3",
+  "CO-23": "sons/CO-23.mp3",
+  "CO-27": "sons/CO-27.mp3",
+  "CO-29": "sons/CO-29.mp3",
+  "CO-31": "sons/CO-31.mp3",
+  "CO-33": "sons/CO-33.mp3",
+  "CO-34": "sons/CO-34.mp3",
+  "CO-35": "sons/CO-35.mp3",
+  "CO-38": "sons/CO-38.mp3",
+  "CO-41": "sons/CO-41.mp3",
+  "CO-44": "sons/CO-44.mp3",
+  "CO-47": "sons/CO-47.mp3",
+  "CO-50": "sons/CO-50.mp3",
+  "EO-17": "sons/EO-17.mp3",
+  "EO-31": "sons/EO-31.mp3",
+  "EO-32": "sons/EO-32.mp3",
+  "EO-49": "sons/EO-49.mp3",
+  "q:C'est une invitation pour quelle fête ?": "sons/consignes-a1/consigne-a1-01.mp3",
+  "q:Choisissez la bonne réponse.": "sons/consignes-a1/consigne-3.mp3",
+  "q:Combien coûte la baguette ?": "sons/consignes-a1/consigne-a1-03.mp3",
+  "q:Combien coûtent les pommes ?": "sons/consignes-a1/consigne-a1-04.mp3",
+  "q:Combien coûtent les tomates ?": "sons/consignes-a1/consigne-a1-05.mp3",
+  "q:Combien d'enfants a la personne ?": "sons/consignes-a1/consigne-a1-06.mp3",
+  "q:Combien d'œufs faut-il acheter ?": "sons/consignes-a1/consigne-a1-07.mp3",
+  "q:Comment sont les cheveux d'Amina ?": "sons/consignes-a1/consigne-a1-08.mp3",
+  "q:La mairie est-elle ouverte le samedi ?": "sons/consignes-a1/consigne-a1-09.mp3",
+  "q:Le train part de quelle voie ?": "sons/consignes-a1/consigne-a1-10.mp3",
+  "q:Où est la pharmacie ?": "sons/consignes-a1/consigne-a1-11.mp3",
+  "q:Où est le cabinet médical ?": "sons/consignes-a1/consigne-a1-12.mp3",
+  "q:Où est le rendez-vous ?": "sons/consignes-a1/consigne-4.mp3",
+  "q:Où habite la personne ?": "sons/consignes-a1/consigne-a1-14.mp3",
+  "q:Peut-on aller à la mairie le mardi à 13 h ?": "sons/consignes-a1/consigne-a1-15.mp3",
+  "q:Pourquoi Samir ne vient-il pas au cours ?": "sons/consignes-a1/consigne-a1-16.mp3",
+  "q:Qu'est-ce que la personne veut boire ?": "sons/consignes-a1/consigne-a1-17.mp3",
+  "q:Qu'est-ce qui est interdit ?": "sons/consignes-a1/consigne-a1-18.mp3",
+  "q:Quand le magasin est-il fermé ?": "sons/consignes-a1/consigne-1.mp3",
+  "q:Que devez-vous écrire ?": "sons/consignes-a1/consigne-a1-20.mp3",
+  "q:Que faut-il faire ?": "sons/consignes-a1/consigne-a1-21.mp3",
+  "q:Que montre ce panneau ?": "sons/consignes-a1/consigne-a1-22.mp3",
+  "q:Que répondez-vous ?": "sons/consignes-a1/consigne-5.mp3",
+  "q:Quel est le dessert du lundi ?": "sons/consignes-a1/consigne-a1-24.mp3",
+  "q:Quel est le numéro ?": "sons/consignes-a1/consigne-a1-25.mp3",
+  "q:Quel est le prénom de la personne ?": "sons/consignes-a1/consigne-a1-26.mp3",
+  "q:Quel est son métier ?": "sons/consignes-a1/consigne-a1-27.mp3",
+  "q:Quel jour est le rendez-vous ?": "sons/consignes-a1/consigne-6.mp3",
+  "q:Quel mot choisissez-vous pour commencer ?": "sons/consignes-a1/consigne-a1-29.mp3",
+  "q:Quel temps fait-il ?": "sons/consignes-a1/consigne-a1-30.mp3",
+  "q:Quel temps fait-il à Nice ?": "sons/consignes-a1/consigne-a1-31.mp3",
+  "q:Quel âge a Karim ?": "sons/consignes-a1/consigne-a1-32.mp3",
+  "q:Quelle est l'adresse de la fête ?": "sons/consignes-a1/consigne-a1-33.mp3",
+  "q:Quelle est la nationalité de la personne ?": "sons/consignes-a1/consigne-a1-34.mp3",
+  "q:Quelle phrase est correcte ?": "sons/consignes-a1/consigne-a1-35.mp3",
+  "q:À quel moment de la journée parle cette personne ?": "sons/consignes-a1/consigne-a1-36.mp3",
+  "q:À quelle heure est le rendez-vous ?": "sons/consignes-a1/consigne-a1-37.mp3",
+  "q:À quelle heure finit le cours ?": "sons/consignes-a1/consigne-a1-38.mp3",
+  "q:À quelle heure part le bus ?": "sons/consignes-a1/consigne-2.mp3",
+  "p:À droite": "sons/pictos/picto-1.mp3",
+  "p:À gauche": "sons/pictos/picto-2.mp3",
+  "p:En face": "sons/pictos/picto-3.mp3",
+  "p:Derrière": "sons/pictos/picto-4.mp3",
+  "p:Il fait soleil": "sons/pictos/picto-5.mp3",
+  "p:Il pleut": "sons/pictos/picto-6.mp3",
+  "p:Il neige": "sons/pictos/picto-7.mp3",
+  "p:Il fait chaud": "sons/pictos/picto-8.mp3"
+  };
+const ETOILE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3 1.1-6.4-4.7-4.6 6.5-.9z" fill="#fff27a" stroke="#f0b03a" stroke-width="1.4" stroke-linejoin="round"/></svg>';
+const bouton = (texte, teinte, attrs = "") => `<button class="bouton ${teinte}" type="button" ${attrs}>${texte}</button>`;
+// L'hexagone à plat, coins arrondis, dessiné une fois (120 × 103,92) et repris par toutes les tuiles.
+const HEX = (() => {
+  const w = 120, h = 103.92, t = 12 / 60, f = (n) => Math.round(n * 100) / 100;
+  const P = [[0, h / 2], [w / 4, 0], [3 * w / 4, 0], [w, h / 2], [3 * w / 4, h], [w / 4, h]];
+  return P.map((v, i) => {
+    const p = P[(i + 5) % 6], n = P[(i + 1) % 6];
+    const a = [v[0] + (p[0] - v[0]) * t, v[1] + (p[1] - v[1]) * t], b = [v[0] + (n[0] - v[0]) * t, v[1] + (n[1] - v[1]) * t];
+    return `${i ? "L" : "M"}${f(a[0])} ${f(a[1])}Q${f(v[0])} ${f(v[1])} ${f(b[0])} ${f(b[1])}`;
+  }).join("") + "Z";
+})();
+const tuile = (contenu, teinte = "blanc", classe = "", attrs = "", balise = "span") =>
+  `<${balise} class="tuile ${teinte} ${classe}" ${attrs}><svg class="socle" viewBox="0 0 120 112.92" aria-hidden="true"><path class="ombre" transform="translate(0 9)" d="${HEX}"/><path class="levre" transform="translate(0 5)" d="${HEX}"/></svg><span class="dessus"><svg viewBox="0 0 120 103.92" aria-hidden="true"><path class="face" d="${HEX}"/></svg><span class="mot">${contenu}</span></span></${balise}>`;
+const MARQUE = `<svg class="marque-h" viewBox="0 0 120 103.92" aria-hidden="true"><path d="${HEX}"/><path class="coche" d="M36 54l17 16 32-36" style="stroke-width:13"/></svg>`;
+// le décor de l'écran d'ordinateur, hors du téléphone
+(() => {
+  const d = document.getElementById("decor"); if (!d) return;
+  d.innerHTML = [["#ddd2ff", "6%", "10%", 300], ["#b8f4ff", "70%", "-4%", 240], ["#fff3a6", "78%", "58%", 280], ["#ffd0f6", "10%", "66%", 220]]
+    .map(([c, x, y, l]) => `<svg viewBox="0 0 120 103.92" style="left:${x};top:${y};width:${l}px;--c:${c}"><path d="${HEX}"/></svg>`).join("");
+})();
+
+// ------------------------------------------------------------------------------ les sons (synthétisés, aucun fichier)
+let ctx = null, sonActif = true;
+try { sonActif = localStorage.getItem("positionnement-son") !== "non"; } catch (e) {}
+function audio() {
+  if (!ctx) { try { ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { ctx = null; } }
+  if (ctx && ctx.state === "suspended") ctx.resume();
+  return ctx;
+}
+function note(freq, debut, duree, type = "sine", volume = .12, glisse) {
+  const c = audio(); if (!c || !sonActif) return;
+  const t = c.currentTime + debut, o = c.createOscillator(), g = c.createGain();
+  o.type = type; o.frequency.setValueAtTime(freq, t); if (glisse) o.frequency.exponentialRampToValueAtTime(glisse, t + duree);
+  g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(volume, t + .012); g.gain.exponentialRampToValueAtTime(.0001, t + duree);
+  o.connect(g).connect(c.destination); o.start(t); o.stop(t + duree + .02);
+}
+function souffle(debut, duree, volume = .07) {
+  const c = audio(); if (!c || !sonActif) return;
+  const t = c.currentTime + debut, n = c.sampleRate * duree, buf = c.createBuffer(1, n, c.sampleRate), d = buf.getChannelData(0);
+  for (let i = 0; i < n; i++) d[i] = Math.random() * 2 - 1;
+  const src = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+  src.buffer = buf; f.type = "bandpass"; f.Q.value = 1.2; f.frequency.setValueAtTime(400, t); f.frequency.exponentialRampToValueAtTime(3200, t + duree);
+  g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(volume, t + duree * .4); g.gain.exponentialRampToValueAtTime(.0001, t + duree);
+  src.connect(f).connect(g).connect(c.destination); src.start(t); src.stop(t + duree);
+}
+const SONS = {
+  choix: () => { note(700, 0, .08, "sine", .1, 1050); note(1400, .04, .07, "sine", .04); },
+  valider: () => { note(660, 0, .14, "triangle", .12); note(990, .09, .22, "triangle", .1); },
+  passer: () => { note(330, 0, .12, "sine", .08); note(262, .07, .16, "sine", .06); },
+  page: () => souffle(0, .25, .05),
+  fete: () => {
+    souffle(0, .6, .08);
+    [392, 523, 659, 784].forEach((f, k) => note(f, .25 + k * .08, .4, "triangle", .1));
+    note(1047, .6, .7, "triangle", .12);
+    [1.15, 1.45, 1.75].forEach((t, k) => { note([784, 988, 1175][k], t, .3, "square", .05); note([1568, 1976, 2349][k], t + .02, .25, "sine", .06); });
+    for (let k = 0; k < 10; k++) note(1800 + Math.random() * 1600, 2.0 + k * .07, .12, "sine", .03);
+    note(523, 2.3, .5, "sine", .06, 1047);
+  },
+};
+const vibrer = (motif) => { try { navigator.vibrate && navigator.vibrate(motif); } catch (e) {} };
+
+// ------------------------------------------------------------------------------ la voix (questions d'écoute)
+const voixDispo = "speechSynthesis" in window;
+let voixFr = null, voixChargees = false, voixToutes = [];
+// Prénoms des voix françaises courantes (iPhone, Android, Windows, Mac) pour choisir une voix de femme ou d'homme.
+const PRENOMS_F = /am[ée]lie|audrey|aur[ée]lie|marie|denise|hortense|julie|c[ée]line|virginie|[ée]lo[ïi]se|vivienne|brigitte|sylvie|chantal|caroline|sophie|l[ée]a|ariane|charlotte|coralie|jacqueline|yvette|female|femme/i;
+const PRENOMS_H = /thomas|henri|paul|claude|nicolas|jacques|daniel|antoine|jean|r[ée]mi|mathieu|alain|guillaume|fabrice|gr[ée]goire|jérôme|j[ée]r[ôo]me|maxime|yves|male|homme/i;
+function chargerVoix() {
+  try {
+    const v = speechSynthesis.getVoices(); if (v.length) voixChargees = true;
+    voixToutes = v.filter(x => /^fr[-_]FR/i.test(x.lang)); if (!voixToutes.length) voixToutes = v.filter(x => /^fr/i.test(x.lang));
+    voixFr = voixToutes[0] || null;
+  } catch (e) {}
+}
+// une voix de femme ou d'homme si l'appareil en a une ; sinon la voix française par défaut, hauteur ajustée
+function voixPour(genre) {
+  const motif = genre === "h" ? PRENOMS_H : PRENOMS_F;
+  const v = voixToutes.find(x => motif.test(x.name));
+  return { voix: v || voixFr, hauteur: v ? 1 : genre === "h" ? .85 : 1.15 };
+}
+// débit lent en A1, naturel en B1 (consigne du fichier)
+const DEBIT = { A1: .8, A2: .92, B1: 1 };
+if (voixDispo) { chargerVoix(); try { speechSynthesis.addEventListener("voiceschanged", chargerVoix); } catch (e) {} }
+const voixPossible = () => voixDispo && (!voixChargees || !!voixFr);
+function lire(lignes, boutonLecture, vague, fin, reglages = {}) {
+  try {
+    speechSynthesis.cancel();
+    boutonLecture && boutonLecture.classList.add("parle"); vague && vague.classList.add("active");
+    lignes.forEach((texte, k) => {
+      const u = new SpeechSynthesisUtterance(texte);
+      const genre = Array.isArray(reglages.voix) ? reglages.voix[k % reglages.voix.length] : reglages.voix || "f";
+      const { voix, hauteur } = voixPour(genre);
+      u.lang = "fr-FR"; if (voix) u.voice = voix; u.rate = reglages.debit || .9; u.pitch = hauteur;
+      if (k === lignes.length - 1) u.onend = u.onerror = () => { boutonLecture && boutonLecture.classList.remove("parle"); vague && vague.classList.remove("active"); fin && fin(); };
+      speechSynthesis.speak(u);
+    });
+  } catch (e) { boutonLecture && boutonLecture.classList.remove("parle"); vague && vague.classList.remove("active"); }
+}
+const lecteurAudio = new Audio();
+let finAudio = null;
+function jouer(cle, lignes, boutonLecture, vague, fin, reglages) {
+  if (!AUDIO[cle]) return lire(lignes, boutonLecture, vague, fin, reglages);
+  taire();
+  const arreter = () => { boutonLecture && boutonLecture.classList.remove("parle"); vague && vague.classList.remove("active"); };
+  boutonLecture && boutonLecture.classList.add("parle"); vague && vague.classList.add("active");
+  finAudio = () => { arreter(); finAudio = null; fin && fin(); };
+  lecteurAudio.src = AUDIO[cle];
+  lecteurAudio.onended = lecteurAudio.onerror = () => finAudio && finAudio();
+  lecteurAudio.play().catch(() => finAudio && finAudio());
+}
+const taire = () => { try { speechSynthesis.cancel(); } catch (e) {} try { lecteurAudio.pause(); lecteurAudio.onended = lecteurAudio.onerror = null; } catch (e) {} finAudio = null; };
+const audible = (cle) => !!AUDIO[cle] || voixPossible();
+
+// ------------------------------------------------------------------------------ l'état
+const $ = (s, r = document) => r.querySelector(s);
+const echap = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const melanger = (t) => { const a = [...t]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+// ------------------------------------------------------------------------------ le moteur adaptatif
+// Le fichier dit : « Dans chaque onglet, les questions sont classées par difficulté croissante (colonne N°).
+// Le moteur adaptatif peut piocher par niveau. » Il ne fixe pas les règles ; celles-ci sont à valider :
+// - on commence en A1 ; chaque niveau est un palier de 7 questions piochées dans la banque de ce niveau :
+//   2 de compréhension orale, 2 de compréhension écrite, 2 d'expression écrite, 1 d'interaction orale (QCM) ;
+//   dans chaque épreuve, l'une dans la moitié la plus facile du niveau, l'autre dans la plus difficile (N°) ;
+//   le palier se joue du plus facile au plus difficile ;
+// - 5 bonnes réponses sur 7 valident le niveau : on passe au suivant. Le palier se joue en entier, pour que les
+//   4 épreuves soient vues à chaque niveau ; il s'arrête plus tôt seulement quand le niveau ne peut plus être validé
+//   (3 erreurs ou « Je ne sais pas ») : le test s'arrête alors ;
+// - jamais deux questions sur le même document ou le même enregistrement dans un même test.
+// Niveau atteint = dernier palier validé. Le sous-score par épreuve et par tag grammaire-lexique (recommandé par le
+// fichier) est calculé dans etat.diagnostic, pour le formateur ; il n'est pas affiché au candidat.
+const ORDRE = ["A1", "A2", "B1"], SEUIL = 5, PAR_PALIER = 7;
+const PAR_ID = Object.fromEntries(BANQUE.map(q => [q.id, q]));
+function tirerPalier(niveau, groupesExclus) {
+  const pris = [], groupes = new Set(groupesExclus);
+  const prendre = (liste) => { const libres = melanger(liste.filter(q => !groupes.has(q.groupe))); if (!libres.length) return false; groupes.add(libres[0].groupe); pris.push(libres[0].id); return true; };
+  for (const ep of ["CO", "CE", "EE"]) {
+    const liste = BANQUE.filter(q => q.niveau === niveau && q.epreuve === ep).sort((a, b) => a.n - b.n), m = Math.ceil(liste.length / 2);
+    prendre(liste.slice(0, m)) || prendre(liste);
+    prendre(liste.slice(m)) || prendre(liste);
+  }
+  prendre(BANQUE.filter(q => q.niveau === niveau && q.epreuve === "EO"));
+  return pris.sort((a, b) => PAR_ID[a].n - PAR_ID[b].n);
+}
+let etat = { ecran: "accueil" };
+function nouveauTest() {
+  etat = { ecran: "question", niveau: "A1", palier: tirerPalier("A1", []), k: 0, reponses: {}, ordres: {}, ecoutes: {}, lus: {}, valides: [], vus: [] };
+  preparerOrdres();
+}
+function preparerOrdres() { etat.palier.forEach(id => { if (!etat.ordres[id]) etat.ordres[id] = melanger([0, 1, 2, 3]); }); }
+const qActuelle = () => PAR_ID[etat.palier[etat.k]];
+function bilan() {
+  const faites = etat.palier.filter(id => id in etat.reponses), justes = faites.filter(id => etat.reponses[id] === PAR_ID[id].bonne).length;
+  return { justes, erreurs: faites.length - justes };
+}
+const appli = $("#appli");
+function poser(html) { appli.querySelectorAll(".ecran").forEach(e => e.remove()); appli.insertAdjacentHTML("beforeend", html); }
+function afficher() { taire(); appli.querySelectorAll(".voile").forEach(v => v.remove()); ({ accueil: ecranAccueil, question: ecranQuestion, palier: ecranPalier, resultat: ecranResultat })[etat.ecran](); }
+const boutonSon = () => `<button class="rond" type="button" id="son" aria-label="${sonActif ? "Couper les sons" : "Activer les sons"}" aria-pressed="${sonActif}">${sonActif ? ICONE.son : ICONE.muet}</button>`;
+function brancherSon() {
+  const b = $("#son"); if (!b) return;
+  b.addEventListener("click", () => {
+    sonActif = !sonActif; try { localStorage.setItem("positionnement-son", sonActif ? "oui" : "non"); } catch (e) {}
+    b.innerHTML = sonActif ? ICONE.son : ICONE.muet; b.setAttribute("aria-pressed", sonActif); b.setAttribute("aria-label", sonActif ? "Couper les sons" : "Activer les sons");
+    if (sonActif) SONS.choix();
+  });
+}
+function haut() {
+  return `<div class="haut">
+    <button class="rond" type="button" id="fermer" aria-label="Quitter le test">${ICONE.fermer}</button>
+    <div class="progression">${tuile(etat.niveau, NIVEAUX[etat.niveau].teinte, "puce")}<div class="cases" role="img" aria-label="Niveau ${etat.niveau}, question ${etat.k + 1}">${etat.palier.map((_, m) => `<i class="${m < etat.k ? "fait" : m === etat.k ? "ici" : ""}"></i>`).join("")}</div></div>
+    ${boutonSon()}
+  </div>`;
+}
+function avancerJauge() {}
+
+// ------------------------------------------------------------------------------ l'accueil
+function ecranAccueil() {
+  poser(`<section class="ecran">
+    <div class="haut"><span></span><span></span>${boutonSon()}</div>
+    <div class="defile">
+      <div class="accueil">
+        <div class="logo" aria-hidden="true">${[..."FRANÇAIS"].map((l, k) => tuile(l, "blanc", "", `style="--k:${k}"`)).join("")}</div>
+        <h1 class="titre-accueil">Test de niveau</h1>
+        <p class="sous-titre">Test adaptatif · 10 minutes environ</p>
+        <div class="niveaux">${Object.entries(NIVEAUX).map(([n, v], k) => `<div class="niveau-h">${tuile(n, v.teinte, "", `style="--n:${k}"`)}${v.nom}</div>`).join("")}</div>
+        <div class="regles">
+          <div class="regle"><span class="bulle-ronde cyan" aria-hidden="true">${ICONE.casque}</span>Activez le son. Sans dictionnaire.</div>
+          <div class="regle"><span class="bulle-ronde vert" aria-hidden="true">${ICONE.aide}</span>Vous ne savez pas ? Touchez « Je ne sais pas ».</div>
+          <div class="regle"><span class="bulle-ronde rose" aria-hidden="true">${ICONE.coupe}</span>Les questions s'adaptent à vos réponses. Votre niveau s'affiche à la fin.</div>
+        </div>
+      </div>
+    </div>
+    <div class="bas">${bouton("Commencer", "vert", 'id="commencer"')}</div>
+  </section>`);
+  brancherSon();
+  // le mot se « trouve » lettre après lettre, comme dans le jeu
+  appli.querySelectorAll(".logo .tuile").forEach((t, k) => setTimeout(() => t.classList.add("trouve"), 900 + k * 110));
+  $("#commencer").addEventListener("click", () => { audio(); SONS.valider(); vibrer(15); nouveauTest(); afficher(); });
+}
+
+// ------------------------------------------------------------------------------ une question
+function papier(q) {
+  return `<div class="papier ${q.style}"><div class="papier-tete"><span aria-hidden="true">${q.emoji}</span><div><strong>${q.titre}</strong><small>Prenez le temps de lire</small></div></div>${q.lignes.map(l => `<p>${echap(l)}</p>`).join("")}</div>`;
+}
+const trous = (phrase) => phrase.split("______").map((p, k, t) => echap(p) + (k < t.length - 1 ? `<span class="trou" data-trou="${k}">&nbsp;</span>` : "")).join("");
+function visuel(q) {
+  const reste = 2 - (etat.ecoutes[q.id] || 0);
+  const etiq = q.etiquette ? `<span class="etiquette">${q.etiquette}</span>` : "";
+  switch (q.t) {
+    case "panneau":
+      if (q.style === "sortie") return `${etiq}<b class="panneau sortie"><span aria-hidden="true">🏃</span>${q.texte}</b>`;
+      if (q.style === "interdit") return `${etiq}<b class="panneau interdit"><span class="rond-interdit" aria-hidden="true">🚬</span>${q.texte}</b>`;
+      return `${etiq}<b class="panneau">${q.texte}</b>`;
+    case "prix": return `<div class="prix"><span class="trou-prix" aria-hidden="true"></span><strong>${q.produit}</strong><b>${q.prix}</b><small>${q.unite}</small></div>`;
+    case "affiche": return `<div class="affiche"><strong>${q.titre}</strong>${q.lignes.map(l => `<p>${echap(l)}</p>`).join("")}</div>`;
+    case "menu": return `<div class="menu"><strong>${q.titre}</strong><em>${q.jour}</em><p>${q.plats.join(" · ")}</p></div>`;
+    case "plaque": return `${etiq}<div class="plaque">${q.lignes.map((l, k) => k ? `<p>${echap(l)}</p>` : `<strong>${echap(l)}</strong>`).join("")}</div>`;
+    case "sms": return `<div class="sms">${etiq}<p>${echap(q.texte)}</p></div>`;
+    case "court": return `${etiq}<div class="papier-court${q.liste ? " liste" : ""}">${q.titre ? `<strong>${q.titre}</strong>` : ""}${q.liste ? `<ul>${q.lignes.map(l => `<li>${echap(l)}</li>`).join("")}</ul>` : q.lignes.map(l => `<p>${echap(l)}</p>`).join("")}</div>`;
+    case "trou": return `${etiq}<div class="phrase">${trous(q.phrase)}</div>${q.indice ? `<span class="indice">${q.indice}</span>` : ""}`;
+    case "transformer": return `<span class="fleche">${q.vers}</span><b class="grande">${echap(q.phrase)}</b>`;
+    case "mots": return `${etiq}<div class="mots">${q.mots.map(m => `<span>${echap(m)}</span>`).join("")}</div>`;
+    case "enonce":
+      if (q.citation && q.avant && q.apres && q.citation.length <= 6) return `<p class="situation">${echap(q.avant)} <b class="cite">${echap(q.citation)}</b> ${echap(q.apres)}</p>`;
+      return `${q.avant ? `<p class="situation">${echap(q.avant)}</p>` : ""}${q.citation ? `<b class="grande">${trous(q.citation)}</b>` : ""}${q.apres ? `<p class="situation petit">${echap(q.apres)}</p>` : ""}`;
+    case "replique": return `${etiq}<div class="replique"><img class="visage" src="${PHOTOS[q.photo]}" alt="" width="84" height="84"><div class="bulle vocale">${audible(q.audio)
+      ? `<button class="mini-lecteur" type="button" id="redire" aria-label="Écouter ce qu'on vous dit">${ICONE.jouer}</button><span class="vague sombre" id="vague-replique" aria-hidden="true">${"<i></i>".repeat(14)}</span>`
+      : `<strong>« ${q.replique} »</strong>`}</div></div>`;
+    case "situation": return `<span class="scene-emoji" aria-hidden="true">${q.emoji}</span>${etiq}<p class="situation">${q.texte}</p>${audible(q.audio) ? `<button class="mini-son" type="button" id="dire-situation">${ICONE.son} Écouter</button>` : ""}`;
+    case "document": return `<div class="doc-mini"><span class="icone-doc" aria-hidden="true">${q.emoji}</span><strong>${q.titre}</strong><button class="pilule" type="button" id="relire">${ICONE.oeil} Relire</button></div>`;
+    case "ecoute":
+      if (!audible(q.audio)) return `<div class="transcription"><span style="color:var(--encre-douce);font-size:12.5px">Pas de son sur cet appareil : lisez le texte.</span>${q.script.map(l => `<p style="margin:4px 0 0">${echap(l)}</p>`).join("")}</div>`;
+      return `${etiq}<button class="lecteur" type="button" id="lecteur" aria-label="Écouter l'enregistrement (${reste} écoute${reste > 1 ? "s" : ""} possible${reste > 1 ? "s" : ""})" ${reste <= 0 ? "disabled" : ""}>${ICONE.jouer}<span class="pastille" id="pastille" aria-hidden="true" ${reste <= 0 ? "hidden" : ""}>${reste}</span></button><span class="vague" id="vague" aria-hidden="true">${"<i></i>".repeat(9)}</span><span class="etiquette" id="reste">${reste === 2 ? "Touchez pour écouter" : reste === 1 ? "Encore 1 écoute" : "Plus d'écoute"}</span>`;
+  }
+  return "";
+}
+function ecranQuestion() {
+  const q = qActuelle();
+  if (q.audio && AUDIO[q.audio]) { const p = new Audio(); p.preload = "auto"; p.src = AUDIO[q.audio]; }
+  if (q.t === "document" && !etat.lus[q.id]) return ecranLecture(q);
+  const ordre = etat.ordres[q.id], choisi = etat.reponses[q.id];
+  const alveoles = !!q.pictos || q.choix.every(x => x.length <= 10);
+  const libelle = (o) => q.pictos ? `<span class="picto" aria-hidden="true">${q.pictos[o]}</span>${echap(q.choix[o])}` : echap(q.choix[o]);
+  poser(`<section class="ecran ecran-question" aria-labelledby="question">
+    ${haut()}
+    <div class="defile">
+      ${q.t === "aucun" ? "" : `<div class="visuel">${visuel(q)}</div>`}
+      <h2 class="question" id="question">${q.question}${q.niveau === "A1" && audible("q:" + q.question) ? ` <button class="lire-consigne" type="button" id="lire-consigne" aria-label="Entendre la question">${ICONE.son}</button>` : ""}</h2>
+      <div class="reponses ${alveoles ? "alveoles" : "bonbons"}${q.pictos ? " pictos" : ""}${alveoles && !q.pictos && Math.max(...q.choix.map(c => c.length)) >= 9 ? " longs" : ""}" role="radiogroup" aria-labelledby="question">
+        ${ordre.map((o, n) => alveoles
+          ? tuile(libelle(o), "blanc", "rep", `type="button" role="radio" aria-checked="${choisi === o}" data-o="${o}" style="--n:${n}"`, "button")
+          : `<button class="rep" type="button" role="radio" aria-checked="${choisi === o}" data-o="${o}" style="--n:${n}">${MARQUE}<span>${echap(q.choix[o])}</span></button>`).join("")}
+      </div>
+    </div>
+    <div class="bas">${bouton("Suivant", "vert", `id="valider" ${choisi === undefined || choisi === null ? "disabled" : ""}`)}<button class="lien" type="button" id="passer">Je ne sais pas</button></div>
+  </section>`);
+  brancherSon(); avancerJauge();
+  // la réponse choisie remplit le ou les trous (« plus… que », « suis arrivé / pleuvait » : un morceau par trou)
+  const remplirTrou = (o) => {
+    const t = [...appli.querySelectorAll(".trou")]; if (!t.length) return;
+    const morceaux = t.length > 1 ? q.choix[o].split(/\s*[…\/]\s*/) : [q.choix[o]];
+    if (morceaux.length !== t.length) return;
+    t.forEach((x, k) => { x.textContent = morceaux[k]; x.classList.remove("rempli"); void x.offsetWidth; x.classList.add("rempli"); });
+  };
+  appli.querySelectorAll(".rep").forEach(t => t.addEventListener("click", () => {
+    const o = +t.dataset.o; etat.reponses[q.id] = o;
+    appli.querySelectorAll(".rep").forEach(x => x.setAttribute("aria-checked", +x.dataset.o === o));
+    $("#valider").disabled = false; remplirTrou(o); SONS.choix(); vibrer(8);
+  }));
+  if (choisi !== undefined && choisi !== null) remplirTrou(choisi);
+  $("#valider").addEventListener("click", () => { const t = appli.querySelector('.rep[aria-checked="true"]'); if (t) t.classList.add("envoyee"); SONS.valider(); vibrer(12); suivante(380); });
+  $("#passer").addEventListener("click", () => { etat.reponses[q.id] = null; SONS.passer(); suivante(120); });
+  $("#fermer").addEventListener("click", demanderQuitter);
+  const lecteur = $("#lecteur");
+  if (lecteur) lecteur.addEventListener("click", () => {
+    const n = (etat.ecoutes[q.id] || 0) + 1; etat.ecoutes[q.id] = n;
+    lecteur.disabled = true; $("#reste").textContent = "Écoutez…";
+    const p = $("#pastille"); if (p) { p.textContent = 2 - n; p.hidden = 2 - n <= 0; }
+    jouer(q.audio, q.script, lecteur, $("#vague"), () => { lecteur.disabled = 2 - n <= 0; $("#reste").textContent = 2 - n === 1 ? "Encore 1 écoute" : "Plus d'écoute"; }, { debit: DEBIT[q.niveau] });
+  });
+  const redire = $("#redire"); if (redire) redire.addEventListener("click", () => jouer(q.audio, [q.replique], redire, $("#vague-replique"), null, { voix: q.photo === "homme" ? "h" : "f", debit: DEBIT[q.niveau] }));
+  const direSituation = $("#dire-situation"); if (direSituation) direSituation.addEventListener("click", () => jouer(q.audio, [q.texte], direSituation, null, null, { voix: "f", debit: DEBIT[q.niveau] }));
+  const lireConsigne = $("#lire-consigne"); if (lireConsigne) lireConsigne.addEventListener("click", () => {
+    const suite = ["q:" + q.question, ...(q.pictos ? ordre.map(o => "p:" + q.choix[o]) : [])];
+    const un = (k) => k < suite.length && jouer(suite[k], [suite[k].slice(2)], lireConsigne, null, () => setTimeout(() => un(k + 1), 250), { voix: "f", debit: DEBIT.A1 });
+    un(0);
+  });
+  const relire = $("#relire"); if (relire) relire.addEventListener("click", () => feuille(`${papier(q)}${bouton("Revenir à la question", "vert", "data-fermer")}`));
+}
+function ecranLecture(q) {
+  poser(`<section class="ecran" aria-labelledby="t-doc">
+    ${haut()}
+    <div class="defile">${papier(q).replace("<strong>", '<strong id="t-doc">')}<p class="consigne-lecture">Lisez le document. La question arrive ensuite, et vous pourrez le relire.</p></div>
+    <div class="bas">${bouton("J'ai lu", "vert", 'id="lu"')}</div>
+  </section>`);
+  brancherSon(); avancerJauge();
+  $("#fermer").addEventListener("click", demanderQuitter);
+  $("#lu").addEventListener("click", () => { etat.lus[q.id] = true; SONS.page(); afficher(); });
+}
+function suivante(delai) {
+  setTimeout(() => {
+    const { justes, erreurs } = bilan(), i = ORDRE.indexOf(etat.niveau), fini = etat.k + 1 >= etat.palier.length;
+    if (erreurs > PAR_PALIER - SEUIL) { etat.ecran = "resultat"; return afficher(); }   // le niveau ne peut plus être validé
+    if (!fini) { etat.k++; return afficher(); }
+    if (justes >= SEUIL) {                                         // palier joué en entier et validé
+      etat.valides.push(etat.niveau);
+      if (i === ORDRE.length - 1) { etat.ecran = "resultat"; return afficher(); }
+      etat.vus.push(...etat.palier);
+      etat.precedent = etat.niveau; etat.niveau = ORDRE[i + 1];
+      etat.palier = tirerPalier(etat.niveau, etat.vus.map(id => PAR_ID[id].groupe)); etat.k = 0; preparerOrdres();
+      etat.ecran = "palier"; return afficher();
+    }
+    etat.ecran = "resultat"; afficher();
+  }, delai);
+}
+function feuille(contenu) {
+  const voile = document.createElement("div");
+  voile.className = "voile";
+  voile.innerHTML = `<div class="feuille" role="dialog" aria-modal="true">${contenu}</div>`;
+  appli.appendChild(voile);
+  voile.addEventListener("click", (e) => { if (e.target === voile || e.target.closest("[data-fermer]")) voile.remove(); });
+  const premier = voile.querySelector("button"); if (premier) premier.focus();
+  return voile;
+}
+function demanderQuitter() {
+  const v = feuille(`<h2>Quitter le test ?</h2><p>Vos réponses ne seront pas gardées.</p>${bouton("Continuer le test", "vert", "data-fermer")}<button class="lien" type="button" id="quitter">Quitter</button>`);
+  $("#quitter", v).addEventListener("click", () => { etat.ecran = "accueil"; afficher(); });
+}
+
+// ------------------------------------------------------------------------------ la fête de fin de niveau
+function confettis(cv, duree = 260) {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches || !cv) return;
+  const r = cv.getBoundingClientRect(), dpr = Math.min(2, devicePixelRatio || 1);
+  cv.width = r.width * dpr; cv.height = r.height * dpr;
+  const g = cv.getContext("2d"); g.scale(dpr, dpr);
+  const couleurs = ["#fff27a", "#b6f51c", "#5ce9ff", "#f98aee", "#ffffff"];
+  const cx = r.width / 2, cy = r.height * .34;
+  const morceau = (rafale) => ({ x: rafale ? cx : Math.random() * r.width, y: rafale ? cy : -20, vx: rafale ? Math.cos(Math.random() * 6.28) * (4 + Math.random() * 9) : (Math.random() - .5) * 2, vy: rafale ? -(3 + Math.random() * 10) : 2 + Math.random() * 3,
+    t: Math.random() * 6, vt: (Math.random() - .5) * .3, c: couleurs[Math.floor(Math.random() * couleurs.length)], l: 7 + Math.random() * 8, forme: Math.random() < .45 ? "hexa" : Math.random() < .5 ? "etoile" : "ruban" });
+  const bouts = Array.from({ length: 150 }, () => morceau(true));
+  let image = 0;
+  (function pas() {
+    g.clearRect(0, 0, r.width, r.height);
+    if (image > 40 && image < duree - 60 && image % 3 === 0) bouts.push(morceau(false), morceau(false));
+    bouts.forEach(b => {
+      b.vy += .22; b.vx *= .985; b.x += b.vx + Math.sin((image + b.l * 10) / 14) * .6; b.y += b.vy; b.t += b.vt;
+      g.save(); g.translate(b.x, b.y); g.rotate(b.t); g.fillStyle = b.c;
+      g.beginPath();
+      if (b.forme === "hexa") { for (let i = 0; i < 6; i++) { const a = i * Math.PI / 3 + Math.PI / 6; g.lineTo(Math.cos(a) * b.l / 2, Math.sin(a) * b.l / 2); } g.fill(); }
+      else if (b.forme === "etoile") { for (let i = 0; i < 10; i++) { const a = i * Math.PI / 5, rr = i % 2 ? b.l / 4 : b.l / 1.8; g.lineTo(Math.cos(a) * rr, Math.sin(a) * rr); } g.fill(); }
+      else g.fillRect(-b.l / 2, -b.l / 5, b.l, b.l / 2.5);
+      g.restore();
+    });
+    if (++image < duree && document.body.contains(cv)) requestAnimationFrame(pas); else g.clearRect(0, 0, r.width, r.height);
+  })();
+}
+function medaille(niveau, coche) {
+  return `<div class="medaille" aria-hidden="true">${tuile(niveau, NIVEAUX[niveau].teinte)}${coche ? `<span class="medaille-coche">${ICONE.coche}</span>` : ""}</div>`;
+}
+function ecranPalier() {
+  const fini = etat.precedent, suivant = etat.niveau;
+  const ordre = ["A1", "A2", "B1"], f = ordre.indexOf(fini);
+  poser(`<section class="ecran"><div class="fete" role="dialog" aria-labelledby="t-fete">
+    <div class="rayons" aria-hidden="true"></div><div class="lueur" aria-hidden="true"></div>
+    <canvas id="confettis" aria-hidden="true"></canvas>
+    ${medaille(fini, true)}
+    <div class="etoiles" aria-hidden="true">${ETOILE}${ETOILE}${ETOILE}</div>
+    <h2 class="grand-titre" id="t-fete">Bravo !</h2>
+    <p>Niveau ${fini} validé. On passe au niveau ${suivant}.</p>
+    <div class="chemin" aria-hidden="true">${ordre.map((n, m) => `${m ? `<span class="trait ${m === f + 1 ? "remplit" : ""}" style="--p:${m <= f ? 1 : 0}"><i></i></span>` : ""}${tuile(m <= f ? "✓" : n, m <= f ? "citron" : m === f + 1 ? NIVEAUX[n].teinte : "ton", m === f + 1 ? "suivante" : "")}`).join("")}</div>
+    ${bouton("Continuer", "vert", 'id="reprendre"')}
+  </div></section>`);
+  SONS.fete(); vibrer([30, 60, 30, 60, 80]);
+  confettis($("#confettis"));
+  setTimeout(() => { const b = $("#reprendre"); b && b.focus({ preventScroll: true }); }, 2400);
+  $("#reprendre").addEventListener("click", () => { SONS.choix(); etat.ecran = "question"; afficher(); });
+}
+
+// ------------------------------------------------------------------------------ le résultat
+function calculer() {
+  const faites = [...etat.vus, ...etat.palier].filter(id => id in etat.reponses), diagnostic = { epreuve: {}, tag: {} };
+  faites.forEach(id => { const q = PAR_ID[id], juste = etat.reponses[id] === q.bonne;
+    for (const [axe, cle] of [["epreuve", q.epreuve], ["tag", q.tag]]) { const d = (diagnostic[axe][cle] ??= { juste: 0, total: 0 }); d.total++; d.juste += juste; } });
+  etat.diagnostic = diagnostic;
+  return { niveau: etat.valides[etat.valides.length - 1] || null, diagnostic };
+}
+function ecranResultat() {
+  const n = calculer().niveau;
+  poser(`<section class="ecran" aria-labelledby="t-resultat">
+    <div class="haut"><span></span><span></span>${boutonSon()}</div>
+    <div class="defile">
+      <div class="resultat-seul">
+        <div class="rayons" aria-hidden="true"></div><div class="lueur" aria-hidden="true"></div>
+        <canvas id="confettis" aria-hidden="true"></canvas>
+        ${medaille(n || "A1", !!n)}
+        <small>Votre niveau</small>
+        <h1 class="grand-titre" id="t-resultat">${n ? `Niveau ${n}` : "A1 en cours"}</h1>
+      </div>
+    </div>
+    <div class="bas">${bouton("Refaire le test", "blanc", 'id="refaire"')}</div>
+  </section>`);
+  brancherSon();
+  SONS.fete(); vibrer([30, 60, 30, 60, 120]);
+  confettis($("#confettis"), 220);
+  $("#refaire").addEventListener("click", () => { SONS.valider(); nouveauTest(); afficher(); });
+}
+
+// ------------------------------------------------------------------------------ départ (l'état survit à une mise à jour de la page)
+window.claude?.hot?.snapshot?.(() => ({ etat }));
+const depart = (data) => { if (data && data.etat && (data.etat.ecran === "accueil" || data.etat.palier)) etat = data.etat; afficher(); };
+window.claude?.hot?.ready ? window.claude.hot.ready(depart) : depart(window.claude?.hot?.data ?? {});
+</script>
+
+</body>
+</html>

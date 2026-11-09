@@ -29,8 +29,8 @@ les lecteurs d'écran, invisible à l'œil).
 
 ## Test de positionnement FLE
 
-`positionnement-fle/` : le test mobile adaptatif sur les 142 QCM de la banque (`test-positionnement.html`,
-publié en artifact) et les 88 sons de la banque générés avec ElevenLabs (`sons/`, un MP3 par identifiant),
+`positionnement-fle/` : le test mobile adaptatif sur les 142 QCM de la banque, en page web à partager
+(`index.html`, https://onlineformapro-website.vercel.app/travaux/positionnement-fle/) et en artifact (`test-positionnement.html`) et les 88 sons de la banque générés avec ElevenLabs (`sons/`, un MP3 par identifiant),
 avec leur liste `sons.csv` et le script qui les produit. Détails dans `positionnement-fle/LISEZMOI.md`.
 
 ## Newsletter CiviCap

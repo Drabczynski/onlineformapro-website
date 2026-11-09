@@ -37,6 +37,15 @@ Le reste :
 présentation) ; `assembler.py` les injecte dans la page avec les sons. Les chemins en tête des scripts
 pointent vers le dossier de travail de la session : à adapter pour les relancer.
 
+## La page à partager
+
+`index.html` est le même test en page web, publiée par Vercel avec le reste du dépôt :
+https://onlineformapro-website.vercel.app/travaux/positionnement-fle/
+
+La seule différence avec l'artifact : les sons ne sont pas intégrés, ce sont les MP3 du dossier `sons/`, chargés
+quand la question s'affiche (page de 160 Ko au lieu de 3,8 Mo). Le site est en « noindex » (vercel.json) :
+la page ne sort pas dans les moteurs de recherche, seules les personnes qui ont le lien y accèdent.
+
 ## Les sons (ElevenLabs)
 
 `sons/` porte un MP3 par question audio de la banque : 88 fichiers, nommés par identifiant
