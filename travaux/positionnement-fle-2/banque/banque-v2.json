@@ -218,7 +218,6 @@
   "bonne": 0,
   "t": "ecoute",
   "audio": "o05",
-  "contexte": "Vous visitez un appartement pour une location.",
   "id": "A1-10",
   "groupe": "A1:A1-10"
  },
@@ -322,7 +321,6 @@
   "page": 9,
   "question": "Remettez les mots dans l'ordre.",
   "t": "ordre",
-  "contexte": "Vous êtes dans la rue et vous demandez votre chemin.",
   "avant": "Excusez-moi ! Je cherche la station de métro,",
   "apres": "?",
   "mots": [

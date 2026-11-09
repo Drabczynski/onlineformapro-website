@@ -127,6 +127,8 @@ le jour où Julien commence à 8h (jeudi) et son cours d'arts plastiques (mardi,
   de texte (le contexte reste au-dessus). Consigne lue générée avec ElevenLabs (`v2-q33`).
 - A1-01 : l'infinitif « (parler) » indiqué sous la phrase.
 - A1-13 : la phrase du PDF « Vous avez rendez-vous chez le dentiste et vous recevez un message. » est retirée.
+- A1-10 et A1-16 : les phrases du PDF « Vous visitez un appartement pour une location. » et « Vous êtes
+  dans la rue et vous demandez votre chemin. » sont retirées.
 - A1-11 : sans « Vous lisez cette affiche. » ni « Touchez l'image pour l'agrandir » ; une loupe dans le coin
   de l'affiche indique qu'on peut l'agrandir.
 - « Que répondez-vous ? » ajouté aux questions où l'on répond à un message. Une phrase de contexte
