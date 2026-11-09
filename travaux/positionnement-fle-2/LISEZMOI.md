@@ -10,6 +10,13 @@ mêmes sons d'interface. Seule la banque change : elle vient du PDF « EVAL POSI
 - Affichage : sur ordinateur, le téléphone posé au centre d'un fond gris ; sur un appareil tactile
   (téléphone, tablette) ou un écran de moins de 520 px, le test occupe tout l'écran, comme une application.
 - Lisibilité : aucun texte de lecture sous 14 px ; contextes, messages et phrases agrandis.
+- Sur téléphone, le fond de la page prend la couleur du test (Safari colore la barre d'état avec ce fond) et
+  le dégradé descend sous la barre du navigateur (`100lvh`), les boutons restant au-dessus (`100dvh`).
+- Hauteur de l'écran : une question qui ne tient pas est resserrée en deux crans (marges, lecteur, réponses,
+  image) ; testé sur toutes les questions en 390 × 664 (iPhone avec les barres de Safari). Un long texte à
+  lire qui dépasse encore s'estompe en bas tant qu'on n'a pas défilé jusqu'au bout.
+- Lecteur des écoutes : le bouton seul, avec le nombre d'écoutes restantes ; pendant l'écoute, les ondes
+  s'animent dans le bouton.
 
 ## Contenu
 

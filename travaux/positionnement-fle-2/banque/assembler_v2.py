@@ -112,7 +112,7 @@ entre('function visuel(q) {', 'function ecranQuestion() {', r'''function visuel(
     case "situation": return `<span class="scene-emoji" aria-hidden="true">${q.emoji}</span>${etiq}<p class="situation">${q.texte}</p>`;
     case "document": return `${ctx}<div class="doc-mini"><span class="icone-doc" aria-hidden="true">${q.emoji}</span><strong>${q.titre}</strong><button class="pilule" type="button" id="relire">${ICONE.oeil} Relire</button></div>`;
     case "ecoute":
-      return `${ctx}<button class="lecteur" type="button" id="lecteur" aria-label="Écouter l'enregistrement (${reste} écoute${reste > 1 ? "s" : ""} possible${reste > 1 ? "s" : ""})" ${reste <= 0 ? "disabled" : ""}>${ICONE.jouer}<span class="pastille" id="pastille" aria-hidden="true" ${reste <= 0 ? "hidden" : ""}>${reste}</span></button><span class="vague" id="vague" aria-hidden="true">${"<i></i>".repeat(9)}</span><span class="etiquette" id="reste">${reste === 2 ? "Touchez pour écouter" : reste === 1 ? "Encore 1 écoute" : "Plus d'écoute"}</span>${q.phrase ? `<div class="phrase petite">${trous(q.phrase)}</div>` : ""}`;
+      return `${ctx}<button class="lecteur" type="button" id="lecteur" aria-label="${reste > 0 ? `Écouter l'enregistrement (${reste} écoute${reste > 1 ? "s" : ""} possible${reste > 1 ? "s" : ""})` : "Plus d'écoute possible"}" ${reste <= 0 ? "disabled" : ""}>${ICONE.jouer}<span class="vague" id="vague" aria-hidden="true">${"<i></i>".repeat(5)}</span><span class="pastille" id="pastille" aria-hidden="true" ${reste <= 0 ? "hidden" : ""}>${reste}</span></button>${q.phrase ? `<div class="phrase petite">${trous(q.phrase)}</div>` : ""}`;
   }
   return "";
 }
@@ -214,14 +214,28 @@ entre('function ecranQuestion() {', 'function ecranLecture(q) {', r'''function e
   const lecteur = $("#lecteur");
   if (lecteur) lecteur.addEventListener("click", () => {
     const n = (etat.ecoutes[q.id] || 0) + 1; etat.ecoutes[q.id] = n;
-    lecteur.disabled = true; $("#reste").textContent = "Écoutez…";
+    lecteur.disabled = true;
     const p = $("#pastille"); if (p) { p.textContent = 2 - n; p.hidden = 2 - n <= 0; }
-    jouer(q.audio, [], lecteur, $("#vague"), () => { lecteur.disabled = 2 - n <= 0; $("#reste").textContent = 2 - n === 1 ? "Encore 1 écoute" : "Plus d'écoute"; }, {});
+    jouer(q.audio, [], lecteur, $("#vague"), () => { lecteur.disabled = 2 - n <= 0; lecteur.setAttribute("aria-label", 2 - n > 0 ? "Réécouter l'enregistrement (1 écoute possible)" : "Plus d'écoute possible"); }, {});
   });
   const lireConsigne = $("#lire-consigne"); if (lireConsigne) lireConsigne.addEventListener("click", () => jouer("q:" + q.question, [q.question], lireConsigne, null, null, { voix: "f", debit: DEBIT.A1 }));
   const relire = $("#relire"); if (relire) relire.addEventListener("click", () => feuille(`${papier(q)}${bouton("Revenir à la question", "vert", "data-fermer")}`));
   const agrandir = $("#agrandir"); if (agrandir) agrandir.addEventListener("click", () => feuille(`<img class="image-grande" src="${IMAGES[q.img]}" alt="${echap(q.alt || "")}">${bouton("Revenir à la question", "vert", "data-fermer")}`));
-  ajusterImages();
+  ajusterImages(); resserrer();
+}
+// Sur un petit écran (téléphone avec les barres du navigateur), une question qui ne tient pas est resserrée
+// (marges, lecteur, réponses), en deux crans ; les images s'ajustent ensuite à la place qui reste.
+// Si elle ne tient toujours pas (long texte à lire, très petit écran), le bas du contenu s'estompe pour montrer
+// qu'il y a une suite à faire défiler, jusqu'à ce qu'on arrive en bas.
+function resserrer() {
+  const ecran = appli.querySelector(".ecran"), d = ecran && ecran.querySelector(".defile"); if (!d) return;
+  const deborde = () => d.scrollHeight > d.clientHeight + 1;
+  ecran.querySelectorAll("img").forEach(i => { if (!i.complete) i.addEventListener("load", resserrer, { once: true }); });   // la taille d'une image n'est connue qu'une fois chargée
+  ecran.classList.remove("serre", "tres-serre");
+  if (deborde()) { ecran.classList.add("serre"); placerLettres(); ajusterImages(); }
+  if (deborde()) { ecran.classList.add("tres-serre"); placerLettres(); ajusterImages(); }
+  const suite = () => d.classList.toggle("a-suivre", d.scrollTop + d.clientHeight < d.scrollHeight - 4);
+  suite(); if (!d.dataset.suite) { d.dataset.suite = 1; d.addEventListener("scroll", suite, { passive: true }); }
 }
 // Réponses en images : aussi grandes que la place le permet. On essaie deux colonnes (trois images : une en haut,
 // deux en bas, comme les alvéoles), de la plus grande taille à la plus petite ; sinon, toutes sur une ligne.
@@ -245,7 +259,7 @@ function placerLettres() {
     x.style.left = c * pas + "px"; x.style.top = y + "px"; bas = Math.max(bas, y); });
   bloc.style.setProperty("--w", w + "px"); bloc.style.width = (cols - 1) * pas + w + "px"; bloc.style.height = bas + w * .941 + "px";
 }
-addEventListener("resize", () => { placerLettres(); ajusterImages(); });
+addEventListener("resize", () => { placerLettres(); ajusterImages(); resserrer(); });
 ''')
 
 # ---------- lisibilité (textes plus grands, plus aérés) et plein écran sur téléphone et tablette
@@ -271,10 +285,19 @@ rep("""@media (max-width: 520px) {
 @media (max-width: 520px), (hover: none) and (pointer: coarse) {
   body { padding: 0; }
   .appli { width: 100%; height: 100%; border: 0; border-radius: 0; outline: 0; }
-  @supports (height: 100dvh) { html, body { height: 100dvh; } }
+  html, body { background: var(--fond-1); }
+  /* le dégradé descend jusque sous la barre du navigateur (100lvh) ; les boutons restent au-dessus (100dvh) */
+  @supports (height: 100lvh) {
+    html, body { height: 100lvh; }
+    .bas { padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px) + 100lvh - 100dvh); }
+  }
 """)
 
 # ---------- icône de la touche « effacer » du clavier de lettres
+rep('''  $("#lu").addEventListener("click", () => { etat.lus[q.id] = true; SONS.page(); afficher(); });
+}''', '''  $("#lu").addEventListener("click", () => { etat.lus[q.id] = true; SONS.page(); afficher(); });
+  resserrer();
+}''')
 rep("const ICONE = {\n", """const ICONE = {
   effacer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-6-7z"/><path d="M12.5 9.5l5 5M17.5 9.5l-5 5"/></svg>',
 """)
@@ -334,6 +357,51 @@ rep('''/* ------------------------------------------------------------ les répo
 .lettres .effacer { color: #fff; }
 .lettres .effacer:disabled { opacity: .45; }
 .lettres .effacer .mot svg { position: static; width: 46%; height: auto; }
+/* lecteur : les ondes s'animent dans le bouton pendant l'écoute */
+.lecteur .vague { display: none; height: 34%; gap: 5px; }
+.lecteur .vague i { width: 6px; background: #fff; }
+.lecteur.parle svg { display: none; }
+.lecteur.parle .vague { display: flex; }
+.lecteur.parle:disabled { filter: none; opacity: 1; }
+.lecteur.parle:disabled::before { animation: onde .9s ease-out infinite; opacity: 1; }
+/* question resserrée quand elle ne tient pas dans la hauteur de l'écran */
+.serre .visuel { min-height: 0; margin-top: 10px; padding: 14px 16px; gap: 10px; }
+.serre .question { margin-top: 14px; font-size: 20px; }
+.serre .reponses { padding-top: 14px; padding-bottom: 10px; }
+.serre .reponses.alveoles { --w: 104px; margin-top: 22px; margin-bottom: 10px; }
+.serre .bonbons { gap: 10px; }
+.serre .bonbons .rep { min-height: 48px; padding-block: 9px; }
+.serre .lecteur { width: 72px; height: 72px; }
+.serre .lecteur svg { width: 30px; height: 30px; }
+.serre .pastille { width: 26px; height: 26px; font-size: 14px; }
+.serre .scene-emoji { font-size: 40px; }
+.serre .doc-mini { gap: 6px; }
+.serre .image-support img { max-height: 150px; }
+.serre .doc-mini .icone-doc { width: 58px; height: 66px; font-size: 30px; }
+.serre .papier-tete { margin-bottom: 8px; }
+.serre .edt th, .serre .edt td { padding-block: 4px; }
+.serre .consigne-lecture { margin-top: 12px; }
+.tres-serre .haut { padding-bottom: 4px; }
+.tres-serre .visuel { margin-top: 6px; padding: 10px 14px; gap: 8px; }
+.tres-serre .question { margin-top: 10px; font-size: 19px; }
+.tres-serre .reponses { padding-top: 10px; padding-bottom: 6px; }
+.tres-serre .bonbons { gap: 8px; }
+.tres-serre .bonbons .rep { padding-block: 7px; }
+.tres-serre .lecteur { width: 60px; height: 60px; }
+.tres-serre .lecteur svg { width: 26px; height: 26px; }
+.tres-serre .scene-emoji { font-size: 32px; }
+.tres-serre .image-support img { max-height: 120px; }
+.tres-serre .doc-mini .icone-doc { width: 48px; height: 54px; font-size: 26px; }
+.tres-serre .lien { margin-top: 2px; padding-block: 4px; }
+.tres-serre .bouton { min-height: 52px; }
+.defile.a-suivre { -webkit-mask-image: linear-gradient(#000 calc(100% - 56px), transparent); mask-image: linear-gradient(#000 calc(100% - 56px), transparent); }
+.tres-serre .phrase { font-size: 21px; }
+.tres-serre .ordre-phrase { font-size: 19px; line-height: 1.7; }
+.tres-serre .sms p { font-size: 16.5px; padding: 10px 14px; }
+.tres-serre .contexte { font-size: 15.5px; }
+.tres-serre .bonbons .rep { min-height: 44px; font-size: 16.5px; }
+.tres-serre .reponses.alveoles { --w: 96px; margin-top: 16px; }
+.tres-serre .bas { padding-top: 6px; }
 
 /* ------------------------------------------------------------ les réponses */''')
 
