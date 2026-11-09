@@ -24,9 +24,18 @@ le numéro de page du PDF est gardé dans `banque/banque-v2.json`.
 
 Types de réponses :
 
-- choix à toucher : un texte, ou une image quand le PDF propose des photos (A1-08, A1-12, A2-07) ;
+- choix à toucher : un texte, ou une image quand le PDF propose des photos (A1-08, A1-12, A2-07).
+  Les images prennent la place libre : sur deux colonnes (une en haut, deux en bas) quand l'écran
+  le permet, sinon toutes les trois sur une ligne ;
 - choix à écouter (A2-06, les trois phrases au guichet de la poste) ;
 - mots à remettre dans l'ordre (A1-16) ;
+- mot à écrire en touchant des lettres, pour l'expression écrite à mot court (A1-01, A1-02, A1-05,
+  A1-06, A2-02, A2-10). La règle : une question d'expression écrite dont tous les choix du PDF sont
+  des mots seuls de 8 lettres au plus. Les lettres proposées sont celles de ces choix : chaque
+  lettre autant de fois qu'elle apparaît au plus dans un choix. Exemple : « La / Le / Les » donne
+  a, e, l, s. Rien n'indique la longueur du mot. Le mot s'écrit dans le trou de la phrase, avec une
+  majuscule quand le trou ouvre la phrase. La touche rose efface la dernière lettre. Sur ordinateur,
+  le clavier marche aussi ;
 - réponse à écrire (A1-57 à A1-61, A2-39, A2-40). Les accents et les majuscules ne comptent pas,
   et plusieurs formes sont acceptées (« 22 », « 22 ans », « vingt-deux ans »).
 
@@ -91,5 +100,7 @@ le jour où Julien commence à 8h (jeudi) et son cours d'arts plastiques (mardi,
 - « De quoi est-ce que ça parle ? » : la question est coupée dans le PDF.
 - « Margaret Marie » : le prénom entendu dans le son (la diapositive écrit « Maritz »).
 - L'affiche du café : le zoom montre le 16 novembre.
+- « Complétez la phrase. » à la place de « Choisissez la bonne réponse. » pour les questions où
+  l'on écrit le mot avec les lettres (A1-01, A1-05, A2-02). La consigne lue existait déjà.
 - « Que répondez-vous ? » ajouté aux questions où l'on répond à un message. Une phrase de contexte
   ajoutée aux questions d'écoute. Fautes de frappe corrigées.

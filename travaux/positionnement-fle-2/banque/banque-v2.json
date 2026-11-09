@@ -4,7 +4,7 @@
   "comp": "EE",
   "tag": "EXP écrite",
   "page": 1,
-  "question": "Choisissez la bonne réponse.",
+  "question": "Complétez la phrase.",
   "choix": [
    "donne",
    "parle",
@@ -14,7 +14,21 @@
   "t": "trou",
   "phrase": "Je ______ français.",
   "id": "A1-01",
-  "groupe": "A1:A1-01"
+  "groupe": "A1:A1-01",
+  "lettres": [
+   "a",
+   "d",
+   "e",
+   "f",
+   "i",
+   "l",
+   "n",
+   "n",
+   "o",
+   "p",
+   "r",
+   "t"
+  ]
  },
  {
   "niveau": "A1",
@@ -30,7 +44,20 @@
   "bonne": 1,
   "t": "aucun",
   "id": "A1-02",
-  "groupe": "A1:A1-02"
+  "groupe": "A1:A1-02",
+  "lettres": [
+   "a",
+   "c",
+   "d",
+   "e",
+   "h",
+   "i",
+   "j",
+   "m",
+   "n",
+   "r",
+   "u"
+  ]
  },
  {
   "niveau": "A1",
@@ -71,7 +98,7 @@
   "comp": "EE",
   "tag": "EXP écrite",
   "page": 2,
-  "question": "Choisissez la bonne réponse.",
+  "question": "Complétez la phrase.",
   "choix": [
    "La",
    "Le",
@@ -81,7 +108,13 @@
   "t": "trou",
   "phrase": "______ livre est intéressant.",
   "id": "A1-05",
-  "groupe": "A1:A1-05"
+  "groupe": "A1:A1-05",
+  "lettres": [
+   "a",
+   "e",
+   "l",
+   "s"
+  ]
  },
  {
   "niveau": "A1",
@@ -97,7 +130,20 @@
   "bonne": 2,
   "groupe": "A1:contraire-grand",
   "t": "aucun",
-  "id": "A1-06"
+  "id": "A1-06",
+  "lettres": [
+   "a",
+   "e",
+   "g",
+   "i",
+   "l",
+   "o",
+   "p",
+   "r",
+   "s",
+   "t",
+   "t"
+  ]
  },
  {
   "niveau": "A1",
@@ -1144,7 +1190,7 @@
   "comp": "EE",
   "tag": "EXP écrite",
   "page": 34,
-  "question": "Choisissez la bonne réponse.",
+  "question": "Complétez la phrase.",
   "choix": [
    "dont",
    "que",
@@ -1154,7 +1200,17 @@
   "t": "trou",
   "phrase": "C'est un film ______ je t'ai parlé.",
   "id": "A2-02",
-  "groupe": "A2:A2-02"
+  "groupe": "A2:A2-02",
+  "lettres": [
+   "d",
+   "e",
+   "l",
+   "n",
+   "o",
+   "q",
+   "t",
+   "u"
+  ]
  },
  {
   "niveau": "A2",
@@ -1305,7 +1361,14 @@
   "contexte": "Vous envoyez un message à votre colocataire.",
   "texte": "J'ai oublié les billets pour le concert de ce soir. Ils sont sur mon bureau. Pense à ______ prendre, s'il te plaît ! Merci !",
   "id": "A2-10",
-  "groupe": "A2:A2-10"
+  "groupe": "A2:A2-10",
+  "lettres": [
+   "e",
+   "l",
+   "n",
+   "s",
+   "y"
+  ]
  },
  {
   "niveau": "A2",

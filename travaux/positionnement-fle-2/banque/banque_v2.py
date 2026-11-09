@@ -159,9 +159,20 @@ for k, d in enumerate(B, 1):
     compte[d["niveau"]] = compte.get(d["niveau"], 0) + 1
     d["id"] = f"{d['niveau']}-{compte[d['niveau']]:02d}"
     d["groupe"] = d["niveau"] + ":" + d.get("groupe", d["id"])
+# Expression écrite à mot court : la réponse s'écrit en touchant des lettres. Les lettres proposées sont celles des
+# choix du PDF (chaque lettre autant de fois qu'elle apparaît au plus dans un choix), sans indice sur la longueur.
+import re, collections
+for d in B:
+    if d["comp"] == "EE" and d.get("choix") and all(re.fullmatch(r"[^\W\d_]{1,8}", c) for c in d["choix"]):
+        maxi = {}
+        for c in d["choix"]:
+            for l, n in collections.Counter(c.lower()).items(): maxi[l] = max(maxi.get(l, 0), n)
+        d["lettres"] = sorted(l for l, n in maxi.items() for _ in range(n))
+        if d["question"] == CHOISIR: d["question"] = "Complétez la phrase."
 import os
 json.dump(B, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "banque-v2.json"), "w"), ensure_ascii=False, indent=1)
 import collections
+print("à écrire en lettres :", [(d["id"], "".join(d["lettres"])) for d in B if d.get("lettres")])
 print(len(B), "questions ;", dict(collections.Counter((d["niveau"], d["comp"]) for d in B)))
 print("groupes par niveau :", {n: len({d["groupe"] for d in B if d["niveau"] == n}) for n in ("A1", "A2", "B1")})
 print("réponses déduites :", sum(1 for d in B if d.get("deduite")), "; à saisir :", sum(1 for d in B if d.get("saisie")), "; images :", sum(1 for d in B if d.get("images")), "; ordre :", sum(1 for d in B if d["t"] == "ordre"))

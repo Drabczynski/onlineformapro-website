@@ -24,7 +24,7 @@ entre('// ----------------------------------------------------------------------
 // EE expression écrite, EO expression orale, LG langue : grammaire, conjugaison, vocabulaire), tag (l'étiquette du PDF),
 // page du PDF, groupe (questions sur le même document). « deduite » : réponse non marquée dans le PDF, déduite.
 // Types de réponse : choix (alvéoles ou pastilles), images, phrases à écouter (audios), mots à remettre dans l'ordre
-// (ordre), réponse à écrire (saisie).
+// (ordre), réponse à écrire (saisie), mot à écrire en touchant des lettres (lettres : expression écrite, mots courts).
 const BANQUE = ''' + json.dumps(B, ensure_ascii=False, separators=(',', ':')) + ''';
 
 ''')
@@ -71,6 +71,7 @@ const accepte = (liste, v) => { const n = normaliser(v); return !!n && liste.som
 function estJuste(q, r) {
   if (r === null || r === undefined) return false;
   if (q.saisie) return q.saisie.every((c, k) => accepte(c.accepte, r[k]));
+  if (q.lettres) return Array.isArray(r) && normaliser(r.map(i => q.lettres[i]).join("")) === normaliser(q.choix[q.bonne]);
   if (q.t === "ordre") return Array.isArray(r) && r.length === q.ordre.length && r.every((m, k) => m === q.ordre[k]);
   return r === q.bonne;
 }
@@ -121,9 +122,13 @@ entre('function ecranQuestion() {', 'function ecranLecture(q) {', r'''function e
   if (q.audio && AUDIO[q.audio] && !AUDIO[q.audio].startsWith("data:")) { const p = new Audio(); p.preload = "auto"; p.src = AUDIO[q.audio]; }
   if (q.t === "document" && !etat.lus[q.id]) return ecranLecture(q);
   const ordre = etat.ordres[q.id], choisi = etat.reponses[q.id];
-  const pret = (r) => q.saisie ? Array.isArray(r) && r.length === q.saisie.length && r.every(v => (v || "").trim()) : q.t === "ordre" ? Array.isArray(r) && r.length === q.ordre.length : r !== undefined && r !== null;
+  const pret = (r) => q.lettres ? Array.isArray(r) && r.length > 0 : q.saisie ? Array.isArray(r) && r.length === q.saisie.length && r.every(v => (v || "").trim()) : q.t === "ordre" ? Array.isArray(r) && r.length === q.ordre.length : r !== undefined && r !== null;
   let reponses;
-  if (q.saisie) reponses = `<div class="reponses saisies">${q.saisie.map((c, k) => `<label class="champ">${c.etiquette ? `<span>${c.etiquette}</span>` : ""}<input type="text" data-k="${k}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="Écrivez ici" value="${echap((Array.isArray(choisi) && choisi[k]) || "")}"></label>`).join("")}</div>`;
+  if (q.lettres) {
+    const ol = (etat.ordres["l:" + q.id] ??= melanger(q.lettres.map((_, k) => k)));
+    reponses = `<div class="reponses ecrire">${q.t === "aucun" ? `<div class="mot-ecrit"><span class="trou" aria-live="polite">&nbsp;</span></div>` : ""}<div class="lettres" role="group" aria-label="Lettres à toucher pour écrire le mot">${ol.map((k, n) => tuile(echap(q.lettres[k]), "blanc", "lettre", `type="button" data-l="${k}" aria-label="${echap(q.lettres[k])}" style="--n:${n}"`, "button")).join("")}${tuile(ICONE.effacer, "rose", "effacer", `type="button" aria-label="Effacer la dernière lettre" style="--n:${ol.length}"`, "button")}</div></div>`;
+  }
+  else if (q.saisie) reponses = `<div class="reponses saisies">${q.saisie.map((c, k) => `<label class="champ">${c.etiquette ? `<span>${c.etiquette}</span>` : ""}<input type="text" data-k="${k}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="Écrivez ici" value="${echap((Array.isArray(choisi) && choisi[k]) || "")}"></label>`).join("")}</div>`;
   else if (q.t === "ordre") reponses = `<div class="reponses mots-a-placer">${q.mots.map((m, k) => `<button type="button" class="mot-dispo" data-m="${k}">${echap(m)}</button>`).join("")}</div>`;
   else if (q.images) reponses = `<div class="reponses images" role="radiogroup" aria-labelledby="question">${ordre.map((o, n) => `<button class="rep rep-image" type="button" role="radio" aria-checked="${choisi === o}" data-o="${o}" style="--n:${n}" aria-label="${echap(q.choix[o])}"><img src="${IMAGES[q.images[o]]}" alt=""></button>`).join("")}</div>`;
   else if (q.audios) reponses = `<div class="reponses bonbons" role="radiogroup" aria-labelledby="question">${ordre.map((o, n) => `<div class="ligne-audio" style="--n:${n}"><button class="ecouter-rep" type="button" data-a="${q.audios[o]}" aria-label="Écouter la phrase">${ICONE.jouer}</button><button class="rep" type="button" role="radio" aria-checked="${choisi === o}" data-o="${o}">${MARQUE}<span>${echap(q.choix[o])}</span></button></div>`).join("")}</div>`;
@@ -152,7 +157,33 @@ entre('function ecranQuestion() {', 'function ecranLecture(q) {', r'''function e
     t.forEach((x, k) => { const v = textes[k]; const avant = x.textContent; x.textContent = v || " "; x.classList.toggle("rempli", !!v); if (v && v !== avant) { x.classList.remove("pop"); void x.offsetWidth; x.classList.add("pop"); } });
   };
   const remplirChoix = (o) => { const t = appli.querySelectorAll(".visuel .trou").length; if (!t) return; const m = t > 1 ? q.choix[o].split(/\s*[…\/]\s*/) : [q.choix[o]]; if (m.length === t) remplir(m); };
-  if (q.saisie) {
+  if (q.lettres) {
+    // le mot s'écrit lettre à lettre dans le trou de la phrase (ou dans le champ) ; chaque lettre ne sert qu'une fois
+    const tape = Array.isArray(choisi) ? [...choisi] : [], champ = appli.querySelector(".visuel .trou, .mot-ecrit .trou");
+    const debut = /^\s*_/.test(q.phrase || q.texte || "");        // le trou ouvre la phrase : majuscule
+    const dessiner = () => {
+      let mot = tape.map(i => q.lettres[i]).join(""); if (debut && mot) mot = mot[0].toUpperCase() + mot.slice(1);
+      if (champ) { champ.textContent = mot || "\u00a0"; champ.classList.toggle("rempli", !!mot); champ.classList.add("curseur"); }
+      appli.querySelectorAll(".lettre").forEach(b => b.disabled = tape.includes(+b.dataset.l));
+      $(".effacer").disabled = !tape.length;
+      if (tape.length) etat.reponses[q.id] = [...tape]; else delete etat.reponses[q.id];
+      valider.disabled = !pret(etat.reponses[q.id]);
+    };
+    const taper = (k) => { if (k < 0 || tape.includes(k)) return; tape.push(k); SONS.choix(); vibrer(8); dessiner(); };
+    const effacer = () => { if (!tape.length) return; tape.pop(); SONS.passer(); vibrer(6); dessiner(); };
+    appli.querySelectorAll(".lettre").forEach(b => b.addEventListener("click", () => taper(+b.dataset.l)));
+    $(".effacer").addEventListener("click", effacer);
+    const ecran = appli.querySelector(".ecran-question");
+    const clavier = (e) => {                                          // sur ordinateur, le clavier marche aussi
+      if (!ecran.isConnected) return document.removeEventListener("keydown", clavier);
+      if (appli.querySelector(".voile") || e.ctrlKey || e.metaKey || e.altKey) return;
+      if (e.key === "Backspace") { e.preventDefault(); return effacer(); }
+      if (e.key === "Enter") { if (!valider.disabled && !e.target.closest("button")) valider.click(); return; }
+      if (e.key.length === 1) taper(q.lettres.findIndex((l, i) => normaliser(l) === normaliser(e.key) && !tape.includes(i)));
+    };
+    document.addEventListener("keydown", clavier);
+    dessiner(); placerLettres();
+  } else if (q.saisie) {
     const champs = [...appli.querySelectorAll(".saisies input")];
     const maj = () => { etat.reponses[q.id] = champs.map(c => c.value); valider.disabled = !pret(etat.reponses[q.id]); if (q.t === "trou" && champs.length === 1) remplir([champs[0].value.trim()]); };
     champs.forEach(c => { c.addEventListener("input", maj); c.addEventListener("keydown", (e) => { if (e.key === "Enter" && !valider.disabled) valider.click(); }); });
@@ -190,8 +221,37 @@ entre('function ecranQuestion() {', 'function ecranLecture(q) {', r'''function e
   const lireConsigne = $("#lire-consigne"); if (lireConsigne) lireConsigne.addEventListener("click", () => jouer("q:" + q.question, [q.question], lireConsigne, null, null, { voix: "f", debit: DEBIT.A1 }));
   const relire = $("#relire"); if (relire) relire.addEventListener("click", () => feuille(`${papier(q)}${bouton("Revenir à la question", "vert", "data-fermer")}`));
   const agrandir = $("#agrandir"); if (agrandir) agrandir.addEventListener("click", () => feuille(`<img class="image-grande" src="${IMAGES[q.img]}" alt="${echap(q.alt || "")}">${bouton("Revenir à la question", "vert", "data-fermer")}`));
+  ajusterImages();
 }
+// Réponses en images : aussi grandes que la place le permet. On essaie deux colonnes (trois images : une en haut,
+// deux en bas, comme les alvéoles), de la plus grande taille à la plus petite ; sinon, toutes sur une ligne.
+function ajusterImages() {
+  const bloc = appli.querySelector(".reponses.images"); if (!bloc) return;
+  const defile = bloc.closest(".defile"), premier = defile.firstElementChild, dernier = defile.lastElementChild;
+  const n = bloc.children.length, g = 12, larg = bloc.clientWidth - 32, ligne = Math.floor((larg - (n - 1) * g) / n);
+  const marge = () => Math.min(premier.offsetTop - defile.offsetTop, defile.offsetTop + defile.clientHeight - dernier.offsetTop - dernier.offsetHeight);
+  const essayer = (cols, w) => { bloc.dataset.cols = cols; bloc.style.setProperty("--wi", w + "px"); return marge() >= 18; };
+  if (n > 2) for (let w = Math.min(Math.floor((larg - g) / 2), 200); w >= ligne + 16; w -= 6) if (essayer(2, w)) return;
+  essayer(n, ligne);
+}
+// Lettres à toucher : une bande d'alvéoles (une ou deux rangées en quinconce), à la largeur de l'écran.
+function placerLettres() {
+  const bloc = appli.querySelector(".lettres"); if (!bloc) return;
+  const t = [...bloc.children], n = t.length, rangs = n > 7 ? 2 : 1, cols = Math.ceil(n / rangs), g = 6;
+  const larg = bloc.parentElement.clientWidth - 32, w = Math.min(66, Math.floor((larg - (cols - 1) * g) / ((cols - 1) * .75 + 1)));
+  const pas = w * .75 + g, h = w * .866 + g;
+  let bas = 0;
+  t.forEach((x, k) => { const c = rangs === 2 ? Math.floor(k / 2) : k, r = rangs === 2 ? k % 2 : 0, y = r * h + (c % 2 ? h / 2 : 0);
+    x.style.left = c * pas + "px"; x.style.top = y + "px"; bas = Math.max(bas, y); });
+  bloc.style.setProperty("--w", w + "px"); bloc.style.width = (cols - 1) * pas + w + "px"; bloc.style.height = bas + w * .941 + "px";
+}
+addEventListener("resize", () => { placerLettres(); ajusterImages(); });
 ''')
+
+# ---------- icône de la touche « effacer » du clavier de lettres
+rep("const ICONE = {\n", """const ICONE = {
+  effacer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-6-7z"/><path d="M12.5 9.5l5 5M17.5 9.5l-5 5"/></svg>',
+""")
 
 # ---------- styles des nouveaux éléments
 rep('''/* ------------------------------------------------------------ les réponses */''', '''/* version 2 : contexte, image, tableau, réponses en images, phrases à écouter, mots à placer, réponses écrites */
@@ -210,8 +270,9 @@ rep('''/* ------------------------------------------------------------ les répo
 .edt tr > :first-child { width: 17%; }
 .edt th { background: var(--lavande); font-weight: 900; }
 .edt td:empty { background: #faf8ff; }
-.reponses.images { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.rep-image { padding: 6px; border: 0; border-radius: 16px; background: #fff; box-shadow: 0 5px 0 var(--blanc-levre), 0 9px 0 var(--ombre); animation: monte .4s cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(.08s + var(--n) * .05s); transition: translate .1s; }
+.reponses.images { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.reponses.images[data-cols="2"] .rep-image:first-child:nth-last-child(odd) { margin-inline: calc((100% - var(--wi)) / 2); }
+.rep-image { width: var(--wi, calc((100% - 24px) / 3)); padding: 6px; border: 0; border-radius: 16px; background: #fff; box-shadow: 0 5px 0 var(--blanc-levre), 0 9px 0 var(--ombre); animation: monte .4s cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(.08s + var(--n) * .05s); transition: translate .1s; }
 .rep-image img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 11px; }
 .rep-image:active { translate: 0 4px; }
 .rep-image[aria-checked="true"] { background: linear-gradient(var(--citron-1), var(--citron-2)); box-shadow: 0 5px 0 var(--citron-levre), 0 9px 0 var(--ombre); animation: choisi .3s cubic-bezier(.2, 1.6, .4, 1); }
@@ -232,6 +293,20 @@ rep('''/* ------------------------------------------------------------ les répo
 .alveoles[data-n="2"] { width: calc(var(--w) * 2 + var(--g) * 2); height: calc(var(--w) * .941); }
 .alveoles[data-n="2"] .rep:nth-child(1) { left: 0; top: 0; }
 .alveoles[data-n="2"] .rep:nth-child(2) { left: auto; right: 0; top: 0; }
+.reponses.ecrire { display: grid; justify-items: center; gap: 22px; }
+.mot-ecrit .trou { min-width: 170px; margin: 0; font: 800 26px/1.6 var(--texte); text-align: center; }
+.trou.curseur::after { content: ""; display: inline-block; width: 2px; height: 1.05em; margin-left: 2px; vertical-align: -.15em; background: currentColor; animation: clignote 1.1s steps(1) infinite; }
+.trou.curseur.rempli { animation: none; }
+@keyframes clignote { 50% { opacity: 0; } }
+.lettres { --w: 64px; position: relative; flex: none; }
+.lettres .tuile { --w: inherit; position: absolute; animation: pose .4s cubic-bezier(.2, 1.4, .4, 1) both; animation-delay: calc(.06s + var(--n) * .03s); transition: opacity .2s; }
+.lettres .mot { padding: 0 0 4%; font: 800 calc(var(--w) * .44)/1 var(--titre); }
+.lettres .tuile:active .dessus { translate: 0 4px; }
+.lettres .tuile:disabled { opacity: .28; cursor: default; }
+.lettres .tuile:disabled .dessus { translate: 0 5px; }
+.lettres .effacer { color: #fff; }
+.lettres .effacer:disabled { opacity: .45; }
+.lettres .effacer .mot svg { position: static; width: 46%; height: auto; }
 
 /* ------------------------------------------------------------ les réponses */''')
 
