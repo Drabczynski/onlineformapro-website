@@ -18,7 +18,6 @@
  "q:Qu'est-ce que vous apprenez sur cet appartement ?": "v2-q17",
  "q:Qu'est-ce que vous devez faire ?": "v2-q18",
  "q:Qu'est-ce que vous dites ?": "v2-q19",
- "q:Qu'est-ce que vous dites ? Remettez les mots dans l'ordre.": "v2-q20",
  "q:Quand est-ce que le café linguistique est ouvert ?": "v2-q21",
  "q:Que fait-on avec des ciseaux ?": "v2-q22",
  "q:Que fait-on avec un stylo ?": "v2-q23",
@@ -33,5 +32,6 @@
  "q:Écrivez le verbe.": "v2-q32",
  "poste-1": "poste-1",
  "poste-2": "poste-2",
- "poste-3": "poste-3"
+ "poste-3": "poste-3",
+ "q:Remettez les mots dans l'ordre.": "v2-q33"
 }

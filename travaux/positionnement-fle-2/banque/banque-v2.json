@@ -13,6 +13,7 @@
   "bonne": 1,
   "t": "trou",
   "phrase": "Je ______ français.",
+  "indice": "(parler)",
   "id": "A1-01",
   "groupe": "A1:A1-01",
   "lettres": [
@@ -253,7 +254,6 @@
   ],
   "bonne": 1,
   "t": "sms",
-  "etiquette": "Votre groupe de discussion",
   "texte": "Salut tout le monde ! Il va faire beau ! On va pique-niquer au parc samedi ?",
   "images": [
    "gare",
@@ -276,7 +276,6 @@
   ],
   "bonne": 1,
   "t": "sms",
-  "contexte": "Vous avez rendez-vous chez le dentiste et vous recevez un message.",
   "texte": "Cabinet Brunet – Confirmation de votre rendez-vous dentiste le 04/11 à 9h. Si vous ne pouvez pas venir, merci de nous téléphoner. Ne pas répondre à ce message automatique.",
   "id": "A1-13",
   "groupe": "A1:A1-13"
@@ -322,7 +321,7 @@
   "comp": "EE",
   "tag": "EXP écrite",
   "page": 9,
-  "question": "Qu'est-ce que vous dites ? Remettez les mots dans l'ordre.",
+  "question": "Remettez les mots dans l'ordre.",
   "t": "ordre",
   "contexte": "Vous êtes dans la rue et vous demandez votre chemin.",
   "avant": "Excusez-moi ! Je cherche la station de métro,",

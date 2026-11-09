@@ -248,6 +248,32 @@ function placerLettres() {
 addEventListener("resize", () => { placerLettres(); ajusterImages(); });
 ''')
 
+# ---------- lisibilité (textes plus grands, plus aérés) et plein écran sur téléphone et tablette
+rep("""@media (max-width: 520px) {
+  body { padding: 0; }
+  .appli { width: 100%; height: 100%; border: 0; border-radius: 0; outline: 0; }
+""", """/* lisibilité : aucun texte de lecture sous 14 px, consignes et contextes plus grands et plus aérés */
+.contexte { max-width: 340px; font-size: 17px; line-height: 1.4; }
+.etiquette { font-size: 14.5px; }
+.sms p { font-size: 18px; line-height: 1.45; }
+.ordre-phrase { font-size: 21px; line-height: 1.85; }
+.indice { padding: 5px 14px; font-size: 15px; }
+.bonbons .rep { font-size: 17.5px; }
+.papier p { font-size: 17.5px; }
+.papier-court p { font-size: 17px; }
+.papier-tete small { font-size: 14px; }
+.consigne-lecture { font-size: 15.5px; line-height: 1.45; }
+.pilule { font-size: 15px; }
+.champ { font-size: 14px; }
+.lien { font-size: 15px; }
+/* sur ordinateur, le téléphone posé sur le fond gris ; sur un appareil tactile (téléphone, tablette) ou un écran
+   étroit, le test occupe tout l'écran, comme une application */
+@media (max-width: 520px), (hover: none) and (pointer: coarse) {
+  body { padding: 0; }
+  .appli { width: 100%; height: 100%; border: 0; border-radius: 0; outline: 0; }
+  @supports (height: 100dvh) { html, body { height: 100dvh; } }
+""")
+
 # ---------- icône de la touche « effacer » du clavier de lettres
 rep("const ICONE = {\n", """const ICONE = {
   effacer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-6-7z"/><path d="M12.5 9.5l5 5M17.5 9.5l-5 5"/></svg>',

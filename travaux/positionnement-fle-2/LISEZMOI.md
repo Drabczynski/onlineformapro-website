@@ -7,6 +7,9 @@ mêmes sons d'interface. Seule la banque change : elle vient du PDF « EVAL POSI
 - Page web : https://onlineformapro-website.vercel.app/travaux/positionnement-fle-2/
 - `index.html` : la page web (sons en fichiers dans `sons/`).
 - `test-positionnement.html` : la version artifact (sons et images intégrés, 3,6 Mo).
+- Affichage : sur ordinateur, le téléphone posé au centre d'un fond gris ; sur un appareil tactile
+  (téléphone, tablette) ou un écran de moins de 520 px, le test occupe tout l'écran, comme une application.
+- Lisibilité : aucun texte de lecture sous 14 px ; contextes, messages et phrases agrandis.
 
 ## Contenu
 
@@ -105,5 +108,10 @@ le jour où Julien commence à 8h (jeudi) et son cours d'arts plastiques (mardi,
   reste dans `banque/banque_v2.py` (`EDT_PDF`).
 - « Complétez la phrase. » à la place de « Choisissez la bonne réponse. » pour les questions où
   l'on écrit le mot avec les lettres (A1-01, A1-05, A2-02). La consigne lue existait déjà.
+- A1-16 : « Remettez les mots dans l'ordre. » à la place de « Qu'est-ce que vous dites ? », pour moins
+  de texte (le contexte reste au-dessus). Consigne lue générée avec ElevenLabs (`v2-q33`).
+- A1-01 : l'infinitif « (parler) » indiqué sous la phrase.
+- A1-13 : la phrase du PDF « Vous avez rendez-vous chez le dentiste et vous recevez un message. » est retirée.
 - « Que répondez-vous ? » ajouté aux questions où l'on répond à un message. Une phrase de contexte
-  ajoutée aux questions d'écoute. Fautes de frappe corrigées.
+  ajoutée à A2-11 (« Au restaurant, le serveur présente la carte. ») ; les autres contextes viennent
+  du PDF. Fautes de frappe corrigées.

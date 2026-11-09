@@ -190,16 +190,6 @@
   ]
  },
  {
-  "id": "v2-q20",
-  "niveau": "A1",
-  "repliques": [
-   [
-    "consigne",
-    "Qu'est-ce que vous dites ? Remettez les mots dans l'ordre."
-   ]
-  ]
- },
- {
   "id": "v2-q21",
   "niveau": "A1",
   "repliques": [
@@ -346,6 +336,16 @@
    [
     "emilie",
     "Bonjour, je veux prendre un billet de train."
+   ]
+  ]
+ },
+ {
+  "id": "v2-q33",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Remettez les mots dans l'ordre."
    ]
   ]
  }
