@@ -108,7 +108,7 @@ entre('function visuel(q) {', 'function ecranQuestion() {', r'''function visuel(
     case "court": return `${ctx}${etiq}<div class="papier-court">${q.titre ? `<strong>${q.titre}</strong>` : ""}${q.lignes.map(l => `<p>${echap(l)}</p>`).join("")}</div>`;
     case "trou": return `${ctx}${etiq}<div class="phrase">${trous(q.phrase)}</div>${q.indice ? `<span class="indice">${q.indice}</span>` : ""}`;
     case "ordre": return `${ctx}<div class="phrase ordre-phrase">${trous(q.avant + " " + q.ordre.map(() => "______").join(" ") + " " + q.apres)}</div>`;
-    case "image": return `${ctx}<button class="image-support" type="button" id="agrandir" aria-label="Agrandir l'image"><img src="${IMAGES[q.img]}" alt="${echap(q.alt || "")}"></button><span class="etiquette">Touchez l'image pour l'agrandir</span>`;
+    case "image": return `${ctx}<button class="image-support" type="button" id="agrandir" aria-label="Agrandir l'image"><img src="${IMAGES[q.img]}" alt="${echap(q.alt || "")}"><span class="loupe" aria-hidden="true">${ICONE.loupe}</span></button>`;
     case "situation": return `<span class="scene-emoji" aria-hidden="true">${q.emoji}</span>${etiq}<p class="situation">${q.texte}</p>`;
     case "document": return `${ctx}<div class="doc-mini"><span class="icone-doc" aria-hidden="true">${q.emoji}</span><strong>${q.titre}</strong><button class="pilule" type="button" id="relire">${ICONE.oeil} Relire</button></div>`;
     case "ecoute":
@@ -285,13 +285,72 @@ rep("""@media (max-width: 520px) {
 @media (max-width: 520px), (hover: none) and (pointer: coarse) {
   body { padding: 0; }
   .appli { width: 100%; height: 100%; border: 0; border-radius: 0; outline: 0; }
+  /* Safari (iOS 26) colore la barre d'état avec le fond de la page (violet, le haut du dégradé) et sa barre du bas
+     avec la couleur d'un élément fixe posé au bas de l'écran (bleu, le bas du dégradé) */
   html, body { background: var(--fond-1); }
-  /* le dégradé descend jusque sous la barre du navigateur (100lvh) ; les boutons restent au-dessus (100dvh) */
-  @supports (height: 100lvh) {
-    html, body { height: 100lvh; }
-    .bas { padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px) + 100lvh - 100dvh); }
-  }
+  @supports (height: 100dvh) { html, body { height: 100dvh; } }
+  .teinte-bas { display: block; }
 """)
+
+# ---------- sur ordinateur, à côté du téléphone : le barème (à gauche) et le moteur en direct (à droite)
+rep('''<main class="appli" id="appli" aria-live="polite"></main>''', '''<aside class="moteur moteur-regles" id="regles" aria-label="Le barème du test"></aside>
+<main class="appli" id="appli" aria-live="polite"></main>
+<aside class="moteur moteur-direct" id="moteur" aria-label="Le moteur adaptatif, en direct"></aside>
+<div class="teinte-bas" aria-hidden="true"></div>''')
+rep('''ecranResultat })[etat.ecran](); }''', '''ecranResultat })[etat.ecran](); majMoteur(); }
+// ------------------------------------------------------------------------------ le moteur montré à côté (ordinateur)
+// Pour présenter le test : le barème, puis le palier en cours question par question (niveau, compétence, tag du PDF),
+// le décompte des bonnes réponses tel que le moteur le fait, les paliers validés et le bilan par compétence.
+// Une réponse n'est comptée qu'une fois validée (« Suivant » ou « Je ne sais pas »).
+const NOMS_COMP = { CO: "Compréhension orale", CE: "Compréhension écrite", EE: "Expression écrite", EO: "Expression orale", LG: "Langue" };
+const pastilleNiveau = (n) => `<span class="m-niv ${NIVEAUX[n].teinte}">${n}</span>`;
+function reglesMoteur() {
+  const box = document.getElementById("regles"); if (!box || box.innerHTML) return;
+  const compte = (n, c) => BANQUE.filter(q => q.niveau === n && (!c || q.comp === c)).length;
+  box.innerHTML = `<h2>Le barème</h2>
+    <ol class="m-regles">
+      <li><b>3 paliers</b>, dans l'ordre : ${ORDRE.map(pastilleNiveau).join(" → ")}</li>
+      <li><b>${PAR_PALIER} questions par palier</b>, tirées au hasard dans la banque du niveau : d'abord une par compétence présente, puis on équilibre.</li>
+      <li><b>${Math.ceil(PAR_PALIER * TAUX)} justes sur ${PAR_PALIER}</b> (${Math.round(TAUX * 100)} %) valident le palier et ouvrent le suivant.</li>
+      <li><b>Arrêt</b> dès que le palier ne peut plus être validé : ${PAR_PALIER - Math.ceil(PAR_PALIER * TAUX) + 1} erreurs. «\u00a0Je ne sais pas\u00a0» compte comme une erreur.</li>
+      <li><b>Niveau attribué</b> : le dernier palier validé. Aucun palier validé : «\u00a0A1 en cours\u00a0».</li>
+      <li>Jamais deux questions sur le même document dans un palier.</li>
+    </ol>
+    <h3>La banque : ${BANQUE.length} questions</h3>
+    <table class="m-banque"><tr><th></th>${COMPS.map(c => `<th title="${NOMS_COMP[c]}">${c}</th>`).join("")}<th>Total</th></tr>
+      ${ORDRE.map(n => `<tr><th>${pastilleNiveau(n)}</th>${COMPS.map(c => `<td>${compte(n, c) || "–"}</td>`).join("")}<td><b>${compte(n)}</b></td></tr>`).join("")}</table>
+    <dl class="m-legende">${COMPS.map(c => `<div><dt>${c}</dt><dd>${NOMS_COMP[c]}${c === "LG" ? " (grammaire, conjugaison, vocabulaire)" : ""}</dd></div>`).join("")}</dl>`;
+}
+function majMoteur() {
+  reglesMoteur();
+  const box = document.getElementById("moteur"); if (!box) return;
+  if (!etat.palier) { box.innerHTML = `<h2>Le moteur, en direct</h2><p class="m-note">Le test n'a pas commencé. Au démarrage, le moteur tire les ${PAR_PALIER} questions du palier A1.</p>`; return; }
+  const fin = etat.ecran === "resultat", derniere = fin ? etat.k : etat.k - 1;      // dernière question comptée du palier
+  const comptee = (id, m) => m <= derniere && id in etat.reponses;
+  const statut = (id, m) => comptee(id, m) ? (etat.reponses[id] === null ? "passe" : estJuste(PAR_ID[id], etat.reponses[id]) ? "juste" : "faux") : m === etat.k && etat.ecran === "question" ? "encours" : "avenir";
+  const st = etat.palier.map(statut), justes = st.filter(x => x === "juste").length, faites = st.filter(x => ["juste", "faux", "passe"].includes(x)).length;
+  const n = etat.palier.length, s = seuil(), permises = n - s, erreurs = faites - justes, niv = etat.niveau;
+  const valide = etat.valides.includes(niv), echoue = erreurs > permises;
+  const etatPalier = valide ? `<b class="m-ok">${niv} validé</b> : ${justes} justes sur ${n}.`
+    : echoue ? `<b class="m-ko">${niv} non validé</b> : ${erreurs} erreurs, il n'en fallait pas plus de ${permises}. Le test s'arrête.`
+    : `Pour valider ${niv} : <b>${s} justes sur ${n}</b>. Erreurs : ${erreurs} sur ${permises} permises.`;
+  const LIB = { juste: "✓ juste", faux: "✗ faux", passe: "✗ je ne sais pas", encours: "en cours", avenir: "" };
+  // paliers déjà validés, et bilan par compétence sur toutes les réponses comptées
+  const comptees = [...etat.vus, ...etat.palier.filter((id, m) => comptee(id, m))];
+  const juste = (id) => estJuste(PAR_ID[id], etat.reponses[id]);
+  const histo = etat.valides.filter(v => v !== niv).map(v => { const ids = etat.vus.filter(id => PAR_ID[id].niveau === v); return `<li>${pastilleNiveau(v)} validé : ${ids.filter(juste).length} justes sur ${ids.length}</li>`; }).join("");
+  const parComp = COMPS.map(c => { const ids = comptees.filter(id => PAR_ID[id].comp === c); return ids.length ? `<tr><td>${NOMS_COMP[c]}</td><td><span class="m-barre"><i style="width:${Math.round(ids.filter(juste).length / ids.length * 100)}%"></i></span></td><td>${ids.filter(juste).length}/${ids.length}</td></tr>` : ""; }).join("");
+  box.innerHTML = `<h2>Le moteur, en direct</h2>
+    <div class="m-palier"><span>Palier ${pastilleNiveau(niv)}</span><span>${fin ? "terminé" : etat.ecran === "palier" ? "tiré, prêt à commencer" : `question ${etat.k + 1} sur ${n}`}</span></div>
+    <div class="m-score"><strong>${justes}/${faites}</strong><span>${justes > 1 ? "bonnes réponses" : "bonne réponse"} pour ${niv}</span></div>
+    <div class="m-cases">${st.map(x => `<i class="m-${x}"></i>`).join("")}</div>
+    <p class="m-etat">${etatPalier}</p>
+    <ol class="m-questions">${etat.palier.map((id, m) => { const q = PAR_ID[id]; return `<li class="m-${st[m]}"><span class="m-num">${m + 1}</span>${pastilleNiveau(q.niveau)}<span class="m-comp">${NOMS_COMP[q.comp]}<small>${q.comp === "LG" ? echap(q.tag) + " · " : ""}${q.id}</small></span><span class="m-lib">${LIB[st[m]]}</span></li>`; }).join("")}</ol>
+    ${histo ? `<h3>Paliers validés</h3><ul class="m-histo">${histo}</ul>` : ""}
+    ${fin ? `<p class="m-resultat">Niveau attribué : <b>${etat.valides.length ? etat.valides[etat.valides.length - 1] : "A1 en cours"}</b></p>` : ""}
+    ${parComp ? `<h3>Par compétence (réponses comptées)</h3><table class="m-comps">${parComp}</table>` : ""}
+    <p class="m-note">Une réponse est comptée quand on appuie sur «\u00a0Suivant\u00a0» ou «\u00a0Je ne sais pas\u00a0».</p>`;
+}''')
 
 # ---------- icône de la touche « effacer » du clavier de lettres
 rep('''  $("#lu").addEventListener("click", () => { etat.lus[q.id] = true; SONS.page(); afficher(); });
@@ -299,6 +358,7 @@ rep('''  $("#lu").addEventListener("click", () => { etat.lus[q.id] = true; SONS.
   resserrer();
 }''')
 rep("const ICONE = {\n", """const ICONE = {
+  loupe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5M10.5 8v5M8 10.5h5"/></svg>',
   effacer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-6-7z"/><path d="M12.5 9.5l5 5M17.5 9.5l-5 5"/></svg>',
 """)
 
@@ -394,6 +454,53 @@ rep('''/* ------------------------------------------------------------ les répo
 .tres-serre .doc-mini .icone-doc { width: 48px; height: 54px; font-size: 26px; }
 .tres-serre .lien { margin-top: 2px; padding-block: 4px; }
 .tres-serre .bouton { min-height: 52px; }
+.image-support { position: relative; }
+.loupe { position: absolute; right: 8px; bottom: 8px; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; color: #fff; background: linear-gradient(var(--cyan-1), var(--cyan-2)); box-shadow: 0 3px 0 var(--cyan-levre); }
+.loupe svg { width: 20px; height: 20px; }
+.teinte-bas { display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; height: 3px; background: var(--fond-4); pointer-events: none; }
+.moteur { display: none; }
+@media (min-width: 1000px) and (hover: hover) and (pointer: fine) {
+  .moteur { display: block; position: fixed; top: 0; bottom: 0; height: fit-content; max-height: calc(100% - 48px); margin-block: auto; overflow-y: auto; scrollbar-width: thin;
+    width: min(330px, calc(50% - 260px)); padding: 22px 20px 18px; border: 1px solid #dcdce4; border-radius: 24px; background: #fff; color: #3b3452; font: 600 13px/1.45 var(--texte); text-align: left; }
+  .moteur-regles { right: calc(50% + 236px); }
+  .moteur-direct { left: calc(50% + 236px); }
+  .moteur h2 { margin: 0 0 12px; font: 800 17px/1.2 var(--titre); color: var(--encre); }
+  .moteur h3 { margin: 16px 0 8px; font: 800 13.5px/1.2 var(--titre); color: var(--encre); }
+  .moteur b { color: var(--encre); }
+  .m-niv { display: inline-grid; place-items: center; min-width: 28px; padding: 1px 6px; border-radius: 7px; font: 800 11.5px/1.5 var(--titre); color: var(--encre); vertical-align: 1px; }
+  .m-niv.cyan { background: linear-gradient(var(--cyan-1), var(--cyan-2)); }
+  .m-niv.vert { background: linear-gradient(var(--vert-1), var(--vert-2)); }
+  .m-niv.rose { background: linear-gradient(var(--rose-1), var(--rose-2)); }
+  .m-regles { margin: 0; padding-left: 18px; display: grid; gap: 7px; }
+  .m-banque { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; text-align: center; }
+  .m-banque th, .m-banque td { padding: 4px 2px; border-bottom: 1px solid #ececf2; }
+  .m-banque tr:first-child th { font-size: 11.5px; color: #7a7490; }
+  .m-legende { display: grid; gap: 3px; margin: 10px 0 0; font-size: 12px; color: #6a6480; }
+  .m-legende div { display: flex; gap: 8px; } .m-legende dt { min-width: 22px; font-weight: 800; color: var(--encre); } .m-legende dd { margin: 0; }
+  .m-palier { display: flex; justify-content: space-between; align-items: center; color: #6a6480; }
+  .m-score { display: flex; align-items: baseline; gap: 8px; margin: 6px 0 8px; }
+  .m-score strong { font: 800 34px/1 var(--titre); color: var(--encre); font-variant-numeric: tabular-nums; }
+  .m-score span { color: #6a6480; }
+  .m-cases { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+  .m-cases i { height: 8px; border-radius: 4px; background: #ecebf2; }
+  .m-cases .m-juste { background: #5fb012; } .m-cases .m-faux, .m-cases .m-passe { background: #e0477a; } .m-cases .m-encours { background: #9748fe; }
+  .m-etat { margin: 10px 0 12px; }
+  .m-ok { color: #3f8a0c !important; } .m-ko { color: #c2305f !important; }
+  .m-questions { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; }
+  .m-questions li { display: grid; grid-template-columns: 16px auto 1fr auto; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 10px; }
+  .m-questions .m-encours { background: #f3edff; }
+  .m-questions .m-avenir { color: #8f8aa3; }
+  .m-num { font-weight: 800; color: #9a95ad; font-variant-numeric: tabular-nums; }
+  .m-comp { display: grid; min-width: 0; line-height: 1.25; } .m-comp small { overflow: hidden; font-size: 11px; color: #8f8aa3; white-space: nowrap; text-overflow: ellipsis; }
+  .m-lib { font-size: 12px; font-weight: 800; white-space: nowrap; }
+  .m-juste .m-lib { color: #3f8a0c; } .m-faux .m-lib, .m-passe .m-lib { color: #c2305f; } .m-encours .m-lib { color: #7a3ff0; }
+  .m-histo { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; }
+  .m-resultat { margin: 14px 0 0; padding: 10px 12px; border-radius: 12px; background: #f3edff; font-size: 14px; }
+  .m-comps { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  .m-comps td { padding: 3px 0; } .m-comps td:last-child { text-align: right; width: 40px; } .m-comps td:nth-child(2) { width: 38%; padding-inline: 8px; }
+  .m-barre { display: block; height: 6px; border-radius: 3px; background: #ecebf2; overflow: hidden; } .m-barre i { display: block; height: 100%; background: #5fb012; }
+  .m-note { margin: 14px 0 0; font-size: 11.5px; color: #8f8aa3; }
+}
 .defile.a-suivre { -webkit-mask-image: linear-gradient(#000 calc(100% - 56px), transparent); mask-image: linear-gradient(#000 calc(100% - 56px), transparent); }
 .tres-serre .phrase { font-size: 21px; }
 .tres-serre .ordre-phrase { font-size: 19px; line-height: 1.7; }

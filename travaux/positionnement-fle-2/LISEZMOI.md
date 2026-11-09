@@ -10,8 +10,15 @@ mêmes sons d'interface. Seule la banque change : elle vient du PDF « EVAL POSI
 - Affichage : sur ordinateur, le téléphone posé au centre d'un fond gris ; sur un appareil tactile
   (téléphone, tablette) ou un écran de moins de 520 px, le test occupe tout l'écran, comme une application.
 - Lisibilité : aucun texte de lecture sous 14 px ; contextes, messages et phrases agrandis.
-- Sur téléphone, le fond de la page prend la couleur du test (Safari colore la barre d'état avec ce fond) et
-  le dégradé descend sous la barre du navigateur (`100lvh`), les boutons restant au-dessus (`100dvh`).
+- Sur téléphone, le fond de la page est violet comme le haut du dégradé (Safari colore la barre d'état avec
+  ce fond), et une fine bande fixe bleue, la couleur du bas du dégradé, est posée au bas de l'écran (Safari
+  teinte sa barre du bas avec un élément fixe placé à ce bord).
+- Sur ordinateur (écran d'au moins 1000 px, souris), deux panneaux encadrent le téléphone, pour présenter
+  le test : à gauche le barème et la composition de la banque ; à droite le moteur en direct. Le palier en
+  cours y figure question par question (niveau, compétence, sous-catégorie pour la langue, identifiant),
+  avec le décompte des bonnes réponses (par exemple « 2/3 bonnes réponses pour A2 »), les erreurs encore
+  permises, les paliers validés, le niveau attribué et le bilan par compétence. Une réponse n'y est comptée
+  qu'une fois validée. Les panneaux n'apparaissent pas sur téléphone ni sur tablette.
 - Hauteur de l'écran : une question qui ne tient pas est resserrée en deux crans (marges, lecteur, réponses,
   image) ; testé sur toutes les questions en 390 × 664 (iPhone avec les barres de Safari). Un long texte à
   lire qui dépasse encore s'estompe en bas tant qu'on n'a pas défilé jusqu'au bout.
@@ -119,6 +126,8 @@ le jour où Julien commence à 8h (jeudi) et son cours d'arts plastiques (mardi,
   de texte (le contexte reste au-dessus). Consigne lue générée avec ElevenLabs (`v2-q33`).
 - A1-01 : l'infinitif « (parler) » indiqué sous la phrase.
 - A1-13 : la phrase du PDF « Vous avez rendez-vous chez le dentiste et vous recevez un message. » est retirée.
+- A1-11 : sans « Vous lisez cette affiche. » ni « Touchez l'image pour l'agrandir » ; une loupe dans le coin
+  de l'affiche indique qu'on peut l'agrandir.
 - « Que répondez-vous ? » ajouté aux questions où l'on répond à un message. Une phrase de contexte
   ajoutée à A2-11 (« Au restaurant, le serveur présente la carte. ») ; les autres contextes viennent
   du PDF. Fautes de frappe corrigées.
