@@ -237,6 +237,7 @@ rep('''/* ------------------------------------------------------------ les répo
 
 # ---------- deux sorties : l'artifact (tout intégré) et la page web (sons en fichiers)
 artifact = s.replace('__AUDIO__', '{\n' + ',\n'.join(f'  {json.dumps(k, ensure_ascii=False)}: "{b64(src, "audio/mpeg")}"' for k, (src, _) in audio_fichiers.items()) + '\n}')
+artifact = artifact.replace('<title>Test de positionnement FLE</title>', '<title>Positionnement FLE v2</title>', 1)   # distinct de la version 1 dans la galerie
 open(f'{D}/test-positionnement.html', 'w', encoding='utf-8').write(artifact)
 web = s.replace('__AUDIO__', json.dumps({k: rel for k, (_, rel) in audio_fichiers.items()}, ensure_ascii=False, indent=0).replace('\n', '\n  '))
 web = web.replace('<title>Test de positionnement FLE</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n', '')
