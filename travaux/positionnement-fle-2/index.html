@@ -270,6 +270,12 @@ button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; border-radi
 .image-support { position: relative; }
 .photo-scene { display: block; width: 100%; aspect-ratio: 16 / 9; max-height: 170px; object-fit: cover; border-radius: 16px; }
 .serre .photo-scene { max-height: 120px; }
+/* écoute avec photo : la photo remplit tout l'encart, le bouton d'écoute posé dessus, au centre */
+.visuel.photo-fond { overflow: hidden; min-height: 220px; }
+.visuel.photo-fond > .photo-scene { position: absolute; inset: 0; width: 100%; height: 100%; max-height: none; aspect-ratio: auto; border-radius: 0; }
+.visuel.photo-fond > .lecteur { z-index: 1; }
+.serre .visuel.photo-fond { min-height: 180px; }
+.tres-serre .visuel.photo-fond { min-height: 140px; }
 .tres-serre .photo-scene { max-height: 90px; }
 .papier-tete .avec-photo { width: 60px; height: 60px; overflow: hidden; border-radius: 50%; }
 .doc-mini .icone-doc.avec-photo { width: 76px; height: 76px; overflow: hidden; border-radius: 50%; }
@@ -920,7 +926,7 @@ function ecranQuestion() {
   poser(`<section class="ecran ecran-question" aria-labelledby="question">
     ${haut()}
     <div class="defile">
-      ${q.t === "aucun" ? "" : `<div class="visuel">${visuel(q)}</div>`}
+      ${q.t === "aucun" ? "" : `<div class="visuel${q.t === "ecoute" && q.photo ? " photo-fond" : ""}">${visuel(q)}</div>`}
       <h2 class="question" id="question">${echap(q.question)}${q.niveau === "A1" && audible("q:" + q.question) ? ` <button class="lire-consigne" type="button" id="lire-consigne" aria-label="Entendre la question">${ICONE.son}</button>` : ""}</h2>
       ${reponses}
     </div>

@@ -132,8 +132,9 @@ le jour où Julien commence à 8h (jeudi) et son cours d'arts plastiques (mardi,
 - A1-08 : sans « Vous êtes au téléphone avec votre tante. » ; la question devient « Votre tante fait des
   courses. Où est-elle ? » (consigne lue générée avec ElevenLabs, `v2-q34`).
 - B1-12 : sans « Vous écoutez un reportage à Abidjan. ».
-- Photos de scène fournies, sous le bouton d'écoute ou à la place de l'icône : l'immeuble (A1-10),
-  la salle de cinéma (A1-18), les trois femmes à Abidjan (B1-12). Marie (A2-16, A2-17, B1-01, B1-02) :
+- Photos de scène fournies : pour les écoutes, la photo remplit tout l'encart et le bouton d'écoute est
+  posé dessus (l'immeuble, A1-10 ; les trois femmes à Abidjan, B1-12) ; la salle de cinéma remplace
+  l'icône de la situation (A1-18). Marie (A2-16, A2-17, B1-01, B1-02) :
   une vraie photo à la place de l'icône, photo Unsplash de Janko Ferlič (pMJKJp0aG4M, licence Unsplash).
 - A1-11 : sans « Vous lisez cette affiche. » ni « Touchez l'image pour l'agrandir » ; une loupe dans le coin
   de l'affiche indique qu'on peut l'agrandir.
