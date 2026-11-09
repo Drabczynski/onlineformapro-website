@@ -265,9 +265,10 @@ rep('''/* ------------------------------------------------------------ les répo
 .image-support img { display: block; width: 100%; max-height: 190px; object-fit: contain; }
 .image-grande { width: 100%; border-radius: 12px; }
 .tableau-defile { overflow-x: auto; margin: 0 -8px; }
-.edt { width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 9.5px; line-height: 1.2; text-align: center; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: anywhere; }
-.edt th, .edt td { padding: 4px 2px; border: 1px solid #d8d2ee; }
-.edt tr > :first-child { width: 17%; }
+.edt { width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 12.5px; line-height: 1.25; text-align: center; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: anywhere; }
+.edt th, .edt td { padding: 7px 3px; border: 1px solid #d8d2ee; }
+.edt tr > :first-child { width: 25%; white-space: nowrap; font-size: 11px; letter-spacing: -.01em; }
+.edt tr:first-child > * { font-size: 11.5px; letter-spacing: .03em; }
 .edt th { background: var(--lavande); font-weight: 900; }
 .edt td:empty { background: #faf8ff; }
 .reponses.images { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
@@ -300,7 +301,7 @@ rep('''/* ------------------------------------------------------------ les répo
 @keyframes clignote { 50% { opacity: 0; } }
 .lettres { --w: 64px; position: relative; flex: none; }
 .lettres .tuile { --w: inherit; position: absolute; animation: pose .4s cubic-bezier(.2, 1.4, .4, 1) both; animation-delay: calc(.06s + var(--n) * .03s); transition: opacity .2s; }
-.lettres .mot { padding: 0 0 4%; font: 800 calc(var(--w) * .44)/1 var(--titre); }
+.lettres .mot { padding: 0 0 4%; font: 800 calc(var(--w) * .4)/1 var(--titre); text-transform: uppercase; }
 .lettres .tuile:active .dessus { translate: 0 4px; }
 .lettres .tuile:disabled { opacity: .28; cursor: default; }
 .lettres .tuile:disabled .dessus { translate: 0 5px; }

@@ -1887,46 +1887,34 @@
     "",
     "LUNDI",
     "MARDI",
-    "MERCREDI",
-    "JEUDI",
-    "VENDREDI"
+    "JEUDI"
    ],
    [
     "8h00-9h00",
     "",
     "",
-    "",
-    "Français",
-    ""
+    "Français"
    ],
    [
     "9h00-9h50",
     "Français",
     "Technologie",
-    "",
-    "Français",
     "Français"
    ],
    [
     "10h10-11h00",
     "Français",
     "Mathématiques",
-    "Histoire-Géographie",
-    "EPS (Sport)",
-    "Français"
+    "EPS (Sport)"
    ],
    [
     "11h00-12h00",
     "Mathématiques",
     "Musique",
-    "Anglais",
-    "EPS (Sport)",
-    "Histoire-Géographie"
+    "EPS (Sport)"
    ],
    [
     "12h00-13h00",
-    "Repas",
-    "Repas",
     "Repas",
     "Repas",
     "Repas"
@@ -1935,33 +1923,25 @@
     "13h00-14h00",
     "EPS (Sport)",
     "Arts plastiques",
-    "",
-    "",
-    "Physique (Sciences)"
+    ""
    ],
    [
     "14h00-14h50",
     "SVT (Sciences)",
     "Français",
-    "",
-    "Anglais",
     "Anglais"
    ],
    [
     "15h10-16h00",
     "",
     "Français",
-    "",
-    "Histoire-Géographie",
-    "Mathématiques"
+    "Histoire-Géographie"
    ],
    [
     "16h00-17h00",
     "",
     "",
-    "",
-    "Français",
-    ""
+    "Français"
    ]
   ],
   "groupe": "A2:julien",
@@ -1992,46 +1972,34 @@
     "",
     "LUNDI",
     "MARDI",
-    "MERCREDI",
-    "JEUDI",
-    "VENDREDI"
+    "JEUDI"
    ],
    [
     "8h00-9h00",
     "",
     "",
-    "",
-    "Français",
-    ""
+    "Français"
    ],
    [
     "9h00-9h50",
     "Français",
     "Technologie",
-    "",
-    "Français",
     "Français"
    ],
    [
     "10h10-11h00",
     "Français",
     "Mathématiques",
-    "Histoire-Géographie",
-    "EPS (Sport)",
-    "Français"
+    "EPS (Sport)"
    ],
    [
     "11h00-12h00",
     "Mathématiques",
     "Musique",
-    "Anglais",
-    "EPS (Sport)",
-    "Histoire-Géographie"
+    "EPS (Sport)"
    ],
    [
     "12h00-13h00",
-    "Repas",
-    "Repas",
     "Repas",
     "Repas",
     "Repas"
@@ -2040,33 +2008,25 @@
     "13h00-14h00",
     "EPS (Sport)",
     "Arts plastiques",
-    "",
-    "",
-    "Physique (Sciences)"
+    ""
    ],
    [
     "14h00-14h50",
     "SVT (Sciences)",
     "Français",
-    "",
-    "Anglais",
     "Anglais"
    ],
    [
     "15h10-16h00",
     "",
     "Français",
-    "",
-    "Histoire-Géographie",
-    "Mathématiques"
+    "Histoire-Géographie"
    ],
    [
     "16h00-17h00",
     "",
     "",
-    "",
-    "Français",
-    ""
+    "Français"
    ]
   ],
   "groupe": "A2:julien",

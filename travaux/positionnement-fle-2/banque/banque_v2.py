@@ -19,7 +19,7 @@ JULIE = ["Julie habite dans une petite maison à la campagne. Sa maison est blan
 LETTRE = ["Madame, Monsieur,", "Nous vous informons que votre demande de remboursement a été traitée avec succès. Le montant de 167,52 € a été crédité sur votre compte et devrait apparaître sur votre relevé bancaire dans un délai de 2 à 3 jours ouvrables.", "Nous restons à votre disposition pour toute question ou information complémentaire.", "Salutations distinguées,", "C. Dupont – service achats"]
 ECOLE = ["À l'attention des parents d'élèves,", "Suite à un mouvement de grève, la réunion de ce soir n'aura pas lieu. Nous vous communiquerons la prochaine date par mail.", "Merci pour votre compréhension.", "La direction de l'école"]
 # l'emploi du temps de Julien, recopié de l'image du PDF (page 56)
-EDT = [["", "LUNDI", "MARDI", "MERCREDI", "JEUDI", "VENDREDI"],
+EDT_PDF = [["", "LUNDI", "MARDI", "MERCREDI", "JEUDI", "VENDREDI"],
        ["8h00-9h00", "", "", "", "Français", ""], ["9h00-9h50", "Français", "Technologie", "", "Français", "Français"],
        ["10h10-11h00", "Français", "Mathématiques", "Histoire-Géographie", "EPS (Sport)", "Français"],
        ["11h00-12h00", "Mathématiques", "Musique", "Anglais", "EPS (Sport)", "Histoire-Géographie"],
@@ -28,6 +28,8 @@ EDT = [["", "LUNDI", "MARDI", "MERCREDI", "JEUDI", "VENDREDI"],
        ["14h00-14h50", "SVT (Sciences)", "Français", "", "Anglais", "Anglais"],
        ["15h10-16h00", "", "Français", "", "Histoire-Géographie", "Mathématiques"],
        ["16h00-17h00", "", "", "", "Français", ""]]
+# affiché sans le mercredi ni le vendredi, pour un tableau plus grand ; les réponses (mardi, jeudi) ne changent pas
+EDT = [[l[0], l[1], l[2], l[4]] for l in EDT_PDF]
 
 # ------------------------------------------------------------------ A1
 q("A1", "EE", "EXP écrite", 1, CHOISIR, ["donne", "parle", "fait"], "parle", t="trou", phrase="Je ______ français.")

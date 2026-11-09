@@ -33,7 +33,7 @@ Types de réponses :
   A1-06, A2-02, A2-10). La règle : une question d'expression écrite dont tous les choix du PDF sont
   des mots seuls de 8 lettres au plus. Les lettres proposées sont celles de ces choix : chaque
   lettre autant de fois qu'elle apparaît au plus dans un choix. Exemple : « La / Le / Les » donne
-  a, e, l, s. Rien n'indique la longueur du mot. Le mot s'écrit dans le trou de la phrase, avec une
+  a, e, l, s, affichées en majuscules sur les alvéoles. Rien n'indique la longueur du mot. Le mot s'écrit dans le trou de la phrase, avec une
   majuscule quand le trou ouvre la phrase. La touche rose efface la dernière lettre. Sur ordinateur,
   le clavier marche aussi ;
 - réponse à écrire (A1-57 à A1-61, A2-39, A2-40). Les accents et les majuscules ne comptent pas,
@@ -100,6 +100,9 @@ le jour où Julien commence à 8h (jeudi) et son cours d'arts plastiques (mardi,
 - « De quoi est-ce que ça parle ? » : la question est coupée dans le PDF.
 - « Margaret Marie » : le prénom entendu dans le son (la diapositive écrit « Maritz »).
 - L'affiche du café : le zoom montre le 16 novembre.
+- L'emploi du temps de Julien est affiché sans le mercredi ni le vendredi, pour un tableau plus grand
+  et lisible. Les réponses (jeudi à 8h, mardi de 13h à 14h) ne changent pas. Le tableau complet du PDF
+  reste dans `banque/banque_v2.py` (`EDT_PDF`).
 - « Complétez la phrase. » à la place de « Choisissez la bonne réponse. » pour les questions où
   l'on écrit le mot avec les lettres (A1-01, A1-05, A2-02). La consigne lue existait déjà.
 - « Que répondez-vous ? » ajouté aux questions où l'on répond à un message. Une phrase de contexte
