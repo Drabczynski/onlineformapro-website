@@ -168,7 +168,7 @@
   "comp": "CO",
   "tag": "COMP écrite",
   "page": 3,
-  "question": "Elle fait des courses. Où est-elle ?",
+  "question": "Votre tante fait des courses. Où est-elle ?",
   "choix": [
    "À la boulangerie",
    "Au rayon fruits et légumes",
@@ -177,7 +177,6 @@
   "bonne": 0,
   "t": "ecoute",
   "audio": "o03",
-  "contexte": "Vous êtes au téléphone avec votre tante.",
   "images": [
    "boulangerie",
    "primeur",
@@ -217,6 +216,7 @@
   ],
   "bonne": 0,
   "t": "ecoute",
+  "photo": "appartement",
   "audio": "o05",
   "id": "A1-10",
   "groupe": "A1:A1-10"
@@ -370,6 +370,7 @@
   "bonne": 1,
   "t": "situation",
   "emoji": "🎟️",
+  "photo": "cinema",
   "texte": "Vous êtes au cinéma et vous prenez votre place au guichet. Vous voulez savoir à quelle heure commence le film.",
   "id": "A1-18",
   "groupe": "A1:A1-18"
@@ -1486,6 +1487,7 @@
   "t": "document",
   "titre": "Marie",
   "emoji": "👧",
+  "photo": "marie",
   "style": "",
   "lignes": [
    "Marie est une jeune fille française. Elle habite à Lyon avec sa famille. Son père est médecin et sa mère est professeure. Le matin, Marie prend le bus pour aller au lycée. Elle aime étudier les langues et elle veut devenir avocate. Pendant le week-end, elle va souvent au café avec ses amis. Ils boivent du jus d'orange ou du café et parlent de leurs projets d'avenir."
@@ -1508,6 +1510,7 @@
   "t": "document",
   "titre": "Marie",
   "emoji": "👧",
+  "photo": "marie",
   "style": "",
   "lignes": [
    "Marie est une jeune fille française. Elle habite à Lyon avec sa famille. Son père est médecin et sa mère est professeure. Le matin, Marie prend le bus pour aller au lycée. Elle aime étudier les langues et elle veut devenir avocate. Pendant le week-end, elle va souvent au café avec ses amis. Ils boivent du jus d'orange ou du café et parlent de leurs projets d'avenir."
@@ -2093,6 +2096,7 @@
   "t": "document",
   "titre": "Marie",
   "emoji": "👧",
+  "photo": "marie",
   "style": "",
   "lignes": [
    "Marie est une jeune fille française. Elle habite à Lyon avec sa famille. Son père est médecin et sa mère est professeure. Le matin, Marie prend le bus pour aller au lycée. Elle aime étudier les langues et elle veut devenir avocate. Pendant le week-end, elle va souvent au café avec ses amis. Ils boivent du jus d'orange ou du café et parlent de leurs projets d'avenir."
@@ -2115,6 +2119,7 @@
   "t": "document",
   "titre": "Marie",
   "emoji": "👧",
+  "photo": "marie",
   "style": "",
   "lignes": [
    "Marie est une jeune fille française. Elle habite à Lyon avec sa famille. Son père est médecin et sa mère est professeure. Le matin, Marie prend le bus pour aller au lycée. Elle aime étudier les langues et elle veut devenir avocate. Pendant le week-end, elle va souvent au café avec ses amis. Ils boivent du jus d'orange ou du café et parlent de leurs projets d'avenir."
@@ -2287,7 +2292,7 @@
   "bonne": 1,
   "t": "ecoute",
   "audio": "o11",
-  "contexte": "Vous écoutez un reportage à Abidjan.",
+  "photo": "abidjan",
   "id": "B1-12",
   "groupe": "B1:B1-12"
  }

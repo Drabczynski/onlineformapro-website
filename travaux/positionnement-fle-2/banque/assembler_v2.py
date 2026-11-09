@@ -34,12 +34,13 @@ audio_fichiers = {f"o{k:02d}": (f"{RACINE}/sons/o{k:02d}.mp3", f"sons/o{k:02d}.m
 for cle, ident in cles.items():
     rel = f"sons/{'poste' if ident.startswith('poste') else 'consignes'}/{ident}.mp3"
     audio_fichiers[cle] = (f"{RACINE}/{rel}", rel)
-images = sorted({i for d in B for i in d.get('images', [])} | {d['img'] for d in B if d.get('img')})
+images = sorted({i for d in B for i in d.get('images', [])} | {d[k] for d in B for k in ('img', 'photo') if d.get(k)})
 bloc_images = 'const IMAGES = {\n' + ',\n'.join(f'  {json.dumps(i)}: "{b64(f"{ICI}/img/{i}.webp", "image/webp")}"' for i in images) + '\n};\n'
 entre('// Sons enregistrés avec ElevenLabs', 'const ETOILE =', '''// Sons : les enregistrements d'origine du PDF (o01 à o11, volume égalisé), les consignes A1 lues (« q: » + texte) et les
 // trois phrases de la question de la poste, générées avec ElevenLabs.
 const AUDIO = __AUDIO__;
-// Images : photos des réponses et affiche, tirées du PDF.
+// Images : photos des réponses et affiche, tirées du PDF ; photos de scène fournies (appartement, cinéma, Abidjan) ;
+// Marie : photo Unsplash de Janko Ferlič (pMJKJp0aG4M, licence Unsplash).
 ''' + bloc_images)
 
 # ---------- le moteur adaptatif, adapté à la banque v2
@@ -96,7 +97,7 @@ entre('function papier(q) {', 'const trous =', r'''function papier(q) {
   const corps = q.tableau
     ? `<div class="tableau-defile"><table class="edt" lang="fr">${q.tableau.map((l, r) => `<tr>${l.map((c, k) => r === 0 || k === 0 ? `<th>${echap(c)}</th>` : `<td>${echap(c)}</td>`).join("")}</tr>`).join("")}</table></div>`
     : q.lignes.map(l => `<p>${echap(l)}</p>`).join("");
-  return `<div class="papier ${q.style || ""}"><div class="papier-tete"><span aria-hidden="true">${q.emoji}</span><div><strong>${q.titre}</strong><small>Prenez le temps de lire</small></div></div>${corps}</div>`;
+  return `<div class="papier ${q.style || ""}"><div class="papier-tete">${q.photo ? `<span class="avec-photo" aria-hidden="true"><img src="${IMAGES[q.photo]}" alt=""></span>` : `<span aria-hidden="true">${q.emoji}</span>`}<div><strong>${q.titre}</strong><small>Prenez le temps de lire</small></div></div>${corps}</div>`;
 }
 ''')
 entre('function visuel(q) {', 'function ecranQuestion() {', r'''function visuel(q) {
@@ -109,10 +110,10 @@ entre('function visuel(q) {', 'function ecranQuestion() {', r'''function visuel(
     case "trou": return `${ctx}${etiq}<div class="phrase">${trous(q.phrase)}</div>${q.indice ? `<span class="indice">${q.indice}</span>` : ""}`;
     case "ordre": return `${ctx}<div class="phrase ordre-phrase">${trous(q.avant + " " + q.ordre.map(() => "______").join(" ") + " " + q.apres)}</div>`;
     case "image": return `${ctx}<button class="image-support" type="button" id="agrandir" aria-label="Agrandir l'image"><img src="${IMAGES[q.img]}" alt="${echap(q.alt || "")}"><span class="loupe" aria-hidden="true">${ICONE.loupe}</span></button>`;
-    case "situation": return `<span class="scene-emoji" aria-hidden="true">${q.emoji}</span>${etiq}<p class="situation">${q.texte}</p>`;
-    case "document": return `${ctx}<div class="doc-mini"><span class="icone-doc" aria-hidden="true">${q.emoji}</span><strong>${q.titre}</strong><button class="pilule" type="button" id="relire">${ICONE.oeil} Relire</button></div>`;
+    case "situation": return `${q.photo ? `<img class="photo-scene" src="${IMAGES[q.photo]}" alt="">` : `<span class="scene-emoji" aria-hidden="true">${q.emoji}</span>`}${etiq}<p class="situation">${q.texte}</p>`;
+    case "document": return `${ctx}<div class="doc-mini">${q.photo ? `<span class="icone-doc avec-photo" aria-hidden="true"><img src="${IMAGES[q.photo]}" alt=""></span>` : `<span class="icone-doc" aria-hidden="true">${q.emoji}</span>`}<strong>${q.titre}</strong><button class="pilule" type="button" id="relire">${ICONE.oeil} Relire</button></div>`;
     case "ecoute":
-      return `${ctx}<button class="lecteur" type="button" id="lecteur" aria-label="${reste > 0 ? `Écouter l'enregistrement (${reste} écoute${reste > 1 ? "s" : ""} possible${reste > 1 ? "s" : ""})` : "Plus d'écoute possible"}" ${reste <= 0 ? "disabled" : ""}>${ICONE.jouer}<span class="vague" id="vague" aria-hidden="true">${"<i></i>".repeat(5)}</span><span class="pastille" id="pastille" aria-hidden="true" ${reste <= 0 ? "hidden" : ""}>${reste}</span></button>${q.phrase ? `<div class="phrase petite">${trous(q.phrase)}</div>` : ""}`;
+      return `${ctx}<button class="lecteur" type="button" id="lecteur" aria-label="${reste > 0 ? `Écouter l'enregistrement (${reste} écoute${reste > 1 ? "s" : ""} possible${reste > 1 ? "s" : ""})` : "Plus d'écoute possible"}" ${reste <= 0 ? "disabled" : ""}>${ICONE.jouer}<span class="vague" id="vague" aria-hidden="true">${"<i></i>".repeat(5)}</span><span class="pastille" id="pastille" aria-hidden="true" ${reste <= 0 ? "hidden" : ""}>${reste}</span></button>${q.photo ? `<img class="photo-scene" src="${IMAGES[q.photo]}" alt="">` : ""}${q.phrase ? `<div class="phrase petite">${trous(q.phrase)}</div>` : ""}`;
   }
   return "";
 }
@@ -465,6 +466,14 @@ rep('''/* ------------------------------------------------------------ les répo
 .tres-serre .lien { margin-top: 2px; padding-block: 4px; }
 .tres-serre .bouton { min-height: 52px; }
 .image-support { position: relative; }
+.photo-scene { display: block; width: 100%; aspect-ratio: 16 / 9; max-height: 170px; object-fit: cover; border-radius: 16px; }
+.serre .photo-scene { max-height: 120px; }
+.tres-serre .photo-scene { max-height: 90px; }
+.papier-tete .avec-photo { width: 60px; height: 60px; overflow: hidden; border-radius: 50%; }
+.doc-mini .icone-doc.avec-photo { width: 76px; height: 76px; overflow: hidden; border-radius: 50%; }
+.avec-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.serre .doc-mini .icone-doc.avec-photo { width: 60px; height: 60px; }
+.tres-serre .doc-mini .icone-doc.avec-photo { width: 50px; height: 50px; }
 .loupe { position: absolute; right: 8px; bottom: 8px; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; color: #fff; background: linear-gradient(var(--cyan-1), var(--cyan-2)); box-shadow: 0 3px 0 var(--cyan-levre); }
 .loupe svg { width: 20px; height: 20px; }
 .coin { display: none; }

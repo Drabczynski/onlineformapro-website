@@ -129,6 +129,12 @@ le jour où Julien commence à 8h (jeudi) et son cours d'arts plastiques (mardi,
 - A1-13 : la phrase du PDF « Vous avez rendez-vous chez le dentiste et vous recevez un message. » est retirée.
 - A1-10 et A1-16 : les phrases du PDF « Vous visitez un appartement pour une location. » et « Vous êtes
   dans la rue et vous demandez votre chemin. » sont retirées.
+- A1-08 : sans « Vous êtes au téléphone avec votre tante. » ; la question devient « Votre tante fait des
+  courses. Où est-elle ? » (consigne lue générée avec ElevenLabs, `v2-q34`).
+- B1-12 : sans « Vous écoutez un reportage à Abidjan. ».
+- Photos de scène fournies, sous le bouton d'écoute ou à la place de l'icône : l'immeuble (A1-10),
+  la salle de cinéma (A1-18), les trois femmes à Abidjan (B1-12). Marie (A2-16, A2-17, B1-01, B1-02) :
+  une vraie photo à la place de l'icône, photo Unsplash de Janko Ferlič (pMJKJp0aG4M, licence Unsplash).
 - A1-11 : sans « Vous lisez cette affiche. » ni « Touchez l'image pour l'agrandir » ; une loupe dans le coin
   de l'affiche indique qu'on peut l'agrandir.
 - « Que répondez-vous ? » ajouté aux questions où l'on répond à un message. Une phrase de contexte

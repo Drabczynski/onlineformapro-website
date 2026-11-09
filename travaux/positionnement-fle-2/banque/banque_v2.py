@@ -39,9 +39,9 @@ q("A1", "CO", "COMP orale", 1, "Qu'est-ce qu'elle fait ?", ["médecin", "étudia
 q("A1", "EE", "EXP écrite", 2, CHOISIR, ["La", "Le", "Les"], "Le", t="trou", phrase="______ livre est intéressant.")
 q("A1", "EE", "EXP écrite", 2, "Le contraire de « grand » ?", ["large", "gros", "petit"], "petit", groupe="contraire-grand")
 q("A1", "CO", "COMP orale", 2, "Combien coûte un ticket ?", ["1,70 €", "1,90 €"], "1,90 €", t="ecoute", audio="o02", contexte="Vous prenez le métro et achetez un ticket au guichet automatique.")
-q("A1", "CO", "COMP écrite", 3, "Elle fait des courses. Où est-elle ?", ["À la boulangerie", "Au rayon fruits et légumes", "À la fromagerie"], 0, t="ecoute", audio="o03", contexte="Vous êtes au téléphone avec votre tante.", images=["boulangerie", "primeur", "fromagerie"])
+q("A1", "CO", "COMP écrite", 3, "Votre tante fait des courses. Où est-elle ?", ["À la boulangerie", "Au rayon fruits et légumes", "À la fromagerie"], 0, t="ecoute", audio="o03", images=["boulangerie", "primeur", "fromagerie"])
 q("A1", "CO", "COMP orale", 4, "Qu'est-ce que vous devez faire ?", ["prendre l'escalier", "monter au 2e étage", "sortir du bâtiment"], "monter au 2e étage", t="ecoute", audio="o04", contexte="Au centre de santé, l'agent d'accueil vous indique le cabinet du dentiste.")
-q("A1", "CO", "COMP orale", 5, "Qu'est-ce que vous apprenez sur cet appartement ?", ["sa taille", "son prix", "son étage"], "sa taille", t="ecoute", audio="o05")
+q("A1", "CO", "COMP orale", 5, "Qu'est-ce que vous apprenez sur cet appartement ?", ["sa taille", "son prix", "son étage"], "sa taille", t="ecoute", photo="appartement", audio="o05")
 q("A1", "CE", "COMP écrite", 6, "Quand est-ce que le café linguistique est ouvert ?", ["Une fois par jour", "Une fois par semaine", "Une fois par mois"], "Une fois par semaine", t="image", img="affiche-cafe", alt="Affiche du café linguistique : tous les jeudis de 17h30 à 19h30, début des ateliers le 16 novembre.")
 q("A1", "CE", "COMP écrite", 7, "Quelle image correspond à la situation ?", ["Une gare", "Un pique-nique", "Une plage"], 1, t="sms", texte="Salut tout le monde ! Il va faire beau ! On va pique-niquer au parc samedi ?", images=["gare", "pique-nique", "plage"])
 q("A1", "CE", "COMP écrite", 8, "Ce message est envoyé pour ___ un rendez-vous.", ["annuler", "rappeler", "changer"], "rappeler", t="sms", texte="Cabinet Brunet – Confirmation de votre rendez-vous dentiste le 04/11 à 9h. Si vous ne pouvez pas venir, merci de nous téléphoner. Ne pas répondre à ce message automatique.")
@@ -49,7 +49,7 @@ q("A1", "CE", "COMP écrite", 8, "Vous êtes en retard. Quel message est-ce que 
 q("A1", "CE", "COMP écrite", 8, "Complétez la phrase.", ["je vais", "je suis", "j'ai"], "j'ai", t="trou", etiquette="Vous vous présentez au groupe.", phrase="Bonjour, je m'appelle Amir, ______ 29 ans.")
 q("A1", "EE", "EXP écrite", 9, "Remettez les mots dans l'ordre.", t="ordre", avant="Excusez-moi ! Je cherche la station de métro,", apres="?", mots=["m'aider", "pouvez", "est-ce que", "vous"], ordre=[2, 3, 1, 0])
 q("A1", "CE", "COM écrite", 9, "Qu'est-ce que vous dites ?", ["C'est très bon !", "C'est très loin.", "C'est à droite."], 0, t="situation", emoji="🍽️", texte="Vous déjeunez avec vos amis.")
-q("A1", "EE", "EXP écrite", 10, "Quelle question posez-vous ?", ["C'est dans quelle salle ?", "Quand est-ce que la séance commence ?", "Combien de temps dure le film ?"], 1, t="situation", emoji="🎟️", texte="Vous êtes au cinéma et vous prenez votre place au guichet. Vous voulez savoir à quelle heure commence le film.")
+q("A1", "EE", "EXP écrite", 10, "Quelle question posez-vous ?", ["C'est dans quelle salle ?", "Quand est-ce que la séance commence ?", "Combien de temps dure le film ?"], 1, t="situation", emoji="🎟️", photo="cinema", texte="Vous êtes au cinéma et vous prenez votre place au guichet. Vous voulez savoir à quelle heure commence le film.")
 q("A1", "LG", "Grammaire", 11, "Complétez.", ["apprends", "apprendre", "appris"], "apprends", t="trou", phrase="J'______ le français depuis 2 ans.")
 for question, choix, bonne in [("C'est un message…", ["amical", "administratif", "professionnel"], "amical"),
                                ("Pourquoi la personne a-t-elle écrit ce message ?", ["Pour refuser une invitation", "Pour remercier une amie", "Pour inviter une amie"], "Pour inviter une amie"),
@@ -113,8 +113,8 @@ q("A2", "CE", "COMP écrite", 42, "Qu'est-ce que cette lettre vous annonce ?", [
 q("A2", "EE", "EXP écrite", 42, "Complétez la question au serveur.", ["Est-ce que", "Qu'est-ce que", "Qui"], "Qu'est-ce que", t="trou", etiquette="Au restaurant, vous posez une question au serveur.", phrase="______ vous me conseillez ?", deduite=True)
 q("A2", "CE", "COMP écrite", 43, "Vous n'êtes pas disponible. Quel est le bon message ?", ["Avec plaisir ! J'adore la natation.", "Ah, dommage ! Je pars ce week-end."], 1, t="sms", etiquette="Vous recevez une invitation", texte="Tu ne vas pas me croire ! J'ai gagné deux places pour la finale de rugby samedi au stade de France ! Tu viens avec moi ?")
 q("A2", "CE", "COMP écrite", 43, "Qu'est-ce qu'on apprend sur la réunion ?", ["Elle est reportée", "Elle est annulée", "Comment inscrire son enfant à l'école"], 0, t="document", titre="Panneau devant l'école", emoji="🏫", style="affiche", lignes=ECOLE)
-q("A2", "CE", "COMP écrite", 44, "Où habite Marie ?", ["À Lyon", "À Paris", "À Nice"], 0, t="document", titre="Marie", emoji="👧", style="", lignes=MARIE, groupe="marie")
-q("A2", "CE", "COMP écrite", 61, "Quelle est la profession de son père ?", ["professeur", "médecin", "avocat"], 1, t="document", titre="Marie", emoji="👧", style="", lignes=MARIE, groupe="marie")
+q("A2", "CE", "COMP écrite", 44, "Où habite Marie ?", ["À Lyon", "À Paris", "À Nice"], 0, t="document", titre="Marie", emoji="👧", photo="marie", style="", lignes=MARIE, groupe="marie")
+q("A2", "CE", "COMP écrite", 61, "Quelle est la profession de son père ?", ["professeur", "médecin", "avocat"], 1, t="document", titre="Marie", emoji="👧", photo="marie", style="", lignes=MARIE, groupe="marie")
 for phrase, choix, bonne in [("Vous ______ italien.", ["est", "êtes", "sommes"], "êtes"),
                              ("Sylvie ______ souvent à la piscine.", ["vais", "va", "vont"], "va"),
                              ("Il mange en ______ la télévision.", ["regardait", "regardant", "regarde"], "regardant"),
@@ -143,8 +143,8 @@ q("A2", "CE", "Compréhension écrite", 56, "Quel jour et à quelle heure Julien
 # ------------------------------------------------------------------ B1
 q("B1", "CE", "COMP écrite", 59, REPONDRE, ["Je serai accompagné de mon collègue.", "Non, pas de souci.", "En voiture."], 0, t="sms", texte="La réunion aura lieu demain matin dans nos bureaux. Vous pouvez vous garer dans le parking réservé à la clientèle. Nos bureaux se trouvent au 1er étage du bâtiment principal. Viendrez-vous seul ?")
 q("B1", "CE", "COMP écrite", 60, REPONDRE, ["Bonne idée ! À 16h.", "Certainement, à 10h.", "Le musée est ouvert le matin."], 0, t="sms", texte="Comme tu n'es pas disponible le matin, pourrions-nous aller au musée en fin d'après-midi ?")
-q("B1", "CE", "COMP écrite", 62, "Comment Marie va-t-elle au lycée ?", ["À pied", "En voiture", "En bus"], 2, t="document", titre="Marie", emoji="👧", style="", lignes=MARIE, groupe="marie")
-q("B1", "CE", "COMP écrite", 62, "Que veut faire Marie plus tard ?", ["Être professeure", "Être médecin", "Être avocate"], 2, t="document", titre="Marie", emoji="👧", style="", lignes=MARIE, groupe="marie")
+q("B1", "CE", "COMP écrite", 62, "Comment Marie va-t-elle au lycée ?", ["À pied", "En voiture", "En bus"], 2, t="document", titre="Marie", emoji="👧", photo="marie", style="", lignes=MARIE, groupe="marie")
+q("B1", "CE", "COMP écrite", 62, "Que veut faire Marie plus tard ?", ["Être professeure", "Être médecin", "Être avocate"], 2, t="document", titre="Marie", emoji="👧", photo="marie", style="", lignes=MARIE, groupe="marie")
 for question, choix, bonne in [("À quelle heure commencent les cours ?", ["À neuf heures", "À huit heures", "À dix heures"], 1),
                                ("Pourquoi les élèves sortent-ils dans la cour ?", ["Ils ont fini les cours", "Ils partent en sport", "Les professeurs le demandent"], 2),
                                ("Que se passe-t-il pendant le cours d'histoire ?", ["Une élève tombe", "Un ordinateur explose", "Un professeur est malade"], 1),
@@ -154,7 +154,7 @@ for question, choix, bonne in [("Que fait Julie dans sa chambre le soir ?", ["El
                                ("Où se trouve le garage ?", ["En face de la maison", "Derrière la maison", "Il n'y a pas de garage"], 1)]:
     q("B1", "CE", "COMP écrite", 65, question, choix, bonne, t="document", titre="La maison de Julie", emoji="🏡", style="", lignes=JULIE, groupe="julie")
 q("B1", "EE", "EXP écrite", 66, "Qu'écrivez-vous ?", ["Je vous remercie pour votre message. Étant en vacances, je ne peux pas traiter votre problème.", "Je vous remercie pour votre message. Je vous répondrai dès mon retour de congés, le 7 avril. Pour une demande urgente, merci de contacter rh@travail.fr. Cordialement."], 1, t="situation", emoji="🏖️", texte="Vous n'êtes pas au bureau pour quelques jours et vous laissez un message automatique d'absence.")
-q("B1", "CO", "COMP orale", 67, "Qu'apprend-on sur Marie-Louise ?", ["Elle ne peut plus garder son taxi", "Elle exerce plusieurs métiers", "Elle cherche des clients"], 1, t="ecoute", audio="o11", contexte="Vous écoutez un reportage à Abidjan.")
+q("B1", "CO", "COMP orale", 67, "Qu'apprend-on sur Marie-Louise ?", ["Elle ne peut plus garder son taxi", "Elle exerce plusieurs métiers", "Elle cherche des clients"], 1, t="ecoute", audio="o11", photo="abidjan")
 
 compte = {}
 for k, d in enumerate(B, 1):

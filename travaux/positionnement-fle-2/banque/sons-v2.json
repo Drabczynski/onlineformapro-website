@@ -70,16 +70,6 @@
   ]
  },
  {
-  "id": "v2-q08",
-  "niveau": "A1",
-  "repliques": [
-   [
-    "consigne",
-    "Elle fait des courses. Où est-elle ?"
-   ]
-  ]
- },
- {
   "id": "v2-q09",
   "niveau": "A1",
   "repliques": [
@@ -346,6 +336,16 @@
    [
     "consigne",
     "Remettez les mots dans l'ordre."
+   ]
+  ]
+ },
+ {
+  "id": "v2-q34",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Votre tante fait des courses. Où est-elle ?"
    ]
   ]
  }
