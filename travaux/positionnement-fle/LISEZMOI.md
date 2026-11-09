@@ -43,7 +43,8 @@ pointent vers le dossier de travail de la session : à adapter pour les relancer
 https://onlineformapro-website.vercel.app/travaux/positionnement-fle/
 
 La seule différence avec l'artifact : les sons ne sont pas intégrés, ce sont les MP3 du dossier `sons/`, chargés
-quand la question s'affiche (page de 160 Ko au lieu de 3,8 Mo). Le site est en « noindex » (vercel.json) :
+quand la question s'affiche (page de 160 Ko au lieu de 3,8 Mo). Elle se refait à partir de l'artifact avec
+`banque/page-web.py` (mode d'emploi en tête du script). Le site est en « noindex » (vercel.json) :
 la page ne sort pas dans les moteurs de recherche, seules les personnes qui ont le lien y accèdent.
 
 ## Les sons (ElevenLabs)
