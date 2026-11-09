@@ -1,0 +1,3483 @@
+[
+ {
+  "id": "CE-01",
+  "n": 1,
+  "niveau": "A1",
+  "epreuve": "CE",
+  "groupe": "CE-01",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Quand le magasin est-il fermé ?",
+  "choix": [
+   "Le lundi",
+   "Le samedi",
+   "Le dimanche",
+   "Tous les jours"
+  ],
+  "bonne": 2,
+  "t": "panneau",
+  "style": "ferme",
+  "etiquette": "Sur la porte d'un magasin",
+  "texte": "FERMÉ LE DIMANCHE"
+ },
+ {
+  "id": "CE-02",
+  "n": 2,
+  "niveau": "A1",
+  "epreuve": "CE",
+  "groupe": "CE-02",
+  "tag": "Lexique",
+  "composante": "Lexique (signalétique)",
+  "critere": "— (compréhension)",
+  "question": "Que montre ce panneau ?",
+  "choix": [
+   "L'entrée",
+   "La sortie",
+   "Les toilettes",
+   "L'accueil"
+  ],
+  "bonne": 1,
+  "t": "panneau",
+  "style": "sortie",
+  "texte": "SORTIE"
+ },
+ {
+  "id": "CE-03",
+  "n": 3,
+  "niveau": "A1",
+  "epreuve": "CE",
+  "groupe": "CE-03",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Où est le rendez-vous ?",
+  "choix": [
+   "Devant la poste",
+   "Devant la mairie",
+   "À la gare",
+   "Chez Léa"
+  ],
+  "bonne": 1,
+  "t": "sms",
+  "etiquette": "SMS de Léa",
+  "texte": "Salut ! Rendez-vous à 15 h devant la mairie. Léa"
+ },
+ {
+  "id": "CE-04",
+  "n": 4,
+  "niveau": "A1",
+  "epreuve": "CE",
+  "groupe": "CE-03",
+  "tag": "Lexique",
+  "composante": "Lexique (heure)",
+  "critere": "— (compréhension)",
+  "question": "À quelle heure est le rendez-vous ?",
+  "choix": [
+   "5 h",
+   "13 h",
+   "15 h",
+   "16 h"
+  ],
+  "bonne": 2,
+  "t": "sms",
+  "etiquette": "SMS de Léa",
+  "texte": "Salut ! Rendez-vous à 15 h devant la mairie. Léa"
+ },
+ {
+  "id": "CE-05",
+  "n": 5,
+  "niveau": "A1",
+  "epreuve": "CE",
+  "groupe": "CE-05",
+  "tag": "Lexique",
+  "composante": "Lexique (prix)",
+  "critere": "— (compréhension)",
+  "question": "Combien coûtent les tomates ?",
+  "choix": [
+   "2,50 € le kilo",
+   "25 € le kilo",
+   "2,50 € la tomate",
+   "5,20 € le kilo"
+  ],
+  "bonne": 0,
+  "t": "prix",
+  "produit": "Tomates",
+  "prix": "2,50 €",
+  "unite": "le kilo"
+ },
+ {
+  "id": "CE-06",
+  "n": 6,
+  "niveau": "A1",
+  "epreuve": "CE",
+  "groupe": "CE-06",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Quel est le prénom de la personne ?",
+  "choix": [
+   "Diallo",
+   "Fatou",
+   "Dijon",
+   "Sénégal"
+  ],
+  "bonne": 1,
+  "t": "court",
+  "titre": "Fiche d'inscription",
+  "lignes": [
+   "Nom : DIALLO",
+   "Prénom : Fatou",
+   "Nationalité : sénégalaise",
+   "Ville : Dijon"
+  ]
+ },
+ {
+  "id": "CE-07",
+  "n": 7,
+  "niveau": "A1",
+  "epreuve": "CE",
+  "groupe": "CE-06",
+  "tag": "Lexique",
+  "composante": "Lexique (nationalités)",
+  "critere": "— (compréhension)",
+  "question": "Quelle est la nationalité de la personne ?",
+  "choix": [
+   "Française",
+   "Sénégalaise",
+   "Malienne",
+   "Dijonnaise"
+  ],
+  "bonne": 1,
+  "t": "court",
+  "titre": "Fiche d'inscription",
+  "lignes": [
+   "Nom : DIALLO",
+   "Prénom : Fatou",
+   "Nationalité : sénégalaise",
+   "Ville : Dijon"
+  ]
+ },
+ {
+  "id": "CE-08",
+  "n": 8,
+  "niveau": "A1",
+  "epreuve": "CE",
+  "groupe": "CE-08",
+  "tag": "Lexique",
+  "composante": "Lexique (jours)",
+  "critere": "— (compréhension)",
+  "question": "La mairie est-elle ouverte le samedi ?",
+  "choix": [
+   "Oui, le matin",
+   "Oui, l'après-midi",
+   "Non",
+   "Oui, toute la journée"
+  ],
+  "bonne": 2,
+  "t": "affiche",
+  "titre": "MAIRIE",
+  "lignes": [
+   "Ouverte du lundi au vendredi",
+   "de 9 h à 12 h et de 14 h à 17 h"
+  ]
+ },
+ {
+  "id": "CE-09",
+  "n": 9,
+  "niveau": "A1",
+  "epreuve": "CE",
+  "groupe": "CE-08",
+  "tag": "Lexique",
+  "composante": "Lexique (heure)",
+  "critere": "— (compréhension)",
+  "question": "Peut-on aller à la mairie le mardi à 13 h ?",
+  "choix": [
+   "Oui",
+   "Non",
+   "Seulement sur rendez-vous",
+   "On ne sait pas"
+  ],
+  "bonne": 1,
+  "t": "affiche",
+  "titre": "MAIRIE",
+  "lignes": [
+   "Ouverte du lundi au vendredi",
+   "de 9 h à 12 h et de 14 h à 17 h"
+  ]
+ },
+ {
+  "id": "CE-10",
+  "n": 10,
+  "niveau": "A1",
+  "epreuve": "CE",
+  "groupe": "CE-10",
+  "tag": "Lexique",
+  "composante": "Lexique (alimentation)",
+  "critere": "— (compréhension)",
+  "question": "Quel est le dessert du lundi ?",
+  "choix": [
+   "Le riz",
+   "Le poulet",
+   "Le yaourt",
+   "Un fruit"
+  ],
+  "bonne": 2,
+  "t": "menu",
+  "titre": "Menu de la cantine",
+  "jour": "Lundi",
+  "plats": [
+   "poulet",
+   "riz",
+   "yaourt"
+  ]
+ },
+ {
+  "id": "CE-11",
+  "n": 11,
+  "niveau": "A1",
+  "epreuve": "CE",
+  "groupe": "CE-11",
+  "tag": "Lexique",
+  "composante": "Lexique (météo)",
+  "critere": "— (compréhension)",
+  "question": "Quel temps fait-il à Nice ?",
+  "choix": [
+   "Il pleut",
+   "Il fait beau et chaud",
+   "Il fait froid",
+   "Il neige"
+  ],
+  "bonne": 1,
+  "t": "court",
+  "etiquette": "Carte postale",
+  "lignes": [
+   "Bonjour de Nice ! Il fait beau et chaud. La mer est super. Bisous, Ali"
+  ]
+ },
+ {
+  "id": "CE-12",
+  "n": 12,
+  "niveau": "A1",
+  "epreuve": "CE",
+  "groupe": "CE-12",
+  "tag": "Lexique",
+  "composante": "Lexique (signalétique)",
+  "critere": "— (compréhension)",
+  "question": "Qu'est-ce qui est interdit ?",
+  "choix": [
+   "Manger",
+   "Fumer",
+   "Téléphoner",
+   "Entrer"
+  ],
+  "bonne": 1,
+  "t": "panneau",
+  "style": "interdit",
+  "texte": "INTERDIT DE FUMER"
+ },
+ {
+  "id": "CE-13",
+  "n": 13,
+  "niveau": "A1",
+  "epreuve": "CE",
+  "groupe": "CE-13",
+  "tag": "Lexique",
+  "composante": "Lexique (nombres)",
+  "critere": "— (compréhension)",
+  "question": "Combien d'œufs faut-il acheter ?",
+  "choix": [
+   "2",
+   "4",
+   "6",
+   "12"
+  ],
+  "bonne": 2,
+  "t": "court",
+  "titre": "Liste de courses",
+  "lignes": [
+   "lait",
+   "pain",
+   "6 œufs",
+   "pommes"
+  ],
+  "liste": true
+ },
+ {
+  "id": "CE-14",
+  "n": 14,
+  "niveau": "A1",
+  "epreuve": "CE",
+  "groupe": "CE-14",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Où est le cabinet médical ?",
+  "choix": [
+   "Au rez-de-chaussée, porte B",
+   "Au 2e étage, porte B",
+   "Au 2e étage, porte D",
+   "Au 1er étage, porte B"
+  ],
+  "bonne": 1,
+  "t": "plaque",
+  "etiquette": "Plaque à l'entrée",
+  "lignes": [
+   "Cabinet médical",
+   "2e étage – porte B"
+  ]
+ },
+ {
+  "id": "CE-15",
+  "n": 15,
+  "niveau": "A1",
+  "epreuve": "CE",
+  "groupe": "CE-15",
+  "tag": "—",
+  "composante": "Compréhension globale",
+  "critere": "— (compréhension)",
+  "question": "C'est une invitation pour quelle fête ?",
+  "choix": [
+   "Un mariage",
+   "Un anniversaire",
+   "Une fête des voisins",
+   "Une naissance"
+  ],
+  "bonne": 1,
+  "t": "court",
+  "titre": "Invitation",
+  "lignes": [
+   "Anniversaire de Yasmine",
+   "Samedi 12 mai – 16 h",
+   "5, rue des Lilas"
+  ]
+ },
+ {
+  "id": "CE-16",
+  "n": 16,
+  "niveau": "A1",
+  "epreuve": "CE",
+  "groupe": "CE-15",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Quelle est l'adresse de la fête ?",
+  "choix": [
+   "12, rue des Lilas",
+   "5, rue des Lilas",
+   "16, rue des Lilas",
+   "5, rue de Mai"
+  ],
+  "bonne": 1,
+  "t": "court",
+  "titre": "Invitation",
+  "lignes": [
+   "Anniversaire de Yasmine",
+   "Samedi 12 mai – 16 h",
+   "5, rue des Lilas"
+  ]
+ },
+ {
+  "id": "CE-17",
+  "n": 17,
+  "niveau": "A1",
+  "epreuve": "CE",
+  "groupe": "CE-17",
+  "tag": "—",
+  "composante": "Compréhension globale",
+  "critere": "— (compréhension)",
+  "question": "Pourquoi Samir ne vient-il pas au cours ?",
+  "choix": [
+   "Il est en retard",
+   "Il est malade",
+   "Il travaille",
+   "Il est en vacances"
+  ],
+  "bonne": 1,
+  "t": "sms",
+  "etiquette": "SMS de Samir",
+  "texte": "Je suis malade, je ne viens pas au cours aujourd'hui. Samir"
+ },
+ {
+  "id": "CE-18",
+  "n": 18,
+  "niveau": "A2",
+  "epreuve": "CE",
+  "groupe": "CE-18",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Quel poste est proposé ?",
+  "choix": [
+   "Cuisinier",
+   "Serveur",
+   "Plongeur",
+   "Caissier"
+  ],
+  "bonne": 2,
+  "t": "document",
+  "titre": "Annonce d'emploi",
+  "emoji": "📋",
+  "style": "",
+  "lignes": [
+   "Restaurant Le Saint-Jean recherche un(e) plongeur(se).",
+   "CDD de 3 mois, 35 heures par semaine.",
+   "Travail du mardi au samedi, le midi et le soir.",
+   "Débutant accepté.",
+   "Envoyer votre CV à contact@lesaintjean.fr ou vous présenter au restaurant le matin."
+  ]
+ },
+ {
+  "id": "CE-19",
+  "n": 19,
+  "niveau": "A2",
+  "epreuve": "CE",
+  "groupe": "CE-18",
+  "tag": "Lexique",
+  "composante": "Lexique (emploi)",
+  "critere": "— (compréhension)",
+  "question": "Quel est le type de contrat ?",
+  "choix": [
+   "Un CDI",
+   "Un CDD de 3 mois",
+   "Un stage",
+   "Une mission d'intérim"
+  ],
+  "bonne": 1,
+  "t": "document",
+  "titre": "Annonce d'emploi",
+  "emoji": "📋",
+  "style": "",
+  "lignes": [
+   "Restaurant Le Saint-Jean recherche un(e) plongeur(se).",
+   "CDD de 3 mois, 35 heures par semaine.",
+   "Travail du mardi au samedi, le midi et le soir.",
+   "Débutant accepté.",
+   "Envoyer votre CV à contact@lesaintjean.fr ou vous présenter au restaurant le matin."
+  ]
+ },
+ {
+  "id": "CE-20",
+  "n": 20,
+  "niveau": "A2",
+  "epreuve": "CE",
+  "groupe": "CE-18",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Faut-il avoir de l'expérience ?",
+  "choix": [
+   "Oui, 2 ans",
+   "Oui, 1 an",
+   "Non, les débutants sont acceptés",
+   "Ce n'est pas précisé"
+  ],
+  "bonne": 2,
+  "t": "document",
+  "titre": "Annonce d'emploi",
+  "emoji": "📋",
+  "style": "",
+  "lignes": [
+   "Restaurant Le Saint-Jean recherche un(e) plongeur(se).",
+   "CDD de 3 mois, 35 heures par semaine.",
+   "Travail du mardi au samedi, le midi et le soir.",
+   "Débutant accepté.",
+   "Envoyer votre CV à contact@lesaintjean.fr ou vous présenter au restaurant le matin."
+  ]
+ },
+ {
+  "id": "CE-21",
+  "n": 21,
+  "niveau": "A2",
+  "epreuve": "CE",
+  "groupe": "CE-18",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Comment peut-on se porter candidat ?",
+  "choix": [
+   "Par téléphone uniquement",
+   "En envoyant un CV par courriel ou en se présentant le matin",
+   "Par lettre à la poste",
+   "Sur un site internet"
+  ],
+  "bonne": 1,
+  "t": "document",
+  "titre": "Annonce d'emploi",
+  "emoji": "📋",
+  "style": "",
+  "lignes": [
+   "Restaurant Le Saint-Jean recherche un(e) plongeur(se).",
+   "CDD de 3 mois, 35 heures par semaine.",
+   "Travail du mardi au samedi, le midi et le soir.",
+   "Débutant accepté.",
+   "Envoyer votre CV à contact@lesaintjean.fr ou vous présenter au restaurant le matin."
+  ]
+ },
+ {
+  "id": "CE-22",
+  "n": 22,
+  "niveau": "A2",
+  "epreuve": "CE",
+  "groupe": "CE-22",
+  "tag": "—",
+  "composante": "Compréhension globale",
+  "critere": "— (compréhension)",
+  "question": "Que va-t-il se passer dans l'immeuble ?",
+  "choix": [
+   "L'ascenseur va être réparé",
+   "L'escalier va être repeint",
+   "Le propriétaire va changer",
+   "Les appartements vont être nettoyés"
+  ],
+  "bonne": 1,
+  "t": "document",
+  "titre": "Courriel",
+  "emoji": "✉️",
+  "style": "",
+  "lignes": [
+   "Bonjour Monsieur Haddad,",
+   "Je vous informe que des travaux de peinture auront lieu dans l'escalier de l'immeuble du 3 au 7 juin. Pendant ces travaux, merci de ne pas laisser vos vélos dans le hall. L'ascenseur fonctionnera normalement.",
+   "Cordialement,",
+   "Mme Perrin, propriétaire"
+  ]
+ },
+ {
+  "id": "CE-23",
+  "n": 23,
+  "niveau": "A2",
+  "epreuve": "CE",
+  "groupe": "CE-22",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Que demande Mme Perrin ?",
+  "choix": [
+   "De payer le loyer plus tôt",
+   "De ne pas laisser les vélos dans le hall",
+   "De ne pas prendre l'ascenseur",
+   "D'être présent pendant les travaux"
+  ],
+  "bonne": 1,
+  "t": "document",
+  "titre": "Courriel",
+  "emoji": "✉️",
+  "style": "",
+  "lignes": [
+   "Bonjour Monsieur Haddad,",
+   "Je vous informe que des travaux de peinture auront lieu dans l'escalier de l'immeuble du 3 au 7 juin. Pendant ces travaux, merci de ne pas laisser vos vélos dans le hall. L'ascenseur fonctionnera normalement.",
+   "Cordialement,",
+   "Mme Perrin, propriétaire"
+  ]
+ },
+ {
+  "id": "CE-24",
+  "n": 24,
+  "niveau": "A2",
+  "epreuve": "CE",
+  "groupe": "CE-24",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Combien de comprimés faut-il prendre par jour ?",
+  "choix": [
+   "1",
+   "2",
+   "3",
+   "5"
+  ],
+  "bonne": 1,
+  "t": "document",
+  "titre": "Notice du médicament",
+  "emoji": "💊",
+  "style": "",
+  "lignes": [
+   "Posologie : prendre 1 comprimé matin et soir, pendant le repas, pendant 5 jours.",
+   "Ne pas donner aux enfants de moins de 12 ans.",
+   "Ne pas conduire après avoir pris ce médicament."
+  ]
+ },
+ {
+  "id": "CE-25",
+  "n": 25,
+  "niveau": "A2",
+  "epreuve": "CE",
+  "groupe": "CE-24",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Qu'est-ce qui est interdit après avoir pris ce médicament ?",
+  "choix": [
+   "Manger",
+   "Conduire",
+   "Dormir",
+   "Boire de l'eau"
+  ],
+  "bonne": 1,
+  "t": "document",
+  "titre": "Notice du médicament",
+  "emoji": "💊",
+  "style": "",
+  "lignes": [
+   "Posologie : prendre 1 comprimé matin et soir, pendant le repas, pendant 5 jours.",
+   "Ne pas donner aux enfants de moins de 12 ans.",
+   "Ne pas conduire après avoir pris ce médicament."
+  ]
+ },
+ {
+  "id": "CE-26",
+  "n": 26,
+  "niveau": "A2",
+  "epreuve": "CE",
+  "groupe": "CE-26",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Que faut-il apporter pour s'inscrire ?",
+  "choix": [
+   "Une photo et 10 €",
+   "Une pièce d'identité et un justificatif de domicile",
+   "Une carte bancaire",
+   "Une lettre de motivation"
+  ],
+  "bonne": 1,
+  "t": "document",
+  "titre": "Médiathèque municipale",
+  "emoji": "📌",
+  "style": "affiche",
+  "lignes": [
+   "Inscription gratuite pour les habitants de la commune.",
+   "Apportez une pièce d'identité et un justificatif de domicile.",
+   "Vous pouvez emprunter 5 livres et 2 DVD pendant 3 semaines.",
+   "Atelier de conversation en français : chaque mercredi à 14 h."
+  ]
+ },
+ {
+  "id": "CE-27",
+  "n": 27,
+  "niveau": "A2",
+  "epreuve": "CE",
+  "groupe": "CE-26",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Combien de temps peut-on garder les livres ?",
+  "choix": [
+   "1 semaine",
+   "2 semaines",
+   "3 semaines",
+   "5 semaines"
+  ],
+  "bonne": 2,
+  "t": "document",
+  "titre": "Médiathèque municipale",
+  "emoji": "📌",
+  "style": "affiche",
+  "lignes": [
+   "Inscription gratuite pour les habitants de la commune.",
+   "Apportez une pièce d'identité et un justificatif de domicile.",
+   "Vous pouvez emprunter 5 livres et 2 DVD pendant 3 semaines.",
+   "Atelier de conversation en français : chaque mercredi à 14 h."
+  ]
+ },
+ {
+  "id": "CE-28",
+  "n": 28,
+  "niveau": "A2",
+  "epreuve": "CE",
+  "groupe": "CE-26",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Quand a lieu l'atelier de conversation ?",
+  "choix": [
+   "Le lundi à 14 h",
+   "Le mercredi à 14 h",
+   "Le mercredi à 4 h",
+   "Le samedi à 14 h"
+  ],
+  "bonne": 1,
+  "t": "document",
+  "titre": "Médiathèque municipale",
+  "emoji": "📌",
+  "style": "affiche",
+  "lignes": [
+   "Inscription gratuite pour les habitants de la commune.",
+   "Apportez une pièce d'identité et un justificatif de domicile.",
+   "Vous pouvez emprunter 5 livres et 2 DVD pendant 3 semaines.",
+   "Atelier de conversation en français : chaque mercredi à 14 h."
+  ]
+ },
+ {
+  "id": "CE-29",
+  "n": 29,
+  "niveau": "A2",
+  "epreuve": "CE",
+  "groupe": "CE-29",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Où Céline a-t-elle passé ses vacances ?",
+  "choix": [
+   "À la mer",
+   "À l'hôtel, à la montagne",
+   "Dans un camping au bord d'un lac",
+   "Chez des amis"
+  ],
+  "bonne": 2,
+  "t": "document",
+  "titre": "Courriel d'une amie",
+  "emoji": "✉️",
+  "style": "",
+  "lignes": [
+   "Salut Nadia,",
+   "Je suis rentrée de vacances hier. On a passé une semaine dans un camping au bord d'un lac, dans le Jura. Les enfants se sont baignés tous les jours et mon mari a pêché. Le seul problème : il a plu les deux derniers jours !",
+   "On se voit la semaine prochaine ?",
+   "Bises,",
+   "Céline"
+  ]
+ },
+ {
+  "id": "CE-30",
+  "n": 30,
+  "niveau": "A2",
+  "epreuve": "CE",
+  "groupe": "CE-29",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Quel problème y a-t-il eu ?",
+  "choix": [
+   "Les enfants ont été malades",
+   "Il a plu",
+   "Le camping était fermé",
+   "La voiture est tombée en panne"
+  ],
+  "bonne": 1,
+  "t": "document",
+  "titre": "Courriel d'une amie",
+  "emoji": "✉️",
+  "style": "",
+  "lignes": [
+   "Salut Nadia,",
+   "Je suis rentrée de vacances hier. On a passé une semaine dans un camping au bord d'un lac, dans le Jura. Les enfants se sont baignés tous les jours et mon mari a pêché. Le seul problème : il a plu les deux derniers jours !",
+   "On se voit la semaine prochaine ?",
+   "Bises,",
+   "Céline"
+  ]
+ },
+ {
+  "id": "CE-31",
+  "n": 31,
+  "niveau": "A2",
+  "epreuve": "CE",
+  "groupe": "CE-29",
+  "tag": "—",
+  "composante": "Compréhension globale",
+  "critere": "— (compréhension)",
+  "question": "Que propose Céline à Nadia ?",
+  "choix": [
+   "De partir ensemble",
+   "De se voir la semaine prochaine",
+   "De téléphoner ce soir",
+   "D'aller dans le Jura"
+  ],
+  "bonne": 1,
+  "t": "document",
+  "titre": "Courriel d'une amie",
+  "emoji": "✉️",
+  "style": "",
+  "lignes": [
+   "Salut Nadia,",
+   "Je suis rentrée de vacances hier. On a passé une semaine dans un camping au bord d'un lac, dans le Jura. Les enfants se sont baignés tous les jours et mon mari a pêché. Le seul problème : il a plu les deux derniers jours !",
+   "On se voit la semaine prochaine ?",
+   "Bises,",
+   "Céline"
+  ]
+ },
+ {
+  "id": "CE-32",
+  "n": 32,
+  "niveau": "A2",
+  "epreuve": "CE",
+  "groupe": "CE-32",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Un enfant de 8 ans peut-il venir seul à la piscine ?",
+  "choix": [
+   "Oui",
+   "Non",
+   "Oui, le matin seulement",
+   "Oui, avec un bonnet"
+  ],
+  "bonne": 1,
+  "t": "document",
+  "titre": "Piscine – règlement",
+  "emoji": "🏊",
+  "style": "affiche",
+  "lignes": [
+   "• Bonnet de bain obligatoire.",
+   "• Shorts interdits.",
+   "• Les enfants de moins de 10 ans doivent être accompagnés d'un adulte.",
+   "• Douche obligatoire avant d'entrer dans le bassin."
+  ]
+ },
+ {
+  "id": "CE-33",
+  "n": 33,
+  "niveau": "A2",
+  "epreuve": "CE",
+  "groupe": "CE-32",
+  "tag": "Lexique",
+  "composante": "Lexique (vêtements)",
+  "critere": "— (compréhension)",
+  "question": "Quelle tenue est interdite ?",
+  "choix": [
+   "Le maillot de bain",
+   "Le bonnet de bain",
+   "Le short",
+   "Les lunettes de natation"
+  ],
+  "bonne": 2,
+  "t": "document",
+  "titre": "Piscine – règlement",
+  "emoji": "🏊",
+  "style": "affiche",
+  "lignes": [
+   "• Bonnet de bain obligatoire.",
+   "• Shorts interdits.",
+   "• Les enfants de moins de 10 ans doivent être accompagnés d'un adulte.",
+   "• Douche obligatoire avant d'entrer dans le bassin."
+  ]
+ },
+ {
+  "id": "CE-34",
+  "n": 34,
+  "niveau": "A2",
+  "epreuve": "CE",
+  "groupe": "CE-34",
+  "tag": "—",
+  "composante": "Compréhension globale",
+  "critere": "— (compréhension)",
+  "question": "Que se passe-t-il du 10 au 14 mars ?",
+  "choix": [
+   "Les trains sont remplacés par des cars",
+   "Les trains sont en retard",
+   "La gare est fermée",
+   "Les billets sont plus chers"
+  ],
+  "bonne": 0,
+  "t": "document",
+  "titre": "Info trafic",
+  "emoji": "🚆",
+  "style": "info",
+  "lignes": [
+   "En raison de travaux, les trains entre besançon et vesoul sont remplacés par des cars du 10 au 14 mars. départ devant la gare routière."
+  ]
+ },
+ {
+  "id": "CE-35",
+  "n": 35,
+  "niveau": "B1",
+  "epreuve": "CE",
+  "groupe": "CE-35",
+  "tag": "—",
+  "composante": "Compréhension globale",
+  "critere": "— (compréhension)",
+  "question": "Quel est le thème principal de l'article ?",
+  "choix": [
+   "Une nouvelle ligne de bus",
+   "Le développement du covoiturage en zone rurale",
+   "Le prix de l'essence",
+   "Les accidents de la route"
+  ],
+  "bonne": 1,
+  "t": "document",
+  "titre": "Article",
+  "emoji": "📰",
+  "style": "",
+  "lignes": [
+   "Le covoiturage séduit de plus en plus les habitants des zones rurales. En Haute-Saône, une plateforme créée par le département met en relation les conducteurs et les passagers qui font le même trajet, notamment pour aller travailler. Pour les passagers, le service est gratuit ; les conducteurs, eux, reçoivent une petite participation aux frais d'essence. Selon les organisateurs, plus de 2 000 personnes sont déjà inscrites. Mais certains habitants restent méfiants : ils hésitent à monter dans la voiture d'un inconnu. Pour les rassurer, chaque utilisateur doit désormais vérifier son identité lors de l'inscription."
+  ]
+ },
+ {
+  "id": "CE-36",
+  "n": 36,
+  "niveau": "B1",
+  "epreuve": "CE",
+  "groupe": "CE-35",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Qu'est-ce qui est vrai à propos de l'argent ?",
+  "choix": [
+   "Les passagers ne paient rien et les conducteurs reçoivent une participation",
+   "Tout le monde paie un abonnement",
+   "Les conducteurs paient le service",
+   "Le département paie les passagers"
+  ],
+  "bonne": 0,
+  "t": "document",
+  "titre": "Article",
+  "emoji": "📰",
+  "style": "",
+  "lignes": [
+   "Le covoiturage séduit de plus en plus les habitants des zones rurales. En Haute-Saône, une plateforme créée par le département met en relation les conducteurs et les passagers qui font le même trajet, notamment pour aller travailler. Pour les passagers, le service est gratuit ; les conducteurs, eux, reçoivent une petite participation aux frais d'essence. Selon les organisateurs, plus de 2 000 personnes sont déjà inscrites. Mais certains habitants restent méfiants : ils hésitent à monter dans la voiture d'un inconnu. Pour les rassurer, chaque utilisateur doit désormais vérifier son identité lors de l'inscription."
+  ]
+ },
+ {
+  "id": "CE-37",
+  "n": 37,
+  "niveau": "B1",
+  "epreuve": "CE",
+  "groupe": "CE-35",
+  "tag": "—",
+  "composante": "Inférence",
+  "critere": "— (compréhension)",
+  "question": "Pourquoi certains habitants hésitent-ils à utiliser le service ?",
+  "choix": [
+   "C'est trop cher",
+   "Ils ont peur de monter dans la voiture d'un inconnu",
+   "Ils n'ont pas de voiture",
+   "L'inscription est trop compliquée"
+  ],
+  "bonne": 1,
+  "t": "document",
+  "titre": "Article",
+  "emoji": "📰",
+  "style": "",
+  "lignes": [
+   "Le covoiturage séduit de plus en plus les habitants des zones rurales. En Haute-Saône, une plateforme créée par le département met en relation les conducteurs et les passagers qui font le même trajet, notamment pour aller travailler. Pour les passagers, le service est gratuit ; les conducteurs, eux, reçoivent une petite participation aux frais d'essence. Selon les organisateurs, plus de 2 000 personnes sont déjà inscrites. Mais certains habitants restent méfiants : ils hésitent à monter dans la voiture d'un inconnu. Pour les rassurer, chaque utilisateur doit désormais vérifier son identité lors de l'inscription."
+  ]
+ },
+ {
+  "id": "CE-38",
+  "n": 38,
+  "niveau": "B1",
+  "epreuve": "CE",
+  "groupe": "CE-35",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Quelle solution a été mise en place pour rassurer les utilisateurs ?",
+  "choix": [
+   "Une assurance gratuite",
+   "La vérification de l'identité à l'inscription",
+   "Des conducteurs professionnels",
+   "Des trajets plus courts"
+  ],
+  "bonne": 1,
+  "t": "document",
+  "titre": "Article",
+  "emoji": "📰",
+  "style": "",
+  "lignes": [
+   "Le covoiturage séduit de plus en plus les habitants des zones rurales. En Haute-Saône, une plateforme créée par le département met en relation les conducteurs et les passagers qui font le même trajet, notamment pour aller travailler. Pour les passagers, le service est gratuit ; les conducteurs, eux, reçoivent une petite participation aux frais d'essence. Selon les organisateurs, plus de 2 000 personnes sont déjà inscrites. Mais certains habitants restent méfiants : ils hésitent à monter dans la voiture d'un inconnu. Pour les rassurer, chaque utilisateur doit désormais vérifier son identité lors de l'inscription."
+  ]
+ },
+ {
+  "id": "CE-39",
+  "n": 39,
+  "niveau": "B1",
+  "epreuve": "CE",
+  "groupe": "CE-35",
+  "tag": "Lexique",
+  "composante": "Lexique (sens en contexte)",
+  "critere": "— (compréhension)",
+  "question": "Dans le texte, « méfiants » signifie :",
+  "choix": [
+   "Qui n'ont pas confiance",
+   "Fatigués",
+   "Enthousiastes",
+   "Pressés"
+  ],
+  "bonne": 0,
+  "t": "document",
+  "titre": "Article",
+  "emoji": "📰",
+  "style": "",
+  "lignes": [
+   "Le covoiturage séduit de plus en plus les habitants des zones rurales. En Haute-Saône, une plateforme créée par le département met en relation les conducteurs et les passagers qui font le même trajet, notamment pour aller travailler. Pour les passagers, le service est gratuit ; les conducteurs, eux, reçoivent une petite participation aux frais d'essence. Selon les organisateurs, plus de 2 000 personnes sont déjà inscrites. Mais certains habitants restent méfiants : ils hésitent à monter dans la voiture d'un inconnu. Pour les rassurer, chaque utilisateur doit désormais vérifier son identité lors de l'inscription."
+  ]
+ },
+ {
+  "id": "CE-40",
+  "n": 40,
+  "niveau": "B1",
+  "epreuve": "CE",
+  "groupe": "CE-40",
+  "tag": "—",
+  "composante": "Compréhension globale",
+  "critere": "— (compréhension)",
+  "question": "Pourquoi la personne reçoit-elle ce courrier ?",
+  "choix": [
+   "Sa demande est acceptée",
+   "Son dossier est incomplet",
+   "Sa demande est refusée",
+   "Elle a un rendez-vous"
+  ],
+  "bonne": 1,
+  "t": "document",
+  "titre": "Courrier reçu",
+  "emoji": "✉️",
+  "style": "courrier",
+  "lignes": [
+   "Madame,",
+   "Votre dossier de demande d'aide au logement est incomplet. Afin de poursuivre son traitement, nous vous remercions de nous faire parvenir, avant le 30 novembre, une copie de votre bail ainsi que votre dernier avis d'imposition. Sans ces documents, votre demande ne pourra pas être étudiée.",
+   "Vous pouvez les déposer sur votre espace personnel en ligne ou les envoyer par courrier.",
+   "Le service Prestations"
+  ]
+ },
+ {
+  "id": "CE-41",
+  "n": 41,
+  "niveau": "B1",
+  "epreuve": "CE",
+  "groupe": "CE-40",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Quels documents sont demandés ?",
+  "choix": [
+   "Le bail et le dernier avis d'imposition",
+   "Les trois dernières fiches de paie",
+   "Une pièce d'identité",
+   "Un relevé d'identité bancaire"
+  ],
+  "bonne": 0,
+  "t": "document",
+  "titre": "Courrier reçu",
+  "emoji": "✉️",
+  "style": "courrier",
+  "lignes": [
+   "Madame,",
+   "Votre dossier de demande d'aide au logement est incomplet. Afin de poursuivre son traitement, nous vous remercions de nous faire parvenir, avant le 30 novembre, une copie de votre bail ainsi que votre dernier avis d'imposition. Sans ces documents, votre demande ne pourra pas être étudiée.",
+   "Vous pouvez les déposer sur votre espace personnel en ligne ou les envoyer par courrier.",
+   "Le service Prestations"
+  ]
+ },
+ {
+  "id": "CE-42",
+  "n": 42,
+  "niveau": "B1",
+  "epreuve": "CE",
+  "groupe": "CE-40",
+  "tag": "—",
+  "composante": "Inférence",
+  "critere": "— (compréhension)",
+  "question": "Que se passe-t-il si les documents ne sont pas envoyés avant le 30 novembre ?",
+  "choix": [
+   "La personne paie une amende",
+   "La demande ne sera pas étudiée",
+   "Un rendez-vous est obligatoire",
+   "L'aide est réduite de moitié"
+  ],
+  "bonne": 1,
+  "t": "document",
+  "titre": "Courrier reçu",
+  "emoji": "✉️",
+  "style": "courrier",
+  "lignes": [
+   "Madame,",
+   "Votre dossier de demande d'aide au logement est incomplet. Afin de poursuivre son traitement, nous vous remercions de nous faire parvenir, avant le 30 novembre, une copie de votre bail ainsi que votre dernier avis d'imposition. Sans ces documents, votre demande ne pourra pas être étudiée.",
+   "Vous pouvez les déposer sur votre espace personnel en ligne ou les envoyer par courrier.",
+   "Le service Prestations"
+  ]
+ },
+ {
+  "id": "CE-43",
+  "n": 43,
+  "niveau": "B1",
+  "epreuve": "CE",
+  "groupe": "CE-40",
+  "tag": "Lexique",
+  "composante": "Lexique (sens en contexte)",
+  "critere": "— (compréhension)",
+  "question": "« Afin de poursuivre son traitement » signifie :",
+  "choix": [
+   "Pour continuer à étudier votre dossier",
+   "Pour soigner votre maladie",
+   "Pour payer votre aide",
+   "Pour annuler votre demande"
+  ],
+  "bonne": 0,
+  "t": "document",
+  "titre": "Courrier reçu",
+  "emoji": "✉️",
+  "style": "courrier",
+  "lignes": [
+   "Madame,",
+   "Votre dossier de demande d'aide au logement est incomplet. Afin de poursuivre son traitement, nous vous remercions de nous faire parvenir, avant le 30 novembre, une copie de votre bail ainsi que votre dernier avis d'imposition. Sans ces documents, votre demande ne pourra pas être étudiée.",
+   "Vous pouvez les déposer sur votre espace personnel en ligne ou les envoyer par courrier.",
+   "Le service Prestations"
+  ]
+ },
+ {
+  "id": "CE-44",
+  "n": 44,
+  "niveau": "B1",
+  "epreuve": "CE",
+  "groupe": "CE-44",
+  "tag": "—",
+  "composante": "Opinion",
+  "critere": "— (compréhension)",
+  "question": "Que pensait Laura au début ?",
+  "choix": [
+   "Que le marché était plus cher",
+   "Que les produits étaient meilleurs",
+   "Que le marché était trop loin",
+   "Que c'était ennuyeux"
+  ],
+  "bonne": 0,
+  "t": "document",
+  "titre": "Témoignage",
+  "emoji": "💬",
+  "style": "",
+  "lignes": [
+   "Depuis un an, je fais mes courses une fois par semaine au marché de producteurs de mon village. Au début, je pensais que c'était plus cher qu'au supermarché. En réalité, comme j'achète uniquement ce dont j'ai besoin, je dépense moins. Et puis, je sais d'où viennent les produits. Le seul inconvénient, c'est l'horaire : le marché a lieu le jeudi matin, ce qui n'est pas pratique quand on travaille. J'aimerais qu'il y ait aussi un marché le samedi. — Laura, 38 ans"
+  ]
+ },
+ {
+  "id": "CE-45",
+  "n": 45,
+  "niveau": "B1",
+  "epreuve": "CE",
+  "groupe": "CE-44",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Que constate-t-elle aujourd'hui ?",
+  "choix": [
+   "Elle dépense plus",
+   "Elle dépense moins",
+   "Elle dépense la même chose",
+   "Elle ne sait pas"
+  ],
+  "bonne": 1,
+  "t": "document",
+  "titre": "Témoignage",
+  "emoji": "💬",
+  "style": "",
+  "lignes": [
+   "Depuis un an, je fais mes courses une fois par semaine au marché de producteurs de mon village. Au début, je pensais que c'était plus cher qu'au supermarché. En réalité, comme j'achète uniquement ce dont j'ai besoin, je dépense moins. Et puis, je sais d'où viennent les produits. Le seul inconvénient, c'est l'horaire : le marché a lieu le jeudi matin, ce qui n'est pas pratique quand on travaille. J'aimerais qu'il y ait aussi un marché le samedi. — Laura, 38 ans"
+  ]
+ },
+ {
+  "id": "CE-46",
+  "n": 46,
+  "niveau": "B1",
+  "epreuve": "CE",
+  "groupe": "CE-44",
+  "tag": "—",
+  "composante": "Opinion",
+  "critere": "— (compréhension)",
+  "question": "Que souhaite Laura ?",
+  "choix": [
+   "Un marché aussi le samedi",
+   "Un marché plus grand",
+   "Plus de produits bio",
+   "Un supermarché dans le village"
+  ],
+  "bonne": 0,
+  "t": "document",
+  "titre": "Témoignage",
+  "emoji": "💬",
+  "style": "",
+  "lignes": [
+   "Depuis un an, je fais mes courses une fois par semaine au marché de producteurs de mon village. Au début, je pensais que c'était plus cher qu'au supermarché. En réalité, comme j'achète uniquement ce dont j'ai besoin, je dépense moins. Et puis, je sais d'où viennent les produits. Le seul inconvénient, c'est l'horaire : le marché a lieu le jeudi matin, ce qui n'est pas pratique quand on travaille. J'aimerais qu'il y ait aussi un marché le samedi. — Laura, 38 ans"
+  ]
+ },
+ {
+  "id": "CE-47",
+  "n": 47,
+  "niveau": "B1",
+  "epreuve": "CE",
+  "groupe": "CE-44",
+  "tag": "—",
+  "composante": "Inférence (ton)",
+  "critere": "— (compréhension)",
+  "question": "Quel est le ton général du texte ?",
+  "choix": [
+   "Plutôt positif, avec une réserve",
+   "Très négatif",
+   "Neutre, sans opinion",
+   "En colère"
+  ],
+  "bonne": 0,
+  "t": "document",
+  "titre": "Témoignage",
+  "emoji": "💬",
+  "style": "",
+  "lignes": [
+   "Depuis un an, je fais mes courses une fois par semaine au marché de producteurs de mon village. Au début, je pensais que c'était plus cher qu'au supermarché. En réalité, comme j'achète uniquement ce dont j'ai besoin, je dépense moins. Et puis, je sais d'où viennent les produits. Le seul inconvénient, c'est l'horaire : le marché a lieu le jeudi matin, ce qui n'est pas pratique quand on travaille. J'aimerais qu'il y ait aussi un marché le samedi. — Laura, 38 ans"
+  ]
+ },
+ {
+  "id": "CE-48",
+  "n": 48,
+  "niveau": "B1",
+  "epreuve": "CE",
+  "groupe": "CE-48",
+  "tag": "—",
+  "composante": "Inférence",
+  "critere": "— (compréhension)",
+  "question": "Un salarié est malade le lundi matin. Il doit transmettre son arrêt de travail au plus tard :",
+  "choix": [
+   "Le lundi soir",
+   "Le mercredi",
+   "À la fin de la semaine",
+   "Le jour de son retour"
+  ],
+  "bonne": 1,
+  "t": "document",
+  "titre": "Règlement intérieur – extrait",
+  "emoji": "📜",
+  "style": "affiche",
+  "lignes": [
+   "• Tout retard doit être signalé au responsable avant le début du poste.",
+   "• Les absences pour maladie doivent être justifiées par un arrêt de travail transmis dans les 48 heures.",
+   "• Les congés payés sont posés au moins un mois à l'avance, sauf accord exceptionnel de la direction.",
+   "• L'usage du téléphone personnel est toléré pendant les pauses uniquement."
+  ]
+ },
+ {
+  "id": "CE-49",
+  "n": 49,
+  "niveau": "B1",
+  "epreuve": "CE",
+  "groupe": "CE-48",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Peut-on poser un congé une semaine à l'avance ?",
+  "choix": [
+   "Oui, toujours",
+   "Non, jamais",
+   "Seulement avec un accord exceptionnel de la direction",
+   "Seulement si un collègue est d'accord"
+  ],
+  "bonne": 2,
+  "t": "document",
+  "titre": "Règlement intérieur – extrait",
+  "emoji": "📜",
+  "style": "affiche",
+  "lignes": [
+   "• Tout retard doit être signalé au responsable avant le début du poste.",
+   "• Les absences pour maladie doivent être justifiées par un arrêt de travail transmis dans les 48 heures.",
+   "• Les congés payés sont posés au moins un mois à l'avance, sauf accord exceptionnel de la direction.",
+   "• L'usage du téléphone personnel est toléré pendant les pauses uniquement."
+  ]
+ },
+ {
+  "id": "CE-50",
+  "n": 50,
+  "niveau": "B1",
+  "epreuve": "CE",
+  "groupe": "CE-48",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Que dit le règlement sur le téléphone personnel ?",
+  "choix": [
+   "Il est interdit",
+   "Il est autorisé tout le temps",
+   "Il est toléré pendant les pauses",
+   "Il est réservé aux urgences"
+  ],
+  "bonne": 2,
+  "t": "document",
+  "titre": "Règlement intérieur – extrait",
+  "emoji": "📜",
+  "style": "affiche",
+  "lignes": [
+   "• Tout retard doit être signalé au responsable avant le début du poste.",
+   "• Les absences pour maladie doivent être justifiées par un arrêt de travail transmis dans les 48 heures.",
+   "• Les congés payés sont posés au moins un mois à l'avance, sauf accord exceptionnel de la direction.",
+   "• L'usage du téléphone personnel est toléré pendant les pauses uniquement."
+  ]
+ },
+ {
+  "id": "CO-01",
+  "n": 1,
+  "niveau": "A1",
+  "epreuve": "CO",
+  "groupe": "CO-01",
+  "tag": "Lexique",
+  "composante": "Lexique (nombres)",
+  "critere": "— (compréhension)",
+  "question": "Quel âge a Karim ?",
+  "choix": [
+   "22 ans",
+   "32 ans",
+   "42 ans",
+   "23 ans"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-01",
+  "script": [
+   "Bonjour, je m'appelle Karim. J'ai trente-deux ans."
+  ],
+  "etiquette": ""
+ },
+ {
+  "id": "CO-02",
+  "n": 2,
+  "niveau": "A1",
+  "epreuve": "CO",
+  "groupe": "CO-02",
+  "tag": "Lexique",
+  "composante": "Lexique (heure)",
+  "critere": "— (compréhension)",
+  "question": "À quelle heure part le bus ?",
+  "choix": [
+   "8 h 15",
+   "8 h 30",
+   "15 h 30",
+   "18 h 30"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-02",
+  "script": [
+   "Le bus numéro 15 part à 8 heures 30."
+  ],
+  "etiquette": ""
+ },
+ {
+  "id": "CO-03",
+  "n": 3,
+  "niveau": "A1",
+  "epreuve": "CO",
+  "groupe": "CO-03",
+  "tag": "Lexique",
+  "composante": "Lexique (prix)",
+  "critere": "— (compréhension)",
+  "question": "Combien coûte la baguette ?",
+  "choix": [
+   "1,20 €",
+   "2,10 €",
+   "1,02 €",
+   "12 €"
+  ],
+  "bonne": 0,
+  "t": "ecoute",
+  "audio": "CO-03",
+  "script": [
+   "Une baguette, s'il vous plaît.",
+   "Voilà. 1 euro 20."
+  ],
+  "etiquette": ""
+ },
+ {
+  "id": "CO-04",
+  "n": 4,
+  "niveau": "A1",
+  "epreuve": "CO",
+  "groupe": "CO-04",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Que faut-il faire ?",
+  "choix": [
+   "Fermer la porte",
+   "Ouvrir le livre",
+   "Écrire son nom",
+   "Écouter la radio"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-04",
+  "script": [
+   "Ouvrez votre livre page 12."
+  ],
+  "etiquette": ""
+ },
+ {
+  "id": "CO-05",
+  "n": 5,
+  "niveau": "A1",
+  "epreuve": "CO",
+  "groupe": "CO-05",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Où habite la personne ?",
+  "choix": [
+   "Au Maroc",
+   "À Paris",
+   "À Besançon",
+   "À Lyon"
+  ],
+  "bonne": 2,
+  "t": "ecoute",
+  "audio": "CO-05",
+  "script": [
+   "Je suis né au Maroc, mais j'habite à Besançon."
+  ],
+  "etiquette": ""
+ },
+ {
+  "id": "CO-06",
+  "n": 6,
+  "niveau": "A1",
+  "epreuve": "CO",
+  "groupe": "CO-06",
+  "tag": "Lexique",
+  "composante": "Lexique (localisation)",
+  "critere": "— (compréhension)",
+  "question": "Où est la pharmacie ?",
+  "choix": [
+   "À droite",
+   "À gauche",
+   "En face",
+   "Derrière"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-06",
+  "script": [
+   "La pharmacie est à gauche, après la boulangerie."
+  ],
+  "etiquette": "",
+  "pictos": [
+   "➡️",
+   "⬅️",
+   "⬆️",
+   "↩️"
+  ]
+ },
+ {
+  "id": "CO-07",
+  "n": 7,
+  "niveau": "A1",
+  "epreuve": "CO",
+  "groupe": "CO-07",
+  "tag": "Lexique",
+  "composante": "Lexique (jours)",
+  "critere": "— (compréhension)",
+  "question": "Quel jour est le rendez-vous ?",
+  "choix": [
+   "Lundi",
+   "Mardi",
+   "Mercredi",
+   "Jeudi"
+  ],
+  "bonne": 2,
+  "t": "ecoute",
+  "audio": "CO-07",
+  "script": [
+   "Aujourd'hui, nous sommes mardi. Le rendez-vous est demain."
+  ],
+  "etiquette": ""
+ },
+ {
+  "id": "CO-08",
+  "n": 8,
+  "niveau": "A1",
+  "epreuve": "CO",
+  "groupe": "CO-08",
+  "tag": "Lexique",
+  "composante": "Lexique (nombres)",
+  "critere": "— (compréhension)",
+  "question": "Quel est le numéro ?",
+  "choix": [
+   "06 45 78 12 30",
+   "06 54 78 12 30",
+   "06 45 87 12 30",
+   "06 45 78 20 30"
+  ],
+  "bonne": 0,
+  "t": "ecoute",
+  "audio": "CO-08",
+  "script": [
+   "Mon numéro de téléphone, c'est le 06 45 78 12 30."
+  ],
+  "etiquette": ""
+ },
+ {
+  "id": "CO-09",
+  "n": 9,
+  "niveau": "A1",
+  "epreuve": "CO",
+  "groupe": "CO-09",
+  "tag": "Lexique",
+  "composante": "Lexique (famille)",
+  "critere": "— (compréhension)",
+  "question": "Combien d'enfants a la personne ?",
+  "choix": [
+   "Un",
+   "Deux",
+   "Trois",
+   "Quatre"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-09",
+  "script": [
+   "J'ai deux enfants : un garçon et une fille."
+  ],
+  "etiquette": ""
+ },
+ {
+  "id": "CO-10",
+  "n": 10,
+  "niveau": "A1",
+  "epreuve": "CO",
+  "groupe": "CO-10",
+  "tag": "Lexique",
+  "composante": "Lexique (météo)",
+  "critere": "— (compréhension)",
+  "question": "Quel temps fait-il ?",
+  "choix": [
+   "Il fait soleil",
+   "Il pleut",
+   "Il neige",
+   "Il fait chaud"
+  ],
+  "bonne": 2,
+  "t": "ecoute",
+  "audio": "CO-10",
+  "script": [
+   "Il fait froid aujourd'hui. Il neige."
+  ],
+  "etiquette": "",
+  "pictos": [
+   "☀️",
+   "🌧️",
+   "❄️",
+   "🥵"
+  ]
+ },
+ {
+  "id": "CO-11",
+  "n": 11,
+  "niveau": "A1",
+  "epreuve": "CO",
+  "groupe": "CO-11",
+  "tag": "Sociolinguistique",
+  "composante": "Sociolinguistique",
+  "critere": "— (compréhension)",
+  "question": "À quel moment de la journée parle cette personne ?",
+  "choix": [
+   "Le matin",
+   "Le soir",
+   "À midi",
+   "On ne sait pas"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-11",
+  "script": [
+   "Bonsoir madame, comment allez-vous ?"
+  ],
+  "etiquette": ""
+ },
+ {
+  "id": "CO-12",
+  "n": 12,
+  "niveau": "A1",
+  "epreuve": "CO",
+  "groupe": "CO-12",
+  "tag": "Lexique",
+  "composante": "Lexique (heure)",
+  "critere": "— (compréhension)",
+  "question": "À quelle heure finit le cours ?",
+  "choix": [
+   "9 h",
+   "10 h",
+   "12 h",
+   "14 h"
+  ],
+  "bonne": 2,
+  "t": "ecoute",
+  "audio": "CO-12",
+  "script": [
+   "Le cours de français commence à 9 heures et finit à midi."
+  ],
+  "etiquette": ""
+ },
+ {
+  "id": "CO-13",
+  "n": 13,
+  "niveau": "A1",
+  "epreuve": "CO",
+  "groupe": "CO-13",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Le train part de quelle voie ?",
+  "choix": [
+   "Voie 2",
+   "Voie 3",
+   "Voie 13",
+   "Voie 30"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-13",
+  "script": [
+   "Attention, le train pour Dijon part voie 3."
+  ],
+  "etiquette": "Annonce en gare"
+ },
+ {
+  "id": "CO-14",
+  "n": 14,
+  "niveau": "A1",
+  "epreuve": "CO",
+  "groupe": "CO-14",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Qu'est-ce que la personne veut boire ?",
+  "choix": [
+   "Du thé",
+   "Du café",
+   "De l'eau",
+   "Du jus"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-14",
+  "script": [
+   "Vous voulez du thé ou du café ?",
+   "Un café, merci."
+  ],
+  "etiquette": ""
+ },
+ {
+  "id": "CO-15",
+  "n": 15,
+  "niveau": "A1",
+  "epreuve": "CO",
+  "groupe": "CO-15",
+  "tag": "Lexique",
+  "composante": "Lexique (métiers)",
+  "critere": "— (compréhension)",
+  "question": "Quel est son métier ?",
+  "choix": [
+   "Serveur",
+   "Boulanger",
+   "Cuisinier",
+   "Vendeur"
+  ],
+  "bonne": 2,
+  "t": "ecoute",
+  "audio": "CO-15",
+  "script": [
+   "Je travaille dans un restaurant. Je suis cuisinier."
+  ],
+  "etiquette": ""
+ },
+ {
+  "id": "CO-16",
+  "n": 16,
+  "niveau": "A1",
+  "epreuve": "CO",
+  "groupe": "CO-16",
+  "tag": "Lexique",
+  "composante": "Lexique (prix)",
+  "critere": "— (compréhension)",
+  "question": "Combien coûtent les pommes ?",
+  "choix": [
+   "2 € le kilo",
+   "12 € le kilo",
+   "2 € la pomme",
+   "20 € le kilo"
+  ],
+  "bonne": 0,
+  "t": "ecoute",
+  "audio": "CO-16",
+  "script": [
+   "Les pommes sont à 2 euros le kilo."
+  ],
+  "etiquette": ""
+ },
+ {
+  "id": "CO-17",
+  "n": 17,
+  "niveau": "A1",
+  "epreuve": "CO",
+  "groupe": "CO-17",
+  "tag": "Lexique",
+  "composante": "Lexique (description)",
+  "critere": "— (compréhension)",
+  "question": "Comment sont les cheveux d'Amina ?",
+  "choix": [
+   "Courts et noirs",
+   "Longs et noirs",
+   "Longs et blonds",
+   "Courts et blonds"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-17",
+  "script": [
+   "Ma sœur s'appelle Amina. Elle a les cheveux longs et noirs."
+  ],
+  "etiquette": ""
+ },
+ {
+  "id": "CO-18",
+  "n": 18,
+  "niveau": "A2",
+  "epreuve": "CO",
+  "groupe": "CO-18",
+  "tag": "—",
+  "composante": "Compréhension globale",
+  "critere": "— (compréhension)",
+  "question": "Qui appelle ?",
+  "choix": [
+   "La pharmacie",
+   "Le cabinet médical",
+   "L'école",
+   "La mairie"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-19",
+  "script": [
+   "Bonjour, ici le cabinet du docteur Martin. Votre rendez-vous de jeudi 14 heures est annulé. Le docteur vous propose vendredi à 10 heures. Merci de rappeler le 03 84 56 22 10 pour confirmer."
+  ],
+  "etiquette": "Message sur votre répondeur"
+ },
+ {
+  "id": "CO-19",
+  "n": 19,
+  "niveau": "A2",
+  "epreuve": "CO",
+  "groupe": "CO-18",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Quel rendez-vous est annulé ?",
+  "choix": [
+   "Jeudi à 14 h",
+   "Jeudi à 10 h",
+   "Vendredi à 14 h",
+   "Vendredi à 10 h"
+  ],
+  "bonne": 0,
+  "t": "ecoute",
+  "audio": "CO-19",
+  "script": [
+   "Bonjour, ici le cabinet du docteur Martin. Votre rendez-vous de jeudi 14 heures est annulé. Le docteur vous propose vendredi à 10 heures. Merci de rappeler le 03 84 56 22 10 pour confirmer."
+  ],
+  "etiquette": "Message sur votre répondeur"
+ },
+ {
+  "id": "CO-20",
+  "n": 20,
+  "niveau": "A2",
+  "epreuve": "CO",
+  "groupe": "CO-18",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Que doit faire la personne ?",
+  "choix": [
+   "Aller chez le docteur jeudi",
+   "Rappeler pour confirmer",
+   "Envoyer un courriel",
+   "Rien"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-19",
+  "script": [
+   "Bonjour, ici le cabinet du docteur Martin. Votre rendez-vous de jeudi 14 heures est annulé. Le docteur vous propose vendredi à 10 heures. Merci de rappeler le 03 84 56 22 10 pour confirmer."
+  ],
+  "etiquette": "Message sur votre répondeur"
+ },
+ {
+  "id": "CO-21",
+  "n": 21,
+  "niveau": "A2",
+  "epreuve": "CO",
+  "groupe": "CO-21",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Quels produits sont en promotion ?",
+  "choix": [
+   "La viande",
+   "Les fruits et légumes",
+   "Les vêtements",
+   "Les boissons"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-21",
+  "script": [
+   "Chers clients, cette semaine, profitez de nos promotions : les fruits et légumes à moins 30 %. Attention, ce samedi, le magasin fermera exceptionnellement à 19 heures. Bonne journée !"
+  ],
+  "etiquette": "Annonce dans un magasin"
+ },
+ {
+  "id": "CO-22",
+  "n": 22,
+  "niveau": "A2",
+  "epreuve": "CO",
+  "groupe": "CO-21",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Que se passe-t-il ce samedi ?",
+  "choix": [
+   "Le magasin est fermé toute la journée",
+   "Le magasin ferme à 19 h",
+   "Le magasin ouvre à 19 h",
+   "Le magasin ferme à 21 h"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-21",
+  "script": [
+   "Chers clients, cette semaine, profitez de nos promotions : les fruits et légumes à moins 30 %. Attention, ce samedi, le magasin fermera exceptionnellement à 19 heures. Bonne journée !"
+  ],
+  "etiquette": "Annonce dans un magasin"
+ },
+ {
+  "id": "CO-23",
+  "n": 23,
+  "niveau": "A2",
+  "epreuve": "CO",
+  "groupe": "CO-23",
+  "tag": "Lexique",
+  "composante": "Lexique (logement)",
+  "critere": "— (compréhension)",
+  "question": "Combien de pièces a l'appartement ?",
+  "choix": [
+   "Une",
+   "Deux",
+   "Trois",
+   "Cinq"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-23",
+  "script": [
+   "Bonjour, j'appelle pour l'appartement à louer. Il est toujours disponible ?",
+   "Oui. C'est un deux-pièces au troisième étage, sans ascenseur. Le loyer est de 520 euros, charges comprises.",
+   "Je peux le visiter quand ?",
+   "Demain à 18 heures, ça vous va ?",
+   "Parfait, merci."
+  ],
+  "etiquette": "Appel pour un logement"
+ },
+ {
+  "id": "CO-24",
+  "n": 24,
+  "niveau": "A2",
+  "epreuve": "CO",
+  "groupe": "CO-23",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Qu'est-ce qui est vrai ?",
+  "choix": [
+   "Il y a un ascenseur",
+   "Il n'y a pas d'ascenseur",
+   "L'appartement est au rez-de-chaussée",
+   "L'appartement est au 5e étage"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-23",
+  "script": [
+   "Bonjour, j'appelle pour l'appartement à louer. Il est toujours disponible ?",
+   "Oui. C'est un deux-pièces au troisième étage, sans ascenseur. Le loyer est de 520 euros, charges comprises.",
+   "Je peux le visiter quand ?",
+   "Demain à 18 heures, ça vous va ?",
+   "Parfait, merci."
+  ],
+  "etiquette": "Appel pour un logement"
+ },
+ {
+  "id": "CO-25",
+  "n": 25,
+  "niveau": "A2",
+  "epreuve": "CO",
+  "groupe": "CO-23",
+  "tag": "Lexique",
+  "composante": "Lexique (logement)",
+  "critere": "— (compréhension)",
+  "question": "Combien coûte le loyer ?",
+  "choix": [
+   "520 € sans les charges",
+   "520 € charges comprises",
+   "250 € charges comprises",
+   "502 € sans les charges"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-23",
+  "script": [
+   "Bonjour, j'appelle pour l'appartement à louer. Il est toujours disponible ?",
+   "Oui. C'est un deux-pièces au troisième étage, sans ascenseur. Le loyer est de 520 euros, charges comprises.",
+   "Je peux le visiter quand ?",
+   "Demain à 18 heures, ça vous va ?",
+   "Parfait, merci."
+  ],
+  "etiquette": "Appel pour un logement"
+ },
+ {
+  "id": "CO-26",
+  "n": 26,
+  "niveau": "A2",
+  "epreuve": "CO",
+  "groupe": "CO-23",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Quand a lieu la visite ?",
+  "choix": [
+   "Aujourd'hui à 18 h",
+   "Demain à 18 h",
+   "Demain à 8 h",
+   "Samedi"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-23",
+  "script": [
+   "Bonjour, j'appelle pour l'appartement à louer. Il est toujours disponible ?",
+   "Oui. C'est un deux-pièces au troisième étage, sans ascenseur. Le loyer est de 520 euros, charges comprises.",
+   "Je peux le visiter quand ?",
+   "Demain à 18 heures, ça vous va ?",
+   "Parfait, merci."
+  ],
+  "etiquette": "Appel pour un logement"
+ },
+ {
+  "id": "CO-27",
+  "n": 27,
+  "niveau": "A2",
+  "epreuve": "CO",
+  "groupe": "CO-27",
+  "tag": "—",
+  "composante": "Compréhension globale",
+  "critere": "— (compréhension)",
+  "question": "Pourquoi la collègue ne vient-elle pas au travail demain ?",
+  "choix": [
+   "Elle est malade",
+   "Son fils est malade",
+   "Elle part en vacances",
+   "Elle a un rendez-vous"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-27",
+  "script": [
+   "Salut Paulo ! Demain, je ne peux pas venir au travail, mon fils est malade. Tu peux me remplacer le matin ? Si tu veux, je te remplace lundi."
+  ],
+  "etiquette": "Message d'une collègue"
+ },
+ {
+  "id": "CO-28",
+  "n": 28,
+  "niveau": "A2",
+  "epreuve": "CO",
+  "groupe": "CO-27",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Que propose-t-elle à Paulo ?",
+  "choix": [
+   "De le payer",
+   "De le remplacer lundi",
+   "De l'inviter au restaurant",
+   "De changer d'équipe"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-27",
+  "script": [
+   "Salut Paulo ! Demain, je ne peux pas venir au travail, mon fils est malade. Tu peux me remplacer le matin ? Si tu veux, je te remplace lundi."
+  ],
+  "etiquette": "Message d'une collègue"
+ },
+ {
+  "id": "CO-29",
+  "n": 29,
+  "niveau": "A2",
+  "epreuve": "CO",
+  "groupe": "CO-29",
+  "tag": "—",
+  "composante": "Compréhension globale",
+  "critere": "— (compréhension)",
+  "question": "À qui s'adresse ce message ?",
+  "choix": [
+   "Aux élèves",
+   "Aux parents",
+   "Aux enseignants",
+   "Au directeur"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-29",
+  "script": [
+   "Bonjour à tous les parents. La réunion de rentrée aura lieu le mardi 15 septembre à 17 h 30 dans la classe de votre enfant. Pensez à apporter l'attestation d'assurance scolaire."
+  ],
+  "etiquette": "Annonce de l'école"
+ },
+ {
+  "id": "CO-30",
+  "n": 30,
+  "niveau": "A2",
+  "epreuve": "CO",
+  "groupe": "CO-29",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Que faut-il apporter à la réunion ?",
+  "choix": [
+   "Une photo",
+   "L'attestation d'assurance scolaire",
+   "Un cahier",
+   "De l'argent"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-29",
+  "script": [
+   "Bonjour à tous les parents. La réunion de rentrée aura lieu le mardi 15 septembre à 17 h 30 dans la classe de votre enfant. Pensez à apporter l'attestation d'assurance scolaire."
+  ],
+  "etiquette": "Annonce de l'école"
+ },
+ {
+  "id": "CO-31",
+  "n": 31,
+  "niveau": "A2",
+  "epreuve": "CO",
+  "groupe": "CO-31",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Quel temps fera-t-il demain matin ?",
+  "choix": [
+   "Du soleil",
+   "De la pluie",
+   "De la neige",
+   "Du vent"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-31",
+  "script": [
+   "Demain matin, il va pleuvoir dans tout l'est de la France. L'après-midi, le soleil revient, avec des températures autour de 18 degrés."
+  ],
+  "etiquette": "La météo à la radio"
+ },
+ {
+  "id": "CO-32",
+  "n": 32,
+  "niveau": "A2",
+  "epreuve": "CO",
+  "groupe": "CO-31",
+  "tag": "Lexique",
+  "composante": "Lexique (nombres)",
+  "critere": "— (compréhension)",
+  "question": "Quelle température est annoncée l'après-midi ?",
+  "choix": [
+   "8 degrés",
+   "16 degrés",
+   "18 degrés",
+   "28 degrés"
+  ],
+  "bonne": 2,
+  "t": "ecoute",
+  "audio": "CO-31",
+  "script": [
+   "Demain matin, il va pleuvoir dans tout l'est de la France. L'après-midi, le soleil revient, avec des températures autour de 18 degrés."
+  ],
+  "etiquette": "La météo à la radio"
+ },
+ {
+  "id": "CO-33",
+  "n": 33,
+  "niveau": "A2",
+  "epreuve": "CO",
+  "groupe": "CO-33",
+  "tag": "Grammaire",
+  "composante": "Grammaire (repérage du temps)",
+  "critere": "— (compréhension)",
+  "question": "Quand la personne est-elle allée à Lyon ?",
+  "choix": [
+   "Ce week-end",
+   "Le week-end dernier",
+   "Le week-end prochain",
+   "Pendant les vacances d'été"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-33",
+  "script": [
+   "Le week-end dernier, je suis allée chez mes cousins à Lyon. Nous avons visité le vieux quartier et, le soir, on a mangé au restaurant."
+  ],
+  "etiquette": "Un récit"
+ },
+ {
+  "id": "CO-34",
+  "n": 34,
+  "niveau": "A2",
+  "epreuve": "CO",
+  "groupe": "CO-34",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Comment aller à la gare ?",
+  "choix": [
+   "Première rue à gauche, puis tout droit",
+   "Première rue à droite, puis tout droit",
+   "Tout droit, puis à droite",
+   "Prendre le bus"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-34",
+  "script": [
+   "Excusez-moi, pour aller à la gare, c'est loin ?",
+   "Non, c'est à cinq minutes à pied. Prenez la première rue à droite, puis continuez tout droit."
+  ],
+  "etiquette": "Dans la rue"
+ },
+ {
+  "id": "CO-35",
+  "n": 35,
+  "niveau": "B1",
+  "epreuve": "CO",
+  "groupe": "CO-35",
+  "tag": "—",
+  "composante": "Compréhension globale",
+  "critere": "— (compréhension)",
+  "question": "De quoi parle cette information ?",
+  "choix": [
+   "D'une nouvelle ligne de bus",
+   "D'un service de vélos en libre-service",
+   "De travaux à la gare",
+   "De la fermeture de l'hôpital"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-35",
+  "script": [
+   "La ville de Vesoul lance un nouveau service de vélos en libre-service. À partir du 1er octobre, une vingtaine de stations seront installées près de la gare, de l'hôpital et dans les principaux quartiers. L'abonnement annuel coûtera 30 euros, mais il sera gratuit pour les étudiants et les demandeurs d'emploi. Selon le maire, l'objectif est de réduire la circulation en centre-ville."
+  ],
+  "etiquette": "À la radio"
+ },
+ {
+  "id": "CO-36",
+  "n": 36,
+  "niveau": "B1",
+  "epreuve": "CO",
+  "groupe": "CO-35",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Pour qui l'abonnement sera-t-il gratuit ?",
+  "choix": [
+   "Pour les retraités",
+   "Pour les enfants",
+   "Pour les étudiants et les demandeurs d'emploi",
+   "Pour tout le monde le premier mois"
+  ],
+  "bonne": 2,
+  "t": "ecoute",
+  "audio": "CO-35",
+  "script": [
+   "La ville de Vesoul lance un nouveau service de vélos en libre-service. À partir du 1er octobre, une vingtaine de stations seront installées près de la gare, de l'hôpital et dans les principaux quartiers. L'abonnement annuel coûtera 30 euros, mais il sera gratuit pour les étudiants et les demandeurs d'emploi. Selon le maire, l'objectif est de réduire la circulation en centre-ville."
+  ],
+  "etiquette": "À la radio"
+ },
+ {
+  "id": "CO-37",
+  "n": 37,
+  "niveau": "B1",
+  "epreuve": "CO",
+  "groupe": "CO-35",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Quel est l'objectif de ce projet, selon le maire ?",
+  "choix": [
+   "Réduire la circulation en centre-ville",
+   "Attirer des touristes",
+   "Créer des emplois",
+   "Financer l'hôpital"
+  ],
+  "bonne": 0,
+  "t": "ecoute",
+  "audio": "CO-35",
+  "script": [
+   "La ville de Vesoul lance un nouveau service de vélos en libre-service. À partir du 1er octobre, une vingtaine de stations seront installées près de la gare, de l'hôpital et dans les principaux quartiers. L'abonnement annuel coûtera 30 euros, mais il sera gratuit pour les étudiants et les demandeurs d'emploi. Selon le maire, l'objectif est de réduire la circulation en centre-ville."
+  ],
+  "etiquette": "À la radio"
+ },
+ {
+  "id": "CO-38",
+  "n": 38,
+  "niveau": "B1",
+  "epreuve": "CO",
+  "groupe": "CO-38",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Quelle expérience la candidate a-t-elle en France ?",
+  "choix": [
+   "Trois ans comme aide-soignante",
+   "Un stage de six mois en maison de retraite",
+   "Aucune",
+   "Un CDD à l'hôpital"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-38",
+  "script": [
+   "Alors, parlez-moi de votre expérience.",
+   "J'ai travaillé trois ans comme aide-soignante dans mon pays, puis j'ai fait un stage de six mois dans une maison de retraite à Besançon.",
+   "Et pourquoi voulez-vous ce poste ?",
+   "J'aime m'occuper des personnes âgées, et ici, je pourrais travailler à temps plein, ce qui n'était pas le cas pendant mon stage.",
+   "Vous êtes disponible le week-end ?",
+   "Oui, sans problème. Par contre, je préférerais ne pas travailler de nuit, à cause de mes enfants."
+  ],
+  "etiquette": "Un entretien d'embauche"
+ },
+ {
+  "id": "CO-39",
+  "n": 39,
+  "niveau": "B1",
+  "epreuve": "CO",
+  "groupe": "CO-38",
+  "tag": "—",
+  "composante": "Inférence",
+  "critere": "— (compréhension)",
+  "question": "Pourquoi la candidate veut-elle ce poste ?",
+  "choix": [
+   "Parce qu'il est mieux payé",
+   "Parce qu'il est à temps plein",
+   "Parce qu'il est près de chez elle",
+   "Parce qu'elle aime travailler la nuit"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-38",
+  "script": [
+   "Alors, parlez-moi de votre expérience.",
+   "J'ai travaillé trois ans comme aide-soignante dans mon pays, puis j'ai fait un stage de six mois dans une maison de retraite à Besançon.",
+   "Et pourquoi voulez-vous ce poste ?",
+   "J'aime m'occuper des personnes âgées, et ici, je pourrais travailler à temps plein, ce qui n'était pas le cas pendant mon stage.",
+   "Vous êtes disponible le week-end ?",
+   "Oui, sans problème. Par contre, je préférerais ne pas travailler de nuit, à cause de mes enfants."
+  ],
+  "etiquette": "Un entretien d'embauche"
+ },
+ {
+  "id": "CO-40",
+  "n": 40,
+  "niveau": "B1",
+  "epreuve": "CO",
+  "groupe": "CO-38",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Quelle contrainte la candidate exprime-t-elle ?",
+  "choix": [
+   "Elle ne veut pas travailler le week-end",
+   "Elle préfère ne pas travailler de nuit",
+   "Elle ne peut pas commencer le matin",
+   "Elle ne veut pas d'un temps plein"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-38",
+  "script": [
+   "Alors, parlez-moi de votre expérience.",
+   "J'ai travaillé trois ans comme aide-soignante dans mon pays, puis j'ai fait un stage de six mois dans une maison de retraite à Besançon.",
+   "Et pourquoi voulez-vous ce poste ?",
+   "J'aime m'occuper des personnes âgées, et ici, je pourrais travailler à temps plein, ce qui n'était pas le cas pendant mon stage.",
+   "Vous êtes disponible le week-end ?",
+   "Oui, sans problème. Par contre, je préférerais ne pas travailler de nuit, à cause de mes enfants."
+  ],
+  "etiquette": "Un entretien d'embauche"
+ },
+ {
+  "id": "CO-41",
+  "n": 41,
+  "niveau": "B1",
+  "epreuve": "CO",
+  "groupe": "CO-41",
+  "tag": "—",
+  "composante": "Opinion",
+  "critere": "— (compréhension)",
+  "question": "Que pense Ahmed de la fermeture de l'épicerie ?",
+  "choix": [
+   "Il est content",
+   "Il la regrette",
+   "Ça lui est égal",
+   "Il pense que c'est une rumeur"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-41",
+  "script": [
+   "Tu as vu ? Ils vont fermer la petite épicerie du quartier.",
+   "Oui, c'est dommage. Moi, j'y allais tous les jours. Au supermarché, c'est moins cher, d'accord, mais on ne connaît personne.",
+   "C'est vrai, mais pour les jeunes, le supermarché est plus pratique : il est ouvert jusqu'à 21 heures.",
+   "Peut-être, mais pour les personnes âgées qui n'ont pas de voiture, ça va être compliqué."
+  ],
+  "etiquette": "Discussion entre voisins"
+ },
+ {
+  "id": "CO-42",
+  "n": 42,
+  "niveau": "B1",
+  "epreuve": "CO",
+  "groupe": "CO-41",
+  "tag": "—",
+  "composante": "Opinion",
+  "critere": "— (compréhension)",
+  "question": "Quel argument Sophie donne-t-elle en faveur du supermarché ?",
+  "choix": [
+   "Il est moins cher",
+   "Il est ouvert plus tard",
+   "Il est plus proche",
+   "Ses produits sont meilleurs"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-41",
+  "script": [
+   "Tu as vu ? Ils vont fermer la petite épicerie du quartier.",
+   "Oui, c'est dommage. Moi, j'y allais tous les jours. Au supermarché, c'est moins cher, d'accord, mais on ne connaît personne.",
+   "C'est vrai, mais pour les jeunes, le supermarché est plus pratique : il est ouvert jusqu'à 21 heures.",
+   "Peut-être, mais pour les personnes âgées qui n'ont pas de voiture, ça va être compliqué."
+  ],
+  "etiquette": "Discussion entre voisins"
+ },
+ {
+  "id": "CO-43",
+  "n": 43,
+  "niveau": "B1",
+  "epreuve": "CO",
+  "groupe": "CO-41",
+  "tag": "—",
+  "composante": "Opinion",
+  "critere": "— (compréhension)",
+  "question": "Quelle inquiétude Ahmed exprime-t-il à la fin ?",
+  "choix": [
+   "L'augmentation des prix",
+   "La situation des personnes âgées sans voiture",
+   "La perte d'emplois",
+   "Le bruit dans le quartier"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-41",
+  "script": [
+   "Tu as vu ? Ils vont fermer la petite épicerie du quartier.",
+   "Oui, c'est dommage. Moi, j'y allais tous les jours. Au supermarché, c'est moins cher, d'accord, mais on ne connaît personne.",
+   "C'est vrai, mais pour les jeunes, le supermarché est plus pratique : il est ouvert jusqu'à 21 heures.",
+   "Peut-être, mais pour les personnes âgées qui n'ont pas de voiture, ça va être compliqué."
+  ],
+  "etiquette": "Discussion entre voisins"
+ },
+ {
+  "id": "CO-44",
+  "n": 44,
+  "niveau": "B1",
+  "epreuve": "CO",
+  "groupe": "CO-44",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Si l'alarme sonne, que faut-il faire en premier ?",
+  "choix": [
+   "Appeler les secours",
+   "Arrêter sa machine",
+   "Prendre l'ascenseur",
+   "Prévenir le chef d'équipe"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-44",
+  "script": [
+   "Avant de commencer, quelques consignes. Les chaussures de sécurité sont obligatoires dans l'atelier. Si vous entendez l'alarme, arrêtez immédiatement votre machine et rejoignez le point de rassemblement, sur le parking. N'utilisez jamais l'ascenseur. En cas d'accident, prévenez votre chef d'équipe avant d'appeler les secours."
+  ],
+  "etiquette": "Consignes de sécurité"
+ },
+ {
+  "id": "CO-45",
+  "n": 45,
+  "niveau": "B1",
+  "epreuve": "CO",
+  "groupe": "CO-44",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Où se trouve le point de rassemblement ?",
+  "choix": [
+   "Dans l'atelier",
+   "Sur le parking",
+   "À l'accueil",
+   "À la cafétéria"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-44",
+  "script": [
+   "Avant de commencer, quelques consignes. Les chaussures de sécurité sont obligatoires dans l'atelier. Si vous entendez l'alarme, arrêtez immédiatement votre machine et rejoignez le point de rassemblement, sur le parking. N'utilisez jamais l'ascenseur. En cas d'accident, prévenez votre chef d'équipe avant d'appeler les secours."
+  ],
+  "etiquette": "Consignes de sécurité"
+ },
+ {
+  "id": "CO-46",
+  "n": 46,
+  "niveau": "B1",
+  "epreuve": "CO",
+  "groupe": "CO-44",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "En cas d'accident, que faut-il faire ?",
+  "choix": [
+   "Appeler les secours, puis le chef d'équipe",
+   "Prévenir le chef d'équipe avant d'appeler les secours",
+   "Quitter l'atelier",
+   "Remplir un formulaire"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-44",
+  "script": [
+   "Avant de commencer, quelques consignes. Les chaussures de sécurité sont obligatoires dans l'atelier. Si vous entendez l'alarme, arrêtez immédiatement votre machine et rejoignez le point de rassemblement, sur le parking. N'utilisez jamais l'ascenseur. En cas d'accident, prévenez votre chef d'équipe avant d'appeler les secours."
+  ],
+  "etiquette": "Consignes de sécurité"
+ },
+ {
+  "id": "CO-47",
+  "n": 47,
+  "niveau": "B1",
+  "epreuve": "CO",
+  "groupe": "CO-47",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Depuis combien de temps cet homme vit-il en France ?",
+  "choix": [
+   "Six mois",
+   "Un an",
+   "Deux ans",
+   "Cinq ans"
+  ],
+  "bonne": 2,
+  "t": "ecoute",
+  "audio": "CO-47",
+  "script": [
+   "Quand je suis arrivé en France, il y a deux ans, je ne parlais pas du tout français. Au début, c'était vraiment difficile : je ne comprenais pas les courriers administratifs et j'avais peur de téléphoner. Grâce aux cours, et surtout grâce à mon club de football, j'ai fait beaucoup de progrès. Aujourd'hui, je comprends presque tout, même si j'ai encore du mal avec l'écrit."
+  ],
+  "etiquette": "Un témoignage"
+ },
+ {
+  "id": "CO-48",
+  "n": 48,
+  "niveau": "B1",
+  "epreuve": "CO",
+  "groupe": "CO-47",
+  "tag": "—",
+  "composante": "Inférence",
+  "critere": "— (compréhension)",
+  "question": "Qu'est-ce qui l'a le plus aidé à progresser, selon lui ?",
+  "choix": [
+   "La télévision",
+   "Son club de football",
+   "Ses voisins",
+   "Son travail"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-47",
+  "script": [
+   "Quand je suis arrivé en France, il y a deux ans, je ne parlais pas du tout français. Au début, c'était vraiment difficile : je ne comprenais pas les courriers administratifs et j'avais peur de téléphoner. Grâce aux cours, et surtout grâce à mon club de football, j'ai fait beaucoup de progrès. Aujourd'hui, je comprends presque tout, même si j'ai encore du mal avec l'écrit."
+  ],
+  "etiquette": "Un témoignage"
+ },
+ {
+  "id": "CO-49",
+  "n": 49,
+  "niveau": "B1",
+  "epreuve": "CO",
+  "groupe": "CO-47",
+  "tag": "—",
+  "composante": "Information précise",
+  "critere": "— (compréhension)",
+  "question": "Quelle difficulté a-t-il encore aujourd'hui ?",
+  "choix": [
+   "Comprendre les gens à l'oral",
+   "Téléphoner",
+   "Écrire",
+   "Lire les panneaux"
+  ],
+  "bonne": 2,
+  "t": "ecoute",
+  "audio": "CO-47",
+  "script": [
+   "Quand je suis arrivé en France, il y a deux ans, je ne parlais pas du tout français. Au début, c'était vraiment difficile : je ne comprenais pas les courriers administratifs et j'avais peur de téléphoner. Grâce aux cours, et surtout grâce à mon club de football, j'ai fait beaucoup de progrès. Aujourd'hui, je comprends presque tout, même si j'ai encore du mal avec l'écrit."
+  ],
+  "etiquette": "Un témoignage"
+ },
+ {
+  "id": "CO-50",
+  "n": 50,
+  "niveau": "B1",
+  "epreuve": "CO",
+  "groupe": "CO-50",
+  "tag": "—",
+  "composante": "Inférence (implicite)",
+  "critere": "— (compréhension)",
+  "question": "Que répond la personne invitée ?",
+  "choix": [
+   "Elle accepte",
+   "Elle refuse poliment",
+   "Elle propose d'y aller demain",
+   "Elle ne sait pas encore"
+  ],
+  "bonne": 1,
+  "t": "ecoute",
+  "audio": "CO-50",
+  "script": [
+   "Tu viens au cinéma ce soir ?",
+   "Ce soir… J'ai une réunion qui finit tard, et demain je me lève à cinq heures.",
+   "Ah, je vois. Une autre fois, alors !"
+  ],
+  "etiquette": "Deux amis parlent"
+ },
+ {
+  "id": "EE-01",
+  "n": 1,
+  "niveau": "A1",
+  "epreuve": "EE",
+  "groupe": "EE-01",
+  "tag": "Lexique",
+  "composante": "Lexique",
+  "critere": "Étendue",
+  "question": "Que devez-vous écrire ?",
+  "choix": [
+   "12/03/1990",
+   "Besançon",
+   "06 12 34 56 78",
+   "Française"
+  ],
+  "bonne": 0,
+  "t": "enonce",
+  "avant": "Sur un formulaire, vous lisez :",
+  "citation": "Date de naissance : ______",
+  "apres": ""
+ },
+ {
+  "id": "EE-02",
+  "n": 2,
+  "niveau": "A1",
+  "epreuve": "EE",
+  "groupe": "EE-02",
+  "tag": "Lexique",
+  "composante": "Lexique",
+  "critere": "Étendue",
+  "question": "Que devez-vous écrire ?",
+  "choix": [
+   "Maroc",
+   "Marocaine",
+   "Rabat",
+   "Arabe"
+  ],
+  "bonne": 1,
+  "t": "enonce",
+  "avant": "Sur un formulaire, vous lisez :",
+  "citation": "Nationalité : ______",
+  "apres": "Vous êtes née au Maroc et vous êtes marocaine."
+ },
+ {
+  "id": "EE-03",
+  "n": 3,
+  "niveau": "A1",
+  "epreuve": "EE",
+  "groupe": "EE-03",
+  "tag": "Grammaire",
+  "composante": "Grammaire",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "m'appelle",
+   "appelle",
+   "s'appelle",
+   "t'appelles"
+  ],
+  "bonne": 0,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "Je ______ Mariam.",
+  "indice": ""
+ },
+ {
+  "id": "EE-04",
+  "n": 4,
+  "niveau": "A1",
+  "epreuve": "EE",
+  "groupe": "EE-04",
+  "tag": "Grammaire",
+  "composante": "Grammaire",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "suis",
+   "ai",
+   "a",
+   "es"
+  ],
+  "bonne": 1,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "J'______ 25 ans.",
+  "indice": ""
+ },
+ {
+  "id": "EE-05",
+  "n": 5,
+  "niveau": "A1",
+  "epreuve": "EE",
+  "groupe": "EE-05",
+  "tag": "Grammaire",
+  "composante": "Grammaire",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "habite",
+   "habitons",
+   "habitez",
+   "habitent"
+  ],
+  "bonne": 1,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "Nous ______ à Vesoul.",
+  "indice": "(habiter)"
+ },
+ {
+  "id": "EE-06",
+  "n": 6,
+  "niveau": "A1",
+  "epreuve": "EE",
+  "groupe": "EE-06",
+  "tag": "Orthographe",
+  "composante": "Orthographe",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "bonjour",
+   "bonjoure",
+   "bonjur",
+   "bojour"
+  ],
+  "bonne": 0,
+  "t": "enonce",
+  "avant": "Quel mot est bien écrit ?",
+  "citation": null,
+  "apres": ""
+ },
+ {
+  "id": "EE-07",
+  "n": 7,
+  "niveau": "A1",
+  "epreuve": "EE",
+  "groupe": "EE-07",
+  "tag": "Lexique",
+  "composante": "Lexique (nombres)",
+  "critere": "Étendue",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "cinq",
+   "cinquante",
+   "quinze",
+   "quatorze"
+  ],
+  "bonne": 2,
+  "t": "enonce",
+  "avant": "Comment écrit-on",
+  "citation": "15",
+  "apres": "en lettres ?"
+ },
+ {
+  "id": "EE-08",
+  "n": 8,
+  "niveau": "A1",
+  "epreuve": "EE",
+  "groupe": "EE-08",
+  "tag": "Sociolinguistique",
+  "composante": "Sociolinguistique",
+  "critere": "Étendue",
+  "question": "Quel mot choisissez-vous pour commencer ?",
+  "choix": [
+   "Salut !",
+   "Madame, Monsieur,",
+   "Veuillez agréer…",
+   "Cordialement,"
+  ],
+  "bonne": 0,
+  "t": "enonce",
+  "avant": "Vous écrivez un SMS à un ami.",
+  "citation": null,
+  "apres": ""
+ },
+ {
+  "id": "EE-09",
+  "n": 9,
+  "niveau": "A1",
+  "epreuve": "EE",
+  "groupe": "EE-09",
+  "tag": "Grammaire",
+  "composante": "Grammaire (prépositions)",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "à",
+   "en",
+   "au",
+   "aux"
+  ],
+  "bonne": 1,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "J'habite ______ France.",
+  "indice": ""
+ },
+ {
+  "id": "EE-10",
+  "n": 10,
+  "niveau": "A1",
+  "epreuve": "EE",
+  "groupe": "EE-10",
+  "tag": "Grammaire",
+  "composante": "Grammaire (articles)",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "le",
+   "la",
+   "les",
+   "une"
+  ],
+  "bonne": 0,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "J'aime ______ café.",
+  "indice": ""
+ },
+ {
+  "id": "EE-11",
+  "n": 11,
+  "niveau": "A1",
+  "epreuve": "EE",
+  "groupe": "EE-11",
+  "tag": "Grammaire",
+  "composante": "Grammaire (ordre des mots)",
+  "critere": "Cohérence",
+  "question": "Quelle phrase est correcte ?",
+  "choix": [
+   "Je content suis.",
+   "Suis je content.",
+   "Je suis content.",
+   "Content je suis."
+  ],
+  "bonne": 2,
+  "t": "mots",
+  "etiquette": "Remettez les mots dans l'ordre :",
+  "mots": [
+   "suis",
+   "je",
+   "content"
+  ]
+ },
+ {
+  "id": "EE-12",
+  "n": 12,
+  "niveau": "A1",
+  "epreuve": "EE",
+  "groupe": "EE-12",
+  "tag": "Orthographe",
+  "composante": "Orthographe (pluriel)",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "pomme",
+   "pommes",
+   "pommé",
+   "pommet"
+  ],
+  "bonne": 1,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "J'achète deux ______.",
+  "indice": ""
+ },
+ {
+  "id": "EE-13",
+  "n": 13,
+  "niveau": "A1",
+  "epreuve": "EE",
+  "groupe": "EE-13",
+  "tag": "Grammaire",
+  "composante": "Grammaire (accord adjectif)",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "gentil",
+   "gentille",
+   "gentils",
+   "gentilles"
+  ],
+  "bonne": 1,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "Ma voisine est très ______.",
+  "indice": ""
+ },
+ {
+  "id": "EE-18",
+  "n": 18,
+  "niveau": "A2",
+  "epreuve": "EE",
+  "groupe": "EE-18",
+  "tag": "Grammaire",
+  "composante": "Grammaire (passé composé)",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "sommes allés",
+   "avons allé",
+   "allons",
+   "sommes aller"
+  ],
+  "bonne": 0,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "Hier, nous ______ au marché.",
+  "indice": "(aller)"
+ },
+ {
+  "id": "EE-19",
+  "n": 19,
+  "niveau": "A2",
+  "epreuve": "EE",
+  "groupe": "EE-19",
+  "tag": "Grammaire",
+  "composante": "Grammaire (passé composé)",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "ai mangé",
+   "suis mangé",
+   "mange",
+   "mangerai"
+  ],
+  "bonne": 0,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "Samedi dernier, j'______ au restaurant.",
+  "indice": "(manger)"
+ },
+ {
+  "id": "EE-20",
+  "n": 20,
+  "niveau": "A2",
+  "epreuve": "EE",
+  "groupe": "EE-20",
+  "tag": "Grammaire",
+  "composante": "Grammaire (futur proche)",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "vais",
+   "va",
+   "suis",
+   "ai"
+  ],
+  "bonne": 0,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "Demain, je ______ appeler le médecin.",
+  "indice": ""
+ },
+ {
+  "id": "EE-21",
+  "n": 21,
+  "niveau": "A2",
+  "epreuve": "EE",
+  "groupe": "EE-21",
+  "tag": "Discours",
+  "composante": "Discours (connecteurs)",
+  "critere": "Cohérence",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "mais",
+   "parce que",
+   "et",
+   "alors"
+  ],
+  "bonne": 1,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "Je ne peux pas venir ______ je suis malade.",
+  "indice": ""
+ },
+ {
+  "id": "EE-22",
+  "n": 22,
+  "niveau": "A2",
+  "epreuve": "EE",
+  "groupe": "EE-22",
+  "tag": "Discours",
+  "composante": "Discours (connecteurs)",
+  "critere": "Cohérence",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "parce que",
+   "alors",
+   "mais",
+   "ou"
+  ],
+  "bonne": 1,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "Il pleut, ______ je prends mon parapluie.",
+  "indice": ""
+ },
+ {
+  "id": "EE-23",
+  "n": 23,
+  "niveau": "A2",
+  "epreuve": "EE",
+  "groupe": "EE-23",
+  "tag": "Sociolinguistique",
+  "composante": "Sociolinguistique",
+  "critere": "Étendue",
+  "question": "Comment commencez-vous ?",
+  "choix": [
+   "Salut prof !",
+   "Bonjour Madame,",
+   "Coucou,",
+   "Hé !"
+  ],
+  "bonne": 1,
+  "t": "enonce",
+  "avant": "Vous écrivez un courriel à votre formatrice.",
+  "citation": null,
+  "apres": ""
+ },
+ {
+  "id": "EE-24",
+  "n": 24,
+  "niveau": "A2",
+  "epreuve": "EE",
+  "groupe": "EE-24",
+  "tag": "Sociolinguistique",
+  "composante": "Sociolinguistique",
+  "critere": "Étendue",
+  "question": "Comment terminez-vous ?",
+  "choix": [
+   "Bisous",
+   "Cordialement",
+   "À plus !",
+   "Ciao"
+  ],
+  "bonne": 1,
+  "t": "enonce",
+  "avant": "Vous écrivez un courriel à la mairie.",
+  "citation": null,
+  "apres": ""
+ },
+ {
+  "id": "EE-25",
+  "n": 25,
+  "niveau": "A2",
+  "epreuve": "EE",
+  "groupe": "EE-25",
+  "tag": "Grammaire",
+  "composante": "Grammaire (pronoms COD)",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "le",
+   "la",
+   "lui",
+   "les"
+  ],
+  "bonne": 1,
+  "t": "enonce",
+  "avant": "",
+  "citation": "Tu connais Marie ? — Oui, je ______ connais.",
+  "apres": ""
+ },
+ {
+  "id": "EE-26",
+  "n": 26,
+  "niveau": "A2",
+  "epreuve": "EE",
+  "groupe": "EE-26",
+  "tag": "Grammaire",
+  "composante": "Grammaire (comparatif)",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "plus… que",
+   "plus… de",
+   "très… que",
+   "autant… de"
+  ],
+  "bonne": 0,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "Le train est ______ rapide ______ le bus.",
+  "indice": ""
+ },
+ {
+  "id": "EE-27",
+  "n": 27,
+  "niveau": "A2",
+  "epreuve": "EE",
+  "groupe": "EE-27",
+  "tag": "Grammaire",
+  "composante": "Grammaire (quantité)",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "beaucoup des",
+   "beaucoup de",
+   "beaucoup",
+   "très"
+  ],
+  "bonne": 1,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "Il y a ______ personnes dans la salle d'attente.",
+  "indice": ""
+ },
+ {
+  "id": "EE-28",
+  "n": 28,
+  "niveau": "A2",
+  "epreuve": "EE",
+  "groupe": "EE-28",
+  "tag": "Orthographe",
+  "composante": "Orthographe (homophones)",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "son",
+   "sont",
+   "sons",
+   "sonts"
+  ],
+  "bonne": 1,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "Mes enfants ______ à l'école.",
+  "indice": ""
+ },
+ {
+  "id": "EE-29",
+  "n": 29,
+  "niveau": "A2",
+  "epreuve": "EE",
+  "groupe": "EE-29",
+  "tag": "Grammaire",
+  "composante": "Grammaire (négation)",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "Je n'ai pas du travail.",
+   "Je n'ai pas de travail.",
+   "Je ai pas de travail.",
+   "Je n'ai de travail."
+  ],
+  "bonne": 1,
+  "t": "transformer",
+  "vers": "Mettez la phrase à la forme négative :",
+  "phrase": "J'ai du travail."
+ },
+ {
+  "id": "EE-30",
+  "n": 30,
+  "niveau": "A2",
+  "epreuve": "EE",
+  "groupe": "EE-30",
+  "tag": "Sociolinguistique",
+  "composante": "Sociolinguistique",
+  "critere": "Correction",
+  "question": "Quelle phrase est correcte ?",
+  "choix": [
+   "Excusez-moi pour le retard.",
+   "Excuse-toi le retard.",
+   "Pardon de retard moi.",
+   "Je excuse retard."
+  ],
+  "bonne": 0,
+  "t": "enonce",
+  "avant": "Vous arrivez en retard et vous laissez un mot.",
+  "citation": null,
+  "apres": ""
+ },
+ {
+  "id": "EE-35",
+  "n": 35,
+  "niveau": "B1",
+  "epreuve": "EE",
+  "groupe": "EE-35",
+  "tag": "Grammaire",
+  "composante": "Grammaire (passé composé / imparfait)",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "suis arrivé / pleuvait",
+   "arrivais / a plu",
+   "suis arrivé / a plu",
+   "arrivais / pleuvait"
+  ],
+  "bonne": 0,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "Quand je ______ (arriver), il ______ (pleuvoir).",
+  "indice": ""
+ },
+ {
+  "id": "EE-36",
+  "n": 36,
+  "niveau": "B1",
+  "epreuve": "EE",
+  "groupe": "EE-36",
+  "tag": "Grammaire",
+  "composante": "Grammaire (pronoms relatifs)",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "que",
+   "qui",
+   "où",
+   "dont"
+  ],
+  "bonne": 2,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "C'est la ville ______ je suis né.",
+  "indice": ""
+ },
+ {
+  "id": "EE-37",
+  "n": 37,
+  "niveau": "B1",
+  "epreuve": "EE",
+  "groupe": "EE-37",
+  "tag": "Grammaire",
+  "composante": "Grammaire (pronoms relatifs)",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "que",
+   "dont",
+   "où",
+   "qui"
+  ],
+  "bonne": 1,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "Le livre ______ je t'ai parlé est sur la table.",
+  "indice": ""
+ },
+ {
+  "id": "EE-38",
+  "n": 38,
+  "niveau": "B1",
+  "epreuve": "EE",
+  "groupe": "EE-38",
+  "tag": "Grammaire",
+  "composante": "Grammaire (subjonctif)",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "remplis",
+   "remplisses",
+   "rempliras",
+   "remplir"
+  ],
+  "bonne": 1,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "Il faut que tu ______ ce formulaire avant vendredi.",
+  "indice": ""
+ },
+ {
+  "id": "EE-39",
+  "n": 39,
+  "niveau": "B1",
+  "epreuve": "EE",
+  "groupe": "EE-39",
+  "tag": "Sociolinguistique",
+  "composante": "Sociolinguistique (conditionnel de politesse)",
+  "critere": "Correction",
+  "question": "Choisissez la forme la plus polie.",
+  "choix": [
+   "Pouvez",
+   "Pourriez",
+   "Pourrez",
+   "Pouviez"
+  ],
+  "bonne": 1,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "______-vous m'envoyer le document, s'il vous plaît ?",
+  "indice": ""
+ },
+ {
+  "id": "EE-40",
+  "n": 40,
+  "niveau": "B1",
+  "epreuve": "EE",
+  "groupe": "EE-40",
+  "tag": "Discours",
+  "composante": "Discours (articulateurs)",
+  "critere": "Cohérence",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "donc",
+   "en revanche",
+   "parce que",
+   "ensuite"
+  ],
+  "bonne": 1,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "Le logement est petit ; ______, il est très lumineux.",
+  "indice": ""
+ },
+ {
+  "id": "EE-41",
+  "n": 41,
+  "niveau": "B1",
+  "epreuve": "EE",
+  "groupe": "EE-41",
+  "tag": "Discours",
+  "composante": "Discours (articulateurs)",
+  "critere": "Cohérence",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "c'est pourquoi",
+   "pourtant",
+   "bien que",
+   "afin que"
+  ],
+  "bonne": 0,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "Le bus était en retard, ______ j'ai raté mon rendez-vous.",
+  "indice": ""
+ },
+ {
+  "id": "EE-42",
+  "n": 42,
+  "niveau": "B1",
+  "epreuve": "EE",
+  "groupe": "EE-42",
+  "tag": "Grammaire",
+  "composante": "Grammaire (hypothèse)",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "ferai",
+   "ferais",
+   "fais",
+   "faisais"
+  ],
+  "bonne": 1,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "Si j'avais plus de temps, je ______ du sport.",
+  "indice": ""
+ },
+ {
+  "id": "EE-43",
+  "n": 43,
+  "niveau": "B1",
+  "epreuve": "EE",
+  "groupe": "EE-43",
+  "tag": "Orthographe",
+  "composante": "Orthographe grammaticale",
+  "critere": "Correction",
+  "question": "Choisissez la bonne réponse.",
+  "choix": [
+   "écrit",
+   "écrits",
+   "écrite",
+   "écrites"
+  ],
+  "bonne": 3,
+  "t": "trou",
+  "etiquette": "Complétez :",
+  "phrase": "Les lettres que j'ai ______ sont sur le bureau.",
+  "indice": ""
+ },
+ {
+  "id": "EE-44",
+  "n": 44,
+  "niveau": "B1",
+  "epreuve": "EE",
+  "groupe": "EE-44",
+  "tag": "Grammaire",
+  "composante": "Grammaire (discours rapporté)",
+  "critere": "Correction",
+  "question": "Quelle phrase rapporte correctement ces paroles (le lendemain) ?",
+  "choix": [
+   "Il m'a dit qu'il viendrait le lendemain.",
+   "Il m'a dit qu'il viendra demain.",
+   "Il m'a dit qu'il venait hier.",
+   "Il m'a dit que je viendrai demain."
+  ],
+  "bonne": 0,
+  "t": "enonce",
+  "avant": "Il m'a dit :",
+  "citation": "Je viendrai demain.",
+  "apres": ""
+ },
+ {
+  "id": "EE-45",
+  "n": 45,
+  "niveau": "B1",
+  "epreuve": "EE",
+  "groupe": "EE-45",
+  "tag": "Sociolinguistique",
+  "composante": "Sociolinguistique (registre)",
+  "critere": "Étendue",
+  "question": "Où place-t-on cette phrase ?",
+  "choix": [
+   "Au début d'une lettre formelle",
+   "À la fin d'une lettre formelle",
+   "Dans un SMS à un ami",
+   "Sur une carte postale"
+  ],
+  "bonne": 1,
+  "t": "enonce",
+  "avant": "",
+  "citation": "Je vous prie d'agréer, Madame, l'expression de mes salutations distinguées.",
+  "apres": ""
+ },
+ {
+  "id": "EE-46",
+  "n": 46,
+  "niveau": "B1",
+  "epreuve": "EE",
+  "groupe": "EE-46",
+  "tag": "Discours",
+  "composante": "Discours (expression du but)",
+  "critere": "Cohérence",
+  "question": "Quelle phrase exprime un but ?",
+  "choix": [
+   "Je prends des cours pour trouver un travail.",
+   "Je prends des cours parce que j'ai le temps.",
+   "Je prends des cours, donc je progresse.",
+   "Je prends des cours, mais c'est difficile."
+  ],
+  "bonne": 0,
+  "t": "aucun"
+ },
+ {
+  "id": "EO-17",
+  "n": 17,
+  "niveau": "A1",
+  "epreuve": "EO",
+  "groupe": "EO-17",
+  "tag": "Sociolinguistique",
+  "composante": "Sociolinguistique",
+  "critere": "Interaction",
+  "question": "Que répondez-vous ?",
+  "choix": [
+   "De rien.",
+   "Bonjour.",
+   "Au revoir.",
+   "S'il vous plaît."
+  ],
+  "bonne": 0,
+  "t": "replique",
+  "photo": "homme",
+  "audio": "EO-17",
+  "replique": "Merci beaucoup !"
+ },
+ {
+  "id": "EO-31",
+  "n": 31,
+  "niveau": "A2",
+  "epreuve": "EO",
+  "groupe": "EO-31",
+  "tag": "Sociolinguistique",
+  "composante": "Sociolinguistique",
+  "critere": "Interaction",
+  "question": "Que faites-vous ?",
+  "choix": [
+   "Je raccroche.",
+   "J'attends.",
+   "Je rappelle demain.",
+   "Je dis au revoir."
+  ],
+  "bonne": 1,
+  "t": "replique",
+  "photo": "secretaire",
+  "audio": "EO-31",
+  "etiquette": "La secrétaire, au téléphone",
+  "replique": "Ne quittez pas, je vous passe le service."
+ },
+ {
+  "id": "EO-32",
+  "n": 32,
+  "niveau": "A2",
+  "epreuve": "EO",
+  "groupe": "EO-32",
+  "tag": "Sociolinguistique",
+  "composante": "Sociolinguistique",
+  "critere": "Interaction",
+  "question": "Que dites-vous ?",
+  "choix": [
+   "Excusez-moi pour le retard.",
+   "Vous êtes en retard.",
+   "Salut, ça va ?",
+   "C'est pas grave."
+  ],
+  "bonne": 0,
+  "t": "situation",
+  "emoji": "⏰",
+  "etiquette": "Situation",
+  "texte": "Vous arrivez en retard à un rendez-vous.",
+  "audio": "EO-32"
+ },
+ {
+  "id": "EO-49",
+  "n": 49,
+  "niveau": "B1",
+  "epreuve": "EO",
+  "groupe": "EO-49",
+  "tag": "Sociolinguistique",
+  "composante": "Sociolinguistique",
+  "critere": "Interaction",
+  "question": "Que dites-vous pour prendre la parole poliment ?",
+  "choix": [
+   "Excusez-moi, je peux ajouter quelque chose ?",
+   "Taisez-vous, c'est à moi.",
+   "Moi, je parle maintenant.",
+   "Attendez, je dis."
+  ],
+  "bonne": 0,
+  "t": "situation",
+  "emoji": "💼",
+  "etiquette": "Situation",
+  "texte": "Pendant une réunion de travail, vous voulez donner votre avis.",
+  "audio": "EO-49"
+ }
+]

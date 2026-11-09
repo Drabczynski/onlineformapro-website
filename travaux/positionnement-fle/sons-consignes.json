@@ -1,0 +1,412 @@
+[
+ {
+  "id": "consigne-a1-01",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "C'est une invitation pour quelle fête ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-03",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Combien coûte la baguette ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-04",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Combien coûtent les pommes ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-05",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Combien coûtent les tomates ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-06",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Combien d'enfants a la personne ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-07",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Combien d'œufs faut-il acheter ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-08",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Comment sont les cheveux d'Amina ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-09",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "La mairie est-elle ouverte le samedi ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-10",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Le train part de quelle voie ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-11",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Où est la pharmacie ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-12",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Où est le cabinet médical ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-14",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Où habite la personne ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-15",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Peut-on aller à la mairie le mardi à 13 h ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-16",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Pourquoi Samir ne vient-il pas au cours ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-17",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Qu'est-ce que la personne veut boire ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-18",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Qu'est-ce qui est interdit ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-20",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Que devez-vous écrire ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-21",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Que faut-il faire ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-22",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Que montre ce panneau ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-24",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Quel est le dessert du lundi ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-25",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Quel est le numéro ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-26",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Quel est le prénom de la personne ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-27",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Quel est son métier ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-29",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Quel mot choisissez-vous pour commencer ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-30",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Quel temps fait-il ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-31",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Quel temps fait-il à Nice ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-32",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Quel âge a Karim ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-33",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Quelle est l'adresse de la fête ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-34",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Quelle est la nationalité de la personne ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-35",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Quelle phrase est correcte ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-36",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "À quel moment de la journée parle cette personne ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-37",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "À quelle heure est le rendez-vous ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-a1-38",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "À quelle heure finit le cours ?"
+   ]
+  ]
+ },
+ {
+  "id": "picto-1",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "À droite."
+   ]
+  ]
+ },
+ {
+  "id": "picto-2",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "À gauche."
+   ]
+  ]
+ },
+ {
+  "id": "picto-3",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "En face."
+   ]
+  ]
+ },
+ {
+  "id": "picto-4",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Derrière."
+   ]
+  ]
+ },
+ {
+  "id": "picto-5",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Il fait soleil."
+   ]
+  ]
+ },
+ {
+  "id": "picto-6",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Il pleut."
+   ]
+  ]
+ },
+ {
+  "id": "picto-7",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Il neige."
+   ]
+  ]
+ },
+ {
+  "id": "picto-8",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Il fait chaud."
+   ]
+  ]
+ }
+]
