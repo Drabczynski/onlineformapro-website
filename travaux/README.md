@@ -27,6 +27,12 @@ les lecteurs d'écran, invisible à l'œil).
 
 `travaux.css` est la feuille commune aux pages du dossier.
 
+## Test de positionnement FLE
+
+`positionnement-fle/` : le test mobile de 20 questions (`test-positionnement.html`, publié en
+artifact) et les 88 sons de la banque générés avec ElevenLabs (`sons/`, un MP3 par identifiant),
+avec leur liste `sons.csv` et le script qui les produit. Détails dans `positionnement-fle/LISEZMOI.md`.
+
 ## Newsletter CiviCap
 
 `newsletter-civicap/email.html` est l'e-mail lui-même, en tableaux et styles

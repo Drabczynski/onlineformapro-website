@@ -1,0 +1,683 @@
+[
+ {
+  "id": "CO-01",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "aurel",
+    "Bonjour, je m'appelle Karim. J'ai trente-deux ans."
+   ]
+  ]
+ },
+ {
+  "id": "CO-03",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "emilie",
+    "Une baguette, s'il vous plaît."
+   ],
+   [
+    "marcel",
+    "Voilà. 1 euro 20."
+   ]
+  ]
+ },
+ {
+  "id": "CO-04",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "julie",
+    "Ouvrez votre livre page 12."
+   ]
+  ]
+ },
+ {
+  "id": "CO-05",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "seb35",
+    "Je suis né au Maroc, mais j'habite à Besançon."
+   ]
+  ]
+ },
+ {
+  "id": "CO-06",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "claire",
+    "La pharmacie est à gauche, après la boulangerie."
+   ]
+  ]
+ },
+ {
+  "id": "CO-08",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "emilie",
+    "Mon numéro de téléphone, c'est le 06 45 78 12 30."
+   ]
+  ]
+ },
+ {
+  "id": "CO-09",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "thomas",
+    "J'ai deux enfants : un garçon et une fille."
+   ]
+  ]
+ },
+ {
+  "id": "CO-10",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "anne",
+    "Il fait froid aujourd'hui. Il neige."
+   ]
+  ]
+ },
+ {
+  "id": "CO-11",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "marc",
+    "Bonsoir madame, comment allez-vous ?"
+   ]
+  ]
+ },
+ {
+  "id": "CO-12",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "julie",
+    "Le cours de français commence à 9 heures et finit à midi."
+   ]
+  ]
+ },
+ {
+  "id": "CO-13",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "christine",
+    "Attention, le train pour Dijon part voie 3."
+   ]
+  ]
+ },
+ {
+  "id": "CO-14",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "koraly",
+    "Vous voulez du thé ou du café ?"
+   ],
+   [
+    "theo",
+    "Un café, merci."
+   ]
+  ]
+ },
+ {
+  "id": "CO-15",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "sebastien",
+    "Je travaille dans un restaurant. Je suis cuisinier."
+   ]
+  ]
+ },
+ {
+  "id": "CO-16",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "marcel",
+    "Les pommes sont à 2 euros le kilo."
+   ]
+  ]
+ },
+ {
+  "id": "CO-17",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "marine",
+    "Ma sœur s'appelle Amina. Elle a les cheveux longs et noirs."
+   ]
+  ]
+ },
+ {
+  "id": "CO-21",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "camille",
+    "Chers clients, cette semaine, profitez de nos promotions : les fruits et légumes à moins 30 %. Attention, ce samedi, le magasin fermera exceptionnellement à 19 heures. Bonne journée !"
+   ]
+  ]
+ },
+ {
+  "id": "CO-23",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "claire",
+    "Bonjour, j'appelle pour l'appartement à louer. Il est toujours disponible ?"
+   ],
+   [
+    "aurel",
+    "Oui. C'est un deux-pièces au troisième étage, sans ascenseur. Le loyer est de 520 euros, charges comprises."
+   ],
+   [
+    "claire",
+    "Je peux le visiter quand ?"
+   ],
+   [
+    "aurel",
+    "Demain à 18 heures, ça vous va ?"
+   ],
+   [
+    "claire",
+    "Parfait, merci."
+   ]
+  ]
+ },
+ {
+  "id": "CO-27",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "emilie",
+    "Salut Paulo ! Demain, je ne peux pas venir au travail, mon fils est malade. Tu peux me remplacer le matin ? Si tu veux, je te remplace lundi."
+   ]
+  ]
+ },
+ {
+  "id": "CO-29",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "anne",
+    "Bonjour à tous les parents. La réunion de rentrée aura lieu le mardi 15 septembre à 17 h 30 dans la classe de votre enfant. Pensez à apporter l'attestation d'assurance scolaire."
+   ]
+  ]
+ },
+ {
+  "id": "CO-31",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "nicolas_info",
+    "Demain matin, il va pleuvoir dans tout l'est de la France. L'après-midi, le soleil revient, avec des températures autour de 18 degrés."
+   ]
+  ]
+ },
+ {
+  "id": "CO-33",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "victoria",
+    "Le week-end dernier, je suis allée chez mes cousins à Lyon. Nous avons visité le vieux quartier et, le soir, on a mangé au restaurant."
+   ]
+  ]
+ },
+ {
+  "id": "CO-34",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "thomas",
+    "Excusez-moi, pour aller à la gare, c'est loin ?"
+   ],
+   [
+    "koraly",
+    "Non, c'est à cinq minutes à pied. Prenez la première rue à droite, puis continuez tout droit."
+   ]
+  ]
+ },
+ {
+  "id": "CO-35",
+  "niveau": "B1",
+  "repliques": [
+   [
+    "fred",
+    "La ville de Vesoul lance un nouveau service de vélos en libre-service. À partir du 1er octobre, une vingtaine de stations seront installées près de la gare, de l'hôpital et dans les principaux quartiers. L'abonnement annuel coûtera 30 euros, mais il sera gratuit pour les étudiants et les demandeurs d'emploi. Selon le maire, l'objectif est de réduire la circulation en centre-ville."
+   ]
+  ]
+ },
+ {
+  "id": "CO-38",
+  "niveau": "B1",
+  "repliques": [
+   [
+    "eric",
+    "Alors, parlez-moi de votre expérience."
+   ],
+   [
+    "marine",
+    "J'ai travaillé trois ans comme aide-soignante dans mon pays, puis j'ai fait un stage de six mois dans une maison de retraite à Besançon."
+   ],
+   [
+    "eric",
+    "Et pourquoi voulez-vous ce poste ?"
+   ],
+   [
+    "marine",
+    "J'aime m'occuper des personnes âgées, et ici, je pourrais travailler à temps plein, ce qui n'était pas le cas pendant mon stage."
+   ],
+   [
+    "eric",
+    "Vous êtes disponible le week-end ?"
+   ],
+   [
+    "marine",
+    "Oui, sans problème. Par contre, je préférerais ne pas travailler de nuit, à cause de mes enfants."
+   ]
+  ]
+ },
+ {
+  "id": "CO-41",
+  "niveau": "B1",
+  "repliques": [
+   [
+    "alicia",
+    "Tu as vu ? Ils vont fermer la petite épicerie du quartier."
+   ],
+   [
+    "sebastien",
+    "Oui, c'est dommage. Moi, j'y allais tous les jours. Au supermarché, c'est moins cher, d'accord, mais on ne connaît personne."
+   ],
+   [
+    "alicia",
+    "C'est vrai, mais pour les jeunes, le supermarché est plus pratique : il est ouvert jusqu'à 21 heures."
+   ],
+   [
+    "sebastien",
+    "Peut-être, mais pour les personnes âgées qui n'ont pas de voiture, ça va être compliqué."
+   ]
+  ]
+ },
+ {
+  "id": "CO-44",
+  "niveau": "B1",
+  "repliques": [
+   [
+    "guillaume",
+    "Avant de commencer, quelques consignes. Les chaussures de sécurité sont obligatoires dans l'atelier. Si vous entendez l'alarme, arrêtez immédiatement votre machine et rejoignez le point de rassemblement, sur le parking. N'utilisez jamais l'ascenseur. En cas d'accident, prévenez votre chef d'équipe avant d'appeler les secours."
+   ]
+  ]
+ },
+ {
+  "id": "EO-01",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "julie",
+    "Bonjour madame."
+   ]
+  ]
+ },
+ {
+  "id": "EO-02",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "julie",
+    "J'habite à Vesoul, rue de la Gare."
+   ]
+  ]
+ },
+ {
+  "id": "EO-03",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "marc",
+    "Comment vous appelez-vous ?"
+   ]
+  ]
+ },
+ {
+  "id": "EO-04",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "marc",
+    "Quel âge avez-vous ?"
+   ]
+  ]
+ },
+ {
+  "id": "EO-05",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "marc",
+    "Vous venez de quel pays ?"
+   ]
+  ]
+ },
+ {
+  "id": "EO-06",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "marc",
+    "Où habitez-vous ?"
+   ]
+  ]
+ },
+ {
+  "id": "EO-07",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "marc",
+    "Vous parlez quelles langues ?"
+   ]
+  ]
+ },
+ {
+  "id": "EO-08",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "marc",
+    "Vous avez des frères et sœurs ?"
+   ]
+  ]
+ },
+ {
+  "id": "EO-09",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Dites les jours de la semaine."
+   ]
+  ]
+ },
+ {
+  "id": "EO-12",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "lucie",
+    "Vous avez votre carte Vitale, s'il vous plaît ?"
+   ]
+  ],
+  "debit": 1.2
+ },
+ {
+  "id": "EO-14",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "marc",
+    "Qu'est-ce que vous aimez manger ?"
+   ]
+  ]
+ },
+ {
+  "id": "EO-16",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Décrivez votre matinée : à quelle heure vous vous levez, ce que vous faites."
+   ]
+  ]
+ },
+ {
+  "id": "EO-17",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "theo",
+    "Merci beaucoup !"
+   ]
+  ]
+ },
+ {
+  "id": "EO-18",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "consigne",
+    "Présentez votre famille."
+   ]
+  ]
+ },
+ {
+  "id": "EO-19",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "consigne",
+    "Parlez de votre travail actuel ou de votre métier dans votre pays."
+   ]
+  ]
+ },
+ {
+  "id": "EO-20",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "consigne",
+    "Racontez ce que vous avez fait le week-end dernier."
+   ]
+  ]
+ },
+ {
+  "id": "EO-21",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "consigne",
+    "Décrivez votre quartier : qu'est-ce qu'il y a ? Qu'est-ce que vous aimez ou n'aimez pas ?"
+   ]
+  ]
+ },
+ {
+  "id": "EO-22",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "consigne",
+    "Quels sont vos projets pour les prochaines vacances ?"
+   ]
+  ]
+ },
+ {
+  "id": "EO-26",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "consigne",
+    "Comparez votre ville d'origine et la ville où vous habitez maintenant."
+   ]
+  ]
+ },
+ {
+  "id": "EO-29",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "consigne",
+    "Expliquez pourquoi vous apprenez le français."
+   ]
+  ]
+ },
+ {
+  "id": "EO-30",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "consigne",
+    "Qu'est-ce que vous faites quand vous avez du temps libre ? Pourquoi ?"
+   ]
+  ]
+ },
+ {
+  "id": "EO-32",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "consigne",
+    "Vous arrivez en retard à un rendez-vous."
+   ]
+  ]
+ },
+ {
+  "id": "EO-33",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "julie",
+    "Est-ce que vous pouvez m'aider, s'il vous plaît ?"
+   ]
+  ]
+ },
+ {
+  "id": "EO-34",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "consigne",
+    "Décrivez une fête importante dans votre pays : quand, avec qui, ce qu'on fait."
+   ]
+  ]
+ },
+ {
+  "id": "EO-35",
+  "niveau": "B1",
+  "repliques": [
+   [
+    "consigne",
+    "Racontez votre parcours depuis votre arrivée en France : les difficultés et les réussites."
+   ]
+  ]
+ },
+ {
+  "id": "EO-36",
+  "niveau": "B1",
+  "repliques": [
+   [
+    "consigne",
+    "Décrivez un métier que vous aimeriez exercer et expliquez pourquoi."
+   ]
+  ]
+ },
+ {
+  "id": "EO-37",
+  "niveau": "B1",
+  "repliques": [
+   [
+    "consigne",
+    "Selon vous, vaut-il mieux vivre en ville ou à la campagne ? Justifiez votre réponse avec des exemples."
+   ]
+  ]
+ },
+ {
+  "id": "EO-38",
+  "niveau": "B1",
+  "repliques": [
+   [
+    "consigne",
+    "Quels sont, selon vous, les avantages et les inconvénients du télétravail ?"
+   ]
+  ]
+ },
+ {
+  "id": "EO-42",
+  "niveau": "B1",
+  "repliques": [
+   [
+    "consigne",
+    "Racontez un film, un livre ou une émission que vous avez aimé et dites pourquoi."
+   ]
+  ]
+ },
+ {
+  "id": "EO-43",
+  "niveau": "B1",
+  "repliques": [
+   [
+    "consigne",
+    "Racontez un souvenir d'enfance."
+   ]
+  ]
+ },
+ {
+  "id": "EO-44",
+  "niveau": "B1",
+  "repliques": [
+   [
+    "nicolas_info",
+    "La mairie envisage de réduire les horaires d'ouverture de la médiathèque pour faire des économies."
+   ]
+  ]
+ },
+ {
+  "id": "EO-45",
+  "niveau": "B1",
+  "repliques": [
+   [
+    "consigne",
+    "Expliquez à une personne qui vient d'arriver comment prendre rendez-vous chez un médecin en France."
+   ]
+  ]
+ },
+ {
+  "id": "EO-46",
+  "niveau": "B1",
+  "repliques": [
+   [
+    "consigne",
+    "Si vous gagniez 10 000 euros, que feriez-vous ? Expliquez."
+   ]
+  ]
+ },
+ {
+  "id": "EO-47",
+  "niveau": "B1",
+  "repliques": [
+   [
+    "theo",
+    "Demain, tu commences à 7 heures au lieu de 8 heures. Tu passes d'abord à l'accueil récupérer le badge, puis tu rejoins l'équipe de Karim au bâtiment C."
+   ]
+  ]
+ },
+ {
+  "id": "EO-48",
+  "niveau": "B1",
+  "repliques": [
+   [
+    "consigne",
+    "Parlez d'une personne qui vous a aidé dans votre vie. Qui est-elle ? Qu'a-t-elle fait ?"
+   ]
+  ]
+ },
+ {
+  "id": "EO-50",
+  "niveau": "B1",
+  "repliques": [
+   [
+    "consigne",
+    "Un ami veut apprendre le français rapidement. Donnez-lui des conseils."
+   ]
+  ]
+ }
+]

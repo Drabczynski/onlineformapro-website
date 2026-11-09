@@ -1,0 +1,156 @@
+[
+ {
+  "id": "CO-02",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "delf_f",
+    "Le bus numéro 15 part à 8 heures 30."
+   ]
+  ]
+ },
+ {
+  "id": "EO-17",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "maxence",
+    "Merci beaucoup !"
+   ]
+  ]
+ },
+ {
+  "id": "CO-07",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "marc",
+    "Aujourd'hui, nous sommes mardi. Le rendez-vous est demain."
+   ]
+  ]
+ },
+ {
+  "id": "CO-19",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "lucie",
+    "Bonjour, ici le cabinet du docteur Martin. Votre rendez-vous de jeudi 14 heures est annulé. Le docteur vous propose vendredi à 10 heures. Merci de rappeler le 03 84 56 22 10 pour confirmer."
+   ]
+  ]
+ },
+ {
+  "id": "EO-31",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "claire",
+    "Ne quittez pas, je vous passe le service."
+   ]
+  ]
+ },
+ {
+  "id": "CO-50",
+  "niveau": "B1",
+  "repliques": [
+   [
+    "koraly",
+    "Tu viens au cinéma ce soir ?"
+   ],
+   [
+    "theo",
+    "Ce soir… J'ai une réunion qui finit tard, et demain je me lève à cinq heures."
+   ],
+   [
+    "koraly",
+    "Ah, je vois. Une autre fois, alors !"
+   ]
+  ]
+ },
+ {
+  "id": "CO-47",
+  "niveau": "B1",
+  "repliques": [
+   [
+    "marcel",
+    "Quand je suis arrivé en France, il y a deux ans, je ne parlais pas du tout français. Au début, c'était vraiment difficile : je ne comprenais pas les courriers administratifs et j'avais peur de téléphoner. Grâce aux cours, et surtout grâce à mon club de football, j'ai fait beaucoup de progrès. Aujourd'hui, je comprends presque tout, même si j'ai encore du mal avec l'écrit."
+   ]
+  ]
+ },
+ {
+  "id": "EO-49-consigne",
+  "niveau": "B1",
+  "repliques": [
+   [
+    "consigne",
+    "Pendant une réunion de travail, vous voulez donner votre avis."
+   ]
+  ]
+ },
+ {
+  "id": "consigne-1",
+  "niveau": "A1",
+  "texte_de": "Quand le magasin est-il fermé ?",
+  "repliques": [
+   [
+    "consigne",
+    "Quand le magasin est-il fermé ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-2",
+  "niveau": "A1",
+  "texte_de": "À quelle heure part le bus ?",
+  "repliques": [
+   [
+    "consigne",
+    "À quelle heure part le bus ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-3",
+  "niveau": "A1",
+  "texte_de": "Choisissez la bonne réponse.",
+  "repliques": [
+   [
+    "consigne",
+    "Choisissez la bonne réponse."
+   ]
+  ]
+ },
+ {
+  "id": "consigne-4",
+  "niveau": "A1",
+  "texte_de": "Où est le rendez-vous ?",
+  "repliques": [
+   [
+    "consigne",
+    "Où est le rendez-vous ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-5",
+  "niveau": "A1",
+  "texte_de": "Que répondez-vous ?",
+  "repliques": [
+   [
+    "consigne",
+    "Que répondez-vous ?"
+   ]
+  ]
+ },
+ {
+  "id": "consigne-6",
+  "niveau": "A1",
+  "texte_de": "Quel jour est le rendez-vous ?",
+  "repliques": [
+   [
+    "consigne",
+    "Quel jour est le rendez-vous ?"
+   ]
+  ]
+ }
+]
