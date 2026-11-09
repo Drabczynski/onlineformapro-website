@@ -261,15 +261,17 @@ button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; border-radi
 .image-support { position: relative; }
 .loupe { position: absolute; right: 8px; bottom: 8px; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; color: #fff; background: linear-gradient(var(--cyan-1), var(--cyan-2)); box-shadow: 0 3px 0 var(--cyan-levre); }
 .loupe svg { width: 20px; height: 20px; }
-.teinte-bas { display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; height: 3px; background: var(--fond-4); pointer-events: none; }
-.moteur { display: none; }
+.coin { display: none; }
 @media (min-width: 1000px) and (hover: hover) and (pointer: fine) {
-  .moteur { display: block; position: fixed; top: 0; bottom: 0; height: fit-content; max-height: calc(100% - 48px); margin-block: auto; overflow-y: auto; scrollbar-width: thin;
-    width: min(330px, calc(50% - 260px)); padding: 22px 20px 18px; border: 1px solid #dcdce4; border-radius: 24px; background: #fff; color: #3b3452; font: 600 13px/1.45 var(--texte); text-align: left; }
-  .moteur-regles { right: calc(50% + 236px); }
-  .moteur-direct { left: calc(50% + 236px); }
-  .moteur h2 { margin: 0 0 12px; font: 800 17px/1.2 var(--titre); color: var(--encre); }
-  .moteur h3 { margin: 16px 0 8px; font: 800 13.5px/1.2 var(--titre); color: var(--encre); }
+  .coin { position: fixed; left: 20px; bottom: 20px; z-index: 2; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; max-height: calc(100% - 40px); }
+  .coin-boutons { display: flex; gap: 6px; }
+  .coin-bouton { padding: 5px 12px; border: 1px solid #d4d4dc; border-radius: 999px; background: #f6f6f8; color: #5a5470; font: 800 12px/1.4 var(--texte); }
+  .coin-bouton:hover { border-color: #b9b4cc; color: var(--encre); }
+  .coin-bouton[aria-expanded="true"] { border-color: var(--fond-1); background: var(--fond-1); color: #fff; }
+  .coin-bouton:focus-visible { outline: 2px solid var(--fond-1); outline-offset: 2px; }
+  .moteur { min-height: 0; overflow-y: auto; scrollbar-width: thin; width: min(290px, calc(50vw - 236px)); padding: 16px 16px 14px; border: 1px solid #dcdce4; border-radius: 18px; background: #fff; color: #3b3452; font: 600 12px/1.45 var(--texte); text-align: left; }
+  .moteur h2 { margin: 0 0 10px; font: 800 15px/1.2 var(--titre); color: var(--encre); }
+  .moteur h3 { margin: 14px 0 6px; font: 800 12.5px/1.2 var(--titre); color: var(--encre); }
   .moteur b { color: var(--encre); }
   .m-niv { display: inline-grid; place-items: center; min-width: 28px; padding: 1px 6px; border-radius: 7px; font: 800 11.5px/1.5 var(--titre); color: var(--encre); vertical-align: 1px; }
   .m-niv.cyan { background: linear-gradient(var(--cyan-1), var(--cyan-2)); }
@@ -283,7 +285,7 @@ button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; border-radi
   .m-legende div { display: flex; gap: 8px; } .m-legende dt { min-width: 22px; font-weight: 800; color: var(--encre); } .m-legende dd { margin: 0; }
   .m-palier { display: flex; justify-content: space-between; align-items: center; color: #6a6480; }
   .m-score { display: flex; align-items: baseline; gap: 8px; margin: 6px 0 8px; }
-  .m-score strong { font: 800 34px/1 var(--titre); color: var(--encre); font-variant-numeric: tabular-nums; }
+  .m-score strong { font: 800 28px/1 var(--titre); color: var(--encre); font-variant-numeric: tabular-nums; }
   .m-score span { color: #6a6480; }
   .m-cases { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
   .m-cases i { height: 8px; border-radius: 4px; background: #ecebf2; }
@@ -291,12 +293,12 @@ button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; border-radi
   .m-etat { margin: 10px 0 12px; }
   .m-ok { color: #3f8a0c !important; } .m-ko { color: #c2305f !important; }
   .m-questions { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; }
-  .m-questions li { display: grid; grid-template-columns: 16px auto 1fr auto; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 10px; }
+  .m-questions li { display: grid; grid-template-columns: 14px auto 1fr auto; align-items: center; gap: 7px; padding: 4px 6px; border-radius: 9px; }
   .m-questions .m-encours { background: #f3edff; }
   .m-questions .m-avenir { color: #8f8aa3; }
   .m-num { font-weight: 800; color: #9a95ad; font-variant-numeric: tabular-nums; }
   .m-comp { display: grid; min-width: 0; line-height: 1.25; } .m-comp small { overflow: hidden; font-size: 11px; color: #8f8aa3; white-space: nowrap; text-overflow: ellipsis; }
-  .m-lib { font-size: 12px; font-weight: 800; white-space: nowrap; }
+  .m-lib { font-size: 11px; font-weight: 800; white-space: nowrap; }
   .m-juste .m-lib { color: #3f8a0c; } .m-faux .m-lib, .m-passe .m-lib { color: #c2305f; } .m-encours .m-lib { color: #7a3ff0; }
   .m-histo { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; }
   .m-resultat { margin: 14px 0 0; padding: 10px 12px; border-radius: 12px; background: #f3edff; font-size: 14px; }
@@ -455,11 +457,11 @@ button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; border-radi
 @media (max-width: 520px), (hover: none) and (pointer: coarse) {
   body { padding: 0; }
   .appli { width: 100%; height: 100%; border: 0; border-radius: 0; outline: 0; }
-  /* Safari (iOS 26) colore la barre d'état avec le fond de la page (violet, le haut du dégradé) et sa barre du bas
-     avec la couleur d'un élément fixe posé au bas de l'écran (bleu, le bas du dégradé) */
-  html, body { background: var(--fond-1); }
-  @supports (height: 100dvh) { html, body { height: 100dvh; } }
-  .teinte-bas { display: block; }
+  /* Le test est un bloc fixe de la taille de l'écran : la page elle-même ne peut plus défiler (rien ne passe sous
+     la barre d'état), et Safari (iOS 26) prend la couleur des bords d'un tel bloc pour teinter ses barres :
+     violet en haut, bleu en bas, comme le dégradé. Le fond violet de la page sert de repli. */
+  html, body { height: 100%; overflow: hidden; overscroll-behavior: none; background: var(--fond-1); }
+  .appli { position: fixed; inset: 0; width: auto; height: auto; }
   .haut { padding-top: calc(12px + env(safe-area-inset-top, 0px)); }
 }
 @media (max-width: 370px) { .alveoles { --w: 112px; } }
@@ -480,10 +482,12 @@ button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; border-radi
     <linearGradient id="g-rose" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffadf6"/><stop offset="1" stop-color="#ea62de"/></linearGradient>
   </defs>
 </svg>
-<aside class="moteur moteur-regles" id="regles" aria-label="Le barème du test"></aside>
 <main class="appli" id="appli" aria-live="polite"></main>
-<aside class="moteur moteur-direct" id="moteur" aria-label="Le moteur adaptatif, en direct"></aside>
-<div class="teinte-bas" aria-hidden="true"></div>
+<div class="coin">
+  <aside class="moteur" id="regles" aria-label="Le barème du test" hidden></aside>
+  <aside class="moteur" id="moteur" aria-label="Le moteur adaptatif, en direct" hidden></aside>
+  <div class="coin-boutons"><button class="coin-bouton" type="button" data-panneau="regles" aria-controls="regles" aria-expanded="false">Barème</button><button class="coin-bouton" type="button" data-panneau="moteur" aria-controls="moteur" aria-expanded="false">Moteur</button></div>
+</div>
 
 <script>
 // ------------------------------------------------------------------------------ la banque (version 2)
@@ -748,7 +752,7 @@ function bilan() {
 }
 const appli = $("#appli");
 function poser(html) { appli.querySelectorAll(".ecran").forEach(e => e.remove()); appli.insertAdjacentHTML("beforeend", html); }
-function afficher() { taire(); appli.querySelectorAll(".voile").forEach(v => v.remove()); ({ accueil: ecranAccueil, question: ecranQuestion, palier: ecranPalier, resultat: ecranResultat })[etat.ecran](); majMoteur(); }
+function afficher() { taire(); appli.querySelectorAll(".voile").forEach(v => v.remove()); ({ accueil: ecranAccueil, question: ecranQuestion, palier: ecranPalier, resultat: ecranResultat })[etat.ecran](); majMoteur(); if (scrollX || scrollY) scrollTo(0, 0); }
 // ------------------------------------------------------------------------------ le moteur montré à côté (ordinateur)
 // Pour présenter le test : le barème, puis le palier en cours question par question (niveau, compétence, tag du PDF),
 // le décompte des bonnes réponses tel que le moteur le fait, les paliers validés et le bilan par compétence.
@@ -772,6 +776,11 @@ function reglesMoteur() {
       ${ORDRE.map(n => `<tr><th>${pastilleNiveau(n)}</th>${COMPS.map(c => `<td>${compte(n, c) || "–"}</td>`).join("")}<td><b>${compte(n)}</b></td></tr>`).join("")}</table>
     <dl class="m-legende">${COMPS.map(c => `<div><dt>${c}</dt><dd>${NOMS_COMP[c]}${c === "LG" ? " (grammaire, conjugaison, vocabulaire)" : ""}</dd></div>`).join("")}</dl>`;
 }
+document.querySelectorAll(".coin-bouton").forEach(b => b.addEventListener("click", () => {
+  const ouvrir = b.getAttribute("aria-expanded") !== "true";
+  document.querySelectorAll(".coin-bouton").forEach(x => { x.setAttribute("aria-expanded", "false"); document.getElementById(x.dataset.panneau).hidden = true; });
+  if (ouvrir) { b.setAttribute("aria-expanded", "true"); document.getElementById(b.dataset.panneau).hidden = false; majMoteur(); }
+}));
 function majMoteur() {
   reglesMoteur();
   const box = document.getElementById("moteur"); if (!box) return;
@@ -1038,7 +1047,7 @@ function feuille(contenu) {
   voile.innerHTML = `<div class="feuille" role="dialog" aria-modal="true">${contenu}</div>`;
   appli.appendChild(voile);
   voile.addEventListener("click", (e) => { if (e.target === voile || e.target.closest("[data-fermer]")) voile.remove(); });
-  const premier = voile.querySelector("button"); if (premier) premier.focus();
+  const premier = voile.querySelector("button"); if (premier) premier.focus({ preventScroll: true });
   return voile;
 }
 function demanderQuitter() {

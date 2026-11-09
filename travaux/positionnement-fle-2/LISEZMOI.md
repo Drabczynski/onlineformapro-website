@@ -10,11 +10,12 @@ mêmes sons d'interface. Seule la banque change : elle vient du PDF « EVAL POSI
 - Affichage : sur ordinateur, le téléphone posé au centre d'un fond gris ; sur un appareil tactile
   (téléphone, tablette) ou un écran de moins de 520 px, le test occupe tout l'écran, comme une application.
 - Lisibilité : aucun texte de lecture sous 14 px ; contextes, messages et phrases agrandis.
-- Sur téléphone, le fond de la page est violet comme le haut du dégradé (Safari colore la barre d'état avec
-  ce fond), et une fine bande fixe bleue, la couleur du bas du dégradé, est posée au bas de l'écran (Safari
-  teinte sa barre du bas avec un élément fixe placé à ce bord).
-- Sur ordinateur (écran d'au moins 1000 px, souris), deux panneaux encadrent le téléphone, pour présenter
-  le test : à gauche le barème et la composition de la banque ; à droite le moteur en direct. Le palier en
+- Sur téléphone, le test est un bloc fixe de la taille de l'écran : la page ne peut pas défiler, donc rien
+  ne passe sous la barre d'état. Safari (iOS 26) teinte ses barres avec la couleur des bords d'un tel bloc ;
+  le fond violet de la page sert de repli.
+- Sur ordinateur (écran d'au moins 1000 px, souris), deux petits boutons dans le coin bas gauche,
+  « Barème » et « Moteur », ouvrent chacun un panneau (un à la fois ; un second clic le referme), pour
+  présenter le test : le barème et la composition de la banque ; le moteur en direct. Le palier en
   cours y figure question par question (niveau, compétence, sous-catégorie pour la langue, identifiant),
   avec le décompte des bonnes réponses (par exemple « 2/3 bonnes réponses pour A2 »), les erreurs encore
   permises, les paliers validés, le niveau attribué et le bilan par compétence. Une réponse n'y est comptée
