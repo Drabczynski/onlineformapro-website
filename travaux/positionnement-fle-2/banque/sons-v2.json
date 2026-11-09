@@ -1,0 +1,352 @@
+[
+ {
+  "id": "v2-q01",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "C'est un message…"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q02",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Ce message est envoyé pour ___ un rendez-vous."
+   ]
+  ]
+ },
+ {
+  "id": "v2-q03",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Choisissez la bonne phrase."
+   ]
+  ]
+ },
+ {
+  "id": "v2-q04",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Choisissez la bonne réponse."
+   ]
+  ]
+ },
+ {
+  "id": "v2-q05",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Combien coûte un ticket ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q06",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Complétez la phrase."
+   ]
+  ]
+ },
+ {
+  "id": "v2-q07",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Complétez."
+   ]
+  ]
+ },
+ {
+  "id": "v2-q08",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Elle fait des courses. Où est-elle ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q09",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "La personne peut apporter :"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q10",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Le contraire de « grand » ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q11",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Où achète-t-on des croissants ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q12",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Où achète-t-on des médicaments ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q13",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Où habite-t-il ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q14",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Où va-t-on pour apprendre ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q15",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Pourquoi la personne a-t-elle écrit ce message ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q16",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Qu'est-ce qu'elle fait ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q17",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Qu'est-ce que vous apprenez sur cet appartement ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q18",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Qu'est-ce que vous devez faire ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q19",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Qu'est-ce que vous dites ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q20",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Qu'est-ce que vous dites ? Remettez les mots dans l'ordre."
+   ]
+  ]
+ },
+ {
+  "id": "v2-q21",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Quand est-ce que le café linguistique est ouvert ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q22",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Que fait-on avec des ciseaux ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q23",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Que fait-on avec un stylo ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q24",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Quel est le contraire de « grand » ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q25",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Quel est le pluriel de « un cheval » ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q26",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Quel jour après lundi ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q27",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Quel âge a Lucas ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q28",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Quelle est la couleur du ciel quand il fait beau ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q29",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Quelle image correspond à la situation ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q30",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Quelle question posez-vous ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q31",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Vous êtes en retard. Quel message est-ce que vous envoyez ?"
+   ]
+  ]
+ },
+ {
+  "id": "v2-q32",
+  "niveau": "A1",
+  "repliques": [
+   [
+    "consigne",
+    "Écrivez le verbe."
+   ]
+  ]
+ },
+ {
+  "id": "poste-1",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "emilie",
+    "Bonjour, je voudrais refaire mon passeport."
+   ]
+  ]
+ },
+ {
+  "id": "poste-2",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "emilie",
+    "Bonjour, je veux envoyer une lettre en recommandé."
+   ]
+  ]
+ },
+ {
+  "id": "poste-3",
+  "niveau": "A2",
+  "repliques": [
+   [
+    "emilie",
+    "Bonjour, je veux prendre un billet de train."
+   ]
+  ]
+ }
+]

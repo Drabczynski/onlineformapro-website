@@ -33,6 +33,10 @@ les lecteurs d'écran, invisible à l'œil).
 (`index.html`, https://onlineformapro-website.vercel.app/travaux/positionnement-fle/) et en artifact (`test-positionnement.html`) et les 88 sons de la banque générés avec ElevenLabs (`sons/`, un MP3 par identifiant),
 avec leur liste `sons.csv` et le script qui les produit. Détails dans `positionnement-fle/LISEZMOI.md`.
 
+`positionnement-fle-2/` : le même test et le même moteur adaptatif, avec la banque du PDF « EVAL POSITIONNEMENT v2 »
+(113 questions, sons d'origine, images dans les réponses), en page web (https://onlineformapro-website.vercel.app/travaux/positionnement-fle-2/)
+et en artifact. Détails et écarts avec le PDF dans `positionnement-fle-2/LISEZMOI.md`.
+
 ## Newsletter CiviCap
 
 `newsletter-civicap/email.html` est l'e-mail lui-même, en tableaux et styles

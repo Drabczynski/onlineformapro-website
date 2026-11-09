@@ -1,0 +1,95 @@
+# Test de positionnement FLE, version 2
+
+Même test que la version 1 (`../positionnement-fle/`) : mêmes écrans, même moteur adaptatif,
+mêmes sons d'interface. Seule la banque change : elle vient du PDF « EVAL POSITIONNEMENT v2 »
+(export PowerPoint, 67 pages). La version 1 n'est pas modifiée.
+
+- Page web : https://onlineformapro-website.vercel.app/travaux/positionnement-fle-2/
+- `index.html` : la page web (sons en fichiers dans `sons/`).
+- `test-positionnement.html` : la version artifact (sons et images intégrés, 3,6 Mo).
+
+## Contenu
+
+113 questions : A1 61, A2 40, B1 12.
+
+| Niveau | CO | CE | EE | EO | LG |
+|---|---|---|---|---|---|
+| A1 | 5 | 13 | 6 | – | 37 |
+| A2 | 3 | 9 | 4 | 1 | 23 |
+| B1 | 1 | 10 | 1 | – | – |
+
+CO compréhension orale, CE compréhension écrite, EE expression écrite, EO expression orale,
+LG langue (grammaire, conjugaison, vocabulaire). Le tag de chaque question est celui du PDF ;
+le numéro de page du PDF est gardé dans `banque/banque-v2.json`.
+
+Types de réponses :
+
+- choix à toucher : un texte, ou une image quand le PDF propose des photos (A1-08, A1-12, A2-07) ;
+- choix à écouter (A2-06, les trois phrases au guichet de la poste) ;
+- mots à remettre dans l'ordre (A1-16) ;
+- réponse à écrire (A1-57 à A1-61, A2-39, A2-40). Les accents et les majuscules ne comptent pas,
+  et plusieurs formes sont acceptées (« 22 », « 22 ans », « vingt-deux ans »).
+
+## Moteur adaptatif (repris de la version 1)
+
+- Trois paliers dans l'ordre : A1, A2, B1.
+- 7 questions par palier, tirées au hasard. D'abord une question de chaque compétence présente
+  à ce niveau, puis on complète en équilibrant les compétences.
+- Deux questions d'un même groupe (même document, même son) ne tombent jamais dans le même palier.
+- Palier validé avec 70 % de bonnes réponses, soit 5 sur 7. Le palier est joué en entier,
+  sauf quand il ne peut plus être validé : le test s'arrête alors tout de suite.
+- Résultat : le dernier niveau validé (« Niveau A1 », « Niveau A2 », « Niveau B1 »),
+  ou « A1 en cours » si le premier palier n'est pas validé.
+- Un diagnostic par compétence et par tag est calculé (`etat.diagnostic`), mais il n'est pas affiché.
+
+## Sons
+
+- `sons/o01.mp3` à `sons/o11.mp3` : les sons d'origine (`sons-source/`), mis au même volume.
+  Les sons 01 à 08 et 11 servent. Le 09 (des trains, sans question) et le 10 (la seule question
+  qui l'utilise est écartée, voir plus bas) sont copiés mais ne servent pas.
+- `sons/consignes/` : 32 consignes A1 lues à voix haute, comme dans la version 1.
+- `sons/poste/` : les trois phrases du guichet de la poste (A2-06).
+- Consignes et phrases générées avec ElevenLabs par `../positionnement-fle/generer_sons.py`,
+  à partir de `banque/sons-v2.json`.
+
+## Reconstruire
+
+```
+python3 banque/banque_v2.py      # réécrit banque/banque-v2.json
+python3 banque/assembler_v2.py   # réécrit index.html et test-positionnement.html
+```
+
+`assembler_v2.py` part de `../positionnement-fle/test-positionnement.html` (version 1)
+et remplace la banque, le moteur, les sons et les images (`banque/img/`).
+
+## Écarts avec le PDF
+
+### Questions écartées
+
+- « Je … le chemin autour du lac » et « Je … en parler » : questions incomplètes ou sans réponse sûre.
+- « À qui est cette voiture ? » : la réponse marquée, « C'est ma. », est fausse.
+- « Je prends un café … sucre » : en double avec une autre question, qui est gardée (réponse « du »).
+- Deux questions B1 dont l'énoncé a été recopié par erreur : « Quelle est la profession de son père ? »
+  au-dessus de réponses sur une écharpe et sur des boissons.
+- « Trois jeunes étudiants… » : question incomplète.
+- Le texte sur Ana : deux réponses sont vraies.
+- « Est-ce que tu (prendre)… → as pris » et « Je (avoir) deux chats les jours ? » : énoncés incohérents.
+- « (...) tu vas faire cet après-midi ? → que » : la réponse marquée est fausse (« Qu'est-ce que »).
+- « avoir de la chance → Réussir trop facilement » : la définition marquée est fausse.
+- « Où sont ces 2 dames ? » (son 08) : le son se passe au restaurant, mais c'est la photo des courses qui est marquée.
+- B1, émission de radio (son 10) : deux photos, aucune n'est marquée et une seule correspond.
+- Les questions en double ont été fusionnées.
+
+### Réponses déduites (non marquées dans le PDF)
+
+Le pluriel de « un cheval » (« Des chevaux »), « ferai », « ai », « appelle », « du »,
+l'âge de Lucas (22 ans) et sa ville (Toulouse), « Qu'est-ce que » (au restaurant),
+le jour où Julien commence à 8h (jeudi) et son cours d'arts plastiques (mardi, 13h00-14h00).
+
+### Textes ajustés
+
+- « De quoi est-ce que ça parle ? » : la question est coupée dans le PDF.
+- « Margaret Marie » : le prénom entendu dans le son (la diapositive écrit « Maritz »).
+- L'affiche du café : le zoom montre le 16 novembre.
+- « Que répondez-vous ? » ajouté aux questions où l'on répond à un message. Une phrase de contexte
+  ajoutée aux questions d'écoute. Fautes de frappe corrigées.
