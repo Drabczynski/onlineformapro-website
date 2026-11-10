@@ -974,6 +974,12 @@ CSS_HUBLOT = r"""
   .visuel > .doc-mini { z-index: 2; align-self: end; width: min(calc(var(--rond) * 1.05), 560px); margin-bottom: calc(var(--rond) * -.06); gap: 16px; padding: 16px 18px; }
   .doc-mini strong { font-size: 20px; }
   .pilule { padding: 11px 18px; font-size: 16px; }
+  /* sans photo : deux flèches opposées pour les contraires, le nombre en grand (la phrase à compléter dessous) */
+  .scene > .h-signe, .visuel > .h-signe { z-index: 2; color: var(--violet-fonce); pointer-events: none; }
+  .h-contraire { width: calc(var(--rond) * .42); height: calc(var(--rond) * .42); }
+  .h-contraire svg { width: 100%; height: 100%; overflow: visible; }
+  .h-nombre { align-self: start; margin-top: calc(var(--rond) * .13); font-size: calc(var(--rond) * .34); font-weight: 900; line-height: 1; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+  .h-avec-nombre > .h-centre { align-self: end; margin-bottom: calc(var(--rond) * .12); }
   /* une affiche (image à lire) : pas de cercle, l'image entière */
   .visuel.h-affiche { width: min(38vw, 560px); height: auto; }
   .h-affiche .image-support img { max-height: calc(100vh - 220px); }
@@ -1031,6 +1037,11 @@ CSS_HUBLOT = r"""
   #appli .ecran .visuel > .h-centre, #appli .ecran .visuel > .doc-mini, #appli .ecran .scene > .lecture-tete, #appli .ecran .visuel > .scene-emoji, #appli .ecran .h-affiche > .image-support { animation: monte .7s cubic-bezier(.2, .8, .2, 1) .5s backwards; }
   #appli .ecran .visuel > .lettre-env { animation: none; }
   #appli .ecran .scene > .ex-embleme { animation: eclot 1s cubic-bezier(.34, 1.56, .64, 1) .45s backwards; }
+  #appli .ecran .h-nombre { animation: monte .8s cubic-bezier(.2, .8, .2, 1) .55s backwards; }
+  #appli .ecran .h-contraire .h-fleche-1 { animation: h-glisse-d .9s cubic-bezier(.16, 1, .3, 1) .55s backwards; }
+  #appli .ecran .h-contraire .h-fleche-2 { animation: h-glisse-g .9s cubic-bezier(.16, 1, .3, 1) .55s backwards; }
+  @keyframes h-glisse-d { from { opacity: 0; transform: translateX(-26px); } }
+  @keyframes h-glisse-g { from { opacity: 0; transform: translateX(26px); } }
   @keyframes h-ouvre { from { clip-path: circle(0% at 85.4% 14.6%); } to { clip-path: circle(100% at 85.4% 14.6%); } }
   @keyframes h-recule { from { transform: scale(1.22); } }
   @keyframes h-teinte { from { opacity: 0; } }
@@ -1080,6 +1091,7 @@ const NOM_IMAGE = Object.fromEntries(Object.entries(IMAGES).map(([k, v]) => [v, 
 const SORTIES = document.body.insertBefore(Object.assign(document.createElement("div"), { id: "sorties" }), appli);
 SORTIES.setAttribute("aria-hidden", "true");
 let cleAffichee = "";
+const ICONE_CONTRAIRE = '<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><g class="h-fleche-1"><path d="M20 44h74"/><path d="M78 27l17 17-17 17"/></g><g class="h-fleche-2"><path d="M100 78H26"/><path d="M42 61L25 78l17 17"/></g></svg>';
 const cleEcran = () => etat.ecran === "question" ? "q|" + etat.palier[etat.k] + "|" + Object.keys(etat.lus || {}).length : etat.ecran;
 function hublot(ecran, relance) {
   if (!ecran || !BUREAU.matches) return;
@@ -1092,6 +1104,13 @@ function hublot(ecran, relance) {
   else if (!scene.querySelector(".cadre-photo")) {
     if (visuel) visuel.insertAdjacentHTML("afterbegin", '<span class="rond-ciel" aria-hidden="true"></span>');
     else scene.querySelector(".fond-d").insertAdjacentHTML("afterend", '<span class="rond-ciel" aria-hidden="true"></span>');
+  }
+  // sans photo, un signe au centre de la bulle : deux flèches opposées pour les contraires, le nombre en grand pour
+  // un nombre à écrire en lettres (la phrase à compléter passe alors sous lui)
+  if (etat.ecran === "question" && !scene.querySelector(".cadre-photo")) {
+    const qa = qActuelle(), nb = (qa.phrase || "").match(/^\s*(\d+)\s*:/);
+    if (/contraire/i.test(qa.question)) (visuel || scene).insertAdjacentHTML("beforeend", `<span class="h-signe h-contraire" aria-hidden="true">${ICONE_CONTRAIRE}</span>`);
+    if (nb && visuel) { visuel.insertAdjacentHTML("beforeend", `<span class="h-signe h-nombre" aria-hidden="true">${nb[1]}</span>`); visuel.classList.add("h-avec-nombre"); }
   }
   if (!visuel) return;
   // ce qui pose la situation (contexte, situation, étiquette du message) passe à droite, au-dessus de la question

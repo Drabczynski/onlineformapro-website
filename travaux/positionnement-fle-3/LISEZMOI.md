@@ -27,18 +27,19 @@ perçu comme plus officiel. La version 2, plus ludique, reste en place pour d'au
   page pour ordinateur : https://onlineformapro-website.vercel.app/travaux/positionnement-fle-3/hublot/ . Elle
   s'applique dès que l'écran fait au moins 1000 × 600 px ; en dessous (téléphone, tablette en portrait), c'est «
   L'examen » à l'identique (vérifié au pixel). À gauche, la photo dans un grand cercle (un cercle de ciel quand il n'y
-  a pas de photo), posé sur ses propres couleurs en flou léger (une miniature de 24 px de la photo, agrandie et
-  floutée) ; la bille d'écoute est son satellite, avec une petite ombre ; la phrase à compléter se place au centre du
-  cercle (lignes équilibrées). Un message (SMS, petit texte, document) est une feuille blanche au coin replié, posée
-  sur une seconde feuille de biais, qui sort d'une enveloppe et fait face à la question (la photo, plus petite, en
-  haut à gauche) ; la formule d'appel et la signature sont mises en forme, aucun mot n'est coupé. À droite, sur le
-  blanc : le contexte ou la situation (avec un trait violet, pour qu'on le lise en premier), la question en grand, les
-  réponses, « Je ne sais pas » / « Valider ». Sur ordinateur, un document se lit ainsi en face de sa question : plus
-  d'écran de lecture séparé ni de bouton « Relire ». La colonne de droite n'affiche une barre de défilement que si son
-  contenu dépasse vraiment (jamais pendant les transitions). Transition : le cercle se referme sur la bille et le
-  suivant s'ouvre depuis elle, les couleurs du fond passent en fondu sur 2,2 s. Au clavier : A, B, C, D (ou 1 à 4)
-  pour répondre, Entrée pour valider. Les feuilles (relire, langue, quitter) s'ouvrent en fenêtre au centre. Vient de
-  la piste D des maquettes bureau (`maquettes-bureau/`).
+  a pas de photo : deux flèches opposées y figurent les contraires, et le nombre à écrire en lettres s'y affiche en
+  grand, la phrase à compléter dessous), posé sur ses propres couleurs en flou léger (une miniature de 24 px de la
+  photo, agrandie et floutée) ; la bille d'écoute est son satellite, avec une petite ombre ; la phrase à compléter se
+  place au centre du cercle (lignes équilibrées). Un message (SMS, petit texte, document) est une feuille blanche au
+  coin replié, posée sur une seconde feuille de biais, qui sort d'une enveloppe et fait face à la question (la photo,
+  plus petite, en haut à gauche) ; la formule d'appel et la signature sont mises en forme, aucun mot n'est coupé. À
+  droite, sur le blanc : le contexte ou la situation (avec un trait violet, pour qu'on le lise en premier), la
+  question en grand, les réponses, « Je ne sais pas » / « Valider ». Sur ordinateur, un document se lit ainsi en face
+  de sa question : plus d'écran de lecture séparé ni de bouton « Relire ». La colonne de droite n'affiche une barre de
+  défilement que si son contenu dépasse vraiment (jamais pendant les transitions). Transition : le cercle se referme
+  sur la bille et le suivant s'ouvre depuis elle, les couleurs du fond passent en fondu sur 2,2 s. Au clavier : A, B,
+  C, D (ou 1 à 4) pour répondre, Entrée pour valider. Les feuilles (relire, langue, quitter) s'ouvrent en fenêtre au
+  centre. Vient de la piste D des maquettes bureau (`maquettes-bureau/`).
 - `maquettes/` : les trois pistes comparées avant le choix.
 - `maquettes-bureau/` : les six pistes pour ordinateur comparées avant le choix du Hublot.
 
