@@ -75,7 +75,7 @@ svg { display: block; }
 .haut { flex: none; display: grid; grid-template-columns: 38px 1fr 38px; align-items: center; gap: 8px; padding: 14px 16px 6px; }
 .rond { display: grid; place-items: center; width: 38px; height: 38px; padding: 0; border: 1px solid rgba(255, 255, 255, .7); border-radius: 50%; background: rgba(255, 255, 255, .42); color: var(--encre); }
 .rond svg { width: 17px; height: 17px; }
-.haut .barre { display: none; }
+.haut .barre, .rubrique, .lecteur-texte { display: none; }
 .numero { justify-self: center; padding: 6px 14px; border-radius: 999px; background: rgba(255, 255, 255, .62); font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; }
 
 /* la scène (au-dessus de la feuille) et la feuille blanche */
@@ -323,9 +323,249 @@ CSS_DEGRADE = r"""
 .serre .scene { padding-bottom: 10px; }
 """
 
+CSS_EXAMEN = r"""
+/* Variante « L'examen », en violet, avec les polices de la v2 (Baloo 2 pour les titres, Nunito pour le texte).
+   Bandeau blanc avec un filet dégradé violet, fond très clair, nom de la compétence au-dessus de chaque question,
+   réponses A, B, C dans des cartes blanches, barre du bas blanche (« Je ne sais pas » / « Valider »).
+   Marges de 20 px partout ; le contenu se centre dans la hauteur pour ne pas laisser un grand vide. */
+:root {
+  --violet: #7442e8; --violet-fonce: #5d2fd0; --violet-pale: #f2edff; --fond: #f5f3fa; --encre: #241b45; --doux: #6b6585; --filet: #e4dff1;
+  --titre: "Baloo 2", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --texte: "Nunito", "Segoe UI", system-ui, sans-serif;
+  --fond-1: #7442e8;
+  --cyan-1: #78fdf8; --cyan-2: #42d8ff; --vert-1: #cdfc2a; --vert-2: #8fe60c; --rose-1: #ffadf6; --rose-2: #ea62de;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { height: 100%; }
+body { margin: 0; color: var(--encre); font: 700 16px/1.5 var(--texte); overflow: hidden; background: #e8e8ec;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 16px; display: grid; place-items: center; }
+button { font: inherit; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+button:focus-visible { outline: 3px solid var(--violet); outline-offset: 2px; border-radius: 12px; }
+svg { display: block; }
+
+/* le téléphone */
+.appli { position: relative; z-index: 1; width: min(400px, 100%); height: min(860px, 100%); display: flex; flex-direction: column; overflow: hidden;
+  border: 10px solid #15161c; border-radius: 50px; background: var(--fond); }
+.ecran { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; animation: entre .25s ease-out both; }
+@keyframes entre { from { opacity: 0; } }
+.defile { flex: 1; min-height: 0; display: flex; flex-direction: column; overflow-y: auto; overscroll-behavior: contain; padding: 22px 20px 20px; scrollbar-width: none; }
+.defile::-webkit-scrollbar { display: none; }
+.defile > * { flex-shrink: 0; }
+.defile > :first-child { margin-top: auto; }
+.defile > :last-child { margin-bottom: auto; }
+.defile.a-suivre { -webkit-mask-image: linear-gradient(#000 calc(100% - 48px), transparent); mask-image: linear-gradient(#000 calc(100% - 48px), transparent); }
+
+/* le bandeau : quitter, « Évaluation », le numéro de la question (jamais le niveau), le son */
+.haut { flex: none; position: relative; z-index: 2; display: grid; grid-template-columns: 38px 1fr auto 38px; align-items: center; gap: 10px; padding: 14px 16px 12px; background: #fff; }
+.haut::after { content: ""; position: absolute; left: 0; right: 0; bottom: -3px; height: 3px; background: linear-gradient(90deg, #9748fe, #7b6cf6 55%, #b394ff); }
+.haut-accueil { grid-template-columns: 1fr 38px; }
+.rond { display: grid; place-items: center; width: 38px; height: 38px; padding: 0; border: 0; border-radius: 11px; background: #f3f0fa; color: var(--encre); }
+.rond svg { width: 17px; height: 17px; }
+.titre-test { font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--doux); }
+.numero { font: 800 17px/1 var(--titre); font-variant-numeric: tabular-nums; }
+.haut .barre { display: none; }
+
+/* le contenu : la compétence, le support, la question, les réponses */
+.scene, .feuille-q { display: grid; gap: 14px; }
+.scene { padding-bottom: 16px; }
+.rubrique { justify-self: start; display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; border-radius: 9px; background: var(--violet-pale); color: var(--violet); font-size: 13.5px; font-weight: 800; }
+.rubrique svg { width: 16px; height: 16px; }
+.visuel { display: grid; gap: 12px; }
+.visuel-feuille { padding: 18px; border: 1.5px solid var(--filet); border-radius: 16px; background: #fff; }
+.contexte { margin: 0; font-size: 16px; font-weight: 700; line-height: 1.45; color: #4a4366; }
+.etiquette { font-size: 13px; font-weight: 800; color: var(--doux); }
+.lecteur { position: relative; display: grid; grid-template-columns: 56px 1fr; align-items: center; gap: 14px; width: 100%; padding: 12px 14px; border: 1.5px solid var(--filet); border-radius: 16px; background: #fff; text-align: left; }
+.lecteur > svg { width: 56px; height: 56px; padding: 16px 14px 16px 19px; border-radius: 13px; background: var(--violet); color: #fff; }
+.lecteur-texte { display: grid; line-height: 1.3; }
+.lecteur-texte b { font-size: 17px; font-weight: 800; }
+.lecteur-texte small { font-size: 14px; font-weight: 700; color: var(--doux); }
+.lecteur .pastille { display: none; }
+.lecteur .vague { display: none; width: 56px; height: 56px; align-items: center; justify-content: center; gap: 4px; border-radius: 13px; background: var(--violet); }
+.lecteur.parle > svg { display: none; }
+.lecteur.parle .vague { display: flex; }
+.vague i { width: 4px; height: 12px; border-radius: 2px; background: #fff; }
+.vague i:nth-child(2n) { height: 22px; } .vague i:nth-child(3n) { height: 16px; }
+.vague.active i { animation: barre .7s ease-in-out infinite; }
+.vague i:nth-child(2n) { animation-delay: -.2s; } .vague i:nth-child(3n) { animation-delay: -.45s; }
+@keyframes barre { 50% { transform: scaleY(.45); } }
+.lecteur:disabled { cursor: default; opacity: .55; }
+.lecteur.parle:disabled { opacity: 1; border-color: var(--violet); }
+.visuel.photo-fond .photo-scene { order: -1; }
+.photo-scene { display: block; width: 100%; height: 200px; object-fit: cover; border-radius: 16px; }
+.phrase { font-size: 23px; font-weight: 800; line-height: 1.6; text-wrap: balance; }
+.phrase.petite { font-size: 19px; }
+.ordre-phrase { font-size: 21px; line-height: 1.9; }
+.trou { display: inline-block; min-width: 88px; margin: 0 3px; padding: 0 10px; border: 1.5px solid var(--violet); border-radius: 9px; background: var(--violet-pale); color: var(--violet); line-height: 1.45; }
+.trou.pop { animation: pop .3s ease-out; }
+@keyframes pop { from { transform: scale(.88); } }
+.ordre-phrase .trou { min-width: 66px; cursor: pointer; }
+.trou.curseur::after { content: ""; display: inline-block; width: 2px; height: 1.05em; margin-left: 2px; vertical-align: -.15em; background: currentColor; animation: clignote 1.1s steps(1) infinite; }
+@keyframes clignote { 50% { opacity: 0; } }
+.indice { justify-self: start; padding: 3px 11px; border-radius: 999px; background: #f3f0fa; color: var(--doux); font-size: 14px; font-weight: 700; }
+.sms { display: grid; justify-items: start; gap: 6px; }
+.sms p { margin: 0; padding: 12px 15px; border-radius: 16px 16px 16px 5px; background: var(--fond); font-size: 17px; font-weight: 700; line-height: 1.45; }
+.papier-court { display: grid; gap: 4px; }
+.papier-court strong { font-size: 16px; }
+.papier-court p { margin: 0; font-size: 17px; font-weight: 600; line-height: 1.55; }
+.image-support { position: relative; display: block; padding: 6px; border: 1.5px solid var(--filet); border-radius: 16px; background: #fff; }
+.image-support img { display: block; width: 100%; max-height: 230px; object-fit: contain; border-radius: 11px; }
+.loupe { position: absolute; right: 12px; bottom: 12px; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: var(--violet); color: #fff; }
+.loupe svg { width: 19px; height: 19px; }
+.image-grande { width: 100%; border-radius: 12px; }
+.visuel-scene .scene-emoji { font-size: 50px; line-height: 1; }
+.situation { margin: 0; font-size: 17px; font-weight: 700; line-height: 1.5; }
+.doc-mini { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; padding: 14px; border: 1.5px solid var(--filet); border-radius: 16px; background: #fff; }
+.doc-mini .icone-doc { display: grid; place-items: center; width: 54px; height: 60px; border-radius: 13px; background: var(--violet-pale); font-size: 28px; }
+.doc-mini .icone-doc.avec-photo { width: 58px; height: 58px; overflow: hidden; border-radius: 50%; }
+.avec-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.doc-mini strong { font-size: 17px; }
+.pilule { display: inline-flex; align-items: center; gap: 6px; padding: 8px 13px; border: 0; border-radius: 10px; background: var(--violet-pale); color: var(--violet); font-size: 14.5px; font-weight: 800; }
+.pilule svg { width: 16px; height: 16px; }
+.question { margin: 0; font: 800 24px/1.25 var(--titre); text-wrap: balance; }
+.question.consigne { font-size: 22px; }
+.lire-consigne { display: inline-grid; place-items: center; width: 32px; height: 32px; margin-left: 4px; padding: 0; border: 0; border-radius: 9px; background: var(--violet-pale); color: var(--violet); vertical-align: -5px; }
+.lire-consigne svg { width: 16px; height: 16px; }
+.lire-consigne.parle { background: var(--violet); color: #fff; }
+
+/* les réponses A, B, C */
+.reponses { display: grid; gap: 10px; counter-reset: rep; }
+.rep { counter-increment: rep; }
+.bonbons .rep, .ligne-audio .rep { display: flex; align-items: center; gap: 14px; width: 100%; min-height: 60px; padding: 12px 14px; border: 1.5px solid var(--filet); border-radius: 15px; background: #fff; color: var(--encre); font-size: 17.5px; font-weight: 700; line-height: 1.3; text-align: left; transition: border-color .12s, background .12s; }
+.marque { flex: none; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: #f3f0fa; color: var(--doux); font-size: 15px; font-weight: 900; }
+.marque::before { content: counter(rep, upper-alpha); }
+.reponses .rep[aria-checked="true"] { border-color: var(--violet); background: #f8f4ff; box-shadow: inset 0 0 0 1px var(--violet); }
+.reponses .rep[aria-checked="true"] .marque { background: var(--violet); color: #fff; }
+.ligne-audio { display: flex; align-items: center; gap: 10px; }
+.ecouter-rep { flex: none; display: grid; place-items: center; width: 50px; height: 50px; padding: 0; border: 0; border-radius: 13px; background: var(--violet); color: #fff; }
+.ecouter-rep svg { width: 19px; height: 19px; margin-left: 2px; }
+.ecouter-rep.parle { background: var(--violet-fonce); }
+.reponses.images { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.reponses.images[data-cols="2"] .rep-image:first-child:nth-last-child(odd) { margin-inline: calc((100% - var(--wi)) / 2); }
+.rep-image { width: var(--wi, calc((100% - 20px) / 3)); padding: 5px; border: 1.5px solid var(--filet); border-radius: 15px; background: #fff; }
+.rep-image img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; }
+.rep-image[aria-checked="true"] { border-color: var(--violet); background: #f8f4ff; box-shadow: inset 0 0 0 1px var(--violet); }
+.mots-a-placer { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; }
+.mot-dispo { padding: 12px 18px; border: 1.5px solid var(--filet); border-radius: 12px; background: #fff; color: var(--encre); font-size: 18px; font-weight: 800; transition: opacity .15s; }
+.mot-dispo:disabled { opacity: .3; cursor: default; }
+.saisies { display: grid; gap: 12px; }
+.champ { display: grid; gap: 6px; font-size: 13px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--doux); }
+.champ input { width: 100%; min-height: 58px; padding: 12px 16px; border: 1.5px solid var(--filet); border-radius: 14px; background: #fff; color: var(--encre); font: 800 20px/1.2 var(--texte); outline: none; }
+.champ input:focus { border-color: var(--violet); box-shadow: inset 0 0 0 1px var(--violet); }
+.reponses.ecrire { display: grid; gap: 16px; }
+.mot-ecrit { justify-self: center; }
+.mot-ecrit .trou { min-width: 180px; margin: 0; font-size: 26px; font-weight: 800; text-align: center; }
+.lettres { display: grid; grid-template-columns: repeat(6, 1fr); gap: 7px; }
+.lettre, .effacer { display: grid; place-items: center; height: 50px; padding: 0; border: 1.5px solid var(--filet); border-radius: 11px; background: #fff; color: var(--encre); font-size: 20px; font-weight: 900; text-transform: uppercase; transition: opacity .15s; }
+.lettre:disabled { opacity: .28; cursor: default; }
+.effacer { grid-column: span 2; color: var(--doux); }
+.effacer:disabled { opacity: .45; cursor: default; }
+.effacer svg { width: 22px; height: 22px; }
+
+/* la barre du bas */
+.bas { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 20px calc(14px + env(safe-area-inset-bottom, 0px)); background: #fff; border-top: 1px solid var(--filet); }
+.bouton { display: grid; place-items: center; min-height: 52px; padding: 0 32px; border: 0; border-radius: 13px; font: 800 18px/1 var(--titre); }
+.bas > .bouton:only-child { flex: 1; }
+.bouton.vert { background: var(--violet); color: #fff; }
+.bouton.vert:active:not(:disabled) { background: var(--violet-fonce); }
+.bouton:disabled { opacity: .38; cursor: default; }
+.bouton.blanc { flex: 1; background: #fff; color: var(--violet); box-shadow: inset 0 0 0 2px var(--violet); }
+.lien { order: -1; padding: 10px 4px; border: 0; background: none; color: var(--doux); font-size: 15.5px; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+
+/* les documents à lire */
+.papier { display: grid; gap: 12px; padding: 18px; border: 1.5px solid var(--filet); border-radius: 16px; background: #fff; }
+.papier-tete { display: flex; align-items: center; gap: 12px; }
+.papier-tete span { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 13px; background: var(--violet-pale); font-size: 24px; flex: none; }
+.papier-tete .avec-photo { width: 58px; height: 58px; overflow: hidden; border-radius: 50%; }
+.papier-tete strong { display: block; font: 800 21px/1.15 var(--titre); }
+.papier-tete small { color: var(--doux); font-size: 14px; }
+.papier p { margin: 0; font-size: 17.5px; line-height: 1.65; font-weight: 600; }
+.consigne-lecture { margin: 14px 0 0; color: var(--doux); font-size: 15px; text-align: center; }
+.tableau-defile { overflow-x: auto; }
+.edt { width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 13px; line-height: 1.25; text-align: center; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: anywhere; }
+.edt th, .edt td { padding: 7px 3px; border: 1px solid var(--filet); }
+.edt tr > :first-child { width: 25%; white-space: nowrap; font-size: 11.5px; }
+.edt tr:first-child > * { font-size: 12px; letter-spacing: .03em; }
+.edt th { background: var(--violet-pale); font-weight: 900; }
+.edt td:empty { background: #fbfaff; }
+
+/* la feuille du bas (quitter, relire, agrandir) */
+.voile { position: absolute; inset: 0; z-index: 5; display: flex; align-items: flex-end; background: rgba(36, 27, 69, .4); animation: entre .2s ease-out both; }
+.feuille { width: 100%; max-height: 92%; overflow-y: auto; display: grid; gap: 12px; padding: 24px 20px calc(18px + env(safe-area-inset-bottom, 0px)); border-radius: 24px 24px 0 0; background: #fff; }
+.feuille h2 { margin: 0; font: 800 23px/1.2 var(--titre); }
+.feuille > p { margin: 0; color: var(--doux); }
+.feuille .bouton { width: 100%; }
+
+/* l'accueil et la fin */
+.ex-tete { display: grid; gap: 8px; padding-bottom: 20px; }
+.ex-tete h1, .ex-fin h1 { margin: 0; font: 800 32px/1.08 var(--titre); letter-spacing: -.01em; text-wrap: balance; }
+.ex-meta { margin: 0; display: flex; align-items: center; gap: 8px; color: var(--doux); font-size: 15px; }
+.ex-meta svg { width: 18px; height: 18px; flex: none; }
+.ex-rubriques { margin: 0 0 16px; padding: 0; list-style: none; border: 1.5px solid var(--filet); border-radius: 16px; background: #fff; }
+.ex-rubriques li { display: flex; align-items: center; gap: 14px; padding: 14px 16px; }
+.ex-rubriques li + li { border-top: 1px solid var(--filet); }
+.ex-rubriques svg { width: 24px; height: 24px; flex: none; color: var(--violet); }
+.ex-rubriques span { display: grid; line-height: 1.3; }
+.ex-rubriques b { font-size: 16.5px; font-weight: 800; }
+.ex-rubriques small { font-size: 14px; font-weight: 700; color: var(--doux); }
+.ex-encadre { padding: 14px 16px; border-left: 4px solid var(--violet); border-radius: 6px 14px 14px 6px; background: var(--violet-pale); }
+.ex-encadre b { font-size: 15.5px; font-weight: 900; }
+.ex-encadre p { margin: 4px 0 0; font-size: 15px; line-height: 1.5; color: #4a4366; }
+.ex-fin { display: grid; justify-items: start; gap: 12px; }
+.ex-fin > p { margin: 0 0 6px; font-size: 16.5px; color: var(--doux); }
+.ex-doc { display: grid; place-items: center; width: 68px; height: 68px; border-radius: 18px; background: var(--violet-pale); color: var(--violet); }
+.ex-doc svg { width: 34px; height: 34px; }
+.ex-fin .ex-encadre { align-self: stretch; }
+
+/* une question qui ne tient pas dans la hauteur de l'écran se resserre, en deux crans */
+.serre .defile { padding-top: 16px; padding-bottom: 14px; }
+.serre .scene { gap: 11px; padding-bottom: 12px; }
+.serre .feuille-q { gap: 11px; }
+.serre .photo-scene { height: 150px; }
+.serre .image-support img { max-height: 170px; }
+.serre .question { font-size: 22px; }
+.serre .bonbons .rep, .serre .ligne-audio .rep { min-height: 52px; padding-block: 9px; }
+.serre .reponses { gap: 8px; }
+.serre .lecteur { padding-block: 9px; } .serre .lecteur > svg, .serre .lecteur .vague { width: 48px; height: 48px; padding: 13px 11px 13px 16px; }
+.serre .edt th, .serre .edt td { padding-block: 4px; }
+.serre .ex-tete { gap: 6px; padding-bottom: 14px; }
+.serre .ex-tete h1, .serre .ex-fin h1 { font-size: 28px; }
+.serre .ex-rubriques { margin-bottom: 12px; }
+.serre .ex-rubriques li { padding-block: 10px; }
+.serre .ex-encadre { padding-block: 11px; }
+.tres-serre .ex-rubriques small { display: none; }
+.tres-serre .ex-rubriques li { padding-block: 9px; }
+.tres-serre .haut { padding-block: 10px 9px; }
+.tres-serre .rubrique { padding-block: 4px; }
+.tres-serre .photo-scene { height: 116px; }
+.tres-serre .image-support img { max-height: 140px; }
+.tres-serre .phrase { font-size: 20px; }
+.tres-serre .question { font-size: 20px; }
+.tres-serre .sms p { font-size: 16px; padding: 10px 13px; }
+.tres-serre .bonbons .rep, .tres-serre .ligne-audio .rep { min-height: 46px; font-size: 16.5px; }
+.tres-serre .visuel-feuille, .tres-serre .papier { padding: 14px; }
+.tres-serre .bouton { min-height: 48px; }
+
+/* sur un appareil tactile ou un écran étroit : le test occupe tout l'écran, comme une application */
+@media (max-width: 520px), (hover: none) and (pointer: coarse) {
+  html, body { overflow: hidden; overscroll-behavior: none; background: #fff; }
+  body { padding: 0; }
+  .appli { position: fixed; inset: 0; width: auto; height: auto; border: 0; border-radius: 0; }
+  .haut { padding-top: calc(12px + env(safe-area-inset-top, 0px)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+"""
+
 ICONES_EN_PLUS = '''  livre: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg>',
   crayon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 3.5l4 4L8 20H4v-4z"/><path d="M14 6l4 4"/></svg>',
   ecoute: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="5" height="7" rx="2"/><rect x="16" y="14" width="5" height="7" rx="2"/></svg>',
+  horloge: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  micro: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>',
+  langue: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18l5-12 5 12M4.8 14h6.4"/><path d="M15 12.5c0-1.4 1.1-2.5 2.8-2.5 1.6 0 2.7.9 2.7 2.6V18M20.5 14.6c-3.3 0-5.5.6-5.5 2.1 0 .9.7 1.5 1.9 1.5 2 0 3.6-1.4 3.6-3.6"/></svg>',
+  doc: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8.5 15l2.5 2.5 5-5"/></svg>',
   fini: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
 '''
 
@@ -407,14 +647,66 @@ function ecranLecture(q) {
 '''
 
 
+HAUT_EXAMEN = r"""
+function haut() {
+  // le numéro de la question depuis le début du test, sans repartir à zéro : le niveau n'apparaît jamais
+  const n = etat.vus.length + etat.k + 1;
+  return `<div class="haut">
+    <button class="rond" type="button" id="fermer" aria-label="Quitter le test">${ICONE.fermer}</button>
+    <span class="titre-test">Évaluation</span>
+    <span class="numero">Question ${n}</span>
+    ${boutonSon()}
+  </div>`;
+}
+"""
+
+ACCUEIL_EXAMEN = r"""
+function ecranAccueil() {
+  poser(`<section class="ecran ecran-accueil" aria-labelledby="t-accueil">
+    <div class="haut haut-accueil"><span class="titre-test">Français langue étrangère</span>${boutonSon()}</div>
+    <div class="defile"><div>
+      <div class="ex-tete"><h1 id="t-accueil">Évaluation de positionnement</h1><p class="ex-meta">${ICONE.horloge}Environ 10 minutes · questions adaptées à vos réponses</p></div>
+      <ul class="ex-rubriques">
+        <li>${ICONE.ecoute}<span><b>Compréhension orale</b><small>Écouter des enregistrements courts</small></span></li>
+        <li>${ICONE.livre}<span><b>Compréhension écrite</b><small>Lire des messages et des documents</small></span></li>
+        <li>${ICONE.crayon}<span><b>Expression écrite</b><small>Écrire des mots et des phrases</small></span></li>
+        <li>${ICONE.langue}<span><b>Langue</b><small>Grammaire, conjugaison, vocabulaire</small></span></li>
+      </ul>
+      <div class="ex-encadre"><b>Avant de commencer</b><p>Installez-vous au calme. Des écouteurs sont conseillés. Si vous ne connaissez pas la réponse, choisissez «&nbsp;Je ne sais pas&nbsp;».</p></div>
+    </div></div>
+    <div class="bas">${bouton("Commencer l'évaluation", "vert", 'id="commencer"')}</div>
+  </section>`);
+  brancherSon();
+  $("#commencer").addEventListener("click", () => { audio(); SONS.valider(); vibrer(15); nouveauTest(); afficher(); });
+  resserrer();
+}
+"""
+
+RESULTAT_EXAMEN = r"""
+function ecranResultat() {
+  calculer();      // le niveau et le diagnostic restent pour le formateur (panneau « Moteur ») ; l'apprenant ne les voit pas
+  poser(`<section class="ecran ecran-fin" aria-labelledby="t-resultat">
+    <div class="haut haut-accueil"><span class="titre-test">Français langue étrangère</span>${boutonSon()}</div>
+    <div class="defile"><div class="ex-fin"><span class="ex-doc">${ICONE.doc}</span><h1 id="t-resultat">Évaluation terminée</h1>
+      <p>Vous avez répondu à toutes les questions. Merci.</p>
+      <div class="ex-encadre"><b>Et ensuite ?</b><p>Vous pouvez prévenir votre formateur que vous avez terminé.</p></div></div></div>
+    <div class="bas">${bouton("Fermer", "blanc", 'id="refaire"')}</div>
+  </section>`);
+  brancherSon(); SONS.valider();
+  $("#refaire").addEventListener("click", () => { etat = { ecran: "accueil" }; afficher(); });
+  resserrer();
+}
+"""
+
 def transformer(s, artifact, style='feuille'):
     # en-tête du document : police, titre, couleur du navigateur
-    police = 'family=Manrope:wght@500;600;700;800' if style == 'feuille' else 'family=Plus+Jakarta+Sans:wght@500;600;700;800'
-    s = remplacer(s, 'family=Baloo+2:wght@700;800&family=Nunito:wght@600;700;800;900', police)
+    if style != 'examen':      # « L'examen » garde les polices de la v2 (Baloo 2 et Nunito)
+        police = 'family=Manrope:wght@500;600;700;800' if style == 'feuille' else 'family=Plus+Jakarta+Sans:wght@500;600;700;800'
+        s = remplacer(s, 'family=Baloo+2:wght@700;800&family=Nunito:wght@600;700;800;900', police)
     if artifact:
-        s = remplacer(s, '<title>Positionnement FLE v2</title>', '<title>Positionnement FLE v3</title>' if style == 'feuille' else '<title>Positionnement FLE dégradé</title>')
+        s = remplacer(s, '<title>Positionnement FLE v2</title>', '<title>Positionnement FLE v3</title>' if style == 'feuille' else '<title>Positionnement FLE dégradé</title>' if style == 'degrade' else '<title>Positionnement FLE examen</title>')
     else:
-        s = remplacer(s, '<meta name="theme-color" content="#9748fe">', '<meta name="theme-color" content="%s">' % ('#cbc2fb' if style == 'feuille' else '#8c7af6'))
+        s = remplacer(s, '<meta name="theme-color" content="#9748fe">', '<meta name="theme-color" content="%s">' % {'feuille': '#cbc2fb', 'degrade': '#8c7af6', 'examen': '#ffffff'}[style])
         s = remplacer(s, '<title>Test de niveau de français</title>', '<title>Test de positionnement en français</title>')
         s = s.replace('content="Test de niveau de français"', 'content="Test de positionnement en français"')
         # les sons sont ceux de la v2
@@ -423,7 +715,7 @@ def transformer(s, artifact, style='feuille'):
     # la feuille de style : entièrement nouvelle, sauf les panneaux du formateur, repris tels quels
     a = s.index('<style>') + len('<style>'); b = s.index('</style>', a)
     panneaux = bloc_css(s[a:b], '.coin { display: none; }')
-    s = s[:a] + CSS + (CSS_DEGRADE if style == 'degrade' else '') + '\n/* panneaux « Barème » et « Moteur » (ordinateur), repris de la v2 */\n' + panneaux + '\n' + s[b:]
+    s = s[:a] + (CSS_EXAMEN if style == 'examen' else CSS + (CSS_DEGRADE if style == 'degrade' else '')) + '\n/* panneaux « Barème » et « Moteur » (ordinateur), repris de la v2 */\n' + panneaux + '\n' + s[b:]
     # icônes, marque des réponses (un rond), réponses toujours en liste (plus d'alvéoles)
     s = remplacer(s, 'const ICONE = {\n', 'const ICONE = {\n' + ICONES_EN_PLUS)
     s = re.sub(r'const MARQUE = `[^`]*`;', 'const MARQUE = `<span class="marque" aria-hidden="true"></span>`;', s, count=1)
@@ -444,19 +736,28 @@ def transformer(s, artifact, style='feuille'):
       const media = ["ecoute", "image", "situation", "document"].includes(q.t), avant = q.t === "trou" || q.t === "ordre";
       const titre = `<h2 class="question${avant ? " consigne" : ""}" id="question">${echap(q.question)}${q.niveau === "A1" && audible("q:" + q.question) ? ` <button class="lire-consigne" type="button" id="lire-consigne" aria-label="Entendre la question">${ICONE.son}</button>` : ""}</h2>`;
       const vis = q.t === "aucun" ? "" : `<div class="visuel ${media ? "visuel-scene" : "visuel-feuille"}${q.t === "ecoute" && q.photo ? " photo-fond" : ""}">${visuel(q)}</div>`;
-      return media ? `<div class="scene">${vis}</div><div class="feuille-q">${titre}${reponses}</div>`
-                   : `<div class="scene vide"></div><div class="feuille-q">${avant ? titre + vis : vis + titre}${reponses}</div>`;
+      const rub = `<span class="rubrique">${({ CO: ICONE.ecoute, CE: ICONE.livre, EE: ICONE.crayon, EO: ICONE.micro, LG: ICONE.langue })[q.comp] || ""}${NOMS_COMP[q.comp]}</span>`;
+      return media ? `<div class="scene">${rub}${vis}</div><div class="feuille-q">${titre}${reponses}</div>`
+                   : `<div class="scene vide">${rub}</div><div class="feuille-q">${avant ? titre + vis : vis + titre}${reponses}</div>`;
     })()}</div>''')
     # en-tête, accueil, lecture, fin ; plus d'écran de passage de niveau
-    s = fonction(s, 'haut', HAUT)
-    s = fonction(s, 'ecranAccueil', ACCUEIL)
+    ex = style == 'examen'
+    s = fonction(s, 'haut', HAUT_EXAMEN if ex else HAUT)
+    s = fonction(s, 'ecranAccueil', ACCUEIL_EXAMEN if ex else ACCUEIL)
     s = fonction(s, 'ecranLecture', LECTURE)
-    s = fonction(s, 'ecranResultat', RESULTAT)
+    s = fonction(s, 'ecranResultat', RESULTAT_EXAMEN if ex else RESULTAT)
+    if ex:
+        s = remplacer(s, 'bouton("Suivant", "vert", `id="valider"', 'bouton("Valider", "vert", `id="valider"')
+    # le lecteur dit ce qu'il fait (affiché seulement dans « L'examen »)
+    s = remplacer(s, '${ICONE.jouer}<span class="vague" id="vague"', '${ICONE.jouer}<span class="lecteur-texte" aria-hidden="true"><b>Écouter l\'enregistrement</b><small id="reste">${reste === 2 ? "2 écoutes possibles" : reste === 1 ? "1 écoute possible" : "Plus d\'écoute possible"}</small></span><span class="vague" id="vague"')
+    s = remplacer(s, '    lecteur.disabled = true;\n', '    lecteur.disabled = true; { const r = $("#reste"); if (r) r.textContent = "Écoute en cours…"; }\n')
+    s = remplacer(s, 'lecteur.setAttribute("aria-label", 2 - n > 0 ? "Réécouter l\'enregistrement (1 écoute possible)" : "Plus d\'écoute possible");',
+                  'lecteur.setAttribute("aria-label", 2 - n > 0 ? "Réécouter l\'enregistrement (1 écoute possible)" : "Plus d\'écoute possible"); { const r = $("#reste"); if (r) r.textContent = 2 - n > 0 ? "1 écoute possible" : "Plus d\'écoute possible"; }')
     s = remplacer(s, '      etat.ecran = "palier"; return afficher();', '      etat.ecran = "question"; return afficher();      // v3 : on enchaîne, sans écran de niveau')
     return s
 
 
-for style, dossier in (('feuille', ICI), ('degrade', os.path.join(ICI, 'degrade'))):
+for style, dossier in (('feuille', ICI), ('degrade', os.path.join(ICI, 'degrade')), ('examen', os.path.join(ICI, 'examen'))):
     os.makedirs(dossier, exist_ok=True)
     for nom, artifact in (('index.html', False), ('test-positionnement.html', True)):
         s = open(os.path.join(V2, nom), encoding='utf-8').read()

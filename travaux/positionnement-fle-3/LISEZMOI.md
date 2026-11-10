@@ -12,6 +12,12 @@ perçu comme plus officiel. La version 2, plus ludique, reste en place pour d'au
   turquoise en haut de l'écran qui s'efface vers un fond clair, cartes blanches bordées, bouton sombre, barre
   d'avancement sous l'en-tête (elle avance d'une question sur 21, le maximum, sans repartir à zéro). Ses sons sont
   lus dans `../../positionnement-fle-2/sons/`.
+- `examen/` : la variante « L'examen » en violet, avec les polices de la v2 (Baloo 2 pour les titres, Nunito pour
+  le texte) : https://onlineformapro-website.vercel.app/travaux/positionnement-fle-3/examen/ . Bandeau blanc avec un
+  filet dégradé violet, nom de la compétence au-dessus de chaque question (« Compréhension orale »…), réponses
+  A, B, C dans des cartes blanches, barre du bas « Je ne sais pas » / « Valider », lecteur « Écouter
+  l'enregistrement » avec les écoutes restantes, marges de 20 px et contenu centré dans la hauteur. Ses sons sont lus
+  dans `../../positionnement-fle-2/sons/`.
 - `maquettes/` : les trois pistes comparées avant le choix.
 
 ## Ce qui change par rapport à la version 2
@@ -42,5 +48,5 @@ où les résultats seront transmis.
 ```
 python3 travaux/positionnement-fle-2/banque/banque_v2.py      # si la banque a changé
 python3 travaux/positionnement-fle-2/banque/assembler_v2.py   # reconstruit la v2
-python3 travaux/positionnement-fle-3/assembler_v3.py          # transforme la v2 en v3 (« La feuille » et « Le dégradé »)
+python3 travaux/positionnement-fle-3/assembler_v3.py          # transforme la v2 en v3 (« La feuille », « Le dégradé » et « L'examen »)
 ```

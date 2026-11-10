@@ -40,6 +40,7 @@ et en artifact. Détails et écarts avec le PDF dans `positionnement-fle-2/LISEZ
 `positionnement-fle-3/` : le même test en style « La feuille », plus officiel (fond clair, aucun niveau montré à l'apprenant),
 en page web (https://onlineformapro-website.vercel.app/travaux/positionnement-fle-3/) et en artifact, produit à partir de la v2 par `assembler_v3.py`.
 Variante « Le dégradé » dans `positionnement-fle-3/degrade/` (https://onlineformapro-website.vercel.app/travaux/positionnement-fle-3/degrade/).
+Variante « L'examen » en violet, polices de la v2, dans `positionnement-fle-3/examen/` (https://onlineformapro-website.vercel.app/travaux/positionnement-fle-3/examen/).
 Détails dans `positionnement-fle-3/LISEZMOI.md`.
 
 `positionnement-fle-3/maquettes/` : trois pistes de style plus officiel pour le même test (fond clair, niveau caché à l'apprenant),

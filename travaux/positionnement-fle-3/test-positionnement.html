@@ -41,7 +41,7 @@ svg { display: block; }
 .haut { flex: none; display: grid; grid-template-columns: 38px 1fr 38px; align-items: center; gap: 8px; padding: 14px 16px 6px; }
 .rond { display: grid; place-items: center; width: 38px; height: 38px; padding: 0; border: 1px solid rgba(255, 255, 255, .7); border-radius: 50%; background: rgba(255, 255, 255, .42); color: var(--encre); }
 .rond svg { width: 17px; height: 17px; }
-.haut .barre { display: none; }
+.haut .barre, .rubrique, .lecteur-texte { display: none; }
 .numero { justify-self: center; padding: 6px 14px; border-radius: 999px; background: rgba(255, 255, 255, .62); font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; }
 
 /* la scène (au-dessus de la feuille) et la feuille blanche */
@@ -324,6 +324,10 @@ const ICONE = {
   livre: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg>',
   crayon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 3.5l4 4L8 20H4v-4z"/><path d="M14 6l4 4"/></svg>',
   ecoute: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="5" height="7" rx="2"/><rect x="16" y="14" width="5" height="7" rx="2"/></svg>',
+  horloge: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  micro: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>',
+  langue: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18l5-12 5 12M4.8 14h6.4"/><path d="M15 12.5c0-1.4 1.1-2.5 2.8-2.5 1.6 0 2.7.9 2.7 2.6V18M20.5 14.6c-3.3 0-5.5.6-5.5 2.1 0 .9.7 1.5 1.9 1.5 2 0 3.6-1.4 3.6-3.6"/></svg>',
+  doc: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8.5 15l2.5 2.5 5-5"/></svg>',
   fini: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
   loupe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5M10.5 8v5M8 10.5h5"/></svg>',
   effacer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-6-7z"/><path d="M12.5 9.5l5 5M17.5 9.5l-5 5"/></svg>',
@@ -688,7 +692,7 @@ function visuel(q) {
     case "situation": return `${q.photo ? `<img class="photo-scene" src="${IMAGES[q.photo]}" alt="">` : `<span class="scene-emoji" aria-hidden="true">${q.emoji}</span>`}${etiq}<p class="situation">${q.texte}</p>`;
     case "document": return `${ctx}<div class="doc-mini">${q.photo ? `<span class="icone-doc avec-photo" aria-hidden="true"><img src="${IMAGES[q.photo]}" alt=""></span>` : `<span class="icone-doc" aria-hidden="true">${q.emoji}</span>`}<strong>${q.titre}</strong><button class="pilule" type="button" id="relire">${ICONE.oeil} Relire</button></div>`;
     case "ecoute":
-      return `${ctx}<button class="lecteur" type="button" id="lecteur" aria-label="${reste > 0 ? `Écouter l'enregistrement (${reste} écoute${reste > 1 ? "s" : ""} possible${reste > 1 ? "s" : ""})` : "Plus d'écoute possible"}" ${reste <= 0 ? "disabled" : ""}>${ICONE.jouer}<span class="vague" id="vague" aria-hidden="true">${"<i></i>".repeat(5)}</span><span class="pastille" id="pastille" aria-hidden="true" ${reste <= 0 ? "hidden" : ""}>${reste}</span></button>${q.photo ? `<img class="photo-scene" src="${IMAGES[q.photo]}" alt="">` : ""}${q.phrase ? `<div class="phrase petite">${trous(q.phrase)}</div>` : ""}`;
+      return `${ctx}<button class="lecteur" type="button" id="lecteur" aria-label="${reste > 0 ? `Écouter l'enregistrement (${reste} écoute${reste > 1 ? "s" : ""} possible${reste > 1 ? "s" : ""})` : "Plus d'écoute possible"}" ${reste <= 0 ? "disabled" : ""}>${ICONE.jouer}<span class="lecteur-texte" aria-hidden="true"><b>Écouter l'enregistrement</b><small id="reste">${reste === 2 ? "2 écoutes possibles" : reste === 1 ? "1 écoute possible" : "Plus d'écoute possible"}</small></span><span class="vague" id="vague" aria-hidden="true">${"<i></i>".repeat(5)}</span><span class="pastille" id="pastille" aria-hidden="true" ${reste <= 0 ? "hidden" : ""}>${reste}</span></button>${q.photo ? `<img class="photo-scene" src="${IMAGES[q.photo]}" alt="">` : ""}${q.phrase ? `<div class="phrase petite">${trous(q.phrase)}</div>` : ""}`;
   }
   return "";
 }
@@ -721,8 +725,9 @@ function ecranQuestion() {
       const media = ["ecoute", "image", "situation", "document"].includes(q.t), avant = q.t === "trou" || q.t === "ordre";
       const titre = `<h2 class="question${avant ? " consigne" : ""}" id="question">${echap(q.question)}${q.niveau === "A1" && audible("q:" + q.question) ? ` <button class="lire-consigne" type="button" id="lire-consigne" aria-label="Entendre la question">${ICONE.son}</button>` : ""}</h2>`;
       const vis = q.t === "aucun" ? "" : `<div class="visuel ${media ? "visuel-scene" : "visuel-feuille"}${q.t === "ecoute" && q.photo ? " photo-fond" : ""}">${visuel(q)}</div>`;
-      return media ? `<div class="scene">${vis}</div><div class="feuille-q">${titre}${reponses}</div>`
-                   : `<div class="scene vide"></div><div class="feuille-q">${avant ? titre + vis : vis + titre}${reponses}</div>`;
+      const rub = `<span class="rubrique">${({ CO: ICONE.ecoute, CE: ICONE.livre, EE: ICONE.crayon, EO: ICONE.micro, LG: ICONE.langue })[q.comp] || ""}${NOMS_COMP[q.comp]}</span>`;
+      return media ? `<div class="scene">${rub}${vis}</div><div class="feuille-q">${titre}${reponses}</div>`
+                   : `<div class="scene vide">${rub}</div><div class="feuille-q">${avant ? titre + vis : vis + titre}${reponses}</div>`;
     })()}</div>
     <div class="bas">${bouton("Suivant", "vert", `id="valider" ${pret(choisi) ? "" : "disabled"}`)}<button class="lien" type="button" id="passer">Je ne sais pas</button></div>
   </section>`);
@@ -791,9 +796,9 @@ function ecranQuestion() {
   const lecteur = $("#lecteur");
   if (lecteur) lecteur.addEventListener("click", () => {
     const n = (etat.ecoutes[q.id] || 0) + 1; etat.ecoutes[q.id] = n;
-    lecteur.disabled = true;
+    lecteur.disabled = true; { const r = $("#reste"); if (r) r.textContent = "Écoute en cours…"; }
     const p = $("#pastille"); if (p) { p.textContent = 2 - n; p.hidden = 2 - n <= 0; }
-    jouer(q.audio, [], lecteur, $("#vague"), () => { lecteur.disabled = 2 - n <= 0; lecteur.setAttribute("aria-label", 2 - n > 0 ? "Réécouter l'enregistrement (1 écoute possible)" : "Plus d'écoute possible"); }, {});
+    jouer(q.audio, [], lecteur, $("#vague"), () => { lecteur.disabled = 2 - n <= 0; lecteur.setAttribute("aria-label", 2 - n > 0 ? "Réécouter l'enregistrement (1 écoute possible)" : "Plus d'écoute possible"); { const r = $("#reste"); if (r) r.textContent = 2 - n > 0 ? "1 écoute possible" : "Plus d'écoute possible"; } }, {});
   });
   const lireConsigne = $("#lire-consigne"); if (lireConsigne) lireConsigne.addEventListener("click", () => jouer("q:" + q.question, [q.question], lireConsigne, null, null, { voix: "f", debit: DEBIT.A1 }));
   const relire = $("#relire"); if (relire) relire.addEventListener("click", () => feuille(`${papier(q)}${bouton("Revenir à la question", "vert", "data-fermer")}`));
