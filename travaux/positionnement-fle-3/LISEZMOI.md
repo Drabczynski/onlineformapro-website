@@ -23,7 +23,20 @@ perçu comme plus officiel. La version 2, plus ludique, reste en place pour d'au
   « Valider ». Aucun bandeau, aucun numéro de question, aucune compétence affichée : en haut, le son à gauche et la
   croix pour quitter à droite (elle demande confirmation). Un mot à trait d'union (« posez-vous ») n'est jamais coupé
   en fin de ligne. Ses sons et ses images sont lus dans `../../positionnement-fle-2/` (l'artifact les intègre).
+- `hublot/` : « Le Hublot », le même test que « L'examen » (mêmes questions, moteur, langues et voix) avec une mise en
+  page pour ordinateur : https://onlineformapro-website.vercel.app/travaux/positionnement-fle-3/hublot/ . Elle s'applique
+  dès que l'écran fait au moins 1000 × 600 px ; en dessous (téléphone, tablette en portrait), c'est « L'examen » à
+  l'identique (vérifié au pixel). À gauche, la photo dans un grand cercle (un cercle de ciel quand il n'y a pas de
+  photo), posé sur ses propres couleurs en flou léger (une miniature de 24 px de la photo, agrandie et floutée) ; la
+  bille d'écoute est son satellite, avec une petite ombre ; la phrase à compléter se place au centre du cercle ; un
+  message (SMS, petit texte) sort d'une enveloppe qui s'ouvre. À droite, sur le blanc : le contexte ou la situation
+  (avec un trait violet, pour qu'on le lise en premier), la question en grand, les réponses, « Je ne sais pas » /
+  « Valider ». Un document se lit à droite, son titre en carte sur le bas du cercle. Transition : le cercle se referme
+  sur la bille et le suivant s'ouvre depuis elle, les couleurs du fond passent en fondu sur 2,2 s. Au clavier : A, B, C,
+  D (ou 1 à 4) pour répondre, Entrée pour valider. Les feuilles (relire, langue, quitter) s'ouvrent en fenêtre au centre.
+  Vient de la piste D des maquettes bureau (`maquettes-bureau/`).
 - `maquettes/` : les trois pistes comparées avant le choix.
+- `maquettes-bureau/` : les six pistes pour ordinateur comparées avant le choix du Hublot.
 
 ## La langue des consignes (« L'examen »)
 
@@ -80,5 +93,5 @@ où les résultats seront transmis.
 ```
 python3 travaux/positionnement-fle-2/banque/banque_v2.py      # si la banque a changé
 python3 travaux/positionnement-fle-2/banque/assembler_v2.py   # reconstruit la v2
-python3 travaux/positionnement-fle-3/assembler_v3.py          # transforme la v2 en v3 (« La feuille », « Le dégradé » et « L'examen »)
+python3 travaux/positionnement-fle-3/assembler_v3.py          # transforme la v2 en v3 (« La feuille », « Le dégradé », « L'examen » et « Le Hublot »)
 ```

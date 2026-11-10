@@ -41,6 +41,8 @@ et en artifact. Détails et écarts avec le PDF dans `positionnement-fle-2/LISEZ
 en page web (https://onlineformapro-website.vercel.app/travaux/positionnement-fle-3/) et en artifact, produit à partir de la v2 par `assembler_v3.py`.
 Variante « Le dégradé » dans `positionnement-fle-3/degrade/` (https://onlineformapro-website.vercel.app/travaux/positionnement-fle-3/degrade/).
 Variante « L'examen » (dégradé bleu ciel en haut, accent violet, Public Sans, minimaliste) dans `positionnement-fle-3/examen/` (https://onlineformapro-website.vercel.app/travaux/positionnement-fle-3/examen/).
+« Le Hublot », le même test avec une mise en page pour ordinateur (photo dans un grand cercle, question en grand à droite ;
+« L'examen » à l'identique sur téléphone), dans `positionnement-fle-3/hublot/` (https://onlineformapro-website.vercel.app/travaux/positionnement-fle-3/hublot/).
 Détails dans `positionnement-fle-3/LISEZMOI.md`.
 
 `positionnement-fle-examen-v1/` : **la version mobile figée du test « L'examen », produit fini (10 novembre 2026), à ne pas modifier.**

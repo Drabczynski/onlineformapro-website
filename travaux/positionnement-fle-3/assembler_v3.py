@@ -876,14 +876,269 @@ function insecables(racine) {
   }
 }"""
 
+# ------------------------------------------------------------------------------ « Le Hublot » : la version pour ordinateur
+# Même test que « L'examen » (même moteur, mêmes questions, langues et voix), avec une mise en page pour les écrans d'au
+# moins 1000 × 600 px ; en dessous (téléphone, tablette en portrait), rien ne change. Choisie parmi les maquettes bureau
+# (maquettes-bureau/, piste D), puis ajustée : contexte à droite au-dessus de la question, message qui sort d'une
+# enveloppe, phrase à compléter au centre du cercle.
+CSS_HUBLOT = r"""
+/* ================= « Le Hublot » : l'écran d'ordinateur (au moins 1000 × 600 px) =================
+   À gauche, la photo dans un grand cercle (un ciel quand il n'y a pas de photo), posé sur ses propres couleurs en flou
+   léger ; la bille d'écoute est son satellite ; la phrase à compléter se place au centre du cercle ; un message sort
+   d'une enveloppe. À droite, sur le blanc : ce qui pose la situation, la question en grand, les réponses, les boutons.
+   Transition : le cercle se referme sur la bille et le suivant s'ouvre depuis elle ; les couleurs passent en fondu. */
+#sorties { display: none; }
+@media (min-width: 1000px) and (min-height: 600px) {
+  html, body { background: #fff; }
+  body { display: block; padding: 0; }
+  .appli { position: fixed; inset: 0; width: auto; height: auto; border: 0; border-radius: 0; background: transparent; }
+  #sorties { display: block; position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+  .ecran { --rond: min(34vw, 60vh); --b: 156px; display: grid; grid-template-columns: 50vw minmax(0, 1fr); grid-template-rows: minmax(84px, 1fr) auto auto minmax(36px, 1fr); }
+  .defile { display: contents; }
+  .haut { padding: 24px 28px 0; }
+  .rond { width: 46px; height: 46px; }
+  .rond svg { width: 20px; height: 20px; }
+
+  /* la scène, à gauche : un fond aux couleurs de la photo, le cercle au milieu */
+  .scene, .scene.vide { grid-column: 1; grid-row: 1 / -1; position: relative; display: grid; place-items: center; min-height: 0; padding: 88px 32px 72px; gap: 0; background: none; overflow: visible; }
+  .scene > :not(.fond-d) { grid-area: 1 / 1; position: relative; z-index: 1; }
+  .fond-d { position: absolute; inset: 0 auto 0 0; z-index: 0; width: 54vw; overflow: hidden;      /* l'emprise de l'ancien ciel : arrêté avant la colonne de texte, pâli vers le bas */
+    -webkit-mask-image: linear-gradient(90deg, #000 40%, transparent 100%), linear-gradient(#000 30%, transparent 96%); -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(90deg, #000 40%, transparent 100%), linear-gradient(#000 30%, transparent 96%); mask-composite: intersect; }
+  .fond-d .brume { position: absolute; inset: -12%; animation: h-derive 22s ease-in-out infinite alternate; }
+  .fond-d img { display: block; width: 100%; height: 100%; object-fit: cover; filter: blur(28px) saturate(1.3); opacity: .5; }
+  .fond-d .ciel-fin { position: absolute; inset: 0; background: var(--ciel); }
+  @keyframes h-derive { to { transform: translate(-3%, -2%) scale(1.08); } }
+  .visuel, .visuel.fond-seul { position: relative; inset: auto; display: grid; place-items: center; width: var(--rond); height: var(--rond); gap: 0; }
+  .visuel > * { grid-area: 1 / 1; }
+  .photo-fond > :not(.photo-scene) { position: relative; }
+  /* le cercle : la photo, ou un ciel */
+  .photo-fond > .cadre-photo, .rond-ciel { display: block; position: relative; inset: auto; z-index: 0; width: var(--rond); height: var(--rond); overflow: hidden; border: 4px solid #fff; border-radius: 50%; background: var(--ciel); -webkit-mask-image: none; mask-image: none; }
+  .cadre-photo > .photo-scene { position: absolute; inset: 0; width: 100%; height: 100%; max-height: none; border-radius: 0; object-fit: cover; object-position: var(--ox, 50%) 38%; transform: none; -webkit-mask-image: none; mask-image: none; }
+  /* la bille d'écoute : satellite du cercle, avec une petite ombre ; seule, elle se pose au centre */
+  .visuel > .lecteur { z-index: 3; width: var(--b); height: var(--b); align-self: start; justify-self: end; margin: calc(var(--rond) * .146 - var(--b) / 2) calc(var(--rond) * .146 - var(--b) / 2) 0 0; box-shadow: 0 8px 22px rgba(52, 26, 140, .32); }
+  .visuel > .lecteur.h-seul { --b: 184px; align-self: center; justify-self: center; margin: 0; }
+  .lecteur > svg { width: 38%; height: 38%; margin-left: 3%; }
+  .pastille { width: 38px; height: 38px; font-size: 16px; }
+  .vague { height: 40%; gap: 6px; }
+  .vague i { width: 6px; }
+  /* au centre du cercle : la phrase à compléter, et son indication dessous */
+  .h-centre { z-index: 2; display: grid; justify-items: center; gap: 12px; width: min(calc(var(--rond) * 1.1), 640px); }
+  .h-centre > .phrase { justify-self: stretch; padding: 22px 28px; border-radius: 24px; font-size: clamp(26px, 2.3vw, 36px); line-height: 1.45; text-align: center; }
+  .h-centre > .phrase.petite { font-size: clamp(24px, 2vw, 32px); }
+  .h-centre > .ordre-phrase { line-height: 1.85; }
+  .h-centre .trou { min-width: 3.4em; }
+  .h-centre .ordre-phrase .trou { min-width: 2.6em; }
+  .h-centre > .indice { justify-self: center; padding: 6px 16px; background: #fff; font-size: 16px; }
+  /* un message (SMS, petit texte) sort d'une enveloppe et se pose sur le bas du cercle */
+  .lettre-env { z-index: 2; align-self: end; position: relative; display: grid; width: min(calc(var(--rond) * 1.12), 600px); margin-bottom: calc(var(--rond) * -.1); perspective: 900px; }
+  .lettre-env > .sms, .lettre-env > .papier-court { position: relative; z-index: 2; transform-origin: 50% 100%; animation: h-extrait 1.25s cubic-bezier(.45, 0, .2, 1) 1s both; }
+  .lettre-env > .sms p { padding: 18px 22px; font-size: clamp(18px, 1.45vw, 22px); }
+  .lettre-env > .papier-court { padding: 20px 24px; }
+  .lettre-env > .papier-court p { font-size: clamp(17px, 1.35vw, 20px); }
+  .env-dos, .env-poche, .env-rabat { position: absolute; left: 19%; bottom: 0; width: 62%; aspect-ratio: 1.6; }
+  .env-dos { z-index: 1; border-radius: 12px; background: #e6defc; animation: h-fondu .3s ease .3s both, h-env-sort .45s ease 1.7s forwards; }
+  .env-poche { z-index: 3; border-radius: 12px; background: linear-gradient(#ffffff, #f2ecff); clip-path: polygon(0 30%, 50% 68%, 100% 30%, 100% 100%, 0 100%); animation: h-fondu .3s ease .3s both, h-env-sort .45s ease 1.7s forwards; }
+  .env-rabat { z-index: 4; background: #f7f4ff; clip-path: polygon(0 0, 100% 0, 50% 62%); transform-origin: 50% 0; animation: h-fondu .3s ease .3s both, h-rabat .5s cubic-bezier(.4, 0, .2, 1) .62s both, h-rabat-sort .45s ease 1.7s forwards; }
+  @keyframes h-fondu { from { opacity: 0; } }
+  @keyframes h-env-sort { to { opacity: 0; transform: translateY(36px); } }
+  @keyframes h-rabat { 0% { transform: rotateX(0deg); z-index: 4; } 49% { z-index: 4; } 51% { z-index: 0; } 100% { transform: rotateX(180deg); z-index: 0; } }
+  @keyframes h-rabat-sort { from { opacity: 1; transform: rotateX(180deg); } to { opacity: 0; transform: translateY(36px) rotateX(180deg); } }
+  /* le message : d'abord il glisse hors de l'enveloppe, encore petit, puis il grandit jusqu'à sa place, devant elle */
+  @keyframes h-extrait { 0% { opacity: 0; transform: scale(.55); z-index: 2; } 8% { opacity: 1; } 44% { transform: translateY(-72%) scale(.55); z-index: 2; } 46% { z-index: 5; } 100% { opacity: 1; transform: none; z-index: 5; } }
+  /* ce qui pose la situation passe à droite, au-dessus de la question : on le lit en premier */
+  .feuille-q > .amorce { justify-self: stretch; max-width: 46ch; margin: 0; padding: 2px 0 2px 18px; border: 0; border-left: 4px solid var(--violet); border-radius: 0; background: none; color: #343a52; font-size: clamp(19px, 1.5vw, 23px); font-weight: 600; line-height: 1.45; text-align: left; }
+  .feuille-q > .amorce[dir="rtl"] { padding: 2px 18px 2px 0; border-left: 0; border-right: 4px solid var(--violet); text-align: right; }
+  /* le document : son titre en carte sur le bas du cercle ; le rappel « Relire » aussi */
+  .scene > .lecture-tete { z-index: 2; align-self: center; translate: 0 calc(var(--rond) / 2 - 24px); }
+  .lecture-tete .papier-tete, .lecture-tete.sur-photo .papier-tete { display: flex; align-items: center; gap: 14px; margin: 0; padding: 16px 24px 16px 16px; border-radius: 22px; background: #fff; text-align: left; }
+  .lecture-tete .papier-tete span { width: 56px; height: 56px; background: var(--violet-pale); font-size: 28px; }
+  .lecture-tete .papier-tete .avec-photo { width: 64px; height: 64px; }
+  .papier-tete strong { font-size: 26px; }
+  .papier-tete small { color: var(--doux); font-size: 15px; }
+  .visuel > .doc-mini { z-index: 2; align-self: end; width: min(calc(var(--rond) * 1.05), 560px); margin-bottom: calc(var(--rond) * -.06); gap: 16px; padding: 16px 18px; }
+  .doc-mini strong { font-size: 20px; }
+  .pilule { padding: 11px 18px; font-size: 16px; }
+  /* une affiche (image à lire) : pas de cercle, l'image entière */
+  .visuel.h-affiche { width: min(38vw, 560px); height: auto; }
+  .h-affiche .image-support img { max-height: calc(100vh - 220px); }
+  .visuel > .scene-emoji { z-index: 2; font-size: 120px; }
+  /* l'écran de fin : la coche au centre d'un ciel */
+  .scene > .ex-embleme { z-index: 2; width: 172px; height: 172px; border: 4px solid #fff; }
+  .ex-embleme svg { width: 46%; height: 46%; }
+
+  /* la colonne de droite, sur le blanc */
+  .feuille-q { grid-column: 2; grid-row: 2; position: relative; z-index: 1; display: flex; flex-direction: column; gap: 30px; width: min(100%, 880px); max-height: calc(100vh - 220px); padding: 4px clamp(40px, 6vw, 112px) 4px clamp(20px, 2.6vw, 52px); overflow: hidden auto; background: none; scrollbar-width: thin; }
+  .bas { grid-column: 2; grid-row: 3; position: relative; z-index: 1; width: min(100%, 880px); padding: 28px clamp(40px, 6vw, 112px) 0 clamp(20px, 2.6vw, 52px); background: none; }
+  .question { font-size: clamp(42px, 4.4vw, 71px); font-weight: 800; line-height: 1.03; letter-spacing: -.038em; text-wrap: balance; }
+  .question.longue { font-size: clamp(34px, 3.3vw, 54px); line-height: 1.08; letter-spacing: -.03em; }
+  .lire-consigne { width: 52px; height: 52px; margin-left: 10px; vertical-align: middle; }
+  .lire-consigne svg { width: 24px; height: 24px; }
+  .reponses { gap: 12px; }
+  .bonbons .rep, .ligne-audio .rep { min-height: 76px; gap: 18px; padding: 14px 22px; border-radius: 18px; font-size: clamp(19px, 1.5vw, 22px); }
+  .marque { width: 42px; height: 42px; border-radius: 12px; font-size: 17px; }
+  .ecouter-rep { width: 62px; height: 62px; }
+  .ecouter-rep svg { width: 22px; height: 22px; }
+  .reponses.images { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; max-width: 620px; }
+  .reponses.images .rep-image, .reponses.images[data-cols="2"] .rep-image:first-child:nth-last-child(odd) { width: auto; margin: 0; padding: 6px; border-radius: 18px; }
+  .rep-image img { aspect-ratio: 16 / 10; border-radius: 13px; }
+  .mots-a-placer { gap: 12px; }
+  .mot-dispo { padding: 16px 22px; border-radius: 16px; font-size: 22px; }
+  .champ { font-size: 14px; }
+  .champ input { max-width: 560px; min-height: 72px; font-size: 26px; }
+  .papier { gap: 16px; }
+  .papier p { max-width: 64ch; font-size: clamp(18px, 1.35vw, 20px); line-height: 1.7; }
+  .consigne-lecture { font-size: 17px; }
+  .bouton { min-height: 64px; padding: 0 40px; border-radius: 18px; font-size: 20px; }
+  .bas > .bouton:only-child { flex: none; }
+  .lien { font-size: 17px; }
+  /* l'accueil et la fin */
+  .ecran-accueil .feuille-q { gap: 24px; }
+  .ex-titre { font-size: clamp(52px, 5.7vw, 96px); font-weight: 900; line-height: .95; letter-spacing: -.05em; text-wrap: balance; }
+  .ex-sous { margin: 0; font-size: 20px; }
+  .ex-liste { gap: 14px; }
+  .ex-liste li { font-size: 19px; }
+  .ex-liste .ic { width: 48px; height: 48px; }
+  .langue { max-width: 440px; }
+  .ex-texte { max-width: 34ch; font-size: 22px; }
+  /* les feuilles (relire, langue, quitter) : une fenêtre au centre de l'écran */
+  .voile { align-items: center; justify-content: center; background: rgba(20, 24, 43, .38); }
+  .feuille { width: min(680px, calc(100% - 64px)); max-height: 86vh; gap: 16px; padding: 32px 34px 28px; border-radius: 26px; }
+  .feuille .papier p { font-size: 19px; }
+
+  /* l'entrée : le cercle s'ouvre depuis la bille, la photo recule, les couleurs passent ; puis la cascade de droite
+     (#appli : ces règles passent devant la cascade générale de « L'examen ») */
+  #appli .ecran .cadre-photo, #appli .ecran .rond-ciel { animation: h-ouvre 1.25s cubic-bezier(.16, 1, .3, 1) both; }
+  #appli .ecran .cadre-photo > .photo-scene { animation: h-recule 1.8s cubic-bezier(.16, 1, .3, 1) both; }
+  #appli .ecran .fond-d { animation: h-teinte 2.2s cubic-bezier(.45, 0, .25, 1) both; }
+  #appli .ecran .visuel > .lecteur { animation: eclot .9s cubic-bezier(.34, 1.56, .64, 1) .5s backwards; }
+  #appli .ecran .visuel > .h-centre, #appli .ecran .visuel > .doc-mini, #appli .ecran .scene > .lecture-tete, #appli .ecran .visuel > .scene-emoji, #appli .ecran .h-affiche > .image-support { animation: monte .7s cubic-bezier(.2, .8, .2, 1) .5s backwards; }
+  #appli .ecran .visuel > .lettre-env { animation: none; }
+  #appli .ecran .scene > .ex-embleme { animation: eclot 1s cubic-bezier(.34, 1.56, .64, 1) .45s backwards; }
+  @keyframes h-ouvre { from { clip-path: circle(0% at 85.4% 14.6%); } to { clip-path: circle(100% at 85.4% 14.6%); } }
+  @keyframes h-recule { from { transform: scale(1.22); } }
+  @keyframes h-teinte { from { opacity: 0; } }
+  /* la sortie : l'écran précédent, déplacé sous le nouveau (#sorties), ne rejoue aucune entrée ; il se retire */
+  #sorties .ecran, #sorties .ecran * { animation: none; }
+  #sorties .env-dos, #sorties .env-poche, #sorties .env-rabat { display: none; }
+  #sorties .ecran .cadre-photo, #sorties .ecran .rond-ciel { animation: h-ferme .7s cubic-bezier(.2, .8, .2, 1) forwards; }
+  #sorties .ecran .fond-d { animation: h-efface 2.2s cubic-bezier(.45, 0, .25, 1) forwards; }
+  #sorties .ecran .visuel > :not(.cadre-photo):not(.rond-ciel), #sorties .ecran .scene > .lecture-tete, #sorties .ecran .scene > .ex-embleme { animation: h-efface .3s ease forwards; }
+  #sorties .ecran .feuille-q, #sorties .ecran .bas, #sorties .ecran .haut { animation: h-sort .42s cubic-bezier(.2, .8, .2, 1) forwards; }
+  @keyframes h-ferme { from { clip-path: circle(100% at 85.4% 14.6%); } to { clip-path: circle(0% at 85.4% 14.6%); } }
+  @keyframes h-efface { to { opacity: 0; } }
+  @keyframes h-sort { to { opacity: 0; transform: translateY(-28px); } }
+  /* le même écran redessiné (langue, reprise) : rien ne se rejoue */
+  .relance .cadre-photo, .relance .rond-ciel, .relance .cadre-photo > .photo-scene, .relance .fond-d, .relance .lettre-env > * { animation: none !important; }
+  .relance .env-dos, .relance .env-poche, .relance .env-rabat { display: none; }
+}
+/* écran d'ordinateur peu haut (portable 1280 × 720, 1366 × 768) : tout se resserre un peu */
+@media (min-width: 1000px) and (min-height: 600px) and (max-height: 820px) {
+  .ecran { --rond: min(32vw, 58vh); --b: 132px; grid-template-rows: minmax(76px, 1fr) auto auto minmax(28px, 1fr); }
+  .visuel > .lecteur.h-seul { --b: 156px; }
+  .feuille-q { gap: 22px; max-height: calc(100vh - 190px); }
+  .bas { padding-top: 22px; }
+  .question { font-size: min(3.8vw, 7vh); }
+  .question.longue { font-size: min(3vw, 5.6vh); }
+  .ex-titre { font-size: min(5.7vw, 9.7vh); }
+  .bonbons .rep, .ligne-audio .rep { min-height: 62px; padding-block: 10px; font-size: 19px; }
+  .marque { width: 38px; height: 38px; }
+  .ex-liste li { font-size: 17px; }
+  .ex-liste .ic { width: 42px; height: 42px; }
+  .rep-image img { aspect-ratio: 16 / 9; }
+  .h-centre > .phrase { padding: 18px 22px; }
+}
+"""
+
+HUBLOT_JS = r"""// ------------------------------------------------------------------------------ « Le Hublot » (écran d'ordinateur)
+// Sur un écran d'au moins 1000 × 600 px, chaque écran est réorganisé une fois posé : un fond aux couleurs de la photo
+// (sa miniature floutée), un cercle de ciel quand il n'y a pas de photo, le contexte à droite au-dessus de la question,
+// la phrase à compléter au centre du cercle, le message dans une enveloppe. L'écran précédent reste dessous le temps de
+// la transition (sans identifiants, inerte). Sur téléphone, rien de tout cela : « L'examen » tel quel.
+const BUREAU = matchMedia("(min-width: 1000px) and (min-height: 600px)");
+const MINI = __MINI__;
+const NOM_IMAGE = Object.fromEntries(Object.entries(IMAGES).map(([k, v]) => [v, k]));
+const SORTIES = document.body.insertBefore(Object.assign(document.createElement("div"), { id: "sorties" }), appli);
+SORTIES.setAttribute("aria-hidden", "true");
+let cleAffichee = "";
+const cleEcran = () => etat.ecran === "question" ? "q|" + etat.palier[etat.k] + "|" + Object.keys(etat.lus || {}).length : etat.ecran;
+function hublot(ecran, relance) {
+  if (!ecran || !BUREAU.matches) return;
+  if (relance) ecran.classList.add("relance");
+  const scene = ecran.querySelector(".scene"); if (!scene) return;
+  const visuel = scene.querySelector(".visuel");
+  const src = scene.querySelector(".cadre-photo img, .image-support img")?.getAttribute("src"), mini = src && MINI[NOM_IMAGE[src]];
+  scene.insertAdjacentHTML("afterbegin", `<div class="fond-d" aria-hidden="true">${mini ? `<div class="brume"><img src="${mini}" alt=""></div>` : '<div class="ciel-fin"></div>'}</div>`);
+  if (visuel && visuel.querySelector(".image-support")) visuel.classList.add("h-affiche");
+  else if (!scene.querySelector(".cadre-photo")) {
+    if (visuel) visuel.insertAdjacentHTML("afterbegin", '<span class="rond-ciel" aria-hidden="true"></span>');
+    else scene.querySelector(".fond-d").insertAdjacentHTML("afterend", '<span class="rond-ciel" aria-hidden="true"></span>');
+  }
+  if (!visuel) return;
+  // ce qui pose la situation (contexte, situation, étiquette du message) passe à droite, au-dessus de la question
+  const feuille = ecran.querySelector(".feuille-q"), amorces = [...visuel.querySelectorAll(":scope > .contexte, :scope > .situation, :scope > .etiquette, :scope > .sms > .etiquette")];
+  if (feuille && amorces.length) { amorces.forEach(a => a.classList.add("amorce")); feuille.prepend(...amorces); }
+  // la phrase à compléter (et son indication) au centre du cercle
+  const phrase = visuel.querySelector(":scope > .phrase");
+  if (phrase) { const c = document.createElement("div"); c.className = "h-centre"; phrase.before(c); c.append(phrase); const ind = visuel.querySelector(":scope > .indice"); if (ind) c.append(ind); }
+  // le message sort d'une enveloppe
+  visuel.querySelectorAll(":scope > .sms, :scope > .papier-court").forEach(m => {
+    const env = document.createElement("div"); env.className = "lettre-env"; m.before(env); env.append(m);
+    env.insertAdjacentHTML("afterbegin", '<span class="env-dos" aria-hidden="true"></span>');
+    env.insertAdjacentHTML("beforeend", '<span class="env-poche" aria-hidden="true"></span><span class="env-rabat" aria-hidden="true"></span>');
+  });
+  const lecteur = visuel.querySelector(":scope > .lecteur");
+  if (lecteur && !visuel.querySelector(".cadre-photo, .h-centre, .lettre-env, .doc-mini")) lecteur.classList.add("h-seul");
+  const q = ecran.querySelector(".question"); if (q && q.textContent.trim().length > 62) q.classList.add("longue");
+}
+BUREAU.addEventListener("change", () => afficher());      // passage téléphone ↔ ordinateur : l'écran se redessine
+// au clavier : A, B, C, D (ou 1 à 4) choisissent une réponse, Entrée valide
+document.addEventListener("keydown", (e) => {
+  if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey || e.repeat || appli.querySelector(".voile")) return;
+  if (e.target.closest && e.target.closest("input, textarea, select")) return;
+  const ecran = appli.querySelector(".ecran"); if (!ecran) return;
+  const k = e.key.toLowerCase(), i = k.length === 1 ? ("abcd".indexOf(k) >= 0 ? "abcd".indexOf(k) : "1234".indexOf(k)) : -1;
+  if (i >= 0) { const r = ecran.querySelectorAll(".reponses .rep")[i]; if (r) { r.click(); r.focus({ preventScroll: true }); e.preventDefault(); } return; }
+  // Entrée valide, y compris quand une réponse a le focus (sur les autres boutons, Entrée garde son rôle)
+  if (e.key === "Enter" && (!e.target.closest("button") || e.target.closest(".reponses"))) { const b = ecran.querySelector("#valider:not(:disabled), #lu, #commencer, #refaire"); if (b) { e.preventDefault(); b.click(); } }
+});
+"""
+
+POSER_HUBLOT = r"""function poser(html) {
+  const cle = cleEcran(), relance = cle === cleAffichee; cleAffichee = cle;
+  appli.querySelectorAll(".ecran").forEach(e => {
+    if (!BUREAU.matches || relance) return e.remove();
+    e.querySelectorAll("[id]").forEach(x => x.removeAttribute("id")); e.removeAttribute("aria-labelledby");
+    e.querySelectorAll(".brume").forEach(x => { x.style.transform = getComputedStyle(x).transform; });      // le fond garde sa position : pas de saut
+    e.inert = true; e.classList.add("sort"); SORTIES.appendChild(e); setTimeout(() => e.remove(), 2300);
+  });
+  appli.insertAdjacentHTML("beforeend", html); traduireInterface(appli.lastElementChild); insecables(appli.lastElementChild); hublot(appli.lastElementChild, relance);
+}"""
+
+_MINIATURES = {}
+def miniatures(noms):
+    # la miniature de chaque photo (24 px de large) : agrandie et floutée par le navigateur, elle donne le fond coloré
+    import subprocess
+    res = {}
+    for n in noms:
+        f = os.path.join(V2, 'banque', 'img', n + '.webp')
+        if not os.path.exists(f): continue
+        if n not in _MINIATURES:
+            png = subprocess.run(['ffmpeg', '-loglevel', 'error', '-i', f, '-vf', 'scale=24:-2:flags=area', '-f', 'image2pipe', '-vcodec', 'png', '-'],
+                                 capture_output=True, check=True).stdout
+            _MINIATURES[n] = 'data:image/png;base64,' + base64.b64encode(png).decode()
+        res[n] = _MINIATURES[n]
+    return res
+
+
 def transformer(s, artifact, style='feuille'):
     # en-tête du document : police, titre, couleur du navigateur
-    police = {'feuille': 'family=Manrope:wght@500;600;700;800', 'degrade': 'family=Plus+Jakarta+Sans:wght@500;600;700;800', 'examen': 'family=Public+Sans:wght@400;500;600;700;800'}[style]
+    police = {'feuille': 'family=Manrope:wght@500;600;700;800', 'degrade': 'family=Plus+Jakarta+Sans:wght@500;600;700;800', 'examen': 'family=Public+Sans:wght@400;500;600;700;800', 'hublot': 'family=Public+Sans:wght@400;500;600;700;800;900'}[style]
     s = remplacer(s, 'family=Baloo+2:wght@700;800&family=Nunito:wght@600;700;800;900', police)
     if artifact:
-        s = remplacer(s, '<title>Positionnement FLE v2</title>', '<title>Positionnement FLE v3</title>' if style == 'feuille' else '<title>Positionnement FLE dégradé</title>' if style == 'degrade' else '<title>Positionnement FLE examen</title>')
+        s = remplacer(s, '<title>Positionnement FLE v2</title>', '<title>Positionnement FLE v3</title>' if style == 'feuille' else '<title>Positionnement FLE dégradé</title>' if style == 'degrade' else '<title>Positionnement FLE Hublot</title>' if style == 'hublot' else '<title>Positionnement FLE examen</title>')
     else:
-        s = remplacer(s, '<meta name="theme-color" content="#9748fe">', '<meta name="theme-color" content="%s">' % {'feuille': '#cbc2fb', 'degrade': '#8c7af6', 'examen': '#58aef7'}[style])
+        s = remplacer(s, '<meta name="theme-color" content="#9748fe">', '<meta name="theme-color" content="%s">' % {'feuille': '#cbc2fb', 'degrade': '#8c7af6', 'examen': '#58aef7', 'hublot': '#58aef7'}[style])
         s = remplacer(s, '<title>Test de niveau de français</title>', '<title>Test de positionnement en français</title>')
         s = s.replace('content="Test de niveau de français"', 'content="Test de positionnement en français"')
         # les sons sont ceux de la v2
@@ -895,7 +1150,7 @@ def transformer(s, artifact, style='feuille'):
     # la feuille de style : entièrement nouvelle, sauf les panneaux du formateur, repris tels quels
     a = s.index('<style>') + len('<style>'); b = s.index('</style>', a)
     panneaux = bloc_css(s[a:b], '.coin { display: none; }')
-    s = s[:a] + (CSS_EXAMEN if style == 'examen' else CSS + (CSS_DEGRADE if style == 'degrade' else '')) + '\n/* panneaux « Barème » et « Moteur » (ordinateur), repris de la v2 */\n' + panneaux + '\n' + s[b:]
+    s = s[:a] + (CSS_EXAMEN + CSS_HUBLOT if style == 'hublot' else CSS_EXAMEN if style == 'examen' else CSS + (CSS_DEGRADE if style == 'degrade' else '')) + '\n/* panneaux « Barème » et « Moteur » (ordinateur), repris de la v2 */\n' + panneaux + '\n' + s[b:]
     # icônes, marque des réponses (un rond), réponses toujours en liste (plus d'alvéoles)
     s = remplacer(s, 'const ICONE = {\n', 'const ICONE = {\n' + ICONES_EN_PLUS)
     s = re.sub(r'const MARQUE = `[^`]*`;', 'const MARQUE = `<span class="marque" aria-hidden="true"></span>`;', s, count=1)
@@ -921,7 +1176,7 @@ def transformer(s, artifact, style='feuille'):
                    : `<div class="scene vide">${rub}</div><div class="feuille-q">${avant ? titre + vis : vis + titre}${reponses}</div>`;
     })()}</div>''')
     # en-tête, accueil, lecture, fin ; plus d'écran de passage de niveau
-    ex = style == 'examen'
+    ex = style in ('examen', 'hublot')
     s = fonction(s, 'haut', HAUT_EXAMEN if ex else HAUT)
     s = fonction(s, 'ecranAccueil', ACCUEIL_EXAMEN if ex else ACCUEIL)
     s = fonction(s, 'ecranLecture', LECTURE_EXAMEN if ex else LECTURE)
@@ -940,6 +1195,12 @@ def transformer(s, artifact, style='feuille'):
         js = LANGUE_JS.replace('__LANGUES__', json.dumps(LANGUES, ensure_ascii=False)).replace('__DRAPEAUX__', json.dumps(drapeaux)).replace('__TRAD__', json.dumps(trad, ensure_ascii=False))
         s = remplacer(s, 'function poser(html) {', js + '\nfunction poser(html) {')
         s = remplacer(s, 'insecables(appli.lastElementChild); }', 'traduireInterface(appli.lastElementChild); insecables(appli.lastElementChild); }')
+        if style == 'hublot':
+            # la couche « ordinateur » : miniatures des photos, réorganisation de chaque écran, transitions, clavier
+            a = s.index('const IMAGES = {'); b = s.index('};', a)
+            mini = miniatures(re.findall(r'^\s*"([^"]+)":', s[a:b], re.M))
+            s = remplacer(s, 'function poser(html) {', HUBLOT_JS.replace('__MINI__', json.dumps(mini)) + '\nfunction poser(html) {')
+            s = remplacer(s, 'function poser(html) { appli.querySelectorAll(".ecran").forEach(e => e.remove()); appli.insertAdjacentHTML("beforeend", html); traduireInterface(appli.lastElementChild); insecables(appli.lastElementChild); }', POSER_HUBLOT)
         s = remplacer(s, '  appli.appendChild(voile);\n', '  appli.appendChild(voile); traduireInterface(voile);\n')
         if voix:
             s = remplacer(s, 'const AUDIO = {', 'const AUDIO = {\n' + ''.join(f'  {json.dumps(k, ensure_ascii=False)}: "{v}",\n' for k, v in voix.items()))
@@ -969,7 +1230,7 @@ def transformer(s, artifact, style='feuille'):
     return s
 
 
-for style, dossier in (('feuille', ICI), ('degrade', os.path.join(ICI, 'degrade')), ('examen', os.path.join(ICI, 'examen'))):
+for style, dossier in (('feuille', ICI), ('degrade', os.path.join(ICI, 'degrade')), ('examen', os.path.join(ICI, 'examen')), ('hublot', os.path.join(ICI, 'hublot'))):
     os.makedirs(dossier, exist_ok=True)
     for nom, artifact in (('index.html', False), ('test-positionnement.html', True)):
         s = open(os.path.join(V2, nom), encoding='utf-8').read()
