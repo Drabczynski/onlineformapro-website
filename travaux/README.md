@@ -43,6 +43,10 @@ Variante « Le dégradé » dans `positionnement-fle-3/degrade/` (https://online
 Variante « L'examen » (dégradé bleu ciel en haut, accent violet, Public Sans, minimaliste) dans `positionnement-fle-3/examen/` (https://onlineformapro-website.vercel.app/travaux/positionnement-fle-3/examen/).
 Détails dans `positionnement-fle-3/LISEZMOI.md`.
 
+`positionnement-fle-examen-v1/` : **la version mobile figée du test « L'examen », produit fini (10 novembre 2026), à ne pas modifier.**
+Page web autonome (https://onlineformapro-website.vercel.app/travaux/positionnement-fle-examen-v1/) avec ses images, sons et voix, et artifact
+tout intégré. Les évolutions (version bureau) se font ailleurs. Détails dans `positionnement-fle-examen-v1/LISEZMOI.md`.
+
 `positionnement-fle-3/maquettes/` : trois pistes de style plus officiel pour le même test (fond clair, niveau caché à l'apprenant),
 à comparer avant de choisir (https://onlineformapro-website.vercel.app/travaux/positionnement-fle-3/maquettes/). `fabriquer.py` produit la page.
 
