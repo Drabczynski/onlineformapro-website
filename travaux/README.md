@@ -37,6 +37,9 @@ avec leur liste `sons.csv` et le script qui les produit. Détails dans `position
 (113 questions, sons d'origine, images dans les réponses), en page web (https://onlineformapro-website.vercel.app/travaux/positionnement-fle-2/)
 et en artifact. Détails et écarts avec le PDF dans `positionnement-fle-2/LISEZMOI.md`.
 
+`positionnement-fle-3/maquettes/` : trois pistes de style plus officiel pour le même test (fond clair, niveau caché à l'apprenant),
+à comparer avant de choisir (https://onlineformapro-website.vercel.app/travaux/positionnement-fle-3/maquettes/). `fabriquer.py` produit la page.
+
 ## Newsletter CiviCap
 
 `newsletter-civicap/email.html` est l'e-mail lui-même, en tableaux et styles
