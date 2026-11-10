@@ -2,7 +2,7 @@
 // compléter, fin), réponses à la souris ou au clavier (A, B, C ou 1, 2, 3 ; Entrée pour valider ; Échap pour
 // quitter), le vrai enregistrement du métro, la langue des consignes. Chaque piste fournit rendre(e) et ses
 // animations ; ce fichier enchaîne les écrans.
-const { img: IMG, son: SON, drapeaux: DRAP, langues: LANGS, trad: T } = DONNEES;
+const { img: IMG, flou: FLOU = {}, son: SON, drapeaux: DRAP, langues: LANGS, trad: T } = DONNEES;
 const ECRANS = [
   { type: "accueil", photo: "intro" },
   { type: "question", photo: "metro", bille: true, contexte: "Vous prenez le métro et achetez un ticket au guichet automatique.",

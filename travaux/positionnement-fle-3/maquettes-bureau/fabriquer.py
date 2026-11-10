@@ -8,7 +8,7 @@ et écrit piste-a.html à piste-f.html, index.html (galerie, page web) et galeri
 galerie sans en-tête de document, pour l'artifact). Chaque fichier ne dépend que de lui-même et de Google Fonts.
 La version mobile figée (../../positionnement-fle-examen-v1/) n'est pas touchée.
 """
-import base64, json, os
+import base64, json, os, subprocess
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 V3 = os.path.dirname(ICI)
@@ -57,15 +57,24 @@ def data_uri(chemin, type_mime):
     return f"data:{type_mime};base64," + base64.b64encode(open(chemin, "rb").read()).decode()
 
 
+def miniature(chemin):
+    """La photo réduite à 32 px de large : agrandie par le navigateur, elle donne un flou de couleurs sans calcul."""
+    png = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", chemin, "-vf", "scale=32:-2:flags=area", "-f", "image2pipe", "-vcodec", "png", "-"],
+                         capture_output=True, check=True).stdout
+    return "data:image/png;base64," + base64.b64encode(png).decode()
+
+
 def donnees():
-    img = {n: data_uri(os.path.join(ICI, "img", n + ".webp"), "image/webp") for n in ("intro", "metro", "cinema", "telephone", "croissant")}
+    noms = ("intro", "metro", "cinema", "telephone", "croissant")
+    img = {n: data_uri(os.path.join(ICI, "img", n + ".webp"), "image/webp") for n in noms}
+    flou = {n: miniature(os.path.join(ICI, "img", n + ".webp")) for n in noms}
     son = data_uri(os.path.join(V2, "sons", "o02.mp3"), "audio/mpeg")
     drapeaux = {l["drapeau"]: data_uri(os.path.join(V3, "drapeaux", l["drapeau"] + ".svg"), "image/svg+xml") for l in LANGUES}
     trad = {}
     for l in LANGUES[1:]:
         t = json.load(open(os.path.join(V3, "traductions", l["code"] + ".json"), encoding="utf-8"))
         trad[l["code"]] = {k: t[k] for k in TEXTES if t.get(k)}
-    return {"img": img, "son": son, "drapeaux": drapeaux, "langues": LANGUES, "trad": trad}
+    return {"img": img, "flou": flou, "son": son, "drapeaux": drapeaux, "langues": LANGUES, "trad": trad}
 
 
 def page(contenu):

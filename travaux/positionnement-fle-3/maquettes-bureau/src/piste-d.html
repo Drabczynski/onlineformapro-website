@@ -9,9 +9,12 @@
    Derrière le cercle, à la place du ciel bleu : la photo elle-même, très floue et pâle, qui se fond dans le blanc ;
    ses couleurs changent à chaque question (le ciel revient sur l'écran de fin, dont le cercle est un ciel).
    Transition : un diaphragme ; le cercle se referme sur la bille, le suivant s'ouvre depuis elle. */
-.fond-d { position: absolute; inset: 0 auto 0 0; width: 64vw; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, #000 42%, transparent 100%); mask-image: linear-gradient(90deg, #000 42%, transparent 100%); }
+/* même emprise que l'ancien ciel, en plus discret : arrêté avant la colonne de texte, pâli vers le bas */
+.fond-d { position: absolute; inset: 0 auto 0 0; width: 54vw; overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, #000 40%, transparent 100%), linear-gradient(#000 30%, transparent 96%); -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(90deg, #000 40%, transparent 100%), linear-gradient(#000 30%, transparent 96%); mask-composite: intersect; }
 .fond-d .brume { position: absolute; inset: -12%; animation: derive 22s ease-in-out infinite alternate; }
-.fond-d img { width: 100%; height: 100%; object-fit: cover; filter: blur(64px) saturate(1.3); opacity: .5; }
+.fond-d img { width: 100%; height: 100%; object-fit: cover; filter: blur(28px) saturate(1.3); opacity: .5; }
 .fond-d .ciel-fin { position: absolute; inset: 0; background: var(--ciel); }
 @keyframes derive { to { transform: translate(-3%, -2%) scale(1.08); } }
 .ecran { display: grid; grid-template-columns: 50vw minmax(0, 1fr); }
@@ -34,7 +37,7 @@
 .texte-fin { max-width: 32ch; color: var(--doux); font-size: 22px; }
 
 /* entrée : les couleurs de fond passent en fondu, le cercle s'ouvre depuis la bille, la photo recule, la question monte mot à mot */
-.actif .fond-d { animation: teinte 1.2s var(--ease) both; }
+.actif .fond-d { animation: teinte 2.2s cubic-bezier(.45, 0, .25, 1) both; }
 @keyframes teinte { from { opacity: 0; } }
 .actif .hublot { animation: ouvre 1.25s var(--ease-out) both; }
 @keyframes ouvre { from { clip-path: circle(0% at 85.4% 14.6%); } to { clip-path: circle(100% at 85.4% 14.6%); } }
@@ -52,6 +55,8 @@
 @keyframes eclot { 0% { opacity: 0; transform: scale(.4); } 60% { opacity: 1; } }
 .relangue .fond-d, .relangue .hublot, .relangue .hublot img, .relangue .aptitudes, .relangue .bloc-langue, .relangue .bouton, .relangue .sur-titre { animation: none !important; }
 /* sortie : le cercle se referme sur la bille */
+/* les couleurs de l'écran précédent s'effacent pendant que les nouvelles arrivent (vrai fondu enchaîné, sans saut au retrait) */
+.sort .fond-d { animation: efface 2.2s cubic-bezier(.45, 0, .25, 1) forwards; }
 .sort .hublot { animation: ferme .7s var(--ease) forwards; }
 @keyframes ferme { from { clip-path: circle(100% at 85.4% 14.6%); } to { clip-path: circle(0% at 85.4% 14.6%); } }
 .sort .sur, .sort .scene > .bille { animation: efface .3s forwards; }
@@ -80,9 +85,9 @@
 <a class="pistes" href="index.html">Piste D · Le hublot — toutes les pistes</a>
 <script>
 const DONNEES = /*__DONNEES__*/;
-const SORTIE = 1250;
+const SORTIE = 2300;  // l'écran précédent reste dessous le temps que les couleurs passent
 const POS = { intro: "42% 40%", metro: "40% 50%", cinema: "66% 50%", telephone: "50% 34%", croissant: "50% 50%" };
-const fond = (nom) => `<div class="fond-d" aria-hidden="true">${nom ? `<div class="brume"><img src="${IMG[nom]}" alt=""></div>` : '<div class="ciel-fin"></div>'}</div>`;
+const fond = (nom) => `<div class="fond-d" aria-hidden="true">${nom ? `<div class="brume"><img src="${FLOU[nom] || IMG[nom]}" alt=""></div>` : '<div class="ciel-fin"></div>'}</div>`;
 const hublot = (nom, dedans = "") => `<div class="hublot">${nom ? `<img src="${IMG[nom]}" alt="" style="--pos:${POS[nom] || "50% 50%"}">` : ""}${dedans}</div>`;
 function rendre(e) {
   if (e.type === "accueil") return `${fond(e.photo)}<div class="gauche"><div class="scene">${hublot(e.photo)}</div></div>
