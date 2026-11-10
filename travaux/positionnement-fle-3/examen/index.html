@@ -1234,6 +1234,7 @@ function traduireInterface(racine) {
 function choisirLangueFeuille() {
   LANGUES.forEach(l => chargerPolice(l.police, l.natif));      // les noms des langues, chacun dans son écriture
   const v = feuille(`<h2>${echap(t("Choisissez la langue des consignes"))}</h2><div class="langues">${LANGUES.map(l => `<button class="langue-opt" type="button" data-code="${l.code}" aria-pressed="${l.code === LANGUE}">${drapeau(l)}<span><b lang="${l.code}" dir="auto">${l.natif}</b><small>${l.nom}</small></span></button>`).join("")}</div>`);
+  v.querySelector(".feuille").classList.add("feuille-langues");
   v.querySelectorAll(".langue-opt").forEach(b => b.addEventListener("click", () => { choisirLangue(b.dataset.code); SONS.choix(); v.remove(); afficher(); }));
 }
 function poser(html) { appli.querySelectorAll(".ecran").forEach(e => e.remove()); appli.insertAdjacentHTML("beforeend", html); traduireInterface(appli.lastElementChild); insecables(appli.lastElementChild); }

@@ -439,6 +439,9 @@ svg { display: block; }
   .voile { align-items: center; justify-content: center; background: rgba(20, 24, 43, .38); }
   .feuille { width: min(680px, calc(100% - 64px)); max-height: 86vh; gap: 16px; padding: 32px 34px 28px; border-radius: 26px; }
   .feuille .papier p { font-size: 19px; }
+  /* le choix de la langue : une fenêtre large, autant de colonnes que la place le permet, sans barre de défilement */
+  .feuille.feuille-langues { width: min(1240px, calc(100% - 64px)); }
+  .feuille-langues .langues { grid-template-columns: repeat(auto-fill, minmax(205px, 1fr)); }
 
   /* l'entrée : le cercle s'ouvre depuis la bille, la photo recule, les couleurs passent ; puis la cascade du texte
      (#appli : ces règles passent devant la cascade générale de « L'examen ») */
@@ -489,6 +492,9 @@ svg { display: block; }
   .h-papier { padding: 26px 32px 28px 30px; }
   .h-papier-corps { max-height: calc(100vh - 230px); }
   .h-papier-corps p, .h-papier .papier p { font-size: 17px; line-height: 1.55; }
+  .feuille.feuille-langues { gap: 12px; padding-top: 24px; padding-bottom: 22px; }
+  .feuille-langues .langues { gap: 6px; }
+  .feuille-langues .langue-opt { padding-block: 6px; }
 }
 
 /* panneaux « Barème » et « Moteur » (ordinateur), repris de la v2 */
@@ -1425,6 +1431,7 @@ function traduireInterface(racine) {
 function choisirLangueFeuille() {
   LANGUES.forEach(l => chargerPolice(l.police, l.natif));      // les noms des langues, chacun dans son écriture
   const v = feuille(`<h2>${echap(t("Choisissez la langue des consignes"))}</h2><div class="langues">${LANGUES.map(l => `<button class="langue-opt" type="button" data-code="${l.code}" aria-pressed="${l.code === LANGUE}">${drapeau(l)}<span><b lang="${l.code}" dir="auto">${l.natif}</b><small>${l.nom}</small></span></button>`).join("")}</div>`);
+  v.querySelector(".feuille").classList.add("feuille-langues");
   v.querySelectorAll(".langue-opt").forEach(b => b.addEventListener("click", () => { choisirLangue(b.dataset.code); SONS.choix(); v.remove(); afficher(); }));
 }
 // ------------------------------------------------------------------------------ « Le Hublot » (écran d'ordinateur)
