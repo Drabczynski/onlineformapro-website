@@ -18,18 +18,6 @@ LYCEE = ["Ce matin, les élèves arrivent au lycée à huit heures, comme d'habi
 JULIE = ["Julie habite dans une petite maison à la campagne. Sa maison est blanche avec un toit rouge. Devant la maison, il y a un petit jardin avec des fleurs et un arbre. Au rez-de-chaussée, il y a un salon, une cuisine et une salle de bains. Le salon est grand et lumineux. Il y a un canapé gris, une télévision et une table en bois. La cuisine est moderne, avec un frigo, une cuisinière et un petit four.", "À l'étage, il y a deux chambres : une pour Julie et une pour sa sœur. La chambre de Julie est bleue. Il y a un lit, une armoire, un bureau et une lampe. Elle aime lire dans sa chambre, surtout le soir. Derrière la maison, il y a un garage et un potager. Julie aide souvent ses parents à planter des légumes."]
 LETTRE = ["Madame, Monsieur,", "Nous vous informons que votre demande de remboursement a été traitée avec succès. Le montant de 167,52 € a été crédité sur votre compte et devrait apparaître sur votre relevé bancaire dans un délai de 2 à 3 jours ouvrables.", "Nous restons à votre disposition pour toute question ou information complémentaire.", "Salutations distinguées,", "C. Dupont – service achats"]
 ECOLE = ["À l'attention des parents d'élèves,", "Suite à un mouvement de grève, la réunion de ce soir n'aura pas lieu. Nous vous communiquerons la prochaine date par mail.", "Merci pour votre compréhension.", "La direction de l'école"]
-# l'emploi du temps de Julien, recopié de l'image du PDF (page 56)
-EDT_PDF = [["", "LUNDI", "MARDI", "MERCREDI", "JEUDI", "VENDREDI"],
-       ["8h00-9h00", "", "", "", "Français", ""], ["9h00-9h50", "Français", "Technologie", "", "Français", "Français"],
-       ["10h10-11h00", "Français", "Mathématiques", "Histoire-Géographie", "EPS (Sport)", "Français"],
-       ["11h00-12h00", "Mathématiques", "Musique", "Anglais", "EPS (Sport)", "Histoire-Géographie"],
-       ["12h00-13h00", "Repas", "Repas", "Repas", "Repas", "Repas"],
-       ["13h00-14h00", "EPS (Sport)", "Arts plastiques", "", "", "Physique (Sciences)"],
-       ["14h00-14h50", "SVT (Sciences)", "Français", "", "Anglais", "Anglais"],
-       ["15h10-16h00", "", "Français", "", "Histoire-Géographie", "Mathématiques"],
-       ["16h00-17h00", "", "", "", "Français", ""]]
-# affiché sans le mercredi ni le vendredi, pour un tableau plus grand ; les réponses (mardi, jeudi) ne changent pas
-EDT = [[l[0], l[1], l[2], l[4]] for l in EDT_PDF]
 
 # ------------------------------------------------------------------ A1
 q("A1", "EE", "EXP écrite", 1, CHOISIR, ["donne", "parle", "fait"], "parle", t="trou", phrase="Je ______ français.", indice="(parler)")
@@ -137,8 +125,6 @@ q("A2", "LG", "Grammaire / Vocabulaire", 47, "Mon numéro de téléphone, c'est 
 q("A2", "LG", "Grammaire / Vocabulaire", 53, "Cochez le mot contraire de « propre ».", ["plein", "sale", "chaud"], "sale")
 q("A2", "LG", "Grammaire / Vocabulaire", 55, "Cochez le mot contraire de « chaud ».", ["sec", "tiède", "froid"], "froid")
 q("A2", "LG", "Grammaire / Vocabulaire", 55, "Le mot « quartier » désigne :", ["un village", "une maison", "une partie d'une ville"], 2)
-q("A2", "CE", "Compréhension écrite", 56, "Quel jour Julien commence-t-il à 8h ?", t="document", titre="L'emploi du temps de Julien", emoji="🗓️", style="", tableau=EDT, groupe="julien", saisie=[{"etiquette": "Jour", "accepte": ["jeudi", "le jeudi"]}], deduite=True)
-q("A2", "CE", "Compréhension écrite", 56, "Quel jour et à quelle heure Julien a-t-il cours d'arts plastiques ?", t="document", titre="L'emploi du temps de Julien", emoji="🗓️", style="", tableau=EDT, groupe="julien", saisie=[{"etiquette": "Jour", "accepte": ["mardi", "le mardi"]}, {"etiquette": "Heure", "accepte": ["re:^(a |de )?13 ?(h|heures?)( ?00)?( ?(a|-) ?14 ?(h|heures?)( ?00)?)?$"]}], deduite=True)
 
 # ------------------------------------------------------------------ B1
 q("B1", "CE", "COMP écrite", 59, REPONDRE, ["Je serai accompagné de mon collègue.", "Non, pas de souci.", "En voiture."], 0, t="sms", texte="La réunion aura lieu demain matin dans nos bureaux. Vous pouvez vous garer dans le parking réservé à la clientèle. Nos bureaux se trouvent au 1er étage du bâtiment principal. Viendrez-vous seul ?")
@@ -183,8 +169,7 @@ PHOTOS = {
     "A2-18": "italie", "A2-19": "piscine", "A2-20": "tele", "A2-21": "couple", "A2-22": "rue", "A2-23": "metro",
     "A2-24": "cinema-entree", "A2-25": "cafe", "A2-26": "enfants", "A2-27": "conversation", "A2-29": "cinema-entree",
     "A2-30": "parc", "A2-31": "stylos", "A2-32": "ville-calme", "A2-34": "pluie", "A2-35": "telephone-2",
-    "A2-39": "bureau-julien", "A2-40": "bureau-julien",
-    "B1-01": "reunion", "B1-02": "musee", "B1-05": "ecole", "B1-06": "ecole", "B1-07": "ecole", "B1-08": "ecole",
+        "B1-01": "reunion", "B1-02": "musee", "B1-05": "ecole", "B1-06": "ecole", "B1-07": "ecole", "B1-08": "ecole",
 }
 _img = os.path.join(os.path.dirname(os.path.abspath(__file__)), "img")
 for d in B:
@@ -194,6 +179,9 @@ for d in B:
     # pour que les réponses forment une grille de 2 × 2
     if d["id"] == "A1-08" and os.path.exists(os.path.join(_img, "boucherie.webp")) and "boucherie" not in d["images"]:
         d["choix"].append("À la boucherie"); d["images"].append("boucherie")
+    # A1-12 : de même, un quatrième lieu (le restaurant) à côté de la gare, du pique-nique et de la plage
+    if d["id"] == "A1-12" and os.path.exists(os.path.join(_img, "rep-restaurant.webp")) and "rep-restaurant" not in d["images"]:
+        d["choix"].append("Un restaurant"); d["images"].append("rep-restaurant")
 # Expression écrite à mot court : la réponse s'écrit en touchant des lettres. Les lettres proposées sont celles des
 # choix du PDF (chaque lettre autant de fois qu'elle apparaît au plus dans un choix), sans indice sur la longueur.
 import re, collections

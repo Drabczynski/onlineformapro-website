@@ -257,7 +257,8 @@
   "choix": [
    "Une gare",
    "Un pique-nique",
-   "Une plage"
+   "Une plage",
+   "Un restaurant"
   ],
   "bonne": 1,
   "t": "sms",
@@ -265,7 +266,8 @@
   "images": [
    "gare",
    "pique-nique",
-   "plage"
+   "plage",
+   "rep-restaurant"
   ],
   "id": "A1-12",
   "groupe": "A1:A1-12",
@@ -1939,184 +1941,6 @@
   "t": "aucun",
   "id": "A2-38",
   "groupe": "A2:A2-38"
- },
- {
-  "niveau": "A2",
-  "comp": "CE",
-  "tag": "Compréhension écrite",
-  "page": 56,
-  "question": "Quel jour Julien commence-t-il à 8h ?",
-  "t": "document",
-  "titre": "L'emploi du temps de Julien",
-  "emoji": "🗓️",
-  "style": "",
-  "tableau": [
-   [
-    "",
-    "LUNDI",
-    "MARDI",
-    "JEUDI"
-   ],
-   [
-    "8h00-9h00",
-    "",
-    "",
-    "Français"
-   ],
-   [
-    "9h00-9h50",
-    "Français",
-    "Technologie",
-    "Français"
-   ],
-   [
-    "10h10-11h00",
-    "Français",
-    "Mathématiques",
-    "EPS (Sport)"
-   ],
-   [
-    "11h00-12h00",
-    "Mathématiques",
-    "Musique",
-    "EPS (Sport)"
-   ],
-   [
-    "12h00-13h00",
-    "Repas",
-    "Repas",
-    "Repas"
-   ],
-   [
-    "13h00-14h00",
-    "EPS (Sport)",
-    "Arts plastiques",
-    ""
-   ],
-   [
-    "14h00-14h50",
-    "SVT (Sciences)",
-    "Français",
-    "Anglais"
-   ],
-   [
-    "15h10-16h00",
-    "",
-    "Français",
-    "Histoire-Géographie"
-   ],
-   [
-    "16h00-17h00",
-    "",
-    "",
-    "Français"
-   ]
-  ],
-  "groupe": "A2:julien",
-  "saisie": [
-   {
-    "etiquette": "Jour",
-    "accepte": [
-     "jeudi",
-     "le jeudi"
-    ]
-   }
-  ],
-  "deduite": true,
-  "id": "A2-39",
-  "photo": "bureau-julien"
- },
- {
-  "niveau": "A2",
-  "comp": "CE",
-  "tag": "Compréhension écrite",
-  "page": 56,
-  "question": "Quel jour et à quelle heure Julien a-t-il cours d'arts plastiques ?",
-  "t": "document",
-  "titre": "L'emploi du temps de Julien",
-  "emoji": "🗓️",
-  "style": "",
-  "tableau": [
-   [
-    "",
-    "LUNDI",
-    "MARDI",
-    "JEUDI"
-   ],
-   [
-    "8h00-9h00",
-    "",
-    "",
-    "Français"
-   ],
-   [
-    "9h00-9h50",
-    "Français",
-    "Technologie",
-    "Français"
-   ],
-   [
-    "10h10-11h00",
-    "Français",
-    "Mathématiques",
-    "EPS (Sport)"
-   ],
-   [
-    "11h00-12h00",
-    "Mathématiques",
-    "Musique",
-    "EPS (Sport)"
-   ],
-   [
-    "12h00-13h00",
-    "Repas",
-    "Repas",
-    "Repas"
-   ],
-   [
-    "13h00-14h00",
-    "EPS (Sport)",
-    "Arts plastiques",
-    ""
-   ],
-   [
-    "14h00-14h50",
-    "SVT (Sciences)",
-    "Français",
-    "Anglais"
-   ],
-   [
-    "15h10-16h00",
-    "",
-    "Français",
-    "Histoire-Géographie"
-   ],
-   [
-    "16h00-17h00",
-    "",
-    "",
-    "Français"
-   ]
-  ],
-  "groupe": "A2:julien",
-  "saisie": [
-   {
-    "etiquette": "Jour",
-    "accepte": [
-     "mardi",
-     "le mardi"
-    ]
-   },
-   {
-    "etiquette": "Heure",
-    "accepte": [
-     "re:^(a |de )?13 ?(h|heures?)( ?00)?( ?(a|-) ?14 ?(h|heures?)( ?00)?)?$"
-    ]
-   }
-  ],
-  "deduite": true,
-  "id": "A2-40",
-  "photo": "bureau-julien"
  },
  {
   "niveau": "B1",

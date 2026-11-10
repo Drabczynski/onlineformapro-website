@@ -552,6 +552,28 @@ svg { display: block; }
 .ecran .reponses > :nth-child(n+5) { animation-delay: .5s; }
 .ecran .bas { animation: fondu .5s ease-out .34s backwards; }
 
+/* la langue des consignes : un bouton sur l'accueil, la liste des langues dans la feuille du bas */
+.langue { display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px 14px; border: 1.5px solid var(--filet); border-radius: 16px; background: #fff; text-align: start; }
+.drapeau { flex: none; width: 34px; height: 25px; overflow: hidden; border: 1px solid rgba(20, 24, 43, .12); border-radius: 5px; }
+.drapeau img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.langue-txt { flex: 1; display: grid; line-height: 1.3; }
+.langue-txt small { color: var(--doux); font-size: 13px; font-weight: 600; }
+.langue-txt b { font-size: 16.5px; font-weight: 700; }
+.langue > svg { flex: none; width: 20px; height: 20px; color: var(--doux); }
+.langues { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.langue-opt { display: flex; align-items: center; gap: 10px; min-width: 0; padding: 10px 12px; border: 1.5px solid var(--filet); border-radius: 14px; background: #fff; text-align: start; }
+.langue-opt[aria-pressed="true"] { border-color: var(--violet); background: var(--violet-pale); }
+.langue-opt > span:last-child { display: grid; min-width: 0; line-height: 1.25; }
+.langue-opt b { font-size: 15.5px; font-weight: 700; }
+.langue-opt small { color: var(--doux); font-size: 12.5px; font-weight: 600; }
+/* une police par écriture (chargée à la demande) ; le français cité entre « » reste en Public Sans */
+[lang="ar-SD"], [lang="ps"], [lang="fa-AF"] { font-family: "Public Sans", "Noto Sans Arabic", system-ui, sans-serif; }
+[lang="bn"] { font-family: "Public Sans", "Noto Sans Bengali", system-ui, sans-serif; }
+[lang="ta"] { font-family: "Public Sans", "Noto Sans Tamil", system-ui, sans-serif; }
+[lang="bo"] { font-family: "Public Sans", "Noto Serif Tibetan", system-ui, serif; line-height: 1.7; }
+[lang="ru"], [lang="uk"] { font-family: "Public Sans", "Noto Sans", system-ui, sans-serif; }
+.question[dir="rtl"], .contexte[dir="rtl"], .situation[dir="rtl"], .ex-titre[dir="rtl"], .ex-sous[dir="rtl"], .ex-texte[dir="rtl"], .consigne-lecture[dir="rtl"] { text-align: right; }
+
 /* une question qui ne tient pas dans la hauteur de l'écran se resserre, en deux crans */
 .serre .scene { min-height: 190px; padding-top: 58px; padding-bottom: 20px; gap: 12px; }
 .serre .feuille-q { gap: 13px; padding-bottom: 14px; }
@@ -694,12 +716,14 @@ function ecranAccueil() {
           <li><span class="ic">${ICONE.livre}</span>Lire des messages et des documents</li>
           <li><span class="ic">${ICONE.crayon}</span>Écrire des mots et des phrases</li>
         </ul>
+        <button class="langue" type="button" id="langue">${drapeau(langue())}<span class="langue-txt"><small>Langue des consignes</small><b lang="${LANGUE}" dir="auto">${langue().natif}</b></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
       </div>
     </div>
     <div class="bas">${bouton("Commencer", "vert", 'id="commencer"')}</div>
   </section>`);
   brancherSon();
   $("#commencer").addEventListener("click", () => { audio(); SONS.valider(); vibrer(15); nouveauTest(); afficher(); });
+  $("#langue").addEventListener("click", () => { audio(); choisirLangueFeuille(); });
   resserrer();
 }
 """
@@ -759,6 +783,83 @@ function photoFond(nom) {
   const c = CADRES[nom] || {}, dy = c.dy || 0, z = c.z || 1;
   const st = [dy && `--dy:${dy}%`, z !== 1 && `--z:${z}`, c.ox != null && `--ox:${c.ox}%`, (dy || z !== 1) && `--fin:${Math.min(100, dy + z * 100)}%`].filter(Boolean).join(";");
   return `<span class="cadre-photo"${st ? ` style="${st}"` : ""}><img class="photo-scene" src="${IMAGES[nom]}" alt=""></span>`;
+}"""
+
+# La langue des consignes de « L'examen » : 10 langues en plus du français. Sont traduits : les questions (sauf celles
+# qui contiennent un blanc à compléter et la dictée de numéro A2-35), les phrases de contexte, les situations, les
+# étiquettes, les indications (« Le verbe correct au présent »…) et l'interface. Restent en français : les phrases à
+# compléter, les réponses, les SMS, les documents, les textes à lire. Traductions : traductions/<code>.json (clé = texte
+# français). Voix des questions A1 traduites : sons/<code>/ (generer_voix.py) ; pas de voix pour le tibétain.
+LANGUES = [
+    {"code": "fr", "nom": "Français", "natif": "Français", "drapeau": "fr"},
+    {"code": "ar-SD", "nom": "Soudanais", "natif": "عربي سوداني", "drapeau": "sd", "dir": "rtl", "police": "Noto Sans Arabic"},
+    {"code": "uk", "nom": "Ukrainien", "natif": "Українська", "drapeau": "ua", "police": "Noto Sans"},
+    {"code": "ps", "nom": "Pachto", "natif": "پښتو", "drapeau": "af", "dir": "rtl", "police": "Noto Sans Arabic"},
+    {"code": "ln", "nom": "Lingala", "natif": "Lingála", "drapeau": "cd"},
+    {"code": "so", "nom": "Somali", "natif": "Soomaali", "drapeau": "so"},
+    {"code": "bn", "nom": "Bengali", "natif": "বাংলা", "drapeau": "bd", "police": "Noto Sans Bengali"},
+    {"code": "bo", "nom": "Tibétain", "natif": "བོད་སྐད།", "drapeau": "tibet", "police": "Noto Serif Tibetan"},
+    {"code": "fa-AF", "nom": "Dari", "natif": "دری", "drapeau": "af", "dir": "rtl", "police": "Noto Sans Arabic"},
+    {"code": "ru", "nom": "Russe", "natif": "Русский", "drapeau": "ru", "police": "Noto Sans"},
+    {"code": "ta", "nom": "Tamoul", "natif": "தமிழ்", "drapeau": "lk", "police": "Noto Sans Tamil"},
+]
+
+def donnees_langue(artifact):
+    """Les drapeaux (SVG intégrés), les traductions et les voix des questions traduites."""
+    drapeaux = {l["drapeau"]: "data:image/svg+xml;base64," + base64.b64encode(open(os.path.join(ICI, "drapeaux", l["drapeau"] + ".svg"), "rb").read()).decode() for l in LANGUES}
+    source = json.load(open(os.path.join(ICI, "traductions", "source.json"), encoding="utf-8"))
+    cles = set(source["interface"] + source["questions"] + source["contextes"] + source["indices"])
+    trad, voix = {}, {}
+    for l in LANGUES[1:]:
+        f = os.path.join(ICI, "traductions", l["code"] + ".json")
+        if os.path.exists(f):
+            trad[l["code"]] = {k: v for k, v in json.load(open(f, encoding="utf-8")).items() if k in cles and v}
+        idx = os.path.join(ICI, "sons", l["code"], "index.json")
+        if os.path.exists(idx):
+            for fr, fichier in json.load(open(idx, encoding="utf-8")).items():
+                chemin = os.path.join(ICI, "sons", l["code"], fichier)
+                if os.path.exists(chemin):
+                    voix["q:" + l["code"] + ":" + fr] = ("data:audio/mpeg;base64," + base64.b64encode(open(chemin, "rb").read()).decode()) if artifact else "../sons/" + l["code"] + "/" + fichier
+    return drapeaux, trad, voix
+
+LANGUE_JS = r"""// ------------------------------------------------------------------------------ la langue des consignes
+// Questions, contextes, indications et boutons dans la langue choisie à l'accueil ; phrases à compléter, réponses,
+// SMS et documents restent en français.
+const LANGUES = __LANGUES__;
+const DRAPEAUX = __DRAPEAUX__;
+const TRAD = __TRAD__;
+let LANGUE = "fr";
+try { const l = localStorage.getItem("positionnement-langue"); if (LANGUES.some(x => x.code === l)) LANGUE = l; } catch (e) {}
+const langue = () => LANGUES.find(x => x.code === LANGUE) || LANGUES[0];
+const t = (fr) => (fr && LANGUE !== "fr" && TRAD[LANGUE] && TRAD[LANGUE][fr]) || fr;
+const traduit = (fr) => !!fr && t(fr) !== fr;
+const attrsLangue = (fr) => traduit(fr) ? ` lang="${LANGUE}" dir="${langue().dir || "ltr"}"` : "";
+const drapeau = (l) => `<span class="drapeau" aria-hidden="true"><img src="${DRAPEAUX[l.drapeau]}" alt=""></span>`;
+const polices = new Set();
+function chargerPolice(famille, texte) {
+  if (!famille) return; const cle = famille + "|" + (texte || ""); if (polices.has(cle)) return; polices.add(cle);
+  const l = document.createElement("link"); l.rel = "stylesheet";
+  l.href = "https://fonts.googleapis.com/css2?family=" + famille.replace(/ /g, "+") + ":wght@400;700" + (texte ? "&text=" + encodeURIComponent(texte) : "") + "&display=swap";
+  document.head.appendChild(l);
+}
+chargerPolice(langue().police);
+function choisirLangue(code) { LANGUE = code; try { localStorage.setItem("positionnement-langue", code); } catch (e) {} chargerPolice(langue().police); }
+// l'interface (boutons, titres, phrases d'aide) est traduite sur place après chaque affichage
+const ZONES_INTERFACE = ".bas, .feuille > h2, .feuille > p, .feuille .bouton, .feuille .lien, .ex-titre, .ex-sous, .ex-liste, .ex-texte, .consigne-lecture, .papier-tete small, .pilule, .langue-txt small";
+function traduireInterface(racine) {
+  if (!racine || LANGUE === "fr") return;
+  const dir = langue().dir || "ltr";
+  racine.querySelectorAll(ZONES_INTERFACE).forEach(z => {
+    const w = document.createTreeWalker(z, NodeFilter.SHOW_TEXT), liste = [];
+    while (w.nextNode()) liste.push(w.currentNode);
+    for (const n of liste) { const k = n.nodeValue.trim(); if (traduit(k)) { n.nodeValue = n.nodeValue.replace(k, t(k)); n.parentElement.lang = LANGUE; n.parentElement.dir = dir; } }
+  });
+  racine.querySelectorAll("[placeholder]").forEach(e => { const k = e.getAttribute("placeholder"); if (traduit(k)) { e.setAttribute("placeholder", t(k)); e.lang = LANGUE; e.dir = dir; } });
+}
+function choisirLangueFeuille() {
+  LANGUES.forEach(l => chargerPolice(l.police, l.natif));      // les noms des langues, chacun dans son écriture
+  const v = feuille(`<h2>${echap(t("Choisissez la langue des consignes"))}</h2><div class="langues">${LANGUES.map(l => `<button class="langue-opt" type="button" data-code="${l.code}" aria-pressed="${l.code === LANGUE}">${drapeau(l)}<span><b lang="${l.code}" dir="auto">${l.natif}</b><small>${l.nom}</small></span></button>`).join("")}</div>`);
+  v.querySelectorAll(".langue-opt").forEach(b => b.addEventListener("click", () => { choisirLangue(b.dataset.code); SONS.choix(); v.remove(); afficher(); }));
 }"""
 
 INSECABLES = r"""// un mot à trait d'union (« posez-vous », « attends-moi ») ne se coupe jamais : il passe entier à la ligne
@@ -833,12 +934,28 @@ def transformer(s, artifact, style='feuille'):
                   'function poser(html) { appli.querySelectorAll(".ecran").forEach(e => e.remove()); appli.insertAdjacentHTML("beforeend", html); insecables(appli.lastElementChild); }\n' + INSECABLES)
     if ex:
         s = remplacer(s, 'function poser(html) {', CADRES_JS.replace('__CADRES__', json.dumps(CADRES, ensure_ascii=False)) + '\nfunction poser(html) {')
+        drapeaux, trad, voix = donnees_langue(artifact)
+        js = LANGUE_JS.replace('__LANGUES__', json.dumps(LANGUES, ensure_ascii=False)).replace('__DRAPEAUX__', json.dumps(drapeaux)).replace('__TRAD__', json.dumps(trad, ensure_ascii=False))
+        s = remplacer(s, 'function poser(html) {', js + '\nfunction poser(html) {')
+        s = remplacer(s, 'insecables(appli.lastElementChild); }', 'traduireInterface(appli.lastElementChild); insecables(appli.lastElementChild); }')
+        s = remplacer(s, '  appli.appendChild(voile);\n', '  appli.appendChild(voile); traduireInterface(voile);\n')
+        if voix:
+            s = remplacer(s, 'const AUDIO = {', 'const AUDIO = {\n' + ''.join(f'  {json.dumps(k, ensure_ascii=False)}: "{v}",\n' for k, v in voix.items()))
+        # la question dans la langue choisie ; le haut-parleur la lit dans cette langue (A1), ou disparaît s'il n'y a pas de voix
+        s = remplacer(s, '''const titre = `<h2 class="question${avant ? " consigne" : ""}" id="question">${echap(q.question)}${q.niveau === "A1" && audible("q:" + q.question) ?''',
+                      '''const cleQ = traduit(q.question) ? "q:" + LANGUE + ":" + q.question : "q:" + q.question, lisible = q.niveau === "A1" && (traduit(q.question) ? !!AUDIO[cleQ] : audible(cleQ));
+      const titre = `<h2 class="question${avant ? " consigne" : ""}" id="question"${attrsLangue(q.question)}>${echap(t(q.question))}${lisible ?''')
+        s = remplacer(s, 'lireConsigne.addEventListener("click", () => jouer("q:" + q.question, [q.question], lireConsigne,',
+                      'lireConsigne.addEventListener("click", () => jouer(traduit(q.question) ? "q:" + LANGUE + ":" + q.question : "q:" + q.question, [q.question], lireConsigne,')
         s = remplacer(s, 'bouton("Suivant", "vert", `id="valider"', 'bouton("Valider", "vert", `id="valider"')
         # tout support (y compris le message ou la phrase à compléter) va dans le dégradé ; question et réponses dans le blanc
         s = remplacer(s, """      return media ? `<div class="scene">${rub}${vis}</div><div class="feuille-q">${titre}${reponses}</div>`
                    : `<div class="scene vide">${rub}</div><div class="feuille-q">${avant ? titre + vis : vis + titre}${reponses}</div>`;""",
                       """      const enFond = q.photo && q.t !== "ecoute" && q.t !== "situation" ? photoFond(q.photo) : "";
-      const support = q.t === "aucun" ? "" : visuel(q.t === "document" ? { ...q, photo: null } : q).replace(/<img class="photo-scene" src="[^"]*" alt="">/, () => photoFond(q.photo));
+      const qt = { ...q, contexte: t(q.contexte), etiquette: t(q.etiquette), indice: t(q.indice), texte: q.t === "situation" ? t(q.texte) : q.texte };
+      const support = (q.t === "aucun" ? "" : visuel(q.t === "document" ? { ...qt, photo: null } : qt).replace(/<img class="photo-scene" src="[^"]*" alt="">/, () => photoFond(q.photo)))
+        .replace('<p class="contexte">', `<p class="contexte"${attrsLangue(q.contexte)}>`).replace('<span class="etiquette">', `<span class="etiquette"${attrsLangue(q.etiquette)}>`)
+        .replace('<p class="situation">', `<p class="situation"${attrsLangue(q.texte)}>`).replace('<span class="indice">', `<span class="indice"${attrsLangue(q.indice)}>`);
       const visEx = q.t === "aucun" && !q.photo ? "" : `<div class="visuel${q.photo ? " photo-fond" : ""}">${enFond}${support}</div>`;
       return `<div class="scene${q.t === "aucun" && !q.photo ? " vide" : ""}">${visEx}</div><div class="feuille-q">${titre.replace(" consigne", "").replace(/ ([?!:;])/g, "\u00a0$1")}${reponses}</div>`;""")
     # le lecteur dit ce qu'il fait (affiché seulement dans « L'examen »)
