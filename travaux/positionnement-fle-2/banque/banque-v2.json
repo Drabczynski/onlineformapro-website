@@ -488,12 +488,13 @@
   "page": 14,
   "question": "Que fait-on avec un stylo ?",
   "choix": [
-   "On mange",
-   "On écrit",
-   "On écoute"
+   "mange",
+   "écrit",
+   "écoute"
   ],
   "bonne": 1,
-  "t": "aucun",
+  "t": "trou",
+  "phrase": "Avec un stylo, on ______.",
   "id": "A1-29",
   "groupe": "A1:A1-29"
  },

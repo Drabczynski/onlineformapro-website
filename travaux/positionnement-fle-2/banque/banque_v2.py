@@ -54,6 +54,10 @@ for question, choix, bonne in [("Où achète-t-on des médicaments ?", ["À la p
                                ("Où achète-t-on des croissants ?", ["À la boucherie", "À la boulangerie", "À l'épicerie"], "À la boulangerie"),
                                ("Que fait-on avec des ciseaux ?", ["On mesure", "On écrit", "On coupe"], "On coupe")]:
     q("A1", "LG", "Vocabulaire", 14, question, choix, bonne)
+# A1-29 (à la demande) : une phrase à compléter, « Avec un stylo, on ______. » ; les réponses deviennent les verbes seuls
+for d in B:
+    if d["question"] == "Que fait-on avec un stylo ?":
+        d.update(choix=["mange", "écrit", "écoute"], bonne=1, t="trou", phrase="Avec un stylo, on ______.")
 q("A1", "CE", "COMP écrite", 14, "Quelle est la couleur du ciel quand il fait beau ?", ["jaune", "bleu", "vert"], "bleu")
 q("A1", "LG", "Vocabulaire", 14, "Quel est le contraire de « grand » ?", ["gros", "petit", "long"], "petit", groupe="contraire-grand")
 for phrase, choix, bonne, tag, indice in [("Tu ______.", ["ai", "as", "avais"], "as", "Conjugaison", "Le verbe « avoir » au présent"),

@@ -124,6 +124,8 @@ l'âge de Lucas (22 ans) et sa ville (Toulouse), « Qu'est-ce que » (au restaur
 - A1-08 : sans « Vous êtes au téléphone avec votre tante. » ; la question devient « Votre tante fait des
   courses. Où est-elle ? » (consigne lue générée avec ElevenLabs, `v2-q34`).
 - B1-12 : sans « Vous écoutez un reportage à Abidjan. ».
+- A1-29 : à la demande, la phrase à compléter « Avec un stylo, on ______. » sous la question « Que fait-on avec un
+  stylo ? » ; les réponses deviennent « mange », « écrit », « écoute » (« On mange »… dans le PDF).
 - Photos de scène fournies : pour les écoutes, la photo remplit tout l'encart et le bouton d'écoute est
   posé dessus (l'immeuble, A1-10 ; les trois femmes à Abidjan, B1-12) ; la salle de cinéma remplace
   l'icône de la situation (A1-18). Marie (A2-16, A2-17, B1-01, B1-02) :
