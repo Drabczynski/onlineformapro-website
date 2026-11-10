@@ -152,7 +152,9 @@ import os
 # décor sans jamais montrer la réponse. Restent sans photo, exprès, les questions où toute image la donnerait :
 # - le vocabulaire défini par l'objet ou le lieu : pharmacie, stylo, école, croissants, ciseaux, ciel, pâtissier,
 #   journalistes, pomme, livres, hôpital du médecin, contraires, quartier, chiffres ;
-# - « Je n'ai vu personne dans le jardin » (un jardin vide la donne) et « un film tellement drôle » (des rires la donnent) ;
+# - « un film tellement drôle » (des rires la donnent) ;
+# (A2-28, « Je n'ai vu personne dans le jardin », a une photo à la demande : un massif de fleurs cadré serré, qui ne
+# montre ni quelqu'un ni un jardin vide.)
 # - les écoutes A1-04 (le métier), A2-07 (l'interdiction) et A2-09 (l'âge), et la maison de Julie.
 # Une photo n'est prise que si son fichier existe dans img/.
 PHOTOS = {
@@ -168,7 +170,7 @@ PHOTOS = {
     "A2-12": "lettre", "A2-13": "restaurant", "A2-14": "telephone-2", "A2-15": "ecole",
     "A2-18": "italie", "A2-19": "piscine", "A2-20": "tele", "A2-21": "couple", "A2-22": "rue", "A2-23": "metro",
     "A2-24": "cinema-entree", "A2-25": "cafe", "A2-26": "enfants", "A2-27": "conversation", "A2-29": "cinema-entree",
-    "A2-30": "parc", "A2-31": "stylos", "A2-32": "ville-calme", "A2-34": "pluie", "A2-35": "telephone-2",
+    "A2-28": "jardin", "A2-30": "parc", "A2-31": "stylos", "A2-32": "ville-calme", "A2-34": "pluie", "A2-35": "telephone-2",
         "B1-01": "reunion", "B1-02": "musee", "B1-05": "ecole", "B1-06": "ecole", "B1-07": "ecole", "B1-08": "ecole",
 }
 _img = os.path.join(os.path.dirname(os.path.abspath(__file__)), "img")

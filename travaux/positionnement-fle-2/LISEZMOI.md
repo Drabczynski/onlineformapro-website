@@ -128,41 +128,42 @@ l'âge de Lucas (22 ans) et sa ville (Toulouse), « Qu'est-ce que » (au restaur
   posé dessus (l'immeuble, A1-10 ; les trois femmes à Abidjan, B1-12) ; la salle de cinéma remplace
   l'icône de la situation (A1-18). Marie (A2-16, A2-17, B1-01, B1-02) :
   une vraie photo à la place de l'icône (crédit plus bas).
-- Photos d'illustration : 79 questions sur 105 en ont une. Dans « L'examen » (v3), elle remplit le haut de l'écran
-  et se fond dans le blanc, le support posé dessus (bille d'écoute au centre ; SMS, phrase, texte ou document en bas,
+- Photos d'illustration : 80 questions sur 105 en ont une. Dans « L'examen » (v3), elle remplit le haut de l'écran et
+  se fond dans le blanc, le support posé dessus (bille d'écoute au centre ; SMS, phrase, texte ou document en bas,
   pour que le haut de la photo reste visible). Chaque photo pose le décor sans jamais montrer la réponse : une
   personne au téléphone pour un SMS, la ville d'une phrase (« Je viens du Portugal » : Lisbonne), un comptoir
   d'accueil sans escalier ni panneau d'étage (A1-09), un bistrot sans aucun plat (A2-11), un dîner sans viande ni
   poisson (A2-01), une rue sans flèche (A2-22), une vitre sous la pluie sans parapluie (A2-34)… La table question →
-  photo est `PHOTOS` dans `banque/banque_v2.py`.
-  Restent sans photo, exprès, les questions où toute image donnerait la réponse : le vocabulaire défini par l'objet
-  ou le lieu (pharmacie, stylo, école, croissants, ciseaux, couleur du ciel, pâtissier, journalistes, pomme, livres,
-  hôpital du médecin), les contraires, « quartier », les chiffres, « Je n'ai vu personne dans le jardin », « un film
-  tellement drôle », les écoutes A1-04 (le métier), A2-07 (l'interdiction) et A2-09 (l'âge), et la maison de
-  Julie (B1-09, B1-10). L'affiche A1-11 et les réponses en images d'A1-08, A1-12 et A2-07 restent.
-  Crédits : métro (A1-07), appartement, salle de cinéma, Abidjan : photos fournies ; primeur, fromagerie, gare,
-  pique-nique, plage, interdictions et affiche : images du PDF. Toutes les autres viennent d'Unsplash (licence
-  Unsplash), par nom de fichier dans `banque/img/` : accueil-sante, Dental Implants Tasmania (97A7qum-dvg, recadrée)
-  · amies, Omar Lopez (770jbAj_wvQ) · amir, Josias Garibay (rifCUO-4X8k) · amis-telephone, Vitaly Gariev
-  (CPVWc-ZJg1o) · boucherie (réponse d'A1-08), Darth Liu (hf_i6mm88pM) · boulangerie (réponse d'A1-08), Zoshua Colah
-  (D7cyLNwSEOo) · bureau, Luca Bravo (9l_326FISzk) · bureau-matin, Carrie Allen (HCJKGkeKmW0) · bus, Nathan Cima
-  (P_T5kv1Nd3w) · cafe, engin akyurt (W4cStr7X2wY) · chats, Nathalie Jolie (nKzeG3iE_Qg) · chevaux, Manoj Kulkarni
-  (Xgy8G9qMkFA) · chez-amie, Peter Boccia (vQVWSCx8lbQ) · cinema-entree, Myke Simon (atsUqIm3wxo) · classe, Vitaly
-  Gariev (14jNrPntbgk) · conversation, Christina @ wocintechchat.com (VpcgTEKerEQ) · couple, Vitaly Gariev
+  photo est `PHOTOS` dans `banque/banque_v2.py`. Restent sans photo, exprès, les questions où toute image donnerait la
+  réponse : le vocabulaire défini par l'objet ou le lieu (pharmacie, stylo, école, croissants, ciseaux, couleur du
+  ciel, pâtissier, journalistes, pomme, livres, hôpital du médecin), les contraires, « quartier », les chiffres, « un
+  film tellement drôle », les écoutes A1-04 (le métier), A2-07 (l'interdiction) et A2-09 (l'âge), et la maison de
+  Julie (B1-09, B1-10). « Je n'ai vu personne dans le jardin » (A2-28) a une photo à la demande : un massif de fleurs
+  cadré serré, qui ne montre ni quelqu'un ni un jardin vide. L'affiche A1-11 et les réponses en images d'A1-08, A1-12
+  et A2-07 restent. Crédits : métro (A1-07), appartement, salle de cinéma, Abidjan : photos fournies ; primeur,
+  fromagerie, gare, pique-nique, plage, interdictions et affiche : images du PDF. Toutes les autres viennent
+  d'Unsplash (licence Unsplash), par nom de fichier dans `banque/img/` : accueil-sante, Dental Implants Tasmania
+  (97A7qum-dvg, recadrée) · amies, Omar Lopez (770jbAj_wvQ) · amir, Josias Garibay (rifCUO-4X8k) · amis-telephone,
+  Vitaly Gariev (CPVWc-ZJg1o) · boucherie (réponse d'A1-08), Darth Liu (hf_i6mm88pM) · boulangerie (réponse d'A1-08),
+  Zoshua Colah (D7cyLNwSEOo) · bureau, Luca Bravo (9l_326FISzk) · bureau-matin, Carrie Allen (HCJKGkeKmW0) · bus,
+  Nathan Cima (P_T5kv1Nd3w) · cafe, engin akyurt (W4cStr7X2wY) · chats, Nathalie Jolie (nKzeG3iE_Qg) · chevaux, Manoj
+  Kulkarni (Xgy8G9qMkFA) · chez-amie, Peter Boccia (vQVWSCx8lbQ) · cinema-entree, Myke Simon (atsUqIm3wxo) · classe,
+  Vitaly Gariev (14jNrPntbgk) · conversation, Christina @ wocintechchat.com (VpcgTEKerEQ) · couple, Vitaly Gariev
   (-FYWsRxATAE) · croissant, Co Tan (ngWKZNeOhkk) · dejeuner, Queensland, Australia (g6FKXPq0SI0) · dentiste, Ozkan
-  Guner (aFqSRokmw2E) · ecole, Benoit Roy (lJOe6zs3vCI) · enfants, Jennifer Kalenberg (dKVypFEWM0k) · fatigue,
-  Adrian Swancar (roCfgvkBLVY) · gare, Jametlene Reskp (w5bhXG_uUXw) · hopital, LEDC (JtHwupBN3to) · intro, Alexis
-  Brown (-Xv7k95vOFA) · italie, mana5280 (6sIDfzp-ssQ) · jeune-femme, Max Harlynking (coB2qm6VUGg) · lettre,
-  Mediamodifier (S3Lig53867M) · lisa, Kevin Wolf (h-GnGkgc8n8) · lisbonne, Mehmet Bozgedik (c-ibE7UOpGQ) · lucas,
-  Elizeu Dias (2EGNqazbAMk) · marche, Jason Ng (yGTdnZ_QWog) · marie, Cristina Anne Costello (g-sZXPH1eSM) ·
-  marseille, Carnet de Voyage d'Alex (0KdrlrwYlCo) · medecin, Vitaly Gariev (_zbqco3m7dA) · musee, Tamara Harhai
-  (1YuglK73vBU) · pain, Ryan Wallace (JjvxFIX_3aA) · parc, Alex Sherstnev (okbDJ3IEC0Y) · piscine, Mariusz Smenzyk
-  (xs9r8fPUats) · pizza, Laure Noverraz (jsZKLRi7toU) · pluie, Thomas Kinto (7BdGQlR-5Gs) · poste, Kseniia
-  Poroshkova (WySH93gqRPM) · presentation, Vitaly Gariev (lZXX-QVdyXY) · prets, Vitaly Gariev (b3-k_Lf4qU4) ·
-  restaurant et rep-restaurant (réponse d'A1-12), Kamilla Isalieva (3ICm8lZyeZE) · reunion, Vitaly Gariev
-  (G6DRxdnw4WY) · rue, Jalen Hueser (QBjv69x4s0U) · stylos, Babak Eshaghian (gCb97Kja9mY) · tante, Jon Tyson
-  (0RzKU7YGPuU, recadrée) · tele, Vitaly Gariev (X3jvunGfJdU) · telephone-2, Vitaly Gariev (h2FIDYqL_SA) ·
-  velo-travail, Alain Rouiller (PuF07L4-Y_c) · ville-calme, Pujalin (AGlIvH19MOQ) · voiture, Sevadis (3mxiB5KCKB0).
+  Guner (aFqSRokmw2E) · ecole, Benoit Roy (lJOe6zs3vCI) · enfants, Jennifer Kalenberg (dKVypFEWM0k) · fatigue, Adrian
+  Swancar (roCfgvkBLVY) · gare, Jametlene Reskp (w5bhXG_uUXw) · hopital, LEDC (JtHwupBN3to) · intro, Alexis Brown
+  (-Xv7k95vOFA) · italie, mana5280 (6sIDfzp-ssQ) · jeune-femme, Max Harlynking (coB2qm6VUGg) · jardin (A2-28),
+  Anastasios Kara (mYKv1ubOY_g) · lettre, Mediamodifier (S3Lig53867M) · lisa, Kevin Wolf (h-GnGkgc8n8) · lisbonne,
+  Mehmet Bozgedik (c-ibE7UOpGQ) · lucas, Elizeu Dias (2EGNqazbAMk) · marche, Jason Ng (yGTdnZ_QWog) · marie, Cristina
+  Anne Costello (g-sZXPH1eSM) · marseille, Carnet de Voyage d'Alex (0KdrlrwYlCo) · medecin, Vitaly Gariev
+  (_zbqco3m7dA) · musee, Tamara Harhai (1YuglK73vBU) · pain, Ryan Wallace (JjvxFIX_3aA) · parc, Alex Sherstnev
+  (okbDJ3IEC0Y) · piscine, Mariusz Smenzyk (xs9r8fPUats) · pizza, Laure Noverraz (jsZKLRi7toU) · pluie, Thomas Kinto
+  (7BdGQlR-5Gs) · poste, Kseniia Poroshkova (WySH93gqRPM) · presentation, Vitaly Gariev (lZXX-QVdyXY) · prets, Vitaly
+  Gariev (b3-k_Lf4qU4) · restaurant et rep-restaurant (réponse d'A1-12), Kamilla Isalieva (3ICm8lZyeZE) · reunion,
+  Vitaly Gariev (G6DRxdnw4WY) · rue, Jalen Hueser (QBjv69x4s0U) · stylos, Babak Eshaghian (gCb97Kja9mY) · tele, Vitaly
+  Gariev (X3jvunGfJdU) · telephone-2, Vitaly Gariev (h2FIDYqL_SA) · velo-travail, Alain Rouiller (PuF07L4-Y_c) ·
+  ville-calme, Pujalin (AGlIvH19MOQ) · voiture, Sevadis (3mxiB5KCKB0). La tante (A1-08) est une photo fournie,
+  recadrée pour ne pas montrer la vitrine de viennoiseries (elle donnerait la réponse).
 - Page web : les images sont des fichiers (`banque/img/`), chargés en arrière-plan une fois la page affichée ;
   l'artifact les intègre.
 - A1-11 : sans « Vous lisez cette affiche. » ni « Touchez l'image pour l'agrandir » ; une loupe dans le coin

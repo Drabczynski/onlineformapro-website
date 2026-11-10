@@ -411,7 +411,7 @@ svg { display: block; }
 .lecture-tete.sur-photo .papier-tete { margin-block: -10px; padding: 10px 14px; border-radius: 18px; background: rgba(255, 255, 255, .94); }      /* la carte déborde dans les marges : même hauteur qu'avant */
 .fond-seul { position: absolute; inset: 0; }      /* la photo seule, hors du flux : elle n'ajoute aucune hauteur */
 .photo-scene { display: block; width: 100%; max-height: 200px; object-fit: cover; border-radius: 18px; }
-.phrase { justify-self: stretch; margin: 0; padding: 18px 20px; border-radius: 18px; background: #fff; color: var(--encre); font-size: 24px; font-weight: 700; line-height: 1.55; text-align: left; }
+.phrase { justify-self: stretch; margin: 0; padding: 18px 20px; border-radius: 18px; background: #fff; color: var(--encre); font-size: 24px; font-weight: 700; line-height: 1.55; text-align: left; text-wrap: balance; }      /* lignes équilibrées : jamais un mot seul en fin de phrase */
 .phrase.petite { font-size: 19px; }
 .ordre-phrase { font-size: 21px; line-height: 1.95; }
 .trou { display: inline-block; min-width: 92px; margin: 0 3px; padding: 0 10px; border-radius: 8px 8px 0 0; background: var(--violet-pale); box-shadow: inset 0 -3px 0 var(--violet); color: var(--violet); line-height: 1.45; }
@@ -778,6 +778,7 @@ CADRES = {
     "croissant": {"dy": -22}, "chats": {"dy": -18}, "lucas": {"dy": -25}, "tele": {"dy": -15},
     "couple": {"dy": -15}, "enfants": {"dy": -22},
     "amis-telephone": {"dy": -20}, "chez-amie": {"dy": -18}, "reunion": {"dy": -22}, "lisa": {"dy": -10}, "marie": {"dy": -12},
+    "tante": {"dy": -22},
 }
 CADRES_JS = r"""// cadrage de chaque photo (agrandissement z autour du point ox oy), pour qu'aucune carte ne cache un visage
 const CADRES = __CADRES__;
@@ -924,7 +925,7 @@ CSS_HUBLOT = r"""
   .vague i { width: 6px; }
   /* au centre du cercle : la phrase à compléter, et son indication dessous */
   .h-centre { z-index: 2; display: grid; justify-items: center; gap: 12px; width: min(calc(var(--rond) * 1.1), 640px); }
-  .h-centre > .phrase { justify-self: stretch; padding: 22px 28px; border-radius: 24px; font-size: clamp(26px, 2.3vw, 36px); line-height: 1.45; text-align: center; }
+  .h-centre > .phrase { justify-self: stretch; padding: 22px 28px; border-radius: 24px; font-size: clamp(26px, 2.3vw, 36px); line-height: 1.45; text-align: center; text-wrap: balance; }      /* lignes équilibrées : jamais un mot seul en fin de phrase */
   .h-centre > .phrase.petite { font-size: clamp(24px, 2vw, 32px); }
   .h-centre > .ordre-phrase { line-height: 1.85; }
   .h-centre .trou { min-width: 3.4em; }
@@ -932,10 +933,24 @@ CSS_HUBLOT = r"""
   .h-centre > .indice { justify-self: center; padding: 6px 16px; background: #fff; font-size: 16px; }
   /* un message (SMS, petit texte) sort d'une enveloppe et se pose sur le bas du cercle */
   .lettre-env { z-index: 2; align-self: end; position: relative; display: grid; width: min(calc(var(--rond) * 1.12), 600px); margin-bottom: calc(var(--rond) * -.1); perspective: 900px; }
-  .lettre-env > .sms, .lettre-env > .papier-court { position: relative; z-index: 2; transform-origin: 50% 100%; animation: h-extrait 1.25s cubic-bezier(.45, 0, .2, 1) 1s both; }
-  .lettre-env > .sms p { padding: 18px 22px; font-size: clamp(18px, 1.45vw, 22px); }
-  .lettre-env > .papier-court { padding: 20px 24px; }
-  .lettre-env > .papier-court p { font-size: clamp(17px, 1.35vw, 20px); }
+  /* le message est une feuille blanche, au coin replié, qui se détache du fond ; il fait face à la question */
+  .visuel.h-message { width: min(calc(50vw - 72px), 660px); height: calc(100vh - 170px); }
+  .h-message > .cadre-photo, .h-message > .rond-ciel { --rond: min(26vw, 44vh); align-self: start; justify-self: start; }
+  .h-message > .lettre-env { align-self: center; justify-self: end; width: min(calc(100% - 3vw), 560px); margin: 0; }
+  .h-feuille { position: relative; z-index: 2; transform-origin: 50% 100%; animation: h-extrait 1.25s cubic-bezier(.45, 0, .2, 1) 1s both; }
+  .h-feuille::before { content: ""; position: absolute; inset: 0; z-index: -1; border: 1px solid rgba(20, 24, 43, .08); border-radius: 4px; background: #f3f0fb; transform: rotate(2.4deg) translate(6px, 4px); }      /* une seconde feuille dessous, légèrement de biais : le papier se détache du fond */
+  .h-papier { position: relative; padding: 34px 40px 36px 38px; border: 1px solid rgba(20, 24, 43, .1); border-radius: 4px; background: #fff; color: var(--encre); text-align: left;
+    clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%); }
+  .h-papier::before { content: ""; position: absolute; top: 0; right: 0; width: 30px; height: 30px; background: linear-gradient(225deg, transparent 50%, #e2dcf4 50%); }
+  .h-papier-corps { display: grid; gap: 12px; max-height: calc(100vh - 270px); overflow-y: auto; hyphens: manual; -webkit-hyphens: manual; overflow-wrap: normal; word-break: normal; scrollbar-width: thin; }
+  .h-papier-corps p, .h-papier .papier p { margin: 0; max-width: none; color: var(--encre); font-size: clamp(17px, 1.3vw, 20px); font-weight: 500; line-height: 1.62; text-wrap: pretty; }
+  .h-papier .h-salut { font-weight: 600; }
+  .h-papier .h-signature { margin-top: 4px; font-weight: 700; }
+  .h-papier .papier { display: grid; gap: 12px; }
+  .h-papier .papier-tete { display: flex; align-items: center; gap: 14px; margin-bottom: 4px; padding: 0 0 16px; border-bottom: 1px solid var(--filet); background: none; text-align: left; }
+  .h-papier .papier-tete span { width: 52px; height: 52px; border-radius: 14px; background: var(--violet-pale); font-size: 26px; }
+  .h-papier .papier-tete .avec-photo { width: 56px; height: 56px; border-radius: 50%; }
+  .h-papier .papier-tete strong { font-size: 22px; line-height: 1.2; }
   .env-dos, .env-poche, .env-rabat { position: absolute; left: 19%; bottom: 0; width: 62%; aspect-ratio: 1.6; }
   .env-dos { z-index: 1; border-radius: 12px; background: #e6defc; animation: h-fondu .3s ease .3s both, h-env-sort .45s ease 1.7s forwards; }
   .env-poche { z-index: 3; border-radius: 12px; background: linear-gradient(#ffffff, #f2ecff); clip-path: polygon(0 30%, 50% 68%, 100% 30%, 100% 100%, 0 100%); animation: h-fondu .3s ease .3s both, h-env-sort .45s ease 1.7s forwards; }
@@ -968,7 +983,8 @@ CSS_HUBLOT = r"""
   .ex-embleme svg { width: 46%; height: 46%; }
 
   /* la colonne de droite, sur le blanc */
-  .feuille-q { grid-column: 2; grid-row: 2; position: relative; z-index: 1; display: flex; flex-direction: column; gap: 30px; width: min(100%, 880px); max-height: calc(100vh - 220px); padding: 4px clamp(40px, 6vw, 112px) 4px clamp(20px, 2.6vw, 52px); overflow: hidden auto; background: none; scrollbar-width: thin; }
+  .feuille-q { grid-column: 2; grid-row: 2; position: relative; z-index: 1; display: flex; flex-direction: column; gap: 30px; width: min(100%, 880px); max-height: calc(100vh - 220px); padding: 4px clamp(40px, 6vw, 112px) 4px clamp(20px, 2.6vw, 52px); overflow: hidden; background: none; scrollbar-width: thin; }
+  .feuille-q.deborde { overflow-y: auto; }      /* la barre n'apparaît que si le contenu dépasse vraiment, une fois l'écran posé */
   .bas { grid-column: 2; grid-row: 3; position: relative; z-index: 1; width: min(100%, 880px); padding: 28px clamp(40px, 6vw, 112px) 0 clamp(20px, 2.6vw, 52px); background: none; }
   .question { font-size: clamp(42px, 4.4vw, 71px); font-weight: 800; line-height: 1.03; letter-spacing: -.038em; text-wrap: balance; }
   .question.longue { font-size: clamp(34px, 3.3vw, 54px); line-height: 1.08; letter-spacing: -.03em; }
@@ -1047,6 +1063,9 @@ CSS_HUBLOT = r"""
   .ex-liste .ic { width: 42px; height: 42px; }
   .rep-image img { aspect-ratio: 16 / 9; }
   .h-centre > .phrase { padding: 18px 22px; }
+  .h-papier { padding: 26px 32px 28px 30px; }
+  .h-papier-corps { max-height: calc(100vh - 230px); }
+  .h-papier-corps p, .h-papier .papier p { font-size: 17px; line-height: 1.55; }
 }
 """
 
@@ -1081,16 +1100,37 @@ function hublot(ecran, relance) {
   // la phrase à compléter (et son indication) au centre du cercle
   const phrase = visuel.querySelector(":scope > .phrase");
   if (phrase) { const c = document.createElement("div"); c.className = "h-centre"; phrase.before(c); c.append(phrase); const ind = visuel.querySelector(":scope > .indice"); if (ind) c.append(ind); }
-  // le message sort d'une enveloppe
-  visuel.querySelectorAll(":scope > .sms, :scope > .papier-court").forEach(m => {
-    const env = document.createElement("div"); env.className = "lettre-env"; m.before(env); env.append(m);
-    env.insertAdjacentHTML("afterbegin", '<span class="env-dos" aria-hidden="true"></span>');
-    env.insertAdjacentHTML("beforeend", '<span class="env-poche" aria-hidden="true"></span><span class="env-rabat" aria-hidden="true"></span>');
-  });
+  // un message (SMS, petit texte, document) : une feuille blanche qui sort d'une enveloppe, en face de la question
+  const sms = visuel.querySelector(":scope > .sms"), court = visuel.querySelector(":scope > .papier-court"), doc = visuel.querySelector(":scope > .doc-mini");
+  let message = null;
+  if (sms) { message = feuilleMessage([...sms.children].filter(x => !x.classList.contains("etiquette"))); sms.replaceWith(message); }
+  else if (court) { message = feuilleMessage([...court.children]); court.replaceWith(message); }
+  else if (doc && etat.ecran === "question") { message = feuilleMessage(papier(qActuelle()).replace(/<small>[\s\S]*?<\/small>/, "")); doc.replaceWith(message); }
+  if (message) visuel.classList.add("h-message");
   const lecteur = visuel.querySelector(":scope > .lecteur");
   if (lecteur && !visuel.querySelector(".cadre-photo, .h-centre, .lettre-env, .doc-mini")) lecteur.classList.add("h-seul");
   const q = ecran.querySelector(".question"); if (q && q.textContent.trim().length > 62) q.classList.add("longue");
 }
+// la feuille d'un message : enveloppe, papier, mise en forme (formule d'appel, signature), aucun mot coupé
+function feuilleMessage(contenu) {
+  const env = document.createElement("div"); env.className = "lettre-env";
+  env.innerHTML = '<span class="env-dos" aria-hidden="true"></span><div class="h-feuille"><div class="h-papier"><div class="h-papier-corps"></div></div></div><span class="env-poche" aria-hidden="true"></span><span class="env-rabat" aria-hidden="true"></span>';
+  const corps = env.querySelector(".h-papier-corps");
+  if (typeof contenu === "string") corps.innerHTML = contenu; else corps.append(...contenu);
+  const ps = [...corps.querySelectorAll("p")], txt = (p) => p.textContent.trim();
+  if (ps.length >= 3) {
+    if (txt(ps[0]).length <= 40 && /,$/.test(txt(ps[0]))) ps[0].classList.add("h-salut");
+    const fin = ps[ps.length - 1]; if (txt(fin).length <= 45 && !/[.?!:;]$/.test(txt(fin))) fin.classList.add("h-signature");
+  }
+  insecables(env);
+  return env;
+}
+// sur ordinateur, un document se lit en face de sa question : plus d'écran de lecture séparé
+const ecranLectureTelephone = ecranLecture;
+ecranLecture = function (q) { if (!BUREAU.matches) return ecranLectureTelephone(q); etat.lus[q.id] = true; return afficher(); };
+// la colonne de droite ne défile que si son contenu dépasse vraiment (vérifié une fois les apparitions finies)
+function verifierDefilement() { const f = appli.querySelector(".ecran .feuille-q"); if (f) f.classList.toggle("deborde", f.scrollHeight > f.clientHeight + 2); }
+addEventListener("resize", verifierDefilement);
 BUREAU.addEventListener("change", () => afficher());      // passage téléphone ↔ ordinateur : l'écran se redessine
 // au clavier : A, B, C, D (ou 1 à 4) choisissent une réponse, Entrée valide
 document.addEventListener("keydown", (e) => {
@@ -1113,6 +1153,7 @@ POSER_HUBLOT = r"""function poser(html) {
     e.inert = true; e.classList.add("sort"); SORTIES.appendChild(e); setTimeout(() => e.remove(), 2300);
   });
   appli.insertAdjacentHTML("beforeend", html); traduireInterface(appli.lastElementChild); insecables(appli.lastElementChild); hublot(appli.lastElementChild, relance);
+  if (BUREAU.matches) setTimeout(verifierDefilement, 1400);
 }"""
 
 _MINIATURES = {}
