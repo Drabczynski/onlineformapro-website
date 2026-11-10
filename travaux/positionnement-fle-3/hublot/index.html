@@ -321,6 +321,10 @@ svg { display: block; }
   .fond-d .brume { position: absolute; inset: -12%; animation: h-derive 22s ease-in-out infinite alternate; }
   .fond-d img { display: block; width: 100%; height: 100%; object-fit: cover; filter: blur(28px) saturate(1.3); opacity: .5; }
   .fond-d .ciel-fin { position: absolute; inset: 0; background: var(--ciel); }
+  /* la bille d'écoute seule et aucune image à l'écran (ni photo, ni phrase, ni message) : un dégradé turquoise plus affirmé, réglé
+     par l'utilisateur dans la maquette « Bulle d'écoute seule » (linéaire 160°, fond autour à 70 %) */
+  .h-bulle-seule .rond-ciel { background: linear-gradient(160deg, #52a3b7 0%, #35b1d0 50%, #1bf3da 100%); }
+  .h-bulle-seule .fond-d .ciel-fin { background: linear-gradient(180deg, #37cbc9 0%, #72c8de 55%, #d3eef5 100%); opacity: .7; }
   @keyframes h-derive { to { transform: translate(-3%, -2%) scale(1.08); } }
   .visuel, .visuel.fond-seul { position: relative; inset: auto; display: grid; place-items: center; width: var(--rond); height: var(--rond); gap: 0; }
   .visuel > * { grid-area: 1 / 1; }
@@ -1237,7 +1241,7 @@ function hublot(ecran, relance) {
   else if (doc && etat.ecran === "question") { message = feuilleMessage(papier(qActuelle()).replace(/<small>[\s\S]*?<\/small>/, "")); doc.replaceWith(message); }
   if (message) visuel.classList.add("h-message");
   const lecteur = visuel.querySelector(":scope > .lecteur");
-  if (lecteur && !visuel.querySelector(".cadre-photo, .h-centre, .lettre-env, .doc-mini")) lecteur.classList.add("h-seul");
+  if (lecteur && !visuel.querySelector(".cadre-photo, .h-centre, .lettre-env, .doc-mini")) { lecteur.classList.add("h-seul"); if (!scene.querySelector("img")) scene.classList.add("h-bulle-seule"); }
   const q = ecran.querySelector(".question"); if (q && q.textContent.trim().length > 62) q.classList.add("longue");
 }
 // la feuille d'un message : enveloppe, papier, mise en forme (formule d'appel, signature), aucun mot coupé

@@ -28,7 +28,9 @@ perçu comme plus officiel. La version 2, plus ludique, reste en place pour d'au
   s'applique dès que l'écran fait au moins 1000 × 600 px ; en dessous (téléphone, tablette en portrait), c'est «
   L'examen » à l'identique (vérifié au pixel). À gauche, la photo dans un grand cercle (un cercle de ciel quand il n'y
   a pas de photo : deux flèches opposées, en blanc, y figurent les contraires), posé sur ses propres couleurs en flou léger (une miniature de 24 px de la
-  photo, agrandie et floutée) ; la bille d'écoute est son satellite, avec une petite ombre ; la phrase à compléter se
+  photo, agrandie et floutée) ; la bille d'écoute est son satellite, avec une petite ombre (seule et sans aucune
+  image à l'écran, A2-07 et A2-09, elle se pose au centre d'un cercle turquoise plus affirmé, réglé dans la maquette
+  « Bulle d'écoute seule » : linéaire 160°, #52a3b7 → #35b1d0 → #1bf3da, fond autour à 70 %) ; la phrase à compléter se
   place au centre du cercle (lignes équilibrées). Un message (SMS, petit texte, document) est une feuille blanche au
   coin replié, posée sur une seconde feuille de biais, qui sort d'une enveloppe et fait face à la question (la photo,
   plus petite, en haut à gauche) ; la formule d'appel et la signature sont mises en forme, aucun mot n'est coupé. À
