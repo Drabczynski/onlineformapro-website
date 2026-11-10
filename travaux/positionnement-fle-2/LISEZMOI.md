@@ -136,6 +136,22 @@ le jour où Julien commence à 8h (jeudi) et son cours d'arts plastiques (mardi,
   posé dessus (l'immeuble, A1-10 ; les trois femmes à Abidjan, B1-12) ; la salle de cinéma remplace
   l'icône de la situation (A1-18). Marie (A2-16, A2-17, B1-01, B1-02) :
   une vraie photo à la place de l'icône, photo Unsplash de Janko Ferlič (pMJKJp0aG4M, licence Unsplash).
+- Photos d'illustration, choisies pour poser le décor sans donner la réponse :
+  - A1-07, le métro aérien parisien (photo fournie) ;
+  - A1-09, un comptoir d'accueil, sans escalier, ascenseur ni panneau d'étage (Unsplash, Malcolm Choong, 27zLImvxwV0) ;
+  - A1-14, une façade de cinéma (Unsplash, Myke Simon, atsUqIm3wxo) ;
+  - A1-17, des amis à table (Unsplash, g6FKXPq0SI0) ;
+  - A2-11, une salle de bistrot sans aucun plat visible, pour ne rien dire de la carte (Unsplash, Kamilla Isalieva,
+    3ICm8lZyeZE) ;
+  - B1-11, un bureau vide avec un ordinateur, à la place du parasol qui orientait vers la mauvaise réponse
+    « Étant en vacances » (Unsplash, Luca Bravo, 9l_326FISzk).
+  Laissées sans photo exprès :
+  - A1-04 : une photo de médecin ou d'étudiante donnerait la réponse ;
+  - A1-08 : les réponses sont déjà des photos ;
+  - A2-06 : une photo de La Poste montre une boîte aux lettres, soit la réponse « lettre » ;
+  - A2-07 : l'image d'une interdiction donnerait la réponse ;
+  - A2-09 : l'âge des personnes est ce qu'on demande ;
+  - les documents (maison de Julie, lycée) : ils se lisent déjà.
 - A1-11 : sans « Vous lisez cette affiche. » ni « Touchez l'image pour l'agrandir » ; une loupe dans le coin
   de l'affiche indique qu'on peut l'agrandir.
 - « Que répondez-vous ? » ajouté aux questions où l'on répond à un message. Une phrase de contexte

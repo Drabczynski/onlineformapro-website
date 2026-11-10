@@ -397,6 +397,7 @@ svg { display: block; }
 /* une photo remplit tout le haut et se fond dans le blanc ; la bille est posée dessus */
 .photo-fond .photo-scene { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; max-height: none; border-radius: 0; object-fit: cover; -webkit-mask-image: linear-gradient(#000 64%, transparent); mask-image: linear-gradient(#000 64%, transparent); }
 .photo-fond > :not(.photo-scene) { position: relative; z-index: 1; }
+.photo-fond .contexte { background: rgba(255, 255, 255, .93); }
 .photo-scene { display: block; width: 100%; max-height: 200px; object-fit: cover; border-radius: 18px; }
 .phrase { justify-self: stretch; margin: 0; padding: 18px 20px; border-radius: 18px; background: #fff; color: var(--encre); font-size: 24px; font-weight: 700; line-height: 1.55; text-align: left; }
 .phrase.petite { font-size: 19px; }

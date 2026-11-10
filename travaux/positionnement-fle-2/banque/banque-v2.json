@@ -159,6 +159,7 @@
   "bonne": 1,
   "t": "ecoute",
   "audio": "o02",
+  "photo": "metro",
   "contexte": "Vous prenez le métro et achetez un ticket au guichet automatique.",
   "id": "A1-07",
   "groupe": "A1:A1-07"
@@ -199,6 +200,7 @@
   "bonne": 1,
   "t": "ecoute",
   "audio": "o04",
+  "photo": "sante",
   "contexte": "Au centre de santé, l'agent d'accueil vous indique le cabinet du dentiste.",
   "id": "A1-09",
   "groupe": "A1:A1-09"
@@ -292,6 +294,7 @@
   "bonne": 1,
   "t": "situation",
   "emoji": "🎬",
+  "photo": "cinema-entree",
   "texte": "Vous avez rendez-vous avec un ami pour aller au cinéma.",
   "id": "A1-14",
   "groupe": "A1:A1-14"
@@ -352,6 +355,7 @@
   "bonne": 0,
   "t": "situation",
   "emoji": "🍽️",
+  "photo": "dejeuner",
   "texte": "Vous déjeunez avec vos amis.",
   "id": "A1-17",
   "groupe": "A1:A1-17"
@@ -1381,6 +1385,7 @@
   "bonne": 1,
   "t": "ecoute",
   "audio": "o08",
+  "photo": "restaurant",
   "contexte": "Au restaurant, le serveur présente la carte.",
   "id": "A2-11",
   "groupe": "A2:A2-11"
@@ -2273,7 +2278,8 @@
   ],
   "bonne": 1,
   "t": "situation",
-  "emoji": "🏖️",
+  "emoji": "💻",
+  "photo": "bureau",
   "texte": "Vous n'êtes pas au bureau pour quelques jours et vous laissez un message automatique d'absence.",
   "id": "B1-11",
   "groupe": "B1:B1-11"
