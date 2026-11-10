@@ -15,10 +15,14 @@ perçu comme plus officiel. La version 2, plus ludique, reste en place pour d'au
 - `examen/` : la variante « L'examen », minimaliste, en police Public Sans :
   https://onlineformapro-website.vercel.app/travaux/positionnement-fle-3/examen/ . En haut, le dégradé bleu ciel de la
   référence (relevé au pixel), qui prend toute la place libre et porte le support : la bille d'écoute violette animée
-  (sur la photo quand il y en a une, la photo remplit tout le haut et se fond dans le blanc), le message, la phrase à
-  compléter, le document. En bas, sur blanc, la question et les réponses A, B, C, alignées à gauche, puis « Je ne sais
-  pas » / « Valider ». Aucun bandeau, aucun numéro de question, aucune compétence affichée, pas de bouton pour quitter :
-  seul le bouton du son reste en haut à droite. Ses sons sont lus dans `../../positionnement-fle-2/sons/`.
+  (cerclée de blanc), le SMS (une bulle de message reçu, avec sa pointe), la phrase à compléter, le texte, le
+  document. La plupart des questions ont une photo, qui remplit tout le haut et se fond dans le blanc, le support posé
+  dessus ; elle pose le décor sans jamais montrer la réponse (liste et raisons dans `../positionnement-fle-2/LISEZMOI.md`).
+  Une question sans photo ni support garde une simple bande de ciel. L'accueil s'ouvre sur une photo de personnes qui
+  discutent. En bas, sur blanc, la question et les réponses A, B, C, alignées à gauche, puis « Je ne sais pas » /
+  « Valider ». Aucun bandeau, aucun numéro de question, aucune compétence affichée : en haut, le son à gauche et la
+  croix pour quitter à droite (elle demande confirmation). Un mot à trait d'union (« posez-vous ») n'est jamais coupé
+  en fin de ligne. Ses sons et ses images sont lus dans `../../positionnement-fle-2/` (l'artifact les intègre).
 - `maquettes/` : les trois pistes comparées avant le choix.
 
 ## Ce qui change par rapport à la version 2

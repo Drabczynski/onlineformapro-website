@@ -161,6 +161,35 @@ for k, d in enumerate(B, 1):
     compte[d["niveau"]] = compte.get(d["niveau"], 0) + 1
     d["id"] = f"{d['niveau']}-{compte[d['niveau']]:02d}"
     d["groupe"] = d["niveau"] + ":" + d.get("groupe", d["id"])
+import os
+# Photos d'illustration (dans « L'examen », la photo remplit le haut de l'écran, derrière le support) : elles posent le
+# décor sans jamais montrer la réponse. Restent sans photo, exprès, les questions où toute image la donnerait :
+# - le vocabulaire défini par l'objet ou le lieu : pharmacie, stylo, école, croissants, ciseaux, ciel, pâtissier,
+#   journalistes, pomme, livres, hôpital du médecin, contraires, quartier, chiffres ;
+# - « Je n'ai vu personne dans le jardin » (un jardin vide la donne) et « un film tellement drôle » (des rires la donnent) ;
+# - les écoutes A1-04 (le métier), A2-07 (l'interdiction) et A2-09 (l'âge), la publicité A2-05 et la maison de Julie.
+# Une photo n'est prise que si son fichier existe dans img/.
+PHOTOS = {
+    "A1-01": "conversation", "A1-02": "agenda", "A1-03": "voiture", "A1-05": "lecture", "A1-08": "tante",
+    "A1-09": "accueil-sante", "A1-12": "telephone-3", "A1-13": "telephone-1", "A1-15": "amir", "A1-16": "rue",
+    "A1-19": "classe", "A1-20": "lisa", "A1-21": "lisa", "A1-22": "lisa", "A1-23": "chevaux", "A1-24": "marche",
+    "A1-25": "jeune-femme", "A1-26": "presentation", "A1-27": "lisbonne", "A1-36": "cafe", "A1-38": "pain",
+    "A1-39": "ecole", "A1-41": "croissant", "A1-43": "fatigue", "A1-44": "hopital", "A1-45": "cinema",
+    "A1-46": "amies", "A1-49": "marseille", "A1-50": "velo-travail", "A1-51": "bureau-matin", "A1-54": "chats",
+    "A1-55": "amies", "A1-56": "medecin", "A1-57": "lucas", "A1-58": "lucas", "A1-59": "gare", "A1-60": "prets",
+    "A1-61": "bus",
+    "A2-01": "diner", "A2-02": "cinema", "A2-03": "gare", "A2-04": "gare", "A2-06": "poste", "A2-08": "telephone-1",
+    "A2-10": "telephone-3", "A2-12": "lettre", "A2-13": "restaurant", "A2-14": "telephone-2", "A2-15": "ecole",
+    "A2-18": "italie", "A2-19": "piscine", "A2-20": "tele", "A2-21": "couple", "A2-22": "rue", "A2-23": "metro",
+    "A2-24": "cinema-entree", "A2-25": "cafe", "A2-26": "enfants", "A2-27": "conversation", "A2-29": "cinema-entree",
+    "A2-30": "parc", "A2-31": "stylos", "A2-32": "ville-calme", "A2-34": "pluie", "A2-35": "telephone-2",
+    "A2-39": "bureau-julien", "A2-40": "bureau-julien",
+    "B1-01": "telephone-3", "B1-02": "telephone-1", "B1-05": "ecole", "B1-06": "ecole", "B1-07": "ecole", "B1-08": "ecole",
+}
+_img = os.path.join(os.path.dirname(os.path.abspath(__file__)), "img")
+for d in B:
+    if d["id"] in PHOTOS and os.path.exists(os.path.join(_img, PHOTOS[d["id"]] + ".webp")):
+        d["photo"] = PHOTOS[d["id"]]
 # Expression écrite à mot court : la réponse s'écrit en touchant des lettres. Les lettres proposées sont celles des
 # choix du PDF (chaque lettre autant de fois qu'elle apparaît au plus dans un choix), sans indice sur la longueur.
 import re, collections

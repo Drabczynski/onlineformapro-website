@@ -7,7 +7,7 @@ que la version 2 : le script part des deux fichiers produits par la v2 et les tr
 
 Produit index.html (page web ; les sons sont lus dans ../positionnement-fle-2/sons/) et test-positionnement.html
 (artifact, tout intégré), pour « La feuille » (ce dossier) et pour la variante « Le dégradé » (dossier degrade/)."""
-import os, re
+import base64, os, re
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 V2 = os.path.join(ICI, '..', 'positionnement-fle-2')
@@ -52,6 +52,7 @@ CSS = r'''
   color-scheme: light;
 }
 * { box-sizing: border-box; }
+.insec { white-space: nowrap; }
 [hidden] { display: none !important; }
 html, body { height: 100%; }
 body { margin: 0; color: var(--encre); font: 600 15px/1.5 var(--texte); overflow: hidden; background: #e8e8ec;
@@ -340,6 +341,7 @@ CSS_EXAMEN = r"""
   color-scheme: light;
 }
 * { box-sizing: border-box; }
+.insec { white-space: nowrap; }
 [hidden] { display: none !important; }
 html, body { height: 100%; }
 body { margin: 0; color: var(--encre); font: 500 16px/1.5 var(--texte); overflow: hidden; background: #e8e8ec;
@@ -359,14 +361,16 @@ svg { display: block; }
 .defile.a-suivre .feuille-q { -webkit-mask-image: linear-gradient(#000 calc(100% - 48px), transparent); mask-image: linear-gradient(#000 calc(100% - 48px), transparent); }
 
 /* seul reste en haut le bouton du son, posé sur le dégradé */
-.haut { position: absolute; top: 0; right: 0; z-index: 4; padding: 16px 16px 0; }
+/* en haut : le son à gauche, quitter à droite */
+.haut { position: absolute; top: 0; left: 0; right: 0; z-index: 4; display: flex; justify-content: space-between; align-items: center; padding: 16px 16px 0; pointer-events: none; }
+.haut > * { pointer-events: auto; }
 .haut .barre { display: none; }
-.rond { display: grid; place-items: center; width: 38px; height: 38px; padding: 0; border: 1px solid rgba(255, 255, 255, .6); border-radius: 50%; background: rgba(255, 255, 255, .3); color: #fff; }
+.rond { display: grid; place-items: center; width: 38px; height: 38px; padding: 0; border: 1px solid rgba(255, 255, 255, .55); border-radius: 50%; background: rgba(16, 22, 48, .3); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: #fff; }      /* lisible sur le ciel comme sur une photo claire */
 .rond svg { width: 17px; height: 17px; }
 
 /* le haut (dégradé) et le bas (blanc) */
 .scene { position: relative; flex: 1 0 auto; min-height: 230px; display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 66px 22px 28px; background: var(--ciel); overflow: hidden; }
-.scene.vide { min-height: 190px; }
+.scene.vide { flex-grow: 0; min-height: 128px; }      /* sans photo ni support : une bande de ciel, pas un grand vide */
 .feuille-q { flex: none; display: grid; gap: 16px; padding: 4px 22px 18px; background: #fff; }
 .bas { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 6px 22px calc(18px + env(safe-area-inset-bottom, 0px)); background: #fff; }
 
@@ -375,12 +379,12 @@ svg { display: block; }
 .rubrique, .lecteur-texte { display: none; }
 .contexte { justify-self: stretch; margin: 0; padding: 11px 15px; border-radius: 14px; background: rgba(255, 255, 255, .78); color: var(--encre); font-size: 15.5px; font-weight: 600; line-height: 1.4; text-align: left; }
 .etiquette { justify-self: start; font-size: 13.5px; font-weight: 700; color: #234a7a; }
-.lecteur { position: relative; z-index: 1; display: grid; place-items: center; width: 98px; height: 98px; padding: 0; border: 0; border-radius: 50%; background: var(--violet); color: #fff; }
-.lecteur::before, .lecteur::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(255, 255, 255, .85); animation: onde 2.6s ease-out infinite; pointer-events: none; }
+.lecteur { position: relative; z-index: 1; display: grid; place-items: center; width: 98px; height: 98px; padding: 0; border: 3px solid #fff; border-radius: 50%; background: var(--violet); color: #fff; }
+.lecteur::before, .lecteur::after { content: ""; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid rgba(255, 255, 255, .85); animation: onde 2.6s ease-out infinite; pointer-events: none; }
 .lecteur::after { animation-delay: 1.3s; }
 @keyframes onde { from { transform: scale(1); opacity: .9; } to { transform: scale(1.65); opacity: 0; } }
 .lecteur > svg { width: 38px; height: 38px; margin-left: 5px; }
-.pastille { position: absolute; top: 0; right: 0; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #fff; color: var(--violet); font-size: 14px; font-weight: 800; }
+.pastille { position: absolute; z-index: 2; top: -3px; right: -3px; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #fff; color: var(--violet); font-size: 14px; font-weight: 800; }
 .vague { display: none; align-items: center; gap: 5px; height: 36px; }
 .lecteur.parle > svg { display: none; }
 .lecteur.parle .vague { display: flex; }
@@ -398,6 +402,10 @@ svg { display: block; }
 .photo-fond .photo-scene { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; max-height: none; border-radius: 0; object-fit: cover; -webkit-mask-image: linear-gradient(#000 64%, transparent); mask-image: linear-gradient(#000 64%, transparent); }
 .photo-fond > :not(.photo-scene) { position: relative; z-index: 1; }
 .photo-fond .contexte { background: rgba(255, 255, 255, .93); }
+.photo-fond .etiquette { padding: 4px 12px; border-radius: 999px; background: rgba(255, 255, 255, .93); color: var(--encre); }
+.photo-fond .indice { background: #fff; }
+.lecture-tete { position: relative; z-index: 1; }
+.lecture-tete.sur-photo .papier-tete { padding: 12px 16px; border-radius: 18px; background: rgba(255, 255, 255, .94); }
 .photo-scene { display: block; width: 100%; max-height: 200px; object-fit: cover; border-radius: 18px; }
 .phrase { justify-self: stretch; margin: 0; padding: 18px 20px; border-radius: 18px; background: #fff; color: var(--encre); font-size: 24px; font-weight: 700; line-height: 1.55; text-align: left; }
 .phrase.petite { font-size: 19px; }
@@ -410,7 +418,9 @@ svg { display: block; }
 @keyframes clignote { 50% { opacity: 0; } }
 .indice { justify-self: start; padding: 4px 12px; border-radius: 999px; background: rgba(255, 255, 255, .85); color: var(--doux); font-size: 14px; font-weight: 700; }
 .sms { justify-self: stretch; display: grid; justify-items: start; gap: 6px; }
-.sms p { margin: 0; padding: 14px 16px; border-radius: 18px 18px 18px 6px; background: #fff; color: var(--encre); font-size: 17px; font-weight: 500; line-height: 1.45; text-align: left; }
+/* le SMS : une bulle de message reçu, avec sa pointe */
+.sms p { position: relative; margin: 0 0 0 8px; padding: 13px 16px; border-radius: 20px 20px 20px 5px; background: #fff; color: var(--encre); font-size: 17px; font-weight: 500; line-height: 1.45; text-align: left; }
+.sms p::before { content: ""; position: absolute; left: -8px; bottom: 0; width: 16px; height: 18px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 18'%3E%3Cpath d='M16 0v18H0c5-1.6 8.4-6 9-14z' fill='%23fff'/%3E%3C/svg%3E") no-repeat; }
 .papier-court { justify-self: stretch; display: grid; gap: 4px; padding: 16px 18px; border-radius: 18px; background: #fff; text-align: left; }
 .papier-court strong { font-size: 16px; }
 .papier-court p { margin: 0; font-size: 17px; line-height: 1.55; }
@@ -504,6 +514,7 @@ svg { display: block; }
 .feuille h2 { margin: 0; font-size: 23px; font-weight: 800; }
 .feuille > p { margin: 0; color: var(--doux); }
 .feuille .bouton { width: 100%; }
+.feuille .lien { order: 0; justify-self: center; }      /* « Quitter » sous le bouton, pas au-dessus du titre */
 
 /* l'accueil et la fin */
 .ex-embleme { align-self: center; display: grid; place-items: center; width: 104px; height: 104px; border-radius: 50%; background: var(--violet); color: #fff; }
@@ -639,8 +650,8 @@ function ecranLecture(q) {
 
 HAUT_EXAMEN = r"""
 function haut() {
-  // rien en haut que le bouton du son : ni numéro de question, ni niveau, ni bouton pour quitter
-  return `<div class="haut">${boutonSon()}</div>`;
+  // en haut : le son à gauche, quitter à droite ; ni numéro de question ni niveau
+  return `<div class="haut">${boutonSon()}<button class="rond" type="button" id="fermer" aria-label="Quitter le test">${ICONE.fermer}</button></div>`;
 }
 """
 
@@ -649,7 +660,7 @@ function ecranAccueil() {
   poser(`<section class="ecran ecran-accueil" aria-labelledby="t-accueil">
     <div class="haut">${boutonSon()}</div>
     <div class="defile">
-      <div class="scene"><span class="ex-embleme" aria-hidden="true">${ICONE.ecoute}</span></div>
+      <div class="scene">${IMAGES.intro ? `<div class="visuel photo-fond"><img class="photo-scene" src="${IMAGES.intro}" alt=""></div>` : `<span class="ex-embleme" aria-hidden="true">${ICONE.ecoute}</span>`}</div>
       <div class="feuille-q">
         <h1 class="ex-titre" id="t-accueil">Évaluation de positionnement</h1>
         <p class="ex-sous">Français · environ 10 minutes</p>
@@ -690,20 +701,34 @@ function ecranResultat() {
 
 LECTURE_EXAMEN = r"""
 function ecranLecture(q) {
-  // le titre du document (et la photo s'il y en a une) dans le dégradé, le texte dans le blanc
-  const html = papier(q).replace("<strong>", '<strong id="t-doc">'), m = html.match(/<div class="papier-tete">[\s\S]*?<\/small><\/div><\/div>/);
+  // le titre du document dans le dégradé (sur la photo en grand s'il y en a une), le texte dans le blanc
+  const html = papier({ ...q, photo: null }).replace("<strong>", '<strong id="t-doc">'), m = html.match(/<div class="papier-tete">[\s\S]*?<\/small><\/div><\/div>/);
   const tete = m ? m[0] : "", corps = m ? html.replace(tete, "") : html;
+  const fond = q.photo ? `<div class="visuel photo-fond"><img class="photo-scene" src="${IMAGES[q.photo]}" alt=""></div>` : "";
   poser(`<section class="ecran" aria-labelledby="t-doc">
     ${haut()}
-    <div class="defile"><div class="scene"><div class="lecture-tete">${tete}</div></div>
+    <div class="defile"><div class="scene">${fond}<div class="lecture-tete${q.photo ? " sur-photo" : ""}">${tete}</div></div>
       <div class="feuille-q">${corps}<p class="consigne-lecture">Lisez le document. La question arrive ensuite, et vous pourrez le relire.</p></div></div>
     <div class="bas">${bouton("J'ai lu", "vert", 'id="lu"')}</div>
   </section>`);
   brancherSon(); avancerJauge();
+  $("#fermer")?.addEventListener("click", demanderQuitter);
   $("#lu").addEventListener("click", () => { etat.lus[q.id] = true; SONS.page(); afficher(); });
   resserrer();
 }
 """
+
+INSECABLES = r"""// un mot à trait d'union (« posez-vous », « attends-moi ») ne se coupe jamais : il passe entier à la ligne
+function insecables(racine) {
+  if (!racine) return;
+  const w = document.createTreeWalker(racine, NodeFilter.SHOW_TEXT), liste = [];
+  while (w.nextNode()) { const n = w.currentNode; if (/[\p{L}\d]-[\p{L}\d]/u.test(n.nodeValue) && !n.parentElement.closest("script, style, .insec")) liste.push(n); }
+  for (const n of liste) {
+    const f = document.createDocumentFragment();
+    n.nodeValue.split(/(\S*[\p{L}\d]-[\p{L}\d]\S*)/u).forEach((m, i) => { if (!m) return; if (i % 2) { const e = document.createElement("span"); e.className = "insec"; e.textContent = m; f.append(e); } else f.append(m); });
+    n.replaceWith(f);
+  }
+}"""
 
 def transformer(s, artifact, style='feuille'):
     # en-tête du document : police, titre, couleur du navigateur
@@ -718,6 +743,9 @@ def transformer(s, artifact, style='feuille'):
         # les sons sont ceux de la v2
         a = s.index('const AUDIO = {'); b = s.index('};', a)
         s = s[:a] + s[a:b].replace('"sons/', '"../positionnement-fle-2/sons/' if style == 'feuille' else '"../../positionnement-fle-2/sons/') + s[b:]
+        # les images aussi sont celles de la v2, en fichiers
+        a = s.index('const IMAGES = {'); b = s.index('};', a)
+        s = s[:a] + s[a:b].replace('"banque/img/', '"../positionnement-fle-2/banque/img/' if style == 'feuille' else '"../../positionnement-fle-2/banque/img/') + s[b:]
     # la feuille de style : entièrement nouvelle, sauf les panneaux du formateur, repris tels quels
     a = s.index('<style>') + len('<style>'); b = s.index('</style>', a)
     panneaux = bloc_css(s[a:b], '.coin { display: none; }')
@@ -753,13 +781,22 @@ def transformer(s, artifact, style='feuille'):
     s = fonction(s, 'ecranLecture', LECTURE_EXAMEN if ex else LECTURE)
     s = fonction(s, 'ecranResultat', RESULTAT_EXAMEN if ex else RESULTAT)
     s = s.replace('$("#fermer").addEventListener("click", demanderQuitter);', '$("#fermer")?.addEventListener("click", demanderQuitter);')
+    intro = os.path.join(V2, 'banque', 'img', 'intro.webp')
+    if ex and os.path.exists(intro):
+        val = 'data:image/webp;base64,' + base64.b64encode(open(intro, 'rb').read()).decode() if artifact else '../../positionnement-fle-2/banque/img/intro.webp'
+        s = remplacer(s, 'const IMAGES = {\n', 'const IMAGES = {\n  "intro": "%s",\n' % val)
+    # aucun mot à trait d'union coupé en fin de ligne
+    s = remplacer(s, 'function poser(html) { appli.querySelectorAll(".ecran").forEach(e => e.remove()); appli.insertAdjacentHTML("beforeend", html); }',
+                  'function poser(html) { appli.querySelectorAll(".ecran").forEach(e => e.remove()); appli.insertAdjacentHTML("beforeend", html); insecables(appli.lastElementChild); }\n' + INSECABLES)
     if ex:
         s = remplacer(s, 'bouton("Suivant", "vert", `id="valider"', 'bouton("Valider", "vert", `id="valider"')
         # tout support (y compris le message ou la phrase à compléter) va dans le dégradé ; question et réponses dans le blanc
         s = remplacer(s, """      return media ? `<div class="scene">${rub}${vis}</div><div class="feuille-q">${titre}${reponses}</div>`
                    : `<div class="scene vide">${rub}</div><div class="feuille-q">${avant ? titre + vis : vis + titre}${reponses}</div>`;""",
-                      """      const visEx = q.t === "aucun" ? "" : `<div class="visuel${q.photo && (q.t === "ecoute" || q.t === "situation") ? " photo-fond" : ""}">${visuel(q)}</div>`;
-      return `<div class="scene${q.t === "aucun" ? " vide" : ""}">${visEx}</div><div class="feuille-q">${titre.replace(" consigne", "").replace(/ ([?!:;])/g, "\u00a0$1")}${reponses}</div>`;""")
+                      """      const enFond = q.photo && q.t !== "ecoute" && q.t !== "situation" ? `<img class="photo-scene" src="${IMAGES[q.photo]}" alt="">` : "";
+      const support = q.t === "aucun" ? "" : visuel(q.t === "document" ? { ...q, photo: null } : q);
+      const visEx = q.t === "aucun" && !q.photo ? "" : `<div class="visuel${q.photo ? " photo-fond" : ""}">${enFond}${support}</div>`;
+      return `<div class="scene${q.t === "aucun" && !q.photo ? " vide" : ""}">${visEx}</div><div class="feuille-q">${titre.replace(" consigne", "").replace(/ ([?!:;])/g, "\u00a0$1")}${reponses}</div>`;""")
     # le lecteur dit ce qu'il fait (affiché seulement dans « L'examen »)
     s = remplacer(s, '${ICONE.jouer}<span class="vague" id="vague"', '${ICONE.jouer}<span class="lecteur-texte" aria-hidden="true"><b>Écouter l\'enregistrement</b><small id="reste">${reste === 2 ? "2 écoutes possibles" : reste === 1 ? "1 écoute possible" : "Plus d\'écoute possible"}</small></span><span class="vague" id="vague"')
     s = remplacer(s, '    lecteur.disabled = true;\n', '    lecteur.disabled = true; { const r = $("#reste"); if (r) r.textContent = "Écoute en cours…"; }\n')

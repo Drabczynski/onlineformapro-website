@@ -547,6 +547,11 @@ artifact = artifact.replace('<title>Test de positionnement FLE</title>', '<title
 open(f'{D}/test-positionnement.html', 'w', encoding='utf-8').write(artifact)
 web = s.replace('__AUDIO__', json.dumps({k: rel for k, (_, rel) in audio_fichiers.items()}, ensure_ascii=False, indent=0).replace('\n', '\n  '))
 web = web.replace('<title>Test de positionnement FLE</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n', '')
+# page web : les images restent des fichiers (banque/img), chargées en arrière-plan une fois la page affichée
+images_web = 'const IMAGES = {\n' + ',\n'.join(f'  {json.dumps(i)}: "banque/img/{i}.webp"' for i in images) + '\n};\n' \
+    + 'setTimeout(() => Object.values(IMAGES).forEach(u => { const i = new Image(); i.decoding = "async"; i.src = u; }), 1200);\n'
+assert web.count(bloc_images) == 1
+web = web.replace(bloc_images, images_web)
 tete = '''<!doctype html>
 <html lang="fr">
 <head>
