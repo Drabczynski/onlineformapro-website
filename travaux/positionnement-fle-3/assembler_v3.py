@@ -6,7 +6,7 @@ que la version 2 : le script part des deux fichiers produits par la v2 et les tr
     python3 travaux/positionnement-fle-3/assembler_v3.py
 
 Produit index.html (page web ; les sons sont lus dans ../positionnement-fle-2/sons/) et test-positionnement.html
-(artifact, tout intégré)."""
+(artifact, tout intégré), pour « La feuille » (ce dossier) et pour la variante « Le dégradé » (dossier degrade/)."""
 import os, re
 
 ICI = os.path.dirname(os.path.abspath(__file__))
@@ -75,6 +75,7 @@ svg { display: block; }
 .haut { flex: none; display: grid; grid-template-columns: 38px 1fr 38px; align-items: center; gap: 8px; padding: 14px 16px 6px; }
 .rond { display: grid; place-items: center; width: 38px; height: 38px; padding: 0; border: 1px solid rgba(255, 255, 255, .7); border-radius: 50%; background: rgba(255, 255, 255, .42); color: var(--encre); }
 .rond svg { width: 17px; height: 17px; }
+.haut .barre { display: none; }
 .numero { justify-self: center; padding: 6px 14px; border-radius: 999px; background: rgba(255, 255, 255, .62); font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; }
 
 /* la scène (au-dessus de la feuille) et la feuille blanche */
@@ -263,6 +264,65 @@ svg { display: block; }
 }
 '''
 
+CSS_DEGRADE = r"""
+/* Variante « Le dégradé » (piste A des maquettes) : le dégradé violet, bleu, turquoise de la référence en haut de
+   l'écran, qui s'efface vers un fond clair ; cartes blanches bordées, texte bleu nuit, bouton sombre, barre
+   d'avancement dans l'en-tête. Mêmes écrans que « La feuille », seule la peinture change. */
+:root { --p1: #8c7af6; --encre: #1d2236; --doux: #5f6580; --indigo: #5a57e8; --indigo-fonce: #4643c9; --pastel: #f2f1ff; --filet: #e3e5ee;
+  --titre: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif; --texte: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif; --fond-1: #5a57e8; }
+.appli { background: #f5f7fb linear-gradient(180deg, #8c7af6 0px, #7b93f6 130px, #93cdf0 250px, #d9edf7 340px, #f5f7fb 430px) no-repeat; }
+.rond { border-color: rgba(255, 255, 255, .5); background: rgba(255, 255, 255, .22); color: #fff; }
+.numero { padding: 0; background: none; color: #fff; font-size: 14px; }
+.haut .barre { display: block; grid-column: 1 / -1; height: 5px; margin-top: 6px; overflow: hidden; border-radius: 3px; background: rgba(255, 255, 255, .35); }
+.haut .barre i { display: block; height: 100%; border-radius: 3px; background: #fff; }
+.scene { padding: 8px 16px 14px; }
+.scene.vide { padding: 0 0 8px; }
+.feuille-q { margin-top: 0; padding: 0 16px 6px; border-radius: 0; background: none; gap: 12px; }
+.bas { background: none; }
+.contexte, .situation { color: #232848; }
+.etiquette { color: #3c4166; }
+.lecteur { box-shadow: 0 0 0 1px var(--filet); }
+.vague i { background: var(--indigo); }
+.visuel-feuille { padding: 16px; border: 1px solid var(--filet); border-radius: 20px; background: #fff; }
+.visuel.photo-fond { height: 196px; margin: 0; padding: 6px; border-radius: 22px; background: #fff; }
+.visuel.photo-fond > .photo-scene { inset: 6px; width: calc(100% - 12px); height: calc(100% - 12px); border-radius: 17px; }
+.visuel.photo-fond > .lecteur { margin-top: 0; box-shadow: none; }
+.photo-scene { border-radius: 16px; }
+.question.consigne { color: #2a2f55; }
+.lire-consigne { background: rgba(255, 255, 255, .75); }
+.bonbons .rep, .ligne-audio .rep { border: 1.5px solid var(--filet); border-radius: 15px; background: #fff; font-weight: 600; }
+.marque { border-color: #c8cbd8; }
+.reponses .rep[aria-checked="true"] { border-color: var(--indigo); background: var(--pastel); color: var(--encre); }
+.reponses .rep[aria-checked="true"] .marque { border: 6px solid var(--indigo); background: #fff; }
+.ecouter-rep { box-shadow: inset 0 0 0 1.5px var(--filet); }
+.rep-image { border-width: 1.5px; }
+.mot-dispo { border: 1.5px solid var(--filet); border-radius: 12px; background: #fff; }
+.champ input { border: 1.5px solid var(--filet); background: #fff; }
+.champ input:focus { border-color: var(--indigo); }
+.lettre, .effacer { border: 1.5px solid var(--filet); border-radius: 11px; background: #fff; }
+.trou, .trou.rempli { border-radius: 0; background: none; box-shadow: inset 0 -2.5px 0 var(--indigo); }
+.mot-ecrit .trou { border-radius: 14px; background: #fff; box-shadow: inset 0 0 0 1.5px var(--filet); }
+.indice { background: #eef0f6; }
+.sms p { background: #f3f4f9; }
+.papier { padding: 16px; border: 1px solid var(--filet); border-radius: 20px; background: #fff; }
+.papier-tete span { background: #f0f1f8; }
+.doc-mini .icone-doc { box-shadow: 0 0 0 1px var(--filet); }
+.pilule { box-shadow: inset 0 0 0 1px var(--filet); }
+.image-support { box-shadow: 0 0 0 1px var(--filet); }
+.bouton { border-radius: 16px; }
+.bouton.vert { background: var(--encre); }
+.bouton.vert:active:not(:disabled) { background: #2c3350; }
+.bouton.blanc { color: var(--encre); box-shadow: inset 0 0 0 2px var(--encre); }
+.accueil-tete { padding: 26px 22px 20px; color: #fff; }
+.accueil-tete small, .accueil-tete p { color: rgba(255, 255, 255, .9); }
+.etapes li { padding: 11px 13px; border: 1px solid var(--filet); border-radius: 16px; background: #fff; }
+.note { background: #eef0fb; color: #44486a; }
+.feuille-q.fin { flex: none; margin: 6px 16px 0; padding: 26px 18px; border: 1px solid var(--filet); border-radius: 22px; background: #fff; }
+.serre .visuel.photo-fond { height: 166px; }
+.tres-serre .visuel.photo-fond { height: 136px; }
+.serre .scene { padding-bottom: 10px; }
+"""
+
 ICONES_EN_PLUS = '''  livre: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg>',
   crayon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 3.5l4 4L8 20H4v-4z"/><path d="M14 6l4 4"/></svg>',
   ecoute: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="5" height="7" rx="2"/><rect x="16" y="14" width="5" height="7" rx="2"/></svg>',
@@ -272,11 +332,12 @@ ICONES_EN_PLUS = '''  livre: '<svg viewBox="0 0 24 24" fill="none" stroke="curre
 HAUT = r'''
 function haut() {
   // le numéro de la question depuis le début du test, sans repartir à zéro : le niveau n'apparaît jamais
-  const n = etat.vus.length + etat.k + 1;
+  const n = etat.vus.length + etat.k + 1, pc = Math.min(100, Math.round(n / (PAR_PALIER * ORDRE.length) * 100));
   return `<div class="haut">
     <button class="rond" type="button" id="fermer" aria-label="Quitter le test">${ICONE.fermer}</button>
     <span class="numero">Question ${n}</span>
     ${boutonSon()}
+    <span class="barre" aria-hidden="true"><i style="width:${pc}%"></i></span>
   </div>`;
 }
 '''
@@ -346,22 +407,23 @@ function ecranLecture(q) {
 '''
 
 
-def transformer(s, artifact):
+def transformer(s, artifact, style='feuille'):
     # en-tête du document : police, titre, couleur du navigateur
-    s = remplacer(s, 'family=Baloo+2:wght@700;800&family=Nunito:wght@600;700;800;900', 'family=Manrope:wght@500;600;700;800')
+    police = 'family=Manrope:wght@500;600;700;800' if style == 'feuille' else 'family=Plus+Jakarta+Sans:wght@500;600;700;800'
+    s = remplacer(s, 'family=Baloo+2:wght@700;800&family=Nunito:wght@600;700;800;900', police)
     if artifact:
-        s = remplacer(s, '<title>Positionnement FLE v2</title>', '<title>Positionnement FLE v3</title>')
+        s = remplacer(s, '<title>Positionnement FLE v2</title>', '<title>Positionnement FLE v3</title>' if style == 'feuille' else '<title>Positionnement FLE dégradé</title>')
     else:
-        s = remplacer(s, '<meta name="theme-color" content="#9748fe">', '<meta name="theme-color" content="#cbc2fb">')
+        s = remplacer(s, '<meta name="theme-color" content="#9748fe">', '<meta name="theme-color" content="%s">' % ('#cbc2fb' if style == 'feuille' else '#8c7af6'))
         s = remplacer(s, '<title>Test de niveau de français</title>', '<title>Test de positionnement en français</title>')
         s = s.replace('content="Test de niveau de français"', 'content="Test de positionnement en français"')
         # les sons sont ceux de la v2
         a = s.index('const AUDIO = {'); b = s.index('};', a)
-        s = s[:a] + s[a:b].replace('"sons/', '"../positionnement-fle-2/sons/') + s[b:]
+        s = s[:a] + s[a:b].replace('"sons/', '"../positionnement-fle-2/sons/' if style == 'feuille' else '"../../positionnement-fle-2/sons/') + s[b:]
     # la feuille de style : entièrement nouvelle, sauf les panneaux du formateur, repris tels quels
     a = s.index('<style>') + len('<style>'); b = s.index('</style>', a)
     panneaux = bloc_css(s[a:b], '.coin { display: none; }')
-    s = s[:a] + CSS + '\n/* panneaux « Barème » et « Moteur » (ordinateur), repris de la v2 */\n' + panneaux + '\n' + s[b:]
+    s = s[:a] + CSS + (CSS_DEGRADE if style == 'degrade' else '') + '\n/* panneaux « Barème » et « Moteur » (ordinateur), repris de la v2 */\n' + panneaux + '\n' + s[b:]
     # icônes, marque des réponses (un rond), réponses toujours en liste (plus d'alvéoles)
     s = remplacer(s, 'const ICONE = {\n', 'const ICONE = {\n' + ICONES_EN_PLUS)
     s = re.sub(r'const MARQUE = `[^`]*`;', 'const MARQUE = `<span class="marque" aria-hidden="true"></span>`;', s, count=1)
@@ -394,8 +456,10 @@ def transformer(s, artifact):
     return s
 
 
-for nom, artifact in (('index.html', False), ('test-positionnement.html', True)):
-    s = open(os.path.join(V2, nom), encoding='utf-8').read()
-    s = transformer(s, artifact)
-    open(os.path.join(ICI, nom), 'w', encoding='utf-8').write(s)
-    print(nom, len(s) // 1024, 'Ko')
+for style, dossier in (('feuille', ICI), ('degrade', os.path.join(ICI, 'degrade'))):
+    os.makedirs(dossier, exist_ok=True)
+    for nom, artifact in (('index.html', False), ('test-positionnement.html', True)):
+        s = open(os.path.join(V2, nom), encoding='utf-8').read()
+        s = transformer(s, artifact, style)
+        open(os.path.join(dossier, nom), 'w', encoding='utf-8').write(s)
+        print(style, nom, len(s) // 1024, 'Ko')
