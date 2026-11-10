@@ -530,6 +530,28 @@ svg { display: block; }
 .ex-liste .ic svg { width: 21px; height: 21px; }
 .ex-texte { margin: 0; color: var(--doux); font-size: 16.5px; line-height: 1.5; }
 
+/* l'apparition de chaque écran, en cascade : la photo se pose (léger recul), le support monte, la bille éclot,
+   puis la question, les réponses une à une et les boutons. Rien ne bouge la mise en page : seulement opacité et
+   transformation, jouées une seule fois (une réponse touchée ne relance rien). */
+@keyframes photo-pose { from { opacity: 0; transform: scale(1.08); } }
+@keyframes monte { from { opacity: 0; transform: translateY(18px); } }
+@keyframes eclot { 0% { opacity: 0; transform: scale(.5); } 55% { opacity: 1; } }
+@keyframes fondu { from { opacity: 0; } }
+.ecran { animation-duration: .18s; }
+.ecran .cadre-photo { animation: photo-pose 1.2s cubic-bezier(.16, .84, .3, 1) backwards; }
+.ecran .visuel > :not(.cadre-photo):not(.photo-scene):not(.lecteur), .ecran .lecture-tete, .ecran .ex-embleme { animation: monte .6s cubic-bezier(.2, .8, .2, 1) .08s backwards; }
+.ecran .visuel > :not(.cadre-photo):not(.photo-scene):not(.lecteur) + :not(.lecteur) { animation-delay: .14s; }
+.ecran .lecteur { animation: eclot .75s cubic-bezier(.34, 1.56, .64, 1) .1s backwards; }
+.ecran .feuille-q > :not(.reponses) { animation: monte .55s cubic-bezier(.2, .8, .2, 1) .18s backwards; }
+.ecran .feuille-q > :not(.reponses) + :not(.reponses) { animation-delay: .24s; }
+.ecran .reponses > *, .ecran .ex-liste > li { animation: monte .5s cubic-bezier(.2, .8, .2, 1) backwards; }
+.ecran .reponses > :nth-child(1), .ecran .ex-liste > li:nth-child(1) { animation-delay: .26s; }
+.ecran .reponses > :nth-child(2), .ecran .ex-liste > li:nth-child(2) { animation-delay: .32s; }
+.ecran .reponses > :nth-child(3), .ecran .ex-liste > li:nth-child(3) { animation-delay: .38s; }
+.ecran .reponses > :nth-child(4) { animation-delay: .44s; }
+.ecran .reponses > :nth-child(n+5) { animation-delay: .5s; }
+.ecran .bas { animation: fondu .5s ease-out .34s backwards; }
+
 /* une question qui ne tient pas dans la hauteur de l'écran se resserre, en deux crans */
 .serre .scene { min-height: 190px; padding-top: 58px; padding-bottom: 20px; gap: 12px; }
 .serre .feuille-q { gap: 13px; padding-bottom: 14px; }
@@ -559,7 +581,7 @@ svg { display: block; }
   .scene { padding-top: calc(66px + env(safe-area-inset-top, 0px)); }
 }
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 """
 

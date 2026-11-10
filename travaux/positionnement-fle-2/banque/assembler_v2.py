@@ -539,6 +539,18 @@ rep('''/* ------------------------------------------------------------ les répo
 
 /* ------------------------------------------------------------ les réponses */''')
 
+# ---------- le son sur iPhone : iOS coupe les sons d'une page quand la sonnerie est coupée ; le mode « lecture »
+# (navigator.audioSession, Safari 17 et plus) les laisse passer, comme une application de musique. Le moteur audio
+# reprend aussi quand iOS l'a mis « interrompu » (appel, autre application), pas seulement « suspendu ».
+_ancien = """function audio() {
+  if (!ctx) { try { ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { ctx = null; } }
+  if (ctx && ctx.state === "suspended") ctx.resume();"""
+assert s.count(_ancien) == 1
+s = s.replace(_ancien, """function audio() {
+  try { if (navigator.audioSession && navigator.audioSession.type !== "playback") navigator.audioSession.type = "playback"; } catch (e) {}
+  if (!ctx) { try { ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { ctx = null; } }
+  if (ctx && ctx.state !== "running") { try { ctx.resume(); } catch (e) {} }""")
+
 # ---------- deux sorties : l'artifact (tout intégré) et la page web (sons en fichiers)
 artifact = s.replace('__AUDIO__', '{\n' + ',\n'.join(f'  {json.dumps(k, ensure_ascii=False)}: "{b64(src, "audio/mpeg")}"' for k, (src, _) in audio_fichiers.items()) + '\n}')
 artifact = artifact.replace('<title>Test de positionnement FLE</title>', '<title>Positionnement FLE v2</title>', 1)   # distinct de la version 1 dans la galerie

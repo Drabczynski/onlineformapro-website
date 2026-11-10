@@ -173,6 +173,9 @@ le jour où Julien commence à 8h (jeudi) et son cours d'arts plastiques (mardi,
   l'artifact les intègre.
 - A1-11 : sans « Vous lisez cette affiche. » ni « Touchez l'image pour l'agrandir » ; une loupe dans le coin
   de l'affiche indique qu'on peut l'agrandir.
-- « Que répondez-vous ? » ajouté aux questions où l'on répond à un message. Une phrase de contexte
-  ajoutée à A2-11 (« Au restaurant, le serveur présente la carte. ») ; les autres contextes viennent
-  du PDF. Fautes de frappe corrigées.
+- « Que répondez-vous ? » ajouté aux questions où l'on répond à un message. Les contextes viennent du PDF ;
+  retirés à la demande : « Au restaurant, le serveur présente la carte. » (A2-11), « Vous vous présentez au
+  groupe. » (A1-15), « Au restaurant, vous posez une question au serveur. » (A2-13). Fautes de frappe corrigées.
+- A1-08 : une quatrième photo de réponse, la boucherie (l'enregistrement ne parle que de pâtisseries), pour une
+  grille de 2 × 2.
+- Son sur iPhone : la page passe en mode « lecture » (navigator.audioSession), le son passe même sonnerie coupée.
