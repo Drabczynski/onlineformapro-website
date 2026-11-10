@@ -151,11 +151,13 @@ h1, h2, p, ul { margin: 0; }
 .hublot { position: relative; aspect-ratio: 1; overflow: hidden; border: 4px solid #fff; border-radius: 50%; background: var(--ciel); }
 .hublot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 50% 50%); }
 .hublot .coche { position: absolute; inset: 0; margin: auto; }
-.scene > .bille { position: absolute; z-index: 2; left: calc(85.4% - var(--b) / 2); top: calc(14.6% - var(--b) / 2); --b: 136px; }
+/* le play : plus gros, triangle recentré, petite ombre portée (demandée) pour qu'il se détache du cercle */
+.scene > .bille { position: absolute; z-index: 2; left: calc(85.4% - var(--b) / 2); top: calc(14.6% - var(--b) / 2); --b: 156px; box-shadow: 0 8px 22px rgba(52, 26, 140, .32); }
+.scene > .bille > svg { margin-left: 3%; }
 .sur { position: absolute; z-index: 1; left: 50%; bottom: -7%; display: grid; justify-items: center; gap: 12px; width: min(460px, 118%); transform: translateX(-50%); }
 .sur .carte, .sur .sms, .sur .phrase { justify-self: stretch; }
 .droite { position: relative; display: flex; flex-direction: column; justify-content: center; gap: 34px; max-width: 900px; padding: 104px clamp(40px, 6vw, 112px) 72px clamp(16px, 2.4vw, 48px); }
-.question { font-size: clamp(39px, 4.1vw, 66px); font-weight: 800; line-height: 1.03; letter-spacing: -.038em; text-wrap: balance; outline: none; }
+.question { font-size: clamp(42px, 4.4vw, 71px); font-weight: 800; line-height: 1.03; letter-spacing: -.038em; text-wrap: balance; outline: none; }
 .reponses { display: grid; gap: 12px; }
 .rep { min-height: 76px; }
 .titre-geant { font-size: clamp(52px, 5.7vw, 96px); font-weight: 900; line-height: .95; letter-spacing: -.05em; text-wrap: balance; outline: none; }
@@ -198,7 +200,7 @@ h1, h2, p, ul { margin: 0; }
   .droite { gap: 26px; padding-top: 84px; padding-bottom: 40px; }
   .ecran-accueil .droite { gap: 20px; }
   .titre-geant { font-size: min(5.7vw, 9.7vh); }
-  .scene > .bille { --b: 116px; }
+  .scene > .bille { --b: 132px; }
 }
 @media (max-width: 900px) {
   body { overflow: auto; }
