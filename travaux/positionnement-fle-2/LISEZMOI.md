@@ -47,13 +47,9 @@ Types de réponses :
   le permet, sinon toutes les trois sur une ligne ;
 - choix à écouter (A2-06, les trois phrases au guichet de la poste) ;
 - mots à remettre dans l'ordre (A1-16) ;
-- mot à écrire en touchant des lettres, pour l'expression écrite à mot court (A1-01, A1-02, A1-05,
-  A1-06, A2-02, A2-10). La règle : une question d'expression écrite dont tous les choix du PDF sont
-  des mots seuls de 8 lettres au plus. Les lettres proposées sont celles de ces choix : chaque
-  lettre autant de fois qu'elle apparaît au plus dans un choix. Exemple : « La / Le / Les » donne
-  a, e, l, s, affichées en majuscules sur les alvéoles. Rien n'indique la longueur du mot. Le mot s'écrit dans le trou de la phrase, avec une
-  majuscule quand le trou ouvre la phrase. La touche rose efface la dernière lettre. Sur ordinateur,
-  le clavier marche aussi ;
+- (retiré à la demande) les questions où l'on écrivait un mot en touchant des lettres, l'expression écrite à mot
+  court (A1-01, A1-02, A1-05, A1-06, A2-02, A2-10) : elles ne sont plus dans la banque, les autres questions gardent
+  leur numéro ;
 - réponse à écrire (A1-57 à A1-61, A2-39, A2-40). Les accents et les majuscules ne comptent pas,
   et plusieurs formes sont acceptées (« 22 », « 22 ans », « vingt-deux ans »).
 
@@ -117,10 +113,8 @@ l'âge de Lucas (22 ans) et sa ville (Toulouse), « Qu'est-ce que » (au restaur
 - « De quoi est-ce que ça parle ? » : la question est coupée dans le PDF.
 - « Margaret Marie » : le prénom entendu dans le son (la diapositive écrit « Maritz »).
 - L'affiche du café : le zoom montre le 16 novembre.
-- Les deux questions sur l'emploi du temps de Julien (A2, page 56 du PDF) sont retirées à la demande : la
-  banque compte 111 questions.
-- « Complétez la phrase. » à la place de « Choisissez la bonne réponse. » pour les questions où
-  l'on écrit le mot avec les lettres (A1-01, A1-05, A2-02). La consigne lue existait déjà.
+- Les deux questions sur l'emploi du temps de Julien (A2, page 56 du PDF) et les six questions à lettres sont
+  retirées à la demande : la banque compte 105 questions.
 - A1-16 : « Remettez les mots dans l'ordre. » à la place de « Qu'est-ce que vous dites ? », pour moins
   de texte (le contexte reste au-dessus). Consigne lue générée avec ElevenLabs (`v2-q33`).
 - A1-01 : l'infinitif « (parler) » indiqué sous la phrase.
@@ -134,7 +128,7 @@ l'âge de Lucas (22 ans) et sa ville (Toulouse), « Qu'est-ce que » (au restaur
   posé dessus (l'immeuble, A1-10 ; les trois femmes à Abidjan, B1-12) ; la salle de cinéma remplace
   l'icône de la situation (A1-18). Marie (A2-16, A2-17, B1-01, B1-02) :
   une vraie photo à la place de l'icône (crédit plus bas).
-- Photos d'illustration : 86 questions sur 111 en ont une. Dans « L'examen » (v3), elle remplit le haut de l'écran
+- Photos d'illustration : 79 questions sur 105 en ont une. Dans « L'examen » (v3), elle remplit le haut de l'écran
   et se fond dans le blanc, le support posé dessus (bille d'écoute au centre ; SMS, phrase, texte ou document en bas,
   pour que le haut de la photo reste visible). Chaque photo pose le décor sans jamais montrer la réponse : une
   personne au téléphone pour un SMS, la ville d'une phrase (« Je viens du Portugal » : Lisbonne), un comptoir
@@ -149,19 +143,18 @@ l'âge de Lucas (22 ans) et sa ville (Toulouse), « Qu'est-ce que » (au restaur
   Crédits : métro (A1-07), appartement, salle de cinéma, Abidjan : photos fournies ; primeur, fromagerie, gare,
   pique-nique, plage, interdictions et affiche : images du PDF. Toutes les autres viennent d'Unsplash (licence
   Unsplash), par nom de fichier dans `banque/img/` : accueil-sante, Dental Implants Tasmania (97A7qum-dvg, recadrée)
-  · agenda, Elena Leya (56J8143b7PU) · amies, Omar Lopez (770jbAj_wvQ) · amir, Josias Garibay (rifCUO-4X8k) ·
-  amis-telephone, Vitaly Gariev (CPVWc-ZJg1o) · boucherie (réponse d'A1-08), Darth Liu (hf_i6mm88pM) · boulangerie
-  (réponse d'A1-08), Zoshua Colah (D7cyLNwSEOo) · bureau, Luca Bravo (9l_326FISzk) · bureau-matin, Carrie Allen
-  (HCJKGkeKmW0) · bus, Nathan Cima (P_T5kv1Nd3w) · cafe, engin akyurt (W4cStr7X2wY) · chats, Nathalie Jolie
-  (nKzeG3iE_Qg) · chevaux, Manoj Kulkarni (Xgy8G9qMkFA) · chez-amie, Peter Boccia (vQVWSCx8lbQ) · cinema-entree,
-  Myke Simon (atsUqIm3wxo) · classe, Vitaly Gariev (14jNrPntbgk) · concert, ActionVance (eXVd7gDPO9A) ·
-  conversation, Christina @ wocintechchat.com (VpcgTEKerEQ) · couple, Vitaly Gariev (-FYWsRxATAE) · croissant, Co
-  Tan (ngWKZNeOhkk) · dejeuner, Queensland, Australia (g6FKXPq0SI0) · dentiste, Ozkan Guner (aFqSRokmw2E) · ecole,
-  Benoit Roy (lJOe6zs3vCI) · enfants, Jennifer Kalenberg (dKVypFEWM0k) · fatigue, Adrian Swancar (roCfgvkBLVY) ·
-  gare, Jametlene Reskp (w5bhXG_uUXw) · hopital, LEDC (JtHwupBN3to) · intro, Alexis Brown (-Xv7k95vOFA) · italie,
-  mana5280 (6sIDfzp-ssQ) · jeune-femme, Max Harlynking (coB2qm6VUGg) · lecture, Alexandra Fuller (wkgv7I2VTzM) ·
-  lettre, Mediamodifier (S3Lig53867M) · lisa, Kevin Wolf (h-GnGkgc8n8) · lisbonne, Mehmet Bozgedik (c-ibE7UOpGQ) ·
-  lucas, Elizeu Dias (2EGNqazbAMk) · marche, Jason Ng (yGTdnZ_QWog) · marie, Cristina Anne Costello (g-sZXPH1eSM) ·
+  · amies, Omar Lopez (770jbAj_wvQ) · amir, Josias Garibay (rifCUO-4X8k) · amis-telephone, Vitaly Gariev
+  (CPVWc-ZJg1o) · boucherie (réponse d'A1-08), Darth Liu (hf_i6mm88pM) · boulangerie (réponse d'A1-08), Zoshua Colah
+  (D7cyLNwSEOo) · bureau, Luca Bravo (9l_326FISzk) · bureau-matin, Carrie Allen (HCJKGkeKmW0) · bus, Nathan Cima
+  (P_T5kv1Nd3w) · cafe, engin akyurt (W4cStr7X2wY) · chats, Nathalie Jolie (nKzeG3iE_Qg) · chevaux, Manoj Kulkarni
+  (Xgy8G9qMkFA) · chez-amie, Peter Boccia (vQVWSCx8lbQ) · cinema-entree, Myke Simon (atsUqIm3wxo) · classe, Vitaly
+  Gariev (14jNrPntbgk) · conversation, Christina @ wocintechchat.com (VpcgTEKerEQ) · couple, Vitaly Gariev
+  (-FYWsRxATAE) · croissant, Co Tan (ngWKZNeOhkk) · dejeuner, Queensland, Australia (g6FKXPq0SI0) · dentiste, Ozkan
+  Guner (aFqSRokmw2E) · ecole, Benoit Roy (lJOe6zs3vCI) · enfants, Jennifer Kalenberg (dKVypFEWM0k) · fatigue,
+  Adrian Swancar (roCfgvkBLVY) · gare, Jametlene Reskp (w5bhXG_uUXw) · hopital, LEDC (JtHwupBN3to) · intro, Alexis
+  Brown (-Xv7k95vOFA) · italie, mana5280 (6sIDfzp-ssQ) · jeune-femme, Max Harlynking (coB2qm6VUGg) · lettre,
+  Mediamodifier (S3Lig53867M) · lisa, Kevin Wolf (h-GnGkgc8n8) · lisbonne, Mehmet Bozgedik (c-ibE7UOpGQ) · lucas,
+  Elizeu Dias (2EGNqazbAMk) · marche, Jason Ng (yGTdnZ_QWog) · marie, Cristina Anne Costello (g-sZXPH1eSM) ·
   marseille, Carnet de Voyage d'Alex (0KdrlrwYlCo) · medecin, Vitaly Gariev (_zbqco3m7dA) · musee, Tamara Harhai
   (1YuglK73vBU) · pain, Ryan Wallace (JjvxFIX_3aA) · parc, Alex Sherstnev (okbDJ3IEC0Y) · piscine, Mariusz Smenzyk
   (xs9r8fPUats) · pizza, Laure Noverraz (jsZKLRi7toU) · pluie, Thomas Kinto (7BdGQlR-5Gs) · poste, Kseniia

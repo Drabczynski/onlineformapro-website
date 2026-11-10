@@ -25,11 +25,8 @@
   "Fermer"
  ],
  "questions": [
-  "Complétez la phrase.",
-  "Quel jour après lundi ?",
   "Choisissez la bonne réponse.",
   "Qu'est-ce qu'elle fait ?",
-  "Le contraire de « grand » ?",
   "Combien coûte un ticket ?",
   "Votre tante fait des courses. Où est-elle ?",
   "Qu'est-ce que vous devez faire ?",
@@ -37,6 +34,7 @@
   "Quand est-ce que le café linguistique est ouvert ?",
   "Quelle image correspond à la situation ?",
   "Vous êtes en retard. Quel message est-ce que vous envoyez ?",
+  "Complétez la phrase.",
   "Remettez les mots dans l'ordre.",
   "Qu'est-ce que vous dites ?",
   "Quelle question posez-vous ?",
@@ -62,7 +60,6 @@
   "De quoi est-ce que ça parle ?",
   "Que répondez-vous ?",
   "Qu'est-ce qu'on apprend sur Margaret Marie ?",
-  "Complétez le message.",
   "Est-il possible de choisir une viande sur la carte ?",
   "Qu'est-ce que cette lettre vous annonce ?",
   "Complétez la question au serveur.",
@@ -96,11 +93,8 @@
   "Vous n'êtes pas au bureau pour quelques jours et vous laissez un message automatique d'absence."
  ],
  "questions_lues_A1": [
-  "Complétez la phrase.",
-  "Quel jour après lundi ?",
   "Choisissez la bonne réponse.",
   "Qu'est-ce qu'elle fait ?",
-  "Le contraire de « grand » ?",
   "Combien coûte un ticket ?",
   "Votre tante fait des courses. Où est-elle ?",
   "Qu'est-ce que vous devez faire ?",
@@ -108,6 +102,7 @@
   "Quand est-ce que le café linguistique est ouvert ?",
   "Quelle image correspond à la situation ?",
   "Vous êtes en retard. Quel message est-ce que vous envoyez ?",
+  "Complétez la phrase.",
   "Remettez les mots dans l'ordre.",
   "Qu'est-ce que vous dites ?",
   "Quelle question posez-vous ?",

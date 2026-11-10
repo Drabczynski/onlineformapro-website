@@ -772,7 +772,7 @@ function ecranLecture(q) {
 # le haut) et se décaler à gauche ou à droite (ox, en %).
 CADRES = {
     # la photo remonte (dy, en % de sa hauteur) pour que le visage ou le sujet passe au-dessus de la carte
-    "conversation": {"dy": -22}, "lecture": {"dy": -22}, "telephone-2": {"dy": -15}, "amir": {"dy": -28}, "fatigue": {"dy": -25}, "cafe": {"dy": -25},
+    "conversation": {"dy": -22}, "telephone-2": {"dy": -15}, "amir": {"dy": -28}, "fatigue": {"dy": -25}, "cafe": {"dy": -25},
     "croissant": {"dy": -22}, "chats": {"dy": -18}, "lucas": {"dy": -25}, "tele": {"dy": -15},
     "couple": {"dy": -15}, "enfants": {"dy": -22},
     "amis-telephone": {"dy": -20}, "chez-amie": {"dy": -18}, "reunion": {"dy": -22}, "lisa": {"dy": -10}, "marie": {"dy": -12},

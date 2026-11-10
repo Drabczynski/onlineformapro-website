@@ -41,7 +41,7 @@ navigateur.
   synthèse vocale ne le parle) : le haut-parleur disparaît.
 - Une police Noto par écriture (arabe, bengali, tamoul, tibétain, cyrillique), chargée seulement quand la langue est
   choisie ; arabe, pachto et dari s'écrivent de droite à gauche.
-- Fichiers : `traductions/source.json` (les 93 textes à traduire), `traductions/<code>.json` (clé = texte français),
+- Fichiers : `traductions/source.json` (les textes à traduire), `traductions/<code>.json` (clé = texte français),
   `sons/<code>/` (voix, refaites par `python3 travaux/positionnement-fle-3/generer_voix.py <code>`), `drapeaux/`
   (flag-icons, licence MIT ; drapeau tibétain simplifié dessiné pour le test, sans les lions).
 - **À faire relire.** Les traductions ont été faites par l'IA, avec une relecture par retraduction, pas par des
@@ -60,7 +60,7 @@ navigateur.
   test ; plus d'écran « Bravo ! Niveau validé » entre deux niveaux, le test enchaîne ; à la fin, « Test terminé »
   sans niveau.
 - Le niveau et le bilan restent visibles pour le formateur, sur ordinateur, dans le panneau « Moteur ».
-- Les réponses sont des lignes à toucher, le clavier de lettres une grille de touches, l'écoute avec photo garde
+- Les réponses sont des lignes à toucher (plus de questions à lettres), l'écoute avec photo garde
   la photo en grand et le bouton posé dessus.
 
 ## Ce qui ne change pas

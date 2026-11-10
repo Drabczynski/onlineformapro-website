@@ -1,69 +1,6 @@
 [
  {
   "niveau": "A1",
-  "comp": "EE",
-  "tag": "EXP écrite",
-  "page": 1,
-  "question": "Complétez la phrase.",
-  "choix": [
-   "donne",
-   "parle",
-   "fait"
-  ],
-  "bonne": 1,
-  "t": "trou",
-  "phrase": "Je ______ français.",
-  "indice": "(parler)",
-  "id": "A1-01",
-  "groupe": "A1:A1-01",
-  "photo": "conversation",
-  "lettres": [
-   "a",
-   "d",
-   "e",
-   "f",
-   "i",
-   "l",
-   "n",
-   "n",
-   "o",
-   "p",
-   "r",
-   "t"
-  ]
- },
- {
-  "niveau": "A1",
-  "comp": "EE",
-  "tag": "EXP écrite",
-  "page": 1,
-  "question": "Quel jour après lundi ?",
-  "choix": [
-   "dimanche",
-   "mardi",
-   "jeudi"
-  ],
-  "bonne": 1,
-  "t": "aucun",
-  "id": "A1-02",
-  "groupe": "A1:A1-02",
-  "photo": "agenda",
-  "lettres": [
-   "a",
-   "c",
-   "d",
-   "e",
-   "h",
-   "i",
-   "j",
-   "m",
-   "n",
-   "r",
-   "u"
-  ]
- },
- {
-  "niveau": "A1",
   "comp": "CE",
   "tag": "COMP écrite",
   "page": 1,
@@ -96,59 +33,6 @@
   "phrase": "Elle est ______.",
   "id": "A1-04",
   "groupe": "A1:A1-04"
- },
- {
-  "niveau": "A1",
-  "comp": "EE",
-  "tag": "EXP écrite",
-  "page": 2,
-  "question": "Complétez la phrase.",
-  "choix": [
-   "La",
-   "Le",
-   "Les"
-  ],
-  "bonne": 1,
-  "t": "trou",
-  "phrase": "______ livre est intéressant.",
-  "id": "A1-05",
-  "groupe": "A1:A1-05",
-  "photo": "lecture",
-  "lettres": [
-   "a",
-   "e",
-   "l",
-   "s"
-  ]
- },
- {
-  "niveau": "A1",
-  "comp": "EE",
-  "tag": "EXP écrite",
-  "page": 2,
-  "question": "Le contraire de « grand » ?",
-  "choix": [
-   "large",
-   "gros",
-   "petit"
-  ],
-  "bonne": 2,
-  "groupe": "A1:contraire-grand",
-  "t": "aucun",
-  "id": "A1-06",
-  "lettres": [
-   "a",
-   "e",
-   "g",
-   "i",
-   "l",
-   "o",
-   "p",
-   "r",
-   "s",
-   "t",
-   "t"
-  ]
  },
  {
   "niveau": "A1",
@@ -1229,34 +1113,6 @@
  },
  {
   "niveau": "A2",
-  "comp": "EE",
-  "tag": "EXP écrite",
-  "page": 34,
-  "question": "Complétez la phrase.",
-  "choix": [
-   "dont",
-   "que",
-   "quel"
-  ],
-  "bonne": 0,
-  "t": "trou",
-  "phrase": "C'est un film ______ je t'ai parlé.",
-  "id": "A2-02",
-  "groupe": "A2:A2-02",
-  "photo": "cinema",
-  "lettres": [
-   "d",
-   "e",
-   "l",
-   "n",
-   "o",
-   "q",
-   "t",
-   "u"
-  ]
- },
- {
-  "niveau": "A2",
   "comp": "LG",
   "tag": "Conjugaison",
   "page": 34,
@@ -1392,32 +1248,6 @@
   "audio": "o07",
   "id": "A2-09",
   "groupe": "A2:A2-09"
- },
- {
-  "niveau": "A2",
-  "comp": "EE",
-  "tag": "EXP écrite",
-  "page": 40,
-  "question": "Complétez le message.",
-  "choix": [
-   "les",
-   "y",
-   "en"
-  ],
-  "bonne": 0,
-  "t": "sms",
-  "contexte": "Vous envoyez un message à votre colocataire.",
-  "texte": "J'ai oublié les billets pour le concert de ce soir. Ils sont sur mon bureau. Pense à ______ prendre, s'il te plaît ! Merci !",
-  "id": "A2-10",
-  "groupe": "A2:A2-10",
-  "photo": "concert",
-  "lettres": [
-   "e",
-   "l",
-   "n",
-   "s",
-   "y"
-  ]
  },
  {
   "niveau": "A2",
