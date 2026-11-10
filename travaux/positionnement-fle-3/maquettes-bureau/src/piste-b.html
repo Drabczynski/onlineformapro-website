@@ -1,0 +1,89 @@
+<title>Piste B · L'horizon</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800;900&display=swap">
+<style>
+/*__CSS_COMMUN__*/
+/* Piste B — « L'horizon » : l'écran mobile en cinémascope. Un bandeau panoramique (ciel et photo) qui se fond vers
+   le bas dans le blanc ; dessous, la question en très grand et les réponses côte à côte, en grandes cartes.
+   Transition : un travelling ; la photo glisse vers la gauche, la suivante arrive de la droite, plus lentement que
+   le texte, qui arrive net après un léger flou. */
+.ciel-b { position: fixed; inset: 0 0 auto 0; height: 46vh; background: var(--ciel); }
+.ecran { display: grid; grid-template-rows: 46vh minmax(0, 1fr); }
+.bandeau { position: relative; overflow: hidden; }
+.photo { position: absolute; inset: 0; overflow: hidden; -webkit-mask-image: linear-gradient(#000 52%, transparent 100%); mask-image: linear-gradient(#000 52%, transparent 100%); }
+.photo img { width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 50% 50%); }
+.colonne { width: min(1200px, calc(100% - 2 * clamp(28px, 5vw, 96px))); margin-inline: auto; }
+.sur { position: relative; z-index: 1; height: 100%; display: grid; align-content: center; justify-items: start; gap: 16px; padding-top: 64px; }
+.sur > .carte, .sur > .sms, .sur > .phrase { max-width: 600px; }
+.sur > .bille { justify-self: center; }
+.contenu { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 30px; margin-top: -64px; padding-bottom: 40px; }
+.question { max-width: 22ch; font-size: clamp(44px, 5.1vw, 82px); font-weight: 800; line-height: 1.02; letter-spacing: -.04em; text-wrap: balance; outline: none; }
+.question.longue { max-width: 30ch; font-size: clamp(36px, 3.7vw, 62px); }
+.reponses.ligne { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 16px; }
+.reponses.ligne .rep { flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 18px; min-height: 112px; padding: 18px 22px; }
+.reponses.ligne .rep:hover { transform: translateY(-4px); }
+.titre-geant { max-width: 16ch; font-size: clamp(60px, 6.6vw, 110px); font-weight: 900; line-height: .95; letter-spacing: -.05em; outline: none; }
+.accueil-bas { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 28px; }
+.accueil-gauche { display: grid; gap: 22px; flex: 1 1 560px; max-width: 820px; }
+.ecran-accueil .bouton { min-height: 72px; padding-inline: 40px 30px; font-size: 22px; }
+.ecran-fin .sur { justify-items: center; }
+.texte-fin { max-width: 40ch; color: var(--doux); font-size: 22px; }
+
+/* entrée : travelling depuis la droite */
+.actif .photo img { animation: arriveDroite 1.5s var(--ease-out) both; }
+@keyframes arriveDroite { from { opacity: 0; transform: translateX(7%) scale(1.06); } }
+.actif .sur > * { animation: net .9s var(--ease-out) .35s both; }
+.actif .sur > :nth-child(2) { animation-delay: .45s; }
+.actif .sur > .bille { animation: eclot .9s var(--ressort) .45s both; }
+.actif .contenu > * { animation: net .9s var(--ease-out) both; animation-delay: .22s; }
+.actif .contenu > :nth-child(2) { animation-delay: .3s; }
+.actif .contenu > :nth-child(3) { animation-delay: .38s; }
+.actif .reponses.ligne .rep { animation: net .85s var(--ease-out) both; animation-delay: calc(.36s + var(--k) * .08s); }
+@keyframes net { from { opacity: 0; transform: translateX(64px); filter: blur(8px); } }
+@keyframes eclot { 0% { opacity: 0; transform: scale(.4); } 60% { opacity: 1; } }
+.actif .coche { animation: eclot 1s var(--ressort) .25s both; }
+.relangue .photo img, .relangue .sur > *, .relangue .accueil-bas { animation: none !important; }
+/* sortie : vers la gauche */
+.sort .photo img { animation: partGauche 1.2s var(--ease) forwards; }
+@keyframes partGauche { to { opacity: 0; transform: translateX(-6%); } }
+.sort .sur > *, .sort .contenu > * { animation: partTexte .45s var(--ease) forwards; }
+@keyframes partTexte { to { opacity: 0; transform: translateX(-64px); filter: blur(6px); } }
+
+@media (max-height: 820px) {
+  .ciel-b { height: 40vh; }
+  .ecran { grid-template-rows: 40vh minmax(0, 1fr); }
+  .contenu { gap: 20px; }
+  .titre-geant { font-size: min(6.6vw, 10vh); }
+}
+@media (max-width: 900px) {
+  body { overflow: auto; }
+  .ecran { overflow: auto; }
+  .reponses.ligne { grid-template-columns: 1fr; }
+  .reponses.ligne .rep { flex-direction: row; min-height: 72px; }
+}
+</style>
+<div class="ciel-b" aria-hidden="true"></div>
+<main class="app" id="app"></main>
+<div class="haut"><button class="rond" id="son" type="button" aria-label="Couper les sons"></button><button class="rond cache" id="quitter" type="button" aria-label="Quitter le test"></button></div>
+<a class="pistes" href="index.html">Piste B · L'horizon — toutes les pistes</a>
+<script>
+const DONNEES = /*__DONNEES__*/;
+const SORTIE = 1300;
+const POS = { intro: "50% 32%", metro: "50% 45%", cinema: "60% 40%", telephone: "50% 22%", croissant: "50% 55%" };
+const photo = (nom) => `<div class="photo" style="--pos:${POS[nom] || "50% 50%"}"><img src="${IMG[nom]}" alt=""></div>`;
+function rendre(e) {
+  if (e.type === "accueil") return `<div class="bandeau">${photo(e.photo)}</div>
+    <div class="contenu colonne"><p class="sur-titre"${attrs("Français · environ 10 minutes")}>${texte("Français · environ 10 minutes")}</p>
+      <h1 class="titre-geant" tabindex="-1" data-focus${attrs("Évaluation de positionnement")}>${motAMot("Évaluation de positionnement")}</h1>
+      <div class="accueil-bas"><div class="accueil-gauche">${aptitudes()}${langues()}</div>
+        <button class="bouton" type="button" data-action="commencer"><span${attrs("Commencer")}>${texte("Commencer")}</span><kbd aria-hidden="true">Entrée ↵</kbd></button></div></div>`;
+  if (e.type === "fin") return `<div class="bandeau"><div class="sur colonne"><div class="coche" aria-hidden="true">${ICONE.coche}</div></div></div>
+    <div class="contenu colonne"><h1 class="titre-geant" tabindex="-1" data-focus${attrs("Évaluation terminée")}>${motAMot("Évaluation terminée")}</h1>
+      <p class="texte-fin"${attrs("Merci pour vos réponses. Vous pouvez prévenir votre formateur que vous avez terminé.")}>${texte("Merci pour vos réponses. Vous pouvez prévenir votre formateur que vous avez terminé.")}</p>
+      <div><button class="bouton" type="button" data-action="fermer"><span${attrs("Fermer")}>${texte("Fermer")}</span><kbd aria-hidden="true">Entrée ↵</kbd></button></div></div>`;
+  return `<div class="bandeau">${photo(e.photo)}<div class="sur colonne">${surPhoto(e, { taille: 148 })}</div></div>
+    <div class="contenu colonne">${titreQuestion(e, "question" + (tr(e.question).length > 34 ? " longue" : ""))}${reponses(e, "ligne")}${bas()}</div>`;
+}
+/*__JS_COMMUN__*/
+</script>

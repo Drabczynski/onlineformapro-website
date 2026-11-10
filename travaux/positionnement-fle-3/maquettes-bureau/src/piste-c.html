@@ -1,0 +1,107 @@
+<title>Piste C · L'affiche</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800;900&display=swap">
+<style>
+/*__CSS_COMMUN__*/
+/* Piste C — « L'affiche » : la typographie d'abord. La question occupe l'écran comme une affiche ; la photo est une
+   haute fenêtre de ciel à droite, qui se fond dans le blanc par le bas, la bille violette posée sur son bord.
+   Transition : la fenêtre se referme vers le haut comme un store et la suivante s'ouvre par le bas ; la photo suit
+   légèrement la souris. */
+.ecran { display: grid; grid-template-columns: minmax(0, 1fr) clamp(340px, 32vw, 520px); gap: clamp(56px, 6vw, 128px); padding: 96px clamp(48px, 6vw, 120px) 52px; }
+.gauche { display: flex; flex-direction: column; justify-content: center; gap: 34px; min-width: 0; }
+.amorce { max-width: 46ch; color: var(--doux); font-size: 21px; font-weight: 600; line-height: 1.45; }
+.question { font-size: var(--t, clamp(60px, 7vw, 124px)); font-weight: 900; line-height: .98; letter-spacing: -.048em; text-wrap: balance; outline: none; }
+.question.longue { --t: clamp(44px, 4.9vw, 82px); }
+.question .trou { min-width: 3.2em; }
+.indice-ligne { align-self: flex-start; margin-top: -14px; }
+.reponses { display: grid; gap: 4px; max-width: 720px; }
+.reponses .rep { position: relative; min-height: 70px; padding: 14px 6px; border: 0; border-radius: 0; background: none; font-size: 25px; }
+.reponses .rep::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1.5px; background: var(--filet); }
+.reponses .rep::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; height: 3px; background: var(--violet); transform: scaleX(0); transform-origin: left; transition: transform .45s var(--ease-out); }
+.reponses .rep:hover::before { transform: scaleX(.25); }
+.reponses .rep[aria-checked="true"] { background: none; color: var(--violet-fonce); }
+.reponses .rep[aria-checked="true"]::before { transform: scaleX(1); }
+.cote { position: relative; display: grid; }
+.fenetre { position: relative; overflow: hidden; border-radius: 32px 32px 0 0; background: var(--ciel); }
+.photo { position: absolute; inset: 0; overflow: hidden; -webkit-mask-image: linear-gradient(#000 58%, transparent 100%); mask-image: linear-gradient(#000 58%, transparent 100%); }
+.parallaxe { position: absolute; inset: -24px; transform: translate(calc(var(--mx, 0) * -14px), calc(var(--my, 0) * -10px)); transition: transform .5s var(--ease); }
+.parallaxe img { width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 50% 50%); }
+.fenetre .sur { position: absolute; z-index: 1; left: 22px; right: 22px; bottom: 28%; display: grid; gap: 12px; justify-items: start; }
+.cote > .bille { position: absolute; z-index: 3; top: 40%; left: calc(var(--b) / -2); --b: 150px; }
+.titre-geant { font-size: clamp(52px, 6.4vw, 104px); font-weight: 900; line-height: .9; letter-spacing: -.055em; outline: none; }
+.ecran-accueil .gauche { gap: 28px; }
+.ecran-accueil .bouton { align-self: flex-start; min-height: 72px; padding-inline: 40px 30px; font-size: 22px; }
+.ecran-fin .fenetre { display: grid; place-items: center; }
+.texte-fin { max-width: 34ch; color: var(--doux); font-size: 23px; }
+.ecran-fin .bouton { align-self: flex-start; }
+
+/* entrée : la fenêtre s'ouvre par le bas, la question monte mot à mot */
+.actif .fenetre { animation: ouvre 1.15s var(--ease-out) both; }
+@keyframes ouvre { from { clip-path: inset(100% 0 0 0 round 32px 32px 0 0); } to { clip-path: inset(0 0 0 0 round 32px 32px 0 0); } }
+.actif .parallaxe img { animation: zoomC 1.8s var(--ease-out) both; }
+@keyframes zoomC { from { transform: scale(1.2); } }
+.actif .fenetre .sur > * { animation: monte .8s var(--ease-out) .6s both; }
+.actif .fenetre .sur > :nth-child(2) { animation-delay: .7s; }
+.actif .cote > .bille { animation: eclot .9s var(--ressort) .7s both; }
+.actif .amorce, .actif .sur-titre { animation: monte .8s var(--ease-out) .05s both; }
+.actif .mot > span { animation: mot 1s var(--ease-out) both; animation-delay: calc(.15s + var(--i) * .055s); }
+.actif .rep { animation: monte .7s var(--ease-out) both; animation-delay: calc(.5s + var(--k) * .08s); }
+.actif .bas, .actif .aptitudes, .actif .bloc-langue, .actif .texte-fin, .actif .indice-ligne, .actif .ecran-accueil .bouton, .actif .ecran-fin .bouton { animation: monte .8s var(--ease-out) .6s both; }
+.actif .coche { animation: eclot 1s var(--ressort) .5s both; }
+@keyframes monte { from { opacity: 0; transform: translateY(24px); } }
+@keyframes mot { from { transform: translateY(110%); } }
+@keyframes eclot { 0% { opacity: 0; transform: scale(.4); } 60% { opacity: 1; } }
+.relangue .fenetre, .relangue .parallaxe img, .relangue .aptitudes, .relangue .bloc-langue, .relangue .bouton, .relangue .sur-titre { animation: none !important; }
+/* sortie : la fenêtre se referme vers le haut */
+.sort .fenetre { animation: ferme .6s var(--ease) forwards; }
+@keyframes ferme { from { clip-path: inset(0 0 0 0 round 32px 32px 0 0); } to { clip-path: inset(0 0 100% 0 round 32px 32px 0 0); } }
+.sort .cote > .bille { animation: efface .25s forwards; }
+.sort .gauche > * { animation: sortHaut .4s var(--ease) forwards; }
+@keyframes sortHaut { to { opacity: 0; transform: translateY(-26px); } }
+@keyframes efface { to { opacity: 0; transform: scale(.8); } }
+
+@media (max-height: 820px) {
+  .ecran { padding-top: 80px; padding-bottom: 36px; }
+  .gauche, .ecran-accueil .gauche { gap: 20px; }
+  .titre-geant { font-size: min(6.4vw, 10.5vh); }
+}
+@media (max-width: 900px) {
+  body { overflow: auto; }
+  .ecran { grid-template-columns: 1fr; padding: 88px 20px 40px; overflow: auto; }
+  .cote { order: -1; min-height: 40vh; }
+  .cote > .bille { left: 50%; transform: translateX(-50%); }
+}
+</style>
+<main class="app" id="app"></main>
+<div class="haut"><button class="rond" id="son" type="button" aria-label="Couper les sons"></button><button class="rond cache" id="quitter" type="button" aria-label="Quitter le test"></button></div>
+<a class="pistes" href="index.html">Piste C · L'affiche — toutes les pistes</a>
+<script>
+const DONNEES = /*__DONNEES__*/;
+const SORTIE = 750;
+const POS = { intro: "45% 40%", metro: "30% 50%", cinema: "70% 50%", telephone: "50% 28%", croissant: "50% 50%" };
+const fenetre = (nom, dedans = "") => `<div class="fenetre">${nom ? `<div class="photo"><div class="parallaxe"><img src="${IMG[nom]}" alt="" style="--pos:${POS[nom] || "50% 50%"}"></div></div>` : ""}${dedans}</div>`;
+function rendre(e) {
+  if (e.type === "accueil") return `<div class="gauche"><p class="sur-titre"${attrs("Français · environ 10 minutes")}>${texte("Français · environ 10 minutes")}</p>
+      <h1 class="titre-geant" tabindex="-1" data-focus${attrs("Évaluation de positionnement")}>${motAMot("Évaluation de positionnement")}</h1>
+      ${aptitudes()}${langues()}
+      <button class="bouton" type="button" data-action="commencer"><span${attrs("Commencer")}>${texte("Commencer")}</span><kbd aria-hidden="true">Entrée ↵</kbd></button></div>
+    <div class="cote">${fenetre(e.photo)}</div>`;
+  if (e.type === "fin") return `<div class="gauche"><h1 class="titre-geant" tabindex="-1" data-focus${attrs("Évaluation terminée")}>${motAMot("Évaluation terminée")}</h1>
+      <p class="texte-fin"${attrs("Merci pour vos réponses. Vous pouvez prévenir votre formateur que vous avez terminé.")}>${texte("Merci pour vos réponses. Vous pouvez prévenir votre formateur que vous avez terminé.")}</p>
+      <button class="bouton" type="button" data-action="fermer"><span${attrs("Fermer")}>${texte("Fermer")}</span><kbd aria-hidden="true">Entrée ↵</kbd></button></div>
+    <div class="cote">${fenetre(null, `<div class="coche" aria-hidden="true">${ICONE.coche}</div>`)}</div>`;
+  // l'amorce : contexte, situation ou consigne en petit au-dessus ; la phrase à compléter devient l'affiche elle-même
+  const amorceFr = e.phrase ? e.question : (e.contexte || e.situation);
+  const amorce = amorceFr ? `<p class="amorce"${attrs(amorceFr)}>${texte(amorceFr)}</p>` : "";
+  const grand = e.phrase
+    ? `<h2 class="question" id="q" tabindex="-1" data-focus>${e.phrase.split(" ").map((m, k) => /_{3,}/.test(m) ? '<span class="trou" id="trou">&nbsp;</span>' : `<span class="mot"><span style="--i:${k}">${echap(m)}</span></span>`).join(" ")}</h2>${e.indice ? `<span class="indice indice-ligne"${attrs(e.indice)} style="background:var(--gris)">${texte(e.indice)}</span>` : ""}`
+    : titreQuestion(e, "question" + (tr(e.question).length > 34 ? " longue" : ""));
+  const dedans = e.sms ? `<div class="sur">${e.etiquette ? `<span class="etiquette"${attrs(e.etiquette)}>${texte(e.etiquette)}</span>` : ""}<p class="sms">${echap(e.sms)}</p></div>` : "";
+  return `<div class="gauche">${amorce}${grand}${reponses(e)}${bas()}</div>
+    <div class="cote">${fenetre(e.photo, dedans)}${e.bille ? bille(150) : ""}</div>`;
+}
+// la photo suit légèrement la souris
+addEventListener("mousemove", (ev) => { document.documentElement.style.setProperty("--mx", (ev.clientX / innerWidth - .5).toFixed(3)); document.documentElement.style.setProperty("--my", (ev.clientY / innerHeight - .5).toFixed(3)); });
+/*__JS_COMMUN__*/
+</script>

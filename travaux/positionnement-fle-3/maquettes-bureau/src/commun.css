@@ -1,0 +1,124 @@
+/* Maquettes bureau — base commune aux trois pistes : la philosophie de « L'examen » (ciel, photo fondue dans le
+   blanc, bille violette, texte aligné à gauche, Public Sans), mise à l'échelle d'un écran d'ordinateur. */
+:root {
+  --ciel: radial-gradient(90% 34% at 50% -6%, rgba(56, 128, 247, .55), rgba(56, 128, 247, 0) 70%),
+          linear-gradient(180deg, #58aef7 0%, #64c2f8 7%, #6bc5fa 16%, #6fc0f8 26%, #79bbf8 37%, #88bffa 48%, #a5cbfa 59%, #c6defb 69%, #e3effd 78%, #f4f8fe 86%, #fcfdff 93%, #ffffff 100%);
+  --violet: #7442e8; --violet-fonce: #5b2fd0; --violet-pale: #f0eafe; --violet-doux: #d6c8fb;
+  --encre: #14172b; --doux: #5d6278; --filet: #e3e5ee; --gris: #f2f3f8; --blanc: #ffffff;
+  --texte: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --ease: cubic-bezier(.2, .8, .2, 1); --ease-out: cubic-bezier(.16, 1, .3, 1); --ressort: cubic-bezier(.34, 1.56, .64, 1);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--blanc); color: var(--encre); font: 500 17px/1.5 var(--texte); overflow: hidden; -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--violet); outline-offset: 3px; border-radius: 12px; }
+h1, h2, p, ul { margin: 0; }
+.app { position: fixed; inset: 0; overflow: hidden; }
+.ecran { position: absolute; inset: 0; }
+.ecran.sort { pointer-events: none; }
+
+/* en haut : le son à gauche, quitter à droite */
+.haut { position: fixed; z-index: 30; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; padding: 24px 28px; pointer-events: none; }
+.haut > * { pointer-events: auto; }
+.rond { width: 46px; height: 46px; display: grid; place-items: center; padding: 0; border: 1px solid rgba(255, 255, 255, .6); border-radius: 50%; background: rgba(16, 22, 48, .28); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: #fff; transition: transform .25s var(--ease), background .2s, opacity .3s; }
+.rond:hover { transform: scale(1.07); background: rgba(16, 22, 48, .42); }
+.rond svg { width: 20px; height: 20px; }
+.rond.cache { opacity: 0; pointer-events: none; }
+
+/* le texte qui monte mot à mot, chaque mot sorti d'un masque */
+.mot { display: inline-block; overflow: hidden; vertical-align: top; padding: .02em 0 .12em; margin: -.02em 0 -.12em; }
+.mot > span { display: inline-block; }
+
+/* la bille d'écoute */
+.bille { position: relative; display: grid; place-items: center; width: var(--b, 132px); height: var(--b, 132px); padding: 0; border: 3px solid #fff; border-radius: 50%; background: var(--violet); color: #fff; transition: transform .3s var(--ease); }
+.bille:hover:not(:disabled) { transform: scale(1.06); }
+.bille::before, .bille::after { content: ""; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid rgba(255, 255, 255, .85); animation: onde 2.6s ease-out infinite; pointer-events: none; }
+.bille::after { animation-delay: 1.3s; }
+.bille.parle::before, .bille.parle::after { animation-duration: 1.1s; }
+@keyframes onde { from { transform: scale(1); opacity: .9; } to { transform: scale(1.75); opacity: 0; } }
+.bille > svg { width: 38%; height: 38%; margin-left: 7%; }
+.bille .vague { display: none; align-items: center; gap: 6px; height: 36%; }
+.bille.parle > svg { display: none; }
+.bille.parle .vague { display: flex; }
+.vague i { width: 6px; height: 45%; border-radius: 3px; background: #fff; animation: barre .7s ease-in-out infinite; }
+.vague i:nth-child(2n) { height: 100%; animation-delay: -.2s; }
+.vague i:nth-child(3n) { height: 70%; animation-delay: -.45s; }
+@keyframes barre { 50% { transform: scaleY(.4); } }
+.bille .pastille { position: absolute; z-index: 2; top: -2px; right: -2px; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: #fff; color: var(--violet); font-size: 15px; font-weight: 800; }
+.bille:disabled { cursor: default; opacity: .55; }
+.bille:disabled::before, .bille:disabled::after { display: none; }
+
+/* ce qui se pose sur la photo */
+.carte { padding: 16px 20px; border-radius: 18px; background: rgba(255, 255, 255, .95); font-size: 18px; font-weight: 600; line-height: 1.45; }
+.etiquette { justify-self: start; display: inline-block; padding: 5px 14px; border-radius: 999px; background: rgba(255, 255, 255, .95); font-size: 14px; font-weight: 700; }
+.sms { position: relative; margin-left: 9px; padding: 16px 20px; border-radius: 22px 22px 22px 6px; background: #fff; font-size: 19px; line-height: 1.45; }
+.sms::before { content: ""; position: absolute; left: -9px; bottom: 0; width: 18px; height: 20px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 18'%3E%3Cpath d='M16 0v18H0c5-1.6 8.4-6 9-14z' fill='%23fff'/%3E%3C/svg%3E") no-repeat center / contain; }
+.phrase { padding: 22px 28px; border-radius: 22px; background: #fff; font-size: 34px; font-weight: 800; letter-spacing: -.02em; line-height: 1.3; }
+.trou { display: inline-block; min-width: 3.6em; padding: 0 .15em; border-bottom: .12em solid var(--violet); color: var(--violet); text-align: center; line-height: 1.1; }
+.trou.rempli { animation: remplit .5s var(--ease-out); }
+@keyframes remplit { from { opacity: 0; transform: translateY(.3em); } }
+.indice { justify-self: start; display: inline-block; padding: 5px 14px; border-radius: 999px; background: #fff; color: var(--doux); font-size: 15px; font-weight: 700; }
+
+/* réponses et boutons */
+.rep { display: flex; align-items: center; gap: 18px; width: 100%; padding: 16px 22px; border: 1.5px solid var(--filet); border-radius: 18px; background: #fff; font-size: 22px; font-weight: 600; line-height: 1.3; text-align: left; transition: border-color .2s, background .2s, transform .3s var(--ease); }
+.rep:hover { border-color: var(--violet-doux); }
+.rep .lettre { flex: none; width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px; background: var(--gris); color: var(--doux); font-size: 17px; font-weight: 800; transition: background .2s, color .2s, transform .3s var(--ressort); }
+.rep[aria-checked="true"] { border-color: var(--violet); background: var(--violet-pale); }
+.rep[aria-checked="true"] .lettre { background: var(--violet); color: #fff; transform: scale(1.08); }
+.rep.valide { animation: valide .45s var(--ease-out); }
+@keyframes valide { 35% { transform: scale(1.025); } }
+.bas { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.lien { padding: 10px 2px; border: 0; background: none; color: var(--doux); font-size: 17px; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
+.lien:hover { color: var(--encre); }
+.bouton { display: inline-flex; align-items: center; gap: 14px; min-height: 64px; padding: 0 26px 0 34px; border: 0; border-radius: 18px; background: var(--violet); color: #fff; font-size: 20px; font-weight: 800; transition: background .2s, transform .25s var(--ease); }
+.bouton:hover:not(:disabled) { background: var(--violet-fonce); transform: translateY(-2px); }
+.bouton:disabled { background: var(--violet-doux); cursor: default; }
+.bouton kbd { font: 700 13px/1 var(--texte); padding: 7px 9px; border-radius: 8px; background: rgba(255, 255, 255, .22); }
+
+/* accueil : aptitudes et langues */
+.sur-titre { color: var(--doux); font-size: 18px; font-weight: 600; }
+.aptitudes { display: flex; flex-wrap: wrap; gap: 10px 28px; padding: 0; list-style: none; color: var(--encre); font-size: 17px; font-weight: 600; }
+.aptitudes li { display: inline-flex; align-items: center; gap: 10px; }
+.aptitudes .ic { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; background: var(--violet-pale); color: var(--violet); }
+.aptitudes svg { width: 19px; height: 19px; }
+.bloc-langue { display: grid; gap: 10px; }
+.etiquette-langue { color: var(--doux); font-size: 14px; font-weight: 700; letter-spacing: .02em; }
+.langues { display: flex; flex-wrap: wrap; gap: 8px; }
+.puce { display: inline-flex; align-items: center; gap: 9px; padding: 7px 14px 7px 8px; border: 1.5px solid var(--filet); border-radius: 999px; background: #fff; font-size: 15px; font-weight: 700; transition: border-color .2s, background .2s, transform .25s var(--ease); }
+.puce:hover { border-color: var(--violet-doux); transform: translateY(-2px); }
+.puce[aria-pressed="true"] { border-color: var(--violet); background: var(--violet-pale); }
+.puce img { width: 26px; height: 19px; border: 1px solid rgba(20, 24, 43, .1); border-radius: 4px; object-fit: cover; }
+
+/* fin : une coche qui se dessine */
+.coche { width: var(--c, 168px); height: var(--c, 168px); display: grid; place-items: center; border: 3px solid #fff; border-radius: 50%; background: var(--violet); color: #fff; }
+.coche svg { width: 46%; height: 46%; }
+.coche path { stroke-dasharray: 40; stroke-dashoffset: 40; }
+.actif .coche path { animation: trace .7s var(--ease-out) .55s forwards; }
+@keyframes trace { to { stroke-dashoffset: 0; } }
+
+/* écrans peu hauts (portables) : l'accueil se resserre ; en dernier recours, l'écran défile */
+@media (max-height: 820px) {
+  .aptitudes { gap: 8px 22px; font-size: 15.5px; }
+  .aptitudes .ic { width: 32px; height: 32px; }
+  .puce { padding: 5px 12px 5px 7px; font-size: 14px; }
+  .ecran-accueil .bouton { min-height: 62px; }
+}
+@media (max-height: 640px) { .ecran { overflow: hidden auto; } }
+
+/* lien discret vers la galerie des pistes */
+.pistes { position: fixed; z-index: 31; top: 30px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid var(--filet); border-radius: 999px; background: rgba(255, 255, 255, .9); color: var(--doux); font-size: 13px; font-weight: 700; text-decoration: none; }
+.pistes:hover { color: var(--encre); }
+
+/* une police par écriture, chargée à la demande */
+[lang="ar-SD"], [lang="ps"], [lang="fa-AF"] { font-family: "Public Sans", "Noto Sans Arabic", system-ui, sans-serif; }
+[lang="bn"] { font-family: "Public Sans", "Noto Sans Bengali", system-ui, sans-serif; }
+[lang="ta"] { font-family: "Public Sans", "Noto Sans Tamil", system-ui, sans-serif; }
+[lang="bo"] { font-family: "Public Sans", "Noto Serif Tibetan", system-ui, serif; line-height: 1.5; }
+[lang="ru"], [lang="uk"] { font-family: "Public Sans", "Noto Sans", system-ui, sans-serif; }
+[dir="rtl"] { text-align: right; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
