@@ -7,7 +7,7 @@ que la version 2 : le script part des deux fichiers produits par la v2 et les tr
 
 Produit index.html (page web ; les sons sont lus dans ../positionnement-fle-2/sons/) et test-positionnement.html
 (artifact, tout intégré), pour « La feuille » (ce dossier) et pour la variante « Le dégradé » (dossier degrade/)."""
-import base64, os, re
+import base64, json, os, re
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 V2 = os.path.join(ICI, '..', 'positionnement-fle-2')
@@ -370,7 +370,7 @@ svg { display: block; }
 
 /* le haut (dégradé) et le bas (blanc) */
 .scene { position: relative; flex: 1 0 auto; min-height: 230px; display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 66px 22px 28px; background: var(--ciel); overflow: hidden; }
-.scene.vide { flex-grow: 0; min-height: 128px; }      /* sans photo ni support : une bande de ciel, pas un grand vide */
+.scene.vide { min-height: 190px; }
 .feuille-q { flex: none; display: grid; gap: 16px; padding: 4px 22px 18px; background: #fff; }
 .bas { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 6px 22px calc(18px + env(safe-area-inset-bottom, 0px)); background: #fff; }
 
@@ -401,13 +401,14 @@ svg { display: block; }
 /* une photo remplit tout le haut et se fond dans le blanc ; la bille est posée dessus */
 .photo-fond .photo-scene { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; max-height: none; border-radius: 0; object-fit: cover; -webkit-mask-image: linear-gradient(#000 64%, transparent); mask-image: linear-gradient(#000 64%, transparent); }
 .photo-fond > :not(.photo-scene) { position: relative; z-index: 1; }
+.photo-fond > .cadre-photo { position: absolute; inset: 0; z-index: 0; overflow: hidden; -webkit-mask-image: linear-gradient(#000 calc(var(--fin, 100%) - 36%), transparent var(--fin, 100%)); mask-image: linear-gradient(#000 calc(var(--fin, 100%) - 36%), transparent var(--fin, 100%)); }
+.cadre-photo > .photo-scene { -webkit-mask-image: none; mask-image: none; object-position: var(--ox, 50%) 50%; transform-origin: var(--ox, 50%) 0; transform: translateY(var(--dy, 0%)) scale(var(--z, 1)); }
 .photo-fond .contexte { background: rgba(255, 255, 255, .93); }
 .photo-fond .etiquette { padding: 4px 12px; border-radius: 999px; background: rgba(255, 255, 255, .93); color: var(--encre); }
 .photo-fond .indice { background: #fff; }
 .lecture-tete { position: relative; z-index: 1; }
 .lecture-tete.sur-photo .papier-tete { margin-block: -10px; padding: 10px 14px; border-radius: 18px; background: rgba(255, 255, 255, .94); }      /* la carte déborde dans les marges : même hauteur qu'avant */
-.fond-seul { position: absolute; inset: 0; }
-.scene.carte-bas { justify-content: flex-end; }      /* sur une photo, la carte (SMS, phrase, texte, document) se pose en bas : le haut de la photo reste visible */      /* la photo seule, hors du flux : elle n'ajoute aucune hauteur */
+.fond-seul { position: absolute; inset: 0; }      /* la photo seule, hors du flux : elle n'ajoute aucune hauteur */
 .photo-scene { display: block; width: 100%; max-height: 200px; object-fit: cover; border-radius: 18px; }
 .phrase { justify-self: stretch; margin: 0; padding: 18px 20px; border-radius: 18px; background: #fff; color: var(--encre); font-size: 24px; font-weight: 700; line-height: 1.55; text-align: left; }
 .phrase.petite { font-size: 19px; }
@@ -551,7 +552,7 @@ svg { display: block; }
 
 /* sur un appareil tactile ou un écran étroit : le test occupe tout l'écran, comme une application */
 @media (max-width: 520px), (hover: none) and (pointer: coarse) {
-  html, body { overflow: hidden; overscroll-behavior: none; background: #58aef7; }
+  html, body { overflow: hidden; overscroll-behavior: none; background: #fff; }
   body { padding: 0; }
   .appli { position: fixed; inset: 0; width: auto; height: auto; border: 0; border-radius: 0; }
   .haut { padding-top: calc(14px + env(safe-area-inset-top, 0px)); }
@@ -662,7 +663,7 @@ function ecranAccueil() {
   poser(`<section class="ecran ecran-accueil" aria-labelledby="t-accueil">
     <div class="haut">${boutonSon()}</div>
     <div class="defile">
-      <div class="scene">${IMAGES.intro ? `<div class="visuel photo-fond fond-seul"><img class="photo-scene" src="${IMAGES.intro}" alt=""></div>` : `<span class="ex-embleme" aria-hidden="true">${ICONE.ecoute}</span>`}</div>
+      <div class="scene">${IMAGES.intro ? `<div class="visuel photo-fond fond-seul">${photoFond("intro")}</div>` : `<span class="ex-embleme" aria-hidden="true">${ICONE.ecoute}</span>`}</div>
       <div class="feuille-q">
         <h1 class="ex-titre" id="t-accueil">Évaluation de positionnement</h1>
         <p class="ex-sous">Français · environ 10 minutes</p>
@@ -706,10 +707,10 @@ function ecranLecture(q) {
   // le titre du document dans le dégradé (sur la photo en grand s'il y en a une), le texte dans le blanc
   const html = papier({ ...q, photo: null }).replace("<strong>", '<strong id="t-doc">'), m = html.match(/<div class="papier-tete">[\s\S]*?<\/small><\/div><\/div>/);
   const tete = m ? m[0] : "", corps = m ? html.replace(tete, "") : html;
-  const fond = q.photo ? `<div class="visuel photo-fond fond-seul"><img class="photo-scene" src="${IMAGES[q.photo]}" alt=""></div>` : "";
+  const fond = q.photo ? `<div class="visuel photo-fond fond-seul">${photoFond(q.photo)}</div>` : "";
   poser(`<section class="ecran" aria-labelledby="t-doc">
     ${haut()}
-    <div class="defile"><div class="scene${q.photo ? " carte-bas" : ""}">${fond}<div class="lecture-tete${q.photo ? " sur-photo" : ""}">${tete}</div></div>
+    <div class="defile"><div class="scene">${fond}<div class="lecture-tete${q.photo ? " sur-photo" : ""}">${tete}</div></div>
       <div class="feuille-q">${corps}<p class="consigne-lecture">Lisez le document. La question arrive ensuite, et vous pourrez le relire.</p></div></div>
     <div class="bas">${bouton("J'ai lu", "vert", 'id="lu"')}</div>
   </section>`);
@@ -719,6 +720,24 @@ function ecranLecture(q) {
   resserrer();
 }
 """
+
+# Cadrage des photos de « L'examen » : la carte (SMS, phrase, texte…) reste au centre ; quand elle cache un visage ou le
+# sujet, la photo remonte (dy) et son fondu blanc remonte avec elle (aucun bord visible), peut s'agrandir (z, depuis
+# le haut) et se décaler à gauche ou à droite (ox, en %).
+CADRES = {
+    # la photo remonte (dy, en % de sa hauteur) pour que le visage ou le sujet passe au-dessus de la carte
+    "conversation": {"dy": -22}, "lecture": {"dy": -22}, "telephone-1": {"dy": -25}, "telephone-2": {"dy": -15},
+    "telephone-3": {"dy": -15}, "amir": {"dy": -28}, "lisa": {"dy": -25}, "fatigue": {"dy": -25}, "cafe": {"dy": -25},
+    "croissant": {"dy": -22}, "chats": {"dy": -18}, "lucas": {"dy": -25}, "marie": {"dy": -25}, "tele": {"dy": -15},
+    "couple": {"dy": -15}, "enfants": {"dy": -22},
+}
+CADRES_JS = r"""// cadrage de chaque photo (agrandissement z autour du point ox oy), pour qu'aucune carte ne cache un visage
+const CADRES = __CADRES__;
+function photoFond(nom) {
+  const c = CADRES[nom] || {}, dy = c.dy || 0, z = c.z || 1;
+  const st = [dy && `--dy:${dy}%`, z !== 1 && `--z:${z}`, c.ox != null && `--ox:${c.ox}%`, (dy || z !== 1) && `--fin:${Math.min(100, dy + z * 100)}%`].filter(Boolean).join(";");
+  return `<span class="cadre-photo"${st ? ` style="${st}"` : ""}><img class="photo-scene" src="${IMAGES[nom]}" alt=""></span>`;
+}"""
 
 INSECABLES = r"""// un mot à trait d'union (« posez-vous », « attends-moi ») ne se coupe jamais : il passe entier à la ligne
 function insecables(racine) {
@@ -791,14 +810,15 @@ def transformer(s, artifact, style='feuille'):
     s = remplacer(s, 'function poser(html) { appli.querySelectorAll(".ecran").forEach(e => e.remove()); appli.insertAdjacentHTML("beforeend", html); }',
                   'function poser(html) { appli.querySelectorAll(".ecran").forEach(e => e.remove()); appli.insertAdjacentHTML("beforeend", html); insecables(appli.lastElementChild); }\n' + INSECABLES)
     if ex:
+        s = remplacer(s, 'function poser(html) {', CADRES_JS.replace('__CADRES__', json.dumps(CADRES, ensure_ascii=False)) + '\nfunction poser(html) {')
         s = remplacer(s, 'bouton("Suivant", "vert", `id="valider"', 'bouton("Valider", "vert", `id="valider"')
         # tout support (y compris le message ou la phrase à compléter) va dans le dégradé ; question et réponses dans le blanc
         s = remplacer(s, """      return media ? `<div class="scene">${rub}${vis}</div><div class="feuille-q">${titre}${reponses}</div>`
                    : `<div class="scene vide">${rub}</div><div class="feuille-q">${avant ? titre + vis : vis + titre}${reponses}</div>`;""",
-                      """      const enFond = q.photo && q.t !== "ecoute" && q.t !== "situation" ? `<img class="photo-scene" src="${IMAGES[q.photo]}" alt="">` : "";
-      const support = q.t === "aucun" ? "" : visuel(q.t === "document" ? { ...q, photo: null } : q);
+                      """      const enFond = q.photo && q.t !== "ecoute" && q.t !== "situation" ? photoFond(q.photo) : "";
+      const support = q.t === "aucun" ? "" : visuel(q.t === "document" ? { ...q, photo: null } : q).replace(/<img class="photo-scene" src="[^"]*" alt="">/, () => photoFond(q.photo));
       const visEx = q.t === "aucun" && !q.photo ? "" : `<div class="visuel${q.photo ? " photo-fond" : ""}">${enFond}${support}</div>`;
-      return `<div class="scene${q.t === "aucun" && !q.photo ? " vide" : ""}${q.photo && q.t !== "ecoute" && q.t !== "aucun" ? " carte-bas" : ""}">${visEx}</div><div class="feuille-q">${titre.replace(" consigne", "").replace(/ ([?!:;])/g, "\u00a0$1")}${reponses}</div>`;""")
+      return `<div class="scene${q.t === "aucun" && !q.photo ? " vide" : ""}">${visEx}</div><div class="feuille-q">${titre.replace(" consigne", "").replace(/ ([?!:;])/g, "\u00a0$1")}${reponses}</div>`;""")
     # le lecteur dit ce qu'il fait (affiché seulement dans « L'examen »)
     s = remplacer(s, '${ICONE.jouer}<span class="vague" id="vague"', '${ICONE.jouer}<span class="lecteur-texte" aria-hidden="true"><b>Écouter l\'enregistrement</b><small id="reste">${reste === 2 ? "2 écoutes possibles" : reste === 1 ? "1 écoute possible" : "Plus d\'écoute possible"}</small></span><span class="vague" id="vague"')
     s = remplacer(s, '    lecteur.disabled = true;\n', '    lecteur.disabled = true; { const r = $("#reste"); if (r) r.textContent = "Écoute en cours…"; }\n')
