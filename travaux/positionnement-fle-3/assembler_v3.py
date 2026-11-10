@@ -570,7 +570,7 @@ svg { display: block; }
 .langue-opt small { color: var(--doux); font-size: 12.5px; font-weight: 600; }
 /* une police par écriture (chargée à la demande) ; le français cité entre « » reste en Public Sans */
 [lang="ar-SD"], [lang="ar"], [lang="ps"], [lang="fa-AF"] { font-family: "Public Sans", "Noto Sans Arabic", system-ui, sans-serif; }
-[lang="ur"] { font-family: "Public Sans", "Noto Nastaliq Urdu", "Noto Sans Arabic", system-ui, sans-serif; }
+[lang="ur"] { font-family: "Public Sans", "Noto Nastaliq Urdu", "Noto Sans Arabic", system-ui, sans-serif; line-height: 1.9 !important; }      /* le nastaliq descend en diagonale : il lui faut un interligne large, même dans les grands titres serrés */
 [lang="ti"], [lang="am"] { font-family: "Public Sans", "Noto Sans Ethiopic", system-ui, sans-serif; }
 [lang="ff"], [lang="bm"] { font-family: "Noto Sans", "Public Sans", system-ui, sans-serif; }      /* ɓ ɗ ƴ ɛ ɔ ɲ ŋ : toute la langue dans la même police */
 [lang="bn"] { font-family: "Public Sans", "Noto Sans Bengali", system-ui, sans-serif; }
@@ -1017,6 +1017,7 @@ CSS_HUBLOT = r"""
   .bas { grid-column: 1; grid-row: 3; justify-self: end; position: relative; z-index: 1; width: min(100%, 880px); padding: 28px clamp(20px, 2.6vw, 52px) 0 clamp(40px, 6vw, 112px); background: none; }
   .question { font-size: clamp(42px, 4.4vw, 71px); font-weight: 800; line-height: 1.03; letter-spacing: -.038em; text-wrap: balance; }
   .question.longue { font-size: clamp(34px, 3.3vw, 54px); line-height: 1.08; letter-spacing: -.03em; }
+  .question[lang="ur"], .question.longue[lang="ur"] { font-size: clamp(32px, 3.3vw, 52px); }      /* le nastaliq, à grand interligne, prend plus de hauteur */
   .lire-consigne { width: 52px; height: 52px; margin-left: 10px; vertical-align: middle; }
   .lire-consigne svg { width: 24px; height: 24px; }
   .reponses { gap: 12px; }
