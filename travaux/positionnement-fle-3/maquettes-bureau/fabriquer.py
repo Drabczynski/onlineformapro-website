@@ -1,10 +1,10 @@
-"""Maquettes de la version bureau du test « L'examen » : trois pistes jouables et une galerie.
+"""Maquettes de la version bureau du test « L'examen » : six pistes jouables et une galerie.
 
     python3 travaux/positionnement-fle-3/maquettes-bureau/fabriquer.py
 
-Assemble src/piste-a.html, piste-b.html, piste-c.html avec la base commune (src/commun.css, src/commun.js) et les
+Assemble src/piste-a.html à piste-f.html avec la base commune (src/commun.css, src/commun.js) et les
 données intégrées (photos de img/, l'enregistrement du métro, les drapeaux et les traductions de la version mobile),
-et écrit piste-a.html, piste-b.html, piste-c.html, index.html (galerie, page web) et galerie-artifact.html (la même
+et écrit piste-a.html à piste-f.html, index.html (galerie, page web) et galerie-artifact.html (la même
 galerie sans en-tête de document, pour l'artifact). Chaque fichier ne dépend que de lui-même et de Google Fonts.
 La version mobile figée (../../positionnement-fle-examen-v1/) n'est pas touchée.
 """
@@ -44,6 +44,12 @@ PISTES = [
      "Un travelling : la photo glisse vers la gauche, la suivante arrive de la droite, le texte arrive net après un léger flou."),
     ("c", "L'affiche", "La question en typographie d'affiche, la photo dans une haute fenêtre de ciel qui suit la souris.",
      "La fenêtre se referme vers le haut comme un store, la suivante s'ouvre par le bas, la question monte mot à mot."),
+    ("d", "Le hublot", "La photo dans un grand cercle posé dans le ciel, la bille en satellite ; la question en grand à droite.",
+     "Un diaphragme : le cercle se referme sur la bille, le suivant s'ouvre depuis elle et la photo recule."),
+    ("e", "La scène", "L'écran mobile validé, agrandi et centré ; la photo s'étend sur toute la largeur derrière lui.",
+     "Une mise au point : la photo arrive floue et devient nette, la question monte mot à mot."),
+    ("f", "Le plein cadre", "La piste A sans bord : le ciel et la photo prennent plus de la moitié de l'écran et se fondent dans le blanc.",
+     "La photo se déploie depuis la gauche, son bord fondu en tête, et la précédente se replie sous elle."),
 ]
 
 
@@ -118,7 +124,7 @@ h1 {{ margin: 0 0 14px; font-size: clamp(40px, 6vw, 76px); font-weight: 900; lin
 </style>
 <header class="tete"><div>
   <h1>Version bureau du test « L'examen »</h1>
-  <p>Trois façons de porter le test sur un écran d'ordinateur, avec les règles de la version mobile : le ciel, la photo qui se fond dans le blanc, la bille violette, le texte aligné à gauche, aucun niveau affiché. Chaque piste se joue : accueil, quatre questions réelles, fin.</p>
+  <p>Six façons de porter le test sur un écran d'ordinateur, avec les règles de la version mobile : le ciel, la photo qui se fond dans le blanc, la bille violette, le texte aligné à gauche, aucun niveau affiché. Chaque piste se joue : accueil, quatre questions réelles, fin.</p>
 </div></header>
 <main>
   <div class="grille">

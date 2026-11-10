@@ -1,0 +1,94 @@
+<title>Piste D · Le hublot</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800;900&display=swap">
+<style>
+/*__CSS_COMMUN__*/
+/* Piste D — « Le hublot » : la photo dans un grand cercle posé dans le ciel, comme une bille agrandie ; la bille
+   d'écoute est son satellite. À droite, la question en grand, puis les réponses (la taille de texte de la piste A).
+   Transition : un diaphragme ; le cercle se referme sur la bille, le suivant s'ouvre depuis elle. */
+.ciel-d { position: fixed; inset: 0 auto 0 0; width: 60vw; background: var(--ciel); -webkit-mask-image: linear-gradient(90deg, #000 52%, transparent 100%); mask-image: linear-gradient(90deg, #000 52%, transparent 100%); }
+.ecran { display: grid; grid-template-columns: 50vw minmax(0, 1fr); }
+.gauche { position: relative; display: grid; place-items: center; padding: 96px 32px 72px; }
+.scene { position: relative; width: min(35vw, 62vh); }
+.hublot { position: relative; aspect-ratio: 1; overflow: hidden; border: 4px solid #fff; border-radius: 50%; background: var(--ciel); }
+.hublot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 50% 50%); }
+.hublot .coche { position: absolute; inset: 0; margin: auto; }
+.scene > .bille { position: absolute; z-index: 2; left: calc(85.4% - var(--b) / 2); top: calc(14.6% - var(--b) / 2); --b: 136px; }
+.sur { position: absolute; z-index: 1; left: 50%; bottom: -7%; display: grid; justify-items: center; gap: 12px; width: min(460px, 118%); transform: translateX(-50%); }
+.sur .carte, .sur .sms, .sur .phrase { justify-self: stretch; }
+.droite { position: relative; display: flex; flex-direction: column; justify-content: center; gap: 34px; max-width: 900px; padding: 104px clamp(40px, 6vw, 112px) 72px clamp(16px, 2.4vw, 48px); }
+.question { font-size: clamp(39px, 4.1vw, 66px); font-weight: 800; line-height: 1.03; letter-spacing: -.038em; text-wrap: balance; outline: none; }
+.reponses { display: grid; gap: 12px; }
+.rep { min-height: 76px; }
+.titre-geant { font-size: clamp(52px, 5.7vw, 96px); font-weight: 900; line-height: .95; letter-spacing: -.05em; text-wrap: balance; outline: none; }
+.ecran-accueil .droite { gap: 28px; }
+.ecran-accueil .bouton, .ecran-fin .bouton { align-self: flex-start; }
+.ecran-accueil .bouton { min-height: 72px; padding-inline: 40px 30px; font-size: 22px; }
+.texte-fin { max-width: 32ch; color: var(--doux); font-size: 22px; }
+
+/* entrée : le cercle s'ouvre depuis la bille, la photo recule, la question monte mot à mot */
+.actif .hublot { animation: ouvre 1.25s var(--ease-out) both; }
+@keyframes ouvre { from { clip-path: circle(0% at 85.4% 14.6%); } to { clip-path: circle(100% at 85.4% 14.6%); } }
+.actif .hublot img { animation: recule 1.8s var(--ease-out) both; }
+@keyframes recule { from { transform: scale(1.22); } }
+.actif .scene > .bille { animation: eclot .9s var(--ressort) both; }
+.actif .sur > * { animation: monte .8s var(--ease-out) .55s both; }
+.actif .sur > :nth-child(2) { animation-delay: .65s; }
+.actif .mot > span { animation: mot .95s var(--ease-out) both; animation-delay: calc(.2s + var(--i) * .045s); }
+.actif .rep { animation: monte .75s var(--ease-out) both; animation-delay: calc(.5s + var(--k) * .07s); }
+.actif .bas, .actif .sur-titre, .actif .aptitudes, .actif .bloc-langue, .actif .texte-fin, .actif .ecran-accueil .bouton, .actif .ecran-fin .bouton { animation: monte .8s var(--ease-out) .55s both; }
+.actif .coche { animation: eclot 1s var(--ressort) .45s both; }
+@keyframes monte { from { opacity: 0; transform: translateY(22px); } }
+@keyframes mot { from { transform: translateY(108%); } }
+@keyframes eclot { 0% { opacity: 0; transform: scale(.4); } 60% { opacity: 1; } }
+.relangue .hublot, .relangue .hublot img, .relangue .aptitudes, .relangue .bloc-langue, .relangue .bouton, .relangue .sur-titre { animation: none !important; }
+/* sortie : le cercle se referme sur la bille */
+.sort .hublot { animation: ferme .7s var(--ease) forwards; }
+@keyframes ferme { from { clip-path: circle(100% at 85.4% 14.6%); } to { clip-path: circle(0% at 85.4% 14.6%); } }
+.sort .sur, .sort .scene > .bille { animation: efface .3s forwards; }
+.sort .droite > * { animation: sortHaut .42s var(--ease) forwards; }
+.sort .droite > :nth-child(2) { animation-delay: .04s; }
+.sort .droite > :nth-child(3) { animation-delay: .08s; }
+@keyframes sortHaut { to { opacity: 0; transform: translateY(-28px); } }
+@keyframes efface { to { opacity: 0; } }
+
+@media (max-height: 820px) {
+  .droite { gap: 26px; padding-top: 84px; padding-bottom: 40px; }
+  .ecran-accueil .droite { gap: 20px; }
+  .titre-geant { font-size: min(5.7vw, 9.7vh); }
+  .scene > .bille { --b: 116px; }
+}
+@media (max-width: 900px) {
+  body { overflow: auto; }
+  .ciel-d { width: 100vw; height: 50vh; -webkit-mask-image: linear-gradient(#000 60%, transparent); mask-image: linear-gradient(#000 60%, transparent); }
+  .ecran { grid-template-columns: 1fr; overflow: auto; }
+  .scene { width: min(70vw, 340px); }
+  .droite { padding: 48px 20px 40px; }
+}
+</style>
+<div class="ciel-d" aria-hidden="true"></div>
+<main class="app" id="app"></main>
+<div class="haut"><button class="rond" id="son" type="button" aria-label="Couper les sons"></button><button class="rond cache" id="quitter" type="button" aria-label="Quitter le test"></button></div>
+<a class="pistes" href="index.html">Piste D · Le hublot — toutes les pistes</a>
+<script>
+const DONNEES = /*__DONNEES__*/;
+const SORTIE = 900;
+const POS = { intro: "42% 40%", metro: "40% 50%", cinema: "66% 50%", telephone: "50% 34%", croissant: "50% 50%" };
+const hublot = (nom, dedans = "") => `<div class="hublot">${nom ? `<img src="${IMG[nom]}" alt="" style="--pos:${POS[nom] || "50% 50%"}">` : ""}${dedans}</div>`;
+function rendre(e) {
+  if (e.type === "accueil") return `<div class="gauche"><div class="scene">${hublot(e.photo)}</div></div>
+    <div class="droite"><p class="sur-titre"${attrs("Français · environ 10 minutes")}>${texte("Français · environ 10 minutes")}</p>
+      <h1 class="titre-geant" tabindex="-1" data-focus${attrs("Évaluation de positionnement")}>${motAMot("Évaluation de positionnement")}</h1>
+      ${aptitudes()}${langues()}
+      <button class="bouton" type="button" data-action="commencer"><span${attrs("Commencer")}>${texte("Commencer")}</span><kbd aria-hidden="true">Entrée ↵</kbd></button></div>`;
+  if (e.type === "fin") return `<div class="gauche"><div class="scene">${hublot(null, `<div class="coche" aria-hidden="true">${ICONE.coche}</div>`)}</div></div>
+    <div class="droite"><h1 class="titre-geant" tabindex="-1" data-focus${attrs("Évaluation terminée")}>${motAMot("Évaluation terminée")}</h1>
+      <p class="texte-fin"${attrs("Merci pour vos réponses. Vous pouvez prévenir votre formateur que vous avez terminé.")}>${texte("Merci pour vos réponses. Vous pouvez prévenir votre formateur que vous avez terminé.")}</p>
+      <button class="bouton" type="button" data-action="fermer"><span${attrs("Fermer")}>${texte("Fermer")}</span><kbd aria-hidden="true">Entrée ↵</kbd></button></div>`;
+  const dessus = surPhoto(e, { bille: false });
+  return `<div class="gauche"><div class="scene">${hublot(e.photo)}${dessus ? `<div class="sur">${dessus}</div>` : ""}${e.bille ? bille() : ""}</div></div>
+    <div class="droite">${titreQuestion(e)}${reponses(e)}${bas()}</div>`;
+}
+/*__JS_COMMUN__*/
+</script>

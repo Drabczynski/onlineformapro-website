@@ -1,0 +1,90 @@
+<title>Piste F · Le plein cadre</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800;900&display=swap">
+<style>
+/*__CSS_COMMUN__*/
+/* Piste F — « Le plein cadre » : la piste A sans bord. Le ciel et la photo prennent toute la hauteur et plus de
+   la moitié de l'écran, puis se fondent dans le blanc sans aucune limite visible ; la question en grand sur le blanc
+   (la taille de texte de la piste A). Transition : la photo se déploie depuis la gauche, son bord fondu en tête,
+   et la précédente se replie sous elle. */
+@property --f { syntax: "<percentage>"; inherits: false; initial-value: 52%; }
+.ecran { display: grid; grid-template-columns: 50vw minmax(0, 1fr); }
+.fond { --f: 52%; position: absolute; inset: 0; overflow: hidden; background: var(--ciel); -webkit-mask-image: linear-gradient(90deg, #000 calc(var(--f) - 26%), transparent var(--f)); mask-image: linear-gradient(90deg, #000 calc(var(--f) - 26%), transparent var(--f)); }
+.fond img { width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 30% 50%); }
+.gauche { position: relative; z-index: 1; display: grid; place-items: center; padding: 104px 7vw 64px 4vw; }
+.sur { display: grid; justify-items: center; gap: 18px; width: min(440px, 100%); }
+.sur .carte, .sur .sms, .sur .phrase { justify-self: stretch; }
+.droite { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: center; gap: 36px; max-width: 880px; padding: 104px clamp(32px, 4vw, 80px) 72px clamp(16px, 2vw, 40px); }
+.question { font-size: clamp(39px, 4.1vw, 66px); font-weight: 800; line-height: 1.03; letter-spacing: -.038em; text-wrap: balance; outline: none; }
+.reponses { display: grid; gap: 12px; }
+.rep { min-height: 76px; }
+.titre-geant { font-size: clamp(52px, 5.7vw, 96px); font-weight: 900; line-height: .95; letter-spacing: -.05em; text-wrap: balance; outline: none; }
+.ecran-accueil .droite { gap: 30px; }
+.ecran-accueil .bouton, .ecran-fin .bouton { align-self: flex-start; }
+.ecran-accueil .bouton { min-height: 72px; padding-inline: 40px 30px; font-size: 22px; }
+.texte-fin { max-width: 32ch; color: var(--doux); font-size: 22px; }
+
+/* entrée : la photo se déploie depuis la gauche, la question monte mot à mot */
+.actif .fond { animation: deploie 1.7s cubic-bezier(.6, 0, .2, 1) both; }
+@keyframes deploie { from { --f: 0%; } to { --f: 52%; } }
+.actif .fond img { animation: glisse 2s var(--ease-out) both; }
+@keyframes glisse { from { transform: scale(1.08) translateX(-3%); } }
+.actif .sur > * { animation: monte .8s var(--ease-out) .5s both; }
+.actif .sur > :nth-child(2) { animation-delay: .6s; }
+.actif .sur > :nth-child(3) { animation-delay: .7s; }
+.actif .sur .bille { animation: eclot .9s var(--ressort) .55s both; }
+.actif .mot > span { animation: mot .95s var(--ease-out) both; animation-delay: calc(.25s + var(--i) * .045s); }
+.actif .rep { animation: monte .75s var(--ease-out) both; animation-delay: calc(.55s + var(--k) * .07s); }
+.actif .bas, .actif .sur-titre, .actif .aptitudes, .actif .bloc-langue, .actif .texte-fin, .actif .ecran-accueil .bouton, .actif .ecran-fin .bouton { animation: monte .8s var(--ease-out) .6s both; }
+.actif .coche { animation: eclot 1s var(--ressort) .4s both; }
+@keyframes monte { from { opacity: 0; transform: translateY(22px); } }
+@keyframes mot { from { transform: translateY(108%); } }
+@keyframes eclot { 0% { opacity: 0; transform: scale(.4); } 60% { opacity: 1; } }
+.relangue .fond, .relangue .fond img, .relangue .aptitudes, .relangue .bloc-langue, .relangue .bouton, .relangue .sur-titre { animation: none !important; }
+/* sortie : la photo se replie vers la gauche sous la suivante, le texte sort par le haut */
+.sort .fond { animation: replie 1s var(--ease) forwards; }
+@keyframes replie { from { --f: 52%; } to { --f: 0%; } }
+.sort .sur { animation: efface .3s forwards; }
+.sort .droite > * { animation: sortHaut .42s var(--ease) forwards; }
+.sort .droite > :nth-child(2) { animation-delay: .04s; }
+.sort .droite > :nth-child(3) { animation-delay: .08s; }
+@keyframes sortHaut { to { opacity: 0; transform: translateY(-28px); } }
+@keyframes efface { to { opacity: 0; } }
+
+@media (max-height: 820px) {
+  .droite { gap: 26px; padding-top: 84px; padding-bottom: 40px; }
+  .ecran-accueil .droite { gap: 20px; }
+  .titre-geant { font-size: min(5.7vw, 9.7vh); }
+}
+@media (max-width: 900px) {
+  body { overflow: auto; }
+  .ecran { grid-template-columns: 1fr; grid-template-rows: 46vh auto; overflow: auto; }
+  .fond { bottom: auto; height: 50vh; -webkit-mask-image: linear-gradient(#000 55%, transparent); mask-image: linear-gradient(#000 55%, transparent); }
+  .gauche { padding: 88px 20px 24px; }
+  .droite { padding: 24px 20px 40px; }
+}
+</style>
+<main class="app" id="app"></main>
+<div class="haut"><button class="rond" id="son" type="button" aria-label="Couper les sons"></button><button class="rond cache" id="quitter" type="button" aria-label="Quitter le test"></button></div>
+<a class="pistes" href="index.html">Piste F · Le plein cadre — toutes les pistes</a>
+<script>
+const DONNEES = /*__DONNEES__*/;
+const SORTIE = 1100;
+const POS = { intro: "34% 38%", metro: "30% 50%", cinema: "62% 50%", telephone: "40% 30%", croissant: "45% 50%" };
+const fond = (nom) => `<div class="fond" aria-hidden="true">${nom ? `<img src="${IMG[nom]}" alt="" style="--pos:${POS[nom] || "30% 50%"}">` : ""}</div>`;
+function rendre(e) {
+  if (e.type === "accueil") return `${fond(e.photo)}<div class="gauche"></div>
+    <div class="droite"><p class="sur-titre"${attrs("Français · environ 10 minutes")}>${texte("Français · environ 10 minutes")}</p>
+      <h1 class="titre-geant" tabindex="-1" data-focus${attrs("Évaluation de positionnement")}>${motAMot("Évaluation de positionnement")}</h1>
+      ${aptitudes()}${langues()}
+      <button class="bouton" type="button" data-action="commencer"><span${attrs("Commencer")}>${texte("Commencer")}</span><kbd aria-hidden="true">Entrée ↵</kbd></button></div>`;
+  if (e.type === "fin") return `${fond(null)}<div class="gauche"><div class="coche" aria-hidden="true">${ICONE.coche}</div></div>
+    <div class="droite"><h1 class="titre-geant" tabindex="-1" data-focus${attrs("Évaluation terminée")}>${motAMot("Évaluation terminée")}</h1>
+      <p class="texte-fin"${attrs("Merci pour vos réponses. Vous pouvez prévenir votre formateur que vous avez terminé.")}>${texte("Merci pour vos réponses. Vous pouvez prévenir votre formateur que vous avez terminé.")}</p>
+      <button class="bouton" type="button" data-action="fermer"><span${attrs("Fermer")}>${texte("Fermer")}</span><kbd aria-hidden="true">Entrée ↵</kbd></button></div>`;
+  return `${fond(e.photo)}<div class="gauche"><div class="sur">${surPhoto(e)}</div></div>
+    <div class="droite">${titreQuestion(e)}${reponses(e)}${bas()}</div>`;
+}
+/*__JS_COMMUN__*/
+</script>

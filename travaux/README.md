@@ -50,8 +50,8 @@ tout intégré. Les évolutions (version bureau) se font ailleurs. Détails dans
 `positionnement-fle-3/maquettes/` : trois pistes de style plus officiel pour le même test (fond clair, niveau caché à l'apprenant),
 à comparer avant de choisir (https://onlineformapro-website.vercel.app/travaux/positionnement-fle-3/maquettes/). `fabriquer.py` produit la page.
 
-`positionnement-fle-3/maquettes-bureau/` : trois pistes jouables pour la version bureau du test « L'examen » (« Le grand ciel »,
-« L'horizon », « L'affiche »), à comparer avant de choisir (https://onlineformapro-website.vercel.app/travaux/positionnement-fle-3/maquettes-bureau/).
+`positionnement-fle-3/maquettes-bureau/` : six pistes jouables pour la version bureau du test « L'examen » (« Le grand ciel »,
+« L'horizon », « L'affiche », « Le hublot », « La scène », « Le plein cadre »), à comparer avant de choisir (https://onlineformapro-website.vercel.app/travaux/positionnement-fle-3/maquettes-bureau/).
 Sources dans `src/`, `fabriquer.py` assemble les pages autonomes et la galerie.
 
 ## Newsletter CiviCap
