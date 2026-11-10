@@ -49,30 +49,45 @@ perçu comme plus officiel. La version 2, plus ludique, reste en place pour d'au
 
 ## La langue des consignes (« L'examen »)
 
-Sur l'accueil, le bouton « Langue des consignes » (drapeau et nom de la langue) ouvre la liste : français, soudanais
-(arabe du Soudan), ukrainien, pachto, lingala, somali, bengali, tibétain, dari, russe, tamoul. Le choix est gardé dans le
-navigateur.
+Sur l'accueil, le bouton « Langue des consignes » (drapeau et nom de la langue) ouvre la liste de 25 langues :
+français, soudanais (arabe du Soudan), ukrainien, pachto, lingala, somali, bengali, tibétain, dari (qui sert aussi aux
+persanophones d'Iran), russe, tamoul, puis arabe standard, turc (compris des Azéris), tigrinya, anglais, amharique,
+albanais, sango, peul (pular/pulaar), kurde kurmandji, kinyarwanda, espagnol, ourdou (sa voix sert aussi aux
+hindiphones), bambara (compris des Dioulas et des Malinkés), swahili. Le nom français affiché sous chaque langue dit les
+langues très proches qu'elle couvre (« Turc, azéri », « Peul, poular », « Bambara, dioula, malinké », « Ourdou, hindi
+à l'oral », « Dari, persan »). Le choix est gardé dans le navigateur.
 
 - Traduits : les questions, les phrases de contexte (« Vous prenez le métro… »), les situations, les étiquettes
   (« Vous recevez une invitation »), les indications (« Le verbe correct au présent ») et l'interface (accueil,
   boutons, fin, « Quitter le test ? »).
 - Restent en français : les phrases à compléter, les questions qui contiennent un blanc (« Ce message est envoyé pour
   ___ un rendez-vous. »), la dictée de numéro (A2-35), les réponses, les SMS, les documents et les textes à lire.
-- Le haut-parleur des questions A1 lit la question dans la langue choisie : voix ElevenLabs (modèle eleven_v3, la
-  même voix que les consignes françaises), contrôlées par reconnaissance vocale. Le tibétain n'a pas de voix (aucune
-  synthèse vocale ne le parle) : le haut-parleur disparaît.
-- Une police Noto par écriture (arabe, bengali, tamoul, tibétain, cyrillique), chargée seulement quand la langue est
-  choisie ; arabe, pachto et dari s'écrivent de droite à gauche.
+- Le haut-parleur des questions A1 lit la question dans la langue choisie : voix ElevenLabs (la même voix que les
+  consignes françaises ; modèle eleven_v3, ou eleven_v4 pour l'amharique et le peul, que seul ce modèle lit, et le
+  swahili, qu'il lit mieux), contrôlées par reconnaissance vocale ; les voix douteuses ont été refaites (meilleur de
+  trois essais). La voix peule ne peut pas être contrôlée mot à mot (la reconnaissance vocale ne connaît pas le peul :
+  ses retranscriptions approchées suivent bien les sons). Sans voix, faute de synthèse vocale qui les parle : tibétain,
+  tigrinya, albanais, sango, kurde kurmandji, kinyarwanda, bambara ; le haut-parleur disparaît. ElevenLabs lit le kurde
+  sorani (Irak), pas le kurmandji.
+- Une police Noto par écriture (arabe, nastaliq pour l'ourdou, guèze pour le tigrinya et l'amharique, bengali, tamoul,
+  tibétain, cyrillique, latin étendu pour le peul et le bambara), chargée seulement quand la langue est choisie ;
+  arabe, pachto, dari et ourdou s'écrivent de droite à gauche. Le nastaliq a un interligne large (et, sur ordinateur,
+  des questions un peu plus petites). Sur ordinateur, une question qui fait déborder la colonne passe au cran « longue ».
 - Fichiers : `traductions/source.json` (les textes à traduire), `traductions/<code>.json` (clé = texte français),
   `sons/<code>/` (voix, refaites par `python3 travaux/positionnement-fle-3/generer_voix.py <code>`), `drapeaux/`
-  (flag-icons, licence MIT ; drapeau tibétain simplifié dessiné pour le test, sans les lions).
+  (flag-icons, licence MIT ; Espagne en drapeau civil, Ligue arabe pour l'arabe standard, allégé ; drapeaux tibétain
+  et kurde simplifiés dessinés pour le test).
 - **À faire relire.** Les traductions ont été faites par l'IA, avec une relecture par retraduction, pas par des
-  locuteurs natifs. Avant un usage réel, les faire relire, en priorité le lingala (orthographe des ɛ/ɔ, emprunts au
-  français pour les termes de grammaire), le tibétain, le dari, l'arabe du Soudan (impératif au masculin, chiffres
-  arabes orientaux) et le pachto. Points de vigilance déjà repérés : « tante » n'a pas de mot neutre en bengali, tamoul
-  et somali (tante maternelle ou paternelle) ; « l'article » n'existe pas en bengali, tamoul et pachto (terme expliqué
-  ou emprunté) ; « De quoi s'agit-il ? » devient « Quel est ce texte ? » pour coller aux réponses (publicité, commande,
-  menu).
+  locuteurs natifs. Avant un usage réel, les faire relire, en priorité **le sango et le peul** (les traducteurs
+  disent eux-mêmes ne pas maîtriser assez les tons, les mots composés, les classes nominales et l'écart pular/pulaar),
+  puis le lingala (orthographe des ɛ/ɔ, emprunts au français pour les termes de grammaire), le kinyarwanda, le
+  bambara, le tigrinya, l'amharique, le kurde, le tibétain, le dari, l'arabe du Soudan (impératif au masculin,
+  chiffres arabes orientaux) et le pachto. Points de vigilance déjà repérés : « tante » n'a pas de mot neutre dans la
+  plupart de ces langues (tante maternelle ou paternelle) ; « l'article », absent de beaucoup d'entre elles, est
+  emprunté avec une courte explication (« le mot devant le nom ») ; « De quoi s'agit-il ? » devient « Quel genre de
+  texte est-ce ? » pour coller aux réponses (publicité, commande, menu) ; « La personne peut apporter : » précise
+  qu'il s'agit de l'invitée ; quelques mots d'Amérique latine en espagnol (« boleto », « mesero ») ; une légère pointe
+  d'accent français dans la voix anglaise (« Complete the sentence »).
 
 ## Ce qui change par rapport à la version 2
 

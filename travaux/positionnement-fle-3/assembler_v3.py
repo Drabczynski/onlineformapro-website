@@ -1153,6 +1153,8 @@ function hublot(ecran, relance) {
   const lecteur = visuel.querySelector(":scope > .lecteur");
   if (lecteur && !visuel.querySelector(".cadre-photo, .h-centre, .lettre-env, .doc-mini")) { lecteur.classList.add("h-seul"); if (!scene.querySelector("img")) scene.classList.add("h-turquoise"); }
   const q = ecran.querySelector(".question"); if (q && q.textContent.trim().length > 62) q.classList.add("longue");
+  // une question plus courte qui fait pourtant déborder la colonne (langue aux mots longs) passe aussi au cran « longue »
+  const f = ecran.querySelector(".feuille-q"); if (q && f && !q.classList.contains("longue") && f.scrollHeight > f.clientHeight + 2) q.classList.add("longue");
 }
 // la feuille d'un message : enveloppe, papier, mise en forme (formule d'appel, signature), aucun mot coupé
 function feuilleMessage(contenu) {
@@ -1172,7 +1174,11 @@ function feuilleMessage(contenu) {
 const ecranLectureTelephone = ecranLecture;
 ecranLecture = function (q) { if (!BUREAU.matches) return ecranLectureTelephone(q); etat.lus[q.id] = true; return afficher(); };
 // la colonne de texte ne défile que si son contenu dépasse vraiment (vérifié une fois les apparitions finies)
-function verifierDefilement() { const f = appli.querySelector(".ecran .feuille-q"); if (f) f.classList.toggle("deborde", f.scrollHeight > f.clientHeight + 2); }
+function verifierDefilement() {
+  const f = appli.querySelector(".ecran .feuille-q"); if (!f) return;
+  const q = f.querySelector(".question"); if (q && !q.classList.contains("longue") && f.scrollHeight > f.clientHeight + 2) q.classList.add("longue");      // police arrivée entre-temps
+  f.classList.toggle("deborde", f.scrollHeight > f.clientHeight + 2);
+}
 addEventListener("resize", verifierDefilement);
 BUREAU.addEventListener("change", () => afficher());      // passage téléphone ↔ ordinateur : l'écran se redessine
 // au clavier : A, B, C, D (ou 1 à 4) choisissent une réponse, Entrée valide
