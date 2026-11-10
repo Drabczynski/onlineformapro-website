@@ -566,10 +566,13 @@ svg { display: block; }
 .langue-opt { display: flex; align-items: center; gap: 10px; min-width: 0; padding: 10px 12px; border: 1.5px solid var(--filet); border-radius: 14px; background: #fff; text-align: start; }
 .langue-opt[aria-pressed="true"] { border-color: var(--violet); background: var(--violet-pale); }
 .langue-opt > span:last-child { display: grid; min-width: 0; line-height: 1.25; }
-.langue-opt b { font-size: 15.5px; font-weight: 700; }
+.langue-opt b { justify-self: start; font-size: 15.5px; font-weight: 700; }      /* un nom écrit de droite à gauche reste calé à gauche, au-dessus du nom français */
 .langue-opt small { color: var(--doux); font-size: 12.5px; font-weight: 600; }
 /* une police par écriture (chargée à la demande) ; le français cité entre « » reste en Public Sans */
-[lang="ar-SD"], [lang="ps"], [lang="fa-AF"] { font-family: "Public Sans", "Noto Sans Arabic", system-ui, sans-serif; }
+[lang="ar-SD"], [lang="ar"], [lang="ps"], [lang="fa-AF"] { font-family: "Public Sans", "Noto Sans Arabic", system-ui, sans-serif; }
+[lang="ur"] { font-family: "Public Sans", "Noto Nastaliq Urdu", "Noto Sans Arabic", system-ui, sans-serif; }
+[lang="ti"], [lang="am"] { font-family: "Public Sans", "Noto Sans Ethiopic", system-ui, sans-serif; }
+[lang="ff"], [lang="bm"] { font-family: "Noto Sans", "Public Sans", system-ui, sans-serif; }      /* ɓ ɗ ƴ ɛ ɔ ɲ ŋ : toute la langue dans la même police */
 [lang="bn"] { font-family: "Public Sans", "Noto Sans Bengali", system-ui, sans-serif; }
 [lang="ta"] { font-family: "Public Sans", "Noto Sans Tamil", system-ui, sans-serif; }
 [lang="bo"] { font-family: "Public Sans", "Noto Serif Tibetan", system-ui, serif; line-height: 1.7; }
@@ -802,9 +805,24 @@ LANGUES = [
     {"code": "so", "nom": "Somali", "natif": "Soomaali", "drapeau": "so"},
     {"code": "bn", "nom": "Bengali", "natif": "বাংলা", "drapeau": "bd", "police": "Noto Sans Bengali"},
     {"code": "bo", "nom": "Tibétain", "natif": "བོད་སྐད།", "drapeau": "tibet", "police": "Noto Serif Tibetan"},
-    {"code": "fa-AF", "nom": "Dari", "natif": "دری", "drapeau": "af", "dir": "rtl", "police": "Noto Sans Arabic"},
+    {"code": "fa-AF", "nom": "Dari, persan", "natif": "دری", "drapeau": "af", "dir": "rtl", "police": "Noto Sans Arabic"},
     {"code": "ru", "nom": "Russe", "natif": "Русский", "drapeau": "ru", "police": "Noto Sans"},
     {"code": "ta", "nom": "Tamoul", "natif": "தமிழ்", "drapeau": "lk", "police": "Noto Sans Tamil"},
+    # ajoutées ensuite ; le nom dit aussi les langues très proches qu'elles couvrent (azéri, poular, dioula, malinké, hindi à l'oral)
+    {"code": "ar", "nom": "Arabe", "natif": "العربية", "drapeau": "arab", "dir": "rtl", "police": "Noto Sans Arabic"},
+    {"code": "tr", "nom": "Turc, azéri", "natif": "Türkçe", "drapeau": "tr"},
+    {"code": "ti", "nom": "Tigrinya", "natif": "ትግርኛ", "drapeau": "er", "police": "Noto Sans Ethiopic"},
+    {"code": "en", "nom": "Anglais", "natif": "English", "drapeau": "gb"},
+    {"code": "am", "nom": "Amharique", "natif": "አማርኛ", "drapeau": "et", "police": "Noto Sans Ethiopic"},
+    {"code": "sq", "nom": "Albanais", "natif": "Shqip", "drapeau": "al"},
+    {"code": "sg", "nom": "Sango", "natif": "Sängö", "drapeau": "cf"},
+    {"code": "ff", "nom": "Peul, poular", "natif": "Pular / Pulaar", "drapeau": "gn", "police": "Noto Sans"},
+    {"code": "kmr", "nom": "Kurde (kurmandji)", "natif": "Kurdî", "drapeau": "kurdistan"},
+    {"code": "rw", "nom": "Kinyarwanda", "natif": "Ikinyarwanda", "drapeau": "rw"},
+    {"code": "es", "nom": "Espagnol", "natif": "Español", "drapeau": "es"},
+    {"code": "ur", "nom": "Ourdou, hindi à l'oral", "natif": "اردو", "drapeau": "pk", "dir": "rtl", "police": "Noto Nastaliq Urdu"},
+    {"code": "bm", "nom": "Bambara, dioula, malinké", "natif": "Bamanankan", "drapeau": "ml", "police": "Noto Sans"},
+    {"code": "sw", "nom": "Swahili", "natif": "Kiswahili", "drapeau": "tz"},
 ]
 
 def donnees_langue(artifact):

@@ -2,9 +2,11 @@
 
     python3 travaux/positionnement-fle-3/generer_voix.py [code ...]
 
-Pour chaque langue (sauf le tibétain : aucune voix de synthèse ne le parle) et chaque question A1 traduite
+Pour chaque langue qu'ElevenLabs lit (pas le tibétain, le tigrinya, l'albanais, le sango, le kurde kurmandji, le
+kinyarwanda ni le bambara : aucun de ses modèles ne les parle) et chaque question A1 traduite
 (traductions/source.json, clé questions_lues_A1 ; traductions/<code>.json), demande la lecture à ElevenLabs
-(modèle eleven_v3, même voix que les consignes françaises), égalise le volume (loudnorm, -16 LUFS) et encode en MP3 mono
+(modèle eleven_v3, ou eleven_v4 pour l'amharique et le peul que seul ce modèle lit, et le swahili qu'il lit mieux ; même voix que les consignes
+françaises), égalise le volume (loudnorm, -16 LUFS) et encode en MP3 mono
 32 kb/s dans sons/<code>/<empreinte du texte français>.mp3 ; sons/<code>/index.json dit quel fichier lit quelle question.
 Un fichier déjà fait pour la même traduction n'est pas redemandé. La clé ElevenLabs n'est pas dans le dépôt : c'est un
 secret réseau de l'environnement (hôte api.elevenlabs.io, en-tête xi-api-key), ajouté par le proxy.
@@ -14,7 +16,9 @@ import concurrent.futures, hashlib, json, os, subprocess, sys
 ICI = os.path.dirname(os.path.abspath(__file__))
 VOIX = "NgOpYRnxMldnH8FmqCdL"          # Neutre-FLE, la voix des consignes françaises
 MODELE = "eleven_v3"
-CODES_ELEVENLABS = {"ar-SD": "ar", "uk": "uk", "ps": "ps", "ln": "ln", "so": "so", "bn": "bn", "fa-AF": "fa", "ru": "ru", "ta": "ta"}
+CODES_ELEVENLABS = {"ar-SD": "ar", "uk": "uk", "ps": "ps", "ln": "ln", "so": "so", "bn": "bn", "fa-AF": "fa", "ru": "ru", "ta": "ta",
+                    "ar": "ar", "tr": "tr", "en": "en", "es": "es", "ur": "ur", "sw": "sw", "am": "am", "ff": "ff"}
+MODELE_PAR_LANGUE = {"am": "eleven_v4", "ff": "eleven_v4", "sw": "eleven_v4"}      # seul eleven_v4 lit l'amharique et le peul ; son swahili est plus juste
 
 
 def empreinte(texte):
@@ -26,7 +30,7 @@ def lire(code, fr, traduction, dossier):
     final, brut, trace = os.path.join(dossier, nom), os.path.join(dossier, "." + nom + ".brut"), os.path.join(dossier, "." + nom + ".txt")
     if os.path.exists(final) and os.path.exists(trace) and open(trace, encoding="utf-8").read() == traduction:
         return fr, nom, "déjà fait"
-    corps = json.dumps({"text": traduction, "model_id": MODELE, "language_code": CODES_ELEVENLABS[code]}, ensure_ascii=False)
+    corps = json.dumps({"text": traduction, "model_id": MODELE_PAR_LANGUE.get(code, MODELE), "language_code": CODES_ELEVENLABS[code]}, ensure_ascii=False)
     for essai in range(3):
         r = subprocess.run(["curl", "-sS", "-o", brut, "-w", "%{http_code}", "-X", "POST",
                             f"https://api.elevenlabs.io/v1/text-to-speech/{VOIX}?output_format=mp3_44100_128",
