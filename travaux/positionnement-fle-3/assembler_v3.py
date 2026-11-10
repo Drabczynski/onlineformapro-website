@@ -899,14 +899,13 @@ function insecables(racine) {
 # ------------------------------------------------------------------------------ « Le Hublot » : la version pour ordinateur
 # Même test que « L'examen » (même moteur, mêmes questions, langues et voix), avec une mise en page pour les écrans d'au
 # moins 1000 × 600 px ; en dessous (téléphone, tablette en portrait), rien ne change. Choisie parmi les maquettes bureau
-# (maquettes-bureau/, piste D), puis ajustée : contexte au-dessus de la question, message qui sort d'une enveloppe,
-# phrase à compléter au centre du cercle ; on lit de gauche à droite : la question à gauche, le cercle à droite.
+# (maquettes-bureau/, piste D), puis ajustée : contexte à droite au-dessus de la question, message qui sort d'une
+# enveloppe, phrase à compléter au centre du cercle.
 CSS_HUBLOT = r"""
 /* ================= « Le Hublot » : l'écran d'ordinateur (au moins 1000 × 600 px) =================
-   On lit de gauche à droite. À gauche, sur le blanc : ce qui pose la situation, la question en grand, les réponses, les
-   boutons. À droite, la photo dans un grand cercle (un ciel quand il n'y a pas de photo), posé sur ses propres couleurs
-   en flou léger ; la bille d'écoute est son satellite ; la phrase à compléter se place au centre du cercle ; un message
-   sort d'une enveloppe.
+   À gauche, la photo dans un grand cercle (un ciel quand il n'y a pas de photo), posé sur ses propres couleurs en flou
+   léger ; la bille d'écoute est son satellite ; la phrase à compléter se place au centre du cercle ; un message sort
+   d'une enveloppe. À droite, sur le blanc : ce qui pose la situation, la question en grand, les réponses, les boutons.
    Transition : le cercle se referme sur la bille et le suivant s'ouvre depuis elle ; les couleurs passent en fondu. */
 #sorties { display: none; }
 @media (min-width: 1000px) and (min-height: 600px) {
@@ -914,18 +913,18 @@ CSS_HUBLOT = r"""
   body { display: block; padding: 0; }
   .appli { position: fixed; inset: 0; width: auto; height: auto; border: 0; border-radius: 0; background: transparent; }
   #sorties { display: block; position: fixed; inset: 0; z-index: 0; pointer-events: none; }
-  .ecran { --rond: min(34vw, 60vh); --b: 156px; display: grid; grid-template-columns: minmax(0, 1fr) 50vw; grid-template-rows: minmax(84px, 1fr) auto auto minmax(36px, 1fr); }
+  .ecran { --rond: min(34vw, 60vh); --b: 156px; display: grid; grid-template-columns: 50vw minmax(0, 1fr); grid-template-rows: minmax(84px, 1fr) auto auto minmax(36px, 1fr); }
   .defile { display: contents; }
   .haut { padding: 24px 28px 0; }
   .rond { width: 46px; height: 46px; }
   .rond svg { width: 20px; height: 20px; }
 
-  /* la scène, à droite : un fond aux couleurs de la photo, le cercle au milieu */
-  .scene, .scene.vide { grid-column: 2; grid-row: 1 / -1; position: relative; display: grid; place-items: center; min-height: 0; padding: 88px 32px 72px; gap: 0; background: none; overflow: visible; }
+  /* la scène, à gauche : un fond aux couleurs de la photo, le cercle au milieu */
+  .scene, .scene.vide { grid-column: 1; grid-row: 1 / -1; position: relative; display: grid; place-items: center; min-height: 0; padding: 88px 32px 72px; gap: 0; background: none; overflow: visible; }
   .scene > :not(.fond-d) { grid-area: 1 / 1; position: relative; z-index: 1; }
-  .fond-d { position: absolute; inset: 0 0 0 auto; z-index: 0; width: 54vw; overflow: hidden;      /* l'emprise de l'ancien ciel : depuis le bord droit, arrêté avant la colonne de texte, pâli vers le bas */
-    -webkit-mask-image: linear-gradient(270deg, #000 40%, transparent 100%), linear-gradient(#000 30%, transparent 96%); -webkit-mask-composite: source-in;
-    mask-image: linear-gradient(270deg, #000 40%, transparent 100%), linear-gradient(#000 30%, transparent 96%); mask-composite: intersect; }
+  .fond-d { position: absolute; inset: 0 auto 0 0; z-index: 0; width: 54vw; overflow: hidden;      /* l'emprise de l'ancien ciel : arrêté avant la colonne de texte, pâli vers le bas */
+    -webkit-mask-image: linear-gradient(90deg, #000 40%, transparent 100%), linear-gradient(#000 30%, transparent 96%); -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(90deg, #000 40%, transparent 100%), linear-gradient(#000 30%, transparent 96%); mask-composite: intersect; }
   .fond-d .brume { position: absolute; inset: -12%; animation: h-derive 22s ease-in-out infinite alternate; }
   .fond-d img { display: block; width: 100%; height: 100%; object-fit: cover; filter: blur(28px) saturate(1.3); opacity: .5; }
   .fond-d .ciel-fin { position: absolute; inset: 0; background: var(--ciel); }
@@ -959,8 +958,8 @@ CSS_HUBLOT = r"""
   .lettre-env { z-index: 2; align-self: end; position: relative; display: grid; width: min(calc(var(--rond) * 1.12), 600px); margin-bottom: calc(var(--rond) * -.1); perspective: 900px; }
   /* le message est une feuille blanche, au coin replié, qui se détache du fond ; il fait face à la question */
   .visuel.h-message { width: min(calc(50vw - 72px), 660px); height: calc(100vh - 170px); }
-  .h-message > .cadre-photo, .h-message > .rond-ciel { --rond: min(26vw, 44vh); align-self: start; justify-self: end; }      /* la photo, plus petite, en haut côté bord */
-  .h-message > .lettre-env { align-self: center; justify-self: start; width: min(calc(100% - 3vw), 560px); margin: 0; }      /* la feuille côté question, en face d'elle */
+  .h-message > .cadre-photo, .h-message > .rond-ciel { --rond: min(26vw, 44vh); align-self: start; justify-self: start; }
+  .h-message > .lettre-env { align-self: center; justify-self: end; width: min(calc(100% - 3vw), 560px); margin: 0; }
   .h-feuille { position: relative; z-index: 2; transform-origin: 50% 100%; animation: h-extrait 1.25s cubic-bezier(.45, 0, .2, 1) 1s both; }
   .h-feuille::before { content: ""; position: absolute; inset: 0; z-index: -1; border: 1px solid rgba(20, 24, 43, .08); border-radius: 4px; background: #f3f0fb; transform: rotate(2.4deg) translate(6px, 4px); }      /* une seconde feuille dessous, légèrement de biais : le papier se détache du fond */
   .h-papier { position: relative; padding: 34px 40px 36px 38px; border: 1px solid rgba(20, 24, 43, .1); border-radius: 4px; background: #fff; color: var(--encre); text-align: left;
@@ -985,7 +984,7 @@ CSS_HUBLOT = r"""
   @keyframes h-rabat-sort { from { opacity: 1; transform: rotateX(180deg); } to { opacity: 0; transform: translateY(36px) rotateX(180deg); } }
   /* le message : d'abord il glisse hors de l'enveloppe, encore petit, puis il grandit jusqu'à sa place, devant elle */
   @keyframes h-extrait { 0% { opacity: 0; transform: scale(.55); z-index: 2; } 8% { opacity: 1; } 44% { transform: translateY(-72%) scale(.55); z-index: 2; } 46% { z-index: 5; } 100% { opacity: 1; transform: none; z-index: 5; } }
-  /* ce qui pose la situation passe dans la colonne de texte, au-dessus de la question : on le lit en premier */
+  /* ce qui pose la situation passe à droite, au-dessus de la question : on le lit en premier */
   .feuille-q > .amorce { justify-self: stretch; max-width: 46ch; margin: 0; padding: 2px 0 2px 18px; border: 0; border-left: 4px solid var(--violet); border-radius: 0; background: none; color: #343a52; font-size: clamp(19px, 1.5vw, 23px); font-weight: 600; line-height: 1.45; text-align: left; }
   .feuille-q > .amorce[dir="rtl"] { padding: 2px 18px 2px 0; border-left: 0; border-right: 4px solid var(--violet); text-align: right; }
   /* le document : son titre en carte sur le bas du cercle ; le rappel « Relire » aussi */
@@ -1012,10 +1011,10 @@ CSS_HUBLOT = r"""
   .scene > .ex-embleme { z-index: 2; width: 172px; height: 172px; border: 4px solid #fff; }
   .ex-embleme svg { width: 46%; height: 46%; }
 
-  /* la colonne de gauche, sur le blanc */
-  .feuille-q { grid-column: 1; grid-row: 2; justify-self: end; position: relative; z-index: 1; display: flex; flex-direction: column; gap: 30px; width: min(100%, 880px); max-height: calc(100vh - 220px); padding: 4px clamp(20px, 2.6vw, 52px) 4px clamp(40px, 6vw, 112px); overflow: hidden; background: none; scrollbar-width: thin; }
+  /* la colonne de droite, sur le blanc */
+  .feuille-q { grid-column: 2; grid-row: 2; position: relative; z-index: 1; display: flex; flex-direction: column; gap: 30px; width: min(100%, 880px); max-height: calc(100vh - 220px); padding: 4px clamp(40px, 6vw, 112px) 4px clamp(20px, 2.6vw, 52px); overflow: hidden; background: none; scrollbar-width: thin; }
   .feuille-q.deborde { overflow-y: auto; }      /* la barre n'apparaît que si le contenu dépasse vraiment, une fois l'écran posé */
-  .bas { grid-column: 1; grid-row: 3; justify-self: end; position: relative; z-index: 1; width: min(100%, 880px); padding: 28px clamp(20px, 2.6vw, 52px) 0 clamp(40px, 6vw, 112px); background: none; }
+  .bas { grid-column: 2; grid-row: 3; position: relative; z-index: 1; width: min(100%, 880px); padding: 28px clamp(40px, 6vw, 112px) 0 clamp(20px, 2.6vw, 52px); background: none; }
   .question { font-size: clamp(42px, 4.4vw, 71px); font-weight: 800; line-height: 1.03; letter-spacing: -.038em; text-wrap: balance; }
   .question.longue { font-size: clamp(34px, 3.3vw, 54px); line-height: 1.08; letter-spacing: -.03em; }
   .question[lang="ur"], .question.longue[lang="ur"] { font-size: clamp(32px, 3.3vw, 52px); }      /* le nastaliq, à grand interligne, prend plus de hauteur */
@@ -1056,7 +1055,7 @@ CSS_HUBLOT = r"""
   .feuille.feuille-langues { width: min(1240px, calc(100% - 64px)); }
   .feuille-langues .langues { grid-template-columns: repeat(auto-fill, minmax(205px, 1fr)); }
 
-  /* l'entrée : le cercle s'ouvre depuis la bille, la photo recule, les couleurs passent ; puis la cascade du texte
+  /* l'entrée : le cercle s'ouvre depuis la bille, la photo recule, les couleurs passent ; puis la cascade de droite
      (#appli : ces règles passent devant la cascade générale de « L'examen ») */
   #appli .ecran .cadre-photo, #appli .ecran .rond-ciel { animation: h-ouvre 1.25s cubic-bezier(.16, 1, .3, 1) both; }
   #appli .ecran .cadre-photo > .photo-scene { animation: h-recule 1.8s cubic-bezier(.16, 1, .3, 1) both; }
@@ -1113,7 +1112,7 @@ CSS_HUBLOT = r"""
 
 HUBLOT_JS = r"""// ------------------------------------------------------------------------------ « Le Hublot » (écran d'ordinateur)
 // Sur un écran d'au moins 1000 × 600 px, chaque écran est réorganisé une fois posé : un fond aux couleurs de la photo
-// (sa miniature floutée), un cercle de ciel quand il n'y a pas de photo, le contexte au-dessus de la question,
+// (sa miniature floutée), un cercle de ciel quand il n'y a pas de photo, le contexte à droite au-dessus de la question,
 // la phrase à compléter au centre du cercle, le message dans une enveloppe. L'écran précédent reste dessous le temps de
 // la transition (sans identifiants, inerte). Sur téléphone, rien de tout cela : « L'examen » tel quel.
 const BUREAU = matchMedia("(min-width: 1000px) and (min-height: 600px)");
@@ -1144,7 +1143,7 @@ function hublot(ecran, relance) {
   if (etat.ecran === "question" && !scene.querySelector(".cadre-photo") && /ciseaux/i.test(qActuelle().question))
     (visuel || scene).insertAdjacentHTML("beforeend", `<span class="h-signe h-interro" aria-hidden="true">${ICONE_INTERRO}</span>`);
   if (!visuel) return;
-  // ce qui pose la situation (contexte, situation, étiquette du message) passe dans la colonne de texte, au-dessus de la question
+  // ce qui pose la situation (contexte, situation, étiquette du message) passe à droite, au-dessus de la question
   const feuille = ecran.querySelector(".feuille-q"), amorces = [...visuel.querySelectorAll(":scope > .contexte, :scope > .situation, :scope > .etiquette, :scope > .sms > .etiquette")];
   if (feuille && amorces.length) { amorces.forEach(a => a.classList.add("amorce")); feuille.prepend(...amorces); }
   // la phrase à compléter (et son indication) au centre du cercle
@@ -1180,7 +1179,7 @@ function feuilleMessage(contenu) {
 // sur ordinateur, un document se lit en face de sa question : plus d'écran de lecture séparé
 const ecranLectureTelephone = ecranLecture;
 ecranLecture = function (q) { if (!BUREAU.matches) return ecranLectureTelephone(q); etat.lus[q.id] = true; return afficher(); };
-// la colonne de texte ne défile que si son contenu dépasse vraiment (vérifié une fois les apparitions finies)
+// la colonne de droite ne défile que si son contenu dépasse vraiment (vérifié une fois les apparitions finies)
 function verifierDefilement() {
   const f = appli.querySelector(".ecran .feuille-q"); if (!f) return;
   const q = f.querySelector(".question"); if (q && !q.classList.contains("longue") && f.scrollHeight > f.clientHeight + 2) q.classList.add("longue");      // police arrivée entre-temps
