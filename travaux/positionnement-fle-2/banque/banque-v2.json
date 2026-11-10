@@ -16,6 +16,7 @@
   "indice": "(parler)",
   "id": "A1-01",
   "groupe": "A1:A1-01",
+  "photo": "conversation",
   "lettres": [
    "a",
    "d",
@@ -46,6 +47,7 @@
   "t": "aucun",
   "id": "A1-02",
   "groupe": "A1:A1-02",
+  "photo": "agenda",
   "lettres": [
    "a",
    "c",
@@ -75,7 +77,8 @@
   "t": "trou",
   "phrase": "Elle ______ une voiture.",
   "id": "A1-03",
-  "groupe": "A1:A1-03"
+  "groupe": "A1:A1-03",
+  "photo": "voiture"
  },
  {
   "niveau": "A1",
@@ -110,6 +113,7 @@
   "phrase": "______ livre est intéressant.",
   "id": "A1-05",
   "groupe": "A1:A1-05",
+  "photo": "lecture",
   "lettres": [
    "a",
    "e",
@@ -184,7 +188,8 @@
    "fromagerie"
   ],
   "id": "A1-08",
-  "groupe": "A1:A1-08"
+  "groupe": "A1:A1-08",
+  "photo": "tante"
  },
  {
   "niveau": "A1",
@@ -261,7 +266,8 @@
    "plage"
   ],
   "id": "A1-12",
-  "groupe": "A1:A1-12"
+  "groupe": "A1:A1-12",
+  "photo": "telephone-3"
  },
  {
   "niveau": "A1",
@@ -278,7 +284,8 @@
   "t": "sms",
   "texte": "Cabinet Brunet – Confirmation de votre rendez-vous dentiste le 04/11 à 9h. Si vous ne pouvez pas venir, merci de nous téléphoner. Ne pas répondre à ce message automatique.",
   "id": "A1-13",
-  "groupe": "A1:A1-13"
+  "groupe": "A1:A1-13",
+  "photo": "telephone-1"
  },
  {
   "niveau": "A1",
@@ -315,7 +322,8 @@
   "etiquette": "Vous vous présentez au groupe.",
   "phrase": "Bonjour, je m'appelle Amir, ______ 29 ans.",
   "id": "A1-15",
-  "groupe": "A1:A1-15"
+  "groupe": "A1:A1-15",
+  "photo": "amir"
  },
  {
   "niveau": "A1",
@@ -394,7 +402,8 @@
   "t": "trou",
   "phrase": "J'______ le français depuis 2 ans.",
   "id": "A1-19",
-  "groupe": "A1:A1-19"
+  "groupe": "A1:A1-19",
+  "photo": "classe"
  },
  {
   "niveau": "A1",
@@ -419,7 +428,8 @@
    "Lisa"
   ],
   "groupe": "A1:jeanne",
-  "id": "A1-20"
+  "id": "A1-20",
+  "photo": "lisa"
  },
  {
   "niveau": "A1",
@@ -444,7 +454,8 @@
    "Lisa"
   ],
   "groupe": "A1:jeanne",
-  "id": "A1-21"
+  "id": "A1-21",
+  "photo": "lisa"
  },
  {
   "niveau": "A1",
@@ -469,7 +480,8 @@
    "Lisa"
   ],
   "groupe": "A1:jeanne",
-  "id": "A1-22"
+  "id": "A1-22",
+  "photo": "lisa"
  },
  {
   "niveau": "A1",
@@ -504,7 +516,8 @@
   "phrase": "Demain, je ______ mes achats.",
   "deduite": true,
   "id": "A1-24",
-  "groupe": "A1:A1-24"
+  "groupe": "A1:A1-24",
+  "photo": "marche"
  },
  {
   "niveau": "A1",
@@ -522,7 +535,8 @@
   "phrase": "Je ______ 25 ans.",
   "deduite": true,
   "id": "A1-25",
-  "groupe": "A1:A1-25"
+  "groupe": "A1:A1-25",
+  "photo": "jeune-femme"
  },
  {
   "niveau": "A1",
@@ -540,7 +554,8 @@
   "phrase": "Je m'______ Paul.",
   "deduite": true,
   "id": "A1-26",
-  "groupe": "A1:A1-26"
+  "groupe": "A1:A1-26",
+  "photo": "presentation"
  },
  {
   "niveau": "A1",
@@ -706,7 +721,8 @@
   "phrase": "Je ______ un café.",
   "indice": "Le verbe correct au présent",
   "id": "A1-36",
-  "groupe": "A1:A1-36"
+  "groupe": "A1:A1-36",
+  "photo": "cafe"
  },
  {
   "niveau": "A1",
@@ -742,7 +758,8 @@
   "phrase": "Paul ______ du pain.",
   "indice": "(manger)",
   "id": "A1-38",
-  "groupe": "A1:A1-38"
+  "groupe": "A1:A1-38",
+  "photo": "pain"
  },
  {
   "niveau": "A1",
@@ -796,7 +813,8 @@
   "phrase": "Je ______ un croissant.",
   "indice": "Le verbe correct au présent",
   "id": "A1-41",
-  "groupe": "A1:A1-41"
+  "groupe": "A1:A1-41",
+  "photo": "croissant"
  },
  {
   "niveau": "A1",
@@ -832,7 +850,8 @@
   "phrase": "Je ______ très fatigué aujourd'hui.",
   "indice": "",
   "id": "A1-43",
-  "groupe": "A1:A1-43"
+  "groupe": "A1:A1-43",
+  "photo": "fatigue"
  },
  {
   "niveau": "A1",
@@ -887,7 +906,8 @@
   "phrase": "Tu ______ quelle langue ?",
   "indice": "",
   "id": "A1-46",
-  "groupe": "A1:A1-46"
+  "groupe": "A1:A1-46",
+  "photo": "amies"
  },
  {
   "niveau": "A1",
@@ -1031,7 +1051,8 @@
   "phrase": "Je ______ deux chats.",
   "indice": "(avoir)",
   "id": "A1-54",
-  "groupe": "A1:A1-54"
+  "groupe": "A1:A1-54",
+  "photo": "chats"
  },
  {
   "niveau": "A1",
@@ -1047,7 +1068,8 @@
   "bonne": 1,
   "t": "aucun",
   "id": "A1-55",
-  "groupe": "A1:A1-55"
+  "groupe": "A1:A1-55",
+  "photo": "amies"
  },
  {
   "niveau": "A1",
@@ -1063,7 +1085,8 @@
   "bonne": 0,
   "t": "aucun",
   "id": "A1-56",
-  "groupe": "A1:A1-56"
+  "groupe": "A1:A1-56",
+  "photo": "medecin"
  },
  {
   "niveau": "A1",
@@ -1089,7 +1112,8 @@
    }
   ],
   "deduite": true,
-  "id": "A1-57"
+  "id": "A1-57",
+  "photo": "lucas"
  },
  {
   "niveau": "A1",
@@ -1112,7 +1136,8 @@
    }
   ],
   "deduite": true,
-  "id": "A1-58"
+  "id": "A1-58",
+  "photo": "lucas"
  },
  {
   "niveau": "A1",
@@ -1151,7 +1176,8 @@
    }
   ],
   "id": "A1-60",
-  "groupe": "A1:A1-60"
+  "groupe": "A1:A1-60",
+  "photo": "prets"
  },
  {
   "niveau": "A1",
@@ -1186,7 +1212,8 @@
   "bonne": 0,
   "t": "aucun",
   "id": "A2-01",
-  "groupe": "A2:A2-01"
+  "groupe": "A2:A2-01",
+  "photo": "diner"
  },
  {
   "niveau": "A2",
@@ -1332,7 +1359,8 @@
   "t": "sms",
   "texte": "Bonjour, je suis très contente que tu viennes chez moi samedi. Quand penses-tu arriver ?",
   "id": "A2-08",
-  "groupe": "A2:A2-08"
+  "groupe": "A2:A2-08",
+  "photo": "telephone-1"
  },
  {
   "niveau": "A2",
@@ -1368,6 +1396,7 @@
   "texte": "J'ai oublié les billets pour le concert de ce soir. Ils sont sur mon bureau. Pense à ______ prendre, s'il te plaît ! Merci !",
   "id": "A2-10",
   "groupe": "A2:A2-10",
+  "photo": "telephone-3",
   "lettres": [
    "e",
    "l",
@@ -1419,7 +1448,8 @@
    "C. Dupont – service achats"
   ],
   "id": "A2-12",
-  "groupe": "A2:A2-12"
+  "groupe": "A2:A2-12",
+  "photo": "lettre"
  },
  {
   "niveau": "A2",
@@ -1456,7 +1486,8 @@
   "etiquette": "Vous recevez une invitation",
   "texte": "Tu ne vas pas me croire ! J'ai gagné deux places pour la finale de rugby samedi au stade de France ! Tu viens avec moi ?",
   "id": "A2-14",
-  "groupe": "A2:A2-14"
+  "groupe": "A2:A2-14",
+  "photo": "telephone-2"
  },
  {
   "niveau": "A2",
@@ -1578,7 +1609,8 @@
   "t": "trou",
   "phrase": "Il mange en ______ la télévision.",
   "id": "A2-20",
-  "groupe": "A2:A2-20"
+  "groupe": "A2:A2-20",
+  "photo": "tele"
  },
  {
   "niveau": "A2",
@@ -1595,7 +1627,8 @@
   "t": "trou",
   "phrase": "Monsieur Martin et ______ femme sont très sympathiques.",
   "id": "A2-21",
-  "groupe": "A2:A2-21"
+  "groupe": "A2:A2-21",
+  "photo": "couple"
  },
  {
   "niveau": "A2",
@@ -1665,7 +1698,8 @@
   "t": "trou",
   "phrase": "Chaque matin, Paul ______ son café à la maison.",
   "id": "A2-25",
-  "groupe": "A2:A2-25"
+  "groupe": "A2:A2-25",
+  "photo": "cafe"
  },
  {
   "niveau": "A2",
@@ -1682,7 +1716,8 @@
   "t": "trou",
   "phrase": "Quand elle était petite, elle ______ toujours avec son frère.",
   "id": "A2-26",
-  "groupe": "A2:A2-26"
+  "groupe": "A2:A2-26",
+  "photo": "enfants"
  },
  {
   "niveau": "A2",
@@ -1699,7 +1734,8 @@
   "t": "trou",
   "phrase": "Tu connais Marie ? Oui, je ______ connais.",
   "id": "A2-27",
-  "groupe": "A2:A2-27"
+  "groupe": "A2:A2-27",
+  "photo": "conversation"
  },
  {
   "niveau": "A2",
@@ -1768,7 +1804,8 @@
   "t": "trou",
   "phrase": "C'est mon stylo. Où est le ______ ?",
   "id": "A2-31",
-  "groupe": "A2:A2-31"
+  "groupe": "A2:A2-31",
+  "photo": "stylos"
  },
  {
   "niveau": "A2",
@@ -1835,7 +1872,8 @@
   "bonne": 1,
   "t": "aucun",
   "id": "A2-35",
-  "groupe": "A2:A2-35"
+  "groupe": "A2:A2-35",
+  "photo": "telephone-2"
  },
  {
   "niveau": "A2",
@@ -1968,7 +2006,8 @@
    }
   ],
   "deduite": true,
-  "id": "A2-39"
+  "id": "A2-39",
+  "photo": "bureau-julien"
  },
  {
   "niveau": "A2",
@@ -2059,7 +2098,8 @@
    }
   ],
   "deduite": true,
-  "id": "A2-40"
+  "id": "A2-40",
+  "photo": "bureau-julien"
  },
  {
   "niveau": "B1",
@@ -2076,7 +2116,8 @@
   "t": "sms",
   "texte": "La réunion aura lieu demain matin dans nos bureaux. Vous pouvez vous garer dans le parking réservé à la clientèle. Nos bureaux se trouvent au 1er étage du bâtiment principal. Viendrez-vous seul ?",
   "id": "B1-01",
-  "groupe": "B1:B1-01"
+  "groupe": "B1:B1-01",
+  "photo": "telephone-3"
  },
  {
   "niveau": "B1",
@@ -2093,7 +2134,8 @@
   "t": "sms",
   "texte": "Comme tu n'es pas disponible le matin, pourrions-nous aller au musée en fin d'après-midi ?",
   "id": "B1-02",
-  "groupe": "B1:B1-02"
+  "groupe": "B1:B1-02",
+  "photo": "telephone-1"
  },
  {
   "niveau": "B1",

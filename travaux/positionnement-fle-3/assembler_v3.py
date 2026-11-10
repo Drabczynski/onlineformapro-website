@@ -405,7 +405,8 @@ svg { display: block; }
 .photo-fond .etiquette { padding: 4px 12px; border-radius: 999px; background: rgba(255, 255, 255, .93); color: var(--encre); }
 .photo-fond .indice { background: #fff; }
 .lecture-tete { position: relative; z-index: 1; }
-.lecture-tete.sur-photo .papier-tete { padding: 12px 16px; border-radius: 18px; background: rgba(255, 255, 255, .94); }
+.lecture-tete.sur-photo .papier-tete { margin-block: -10px; padding: 10px 14px; border-radius: 18px; background: rgba(255, 255, 255, .94); }      /* la carte déborde dans les marges : même hauteur qu'avant */
+.fond-seul { position: absolute; inset: 0; }      /* la photo seule, hors du flux : elle n'ajoute aucune hauteur */
 .photo-scene { display: block; width: 100%; max-height: 200px; object-fit: cover; border-radius: 18px; }
 .phrase { justify-self: stretch; margin: 0; padding: 18px 20px; border-radius: 18px; background: #fff; color: var(--encre); font-size: 24px; font-weight: 700; line-height: 1.55; text-align: left; }
 .phrase.petite { font-size: 19px; }
@@ -660,7 +661,7 @@ function ecranAccueil() {
   poser(`<section class="ecran ecran-accueil" aria-labelledby="t-accueil">
     <div class="haut">${boutonSon()}</div>
     <div class="defile">
-      <div class="scene">${IMAGES.intro ? `<div class="visuel photo-fond"><img class="photo-scene" src="${IMAGES.intro}" alt=""></div>` : `<span class="ex-embleme" aria-hidden="true">${ICONE.ecoute}</span>`}</div>
+      <div class="scene">${IMAGES.intro ? `<div class="visuel photo-fond fond-seul"><img class="photo-scene" src="${IMAGES.intro}" alt=""></div>` : `<span class="ex-embleme" aria-hidden="true">${ICONE.ecoute}</span>`}</div>
       <div class="feuille-q">
         <h1 class="ex-titre" id="t-accueil">Évaluation de positionnement</h1>
         <p class="ex-sous">Français · environ 10 minutes</p>
@@ -704,7 +705,7 @@ function ecranLecture(q) {
   // le titre du document dans le dégradé (sur la photo en grand s'il y en a une), le texte dans le blanc
   const html = papier({ ...q, photo: null }).replace("<strong>", '<strong id="t-doc">'), m = html.match(/<div class="papier-tete">[\s\S]*?<\/small><\/div><\/div>/);
   const tete = m ? m[0] : "", corps = m ? html.replace(tete, "") : html;
-  const fond = q.photo ? `<div class="visuel photo-fond"><img class="photo-scene" src="${IMAGES[q.photo]}" alt=""></div>` : "";
+  const fond = q.photo ? `<div class="visuel photo-fond fond-seul"><img class="photo-scene" src="${IMAGES[q.photo]}" alt=""></div>` : "";
   poser(`<section class="ecran" aria-labelledby="t-doc">
     ${haut()}
     <div class="defile"><div class="scene">${fond}<div class="lecture-tete${q.photo ? " sur-photo" : ""}">${tete}</div></div>
