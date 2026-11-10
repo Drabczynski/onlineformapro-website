@@ -12,12 +12,13 @@ perçu comme plus officiel. La version 2, plus ludique, reste en place pour d'au
   turquoise en haut de l'écran qui s'efface vers un fond clair, cartes blanches bordées, bouton sombre, barre
   d'avancement sous l'en-tête (elle avance d'une question sur 21, le maximum, sans repartir à zéro). Ses sons sont
   lus dans `../../positionnement-fle-2/sons/`.
-- `examen/` : la variante « L'examen » en violet, avec les polices de la v2 (Baloo 2 pour les titres, Nunito pour
-  le texte) : https://onlineformapro-website.vercel.app/travaux/positionnement-fle-3/examen/ . Bandeau blanc avec un
-  filet dégradé violet, nom de la compétence au-dessus de chaque question (« Compréhension orale »…), réponses
-  A, B, C dans des cartes blanches, barre du bas « Je ne sais pas » / « Valider », lecteur « Écouter
-  l'enregistrement » avec les écoutes restantes, marges de 20 px et contenu centré dans la hauteur. Ses sons sont lus
-  dans `../../positionnement-fle-2/sons/`.
+- `examen/` : la variante « L'examen », minimaliste, en police Public Sans :
+  https://onlineformapro-website.vercel.app/travaux/positionnement-fle-3/examen/ . En haut, le dégradé bleu ciel de la
+  référence (relevé au pixel), qui prend toute la place libre et porte le support : la bille d'écoute violette animée
+  (sur la photo quand il y en a une, la photo remplit tout le haut et se fond dans le blanc), le message, la phrase à
+  compléter, le document. En bas, sur blanc, la question et les réponses A, B, C, alignées à gauche, puis « Je ne sais
+  pas » / « Valider ». Aucun bandeau, aucun numéro de question, aucune compétence affichée, pas de bouton pour quitter :
+  seul le bouton du son reste en haut à droite. Ses sons sont lus dans `../../positionnement-fle-2/sons/`.
 - `maquettes/` : les trois pistes comparées avant le choix.
 
 ## Ce qui change par rapport à la version 2

@@ -859,7 +859,7 @@ function ecranQuestion() {
   appli.querySelectorAll(".ecouter-rep").forEach(b => b.addEventListener("click", () => jouer(b.dataset.a, [], b, null, null, {})));
   valider.addEventListener("click", () => { const t = appli.querySelector('.rep[aria-checked="true"]'); if (t) t.classList.add("envoyee"); SONS.valider(); vibrer(12); suivante(380); });
   $("#passer").addEventListener("click", () => { etat.reponses[q.id] = null; SONS.passer(); suivante(120); });
-  $("#fermer").addEventListener("click", demanderQuitter);
+  $("#fermer")?.addEventListener("click", demanderQuitter);
   const lecteur = $("#lecteur");
   if (lecteur) lecteur.addEventListener("click", () => {
     const n = (etat.ecoutes[q.id] || 0) + 1; etat.ecoutes[q.id] = n;
@@ -906,7 +906,7 @@ function ecranLecture(q) {
     <div class="bas">${bouton("J'ai lu", "vert", 'id="lu"')}</div>
   </section>`);
   brancherSon(); avancerJauge();
-  $("#fermer").addEventListener("click", demanderQuitter);
+  $("#fermer")?.addEventListener("click", demanderQuitter);
   $("#lu").addEventListener("click", () => { etat.lus[q.id] = true; SONS.page(); afficher(); });
   resserrer();
 }
