@@ -321,10 +321,10 @@ svg { display: block; }
   .fond-d .brume { position: absolute; inset: -12%; animation: h-derive 22s ease-in-out infinite alternate; }
   .fond-d img { display: block; width: 100%; height: 100%; object-fit: cover; filter: blur(28px) saturate(1.3); opacity: .5; }
   .fond-d .ciel-fin { position: absolute; inset: 0; background: var(--ciel); }
-  /* la bille d'écoute seule et aucune image à l'écran (ni photo, ni phrase, ni message) : un dégradé turquoise plus affirmé, réglé
-     par l'utilisateur dans la maquette « Bulle d'écoute seule » (linéaire 160°, fond autour à 70 %) */
-  .h-bulle-seule .rond-ciel { background: linear-gradient(160deg, #52a3b7 0%, #35b1d0 50%, #1bf3da 100%); }
-  .h-bulle-seule .fond-d .ciel-fin { background: linear-gradient(180deg, #37cbc9 0%, #72c8de 55%, #d3eef5 100%); opacity: .7; }
+  /* aucune image à l'écran, et dans le cercle la bille d'écoute seule ou la phrase à compléter : un dégradé turquoise
+     plus affirmé, réglé par l'utilisateur dans la maquette « Bulle d'écoute seule » (linéaire 160°, fond autour à 70 %) */
+  .h-turquoise .rond-ciel { background: linear-gradient(160deg, #52a3b7 0%, #35b1d0 50%, #1bf3da 100%); }
+  .h-turquoise .fond-d .ciel-fin { background: linear-gradient(180deg, #37cbc9 0%, #72c8de 55%, #d3eef5 100%); opacity: .7; }
   @keyframes h-derive { to { transform: translate(-3%, -2%) scale(1.08); } }
   .visuel, .visuel.fond-seul { position: relative; inset: auto; display: grid; place-items: center; width: var(--rond); height: var(--rond); gap: 0; }
   .visuel > * { grid-area: 1 / 1; }
@@ -394,6 +394,8 @@ svg { display: block; }
   .scene > .h-signe, .visuel > .h-signe { z-index: 2; color: #fff; pointer-events: none; }
   .h-contraire { width: calc(var(--rond) * .42); height: calc(var(--rond) * .42); }
   .h-contraire svg { width: 100%; height: 100%; overflow: visible; }
+  .h-interro { width: calc(var(--rond) * .4); height: calc(var(--rond) * .4); }
+  .h-interro svg { width: 100%; height: 100%; overflow: visible; }
   /* une affiche (image à lire) : pas de cercle, l'image entière */
   .visuel.h-affiche { width: min(38vw, 560px); height: auto; }
   .h-affiche .image-support img { max-height: calc(100vh - 220px); }
@@ -453,6 +455,7 @@ svg { display: block; }
   #appli .ecran .scene > .ex-embleme { animation: eclot 1s cubic-bezier(.34, 1.56, .64, 1) .45s backwards; }
   #appli .ecran .h-contraire .h-fleche-1 { animation: h-glisse-d .9s cubic-bezier(.16, 1, .3, 1) .55s backwards; }
   #appli .ecran .h-contraire .h-fleche-2 { animation: h-glisse-g .9s cubic-bezier(.16, 1, .3, 1) .55s backwards; }
+  #appli .ecran .h-interro { animation: eclot .9s cubic-bezier(.34, 1.56, .64, 1) .55s backwards; }
   @keyframes h-glisse-d { from { opacity: 0; transform: translateX(-26px); } }
   @keyframes h-glisse-g { from { opacity: 0; transform: translateX(26px); } }
   @keyframes h-ouvre { from { clip-path: circle(0% at 85.4% 14.6%); } to { clip-path: circle(100% at 85.4% 14.6%); } }
@@ -463,7 +466,7 @@ svg { display: block; }
   #sorties .env-dos, #sorties .env-poche, #sorties .env-rabat { display: none; }
   #sorties .ecran .cadre-photo, #sorties .ecran .rond-ciel { animation: h-ferme .7s cubic-bezier(.2, .8, .2, 1) forwards; }
   #sorties .ecran .fond-d { animation: h-efface 2.2s cubic-bezier(.45, 0, .25, 1) forwards; }
-  #sorties .ecran .visuel > :not(.cadre-photo):not(.rond-ciel), #sorties .ecran .scene > .lecture-tete, #sorties .ecran .scene > .ex-embleme { animation: h-efface .3s ease forwards; }
+  #sorties .ecran .visuel > :not(.cadre-photo):not(.rond-ciel), #sorties .ecran .scene > .lecture-tete, #sorties .ecran .scene > .ex-embleme, #sorties .ecran .scene > .h-interro { animation: h-efface .3s ease forwards; }
   #sorties .ecran .feuille-q, #sorties .ecran .bas, #sorties .ecran .haut { animation: h-sort .42s cubic-bezier(.2, .8, .2, 1) forwards; }
   @keyframes h-ferme { from { clip-path: circle(100% at 85.4% 14.6%); } to { clip-path: circle(0% at 85.4% 14.6%); } }
   @keyframes h-efface { to { opacity: 0; } }
@@ -1210,6 +1213,7 @@ const SORTIES = document.body.insertBefore(Object.assign(document.createElement(
 SORTIES.setAttribute("aria-hidden", "true");
 let cleAffichee = "";
 const ICONE_CONTRAIRE = '<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><g class="h-fleche-1"><path d="M20 44h74"/><path d="M78 27l17 17-17 17"/></g><g class="h-fleche-2"><path d="M100 78H26"/><path d="M42 61L25 78l17 17"/></g></svg>';
+const ICONE_INTERRO = '<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><path d="M39 42a21 21 0 1 1 30.5 18.7C64.2 63.4 60 67.5 60 74v4"/><circle cx="60" cy="97" r="6.5" fill="currentColor" stroke="none"/></svg>';
 const cleEcran = () => etat.ecran === "question" ? "q|" + etat.palier[etat.k] + "|" + Object.keys(etat.lus || {}).length : etat.ecran;
 function hublot(ecran, relance) {
   if (!ecran || !BUREAU.matches) return;
@@ -1226,13 +1230,16 @@ function hublot(ecran, relance) {
   // sans photo, pour les contraires : deux flèches opposées, en blanc, au centre de la bulle
   if (etat.ecran === "question" && !scene.querySelector(".cadre-photo") && /contraire/i.test(qActuelle().question))
     (visuel || scene).insertAdjacentHTML("beforeend", `<span class="h-signe h-contraire" aria-hidden="true">${ICONE_CONTRAIRE}</span>`);
+  // sans photo, pour les ciseaux (A1-32) : un point d'interrogation blanc au centre de la bulle
+  if (etat.ecran === "question" && !scene.querySelector(".cadre-photo") && /ciseaux/i.test(qActuelle().question))
+    (visuel || scene).insertAdjacentHTML("beforeend", `<span class="h-signe h-interro" aria-hidden="true">${ICONE_INTERRO}</span>`);
   if (!visuel) return;
   // ce qui pose la situation (contexte, situation, étiquette du message) passe à droite, au-dessus de la question
   const feuille = ecran.querySelector(".feuille-q"), amorces = [...visuel.querySelectorAll(":scope > .contexte, :scope > .situation, :scope > .etiquette, :scope > .sms > .etiquette")];
   if (feuille && amorces.length) { amorces.forEach(a => a.classList.add("amorce")); feuille.prepend(...amorces); }
   // la phrase à compléter (et son indication) au centre du cercle
   const phrase = visuel.querySelector(":scope > .phrase");
-  if (phrase) { const c = document.createElement("div"); c.className = "h-centre"; phrase.before(c); c.append(phrase); const ind = visuel.querySelector(":scope > .indice"); if (ind) c.append(ind); }
+  if (phrase) { const c = document.createElement("div"); c.className = "h-centre"; phrase.before(c); c.append(phrase); const ind = visuel.querySelector(":scope > .indice"); if (ind) c.append(ind); if (!scene.querySelector("img")) scene.classList.add("h-turquoise"); }
   // un message (SMS, petit texte, document) : une feuille blanche qui sort d'une enveloppe, en face de la question
   const sms = visuel.querySelector(":scope > .sms"), court = visuel.querySelector(":scope > .papier-court"), doc = visuel.querySelector(":scope > .doc-mini");
   let message = null;
@@ -1241,7 +1248,7 @@ function hublot(ecran, relance) {
   else if (doc && etat.ecran === "question") { message = feuilleMessage(papier(qActuelle()).replace(/<small>[\s\S]*?<\/small>/, "")); doc.replaceWith(message); }
   if (message) visuel.classList.add("h-message");
   const lecteur = visuel.querySelector(":scope > .lecteur");
-  if (lecteur && !visuel.querySelector(".cadre-photo, .h-centre, .lettre-env, .doc-mini")) { lecteur.classList.add("h-seul"); if (!scene.querySelector("img")) scene.classList.add("h-bulle-seule"); }
+  if (lecteur && !visuel.querySelector(".cadre-photo, .h-centre, .lettre-env, .doc-mini")) { lecteur.classList.add("h-seul"); if (!scene.querySelector("img")) scene.classList.add("h-turquoise"); }
   const q = ecran.querySelector(".question"); if (q && q.textContent.trim().length > 62) q.classList.add("longue");
 }
 // la feuille d'un message : enveloppe, papier, mise en forme (formule d'appel, signature), aucun mot coupé
