@@ -6,8 +6,14 @@
 /*__CSS_COMMUN__*/
 /* Piste D — « Le hublot » : la photo dans un grand cercle posé dans le ciel, comme une bille agrandie ; la bille
    d'écoute est son satellite. À droite, la question en grand, puis les réponses (la taille de texte de la piste A).
+   Derrière le cercle, à la place du ciel bleu : la photo elle-même, très floue et pâle, qui se fond dans le blanc ;
+   ses couleurs changent à chaque question (le ciel revient sur l'écran de fin, dont le cercle est un ciel).
    Transition : un diaphragme ; le cercle se referme sur la bille, le suivant s'ouvre depuis elle. */
-.ciel-d { position: fixed; inset: 0 auto 0 0; width: 60vw; background: var(--ciel); -webkit-mask-image: linear-gradient(90deg, #000 52%, transparent 100%); mask-image: linear-gradient(90deg, #000 52%, transparent 100%); }
+.fond-d { position: absolute; inset: 0 auto 0 0; width: 64vw; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, #000 42%, transparent 100%); mask-image: linear-gradient(90deg, #000 42%, transparent 100%); }
+.fond-d .brume { position: absolute; inset: -12%; animation: derive 22s ease-in-out infinite alternate; }
+.fond-d img { width: 100%; height: 100%; object-fit: cover; filter: blur(64px) saturate(1.3); opacity: .5; }
+.fond-d .ciel-fin { position: absolute; inset: 0; background: var(--ciel); }
+@keyframes derive { to { transform: translate(-3%, -2%) scale(1.08); } }
 .ecran { display: grid; grid-template-columns: 50vw minmax(0, 1fr); }
 .gauche { position: relative; display: grid; place-items: center; padding: 96px 32px 72px; }
 .scene { position: relative; width: min(35vw, 62vh); }
@@ -27,7 +33,9 @@
 .ecran-accueil .bouton { min-height: 72px; padding-inline: 40px 30px; font-size: 22px; }
 .texte-fin { max-width: 32ch; color: var(--doux); font-size: 22px; }
 
-/* entrée : le cercle s'ouvre depuis la bille, la photo recule, la question monte mot à mot */
+/* entrée : les couleurs de fond passent en fondu, le cercle s'ouvre depuis la bille, la photo recule, la question monte mot à mot */
+.actif .fond-d { animation: teinte 1.2s var(--ease) both; }
+@keyframes teinte { from { opacity: 0; } }
 .actif .hublot { animation: ouvre 1.25s var(--ease-out) both; }
 @keyframes ouvre { from { clip-path: circle(0% at 85.4% 14.6%); } to { clip-path: circle(100% at 85.4% 14.6%); } }
 .actif .hublot img { animation: recule 1.8s var(--ease-out) both; }
@@ -42,7 +50,7 @@
 @keyframes monte { from { opacity: 0; transform: translateY(22px); } }
 @keyframes mot { from { transform: translateY(108%); } }
 @keyframes eclot { 0% { opacity: 0; transform: scale(.4); } 60% { opacity: 1; } }
-.relangue .hublot, .relangue .hublot img, .relangue .aptitudes, .relangue .bloc-langue, .relangue .bouton, .relangue .sur-titre { animation: none !important; }
+.relangue .fond-d, .relangue .hublot, .relangue .hublot img, .relangue .aptitudes, .relangue .bloc-langue, .relangue .bouton, .relangue .sur-titre { animation: none !important; }
 /* sortie : le cercle se referme sur la bille */
 .sort .hublot { animation: ferme .7s var(--ease) forwards; }
 @keyframes ferme { from { clip-path: circle(100% at 85.4% 14.6%); } to { clip-path: circle(0% at 85.4% 14.6%); } }
@@ -61,33 +69,33 @@
 }
 @media (max-width: 900px) {
   body { overflow: auto; }
-  .ciel-d { width: 100vw; height: 50vh; -webkit-mask-image: linear-gradient(#000 60%, transparent); mask-image: linear-gradient(#000 60%, transparent); }
+  .fond-d { width: 100vw; bottom: auto; height: 60vh; -webkit-mask-image: linear-gradient(#000 50%, transparent); mask-image: linear-gradient(#000 50%, transparent); }
   .ecran { grid-template-columns: 1fr; overflow: auto; }
   .scene { width: min(70vw, 340px); }
   .droite { padding: 48px 20px 40px; }
 }
 </style>
-<div class="ciel-d" aria-hidden="true"></div>
 <main class="app" id="app"></main>
 <div class="haut"><button class="rond" id="son" type="button" aria-label="Couper les sons"></button><button class="rond cache" id="quitter" type="button" aria-label="Quitter le test"></button></div>
 <a class="pistes" href="index.html">Piste D · Le hublot — toutes les pistes</a>
 <script>
 const DONNEES = /*__DONNEES__*/;
-const SORTIE = 900;
+const SORTIE = 1250;
 const POS = { intro: "42% 40%", metro: "40% 50%", cinema: "66% 50%", telephone: "50% 34%", croissant: "50% 50%" };
+const fond = (nom) => `<div class="fond-d" aria-hidden="true">${nom ? `<div class="brume"><img src="${IMG[nom]}" alt=""></div>` : '<div class="ciel-fin"></div>'}</div>`;
 const hublot = (nom, dedans = "") => `<div class="hublot">${nom ? `<img src="${IMG[nom]}" alt="" style="--pos:${POS[nom] || "50% 50%"}">` : ""}${dedans}</div>`;
 function rendre(e) {
-  if (e.type === "accueil") return `<div class="gauche"><div class="scene">${hublot(e.photo)}</div></div>
+  if (e.type === "accueil") return `${fond(e.photo)}<div class="gauche"><div class="scene">${hublot(e.photo)}</div></div>
     <div class="droite"><p class="sur-titre"${attrs("Français · environ 10 minutes")}>${texte("Français · environ 10 minutes")}</p>
       <h1 class="titre-geant" tabindex="-1" data-focus${attrs("Évaluation de positionnement")}>${motAMot("Évaluation de positionnement")}</h1>
       ${aptitudes()}${langues()}
       <button class="bouton" type="button" data-action="commencer"><span${attrs("Commencer")}>${texte("Commencer")}</span><kbd aria-hidden="true">Entrée ↵</kbd></button></div>`;
-  if (e.type === "fin") return `<div class="gauche"><div class="scene">${hublot(null, `<div class="coche" aria-hidden="true">${ICONE.coche}</div>`)}</div></div>
+  if (e.type === "fin") return `${fond(null)}<div class="gauche"><div class="scene">${hublot(null, `<div class="coche" aria-hidden="true">${ICONE.coche}</div>`)}</div></div>
     <div class="droite"><h1 class="titre-geant" tabindex="-1" data-focus${attrs("Évaluation terminée")}>${motAMot("Évaluation terminée")}</h1>
       <p class="texte-fin"${attrs("Merci pour vos réponses. Vous pouvez prévenir votre formateur que vous avez terminé.")}>${texte("Merci pour vos réponses. Vous pouvez prévenir votre formateur que vous avez terminé.")}</p>
       <button class="bouton" type="button" data-action="fermer"><span${attrs("Fermer")}>${texte("Fermer")}</span><kbd aria-hidden="true">Entrée ↵</kbd></button></div>`;
   const dessus = surPhoto(e, { bille: false });
-  return `<div class="gauche"><div class="scene">${hublot(e.photo)}${dessus ? `<div class="sur">${dessus}</div>` : ""}${e.bille ? bille() : ""}</div></div>
+  return `${fond(e.photo)}<div class="gauche"><div class="scene">${hublot(e.photo)}${dessus ? `<div class="sur">${dessus}</div>` : ""}${e.bille ? bille() : ""}</div></div>
     <div class="droite">${titreQuestion(e)}${reponses(e)}${bas()}</div>`;
 }
 /*__JS_COMMUN__*/

@@ -44,7 +44,7 @@ PISTES = [
      "Un travelling : la photo glisse vers la gauche, la suivante arrive de la droite, le texte arrive net après un léger flou."),
     ("c", "L'affiche", "La question en typographie d'affiche, la photo dans une haute fenêtre de ciel qui suit la souris.",
      "La fenêtre se referme vers le haut comme un store, la suivante s'ouvre par le bas, la question monte mot à mot."),
-    ("d", "Le hublot", "La photo dans un grand cercle posé dans le ciel, la bille en satellite ; la question en grand à droite.",
+    ("d", "Le hublot", "La photo dans un grand cercle, la bille en satellite ; derrière, ses propres couleurs en flou léger, qui changent à chaque question.",
      "Un diaphragme : le cercle se referme sur la bille, le suivant s'ouvre depuis elle et la photo recule."),
     ("e", "La scène", "L'écran mobile validé, agrandi et centré ; la photo s'étend sur toute la largeur derrière lui.",
      "Une mise au point : la photo arrive floue et devient nette, la question monte mot à mot."),
