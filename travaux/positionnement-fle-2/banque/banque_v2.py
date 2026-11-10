@@ -46,7 +46,7 @@ q("A1", "CE", "COMP écrite", 6, "Quand est-ce que le café linguistique est ouv
 q("A1", "CE", "COMP écrite", 7, "Quelle image correspond à la situation ?", ["Une gare", "Un pique-nique", "Une plage"], 1, t="sms", texte="Salut tout le monde ! Il va faire beau ! On va pique-niquer au parc samedi ?", images=["gare", "pique-nique", "plage"])
 q("A1", "CE", "COMP écrite", 8, "Ce message est envoyé pour ___ un rendez-vous.", ["annuler", "rappeler", "changer"], "rappeler", t="sms", texte="Cabinet Brunet – Confirmation de votre rendez-vous dentiste le 04/11 à 9h. Si vous ne pouvez pas venir, merci de nous téléphoner. Ne pas répondre à ce message automatique.")
 q("A1", "CE", "COMP écrite", 8, "Vous êtes en retard. Quel message est-ce que vous envoyez ?", ["Je t'attends devant le cinéma", "J'arrive dans 2 minutes, attends-moi !", "À demain !"], 1, t="situation", emoji="🎬", photo="cinema-entree", texte="Vous avez rendez-vous avec un ami pour aller au cinéma.")
-q("A1", "CE", "COMP écrite", 8, "Complétez la phrase.", ["je vais", "je suis", "j'ai"], "j'ai", t="trou", etiquette="Vous vous présentez au groupe.", phrase="Bonjour, je m'appelle Amir, ______ 29 ans.")
+q("A1", "CE", "COMP écrite", 8, "Complétez la phrase.", ["je vais", "je suis", "j'ai"], "j'ai", t="trou", phrase="Bonjour, je m'appelle Amir, ______ 29 ans.")
 q("A1", "EE", "EXP écrite", 9, "Remettez les mots dans l'ordre.", t="ordre", avant="Excusez-moi ! Je cherche la station de métro,", apres="?", mots=["m'aider", "pouvez", "est-ce que", "vous"], ordre=[2, 3, 1, 0])
 q("A1", "CE", "COM écrite", 9, "Qu'est-ce que vous dites ?", ["C'est très bon !", "C'est très loin.", "C'est à droite."], 0, t="situation", emoji="🍽️", photo="dejeuner", texte="Vous déjeunez avec vos amis.")
 q("A1", "EE", "EXP écrite", 10, "Quelle question posez-vous ?", ["C'est dans quelle salle ?", "Quand est-ce que la séance commence ?", "Combien de temps dure le film ?"], 1, t="situation", emoji="🎟️", photo="cinema", texte="Vous êtes au cinéma et vous prenez votre place au guichet. Vous voulez savoir à quelle heure commence le film.")
@@ -110,7 +110,7 @@ q("A2", "CO", "COMP orale", 40, "Qu'est-ce qu'on apprend sur Margaret Marie ?", 
 q("A2", "EE", "EXP écrite", 40, "Complétez le message.", ["les", "y", "en"], "les", t="sms", contexte="Vous envoyez un message à votre colocataire.", texte="J'ai oublié les billets pour le concert de ce soir. Ils sont sur mon bureau. Pense à ______ prendre, s'il te plaît ! Merci !")
 q("A2", "CO", "COMP orale", 41, "Est-il possible de choisir une viande sur la carte ?", ["Oui, mais pas tous les jours", "Oui", "Non, que des poissons et des desserts"], 1, t="ecoute", audio="o08", photo="restaurant", contexte="Au restaurant, le serveur présente la carte.")
 q("A2", "CE", "COMP écrite", 42, "Qu'est-ce que cette lettre vous annonce ?", ["Un versement sur votre compte", "Un paiement réalisé depuis votre compte", "Une facture à régler rapidement"], 0, t="document", titre="Lettre reçue", emoji="✉️", style="courrier", lignes=LETTRE)
-q("A2", "EE", "EXP écrite", 42, "Complétez la question au serveur.", ["Est-ce que", "Qu'est-ce que", "Qui"], "Qu'est-ce que", t="trou", etiquette="Au restaurant, vous posez une question au serveur.", phrase="______ vous me conseillez ?", deduite=True)
+q("A2", "EE", "EXP écrite", 42, "Complétez la question au serveur.", ["Est-ce que", "Qu'est-ce que", "Qui"], "Qu'est-ce que", t="trou", phrase="______ vous me conseillez ?", deduite=True)
 q("A2", "CE", "COMP écrite", 43, "Vous n'êtes pas disponible. Quel est le bon message ?", ["Avec plaisir ! J'adore la natation.", "Ah, dommage ! Je pars ce week-end."], 1, t="sms", etiquette="Vous recevez une invitation", texte="Tu ne vas pas me croire ! J'ai gagné deux places pour la finale de rugby samedi au stade de France ! Tu viens avec moi ?")
 q("A2", "CE", "COMP écrite", 43, "Qu'est-ce qu'on apprend sur la réunion ?", ["Elle est reportée", "Elle est annulée", "Comment inscrire son enfant à l'école"], 0, t="document", titre="Panneau devant l'école", emoji="🏫", style="affiche", lignes=ECOLE)
 q("A2", "CE", "COMP écrite", 44, "Où habite Marie ?", ["À Lyon", "À Paris", "À Nice"], 0, t="document", titre="Marie", emoji="👧", photo="marie", style="", lignes=MARIE, groupe="marie")
@@ -167,29 +167,33 @@ import os
 # - le vocabulaire défini par l'objet ou le lieu : pharmacie, stylo, école, croissants, ciseaux, ciel, pâtissier,
 #   journalistes, pomme, livres, hôpital du médecin, contraires, quartier, chiffres ;
 # - « Je n'ai vu personne dans le jardin » (un jardin vide la donne) et « un film tellement drôle » (des rires la donnent) ;
-# - les écoutes A1-04 (le métier), A2-07 (l'interdiction) et A2-09 (l'âge), la publicité A2-05 et la maison de Julie.
+# - les écoutes A1-04 (le métier), A2-07 (l'interdiction) et A2-09 (l'âge), et la maison de Julie.
 # Une photo n'est prise que si son fichier existe dans img/.
 PHOTOS = {
     "A1-01": "conversation", "A1-02": "agenda", "A1-03": "voiture", "A1-05": "lecture", "A1-08": "tante",
-    "A1-09": "accueil-sante", "A1-12": "telephone-3", "A1-13": "telephone-1", "A1-15": "amir", "A1-16": "rue",
+    "A1-09": "accueil-sante", "A1-12": "amis-telephone", "A1-13": "dentiste", "A1-15": "amir", "A1-16": "rue",
     "A1-19": "classe", "A1-20": "lisa", "A1-21": "lisa", "A1-22": "lisa", "A1-23": "chevaux", "A1-24": "marche",
     "A1-25": "jeune-femme", "A1-26": "presentation", "A1-27": "lisbonne", "A1-36": "cafe", "A1-38": "pain",
     "A1-39": "ecole", "A1-41": "croissant", "A1-43": "fatigue", "A1-44": "hopital", "A1-45": "cinema",
     "A1-46": "amies", "A1-49": "marseille", "A1-50": "velo-travail", "A1-51": "bureau-matin", "A1-54": "chats",
     "A1-55": "amies", "A1-56": "medecin", "A1-57": "lucas", "A1-58": "lucas", "A1-59": "gare", "A1-60": "prets",
     "A1-61": "bus",
-    "A2-01": "diner", "A2-02": "cinema", "A2-03": "gare", "A2-04": "gare", "A2-06": "poste", "A2-08": "telephone-1",
-    "A2-10": "telephone-3", "A2-12": "lettre", "A2-13": "restaurant", "A2-14": "telephone-2", "A2-15": "ecole",
+    "A2-01": "dejeuner", "A2-02": "cinema", "A2-03": "gare", "A2-04": "gare", "A2-05": "pizza", "A2-06": "poste", "A2-08": "chez-amie",
+    "A2-10": "concert", "A2-12": "lettre", "A2-13": "restaurant", "A2-14": "telephone-2", "A2-15": "ecole",
     "A2-18": "italie", "A2-19": "piscine", "A2-20": "tele", "A2-21": "couple", "A2-22": "rue", "A2-23": "metro",
     "A2-24": "cinema-entree", "A2-25": "cafe", "A2-26": "enfants", "A2-27": "conversation", "A2-29": "cinema-entree",
     "A2-30": "parc", "A2-31": "stylos", "A2-32": "ville-calme", "A2-34": "pluie", "A2-35": "telephone-2",
     "A2-39": "bureau-julien", "A2-40": "bureau-julien",
-    "B1-01": "telephone-3", "B1-02": "telephone-1", "B1-05": "ecole", "B1-06": "ecole", "B1-07": "ecole", "B1-08": "ecole",
+    "B1-01": "reunion", "B1-02": "musee", "B1-05": "ecole", "B1-06": "ecole", "B1-07": "ecole", "B1-08": "ecole",
 }
 _img = os.path.join(os.path.dirname(os.path.abspath(__file__)), "img")
 for d in B:
     if d["id"] in PHOTOS and os.path.exists(os.path.join(_img, PHOTOS[d["id"]] + ".webp")):
         d["photo"] = PHOTOS[d["id"]]
+    # A1-08 : une quatrième photo de réponse (la boucherie, absente de l'enregistrement, qui ne parle que de pâtisseries),
+    # pour que les réponses forment une grille de 2 × 2
+    if d["id"] == "A1-08" and os.path.exists(os.path.join(_img, "boucherie.webp")) and "boucherie" not in d["images"]:
+        d["choix"].append("À la boucherie"); d["images"].append("boucherie")
 # Expression écrite à mot court : la réponse s'écrit en touchant des lettres. Les lettres proposées sont celles des
 # choix du PDF (chaque lettre autant de fois qu'elle apparaît au plus dans un choix), sans indice sur la longueur.
 import re, collections

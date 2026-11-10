@@ -266,8 +266,7 @@
    "plage"
   ],
   "id": "A1-12",
-  "groupe": "A1:A1-12",
-  "photo": "telephone-3"
+  "groupe": "A1:A1-12"
  },
  {
   "niveau": "A1",
@@ -284,8 +283,7 @@
   "t": "sms",
   "texte": "Cabinet Brunet – Confirmation de votre rendez-vous dentiste le 04/11 à 9h. Si vous ne pouvez pas venir, merci de nous téléphoner. Ne pas répondre à ce message automatique.",
   "id": "A1-13",
-  "groupe": "A1:A1-13",
-  "photo": "telephone-1"
+  "groupe": "A1:A1-13"
  },
  {
   "niveau": "A1",
@@ -319,7 +317,6 @@
   ],
   "bonne": 2,
   "t": "trou",
-  "etiquette": "Vous vous présentez au groupe.",
   "phrase": "Bonjour, je m'appelle Amir, ______ 29 ans.",
   "id": "A1-15",
   "groupe": "A1:A1-15",
@@ -1222,7 +1219,7 @@
   "t": "aucun",
   "id": "A2-01",
   "groupe": "A2:A2-01",
-  "photo": "diner"
+  "photo": "dejeuner"
  },
  {
   "niveau": "A2",
@@ -1369,8 +1366,7 @@
   "t": "sms",
   "texte": "Bonjour, je suis très contente que tu viennes chez moi samedi. Quand penses-tu arriver ?",
   "id": "A2-08",
-  "groupe": "A2:A2-08",
-  "photo": "telephone-1"
+  "groupe": "A2:A2-08"
  },
  {
   "niveau": "A2",
@@ -1406,7 +1402,6 @@
   "texte": "J'ai oublié les billets pour le concert de ce soir. Ils sont sur mon bureau. Pense à ______ prendre, s'il te plaît ! Merci !",
   "id": "A2-10",
   "groupe": "A2:A2-10",
-  "photo": "telephone-3",
   "lettres": [
    "e",
    "l",
@@ -1474,7 +1469,6 @@
   ],
   "bonne": 1,
   "t": "trou",
-  "etiquette": "Au restaurant, vous posez une question au serveur.",
   "phrase": "______ vous me conseillez ?",
   "deduite": true,
   "id": "A2-13",
@@ -2134,7 +2128,7 @@
   "texte": "La réunion aura lieu demain matin dans nos bureaux. Vous pouvez vous garer dans le parking réservé à la clientèle. Nos bureaux se trouvent au 1er étage du bâtiment principal. Viendrez-vous seul ?",
   "id": "B1-01",
   "groupe": "B1:B1-01",
-  "photo": "telephone-3"
+  "photo": "reunion"
  },
  {
   "niveau": "B1",
@@ -2151,8 +2145,7 @@
   "t": "sms",
   "texte": "Comme tu n'es pas disponible le matin, pourrions-nous aller au musée en fin d'après-midi ?",
   "id": "B1-02",
-  "groupe": "B1:B1-02",
-  "photo": "telephone-1"
+  "groupe": "B1:B1-02"
  },
  {
   "niveau": "B1",
