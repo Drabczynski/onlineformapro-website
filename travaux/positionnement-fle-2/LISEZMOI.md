@@ -173,4 +173,6 @@ l'âge de Lucas (22 ans) et sa ville (Toulouse), « Qu'est-ce que » (au restaur
 - A1-08 : une quatrième photo de réponse, la boucherie (l'enregistrement ne parle que de pâtisseries), pour une
   grille de 2 × 2 ; la vitrine de boulangerie est remplacée par une photo plus nette. A1-12 : de même, un quatrième
   lieu en image, « Un restaurant ».
+- A1-25 et A1-54 : « J'______ 25 ans. » et « J'______ deux chats. » (le PDF écrit « Je ______ » devant la
+  réponse « ai ») ; la case se colle à l'apostrophe pour qu'on lise « J'ai ».
 - Son sur iPhone : la page passe en mode « lecture » (navigator.audioSession), le son passe même sonnerie coupée.

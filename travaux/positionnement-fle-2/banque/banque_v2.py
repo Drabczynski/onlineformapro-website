@@ -45,7 +45,7 @@ for question, choix, bonne in [("C'est un message…", ["amical", "administratif
     q("A1", "CE", "COMP écrite", 11, question, choix, bonne, t="document", titre="Message de Lisa", emoji="💌", style="", lignes=JEANNE, groupe="jeanne")
 q("A1", "LG", "Grammaire", 13, "Quel est le pluriel de « un cheval » ?", ["Des chevals", "Des chevaux", "Des chevaus"], "Des chevaux", deduite=True)
 q("A1", "LG", "Conjugaison", 13, CHOISIR, ["faisais", "ferai", "fait"], "ferai", t="trou", phrase="Demain, je ______ mes achats.", deduite=True)
-q("A1", "LG", "Conjugaison", 13, CHOISIR, ["suis", "ai", "parle"], "ai", t="trou", phrase="Je ______ 25 ans.", deduite=True)
+q("A1", "LG", "Conjugaison", 13, CHOISIR, ["suis", "ai", "parle"], "ai", t="trou", phrase="J'______ 25 ans.", deduite=True)
 q("A1", "LG", "Vocabulaire", 13, CHOISIR, ["habite", "appelle", "parle"], "appelle", t="trou", phrase="Je m'______ Paul.", deduite=True)
 q("A1", "LG", "Vocabulaire", 13, CHOISIR, ["du", "de la", "d'"], "du", t="trou", phrase="Je viens ______ Portugal.", deduite=True)
 for question, choix, bonne in [("Où achète-t-on des médicaments ?", ["À la pharmacie", "À la boulangerie", "À l'école"], "À la pharmacie"),
@@ -75,7 +75,7 @@ for phrase, choix, bonne, tag, indice in [("Tu ______.", ["ai", "as", "avais"], 
                                           ("Je commence ______ 8 h 00 tous les jours.", ["à", "en", "au"], "à", "Grammaire", ""),
                                           ("Le médecin travaille dans ______.", ["un hôpital", "une école", "une banque"], "un hôpital", "Vocabulaire", ""),
                                           ("99 : ______", ["quatre-vingt-neuf", "quatre-vingt-dix-neuf", "quatre-vingt-onze"], "quatre-vingt-dix-neuf", "Vocabulaire", ""),
-                                          ("Je ______ deux chats.", ["ai", "es", "és"], "ai", "Conjugaison", "(avoir)")]:
+                                          ("J'______ deux chats.", ["ai", "es", "és"], "ai", "Conjugaison", "(avoir)")]:
     q("A1", "LG", tag, 15, CHOISIR, choix, bonne, t="trou", phrase=phrase, indice=indice)
 q("A1", "LG", "Grammaire", 21, CHOISIR, ["Mon amie est anglais.", "Mon amie est anglaise.", "Moi amie est anglaise."], 1)
 q("A1", "LG", "Grammaire", 25, "Choisissez la bonne phrase.", ["Elle est médecin.", "Elle est un médecin.", "Elle a médecin."], 0)

@@ -34,3 +34,9 @@ fichiers rapatriés ici et ses chemins réécrits vers ce dossier. Les scripts q
 (`../positionnement-fle-2/banque/banque_v2.py`, `assembler_v2.py`, `../positionnement-fle-3/assembler_v3.py`,
 `generer_voix.py`) continuent d'évoluer : ne pas s'en servir pour regénérer ce dossier. Crédits des photos :
 `../positionnement-fle-2/LISEZMOI.md`.
+
+## Corrections apportées depuis le gel
+
+- 10 novembre 2026, à la demande : « J'______ 25 ans. » (A1-25) et « J'______ deux chats. » (A1-54) au lieu de
+  « Je ______ » devant la réponse « ai » ; la case se colle à l'apostrophe pour qu'on lise « J'ai ».
+  Corrigé directement dans `index.html` et `test-positionnement.html`.

@@ -373,6 +373,9 @@ rep("const ICONE = {\n", """const ICONE = {
   effacer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-6-7z"/><path d="M12.5 9.5l5 5M17.5 9.5l-5 5"/></svg>',
 """)
 
+# la case qui suit une apostrophe (« J'______ 25 ans. ») se colle à elle
+rep('<span class="trou" data-trou="${k}">', '<span class="trou${/[\'’]$/.test(p) ? " elide" : ""}" data-trou="${k}">')
+
 # ---------- styles des nouveaux éléments
 rep('''/* ------------------------------------------------------------ les réponses */''', '''/* version 2 : contexte, image, tableau, réponses en images, phrases à écouter, mots à placer, réponses écrites */
 .contexte { margin: 0; max-width: 320px; font-size: 15px; font-weight: 800; line-height: 1.35; color: rgba(255, 255, 255, .92); }
@@ -381,6 +384,7 @@ rep('''/* ------------------------------------------------------------ les répo
 .ordre-phrase { font-size: 19px; line-height: 1.9; }
 .ordre-phrase .trou { min-width: 64px; cursor: pointer; }
 .trou.pop { animation: pop .35s cubic-bezier(.2, 1.7, .4, 1); }
+.trou.elide { margin-left: 0; padding-left: 4px; }
 .image-support { display: block; padding: 0; border: 0; border-radius: 14px; overflow: hidden; background: #fff; box-shadow: 0 5px 0 var(--blanc-levre); }
 .image-support img { display: block; width: 100%; max-height: 190px; object-fit: contain; }
 .image-grande { width: 100%; border-radius: 12px; }

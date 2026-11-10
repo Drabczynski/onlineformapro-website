@@ -118,6 +118,7 @@ svg { display: block; }
 .trou { display: inline-block; min-width: 84px; margin: 0 3px; padding: 0 10px; border-radius: 10px; background: var(--pastel); color: var(--indigo); line-height: 1.45; }
 .trou.rempli { background: #e9e7ff; }
 .trou.pop { animation: pop .3s ease-out; }
+.trou.elide { margin-left: 0; padding-left: 4px; }
 @keyframes pop { from { transform: scale(.85); } }
 .ordre-phrase .trou { min-width: 64px; cursor: pointer; }
 .trou.curseur::after { content: ""; display: inline-block; width: 2px; height: 1.05em; margin-left: 2px; vertical-align: -.15em; background: currentColor; animation: clignote 1.1s steps(1) infinite; }
@@ -415,6 +416,7 @@ svg { display: block; }
 .ordre-phrase { font-size: 21px; line-height: 1.95; }
 .trou { display: inline-block; min-width: 92px; margin: 0 3px; padding: 0 10px; border-radius: 8px 8px 0 0; background: var(--violet-pale); box-shadow: inset 0 -3px 0 var(--violet); color: var(--violet); line-height: 1.45; }
 .trou.pop { animation: pop .3s ease-out; }
+.trou.elide { margin-left: 0; padding-left: 4px; }
 @keyframes pop { from { transform: scale(.9); } }
 .ordre-phrase .trou { min-width: 66px; cursor: pointer; }
 .trou.curseur::after { content: ""; display: inline-block; width: 2px; height: 1.05em; margin-left: 2px; vertical-align: -.15em; background: currentColor; animation: clignote 1.1s steps(1) infinite; }
