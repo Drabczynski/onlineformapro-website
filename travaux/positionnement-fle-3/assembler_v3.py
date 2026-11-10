@@ -371,7 +371,7 @@ svg { display: block; }
 /* le haut (dégradé) et le bas (blanc) */
 .scene { position: relative; flex: 1 0 auto; min-height: 230px; display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 66px 22px 28px; background: var(--ciel); overflow: hidden; }
 .scene.vide { min-height: 190px; }
-.feuille-q { flex: none; display: grid; gap: 16px; padding: 4px 22px 18px; background: #fff; }
+.feuille-q { flex: none; display: grid; gap: 16px; padding: 4px 22px 18px; background: #fff; overflow: hidden; }      /* les réponses qui montent à l'apparition ne comptent pas comme un débordement */
 .bas { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 6px 22px calc(18px + env(safe-area-inset-bottom, 0px)); background: #fff; }
 
 /* les supports, dans le dégradé */
@@ -748,9 +748,10 @@ function ecranLecture(q) {
 # le haut) et se décaler à gauche ou à droite (ox, en %).
 CADRES = {
     # la photo remonte (dy, en % de sa hauteur) pour que le visage ou le sujet passe au-dessus de la carte
-    "conversation": {"dy": -22}, "lecture": {"dy": -22}, "telephone-2": {"dy": -15}, "amir": {"dy": -28}, "lisa": {"dy": -25}, "fatigue": {"dy": -25}, "cafe": {"dy": -25},
-    "croissant": {"dy": -22}, "chats": {"dy": -18}, "lucas": {"dy": -25}, "marie": {"dy": -25}, "tele": {"dy": -15},
+    "conversation": {"dy": -22}, "lecture": {"dy": -22}, "telephone-2": {"dy": -15}, "amir": {"dy": -28}, "fatigue": {"dy": -25}, "cafe": {"dy": -25},
+    "croissant": {"dy": -22}, "chats": {"dy": -18}, "lucas": {"dy": -25}, "tele": {"dy": -15},
     "couple": {"dy": -15}, "enfants": {"dy": -22},
+    "amis-telephone": {"dy": -20}, "chez-amie": {"dy": -18}, "reunion": {"dy": -22}, "lisa": {"dy": -10}, "marie": {"dy": -12},
 }
 CADRES_JS = r"""// cadrage de chaque photo (agrandissement z autour du point ox oy), pour qu'aucune carte ne cache un visage
 const CADRES = __CADRES__;

@@ -177,7 +177,8 @@
   "choix": [
    "À la boulangerie",
    "Au rayon fruits et légumes",
-   "À la fromagerie"
+   "À la fromagerie",
+   "À la boucherie"
   ],
   "bonne": 0,
   "t": "ecoute",
@@ -185,7 +186,8 @@
   "images": [
    "boulangerie",
    "primeur",
-   "fromagerie"
+   "fromagerie",
+   "boucherie"
   ],
   "id": "A1-08",
   "groupe": "A1:A1-08",
@@ -266,7 +268,8 @@
    "plage"
   ],
   "id": "A1-12",
-  "groupe": "A1:A1-12"
+  "groupe": "A1:A1-12",
+  "photo": "amis-telephone"
  },
  {
   "niveau": "A1",
@@ -283,7 +286,8 @@
   "t": "sms",
   "texte": "Cabinet Brunet – Confirmation de votre rendez-vous dentiste le 04/11 à 9h. Si vous ne pouvez pas venir, merci de nous téléphoner. Ne pas répondre à ce message automatique.",
   "id": "A1-13",
-  "groupe": "A1:A1-13"
+  "groupe": "A1:A1-13",
+  "photo": "dentiste"
  },
  {
   "niveau": "A1",
@@ -1303,7 +1307,8 @@
    "« Une pizza medium coûte 10 €, mais sur présentation de ce bon, vous recevez en plus de délicieux pains à l'ail d'une valeur de 2 €. »"
   ],
   "id": "A2-05",
-  "groupe": "A2:A2-05"
+  "groupe": "A2:A2-05",
+  "photo": "pizza"
  },
  {
   "niveau": "A2",
@@ -1366,7 +1371,8 @@
   "t": "sms",
   "texte": "Bonjour, je suis très contente que tu viennes chez moi samedi. Quand penses-tu arriver ?",
   "id": "A2-08",
-  "groupe": "A2:A2-08"
+  "groupe": "A2:A2-08",
+  "photo": "chez-amie"
  },
  {
   "niveau": "A2",
@@ -1402,6 +1408,7 @@
   "texte": "J'ai oublié les billets pour le concert de ce soir. Ils sont sur mon bureau. Pense à ______ prendre, s'il te plaît ! Merci !",
   "id": "A2-10",
   "groupe": "A2:A2-10",
+  "photo": "concert",
   "lettres": [
    "e",
    "l",
@@ -2144,7 +2151,8 @@
   "t": "sms",
   "texte": "Comme tu n'es pas disponible le matin, pourrions-nous aller au musée en fin d'après-midi ?",
   "id": "B1-02",
-  "groupe": "B1:B1-02"
+  "groupe": "B1:B1-02",
+  "photo": "musee"
  },
  {
   "niveau": "B1",
