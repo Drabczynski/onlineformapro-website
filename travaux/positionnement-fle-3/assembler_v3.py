@@ -406,7 +406,8 @@ svg { display: block; }
 .photo-fond .indice { background: #fff; }
 .lecture-tete { position: relative; z-index: 1; }
 .lecture-tete.sur-photo .papier-tete { margin-block: -10px; padding: 10px 14px; border-radius: 18px; background: rgba(255, 255, 255, .94); }      /* la carte déborde dans les marges : même hauteur qu'avant */
-.fond-seul { position: absolute; inset: 0; }      /* la photo seule, hors du flux : elle n'ajoute aucune hauteur */
+.fond-seul { position: absolute; inset: 0; }
+.scene.carte-bas { justify-content: flex-end; }      /* sur une photo, la carte (SMS, phrase, texte, document) se pose en bas : le haut de la photo reste visible */      /* la photo seule, hors du flux : elle n'ajoute aucune hauteur */
 .photo-scene { display: block; width: 100%; max-height: 200px; object-fit: cover; border-radius: 18px; }
 .phrase { justify-self: stretch; margin: 0; padding: 18px 20px; border-radius: 18px; background: #fff; color: var(--encre); font-size: 24px; font-weight: 700; line-height: 1.55; text-align: left; }
 .phrase.petite { font-size: 19px; }
@@ -708,7 +709,7 @@ function ecranLecture(q) {
   const fond = q.photo ? `<div class="visuel photo-fond fond-seul"><img class="photo-scene" src="${IMAGES[q.photo]}" alt=""></div>` : "";
   poser(`<section class="ecran" aria-labelledby="t-doc">
     ${haut()}
-    <div class="defile"><div class="scene">${fond}<div class="lecture-tete${q.photo ? " sur-photo" : ""}">${tete}</div></div>
+    <div class="defile"><div class="scene${q.photo ? " carte-bas" : ""}">${fond}<div class="lecture-tete${q.photo ? " sur-photo" : ""}">${tete}</div></div>
       <div class="feuille-q">${corps}<p class="consigne-lecture">Lisez le document. La question arrive ensuite, et vous pourrez le relire.</p></div></div>
     <div class="bas">${bouton("J'ai lu", "vert", 'id="lu"')}</div>
   </section>`);
@@ -797,7 +798,7 @@ def transformer(s, artifact, style='feuille'):
                       """      const enFond = q.photo && q.t !== "ecoute" && q.t !== "situation" ? `<img class="photo-scene" src="${IMAGES[q.photo]}" alt="">` : "";
       const support = q.t === "aucun" ? "" : visuel(q.t === "document" ? { ...q, photo: null } : q);
       const visEx = q.t === "aucun" && !q.photo ? "" : `<div class="visuel${q.photo ? " photo-fond" : ""}">${enFond}${support}</div>`;
-      return `<div class="scene${q.t === "aucun" && !q.photo ? " vide" : ""}">${visEx}</div><div class="feuille-q">${titre.replace(" consigne", "").replace(/ ([?!:;])/g, "\u00a0$1")}${reponses}</div>`;""")
+      return `<div class="scene${q.t === "aucun" && !q.photo ? " vide" : ""}${q.photo && q.t !== "ecoute" && q.t !== "aucun" ? " carte-bas" : ""}">${visEx}</div><div class="feuille-q">${titre.replace(" consigne", "").replace(/ ([?!:;])/g, "\u00a0$1")}${reponses}</div>`;""")
     # le lecteur dit ce qu'il fait (affiché seulement dans « L'examen »)
     s = remplacer(s, '${ICONE.jouer}<span class="vague" id="vague"', '${ICONE.jouer}<span class="lecteur-texte" aria-hidden="true"><b>Écouter l\'enregistrement</b><small id="reste">${reste === 2 ? "2 écoutes possibles" : reste === 1 ? "1 écoute possible" : "Plus d\'écoute possible"}</small></span><span class="vague" id="vague"')
     s = remplacer(s, '    lecteur.disabled = true;\n', '    lecteur.disabled = true; { const r = $("#reste"); if (r) r.textContent = "Écoute en cours…"; }\n')

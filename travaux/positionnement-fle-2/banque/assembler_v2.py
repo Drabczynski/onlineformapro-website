@@ -40,9 +40,7 @@ entre('// Sons enregistrés avec ElevenLabs', 'const ETOILE =', '''// Sons : les
 // trois phrases de la question de la poste, générées avec ElevenLabs.
 const AUDIO = __AUDIO__;
 // Images : photos des réponses et affiche, tirées du PDF ; photos de scène fournies (appartement, cinéma, Abidjan) ;
-// Marie : photo Unsplash de Janko Ferlič (pMJKJp0aG4M, licence Unsplash). Métro (A1-07) : photo fournie. Photos Unsplash
-// (licence Unsplash) : accueil, Malcolm Choong (27zLImvxwV0) ; cinéma, Myke Simon (atsUqIm3wxo) ; déjeuner (g6FKXPq0SI0) ;
-// bistrot, Kamilla Isalieva (3ICm8lZyeZE) ; bureau, Luca Bravo (9l_326FISzk).
+// photos d'illustration : Unsplash (licence Unsplash) ; auteur de chacune dans LISEZMOI.md.
 ''' + bloc_images)
 
 # ---------- le moteur adaptatif, adapté à la banque v2

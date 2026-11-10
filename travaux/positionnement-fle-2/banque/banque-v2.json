@@ -205,10 +205,10 @@
   "bonne": 1,
   "t": "ecoute",
   "audio": "o04",
-  "photo": "sante",
   "contexte": "Au centre de santé, l'agent d'accueil vous indique le cabinet du dentiste.",
   "id": "A1-09",
-  "groupe": "A1:A1-09"
+  "groupe": "A1:A1-09",
+  "photo": "accueil-sante"
  },
  {
   "niveau": "A1",
@@ -347,7 +347,8 @@
    0
   ],
   "id": "A1-16",
-  "groupe": "A1:A1-16"
+  "groupe": "A1:A1-16",
+  "photo": "rue"
  },
  {
   "niveau": "A1",
@@ -498,7 +499,8 @@
   "deduite": true,
   "t": "aucun",
   "id": "A1-23",
-  "groupe": "A1:A1-23"
+  "groupe": "A1:A1-23",
+  "photo": "chevaux"
  },
  {
   "niveau": "A1",
@@ -573,7 +575,8 @@
   "phrase": "Je viens ______ Portugal.",
   "deduite": true,
   "id": "A1-27",
-  "groupe": "A1:A1-27"
+  "groupe": "A1:A1-27",
+  "photo": "lisbonne"
  },
  {
   "niveau": "A1",
@@ -777,7 +780,8 @@
   "phrase": "______ école est fermée aujourd'hui.",
   "indice": "L'article correct",
   "id": "A1-39",
-  "groupe": "A1:A1-39"
+  "groupe": "A1:A1-39",
+  "photo": "ecole"
  },
  {
   "niveau": "A1",
@@ -869,7 +873,8 @@
   "phrase": "Il travaille dans un hôpital. Il est ______.",
   "indice": "",
   "id": "A1-44",
-  "groupe": "A1:A1-44"
+  "groupe": "A1:A1-44",
+  "photo": "hopital"
  },
  {
   "niveau": "A1",
@@ -961,7 +966,8 @@
   "phrase": "Je suis né le 9 mai 1980 ______ Marseille.",
   "indice": "",
   "id": "A1-49",
-  "groupe": "A1:A1-49"
+  "groupe": "A1:A1-49",
+  "photo": "marseille"
  },
  {
   "niveau": "A1",
@@ -979,7 +985,8 @@
   "phrase": "Comment tu ______ au travail ?",
   "indice": "",
   "id": "A1-50",
-  "groupe": "A1:A1-50"
+  "groupe": "A1:A1-50",
+  "photo": "velo-travail"
  },
  {
   "niveau": "A1",
@@ -997,7 +1004,8 @@
   "phrase": "Je commence ______ 8 h 00 tous les jours.",
   "indice": "",
   "id": "A1-51",
-  "groupe": "A1:A1-51"
+  "groupe": "A1:A1-51",
+  "photo": "bureau-matin"
  },
  {
   "niveau": "A1",
@@ -1196,7 +1204,8 @@
    }
   ],
   "id": "A1-61",
-  "groupe": "A1:A1-61"
+  "groupe": "A1:A1-61",
+  "photo": "bus"
  },
  {
   "niveau": "A2",
@@ -1320,7 +1329,8 @@
    "poste-3"
   ],
   "id": "A2-06",
-  "groupe": "A2:A2-06"
+  "groupe": "A2:A2-06",
+  "photo": "poste"
  },
  {
   "niveau": "A2",
@@ -1512,7 +1522,8 @@
    "La direction de l'école"
   ],
   "id": "A2-15",
-  "groupe": "A2:A2-15"
+  "groupe": "A2:A2-15",
+  "photo": "ecole"
  },
  {
   "niveau": "A2",
@@ -1575,7 +1586,8 @@
   "t": "trou",
   "phrase": "Vous ______ italien.",
   "id": "A2-18",
-  "groupe": "A2:A2-18"
+  "groupe": "A2:A2-18",
+  "photo": "italie"
  },
  {
   "niveau": "A2",
@@ -1592,7 +1604,8 @@
   "t": "trou",
   "phrase": "Sylvie ______ souvent à la piscine.",
   "id": "A2-19",
-  "groupe": "A2:A2-19"
+  "groupe": "A2:A2-19",
+  "photo": "piscine"
  },
  {
   "niveau": "A2",
@@ -1645,7 +1658,8 @@
   "t": "trou",
   "phrase": "Pour aller à la poste, vous tournez ______.",
   "id": "A2-22",
-  "groupe": "A2:A2-22"
+  "groupe": "A2:A2-22",
+  "photo": "rue"
  },
  {
   "niveau": "A2",
@@ -1787,7 +1801,8 @@
   "t": "trou",
   "phrase": "Demain, nous ______ une promenade au parc.",
   "id": "A2-30",
-  "groupe": "A2:A2-30"
+  "groupe": "A2:A2-30",
+  "photo": "parc"
  },
  {
   "niveau": "A2",
@@ -1822,7 +1837,8 @@
   "t": "trou",
   "phrase": "La ville ______ j'habite est très calme.",
   "id": "A2-32",
-  "groupe": "A2:A2-32"
+  "groupe": "A2:A2-32",
+  "photo": "ville-calme"
  },
  {
   "niveau": "A2",
@@ -1856,7 +1872,8 @@
   "t": "trou",
   "phrase": "Quand il pleut, je prends un ______.",
   "id": "A2-34",
-  "groupe": "A2:A2-34"
+  "groupe": "A2:A2-34",
+  "photo": "pluie"
  },
  {
   "niveau": "A2",
@@ -2203,7 +2220,8 @@
    "Ce matin, les élèves arrivent au lycée à huit heures, comme d'habitude. Le ciel est gris, il fait froid, et beaucoup d'élèves sont fatigués. Les cours commencent normalement : en maths, les élèves font des exercices ; en français, ils lisent un poème. À dix heures, pendant le cours d'histoire, un grand bruit éclate. Tout le monde sursaute : un ordinateur dans la salle informatique a explosé ! Heureusement, la salle était vide à ce moment-là. Les professeurs demandent aux élèves de sortir rapidement. Les pompiers arrivent dix minutes plus tard. Ils entrent dans le bâtiment pour vérifier que tout est en sécurité."
   ],
   "groupe": "B1:lycee",
-  "id": "B1-05"
+  "id": "B1-05",
+  "photo": "ecole"
  },
  {
   "niveau": "B1",
@@ -2225,7 +2243,8 @@
    "Ce matin, les élèves arrivent au lycée à huit heures, comme d'habitude. Le ciel est gris, il fait froid, et beaucoup d'élèves sont fatigués. Les cours commencent normalement : en maths, les élèves font des exercices ; en français, ils lisent un poème. À dix heures, pendant le cours d'histoire, un grand bruit éclate. Tout le monde sursaute : un ordinateur dans la salle informatique a explosé ! Heureusement, la salle était vide à ce moment-là. Les professeurs demandent aux élèves de sortir rapidement. Les pompiers arrivent dix minutes plus tard. Ils entrent dans le bâtiment pour vérifier que tout est en sécurité."
   ],
   "groupe": "B1:lycee",
-  "id": "B1-06"
+  "id": "B1-06",
+  "photo": "ecole"
  },
  {
   "niveau": "B1",
@@ -2247,7 +2266,8 @@
    "Ce matin, les élèves arrivent au lycée à huit heures, comme d'habitude. Le ciel est gris, il fait froid, et beaucoup d'élèves sont fatigués. Les cours commencent normalement : en maths, les élèves font des exercices ; en français, ils lisent un poème. À dix heures, pendant le cours d'histoire, un grand bruit éclate. Tout le monde sursaute : un ordinateur dans la salle informatique a explosé ! Heureusement, la salle était vide à ce moment-là. Les professeurs demandent aux élèves de sortir rapidement. Les pompiers arrivent dix minutes plus tard. Ils entrent dans le bâtiment pour vérifier que tout est en sécurité."
   ],
   "groupe": "B1:lycee",
-  "id": "B1-07"
+  "id": "B1-07",
+  "photo": "ecole"
  },
  {
   "niveau": "B1",
@@ -2269,7 +2289,8 @@
    "Ce matin, les élèves arrivent au lycée à huit heures, comme d'habitude. Le ciel est gris, il fait froid, et beaucoup d'élèves sont fatigués. Les cours commencent normalement : en maths, les élèves font des exercices ; en français, ils lisent un poème. À dix heures, pendant le cours d'histoire, un grand bruit éclate. Tout le monde sursaute : un ordinateur dans la salle informatique a explosé ! Heureusement, la salle était vide à ce moment-là. Les professeurs demandent aux élèves de sortir rapidement. Les pompiers arrivent dix minutes plus tard. Ils entrent dans le bâtiment pour vérifier que tout est en sécurité."
   ],
   "groupe": "B1:lycee",
-  "id": "B1-08"
+  "id": "B1-08",
+  "photo": "ecole"
  },
  {
   "niveau": "B1",

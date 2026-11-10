@@ -135,23 +135,42 @@ le jour où Julien commence à 8h (jeudi) et son cours d'arts plastiques (mardi,
 - Photos de scène fournies : pour les écoutes, la photo remplit tout l'encart et le bouton d'écoute est
   posé dessus (l'immeuble, A1-10 ; les trois femmes à Abidjan, B1-12) ; la salle de cinéma remplace
   l'icône de la situation (A1-18). Marie (A2-16, A2-17, B1-01, B1-02) :
-  une vraie photo à la place de l'icône, photo Unsplash de Janko Ferlič (pMJKJp0aG4M, licence Unsplash).
-- Photos d'illustration, choisies pour poser le décor sans donner la réponse :
-  - A1-07, le métro aérien parisien (photo fournie) ;
-  - A1-09, un comptoir d'accueil, sans escalier, ascenseur ni panneau d'étage (Unsplash, Malcolm Choong, 27zLImvxwV0) ;
-  - A1-14, une façade de cinéma (Unsplash, Myke Simon, atsUqIm3wxo) ;
-  - A1-17, des amis à table (Unsplash, g6FKXPq0SI0) ;
-  - A2-11, une salle de bistrot sans aucun plat visible, pour ne rien dire de la carte (Unsplash, Kamilla Isalieva,
-    3ICm8lZyeZE) ;
-  - B1-11, un bureau vide avec un ordinateur, à la place du parasol qui orientait vers la mauvaise réponse
-    « Étant en vacances » (Unsplash, Luca Bravo, 9l_326FISzk).
-  Laissées sans photo exprès :
-  - A1-04 : une photo de médecin ou d'étudiante donnerait la réponse ;
-  - A1-08 : les réponses sont déjà des photos ;
-  - A2-06 : une photo de La Poste montre une boîte aux lettres, soit la réponse « lettre » ;
-  - A2-07 : l'image d'une interdiction donnerait la réponse ;
-  - A2-09 : l'âge des personnes est ce qu'on demande ;
-  - les documents (maison de Julie, lycée) : ils se lisent déjà.
+  une vraie photo à la place de l'icône (crédit plus bas).
+- Photos d'illustration : 85 questions sur 113 en ont une. Dans « L'examen » (v3), elle remplit le haut de l'écran
+  et se fond dans le blanc, le support posé dessus (bille d'écoute au centre ; SMS, phrase, texte ou document en bas,
+  pour que le haut de la photo reste visible). Chaque photo pose le décor sans jamais montrer la réponse : une
+  personne au téléphone pour un SMS, la ville d'une phrase (« Je viens du Portugal » : Lisbonne), un comptoir
+  d'accueil sans escalier ni panneau d'étage (A1-09), un bistrot sans aucun plat (A2-11), un dîner sans viande ni
+  poisson (A2-01), une rue sans flèche (A2-22), une vitre sous la pluie sans parapluie (A2-34)… La table question →
+  photo est `PHOTOS` dans `banque/banque_v2.py`.
+  Restent sans photo, exprès, les questions où toute image donnerait la réponse : le vocabulaire défini par l'objet
+  ou le lieu (pharmacie, stylo, école, croissants, ciseaux, couleur du ciel, pâtissier, journalistes, pomme, livres,
+  hôpital du médecin), les contraires, « quartier », les chiffres, « Je n'ai vu personne dans le jardin », « un film
+  tellement drôle », les écoutes A1-04 (le métier), A2-07 (l'interdiction) et A2-09 (l'âge), la publicité A2-05 et
+  la maison de Julie (B1-09, B1-10). L'affiche A1-11 et les réponses en images d'A1-08, A1-12 et A2-07 restent.
+  Crédits : métro (A1-07), appartement, salle de cinéma, Abidjan : photos fournies. Toutes les autres viennent
+  d'Unsplash (licence Unsplash), par nom de fichier dans `banque/img/` :
+  accueil-sante, Dental Implants Tasmania (97A7qum-dvg) · agenda, Elena Leya (56J8143b7PU) · amies, Omar Lopez
+  (770jbAj_wvQ) · amir, Josias Garibay (rifCUO-4X8k) · bureau, Luca Bravo (9l_326FISzk) · bureau-julien, Zanyar
+  Ibrahim (qmZr6y5SrWQ) · bureau-matin, Carrie Allen (HCJKGkeKmW0) · bus, Nathan Cima (P_T5kv1Nd3w) · cafe, engin
+  akyurt (W4cStr7X2wY) · chats, Nathalie Jolie (nKzeG3iE_Qg) · chevaux, Manoj Kulkarni (Xgy8G9qMkFA) ·
+  cinema-entree, Myke Simon (atsUqIm3wxo) · classe, Vitaly Gariev (14jNrPntbgk) · conversation, Christina @
+  wocintechchat.com (VpcgTEKerEQ) · couple, Vitaly Gariev (-FYWsRxATAE) · croissant, Co Tan (ngWKZNeOhkk) ·
+  dejeuner (g6FKXPq0SI0) · diner, November Wong (11kwLZSdCHc) · ecole, Benoit Roy (lJOe6zs3vCI) · enfants, Jennifer
+  Kalenberg (dKVypFEWM0k) · fatigue, Adrian Swancar (roCfgvkBLVY) · gare, Jametlene Reskp (w5bhXG_uUXw) · hopital,
+  LEDC (JtHwupBN3to) · intro, LinkedIn Sales Solutions (IjkIOe-2fF4) · italie, mana5280 (6sIDfzp-ssQ) ·
+  jeune-femme, Max Harlynking (coB2qm6VUGg) · lecture, Alexandra Fuller (wkgv7I2VTzM) · lettre, Mediamodifier
+  (S3Lig53867M) · lisa, Joshua Gaunt (rTSXxhIyx68) · lisbonne, Mehmet Bozgedik (c-ibE7UOpGQ) · lucas, Elizeu Dias
+  (2EGNqazbAMk) · marche, Jason Ng (yGTdnZ_QWog) · marie, Janko Ferlič (pMJKJp0aG4M) · marseille, Carnet de Voyage
+  d'Alex (0KdrlrwYlCo) · medecin, Vitaly Gariev (_zbqco3m7dA) · pain, Ryan Wallace (JjvxFIX_3aA) · parc, Alex
+  Sherstnev (okbDJ3IEC0Y) · piscine, Mariusz Smenzyk (xs9r8fPUats) · pluie, Thomas Kinto (7BdGQlR-5Gs) · poste,
+  Kseniia Poroshkova (WySH93gqRPM) · presentation, Vitaly Gariev (lZXX-QVdyXY) · prets, Vitaly Gariev (b3-k_Lf4qU4)
+  · restaurant, Kamilla Isalieva (3ICm8lZyeZE) · rue, Jalen Hueser (QBjv69x4s0U) · stylos, Babak Eshaghian
+  (gCb97Kja9mY) · tante, Murat Ts. (eAq6UWbHjaM) · tele, Vitaly Gariev (X3jvunGfJdU) · telephone-1, Brooke Cagle
+  (eL4xIEuHzzk) · telephone-2, Vitaly Gariev (h2FIDYqL_SA) · telephone-3, Lensabl (Z0B1b8Xl4Jw) · velo-travail,
+  Alain Rouiller (PuF07L4-Y_c) · ville-calme, Pujalin (AGlIvH19MOQ) · voiture, Sevadis (3mxiB5KCKB0).
+- Page web : les images sont des fichiers (`banque/img/`), chargés en arrière-plan une fois la page affichée ;
+  l'artifact les intègre.
 - A1-11 : sans « Vous lisez cette affiche. » ni « Touchez l'image pour l'agrandir » ; une loupe dans le coin
   de l'affiche indique qu'on peut l'agrandir.
 - « Que répondez-vous ? » ajouté aux questions où l'on répond à un message. Une phrase de contexte
