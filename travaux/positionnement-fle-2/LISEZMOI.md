@@ -110,17 +110,15 @@ et remplace la banque, le moteur, les sons et les images (`banque/img/`).
 ### Réponses déduites (non marquées dans le PDF)
 
 Le pluriel de « un cheval » (« Des chevaux »), « ferai », « ai », « appelle », « du »,
-l'âge de Lucas (22 ans) et sa ville (Toulouse), « Qu'est-ce que » (au restaurant),
-le jour où Julien commence à 8h (jeudi) et son cours d'arts plastiques (mardi, 13h00-14h00).
+l'âge de Lucas (22 ans) et sa ville (Toulouse), « Qu'est-ce que » (au restaurant).
 
 ### Textes ajustés
 
 - « De quoi est-ce que ça parle ? » : la question est coupée dans le PDF.
 - « Margaret Marie » : le prénom entendu dans le son (la diapositive écrit « Maritz »).
 - L'affiche du café : le zoom montre le 16 novembre.
-- L'emploi du temps de Julien est affiché sans le mercredi ni le vendredi, pour un tableau plus grand
-  et lisible. Les réponses (jeudi à 8h, mardi de 13h à 14h) ne changent pas. Le tableau complet du PDF
-  reste dans `banque/banque_v2.py` (`EDT_PDF`).
+- Les deux questions sur l'emploi du temps de Julien (A2, page 56 du PDF) sont retirées à la demande : la
+  banque compte 111 questions.
 - « Complétez la phrase. » à la place de « Choisissez la bonne réponse. » pour les questions où
   l'on écrit le mot avec les lettres (A1-01, A1-05, A2-02). La consigne lue existait déjà.
 - A1-16 : « Remettez les mots dans l'ordre. » à la place de « Qu'est-ce que vous dites ? », pour moins
@@ -136,7 +134,7 @@ le jour où Julien commence à 8h (jeudi) et son cours d'arts plastiques (mardi,
   posé dessus (l'immeuble, A1-10 ; les trois femmes à Abidjan, B1-12) ; la salle de cinéma remplace
   l'icône de la situation (A1-18). Marie (A2-16, A2-17, B1-01, B1-02) :
   une vraie photo à la place de l'icône (crédit plus bas).
-- Photos d'illustration : 86 questions sur 113 en ont une. Dans « L'examen » (v3), elle remplit le haut de l'écran
+- Photos d'illustration : 86 questions sur 111 en ont une. Dans « L'examen » (v3), elle remplit le haut de l'écran
   et se fond dans le blanc, le support posé dessus (bille d'écoute au centre ; SMS, phrase, texte ou document en bas,
   pour que le haut de la photo reste visible). Chaque photo pose le décor sans jamais montrer la réponse : une
   personne au téléphone pour un SMS, la ville d'une phrase (« Je viens du Portugal » : Lisbonne), un comptoir
@@ -148,16 +146,16 @@ le jour où Julien commence à 8h (jeudi) et son cours d'arts plastiques (mardi,
   hôpital du médecin), les contraires, « quartier », les chiffres, « Je n'ai vu personne dans le jardin », « un film
   tellement drôle », les écoutes A1-04 (le métier), A2-07 (l'interdiction) et A2-09 (l'âge), et la maison de
   Julie (B1-09, B1-10). L'affiche A1-11 et les réponses en images d'A1-08, A1-12 et A2-07 restent.
-  Crédits : métro (A1-07), appartement, salle de cinéma, Abidjan : photos fournies ; boulangerie, primeur,
-  fromagerie, gare, pique-nique, plage, interdictions et affiche : images du PDF. Toutes les autres viennent
-  d'Unsplash (licence Unsplash), par nom de fichier dans `banque/img/` : accueil-sante, Dental Implants Tasmania
-  (97A7qum-dvg) · agenda, Elena Leya (56J8143b7PU) · amies, Omar Lopez (770jbAj_wvQ) · amir, Josias Garibay
-  (rifCUO-4X8k) · amis-telephone, Vitaly Gariev (CPVWc-ZJg1o) · boucherie (photo de réponse d'A1-08), Darth Liu
-  (hf_i6mm88pM) · bureau, Luca Bravo (9l_326FISzk) · bureau-julien, Zanyar Ibrahim (qmZr6y5SrWQ) · bureau-matin,
-  Carrie Allen (HCJKGkeKmW0) · bus, Nathan Cima (P_T5kv1Nd3w) · cafe, engin akyurt (W4cStr7X2wY) · chats, Nathalie
-  Jolie (nKzeG3iE_Qg) · chevaux, Manoj Kulkarni (Xgy8G9qMkFA) · chez-amie, Peter Boccia (vQVWSCx8lbQ) ·
-  cinema-entree, Myke Simon (atsUqIm3wxo) · classe, Vitaly Gariev (14jNrPntbgk) · concert, ActionVance (eXVd7gDPO9A)
-  · conversation, Christina @ wocintechchat.com (VpcgTEKerEQ) · couple, Vitaly Gariev (-FYWsRxATAE) · croissant, Co
+  Crédits : métro (A1-07), appartement, salle de cinéma, Abidjan : photos fournies ; primeur, fromagerie, gare,
+  pique-nique, plage, interdictions et affiche : images du PDF. Toutes les autres viennent d'Unsplash (licence
+  Unsplash), par nom de fichier dans `banque/img/` : accueil-sante, Dental Implants Tasmania (97A7qum-dvg, recadrée)
+  · agenda, Elena Leya (56J8143b7PU) · amies, Omar Lopez (770jbAj_wvQ) · amir, Josias Garibay (rifCUO-4X8k) ·
+  amis-telephone, Vitaly Gariev (CPVWc-ZJg1o) · boucherie (réponse d'A1-08), Darth Liu (hf_i6mm88pM) · boulangerie
+  (réponse d'A1-08), Zoshua Colah (D7cyLNwSEOo) · bureau, Luca Bravo (9l_326FISzk) · bureau-matin, Carrie Allen
+  (HCJKGkeKmW0) · bus, Nathan Cima (P_T5kv1Nd3w) · cafe, engin akyurt (W4cStr7X2wY) · chats, Nathalie Jolie
+  (nKzeG3iE_Qg) · chevaux, Manoj Kulkarni (Xgy8G9qMkFA) · chez-amie, Peter Boccia (vQVWSCx8lbQ) · cinema-entree,
+  Myke Simon (atsUqIm3wxo) · classe, Vitaly Gariev (14jNrPntbgk) · concert, ActionVance (eXVd7gDPO9A) ·
+  conversation, Christina @ wocintechchat.com (VpcgTEKerEQ) · couple, Vitaly Gariev (-FYWsRxATAE) · croissant, Co
   Tan (ngWKZNeOhkk) · dejeuner, Queensland, Australia (g6FKXPq0SI0) · dentiste, Ozkan Guner (aFqSRokmw2E) · ecole,
   Benoit Roy (lJOe6zs3vCI) · enfants, Jennifer Kalenberg (dKVypFEWM0k) · fatigue, Adrian Swancar (roCfgvkBLVY) ·
   gare, Jametlene Reskp (w5bhXG_uUXw) · hopital, LEDC (JtHwupBN3to) · intro, Alexis Brown (-Xv7k95vOFA) · italie,
@@ -168,10 +166,10 @@ le jour où Julien commence à 8h (jeudi) et son cours d'arts plastiques (mardi,
   (1YuglK73vBU) · pain, Ryan Wallace (JjvxFIX_3aA) · parc, Alex Sherstnev (okbDJ3IEC0Y) · piscine, Mariusz Smenzyk
   (xs9r8fPUats) · pizza, Laure Noverraz (jsZKLRi7toU) · pluie, Thomas Kinto (7BdGQlR-5Gs) · poste, Kseniia
   Poroshkova (WySH93gqRPM) · presentation, Vitaly Gariev (lZXX-QVdyXY) · prets, Vitaly Gariev (b3-k_Lf4qU4) ·
-  restaurant, Kamilla Isalieva (3ICm8lZyeZE) · reunion, Vitaly Gariev (G6DRxdnw4WY) · rue, Jalen Hueser
-  (QBjv69x4s0U) · stylos, Babak Eshaghian (gCb97Kja9mY) · tante, Murat Ts. (eAq6UWbHjaM) · tele, Vitaly Gariev
-  (X3jvunGfJdU) · telephone-2, Vitaly Gariev (h2FIDYqL_SA) · velo-travail, Alain Rouiller (PuF07L4-Y_c) ·
-  ville-calme, Pujalin (AGlIvH19MOQ) · voiture, Sevadis (3mxiB5KCKB0).
+  restaurant et rep-restaurant (réponse d'A1-12), Kamilla Isalieva (3ICm8lZyeZE) · reunion, Vitaly Gariev
+  (G6DRxdnw4WY) · rue, Jalen Hueser (QBjv69x4s0U) · stylos, Babak Eshaghian (gCb97Kja9mY) · tante, Jon Tyson
+  (0RzKU7YGPuU, recadrée) · tele, Vitaly Gariev (X3jvunGfJdU) · telephone-2, Vitaly Gariev (h2FIDYqL_SA) ·
+  velo-travail, Alain Rouiller (PuF07L4-Y_c) · ville-calme, Pujalin (AGlIvH19MOQ) · voiture, Sevadis (3mxiB5KCKB0).
 - Page web : les images sont des fichiers (`banque/img/`), chargés en arrière-plan une fois la page affichée ;
   l'artifact les intègre.
 - A1-11 : sans « Vous lisez cette affiche. » ni « Touchez l'image pour l'agrandir » ; une loupe dans le coin
@@ -180,5 +178,6 @@ le jour où Julien commence à 8h (jeudi) et son cours d'arts plastiques (mardi,
   retirés à la demande : « Au restaurant, le serveur présente la carte. » (A2-11), « Vous vous présentez au
   groupe. » (A1-15), « Au restaurant, vous posez une question au serveur. » (A2-13). Fautes de frappe corrigées.
 - A1-08 : une quatrième photo de réponse, la boucherie (l'enregistrement ne parle que de pâtisseries), pour une
-  grille de 2 × 2.
+  grille de 2 × 2 ; la vitrine de boulangerie est remplacée par une photo plus nette. A1-12 : de même, un quatrième
+  lieu en image, « Un restaurant ».
 - Son sur iPhone : la page passe en mode « lecture » (navigator.audioSession), le son passe même sonnerie coupée.

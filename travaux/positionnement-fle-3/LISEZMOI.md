@@ -25,6 +25,33 @@ perçu comme plus officiel. La version 2, plus ludique, reste en place pour d'au
   en fin de ligne. Ses sons et ses images sont lus dans `../../positionnement-fle-2/` (l'artifact les intègre).
 - `maquettes/` : les trois pistes comparées avant le choix.
 
+## La langue des consignes (« L'examen »)
+
+Sur l'accueil, le bouton « Langue des consignes » (drapeau et nom de la langue) ouvre la liste : français, soudanais
+(arabe du Soudan), ukrainien, pachto, lingala, somali, bengali, tibétain, dari, russe, tamoul. Le choix est gardé dans le
+navigateur.
+
+- Traduits : les questions, les phrases de contexte (« Vous prenez le métro… »), les situations, les étiquettes
+  (« Vous recevez une invitation »), les indications (« Le verbe correct au présent ») et l'interface (accueil,
+  boutons, fin, « Quitter le test ? »).
+- Restent en français : les phrases à compléter, les questions qui contiennent un blanc (« Ce message est envoyé pour
+  ___ un rendez-vous. »), la dictée de numéro (A2-35), les réponses, les SMS, les documents et les textes à lire.
+- Le haut-parleur des questions A1 lit la question dans la langue choisie : voix ElevenLabs (modèle eleven_v3, la
+  même voix que les consignes françaises), contrôlées par reconnaissance vocale. Le tibétain n'a pas de voix (aucune
+  synthèse vocale ne le parle) : le haut-parleur disparaît.
+- Une police Noto par écriture (arabe, bengali, tamoul, tibétain, cyrillique), chargée seulement quand la langue est
+  choisie ; arabe, pachto et dari s'écrivent de droite à gauche.
+- Fichiers : `traductions/source.json` (les 93 textes à traduire), `traductions/<code>.json` (clé = texte français),
+  `sons/<code>/` (voix, refaites par `python3 travaux/positionnement-fle-3/generer_voix.py <code>`), `drapeaux/`
+  (flag-icons, licence MIT ; drapeau tibétain simplifié dessiné pour le test, sans les lions).
+- **À faire relire.** Les traductions ont été faites par l'IA, avec une relecture par retraduction, pas par des
+  locuteurs natifs. Avant un usage réel, les faire relire, en priorité le lingala (orthographe des ɛ/ɔ, emprunts au
+  français pour les termes de grammaire), le tibétain, le dari, l'arabe du Soudan (impératif au masculin, chiffres
+  arabes orientaux) et le pachto. Points de vigilance déjà repérés : « tante » n'a pas de mot neutre en bengali, tamoul
+  et somali (tante maternelle ou paternelle) ; « l'article » n'existe pas en bengali, tamoul et pachto (terme expliqué
+  ou emprunté) ; « De quoi s'agit-il ? » devient « Quel est ce texte ? » pour coller aux réponses (publicité, commande,
+  menu).
+
 ## Ce qui change par rapport à la version 2
 
 - Fond pastel clair (le dégradé violet, bleu, turquoise de la référence, adouci) et une grande feuille blanche qui
