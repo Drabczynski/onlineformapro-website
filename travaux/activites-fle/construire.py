@@ -44,10 +44,10 @@ ALPHA = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_"
 
 # une photo par écoute (en attendant la vidéo) : elle pose le lieu sans jamais souffler la réponse
 PHOTO_CO = {"CO-01": "lucas", "CO-02": "bus", "CO-03": "boulangerie", "CO-04": "classe", "CO-05": "amir", "CO-06": "rue",
-            "CO-07": "accueil-sante", "CO-08": "telephone-2", "CO-09": "couple", "CO-10": "ville-calme", "CO-11": "conversation",
-            "CO-12": "ecole", "CO-13": "gare", "CO-14": "amies", "CO-15": "prets", "CO-16": "marche", "CO-17": "chez-amie",
-            "CO-18": "medecin", "CO-21": "petite-ville", "CO-23": "appartement", "CO-27": "bureau", "CO-29": "enfants", "CO-31": "voiture",
-            "CO-33": "musee", "CO-34": "parc", "CO-35": "velo-travail", "CO-38": "presentation", "CO-41": "fromagerie",
+            "CO-07": "accueil-sante", "CO-08": "telephone-2", "CO-09": "couple", "CO-10": "fenetre-the", "CO-11": "conversation",
+            "CO-12": "ecole", "CO-13": "gare", "CO-14": "amies", "CO-15": "salle-restaurant", "CO-16": "marche", "CO-17": "chez-amie",
+            "CO-18": "medecin", "CO-21": "courses", "CO-23": "appartement", "CO-27": "bureau", "CO-29": "enfants", "CO-31": "voiture",
+            "CO-33": "vieux-lyon", "CO-34": "parc", "CO-35": "velo-travail", "CO-38": "presentation", "CO-41": "fromagerie",
             "CO-44": "atelier", "CO-47": "classe", "CO-50": "cinema-entree"}
 PHOTO_EO = {"EO-11": "boulangerie", "EO-13": "famille", "EO-28": "marche", "EO-17": "lucas", "EO-31": "accueil-sante"}
 PHOTO_EE = {"EE-17": "primeur"}

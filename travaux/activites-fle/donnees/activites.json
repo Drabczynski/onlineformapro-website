@@ -1226,7 +1226,7 @@
   "titre": "Météo",
   "theme": "Météo",
   "video": null,
-  "poster": "medias/photos/ville-calme.webp",
+  "poster": "medias/photos/fenetre-the.webp",
   "audio": "medias/sons/CO-10.mp3",
   "script": [
    "Il fait froid aujourd'hui. Il neige."
@@ -1773,7 +1773,7 @@
   "titre": "Travail",
   "theme": "Travail",
   "video": null,
-  "poster": "medias/photos/prets.webp",
+  "poster": "medias/photos/salle-restaurant.webp",
   "audio": "medias/sons/CO-15.mp3",
   "script": [
    "Je travaille dans un restaurant. Je suis cuisinier."
@@ -2381,7 +2381,7 @@
   "titre": "Annonce dans un magasin",
   "theme": "Commerces · annonce",
   "video": null,
-  "poster": "medias/photos/petite-ville.webp",
+  "poster": "medias/photos/courses.webp",
   "audio": "medias/sons/CO-21.mp3",
   "script": [
    "Chers clients, cette semaine, profitez de nos promotions : les fruits et légumes à moins 30 %. Attention, ce samedi, le magasin fermera exceptionnellement à 19 heures. Bonne journée !"
@@ -3760,7 +3760,7 @@
   "titre": "Un récit",
   "theme": "Loisirs · récit",
   "video": null,
-  "poster": "medias/photos/musee.webp",
+  "poster": "medias/photos/vieux-lyon.webp",
   "audio": "medias/sons/CO-33.mp3",
   "script": [
    "Le week-end dernier, je suis allée chez mes cousins à Lyon. Nous avons visité le vieux quartier et, le soir, on a mangé au restaurant."
@@ -7455,10 +7455,10 @@
       1.28
      ]
     ],
-    "photoH": "medias/photos/lecture-courrier.webp"
+    "photoH": "medias/photos/nice.webp"
    }
   ],
-  "photoH": "medias/photos/lecture-courrier.webp"
+  "photoH": "medias/photos/nice.webp"
  },
  {
   "id": "CE-12",
@@ -9965,7 +9965,7 @@
     "etiquette": "Complétez :",
     "niveau": "A1",
     "audioQ": "medias/questions/EE-12.mp3",
-    "photoH": "medias/photos/courses.webp"
+    "photoH": "medias/photos/pommes.webp"
    },
    {
     "id": "EE-13",
@@ -10869,6 +10869,7 @@
     2.58
    ]
   ],
+  "photoH": "medias/photos/courses.webp",
   "aide": {
    "titre": "Votre liste de courses",
    "forme": "liste",

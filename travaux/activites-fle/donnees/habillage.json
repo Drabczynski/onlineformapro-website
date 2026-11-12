@@ -6,7 +6,7 @@
  "CE-06": "formulaire",
  "CE-08": "mairie",
  "CE-10": "ecole",
- "CE-11": "lecture-courrier",
+ "CE-11": "nice",
  "CE-12": "salle-attente",
  "CE-13": "courses",
  "CE-14": "immeuble",
@@ -34,7 +34,7 @@
  "EE-09": "petite-ville",
  "EE-10": "pause-cafe",
  "EE-11": "amies",
- "EE-12": "courses",
+ "EE-12": "pommes",
  "EE-13": "visite",
  "EE-18": "marche",
  "EE-19": "salle-restaurant",
@@ -114,5 +114,6 @@
  "EO-46": "prets",
  "EO-47": "atelier",
  "EO-48": "conversation",
- "EO-50": "classe"
+ "EO-50": "classe",
+ "EE-17": "courses"
 }

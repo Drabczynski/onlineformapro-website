@@ -748,117 +748,58 @@ body { font-weight: 500; }
 }
 
 
-/* ------------------------------------------------------------ v5 : tout en plein écran, comme la vidéo. Avec une photo, elle couvre l'écran
-   (sans zoom) et un dégradé violet foncé recouvre le côté de la question ; sans photo, un fond violet foncé. Texte et tuiles en blanc ;
-   seules la feuille d'écriture et l'exemple oral restent des cartes blanches. */
-.sc-duo { color: #fff; background: radial-gradient(120% 95% at 18% 8%, #5d27d6 0%, #3c159e 46%, #251070 100%); }
-.sc-duo.avec-photo { background: #251070; }
-.sc-duo > .visuel { min-height: 34vh; overflow: visible; border-radius: 0; background: none; box-shadow: none; animation: none; }
-.sc-duo > .visuel::after { display: none !important; }
-.sc-duo .vis-photo { position: fixed; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; animation: none; }
-.sc-duo.avec-photo::after { content: ""; position: fixed; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, rgba(37, 16, 112, .08) 0%, rgba(37, 16, 112, .22) 38%, rgba(37, 16, 112, .86) 58%, rgba(37, 16, 112, .95) 100%); }
-.sc-duo > .carte-q { position: relative; z-index: 2; padding: clamp(16px, 2.4vw, 40px); border-radius: 0; background: none; box-shadow: none; }
-.sc-duo > .visuel > :not(.vis-photo) { z-index: 2; }
-.sc-duo > .visuel > .pose, .sc-duo > .visuel > .postit, .sc-duo > .visuel > .horloge-g { position: relative; }
-.sc-duo.solo > .carte-q { min-height: 0; }
-.sc-duo .q, .sc-duo .g-phrase, .sc-duo .consigne-o, .sc-duo .phrase-o, .sc-duo .dock-mot, .sc-duo .chrono-g, .sc-duo .mon-texte { color: #fff; }
-.sc-duo .g-avant, .sc-duo .aide-g, .sc-duo .consigne-mini, .sc-duo .chat-q, .sc-duo .lien-b { color: rgba(255, 255, 255, .78); }
-.sc-duo .q { text-shadow: 0 4px 0 rgba(30, 10, 90, .3); }
-.sc-duo .hp { color: rgba(255, 255, 255, .72); }
-.sc-duo .hp:hover, .sc-duo .hp.joue { color: #fff; }
-.sc-duo .kara:not(.encre).suit .k { color: rgba(255, 255, 255, .42); }
-.sc-duo .kara:not(.encre).suit .k.dit { color: #fff; }
-.sc-duo .kara:not(.encre).suit .k.actuel { color: var(--citron-1); }
-.sc-duo .encre .kara.suit .k { color: rgba(70, 40, 140, .32); }
-.sc-duo .encre .kara.suit .k.dit { color: var(--encre); }
-.sc-duo .encre .kara.suit .k.actuel { color: var(--fond-1); }
-.sc-duo .fente { background: rgba(255, 255, 255, .18); box-shadow: inset 0 -.08em 0 rgba(255, 255, 255, .55); }
-.sc-duo .fente.vide { animation-name: respire-f; }
-.sc-duo .fente.pleine { box-shadow: 0 .08em 0 var(--citron-levre); }
-.sc-duo .fente.juste { box-shadow: 0 .08em 0 var(--vert-levre); }
-.sc-duo .fente.faux { box-shadow: 0 .08em 0 var(--rose-levre); }
-.sc-duo .g-phrase.form { background: rgba(255, 255, 255, .1); }
-.sc-duo .g-indice { background: rgba(255, 255, 255, .14); color: #fff; }
-.sc-duo .ecoute, .sc-duo .relire { border-color: rgba(255, 255, 255, .32); background: rgba(255, 255, 255, .12); color: #fff; }
-.sc-duo .ecoute .rondp, .sc-duo .relire .rondp { background: #fff; color: var(--violet); }
-.sc-duo .micro-g { background: linear-gradient(#ffffff, #efe6ff); box-shadow: inset 0 0 0 7px rgba(135, 69, 253, .12), 0 6px 0 #c3abff; color: var(--violet); }
-.sc-duo .micro-g:active { box-shadow: inset 0 0 0 7px rgba(135, 69, 253, .12), 0 2px 0 #c3abff; }
-.sc-duo .studio.enreg .micro-g { background: linear-gradient(var(--rose-1), var(--rose-2)); box-shadow: inset 0 0 0 7px rgba(255, 255, 255, .3), 0 6px 0 var(--rose-levre); color: #fff; }
-.sc-duo .micro-g svg.anneau .fond-a { stroke: rgba(255, 255, 255, .2); }
-.sc-duo .micro-g svg.anneau .plein { stroke: var(--citron-2); }
-.sc-duo .studio.atteint .micro-g svg.anneau .plein { stroke: var(--vert-1); }
-.sc-duo .studio:not(.enreg):not(.fini) .micro-g::before { border-color: rgba(255, 255, 255, .4); }
-.sc-duo .exemple-o, .carte-q .sc-duo .exemple-o { padding: clamp(20px, 2.4vw, 32px); border-radius: 26px; background: #fff; box-shadow: 0 5px 0 var(--blanc-levre); color: var(--encre); }
-.sc-duo .carte-ecrit { padding: clamp(22px, 2.6vw, 40px); border-radius: 30px; background: #fff; box-shadow: 0 6px 0 rgba(20, 6, 70, .35); color: var(--encre); }
-.sc-duo .carte-ecrit .consigne-p { color: var(--encre); }
-.sc-duo .carte-ecrit .hp { color: var(--encre-douce); }
-.sc-duo .carte-ecrit .kara:not(.encre).suit .k { color: rgba(70, 40, 140, .32); }
-.sc-duo .carte-ecrit .kara:not(.encre).suit .k.dit { color: var(--encre); }
-.sc-duo .carte-ecrit .kara:not(.encre).suit .k.actuel { color: var(--fond-1); }
-.sc-duo .carte-ecrit .lien-b { color: var(--encre-douce); }
-.sc-duo .carte-ecrit .dock-mot { color: var(--encre); }
-.sc-ecrit.compare .carte-q.mien { padding: clamp(22px, 2.6vw, 40px); border-radius: 30px; background: rgba(255, 255, 255, .1); }
-.sc-ecrit.compare .titre-mien { color: #fff; }
-.sc-duo .legende { background: rgba(255, 255, 255, .92); }
-.sc-duo .visuel .titre-v { background: none; text-shadow: 0 4px 0 rgba(30, 10, 90, .4); }
-.sc-duo .horloge-g { background: #fff; }
+/* ------------------------------------------------------------ v7 : deux encarts sur un fond pastel qui change d'une question à l'autre
+   (six ambiances). À gauche, la photo dans son cadre, avec le document, la phrase à compléter ou l'exemple posés dessus ; à droite, une
+   carte de verre dépoli avec la question et les réponses. Pas d'ombre portée. La vidéo garde son plein écran. */
+:root { --nuit: #2f2b6e; --nuit-douce: rgba(47, 43, 110, .62); }
+.amb-1 { --amb: linear-gradient(180deg, #d8c8ee 0%, #e8d0e4 48%, #f5dfcc 100%); }
+.amb-2 { --amb: linear-gradient(170deg, #bcd4f0 0%, #d4d9f4 50%, #e9d8f0 100%); }
+.amb-3 { --amb: linear-gradient(170deg, #bfe3e8 0%, #cfdff2 55%, #e1dcf4 100%); }
+.amb-4 { --amb: linear-gradient(170deg, #f3d3e4 0%, #e6d6f2 55%, #d5ddf6 100%); }
+.amb-5 { --amb: linear-gradient(170deg, #cdeedf 0%, #d3e5f1 55%, #e2def4 100%); }
+.amb-6 { --amb: linear-gradient(170deg, #f7dfcd 0%, #f3d5de 50%, #e5d5ef 100%); }
+.sc-duo { color: var(--nuit); background: radial-gradient(55% 45% at 50% 40%, rgba(255, 255, 255, .55), rgba(255, 255, 255, 0) 70%), var(--amb, linear-gradient(170deg, #bcd4f0, #e9d8f0)); }
+.sc-duo > .visuel { border-radius: 32px; background: rgba(255, 255, 255, .4); box-shadow: none; }
+.sc-duo > .carte-q { border: 1.5px solid rgba(255, 255, 255, .8); border-radius: 32px; background: rgba(255, 255, 255, .6); -webkit-backdrop-filter: blur(22px) saturate(1.15); backdrop-filter: blur(22px) saturate(1.15); box-shadow: none; }
+.sc-duo > .carte-q.carte-ecrit { background: #fff; }
+.sc-duo .q, .sc-duo .consigne-o, .sc-duo .phrase-o, .sc-duo .dock-mot, .sc-duo .chrono-g { color: var(--nuit); }
 .sc-duo .q { font-size: clamp(30px, 3vw, 50px); }
 .sc-duo .alveoles { --w: clamp(140px, 12.5vw, 188px); }
 .sc-duo .bonbons { width: min(640px, 100%); }
 .sc-duo .reps .rep { width: min(560px, 100%); max-width: none; padding: 20px 28px; font-size: clamp(22px, 2vw, 30px); }
 .sc-duo .chat { gap: 22px; }
-body[data-vue="activite"] .haut .rond { background: rgba(255, 255, 255, .16); color: #fff; }
-body[data-vue="activite"] .haut .rond[aria-pressed="true"] { background: #fff; color: var(--violet); }
+.visuel.avec-objet:not(.uni)::after { background: rgba(30, 22, 80, .16); }
+.visuel .pose > * { max-width: 100%; }
+/* la phrase à compléter, posée sur la photo ; à droite, les mots à choisir */
+.pose-phrase:empty { display: none; }
+.carte-phrase { display: grid; gap: 12px; justify-items: center; padding: clamp(22px, 2.6vw, 38px) clamp(24px, 3vw, 44px); border-radius: 28px; background: #fff; color: var(--encre); text-align: center; animation: monte .5s var(--doux-sortie) .1s backwards; }
+.carte-phrase .g-phrase { font-size: clamp(28px, 2.9vw, 48px); }
+.carte-phrase .g-phrase.form { padding: 0; background: none; box-shadow: none; font-size: clamp(24px, 2.3vw, 38px); }
+.carte-phrase .g-avant, .carte-phrase .g-indice { margin: 0; }
+.g-consigne { margin: 0; color: var(--nuit-douce); font: 700 clamp(20px, 1.8vw, 26px)/1.25 var(--titre); text-align: center; }
+/* l'exemple oral, posé sur la photo */
+.visuel .ex-pose { position: absolute; left: clamp(14px, 2vw, 28px); right: clamp(14px, 2vw, 28px); bottom: clamp(14px, 2vw, 28px); z-index: 2; max-height: calc(100% - 2 * clamp(14px, 2vw, 28px)); overflow-y: auto; scrollbar-width: none; animation: monte .45s var(--doux-sortie) backwards; }
+.visuel .ex-pose .exemple-o { width: 100%; padding: clamp(20px, 2.2vw, 30px); border-radius: 26px; background: #fff; color: var(--encre); }
+.visuel.avec-ex .parole { display: none; }
+.visuel.uni.avec-ex { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; padding: 24px; }
+.visuel.uni.avec-ex .ex-pose { position: static; width: min(92%, 620px); max-height: none; }
+.visuel.uni.avec-ex .horloge-g { width: min(44%, 280px); }
+.visuel.uni.avec-ex .postit { width: min(60%, 360px); }
+/* une photo à décrire : on la voit en entier */
+.sc-duo > .visuel.sujet { display: block; align-self: center; height: auto; min-height: 0; max-height: none; }
+.visuel.sujet .vis-photo { position: static; display: block; width: 100%; height: auto; }
+@media (min-width: 900px) and (min-height: 560px) { .sc-duo:has(> .visuel.sujet) { grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); } }
 @media (max-width: 899.98px), (max-height: 559.98px) {
-  .sc-duo.avec-photo::after { background: linear-gradient(180deg, rgba(37, 16, 112, .05) 0%, rgba(37, 16, 112, .2) 22%, rgba(37, 16, 112, .9) 42%, rgba(37, 16, 112, .96) 100%); }
-  .sc-duo > .visuel { min-height: 32vh; }
-  .sc-duo > .carte-q { padding: 18px 4px 8px; }
-  .sc-duo > .carte-q.carte-ecrit { padding: 22px 18px; }
+  .sc-duo > .carte-q { padding: 22px 12px; }
+  .sc-duo .alveoles { --w: min(140px, 30vw); }
 }
-
-
-/* ------------------------------------------------------------ v6 : des fonds pastel, légers, qui changent d'une question à l'autre (six ambiances),
-   avec un halo clair ; texte indigo ; tuiles et cartes blanches ; avec une photo, elle se fond dans un voile pastel du côté de la question.
-   La vidéo garde son plein écran sombre. */
-:root { --nuit: #2f2b6e; --nuit-douce: rgba(47, 43, 110, .62); }
-.amb-1 { --amb: linear-gradient(180deg, #d8c8ee 0%, #e8d0e4 48%, #f5dfcc 100%); --amb-voile: rgba(236, 216, 232, .95); }
-.amb-2 { --amb: linear-gradient(170deg, #bcd4f0 0%, #d4d9f4 50%, #e9d8f0 100%); --amb-voile: rgba(214, 220, 244, .95); }
-.amb-3 { --amb: linear-gradient(170deg, #bfe3e8 0%, #cfdff2 55%, #e1dcf4 100%); --amb-voile: rgba(208, 224, 240, .95); }
-.amb-4 { --amb: linear-gradient(170deg, #f3d3e4 0%, #e6d6f2 55%, #d5ddf6 100%); --amb-voile: rgba(232, 214, 238, .95); }
-.amb-5 { --amb: linear-gradient(170deg, #cdeedf 0%, #d3e5f1 55%, #e2def4 100%); --amb-voile: rgba(212, 232, 236, .95); }
-.amb-6 { --amb: linear-gradient(170deg, #f7dfcd 0%, #f3d5de 50%, #e5d5ef 100%); --amb-voile: rgba(244, 218, 222, .95); }
-.sc-duo { color: var(--nuit); background: radial-gradient(55% 45% at 50% 40%, rgba(255, 255, 255, .6), rgba(255, 255, 255, 0) 70%), var(--amb, linear-gradient(170deg, #bcd4f0, #e9d8f0)); }
-.sc-duo.avec-photo { background: var(--amb, #e9e3f6); }
-.sc-duo.avec-photo::after { background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 34%, var(--amb-voile, rgba(236, 230, 248, .95)) 60%, var(--amb-voile, rgba(236, 230, 248, .95)) 100%); }
-.sc-duo .q, .sc-duo .g-phrase, .sc-duo .consigne-o, .sc-duo .phrase-o, .sc-duo .dock-mot, .sc-duo .chrono-g, .sc-duo .mon-texte { color: var(--nuit); }
-.sc-duo .g-avant, .sc-duo .aide-g, .sc-duo .consigne-mini, .sc-duo .chat-q, .sc-duo .lien-b { color: var(--nuit-douce); }
-.sc-duo .q { text-shadow: none; }
-.sc-duo .hp { color: var(--nuit-douce); }
-.sc-duo .hp:hover, .sc-duo .hp.joue { color: var(--violet); }
-.sc-duo .kara:not(.encre).suit .k { color: rgba(47, 43, 110, .3); }
-.sc-duo .kara:not(.encre).suit .k.dit { color: var(--nuit); }
-.sc-duo .kara:not(.encre).suit .k.actuel { color: var(--violet); }
-.sc-duo .fente { background: rgba(255, 255, 255, .6); box-shadow: inset 0 -.08em 0 rgba(135, 69, 253, .45); }
-.sc-duo .fente.vide { animation-name: respire-clair; }
-.sc-duo .g-phrase.form { background: rgba(255, 255, 255, .55); }
-.sc-duo .g-indice { background: rgba(255, 255, 255, .6); color: var(--nuit); }
-.sc-duo .ecoute, .sc-duo .relire { border-color: rgba(255, 255, 255, .95); background: rgba(255, 255, 255, .72); color: var(--violet); }
-.sc-duo .ecoute .rondp, .sc-duo .relire .rondp { background: var(--violet); color: #fff; }
-.sc-duo .micro-g { background: linear-gradient(#a274ff, #7b3cf5); box-shadow: inset 0 0 0 7px rgba(255, 255, 255, .26), 0 6px 0 #5b2bc4; color: #fff; }
-.sc-duo .micro-g:active { box-shadow: inset 0 0 0 7px rgba(255, 255, 255, .26), 0 2px 0 #5b2bc4; }
-.sc-duo .micro-g svg.anneau .fond-a { stroke: rgba(135, 69, 253, .15); }
-.sc-duo .micro-g svg.anneau .plein { stroke: var(--violet); }
-.sc-duo .studio:not(.enreg):not(.fini) .micro-g::before { border-color: rgba(135, 69, 253, .3); }
-.sc-duo .carte-ecrit { box-shadow: 0 6px 0 var(--blanc-levre), 0 11px 0 var(--ombre); }
+.visuel .titre-v { background: linear-gradient(transparent, rgba(30, 22, 80, .62)); }
+.visuel.avec-dit:not(.uni)::after { background: linear-gradient(transparent 55%, rgba(30, 22, 80, .36)); }
+.sc-duo .carte-ecrit { box-shadow: none; }
 @media (min-width: 900px) and (min-height: 560px) { .sc-duo > .carte-ecrit { align-self: center; height: auto; min-height: 0; max-height: 100%; overflow-y: auto; } }
 .sc-ecrit.compare .carte-q.mien { background: rgba(255, 255, 255, .55); }
-.sc-ecrit.compare .titre-mien { color: var(--violet); }
-.sc-duo .reps .rep:not(.envoyee):not(.bonne-rep) { border-color: rgba(255, 255, 255, .95); background: rgba(255, 255, 255, .85); }
-body[data-vue="activite"] .haut .rond { background: rgba(255, 255, 255, .55); color: var(--nuit); }
+body[data-vue="activite"] .haut .rond { background: rgba(255, 255, 255, .6); color: var(--nuit); }
 body[data-vue="activite"][data-type="video"] .haut .rond { background: rgba(40, 14, 120, .42); color: #fff; }
-@media (max-width: 899.98px), (max-height: 559.98px) {
-  .sc-duo.avec-photo::after { background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 20%, var(--amb-voile, rgba(236, 230, 248, .95)) 42%, var(--amb-voile, rgba(236, 230, 248, .95)) 100%); }
-}
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .etoiles svg { opacity: 1; } }
 </style>
@@ -1324,7 +1265,7 @@ function objetHTML(d) {
   }
 }
 function sceneLecture(a) {
-  const sc = rendre(`<section class="scene sc-duo sc-lecture phase-lire">${visuelHTML(null, `<div class="pose">${objetHTML(a.doc)}</div>`, "avec-objet couleur")}<div class="carte-q"></div></section>`);
+  const sc = rendre(`<section class="scene sc-duo sc-lecture phase-lire">${visuelHTML(a.photoH, `<div class="pose">${objetHTML(a.doc)}</div>`, a.photoH ? "avec-objet" : "avec-objet couleur")}<div class="carte-q"></div></section>`);
   const Q = suiteQuestions(a, $(".carte-q", sc), { fin: (bonnes) => terminer(a, { bonnes, total: a.questions.length }) });
   let minuterie = 0;
   const question = () => { if (!sc.classList.contains("phase-lire")) return; clearTimeout(minuterie); sc.classList.replace("phase-lire", "phase-q"); Son.joue("papier"); Q.montrer(); };
@@ -1339,20 +1280,22 @@ function sceneLecture(a) {
 // ---------------------------------------------------------------- 3. grammaire : le mot choisi vole jusqu'au trou
 function sceneGrammaire(a) {
   const q0 = a.questions[0];
-  const sc = rendre(`<section class="scene sc-duo sc-gram">${visuelHTML(q0.photoH, "", "")}<div class="carte-q"><div class="gram" id="gram"></div></div></section>`), G = $("#gram", sc);
+  const sc = rendre(`<section class="scene sc-duo sc-gram">${visuelHTML(q0.photoH, `<div class="pose pose-phrase" id="pose-g"></div>`, "")}<div class="carte-q"><div class="gram" id="gram"></div></div></section>`), G = $("#gram", sc), PG = $("#pose-g", sc), V = $(".visuel", sc);
   let j = 0, bonnes = 0;
   const montrer = () => {
     const q = a.questions[j], n = a.questions.length, trou = trouDe(q);
     const hp = q.audioQ ? `<button class="hp" type="button" data-hp="${echap(q.audioQ)}" aria-label="Écouter">${HP}</button>` : "";
     if (trou) {
       const phrase = echap(trou.replace(/ ([:?!;»])/g, " $1").replace(/ (_{3,})/, " $1")).replace(/_{3,}/, `<span class="fente vide" aria-label="mot manquant"></span>`);
-      G.innerHTML = `${q.avant ? `<p class="g-avant">${echap(q.avant)}</p>` : ""}<div class="q-ligne"><p class="g-phrase${q.t === "enonce" ? " form" : ""}">${phrase}${hp ? "&nbsp;" + hp : ""}</p></div>${q.indice ? `<p class="g-indice">${echap(q.indice)}</p>` : ""}${q.apres ? `<p class="g-avant">${echap(q.apres)}</p>` : ""}
-        ${choixHTML(q, { cls: "puce" })}<div class="dock-place"></div>`;
-      brancherHP(G); touche = brancherFente(q, fin);
+      const carte = `<div class="carte-phrase">${q.avant ? `<p class="g-avant">${echap(q.avant)}</p>` : ""}<div class="q-ligne"><p class="g-phrase${q.t === "enonce" ? " form" : ""}">${phrase}${hp ? "&nbsp;" + hp : ""}</p></div>${q.indice ? `<p class="g-indice">${echap(q.indice)}</p>` : ""}${q.apres ? `<p class="g-avant">${echap(q.apres)}</p>` : ""}</div>`;
+      if (PG) { PG.innerHTML = carte; V.classList.add("avec-objet"); G.innerHTML = `<p class="g-consigne">Choisissez le bon mot.</p>${choixHTML(q, { cls: "puce" })}<div class="dock-place"></div>`; brancherHP(PG); }
+      else { G.innerHTML = `${carte}${choixHTML(q, { cls: "puce" })}<div class="dock-place"></div>`; brancherHP(G); }
+      touche = brancherFente(q, fin);
     } else {
       const avant = q.t === "mots" ? `<p class="g-avant">${echap(q.etiquette || "")}</p><div class="g-mots">${q.mots.map(m => `<span>${echap(m)}</span>`).join("")}</div>`
         : q.t === "transformer" ? `<p class="g-avant">${echap(q.vers)}</p><p class="g-phrase form">${echap(q.phrase)}</p>`
         : q.t === "enonce" ? `${q.avant ? `<p class="g-avant">${echap(q.avant)}</p>` : ""}${q.citation ? `<p class="g-phrase form">${echap(q.citation)}</p>` : ""}${q.apres ? `<p class="g-avant">${echap(q.apres)}</p>` : ""}` : "";
+      if (PG) { PG.innerHTML = ""; V.classList.remove("avec-objet"); }
       G.innerHTML = `${avant}${titreHTML(q.q, q.audioQ, q.qk)}${choixHTML(q)}<div class="dock-place"></div>`;
       brancherHP(G); touche = brancherChoix(G, q, fin);
     }
@@ -1493,6 +1436,7 @@ function sceneOral(a) {
   let support = "", clsV = "";
   if (a.sous === "image" && !a.photo) { clsV = "uni"; support = a.numero ? `<div class="postit">${echap(a.numero)}</div>` : a.horloge ? `<div class="horloge-g">${horlogeSVG(...a.horloge)}</div>` : ""; }
   else if (a.sous === "role") { clsV = "avec-dit"; const r = a.role.replace(/^Rôle de l'interlocuteur\s*:\s*/i, "").replace(/^Questions du recruteur\s*:\s*/i, "Le recruteur demande : "); support = `<div class="parole"><div class="role-g"><span class="masques" aria-hidden="true">🎭</span><h3>Jeu de rôle · l'autre personne</h3><p>${echap(r.charAt(0).toUpperCase() + r.slice(1))}</p></div></div>`; }
+  if (a.sous === "image" && a.photo && /photo/i.test(a.consigne)) clsV = "sujet";
   const photo = clsV === "uni" ? null : (a.photo || a.photoH);
   const hpP = a.audio ? `&nbsp;<button class="hp" type="button" data-hp="${echap(a.audio)}" data-principal aria-label="Écouter">${HP}</button>` : "";
   const hp = a.sous !== "consigne" && a.audioQ ? `<button class="hp" type="button" data-hp="${echap(a.audioQ)}" aria-label="Écouter la consigne">${HP}</button>` : "";
@@ -1570,9 +1514,12 @@ function sceneOral(a) {
       : `<p class="texte-ex kara">${K ? K.map(l => karaokeHTML(l.mots)).join("<br><br>") : echap(a.modele || "")}</p>`;
     const ex = document.createElement("div"); ex.className = "exemple exemple-o encre";
     ex.innerHTML = `<h3>Un exemple</h3>${a.modeleAudio ? `<div>${ecouteHTML("Écouter")}</div>` : ""}${corps}`;
-    apres.after(ex); brancherVerif(ex);
+    const V = $(".visuel", sc);
+    if (V && !V.classList.contains("sujet") && matchMedia("(min-width: 900px) and (min-height: 560px)").matches) { const p = document.createElement("div"); p.className = "ex-pose"; p.append(ex); V.append(p); V.classList.add("avec-ex"); }
+    else apres.after(ex);
+    brancherVerif(ex);
     if (a.modeleAudio) { const mm = media(a.modeleAudio); brancherEcoute($(".ecoute", ex), mm, ENV[a.modeleAudio]); const k = $(".kara", ex); suivreKaraoke(mm, k, { lignes: dialogue ? ".ligne" : null }); if (dialogue) k.classList.add("dialogue"); setTimeout(() => jouer(mm, 0), 350); }
-    setTimeout(() => ex.scrollIntoView({ behavior: MOUV ? "smooth" : "auto", block: "start" }), 120);
+    if (!ex.closest(".ex-pose")) setTimeout(() => ex.scrollIntoView({ behavior: MOUV ? "smooth" : "auto", block: "start" }), 120);
     dock($(".dock-place", S), null, { action: () => terminer(a, { produit: true }), defiler: false }); majProgres();
   }
   courant = {

@@ -14,11 +14,14 @@ Prototype de produit fini : des activités d'entraînement tirées de l'Excel «
 - **Minimalisme** : tout sur un axe ; le violet seul en accent, le vert pour continuer et pour le juste, le rose pour le
   faux ; le retour (« Bravo ! ») centré au-dessus d'un seul bouton ; pas de barre de suivi ; pas de zoom sur les
   photos ; confettis au bilan seulement ; police Lexend (dessinée pour la facilité de lecture).
-- **Plein écran partout, sur des fonds pastel légers** : six ambiances (lilas → pêche, ciel → lilas, lagon, rose → bleu,
-  menthe, pêche → rose) qui changent d'une question à l'autre, avec un halo clair au centre ; texte indigo, tuiles et
-  cartes blanches. Avec une photo, elle couvre l'écran (sans zoom) et se fond dans un voile pastel du côté de la
-  question. La feuille d'écriture est une carte blanche à la taille de son contenu. Départ plus court (rideau d'environ une seconde). Vidéo : la question et les réponses au centre de
-  l'image floutée. Lecture : le document d'abord seul sur un fond de couleur, puis la question (après quelques
+- **Deux encarts sur un fond pastel** : six ambiances (lilas → pêche, ciel → lilas, lagon, rose → bleu, menthe,
+  pêche → rose) qui changent d'une question à l'autre. À gauche, la photo dans son cadre arrondi, jamais recouverte
+  d'un voile ; à droite, une carte de verre dépoli avec la question et les réponses. Ce qui se pose sur la photo :
+  le document à lire (carte postale, panneau, liste…), la phrase à compléter en grammaire (le mot choisi vole de la
+  carte de droite jusqu'au trou, à gauche), la bulle de l'interlocuteur, et l'exemple après la prise de parole.
+  Une photo à décrire (« Regardez la photo ») se voit en entier, dans un cadre à sa forme. Pas d'ombre portée.
+  Seule la vidéo reste en plein écran. Départ plus court (rideau d'environ une seconde). Vidéo : la question et les réponses au centre de
+  l'image floutée. Lecture : le document d'abord seul sur sa photo, en grand, puis la question (après quelques
   secondes, ou en touchant le document).
 - **Haut-parleur** discret au bout de chaque question et consigne : les 181 textes sont lus par ElevenLabs
   (`generer_questions.py`, voix de Claire), avec les mots qui s'allument.
@@ -29,8 +32,11 @@ Prototype de produit fini : des activités d'entraînement tirées de l'Excel «
   l'enregistrement.
 - **Photos** : les photos du positionnement retéléchargées en 1800 px (même cadrage), `primeur` et `fromagerie`
   remplacées, et 31 photos d'ambiance Unsplash pour les écrans sans image (`donnees/habillage.json` ; auteurs et
-  liens dans `donnees/credits-photos.json`). Seule `appartement` (photo fournie) reste en 640 px. CO-21 prend une rue
-  de petite ville : l'étal de fruits soufflait la réponse « Les fruits et légumes ».
+  liens dans `donnees/credits-photos.json`). Seule `appartement` (photo fournie) reste en 640 px.
+  Revue du 12/11, chaque photo regardée face à son texte : CE-11 (carte postale) prend une vue de Nice, EE-12
+  (« J'achète deux… ») un étal de pommes, CO-15 (« Je suis cuisinier ») une salle de restaurant, CO-10 (« Il neige »)
+  une personne à la fenêtre, vue de l'intérieur (ni soleil ni neige : la photo ne contredit pas et ne souffle pas la
+  réponse), CO-33 le vieux Lyon, CO-21 (annonce du magasin) un rayon de supermarché sans fruits, EE-17 le même rayon.
 
 ## Ce que fait la page (version 2)
 
