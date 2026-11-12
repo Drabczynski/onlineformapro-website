@@ -1167,9 +1167,9 @@ function tirer() {
     return items;
   };
   const prod = (t, n, f) => pool(t, f).slice(0, n).map(a => ({ id: a.id }));
-  const film = melanger(ACTIVITES.filter(a => a.type === "video" && a.video && ok(a)))[0];
+  const films = melanger(ACTIVITES.filter(a => a.type === "video" && a.video && ok(a))).slice(0, 2);       // deux vidéos par série
   const oral = () => { const n = N(), un = prod("oral", 1, a => a.sous === "role" || a.sous === "image"); return [...un, ...prod("oral", n - un.length, a => !["role", "image", "repeter"].includes(a.sous))]; };
-  const pas = [["film", film ? [{ id: film.id, q: indices(film) }] : []], ["video", choix("video", N(), a => !a.video)], ["lecture", choix("lecture", N())], ["grammaire", choix("grammaire", N())],
+  const pas = [["film", films.map(f => ({ id: f.id, q: indices(f) }))], ["video", choix("video", N(), a => !a.video)], ["lecture", choix("lecture", N())], ["grammaire", choix("grammaire", N())],
                ["lettres", choix("lettres", N())], ["reagir", choix("reagir", N())], ["ecriture", prod("ecriture", 2)], ["repeter", prod("oral", N(), a => a.sous === "repeter")], ["oral", oral()]].filter(([, items]) => items.length).map(([type, items]) => ({ type, items }));
   const tete = pas.filter(p => p.type === "film"), reste = melanger(pas.filter(p => p.type !== "film"));
   etat.serie = etat.premier ? [...tete, ...reste] : melanger([...tete, ...reste]);
@@ -1181,7 +1181,7 @@ const itemDe = (k, j) => { const it = SER()[k]?.items[j], a = it && PAR_ID[it.id
 const nbQuestions = (p) => p.items.reduce((s, it) => s + (it.q ? it.q.length : 1), 0);
 // la revue : toutes les questions à la suite, dans l'ordre des identifiants (CO, CE, EE, EO), sans rideau entre elles
 const nomItem = (it) => { const a = PAR_ID[it.id]; return it.q ? it.q.map(i => a.questions[i].id).join(", ") : it.id; };
-const rangId = (id) => { const m = /^([A-Za-z]+)-?(\d+)?/.exec(id) || [], p = { demo: 0, CO: 1, POD: 2, CE: 3, EE: 4, EO: 5, REP: 6 }[m[1]] ?? 9; return p * 1000 + (+m[2] || 0); };
+const rangId = (id) => { const m = /^([A-Za-z]+)-?(\d+)?/.exec(id) || [], p = { demo: 0, VID: 0, CO: 1, POD: 2, CE: 3, EE: 4, EO: 5, REP: 6 }[m[1]] ?? 9; return p * 1000 + (+m[2] || 0); };
 const REVUE = [{ type: "revue", items: ACTIVITES.flatMap(a => !a.questions ? [{ id: a.id }] : (a.type === "grammaire" || a.type === "reagir" || a.type === "lettres") ? a.questions.map((_, i) => ({ id: a.id, q: [i] })) : [{ id: a.id, q: a.questions.map((_, i) => i) }])
   .sort((x, y) => rangId(nomItem(x)) - rangId(nomItem(y))) }];
 const SER = () => etat.mode === "revue" ? REVUE : etat.serie;

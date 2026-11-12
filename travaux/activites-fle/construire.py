@@ -159,6 +159,16 @@ medias.update(["medias/video/hotel-receptionniste.webp", "medias/video/hotel-cli
 k = caler([c["texte"] for c in SOUS_TITRES], "medias/video/hotel.mp4")
 if k: activites[-1]["karaoke"] = [{"qui": c["qui"], "mots": m} for c, m in zip(SOUS_TITRES, k)]
 
+# --- les vidéos de test fournies le 12 novembre (dossier Google Drive, 10 sur 87, A1-A2) : compressées en 720p, sous-titres
+#     calés sur la voix (reconnaissance ElevenLabs), deux questions écrites ici à partir de ce qui est dit (donnees/videos.json)
+for v in lire_json("videos.json") or []:
+    rel = f"medias/video/{v['fichier']}.mp4"; medias.update([rel, f"medias/video/{v['fichier']}.jpg"])
+    activites.append({"id": v["id"], "type": "video", "niveau": v["niveau"], "titre": v["titre"], "theme": v["titre"], "video": rel,
+                      "poster": f"medias/video/{v['fichier']}.jpg", "sousTitres": v["sousTitres"], "script": [c["qui"] + " : " + c["texte"] for c in v["sousTitres"]],
+                      "questions": [dict(q, niveau=v["niveau"]) for q in v["questions"]], "ajout": True})
+    k = caler([c["texte"] for c in v["sousTitres"]], rel)
+    if k: activites[-1]["karaoke"] = [{"qui": c["qui"], "mots": m} for c, m in zip(v["sousTitres"], k)]
+
 # --- compréhension orale : une « vidéo » par enregistrement (photo + son en attendant la vidéo)
 groupes = {}
 for x in B:

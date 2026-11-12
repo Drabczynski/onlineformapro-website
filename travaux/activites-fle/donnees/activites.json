@@ -7584,6 +7584,2425 @@
   ]
  },
  {
+  "id": "VID-01",
+  "type": "video",
+  "niveau": "A1",
+  "titre": "À l'épicerie",
+  "theme": "À l'épicerie",
+  "video": "medias/video/epicerie.mp4",
+  "poster": "medias/video/epicerie.jpg",
+  "sousTitres": [
+   {
+    "d": 0.06,
+    "f": 0.46,
+    "qui": "Le vendeur",
+    "texte": "Bonjour."
+   },
+   {
+    "d": 0.66,
+    "f": 1.14,
+    "qui": "La cliente",
+    "texte": "Bonjour."
+   },
+   {
+    "d": 1.32,
+    "f": 1.94,
+    "qui": "Le vendeur",
+    "texte": "Vous désirez quoi ?"
+   },
+   {
+    "d": 2.36,
+    "f": 3.9,
+    "qui": "La cliente",
+    "texte": "Je voudrais un kilo de pommes, s'il vous plaît."
+   },
+   {
+    "d": 4.3,
+    "f": 5.4,
+    "qui": "Le vendeur",
+    "texte": "Voilà. Autre chose ?"
+   },
+   {
+    "d": 5.6,
+    "f": 6.38,
+    "qui": "La cliente",
+    "texte": "Oui, je voudrais du pain."
+   },
+   {
+    "d": 6.76,
+    "f": 7.14,
+    "qui": "Le vendeur",
+    "texte": "Très bien."
+   },
+   {
+    "d": 7.3,
+    "f": 7.98,
+    "qui": "La cliente",
+    "texte": "Combien ça coûte ?"
+   },
+   {
+    "d": 8.02,
+    "f": 8.82,
+    "qui": "Le vendeur",
+    "texte": "Cela fait cinq euros."
+   },
+   {
+    "d": 9.0,
+    "f": 9.2,
+    "qui": "La cliente",
+    "texte": "Voilà."
+   },
+   {
+    "d": 9.32,
+    "f": 10.0,
+    "qui": "Le vendeur",
+    "texte": "Merci, bonne journée."
+   }
+  ],
+  "script": [
+   "Le vendeur : Bonjour.",
+   "La cliente : Bonjour.",
+   "Le vendeur : Vous désirez quoi ?",
+   "La cliente : Je voudrais un kilo de pommes, s'il vous plaît.",
+   "Le vendeur : Voilà. Autre chose ?",
+   "La cliente : Oui, je voudrais du pain.",
+   "Le vendeur : Très bien.",
+   "La cliente : Combien ça coûte ?",
+   "Le vendeur : Cela fait cinq euros.",
+   "La cliente : Voilà.",
+   "Le vendeur : Merci, bonne journée."
+  ],
+  "questions": [
+   {
+    "id": "VID-01-1",
+    "q": "Qu'est-ce que la cliente achète ?",
+    "choix": [
+     "Des pommes et du pain",
+     "Des pommes et du lait",
+     "Du pain et des œufs",
+     "Des oranges et du pain"
+    ],
+    "bonne": 0,
+    "niveau": "A1"
+   },
+   {
+    "id": "VID-01-2",
+    "q": "Combien ça coûte ?",
+    "choix": [
+     "Cinq euros",
+     "Quinze euros",
+     "Cinquante euros",
+     "Un euro"
+    ],
+    "bonne": 0,
+    "niveau": "A1"
+   }
+  ],
+  "ajout": true,
+  "karaoke": [
+   {
+    "qui": "Le vendeur",
+    "mots": [
+     [
+      "Bonjour.",
+      0.06,
+      0.46
+     ]
+    ]
+   },
+   {
+    "qui": "La cliente",
+    "mots": [
+     [
+      "Bonjour.",
+      0.66,
+      1.14
+     ]
+    ]
+   },
+   {
+    "qui": "Le vendeur",
+    "mots": [
+     [
+      "Vous",
+      1.32,
+      1.38
+     ],
+     [
+      "désirez",
+      1.42,
+      1.72
+     ],
+     [
+      "quoi ?",
+      1.78,
+      1.92
+     ]
+    ]
+   },
+   {
+    "qui": "La cliente",
+    "mots": [
+     [
+      "Je",
+      2.36,
+      2.4
+     ],
+     [
+      "voudrais",
+      2.44,
+      2.68
+     ],
+     [
+      "un",
+      2.72,
+      2.8
+     ],
+     [
+      "kilo",
+      2.84,
+      3.04
+     ],
+     [
+      "de",
+      3.08,
+      3.14
+     ],
+     [
+      "pommes,",
+      3.18,
+      3.36
+     ],
+     [
+      "s'il",
+      3.44,
+      3.56
+     ],
+     [
+      "vous",
+      3.6,
+      3.7
+     ],
+     [
+      "plaît.",
+      3.74,
+      3.9
+     ]
+    ]
+   },
+   {
+    "qui": "Le vendeur",
+    "mots": [
+     [
+      "Voilà.",
+      4.3,
+      4.6
+     ],
+     [
+      "Autre",
+      4.84,
+      5.06
+     ],
+     [
+      "chose ?",
+      5.1,
+      5.34
+     ]
+    ]
+   },
+   {
+    "qui": "La cliente",
+    "mots": [
+     [
+      "Oui,",
+      5.6,
+      5.72
+     ],
+     [
+      "je",
+      5.78,
+      5.82
+     ],
+     [
+      "voudrais",
+      5.86,
+      6.06
+     ],
+     [
+      "du",
+      6.1,
+      6.22
+     ],
+     [
+      "pain.",
+      6.26,
+      6.38
+     ]
+    ]
+   },
+   {
+    "qui": "Le vendeur",
+    "mots": [
+     [
+      "Très",
+      6.76,
+      6.9
+     ],
+     [
+      "bien.",
+      6.94,
+      7.16
+     ]
+    ]
+   },
+   {
+    "qui": "La cliente",
+    "mots": [
+     [
+      "Combien",
+      7.3,
+      7.48
+     ],
+     [
+      "ça",
+      7.52,
+      7.62
+     ],
+     [
+      "coûte ?",
+      7.64,
+      7.84
+     ]
+    ]
+   },
+   {
+    "qui": "Le vendeur",
+    "mots": [
+     [
+      "Cela",
+      8.02,
+      8.2
+     ],
+     [
+      "fait",
+      8.22,
+      8.34
+     ],
+     [
+      "cinq",
+      8.38,
+      8.54
+     ],
+     [
+      "euros.",
+      8.56,
+      8.82
+     ]
+    ]
+   },
+   {
+    "qui": "La cliente",
+    "mots": [
+     [
+      "Voilà.",
+      9.0,
+      9.2
+     ]
+    ]
+   },
+   {
+    "qui": "Le vendeur",
+    "mots": [
+     [
+      "Merci,",
+      9.32,
+      9.62
+     ],
+     [
+      "bonne",
+      9.68,
+      9.8
+     ],
+     [
+      "journée.",
+      9.84,
+      10.0
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "VID-02",
+  "type": "video",
+  "niveau": "A1",
+  "titre": "Café ou thé ?",
+  "theme": "Café ou thé ?",
+  "video": "medias/video/cafe-the.mp4",
+  "poster": "medias/video/cafe-the.jpg",
+  "sousTitres": [
+   {
+    "d": 0.78,
+    "f": 1.34,
+    "qui": "La femme",
+    "texte": "Tu veux un café ?"
+   },
+   {
+    "d": 2.38,
+    "f": 3.58,
+    "qui": "L'homme",
+    "texte": "Non merci, je préfère un thé."
+   },
+   {
+    "d": 4.08,
+    "f": 4.72,
+    "qui": "La femme",
+    "texte": "Avec du sucre ?"
+   },
+   {
+    "d": 5.94,
+    "f": 7.0,
+    "qui": "L'homme",
+    "texte": "Non, sans sucre, merci."
+   }
+  ],
+  "script": [
+   "La femme : Tu veux un café ?",
+   "L'homme : Non merci, je préfère un thé.",
+   "La femme : Avec du sucre ?",
+   "L'homme : Non, sans sucre, merci."
+  ],
+  "questions": [
+   {
+    "id": "VID-02-1",
+    "q": "Qu'est-ce que l'homme veut boire ?",
+    "choix": [
+     "Un thé",
+     "Un café",
+     "Un jus d'orange",
+     "De l'eau"
+    ],
+    "bonne": 0,
+    "niveau": "A1"
+   },
+   {
+    "id": "VID-02-2",
+    "q": "Il prend du sucre ?",
+    "choix": [
+     "Non, sans sucre",
+     "Oui, un sucre",
+     "Oui, deux sucres",
+     "Il ne sait pas"
+    ],
+    "bonne": 0,
+    "niveau": "A1"
+   }
+  ],
+  "ajout": true,
+  "karaoke": [
+   {
+    "qui": "La femme",
+    "mots": [
+     [
+      "Tu",
+      0.78,
+      0.86
+     ],
+     [
+      "veux",
+      0.9,
+      0.96
+     ],
+     [
+      "un",
+      0.98,
+      1.04
+     ],
+     [
+      "café ?",
+      1.08,
+      1.34
+     ]
+    ]
+   },
+   {
+    "qui": "L'homme",
+    "mots": [
+     [
+      "Non",
+      2.38,
+      2.46
+     ],
+     [
+      "merci,",
+      2.5,
+      2.78
+     ],
+     [
+      "je",
+      2.84,
+      2.9
+     ],
+     [
+      "préfère",
+      2.92,
+      3.2
+     ],
+     [
+      "un",
+      3.24,
+      3.3
+     ],
+     [
+      "thé.",
+      3.36,
+      3.58
+     ]
+    ]
+   },
+   {
+    "qui": "La femme",
+    "mots": [
+     [
+      "Avec",
+      4.08,
+      4.26
+     ],
+     [
+      "du",
+      4.28,
+      4.38
+     ],
+     [
+      "sucre ?",
+      4.44,
+      4.7
+     ]
+    ]
+   },
+   {
+    "qui": "L'homme",
+    "mots": [
+     [
+      "Non,",
+      5.94,
+      6.12
+     ],
+     [
+      "sans",
+      6.24,
+      6.36
+     ],
+     [
+      "sucre,",
+      6.42,
+      6.62
+     ],
+     [
+      "merci.",
+      6.68,
+      6.98
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "VID-03",
+  "type": "video",
+  "niveau": "A1",
+  "titre": "Chercher la pharmacie",
+  "theme": "Chercher la pharmacie",
+  "video": "medias/video/pharmacie-chemin.mp4",
+  "poster": "medias/video/pharmacie-chemin.jpg",
+  "sousTitres": [
+   {
+    "d": 0.2,
+    "f": 2.26,
+    "qui": "L'homme",
+    "texte": "Excusez-moi madame, il y a une pharmacie près d'ici ?"
+   },
+   {
+    "d": 2.4,
+    "f": 4.74,
+    "qui": "La dame",
+    "texte": "Oui, allez tout droit puis tournez à droite au feu."
+   },
+   {
+    "d": 5.02,
+    "f": 6.16,
+    "qui": "L'homme",
+    "texte": "À droite au feu. D'accord."
+   },
+   {
+    "d": 6.2,
+    "f": 8.0,
+    "qui": "La dame",
+    "texte": "La pharmacie est en face de la boulangerie."
+   },
+   {
+    "d": 8.34,
+    "f": 9.16,
+    "qui": "L'homme",
+    "texte": "Merci beaucoup madame."
+   }
+  ],
+  "script": [
+   "L'homme : Excusez-moi madame, il y a une pharmacie près d'ici ?",
+   "La dame : Oui, allez tout droit puis tournez à droite au feu.",
+   "L'homme : À droite au feu. D'accord.",
+   "La dame : La pharmacie est en face de la boulangerie.",
+   "L'homme : Merci beaucoup madame."
+  ],
+  "questions": [
+   {
+    "id": "VID-03-1",
+    "q": "Pour aller à la pharmacie, il faut…",
+    "choix": [
+     "Aller tout droit, puis à droite au feu",
+     "Aller tout droit, puis à gauche au feu",
+     "Tourner à gauche tout de suite",
+     "Prendre le bus"
+    ],
+    "bonne": 0,
+    "niveau": "A1"
+   },
+   {
+    "id": "VID-03-2",
+    "q": "Où est la pharmacie ?",
+    "choix": [
+     "En face de la boulangerie",
+     "À côté de la boulangerie",
+     "Derrière la gare",
+     "En face de la poste"
+    ],
+    "bonne": 0,
+    "niveau": "A1"
+   }
+  ],
+  "ajout": true,
+  "karaoke": [
+   {
+    "qui": "L'homme",
+    "mots": [
+     [
+      "Excusez-moi",
+      0.2,
+      0.64
+     ],
+     [
+      "madame,",
+      0.68,
+      0.96
+     ],
+     [
+      "il",
+      1.22,
+      1.26
+     ],
+     [
+      "y",
+      1.26,
+      1.28
+     ],
+     [
+      "a",
+      1.28,
+      1.3
+     ],
+     [
+      "une",
+      1.32,
+      1.4
+     ],
+     [
+      "pharmacie",
+      1.44,
+      1.78
+     ],
+     [
+      "près",
+      1.86,
+      1.96
+     ],
+     [
+      "d'ici ?",
+      2.0,
+      2.24
+     ]
+    ]
+   },
+   {
+    "qui": "La dame",
+    "mots": [
+     [
+      "Oui,",
+      2.4,
+      2.52
+     ],
+     [
+      "allez",
+      2.78,
+      2.98
+     ],
+     [
+      "tout",
+      3.02,
+      3.12
+     ],
+     [
+      "droit",
+      3.16,
+      3.4
+     ],
+     [
+      "puis",
+      3.54,
+      3.66
+     ],
+     [
+      "tournez",
+      3.7,
+      3.94
+     ],
+     [
+      "à",
+      3.98,
+      4.02
+     ],
+     [
+      "droite",
+      4.06,
+      4.28
+     ],
+     [
+      "au",
+      4.32,
+      4.36
+     ],
+     [
+      "feu.",
+      4.48,
+      4.72
+     ]
+    ]
+   },
+   {
+    "qui": "L'homme",
+    "mots": [
+     [
+      "À",
+      5.02,
+      5.06
+     ],
+     [
+      "droite",
+      5.12,
+      5.4
+     ],
+     [
+      "au",
+      5.52,
+      5.56
+     ],
+     [
+      "feu.",
+      5.66,
+      5.78
+     ],
+     [
+      "D'accord.",
+      5.94,
+      6.16
+     ]
+    ]
+   },
+   {
+    "qui": "La dame",
+    "mots": [
+     [
+      "La",
+      6.2,
+      6.26
+     ],
+     [
+      "pharmacie",
+      6.3,
+      6.7
+     ],
+     [
+      "est",
+      6.72,
+      6.82
+     ],
+     [
+      "en",
+      6.86,
+      6.96
+     ],
+     [
+      "face",
+      7.02,
+      7.16
+     ],
+     [
+      "de",
+      7.2,
+      7.26
+     ],
+     [
+      "la",
+      7.3,
+      7.36
+     ],
+     [
+      "boulangerie.",
+      7.42,
+      8.0
+     ]
+    ]
+   },
+   {
+    "qui": "L'homme",
+    "mots": [
+     [
+      "Merci",
+      8.34,
+      8.58
+     ],
+     [
+      "beaucoup",
+      8.62,
+      8.82
+     ],
+     [
+      "madame.",
+      8.86,
+      9.16
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "VID-04",
+  "type": "video",
+  "niveau": "A1",
+  "titre": "Chez le fleuriste",
+  "theme": "Chez le fleuriste",
+  "video": "medias/video/fleuriste.mp4",
+  "poster": "medias/video/fleuriste.jpg",
+  "sousTitres": [
+   {
+    "d": 0.08,
+    "f": 1.48,
+    "qui": "La fleuriste",
+    "texte": "Bonjour, je peux vous aider ?"
+   },
+   {
+    "d": 1.54,
+    "f": 3.5,
+    "qui": "Le client",
+    "texte": "Oui, je voudrais un bouquet pour l'anniversaire de ma mère."
+   },
+   {
+    "d": 3.74,
+    "f": 4.62,
+    "qui": "La fleuriste",
+    "texte": "Elle aime quelles fleurs ?"
+   },
+   {
+    "d": 4.66,
+    "f": 5.42,
+    "qui": "Le client",
+    "texte": "Elle adore les roses."
+   },
+   {
+    "d": 5.72,
+    "f": 7.18,
+    "qui": "La fleuriste",
+    "texte": "Des roses rouges ou des roses blanches ?"
+   },
+   {
+    "d": 7.58,
+    "f": 8.6,
+    "qui": "Le client",
+    "texte": "Des roses blanches, s'il vous plaît."
+   }
+  ],
+  "script": [
+   "La fleuriste : Bonjour, je peux vous aider ?",
+   "Le client : Oui, je voudrais un bouquet pour l'anniversaire de ma mère.",
+   "La fleuriste : Elle aime quelles fleurs ?",
+   "Le client : Elle adore les roses.",
+   "La fleuriste : Des roses rouges ou des roses blanches ?",
+   "Le client : Des roses blanches, s'il vous plaît."
+  ],
+  "questions": [
+   {
+    "id": "VID-04-1",
+    "q": "Le bouquet est pour qui ?",
+    "choix": [
+     "Sa mère",
+     "Sa femme",
+     "Sa sœur",
+     "Une amie"
+    ],
+    "bonne": 0,
+    "niveau": "A1"
+   },
+   {
+    "id": "VID-04-2",
+    "q": "Quelles fleurs choisit-il ?",
+    "choix": [
+     "Des roses blanches",
+     "Des roses rouges",
+     "Des tulipes",
+     "Des tournesols"
+    ],
+    "bonne": 0,
+    "niveau": "A1"
+   }
+  ],
+  "ajout": true,
+  "karaoke": [
+   {
+    "qui": "La fleuriste",
+    "mots": [
+     [
+      "Bonjour,",
+      0.08,
+      0.58
+     ],
+     [
+      "je",
+      0.66,
+      0.7
+     ],
+     [
+      "peux",
+      0.76,
+      0.86
+     ],
+     [
+      "vous",
+      0.88,
+      1.0
+     ],
+     [
+      "aider ?",
+      1.02,
+      1.24
+     ]
+    ]
+   },
+   {
+    "qui": "Le client",
+    "mots": [
+     [
+      "Oui,",
+      1.54,
+      1.68
+     ],
+     [
+      "je",
+      1.74,
+      1.78
+     ],
+     [
+      "voudrais",
+      1.8,
+      2.02
+     ],
+     [
+      "un",
+      2.04,
+      2.1
+     ],
+     [
+      "bouquet",
+      2.16,
+      2.44
+     ],
+     [
+      "pour",
+      2.46,
+      2.54
+     ],
+     [
+      "l'anniversaire",
+      2.58,
+      3.02
+     ],
+     [
+      "de",
+      3.06,
+      3.12
+     ],
+     [
+      "ma",
+      3.16,
+      3.22
+     ],
+     [
+      "mère.",
+      3.28,
+      3.5
+     ]
+    ]
+   },
+   {
+    "qui": "La fleuriste",
+    "mots": [
+     [
+      "Elle",
+      3.74,
+      3.82
+     ],
+     [
+      "aime",
+      3.84,
+      3.98
+     ],
+     [
+      "quelles",
+      4.0,
+      4.16
+     ],
+     [
+      "fleurs ?",
+      4.22,
+      4.5
+     ]
+    ]
+   },
+   {
+    "qui": "Le client",
+    "mots": [
+     [
+      "Elle",
+      4.66,
+      4.74
+     ],
+     [
+      "adore",
+      4.78,
+      4.98
+     ],
+     [
+      "les",
+      5.02,
+      5.1
+     ],
+     [
+      "roses.",
+      5.14,
+      5.42
+     ]
+    ]
+   },
+   {
+    "qui": "La fleuriste",
+    "mots": [
+     [
+      "Des",
+      5.72,
+      5.82
+     ],
+     [
+      "roses",
+      5.86,
+      6.06
+     ],
+     [
+      "rouges",
+      6.1,
+      6.32
+     ],
+     [
+      "ou",
+      6.34,
+      6.4
+     ],
+     [
+      "des",
+      6.44,
+      6.54
+     ],
+     [
+      "roses",
+      6.58,
+      6.78
+     ],
+     [
+      "blanches ?",
+      6.8,
+      7.16
+     ]
+    ]
+   },
+   {
+    "qui": "Le client",
+    "mots": [
+     [
+      "Des",
+      7.58,
+      7.66
+     ],
+     [
+      "roses",
+      7.7,
+      7.86
+     ],
+     [
+      "blanches,",
+      7.9,
+      8.14
+     ],
+     [
+      "s'il",
+      8.18,
+      8.28
+     ],
+     [
+      "vous",
+      8.3,
+      8.42
+     ],
+     [
+      "plaît.",
+      8.44,
+      8.6
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "VID-05",
+  "type": "video",
+  "niveau": "A1",
+  "titre": "Quel quai ?",
+  "theme": "Quel quai ?",
+  "video": "medias/video/gare-quai.mp4",
+  "poster": "medias/video/gare-quai.jpg",
+  "sousTitres": [
+   {
+    "d": 0.26,
+    "f": 2.32,
+    "qui": "La voyageuse",
+    "texte": "Excusez-moi, le train pour Nantes, c'est quel quai ?"
+   },
+   {
+    "d": 3.12,
+    "f": 3.74,
+    "qui": "L'agent",
+    "texte": "C'est le quai trois."
+   },
+   {
+    "d": 4.82,
+    "f": 5.58,
+    "qui": "La voyageuse",
+    "texte": "Le train est à l'heure ?"
+   },
+   {
+    "d": 6.42,
+    "f": 7.14,
+    "qui": "L'agent",
+    "texte": "Oui, il est à l'heure."
+   },
+   {
+    "d": 8.48,
+    "f": 8.9,
+    "qui": "La voyageuse",
+    "texte": "Merci."
+   }
+  ],
+  "script": [
+   "La voyageuse : Excusez-moi, le train pour Nantes, c'est quel quai ?",
+   "L'agent : C'est le quai trois.",
+   "La voyageuse : Le train est à l'heure ?",
+   "L'agent : Oui, il est à l'heure.",
+   "La voyageuse : Merci."
+  ],
+  "questions": [
+   {
+    "id": "VID-05-1",
+    "q": "Le train pour Nantes part de quel quai ?",
+    "choix": [
+     "Le quai 3",
+     "Le quai 2",
+     "Le quai 13",
+     "Le quai 4"
+    ],
+    "bonne": 0,
+    "niveau": "A1"
+   },
+   {
+    "id": "VID-05-2",
+    "q": "Le train est…",
+    "choix": [
+     "À l'heure",
+     "En retard",
+     "Annulé",
+     "Déjà parti"
+    ],
+    "bonne": 0,
+    "niveau": "A1"
+   }
+  ],
+  "ajout": true,
+  "karaoke": [
+   {
+    "qui": "La voyageuse",
+    "mots": [
+     [
+      "Excusez-moi,",
+      0.26,
+      0.82
+     ],
+     [
+      "le",
+      0.94,
+      1.04
+     ],
+     [
+      "train",
+      1.08,
+      1.22
+     ],
+     [
+      "pour",
+      1.3,
+      1.42
+     ],
+     [
+      "Nantes,",
+      1.48,
+      1.72
+     ],
+     [
+      "c'est",
+      1.78,
+      1.9
+     ],
+     [
+      "quel",
+      1.94,
+      2.06
+     ],
+     [
+      "quai ?",
+      2.16,
+      2.32
+     ]
+    ]
+   },
+   {
+    "qui": "L'agent",
+    "mots": [
+     [
+      "C'est",
+      3.12,
+      3.2
+     ],
+     [
+      "le",
+      3.24,
+      3.3
+     ],
+     [
+      "quai",
+      3.34,
+      3.44
+     ],
+     [
+      "trois.",
+      3.48,
+      3.74
+     ]
+    ]
+   },
+   {
+    "qui": "La voyageuse",
+    "mots": [
+     [
+      "Le",
+      4.82,
+      4.9
+     ],
+     [
+      "train",
+      4.94,
+      5.08
+     ],
+     [
+      "est",
+      5.1,
+      5.2
+     ],
+     [
+      "à",
+      5.26,
+      5.28
+     ],
+     [
+      "l'heure ?",
+      5.32,
+      5.56
+     ]
+    ]
+   },
+   {
+    "qui": "L'agent",
+    "mots": [
+     [
+      "Oui,",
+      6.42,
+      6.56
+     ],
+     [
+      "il",
+      6.58,
+      6.64
+     ],
+     [
+      "est",
+      6.68,
+      6.78
+     ],
+     [
+      "à",
+      6.84,
+      6.86
+     ],
+     [
+      "l'heure.",
+      6.9,
+      7.14
+     ]
+    ]
+   },
+   {
+    "qui": "La voyageuse",
+    "mots": [
+     [
+      "Merci.",
+      8.48,
+      8.9
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "VID-06",
+  "type": "video",
+  "niveau": "A2",
+  "titre": "Le train a du retard",
+  "theme": "Le train a du retard",
+  "video": "medias/video/gare-retard.mp4",
+  "poster": "medias/video/gare-retard.jpg",
+  "sousTitres": [
+   {
+    "d": 0.64,
+    "f": 2.66,
+    "qui": "Le voyageur",
+    "texte": "Excusez-moi, le train pour Marseille n'est pas arrivé ?"
+   },
+   {
+    "d": 3.52,
+    "f": 4.74,
+    "qui": "L'agente",
+    "texte": "Non, ce train a du retard."
+   },
+   {
+    "d": 5.4,
+    "f": 5.86,
+    "qui": "Le voyageur",
+    "texte": "Combien de temps ?"
+   },
+   {
+    "d": 6.86,
+    "f": 7.42,
+    "qui": "L'agente",
+    "texte": "Vingt minutes."
+   },
+   {
+    "d": 8.44,
+    "f": 9.16,
+    "qui": "Le voyageur",
+    "texte": "D'accord, merci."
+   }
+  ],
+  "script": [
+   "Le voyageur : Excusez-moi, le train pour Marseille n'est pas arrivé ?",
+   "L'agente : Non, ce train a du retard.",
+   "Le voyageur : Combien de temps ?",
+   "L'agente : Vingt minutes.",
+   "Le voyageur : D'accord, merci."
+  ],
+  "questions": [
+   {
+    "id": "VID-06-1",
+    "q": "Où va le train ?",
+    "choix": [
+     "À Marseille",
+     "À Nantes",
+     "À Paris",
+     "À Lyon"
+    ],
+    "bonne": 0,
+    "niveau": "A2"
+   },
+   {
+    "id": "VID-06-2",
+    "q": "Le train a combien de retard ?",
+    "choix": [
+     "Vingt minutes",
+     "Dix minutes",
+     "Deux minutes",
+     "Une heure"
+    ],
+    "bonne": 0,
+    "niveau": "A2"
+   }
+  ],
+  "ajout": true,
+  "karaoke": [
+   {
+    "qui": "Le voyageur",
+    "mots": [
+     [
+      "Excusez-moi,",
+      0.64,
+      1.14
+     ],
+     [
+      "le",
+      1.3,
+      1.38
+     ],
+     [
+      "train",
+      1.44,
+      1.58
+     ],
+     [
+      "pour",
+      1.64,
+      1.74
+     ],
+     [
+      "Marseille",
+      1.78,
+      2.12
+     ],
+     [
+      "n'est",
+      2.14,
+      2.26
+     ],
+     [
+      "pas",
+      2.28,
+      2.36
+     ],
+     [
+      "arrivé ?",
+      2.38,
+      2.64
+     ]
+    ]
+   },
+   {
+    "qui": "L'agente",
+    "mots": [
+     [
+      "Non,",
+      3.52,
+      3.64
+     ],
+     [
+      "ce",
+      3.82,
+      3.9
+     ],
+     [
+      "train",
+      3.96,
+      4.1
+     ],
+     [
+      "a",
+      4.14,
+      4.18
+     ],
+     [
+      "du",
+      4.22,
+      4.28
+     ],
+     [
+      "retard.",
+      4.36,
+      4.74
+     ]
+    ]
+   },
+   {
+    "qui": "Le voyageur",
+    "mots": [
+     [
+      "Combien",
+      5.4,
+      5.6
+     ],
+     [
+      "de",
+      5.64,
+      5.68
+     ],
+     [
+      "temps ?",
+      5.72,
+      5.86
+     ]
+    ]
+   },
+   {
+    "qui": "L'agente",
+    "mots": [
+     [
+      "Vingt",
+      6.86,
+      6.96
+     ],
+     [
+      "minutes.",
+      7.0,
+      7.42
+     ]
+    ]
+   },
+   {
+    "qui": "Le voyageur",
+    "mots": [
+     [
+      "D'accord,",
+      8.44,
+      8.76
+     ],
+     [
+      "merci.",
+      8.88,
+      9.16
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "VID-07",
+  "type": "video",
+  "niveau": "A1",
+  "titre": "Chez le médecin",
+  "theme": "Chez le médecin",
+  "video": "medias/video/medecin-tete.mp4",
+  "poster": "medias/video/medecin-tete.jpg",
+  "sousTitres": [
+   {
+    "d": 0.46,
+    "f": 0.88,
+    "qui": "Le médecin",
+    "texte": "Bonjour."
+   },
+   {
+    "d": 1.02,
+    "f": 1.66,
+    "qui": "La patiente",
+    "texte": "Bonjour docteur."
+   },
+   {
+    "d": 1.7,
+    "f": 2.5,
+    "qui": "Le médecin",
+    "texte": "Qu'est-ce que vous avez ?"
+   },
+   {
+    "d": 2.54,
+    "f": 3.32,
+    "qui": "La patiente",
+    "texte": "J'ai mal à la tête."
+   },
+   {
+    "d": 3.5,
+    "f": 3.98,
+    "qui": "Le médecin",
+    "texte": "Depuis quand ?"
+   },
+   {
+    "d": 4.24,
+    "f": 4.94,
+    "qui": "La patiente",
+    "texte": "Depuis deux jours."
+   },
+   {
+    "d": 5.24,
+    "f": 6.0,
+    "qui": "Le médecin",
+    "texte": "Vous avez de la fièvre ?"
+   },
+   {
+    "d": 6.76,
+    "f": 7.26,
+    "qui": "La patiente",
+    "texte": "Oui, un peu."
+   },
+   {
+    "d": 7.66,
+    "f": 9.1,
+    "qui": "Le médecin",
+    "texte": "D'accord, je vais vous donner un médicament."
+   },
+   {
+    "d": 9.28,
+    "f": 9.96,
+    "qui": "La patiente",
+    "texte": "Merci docteur."
+   }
+  ],
+  "script": [
+   "Le médecin : Bonjour.",
+   "La patiente : Bonjour docteur.",
+   "Le médecin : Qu'est-ce que vous avez ?",
+   "La patiente : J'ai mal à la tête.",
+   "Le médecin : Depuis quand ?",
+   "La patiente : Depuis deux jours.",
+   "Le médecin : Vous avez de la fièvre ?",
+   "La patiente : Oui, un peu.",
+   "Le médecin : D'accord, je vais vous donner un médicament.",
+   "La patiente : Merci docteur."
+  ],
+  "questions": [
+   {
+    "id": "VID-07-1",
+    "q": "Où est-ce qu'elle a mal ?",
+    "choix": [
+     "À la tête",
+     "Au ventre",
+     "Au dos",
+     "À la gorge"
+    ],
+    "bonne": 0,
+    "niveau": "A1"
+   },
+   {
+    "id": "VID-07-2",
+    "q": "Depuis quand ?",
+    "choix": [
+     "Depuis deux jours",
+     "Depuis deux semaines",
+     "Depuis hier",
+     "Depuis ce matin"
+    ],
+    "bonne": 0,
+    "niveau": "A1"
+   }
+  ],
+  "ajout": true,
+  "karaoke": [
+   {
+    "qui": "Le médecin",
+    "mots": [
+     [
+      "Bonjour.",
+      0.46,
+      0.88
+     ]
+    ]
+   },
+   {
+    "qui": "La patiente",
+    "mots": [
+     [
+      "Bonjour",
+      1.02,
+      1.26
+     ],
+     [
+      "docteur.",
+      1.3,
+      1.66
+     ]
+    ]
+   },
+   {
+    "qui": "Le médecin",
+    "mots": [
+     [
+      "Qu'est-ce",
+      1.7,
+      1.84
+     ],
+     [
+      "que",
+      1.86,
+      1.94
+     ],
+     [
+      "vous",
+      1.96,
+      2.06
+     ],
+     [
+      "avez ?",
+      2.1,
+      2.28
+     ]
+    ]
+   },
+   {
+    "qui": "La patiente",
+    "mots": [
+     [
+      "J'ai",
+      2.54,
+      2.64
+     ],
+     [
+      "mal",
+      2.68,
+      2.8
+     ],
+     [
+      "à",
+      2.84,
+      2.88
+     ],
+     [
+      "la",
+      2.92,
+      2.98
+     ],
+     [
+      "tête.",
+      3.06,
+      3.32
+     ]
+    ]
+   },
+   {
+    "qui": "Le médecin",
+    "mots": [
+     [
+      "Depuis",
+      3.5,
+      3.74
+     ],
+     [
+      "quand ?",
+      3.78,
+      3.94
+     ]
+    ]
+   },
+   {
+    "qui": "La patiente",
+    "mots": [
+     [
+      "Depuis",
+      4.24,
+      4.46
+     ],
+     [
+      "deux",
+      4.5,
+      4.62
+     ],
+     [
+      "jours.",
+      4.7,
+      4.94
+     ]
+    ]
+   },
+   {
+    "qui": "Le médecin",
+    "mots": [
+     [
+      "Vous",
+      5.24,
+      5.32
+     ],
+     [
+      "avez",
+      5.36,
+      5.48
+     ],
+     [
+      "de",
+      5.5,
+      5.54
+     ],
+     [
+      "la",
+      5.56,
+      5.64
+     ],
+     [
+      "fièvre ?",
+      5.68,
+      5.98
+     ]
+    ]
+   },
+   {
+    "qui": "La patiente",
+    "mots": [
+     [
+      "Oui,",
+      6.76,
+      6.92
+     ],
+     [
+      "un",
+      7.0,
+      7.04
+     ],
+     [
+      "peu.",
+      7.12,
+      7.26
+     ]
+    ]
+   },
+   {
+    "qui": "Le médecin",
+    "mots": [
+     [
+      "D'accord,",
+      7.66,
+      7.96
+     ],
+     [
+      "je",
+      8.1,
+      8.14
+     ],
+     [
+      "vais",
+      8.16,
+      8.24
+     ],
+     [
+      "vous",
+      8.26,
+      8.34
+     ],
+     [
+      "donner",
+      8.38,
+      8.54
+     ],
+     [
+      "un",
+      8.56,
+      8.6
+     ],
+     [
+      "médicament.",
+      8.64,
+      9.1
+     ]
+    ]
+   },
+   {
+    "qui": "La patiente",
+    "mots": [
+     [
+      "Merci",
+      9.28,
+      9.54
+     ],
+     [
+      "docteur.",
+      9.58,
+      9.94
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "VID-08",
+  "type": "video",
+  "niveau": "A1",
+  "titre": "Une table pour deux",
+  "theme": "Une table pour deux",
+  "video": "medias/video/restaurant-table.mp4",
+  "poster": "medias/video/restaurant-table.jpg",
+  "sousTitres": [
+   {
+    "d": 1.64,
+    "f": 3.86,
+    "qui": "Le client",
+    "texte": "Bonjour, une table pour deux, s'il vous plaît."
+   },
+   {
+    "d": 4.18,
+    "f": 8.06,
+    "qui": "Le serveur",
+    "texte": "Bien sûr, par ici. Voici le menu."
+   },
+   {
+    "d": 8.62,
+    "f": 9.3,
+    "qui": "Le client",
+    "texte": "Merci beaucoup."
+   }
+  ],
+  "script": [
+   "Le client : Bonjour, une table pour deux, s'il vous plaît.",
+   "Le serveur : Bien sûr, par ici. Voici le menu.",
+   "Le client : Merci beaucoup."
+  ],
+  "questions": [
+   {
+    "id": "VID-08-1",
+    "q": "Le client demande une table pour combien de personnes ?",
+    "choix": [
+     "Deux",
+     "Une",
+     "Trois",
+     "Quatre"
+    ],
+    "bonne": 0,
+    "niveau": "A1"
+   },
+   {
+    "id": "VID-08-2",
+    "q": "Qu'est-ce que le serveur donne ?",
+    "choix": [
+     "Le menu",
+     "L'addition",
+     "Un café",
+     "De l'eau"
+    ],
+    "bonne": 0,
+    "niveau": "A1"
+   }
+  ],
+  "ajout": true,
+  "karaoke": [
+   {
+    "qui": "Le client",
+    "mots": [
+     [
+      "Bonjour,",
+      1.66,
+      2.12
+     ],
+     [
+      "une",
+      2.64,
+      2.76
+     ],
+     [
+      "table",
+      2.8,
+      3.0
+     ],
+     [
+      "pour",
+      3.08,
+      3.2
+     ],
+     [
+      "deux,",
+      3.24,
+      3.36
+     ],
+     [
+      "s'il",
+      3.42,
+      3.54
+     ],
+     [
+      "vous",
+      3.58,
+      3.68
+     ],
+     [
+      "plaît.",
+      3.7,
+      3.9
+     ]
+    ]
+   },
+   {
+    "qui": "Le serveur",
+    "mots": [
+     [
+      "Bien",
+      4.18,
+      4.28
+     ],
+     [
+      "sûr,",
+      4.36,
+      4.58
+     ],
+     [
+      "par",
+      4.78,
+      4.88
+     ],
+     [
+      "ici.",
+      4.94,
+      5.18
+     ],
+     [
+      "Voici",
+      7.36,
+      7.6
+     ],
+     [
+      "le",
+      7.62,
+      7.68
+     ],
+     [
+      "menu.",
+      7.72,
+      8.06
+     ]
+    ]
+   },
+   {
+    "qui": "Le client",
+    "mots": [
+     [
+      "Merci",
+      8.62,
+      8.92
+     ],
+     [
+      "beaucoup.",
+      8.96,
+      9.3
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "VID-09",
+  "type": "video",
+  "niveau": "A2",
+  "titre": "L'addition",
+  "theme": "L'addition",
+  "video": "medias/video/restaurant-addition.mp4",
+  "poster": "medias/video/restaurant-addition.jpg",
+  "sousTitres": [
+   {
+    "d": 0.66,
+    "f": 2.12,
+    "qui": "Le client",
+    "texte": "J'aimerais payer l'addition, s'il vous plaît."
+   },
+   {
+    "d": 2.68,
+    "f": 4.42,
+    "qui": "Le serveur",
+    "texte": "Bien sûr. Ça fait vingt-huit euros."
+   },
+   {
+    "d": 5.48,
+    "f": 6.36,
+    "qui": "Le client",
+    "texte": "Je peux payer par carte ?"
+   },
+   {
+    "d": 7.22,
+    "f": 7.8,
+    "qui": "Le serveur",
+    "texte": "Oui, bien sûr."
+   }
+  ],
+  "script": [
+   "Le client : J'aimerais payer l'addition, s'il vous plaît.",
+   "Le serveur : Bien sûr. Ça fait vingt-huit euros.",
+   "Le client : Je peux payer par carte ?",
+   "Le serveur : Oui, bien sûr."
+  ],
+  "questions": [
+   {
+    "id": "VID-09-1",
+    "q": "Combien coûte le repas ?",
+    "choix": [
+     "Vingt-huit euros",
+     "Vingt-deux euros",
+     "Trente-huit euros",
+     "Dix-huit euros"
+    ],
+    "bonne": 0,
+    "niveau": "A2"
+   },
+   {
+    "id": "VID-09-2",
+    "q": "Comment le client veut-il payer ?",
+    "choix": [
+     "Par carte",
+     "En espèces",
+     "Par chèque",
+     "Avec son téléphone"
+    ],
+    "bonne": 0,
+    "niveau": "A2"
+   }
+  ],
+  "ajout": true,
+  "karaoke": [
+   {
+    "qui": "Le client",
+    "mots": [
+     [
+      "J'aimerais",
+      0.66,
+      0.96
+     ],
+     [
+      "payer",
+      0.98,
+      1.16
+     ],
+     [
+      "l'addition,",
+      1.18,
+      1.58
+     ],
+     [
+      "s'il",
+      1.66,
+      1.78
+     ],
+     [
+      "vous",
+      1.8,
+      1.92
+     ],
+     [
+      "plaît.",
+      1.94,
+      2.12
+     ]
+    ]
+   },
+   {
+    "qui": "Le serveur",
+    "mots": [
+     [
+      "Bien",
+      2.68,
+      2.8
+     ],
+     [
+      "sûr.",
+      2.88,
+      3.1
+     ],
+     [
+      "Ça",
+      3.54,
+      3.6
+     ],
+     [
+      "fait",
+      3.66,
+      3.8
+     ],
+     [
+      "vingt-huit",
+      3.84,
+      4.16
+     ],
+     [
+      "euros.",
+      4.2,
+      4.48
+     ]
+    ]
+   },
+   {
+    "qui": "Le client",
+    "mots": [
+     [
+      "Je",
+      5.48,
+      5.54
+     ],
+     [
+      "peux",
+      5.58,
+      5.66
+     ],
+     [
+      "payer",
+      5.7,
+      5.88
+     ],
+     [
+      "par",
+      5.92,
+      6.04
+     ],
+     [
+      "carte ?",
+      6.08,
+      6.34
+     ]
+    ]
+   },
+   {
+    "qui": "Le serveur",
+    "mots": [
+     [
+      "Oui,",
+      7.22,
+      7.34
+     ],
+     [
+      "bien",
+      7.4,
+      7.54
+     ],
+     [
+      "sûr.",
+      7.58,
+      7.8
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "VID-10",
+  "type": "video",
+  "niveau": "A2",
+  "titre": "Un forfait de téléphone",
+  "theme": "Un forfait de téléphone",
+  "video": "medias/video/forfait-telephone.mp4",
+  "poster": "medias/video/forfait-telephone.jpg",
+  "sousTitres": [
+   {
+    "d": 0.28,
+    "f": 1.74,
+    "qui": "La cliente",
+    "texte": "Je voudrais un forfait pas cher."
+   },
+   {
+    "d": 2.58,
+    "f": 4.36,
+    "qui": "Le vendeur",
+    "texte": "Vingt gigas pour dix euros par mois."
+   },
+   {
+    "d": 5.22,
+    "f": 6.28,
+    "qui": "La cliente",
+    "texte": "Je peux appeler le Congo ?"
+   },
+   {
+    "d": 7.14,
+    "f": 8.92,
+    "qui": "Le vendeur",
+    "texte": "Non, seulement en France et en Europe."
+   }
+  ],
+  "script": [
+   "La cliente : Je voudrais un forfait pas cher.",
+   "Le vendeur : Vingt gigas pour dix euros par mois.",
+   "La cliente : Je peux appeler le Congo ?",
+   "Le vendeur : Non, seulement en France et en Europe."
+  ],
+  "questions": [
+   {
+    "id": "VID-10-1",
+    "q": "Combien coûte le forfait ?",
+    "choix": [
+     "Dix euros par mois",
+     "Vingt euros par mois",
+     "Dix euros par semaine",
+     "Vingt euros par an"
+    ],
+    "bonne": 0,
+    "niveau": "A2"
+   },
+   {
+    "id": "VID-10-2",
+    "q": "Avec ce forfait, elle peut appeler…",
+    "choix": [
+     "En France et en Europe",
+     "Au Congo",
+     "Partout dans le monde",
+     "Seulement en France"
+    ],
+    "bonne": 0,
+    "niveau": "A2"
+   }
+  ],
+  "ajout": true,
+  "karaoke": [
+   {
+    "qui": "La cliente",
+    "mots": [
+     [
+      "Je",
+      0.28,
+      0.38
+     ],
+     [
+      "voudrais",
+      0.4,
+      0.66
+     ],
+     [
+      "un",
+      0.68,
+      0.8
+     ],
+     [
+      "forfait",
+      0.84,
+      1.2
+     ],
+     [
+      "pas",
+      1.24,
+      1.38
+     ],
+     [
+      "cher.",
+      1.4,
+      1.74
+     ]
+    ]
+   },
+   {
+    "qui": "Le vendeur",
+    "mots": [
+     [
+      "Vingt",
+      2.58,
+      2.74
+     ],
+     [
+      "gigas",
+      2.78,
+      3.12
+     ],
+     [
+      "pour",
+      3.36,
+      3.52
+     ],
+     [
+      "dix",
+      3.58,
+      3.74
+     ],
+     [
+      "euros",
+      3.76,
+      3.98
+     ],
+     [
+      "par",
+      4.02,
+      4.12
+     ],
+     [
+      "mois.",
+      4.2,
+      4.36
+     ]
+    ]
+   },
+   {
+    "qui": "La cliente",
+    "mots": [
+     [
+      "Je",
+      5.22,
+      5.28
+     ],
+     [
+      "peux",
+      5.38,
+      5.46
+     ],
+     [
+      "appeler",
+      5.52,
+      5.8
+     ],
+     [
+      "le",
+      5.84,
+      5.94
+     ],
+     [
+      "Congo ?",
+      5.98,
+      6.28
+     ]
+    ]
+   },
+   {
+    "qui": "Le vendeur",
+    "mots": [
+     [
+      "Non,",
+      7.14,
+      7.26
+     ],
+     [
+      "seulement",
+      7.48,
+      7.76
+     ],
+     [
+      "en",
+      7.8,
+      7.86
+     ],
+     [
+      "France",
+      7.9,
+      8.22
+     ],
+     [
+      "et",
+      8.34,
+      8.38
+     ],
+     [
+      "en",
+      8.42,
+      8.52
+     ],
+     [
+      "Europe.",
+      8.56,
+      8.92
+     ]
+    ]
+   }
+  ]
+ },
+ {
   "id": "CE-01",
   "type": "lecture",
   "niveau": "A1",

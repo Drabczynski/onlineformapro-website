@@ -92,6 +92,13 @@ zones : la question en haut, les réponses au centre exact (sur l'axe de l'image
 quand le retour arrive. À l'oral, le micro est au centre et ne se déplace plus quand on appuie. Les réponses en
 lignes sont à plat, sans tranche ni ombre.
 
+**Vidéos de test** (12 novembre) : 10 vidéos de 10 secondes prises dans le dossier Google Drive fourni (87 vidéos),
+A1-A2 : épicerie, café ou thé, chercher la pharmacie, fleuriste, quel quai, train en retard, médecin, une table pour
+deux, l'addition, forfait de téléphone. Compressées en 720p (environ 1,3 Mo chacune, `medias/video/`), sous-titres
+calés sur la voix par la reconnaissance ElevenLabs (avec qui parle), deux questions par vidéo écrites à partir de ce
+qui est dit (`donnees/videos.json`, à relire). Une série tire maintenant deux vidéos. Téléchargement : l'adresse
+`drive.usercontent.google.com/download?id=…&export=download&confirm=t`, le dossier partagé en lecture par lien.
+
 **Écran de départ : notre menu de paramétrage**, tout blanc : le niveau de la série (Tous, A1, A2, B1), « Nouvelle
 série » et « Toutes les questions » (la revue, qui reprend où on l'a laissée). La croix en haut de chaque question y
 ramène ; le bilan a un bouton pour y revenir. Pas de boutons permanents pendant les questions.
