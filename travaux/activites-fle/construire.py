@@ -243,6 +243,11 @@ for i, x in X.items():
             if k: a["modeleK"] = [{"qui": l["qui"], "mots": m} for l, m in zip(a["modele"], k)] if isinstance(a["modele"], list) else [{"mots": m} for m in k]
     activites.append(a)
 
+# --- les jeux de rôle (EO-23, 24, 25, 27, 39, 40, 41) sont retirés de la page le 12 novembre : trop compliqués à comprendre.
+#     Leurs données, l'ouverture animée (page.html, introJeu) et les sons (medias/jeux/) restent, pour y revenir.
+JEUX_DE_ROLE = False
+if not JEUX_DE_ROLE: activites = [a for a in activites if a.get("sous") != "role"]
+
 # --- les ajouts hors Excel (donnees/ajouts.json) : un son fourni (medias/sons/<id>.mp3), sa transcription et ses questions,
 #     sur le même écran que la compréhension orale
 for p_ in lire_json("ajouts.json"):
