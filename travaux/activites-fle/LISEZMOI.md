@@ -14,8 +14,9 @@ Prototype de produit fini : des activités d'entraînement tirées de l'Excel «
 - **Minimalisme** : tout sur un axe ; le violet seul en accent, le vert pour continuer et pour le juste, le rose pour le
   faux ; le retour (« Bravo ! ») centré au-dessus d'un seul bouton ; pas de barre de suivi ; pas de zoom sur les
   photos ; confettis au bilan seulement ; police Lexend (dessinée pour la facilité de lecture).
-- **Écrans pleins** : sur grand écran, deux panneaux de la hauteur de l'écran (l'image à gauche, la carte de la
-  question à droite) ; sans image, la carte seule au centre. Vidéo : la question et les réponses au centre de
+- **Plein écran partout** : avec une photo, elle couvre l'écran (sans zoom) et un dégradé violet foncé recouvre le côté
+  de la question ; sans photo, un fond violet foncé ; texte et tuiles en blanc. Seules la feuille d'écriture et
+  l'exemple oral restent des cartes blanches. Départ plus court (rideau d'environ une seconde). Vidéo : la question et les réponses au centre de
   l'image floutée. Lecture : le document d'abord seul sur un fond de couleur, puis la question (après quelques
   secondes, ou en touchant le document).
 - **Haut-parleur** discret au bout de chaque question et consigne : les 181 textes sont lus par ElevenLabs

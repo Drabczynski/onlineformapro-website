@@ -755,6 +755,75 @@ body { font-weight: 500; }
   .dock .go { width: 100%; }
 }
 
+
+/* ------------------------------------------------------------ v5 : tout en plein écran, comme la vidéo. Avec une photo, elle couvre l'écran
+   (sans zoom) et un dégradé violet foncé recouvre le côté de la question ; sans photo, un fond violet foncé. Texte et tuiles en blanc ;
+   seules la feuille d'écriture et l'exemple oral restent des cartes blanches. */
+.sc-duo { color: #fff; background: radial-gradient(120% 95% at 18% 8%, #5d27d6 0%, #3c159e 46%, #251070 100%); }
+.sc-duo.avec-photo { background: #251070; }
+.sc-duo > .visuel { min-height: 34vh; overflow: visible; border-radius: 0; background: none; box-shadow: none; animation: none; }
+.sc-duo > .visuel::after { display: none !important; }
+.sc-duo .vis-photo { position: fixed; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; animation: none; }
+.sc-duo.avec-photo::after { content: ""; position: fixed; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, rgba(37, 16, 112, .08) 0%, rgba(37, 16, 112, .22) 38%, rgba(37, 16, 112, .86) 58%, rgba(37, 16, 112, .95) 100%); }
+.sc-duo > .carte-q { position: relative; z-index: 2; padding: clamp(16px, 2.4vw, 40px); border-radius: 0; background: none; box-shadow: none; }
+.sc-duo > .visuel > :not(.vis-photo) { z-index: 2; }
+.sc-duo > .visuel > .pose, .sc-duo > .visuel > .postit, .sc-duo > .visuel > .horloge-g { position: relative; }
+.sc-duo.solo > .carte-q { min-height: 0; }
+.sc-duo .q, .sc-duo .g-phrase, .sc-duo .consigne-o, .sc-duo .phrase-o, .sc-duo .dock-mot, .sc-duo .chrono-g, .sc-duo .mon-texte { color: #fff; }
+.sc-duo .g-avant, .sc-duo .aide-g, .sc-duo .consigne-mini, .sc-duo .chat-q, .sc-duo .lien-b { color: rgba(255, 255, 255, .78); }
+.sc-duo .q { text-shadow: 0 4px 0 rgba(30, 10, 90, .3); }
+.sc-duo .hp { color: rgba(255, 255, 255, .72); }
+.sc-duo .hp:hover, .sc-duo .hp.joue { color: #fff; }
+.sc-duo .kara:not(.encre).suit .k { color: rgba(255, 255, 255, .42); }
+.sc-duo .kara:not(.encre).suit .k.dit { color: #fff; }
+.sc-duo .kara:not(.encre).suit .k.actuel { color: var(--citron-1); }
+.sc-duo .encre .kara.suit .k { color: rgba(70, 40, 140, .32); }
+.sc-duo .encre .kara.suit .k.dit { color: var(--encre); }
+.sc-duo .encre .kara.suit .k.actuel { color: var(--fond-1); }
+.sc-duo .fente { background: rgba(255, 255, 255, .18); box-shadow: inset 0 -.08em 0 rgba(255, 255, 255, .55); }
+.sc-duo .fente.vide { animation-name: respire-f; }
+.sc-duo .fente.pleine { box-shadow: 0 .08em 0 var(--citron-levre); }
+.sc-duo .fente.juste { box-shadow: 0 .08em 0 var(--vert-levre); }
+.sc-duo .fente.faux { box-shadow: 0 .08em 0 var(--rose-levre); }
+.sc-duo .g-phrase.form { background: rgba(255, 255, 255, .1); }
+.sc-duo .g-indice { background: rgba(255, 255, 255, .14); color: #fff; }
+.sc-duo .ecoute, .sc-duo .relire { border-color: rgba(255, 255, 255, .32); background: rgba(255, 255, 255, .12); color: #fff; }
+.sc-duo .ecoute .rondp, .sc-duo .relire .rondp { background: #fff; color: var(--violet); }
+.sc-duo .micro-g { background: linear-gradient(#ffffff, #efe6ff); box-shadow: inset 0 0 0 7px rgba(135, 69, 253, .12), 0 6px 0 #c3abff; color: var(--violet); }
+.sc-duo .micro-g:active { box-shadow: inset 0 0 0 7px rgba(135, 69, 253, .12), 0 2px 0 #c3abff; }
+.sc-duo .studio.enreg .micro-g { background: linear-gradient(var(--rose-1), var(--rose-2)); box-shadow: inset 0 0 0 7px rgba(255, 255, 255, .3), 0 6px 0 var(--rose-levre); color: #fff; }
+.sc-duo .micro-g svg.anneau .fond-a { stroke: rgba(255, 255, 255, .2); }
+.sc-duo .micro-g svg.anneau .plein { stroke: var(--citron-2); }
+.sc-duo .studio.atteint .micro-g svg.anneau .plein { stroke: var(--vert-1); }
+.sc-duo .studio:not(.enreg):not(.fini) .micro-g::before { border-color: rgba(255, 255, 255, .4); }
+.sc-duo .exemple-o, .carte-q .sc-duo .exemple-o { padding: clamp(20px, 2.4vw, 32px); border-radius: 26px; background: #fff; box-shadow: 0 5px 0 var(--blanc-levre); color: var(--encre); }
+.sc-duo .carte-ecrit { padding: clamp(22px, 2.6vw, 40px); border-radius: 30px; background: #fff; box-shadow: 0 6px 0 rgba(20, 6, 70, .35); color: var(--encre); }
+.sc-duo .carte-ecrit .consigne-p { color: var(--encre); }
+.sc-duo .carte-ecrit .hp { color: var(--encre-douce); }
+.sc-duo .carte-ecrit .kara:not(.encre).suit .k { color: rgba(70, 40, 140, .32); }
+.sc-duo .carte-ecrit .kara:not(.encre).suit .k.dit { color: var(--encre); }
+.sc-duo .carte-ecrit .kara:not(.encre).suit .k.actuel { color: var(--fond-1); }
+.sc-duo .carte-ecrit .lien-b { color: var(--encre-douce); }
+.sc-duo .carte-ecrit .dock-mot { color: var(--encre); }
+.sc-ecrit.compare .carte-q.mien { padding: clamp(22px, 2.6vw, 40px); border-radius: 30px; background: rgba(255, 255, 255, .1); }
+.sc-ecrit.compare .titre-mien { color: #fff; }
+.sc-duo .legende { background: rgba(255, 255, 255, .92); }
+.sc-duo .visuel .titre-v { background: none; text-shadow: 0 4px 0 rgba(30, 10, 90, .4); }
+.sc-duo .horloge-g { background: #fff; }
+.sc-duo .q { font-size: clamp(30px, 3vw, 50px); }
+.sc-duo .alveoles { --w: clamp(140px, 12.5vw, 188px); }
+.sc-duo .bonbons { width: min(640px, 100%); }
+.sc-duo .reps .rep { width: min(560px, 100%); max-width: none; padding: 20px 28px; font-size: clamp(22px, 2vw, 30px); }
+.sc-duo .chat { gap: 22px; }
+body[data-vue="activite"] .haut .rond { background: rgba(255, 255, 255, .16); color: #fff; }
+body[data-vue="activite"] .haut .rond[aria-pressed="true"] { background: #fff; color: var(--violet); }
+@media (max-width: 899.98px), (max-height: 559.98px) {
+  .sc-duo.avec-photo::after { background: linear-gradient(180deg, rgba(37, 16, 112, .05) 0%, rgba(37, 16, 112, .2) 22%, rgba(37, 16, 112, .9) 42%, rgba(37, 16, 112, .96) 100%); }
+  .sc-duo > .visuel { min-height: 32vh; }
+  .sc-duo > .carte-q { padding: 18px 4px 8px; }
+  .sc-duo > .carte-q.carte-ecrit { padding: 22px 18px; }
+}
+
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .etoiles svg { opacity: 1; } }
 </style>
 
@@ -990,7 +1059,7 @@ function brancherEcoute(b, m, env) {
   const maj = () => { $(".rondp", b).innerHTML = m.paused ? I.lire : I.pause; };
   m.addEventListener("play", maj); m.addEventListener("pause", maj); m.addEventListener("ended", maj);
   b.onclick = () => { Son.init(); if (m.paused) jouer(m, m.ended ? 0 : undefined); else m.pause(); };
-  barres($("canvas", b), ondeMedia(m, env, { repos: .16 }), { n: 16, couleur: "#8745fd", min: .14, plein: .55 });
+  barres($("canvas", b), ondeMedia(m, env, { repos: .16 }), { n: 16, couleur: getComputedStyle(b).color || "#8745fd", min: .14, plein: .55 });
 }
 
 // ---------------------------------------------------------------- les mots qui s'allument (karaoké)
@@ -1031,7 +1100,7 @@ addEventListener("pointermove", (e) => { document.documentElement.style.setPrope
 // ---------------------------------------------------------------- passer d'une scène à l'autre
 let courant = null;
 function quitter() { try { courant?.arreter?.(); } catch (e) {} courant = null; touche = null; arreterMedias(); for (const s of [...animations]) s(); }
-function rendre(html) { const S = $("#scene"); S.innerHTML = html; S.scrollTop = 0; const el = S.firstElementChild; if (el?.classList.contains("sc-duo") && !el.querySelector(".visuel")) el.classList.add("solo"); return el; }
+function rendre(html) { const S = $("#scene"); S.innerHTML = html; S.scrollTop = 0; const el = S.firstElementChild; if (el?.classList.contains("sc-duo")) { if (!el.querySelector(".visuel")) el.classList.add("solo"); if (el.querySelector(".vis-photo")) el.classList.add("avec-photo"); } return el; }
 function rideau(a, k, origine, monter) {
   const R = $("#rideau"), mot = MOT[a.type](a);
   R.className = `ty-${a.type} f-${a.type}`;
@@ -1041,16 +1110,16 @@ function rideau(a, k, origine, monter) {
   if (!MOUV) { monter(); setTimeout(() => { R.hidden = true; courant?.demarrer?.(); }, 900); return; }
   const x = origine?.x ?? innerWidth / 2, y = origine?.y ?? innerHeight / 2, r = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 20;
   Son.joue("rideau");
-  const entree = R.animate([{ clipPath: `circle(0px at ${x}px ${y}px)` }, { clipPath: `circle(${r}px at ${x}px ${y}px)` }], { duration: 650, easing: "cubic-bezier(.7,0,.25,1)", fill: "forwards" });
+  const entree = R.animate([{ clipPath: `circle(0px at ${x}px ${y}px)` }, { clipPath: `circle(${r}px at ${x}px ${y}px)` }], { duration: 480, easing: "cubic-bezier(.7,0,.25,1)", fill: "forwards" });
   let parti = false, minuterie = 0;
   const sortir = () => {
     if (parti) return; parti = true; clearTimeout(minuterie); R.onclick = null;
     S.classList.remove("attente");
-    const s = R.animate([{ transform: "translateY(0)" }, { transform: "translateY(-104%)" }], { duration: 640, easing: "cubic-bezier(.7,0,.2,1)", fill: "forwards" });
+    const s = R.animate([{ transform: "translateY(0)" }, { transform: "translateY(-104%)" }], { duration: 520, easing: "cubic-bezier(.7,0,.2,1)", fill: "forwards" });
     s.onfinish = () => { R.hidden = true; R.getAnimations().forEach(x => x.cancel()); };
     setTimeout(() => courant?.demarrer?.(), 280);
   };
-  entree.onfinish = () => { S.classList.add("attente"); monter(); minuterie = setTimeout(sortir, 1100); R.onclick = sortir; };
+  entree.onfinish = () => { S.classList.add("attente"); monter(); minuterie = setTimeout(sortir, 600); R.onclick = sortir; };
 }
 const uneQuestion = (a) => a.questions ? { ...a, questions: [a.questions[etat.qi?.[a.id] ?? 0] || a.questions[0]] } : a;
 function lancer(k, origine) {
@@ -1227,7 +1296,7 @@ function sceneLecture(a) {
   const mots = (JSON.stringify(a.doc).match(/\p{L}{2,}/gu) || []).length;
   courant = { ...courant, demarrer: () => {
     if (a.doc.t === "sms") { setTimeout(() => { const [e, b] = $$(".bulle-sms", sc); e.hidden = true; b.hidden = false; b.classList.add("arrive"); Son.joue("pop"); }, 1100); }
-    minuterie = setTimeout(question, Math.max(2600, Math.min(7000, mots * 320 + (a.doc.t === "sms" ? 1100 : 0))));
+    minuterie = setTimeout(question, Math.max(1400, Math.min(4000, mots * 170 + (a.doc.t === "sms" ? 1100 : 0))));
   }, arreter: () => clearTimeout(minuterie) };
 }
 
@@ -1415,7 +1484,7 @@ function sceneOral(a) {
     if (!vivant) return; const dpr = Math.min(2, devicePixelRatio || 1), w = Math.round(halo.clientWidth * dpr); if (w && halo.width !== w) { halo.width = w; halo.height = w; }
     hx.clearRect(0, 0, halo.width, halo.height); const c = halo.width / 2, r0 = halo.width * .27, n = 72, s = ts / 1000, enreg = S.classList.contains("enreg");
     if (analyseur) { analyseur.getByteFrequencyData(donnees); let t = 0; for (let i = 2; i < 40; i++) t += donnees[i]; niveauVoix += (t / 38 / 255 - niveauVoix) * .3; }
-    hx.strokeStyle = enreg ? "rgba(234,98,222,.6)" : "rgba(135,69,253,.28)"; hx.lineWidth = 3 * dpr; hx.lineCap = "round";
+    hx.strokeStyle = enreg ? "rgba(255,173,246,.85)" : (S.closest(".sc-duo") ? "rgba(255,255,255,.35)" : "rgba(135,69,253,.28)"); hx.lineWidth = 3 * dpr; hx.lineCap = "round";
     for (let k = 0; k < n; k++) {
       const ang = k / n * Math.PI * 2, f = analyseur && enreg ? (donnees[2 + Math.floor((k < n / 2 ? k : n - k) / (n / 2) * 60)] / 255) : 0;
       const v = enreg ? (analyseur ? f * 1.2 + niveauVoix * .5 : .25 + .2 * Math.sin(s * 5 + k * .6)) : .05 + .04 * Math.sin(s * 2 + k * .5), l = halo.width * .2 * Math.min(1, v);
