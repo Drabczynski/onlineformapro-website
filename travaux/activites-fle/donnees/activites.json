@@ -64,7 +64,45 @@
      "Au rez-de-chaussée, à droite",
      "Au sous-sol"
     ],
-    "bonne": 1
+    "bonne": 1,
+    "audioQ": "medias/questions/demo-1.mp3",
+    "qk": [
+     [
+      "Où",
+      0.08,
+      0.16
+     ],
+     [
+      "est",
+      0.18,
+      0.44
+     ],
+     [
+      "la",
+      0.5,
+      0.58
+     ],
+     [
+      "salle",
+      0.68,
+      0.86
+     ],
+     [
+      "du",
+      0.9,
+      0.96
+     ],
+     [
+      "petit",
+      1.02,
+      1.2
+     ],
+     [
+      "déjeuner ?",
+      1.26,
+      1.66
+     ]
+    ]
    },
    {
     "id": "demo-2",
@@ -75,7 +113,45 @@
      "À 11 heures",
      "À midi"
     ],
-    "bonne": 2
+    "bonne": 2,
+    "audioQ": "medias/questions/demo-2.mp3",
+    "qk": [
+     [
+      "Le",
+      0.14,
+      0.2
+     ],
+     [
+      "petit",
+      0.26,
+      0.42
+     ],
+     [
+      "déjeuner",
+      0.46,
+      0.84
+     ],
+     [
+      "finit",
+      0.9,
+      1.08
+     ],
+     [
+      "à",
+      1.12,
+      1.18
+     ],
+     [
+      "quelle",
+      1.2,
+      1.36
+     ],
+     [
+      "heure ?",
+      1.36,
+      1.62
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -279,7 +355,30 @@
      "23 ans"
     ],
     "bonne": 1,
-    "t": "ecoute"
+    "t": "ecoute",
+    "audioQ": "medias/questions/CO-01.mp3",
+    "qk": [
+     [
+      "Quel",
+      0.1,
+      0.26
+     ],
+     [
+      "âge",
+      0.34,
+      0.46
+     ],
+     [
+      "a",
+      0.5,
+      0.58
+     ],
+     [
+      "Karim ?",
+      0.62,
+      1.04
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -347,7 +446,40 @@
      "18 h 30"
     ],
     "bonne": 1,
-    "t": "ecoute"
+    "t": "ecoute",
+    "audioQ": "medias/questions/CO-02.mp3",
+    "qk": [
+     [
+      "À",
+      0.1,
+      0.16
+     ],
+     [
+      "quelle",
+      0.2,
+      0.32
+     ],
+     [
+      "heure",
+      0.36,
+      0.52
+     ],
+     [
+      "part",
+      0.56,
+      0.68
+     ],
+     [
+      "le",
+      0.72,
+      0.8
+     ],
+     [
+      "bus ?",
+      0.86,
+      1.12
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -426,7 +558,30 @@
      "12 €"
     ],
     "bonne": 0,
-    "t": "ecoute"
+    "t": "ecoute",
+    "audioQ": "medias/questions/CO-03.mp3",
+    "qk": [
+     [
+      "Combien",
+      0.12,
+      0.4
+     ],
+     [
+      "coûte",
+      0.5,
+      0.68
+     ],
+     [
+      "la",
+      0.72,
+      0.8
+     ],
+     [
+      "baguette ?",
+      0.86,
+      1.24
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -508,7 +663,25 @@
      "Écouter la radio"
     ],
     "bonne": 1,
-    "t": "ecoute"
+    "t": "ecoute",
+    "audioQ": "medias/questions/CO-04.mp3",
+    "qk": [
+     [
+      "Que",
+      0.12,
+      0.22
+     ],
+     [
+      "faut-il",
+      0.32,
+      0.64
+     ],
+     [
+      "faire ?",
+      0.78,
+      1.0
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -566,7 +739,30 @@
      "À Lyon"
     ],
     "bonne": 2,
-    "t": "ecoute"
+    "t": "ecoute",
+    "audioQ": "medias/questions/CO-05.mp3",
+    "qk": [
+     [
+      "Où",
+      0.08,
+      0.18
+     ],
+     [
+      "habite",
+      0.2,
+      0.5
+     ],
+     [
+      "la",
+      0.54,
+      0.6
+     ],
+     [
+      "personne ?",
+      0.7,
+      1.1
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -650,7 +846,30 @@
      "⬆️",
      "↩️"
     ],
-    "t": "ecoute"
+    "t": "ecoute",
+    "audioQ": "medias/questions/CO-06.mp3",
+    "qk": [
+     [
+      "Où",
+      0.1,
+      0.18
+     ],
+     [
+      "est",
+      0.2,
+      0.42
+     ],
+     [
+      "la",
+      0.48,
+      0.54
+     ],
+     [
+      "pharmacie ?",
+      0.62,
+      1.12
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -723,7 +942,35 @@
      "Jeudi"
     ],
     "bonne": 2,
-    "t": "ecoute"
+    "t": "ecoute",
+    "audioQ": "medias/questions/CO-07.mp3",
+    "qk": [
+     [
+      "Quel",
+      0.1,
+      0.26
+     ],
+     [
+      "jour",
+      0.34,
+      0.5
+     ],
+     [
+      "est",
+      0.52,
+      0.62
+     ],
+     [
+      "le",
+      0.66,
+      0.74
+     ],
+     [
+      "rendez-vous ?",
+      0.82,
+      1.3
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -796,7 +1043,8 @@
      "06 45 78 20 30"
     ],
     "bonne": 0,
-    "t": "ecoute"
+    "t": "ecoute",
+    "audioQ": "medias/questions/CO-08.mp3"
    }
   ],
   "karaoke": [
@@ -884,7 +1132,35 @@
      "Quatre"
     ],
     "bonne": 1,
-    "t": "ecoute"
+    "t": "ecoute",
+    "audioQ": "medias/questions/CO-09.mp3",
+    "qk": [
+     [
+      "Combien",
+      0.12,
+      0.38
+     ],
+     [
+      "d'enfants",
+      0.4,
+      0.82
+     ],
+     [
+      "a",
+      0.88,
+      0.92
+     ],
+     [
+      "la",
+      0.96,
+      1.02
+     ],
+     [
+      "personne ?",
+      1.12,
+      1.54
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -963,7 +1239,25 @@
      "❄️",
      "🥵"
     ],
-    "t": "ecoute"
+    "t": "ecoute",
+    "audioQ": "medias/questions/CO-10.mp3",
+    "qk": [
+     [
+      "Quel",
+      0.12,
+      0.32
+     ],
+     [
+      "temps",
+      0.36,
+      0.52
+     ],
+     [
+      "fait-il ?",
+      0.58,
+      0.96
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -1026,7 +1320,55 @@
      "On ne sait pas"
     ],
     "bonne": 1,
-    "t": "ecoute"
+    "t": "ecoute",
+    "audioQ": "medias/questions/CO-11.mp3",
+    "qk": [
+     [
+      "À",
+      0.12,
+      0.2
+     ],
+     [
+      "quel",
+      0.22,
+      0.36
+     ],
+     [
+      "moment",
+      0.4,
+      0.62
+     ],
+     [
+      "de",
+      0.66,
+      0.72
+     ],
+     [
+      "la",
+      0.78,
+      0.84
+     ],
+     [
+      "journée",
+      0.92,
+      1.26
+     ],
+     [
+      "parle",
+      1.3,
+      1.52
+     ],
+     [
+      "cette",
+      1.56,
+      1.74
+     ],
+     [
+      "personne ?",
+      1.78,
+      2.18
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -1079,7 +1421,40 @@
      "14 h"
     ],
     "bonne": 2,
-    "t": "ecoute"
+    "t": "ecoute",
+    "audioQ": "medias/questions/CO-12.mp3",
+    "qk": [
+     [
+      "À",
+      0.1,
+      0.18
+     ],
+     [
+      "quelle",
+      0.2,
+      0.4
+     ],
+     [
+      "heure",
+      0.44,
+      0.64
+     ],
+     [
+      "finit",
+      0.7,
+      0.92
+     ],
+     [
+      "le",
+      0.96,
+      1.04
+     ],
+     [
+      "cours ?",
+      1.16,
+      1.4
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -1173,7 +1548,40 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Annonce en gare"
+    "etiquette": "Annonce en gare",
+    "audioQ": "medias/questions/CO-13.mp3",
+    "qk": [
+     [
+      "Le",
+      0.12,
+      0.24
+     ],
+     [
+      "train",
+      0.28,
+      0.44
+     ],
+     [
+      "part",
+      0.54,
+      0.66
+     ],
+     [
+      "de",
+      0.7,
+      0.8
+     ],
+     [
+      "quelle",
+      0.84,
+      1.0
+     ],
+     [
+      "voie ?",
+      1.04,
+      1.18
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -1247,7 +1655,40 @@
      "Du jus"
     ],
     "bonne": 1,
-    "t": "ecoute"
+    "t": "ecoute",
+    "audioQ": "medias/questions/CO-14.mp3",
+    "qk": [
+     [
+      "Qu'est-ce",
+      0.1,
+      0.36
+     ],
+     [
+      "que",
+      0.4,
+      0.52
+     ],
+     [
+      "la",
+      0.58,
+      0.68
+     ],
+     [
+      "personne",
+      0.72,
+      1.1
+     ],
+     [
+      "veut",
+      1.2,
+      1.34
+     ],
+     [
+      "boire ?",
+      1.38,
+      1.7
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -1334,7 +1775,30 @@
      "Vendeur"
     ],
     "bonne": 2,
-    "t": "ecoute"
+    "t": "ecoute",
+    "audioQ": "medias/questions/CO-15.mp3",
+    "qk": [
+     [
+      "Quel",
+      0.12,
+      0.26
+     ],
+     [
+      "est",
+      0.28,
+      0.36
+     ],
+     [
+      "son",
+      0.52,
+      0.64
+     ],
+     [
+      "métier ?",
+      0.68,
+      0.96
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -1407,7 +1871,30 @@
      "20 € le kilo"
     ],
     "bonne": 0,
-    "t": "ecoute"
+    "t": "ecoute",
+    "audioQ": "medias/questions/CO-16.mp3",
+    "qk": [
+     [
+      "Combien",
+      0.14,
+      0.4
+     ],
+     [
+      "coûtent",
+      0.46,
+      0.7
+     ],
+     [
+      "les",
+      0.72,
+      0.84
+     ],
+     [
+      "pommes ?",
+      0.88,
+      1.12
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -1480,7 +1967,35 @@
      "Courts et blonds"
     ],
     "bonne": 1,
-    "t": "ecoute"
+    "t": "ecoute",
+    "audioQ": "medias/questions/CO-17.mp3",
+    "qk": [
+     [
+      "Comment",
+      0.12,
+      0.44
+     ],
+     [
+      "sont",
+      0.5,
+      0.62
+     ],
+     [
+      "les",
+      0.66,
+      0.78
+     ],
+     [
+      "cheveux",
+      0.82,
+      1.12
+     ],
+     [
+      "d'Amina ?",
+      1.16,
+      1.56
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -1569,7 +2084,20 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Message sur votre répondeur"
+    "etiquette": "Message sur votre répondeur",
+    "audioQ": "medias/questions/CO-18.mp3",
+    "qk": [
+     [
+      "Qui",
+      0.08,
+      0.2
+     ],
+     [
+      "appelle ?",
+      0.24,
+      0.52
+     ]
+    ]
    },
    {
     "id": "CO-19",
@@ -1582,7 +2110,30 @@
     ],
     "bonne": 0,
     "t": "ecoute",
-    "etiquette": "Message sur votre répondeur"
+    "etiquette": "Message sur votre répondeur",
+    "audioQ": "medias/questions/CO-19.mp3",
+    "qk": [
+     [
+      "Quel",
+      0.1,
+      0.24
+     ],
+     [
+      "rendez-vous",
+      0.3,
+      0.64
+     ],
+     [
+      "est",
+      0.66,
+      0.78
+     ],
+     [
+      "annulé ?",
+      0.82,
+      1.1
+     ]
+    ]
    },
    {
     "id": "CO-20",
@@ -1595,7 +2146,35 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Message sur votre répondeur"
+    "etiquette": "Message sur votre répondeur",
+    "audioQ": "medias/questions/CO-20.mp3",
+    "qk": [
+     [
+      "Que",
+      0.1,
+      0.18
+     ],
+     [
+      "doit",
+      0.22,
+      0.38
+     ],
+     [
+      "faire",
+      0.42,
+      0.54
+     ],
+     [
+      "la",
+      0.58,
+      0.66
+     ],
+     [
+      "personne ?",
+      0.7,
+      1.04
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -1799,7 +2378,35 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Annonce dans un magasin"
+    "etiquette": "Annonce dans un magasin",
+    "audioQ": "medias/questions/CO-21.mp3",
+    "qk": [
+     [
+      "Quels",
+      0.1,
+      0.24
+     ],
+     [
+      "produits",
+      0.28,
+      0.58
+     ],
+     [
+      "sont",
+      0.62,
+      0.78
+     ],
+     [
+      "en",
+      0.84,
+      0.9
+     ],
+     [
+      "promotion ?",
+      0.94,
+      1.34
+     ]
+    ]
    },
    {
     "id": "CO-22",
@@ -1812,7 +2419,35 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Annonce dans un magasin"
+    "etiquette": "Annonce dans un magasin",
+    "audioQ": "medias/questions/CO-22.mp3",
+    "qk": [
+     [
+      "Que",
+      0.1,
+      0.16
+     ],
+     [
+      "se",
+      0.2,
+      0.24
+     ],
+     [
+      "passe-t-il",
+      0.28,
+      0.64
+     ],
+     [
+      "ce",
+      0.68,
+      0.78
+     ],
+     [
+      "samedi ?",
+      0.84,
+      1.12
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -1985,7 +2620,35 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Appel pour un logement"
+    "etiquette": "Appel pour un logement",
+    "audioQ": "medias/questions/CO-23.mp3",
+    "qk": [
+     [
+      "Combien",
+      0.08,
+      0.3
+     ],
+     [
+      "de",
+      0.34,
+      0.4
+     ],
+     [
+      "pièces",
+      0.46,
+      0.84
+     ],
+     [
+      "a",
+      0.9,
+      0.92
+     ],
+     [
+      "l'appartement ?",
+      0.96,
+      1.44
+     ]
+    ]
    },
    {
     "id": "CO-24",
@@ -1998,7 +2661,30 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Appel pour un logement"
+    "etiquette": "Appel pour un logement",
+    "audioQ": "medias/questions/CO-24.mp3",
+    "qk": [
+     [
+      "Qu'est-ce",
+      0.1,
+      0.24
+     ],
+     [
+      "qui",
+      0.26,
+      0.3
+     ],
+     [
+      "est",
+      0.34,
+      0.4
+     ],
+     [
+      "vrai ?",
+      0.9,
+      1.02
+     ]
+    ]
    },
    {
     "id": "CO-25",
@@ -2011,7 +2697,30 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Appel pour un logement"
+    "etiquette": "Appel pour un logement",
+    "audioQ": "medias/questions/CO-25.mp3",
+    "qk": [
+     [
+      "Combien",
+      0.12,
+      0.36
+     ],
+     [
+      "coûte",
+      0.44,
+      0.6
+     ],
+     [
+      "le",
+      0.66,
+      0.72
+     ],
+     [
+      "loyer ?",
+      0.76,
+      1.04
+     ]
+    ]
    },
    {
     "id": "CO-26",
@@ -2024,7 +2733,35 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Appel pour un logement"
+    "etiquette": "Appel pour un logement",
+    "audioQ": "medias/questions/CO-26.mp3",
+    "qk": [
+     [
+      "Quand",
+      0.1,
+      0.28
+     ],
+     [
+      "a",
+      0.32,
+      0.38
+     ],
+     [
+      "lieu",
+      0.42,
+      0.54
+     ],
+     [
+      "la",
+      0.6,
+      0.68
+     ],
+     [
+      "visite ?",
+      0.72,
+      1.04
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -2279,7 +3016,55 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Message d'une collègue"
+    "etiquette": "Message d'une collègue",
+    "audioQ": "medias/questions/CO-27.mp3",
+    "qk": [
+     [
+      "Pourquoi",
+      0.1,
+      0.32
+     ],
+     [
+      "la",
+      0.36,
+      0.46
+     ],
+     [
+      "collègue",
+      0.5,
+      0.74
+     ],
+     [
+      "ne",
+      0.78,
+      0.86
+     ],
+     [
+      "vient-elle",
+      0.88,
+      1.2
+     ],
+     [
+      "pas",
+      1.22,
+      1.3
+     ],
+     [
+      "au",
+      1.34,
+      1.4
+     ],
+     [
+      "travail",
+      1.44,
+      1.74
+     ],
+     [
+      "demain ?",
+      1.78,
+      1.98
+     ]
+    ]
    },
    {
     "id": "CO-28",
@@ -2292,7 +3077,30 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Message d'une collègue"
+    "etiquette": "Message d'une collègue",
+    "audioQ": "medias/questions/CO-28.mp3",
+    "qk": [
+     [
+      "Que",
+      0.08,
+      0.18
+     ],
+     [
+      "propose-t-elle",
+      0.22,
+      0.7
+     ],
+     [
+      "à",
+      0.74,
+      0.76
+     ],
+     [
+      "Paulo ?",
+      0.84,
+      1.1
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -2461,7 +3269,35 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Annonce de l'école"
+    "etiquette": "Annonce de l'école",
+    "audioQ": "medias/questions/CO-29.mp3",
+    "qk": [
+     [
+      "À",
+      0.1,
+      0.14
+     ],
+     [
+      "qui",
+      0.16,
+      0.26
+     ],
+     [
+      "s'adresse",
+      0.3,
+      0.64
+     ],
+     [
+      "ce",
+      0.68,
+      0.76
+     ],
+     [
+      "message ?",
+      0.8,
+      1.12
+     ]
+    ]
    },
    {
     "id": "CO-30",
@@ -2474,7 +3310,40 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Annonce de l'école"
+    "etiquette": "Annonce de l'école",
+    "audioQ": "medias/questions/CO-30.mp3",
+    "qk": [
+     [
+      "Que",
+      0.1,
+      0.22
+     ],
+     [
+      "faut-il",
+      0.26,
+      0.5
+     ],
+     [
+      "apporter",
+      0.56,
+      0.88
+     ],
+     [
+      "à",
+      0.92,
+      0.96
+     ],
+     [
+      "la",
+      1.0,
+      1.06
+     ],
+     [
+      "réunion ?",
+      1.12,
+      1.42
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -2663,7 +3532,35 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "La météo à la radio"
+    "etiquette": "La météo à la radio",
+    "audioQ": "medias/questions/CO-31.mp3",
+    "qk": [
+     [
+      "Quel",
+      0.08,
+      0.24
+     ],
+     [
+      "temps",
+      0.28,
+      0.4
+     ],
+     [
+      "fera-t-il",
+      0.44,
+      0.8
+     ],
+     [
+      "demain",
+      0.84,
+      1.02
+     ],
+     [
+      "matin ?",
+      1.06,
+      1.3
+     ]
+    ]
    },
    {
     "id": "CO-32",
@@ -2676,7 +3573,35 @@
     ],
     "bonne": 2,
     "t": "ecoute",
-    "etiquette": "La météo à la radio"
+    "etiquette": "La météo à la radio",
+    "audioQ": "medias/questions/CO-32.mp3",
+    "qk": [
+     [
+      "Quelle",
+      0.08,
+      0.22
+     ],
+     [
+      "température",
+      0.26,
+      0.76
+     ],
+     [
+      "est",
+      0.78,
+      0.9
+     ],
+     [
+      "annoncée",
+      0.94,
+      1.26
+     ],
+     [
+      "l'après-midi ?",
+      1.3,
+      1.74
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -2820,7 +3745,45 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Un récit"
+    "etiquette": "Un récit",
+    "audioQ": "medias/questions/CO-33.mp3",
+    "qk": [
+     [
+      "Quand",
+      0.12,
+      0.22
+     ],
+     [
+      "la",
+      0.28,
+      0.36
+     ],
+     [
+      "personne",
+      0.4,
+      0.64
+     ],
+     [
+      "est-elle",
+      0.66,
+      0.9
+     ],
+     [
+      "allée",
+      0.96,
+      1.1
+     ],
+     [
+      "à",
+      1.14,
+      1.18
+     ],
+     [
+      "Lyon ?",
+      1.2,
+      1.38
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -2980,7 +3943,35 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Dans la rue"
+    "etiquette": "Dans la rue",
+    "audioQ": "medias/questions/CO-34.mp3",
+    "qk": [
+     [
+      "Comment",
+      0.1,
+      0.38
+     ],
+     [
+      "aller",
+      0.42,
+      0.58
+     ],
+     [
+      "à",
+      0.62,
+      0.64
+     ],
+     [
+      "la",
+      0.7,
+      0.76
+     ],
+     [
+      "gare ?",
+      0.82,
+      1.08
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -3143,7 +4134,35 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "À la radio"
+    "etiquette": "À la radio",
+    "audioQ": "medias/questions/CO-35.mp3",
+    "qk": [
+     [
+      "De",
+      0.1,
+      0.18
+     ],
+     [
+      "quoi",
+      0.2,
+      0.3
+     ],
+     [
+      "parle",
+      0.4,
+      0.54
+     ],
+     [
+      "cette",
+      0.6,
+      0.74
+     ],
+     [
+      "information ?",
+      0.8,
+      1.3
+     ]
+    ]
    },
    {
     "id": "CO-36",
@@ -3156,7 +4175,35 @@
     ],
     "bonne": 2,
     "t": "ecoute",
-    "etiquette": "À la radio"
+    "etiquette": "À la radio",
+    "audioQ": "medias/questions/CO-36.mp3",
+    "qk": [
+     [
+      "Pour",
+      0.1,
+      0.2
+     ],
+     [
+      "qui",
+      0.26,
+      0.34
+     ],
+     [
+      "l'abonnement",
+      0.38,
+      0.78
+     ],
+     [
+      "sera-t-il",
+      0.82,
+      1.24
+     ],
+     [
+      "gratuit ?",
+      1.28,
+      1.62
+     ]
+    ]
    },
    {
     "id": "CO-37",
@@ -3169,7 +4216,55 @@
     ],
     "bonne": 0,
     "t": "ecoute",
-    "etiquette": "À la radio"
+    "etiquette": "À la radio",
+    "audioQ": "medias/questions/CO-37.mp3",
+    "qk": [
+     [
+      "Quel",
+      0.08,
+      0.2
+     ],
+     [
+      "est",
+      0.22,
+      0.42
+     ],
+     [
+      "l'objectif",
+      0.46,
+      0.88
+     ],
+     [
+      "de",
+      0.92,
+      1.0
+     ],
+     [
+      "ce",
+      1.04,
+      1.16
+     ],
+     [
+      "projet,",
+      1.18,
+      1.48
+     ],
+     [
+      "selon",
+      1.82,
+      2.04
+     ],
+     [
+      "le",
+      2.08,
+      2.16
+     ],
+     [
+      "maire ?",
+      2.2,
+      2.4
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -3513,7 +4608,45 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Un entretien d'embauche"
+    "etiquette": "Un entretien d'embauche",
+    "audioQ": "medias/questions/CO-38.mp3",
+    "qk": [
+     [
+      "Quelle",
+      0.1,
+      0.22
+     ],
+     [
+      "expérience",
+      0.26,
+      0.7
+     ],
+     [
+      "la",
+      0.74,
+      0.84
+     ],
+     [
+      "candidate",
+      0.86,
+      1.24
+     ],
+     [
+      "a-t-elle",
+      1.28,
+      1.54
+     ],
+     [
+      "en",
+      1.56,
+      1.66
+     ],
+     [
+      "France ?",
+      1.7,
+      1.96
+     ]
+    ]
    },
    {
     "id": "CO-39",
@@ -3526,7 +4659,40 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Un entretien d'embauche"
+    "etiquette": "Un entretien d'embauche",
+    "audioQ": "medias/questions/CO-39.mp3",
+    "qk": [
+     [
+      "Pourquoi",
+      0.12,
+      0.36
+     ],
+     [
+      "la",
+      0.4,
+      0.48
+     ],
+     [
+      "candidate",
+      0.52,
+      0.9
+     ],
+     [
+      "veut-elle",
+      0.94,
+      1.2
+     ],
+     [
+      "ce",
+      1.28,
+      1.34
+     ],
+     [
+      "poste ?",
+      1.42,
+      1.72
+     ]
+    ]
    },
    {
     "id": "CO-40",
@@ -3539,7 +4705,35 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Un entretien d'embauche"
+    "etiquette": "Un entretien d'embauche",
+    "audioQ": "medias/questions/CO-40.mp3",
+    "qk": [
+     [
+      "Quelle",
+      0.08,
+      0.24
+     ],
+     [
+      "contrainte",
+      0.26,
+      0.6
+     ],
+     [
+      "la",
+      0.64,
+      0.72
+     ],
+     [
+      "candidate",
+      0.74,
+      1.12
+     ],
+     [
+      "exprime-t-elle ?",
+      1.16,
+      1.7
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -3986,7 +5180,50 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Discussion entre voisins"
+    "etiquette": "Discussion entre voisins",
+    "audioQ": "medias/questions/CO-41.mp3",
+    "qk": [
+     [
+      "Que",
+      0.1,
+      0.22
+     ],
+     [
+      "pense",
+      0.24,
+      0.44
+     ],
+     [
+      "Ahmed",
+      0.5,
+      0.8
+     ],
+     [
+      "de",
+      0.82,
+      0.88
+     ],
+     [
+      "la",
+      0.92,
+      1.0
+     ],
+     [
+      "fermeture",
+      1.02,
+      1.36
+     ],
+     [
+      "de",
+      1.4,
+      1.46
+     ],
+     [
+      "l'épicerie ?",
+      1.5,
+      1.92
+     ]
+    ]
    },
    {
     "id": "CO-42",
@@ -3999,7 +5236,50 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Discussion entre voisins"
+    "etiquette": "Discussion entre voisins",
+    "audioQ": "medias/questions/CO-42.mp3",
+    "qk": [
+     [
+      "Quel",
+      0.1,
+      0.22
+     ],
+     [
+      "argument",
+      0.26,
+      0.6
+     ],
+     [
+      "Sophie",
+      0.64,
+      0.88
+     ],
+     [
+      "donne-t-elle",
+      0.92,
+      1.28
+     ],
+     [
+      "en",
+      1.32,
+      1.4
+     ],
+     [
+      "faveur",
+      1.44,
+      1.68
+     ],
+     [
+      "du",
+      1.72,
+      1.82
+     ],
+     [
+      "supermarché ?",
+      1.86,
+      2.4
+     ]
+    ]
    },
    {
     "id": "CO-43",
@@ -4012,7 +5292,45 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Discussion entre voisins"
+    "etiquette": "Discussion entre voisins",
+    "audioQ": "medias/questions/CO-43.mp3",
+    "qk": [
+     [
+      "Quelle",
+      0.1,
+      0.22
+     ],
+     [
+      "inquiétude",
+      0.26,
+      0.66
+     ],
+     [
+      "Ahmed",
+      0.72,
+      0.98
+     ],
+     [
+      "exprime-t-il",
+      1.02,
+      1.52
+     ],
+     [
+      "à",
+      1.58,
+      1.6
+     ],
+     [
+      "la",
+      1.64,
+      1.7
+     ],
+     [
+      "fin ?",
+      1.82,
+      1.92
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -4373,7 +5691,50 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Consignes de sécurité"
+    "etiquette": "Consignes de sécurité",
+    "audioQ": "medias/questions/CO-44.mp3",
+    "qk": [
+     [
+      "Si",
+      0.1,
+      0.16
+     ],
+     [
+      "l'alarme",
+      0.18,
+      0.52
+     ],
+     [
+      "sonne,",
+      0.56,
+      0.7
+     ],
+     [
+      "que",
+      0.86,
+      0.96
+     ],
+     [
+      "faut-il",
+      1.0,
+      1.26
+     ],
+     [
+      "faire",
+      1.3,
+      1.42
+     ],
+     [
+      "en",
+      1.46,
+      1.54
+     ],
+     [
+      "premier ?",
+      1.58,
+      1.82
+     ]
+    ]
    },
    {
     "id": "CO-45",
@@ -4386,7 +5747,45 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Consignes de sécurité"
+    "etiquette": "Consignes de sécurité",
+    "audioQ": "medias/questions/CO-45.mp3",
+    "qk": [
+     [
+      "Où",
+      0.08,
+      0.14
+     ],
+     [
+      "se",
+      0.18,
+      0.3
+     ],
+     [
+      "trouve",
+      0.34,
+      0.52
+     ],
+     [
+      "le",
+      0.56,
+      0.64
+     ],
+     [
+      "point",
+      0.68,
+      0.8
+     ],
+     [
+      "de",
+      0.84,
+      0.92
+     ],
+     [
+      "rassemblement ?",
+      0.96,
+      1.44
+     ]
+    ]
    },
    {
     "id": "CO-46",
@@ -4399,7 +5798,40 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Consignes de sécurité"
+    "etiquette": "Consignes de sécurité",
+    "audioQ": "medias/questions/CO-46.mp3",
+    "qk": [
+     [
+      "En",
+      0.1,
+      0.18
+     ],
+     [
+      "cas",
+      0.2,
+      0.28
+     ],
+     [
+      "d'accident,",
+      0.32,
+      0.72
+     ],
+     [
+      "que",
+      0.8,
+      0.9
+     ],
+     [
+      "faut-il",
+      0.94,
+      1.24
+     ],
+     [
+      "faire ?",
+      1.28,
+      1.46
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -4653,7 +6085,55 @@
     ],
     "bonne": 2,
     "t": "ecoute",
-    "etiquette": "Un témoignage"
+    "etiquette": "Un témoignage",
+    "audioQ": "medias/questions/CO-47.mp3",
+    "qk": [
+     [
+      "Depuis",
+      0.1,
+      0.3
+     ],
+     [
+      "combien",
+      0.34,
+      0.56
+     ],
+     [
+      "de",
+      0.6,
+      0.7
+     ],
+     [
+      "temps",
+      0.74,
+      0.86
+     ],
+     [
+      "cet",
+      0.9,
+      1.06
+     ],
+     [
+      "homme",
+      1.08,
+      1.26
+     ],
+     [
+      "vit-il",
+      1.3,
+      1.54
+     ],
+     [
+      "en",
+      1.6,
+      1.68
+     ],
+     [
+      "France ?",
+      1.72,
+      2.02
+     ]
+    ]
    },
    {
     "id": "CO-48",
@@ -4666,7 +6146,60 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Un témoignage"
+    "etiquette": "Un témoignage",
+    "audioQ": "medias/questions/CO-48.mp3",
+    "qk": [
+     [
+      "Qu'est-ce",
+      0.08,
+      0.38
+     ],
+     [
+      "qui",
+      0.4,
+      0.5
+     ],
+     [
+      "l'a",
+      0.54,
+      0.62
+     ],
+     [
+      "le",
+      0.66,
+      0.76
+     ],
+     [
+      "plus",
+      0.78,
+      0.92
+     ],
+     [
+      "aidé",
+      0.98,
+      1.14
+     ],
+     [
+      "à",
+      1.16,
+      1.24
+     ],
+     [
+      "progresser,",
+      1.26,
+      1.76
+     ],
+     [
+      "selon",
+      1.8,
+      2.04
+     ],
+     [
+      "lui ?",
+      2.08,
+      2.2
+     ]
+    ]
    },
    {
     "id": "CO-49",
@@ -4679,7 +6212,35 @@
     ],
     "bonne": 2,
     "t": "ecoute",
-    "etiquette": "Un témoignage"
+    "etiquette": "Un témoignage",
+    "audioQ": "medias/questions/CO-49.mp3",
+    "qk": [
+     [
+      "Quelle",
+      0.1,
+      0.26
+     ],
+     [
+      "difficulté",
+      0.28,
+      0.76
+     ],
+     [
+      "a-t-il",
+      0.8,
+      1.0
+     ],
+     [
+      "encore",
+      1.04,
+      1.3
+     ],
+     [
+      "aujourd'hui ?",
+      1.32,
+      1.7
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -5035,7 +6596,35 @@
     ],
     "bonne": 1,
     "t": "ecoute",
-    "etiquette": "Deux amis parlent"
+    "etiquette": "Deux amis parlent",
+    "audioQ": "medias/questions/CO-50.mp3",
+    "qk": [
+     [
+      "Que",
+      0.1,
+      0.18
+     ],
+     [
+      "répond",
+      0.22,
+      0.48
+     ],
+     [
+      "la",
+      0.52,
+      0.62
+     ],
+     [
+      "personne",
+      0.64,
+      0.92
+     ],
+     [
+      "invitée ?",
+      0.96,
+      1.26
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -5223,7 +6812,35 @@
     "bonne": 2,
     "t": "panneau",
     "etiquette": "Sur la porte d'un magasin",
-    "texte": "FERMÉ LE DIMANCHE"
+    "texte": "FERMÉ LE DIMANCHE",
+    "audioQ": "medias/questions/CE-01.mp3",
+    "qk": [
+     [
+      "Quand",
+      0.1,
+      0.24
+     ],
+     [
+      "le",
+      0.28,
+      0.34
+     ],
+     [
+      "magasin",
+      0.38,
+      0.8
+     ],
+     [
+      "est-il",
+      0.84,
+      1.1
+     ],
+     [
+      "fermé ?",
+      1.14,
+      1.42
+     ]
+    ]
    }
   ]
  },
@@ -5250,7 +6867,30 @@
     ],
     "bonne": 1,
     "t": "panneau",
-    "texte": "SORTIE"
+    "texte": "SORTIE",
+    "audioQ": "medias/questions/CE-02.mp3",
+    "qk": [
+     [
+      "Que",
+      0.12,
+      0.26
+     ],
+     [
+      "montre",
+      0.3,
+      0.6
+     ],
+     [
+      "ce",
+      0.7,
+      0.78
+     ],
+     [
+      "panneau ?",
+      0.88,
+      1.16
+     ]
+    ]
    }
   ]
  },
@@ -5278,7 +6918,30 @@
     "bonne": 1,
     "t": "sms",
     "etiquette": "SMS de Léa",
-    "texte": "Salut ! Rendez-vous à 15 h devant la mairie. Léa"
+    "texte": "Salut ! Rendez-vous à 15 h devant la mairie. Léa",
+    "audioQ": "medias/questions/CE-03.mp3",
+    "qk": [
+     [
+      "Où",
+      0.06,
+      0.14
+     ],
+     [
+      "est",
+      0.18,
+      0.46
+     ],
+     [
+      "le",
+      0.5,
+      0.58
+     ],
+     [
+      "rendez-vous ?",
+      0.62,
+      1.04
+     ]
+    ]
    },
    {
     "id": "CE-04",
@@ -5292,7 +6955,40 @@
     "bonne": 2,
     "t": "sms",
     "etiquette": "SMS de Léa",
-    "texte": "Salut ! Rendez-vous à 15 h devant la mairie. Léa"
+    "texte": "Salut ! Rendez-vous à 15 h devant la mairie. Léa",
+    "audioQ": "medias/questions/CE-04.mp3",
+    "qk": [
+     [
+      "À",
+      0.12,
+      0.2
+     ],
+     [
+      "quelle",
+      0.22,
+      0.36
+     ],
+     [
+      "heure",
+      0.4,
+      0.54
+     ],
+     [
+      "est",
+      0.58,
+      0.8
+     ],
+     [
+      "le",
+      0.84,
+      0.92
+     ],
+     [
+      "rendez-vous ?",
+      1.0,
+      1.46
+     ]
+    ]
    }
   ]
  },
@@ -5319,7 +7015,30 @@
      "5,20 € le kilo"
     ],
     "bonne": 0,
-    "t": "prix"
+    "t": "prix",
+    "audioQ": "medias/questions/CE-05.mp3",
+    "qk": [
+     [
+      "Combien",
+      0.12,
+      0.36
+     ],
+     [
+      "coûtent",
+      0.42,
+      0.62
+     ],
+     [
+      "les",
+      0.66,
+      0.74
+     ],
+     [
+      "tomates ?",
+      0.78,
+      1.1
+     ]
+    ]
    }
   ]
  },
@@ -5350,7 +7069,45 @@
      "Sénégal"
     ],
     "bonne": 1,
-    "t": "court"
+    "t": "court",
+    "audioQ": "medias/questions/CE-06.mp3",
+    "qk": [
+     [
+      "Quel",
+      0.12,
+      0.24
+     ],
+     [
+      "est",
+      0.28,
+      0.42
+     ],
+     [
+      "le",
+      0.48,
+      0.56
+     ],
+     [
+      "prénom",
+      0.64,
+      0.96
+     ],
+     [
+      "de",
+      1.0,
+      1.06
+     ],
+     [
+      "la",
+      1.1,
+      1.16
+     ],
+     [
+      "personne ?",
+      1.26,
+      1.66
+     ]
+    ]
    },
    {
     "id": "CE-07",
@@ -5362,7 +7119,45 @@
      "Dijonnaise"
     ],
     "bonne": 1,
-    "t": "court"
+    "t": "court",
+    "audioQ": "medias/questions/CE-07.mp3",
+    "qk": [
+     [
+      "Quelle",
+      0.1,
+      0.24
+     ],
+     [
+      "est",
+      0.26,
+      0.38
+     ],
+     [
+      "la",
+      0.4,
+      0.82
+     ],
+     [
+      "nationalité",
+      0.88,
+      1.5
+     ],
+     [
+      "de",
+      1.54,
+      1.6
+     ],
+     [
+      "la",
+      1.64,
+      1.7
+     ],
+     [
+      "personne ?",
+      1.8,
+      2.18
+     ]
+    ]
    }
   ]
  },
@@ -5391,7 +7186,40 @@
      "Oui, toute la journée"
     ],
     "bonne": 2,
-    "t": "affiche"
+    "t": "affiche",
+    "audioQ": "medias/questions/CE-08.mp3",
+    "qk": [
+     [
+      "La",
+      0.12,
+      0.22
+     ],
+     [
+      "mairie",
+      0.26,
+      0.5
+     ],
+     [
+      "est-elle",
+      0.54,
+      0.76
+     ],
+     [
+      "ouverte",
+      0.8,
+      1.18
+     ],
+     [
+      "le",
+      1.24,
+      1.34
+     ],
+     [
+      "samedi ?",
+      1.4,
+      1.74
+     ]
+    ]
    },
    {
     "id": "CE-09",
@@ -5403,7 +7231,60 @@
      "On ne sait pas"
     ],
     "bonne": 1,
-    "t": "affiche"
+    "t": "affiche",
+    "audioQ": "medias/questions/CE-09.mp3",
+    "qk": [
+     [
+      "Peut-on",
+      0.1,
+      0.42
+     ],
+     [
+      "aller",
+      0.48,
+      0.68
+     ],
+     [
+      "à",
+      0.72,
+      0.76
+     ],
+     [
+      "la",
+      0.8,
+      0.86
+     ],
+     [
+      "mairie",
+      0.94,
+      1.2
+     ],
+     [
+      "le",
+      1.24,
+      1.36
+     ],
+     [
+      "mardi",
+      1.4,
+      1.68
+     ],
+     [
+      "à",
+      1.72,
+      1.78
+     ],
+     [
+      "13",
+      1.82,
+      2.1
+     ],
+     [
+      "h ?",
+      2.1,
+      2.38
+     ]
+    ]
    }
   ]
  },
@@ -5434,7 +7315,8 @@
      "Un fruit"
     ],
     "bonne": 2,
-    "t": "menu"
+    "t": "menu",
+    "audioQ": "medias/questions/CE-10.mp3"
    }
   ]
  },
@@ -5469,7 +7351,35 @@
      "❄️"
     ],
     "t": "court",
-    "etiquette": "Carte postale"
+    "etiquette": "Carte postale",
+    "audioQ": "medias/questions/CE-11.mp3",
+    "qk": [
+     [
+      "Quel",
+      0.1,
+      0.26
+     ],
+     [
+      "temps",
+      0.32,
+      0.48
+     ],
+     [
+      "fait-il",
+      0.52,
+      0.86
+     ],
+     [
+      "à",
+      0.92,
+      0.96
+     ],
+     [
+      "Nice ?",
+      1.02,
+      1.28
+     ]
+    ]
    }
   ]
  },
@@ -5496,7 +7406,30 @@
     ],
     "bonne": 1,
     "t": "panneau",
-    "texte": "INTERDIT DE FUMER"
+    "texte": "INTERDIT DE FUMER",
+    "audioQ": "medias/questions/CE-12.mp3",
+    "qk": [
+     [
+      "Qu'est-ce",
+      0.12,
+      0.44
+     ],
+     [
+      "qui",
+      0.48,
+      0.52
+     ],
+     [
+      "est",
+      0.56,
+      0.74
+     ],
+     [
+      "interdit ?",
+      0.76,
+      1.2
+     ]
+    ]
    }
   ]
  },
@@ -5527,7 +7460,30 @@
      "12"
     ],
     "bonne": 2,
-    "t": "court"
+    "t": "court",
+    "audioQ": "medias/questions/CE-13.mp3",
+    "qk": [
+     [
+      "Combien",
+      0.1,
+      0.38
+     ],
+     [
+      "d'œufs",
+      0.42,
+      0.68
+     ],
+     [
+      "faut-il",
+      0.7,
+      1.0
+     ],
+     [
+      "acheter ?",
+      1.06,
+      1.36
+     ]
+    ]
    }
   ]
  },
@@ -5557,7 +7513,35 @@
     ],
     "bonne": 1,
     "t": "plaque",
-    "etiquette": "Plaque à l'entrée"
+    "etiquette": "Plaque à l'entrée",
+    "audioQ": "medias/questions/CE-14.mp3",
+    "qk": [
+     [
+      "Où",
+      0.1,
+      0.18
+     ],
+     [
+      "est",
+      0.22,
+      0.44
+     ],
+     [
+      "le",
+      0.48,
+      0.58
+     ],
+     [
+      "cabinet",
+      0.62,
+      0.92
+     ],
+     [
+      "médical ?",
+      0.96,
+      1.38
+     ]
+    ]
    }
   ]
  },
@@ -5587,7 +7571,40 @@
      "Une naissance"
     ],
     "bonne": 1,
-    "t": "court"
+    "t": "court",
+    "audioQ": "medias/questions/CE-15.mp3",
+    "qk": [
+     [
+      "C'est",
+      0.14,
+      0.3
+     ],
+     [
+      "une",
+      0.34,
+      0.44
+     ],
+     [
+      "invitation",
+      0.5,
+      1.02
+     ],
+     [
+      "pour",
+      1.1,
+      1.22
+     ],
+     [
+      "quelle",
+      1.26,
+      1.44
+     ],
+     [
+      "fête ?",
+      1.5,
+      1.76
+     ]
+    ]
    },
    {
     "id": "CE-16",
@@ -5599,7 +7616,40 @@
      "5, rue de Mai"
     ],
     "bonne": 1,
-    "t": "court"
+    "t": "court",
+    "audioQ": "medias/questions/CE-16.mp3",
+    "qk": [
+     [
+      "Quelle",
+      0.12,
+      0.26
+     ],
+     [
+      "est",
+      0.28,
+      0.54
+     ],
+     [
+      "l'adresse",
+      0.58,
+      0.96
+     ],
+     [
+      "de",
+      1.0,
+      1.06
+     ],
+     [
+      "la",
+      1.12,
+      1.18
+     ],
+     [
+      "fête ?",
+      1.3,
+      1.54
+     ]
+    ]
    }
   ]
  },
@@ -5627,7 +7677,45 @@
     "bonne": 1,
     "t": "sms",
     "etiquette": "SMS de Samir",
-    "texte": "Je suis malade, je ne viens pas au cours aujourd'hui. Samir"
+    "texte": "Je suis malade, je ne viens pas au cours aujourd'hui. Samir",
+    "audioQ": "medias/questions/CE-17.mp3",
+    "qk": [
+     [
+      "Pourquoi",
+      0.14,
+      0.42
+     ],
+     [
+      "Samir",
+      0.52,
+      0.84
+     ],
+     [
+      "ne",
+      0.9,
+      1.0
+     ],
+     [
+      "vient-il",
+      1.04,
+      1.42
+     ],
+     [
+      "pas",
+      1.46,
+      1.56
+     ],
+     [
+      "au",
+      1.58,
+      1.64
+     ],
+     [
+      "cours ?",
+      1.74,
+      1.98
+     ]
+    ]
    }
   ]
  },
@@ -5662,7 +7750,8 @@
     ],
     "bonne": 2,
     "t": "document",
-    "emoji": "📋"
+    "emoji": "📋",
+    "audioQ": "medias/questions/CE-18.mp3"
    },
    {
     "id": "CE-19",
@@ -5675,7 +7764,40 @@
     ],
     "bonne": 1,
     "t": "document",
-    "emoji": "📋"
+    "emoji": "📋",
+    "audioQ": "medias/questions/CE-19.mp3",
+    "qk": [
+     [
+      "Quel",
+      0.1,
+      0.2
+     ],
+     [
+      "est",
+      0.22,
+      0.28
+     ],
+     [
+      "le",
+      0.38,
+      0.46
+     ],
+     [
+      "type",
+      0.5,
+      0.62
+     ],
+     [
+      "de",
+      0.66,
+      0.72
+     ],
+     [
+      "contrat ?",
+      0.76,
+      1.02
+     ]
+    ]
    },
    {
     "id": "CE-20",
@@ -5688,7 +7810,30 @@
     ],
     "bonne": 2,
     "t": "document",
-    "emoji": "📋"
+    "emoji": "📋",
+    "audioQ": "medias/questions/CE-20.mp3",
+    "qk": [
+     [
+      "Faut-il",
+      0.1,
+      0.38
+     ],
+     [
+      "avoir",
+      0.42,
+      0.6
+     ],
+     [
+      "de",
+      0.62,
+      0.68
+     ],
+     [
+      "l'expérience ?",
+      0.7,
+      1.28
+     ]
+    ]
    },
    {
     "id": "CE-21",
@@ -5701,7 +7846,35 @@
     ],
     "bonne": 1,
     "t": "document",
-    "emoji": "📋"
+    "emoji": "📋",
+    "audioQ": "medias/questions/CE-21.mp3",
+    "qk": [
+     [
+      "Comment",
+      0.1,
+      0.34
+     ],
+     [
+      "peut-on",
+      0.38,
+      0.6
+     ],
+     [
+      "se",
+      0.66,
+      0.76
+     ],
+     [
+      "porter",
+      0.8,
+      1.04
+     ],
+     [
+      "candidat ?",
+      1.08,
+      1.46
+     ]
+    ]
    }
   ]
  },
@@ -5735,7 +7908,40 @@
     ],
     "bonne": 1,
     "t": "document",
-    "emoji": "✉️"
+    "emoji": "✉️",
+    "audioQ": "medias/questions/CE-22.mp3",
+    "qk": [
+     [
+      "Que",
+      0.08,
+      0.18
+     ],
+     [
+      "va-t-il",
+      0.2,
+      0.46
+     ],
+     [
+      "se",
+      0.5,
+      0.62
+     ],
+     [
+      "passer",
+      0.64,
+      0.88
+     ],
+     [
+      "dans",
+      0.92,
+      1.0
+     ],
+     [
+      "l'immeuble ?",
+      1.04,
+      1.38
+     ]
+    ]
    },
    {
     "id": "CE-23",
@@ -5748,7 +7954,30 @@
     ],
     "bonne": 1,
     "t": "document",
-    "emoji": "✉️"
+    "emoji": "✉️",
+    "audioQ": "medias/questions/CE-23.mp3",
+    "qk": [
+     [
+      "Que",
+      0.1,
+      0.2
+     ],
+     [
+      "demande",
+      0.24,
+      0.52
+     ],
+     [
+      "Mme",
+      0.56,
+      0.8
+     ],
+     [
+      "Perrin ?",
+      0.84,
+      1.08
+     ]
+    ]
    }
   ]
  },
@@ -5781,7 +8010,45 @@
     ],
     "bonne": 1,
     "t": "document",
-    "emoji": "💊"
+    "emoji": "💊",
+    "audioQ": "medias/questions/CE-24.mp3",
+    "qk": [
+     [
+      "Combien",
+      0.1,
+      0.34
+     ],
+     [
+      "de",
+      0.38,
+      0.48
+     ],
+     [
+      "comprimés",
+      0.52,
+      0.92
+     ],
+     [
+      "faut-il",
+      0.96,
+      1.24
+     ],
+     [
+      "prendre",
+      1.28,
+      1.52
+     ],
+     [
+      "par",
+      1.56,
+      1.66
+     ],
+     [
+      "jour ?",
+      1.74,
+      1.96
+     ]
+    ]
    },
    {
     "id": "CE-25",
@@ -5794,7 +8061,55 @@
     ],
     "bonne": 1,
     "t": "document",
-    "emoji": "💊"
+    "emoji": "💊",
+    "audioQ": "medias/questions/CE-25.mp3",
+    "qk": [
+     [
+      "Qu'est-ce",
+      0.08,
+      0.38
+     ],
+     [
+      "qui",
+      0.4,
+      0.44
+     ],
+     [
+      "est",
+      0.48,
+      0.6
+     ],
+     [
+      "interdit",
+      0.64,
+      1.0
+     ],
+     [
+      "après",
+      1.06,
+      1.24
+     ],
+     [
+      "avoir",
+      1.28,
+      1.46
+     ],
+     [
+      "pris",
+      1.5,
+      1.62
+     ],
+     [
+      "ce",
+      1.68,
+      1.76
+     ],
+     [
+      "médicament ?",
+      1.8,
+      2.22
+     ]
+    ]
    }
   ]
  },
@@ -5828,7 +8143,35 @@
     ],
     "bonne": 1,
     "t": "document",
-    "emoji": "📌"
+    "emoji": "📌",
+    "audioQ": "medias/questions/CE-26.mp3",
+    "qk": [
+     [
+      "Que",
+      0.1,
+      0.2
+     ],
+     [
+      "faut-il",
+      0.24,
+      0.48
+     ],
+     [
+      "apporter",
+      0.54,
+      0.9
+     ],
+     [
+      "pour",
+      0.94,
+      1.04
+     ],
+     [
+      "s'inscrire ?",
+      1.08,
+      1.52
+     ]
+    ]
    },
    {
     "id": "CE-27",
@@ -5841,7 +8184,45 @@
     ],
     "bonne": 2,
     "t": "document",
-    "emoji": "📌"
+    "emoji": "📌",
+    "audioQ": "medias/questions/CE-27.mp3",
+    "qk": [
+     [
+      "Combien",
+      0.1,
+      0.32
+     ],
+     [
+      "de",
+      0.36,
+      0.46
+     ],
+     [
+      "temps",
+      0.5,
+      0.64
+     ],
+     [
+      "peut-on",
+      0.68,
+      0.92
+     ],
+     [
+      "garder",
+      0.96,
+      1.2
+     ],
+     [
+      "les",
+      1.24,
+      1.32
+     ],
+     [
+      "livres ?",
+      1.36,
+      1.58
+     ]
+    ]
    },
    {
     "id": "CE-28",
@@ -5854,7 +8235,40 @@
     ],
     "bonne": 1,
     "t": "document",
-    "emoji": "📌"
+    "emoji": "📌",
+    "audioQ": "medias/questions/CE-28.mp3",
+    "qk": [
+     [
+      "Quand",
+      0.1,
+      0.24
+     ],
+     [
+      "a",
+      0.28,
+      0.32
+     ],
+     [
+      "lieu",
+      0.36,
+      0.46
+     ],
+     [
+      "l'atelier",
+      0.5,
+      0.82
+     ],
+     [
+      "de",
+      0.86,
+      0.94
+     ],
+     [
+      "conversation ?",
+      0.96,
+      1.46
+     ]
+    ]
    }
   ]
  },
@@ -5889,7 +8303,40 @@
     ],
     "bonne": 2,
     "t": "document",
-    "emoji": "✉️"
+    "emoji": "✉️",
+    "audioQ": "medias/questions/CE-29.mp3",
+    "qk": [
+     [
+      "Où",
+      0.08,
+      0.14
+     ],
+     [
+      "Céline",
+      0.2,
+      0.44
+     ],
+     [
+      "a-t-elle",
+      0.5,
+      0.74
+     ],
+     [
+      "passé",
+      0.78,
+      0.98
+     ],
+     [
+      "ses",
+      1.04,
+      1.14
+     ],
+     [
+      "vacances ?",
+      1.18,
+      1.6
+     ]
+    ]
    },
    {
     "id": "CE-30",
@@ -5902,7 +8349,35 @@
     ],
     "bonne": 1,
     "t": "document",
-    "emoji": "✉️"
+    "emoji": "✉️",
+    "audioQ": "medias/questions/CE-30.mp3",
+    "qk": [
+     [
+      "Quel",
+      0.1,
+      0.24
+     ],
+     [
+      "problème",
+      0.28,
+      0.58
+     ],
+     [
+      "y",
+      0.62,
+      0.66
+     ],
+     [
+      "a-t-il",
+      0.7,
+      0.94
+     ],
+     [
+      "eu ?",
+      0.98,
+      1.06
+     ]
+    ]
    },
    {
     "id": "CE-31",
@@ -5915,7 +8390,35 @@
     ],
     "bonne": 1,
     "t": "document",
-    "emoji": "✉️"
+    "emoji": "✉️",
+    "audioQ": "medias/questions/CE-31.mp3",
+    "qk": [
+     [
+      "Que",
+      0.1,
+      0.2
+     ],
+     [
+      "propose",
+      0.24,
+      0.52
+     ],
+     [
+      "Céline",
+      0.56,
+      0.84
+     ],
+     [
+      "à",
+      0.88,
+      0.94
+     ],
+     [
+      "Nadia ?",
+      0.98,
+      1.24
+     ]
+    ]
    }
   ]
  },
@@ -5949,7 +8452,65 @@
     ],
     "bonne": 1,
     "t": "document",
-    "emoji": "🏊"
+    "emoji": "🏊",
+    "audioQ": "medias/questions/CE-32.mp3",
+    "qk": [
+     [
+      "Un",
+      0.1,
+      0.16
+     ],
+     [
+      "enfant",
+      0.22,
+      0.42
+     ],
+     [
+      "de",
+      0.46,
+      0.52
+     ],
+     [
+      "8",
+      0.6,
+      0.8
+     ],
+     [
+      "ans",
+      0.84,
+      0.96
+     ],
+     [
+      "peut-il",
+      0.98,
+      1.26
+     ],
+     [
+      "venir",
+      1.28,
+      1.52
+     ],
+     [
+      "seul",
+      1.62,
+      1.76
+     ],
+     [
+      "à",
+      1.82,
+      1.84
+     ],
+     [
+      "la",
+      1.88,
+      1.94
+     ],
+     [
+      "piscine ?",
+      2.0,
+      2.3
+     ]
+    ]
    },
    {
     "id": "CE-33",
@@ -5962,7 +8523,30 @@
     ],
     "bonne": 2,
     "t": "document",
-    "emoji": "🏊"
+    "emoji": "🏊",
+    "audioQ": "medias/questions/CE-33.mp3",
+    "qk": [
+     [
+      "Quelle",
+      0.1,
+      0.24
+     ],
+     [
+      "tenue",
+      0.28,
+      0.48
+     ],
+     [
+      "est",
+      0.5,
+      0.6
+     ],
+     [
+      "interdite ?",
+      0.64,
+      1.06
+     ]
+    ]
    }
   ]
  },
@@ -5993,7 +8577,50 @@
     ],
     "bonne": 0,
     "t": "document",
-    "emoji": "🚆"
+    "emoji": "🚆",
+    "audioQ": "medias/questions/CE-34.mp3",
+    "qk": [
+     [
+      "Que",
+      0.08,
+      0.16
+     ],
+     [
+      "se",
+      0.2,
+      0.26
+     ],
+     [
+      "passe-t-il",
+      0.3,
+      0.7
+     ],
+     [
+      "du",
+      0.74,
+      0.86
+     ],
+     [
+      "10",
+      0.9,
+      1.08
+     ],
+     [
+      "au",
+      1.14,
+      1.22
+     ],
+     [
+      "14",
+      1.24,
+      1.56
+     ],
+     [
+      "mars ?",
+      1.6,
+      1.74
+     ]
+    ]
    }
   ]
  },
@@ -6024,7 +8651,45 @@
     ],
     "bonne": 1,
     "t": "document",
-    "emoji": "📰"
+    "emoji": "📰",
+    "audioQ": "medias/questions/CE-35.mp3",
+    "qk": [
+     [
+      "Quel",
+      0.1,
+      0.2
+     ],
+     [
+      "est",
+      0.26,
+      0.38
+     ],
+     [
+      "le",
+      0.42,
+      0.5
+     ],
+     [
+      "thème",
+      0.52,
+      0.68
+     ],
+     [
+      "principal",
+      0.72,
+      1.14
+     ],
+     [
+      "de",
+      1.16,
+      1.22
+     ],
+     [
+      "l'article ?",
+      1.24,
+      1.62
+     ]
+    ]
    },
    {
     "id": "CE-36",
@@ -6037,7 +8702,50 @@
     ],
     "bonne": 0,
     "t": "document",
-    "emoji": "📰"
+    "emoji": "📰",
+    "audioQ": "medias/questions/CE-36.mp3",
+    "qk": [
+     [
+      "Qu'est-ce",
+      0.08,
+      0.36
+     ],
+     [
+      "qui",
+      0.38,
+      0.44
+     ],
+     [
+      "est",
+      0.48,
+      0.6
+     ],
+     [
+      "vrai",
+      0.68,
+      0.82
+     ],
+     [
+      "à",
+      0.86,
+      0.9
+     ],
+     [
+      "propos",
+      0.94,
+      1.2
+     ],
+     [
+      "de",
+      1.24,
+      1.3
+     ],
+     [
+      "l'argent ?",
+      1.34,
+      1.62
+     ]
+    ]
    },
    {
     "id": "CE-37",
@@ -6050,7 +8758,50 @@
     ],
     "bonne": 1,
     "t": "document",
-    "emoji": "📰"
+    "emoji": "📰",
+    "audioQ": "medias/questions/CE-37.mp3",
+    "qk": [
+     [
+      "Pourquoi",
+      0.12,
+      0.32
+     ],
+     [
+      "certains",
+      0.38,
+      0.66
+     ],
+     [
+      "habitants",
+      0.7,
+      1.12
+     ],
+     [
+      "hésitent-ils",
+      1.16,
+      1.62
+     ],
+     [
+      "à",
+      1.68,
+      1.72
+     ],
+     [
+      "utiliser",
+      1.76,
+      2.08
+     ],
+     [
+      "le",
+      2.12,
+      2.22
+     ],
+     [
+      "service ?",
+      2.26,
+      2.62
+     ]
+    ]
    },
    {
     "id": "CE-38",
@@ -6063,7 +8814,65 @@
     ],
     "bonne": 1,
     "t": "document",
-    "emoji": "📰"
+    "emoji": "📰",
+    "audioQ": "medias/questions/CE-38.mp3",
+    "qk": [
+     [
+      "Quelle",
+      0.1,
+      0.24
+     ],
+     [
+      "solution",
+      0.28,
+      0.6
+     ],
+     [
+      "a",
+      0.62,
+      0.66
+     ],
+     [
+      "été",
+      0.7,
+      0.84
+     ],
+     [
+      "mise",
+      0.88,
+      1.02
+     ],
+     [
+      "en",
+      1.06,
+      1.16
+     ],
+     [
+      "place",
+      1.18,
+      1.4
+     ],
+     [
+      "pour",
+      1.44,
+      1.52
+     ],
+     [
+      "rassurer",
+      1.56,
+      1.92
+     ],
+     [
+      "les",
+      1.96,
+      2.08
+     ],
+     [
+      "utilisateurs ?",
+      2.14,
+      2.7
+     ]
+    ]
    },
    {
     "id": "CE-39",
@@ -6076,7 +8885,35 @@
     ],
     "bonne": 0,
     "t": "document",
-    "emoji": "📰"
+    "emoji": "📰",
+    "audioQ": "medias/questions/CE-39.mp3",
+    "qk": [
+     [
+      "Dans",
+      0.1,
+      0.2
+     ],
+     [
+      "le",
+      0.24,
+      0.34
+     ],
+     [
+      "texte, «",
+      0.4,
+      0.68
+     ],
+     [
+      "méfiants »",
+      0.88,
+      1.2
+     ],
+     [
+      "signifie :",
+      1.48,
+      1.9
+     ]
+    ]
    }
   ]
  },
@@ -6110,7 +8947,40 @@
     ],
     "bonne": 1,
     "t": "document",
-    "emoji": "✉️"
+    "emoji": "✉️",
+    "audioQ": "medias/questions/CE-40.mp3",
+    "qk": [
+     [
+      "Pourquoi",
+      0.1,
+      0.32
+     ],
+     [
+      "la",
+      0.38,
+      0.46
+     ],
+     [
+      "personne",
+      0.5,
+      0.76
+     ],
+     [
+      "reçoit-elle",
+      0.8,
+      1.18
+     ],
+     [
+      "ce",
+      1.24,
+      1.34
+     ],
+     [
+      "courrier ?",
+      1.38,
+      1.64
+     ]
+    ]
    },
    {
     "id": "CE-41",
@@ -6123,7 +8993,30 @@
     ],
     "bonne": 0,
     "t": "document",
-    "emoji": "✉️"
+    "emoji": "✉️",
+    "audioQ": "medias/questions/CE-41.mp3",
+    "qk": [
+     [
+      "Quels",
+      0.1,
+      0.24
+     ],
+     [
+      "documents",
+      0.26,
+      0.64
+     ],
+     [
+      "sont",
+      0.68,
+      0.82
+     ],
+     [
+      "demandés ?",
+      0.84,
+      1.18
+     ]
+    ]
    },
    {
     "id": "CE-42",
@@ -6136,7 +9029,80 @@
     ],
     "bonne": 1,
     "t": "document",
-    "emoji": "✉️"
+    "emoji": "✉️",
+    "audioQ": "medias/questions/CE-42.mp3",
+    "qk": [
+     [
+      "Que",
+      0.1,
+      0.16
+     ],
+     [
+      "se",
+      0.2,
+      0.26
+     ],
+     [
+      "passe-t-il",
+      0.28,
+      0.64
+     ],
+     [
+      "si",
+      0.7,
+      0.78
+     ],
+     [
+      "les",
+      0.82,
+      0.9
+     ],
+     [
+      "documents",
+      0.94,
+      1.3
+     ],
+     [
+      "ne",
+      1.36,
+      1.42
+     ],
+     [
+      "sont",
+      1.48,
+      1.64
+     ],
+     [
+      "pas",
+      1.66,
+      1.74
+     ],
+     [
+      "envoyés",
+      1.78,
+      2.06
+     ],
+     [
+      "avant",
+      2.1,
+      2.26
+     ],
+     [
+      "le",
+      2.3,
+      2.4
+     ],
+     [
+      "30",
+      2.52,
+      2.64
+     ],
+     [
+      "novembre ?",
+      2.68,
+      3.02
+     ]
+    ]
    },
    {
     "id": "CE-43",
@@ -6149,7 +9115,45 @@
     ],
     "bonne": 0,
     "t": "document",
-    "emoji": "✉️"
+    "emoji": "✉️",
+    "audioQ": "medias/questions/CE-43.mp3",
+    "qk": [
+     [
+      "«",
+      0.0,
+      0.22
+     ],
+     [
+      "Afin",
+      0.22,
+      0.4
+     ],
+     [
+      "de",
+      0.44,
+      0.54
+     ],
+     [
+      "poursuivre",
+      0.56,
+      0.92
+     ],
+     [
+      "son",
+      0.96,
+      1.08
+     ],
+     [
+      "traitement »",
+      1.12,
+      1.42
+     ],
+     [
+      "signifie :",
+      1.62,
+      2.02
+     ]
+    ]
    }
   ]
  },
@@ -6180,7 +9184,35 @@
     ],
     "bonne": 0,
     "t": "document",
-    "emoji": "💬"
+    "emoji": "💬",
+    "audioQ": "medias/questions/CE-44.mp3",
+    "qk": [
+     [
+      "Que",
+      0.08,
+      0.2
+     ],
+     [
+      "pensait",
+      0.24,
+      0.5
+     ],
+     [
+      "Laura",
+      0.54,
+      0.8
+     ],
+     [
+      "au",
+      0.82,
+      0.88
+     ],
+     [
+      "début ?",
+      0.94,
+      1.18
+     ]
+    ]
    },
    {
     "id": "CE-45",
@@ -6193,7 +9225,25 @@
     ],
     "bonne": 1,
     "t": "document",
-    "emoji": "💬"
+    "emoji": "💬",
+    "audioQ": "medias/questions/CE-45.mp3",
+    "qk": [
+     [
+      "Que",
+      0.1,
+      0.18
+     ],
+     [
+      "constate-t-elle",
+      0.22,
+      0.74
+     ],
+     [
+      "aujourd'hui ?",
+      0.8,
+      1.2
+     ]
+    ]
    },
    {
     "id": "CE-46",
@@ -6206,7 +9256,25 @@
     ],
     "bonne": 0,
     "t": "document",
-    "emoji": "💬"
+    "emoji": "💬",
+    "audioQ": "medias/questions/CE-46.mp3",
+    "qk": [
+     [
+      "Que",
+      0.08,
+      0.16
+     ],
+     [
+      "souhaite",
+      0.22,
+      0.44
+     ],
+     [
+      "Laura ?",
+      0.48,
+      0.72
+     ]
+    ]
    },
    {
     "id": "CE-47",
@@ -6219,7 +9287,45 @@
     ],
     "bonne": 0,
     "t": "document",
-    "emoji": "💬"
+    "emoji": "💬",
+    "audioQ": "medias/questions/CE-47.mp3",
+    "qk": [
+     [
+      "Quel",
+      0.08,
+      0.2
+     ],
+     [
+      "est",
+      0.24,
+      0.38
+     ],
+     [
+      "le",
+      0.42,
+      0.48
+     ],
+     [
+      "ton",
+      0.56,
+      0.66
+     ],
+     [
+      "général",
+      0.72,
+      1.06
+     ],
+     [
+      "du",
+      1.1,
+      1.16
+     ],
+     [
+      "texte ?",
+      1.24,
+      1.54
+     ]
+    ]
    }
   ]
  },
@@ -6253,7 +9359,95 @@
     ],
     "bonne": 1,
     "t": "document",
-    "emoji": "📜"
+    "emoji": "📜",
+    "audioQ": "medias/questions/CE-48.mp3",
+    "qk": [
+     [
+      "Un",
+      0.2,
+      0.26
+     ],
+     [
+      "salarié",
+      0.3,
+      0.64
+     ],
+     [
+      "est",
+      0.66,
+      0.94
+     ],
+     [
+      "malade",
+      0.98,
+      1.26
+     ],
+     [
+      "le",
+      1.3,
+      1.36
+     ],
+     [
+      "lundi",
+      1.42,
+      1.62
+     ],
+     [
+      "matin.",
+      1.68,
+      1.96
+     ],
+     [
+      "Il",
+      2.34,
+      2.38
+     ],
+     [
+      "doit",
+      2.42,
+      2.54
+     ],
+     [
+      "transmettre",
+      2.58,
+      3.04
+     ],
+     [
+      "son",
+      3.1,
+      3.22
+     ],
+     [
+      "arrêt",
+      3.26,
+      3.4
+     ],
+     [
+      "de",
+      3.44,
+      3.5
+     ],
+     [
+      "travail",
+      3.54,
+      3.84
+     ],
+     [
+      "au",
+      3.88,
+      3.94
+     ],
+     [
+      "plus",
+      3.98,
+      4.1
+     ],
+     [
+      "tard :",
+      4.16,
+      4.36
+     ]
+    ]
    },
    {
     "id": "CE-49",
@@ -6266,7 +9460,50 @@
     ],
     "bonne": 2,
     "t": "document",
-    "emoji": "📜"
+    "emoji": "📜",
+    "audioQ": "medias/questions/CE-49.mp3",
+    "qk": [
+     [
+      "Peut-on",
+      0.1,
+      0.32
+     ],
+     [
+      "poser",
+      0.36,
+      0.58
+     ],
+     [
+      "un",
+      0.62,
+      0.68
+     ],
+     [
+      "congé",
+      0.72,
+      0.92
+     ],
+     [
+      "une",
+      0.96,
+      1.04
+     ],
+     [
+      "semaine",
+      1.08,
+      1.32
+     ],
+     [
+      "à",
+      1.36,
+      1.4
+     ],
+     [
+      "l'avance ?",
+      1.44,
+      1.78
+     ]
+    ]
    },
    {
     "id": "CE-50",
@@ -6279,7 +9516,50 @@
     ],
     "bonne": 2,
     "t": "document",
-    "emoji": "📜"
+    "emoji": "📜",
+    "audioQ": "medias/questions/CE-50.mp3",
+    "qk": [
+     [
+      "Que",
+      0.1,
+      0.18
+     ],
+     [
+      "dit",
+      0.24,
+      0.34
+     ],
+     [
+      "le",
+      0.38,
+      0.46
+     ],
+     [
+      "règlement",
+      0.5,
+      0.84
+     ],
+     [
+      "sur",
+      0.92,
+      1.0
+     ],
+     [
+      "le",
+      1.04,
+      1.12
+     ],
+     [
+      "téléphone",
+      1.14,
+      1.5
+     ],
+     [
+      "personnel ?",
+      1.54,
+      1.94
+     ]
+    ]
    }
   ]
  },
@@ -6302,7 +9582,8 @@
     "bonne": 0,
     "t": "enonce",
     "avant": "Sur un formulaire, vous lisez :",
-    "citation": "Date de naissance : ______"
+    "citation": "Date de naissance : ______",
+    "audioQ": "medias/questions/EE-01.mp3"
    },
    {
     "id": "EE-02",
@@ -6317,7 +9598,8 @@
     "t": "enonce",
     "avant": "Sur un formulaire, vous lisez :",
     "citation": "Nationalité : ______",
-    "apres": "Vous êtes née au Maroc et vous êtes marocaine."
+    "apres": "Vous êtes née au Maroc et vous êtes marocaine.",
+    "audioQ": "medias/questions/EE-02.mp3"
    },
    {
     "id": "EE-03",
@@ -6331,7 +9613,8 @@
     "bonne": 0,
     "t": "trou",
     "phrase": "Je ______ Mariam.",
-    "etiquette": "Complétez :"
+    "etiquette": "Complétez :",
+    "audioQ": "medias/questions/EE-03.mp3"
    },
    {
     "id": "EE-04",
@@ -6345,7 +9628,8 @@
     "bonne": 1,
     "t": "trou",
     "phrase": "J'______ 25 ans.",
-    "etiquette": "Complétez :"
+    "etiquette": "Complétez :",
+    "audioQ": "medias/questions/EE-04.mp3"
    },
    {
     "id": "EE-05",
@@ -6360,7 +9644,8 @@
     "t": "trou",
     "phrase": "Nous ______ à Vesoul.",
     "etiquette": "Complétez :",
-    "indice": "(habiter)"
+    "indice": "(habiter)",
+    "audioQ": "medias/questions/EE-05.mp3"
    }
   ]
  },
@@ -6382,7 +9667,8 @@
     ],
     "bonne": 0,
     "t": "enonce",
-    "avant": "Quel mot est bien écrit ?"
+    "avant": "Quel mot est bien écrit ?",
+    "audioQ": "medias/questions/EE-06.mp3"
    },
    {
     "id": "EE-07",
@@ -6397,7 +9683,8 @@
     "t": "enonce",
     "avant": "Comment écrit-on",
     "citation": "15",
-    "apres": "en lettres ?"
+    "apres": "en lettres ?",
+    "audioQ": "medias/questions/EE-07.mp3"
    },
    {
     "id": "EE-08",
@@ -6410,7 +9697,8 @@
     ],
     "bonne": 0,
     "t": "enonce",
-    "avant": "Vous écrivez un SMS à un ami."
+    "avant": "Vous écrivez un SMS à un ami.",
+    "audioQ": "medias/questions/EE-08.mp3"
    },
    {
     "id": "EE-09",
@@ -6424,7 +9712,8 @@
     "bonne": 1,
     "t": "trou",
     "phrase": "J'habite ______ France.",
-    "etiquette": "Complétez :"
+    "etiquette": "Complétez :",
+    "audioQ": "medias/questions/EE-09.mp3"
    },
    {
     "id": "EE-10",
@@ -6438,7 +9727,8 @@
     "bonne": 0,
     "t": "trou",
     "phrase": "J'aime ______ café.",
-    "etiquette": "Complétez :"
+    "etiquette": "Complétez :",
+    "audioQ": "medias/questions/EE-10.mp3"
    }
   ]
  },
@@ -6465,6 +9755,29 @@
      "suis",
      "je",
      "content"
+    ],
+    "audioQ": "medias/questions/EE-11.mp3",
+    "qk": [
+     [
+      "Quelle",
+      0.1,
+      0.28
+     ],
+     [
+      "phrase",
+      0.32,
+      0.54
+     ],
+     [
+      "est",
+      0.56,
+      0.8
+     ],
+     [
+      "correcte ?",
+      0.84,
+      1.28
+     ]
     ]
    },
    {
@@ -6479,7 +9792,8 @@
     "bonne": 1,
     "t": "trou",
     "phrase": "J'achète deux ______.",
-    "etiquette": "Complétez :"
+    "etiquette": "Complétez :",
+    "audioQ": "medias/questions/EE-12.mp3"
    },
    {
     "id": "EE-13",
@@ -6493,7 +9807,8 @@
     "bonne": 1,
     "t": "trou",
     "phrase": "Ma voisine est très ______.",
-    "etiquette": "Complétez :"
+    "etiquette": "Complétez :",
+    "audioQ": "medias/questions/EE-13.mp3"
    }
   ]
  },
@@ -6517,7 +9832,8 @@
     "t": "trou",
     "phrase": "Hier, nous ______ au marché.",
     "etiquette": "Complétez :",
-    "indice": "(aller)"
+    "indice": "(aller)",
+    "audioQ": "medias/questions/EE-18.mp3"
    },
    {
     "id": "EE-19",
@@ -6532,7 +9848,8 @@
     "t": "trou",
     "phrase": "Samedi dernier, j'______ au restaurant.",
     "etiquette": "Complétez :",
-    "indice": "(manger)"
+    "indice": "(manger)",
+    "audioQ": "medias/questions/EE-19.mp3"
    },
    {
     "id": "EE-20",
@@ -6546,7 +9863,8 @@
     "bonne": 0,
     "t": "trou",
     "phrase": "Demain, je ______ appeler le médecin.",
-    "etiquette": "Complétez :"
+    "etiquette": "Complétez :",
+    "audioQ": "medias/questions/EE-20.mp3"
    },
    {
     "id": "EE-21",
@@ -6560,7 +9878,8 @@
     "bonne": 1,
     "t": "trou",
     "phrase": "Je ne peux pas venir ______ je suis malade.",
-    "etiquette": "Complétez :"
+    "etiquette": "Complétez :",
+    "audioQ": "medias/questions/EE-21.mp3"
    },
    {
     "id": "EE-22",
@@ -6574,7 +9893,8 @@
     "bonne": 1,
     "t": "trou",
     "phrase": "Il pleut, ______ je prends mon parapluie.",
-    "etiquette": "Complétez :"
+    "etiquette": "Complétez :",
+    "audioQ": "medias/questions/EE-22.mp3"
    }
   ]
  },
@@ -6596,7 +9916,8 @@
     ],
     "bonne": 1,
     "t": "enonce",
-    "avant": "Vous écrivez un courriel à votre formatrice."
+    "avant": "Vous écrivez un courriel à votre formatrice.",
+    "audioQ": "medias/questions/EE-23.mp3"
    },
    {
     "id": "EE-24",
@@ -6609,7 +9930,8 @@
     ],
     "bonne": 1,
     "t": "enonce",
-    "avant": "Vous écrivez un courriel à la mairie."
+    "avant": "Vous écrivez un courriel à la mairie.",
+    "audioQ": "medias/questions/EE-24.mp3"
    },
    {
     "id": "EE-25",
@@ -6622,7 +9944,8 @@
     ],
     "bonne": 1,
     "t": "enonce",
-    "citation": "Tu connais Marie ? — Oui, je ______ connais."
+    "citation": "Tu connais Marie ? — Oui, je ______ connais.",
+    "audioQ": "medias/questions/EE-25.mp3"
    },
    {
     "id": "EE-26",
@@ -6636,7 +9959,8 @@
     "bonne": 0,
     "t": "trou",
     "phrase": "Le train est ______ rapide ______ le bus.",
-    "etiquette": "Complétez :"
+    "etiquette": "Complétez :",
+    "audioQ": "medias/questions/EE-26.mp3"
    },
    {
     "id": "EE-27",
@@ -6650,7 +9974,8 @@
     "bonne": 1,
     "t": "trou",
     "phrase": "Il y a ______ personnes dans la salle d'attente.",
-    "etiquette": "Complétez :"
+    "etiquette": "Complétez :",
+    "audioQ": "medias/questions/EE-27.mp3"
    }
   ]
  },
@@ -6673,7 +9998,8 @@
     "bonne": 1,
     "t": "trou",
     "phrase": "Mes enfants ______ à l'école.",
-    "etiquette": "Complétez :"
+    "etiquette": "Complétez :",
+    "audioQ": "medias/questions/EE-28.mp3"
    },
    {
     "id": "EE-29",
@@ -6687,7 +10013,8 @@
     "bonne": 1,
     "t": "transformer",
     "phrase": "J'ai du travail.",
-    "vers": "Mettez la phrase à la forme négative :"
+    "vers": "Mettez la phrase à la forme négative :",
+    "audioQ": "medias/questions/EE-29.mp3"
    },
    {
     "id": "EE-30",
@@ -6700,7 +10027,8 @@
     ],
     "bonne": 0,
     "t": "enonce",
-    "avant": "Vous arrivez en retard et vous laissez un mot."
+    "avant": "Vous arrivez en retard et vous laissez un mot.",
+    "audioQ": "medias/questions/EE-30.mp3"
    }
   ]
  },
@@ -6723,7 +10051,8 @@
     "bonne": 0,
     "t": "trou",
     "phrase": "Quand je ______ (arriver), il ______ (pleuvoir).",
-    "etiquette": "Complétez :"
+    "etiquette": "Complétez :",
+    "audioQ": "medias/questions/EE-35.mp3"
    },
    {
     "id": "EE-36",
@@ -6737,7 +10066,8 @@
     "bonne": 2,
     "t": "trou",
     "phrase": "C'est la ville ______ je suis né.",
-    "etiquette": "Complétez :"
+    "etiquette": "Complétez :",
+    "audioQ": "medias/questions/EE-36.mp3"
    },
    {
     "id": "EE-37",
@@ -6751,7 +10081,8 @@
     "bonne": 1,
     "t": "trou",
     "phrase": "Le livre ______ je t'ai parlé est sur la table.",
-    "etiquette": "Complétez :"
+    "etiquette": "Complétez :",
+    "audioQ": "medias/questions/EE-37.mp3"
    },
    {
     "id": "EE-38",
@@ -6765,7 +10096,8 @@
     "bonne": 1,
     "t": "trou",
     "phrase": "Il faut que tu ______ ce formulaire avant vendredi.",
-    "etiquette": "Complétez :"
+    "etiquette": "Complétez :",
+    "audioQ": "medias/questions/EE-38.mp3"
    }
   ]
  },
@@ -6788,7 +10120,8 @@
     "bonne": 1,
     "t": "trou",
     "phrase": "______-vous m'envoyer le document, s'il vous plaît ?",
-    "etiquette": "Complétez :"
+    "etiquette": "Complétez :",
+    "audioQ": "medias/questions/EE-39.mp3"
    },
    {
     "id": "EE-40",
@@ -6802,7 +10135,8 @@
     "bonne": 1,
     "t": "trou",
     "phrase": "Le logement est petit ; ______, il est très lumineux.",
-    "etiquette": "Complétez :"
+    "etiquette": "Complétez :",
+    "audioQ": "medias/questions/EE-40.mp3"
    },
    {
     "id": "EE-41",
@@ -6816,7 +10150,8 @@
     "bonne": 0,
     "t": "trou",
     "phrase": "Le bus était en retard, ______ j'ai raté mon rendez-vous.",
-    "etiquette": "Complétez :"
+    "etiquette": "Complétez :",
+    "audioQ": "medias/questions/EE-41.mp3"
    },
    {
     "id": "EE-42",
@@ -6830,7 +10165,8 @@
     "bonne": 1,
     "t": "trou",
     "phrase": "Si j'avais plus de temps, je ______ du sport.",
-    "etiquette": "Complétez :"
+    "etiquette": "Complétez :",
+    "audioQ": "medias/questions/EE-42.mp3"
    }
   ]
  },
@@ -6853,7 +10189,8 @@
     "bonne": 3,
     "t": "trou",
     "phrase": "Les lettres que j'ai ______ sont sur le bureau.",
-    "etiquette": "Complétez :"
+    "etiquette": "Complétez :",
+    "audioQ": "medias/questions/EE-43.mp3"
    },
    {
     "id": "EE-44",
@@ -6867,7 +10204,8 @@
     "bonne": 0,
     "t": "enonce",
     "avant": "Il m'a dit :",
-    "citation": "Je viendrai demain."
+    "citation": "Je viendrai demain.",
+    "audioQ": "medias/questions/EE-44.mp3"
    },
    {
     "id": "EE-45",
@@ -6880,7 +10218,8 @@
     ],
     "bonne": 1,
     "t": "enonce",
-    "citation": "Je vous prie d'agréer, Madame, l'expression de mes salutations distinguées."
+    "citation": "Je vous prie d'agréer, Madame, l'expression de mes salutations distinguées.",
+    "audioQ": "medias/questions/EE-45.mp3"
    },
    {
     "id": "EE-46",
@@ -6892,7 +10231,35 @@
      "Je prends des cours, mais c'est difficile."
     ],
     "bonne": 0,
-    "t": "aucun"
+    "t": "aucun",
+    "audioQ": "medias/questions/EE-46.mp3",
+    "qk": [
+     [
+      "Quelle",
+      0.1,
+      0.26
+     ],
+     [
+      "phrase",
+      0.28,
+      0.48
+     ],
+     [
+      "exprime",
+      0.54,
+      0.84
+     ],
+     [
+      "un",
+      0.9,
+      0.98
+     ],
+     [
+      "but ?",
+      1.0,
+      1.18
+     ]
+    ]
    }
   ]
  },
@@ -6914,7 +10281,103 @@
    20,
    30
   ],
-  "objectif": "20 à 30 mots"
+  "objectif": "20 à 30 mots",
+  "audioQ": "medias/questions/EE-14.mp3",
+  "consigneK": [
+   [
+    "Écrivez",
+    0.12,
+    0.5
+   ],
+   [
+    "3",
+    0.56,
+    0.74
+   ],
+   [
+    "phrases",
+    0.76,
+    1.06
+   ],
+   [
+    "pour",
+    1.08,
+    1.2
+   ],
+   [
+    "vous",
+    1.22,
+    1.34
+   ],
+   [
+    "présenter :",
+    1.36,
+    1.84
+   ],
+   [
+    "votre",
+    2.46,
+    2.74
+   ],
+   [
+    "nom,",
+    2.82,
+    2.98
+   ],
+   [
+    "votre",
+    3.08,
+    3.32
+   ],
+   [
+    "âge,",
+    3.42,
+    3.6
+   ],
+   [
+    "votre",
+    3.72,
+    4.02
+   ],
+   [
+    "ville",
+    4.1,
+    4.32
+   ],
+   [
+    "ou",
+    4.5,
+    4.56
+   ],
+   [
+    "votre",
+    4.6,
+    4.84
+   ],
+   [
+    "pays.",
+    4.94,
+    5.12
+   ]
+  ],
+  "aide": {
+   "titre": "Présentez-vous",
+   "forme": "lignes",
+   "lignes": [
+    [
+     "Je m'appelle",
+     "votre nom"
+    ],
+    [
+     "J'ai",
+     "votre âge"
+    ],
+    [
+     "J'habite à",
+     "votre ville"
+    ]
+   ]
+  }
  },
  {
   "id": "EE-15",
@@ -6943,7 +10406,79 @@
    "Adresse",
    "Ville",
    "Numéro de téléphone"
-  ]
+  ],
+  "audioQ": "medias/questions/EE-15.mp3",
+  "consigneK": [
+   [
+    "Remplissez",
+    0.12,
+    0.54
+   ],
+   [
+    "le",
+    0.58,
+    0.68
+   ],
+   [
+    "formulaire",
+    0.74,
+    1.2
+   ],
+   [
+    "avec",
+    1.28,
+    1.48
+   ],
+   [
+    "vos",
+    1.52,
+    1.64
+   ],
+   [
+    "informations",
+    1.7,
+    2.32
+   ],
+   [
+    "(vous",
+    2.68,
+    2.78
+   ],
+   [
+    "pouvez",
+    2.84,
+    3.04
+   ],
+   [
+    "inventer",
+    3.08,
+    3.42
+   ],
+   [
+    "l'adresse",
+    3.46,
+    3.88
+   ],
+   [
+    "et",
+    3.92,
+    4.0
+   ],
+   [
+    "le",
+    4.06,
+    4.12
+   ],
+   [
+    "numéro).",
+    4.2,
+    4.54
+   ]
+  ],
+  "aide": {
+   "titre": "Remplissez le formulaire",
+   "forme": "formulaire"
+  }
  },
  {
   "id": "EE-16",
@@ -6963,7 +10498,87 @@
    15,
    20
   ],
-  "objectif": "15 à 20 mots"
+  "objectif": "15 à 20 mots",
+  "audioQ": "medias/questions/EE-16.mp3",
+  "consigneK": [
+   [
+    "Vous",
+    0.14,
+    0.24
+   ],
+   [
+    "êtes",
+    0.28,
+    0.42
+   ],
+   [
+    "en",
+    0.46,
+    0.56
+   ],
+   [
+    "retard.",
+    0.6,
+    1.0
+   ],
+   [
+    "Écrivez",
+    1.2,
+    1.58
+   ],
+   [
+    "un",
+    1.62,
+    1.68
+   ],
+   [
+    "SMS",
+    1.84,
+    2.2
+   ],
+   [
+    "à",
+    2.26,
+    2.3
+   ],
+   [
+    "un",
+    2.32,
+    2.42
+   ],
+   [
+    "ami",
+    2.48,
+    2.7
+   ],
+   [
+    "pour",
+    2.76,
+    2.84
+   ],
+   [
+    "le",
+    2.88,
+    2.98
+   ],
+   [
+    "prévenir.",
+    3.02,
+    3.46
+   ]
+  ],
+  "aide": {
+   "titre": "Prévenez un ami",
+   "forme": "sms",
+   "destinataire": "Un ami",
+   "amorces": [
+    "Salut !",
+    "Je suis en retard.",
+    "J'arrive dans … minutes.",
+    "Désolé(e) !",
+    "À tout de suite."
+   ]
+  }
  },
  {
   "id": "EE-17",
@@ -6983,7 +10598,55 @@
    5
   ],
   "objectif": "5 mots",
-  "photo": "medias/photos/primeur.webp"
+  "photo": "medias/photos/primeur.webp",
+  "audioQ": "medias/questions/EE-17.mp3",
+  "consigneK": [
+   [
+    "Écrivez",
+    0.12,
+    0.56
+   ],
+   [
+    "5",
+    0.62,
+    0.82
+   ],
+   [
+    "choses",
+    0.88,
+    1.14
+   ],
+   [
+    "que",
+    1.16,
+    1.26
+   ],
+   [
+    "vous",
+    1.28,
+    1.42
+   ],
+   [
+    "achetez",
+    1.5,
+    1.78
+   ],
+   [
+    "au",
+    1.82,
+    1.92
+   ],
+   [
+    "supermarché.",
+    1.96,
+    2.58
+   ]
+  ],
+  "aide": {
+   "titre": "Votre liste de courses",
+   "forme": "liste",
+   "nombre": 5
+  }
  },
  {
   "id": "EE-31",
@@ -7003,7 +10666,134 @@
    36,
    44
   ],
-  "objectif": "environ 40 mots"
+  "objectif": "environ 40 mots",
+  "audioQ": "medias/questions/EE-31.mp3",
+  "consigneK": [
+   [
+    "Demain,",
+    0.1,
+    0.3
+   ],
+   [
+    "vous",
+    0.36,
+    0.44
+   ],
+   [
+    "ne",
+    0.48,
+    0.6
+   ],
+   [
+    "pouvez",
+    0.64,
+    0.84
+   ],
+   [
+    "pas",
+    0.86,
+    0.92
+   ],
+   [
+    "aller",
+    0.96,
+    1.08
+   ],
+   [
+    "au",
+    1.1,
+    1.18
+   ],
+   [
+    "cours",
+    1.22,
+    1.32
+   ],
+   [
+    "de",
+    1.36,
+    1.46
+   ],
+   [
+    "français.",
+    1.48,
+    1.98
+   ],
+   [
+    "Écrivez",
+    2.04,
+    2.34
+   ],
+   [
+    "un",
+    2.38,
+    2.46
+   ],
+   [
+    "courriel",
+    2.48,
+    2.74
+   ],
+   [
+    "à",
+    2.78,
+    2.82
+   ],
+   [
+    "votre",
+    2.84,
+    3.1
+   ],
+   [
+    "formatrice",
+    3.14,
+    3.6
+   ],
+   [
+    "pour",
+    3.64,
+    3.74
+   ],
+   [
+    "vous",
+    3.76,
+    3.86
+   ],
+   [
+    "excuser",
+    3.92,
+    4.32
+   ],
+   [
+    "et",
+    4.68,
+    4.74
+   ],
+   [
+    "expliquer",
+    4.8,
+    5.18
+   ],
+   [
+    "pourquoi.",
+    5.22,
+    5.46
+   ]
+  ],
+  "aide": {
+   "titre": "Excusez-vous",
+   "forme": "courriel",
+   "destinataire": "Votre formatrice",
+   "objet": "Absence demain",
+   "amorces": [
+    "Bonjour Madame,",
+    "Je suis désolé(e),",
+    "demain, je ne peux pas venir",
+    "parce que",
+    "Je vous remercie.",
+    "Cordialement,"
+   ]
+  }
  },
  {
   "id": "EE-32",
@@ -7023,7 +10813,97 @@
    40,
    50
   ],
-  "objectif": "40 à 50 mots"
+  "objectif": "40 à 50 mots",
+  "audioQ": "medias/questions/EE-32.mp3",
+  "consigneK": [
+   [
+    "Racontez",
+    0.1,
+    0.44
+   ],
+   [
+    "votre",
+    0.48,
+    0.7
+   ],
+   [
+    "dernier",
+    0.74,
+    0.98
+   ],
+   [
+    "week-end :",
+    1.02,
+    1.4
+   ],
+   [
+    "où",
+    1.6,
+    1.68
+   ],
+   [
+    "vous",
+    1.7,
+    1.84
+   ],
+   [
+    "êtes",
+    1.88,
+    2.06
+   ],
+   [
+    "allé(e),",
+    2.12,
+    2.3
+   ],
+   [
+    "avec",
+    2.82,
+    3.02
+   ],
+   [
+    "qui,",
+    3.06,
+    3.14
+   ],
+   [
+    "ce",
+    3.22,
+    3.3
+   ],
+   [
+    "que",
+    3.32,
+    3.42
+   ],
+   [
+    "vous",
+    3.44,
+    3.56
+   ],
+   [
+    "avez",
+    3.6,
+    3.76
+   ],
+   [
+    "fait.",
+    3.8,
+    3.9
+   ]
+  ],
+  "aide": {
+   "titre": "Votre week-end",
+   "forme": "feuille",
+   "amorces": [
+    "Samedi,",
+    "Dimanche,",
+    "je suis allé(e)",
+    "avec",
+    "nous avons",
+    "C'était"
+   ]
+  }
  },
  {
   "id": "EE-33",
@@ -7043,7 +10923,123 @@
    36,
    44
   ],
-  "objectif": "environ 40 mots"
+  "objectif": "environ 40 mots",
+  "audioQ": "medias/questions/EE-33.mp3",
+  "consigneK": [
+   [
+    "Vous",
+    0.1,
+    0.2
+   ],
+   [
+    "invitez",
+    0.24,
+    0.5
+   ],
+   [
+    "un",
+    0.54,
+    0.6
+   ],
+   [
+    "ami",
+    0.66,
+    0.8
+   ],
+   [
+    "à",
+    0.86,
+    0.88
+   ],
+   [
+    "dîner",
+    0.94,
+    1.14
+   ],
+   [
+    "chez",
+    1.16,
+    1.3
+   ],
+   [
+    "vous",
+    1.32,
+    1.42
+   ],
+   [
+    "samedi.",
+    1.48,
+    1.76
+   ],
+   [
+    "Écrivez-lui",
+    1.98,
+    2.42
+   ],
+   [
+    "un",
+    2.44,
+    2.5
+   ],
+   [
+    "message :",
+    2.54,
+    2.94
+   ],
+   [
+    "jour,",
+    3.42,
+    3.66
+   ],
+   [
+    "heure,",
+    3.8,
+    4.02
+   ],
+   [
+    "adresse",
+    4.16,
+    4.56
+   ],
+   [
+    "et",
+    4.6,
+    4.66
+   ],
+   [
+    "ce",
+    4.7,
+    4.78
+   ],
+   [
+    "qu'il",
+    4.8,
+    4.94
+   ],
+   [
+    "peut",
+    4.96,
+    5.1
+   ],
+   [
+    "apporter.",
+    5.16,
+    5.48
+   ]
+  ],
+  "aide": {
+   "titre": "Invitez un ami",
+   "forme": "sms",
+   "destinataire": "Un ami",
+   "amorces": [
+    "Salut,",
+    "Je t'invite à dîner",
+    "samedi à … heures.",
+    "Mon adresse :",
+    "Tu peux apporter",
+    "À samedi !"
+   ]
+  }
  },
  {
   "id": "EE-34",
@@ -7063,7 +11059,81 @@
    40,
    50
   ],
-  "objectif": "40 à 50 mots"
+  "objectif": "40 à 50 mots",
+  "audioQ": "medias/questions/EE-34.mp3",
+  "consigneK": [
+   [
+    "Décrivez",
+    0.1,
+    0.42
+   ],
+   [
+    "votre",
+    0.46,
+    0.68
+   ],
+   [
+    "logement :",
+    0.72,
+    1.02
+   ],
+   [
+    "les",
+    1.3,
+    1.42
+   ],
+   [
+    "pièces,",
+    1.46,
+    1.74
+   ],
+   [
+    "le",
+    1.88,
+    1.98
+   ],
+   [
+    "quartier",
+    2.02,
+    2.36
+   ],
+   [
+    "et",
+    2.48,
+    2.52
+   ],
+   [
+    "ce",
+    2.58,
+    2.62
+   ],
+   [
+    "que",
+    2.64,
+    2.74
+   ],
+   [
+    "vous",
+    2.76,
+    2.88
+   ],
+   [
+    "aimez.",
+    2.9,
+    3.1
+   ]
+  ],
+  "aide": {
+   "titre": "Votre logement",
+   "forme": "feuille",
+   "amorces": [
+    "J'habite dans",
+    "Il y a",
+    "J'aime",
+    "parce que",
+    "Mon quartier est"
+   ]
+  }
  },
  {
   "id": "EE-47",
@@ -7083,7 +11153,134 @@
    80,
    100
   ],
-  "objectif": "80 à 100 mots"
+  "objectif": "80 à 100 mots",
+  "audioQ": "medias/questions/EE-47.mp3",
+  "consigneK": [
+   [
+    "Vous",
+    0.12,
+    0.22
+   ],
+   [
+    "avez",
+    0.26,
+    0.4
+   ],
+   [
+    "acheté",
+    0.44,
+    0.64
+   ],
+   [
+    "un",
+    0.68,
+    0.74
+   ],
+   [
+    "appareil",
+    0.8,
+    1.12
+   ],
+   [
+    "qui",
+    1.16,
+    1.22
+   ],
+   [
+    "ne",
+    1.26,
+    1.34
+   ],
+   [
+    "fonctionne",
+    1.38,
+    1.76
+   ],
+   [
+    "pas.",
+    1.78,
+    1.92
+   ],
+   [
+    "Écrivez",
+    2.3,
+    2.64
+   ],
+   [
+    "un",
+    2.68,
+    2.76
+   ],
+   [
+    "courriel",
+    2.8,
+    3.06
+   ],
+   [
+    "au",
+    3.1,
+    3.18
+   ],
+   [
+    "service",
+    3.22,
+    3.52
+   ],
+   [
+    "client :",
+    3.56,
+    3.8
+   ],
+   [
+    "expliquez",
+    4.22,
+    4.58
+   ],
+   [
+    "le",
+    4.62,
+    4.72
+   ],
+   [
+    "problème",
+    4.76,
+    5.1
+   ],
+   [
+    "et",
+    5.22,
+    5.3
+   ],
+   [
+    "demandez",
+    5.32,
+    5.64
+   ],
+   [
+    "une",
+    5.66,
+    5.76
+   ],
+   [
+    "solution.",
+    5.8,
+    6.18
+   ]
+  ],
+  "aide": {
+   "titre": "Un appareil en panne",
+   "forme": "courriel",
+   "destinataire": "Service client",
+   "objet": "",
+   "amorces": [
+    "Madame, Monsieur,",
+    "J'ai acheté",
+    "il ne fonctionne pas",
+    "Je vous demande",
+    "Dans l'attente de votre réponse,",
+    "Cordialement,"
+   ]
+  }
  },
  {
   "id": "EE-48",
@@ -7104,7 +11301,66 @@
    100
   ],
   "objectif": "80 à 100 mots",
-  "support": "Question posée sur un forum : « Faut-il interdire les téléphones portables à l'école ? »"
+  "support": "Question posée sur un forum : « Faut-il interdire les téléphones portables à l'école ? »",
+  "audioQ": "medias/questions/EE-48.mp3",
+  "consigneK": [
+   [
+    "Donnez",
+    0.1,
+    0.32
+   ],
+   [
+    "votre",
+    0.36,
+    0.52
+   ],
+   [
+    "opinion",
+    0.56,
+    0.86
+   ],
+   [
+    "avec",
+    0.92,
+    1.14
+   ],
+   [
+    "deux",
+    1.16,
+    1.3
+   ],
+   [
+    "arguments",
+    1.36,
+    1.84
+   ],
+   [
+    "et",
+    1.86,
+    1.92
+   ],
+   [
+    "un",
+    1.98,
+    2.06
+   ],
+   [
+    "exemple.",
+    2.1,
+    2.48
+   ]
+  ],
+  "aide": {
+   "titre": "Donnez votre avis",
+   "forme": "forum",
+   "amorces": [
+    "À mon avis,",
+    "D'abord,",
+    "Ensuite,",
+    "Par exemple,",
+    "En conclusion,"
+   ]
+  }
  },
  {
   "id": "EE-49",
@@ -7124,7 +11380,126 @@
    90,
    110
   ],
-  "objectif": "environ 100 mots"
+  "objectif": "environ 100 mots",
+  "audioQ": "medias/questions/EE-49.mp3",
+  "consigneK": [
+   [
+    "Racontez",
+    0.1,
+    0.44
+   ],
+   [
+    "une",
+    0.48,
+    0.56
+   ],
+   [
+    "expérience",
+    0.6,
+    1.1
+   ],
+   [
+    "importante",
+    1.16,
+    1.58
+   ],
+   [
+    "de",
+    1.62,
+    1.7
+   ],
+   [
+    "votre",
+    1.72,
+    1.98
+   ],
+   [
+    "vie",
+    2.04,
+    2.14
+   ],
+   [
+    "(arrivée",
+    2.4,
+    2.66
+   ],
+   [
+    "dans",
+    2.7,
+    2.84
+   ],
+   [
+    "une",
+    2.88,
+    2.98
+   ],
+   [
+    "nouvelle",
+    3.0,
+    3.24
+   ],
+   [
+    "ville,",
+    3.32,
+    3.48
+   ],
+   [
+    "premier",
+    3.56,
+    3.84
+   ],
+   [
+    "emploi…)",
+    3.88,
+    4.14
+   ],
+   [
+    "et",
+    4.6,
+    4.68
+   ],
+   [
+    "dites",
+    4.72,
+    4.88
+   ],
+   [
+    "ce",
+    4.92,
+    5.02
+   ],
+   [
+    "que",
+    5.04,
+    5.12
+   ],
+   [
+    "vous",
+    5.16,
+    5.26
+   ],
+   [
+    "avez",
+    5.3,
+    5.46
+   ],
+   [
+    "ressenti.",
+    5.5,
+    5.9
+   ]
+  ],
+  "aide": {
+   "titre": "Un moment important",
+   "forme": "feuille",
+   "amorces": [
+    "Il y a … ans,",
+    "Au début,",
+    "Ensuite,",
+    "J'ai ressenti",
+    "Aujourd'hui,"
+   ]
+  }
  },
  {
   "id": "EE-50",
@@ -7145,7 +11520,93 @@
    100
   ],
   "objectif": "80 à 100 mots",
-  "support": "Offre : « Entreprise de nettoyage recherche agent(e) d'entretien, temps partiel, horaires du matin. »"
+  "support": "Offre : « Entreprise de nettoyage recherche agent(e) d'entretien, temps partiel, horaires du matin. »",
+  "audioQ": "medias/questions/EE-50.mp3",
+  "consigneK": [
+   [
+    "Écrivez",
+    0.1,
+    0.42
+   ],
+   [
+    "un",
+    0.46,
+    0.54
+   ],
+   [
+    "courriel",
+    0.58,
+    0.82
+   ],
+   [
+    "de",
+    0.86,
+    0.92
+   ],
+   [
+    "candidature :",
+    0.96,
+    1.54
+   ],
+   [
+    "présentez-vous,",
+    1.76,
+    2.32
+   ],
+   [
+    "parlez",
+    2.5,
+    2.7
+   ],
+   [
+    "de",
+    2.74,
+    2.8
+   ],
+   [
+    "votre",
+    2.82,
+    2.98
+   ],
+   [
+    "expérience",
+    3.02,
+    3.62
+   ],
+   [
+    "et",
+    3.66,
+    3.7
+   ],
+   [
+    "de",
+    3.74,
+    3.82
+   ],
+   [
+    "vos",
+    3.84,
+    3.94
+   ],
+   [
+    "disponibilités.",
+    3.96,
+    4.64
+   ]
+  ],
+  "aide": {
+   "titre": "Votre candidature",
+   "forme": "courriel",
+   "destinataire": "Entreprise de nettoyage",
+   "objet": "Candidature",
+   "amorces": [
+    "Madame, Monsieur,",
+    "Je m'appelle",
+    "J'ai travaillé",
+    "Je suis disponible",
+    "Je vous prie d'agréer, Madame, Monsieur, mes salutations distinguées."
+   ]
+  }
  },
  {
   "id": "reagir",
@@ -7178,6 +11639,19 @@
       "beaucoup !",
       0.5,
       0.82
+     ]
+    ],
+    "audioQ": "medias/questions/EO-17.mp3",
+    "qk": [
+     [
+      "Que",
+      0.08,
+      0.2
+     ],
+     [
+      "répondez-vous ?",
+      0.24,
+      0.78
      ]
     ]
    },
@@ -7237,6 +11711,19 @@
       1.24,
       1.62
      ]
+    ],
+    "audioQ": "medias/questions/EO-31.mp3",
+    "qk": [
+     [
+      "Que",
+      0.12,
+      0.18
+     ],
+     [
+      "faites-vous ?",
+      0.26,
+      0.62
+     ]
     ]
    },
    {
@@ -7289,6 +11776,19 @@
       "rendez-vous.",
       1.36,
       1.78
+     ]
+    ],
+    "audioQ": "medias/questions/EO-32.mp3",
+    "qk": [
+     [
+      "Que",
+      0.08,
+      0.18
+     ],
+     [
+      "dites-vous ?",
+      0.22,
+      0.6
      ]
     ]
    },
@@ -7358,6 +11858,44 @@
       2.62,
       2.84
      ]
+    ],
+    "audioQ": "medias/questions/EO-49.mp3",
+    "qk": [
+     [
+      "Que",
+      0.1,
+      0.2
+     ],
+     [
+      "dites-vous",
+      0.22,
+      0.54
+     ],
+     [
+      "pour",
+      0.58,
+      0.7
+     ],
+     [
+      "prendre",
+      0.72,
+      0.94
+     ],
+     [
+      "la",
+      0.98,
+      1.1
+     ],
+     [
+      "parole",
+      1.14,
+      1.42
+     ],
+     [
+      "poliment ?",
+      1.46,
+      1.82
+     ]
     ]
    }
   ]
@@ -7407,6 +11945,24 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-01.mp3",
+  "consigneK": [
+   [
+    "Écoutez",
+    0.12,
+    0.58
+   ],
+   [
+    "et",
+    0.62,
+    0.7
+   ],
+   [
+    "répétez.",
+    0.74,
+    1.16
+   ]
   ]
  },
  {
@@ -7505,6 +12061,24 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-02.mp3",
+  "consigneK": [
+   [
+    "Écoutez",
+    0.14,
+    0.64
+   ],
+   [
+    "et",
+    0.88,
+    0.94
+   ],
+   [
+    "répétez.",
+    1.02,
+    1.46
+   ]
   ]
  },
  {
@@ -7600,6 +12174,29 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-03.mp3",
+  "consigneK": [
+   [
+    "Répondez",
+    0.12,
+    0.56
+   ],
+   [
+    "à",
+    0.6,
+    0.64
+   ],
+   [
+    "la",
+    0.68,
+    0.78
+   ],
+   [
+    "question.",
+    0.82,
+    1.18
+   ]
   ]
  },
  {
@@ -7665,6 +12262,29 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-04.mp3",
+  "consigneK": [
+   [
+    "Répondez",
+    0.12,
+    0.5
+   ],
+   [
+    "à",
+    0.56,
+    0.58
+   ],
+   [
+    "la",
+    0.64,
+    0.74
+   ],
+   [
+    "question.",
+    0.78,
+    1.16
+   ]
   ]
  },
  {
@@ -7760,6 +12380,29 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-05.mp3",
+  "consigneK": [
+   [
+    "Répondez",
+    0.12,
+    0.5
+   ],
+   [
+    "à",
+    0.54,
+    0.56
+   ],
+   [
+    "la",
+    0.6,
+    0.7
+   ],
+   [
+    "question.",
+    0.72,
+    1.04
+   ]
   ]
  },
  {
@@ -7870,6 +12513,29 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-06.mp3",
+  "consigneK": [
+   [
+    "Répondez",
+    0.12,
+    0.54
+   ],
+   [
+    "à",
+    0.6,
+    0.64
+   ],
+   [
+    "la",
+    0.68,
+    0.8
+   ],
+   [
+    "question.",
+    0.84,
+    1.2
+   ]
   ]
  },
  {
@@ -7955,6 +12621,29 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-07.mp3",
+  "consigneK": [
+   [
+    "Répondez",
+    0.12,
+    0.56
+   ],
+   [
+    "à",
+    0.62,
+    0.64
+   ],
+   [
+    "la",
+    0.68,
+    0.8
+   ],
+   [
+    "question.",
+    0.84,
+    1.18
+   ]
   ]
  },
  {
@@ -8076,6 +12765,29 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-08.mp3",
+  "consigneK": [
+   [
+    "Répondez",
+    0.12,
+    0.52
+   ],
+   [
+    "à",
+    0.56,
+    0.6
+   ],
+   [
+    "la",
+    0.64,
+    0.74
+   ],
+   [
+    "question.",
+    0.78,
+    1.14
+   ]
   ]
  },
  {
@@ -8186,7 +12898,35 @@
   "audio": null,
   "sous": "image",
   "numero": "06 45 78 12 30",
-  "modeleAudio": "medias/modeles/EO-10.mp3"
+  "modeleAudio": "medias/modeles/EO-10.mp3",
+  "audioQ": "medias/questions/EO-10.mp3",
+  "consigneK": [
+   [
+    "Dites",
+    0.1,
+    0.28
+   ],
+   [
+    "ce",
+    0.32,
+    0.42
+   ],
+   [
+    "numéro",
+    0.48,
+    0.84
+   ],
+   [
+    "de",
+    0.9,
+    0.96
+   ],
+   [
+    "téléphone.",
+    1.04,
+    1.58
+   ]
+  ]
  },
  {
   "id": "EO-11",
@@ -8297,6 +13037,84 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-11.mp3",
+  "consigneK": [
+   [
+    "Vous",
+    0.14,
+    0.24
+   ],
+   [
+    "êtes",
+    0.3,
+    0.46
+   ],
+   [
+    "à",
+    0.52,
+    0.54
+   ],
+   [
+    "la",
+    0.58,
+    0.7
+   ],
+   [
+    "boulangerie.",
+    0.72,
+    1.22
+   ],
+   [
+    "Demandez",
+    1.44,
+    1.84
+   ],
+   [
+    "deux",
+    1.9,
+    2.0
+   ],
+   [
+    "baguettes",
+    2.04,
+    2.52
+   ],
+   [
+    "et",
+    2.58,
+    2.64
+   ],
+   [
+    "un",
+    2.7,
+    2.8
+   ],
+   [
+    "croissant,",
+    2.84,
+    3.26
+   ],
+   [
+    "puis",
+    3.42,
+    3.54
+   ],
+   [
+    "demandez",
+    3.6,
+    3.96
+   ],
+   [
+    "le",
+    4.0,
+    4.12
+   ],
+   [
+    "prix.",
+    4.16,
+    4.36
+   ]
   ]
  },
  {
@@ -8387,6 +13205,79 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-12.mp3",
+  "consigneK": [
+   [
+    "Vous",
+    0.12,
+    0.22
+   ],
+   [
+    "n'avez",
+    0.24,
+    0.5
+   ],
+   [
+    "pas",
+    0.54,
+    0.64
+   ],
+   [
+    "compris.",
+    0.68,
+    1.0
+   ],
+   [
+    "Demandez",
+    1.5,
+    1.86
+   ],
+   [
+    "à",
+    1.9,
+    1.94
+   ],
+   [
+    "la",
+    1.98,
+    2.1
+   ],
+   [
+    "personne",
+    2.14,
+    2.5
+   ],
+   [
+    "de",
+    2.54,
+    2.64
+   ],
+   [
+    "répéter",
+    2.7,
+    3.16
+   ],
+   [
+    "ou",
+    3.2,
+    3.26
+   ],
+   [
+    "de",
+    3.34,
+    3.48
+   ],
+   [
+    "parler",
+    3.52,
+    3.8
+   ],
+   [
+    "lentement.",
+    3.86,
+    4.28
+   ]
   ]
  },
  {
@@ -8553,6 +13444,44 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-13.mp3",
+  "consigneK": [
+   [
+    "Regardez",
+    0.12,
+    0.5
+   ],
+   [
+    "la",
+    0.54,
+    0.6
+   ],
+   [
+    "photo.",
+    0.68,
+    0.98
+   ],
+   [
+    "Qui",
+    1.26,
+    1.34
+   ],
+   [
+    "sont",
+    1.44,
+    1.6
+   ],
+   [
+    "ces",
+    1.64,
+    1.76
+   ],
+   [
+    "personnes ?",
+    1.8,
+    2.18
+   ]
   ]
  },
  {
@@ -8668,6 +13597,29 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-14.mp3",
+  "consigneK": [
+   [
+    "Répondez",
+    0.12,
+    0.54
+   ],
+   [
+    "à",
+    0.6,
+    0.62
+   ],
+   [
+    "la",
+    0.66,
+    0.78
+   ],
+   [
+    "question.",
+    0.82,
+    1.18
+   ]
   ]
  },
  {
@@ -8726,6 +13678,24 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-15.mp3",
+  "consigneK": [
+   [
+    "Quelle",
+    0.08,
+    0.28
+   ],
+   [
+    "heure",
+    0.32,
+    0.48
+   ],
+   [
+    "est-il ?",
+    0.5,
+    0.84
+   ]
   ]
  },
  {
@@ -12422,6 +17392,49 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-23.mp3",
+  "consigneK": [
+   [
+    "Vous",
+    0.1,
+    0.22
+   ],
+   [
+    "téléphonez",
+    0.24,
+    0.66
+   ],
+   [
+    "au",
+    0.7,
+    0.76
+   ],
+   [
+    "cabinet",
+    0.8,
+    1.12
+   ],
+   [
+    "médical",
+    1.16,
+    1.6
+   ],
+   [
+    "pour",
+    1.64,
+    1.76
+   ],
+   [
+    "prendre",
+    1.8,
+    2.1
+   ],
+   [
+    "rendez-vous.",
+    2.14,
+    2.54
+   ]
   ]
  },
  {
@@ -13045,6 +18058,79 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-24.mp3",
+  "consigneK": [
+   [
+    "Vous",
+    0.1,
+    0.2
+   ],
+   [
+    "êtes",
+    0.24,
+    0.34
+   ],
+   [
+    "dans",
+    0.38,
+    0.5
+   ],
+   [
+    "un",
+    0.54,
+    0.6
+   ],
+   [
+    "magasin",
+    0.64,
+    0.96
+   ],
+   [
+    "de",
+    1.0,
+    1.06
+   ],
+   [
+    "vêtements.",
+    1.1,
+    1.4
+   ],
+   [
+    "Vous",
+    1.72,
+    1.8
+   ],
+   [
+    "voulez",
+    1.82,
+    2.1
+   ],
+   [
+    "échanger",
+    2.16,
+    2.5
+   ],
+   [
+    "un",
+    2.54,
+    2.62
+   ],
+   [
+    "pantalon",
+    2.64,
+    3.0
+   ],
+   [
+    "trop",
+    3.04,
+    3.18
+   ],
+   [
+    "petit.",
+    3.22,
+    3.44
+   ]
   ]
  },
  {
@@ -13559,6 +18645,69 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-25.mp3",
+  "consigneK": [
+   [
+    "Vous",
+    0.1,
+    0.2
+   ],
+   [
+    "demandez",
+    0.22,
+    0.54
+   ],
+   [
+    "votre",
+    0.58,
+    0.78
+   ],
+   [
+    "chemin",
+    0.84,
+    1.08
+   ],
+   [
+    "pour",
+    1.12,
+    1.2
+   ],
+   [
+    "aller",
+    1.24,
+    1.38
+   ],
+   [
+    "à",
+    1.42,
+    1.44
+   ],
+   [
+    "la",
+    1.48,
+    1.54
+   ],
+   [
+    "gare.",
+    1.6,
+    1.84
+   ],
+   [
+    "Remerciez",
+    2.16,
+    2.52
+   ],
+   [
+    "la",
+    2.56,
+    2.64
+   ],
+   [
+    "personne.",
+    2.68,
+    2.98
+   ]
   ]
  },
  {
@@ -14661,6 +19810,94 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-27.mp3",
+  "consigneK": [
+   [
+    "Vous",
+    0.1,
+    0.2
+   ],
+   [
+    "invitez",
+    0.24,
+    0.54
+   ],
+   [
+    "un",
+    0.58,
+    0.66
+   ],
+   [
+    "collègue",
+    0.7,
+    0.96
+   ],
+   [
+    "à",
+    1.0,
+    1.06
+   ],
+   [
+    "boire",
+    1.08,
+    1.22
+   ],
+   [
+    "un",
+    1.28,
+    1.36
+   ],
+   [
+    "café",
+    1.4,
+    1.68
+   ],
+   [
+    "après",
+    1.72,
+    1.9
+   ],
+   [
+    "le",
+    1.94,
+    2.02
+   ],
+   [
+    "travail.",
+    2.04,
+    2.4
+   ],
+   [
+    "Il",
+    2.8,
+    2.9
+   ],
+   [
+    "refuse.",
+    2.94,
+    3.34
+   ],
+   [
+    "Proposez",
+    3.72,
+    4.1
+   ],
+   [
+    "un",
+    4.14,
+    4.22
+   ],
+   [
+    "autre",
+    4.26,
+    4.46
+   ],
+   [
+    "jour.",
+    4.54,
+    4.74
+   ]
   ]
  },
  {
@@ -15072,6 +20309,49 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-28.mp3",
+  "consigneK": [
+   [
+    "Décrivez",
+    0.08,
+    0.44
+   ],
+   [
+    "cette",
+    0.48,
+    0.64
+   ],
+   [
+    "photo :",
+    0.68,
+    0.92
+   ],
+   [
+    "les",
+    1.06,
+    1.16
+   ],
+   [
+    "personnes,",
+    1.2,
+    1.58
+   ],
+   [
+    "ce",
+    1.8,
+    1.9
+   ],
+   [
+    "qu'elles",
+    1.92,
+    2.12
+   ],
+   [
+    "font.",
+    2.18,
+    2.32
+   ]
   ]
  },
  {
@@ -16263,6 +21543,24 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-33.mp3",
+  "consigneK": [
+   [
+    "Écoutez",
+    0.1,
+    0.56
+   ],
+   [
+    "et",
+    0.6,
+    0.66
+   ],
+   [
+    "répétez.",
+    0.72,
+    1.1
+   ]
   ]
  },
  {
@@ -22780,6 +28078,89 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-39.mp3",
+  "consigneK": [
+   [
+    "Votre",
+    0.1,
+    0.34
+   ],
+   [
+    "voisin",
+    0.38,
+    0.64
+   ],
+   [
+    "fait",
+    0.68,
+    0.78
+   ],
+   [
+    "du",
+    0.82,
+    0.92
+   ],
+   [
+    "bruit",
+    0.94,
+    1.12
+   ],
+   [
+    "tous",
+    1.16,
+    1.26
+   ],
+   [
+    "les",
+    1.28,
+    1.4
+   ],
+   [
+    "soirs.",
+    1.44,
+    1.66
+   ],
+   [
+    "Vous",
+    1.8,
+    1.9
+   ],
+   [
+    "allez",
+    1.94,
+    2.08
+   ],
+   [
+    "lui",
+    2.12,
+    2.22
+   ],
+   [
+    "parler",
+    2.26,
+    2.48
+   ],
+   [
+    "pour",
+    2.52,
+    2.64
+   ],
+   [
+    "trouver",
+    2.68,
+    2.9
+   ],
+   [
+    "une",
+    2.94,
+    3.04
+   ],
+   [
+    "solution.",
+    3.08,
+    3.42
+   ]
   ]
  },
  {
@@ -24041,6 +29422,134 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-40.mp3",
+  "consigneK": [
+   [
+    "Vous",
+    0.1,
+    0.2
+   ],
+   [
+    "appelez",
+    0.26,
+    0.44
+   ],
+   [
+    "votre",
+    0.48,
+    0.66
+   ],
+   [
+    "agence",
+    0.72,
+    1.0
+   ],
+   [
+    "pour",
+    1.02,
+    1.14
+   ],
+   [
+    "signaler",
+    1.16,
+    1.48
+   ],
+   [
+    "une",
+    1.5,
+    1.62
+   ],
+   [
+    "panne",
+    1.66,
+    1.8
+   ],
+   [
+    "de",
+    1.84,
+    1.9
+   ],
+   [
+    "chauffage.",
+    1.94,
+    2.38
+   ],
+   [
+    "Le",
+    2.76,
+    2.84
+   ],
+   [
+    "conseiller",
+    2.86,
+    3.2
+   ],
+   [
+    "dit",
+    3.24,
+    3.38
+   ],
+   [
+    "qu'aucun",
+    3.38,
+    3.64
+   ],
+   [
+    "technicien",
+    3.7,
+    4.1
+   ],
+   [
+    "n'est",
+    4.14,
+    4.28
+   ],
+   [
+    "disponible",
+    4.3,
+    4.88
+   ],
+   [
+    "avant",
+    4.94,
+    5.12
+   ],
+   [
+    "10",
+    5.16,
+    5.26
+   ],
+   [
+    "jours.",
+    5.3,
+    5.48
+   ],
+   [
+    "Insistez",
+    5.92,
+    6.3
+   ],
+   [
+    "pour",
+    6.34,
+    6.44
+   ],
+   [
+    "obtenir",
+    6.48,
+    6.8
+   ],
+   [
+    "une",
+    6.86,
+    6.94
+   ],
+   [
+    "solution.",
+    6.98,
+    7.36
+   ]
   ]
  },
  {
@@ -25372,6 +30881,59 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-41.mp3",
+  "consigneK": [
+   [
+    "Vous",
+    0.1,
+    0.2
+   ],
+   [
+    "passez",
+    0.24,
+    0.46
+   ],
+   [
+    "un",
+    0.48,
+    0.56
+   ],
+   [
+    "entretien",
+    0.62,
+    0.96
+   ],
+   [
+    "d'embauche.",
+    1.0,
+    1.38
+   ],
+   [
+    "Répondez",
+    1.62,
+    1.98
+   ],
+   [
+    "aux",
+    2.0,
+    2.1
+   ],
+   [
+    "questions",
+    2.14,
+    2.44
+   ],
+   [
+    "du",
+    2.48,
+    2.56
+   ],
+   [
+    "recruteur.",
+    2.6,
+    3.1
+   ]
   ]
  },
  {
@@ -28317,6 +33879,59 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-44.mp3",
+  "consigneK": [
+   [
+    "Qu'en",
+    0.08,
+    0.22
+   ],
+   [
+    "pensez-vous ?",
+    0.26,
+    0.7
+   ],
+   [
+    "Donnez",
+    1.04,
+    1.24
+   ],
+   [
+    "votre",
+    1.26,
+    1.44
+   ],
+   [
+    "avis",
+    1.5,
+    1.68
+   ],
+   [
+    "et",
+    1.72,
+    1.8
+   ],
+   [
+    "proposez",
+    1.82,
+    2.22
+   ],
+   [
+    "une",
+    2.26,
+    2.32
+   ],
+   [
+    "autre",
+    2.36,
+    2.5
+   ],
+   [
+    "solution.",
+    2.56,
+    2.9
+   ]
   ]
  },
  {
@@ -30707,6 +36322,84 @@
      ]
     ]
    }
+  ],
+  "audioQ": "medias/questions/EO-47.mp3",
+  "consigneK": [
+   [
+    "Reformulez",
+    0.1,
+    0.58
+   ],
+   [
+    "ce",
+    0.62,
+    0.72
+   ],
+   [
+    "que",
+    0.74,
+    0.82
+   ],
+   [
+    "votre",
+    0.86,
+    1.12
+   ],
+   [
+    "collègue",
+    1.16,
+    1.44
+   ],
+   [
+    "vient",
+    1.48,
+    1.6
+   ],
+   [
+    "de",
+    1.64,
+    1.74
+   ],
+   [
+    "dire",
+    1.78,
+    1.96
+   ],
+   [
+    "pour",
+    2.0,
+    2.12
+   ],
+   [
+    "vérifier",
+    2.16,
+    2.52
+   ],
+   [
+    "que",
+    2.54,
+    2.64
+   ],
+   [
+    "vous",
+    2.66,
+    2.78
+   ],
+   [
+    "avez",
+    2.82,
+    3.0
+   ],
+   [
+    "bien",
+    3.02,
+    3.18
+   ],
+   [
+    "compris.",
+    3.2,
+    3.52
+   ]
   ]
  },
  {

@@ -1,0 +1,14 @@
+{
+ "EE-14": {"titre": "Présentez-vous", "forme": "lignes", "lignes": [["Je m'appelle", "votre nom"], ["J'ai", "votre âge"], ["J'habite à", "votre ville"]]},
+ "EE-15": {"titre": "Remplissez le formulaire", "forme": "formulaire"},
+ "EE-16": {"titre": "Prévenez un ami", "forme": "sms", "destinataire": "Un ami", "amorces": ["Salut !", "Je suis en retard.", "J'arrive dans … minutes.", "Désolé(e) !", "À tout de suite."]},
+ "EE-17": {"titre": "Votre liste de courses", "forme": "liste", "nombre": 5},
+ "EE-31": {"titre": "Excusez-vous", "forme": "courriel", "destinataire": "Votre formatrice", "objet": "Absence demain", "amorces": ["Bonjour Madame,", "Je suis désolé(e),", "demain, je ne peux pas venir", "parce que", "Je vous remercie.", "Cordialement,"]},
+ "EE-32": {"titre": "Votre week-end", "forme": "feuille", "amorces": ["Samedi,", "Dimanche,", "je suis allé(e)", "avec", "nous avons", "C'était"]},
+ "EE-33": {"titre": "Invitez un ami", "forme": "sms", "destinataire": "Un ami", "amorces": ["Salut,", "Je t'invite à dîner", "samedi à … heures.", "Mon adresse :", "Tu peux apporter", "À samedi !"]},
+ "EE-34": {"titre": "Votre logement", "forme": "feuille", "amorces": ["J'habite dans", "Il y a", "J'aime", "parce que", "Mon quartier est"]},
+ "EE-47": {"titre": "Un appareil en panne", "forme": "courriel", "destinataire": "Service client", "objet": "", "amorces": ["Madame, Monsieur,", "J'ai acheté", "il ne fonctionne pas", "Je vous demande", "Dans l'attente de votre réponse,", "Cordialement,"]},
+ "EE-48": {"titre": "Donnez votre avis", "forme": "forum", "amorces": ["À mon avis,", "D'abord,", "Ensuite,", "Par exemple,", "En conclusion,"]},
+ "EE-49": {"titre": "Un moment important", "forme": "feuille", "amorces": ["Il y a … ans,", "Au début,", "Ensuite,", "J'ai ressenti", "Aujourd'hui,"]},
+ "EE-50": {"titre": "Votre candidature", "forme": "courriel", "destinataire": "Entreprise de nettoyage", "objet": "Candidature", "amorces": ["Madame, Monsieur,", "Je m'appelle", "J'ai travaillé", "Je suis disponible", "Je vous prie d'agréer, Madame, Monsieur, mes salutations distinguées."]}
+}

@@ -2,7 +2,7 @@
 <meta name="theme-color" content="#f4efff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@600;700;800;900&family=Caveat:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap">
 <style>
 /* Activités FLE : la charte du premier positionnement (travaux/positionnement-fle), en plein écran.
    Fond uni violet → bleu ; tuiles hexagonales à plat, coins arrondis, face blanche lavande et tranche lavande ;
@@ -543,6 +543,134 @@ body[data-type="video"] .seg.fait { background: #fff; }
 .tuile.eteint { opacity: .5; }
 .bonbons > .eteint { opacity: .55; }
 
+
+/* ------------------------------------------------------------ v3 : des écrans pleins. Sur grand écran, deux panneaux de la hauteur de
+   l'écran (l'image à gauche, la question à droite, centrée sur ses réponses) ; pour la vidéo, la question au centre de l'image.
+   Police Lexend (dessinée pour la facilité de lecture), plus classique que Baloo. */
+:root { --titre: "Lexend", "Segoe UI", system-ui, sans-serif; --texte: "Lexend", "Segoe UI", system-ui, sans-serif; }
+body { font-weight: 500; }
+.tuile .mot { font-weight: 700; font-size: calc(var(--w) * .13); letter-spacing: -.01em; line-height: 1.12; }
+.alveoles.longs .mot { font-size: calc(var(--w) * .11); }
+.go { font-weight: 700; font-size: 18px; letter-spacing: .05em; }
+.q, .consigne-o { font-weight: 700; letter-spacing: -.02em; }
+.geant, #rideau .r-mot { font-weight: 800; letter-spacing: -.045em; }
+.phrase-o { font-weight: 700; letter-spacing: -.02em; }
+.g-phrase { font-weight: 700; letter-spacing: -.02em; }
+.bonbons > button, .reps .rep, .bulle-l, .sit p { font-weight: 600; }
+
+/* la question et son haut-parleur */
+.q-ligne { display: flex; align-items: center; justify-content: center; gap: 14px; text-align: center; }
+.q-ligne > .q, .q-ligne > .consigne-o, .q-ligne > .g-phrase { margin: 0; }
+.hp { flex: none; display: grid; place-items: center; width: 46px; height: 46px; padding: 0; border: 0; border-radius: 50%; color: var(--encre); background: linear-gradient(var(--cyan-1), var(--cyan-2)); box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .5), 0 3px 0 var(--cyan-levre); transition: translate .1s, transform .2s var(--ressort); }
+.hp:hover { transform: scale(1.08); }
+.hp:active { translate: 0 2px; box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .5), 0 1px 0 var(--cyan-levre); }
+.hp svg { width: 22px; height: 22px; }
+.hp.joue { animation: appel .9s ease-in-out infinite; background: linear-gradient(var(--citron-1), var(--citron-2)); box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .5), 0 3px 0 var(--citron-levre); }
+
+/* deux panneaux : l'image (photo, document posé dessus, horloge…) et la carte de la question */
+.sc-duo { gap: clamp(16px, 2.4vw, 32px); }
+.visuel { position: relative; display: grid; place-items: center; min-height: 34vh; overflow: hidden; border-radius: 34px; background: linear-gradient(160deg, #efe7ff, #dcd2ff 60%, #d4e4ff); box-shadow: 0 6px 0 var(--blanc-levre), 0 11px 0 var(--ombre); animation: monte .5s var(--doux-sortie) backwards; }
+.visuel .vis-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; animation: kb 28s ease-in-out infinite alternate; }
+.visuel.avec-objet:not(.uni)::after { content: ""; position: absolute; inset: 0; background: rgba(40, 14, 120, .22); }
+.visuel .pose { position: relative; z-index: 1; display: grid; justify-items: center; width: min(90%, 680px); max-height: 100%; padding: 24px 0; overflow-y: auto; scrollbar-width: none; }
+.visuel .pose .legende { padding: 6px 16px; border-radius: 999px; background: #fff; color: var(--encre); box-shadow: 0 3px 0 var(--blanc-levre); }
+.visuel .titre-v { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; margin: 0; padding: 80px 32px 28px; background: linear-gradient(transparent, rgba(40, 14, 120, .75)); color: #fff; font: 800 clamp(30px, 3.4vw, 56px)/1.05 var(--titre); letter-spacing: -.035em; text-align: left; }
+.visuel.uni .titre-v { position: relative; padding: 30px; background: none; color: var(--violet); text-align: center; }
+.visuel.avec-dit:not(.uni)::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 35%, rgba(40, 14, 120, .55)); }
+.visuel .parole { position: absolute; left: clamp(14px, 2vw, 28px); right: clamp(14px, 2vw, 28px); bottom: clamp(14px, 2vw, 28px); z-index: 1; display: grid; gap: 12px; justify-items: start; }
+.visuel.uni .parole { position: relative; inset: auto; width: min(90%, 600px); justify-items: center; }
+.visuel .parole .interloc small { color: #fff; }
+.visuel .bulle-l { font-size: clamp(22px, 2.4vw, 38px); }
+.visuel .sit { background: #fff; box-shadow: 0 5px 0 var(--blanc-levre); }
+.visuel .role-g { width: 100%; }
+.visuel.uni .postit { width: min(70%, 440px); }
+.visuel.uni .horloge-g { width: min(74%, 480px); background: #fff; }
+.carte-q { display: flex; flex-direction: column; justify-content: center; min-height: 0; padding: clamp(22px, 3vw, 46px); border-radius: 34px; background: #fff; box-shadow: 0 6px 0 var(--blanc-levre), 0 11px 0 var(--ombre); overflow-y: auto; scrollbar-width: none; animation: monte .5s var(--doux-sortie) .06s backwards; }
+.carte-q::-webkit-scrollbar { display: none; }
+.bloc-q { display: flex; flex-direction: column; align-items: center; gap: clamp(18px, 3vh, 30px); width: 100%; text-align: center; }
+.bloc-q .bonbons { width: 100%; }
+.bloc-q .dock-place, .gram .dock-place, .chat .dock-place, .studio .dock-place { width: 100%; margin-top: 4px; }
+.gram { gap: clamp(16px, 2.6vh, 28px); }
+.gram .g-phrase { font-size: clamp(28px, 3.1vw, 52px); }
+.gram .g-phrase.form { font-size: clamp(24px, 2.6vw, 42px); background: var(--lavande); box-shadow: none; }
+.chat { gap: 18px; justify-content: center; }
+.chat .reps { width: 100%; justify-items: center; }
+.reps .rep { justify-content: center; text-align: center; border-radius: 26px; }
+.studio { gap: clamp(12px, 2.2vh, 24px); }
+.micro-g { width: clamp(120px, 11vw, 160px); }
+.sc-oral .exemple-o { width: 100%; }
+
+/* vidéo : la question et les réponses au centre de l'image */
+.ecoute-q { max-width: 20ch; }
+.ecoute-q .q-ligne { justify-content: flex-start; text-align: left; }
+.ecoute-q .eq { margin: 0; font: inherit; }
+.ecoute-q .hp { width: 54px; height: 54px; }
+.centre-q { position: absolute; inset: calc(var(--haut) + env(safe-area-inset-top, 0px)) 0 0; z-index: 2; display: flex; flex-direction: column; align-items: center; padding: 10px clamp(16px, 4vw, 60px) calc(24px + env(safe-area-inset-bottom, 0px)); overflow-y: auto; scrollbar-width: none; color: #fff; opacity: 0; pointer-events: none; transition: opacity .5s; }
+.centre-q > .bloc-q { width: min(880px, 100%); margin: auto 0; }
+.sc-video.phase-reponse .centre-q { opacity: 1; pointer-events: auto; }
+.sc-video .ecran .vis { transition: filter .7s, transform .7s; }
+.sc-video.phase-reponse .ecran .vis { filter: blur(8px) brightness(.6) saturate(1.05); transform: scale(1.08); animation: none; }
+.sc-video.phase-reponse .ecran .voile { background: rgba(60, 24, 170, .36); }
+.sc-video.phase-reponse .ecran .onde-g { opacity: .25; }
+.centre-q .q { color: #fff; font-size: clamp(30px, 3.4vw, 56px); text-shadow: 0 4px 0 rgba(40, 14, 120, .35); }
+.centre-q .dock-mot { color: #fff; }
+.centre-q .relire-l { display: flex; justify-content: center; }
+.centre-q .transcrit { width: 100%; text-align: left; }
+.centre-q .transcrit .ligne { background: #fff; color: var(--encre); box-shadow: 0 4px 0 var(--blanc-levre); }
+.sc-video .panneau-q { display: none; }
+
+/* écrire : un vrai support et des débuts de phrase à toucher */
+.carte-ecrit { justify-content: center; gap: 18px; }
+.consigne-l { display: flex; align-items: flex-start; gap: 12px; }
+.consigne-p { margin: 4px 0 0; color: var(--encre); font-size: clamp(17px, 1.4vw, 20px); font-weight: 500; line-height: 1.45; }
+.lignes-e { display: grid; gap: 14px; }
+.ligne-e { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 20px; background: var(--lavande); animation: monte .4s var(--doux-sortie) backwards; animation-delay: calc(var(--k) * 80ms + .2s); }
+.ligne-e .num { display: grid; place-items: center; width: 36px; height: 36px; flex: none; border-radius: 50%; background: linear-gradient(var(--citron-1), var(--citron-2)); box-shadow: 0 2px 0 var(--citron-levre); font-weight: 800; }
+.ligne-e .debut { flex: none; color: var(--encre); font-size: clamp(20px, 1.8vw, 26px); font-weight: 700; }
+.ligne-e input { flex: 1; min-width: 0; height: 54px; padding: 0 14px; border: 0; border-bottom: 3px dashed rgba(135, 69, 253, .35); border-radius: 12px; background: #fff; color: var(--encre); font: 600 clamp(20px, 1.8vw, 26px)/1 var(--texte); outline: none; }
+.ligne-e input:focus { border-bottom-color: var(--violet); }
+.liste-e { display: grid; gap: 6px; margin: 0; padding: 16px 22px 16px 52px; border-radius: 20px; background: #fffdf0; box-shadow: 0 4px 0 #efe2a6; color: var(--encre-douce); font-size: 22px; font-weight: 800; }
+.liste-e li { animation: monte .4s var(--doux-sortie) backwards; animation-delay: calc(var(--k) * 70ms + .2s); }
+.liste-e input { width: 100%; height: 50px; border: 0; border-bottom: 2px solid #eadb9c; background: transparent; color: var(--encre); font: 600 24px/1 var(--texte); outline: none; }
+.saisie { flex: 1; width: 100%; min-height: 170px; padding: 14px 16px; border: 3px solid var(--lavande); border-radius: 20px; background: #fff; color: var(--encre); font: 500 clamp(19px, 1.6vw, 23px)/1.55 var(--texte); resize: none; outline: none; }
+.saisie:focus { border-color: var(--violet); }
+.feuille-e { background: #fff repeating-linear-gradient(transparent 0 35px, var(--lavande) 35px 36px); background-position: 0 13px; line-height: 36px; }
+.tel-e { display: grid; gap: 10px; width: min(440px, 100%); align-self: center; padding: 14px; border-radius: 36px; background: var(--lavande); box-shadow: 0 5px 0 var(--blanc-levre); }
+.tel-e .tel-tete { display: flex; align-items: center; gap: 10px; padding: 4px 6px; font-weight: 700; }
+.tel-e .tel-av { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(var(--rose-1), var(--rose-2)); color: #fff; font-weight: 800; }
+.tel-e .saisie { min-height: 150px; border-color: #fff; border-radius: 24px 24px 6px 24px; }
+.mail-e { display: grid; overflow: hidden; border: 3px solid var(--lavande); border-radius: 20px; }
+.mail-l { display: flex; align-items: center; gap: 12px; margin: 0; padding: 10px 16px; border-bottom: 2px solid var(--lavande); font-size: 18px; }
+.mail-l b { min-width: 4em; color: var(--encre-douce); font-weight: 700; }
+.mail-l .objet { flex: 1; min-width: 0; border: 0; background: transparent; color: var(--encre); font: 600 18px/1.2 var(--texte); outline: none; }
+.mail-e .saisie { min-height: 200px; border: 0; border-radius: 0; }
+.forum-e { display: grid; gap: 12px; }
+.forum-e .post { padding: 16px 20px; border-radius: 20px 20px 20px 6px; background: var(--lavande); font-size: clamp(18px, 1.5vw, 21px); font-weight: 600; }
+.amorces { display: flex; flex-wrap: wrap; gap: 10px; }
+.amorce { padding: 10px 16px; border: 0; border-radius: 999px; background: linear-gradient(#fffde0, #fff4b0); box-shadow: 0 3px 0 var(--citron-levre); color: var(--encre); font: 600 17px/1.2 var(--texte); animation: pose .4s var(--ressort) backwards; animation-delay: calc(var(--k) * 60ms + .3s); transition: translate .1s; }
+.amorce:active { translate: 0 2px; box-shadow: 0 1px 0 var(--citron-levre); }
+.amorce.utilisee { background: linear-gradient(var(--vert-1), var(--vert-2)); box-shadow: 0 3px 0 var(--vert-levre); }
+.carte-ecrit .dock-place { margin-top: 0; }
+.carte-q.mien { justify-content: flex-start; }
+.titre-mien { margin: 0 0 8px; color: var(--violet); font: 800 26px/1.1 var(--titre); }
+.sc-ecrit.compare .exemple { overflow-y: auto; scrollbar-width: none; }
+
+@media (min-width: 900px) and (min-height: 560px) {
+  .sc-duo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: stretch; height: 100%; }
+  .sc-duo > .visuel, .sc-duo > .carte-q { height: 100%; min-height: 0; }
+  .sc-ecrit.sc-duo { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+  .sc-ecrit.compare { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: stretch; }
+  .sc-ecrit.compare > * { height: 100%; overflow-y: auto; }
+}
+@media (max-width: 899.98px), (max-height: 559.98px) {
+  .sc-duo > .visuel { min-height: 30vh; }
+  .visuel:not(.uni):not(.avec-objet):not(.avec-dit) { max-height: 42vh; }
+  .visuel .pose { padding: 18px 0; }
+  .visuel .parole { position: relative; inset: auto; padding: 18px 14px; justify-items: start; }
+  .visuel.avec-dit { place-items: end stretch; }
+  .centre-q .q { font-size: clamp(24px, 6.4vw, 34px); }
+}
+
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .etoiles svg { opacity: 1; } }
 </style>
 
@@ -916,17 +1044,30 @@ function brancherChoix(racine, q, fin) {
   B.forEach((b, i) => b.onclick = () => choisir(i));
   return (e) => { const n = "1234".indexOf(e.key); if (n >= 0) choisir(n); };
 }
-// une suite de questions dans un panneau : la question, les réponses, le retour ; puis la suivante
-function suiteQuestions(a, panneau, { tete = () => "", apresDerniere, fin } = {}) {
+// ---------------------------------------------------------------- pièces communes : la question et son haut-parleur, le panneau de l'image
+const HP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>';
+function titreHTML(texte, audio, k, cls = "q") {
+  return `<div class="q-ligne">${audio ? `<button class="hp" type="button" data-hp="${echap(audio)}" aria-label="Écouter la question">${HP}</button>` : ""}<h2 class="${cls}${k ? " kara" : ""}">${k ? karaokeHTML(k) : echap(texte)}</h2></div>`;
+}
+function brancherHP(racine) {
+  $$("[data-hp]", racine).forEach(b => {
+    if (b._m) return;
+    const m = media(b.dataset.hp), k = b.parentElement.querySelector(".kara"); b._m = m;
+    if (k) suivreKaraoke(m, k);
+    const maj = () => b.classList.toggle("joue", !m.paused); m.addEventListener("play", maj); m.addEventListener("pause", maj); m.addEventListener("ended", maj);
+    b.onclick = () => { Son.init(); m.paused ? jouer(m, m.ended || !m.currentTime ? 0 : undefined) : m.pause(); };
+  });
+}
+const visuelHTML = (src, contenu = "", cls = "") => `<div class="visuel ${cls}${src ? "" : " uni"}">${src ? `<img class="vis-photo" src="${echap(src)}" alt="">` : ""}${contenu}</div>`;
+function suiteQuestions(a, zone, { avant = () => "", apresDerniere, fin } = {}) {
   let j = 0, bonnes = 0;
   const montrer = () => {
     const q = a.questions[j], n = a.questions.length;
-    panneau.innerHTML = `<div class="glisse" style="display:flex;flex-direction:column;gap:22px;flex:1">${tete(q, j) || n > 1 ? `<div class="pq-tete">${tete(q, j)}${n > 1 ? `<span class="num">${j + 1} / ${n}</span>` : ""}</div>` : ""}
-      <h2 class="q">${echap(q.q)}</h2>${choixHTML(q)}<div class="dock-place"></div></div>`;
-    panneau.scrollTop = 0;
-    touche = brancherChoix(panneau, q, (juste) => {
-      if (juste) bonnes++; majProgres((j + 1) / (n + .5));
-      const der = j === n - 1, place = $(".dock-place", panneau);
+    zone.innerHTML = `<div class="bloc-q glisse">${avant(q, j)}${titreHTML(q.q, q.audioQ, q.qk)}${choixHTML(q)}<div class="dock-place"></div></div>`;
+    zone.scrollTop = 0; brancherHP(zone);
+    touche = brancherChoix(zone, q, (juste) => {
+      if (juste) bonnes++; majProgres();
+      const der = j === n - 1, place = $(".dock-place", zone);
       if (!der) dock(place, juste, { lib: "Question suivante", action: () => { j++; montrer(); } });
       else apresDerniere ? apresDerniere(place, juste, bonnes) : dock(place, juste, { action: () => fin(bonnes) });
     });
@@ -937,15 +1078,16 @@ function suiteQuestions(a, panneau, { tete = () => "", apresDerniere, fin } = {}
 
 // ---------------------------------------------------------------- 1. vidéo (en attendant la vidéo : la photo et le son)
 function sceneVideo(a) {
-  const vid = !!a.video;
-  const sc = rendre(`<section class="scene sc-video ty-video phase-ecoute">
+  const vid = !!a.video, q0 = a.questions[0];
+  const sc = rendre(`<section class="scene sc-video phase-ecoute">
     <div class="ecran">${vid ? `<video class="vis" src="${echap(a.video)}" poster="${echap(a.poster)}" playsinline preload="auto"></video>` : `<img class="vis" src="${echap(a.poster)}" alt="">`}
       <span class="voile"></span>${vid ? "" : `<canvas class="onde-g" aria-hidden="true"></canvas>`}<p class="st" hidden></p><span class="fil"><i></i></span></div>
     <div class="ecoute-ui">${vid ? "" : `<span class="a-venir">Vidéo à venir · la photo et le son</span>`}
-      <p class="ecoute-q"><small>${a.questions.length > 1 ? `${a.questions.length} questions · ` : ""}Écoutez bien</small>${echap(a.questions[0].q)}</p>
+      <div class="ecoute-q"><small>Écoutez bien</small>${titreHTML(q0.q, q0.audioQ, null, "eq")}</div>
       <div class="ctrl"><button class="rond cyan-r" type="button" data-act="rejouer" aria-label="Recommencer">${I.rejouer}</button><button class="rond cyan-r" type="button" data-act="jouer" aria-label="Lire ou mettre en pause">${I.lire}</button>${a.sousTitres ? `<button class="rond cyan-r" type="button" data-act="cc" aria-pressed="false" aria-label="Sous-titres">${I.cc}</button>` : ""}<button class="go" type="button" data-act="repondre">Répondre ${I.suite}</button></div></div>
-    <aside class="panneau-q" aria-live="polite"></aside></section>`);
-  const m = media(a.audio, { video: vid ? $("video", sc) : null }), env = ENV[a.audio], panneau = $(".panneau-q", sc), jouerB = $("[data-act=jouer]", sc), st = $(".st", sc), cc = $("[data-act=cc]", sc), fil = $(".fil i", sc);
+    <div class="centre-q" aria-live="polite"></div></section>`);
+  const m = media(a.audio, { video: vid ? $("video", sc) : null }), env = ENV[a.audio], zone = $(".centre-q", sc), jouerB = $("[data-act=jouer]", sc), st = $(".st", sc), cc = $("[data-act=cc]", sc), fil = $(".fil i", sc);
+  brancherHP($(".ecoute-ui", sc));
   if (!vid) barres($(".onde-g", sc), ondeMedia(m, env), { n: 56, min: .05 });
   const majJ = () => { jouerB.innerHTML = m.paused ? I.lire : I.pause; };
   m.addEventListener("play", majJ); m.addEventListener("pause", majJ);
@@ -954,33 +1096,25 @@ function sceneVideo(a) {
     if (a.sousTitres && cc?.getAttribute("aria-pressed") === "true" && sc.classList.contains("phase-ecoute")) { const c = a.sousTitres.find(c => m.currentTime >= c.d - .1 && m.currentTime <= c.f + .4); st.hidden = !c; if (c && st.dataset.c !== String(c.d)) { st.dataset.c = c.d; st.innerHTML = `<b>${echap(c.qui)}</b>${echap(c.texte)}`; } }
   });
   let repondu = false;
-  m.addEventListener("ended", () => { majJ(); st.hidden = true; if (!repondu) setTimeout(reponse, 500); else $("[data-act=repondre]", sc)?.classList.add("appelle"); });
-  $("[data-act=jouer]", sc).onclick = () => { m.paused ? jouer(m, m.ended ? 0 : undefined) : m.pause(); };
+  m.addEventListener("ended", () => { majJ(); st.hidden = true; if (!repondu) setTimeout(reponse, 500); });
+  jouerB.onclick = () => { m.paused ? jouer(m, m.ended ? 0 : undefined) : m.pause(); };
   $("[data-act=rejouer]", sc).onclick = () => { Son.joue("tap"); jouer(m, 0); };
   if (vid) m.onclick = () => { if (sc.classList.contains("phase-ecoute")) m.paused ? jouer(m) : m.pause(); };
   if (cc) cc.onclick = () => { const on = cc.getAttribute("aria-pressed") !== "true"; cc.setAttribute("aria-pressed", on); if (!on) st.hidden = true; Son.joue("tap"); };
   $("[data-act=repondre]", sc).onclick = () => { Son.joue("tap"); reponse(); };
   const relire = `<button class="relire" type="button" data-relire><span class="rondp">${I.lire}</span><span>Réécouter</span></button>`;
-  const Q = suiteQuestions(a, panneau, {
-    tete: () => relire,
+  const Q = suiteQuestions(a, zone, {
+    avant: () => `<div class="relire-l">${relire}</div>`,
     apresDerniere: (place, juste, bonnes) => dock(place, juste, { action: () => terminer(a, { bonnes, total: a.questions.length }), autre: a.karaoke ? { lib: "Le texte", icone: I.texte, action: () => texte(bonnes) } : null }),
   });
-  function reponse() {
-    if (repondu) return; repondu = true; m.pause(); st.hidden = true; sc.classList.replace("phase-ecoute", "phase-reponse"); Son.joue("papier"); Q.montrer();
-  }
-  // après les questions : réécouter avec le texte qui s'allume
+  function reponse() { if (repondu) return; repondu = true; m.pause(); st.hidden = true; sc.classList.replace("phase-ecoute", "phase-reponse"); Son.joue("papier"); Q.montrer(); }
   function texte(bonnes) {
-    panneau.innerHTML = `<div class="glisse" style="display:flex;flex-direction:column;gap:20px;flex:1"><div class="pq-tete">${relire}<span class="num">Ce que vous avez entendu</span></div>
-      <div class="transcrit kara">${a.karaoke.map(l => `<p class="ligne">${l.qui ? `<b>${echap(l.qui)}</b>` : ""}${karaokeHTML(l.mots)}</p>`).join("")}</div><div class="dock-place"></div></div>`;
-    brancherRelire(); suivreKaraoke(m, $(".transcrit", panneau)); jouer(m, 0);
-    dock($(".dock-place", panneau), null, { action: () => terminer(a, { bonnes, total: a.questions.length }) });
+    zone.innerHTML = `<div class="bloc-q glisse"><div class="relire-l">${relire}</div><div class="transcrit kara">${a.karaoke.map(l => `<p class="ligne">${l.qui ? `<b>${echap(l.qui)}</b>` : ""}${karaokeHTML(l.mots)}</p>`).join("")}</div><div class="dock-place"></div></div>`;
+    brancherRelire(); suivreKaraoke(m, $(".transcrit", zone)); jouer(m, 0);
+    dock($(".dock-place", zone), null, { action: () => terminer(a, { bonnes, total: a.questions.length }) });
   }
-  const brancherRelire = () => { const b = $("[data-relire]", panneau); if (!b) return; const maj = () => { $(".rondp", b).innerHTML = m.paused ? I.lire : I.pause; }; m.addEventListener("play", maj); m.addEventListener("pause", maj); maj(); b.onclick = () => { m.paused ? jouer(m, m.ended || !m.currentTime ? 0 : undefined) : m.pause(); }; };
-  courant = {
-    demarrer: () => { jouer(m, 0).then(ok => { if (!ok) jouerB.classList.add("appelle"); }); },
-    apresMontrer: () => brancherRelire(),
-    espace: () => { m.paused ? jouer(m, m.ended ? 0 : undefined) : m.pause(); },
-  };
+  const brancherRelire = () => { const b = $("[data-relire]", zone); if (!b) return; const maj = () => { $(".rondp", b).innerHTML = m.paused ? I.lire : I.pause; }; m.addEventListener("play", maj); m.addEventListener("pause", maj); maj(); b.onclick = () => { m.paused ? jouer(m, m.ended || !m.currentTime ? 0 : undefined) : m.pause(); }; };
+  courant = { demarrer: () => { jouer(m, 0).then(ok => { if (!ok) jouerB.classList.add("appelle"); }); }, apresMontrer: () => brancherRelire(), espace: () => { m.paused ? jouer(m, m.ended ? 0 : undefined) : m.pause(); } };
 }
 
 // ---------------------------------------------------------------- 2. lecture : le document posé, les questions à côté
@@ -1000,8 +1134,8 @@ function objetHTML(d) {
   }
 }
 function sceneLecture(a) {
-  const sc = rendre(`<section class="scene sc-lecture ty-lecture"><div class="table"><div style="width:100%;display:grid;justify-items:center">${objetHTML(a.doc)}</div></div><aside class="panneau-q" aria-live="polite"></aside></section>`);
-  const Q = suiteQuestions(a, $(".panneau-q", sc), { fin: (bonnes) => terminer(a, { bonnes, total: a.questions.length }) });
+  const sc = rendre(`<section class="scene sc-duo sc-lecture">${visuelHTML(a.photoH, `<div class="pose">${objetHTML(a.doc)}</div>`, "avec-objet")}<div class="carte-q"></div></section>`);
+  const Q = suiteQuestions(a, $(".carte-q", sc), { fin: (bonnes) => terminer(a, { bonnes, total: a.questions.length }) });
   Q.montrer();
   courant = { ...courant, demarrer: () => {
     if (a.doc.t === "sms") { setTimeout(() => { const [e, b] = $$(".bulle-sms", sc); e.hidden = true; b.hidden = false; b.classList.add("arrive"); Son.joue("pop"); }, 1100); }
@@ -1011,32 +1145,33 @@ function sceneLecture(a) {
 
 // ---------------------------------------------------------------- 3. grammaire : le mot choisi vole jusqu'au trou
 function sceneGrammaire(a) {
-  const sc = rendre(`<section class="scene sc-gram ty-grammaire"><div class="gram" id="gram"></div></section>`), G = $("#gram", sc);
+  const q0 = a.questions[0];
+  const sc = rendre(`<section class="scene sc-duo sc-gram">${visuelHTML(q0.photoH, "", "")}<div class="carte-q"><div class="gram" id="gram"></div></div></section>`), G = $("#gram", sc);
   let j = 0, bonnes = 0;
   const montrer = () => {
     const q = a.questions[j], n = a.questions.length, trou = trouDe(q);
+    const hp = q.audioQ ? `<button class="hp" type="button" data-hp="${echap(q.audioQ)}" aria-label="Écouter">${HP}</button>` : "";
     if (trou) {
-      const phrase = echap(trou.replace(/ ([:?!;»])/g, "\u00a0$1").replace(/ (_{3,})/, "\u00a0$1")).replace(/_{3,}/, `<span class="fente vide" aria-label="mot manquant"></span>`);
-      G.innerHTML = `${q.avant ? `<p class="g-avant">${echap(q.avant)}</p>` : ""}<p class="g-phrase${q.t === "enonce" ? " form" : ""}">${phrase}</p>${q.indice ? `<p class="g-indice">${echap(q.indice)}</p>` : ""}${q.apres ? `<p class="g-avant">${echap(q.apres)}</p>` : ""}
+      const phrase = echap(trou.replace(/ ([:?!;»])/g, " $1").replace(/ (_{3,})/, " $1")).replace(/_{3,}/, `<span class="fente vide" aria-label="mot manquant"></span>`);
+      G.innerHTML = `${q.avant ? `<p class="g-avant">${echap(q.avant)}</p>` : ""}<div class="q-ligne">${hp}<p class="g-phrase${q.t === "enonce" ? " form" : ""}">${phrase}</p></div>${q.indice ? `<p class="g-indice">${echap(q.indice)}</p>` : ""}${q.apres ? `<p class="g-avant">${echap(q.apres)}</p>` : ""}
         ${choixHTML(q, { cls: "puce" })}<div class="dock-place"></div>`;
-      touche = brancherFente(q, fin);
+      brancherHP(G); touche = brancherFente(q, fin);
     } else {
       const avant = q.t === "mots" ? `<p class="g-avant">${echap(q.etiquette || "")}</p><div class="g-mots">${q.mots.map(m => `<span>${echap(m)}</span>`).join("")}</div>`
         : q.t === "transformer" ? `<p class="g-avant">${echap(q.vers)}</p><p class="g-phrase form">${echap(q.phrase)}</p>`
         : q.t === "enonce" ? `${q.avant ? `<p class="g-avant">${echap(q.avant)}</p>` : ""}${q.citation ? `<p class="g-phrase form">${echap(q.citation)}</p>` : ""}${q.apres ? `<p class="g-avant">${echap(q.apres)}</p>` : ""}` : "";
-      G.innerHTML = `${avant}<h2 class="q">${echap(q.q)}</h2>${choixHTML(q)}<div class="dock-place"></div>`;
-      touche = brancherChoix(G, q, fin);
+      G.innerHTML = `${avant}${titreHTML(q.q, q.audioQ, q.qk)}${choixHTML(q)}<div class="dock-place"></div>`;
+      brancherHP(G); touche = brancherChoix(G, q, fin);
     }
-    $("#scene").scrollTop = 0;
     function fin(juste) {
-      if (juste) bonnes++; majProgres((j + 1) / (n + .3));
-      dock($(".dock-place", G), juste, j < n - 1 ? { lib: "Suivante", action: () => { j++; G.animate([{ opacity: 1, transform: "none" }, { opacity: 0, transform: "translateX(-60px)" }], { duration: MOUV ? 260 : 1, easing: "ease-in" }).onfinish = montrer; } }
-                                                : { action: () => terminer(a, { bonnes, total: n }) });
+      if (juste) bonnes++; majProgres();
+      dock($(".dock-place", G), juste, j < n - 1 ? { lib: "Suivante", action: () => { j++; montrer(); } } : { action: () => terminer(a, { bonnes, total: n }) });
     }
   };
   montrer();
   courant = { demarrer: () => {} };
 }
+
 function brancherFente(q, fin) {
   const fente = $(".fente"), P = $$(".puce"); let fait = false;
   const voler = (puce, texte, apres) => {
@@ -1067,42 +1202,35 @@ function brancherFente(q, fin) {
 
 // ---------------------------------------------------------------- 4. réagir : une conversation
 function sceneReagir(a) {
-  const sc = rendre(`<section class="scene sc-chat ty-reagir"><div class="chat" id="chat"></div></section>`), C = $("#chat", sc);
-  let j = 0, bonnes = 0, m = null;
-  const montrer = (premier) => {
-    const q = a.questions[j], n = a.questions.length;
-    const haut = q.t === "replique"
-      ? `<div class="interloc">${q.photo ? `<img class="avatar" src="${echap(q.photo)}" alt="">` : ""}<div>${q.etiquette ? `<small>${echap(q.etiquette)}</small>` : ""}<p class="bulle-l kara encre"><span class="points"><i></i><i></i><i></i></span><span class="txt" hidden>« ${q.k ? karaokeHTML(q.k) : echap(q.replique)} »</span></p></div></div>`
-      : `<div class="sit"><span class="em" aria-hidden="true">${q.emoji || "💬"}</span><p class="kara">${q.k ? karaokeHTML(q.k) : echap(q.texte)}</p></div>`;
-    C.innerHTML = `${haut}${q.audio ? `<div>${ecouteHTML("Réécouter", "petite")}</div>` : ""}<p class="chat-q">${echap(q.q)}</p><div class="reps">${q.choix.map((c, i) => `<button class="rep" type="button" data-i="${i}" style="--k:${i}">${echap(c)}</button>`).join("")}</div><div class="dock-place"></div>`;
-    $("#scene").scrollTop = 0;
-    if (q.audio) { m = media(q.audio); brancherEcoute($(".ecoute", C), m, ENV[q.audio]); suivreKaraoke(m, $(".kara", C)); }
-    const R = $$(".rep", C); let fait = false;
-    const choisir = (i) => {
-      if (fait || !R[i]) return; fait = true; const juste = i === q.bonne;
-      R.forEach((r, k) => { r.disabled = true; if (k !== i) r.classList.add("part"); });
-      R[i].classList.add("envoyee"); Son.joue("pop");
-      setTimeout(() => {
-        R.forEach((r, k) => { if (k !== i) r.hidden = true; });
-        if (juste) { bonnes++; R[i].classList.add("ok"); R[i].insertAdjacentHTML("beforeend", `<span class="reac" aria-hidden="true">👍</span>`); Son.joue("bon"); jetDepuis(R[i], 30, 8); }
-        else { R[i].classList.add("faux"); Son.joue("faux"); R[i].insertAdjacentHTML("afterend", `<p class="rep bonne-rep"><small>On peut dire</small>${echap(q.choix[q.bonne])}</p>`); }
-        majProgres((j + 1) / (n + .3));
-        dock($(".dock-place", C), juste, j < n - 1 ? { lib: "Suivante", action: () => { j++; montrer(); } } : { action: () => terminer(a, { bonnes, total: n }) });
-      }, 380);
-    };
-    R.forEach((r, i) => r.onclick = () => choisir(i));
-    touche = (e) => { const k = "1234".indexOf(e.key); if (k >= 0) choisir(k); };
-    // la réplique arrive : les trois points, puis la bulle et la voix
-    const lancerReplique = () => {
-      const pts = $(".bulle-l .points", C), txt = $(".bulle-l .txt", C);
-      const dire = () => { if (m) jouer(m, 0); };
-      if (pts) setTimeout(() => { pts.remove(); txt.hidden = false; $(".bulle-l", C).animate([{ transform: "scale(.6)", opacity: .3 }, { transform: "none", opacity: 1 }], { duration: MOUV ? 420 : 1, easing: "cubic-bezier(.2,1.3,.4,1)" }); Son.joue("pop"); setTimeout(dire, 250); }, MOUV ? 1000 : 10);
-      else setTimeout(dire, 450);
-    };
-    if (!premier) lancerReplique(); else courant.demarrer = lancerReplique;
+  const q = a.questions[0];
+  const haut = q.t === "replique"
+    ? `<div class="interloc">${q.photo ? "" : ""}<div>${q.etiquette ? `<small>${echap(q.etiquette)}</small>` : ""}<p class="bulle-l kara encre"><span class="points"><i></i><i></i><i></i></span><span class="txt" hidden>« ${q.k ? karaokeHTML(q.k) : echap(q.replique)} »</span></p></div></div>`
+    : `<div class="sit"><span class="em" aria-hidden="true">${q.emoji || "💬"}</span><p class="kara encre">${q.k ? karaokeHTML(q.k) : echap(q.texte)}</p></div>`;
+  const sc = rendre(`<section class="scene sc-duo sc-chat">${visuelHTML(q.photo || q.photoH, `<div class="parole">${haut}${q.audio ? `<div>${ecouteHTML("Réécouter", "petite")}</div>` : ""}</div>`, "avec-dit")}
+    <div class="carte-q"><div class="chat">${titreHTML(q.q, q.audioQ, q.qk)}<div class="reps">${q.choix.map((c, i) => `<button class="rep" type="button" data-i="${i}" style="--k:${i}">${echap(c)}</button>`).join("")}</div><div class="dock-place"></div></div></div></section>`);
+  const C = $(".chat", sc); let m = null;
+  brancherHP(C);
+  if (q.audio) { m = media(q.audio); brancherEcoute($(".ecoute", sc), m, ENV[q.audio]); suivreKaraoke(m, $(".parole .kara", sc)); }
+  const R = $$(".rep", C); let fait = false;
+  const choisir = (i) => {
+    if (fait || !R[i]) return; fait = true; const juste = i === q.bonne;
+    R.forEach((r, k) => { r.disabled = true; if (k !== i) r.classList.add("part"); });
+    R[i].classList.add("envoyee"); Son.joue("pop");
+    setTimeout(() => {
+      R.forEach((r, k) => { if (k !== i) r.hidden = true; });
+      if (juste) { R[i].classList.add("ok"); R[i].insertAdjacentHTML("beforeend", `<span class="reac" aria-hidden="true">👍</span>`); Son.joue("bon"); jetDepuis(R[i], 30, 8); }
+      else { R[i].classList.add("faux"); Son.joue("faux"); R[i].insertAdjacentHTML("afterend", `<p class="rep bonne-rep"><small>On peut dire</small>${echap(q.choix[q.bonne])}</p>`); }
+      majProgres();
+      dock($(".dock-place", C), juste, { action: () => terminer(a, { bonnes: juste ? 1 : 0, total: 1 }) });
+    }, 380);
   };
-  courant = { demarrer: () => {} };
-  montrer(true);
+  R.forEach((r, i) => r.onclick = () => choisir(i));
+  touche = (e) => { const k = "1234".indexOf(e.key); if (k >= 0) choisir(k); };
+  courant = { demarrer: () => {
+    const pts = $(".bulle-l .points", sc), txt = $(".bulle-l .txt", sc), dire = () => { if (m) jouer(m, 0); };
+    if (pts) setTimeout(() => { pts.remove(); txt.hidden = false; $(".bulle-l", sc).animate([{ transform: "scale(.6)", opacity: .3 }, { transform: "none", opacity: 1 }], { duration: MOUV ? 420 : 1, easing: "cubic-bezier(.2,1.3,.4,1)" }); Son.joue("pop"); setTimeout(dire, 250); }, MOUV ? 1000 : 10);
+    else setTimeout(dire, 450);
+  } };
 }
 
 // ---------------------------------------------------------------- l'exemple de réponse et les points à vérifier (écrit et oral)
@@ -1114,34 +1242,52 @@ function brancherVerif(r) {
 
 // ---------------------------------------------------------------- 5. écrire
 function sceneEcriture(a) {
-  const support = a.photo ? `<div class="support-e"><div class="photo-g"><img src="${echap(a.photo)}" alt=""></div></div>`
-    : a.support ? `<div class="support-e"><div class="objet o-fiche"><h4>À lire</h4><p style="line-height:1.6">${echap(a.support)}</p></div></div>` : "";
-  const objectif = a.mots || null;
-  const zone = a.formulaire ? `<div class="champs">${a.formulaire.map((c, i) => `<label>${echap(c)}<input type="text" data-i="${i}" autocomplete="off"></label>`).join("")}</div>`
-    : `<textarea id="texte" placeholder="Écrivez ici…" spellcheck="false" aria-label="Votre texte"></textarea>${objectif ? `<div class="jauge" id="jauge"><span class="piste"><i></i></span><b>0 / ${objectif[0]} mots</b></div>` : ""}`;
-  const sc = rendre(`<section class="scene sc-ecrit ty-ecriture${support ? " avec" : ""}">${support}<div class="feuille" id="feuille"><h2 class="consigne-e">${echap(a.consigne)}</h2>${zone}<div class="dock-place"></div></div></section>`);
-  const t = $("#texte", sc), J = $("#jauge", sc); let atteint = false;
-  const compter = () => (t.value.match(/[\p{L}\d][\p{L}\d'’-]*/gu) || []).length;
-  if (t && J) t.addEventListener("input", () => {
-    const n = compter(), [mn, mx] = objectif, p = Math.min(100, 100 * n / mn);
-    J.style.setProperty("--p", p + "%"); $("i", J).style.width = p + "%";
-    $("b", J).textContent = n >= mn ? `${n} mots · bien !` : `${n} / ${mn} mots`; J.classList.toggle("atteint", n >= mn && n <= mx + 10);
+  const aide = a.aide || { titre: a.titre, forme: a.formulaire ? "formulaire" : "feuille" }, objectif = a.mots || null;
+  const consigne = `<div class="consigne-l">${a.audioQ ? `<button class="hp" type="button" data-hp="${echap(a.audioQ)}" aria-label="Écouter la consigne">${HP}</button>` : ""}<p class="consigne-p${a.consigneK ? " kara" : ""}">${a.consigneK ? karaokeHTML(a.consigneK) : echap(a.consigne)}</p></div>`;
+  let zone;
+  if (aide.forme === "formulaire") zone = `<div class="champs">${a.formulaire.map((c, i) => `<label>${echap(c)}<input type="text" data-i="${i}" autocomplete="off"></label>`).join("")}</div>`;
+  else if (aide.forme === "lignes") zone = `<div class="lignes-e">${aide.lignes.map(([debut, ph], i) => `<label class="ligne-e" style="--k:${i}"><span class="num">${i + 1}</span><span class="debut">${echap(debut)}</span><input type="text" placeholder="${echap(ph)}" data-debut="${echap(debut)}" autocomplete="off"></label>`).join("")}</div>`;
+  else if (aide.forme === "liste") zone = `<ol class="liste-e">${Array.from({ length: aide.nombre || 5 }, (_, i) => `<li style="--k:${i}"><input type="text" autocomplete="off" aria-label="Article ${i + 1}"></li>`).join("")}</ol>`;
+  else if (aide.forme === "sms") zone = `<div class="tel-e"><div class="tel-tete"><span class="tel-av">${echap((aide.destinataire || "A").charAt(0))}</span><b>${echap(aide.destinataire || "")}</b></div><textarea class="saisie" placeholder="Votre message…" spellcheck="false"></textarea></div>`;
+  else if (aide.forme === "courriel") zone = `<div class="mail-e"><p class="mail-l"><b>À</b><span>${echap(aide.destinataire || "")}</span></p><p class="mail-l"><b>Objet</b><input class="objet" type="text" value="${echap(aide.objet || "")}" placeholder="L'objet du courriel" autocomplete="off"></p><textarea class="saisie" placeholder="Votre courriel…" spellcheck="false"></textarea></div>`;
+  else if (aide.forme === "forum") zone = `<div class="forum-e"><div class="post">${echap(a.support || "")}</div><textarea class="saisie" placeholder="Votre réponse…" spellcheck="false"></textarea></div>`;
+  else zone = `${a.support ? `<div class="forum-e"><div class="post">${echap(a.support)}</div></div>` : ""}<textarea class="saisie feuille-e" placeholder="Écrivez ici…" spellcheck="false"></textarea>`;
+  const amorces = aide.amorces?.length ? `<div class="amorces" aria-label="Débuts de phrase">${aide.amorces.map((t, i) => `<button class="amorce" type="button" style="--k:${i}">${echap(t)}</button>`).join("")}</div>` : "";
+  const jauge = objectif ? `<div class="jauge" id="jauge"><span class="piste"><i></i></span><b>0 / ${objectif[0]} mots</b></div>` : "";
+  const sc = rendre(`<section class="scene sc-duo sc-ecrit">${visuelHTML(a.photo || a.photoH, `<h2 class="titre-v">${echap(aide.titre || a.titre)}</h2>`, "avec-titre")}
+    <div class="carte-q carte-ecrit">${consigne}${zone}${amorces}${jauge}<div class="dock-place"></div></div></section>`);
+  brancherHP(sc);
+  const carte = $(".carte-ecrit", sc), saisie = $(".saisie", sc), J = $("#jauge", sc); let atteint = false;
+  const texte = () => {
+    if (aide.forme === "lignes") return $$(".ligne-e input", sc).map(i => i.value.trim() ? `${i.dataset.debut} ${i.value.trim()}${/[.!?]$/.test(i.value.trim()) ? "" : "."}` : "").filter(Boolean).join(" ");
+    if (aide.forme === "liste") return $$(".liste-e input", sc).map(i => i.value.trim()).filter(Boolean).join(", ");
+    if (aide.forme === "formulaire") return a.formulaire.map((c, i) => `${c} : ${$(`input[data-i="${i}"]`, sc).value.trim()}`).join("\n");
+    return (aide.forme === "courriel" && $(".objet", sc).value.trim() ? `Objet : ${$(".objet", sc).value.trim()}\n\n` : "") + (saisie?.value.trim() || "");
+  };
+  const compter = () => aide.forme === "lignes" ? (texte().match(/[\p{L}\d][\p{L}\d'’-]*/gu) || []).length : aide.forme === "liste" ? $$(".liste-e input", sc).filter(i => i.value.trim()).length : ((saisie?.value || "").match(/[\p{L}\d][\p{L}\d'’-]*/gu) || []).length;
+  const maj = () => {
+    if (!J) return; const n = compter(), [mn, mx] = objectif, p = Math.min(100, 100 * n / mn);
+    $("i", J).style.width = p + "%"; $("b", J).textContent = n >= mn ? `${n} mots · bien !` : `${n} / ${mn} mots`; J.classList.toggle("atteint", n >= mn && n <= mx + 10);
     if (n >= mn && !atteint) { atteint = true; Son.joue("etincelle"); jetDepuis($(".piste", J), 24, 6); }
     if (n < mn) atteint = false;
+  };
+  carte.addEventListener("input", maj);
+  $$(".amorce", sc).forEach(b => b.onclick = () => {
+    if (!saisie) return; const t = b.textContent, pos = saisie.selectionStart ?? saisie.value.length, av = saisie.value.slice(0, pos), ap = saisie.value.slice(pos);
+    const sep = av && !/[\s\n]$/.test(av) ? " " : "", ajout = sep + t + (/[,:]$|\.\.\.$|…$/.test(t) || !/[.!?]$/.test(t) ? " " : "\n");
+    saisie.value = av + ajout + ap; const c = (av + ajout).length; saisie.focus(); saisie.setSelectionRange(c, c); maj();
+    b.classList.add("utilisee"); Son.joue("pop"); b.animate([{ transform: "scale(1)" }, { transform: "scale(1.12)" }, { transform: "scale(1)" }], { duration: 260 });
   });
   const fini = () => {
-    const mien = a.formulaire ? a.formulaire.map((c, i) => `${c} : ${$(`input[data-i="${i}"]`, sc).value.trim()}`).join("\n") : t.value.trim();
-    const corps = a.modele && typeof a.modele === "object" && !Array.isArray(a.modele) ? `<div class="fiche-ex">${Object.entries(a.modele).map(([k, v]) => `<p><b>${echap(k)} :</b> ${echap(v)}</p>`).join("")}</div>`
-      : `<p class="texte-ex">${echap(a.modele || "")}</p>`;
-    sc.classList.remove("avec"); sc.classList.add("compare");
-    sc.innerHTML = `<div class="feuille"><h2 class="consigne-e" style="font-size:clamp(24px,2.2vw,32px)">Votre texte</h2><p class="mon-texte">${echap(mien)}</p></div>
-      <div class="exemple"><h3>Un exemple</h3>${corps}${verifHTML(a)}<div class="dock-place"></div></div>`;
+    const mien = texte();
+    const corps = a.modele && typeof a.modele === "object" && !Array.isArray(a.modele) ? `<div class="fiche-ex">${Object.entries(a.modele).map(([k, v]) => `<p><b>${echap(k)} :</b> ${echap(v)}</p>`).join("")}</div>` : `<p class="texte-ex">${echap(a.modele || "")}</p>`;
+    sc.classList.add("compare");
+    sc.innerHTML = `<div class="carte-q mien"><h3 class="titre-mien">Votre texte</h3><p class="mon-texte">${echap(mien)}</p></div><div class="exemple"><h3>Un exemple</h3>${corps}${verifHTML(a)}<div class="dock-place"></div></div>`;
     brancherVerif(sc); Son.joue("papier"); $("#scene").scrollTop = 0;
-    dock($(".dock-place", sc), null, { action: () => terminer(a, { produit: true }) });
-    majProgres(.8);
+    dock($(".dock-place", sc), null, { action: () => terminer(a, { produit: true }), defiler: false }); majProgres();
   };
-  dock($(".dock-place", sc), null, { lib: "J'ai fini", action: fini });
-  courant = { demarrer: () => { (t || $("input", sc))?.focus({ preventScroll: true }); } };
+  dock($(".dock-place", sc), null, { lib: "J'ai fini", action: fini, defiler: false });
+  courant = { demarrer: () => { ($(".ligne-e input", sc) || saisie || $("input", sc))?.focus({ preventScroll: true }); } };
 }
 
 // ---------------------------------------------------------------- 6. parler : écouter, s'enregistrer, comparer
@@ -1151,24 +1297,26 @@ function horlogeSVG(h, m) {
 }
 const dureeTexte = (s) => s < 60 ? `${s} secondes` : `${Math.floor(s / 60)} minute${s >= 120 ? "s" : ""}${s % 60 ? " " + (s % 60) : ""}`;
 function sceneOral(a) {
-  let support = "";
-  if (a.sous === "image") support = a.photo ? `<div class="photo-g"><img src="${echap(a.photo)}" alt=""></div>` : a.numero ? `<div class="postit">${echap(a.numero)}</div>` : a.horloge ? `<div class="horloge-g">${horlogeSVG(...a.horloge)}</div>` : "";
-  else if (a.sous === "role") { const r = a.role.replace(/^Rôle de l'interlocuteur\s*:\s*/i, "").replace(/^Questions du recruteur\s*:\s*/i, "Le recruteur demande : "); support = `<div class="role-g"><span class="masques" aria-hidden="true">🎭</span><h3>Jeu de rôle · l'autre personne</h3><p>${echap(r.charAt(0).toUpperCase() + r.slice(1))}</p></div>`; }
+  let support = "", clsV = "";
+  if (a.sous === "image" && !a.photo) { clsV = "uni"; support = a.numero ? `<div class="postit">${echap(a.numero)}</div>` : a.horloge ? `<div class="horloge-g">${horlogeSVG(...a.horloge)}</div>` : ""; }
+  else if (a.sous === "role") { clsV = "avec-dit"; const r = a.role.replace(/^Rôle de l'interlocuteur\s*:\s*/i, "").replace(/^Questions du recruteur\s*:\s*/i, "Le recruteur demande : "); support = `<div class="parole"><div class="role-g"><span class="masques" aria-hidden="true">🎭</span><h3>Jeu de rôle · l'autre personne</h3><p>${echap(r.charAt(0).toUpperCase() + r.slice(1))}</p></div></div>`; }
+  const photo = clsV === "uni" ? null : (a.photo || a.photoH);
   const consigneK = a.sous === "consigne" && a.k, phraseK = a.sous === "repeter";
-  const sc = rendre(`<section class="scene sc-oral ty-oral${support ? " avec" : ""}">${support ? `<div class="support-o">${support}</div>` : ""}
-    <div class="studio" id="studio">
-      <h2 class="consigne-o${consigneK ? " kara" : ""}">${consigneK ? karaokeHTML(a.k) : echap(a.consigne)}</h2>
+  const hp = a.sous !== "consigne" && a.audioQ ? `<button class="hp" type="button" data-hp="${echap(a.audioQ)}" aria-label="Écouter la consigne">${HP}</button>` : "";
+  const sc = rendre(`<section class="scene sc-duo sc-oral">${visuelHTML(photo, support, clsV)}
+    <div class="carte-q"><div class="studio" id="studio">
+      <div class="q-ligne">${hp}<h2 class="consigne-o${consigneK || (hp && a.consigneK) ? " kara" : ""}">${consigneK ? karaokeHTML(a.k) : hp && a.consigneK ? karaokeHTML(a.consigneK) : echap(a.consigne)}</h2></div>
       ${phraseK && a.phrase ? `<p class="phrase-o kara">« ${a.k ? karaokeHTML(a.k) : echap(a.phrase)} »</p>` : ""}
       ${a.audio ? ecouteHTML(a.sous === "repeter" ? "Écouter la phrase" : a.sous === "consigne" ? "Écouter la consigne" : a.sous === "question" ? "Écouter la question" : "Écouter") : ""}
       <button class="micro-g" type="button" id="micro" aria-label="Appuyer pour parler"><canvas aria-hidden="true"></canvas><svg class="anneau" viewBox="0 0 100 100" aria-hidden="true"><circle class="fond-a" cx="50" cy="50" r="46"/><circle class="plein" cx="50" cy="50" r="46" pathLength="100" stroke-dasharray="0 100"/></svg><span class="ic-m">${I.micro}</span></button>
       <p class="chrono-g" id="chrono">0:00</p><p class="aide-g" id="aide">Appuyez, puis parlez.${a.duree ? ` Environ ${dureeTexte(a.duree)}.` : ""}</p>
       <div class="apres" id="apres"></div>
-      <div class="dock-place" style="width:min(860px,100%)"></div>
-    </div></section>`);
+      <div class="dock-place"></div>
+    </div></div></section>`);
   const S = $("#studio", sc), M = $("#micro", sc), plein = $(".plein", M), chrono = $("#chrono", sc), aide = $("#aide", sc), apres = $("#apres", sc);
+  brancherHP(S);
   let consigne = null;
-  if (a.audio) { consigne = media(a.audio); brancherEcoute($(".ecoute", S), consigne, ENV[a.audio]); const k = $(".kara", S); if (k) suivreKaraoke(consigne, k); }
-  // le halo du micro : des rayons qui bougent avec la voix (ou qui respirent, sans micro)
+  if (a.audio) { consigne = media(a.audio); brancherEcoute($(".ecoute", S), consigne, ENV[a.audio]); const k = consigneK ? $(".consigne-o", S) : $(".phrase-o", S); if (k && (consigneK || a.k)) suivreKaraoke(consigne, k); }
   let niveauVoix = 0, analyseur = null, donnees = null;
   const halo = $("canvas", M), hx = halo.getContext("2d"); let idHalo = 0, vivant = true;
   const dessinerHalo = (ts) => {
@@ -1178,14 +1326,12 @@ function sceneOral(a) {
     hx.strokeStyle = enreg ? "rgba(234,98,222,.6)" : "rgba(135,69,253,.28)"; hx.lineWidth = 3 * dpr; hx.lineCap = "round";
     for (let k = 0; k < n; k++) {
       const ang = k / n * Math.PI * 2, f = analyseur && enreg ? (donnees[2 + Math.floor((k < n / 2 ? k : n - k) / (n / 2) * 60)] / 255) : 0;
-      const v = enreg ? (analyseur ? f * 1.2 + niveauVoix * .5 : .25 + .2 * Math.sin(s * 5 + k * .6)) : .05 + .04 * Math.sin(s * 2 + k * .5);
-      const l = halo.width * .2 * Math.min(1, v);
+      const v = enreg ? (analyseur ? f * 1.2 + niveauVoix * .5 : .25 + .2 * Math.sin(s * 5 + k * .6)) : .05 + .04 * Math.sin(s * 2 + k * .5), l = halo.width * .2 * Math.min(1, v);
       hx.beginPath(); hx.moveTo(c + Math.cos(ang) * r0, c + Math.sin(ang) * r0); hx.lineTo(c + Math.cos(ang) * (r0 + 4 * dpr + l), c + Math.sin(ang) * (r0 + 4 * dpr + l)); hx.stroke();
     }
     idHalo = requestAnimationFrame(dessinerHalo);
   };
   idHalo = requestAnimationFrame(dessinerHalo);
-  // l'enregistrement
   let rec = null, flux = null, debut = 0, minuterie = 0, echant = 0, morceaux = [], maVoix = null, envVoix = "", sansMicro = false, atteint = false, exempleVu = false;
   const fmt = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
   const cible = a.duree || 20, max = Math.max(30, cible * 1.6);
@@ -1219,7 +1365,6 @@ function sceneOral(a) {
     if (maVoix && $("[data-ma-voix]", apres)) brancherEcoute($("[data-ma-voix]", apres), maVoix, envVoix);
     if (!exempleVu) $("#voir-ex", apres).onclick = exemple;
   }
-  // l'exemple : la voix et le texte qui s'allume, réplique par réplique
   function exemple() {
     if (exempleVu) return; exempleVu = true;
     Son.joue("papier"); consigne?.pause(); maVoix?.pause(); $("#voir-ex", apres)?.remove();
@@ -1231,16 +1376,15 @@ function sceneOral(a) {
     apres.after(ex); brancherVerif(ex);
     if (a.modeleAudio) { const mm = media(a.modeleAudio); brancherEcoute($(".ecoute", ex), mm, ENV[a.modeleAudio]); const k = $(".kara", ex); suivreKaraoke(mm, k, { lignes: dialogue ? ".ligne" : null }); if (dialogue) k.classList.add("dialogue"); setTimeout(() => jouer(mm, 0), 350); }
     setTimeout(() => ex.scrollIntoView({ behavior: MOUV ? "smooth" : "auto", block: "start" }), 120);
-    dock($(".dock-place", S), null, { action: () => terminer(a, { produit: true }), defiler: false }); majProgres(.8);
+    dock($(".dock-place", S), null, { action: () => terminer(a, { produit: true }), defiler: false }); majProgres();
   }
-  // sans enregistrement, on peut toujours voir l'exemple
-  const passer = document.createElement("button"); passer.className = "sec"; passer.type = "button"; passer.innerHTML = `${I.casque}<span>Voir l'exemple</span>`; passer.onclick = () => { arret(); exemple(); }; passer.style.marginTop = "6px";
+  const passer = document.createElement("button"); passer.className = "sec"; passer.type = "button"; passer.innerHTML = `${I.casque}<span>Voir l'exemple</span>`; passer.onclick = () => { arret(); exemple(); };
   $(".dock-place", S).append(passer);
   courant = {
     demarrer: () => { if (consigne) setTimeout(() => jouer(consigne, 0), 200); },
     arreter: () => { vivant = false; cancelAnimationFrame(idHalo); clearInterval(minuterie); clearInterval(echant); try { if (rec && rec.state !== "inactive") rec.stop(); } catch (e) {} flux?.getTracks().forEach(t => t.stop()); },
+    espace: () => M.click(),
   };
-  courant.espace = () => M.click();
 }
 
 // ---------------------------------------------------------------- le bilan

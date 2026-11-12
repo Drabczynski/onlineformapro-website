@@ -9,6 +9,7 @@ Sources :
 - donnees/modeles.json : les modèles de réponse et les points « Vérifiez » des 58 productions ;
 - donnees/video-hotel-sous-titres.json : les sous-titres de la vidéo de démonstration ;
 - donnees/temps.json : le moment où chaque mot est dit dans les sons (generer_temps.py), calé ici sur le texte écrit ;
+- donnees/questions-lues.json (generer_questions.py), donnees/habillage.json (photos d'ambiance), donnees/aides-ecriture.json ;
 - les sons (../positionnement-fle/sons/) et les photos (../positionnement-fle-2/banque/img/), copiés dans medias/.
 
 La page (page.html) reçoit aussi, pour chaque son, son enveloppe (le volume toutes les 40 ms) : les ondes qui bougent
@@ -33,6 +34,12 @@ MODELES = json.load(open(f_modeles, encoding="utf-8")) if os.path.exists(f_model
 SOUS_TITRES = json.load(open(os.path.join(ICI, "donnees", "video-hotel-sous-titres.json"), encoding="utf-8"))
 f_temps = os.path.join(ICI, "donnees", "temps.json")
 TEMPS = json.load(open(f_temps, encoding="utf-8")) if os.path.exists(f_temps) else {}
+def lire_json(nom):
+    f = os.path.join(ICI, "donnees", nom)
+    return json.load(open(f, encoding="utf-8")) if os.path.exists(f) else {}
+LUES = lire_json("questions-lues.json")       # le texte lu de chaque question (generer_questions.py)
+HAB = lire_json("habillage.json")             # la photo d'ambiance des écrans sans image
+AIDES = lire_json("aides-ecriture.json")      # le support et les débuts de phrase des textes à écrire
 ALPHA = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_"
 
 # une photo par écoute (en attendant la vidéo) : elle pose le lieu sans jamais souffler la réponse
@@ -223,13 +230,44 @@ for i, x in X.items():
             if k: a["modeleK"] = [{"qui": l["qui"], "mots": m} for l, m in zip(a["modele"], k)] if isinstance(a["modele"], list) else [{"mots": m} for m in k]
     activites.append(a)
 
+# le haut-parleur des questions et des consignes, la photo d'ambiance, l'aide à l'écriture
+def lue(i):
+    rel = f"medias/questions/{i}.mp3"
+    if not os.path.exists(os.path.join(ICI, rel)): return None
+    medias.add(rel); return rel
+
+
+def photo_h(nom):
+    rel = f"medias/photos/{nom}.webp"
+    if not os.path.exists(os.path.join(ICI, rel)): return None
+    medias.add(rel); return rel
+
+
+for a in activites:
+    for q in a.get("questions", []):
+        p = lue(q["id"])
+        if p:
+            q["audioQ"] = p
+            k = caler([q["q"]], p) if LUES.get(q["id"]) == q["q"] else None
+            if k: q["qk"] = k[0]
+        if HAB.get(q["id"]) and photo_h(HAB[q["id"]]): q["photoH"] = photo_h(HAB[q["id"]])
+    if a["type"] in ("ecriture", "oral"):
+        p = lue(a["id"])
+        if p:
+            a["audioQ"] = p
+            k = caler([a["consigne"]], p)
+            if k: a["consigneK"] = k[0]
+    if HAB.get(a["id"]) and photo_h(HAB[a["id"]]): a["photoH"] = photo_h(HAB[a["id"]])
+    if a["id"] in AIDES: a["aide"] = AIDES[a["id"]]
+
 # ordre stable : par type puis identifiant
 ORDRE = ["video", "lecture", "grammaire", "ecriture", "reagir", "oral"]
 activites.sort(key=lambda a: (ORDRE.index(a["type"]), a["id"] != "demo-hotel", a["id"]))
 json.dump(activites, open(os.path.join(ICI, "donnees", "activites.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
 # les enveloppes de tous les sons utilisés (les ondes de la page)
-sons = sorted({a.get(c) for a in activites for c in ("audio", "modeleAudio") if a.get(c)} | {q["audio"] for a in activites for q in a.get("questions", []) if q.get("audio")})
+sons = sorted({a.get(c) for a in activites for c in ("audio", "modeleAudio", "audioQ") if a.get(c)}
+              | {q[c] for a in activites for q in a.get("questions", []) for c in ("audio", "audioQ") if q.get(c)})
 ENV = {s_: enveloppe(s_) for s_ in sons}
 
 donnees = json.dumps(activites, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
