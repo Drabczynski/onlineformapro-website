@@ -83,7 +83,8 @@
      "Du pain et des œufs",
      "Des oranges et du pain"
     ],
-    "bonne": 0
+    "bonne": 0,
+    "arret": 6.63
    },
    {
     "id": "VID-01-2",
@@ -94,7 +95,8 @@
      "Cinquante euros",
      "Un euro"
     ],
-    "bonne": 0
+    "bonne": 0,
+    "arret": 9.07
    }
   ]
  },
@@ -140,7 +142,8 @@
      "Un jus d'orange",
      "De l'eau"
     ],
-    "bonne": 0
+    "bonne": 0,
+    "arret": 3.83
    },
    {
     "id": "VID-02-2",
@@ -151,7 +154,8 @@
      "Oui, deux sucres",
      "Il ne sait pas"
     ],
-    "bonne": 0
+    "bonne": 0,
+    "arret": 7.25
    }
   ]
  },
@@ -203,7 +207,8 @@
      "Tourner à gauche tout de suite",
      "Prendre le bus"
     ],
-    "bonne": 0
+    "bonne": 0,
+    "arret": 4.99
    },
    {
     "id": "VID-03-2",
@@ -214,7 +219,8 @@
      "Derrière la gare",
      "En face de la poste"
     ],
-    "bonne": 0
+    "bonne": 0,
+    "arret": 8.25
    }
   ]
  },
@@ -272,7 +278,8 @@
      "Sa sœur",
      "Une amie"
     ],
-    "bonne": 0
+    "bonne": 0,
+    "arret": 3.75
    },
    {
     "id": "VID-04-2",
@@ -283,7 +290,8 @@
      "Des tulipes",
      "Des tournesols"
     ],
-    "bonne": 0
+    "bonne": 0,
+    "arret": 8.85
    }
   ]
  },
@@ -335,7 +343,8 @@
      "Le quai 13",
      "Le quai 4"
     ],
-    "bonne": 0
+    "bonne": 0,
+    "arret": 3.99
    },
    {
     "id": "VID-05-2",
@@ -346,7 +355,8 @@
      "Annulé",
      "Déjà parti"
     ],
-    "bonne": 0
+    "bonne": 0,
+    "arret": 7.39
    }
   ]
  },
@@ -398,7 +408,8 @@
      "À Paris",
      "À Lyon"
     ],
-    "bonne": 0
+    "bonne": 0,
+    "arret": 2.91
    },
    {
     "id": "VID-06-2",
@@ -409,7 +420,8 @@
      "Deux minutes",
      "Une heure"
     ],
-    "bonne": 0
+    "bonne": 0,
+    "arret": 7.67
    }
   ]
  },
@@ -491,7 +503,8 @@
      "Au dos",
      "À la gorge"
     ],
-    "bonne": 0
+    "bonne": 0,
+    "arret": 3.57
    },
    {
     "id": "VID-07-2",
@@ -502,7 +515,8 @@
      "Depuis hier",
      "Depuis ce matin"
     ],
-    "bonne": 0
+    "bonne": 0,
+    "arret": 5.19
    }
   ]
  },
@@ -542,7 +556,8 @@
      "Trois",
      "Quatre"
     ],
-    "bonne": 0
+    "bonne": 0,
+    "arret": 4.11
    },
    {
     "id": "VID-08-2",
@@ -553,7 +568,8 @@
      "Un café",
      "De l'eau"
     ],
-    "bonne": 0
+    "bonne": 0,
+    "arret": 8.31
    }
   ]
  },
@@ -599,7 +615,8 @@
      "Trente-huit euros",
      "Dix-huit euros"
     ],
-    "bonne": 0
+    "bonne": 0,
+    "arret": 4.67
    },
    {
     "id": "VID-09-2",
@@ -610,7 +627,8 @@
      "Par chèque",
      "Avec son téléphone"
     ],
-    "bonne": 0
+    "bonne": 0,
+    "arret": 8.05
    }
   ]
  },
@@ -656,7 +674,8 @@
      "Dix euros par semaine",
      "Vingt euros par an"
     ],
-    "bonne": 0
+    "bonne": 0,
+    "arret": 4.61
    },
    {
     "id": "VID-10-2",
@@ -667,7 +686,8 @@
      "Partout dans le monde",
      "Seulement en France"
     ],
-    "bonne": 0
+    "bonne": 0,
+    "arret": 9.17
    }
   ]
  }
