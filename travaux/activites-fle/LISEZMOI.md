@@ -42,7 +42,8 @@ Prototype de produit fini : des activités d'entraînement tirées de l'Excel «
   Retirées partout le 12 novembre : `formulaire` (bureau sombre vu de haut, remplacée par `remplir-fiche`) et
   `accueil-sante` (remplacée par `secretaire-telephone` pour EO-31, `agenda-accueil` pour EO-01, `medecin` pour EO-45).
   Puis : CO-14 (« thé ou café ? ») deux amies à la maison avec des tasses dont on ne voit pas le contenu, EO-08
-  (« Vous avez des frères et sœurs ? ») un frère et une sœur.
+  (« Vous avez des frères et sœurs ? ») un frère et une sœur, enfants, qui regardent l'objectif (`fratrie`, Izzy
+  Park ; la photo `freres-soeurs` est retirée).
 - **Sur la photo** : le SMS est une carte à la taille du message, posée en bas pour laisser voir le visage, et il
   arrive plus vite. L'exemple oral s'affiche toujours à gauche ; pour une photo à décrire, il s'accroche au bas de
   la photo, qui remonte pour lui laisser la place. Le micro est écarté de la consigne.
@@ -81,6 +82,21 @@ passe à la suite ; toucher une partie du document la reprend. Les étapes des t
 zones : la question en haut, les réponses au centre exact (sur l'axe de l'image), le retour en bas ; rien ne bouge
 quand le retour arrive. À l'oral, le micro est au centre et ne se déplace plus quand on appuie. Les réponses en
 lignes sont à plat, sans tranche ni ombre.
+
+**Grammaire, ce qui se lit va sur la photo** : la phrase citée (« Je viendrai demain. »), les mots à remettre dans
+l'ordre, la phrase à transformer, la situation (« Vous écrivez un SMS à un ami. ») se posent sur la photo, à gauche ;
+la question et les réponses restent à droite. Quand l'Excel ne donne que « Choisissez la bonne réponse. », le titre
+reprend l'énoncé (« Comment écrit-on 15 en lettres ? ») et le nombre s'écrit en très grand sur la photo. Un mot à
+trait d'union (« écrit-on ») ne se coupe plus en fin de ligne.
+
+**Deux trous dans la phrase** (EE-26 « plus… que », EE-35 « suis arrivé / pleuvait ») : on les remplit l'un après
+l'autre. Le trou à remplir est cerclé de violet, l'autre attend ; à droite, « Choisissez le premier mot. » puis « le
+deuxième », avec deux points de suivi, et seulement les mots possibles pour ce trou (tirés des quatre réponses de
+l'Excel). La réponse est juste si les deux mots le sont. Deux ou trois réponses courtes se rangent en ligne.
+
+**Après la réponse, rien ne pâlit** : les autres propositions restent nettes (texte un peu adouci), la mauvaise
+choisie est rose et barrée, et dans un trou, le mot remis après une erreur est cerclé de vert (le vert plein reste
+la bonne réponse donnée). Les réponses arrivent sans fondu.
 
 **Passer en revue toutes les questions** : sous le bouton « Commencer », un lien ouvre la revue. Toutes les
 questions défilent à la suite dans l'ordre des identifiants (CO, CE, EE, EO), sans rideau ; en haut, deux flèches

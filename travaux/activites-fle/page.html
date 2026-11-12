@@ -923,6 +923,37 @@ textarea.saisie-e { min-height: 132px; }
 .doc-e .bulle-moi .val:empty { width: 3.5em; border-bottom-color: rgba(255, 255, 255, .5); }
 .doc-e .bulle-moi .part.ici .val:empty { border-bottom-color: #fff; }
 @media (max-width: 899.98px), (max-height: 559.98px) { .doc-e { padding: 18px; } .doc-e h4 { margin-bottom: 8px; font-size: 20px; } .doc-e .part { margin-bottom: 4px; font-size: 17px; } }
+/* v11 — grammaire : ce qui se lit va sur la photo (la phrase, le mot, le nombre, la situation) ; deux trous se remplissent l'un après
+   l'autre ; deux ou trois réponses courtes se rangent en ligne ; les réponses apparaissent sans fondu (aucune ne peut rester pâle) */
+.g-choix { display: flex; flex-direction: column; align-items: center; width: 100%; }
+.carte-phrase .g-grand { margin: 0; color: var(--encre); font: 800 clamp(96px, 11vw, 168px)/1 var(--titre); letter-spacing: -.03em; }
+.carte-phrase .g-mots span { background: var(--lavande); box-shadow: none; }
+.carte-phrase .g-avant { color: var(--violet); }
+.fente.ici.vide { background: rgba(135, 69, 253, .16); box-shadow: inset 0 0 0 3px var(--violet); }
+.fente.attend.vide { opacity: .4; animation: none; }
+.tete-q .points-e { margin-top: -4px; }
+.alveoles.rang { display: flex; flex-wrap: wrap; justify-content: center; gap: calc(var(--g) * 2); width: auto; height: auto; }
+.alveoles.rang > .tuile { position: relative; left: auto; right: auto; top: auto; }
+@keyframes monte-sans { from { transform: translateY(16px); } }
+@keyframes pose-sans { from { transform: scale(.6); } }
+.bonbons > button { animation-name: monte-sans; transition: translate .1s; }
+.alveoles > .tuile { animation-name: pose-sans; }
+/* v11b — après la réponse, aucune proposition ne pâlit : les autres restent nettes, à l'encre adoucie ; la mauvaise choisie est rose et
+   barrée ; dans un trou, le mot remis après une erreur est cerclé de vert (le vert plein reste réservé à la bonne réponse donnée) */
+.tuile.eteint, .tuile.barree, .bonbons > .eteint, .bonbons > .barree, .imagettes .ch.eteint { opacity: 1; }
+.tuile.eteint .mot { color: #8d84ad; }
+.bonbons > .eteint { color: #8d84ad; }
+.tuile.barree .face { fill: url(#g-rose); } .tuile.barree .levre { fill: var(--rose-levre); } .tuile.barree .mot { text-decoration: line-through; }
+.bonbons > .barree { background: linear-gradient(var(--rose-1), var(--rose-2)); box-shadow: 0 5px 0 var(--rose-levre), 0 9px 0 var(--ombre); }
+.imagettes .ch.eteint img { filter: grayscale(.85); }
+.fente.corrige { background: #fff; box-shadow: inset 0 0 0 .09em var(--vert-2), 0 .08em 0 var(--vert-levre); color: var(--encre); animation: pop .35s cubic-bezier(.2, 1.7, .4, 1); }
+.fente.attend.vide { opacity: 1; background: rgba(135, 69, 253, .05); box-shadow: inset 0 0 0 2px rgba(135, 69, 253, .2); }
+.lie { white-space: nowrap; }
+/* v11c — sur téléphone, la photo de grammaire garde toute la largeur, même quand ce qu'elle porte est petit (le « 15 ») */
+@media (max-width: 899.98px), (max-height: 559.98px) {
+  .sc-gram > .visuel { align-self: stretch; }
+  .carte-phrase .g-grand { font-size: clamp(72px, 18vw, 120px); }
+}
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .etoiles svg { opacity: 1; } }
 </style>
 
@@ -1321,6 +1352,8 @@ function placerChemin() {
 function choixHTML(q, { cls = "ch" } = {}) {
   if (q.images) return `<div class="imagettes">${q.choix.map((c, i) => `<button class="${cls}" type="button" data-i="${i}" style="--n:${i}" aria-label="${echap(c)}"><img src="${echap(q.images[i])}" alt=""><span class="ch-etat" aria-hidden="true"></span></button>`).join("")}</div>`;
   const max = Math.max(...q.choix.map(c => c.length));
+  if (q.choix.length >= 2 && q.choix.length <= 3 && max <= 14)
+    return `<div class="alveoles rang">${q.choix.map((c, i) => hexa(echap(c), "blanc", cls, `type="button" data-i="${i}" style="--n:${i}"`, "button", `<span class="ch-etat" aria-hidden="true"></span>`)).join("")}</div>`;
   if (q.choix.length === 4 && max <= 22)
     return `<div class="alveoles${max > 11 ? " longs" : ""}${q.pictos ? " pictos" : ""}">${q.choix.map((c, i) => hexa(`${q.pictos?.[i] ? `<span class="picto" aria-hidden="true">${q.pictos[i]}</span>` : ""}${echap(c)}`, "blanc", cls, `type="button" data-i="${i}" style="--n:${i}"`, "button", `<span class="ch-etat" aria-hidden="true"></span>`)).join("")}</div>`;
   return `<div class="bonbons">${q.choix.map((c, i) => `<button class="${cls}" type="button" data-i="${i}" style="--n:${i}">${MARQUE_H}<span>${echap(c)}</span><span class="ch-etat" aria-hidden="true"></span></button>`).join("")}</div>`;
@@ -1341,7 +1374,7 @@ function brancherChoix(racine, q, fin) {
 // ---------------------------------------------------------------- pièces communes : la question et son haut-parleur, le panneau de l'image
 const HP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>';
 function titreHTML(texte, audio, k, cls = "q") {
-  return `<div class="q-ligne"><h2 class="${cls}${k ? " kara" : ""}">${k ? karaokeHTML(k) : echap(texte)}${audio ? `&nbsp;<button class="hp" type="button" data-hp="${echap(audio)}" aria-label="Écouter">${HP}</button>` : ""}</h2></div>`;
+  return `<div class="q-ligne"><h2 class="${cls}${k ? " kara" : ""}">${k ? karaokeHTML(k) : echap(texte).replace(/\S+-\S+/g, m => `<span class="lie">${m}</span>`)}${audio ? `&nbsp;<button class="hp" type="button" data-hp="${echap(audio)}" aria-label="Écouter">${HP}</button>` : ""}</h2></div>`;
 }
 function brancherHP(racine) {
   $$("[data-hp]", racine).forEach(b => {
@@ -1480,18 +1513,38 @@ function sceneGrammaire(a) {
   const montrer = () => {
     const q = a.questions[j], n = a.questions.length, trou = trouDe(q); majNiveau(q.niveau || a.niveau);
     const hp = q.audioQ ? `<button class="hp" type="button" data-hp="${echap(q.audioQ)}" aria-label="Écouter">${HP}</button>` : "";
+    // ce qui se lit (la phrase, le mot, le nombre, la situation) va sur la photo ; la question et les réponses restent à droite
+    const poser = (doc) => { if (!PG) return doc; PG.innerHTML = doc; V.classList.toggle("avec-objet", !!doc); brancherHP(PG); return ""; };
     if (trou) {
-      const phrase = echap(trou.replace(/ ([:?!;»])/g, " $1").replace(/ (_{3,})/, " $1")).replace(/_{3,}/, `<span class="fente vide" aria-label="mot manquant"></span>`);
+      const deux = deuxTrous(q, trou); let k = 0;
+      const phrase = echap(trou.replace(/ ([:?!;»])/g, " $1").replace(/ (_{3,})/g, " $1")).replace(deux ? /_{3,}/g : /_{3,}/, () => `<span class="fente vide${deux ? (k++ ? " attend" : " ici") : ""}" aria-label="mot manquant"></span>`);
       const carte = `<div class="carte-phrase">${q.avant ? `<p class="g-avant">${echap(q.avant)}</p>` : ""}<div class="q-ligne"><p class="g-phrase${q.t === "enonce" ? " form" : ""}">${phrase}${hp ? "&nbsp;" + hp : ""}</p></div>${q.indice ? `<p class="g-indice">${echap(q.indice)}</p>` : ""}${q.apres ? `<p class="g-avant">${echap(q.apres)}</p>` : ""}</div>`;
-      if (PG) { PG.innerHTML = carte; V.classList.add("avec-objet"); G.innerHTML = `<div class="tete-q"><p class="g-consigne">Choisissez le bon mot.</p></div>${choixHTML(q, { cls: "puce" })}<div class="dock-place"></div>`; brancherHP(PG); }
-      else { G.innerHTML = `<div class="tete-q">${carte}</div>${choixHTML(q, { cls: "puce" })}<div class="dock-place"></div>`; brancherHP(G); }
-      touche = brancherFente(q, fin);
+      const ch = (sq) => choixHTML(sq, { cls: "puce" });
+      G.innerHTML = `<div class="tete-q">${poser(carte)}<p class="g-consigne" id="g-cons">${deux ? "Choisissez le premier mot." : "Choisissez le bon mot."}</p>${deux ? `<div class="points-e" aria-hidden="true"><i class="ici"></i><i></i></div>` : ""}</div><div class="g-choix" id="g-choix">${ch(deux ? deux[0] : q)}</div><div class="dock-place"></div>`;
+      if (!PG) brancherHP(G);
+      const F = $$(".fente", sc);
+      if (!deux) touche = brancherFente(q, fin, F[0], $$(".puce", G));
+      else {
+        // deux trous : on remplit le premier, puis le second ; la réponse est juste si les deux le sont
+        let justes = 0;
+        const etape = (e) => {
+          F.forEach((f, i) => { f.classList.toggle("ici", i === e); f.classList.toggle("attend", i > e); });
+          $$(".points-e i", G).forEach((pt, i) => { pt.className = i < e ? "fait" : i === e ? "ici" : ""; });
+          if (e) { $("#g-cons", G).textContent = "Choisissez le deuxième mot."; $("#g-choix", G).innerHTML = ch(deux[1]); }
+          touche = brancherFente(deux[e], (juste) => { if (juste) justes++; if (e === 0) setTimeout(() => etape(1), 650); else { F.forEach(f => f.classList.remove("ici")); fin(justes === 2); } }, F[e], $$(".puce", G));
+        };
+        etape(0);
+      }
     } else {
-      const avant = q.t === "mots" ? `<p class="g-avant">${echap(q.etiquette || "")}</p><div class="g-mots">${q.mots.map(m => `<span>${echap(m)}</span>`).join("")}</div>`
-        : q.t === "transformer" ? `<p class="g-avant">${echap(q.vers)}</p><p class="g-phrase form">${echap(q.phrase)}</p>`
-        : q.t === "enonce" ? `${q.avant ? `<p class="g-avant">${echap(q.avant)}</p>` : ""}${q.citation ? `<p class="g-phrase form">${echap(q.citation)}</p>` : ""}${q.apres ? `<p class="g-avant">${echap(q.apres)}</p>` : ""}` : "";
-      if (PG) { PG.innerHTML = ""; V.classList.remove("avec-objet"); }
-      G.innerHTML = `<div class="tete-q">${avant}${titreHTML(q.q, q.audioQ, q.qk)}</div>${choixHTML(q)}<div class="dock-place"></div>`;
+      const generique = /^Choisissez la bonne réponse\.?$/.test(q.q);
+      let doc = "", titre = q.q;
+      if (q.t === "mots") doc = `<p class="g-avant">${echap(q.etiquette || "")}</p><div class="g-mots">${q.mots.map(m => `<span>${echap(m)}</span>`).join("")}</div>`;
+      else if (q.t === "transformer") { doc = `<p class="g-phrase form">${echap(q.phrase)}</p>`; if (generique) titre = q.vers.replace(/\s*:\s*$/, "."); else doc = `<p class="g-avant">${echap(q.vers)}</p>${doc}`; }
+      else if (q.t === "enonce") {
+        if (generique && q.avant) { titre = [q.avant, q.citation, q.apres].filter(Boolean).join(" "); doc = q.citation ? `<p class="g-grand">${echap(q.citation)}</p>` : ""; }
+        else doc = `${q.avant ? `<p class="g-avant">${echap(q.avant)}</p>` : ""}${q.citation ? `<p class="g-phrase form">${echap(q.citation)}</p>` : ""}${q.apres ? `<p class="g-avant">${echap(q.apres)}</p>` : ""}`;
+      }
+      G.innerHTML = `<div class="tete-q">${poser(doc ? `<div class="carte-phrase">${doc}</div>` : "")}${titreHTML(titre, q.audioQ, titre === q.q ? q.qk : null)}</div>${choixHTML(q)}<div class="dock-place"></div>`;
       brancherHP(G); touche = brancherChoix(G, q, fin);
     }
     function fin(juste) {
@@ -1503,8 +1556,14 @@ function sceneGrammaire(a) {
   courant = { demarrer: () => {} };
 }
 
-function brancherFente(q, fin) {
-  const fente = $(".fente"), P = $$(".puce"); let fait = false;
+const deuxTrous = (q, trou) => {
+  if ((trou.match(/_{3,}/g) || []).length !== 2) return null;
+  const m = q.choix.map(c => c.split(/\s*…\s*|\s+\/\s+/).map(x => x.trim()).filter(Boolean));
+  if (!m.every(x => x.length === 2)) return null;
+  return [0, 1].map(k => { const choix = [...new Set(m.map(x => x[k]))]; return { choix, bonne: choix.indexOf(m[q.bonne][k]) }; });
+};
+function brancherFente(q, fin, fente = $(".fente"), P = $$(".puce")) {
+  let fait = false;
   const voler = (puce, texte, apres) => {
     fente.classList.remove("vide"); fente.classList.add("pleine", "cache"); fente.textContent = texte;
     const r1 = puce.getBoundingClientRect(), r2 = fente.getBoundingClientRect();
@@ -1523,7 +1582,7 @@ function brancherFente(q, fin) {
       else {
         fente.classList.add("faux"); Son.joue("faux");
         setTimeout(() => { P[i].classList.remove("partie"); P[i].classList.add("barree"); fente.classList.remove("faux", "pleine"); fente.textContent = "";
-          voler(P[q.bonne], q.choix[q.bonne], () => { fente.classList.add("juste"); Son.joue("coche"); P.forEach((p, k) => k !== i && k !== q.bonne && p.classList.add("eteint")); fin(false); }); }, 650);
+          voler(P[q.bonne], q.choix[q.bonne], () => { fente.classList.add("corrige"); Son.joue("coche"); P.forEach((p, k) => k !== i && k !== q.bonne && p.classList.add("eteint")); fin(false); }); }, 650);
       }
     });
   };
