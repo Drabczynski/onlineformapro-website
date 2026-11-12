@@ -154,6 +154,43 @@
       1.62
      ]
     ]
+   },
+   {
+    "id": "demo-3",
+    "q": "Qui travaille à l'hôtel ?",
+    "choix": [
+     "La réceptionniste",
+     "Le client"
+    ],
+    "bonne": 0,
+    "images": [
+     "medias/video/hotel-receptionniste.webp",
+     "medias/video/hotel-client.webp"
+    ],
+    "arret": 99,
+    "audioQ": "medias/questions/demo-3.mp3",
+    "qk": [
+     [
+      "Qui",
+      0.1,
+      0.22
+     ],
+     [
+      "travaille",
+      0.28,
+      0.76
+     ],
+     [
+      "à",
+      0.8,
+      0.84
+     ],
+     [
+      "l'hôtel ?",
+      0.88,
+      1.24
+     ]
+    ]
    }
   ],
   "karaoke": [
@@ -167,7 +204,7 @@
      ],
      [
       "monsieur.",
-      0.88,
+      0.86,
       1.26
      ]
     ]
@@ -248,7 +285,7 @@
      [
       "Le",
       6.3,
-      6.36
+      6.34
      ],
      [
       "petit",
@@ -258,7 +295,7 @@
      [
       "déjeuner",
       6.56,
-      6.86
+      6.84
      ],
      [
       "finit",
@@ -277,7 +314,7 @@
      ],
      [
       "heure ?",
-      7.32,
+      7.3,
       7.46
      ]
     ]
@@ -287,7 +324,7 @@
     "mots": [
      [
       "Il",
-      8.04,
+      8.02,
       8.1
      ],
      [
@@ -10442,7 +10479,7 @@
     "citation": "Date de naissance : ______",
     "niveau": "A1",
     "audioQ": "medias/questions/EE-01.mp3",
-    "photoH": "medias/photos/formulaire.webp"
+    "photoH": "medias/photos/remplir-fiche.webp"
    },
    {
     "id": "EE-02",
@@ -10460,7 +10497,7 @@
     "apres": "Vous êtes née au Maroc et vous êtes marocaine.",
     "niveau": "A1",
     "audioQ": "medias/questions/EE-02.mp3",
-    "photoH": "medias/photos/formulaire.webp"
+    "photoH": "medias/photos/remplir-fiche.webp"
    },
    {
     "id": "EE-03",
@@ -11014,7 +11051,7 @@
     "etiquette": "Complétez :",
     "niveau": "B1",
     "audioQ": "medias/questions/EE-38.mp3",
-    "photoH": "medias/photos/formulaire.webp"
+    "photoH": "medias/photos/remplir-fiche.webp"
    }
   ]
  },
@@ -11409,7 +11446,7 @@
     4.54
    ]
   ],
-  "photoH": "medias/photos/formulaire.webp",
+  "photoH": "medias/photos/remplir-fiche.webp",
   "aide": {
    "titre": "Remplissez le formulaire",
    "forme": "formulaire"
@@ -11507,10 +11544,19 @@
    "titre": "Prévenez un ami",
    "forme": "sms",
    "destinataire": "Un ami",
-   "amorces": [
-    "Salut !",
-    "Je suis en retard.",
-    "À tout de suite."
+   "etapes": [
+    {
+     "q": "Dites bonjour.",
+     "ph": "Salut…"
+    },
+    {
+     "q": "Dites que vous êtes en retard.",
+     "ph": "Je suis…"
+    },
+    {
+     "q": "Dites quand vous arrivez.",
+     "ph": "J'arrive…"
+    }
    ]
   }
  },
@@ -11721,11 +11767,23 @@
    "forme": "courriel",
    "destinataire": "Votre formatrice",
    "objet": "Absence demain",
-   "amorces": [
-    "Bonjour Madame,",
-    "demain, je ne peux pas venir",
-    "parce que",
-    "Je vous remercie."
+   "etapes": [
+    {
+     "q": "Saluez votre formatrice.",
+     "ph": "Bonjour Madame…"
+    },
+    {
+     "q": "Excusez-vous : demain, vous ne venez pas.",
+     "ph": "Je suis…"
+    },
+    {
+     "q": "Expliquez pourquoi.",
+     "ph": "Je ne peux pas venir parce que…"
+    },
+    {
+     "q": "Terminez votre courriel.",
+     "ph": "Merci…"
+    }
    ]
   }
  },
@@ -11830,11 +11888,19 @@
   "aide": {
    "titre": "Votre week-end",
    "forme": "feuille",
-   "amorces": [
-    "Samedi,",
-    "Dimanche,",
-    "avec",
-    "nous avons"
+   "etapes": [
+    {
+     "q": "Où êtes-vous allé(e) ?",
+     "ph": "Samedi…"
+    },
+    {
+     "q": "Avec qui ?",
+     "ph": "J'étais avec…"
+    },
+    {
+     "q": "Qu'avez-vous fait ?",
+     "ph": "Nous avons…"
+    }
    ]
   }
  },
@@ -11965,10 +12031,19 @@
    "titre": "Invitez un ami",
    "forme": "sms",
    "destinataire": "Un ami",
-   "amorces": [
-    "Salut,",
-    "Je t'invite à dîner",
-    "Mon adresse :"
+   "etapes": [
+    {
+     "q": "Invitez votre ami : le jour et l'heure.",
+     "ph": "Je t'invite…"
+    },
+    {
+     "q": "Donnez votre adresse.",
+     "ph": "Mon adresse…"
+    },
+    {
+     "q": "Dites ce qu'il peut apporter.",
+     "ph": "Tu peux apporter…"
+    }
    ]
   }
  },
@@ -12058,11 +12133,19 @@
   "aide": {
    "titre": "Votre logement",
    "forme": "feuille",
-   "amorces": [
-    "J'habite dans",
-    "Il y a",
-    "J'aime",
-    "parce que"
+   "etapes": [
+    {
+     "q": "Les pièces de votre logement",
+     "ph": "Il y a…"
+    },
+    {
+     "q": "Votre quartier",
+     "ph": "Mon quartier est…"
+    },
+    {
+     "q": "Ce que vous aimez",
+     "ph": "J'aime…"
+    }
    ]
   }
  },
@@ -12204,11 +12287,19 @@
    "forme": "courriel",
    "destinataire": "Service client",
    "objet": "",
-   "amorces": [
-    "Madame, Monsieur,",
-    "J'ai acheté",
-    "il ne fonctionne pas",
-    "Je vous demande"
+   "etapes": [
+    {
+     "q": "Dites ce que vous avez acheté.",
+     "ph": "J'ai acheté…"
+    },
+    {
+     "q": "Expliquez le problème.",
+     "ph": "Il ne fonctionne pas…"
+    },
+    {
+     "q": "Demandez une solution.",
+     "ph": "Je vous demande…"
+    }
    ]
   }
  },
@@ -12284,11 +12375,23 @@
   "aide": {
    "titre": "Donnez votre avis",
    "forme": "forum",
-   "amorces": [
-    "À mon avis,",
-    "D'abord,",
-    "Ensuite,",
-    "Par exemple,"
+   "etapes": [
+    {
+     "q": "Votre opinion",
+     "ph": "À mon avis…"
+    },
+    {
+     "q": "Un premier argument",
+     "ph": "D'abord…"
+    },
+    {
+     "q": "Un deuxième argument",
+     "ph": "Ensuite…"
+    },
+    {
+     "q": "Un exemple",
+     "ph": "Par exemple…"
+    }
    ]
   }
  },
@@ -12423,11 +12526,19 @@
   "aide": {
    "titre": "Un moment important",
    "forme": "feuille",
-   "amorces": [
-    "Au début,",
-    "Ensuite,",
-    "J'ai ressenti",
-    "Aujourd'hui,"
+   "etapes": [
+    {
+     "q": "Quelle expérience ? Quand ?",
+     "ph": "Il y a…"
+    },
+    {
+     "q": "Que s'est-il passé ?",
+     "ph": "Au début…"
+    },
+    {
+     "q": "Qu'avez-vous ressenti ?",
+     "ph": "J'ai ressenti…"
+    }
    ]
   }
  },
@@ -12530,11 +12641,19 @@
    "forme": "courriel",
    "destinataire": "Entreprise de nettoyage",
    "objet": "Candidature",
-   "amorces": [
-    "Madame, Monsieur,",
-    "Je m'appelle",
-    "J'ai travaillé",
-    "Je suis disponible"
+   "etapes": [
+    {
+     "q": "Présentez-vous.",
+     "ph": "Je m'appelle…"
+    },
+    {
+     "q": "Parlez de votre expérience.",
+     "ph": "J'ai travaillé…"
+    },
+    {
+     "q": "Donnez vos disponibilités.",
+     "ph": "Je suis disponible…"
+    }
    ]
   }
  },
@@ -12598,7 +12717,7 @@
     "bonne": 1,
     "t": "replique",
     "etiquette": "La secrétaire, au téléphone",
-    "photo": "medias/photos/accueil-sante.webp",
+    "photo": "medias/photos/secretaire-telephone.webp",
     "replique": "Ne quittez pas, je vous passe le service.",
     "audio": "medias/sons/EO-31.mp3",
     "k": [
@@ -12900,7 +13019,7 @@
     1.16
    ]
   ],
-  "photoH": "medias/photos/accueil-sante.webp"
+  "photoH": "medias/photos/agenda-accueil.webp"
  },
  {
   "id": "EO-02",
@@ -35912,7 +36031,7 @@
     ]
    }
   ],
-  "photoH": "medias/photos/accueil-sante.webp"
+  "photoH": "medias/photos/medecin.webp"
  },
  {
   "id": "EO-46",

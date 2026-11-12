@@ -25,10 +25,19 @@
   "titre": "Prévenez un ami",
   "forme": "sms",
   "destinataire": "Un ami",
-  "amorces": [
-   "Salut !",
-   "Je suis en retard.",
-   "À tout de suite."
+  "etapes": [
+   {
+    "q": "Dites bonjour.",
+    "ph": "Salut…"
+   },
+   {
+    "q": "Dites que vous êtes en retard.",
+    "ph": "Je suis…"
+   },
+   {
+    "q": "Dites quand vous arrivez.",
+    "ph": "J'arrive…"
+   }
   ]
  },
  "EE-17": {
@@ -41,41 +50,78 @@
   "forme": "courriel",
   "destinataire": "Votre formatrice",
   "objet": "Absence demain",
-  "amorces": [
-   "Bonjour Madame,",
-   "demain, je ne peux pas venir",
-   "parce que",
-   "Je vous remercie."
+  "etapes": [
+   {
+    "q": "Saluez votre formatrice.",
+    "ph": "Bonjour Madame…"
+   },
+   {
+    "q": "Excusez-vous : demain, vous ne venez pas.",
+    "ph": "Je suis…"
+   },
+   {
+    "q": "Expliquez pourquoi.",
+    "ph": "Je ne peux pas venir parce que…"
+   },
+   {
+    "q": "Terminez votre courriel.",
+    "ph": "Merci…"
+   }
   ]
  },
  "EE-32": {
   "titre": "Votre week-end",
   "forme": "feuille",
-  "amorces": [
-   "Samedi,",
-   "Dimanche,",
-   "avec",
-   "nous avons"
+  "etapes": [
+   {
+    "q": "Où êtes-vous allé(e) ?",
+    "ph": "Samedi…"
+   },
+   {
+    "q": "Avec qui ?",
+    "ph": "J'étais avec…"
+   },
+   {
+    "q": "Qu'avez-vous fait ?",
+    "ph": "Nous avons…"
+   }
   ]
  },
  "EE-33": {
   "titre": "Invitez un ami",
   "forme": "sms",
   "destinataire": "Un ami",
-  "amorces": [
-   "Salut,",
-   "Je t'invite à dîner",
-   "Mon adresse :"
+  "etapes": [
+   {
+    "q": "Invitez votre ami : le jour et l'heure.",
+    "ph": "Je t'invite…"
+   },
+   {
+    "q": "Donnez votre adresse.",
+    "ph": "Mon adresse…"
+   },
+   {
+    "q": "Dites ce qu'il peut apporter.",
+    "ph": "Tu peux apporter…"
+   }
   ]
  },
  "EE-34": {
   "titre": "Votre logement",
   "forme": "feuille",
-  "amorces": [
-   "J'habite dans",
-   "Il y a",
-   "J'aime",
-   "parce que"
+  "etapes": [
+   {
+    "q": "Les pièces de votre logement",
+    "ph": "Il y a…"
+   },
+   {
+    "q": "Votre quartier",
+    "ph": "Mon quartier est…"
+   },
+   {
+    "q": "Ce que vous aimez",
+    "ph": "J'aime…"
+   }
   ]
  },
  "EE-47": {
@@ -83,31 +129,59 @@
   "forme": "courriel",
   "destinataire": "Service client",
   "objet": "",
-  "amorces": [
-   "Madame, Monsieur,",
-   "J'ai acheté",
-   "il ne fonctionne pas",
-   "Je vous demande"
+  "etapes": [
+   {
+    "q": "Dites ce que vous avez acheté.",
+    "ph": "J'ai acheté…"
+   },
+   {
+    "q": "Expliquez le problème.",
+    "ph": "Il ne fonctionne pas…"
+   },
+   {
+    "q": "Demandez une solution.",
+    "ph": "Je vous demande…"
+   }
   ]
  },
  "EE-48": {
   "titre": "Donnez votre avis",
   "forme": "forum",
-  "amorces": [
-   "À mon avis,",
-   "D'abord,",
-   "Ensuite,",
-   "Par exemple,"
+  "etapes": [
+   {
+    "q": "Votre opinion",
+    "ph": "À mon avis…"
+   },
+   {
+    "q": "Un premier argument",
+    "ph": "D'abord…"
+   },
+   {
+    "q": "Un deuxième argument",
+    "ph": "Ensuite…"
+   },
+   {
+    "q": "Un exemple",
+    "ph": "Par exemple…"
+   }
   ]
  },
  "EE-49": {
   "titre": "Un moment important",
   "forme": "feuille",
-  "amorces": [
-   "Au début,",
-   "Ensuite,",
-   "J'ai ressenti",
-   "Aujourd'hui,"
+  "etapes": [
+   {
+    "q": "Quelle expérience ? Quand ?",
+    "ph": "Il y a…"
+   },
+   {
+    "q": "Que s'est-il passé ?",
+    "ph": "Au début…"
+   },
+   {
+    "q": "Qu'avez-vous ressenti ?",
+    "ph": "J'ai ressenti…"
+   }
   ]
  },
  "EE-50": {
@@ -115,11 +189,19 @@
   "forme": "courriel",
   "destinataire": "Entreprise de nettoyage",
   "objet": "Candidature",
-  "amorces": [
-   "Madame, Monsieur,",
-   "Je m'appelle",
-   "J'ai travaillé",
-   "Je suis disponible"
+  "etapes": [
+   {
+    "q": "Présentez-vous.",
+    "ph": "Je m'appelle…"
+   },
+   {
+    "q": "Parlez de votre expérience.",
+    "ph": "J'ai travaillé…"
+   },
+   {
+    "q": "Donnez vos disponibilités.",
+    "ph": "Je suis disponible…"
+   }
   ]
  }
 }

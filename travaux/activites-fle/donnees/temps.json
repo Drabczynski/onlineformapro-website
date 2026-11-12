@@ -31140,6 +31140,37 @@
 ]
 ]
 },
+"medias/questions/demo-3.mp3": {
+"empreinte": "8f67270e1eee5953",
+"texte": "Qui travaille à l'hôtel ?",
+"mots": [
+[
+"Qui",
+0.1,
+0.22
+],
+[
+"travaille",
+0.28,
+0.76
+],
+[
+"à",
+0.8,
+0.84
+],
+[
+"l'hôtel",
+0.88,
+1.24
+],
+[
+"?",
+1.3,
+1.3
+]
+]
+},
 "medias/sons/CO-01.mp3": {
 "empreinte": "80901c9e3e628924",
 "texte": "Bonjour, je m'appelle Karim. J'ai 32 ans",
@@ -37561,7 +37592,7 @@
 ]
 },
 "medias/video/hotel.mp4": {
-"empreinte": "03bb04cfd365d1c8",
+"empreinte": "d9579ef2a5d04c24",
 "texte": "Bonjour monsieur. Où est la salle du petit déjeuner ? Au rez-de-chaussée, à gauche. Merci. Le petit déjeuner finit à quelle heure ? Il termine à onze heures. D'accord, merci beaucoup.",
 "mots": [
 [
@@ -37571,7 +37602,7 @@
 ],
 [
 "monsieur.",
-0.88,
+0.86,
 1.26
 ],
 [
@@ -37642,7 +37673,7 @@
 [
 "Le",
 6.3,
-6.36
+6.34
 ],
 [
 "petit",
@@ -37652,7 +37683,7 @@
 [
 "déjeuner",
 6.56,
-6.86
+6.84
 ],
 [
 "finit",
@@ -37671,7 +37702,7 @@
 ],
 [
 "heure",
-7.32,
+7.3,
 7.46
 ],
 [
@@ -37681,7 +37712,7 @@
 ],
 [
 "Il",
-8.039,
+8.02,
 8.1
 ],
 [

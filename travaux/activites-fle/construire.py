@@ -50,7 +50,7 @@ PHOTO_CO = {"CO-01": "lucas", "CO-02": "bus", "CO-03": "boulangerie", "CO-04": "
             "CO-18": "medecin", "CO-21": "courses", "CO-23": "appartement", "CO-27": "bureau", "CO-29": "enfants", "CO-31": "voiture",
             "CO-33": "vieux-lyon", "CO-34": "parc", "CO-35": "velo-travail", "CO-38": "presentation", "CO-41": "fromagerie",
             "CO-44": "atelier", "CO-47": "classe", "CO-50": "cinema-entree"}
-PHOTO_EO = {"EO-11": "boulangerie", "EO-13": "famille", "EO-28": "marche", "EO-17": "lucas", "EO-31": "accueil-sante"}
+PHOTO_EO = {"EO-11": "boulangerie", "EO-13": "famille", "EO-28": "marche", "EO-17": "lucas", "EO-31": "secretaire-telephone"}
 PHOTO_EE = {"EE-17": "primeur"}
 PICTOS = {"À droite": "➡️", "À gauche": "⬅️", "En face": "⬆️", "Derrière": "↩️", "Il fait soleil": "☀️", "Il pleut": "🌧️",
           "Il neige": "❄️", "Il fait chaud": "🥵"}
@@ -150,7 +150,11 @@ activites.append({"id": "demo-hotel", "type": "video", "niveau": "A1", "titre": 
                   "script": [c["qui"] + " : " + c["texte"] for c in SOUS_TITRES],
                   "questions": [
                       {"id": "demo-1", "q": "Où est la salle du petit déjeuner ?", "choix": ["Au premier étage, à droite", "Au rez-de-chaussée, à gauche", "Au rez-de-chaussée, à droite", "Au sous-sol"], "bonne": 1},
-                      {"id": "demo-2", "q": "Le petit déjeuner finit à quelle heure ?", "choix": ["À 9 heures", "À 10 heures", "À 11 heures", "À midi"], "bonne": 2}]})
+                      {"id": "demo-2", "q": "Le petit déjeuner finit à quelle heure ?", "choix": ["À 9 heures", "À 10 heures", "À 11 heures", "À midi"], "bonne": 2},
+                      # une question dont les réponses sont des images de la vidéo
+                      {"id": "demo-3", "q": "Qui travaille à l'hôtel ?", "choix": ["La réceptionniste", "Le client"], "bonne": 0,
+                       "images": ["medias/video/hotel-receptionniste.webp", "medias/video/hotel-client.webp"]}]})
+medias.update(["medias/video/hotel-receptionniste.webp", "medias/video/hotel-client.webp"])
 k = caler([c["texte"] for c in SOUS_TITRES], "medias/video/hotel.mp4")
 if k: activites[-1]["karaoke"] = [{"qui": c["qui"], "mots": m} for c, m in zip(SOUS_TITRES, k)]
 
@@ -243,7 +247,7 @@ for p_ in lire_json("ajouts.json"):
 
 # le haut-parleur des questions et des consignes, la photo d'ambiance, l'aide à l'écriture
 # la vidéo interactive : le moment (en secondes) où elle s'arrête pour poser chaque question ; 99 = à la fin
-ARRETS = {"demo-1": 5.3, "demo-2": 99}
+ARRETS = {"demo-1": 5.3, "demo-2": 99, "demo-3": 99}
 def lue(i):
     rel = f"medias/questions/{i}.mp3"
     if not os.path.exists(os.path.join(ICI, rel)): return None

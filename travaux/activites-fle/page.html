@@ -840,35 +840,9 @@ body[data-vue="activite"][data-type="video"] .haut .rond { background: rgba(40, 
 .tel-e .saisie { min-height: clamp(170px, 26vh, 240px); font-size: clamp(21px, 1.8vw, 26px); }
 .amorce.utilisee::after { content: " ×"; opacity: .75; }
 @media (max-width: 899.98px), (max-height: 559.98px) { .o-env::before { padding-top: 60%; } }
-/* v9 — écouter et regarder : après l'écoute, l'image passe à gauche, nette, et la question reste à droite (plus de flou quand on
-   réécoute, plus d'onde sous le retour) ; une barre pour passer en revue toutes les questions */
-.sc-video { background: radial-gradient(55% 45% at 50% 40%, rgba(255, 255, 255, .55), rgba(255, 255, 255, 0) 70%), var(--amb, linear-gradient(170deg, #bcd4f0, #e9d8f0)); }
-.sc-video .ecran { transition: inset .6s var(--doux-sortie), border-radius .6s; }
-.sc-video.phase-reponse .ecran { filter: none; border-radius: 32px; cursor: pointer; }
-.sc-video.phase-reponse .ecran .vis { filter: none; transform: none; }
-.sc-video.phase-reponse .ecran .voile { background: linear-gradient(180deg, rgba(30, 22, 80, 0) 60%, rgba(30, 22, 80, .5) 100%); }
-.sc-video.phase-reponse .ecran .onde-g { left: 7%; bottom: 26px; width: 86%; height: 84px; opacity: 1; transform: none; }
-.sc-video.phase-reponse .ecran .st { bottom: 22px; max-width: 92%; font-size: clamp(18px, 1.6vw, 24px); }
-.centre-q { border: 1.5px solid rgba(255, 255, 255, .8); border-radius: 32px; background: rgba(255, 255, 255, .6); -webkit-backdrop-filter: blur(22px) saturate(1.15); backdrop-filter: blur(22px) saturate(1.15); padding: clamp(22px, 3vw, 46px); color: var(--nuit); }
-.centre-q .q { color: var(--nuit); font-size: clamp(30px, 3vw, 50px); text-shadow: none; }
-.centre-q .dock-mot { color: var(--nuit); }
-.centre-q .hp { color: var(--nuit-douce); }
-.centre-q .relire { border-color: rgba(255, 255, 255, .95); background: rgba(255, 255, 255, .72); color: var(--violet); }
-.centre-q .relire .rondp { background: var(--violet); color: #fff; }
-.centre-q .lien-b { color: var(--nuit-douce); }
-.centre-q .transcrit .ligne { box-shadow: none; }
-.centre-q .alveoles { --w: clamp(140px, 12.5vw, 188px); }
-body:has(.sc-video.phase-reponse) .haut .rond { background: rgba(255, 255, 255, .6); color: var(--nuit); }
-@media (min-width: 900px) and (min-height: 560px) {
-  .sc-video.phase-reponse .ecran { inset: calc(var(--haut) + env(safe-area-inset-top, 0px)) calc(50% + clamp(8px, 1.2vw, 16px)) calc(24px + env(safe-area-inset-bottom, 0px)) clamp(16px, 3.2vw, 44px); }
-  .sc-video .centre-q { inset: calc(var(--haut) + env(safe-area-inset-top, 0px)) clamp(16px, 3.2vw, 44px) calc(24px + env(safe-area-inset-bottom, 0px)) calc(50% + clamp(8px, 1.2vw, 16px)); }
-}
-@media (max-width: 899.98px), (max-height: 559.98px) {
-  .sc-video.phase-reponse .ecran { position: absolute; inset: calc(var(--haut) + env(safe-area-inset-top, 0px)) 16px auto 16px; height: 32vh; border-radius: 28px; }
-  .sc-video .centre-q { inset: calc(var(--haut) + env(safe-area-inset-top, 0px) + 32vh + 14px) 16px 16px 16px; padding: 20px 12px; }
-  .sc-video.phase-reponse .ecran .onde-g { height: 60px; bottom: 16px; }
-  .centre-q .alveoles { --w: min(140px, 30vw); }
-}
+/* v9 — écouter et regarder restent en plein écran, la question au centre. Quand on répond, l'onde du son s'efface (elle passait sous
+   le retour) ; « Réécouter » ou « Revoir » ramène l'image nette en plein écran, puis la question revient. */
+.sc-video.phase-reponse .ecran .onde-g { opacity: 0; }
 /* une photo à décrire : quand l'exemple arrive, la photo se réduit pour que tout tienne à l'écran */
 .visuel.sujet .vis-photo { width: auto; max-width: 100%; margin: 0 auto; transition: max-height .45s var(--doux-sortie); }
 /* la revue de toutes les questions */
@@ -878,6 +852,77 @@ body:has(.sc-video.phase-reponse) .haut .rond { background: rgba(255, 255, 255, 
 .revue [data-rev="-1"] svg { transform: scaleX(-1); }
 .revue select { height: 44px; max-width: min(48vw, 430px); padding: 0 14px; border: 0; border-radius: 999px; background: rgba(255, 255, 255, .9); color: var(--nuit); font: 700 15px/1 var(--texte); }
 .acc-revue { margin: 0; padding-bottom: 6px; text-align: center; animation: rebond .6s var(--ressort) .55s backwards; }
+/* v10 — la pastille du niveau ; des lignes de réponse à plat ; la carte de droite en trois zones (la question, les réponses au
+   centre exact, le retour) ; des images comme réponses ; écrire petit à petit */
+.niv-p { padding: 7px 12px; border-radius: 999px; background: rgba(255, 255, 255, .6); color: var(--nuit); font: 800 13px/1 var(--titre); letter-spacing: .06em; pointer-events: none; }
+.niv-p[hidden], body:not([data-vue="activite"]) .niv-p { display: none; }
+body[data-vue="activite"][data-type="video"] .niv-p { background: rgba(40, 14, 120, .42); color: #fff; }
+.bonbons > button { border: 2px solid var(--lavande); background: #fff; box-shadow: none; }
+.bonbons > button:active:not(:disabled) { translate: 0 1px; box-shadow: none; }
+.bonbons > .juste { border-color: var(--vert-2); background: linear-gradient(var(--vert-1), var(--vert-2)); box-shadow: none; }
+.bonbons > .faux { border-color: var(--rose-2); background: linear-gradient(var(--rose-1), var(--rose-2)); box-shadow: none; }
+.tete-q, .pied-q { display: flex; flex-direction: column; align-items: center; gap: clamp(12px, 2.2vh, 24px); width: 100%; }
+.pied-q .dock-place { width: 100%; }
+.g-consigne { color: var(--nuit); font-size: clamp(24px, 2.3vw, 36px); font-weight: 800; }
+@media (min-width: 900px) and (min-height: 560px) {
+  .sc-duo > .carte-q:has(> .trois) { justify-content: flex-start; }
+  .sc-duo > .carte-q > .trois { flex: 1 1 0; min-height: 0; display: grid; grid-template-rows: 1fr auto minmax(0, 1fr); justify-items: center; align-content: stretch; gap: clamp(18px, 3vh, 30px); width: 100%; }
+  .trois > .tete-q { align-self: end; }
+  .trois > .pied-q, .trois > .dock-place { align-self: start; }
+  .trois > .dock-place { margin-top: 0; }
+  .studio.trois .micro-g { margin-top: 0; }
+  .studio.trois .tete-q { padding-bottom: 14px; }
+  .studio.trois .pied-q { gap: 12px; }
+  .sc-duo .phrase-o { font-size: clamp(28px, 3vw, 50px); line-height: 1.2; }
+}
+@media (max-width: 899.98px), (max-height: 559.98px) { .sc-oral > .carte-q { justify-content: flex-start; } }
+.imagettes { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(14px, 2vw, 28px); width: 100%; }
+.imagettes .ch { position: relative; width: min(300px, 44%); aspect-ratio: 1; padding: 0; overflow: hidden; border: 5px solid #fff; border-radius: 30px; background: #fff; animation: pose .45s var(--ressort) backwards; animation-delay: calc(var(--n) * 90ms + .1s); transition: transform .2s var(--ressort), opacity .3s, border-color .2s; }
+.imagettes .ch img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.imagettes .ch:hover:not(:disabled) { transform: scale(1.04); }
+.imagettes .ch.juste { border-color: var(--vert-2); }
+.imagettes .ch.faux { border-color: var(--rose-2); animation: secoue .45s ease; }
+.imagettes .ch.eteint { opacity: .5; }
+.imagettes .ch-etat { position: absolute; right: 12px; top: 12px; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: #fff; color: var(--encre); transform: scale(0); transition: transform .4s cubic-bezier(.2, 1.8, .4, 1); }
+.imagettes .ch-etat svg { width: 22px; height: 22px; }
+.imagettes .juste .ch-etat, .imagettes .faux .ch-etat { transform: scale(1); }
+/* écrire petit à petit : à droite, une seule chose à écrire à la fois ; à gauche, le document se remplit */
+.sc-ecrit.pas.sc-duo { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.pas-e { display: flex; flex-direction: column; align-items: center; gap: clamp(16px, 2.6vh, 28px); width: 100%; text-align: center; }
+.pas-e .consigne-p { margin: 0; color: var(--nuit-douce); font-size: clamp(16px, 1.3vw, 19px); font-weight: 500; text-wrap: balance; }
+.points-e { display: flex; gap: 9px; }
+.points-e i { width: 10px; height: 10px; border-radius: 50%; background: rgba(135, 69, 253, .2); transition: background .3s, transform .3s; }
+.points-e i.fait { background: var(--violet); }
+.points-e i.ici { background: var(--violet); transform: scale(1.5); }
+.champ-e { display: flex; align-items: center; gap: 14px; width: min(620px, 100%); }
+.champ-e .debut { flex: none; color: var(--nuit); font: 700 clamp(22px, 2vw, 30px)/1.2 var(--texte); }
+.saisie-e { flex: 1; width: 100%; min-width: 0; padding: 16px 20px; border: 2px solid rgba(255, 255, 255, .95); border-radius: 22px; background: #fff; color: var(--encre); font: 600 clamp(21px, 1.9vw, 28px)/1.4 var(--texte); outline: none; resize: none; }
+.saisie-e:focus { border-color: var(--violet); }
+textarea.saisie-e { min-height: 132px; }
+.pas-bas { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.pas-e .jauge { width: min(620px, 100%); }
+.pas-e .jauge .piste { height: 10px; background: rgba(135, 69, 253, .14); }
+.pas-e .jauge b { min-width: 6.5em; font-size: 15px; }
+.doc-e { width: min(560px, 100%); padding: clamp(22px, 2.6vw, 36px); border-radius: 26px; background: #fff; color: var(--encre); text-align: left; }
+.doc-e h4 { margin: 0 0 14px; font: 800 clamp(22px, 2.2vw, 30px)/1.15 var(--titre); }
+.doc-e .mail-l { display: block; margin: 0 0 8px; padding: 0 0 8px; border-bottom: 2px solid var(--lavande); font-size: 17px; }
+.doc-e .mail-l b { display: inline-block; min-width: 3.6em; color: var(--encre-douce); }
+.doc-e .post { margin: 0 0 14px; padding: 12px 16px; border-radius: 16px 16px 16px 4px; background: var(--lavande); font-size: 17px; font-weight: 600; line-height: 1.4; }
+.doc-e .part { margin: 0 0 8px; padding: 4px 8px; border-radius: 12px; font-size: clamp(19px, 1.7vw, 23px); font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; cursor: pointer; transition: background .25s; }
+.doc-e ol { margin: 0; padding-left: 1.7em; color: var(--encre-douce); font-weight: 800; }
+.doc-e ol .part { color: var(--encre); }
+.doc-e .part.ici { background: rgba(135, 69, 253, .1); }
+.doc-e .part.pop { animation: pop .35s cubic-bezier(.2, 1.7, .4, 1); }
+.doc-e .val:empty { display: inline-block; width: 6em; max-width: 100%; height: .9em; border-bottom: 3px dashed rgba(135, 69, 253, .3); vertical-align: baseline; }
+.doc-e p.part > .val:only-child:empty, .doc-e li.part > .val:empty { display: block; width: 100%; height: 1.3em; }
+.doc-e .part.ici .val:empty { border-bottom-color: var(--violet); }
+.doc-e.sms { width: min(420px, 100%); }
+.doc-e .bulle-moi { max-width: 94%; margin: 16px 0 4px auto; padding: 14px 18px; border-radius: 24px 24px 6px 24px; background: var(--violet); color: #fff; font-size: clamp(19px, 1.8vw, 23px); font-weight: 600; line-height: 1.45; }
+.doc-e .bulle-moi .part { display: inline; margin: 0; padding: 2px 4px; border-radius: 8px; font-size: inherit; }
+.doc-e .bulle-moi .part.ici { background: rgba(255, 255, 255, .2); }
+.doc-e .bulle-moi .val:empty { width: 3.5em; border-bottom-color: rgba(255, 255, 255, .5); }
+.doc-e .bulle-moi .part.ici .val:empty { border-bottom-color: #fff; }
+@media (max-width: 899.98px), (max-height: 559.98px) { .doc-e { padding: 18px; } .doc-e h4 { margin-bottom: 8px; font-size: 20px; } .doc-e .part { margin-bottom: 4px; font-size: 17px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .etoiles svg { opacity: 1; } }
 </style>
 
@@ -896,6 +941,7 @@ body:has(.sc-video.phase-reponse) .haut .rond { background: rgba(255, 255, 255, 
 <div id="scene"></div>
 <header class="haut" id="haut">
   <button class="rond" type="button" id="fermer" aria-label="Revenir à l'accueil"></button>
+  <span class="niv-p" id="niveau-p" hidden></span>
   <div class="progres" id="progres" aria-hidden="true"></div>
   <div class="revue" id="revue" hidden></div>
   <button class="rond" type="button" id="bouton-son" aria-label="Couper les sons"></button>
@@ -1172,6 +1218,7 @@ majSon();
 function majProgres() {
   $("#progres").innerHTML = SER().map((p, k) => `<i class="seg${RES()[k]?.fini ? " fait" : ""}${k === etat.k ? " actuel" : ""}"></i>`).join("");
 }
+const majNiveau = (n) => { const P = $("#niveau-p"); P.hidden = !n; P.textContent = n || ""; P.setAttribute("aria-label", n ? "Niveau " + n : ""); };
 let touche = null;
 addEventListener("keydown", (e) => {
   if (e.target.matches("textarea, input, select")) return;
@@ -1205,7 +1252,7 @@ function rideau(a, k, origine, monter) {
   };
   entree.onfinish = () => { S.classList.add("attente"); monter(); minuterie = setTimeout(sortir, 600); R.onclick = sortir; };
 }
-const monterScene = (a) => { document.body.dataset.vue = "activite"; document.body.dataset.type = a.type; majProgres(0); majRevue(); SCENES[a.type](a); };
+const monterScene = (a) => { document.body.dataset.vue = "activite"; document.body.dataset.type = a.type; majProgres(0); majRevue(); majNiveau(a.questions?.[0]?.niveau || a.niveau); SCENES[a.type](a); };
 function lancer(k, origine) {
   const pas = SER()[k]; if (!pas) return accueil();
   quitter(); etat.k = k; if (RES()[k]?.fini) delete RES()[k];               // refaire une rubrique : on repart de zéro
@@ -1272,6 +1319,7 @@ function placerChemin() {
 
 // ---------------------------------------------------------------- réponses à choix (vidéo, lecture, et une partie de la grammaire)
 function choixHTML(q, { cls = "ch" } = {}) {
+  if (q.images) return `<div class="imagettes">${q.choix.map((c, i) => `<button class="${cls}" type="button" data-i="${i}" style="--n:${i}" aria-label="${echap(c)}"><img src="${echap(q.images[i])}" alt=""><span class="ch-etat" aria-hidden="true"></span></button>`).join("")}</div>`;
   const max = Math.max(...q.choix.map(c => c.length));
   if (q.choix.length === 4 && max <= 22)
     return `<div class="alveoles${max > 11 ? " longs" : ""}${q.pictos ? " pictos" : ""}">${q.choix.map((c, i) => hexa(`${q.pictos?.[i] ? `<span class="picto" aria-hidden="true">${q.pictos[i]}</span>` : ""}${echap(c)}`, "blanc", cls, `type="button" data-i="${i}" style="--n:${i}"`, "button", `<span class="ch-etat" aria-hidden="true"></span>`)).join("")}</div>`;
@@ -1309,7 +1357,8 @@ function suiteQuestions(a, zone, { avant = () => "", apresDerniere, fin } = {}) 
   let j = 0, bonnes = 0;
   const montrer = () => {
     const q = a.questions[j], n = a.questions.length;
-    zone.innerHTML = `<div class="bloc-q glisse">${avant(q, j)}${titreHTML(q.q, q.audioQ, q.qk)}${choixHTML(q)}<div class="dock-place"></div></div>`;
+    majNiveau(q.niveau || a.niveau);
+    zone.innerHTML = `<div class="bloc-q trois glisse"><div class="tete-q">${avant(q, j)}${titreHTML(q.q, q.audioQ, q.qk)}</div>${choixHTML(q)}<div class="dock-place"></div></div>`;
     zone.scrollTop = 0; brancherHP(zone);
     touche = brancherChoix(zone, q, (juste) => {
       if (juste) bonnes++; majProgres();
@@ -1342,11 +1391,10 @@ function sceneVideo(a) {
     if (a.sousTitres && cc?.getAttribute("aria-pressed") === "true" && sc.classList.contains("phase-ecoute")) { const c = a.sousTitres.find(c => m.currentTime >= c.d - .1 && m.currentTime <= c.f + .4); st.hidden = !c; if (c && st.dataset.c !== String(c.d)) { st.dataset.c = c.d; st.innerHTML = `<b>${echap(c.qui)}</b>${echap(c.texte)}`; } }
   });
   let repondu = false;
-  m.addEventListener("ended", () => { majJ(); st.hidden = true; if (!repondu && !arrets) setTimeout(reponse, 500); });
+  m.addEventListener("ended", () => { majJ(); st.hidden = true; if (!arrets && sc.classList.contains("phase-ecoute")) setTimeout(reponse, 500); });
   jouerB.onclick = () => { m.paused ? jouer(m, m.ended ? 0 : undefined) : m.pause(); };
   $("[data-act=rejouer]", sc).onclick = () => { Son.joue("tap"); jouer(m, 0); };
   if (vid) m.onclick = () => { if (sc.classList.contains("phase-ecoute")) m.paused ? jouer(m) : m.pause(); };
-  $(".ecran", sc).onclick = () => { if (sc.classList.contains("phase-reponse")) m.paused ? jouer(m, m.ended || !m.currentTime ? 0 : undefined) : m.pause(); };
   if (cc) cc.onclick = () => { const on = cc.getAttribute("aria-pressed") !== "true"; cc.setAttribute("aria-pressed", on); if (!on) st.hidden = true; Son.joue("tap"); };
   const rb = $("[data-act=repondre]", sc); if (rb) rb.onclick = () => { Son.joue("tap"); reponse(); };
   const relire = `<button class="relire" type="button" data-relire><span class="rondp">${I.lire}</span><span>${vid ? "Revoir" : "Réécouter"}</span></button>`;
@@ -1354,24 +1402,33 @@ function sceneVideo(a) {
     avant: () => `<div class="relire-l">${relire}</div>`,
     apresDerniere: (place, juste, bonnes) => dock(place, juste, { action: () => terminer(a, { bonnes, total: a.questions.length }), autre: a.karaoke ? { lib: "Le texte", icone: I.texte, action: () => texte(bonnes) } : null }),
   });
-  function reponse() { if (repondu) return; repondu = true; m.pause(); st.hidden = true; sc.classList.replace("phase-ecoute", "phase-reponse"); Son.joue("papier"); Q.montrer(); }
+  // la première fois, la question s'affiche ; après un « Réécouter », elle revient telle qu'on l'avait laissée
+  function reponse() { if (!sc.classList.contains("phase-ecoute")) return; m.pause(); st.hidden = true; sc.classList.replace("phase-ecoute", "phase-reponse"); Son.joue("papier"); if (!repondu) { repondu = true; Q.montrer(); } }
+  const revoir = (debut = 0) => { Son.joue("tap"); sc.classList.replace("phase-reponse", "phase-ecoute"); jouer(m, debut); };
   function texte(bonnes) {
     zone.innerHTML = `<div class="bloc-q glisse"><div class="relire-l">${relire}</div><div class="transcrit kara">${a.karaoke.map(l => `<p class="ligne">${l.qui ? `<b>${echap(l.qui)}</b>` : ""}${karaokeHTML(l.mots)}</p>`).join("")}</div><div class="dock-place"></div></div>`;
-    brancherRelire(); suivreKaraoke(m, $(".transcrit", zone)); jouer(m, 0);
+    brancherRelire(true); suivreKaraoke(m, $(".transcrit", zone)); jouer(m, 0);
     dock($(".dock-place", zone), null, { action: () => terminer(a, { bonnes, total: a.questions.length }) });
   }
-  const brancherRelire = () => { const b = $("[data-relire]", zone); if (!b) return; const maj = () => { $(".rondp", b).innerHTML = m.paused ? I.lire : I.pause; }; m.addEventListener("play", maj); m.addEventListener("pause", maj); maj(); b.onclick = () => { m.paused ? jouer(m, m.ended || !m.currentTime ? 0 : undefined) : m.pause(); }; };
+  // devant une question, « Réécouter » ramène au plein écran ; devant le texte, le son joue sur place et les mots s'allument
+  const brancherRelire = (surPlace) => { const b = $("[data-relire]", zone); if (!b) return; if (!surPlace) { b.onclick = () => revoir(0); return; }
+    const maj = () => { $(".rondp", b).innerHTML = m.paused ? I.lire : I.pause; }; m.addEventListener("play", maj); m.addEventListener("pause", maj); maj(); b.onclick = () => { m.paused ? jouer(m, m.ended || !m.currentTime ? 0 : undefined) : m.pause(); }; };
   // la vidéo interactive : elle s'arrête d'elle-même au moment de chaque question, puis repart
   if (arrets) {
-    let j = 0, bonnes = 0, pose = false;
+    let j = 0, bonnes = 0, pose = false, rendu = -1;
     const poser = () => {
-      if (pose || !sc.isConnected) return; pose = true; m.pause(); st.hidden = true; sc.classList.replace("phase-ecoute", "phase-reponse"); Son.joue("papier");
+      if (pose || !sc.isConnected) return; pose = true; m.pause(); st.hidden = true; sc.classList.replace("phase-ecoute", "phase-reponse");
+      if (rendu === j) return;                       // on revient d'un « Revoir » : la question est déjà là
+      rendu = j; Son.joue("papier"); majNiveau(a.questions[j].niveau || a.niveau);
       const q = a.questions[j], der = j === a.questions.length - 1;
-      zone.innerHTML = `<div class="bloc-q glisse"><div class="relire-l">${relire}</div>${titreHTML(q.q, q.audioQ, q.qk)}${choixHTML(q)}<div class="dock-place"></div></div>`; zone.scrollTop = 0; brancherHP(zone); brancherRelire();
+      zone.innerHTML = `<div class="bloc-q trois glisse"><div class="tete-q"><div class="relire-l">${relire}</div>${titreHTML(q.q, q.audioQ, q.qk)}</div>${choixHTML(q)}<div class="dock-place"></div></div>`; zone.scrollTop = 0; brancherHP(zone);
+      $("[data-relire]", zone).onclick = () => { pose = false; revoir(a.questions.slice(0, j).reverse().map(x => x.arret).find(t => t < m.duration) ?? 0); };   // revoir le passage
       touche = brancherChoix(zone, q, (juste) => {
         if (juste) bonnes++;
         dock($(".dock-place", zone), juste, der ? { action: () => terminer(a, { bonnes, total: a.questions.length }) } : { lib: "La suite", action: () => {
-          j++; pose = false; touche = null; zone.innerHTML = ""; sc.classList.replace("phase-reponse", "phase-ecoute");
+          j++; pose = false; touche = null;
+          if (m.ended || m.currentTime >= a.questions[j].arret) return poser();          // la vidéo est finie : la question suivante arrive tout de suite
+          zone.innerHTML = ""; sc.classList.replace("phase-reponse", "phase-ecoute");
           $(".ecoute-q", sc).innerHTML = titreHTML(a.questions[j].q, a.questions[j].audioQ, null, "eq"); brancherHP($(".ecoute-q", sc)); jouer(m);
         } });
       });
@@ -1380,7 +1437,8 @@ function sceneVideo(a) {
     requestAnimationFrame(guet);
     m.addEventListener("ended", () => setTimeout(poser, 350));
   }
-  courant = { demarrer: () => { jouer(m, 0).then(ok => { if (!ok) jouerB.classList.add("appelle"); }); }, apresMontrer: () => brancherRelire(), espace: () => { m.paused ? jouer(m, m.ended ? 0 : undefined) : m.pause(); } };
+  courant = { demarrer: () => { jouer(m, 0).then(ok => { if (!ok) jouerB.classList.add("appelle"); }); },
+    apresMontrer: (q) => { brancherRelire(); $(".ecoute-q", sc).innerHTML = titreHTML(q.q, q.audioQ, null, "eq"); brancherHP($(".ecoute-q", sc)); }, espace: () => { m.paused ? jouer(m, m.ended ? 0 : undefined) : m.pause(); } };
 }
 
 // ---------------------------------------------------------------- 2. lecture : le document posé, les questions à côté
@@ -1417,23 +1475,23 @@ function sceneLecture(a) {
 // ---------------------------------------------------------------- 3. grammaire : le mot choisi vole jusqu'au trou
 function sceneGrammaire(a) {
   const q0 = a.questions[0];
-  const sc = rendre(`<section class="scene sc-duo sc-gram">${visuelHTML(q0.photoH, `<div class="pose pose-phrase" id="pose-g"></div>`, "")}<div class="carte-q"><div class="gram" id="gram"></div></div></section>`), G = $("#gram", sc), PG = $("#pose-g", sc), V = $(".visuel", sc);
+  const sc = rendre(`<section class="scene sc-duo sc-gram">${visuelHTML(q0.photoH, `<div class="pose pose-phrase" id="pose-g"></div>`, "")}<div class="carte-q"><div class="gram trois" id="gram"></div></div></section>`), G = $("#gram", sc), PG = $("#pose-g", sc), V = $(".visuel", sc);
   let j = 0, bonnes = 0;
   const montrer = () => {
-    const q = a.questions[j], n = a.questions.length, trou = trouDe(q);
+    const q = a.questions[j], n = a.questions.length, trou = trouDe(q); majNiveau(q.niveau || a.niveau);
     const hp = q.audioQ ? `<button class="hp" type="button" data-hp="${echap(q.audioQ)}" aria-label="Écouter">${HP}</button>` : "";
     if (trou) {
       const phrase = echap(trou.replace(/ ([:?!;»])/g, " $1").replace(/ (_{3,})/, " $1")).replace(/_{3,}/, `<span class="fente vide" aria-label="mot manquant"></span>`);
       const carte = `<div class="carte-phrase">${q.avant ? `<p class="g-avant">${echap(q.avant)}</p>` : ""}<div class="q-ligne"><p class="g-phrase${q.t === "enonce" ? " form" : ""}">${phrase}${hp ? "&nbsp;" + hp : ""}</p></div>${q.indice ? `<p class="g-indice">${echap(q.indice)}</p>` : ""}${q.apres ? `<p class="g-avant">${echap(q.apres)}</p>` : ""}</div>`;
-      if (PG) { PG.innerHTML = carte; V.classList.add("avec-objet"); G.innerHTML = `<p class="g-consigne">Choisissez le bon mot.</p>${choixHTML(q, { cls: "puce" })}<div class="dock-place"></div>`; brancherHP(PG); }
-      else { G.innerHTML = `${carte}${choixHTML(q, { cls: "puce" })}<div class="dock-place"></div>`; brancherHP(G); }
+      if (PG) { PG.innerHTML = carte; V.classList.add("avec-objet"); G.innerHTML = `<div class="tete-q"><p class="g-consigne">Choisissez le bon mot.</p></div>${choixHTML(q, { cls: "puce" })}<div class="dock-place"></div>`; brancherHP(PG); }
+      else { G.innerHTML = `<div class="tete-q">${carte}</div>${choixHTML(q, { cls: "puce" })}<div class="dock-place"></div>`; brancherHP(G); }
       touche = brancherFente(q, fin);
     } else {
       const avant = q.t === "mots" ? `<p class="g-avant">${echap(q.etiquette || "")}</p><div class="g-mots">${q.mots.map(m => `<span>${echap(m)}</span>`).join("")}</div>`
         : q.t === "transformer" ? `<p class="g-avant">${echap(q.vers)}</p><p class="g-phrase form">${echap(q.phrase)}</p>`
         : q.t === "enonce" ? `${q.avant ? `<p class="g-avant">${echap(q.avant)}</p>` : ""}${q.citation ? `<p class="g-phrase form">${echap(q.citation)}</p>` : ""}${q.apres ? `<p class="g-avant">${echap(q.apres)}</p>` : ""}` : "";
       if (PG) { PG.innerHTML = ""; V.classList.remove("avec-objet"); }
-      G.innerHTML = `${avant}${titreHTML(q.q, q.audioQ, q.qk)}${choixHTML(q)}<div class="dock-place"></div>`;
+      G.innerHTML = `<div class="tete-q">${avant}${titreHTML(q.q, q.audioQ, q.qk)}</div>${choixHTML(q)}<div class="dock-place"></div>`;
       brancherHP(G); touche = brancherChoix(G, q, fin);
     }
     function fin(juste) {
@@ -1515,54 +1573,74 @@ function brancherVerif(r) {
 
 // ---------------------------------------------------------------- 5. écrire
 function sceneEcriture(a) {
-  const aide = a.aide || { titre: a.titre, forme: a.formulaire ? "formulaire" : "feuille" }, objectif = a.mots || null;
-  const consigne = `<div class="consigne-l"><p class="consigne-p${a.consigneK ? " kara" : ""}">${a.consigneK ? karaokeHTML(a.consigneK) : echap(a.consigne)}${a.audioQ ? `&nbsp;<button class="hp" type="button" data-hp="${echap(a.audioQ)}" aria-label="Écouter la consigne">${HP}</button>` : ""}</p></div>`;
-  let zone;
-  if (aide.forme === "formulaire") zone = `<div class="champs">${a.formulaire.map((c, i) => `<label>${echap(c)}<input type="text" data-i="${i}" autocomplete="off"></label>`).join("")}</div>`;
-  else if (aide.forme === "lignes") zone = `<div class="lignes-e">${aide.lignes.map(([debut, ph], i) => `<label class="ligne-e" style="--k:${i}"><span class="num">${i + 1}</span><span class="debut">${echap(debut)}</span><input type="text" placeholder="${echap(ph)}" data-debut="${echap(debut)}" autocomplete="off"></label>`).join("")}</div>`;
-  else if (aide.forme === "liste") zone = `<ol class="liste-e">${Array.from({ length: aide.nombre || 5 }, (_, i) => `<li style="--k:${i}"><input type="text" autocomplete="off" aria-label="Article ${i + 1}"></li>`).join("")}</ol>`;
-  else if (aide.forme === "sms") zone = `<div class="tel-e"><div class="tel-tete"><span class="tel-av">${echap((aide.destinataire || "A").charAt(0))}</span><b>${echap(aide.destinataire || "")}</b></div><textarea class="saisie" placeholder="Votre message…" spellcheck="false"></textarea></div>`;
-  else if (aide.forme === "courriel") zone = `<div class="mail-e"><p class="mail-l"><b>À</b><span>${echap(aide.destinataire || "")}</span></p><p class="mail-l"><b>Objet</b><input class="objet" type="text" value="${echap(aide.objet || "")}" placeholder="L'objet du courriel" autocomplete="off"></p><textarea class="saisie" placeholder="Votre courriel…" spellcheck="false"></textarea></div>`;
-  else if (aide.forme === "forum") zone = `<div class="forum-e"><div class="post">${echap(a.support || "")}</div><textarea class="saisie" placeholder="Votre réponse…" spellcheck="false"></textarea></div>`;
-  else zone = `${a.support ? `<div class="forum-e"><div class="post">${echap(a.support)}</div></div>` : ""}<textarea class="saisie feuille-e" placeholder="Écrivez ici…" spellcheck="false"></textarea>`;
-  const amorces = aide.amorces?.length ? `<div class="amorces" aria-label="Débuts de phrase">${aide.amorces.map((t, i) => `<button class="amorce" type="button" style="--k:${i}">${echap(t)}</button>`).join("")}</div>` : "";
+  const aide = a.aide || { titre: a.titre, forme: a.formulaire ? "formulaire" : "feuille" }, objectif = a.mots || null, F = aide.forme, maju = (t) => t.charAt(0).toUpperCase() + t.slice(1);
+  // les étapes : une seule chose à écrire à la fois (les champs du formulaire, les phrases, les articles de la liste, ou les éléments demandés par la consigne)
+  const E = F === "formulaire" ? a.formulaire.map(c => ({ q: c, etiq: c, court: true }))
+    : F === "lignes" ? aide.lignes.map(([debut, ph]) => ({ q: maju(ph), debut, court: true }))
+    : F === "liste" ? Array.from({ length: aide.nombre || 5 }, (_, i) => ({ q: `Chose n° ${i + 1}`, court: true }))
+    : (aide.etapes || [{ q: aide.titre || a.titre, ph: "Écrivez ici…" }]);
+  const V = E.map(() => ""); let k = 0, atteint = false;
+  const B = F === "sms" ? "span" : F === "liste" ? "li" : "p";
+  const parts = E.map((e, i) => `<${B} class="part" data-i="${i}">${e.etiq ? `<b>${echap(e.etiq)} :</b> ` : e.debut ? `<b>${echap(e.debut)}</b> ` : ""}<span class="val"></span></${B}>`).join(F === "sms" ? " " : "");
+  const doc = F === "sms" ? `<div class="objet o-tel doc-e sms"><div class="tel-tete"><span class="tel-av">${echap((aide.destinataire || "A").charAt(0))}</span><span><b>${echap(aide.destinataire || "")}</b><small>SMS</small></span></div><p class="bulle-moi">${parts}</p></div>`
+    : `<div class="objet doc-e ${F}"><h4>${echap(aide.titre || a.titre)}</h4>${F === "courriel" ? `<p class="mail-l"><b>À</b> ${echap(aide.destinataire || "")}</p>${aide.objet ? `<p class="mail-l"><b>Objet</b> ${echap(aide.objet)}</p>` : ""}` : ""}${a.support && F !== "formulaire" ? `<p class="post">${echap(a.support)}</p>` : ""}${F === "liste" ? `<ol>${parts}</ol>` : parts}</div>`;
   const jauge = objectif ? `<div class="jauge" id="jauge"><span class="piste"><i></i></span><b>0 / ${objectif[0]} mots</b></div>` : "";
-  const sc = rendre(`<section class="scene sc-duo sc-ecrit">${visuelHTML(a.photo || a.photoH, `<h2 class="titre-v">${echap(aide.titre || a.titre)}</h2>`, "avec-titre")}
-    <div class="carte-q carte-ecrit">${consigne}${zone}${amorces}${jauge}<div class="dock-place"></div></div></section>`);
+  const photo = a.photo || a.photoH;
+  const sc = rendre(`<section class="scene sc-duo sc-ecrit pas">${visuelHTML(photo, `<div class="pose">${doc}</div>`, photo ? "avec-objet" : "avec-objet couleur")}
+    <div class="carte-q"><div class="pas-e trois">
+      <div class="tete-q"><p class="consigne-p${a.consigneK ? " kara" : ""}">${a.consigneK ? karaokeHTML(a.consigneK) : echap(a.consigne)}${a.audioQ ? `&nbsp;<button class="hp" type="button" data-hp="${echap(a.audioQ)}" aria-label="Écouter la consigne">${HP}</button>` : ""}</p>
+        ${E.length > 1 ? `<div class="points-e" aria-hidden="true">${E.map(() => "<i></i>").join("")}</div>` : ""}<h2 class="q" id="pas-q"></h2></div>
+      <div class="champ-e" id="champ"></div>
+      <div class="pied-q"><div class="pas-bas"><button class="go" type="button" id="pas-go"></button><button class="lien-b" type="button" id="pas-retour">Revenir en arrière</button></div>${jauge}</div>
+    </div></div></section>`);
   brancherHP(sc);
-  const carte = $(".carte-ecrit", sc), saisie = $(".saisie", sc), J = $("#jauge", sc); let atteint = false;
+  const J = $("#jauge", sc), P = $$(".part", sc);
   const texte = () => {
-    if (aide.forme === "lignes") return $$(".ligne-e input", sc).map(i => i.value.trim() ? `${i.dataset.debut} ${i.value.trim()}${/[.!?]$/.test(i.value.trim()) ? "" : "."}` : "").filter(Boolean).join(" ");
-    if (aide.forme === "liste") return $$(".liste-e input", sc).map(i => i.value.trim()).filter(Boolean).join(", ");
-    if (aide.forme === "formulaire") return a.formulaire.map((c, i) => `${c} : ${$(`input[data-i="${i}"]`, sc).value.trim()}`).join("\n");
-    return (aide.forme === "courriel" && $(".objet", sc).value.trim() ? `Objet : ${$(".objet", sc).value.trim()}\n\n` : "") + (saisie?.value.trim() || "");
+    const L = V.map(v => v.trim());
+    if (F === "lignes") return E.map((e, i) => L[i] ? `${e.debut} ${L[i]}${/[.!?]$/.test(L[i]) ? "" : "."}` : "").filter(Boolean).join(" ");
+    if (F === "liste") return L.filter(Boolean).join(", ");
+    if (F === "formulaire") return E.map((e, i) => `${e.etiq} : ${L[i]}`).join("\n");
+    return (F === "courriel" && aide.objet ? `Objet : ${aide.objet}\n\n` : "") + L.filter(Boolean).join(F === "courriel" ? "\n\n" : " ");
   };
-  const compter = () => aide.forme === "lignes" ? (texte().match(/[\p{L}\d][\p{L}\d'’-]*/gu) || []).length : aide.forme === "liste" ? $$(".liste-e input", sc).filter(i => i.value.trim()).length : ((saisie?.value || "").match(/[\p{L}\d][\p{L}\d'’-]*/gu) || []).length;
+  const compter = () => F === "liste" ? V.filter(v => v.trim()).length : (texte().replace(/^Objet : .*\n/, "").match(/[\p{L}\d][\p{L}\d'’-]*/gu) || []).length;
   const maj = () => {
-    if (!J) return; const n = compter(), [mn, mx] = objectif, p = Math.min(100, 100 * n / mn);
-    $("i", J).style.width = p + "%"; $("b", J).textContent = n >= mn ? `${n} mots · bien !` : `${n} / ${mn} mots`; J.classList.toggle("atteint", n >= mn && n <= mx + 10);
-    if (n >= mn && !atteint) { atteint = true; Son.joue("etincelle"); jetDepuis($(".piste", J), 24, 6); }
+    if (!J) return; const n = compter(), [mn, mx] = objectif;
+    $("i", J).style.width = Math.min(100, 100 * n / mn) + "%"; $("b", J).textContent = n >= mn ? `${n} mots · bien !` : `${n} / ${mn} mots`; J.classList.toggle("atteint", n >= mn && n <= mx + 10);
+    if (n >= mn && !atteint) { atteint = true; Son.joue("etincelle"); }
     if (n < mn) atteint = false;
   };
-  carte.addEventListener("input", maj);
-  $$(".amorce", sc).forEach(b => b.onclick = () => {
-    if (!saisie) return; const t = b.textContent;
-    if (b.classList.contains("utilisee")) { const i = saisie.value.indexOf(t); if (i >= 0) { saisie.value = (saisie.value.slice(0, i) + saisie.value.slice(i + t.length).replace(/^[ \n]/, "")).replace(/^\s+/, ""); } b.classList.remove("utilisee"); saisie.focus(); maj(); Son.joue("tap"); return; }
-    const pos = saisie.selectionStart ?? saisie.value.length, av = saisie.value.slice(0, pos), ap = saisie.value.slice(pos);
-    const sep = av && !/[\s\n]$/.test(av) ? " " : "", ajout = sep + t + (/[,:]$|\.\.\.$|…$/.test(t) || !/[.!?]$/.test(t) ? " " : "\n");
-    saisie.value = av + ajout + ap; const c = (av + ajout).length; saisie.focus(); saisie.setSelectionRange(c, c); maj();
-    b.classList.add("utilisee"); Son.joue("pop"); b.animate([{ transform: "scale(1)" }, { transform: "scale(1.12)" }, { transform: "scale(1)" }], { duration: 260 });
-  });
+  // le document, à gauche, se remplit pendant qu'on écrit
+  const ecrire = (i) => { const v = V[i].trim(); $(".val", P[i]).textContent = v && F === "lignes" && !/[.!?]$/.test(v) ? v + "." : v; };
+  const montrer = () => {
+    const e = E[k], der = k === E.length - 1;
+    $("#pas-q", sc).textContent = e.q;
+    $$(".points-e i", sc).forEach((p, i) => { p.className = i < k ? "fait" : i === k ? "ici" : ""; });
+    $("#champ", sc).innerHTML = `${e.debut ? `<span class="debut">${echap(e.debut)}</span>` : ""}${e.court ? `<input class="saisie-e" type="text" autocomplete="off" aria-label="${echap(e.q)}" placeholder="${echap(e.ph || "")}">` : `<textarea class="saisie-e" rows="3" spellcheck="false" aria-label="${echap(e.q)}" placeholder="${echap(e.ph || "Écrivez ici…")}"></textarea>`}`;
+    const S = $(".saisie-e", sc); S.value = V[k];
+    S.oninput = () => { V[k] = S.value; ecrire(k); maj(); };
+    S.onkeydown = (ev) => { if (ev.key === "Enter" && !ev.shiftKey) { ev.preventDefault(); suivant(); } };
+    $("#pas-go", sc).innerHTML = `${der ? "J'ai fini" : "Suivant"} ${I.suite}`;
+    $("#pas-retour", sc).hidden = k === 0;
+    P.forEach((p, i) => p.classList.toggle("ici", i === k));
+    S.focus({ preventScroll: true });
+  };
+  const suivant = () => {
+    Son.joue(V[k].trim() ? "pop" : "tap"); P[k].classList.remove("pop"); void P[k].offsetWidth; if (V[k].trim()) P[k].classList.add("pop");
+    if (k < E.length - 1) { k++; montrer(); } else fini();
+  };
+  $("#pas-go", sc).onclick = suivant;
+  $("#pas-retour", sc).onclick = () => { if (k > 0) { Son.joue("tap"); k--; montrer(); } };
+  P.forEach((p, i) => p.onclick = () => { Son.joue("tap"); k = i; montrer(); });      // toucher une partie du document pour la reprendre
   const fini = () => {
     const mien = texte();
-    const corps = a.modele && typeof a.modele === "object" && !Array.isArray(a.modele) ? `<div class="fiche-ex">${Object.entries(a.modele).map(([k, v]) => `<p><b>${echap(k)} :</b> ${echap(v)}</p>`).join("")}</div>` : `<p class="texte-ex">${echap(a.modele || "")}</p>`;
+    const corps = a.modele && typeof a.modele === "object" && !Array.isArray(a.modele) ? `<div class="fiche-ex">${Object.entries(a.modele).map(([c, v]) => `<p><b>${echap(c)} :</b> ${echap(v)}</p>`).join("")}</div>` : `<p class="texte-ex">${echap(a.modele || "")}</p>`;
     sc.classList.add("compare");
     sc.innerHTML = `<div class="carte-q mien"><h3 class="titre-mien">Votre texte</h3><p class="mon-texte">${echap(mien)}</p></div><div class="exemple"><h3>Un exemple</h3>${corps}<div class="dock-place"></div></div>`;
     brancherVerif(sc); Son.joue("papier"); $("#scene").scrollTop = 0;
     dock($(".dock-place", sc), null, { action: () => terminer(a, { produit: true }), defiler: false }); majProgres();
   };
-  dock($(".dock-place", sc), null, { lib: "J'ai fini", action: fini, defiler: false });
-  courant = { demarrer: () => { ($(".ligne-e input", sc) || saisie || $("input", sc))?.focus({ preventScroll: true }); } };
+  montrer();
+  courant = { demarrer: () => { $(".saisie-e", sc)?.focus({ preventScroll: true }); } };
 }
 
 // ---------------------------------------------------------------- 6. parler : écouter, s'enregistrer, comparer
@@ -1585,12 +1663,12 @@ function sceneOral(a) {
     ? `<div class="q-ligne"><h2 class="consigne-o${a.k ? " kara" : ""}">${a.k ? karaokeHTML(a.k) : echap(a.consigne)}${hpP}</h2></div>`
     : `<div class="q-ligne"><h2 class="consigne-o${hp && a.consigneK ? " kara" : ""}">${hp && a.consigneK ? karaokeHTML(a.consigneK) : echap(a.consigne)}${hp ? "&nbsp;" + hp : ""}</h2></div>${a.audio ? ecouteHTML(a.sous === "question" ? "Écouter la question" : "Écouter") : ""}`;
   const sc = rendre(`<section class="scene sc-duo sc-oral">${visuelHTML(photo, support, clsV)}
-    <div class="carte-q"><div class="studio" id="studio">
-      ${entete}
+    <div class="carte-q"><div class="studio trois" id="studio">
+      <div class="tete-q">${entete}</div>
       <button class="micro-g" type="button" id="micro" aria-label="Appuyer pour parler"><canvas aria-hidden="true"></canvas><svg class="anneau" viewBox="0 0 100 100" aria-hidden="true"><circle class="fond-a" cx="50" cy="50" r="46"/><circle class="plein" cx="50" cy="50" r="46" pathLength="100" stroke-dasharray="0 100"/></svg><span class="ic-m">${I.micro}</span></button>
-      <p class="chrono-g" id="chrono">0:00</p><p class="aide-g" id="aide">Appuyez et parlez.</p>
+      <div class="pied-q"><p class="chrono-g" id="chrono">0:00</p><p class="aide-g" id="aide">Appuyez et parlez.</p>
       <div class="apres" id="apres"></div>
-      <div class="dock-place"></div>
+      <div class="dock-place"></div></div>
     </div></div></section>`);
   const S = $("#studio", sc), M = $("#micro", sc), plein = $(".plein", M), chrono = $("#chrono", sc), aide = $("#aide", sc), apres = $("#apres", sc);
   brancherHP(S);

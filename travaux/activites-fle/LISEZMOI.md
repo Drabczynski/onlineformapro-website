@@ -39,6 +39,8 @@ Prototype de produit fini : des activités d'entraînement tirées de l'Excel «
   réponse), CO-33 le vieux Lyon, CO-21 (annonce du magasin) un rayon de supermarché sans fruits, EE-17 le même rayon.
   Puis : CE-06 (fiche d'inscription) une main qui remplit une fiche, CO-07 (« Quel jour est le rendez-vous ? ») une
   secrétaire à l'accueil devant son agenda, CO-17 (les cheveux d'Amina) des mains qui tiennent des photos, sans visage.
+  Retirées partout le 12 novembre : `formulaire` (bureau sombre vu de haut, remplacée par `remplir-fiche`) et
+  `accueil-sante` (remplacée par `secretaire-telephone` pour EO-31, `agenda-accueil` pour EO-01, `medecin` pour EO-45).
   Puis : CO-14 (« thé ou café ? ») deux amies à la maison avec des tasses dont on ne voit pas le contenu, EO-08
   (« Vous avez des frères et sœurs ? ») un frère et une sœur.
 - **Sur la photo** : le SMS est une carte à la taille du message, posée en bas pour laisser voir le visage, et il
@@ -62,10 +64,23 @@ sur l'image, puis la vidéo repart jusqu'à la question suivante (les moments d'
 `construire.py`). Il n'y a pour l'instant qu'**une vraie vidéo** (« À l'hôtel », 10 secondes) : elle revient donc dans
 chaque série. Les autres scènes se génèrent avec `../videos-ia/` (clé `FAL_KEY`, environ 1 $ la scène de 8 secondes).
 
-**Écouter et regarder, après l'écoute** : l'image (photo ou vidéo) passe à gauche, nette, dans son cadre ; la
-question et les réponses sont à droite, dans la même carte que les autres rubriques. On peut réécouter ou revoir
-pendant qu'on répond (bouton « Réécouter » ou « Revoir », ou en touchant l'image) sans que rien ne se floute, et
-l'onde du son reste dans l'image, loin du retour « Bravo ! ».
+**Écouter et regarder** restent en plein écran, la question au centre de l'image floutée (la version « image à
+gauche, question à droite » a été essayée le 12 novembre et écartée). Quand on répond, l'onde du son s'efface : elle
+passait sous le retour « Bravo ! ». « Réécouter » ou « Revoir » ramène l'image nette en plein écran ; à la fin, ou en
+touchant « Répondre », la question revient telle qu'on l'avait laissée. Une question peut avoir **des images comme
+réponses** (`images` dans la question) : la vidéo de l'hôtel en a une, avec deux images tirées de la vidéo. La vidéo
+est celle d'origine, en 1280 × 720 (elle avait été trop compressée).
+
+**Écrire petit à petit** : les douze sujets sont ceux de l'Excel, consigne mot pour mot. À droite, une seule chose à
+écrire à la fois (un champ du formulaire, une phrase, un article de la liste, ou l'un des éléments demandés par la
+consigne) ; à gauche, le document (liste, SMS, courriel, fiche) se remplit pendant qu'on écrit. Entrée ou « Suivant »
+passe à la suite ; toucher une partie du document la reprend. Les étapes des textes libres sont dans
+`donnees/aides-ecriture.json` (`etapes`) : elles découpent la consigne, elles ne viennent pas de l'Excel.
+
+**Sur chaque question** : une pastille près de la croix donne le niveau (A1, A2, B1). La carte de droite a trois
+zones : la question en haut, les réponses au centre exact (sur l'axe de l'image), le retour en bas ; rien ne bouge
+quand le retour arrive. À l'oral, le micro est au centre et ne se déplace plus quand on appuie. Les réponses en
+lignes sont à plat, sans tranche ni ombre.
 
 **Passer en revue toutes les questions** : sous le bouton « Commencer », un lien ouvre la revue. Toutes les
 questions défilent à la suite dans l'ordre des identifiants (CO, CE, EE, EO), sans rideau ; en haut, deux flèches

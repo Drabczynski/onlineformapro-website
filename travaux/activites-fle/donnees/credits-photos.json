@@ -1,9 +1,4 @@
 {
- "accueil-sante": {
-  "auteur": "Dental Implants Tasmania",
-  "id": "97A7qum-dvg",
-  "lien": "https://unsplash.com/photos/97A7qum-dvg"
- },
  "album-photos": {
   "auteur": "Vitaly Gariev",
   "id": "JFGWDxe_rNY",
@@ -118,11 +113,6 @@
   "auteur": "Daria Trofimova",
   "id": "DNI1SfLw5Q0",
   "lien": "https://unsplash.com/photos/DNI1SfLw5Q0"
- },
- "formulaire": {
-  "auteur": "Zulfugar Karimov",
-  "id": "Y2NR5WmOPDA",
-  "lien": "https://unsplash.com/photos/Y2NR5WmOPDA"
  },
  "fromagerie": {
   "auteur": "snap wander",
@@ -348,5 +338,10 @@
   "auteur": "Dwayne joe",
   "id": "NxfI-XqqVDE",
   "lien": "https://unsplash.com/photos/NxfI-XqqVDE"
+ },
+ "secretaire-telephone": {
+  "auteur": "Vitaly Gariev",
+  "id": "g8mShCQPf9g",
+  "lien": "https://unsplash.com/photos/g8mShCQPf9g"
  }
 }
