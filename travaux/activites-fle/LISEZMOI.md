@@ -37,6 +37,11 @@ Prototype de produit fini : des activités d'entraînement tirées de l'Excel «
   (« J'achète deux… ») un étal de pommes, CO-15 (« Je suis cuisinier ») une salle de restaurant, CO-10 (« Il neige »)
   une personne à la fenêtre, vue de l'intérieur (ni soleil ni neige : la photo ne contredit pas et ne souffle pas la
   réponse), CO-33 le vieux Lyon, CO-21 (annonce du magasin) un rayon de supermarché sans fruits, EE-17 le même rayon.
+  Puis : CE-06 (fiche d'inscription) une main qui remplit une fiche, CO-07 (« Quel jour est le rendez-vous ? ») une
+  secrétaire à l'accueil devant son agenda, CO-17 (les cheveux d'Amina) des mains qui tiennent des photos, sans visage.
+- **Sur la photo** : le SMS est une carte à la taille du message, posée en bas pour laisser voir le visage, et il
+  arrive plus vite. L'exemple oral s'affiche toujours à gauche ; pour une photo à décrire, il s'accroche au bas de
+  la photo, qui remonte pour lui laisser la place. Le micro est écarté de la consigne.
 
 ## Ce que fait la page (version 2)
 

@@ -44,8 +44,8 @@ ALPHA = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_"
 
 # une photo par écoute (en attendant la vidéo) : elle pose le lieu sans jamais souffler la réponse
 PHOTO_CO = {"CO-01": "lucas", "CO-02": "bus", "CO-03": "boulangerie", "CO-04": "classe", "CO-05": "amir", "CO-06": "rue",
-            "CO-07": "accueil-sante", "CO-08": "telephone-2", "CO-09": "couple", "CO-10": "fenetre-the", "CO-11": "conversation",
-            "CO-12": "ecole", "CO-13": "gare", "CO-14": "amies", "CO-15": "salle-restaurant", "CO-16": "marche", "CO-17": "chez-amie",
+            "CO-07": "agenda-accueil", "CO-08": "telephone-2", "CO-09": "couple", "CO-10": "fenetre-the", "CO-11": "conversation",
+            "CO-12": "ecole", "CO-13": "gare", "CO-14": "amies", "CO-15": "salle-restaurant", "CO-16": "marche", "CO-17": "photos-main",
             "CO-18": "medecin", "CO-21": "courses", "CO-23": "appartement", "CO-27": "bureau", "CO-29": "enfants", "CO-31": "voiture",
             "CO-33": "vieux-lyon", "CO-34": "parc", "CO-35": "velo-travail", "CO-38": "presentation", "CO-41": "fromagerie",
             "CO-44": "atelier", "CO-47": "classe", "CO-50": "cinema-entree"}

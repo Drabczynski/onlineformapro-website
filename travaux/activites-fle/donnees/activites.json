@@ -932,7 +932,7 @@
   "titre": "Rendez-vous",
   "theme": "Rendez-vous",
   "video": null,
-  "poster": "medias/photos/accueil-sante.webp",
+  "poster": "medias/photos/agenda-accueil.webp",
   "audio": "medias/sons/CO-07.mp3",
   "script": [
    "Aujourd'hui, nous sommes mardi. Le rendez-vous est demain."
@@ -1967,7 +1967,7 @@
   "titre": "Famille",
   "theme": "Famille",
   "video": null,
-  "poster": "medias/photos/chez-amie.webp",
+  "poster": "medias/photos/photos-main.webp",
   "audio": "medias/sons/CO-17.mp3",
   "script": [
    "Ma sœur s'appelle Amina. Elle a les cheveux longs et noirs."
@@ -7172,7 +7172,7 @@
       1.66
      ]
     ],
-    "photoH": "medias/photos/formulaire.webp"
+    "photoH": "medias/photos/remplir-fiche.webp"
    },
    {
     "id": "CE-07",
@@ -7226,7 +7226,7 @@
     ]
    }
   ],
-  "photoH": "medias/photos/formulaire.webp"
+  "photoH": "medias/photos/remplir-fiche.webp"
  },
  {
   "id": "CE-08",

@@ -801,6 +801,22 @@ body { font-weight: 500; }
 body[data-vue="activite"] .haut .rond { background: rgba(255, 255, 255, .6); color: var(--nuit); }
 body[data-vue="activite"][data-type="video"] .haut .rond { background: rgba(40, 14, 120, .42); color: #fff; }
 
+/* v7.1 — l'exemple posé sur la photo : la carte est elle-même le cadre qui défile (plus de tranche coupée aux coins) */
+.visuel .ex-pose { border-radius: 26px; background: #fff; }
+.visuel .ex-pose .exemple-o { border-radius: 0; background: none; box-shadow: none; }
+.visuel.uni.avec-ex .horloge-g, .visuel.uni.avec-ex .postit { flex: none; }
+/* une photo à décrire : l'exemple s'accroche au bas de la photo, sans cacher les visages */
+.sc-duo > .visuel.sujet { overflow: visible; background: none; }
+.visuel.sujet .vis-photo { border-radius: 32px; }
+.sc-duo > .visuel.sujet.avec-ex { align-self: start; }
+.visuel.sujet .ex-pose { top: calc(100% - 56px); bottom: auto; max-height: none; overflow: visible; }
+/* le micro respire sous la consigne */
+.studio .micro-g { margin-top: clamp(20px, 4vh, 44px); }
+/* le SMS : une carte à la taille du message, posée en bas, pour laisser voir la photo */
+.visuel .o-tel { min-height: 0; }
+.visuel .o-tel .tel-fil { padding: 16px 4px 6px; }
+.visuel:has(.o-tel) .pose { align-self: end; padding-bottom: clamp(18px, 2.4vw, 32px); }
+@media (min-width: 900px) and (min-height: 560px) { .sc-lecture { transition-duration: .5s; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .etoiles svg { opacity: 1; } }
 </style>
 
@@ -1272,8 +1288,8 @@ function sceneLecture(a) {
   $(".visuel", sc).onclick = question;
   const mots = (JSON.stringify(a.doc).match(/\p{L}{2,}/gu) || []).length;
   courant = { ...courant, demarrer: () => {
-    if (a.doc.t === "sms") { setTimeout(() => { const [e, b] = $$(".bulle-sms", sc); e.hidden = true; b.hidden = false; b.classList.add("arrive"); Son.joue("pop"); }, 1100); }
-    minuterie = setTimeout(question, Math.max(1400, Math.min(4000, mots * 170 + (a.doc.t === "sms" ? 1100 : 0))));
+    if (a.doc.t === "sms") { setTimeout(() => { const [e, b] = $$(".bulle-sms", sc); e.hidden = true; b.hidden = false; b.classList.add("arrive"); Son.joue("pop"); }, 450); }
+    minuterie = setTimeout(question, Math.max(1100, Math.min(3400, mots * 130 + (a.doc.t === "sms" ? 450 : 0))));
   }, arreter: () => clearTimeout(minuterie) };
 }
 
@@ -1515,7 +1531,7 @@ function sceneOral(a) {
     const ex = document.createElement("div"); ex.className = "exemple exemple-o encre";
     ex.innerHTML = `<h3>Un exemple</h3>${a.modeleAudio ? `<div>${ecouteHTML("Écouter")}</div>` : ""}${corps}`;
     const V = $(".visuel", sc);
-    if (V && !V.classList.contains("sujet") && matchMedia("(min-width: 900px) and (min-height: 560px)").matches) { const p = document.createElement("div"); p.className = "ex-pose"; p.append(ex); V.append(p); V.classList.add("avec-ex"); }
+    if (V && matchMedia("(min-width: 900px) and (min-height: 560px)").matches) { const p = document.createElement("div"); p.className = "ex-pose"; p.append(ex); const r0 = V.getBoundingClientRect(); V.append(p); V.classList.add("avec-ex"); const dy = r0.top - V.getBoundingClientRect().top; if (dy && MOUV) V.animate([{ transform: `translateY(${dy}px)` }, { transform: "none" }], { duration: 450, easing: "cubic-bezier(.2,.8,.2,1)" }); }
     else apres.after(ex);
     brancherVerif(ex);
     if (a.modeleAudio) { const mm = media(a.modeleAudio); brancherEcoute($(".ecoute", ex), mm, ENV[a.modeleAudio]); const k = $(".kara", ex); suivreKaraoke(mm, k, { lignes: dialogue ? ".ligne" : null }); if (dialogue) k.classList.add("dialogue"); setTimeout(() => jouer(mm, 0), 350); }
