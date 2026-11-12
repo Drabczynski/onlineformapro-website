@@ -98,7 +98,9 @@ deux, l'addition, forfait de téléphone. Compressées en 720p (environ 1,3 Mo c
 calés sur la voix par la reconnaissance ElevenLabs (avec qui parle), deux questions par vidéo écrites à partir de ce
 qui est dit (`donnees/videos.json`, à relire). La vidéo passe de bout en bout, sans arrêt ; pendant la lecture, plus de voile violet en haut de l'image
 (une ombre neutre légère pour lire la question), le voile violet du bas reste ; ensuite,
-la question au centre, plein écran, sur la vidéo floutée sous le voile violet. « Revoir » (grand écran) passe en face
+la question au centre, plein écran, sur la vidéo floutée sous un voile violet léger. Pendant la lecture (vidéos et
+écoutes), en haut à gauche, « Écoutez. » : la question n'apparaît qu'ensuite. Le rideau de rubrique reste environ
+2 secondes. « Revoir » (grand écran) passe en face
 à face : la vidéo en vignette à gauche, qui rejoue là, sur un fond noirci et très flou, la question à droite, qui reste ; « Revoir » est alors en bas à
 gauche de la vignette. Une fois en face à face, on y reste pour la question suivante. Une série au
 hasard tire deux vidéos, deux questions chacune. Écoutes : « Réécouter » rejoue le son
@@ -111,8 +113,8 @@ démonstration, en A1 (`SERIE_FIXE` dans `page.html`) : 3 vidéos (épicerie, ph
 après chacune), « Que dites-vous ? » (Merci → De rien ; Ne quittez pas → J'attends, une question A2
 gardée à la demande), 3 écoutes (bus, famille, météo), 3 phrases à répéter (famille, météo, Vesoul), 3 textes à
 trous (Je ___ Mariam, Nous ___ à Vesoul, J'achète deux ___), la lecture (SMS de Samir, invitation). « Série au
-hasard » tire une série dans le niveau choisi (Tous, A1, A2, B1). « Toutes les questions » : la revue, qui reprend
-où on l'a laissée. La croix en haut de chaque question y
+hasard » tire une série dans le niveau choisi (Tous, A1, A2, B1). « Toutes les questions » : la revue, rangée par
+niveau (A1, puis A2, puis B1 ; dans chaque niveau, l'ordre des identifiants), qui reprend où on l'a laissée. La croix en haut de chaque question y
 ramène ; le bilan a un bouton pour y revenir. Pas de boutons permanents pendant les questions.
 
 **Oral** : « Écouter » est en bas à gauche de la photo. Une consigne longue (B1) s'écrit un peu plus petit ; après

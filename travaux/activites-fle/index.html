@@ -1085,6 +1085,10 @@ body[data-vue="menu"] .fond { background: #fff; }
 .touche, .case { text-transform: uppercase; }
 /* v18 — écoutes : après « Réécouter », le spectre revient à sa place, flouté, derrière la question ; il ne s'en va que quand on répond */
 .sc-video:not(.vid).phase-reponse.relit .ecran .onde-g { opacity: .6; filter: blur(3px); }
+/* v19 — la question au centre : un voile plus léger, une image moins sombre */
+.sc-video.phase-reponse .ecran { filter: none; }
+.sc-video.phase-reponse .ecran .vis { filter: blur(8px) brightness(.8) saturate(1.05); }
+.sc-video.phase-reponse .ecran .voile { background: rgba(60, 24, 170, .2); }
 /* v17 — pendant la vidéo, plus de voile violet en haut (une ombre neutre légère, pour lire la question) ; le voile violet du bas reste */
 .sc-video.vid.phase-ecoute .ecran .voile { background: linear-gradient(180deg, rgba(10, 6, 30, .38) 0%, rgba(10, 6, 30, 0) 30%, rgba(74, 24, 190, .12) 55%, rgba(60, 40, 200, .8) 100%); }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .etoiles svg { opacity: 1; } }
@@ -1222,17 +1226,19 @@ const serieFixe = () => SERIE_FIXE.map(p => ({ type: p.type, items: p.items.filt
 // la question (ou le document avec ses questions) numéro j de la rubrique k
 const itemDe = (k, j) => { const it = SER()[k]?.items[j], a = it && PAR_ID[it.id]; return !a ? null : it.q ? { ...a, questions: it.q.map(i => a.questions[i]).filter(Boolean) } : a; };
 const nbQuestions = (p) => p.items.reduce((s, it) => s + (it.q ? it.q.length : 1), 0);
-// la revue : toutes les questions à la suite, dans l'ordre des identifiants (CO, CE, EE, EO), sans rideau entre elles
+// la revue : toutes les questions à la suite, rangées par niveau (A1, A2, B1), puis dans l'ordre des identifiants (CO, CE, EE, EO), sans rideau entre elles
+const nivItem = (x) => { const a = PAR_ID[x.id]; return (x.q && a.questions[x.q[0]]?.niveau) || a.niveau || ""; };
+const rangNiv = (x) => ({ A1: 0, A2: 1, B1: 2 }[nivItem(x)] ?? 3);
 const nomItem = (it) => { const a = PAR_ID[it.id]; return it.q ? it.q.map(i => a.questions[i].id).join(", ") : it.id; };
 const rangId = (id) => { const m = /^([A-Za-z]+)-?(\d+)?/.exec(id) || [], p = { demo: 0, VID: 0, CO: 1, POD: 2, CE: 3, EE: 4, EO: 5, REP: 6 }[m[1]] ?? 9; return p * 1000 + (+m[2] || 0); };
 const REVUE = [{ type: "revue", items: ACTIVITES.flatMap(a => !a.questions ? [{ id: a.id }] : (a.type === "grammaire" || a.type === "reagir" || a.type === "lettres") ? a.questions.map((_, i) => ({ id: a.id, q: [i] })) : [{ id: a.id, q: a.questions.map((_, i) => i) }])
-  .sort((x, y) => rangId(nomItem(x)) - rangId(nomItem(y))) }];
+  .sort((x, y) => rangNiv(x) - rangNiv(y) || rangId(nomItem(x)) - rangId(nomItem(y))) }];
 const SER = () => etat.mode === "revue" ? REVUE : etat.serie;
 const RES = () => etat.mode === "revue" ? (etat.resRevue = etat.resRevue || {}) : etat.resultats;
 function majRevue() {
   const B = $("#revue"); document.body.dataset.mode = etat.mode || "";
   if (etat.mode !== "revue") { B.hidden = true; B.innerHTML = ""; return; }
-  const items = REVUE[0].items, niv = (x) => { const a = PAR_ID[x.id]; return (x.q && a.questions[x.q[0]].niveau) || a.niveau || ""; };
+  const items = REVUE[0].items, niv = nivItem;
   B.hidden = false;
   B.innerHTML = `<button class="rond" type="button" data-rev="-1" aria-label="Question précédente">${I.suite}</button><select id="rev-choix" aria-label="Aller à une question">${items.map((x, i) => `<option value="${i}"${i === etat.j ? " selected" : ""}>${i + 1} / ${items.length} · ${echap(nomItem(x))} · ${echap(niv(x))}</option>`).join("")}</select><button class="rond" type="button" data-rev="1" aria-label="Question suivante">${I.suite}</button>`;
   const aller = (j) => { j = Math.max(0, Math.min(items.length - 1, j)); etat.j = j; RES()[0] = { ...(RES()[0] || { bonnes: 0, total: 0 }), n: j, fini: false }; garder(); quitter(); monterScene(itemDe(0, j)); setTimeout(() => courant?.demarrer?.(), 250); };
@@ -1456,7 +1462,7 @@ function rideau(a, k, origine, monter) {
   R.innerHTML = `<span class="rayons"></span><div class="r-tuile">${hexa(a.type === "video" && !a.video ? I.casque : I[a.type], TEINTE[a.type])}</div><p class="r-mot" aria-label="${echap(mot)}">${[...mot].map((c, i) => `<span style="--i:${i}" aria-hidden="true">${echap(c)}</span>`).join("")}</p><p class="r-titre">${echap(a.titre)}</p><p class="r-num">${etat.mode === "revue" ? "Revue" : `${k + 1} / ${etat.serie.length}`}</p>`;
   R.hidden = false; R.getAnimations().forEach(x => x.cancel()); annoncer(`${mot}. ${a.titre}`);
   const S = $("#scene");
-  if (!MOUV) { monter(); setTimeout(() => { R.hidden = true; courant?.demarrer?.(); }, 900); return; }
+  if (!MOUV) { monter(); setTimeout(() => { R.hidden = true; courant?.demarrer?.(); }, 1900); return; }
   const x = origine?.x ?? innerWidth / 2, y = origine?.y ?? innerHeight / 2, r = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 20;
   Son.joue("rideau");
   const entree = R.animate([{ clipPath: `circle(0px at ${x}px ${y}px)` }, { clipPath: `circle(${r}px at ${x}px ${y}px)` }], { duration: 480, easing: "cubic-bezier(.7,0,.25,1)", fill: "forwards" });
@@ -1468,7 +1474,7 @@ function rideau(a, k, origine, monter) {
     s.onfinish = () => { R.hidden = true; R.getAnimations().forEach(x => x.cancel()); };
     setTimeout(() => courant?.demarrer?.(), 280);
   };
-  entree.onfinish = () => { S.classList.add("attente"); monter(); minuterie = setTimeout(sortir, 600); R.onclick = sortir; };
+  entree.onfinish = () => { S.classList.add("attente"); monter(); minuterie = setTimeout(sortir, 1600); R.onclick = sortir; };
 }
 const monterScene = (a) => { document.body.dataset.vue = "activite"; document.body.dataset.type = a.type; majProgres(0); majRevue(); majNiveau(a.questions?.[0]?.niveau || a.niveau); SCENES[a.type](a); };
 function lancer(k, origine) {
@@ -1507,7 +1513,7 @@ function ouvrir() {
     <div class="md-actions">
       <button class="md-carte" type="button" id="md-serie">${I.lire}<span>Nouvelle série</span><small>Toujours la même, en A1 : 3 vidéos, Que dites-vous ?, 3 écoutes, 3 phrases à répéter, 3 textes à trous, la lecture.</small></button>
       <button class="md-carte" type="button" id="md-hasard">${I.hasard}<span>Série au hasard</span><small>Une rubrique par façon de travailler, tirée au hasard dans le niveau choisi.</small></button>
-      <button class="md-carte" type="button" id="md-revue">${I.texte}<span>Toutes les questions</span><small>${nbQuestions(REVUE[0])} questions à la suite, dans l'ordre de l'Excel${reprise ? `, reprise à la ${reprise + 1}ᵉ` : ""}.</small></button>
+      <button class="md-carte" type="button" id="md-revue">${I.texte}<span>Toutes les questions</span><small>${nbQuestions(REVUE[0])} questions à la suite, rangées par niveau, de A1 à B1${reprise ? `, reprise à la ${reprise + 1}ᵉ` : ""}.</small></button>
     </div>
   </section>`);
   $$(".md-niv button").forEach(b => b.onclick = () => { Son.joue("tap"); etat.niveau = b.dataset.n; garder(); $$(".md-niv button").forEach(x => x.setAttribute("aria-pressed", x === b)); });
@@ -1588,12 +1594,12 @@ function suiteQuestions(a, zone, { avant = () => "", apresDerniere, fin } = {}) 
 
 // ---------------------------------------------------------------- 1. vidéo (en attendant la vidéo : la photo et le son)
 function sceneVideo(a) {
-  const vid = !!a.video, q0 = a.questions[0];
+  const vid = !!a.video;
   const sc = rendre(`<section class="scene sc-video phase-ecoute${vid ? " vid" : ""}">${vid ? `<img class="fond-v" src="${echap(a.poster)}" alt=""><span class="voile-v"></span>` : ""}
     <div class="ecran">${vid ? `<video class="vis" src="${echap(a.video)}" poster="${echap(a.poster)}" playsinline preload="auto"></video>` : `<img class="vis" src="${echap(a.poster)}" alt="">`}
       <span class="voile"></span>${vid ? "" : `<canvas class="onde-g" aria-hidden="true"></canvas>`}<p class="st" hidden></p>${vid ? `<button class="relire revoir-v" type="button" data-revoir><span class="rondp">${I.lire}</span><span>Revoir</span></button>` : ""}<span class="fil"><i></i></span></div>
     <div class="ecoute-ui">${vid ? "" : `<span class="a-venir">Vidéo à venir</span>`}
-      <div class="ecoute-q">${titreHTML(q0.q, q0.audioQ, null, "eq")}</div>
+      <div class="ecoute-q">${titreHTML("Écoutez.", null, null, "eq")}</div>
       <div class="ctrl"><button class="rond cyan-r" type="button" data-act="rejouer" aria-label="Recommencer">${I.rejouer}</button><button class="rond cyan-r" type="button" data-act="jouer" aria-label="Lire ou mettre en pause">${I.lire}</button>${a.sousTitres ? `<button class="rond cyan-r" type="button" data-act="cc" aria-pressed="false" aria-label="Sous-titres">${I.cc}</button>` : ""}<button class="go" type="button" data-act="repondre">Répondre ${I.suite}</button></div></div>
     <div class="centre-q" aria-live="polite"></div></section>`);
   const m = media(a.audio, { video: vid ? $("video", sc) : null }), env = ENV[a.audio], zone = $(".centre-q", sc), jouerB = $("[data-act=jouer]", sc), st = $(".st", sc), cc = $("[data-act=cc]", sc), fil = $(".fil i", sc);
@@ -1633,7 +1639,7 @@ function sceneVideo(a) {
   const brancherRelire = (surPlace) => { const b = $("[data-relire]", zone); if (!b) return; if (!surPlace) { b.onclick = () => revoir(0); return; }
     const maj = () => { $(".rondp", b).innerHTML = m.paused ? I.lire : I.pause; }; m.addEventListener("play", maj); m.addEventListener("pause", maj); maj(); b.onclick = () => { if (vid) sc.classList.add("face"); m.paused ? jouer(m, m.ended || !m.currentTime ? 0 : undefined) : m.pause(); }; };
   courant = { demarrer: () => { jouer(m, 0).then(ok => { if (!ok) jouerB.classList.add("appelle"); }); },
-    apresMontrer: (q) => { brancherRelire(!vid || grand()); $(".ecoute-q", sc).innerHTML = titreHTML(q.q, q.audioQ, null, "eq"); brancherHP($(".ecoute-q", sc)); }, espace: () => { m.paused ? jouer(m, m.ended ? 0 : undefined) : m.pause(); },
+    apresMontrer: () => { brancherRelire(!vid || grand()); }, espace: () => { m.paused ? jouer(m, m.ended ? 0 : undefined) : m.pause(); },
     apresChoix: () => { if (!vid) { m.pause(); sc.classList.remove("relit"); } } };
 }
 
