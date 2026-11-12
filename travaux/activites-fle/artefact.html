@@ -1075,6 +1075,8 @@ body[data-vue="menu"] .fond { background: #fff; }
   .sc-video.vid.face .centre-q .relire-l { display: none; }
 }
 .touche, .case { text-transform: uppercase; }
+/* v17 — pendant la vidéo, plus de voile violet sur l'image : juste une ombre neutre en haut et en bas, pour lire la question et les boutons */
+.sc-video.vid.phase-ecoute .ecran .voile { background: linear-gradient(180deg, rgba(10, 6, 30, .42) 0%, rgba(10, 6, 30, 0) 30%, rgba(10, 6, 30, 0) 72%, rgba(10, 6, 30, .36) 100%); }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .etoiles svg { opacity: 1; } }
 </style>
 
