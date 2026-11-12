@@ -6,43 +6,64 @@ Prototype de produit fini : des activités d'entraînement tirées de l'Excel «
 - Page web : https://onlineformapro-website.vercel.app/travaux/activites-fle/ (site en « noindex »).
 - Artefact : https://claude.ai/artifact/VVuyxMQGPpX1N5ANSqdjLL, publié à partir de `artefact.html` avec les fichiers de
   `medias/` à côté (la liste est dans `donnees/medias.json`).
+- Première version (tuiles et cartes en thème clair), gardée pour comparer : `v1/` (même adresse, suivie de `v1/`).
 
-## Ce que fait la page
+## Ce que fait la page (version 2)
 
-L'accueil propose une **série de 8 activités tirées au hasard** (un « medley ») : 2 vidéos, 2 lectures, 1 série de
-grammaire, 1 texte à écrire, 2 réponses orales (dont souvent un jeu de rôle ou une image), parfois « Que dites-vous ? ».
-Jamais deux activités du même type à la suite. Les pastilles A1, A2, B1 limitent le tirage à un niveau ; le bouton
-« hasard » de la barre du bas tire une nouvelle série. Au premier tirage, la vidéo de démonstration ouvre la série.
+Plein écran, une seule chose à la fois. L'accueil montre la série comme un chemin de tuiles hexagonales : **8 ou 9
+questions tirées au hasard** (2 écoutes, 2 lectures, 1 grammaire, 1 texte à écrire, 2 réponses orales, et une fois sur
+deux « Que dites-vous ? »), jamais deux du même type à la suite. **Une seule question par activité** : quand un
+enregistrement ou un document a plusieurs questions dans l'Excel, l'une d'elles est tirée au hasard (pour la
+grammaire, une phrase à trou si possible). Les pastilles A1, A2, B1 limitent le tirage à un niveau ; le bouton
+« hasard » tire une nouvelle série. Au premier tirage, la vidéo de démonstration ouvre la série.
 
-| Type | Nombre | Contenu |
-|---|---|---|
-| Vidéo | 32 | 31 enregistrements de compréhension orale de l'Excel (50 questions) et la vidéo de démonstration |
-| Lecture | 24 | les documents de compréhension écrite (50 questions) : annonces, courriels, affiches, SMS, menu, plaque… |
-| Grammaire | 9 | les 38 QCM d'expression écrite, en séries de 4 ou 5 par niveau |
-| Que dites-vous ? | 1 | les 4 QCM d'expression orale (une situation, une réplique) |
-| Écriture | 12 | les productions écrites : zone de texte, compteur de mots, objectif de l'Excel |
-| Oral | 46 | les productions orales : répéter, répondre, décrire une image, parler d'un sujet, jeu de rôle |
+Chaque question est annoncée par un rideau (un grand mot : Regardez, Écoutez, Lisez, Complétez, Écrivez, Parlez,
+Répétez, Répondez), puis occupe tout l'écran :
 
-En tout 124 activités, 144 questions à choix (142 de l'Excel et 2 pour la démonstration) et les 58 productions.
+- **Vidéo** : l'image en grand ; la question s'affiche pendant l'écoute ; à la fin, les réponses arrivent. Après la
+  réponse, « Le texte » rejoue l'enregistrement et allume les mots au fil de la voix.
+- **Lecture** : le document posé comme un objet (panneau suspendu qui se balance, téléphone où le SMS s'écrit,
+  étiquette de prix, plaque, ardoise, affiche, fiche, lettre) et la question à côté.
+- **Grammaire** : la phrase en très grand ; la réponse choisie vole jusqu'au trou.
+- **Que dites-vous ?** : une petite conversation ; la personne parle (points de suspension, puis la bulle et la voix),
+  on choisit sa réplique, qui part comme un message.
+- **Écrire** : une feuille blanche, une jauge de mots qui se remplit jusqu'à l'objectif de l'Excel ; puis le texte écrit
+  à côté d'un exemple, et les points « Vérifiez votre réponse » à cocher.
+- **Parler** : la consigne ou la phrase lue (les mots s'allument), un gros bouton micro avec un halo qui bouge avec la
+  voix et un anneau qui avance jusqu'à la durée demandée ; puis « Ma voix » et l'exemple lu, réplique par réplique
+  pour les jeux de rôle. Sans micro (dans l'artefact, le micro est bloqué), le bouton lance un minuteur : on parle à
+  voix haute.
+- **Bilan** : une médaille hexagonale avec le score, des étoiles, des confettis.
 
-- **QCM** : on choisit, on valide ; la bonne réponse s'affiche en vert, l'erreur en rouge, puis la question suivante.
-  Pour les vidéos, la transcription s'ouvre après la première réponse.
-- **Écriture et oral** : l'apprenant écrit ou s'enregistre au micro (le navigateur demande l'autorisation ; si le micro
-  n'est pas disponible, il dit sa réponse à voix haute), puis il voit **un exemple de réponse** et coche les points
-  « Vérifiez votre réponse ». À l'oral, l'exemple est aussi lu à voix haute.
-- **Bilan** : bonnes réponses, textes écrits, réponses orales, et la liste de la série.
-- La série et les activités faites sont gardées dans le navigateur.
+Des sons accompagnent chaque geste (synthétisés dans la page, sans fichier ; bouton pour les couper). Les touches 1 à 4
+répondent, Entrée continue, Espace lit ou arrête le son. La série et les réponses sont gardées dans le navigateur.
+
+| Banque | Nombre |
+|---|---|
+| Vidéo | 32 enregistrements (50 questions de compréhension orale) et la vidéo de démonstration |
+| Lecture | 24 documents (50 questions de compréhension écrite) |
+| Grammaire | les 38 QCM d'expression écrite |
+| Que dites-vous ? | les 4 QCM d'expression orale |
+| Écrire | 12 productions écrites |
+| Parler | 46 productions orales |
 
 ## Les vidéos
 
-L'Excel ne contient pas de vidéo : **les vidéos seront fournies.** En attendant, chaque activité « Vidéo » affiche le
-lecteur avec une photo (qui pose le lieu sans souffler la réponse) et joue le son de l'enregistrement ; un bandeau dit
-« Vidéo à venir · photo et son ». Pour brancher une vraie vidéo : la déposer dans `medias/video/`, puis renseigner
+L'Excel ne contient pas de vidéo : **les vidéos seront fournies.** En attendant, chaque activité « Vidéo » affiche une
+photo (qui pose le lieu sans souffler la réponse) et joue le son de l'enregistrement, avec une onde qui suit la voix ;
+un bandeau dit « Vidéo à venir ». Pour brancher une vraie vidéo : la déposer dans `medias/video/`, puis renseigner
 `"video"` (et `"poster"`) pour l'activité concernée dans `construire.py`, comme pour la démonstration.
 
-**La vidéo de démonstration** (« À l'hôtel ») est la scène générée avec Gemini fournie le 4 novembre : elle montre le
-vrai lecteur, avec des sous-titres calés phrase par phrase (bouton « CC ») retrouvés par la reconnaissance vocale
-d'ElevenLabs. Ses 2 questions ont été écrites d'après son dialogue : **elle ne vient pas de l'Excel.**
+**La vidéo de démonstration** (« À l'hôtel ») est la scène générée avec Gemini fournie le 4 novembre, avec des
+sous-titres (bouton « CC »). Ses 2 questions ont été écrites d'après son dialogue : **elle ne vient pas de l'Excel.**
+
+## Les mots qui s'allument
+
+`generer_temps.py` fait retranscrire chaque son par la reconnaissance vocale d'ElevenLabs, qui donne le moment où
+chaque mot est dit (`donnees/temps.json`) ; `construire.py` cale ces moments sur le texte écrit (les nombres lus en
+lettres se partagent le temps du passage). Calés : 31 enregistrements et la démonstration, 45 modèles lus sur 46,
+24 consignes ou phrases à répéter, les 4 répliques de « Que dites-vous ? ». `construire.py` calcule aussi
+l'enveloppe de chaque son (le volume toutes les 40 ms) : les ondes de la page bougent avec la vraie voix.
 
 ## Les modèles de réponse
 
@@ -56,29 +77,30 @@ personnages neutres. **À faire relire par un formateur.** Points déjà repér�
   Vitale et le 15 ;
 - EE-31, EE-32, EE-49 accordent au féminin (« désolée », « allée »), les points « Vérifiez » rappellent les deux formes.
 
-Les modèles oraux sont lus par ElevenLabs (`generer_modeles.py`, modèle Eleven Multilingual v2, voix du premier test :
-Claire pour une femme, Guillaume pour un homme selon le personnage, Lucie ou Marc pour l'interlocuteur des jeux de
-rôle ; débit 0,85 en A1, 0,95 en A2, 1 en B1). Chacun a été retranscrit par la reconnaissance vocale et comparé à son
-texte : la première voix d'homme (Theo) ajoutait des « euh », elle a été remplacée.
-
-## Fichiers
-
-- `construire.py` : construit `index.html` (page web) et `artefact.html` (le même contenu, sans en-tête, pour
-  l'artefact) à partir de `page.html` (le gabarit : style et code) et des données.
-- `donnees/excel-200.json` : les 200 lignes de l'Excel ; les QCM mis en forme viennent de
-  `../positionnement-fle/banque/banque.json` ; `donnees/modeles.json` ; `donnees/video-hotel-sous-titres.json` ;
-  `donnees/activites.json` (produit) ; `donnees/medias.json` (la liste des fichiers à publier avec l'artefact).
-- `medias/sons/` : les sons du premier test (enregistrements, consignes et phrases de l'oral) ; `medias/modeles/` :
-  les modèles lus ; `medias/photos/` : les photos (celles du positionnement, Unsplash, plus `famille` par Daria
-  Trofimova et `atelier` par Shavr IK, Unsplash) ; `medias/video/` : la démonstration.
-
-    python3 travaux/activites-fle/construire.py         # refait la page
-    python3 travaux/activites-fle/generer_modeles.py    # refait les modèles lus qui ont changé
+Les modèles oraux sont lus par ElevenLabs (`generer_modeles.py`, modèle Eleven Multilingual v2 : Claire pour une
+femme, Guillaume pour un homme selon le personnage, Lucie ou Marc pour l'interlocuteur des jeux de rôle ; débit 0,85
+en A1, 0,95 en A2, 1 en B1). La première voix d'homme (Theo) ajoutait des « euh », elle a été remplacée.
 
 ## Le style
 
-Thème clair et coloré, d'après la référence montrée le 12 novembre : fond en dégradé pastel (bleu, lilas, rose) qui
-dérive lentement, cartes en verre dépoli, tuiles de couleur selon le type (photo pour la vidéo, blanc et bleu pour la
-lecture, menthe et police à points pour la grammaire, jaune et serif pour l'écriture, pervenche et onde pour l'oral,
-rose pour « Que dites-vous ? »), grands titres blancs, pastille active jaune, barre d'action flottante. Aucune ombre
-portée. Polices Outfit, Instrument Serif et Doto (Google Fonts).
+La charte du premier positionnement (`../positionnement-fle/`) : fond uni violet → bleu ; tuiles hexagonales à plat,
+coins arrondis, face blanche lavande et tranche lavande ; réponses courtes en quatre alvéoles (haut, gauche, droite,
+bas), réponses longues en pastilles blanches avec une marque hexagonale ; jaune citron pour le choix, vert pour le
+juste, rose pour le faux, cyan pour écouter ; gros boutons verts en capitales ; panneaux ton sur ton. Une couleur de
+tuile par type : cyan (écouter), blanc (lire), vert (grammaire), citron (écrire), rose (parler), lilas (répondre).
+Polices Baloo 2 et Nunito (Caveat pour l'ardoise et le post-it), Google Fonts.
+
+## Fichiers
+
+- `construire.py` : construit `index.html` (page web), `artefact.html` (le même contenu, sans en-tête, pour
+  l'artefact) et `v1/index.html`, à partir de `page.html` (le gabarit : style et code), de `v1/page.html` et des données.
+- `donnees/excel-200.json` : les 200 lignes de l'Excel ; les QCM mis en forme viennent de
+  `../positionnement-fle/banque/banque.json` ; `donnees/modeles.json` ; `donnees/video-hotel-sous-titres.json` ;
+  `donnees/temps.json` ; `donnees/activites.json` (produit) ; `donnees/medias.json` (les fichiers de l'artefact).
+- `medias/sons/` : les sons du premier test ; `medias/modeles/` : les modèles lus ; `medias/photos/` : les photos
+  (celles du positionnement, Unsplash, plus `famille` par Daria Trofimova et `atelier` par Shavr IK, Unsplash) ;
+  `medias/video/` : la démonstration.
+
+    python3 travaux/activites-fle/construire.py         # refait les pages
+    python3 travaux/activites-fle/generer_temps.py      # recale les mots des sons nouveaux ou changés
+    python3 travaux/activites-fle/generer_modeles.py    # refait les modèles lus qui ont changé
