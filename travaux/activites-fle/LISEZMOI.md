@@ -4,7 +4,8 @@ Prototype de produit fini : des activités d'entraînement tirées de l'Excel «
 200 questions ». Ce n'est pas un test : rien n'est adaptatif, chaque réponse est corrigée tout de suite.
 
 - Page web : https://onlineformapro-website.vercel.app/travaux/activites-fle/ (site en « noindex »).
-- Artefact : publié à partir de `artefact.html` avec les fichiers de `medias/` à côté.
+- Artefact : https://claude.ai/artifact/VVuyxMQGPpX1N5ANSqdjLL, publié à partir de `artefact.html` avec les fichiers de
+  `medias/` à côté (la liste est dans `donnees/medias.json`).
 
 ## Ce que fait la page
 
