@@ -44,6 +44,12 @@ Prototype de produit fini : des activités d'entraînement tirées de l'Excel «
   Puis : CO-14 (« thé ou café ? ») deux amies à la maison avec des tasses dont on ne voit pas le contenu, EO-08
   (« Vous avez des frères et sœurs ? ») un frère et une sœur, enfants, qui regardent l'objectif (`fratrie`, Izzy
   Park ; la photo `freres-soeurs` est retirée).
+  Diversification du 12/11 (« toutes les questions sur le travail ont la même photo ») : 31 photos servaient à
+  plusieurs questions, jusqu'à 7 fois. 49 nouvelles photos Unsplash, chacune regardée face à son texte (voisin
+  bruyant : une femme exaspérée, les mains sur les oreilles ; parler de son travail : un mécanicien ; consignes d'un
+  collègue : deux femmes dans un entrepôt ; panne de chauffage : une femme sous une couette…). Aucune photo ne sert
+  plus de deux fois, et une paire garde un lien de sens (l'écoute et sa phrase à répéter, un document et sa question).
+  Le mot à composer reprend la photo de sa question d'origine.
 - **Sur la photo** : le SMS est une carte à la taille du message, posée en bas pour laisser voir le visage, et il
   arrive plus vite. L'exemple oral s'affiche toujours à gauche ; pour une photo à décrire, il s'accroche au bas de
   la photo, qui remonte pour lui laisser la place. Le micro est écarté de la consigne.

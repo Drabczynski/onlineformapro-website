@@ -1455,7 +1455,7 @@
   "titre": "Cours de français",
   "theme": "Cours de français",
   "video": null,
-  "poster": "medias/photos/ecole.webp",
+  "poster": "medias/photos/cours-adultes.webp",
   "audio": "medias/sons/CO-12.mp3",
   "script": [
    "Le cours de français commence à 9 heures et finit à midi."
@@ -1909,7 +1909,7 @@
   "titre": "Marché",
   "theme": "Marché",
   "video": null,
-  "poster": "medias/photos/marche.webp",
+  "poster": "medias/photos/etal-fruits.webp",
   "audio": "medias/sons/CO-16.mp3",
   "script": [
    "Les pommes sont à 2 euros le kilo."
@@ -6153,7 +6153,7 @@
   "titre": "Un témoignage",
   "theme": "Parcours · témoignage",
   "video": null,
-  "poster": "medias/photos/classe.webp",
+  "poster": "medias/photos/etudier-maison.webp",
   "audio": "medias/sons/CO-47.mp3",
   "script": [
    "Quand je suis arrivé en France, il y a deux ans, je ne parlais pas du tout français. Au début, c'était vraiment difficile : je ne comprenais pas les courriers administratifs et j'avais peur de téléphoner. Grâce aux cours, et surtout grâce à mon club de football, j'ai fait beaucoup de progrès. Aujourd'hui, je comprends presque tout, même si j'ai encore du mal avec l'écrit."
@@ -6883,7 +6883,7 @@
   "titre": "La famille",
   "theme": "La famille",
   "video": null,
-  "poster": "medias/photos/photos-main.webp",
+  "poster": "medias/photos/portrait-famille.webp",
   "audio": "medias/sons/POD-02.mp3",
   "script": [
    "C'est qui sur la photo ?",
@@ -8592,7 +8592,7 @@
     "emoji": "📋",
     "niveau": "A2",
     "audioQ": "medias/questions/CE-18.mp3",
-    "photoH": "medias/photos/salle-restaurant.webp"
+    "photoH": "medias/photos/cuisine-pro.webp"
    },
    {
     "id": "CE-19",
@@ -8721,7 +8721,7 @@
     ]
    }
   ],
-  "photoH": "medias/photos/salle-restaurant.webp"
+  "photoH": "medias/photos/cuisine-pro.webp"
  },
  {
   "id": "CE-22",
@@ -8788,7 +8788,7 @@
       1.38
      ]
     ],
-    "photoH": "medias/photos/immeuble.webp"
+    "photoH": "medias/photos/travaux-escalier.webp"
    },
    {
     "id": "CE-23",
@@ -8828,7 +8828,7 @@
     ]
    }
   ],
-  "photoH": "medias/photos/immeuble.webp"
+  "photoH": "medias/photos/travaux-escalier.webp"
  },
  {
   "id": "CE-24",
@@ -9196,7 +9196,7 @@
       1.6
      ]
     ],
-    "photoH": "medias/photos/courriel.webp"
+    "photoH": "medias/photos/lire-courriel.webp"
    },
    {
     "id": "CE-30",
@@ -9283,7 +9283,7 @@
     ]
    }
   ],
-  "photoH": "medias/photos/courriel.webp"
+  "photoH": "medias/photos/lire-courriel.webp"
  },
  {
   "id": "CE-32",
@@ -10097,7 +10097,7 @@
       1.18
      ]
     ],
-    "photoH": "medias/photos/marche.webp"
+    "photoH": "medias/photos/marche-producteurs.webp"
    },
    {
     "id": "CE-45",
@@ -10216,7 +10216,7 @@
     ]
    }
   ],
-  "photoH": "medias/photos/marche.webp"
+  "photoH": "medias/photos/marche-producteurs.webp"
  },
  {
   "id": "CE-48",
@@ -10479,7 +10479,7 @@
     "citation": "Date de naissance : ______",
     "niveau": "A1",
     "audioQ": "medias/questions/EE-01.mp3",
-    "photoH": "medias/photos/remplir-fiche.webp"
+    "photoH": "medias/photos/formulaire-guichet.webp"
    },
    {
     "id": "EE-02",
@@ -10497,7 +10497,7 @@
     "apres": "Vous êtes née au Maroc et vous êtes marocaine.",
     "niveau": "A1",
     "audioQ": "medias/questions/EE-02.mp3",
-    "photoH": "medias/photos/remplir-fiche.webp"
+    "photoH": "medias/photos/papiers-identite.webp"
    },
    {
     "id": "EE-03",
@@ -10531,7 +10531,7 @@
     "etiquette": "Complétez :",
     "niveau": "A1",
     "audioQ": "medias/questions/EE-04.mp3",
-    "photoH": "medias/photos/se-presenter.webp"
+    "photoH": "medias/photos/jeune-adulte.webp"
    },
    {
     "id": "EE-05",
@@ -10574,7 +10574,7 @@
     "avant": "Quel mot est bien écrit ?",
     "niveau": "A1",
     "audioQ": "medias/questions/EE-06.mp3",
-    "photoH": "medias/photos/se-presenter.webp"
+    "photoH": "medias/photos/salut-main.webp"
    },
    {
     "id": "EE-07",
@@ -10592,7 +10592,7 @@
     "apres": "en lettres ?",
     "niveau": "A1",
     "audioQ": "medias/questions/EE-07.mp3",
-    "photoH": "medias/photos/classe.webp"
+    "photoH": "medias/photos/tableau-chiffres.webp"
    },
    {
     "id": "EE-08",
@@ -10608,7 +10608,7 @@
     "avant": "Vous écrivez un SMS à un ami.",
     "niveau": "A1",
     "audioQ": "medias/questions/EE-08.mp3",
-    "photoH": "medias/photos/sms.webp"
+    "photoH": "medias/photos/sms-ami.webp"
    },
    {
     "id": "EE-09",
@@ -10625,7 +10625,7 @@
     "etiquette": "Complétez :",
     "niveau": "A1",
     "audioQ": "medias/questions/EE-09.mp3",
-    "photoH": "medias/photos/petite-ville.webp"
+    "photoH": "medias/photos/ville-france.webp"
    },
    {
     "id": "EE-10",
@@ -10728,7 +10728,7 @@
     "etiquette": "Complétez :",
     "niveau": "A1",
     "audioQ": "medias/questions/EE-13.mp3",
-    "photoH": "medias/photos/visite.webp"
+    "photoH": "medias/photos/voisine-gentille.webp"
    }
   ]
  },
@@ -10773,7 +10773,7 @@
     "indice": "(manger)",
     "niveau": "A2",
     "audioQ": "medias/questions/EE-19.mp3",
-    "photoH": "medias/photos/salle-restaurant.webp"
+    "photoH": "medias/photos/diner-restaurant.webp"
    },
    {
     "id": "EE-20",
@@ -10790,7 +10790,7 @@
     "etiquette": "Complétez :",
     "niveau": "A2",
     "audioQ": "medias/questions/EE-20.mp3",
-    "photoH": "medias/photos/telephone-2.webp"
+    "photoH": "medias/photos/appel-agenda.webp"
    },
    {
     "id": "EE-21",
@@ -10807,7 +10807,7 @@
     "etiquette": "Complétez :",
     "niveau": "A2",
     "audioQ": "medias/questions/EE-21.mp3",
-    "photoH": "medias/photos/sms.webp"
+    "photoH": "medias/photos/malade-lit.webp"
    },
    {
     "id": "EE-22",
@@ -10881,7 +10881,7 @@
     "citation": "Tu connais Marie ? — Oui, je ______ connais.",
     "niveau": "A2",
     "audioQ": "medias/questions/EE-25.mp3",
-    "photoH": "medias/photos/conversation.webp"
+    "photoH": "medias/photos/amis-rue.webp"
    },
    {
     "id": "EE-26",
@@ -10898,7 +10898,7 @@
     "etiquette": "Complétez :",
     "niveau": "A2",
     "audioQ": "medias/questions/EE-26.mp3",
-    "photoH": "medias/photos/gare.webp"
+    "photoH": "medias/photos/train-rapide.webp"
    },
    {
     "id": "EE-27",
@@ -10941,7 +10941,7 @@
     "etiquette": "Complétez :",
     "niveau": "A2",
     "audioQ": "medias/questions/EE-28.mp3",
-    "photoH": "medias/photos/ecole.webp"
+    "photoH": "medias/photos/ecole-cantine.webp"
    },
    {
     "id": "EE-29",
@@ -10958,7 +10958,7 @@
     "vers": "Mettez la phrase à la forme négative :",
     "niveau": "A2",
     "audioQ": "medias/questions/EE-29.mp3",
-    "photoH": "medias/photos/atelier.webp"
+    "photoH": "medias/photos/dossiers-bureau.webp"
    },
    {
     "id": "EE-30",
@@ -11051,7 +11051,7 @@
     "etiquette": "Complétez :",
     "niveau": "B1",
     "audioQ": "medias/questions/EE-38.mp3",
-    "photoH": "medias/photos/remplir-fiche.webp"
+    "photoH": "medias/photos/dossier-echeance.webp"
    }
   ]
  },
@@ -11171,7 +11171,7 @@
     "citation": "Je viendrai demain.",
     "niveau": "B1",
     "audioQ": "medias/questions/EE-44.mp3",
-    "photoH": "medias/photos/conversation.webp"
+    "photoH": "medias/photos/paroles-rapportees.webp"
    },
    {
     "id": "EE-45",
@@ -11187,7 +11187,7 @@
     "citation": "Je vous prie d'agréer, Madame, l'expression de mes salutations distinguées.",
     "niveau": "B1",
     "audioQ": "medias/questions/EE-45.mp3",
-    "photoH": "medias/photos/bureau.webp"
+    "photoH": "medias/photos/lettre-formelle.webp"
    },
    {
     "id": "EE-46",
@@ -11229,7 +11229,7 @@
       1.18
      ]
     ],
-    "photoH": "medias/photos/classe.webp"
+    "photoH": "medias/photos/formation-adultes.webp"
    }
   ]
  },
@@ -11266,7 +11266,7 @@
     ],
     "titre": "Écoutez et écrivez le mot.",
     "son": "medias/mots/bonjour.mp3",
-    "photoH": "medias/photos/se-presenter.webp"
+    "photoH": "medias/photos/salut-main.webp"
    },
    {
     "id": "EE-07-L",
@@ -11280,7 +11280,7 @@
     ],
     "titre": "Comment écrit-on 15 en lettres ?",
     "grand": "15",
-    "photoH": "medias/photos/classe.webp"
+    "photoH": "medias/photos/tableau-chiffres.webp"
    },
    {
     "id": "EE-12-L",
@@ -11308,7 +11308,7 @@
     "titre": "Écrivez le mot avec les lettres.",
     "phrase": "Ma voisine est très ______.",
     "indice": "gentil",
-    "photoH": "medias/photos/visite.webp",
+    "photoH": "medias/photos/voisine-gentille.webp",
     "audioQ": "medias/questions/EE-13.mp3"
    }
   ]
@@ -11332,7 +11332,7 @@
     "titre": "Écrivez le mot avec les lettres.",
     "phrase": "Demain, je ______ appeler le médecin.",
     "indice": "aller",
-    "photoH": "medias/photos/telephone-2.webp",
+    "photoH": "medias/photos/appel-agenda.webp",
     "audioQ": "medias/questions/EE-20.mp3"
    },
    {
@@ -11346,7 +11346,7 @@
     "titre": "Écrivez le mot avec les lettres.",
     "phrase": "Mes enfants ______ à l'école.",
     "indice": "être",
-    "photoH": "medias/photos/ecole.webp",
+    "photoH": "medias/photos/ecole-cantine.webp",
     "audioQ": "medias/questions/EE-28.mp3"
    }
   ]
@@ -11370,7 +11370,7 @@
     "titre": "Écrivez le mot avec les lettres.",
     "phrase": "Il faut que tu ______ ce formulaire avant vendredi.",
     "indice": "remplir",
-    "photoH": "medias/photos/remplir-fiche.webp",
+    "photoH": "medias/photos/dossier-echeance.webp",
     "audioQ": "medias/questions/EE-38.mp3"
    },
    {
@@ -11500,7 +11500,7 @@
     5.12
    ]
   ],
-  "photoH": "medias/photos/se-presenter.webp",
+  "photoH": "medias/photos/ecrire-carnet.webp",
   "aide": {
    "titre": "Présentez-vous",
    "forme": "lignes",
@@ -11709,7 +11709,7 @@
     3.46
    ]
   ],
-  "photoH": "medias/photos/sms.webp",
+  "photoH": "medias/photos/en-retard.webp",
   "aide": {
    "titre": "Prévenez un ami",
    "forme": "sms",
@@ -12054,7 +12054,7 @@
     3.9
    ]
   ],
-  "photoH": "medias/photos/parc.webp",
+  "photoH": "medias/photos/velo-ville.webp",
   "aide": {
    "titre": "Votre week-end",
    "forme": "feuille",
@@ -12541,7 +12541,7 @@
     2.48
    ]
   ],
-  "photoH": "medias/photos/ecole.webp",
+  "photoH": "medias/photos/reunion-travail.webp",
   "aide": {
    "titre": "Donnez votre avis",
    "forme": "forum",
@@ -12692,7 +12692,7 @@
     5.9
    ]
   ],
-  "photoH": "medias/photos/carte-monde.webp",
+  "photoH": "medias/photos/arrivee-valise.webp",
   "aide": {
    "titre": "Un moment important",
    "forme": "feuille",
@@ -12805,7 +12805,7 @@
     4.64
    ]
   ],
-  "photoH": "medias/photos/courriel.webp",
+  "photoH": "medias/photos/candidature-ordi.webp",
   "aide": {
    "titre": "Votre candidature",
    "forme": "courriel",
@@ -13013,7 +13013,7 @@
       0.6
      ]
     ],
-    "photoH": "medias/photos/salle-attente.webp"
+    "photoH": "medias/photos/en-retard.webp"
    },
    {
     "id": "EO-49",
@@ -13189,7 +13189,7 @@
     1.16
    ]
   ],
-  "photoH": "medias/photos/agenda-accueil.webp"
+  "photoH": "medias/photos/bonjour-madame.webp"
  },
  {
   "id": "EO-02",
@@ -13514,7 +13514,7 @@
     1.16
    ]
   ],
-  "photoH": "medias/photos/amir.webp"
+  "photoH": "medias/photos/anniversaire.webp"
  },
  {
   "id": "EO-05",
@@ -13876,7 +13876,7 @@
     1.18
    ]
   ],
-  "photoH": "medias/photos/pause-cafe.webp"
+  "photoH": "medias/photos/langues.webp"
  },
  {
   "id": "EO-08",
@@ -14513,7 +14513,7 @@
     4.28
    ]
   ],
-  "photoH": "medias/photos/medecin.webp"
+  "photoH": "medias/photos/accueil-carte-vitale.webp"
  },
  {
   "id": "EO-13",
@@ -15285,7 +15285,7 @@
     ]
    }
   ],
-  "photoH": "medias/photos/logement.webp"
+  "photoH": "medias/photos/matinee.webp"
  },
  {
   "id": "EO-18",
@@ -16381,7 +16381,7 @@
     ]
    }
   ],
-  "photoH": "medias/photos/atelier.webp"
+  "photoH": "medias/photos/mecanicien.webp"
  },
  {
   "id": "EO-20",
@@ -16929,7 +16929,7 @@
     ]
    }
   ],
-  "photoH": "medias/photos/sport.webp"
+  "photoH": "medias/photos/week-end-sortie.webp"
  },
  {
   "id": "EO-21",
@@ -17497,7 +17497,7 @@
     ]
    }
   ],
-  "photoH": "medias/photos/rue.webp"
+  "photoH": "medias/photos/quartier.webp"
  },
  {
   "id": "EO-22",
@@ -20283,7 +20283,7 @@
     2.98
    ]
   ],
-  "photoH": "medias/photos/petite-ville.webp"
+  "photoH": "medias/photos/ville-france.webp"
  },
  {
   "id": "EO-26",
@@ -20846,7 +20846,7 @@
     ]
    }
   ],
-  "photoH": "medias/photos/carte-monde.webp"
+  "photoH": "medias/photos/ville-vue.webp"
  },
  {
   "id": "EO-27",
@@ -22557,7 +22557,7 @@
     ]
    }
   ],
-  "photoH": "medias/photos/classe.webp"
+  "photoH": "medias/photos/apprendre-langue.webp"
  },
  {
   "id": "EO-30",
@@ -23261,7 +23261,7 @@
     1.1
    ]
   ],
-  "photoH": "medias/photos/visite.webp"
+  "photoH": "medias/photos/aide-mentor.webp"
  },
  {
   "id": "EO-34",
@@ -23849,7 +23849,7 @@
     ]
    }
   ],
-  "photoH": "medias/photos/cuisine-famille.webp"
+  "photoH": "medias/photos/fete-famille.webp"
  },
  {
   "id": "EO-35",
@@ -26010,7 +26010,7 @@
     ]
    }
   ],
-  "photoH": "medias/photos/medecin.webp"
+  "photoH": "medias/photos/medecin-stethoscope.webp"
  },
  {
   "id": "EO-37",
@@ -30012,7 +30012,7 @@
     3.42
    ]
   ],
-  "photoH": "medias/photos/visite.webp"
+  "photoH": "medias/photos/voisin-bruit.webp"
  },
  {
   "id": "EO-40",
@@ -31587,7 +31587,7 @@
     7.36
    ]
   ],
-  "photoH": "medias/photos/telephone-2.webp"
+  "photoH": "medias/photos/panne-chauffage.webp"
  },
  {
   "id": "EO-41",
@@ -38579,7 +38579,7 @@
     3.52
    ]
   ],
-  "photoH": "medias/photos/atelier.webp"
+  "photoH": "medias/photos/entrepot-consignes.webp"
  },
  {
   "id": "EO-48",
@@ -39617,7 +39617,7 @@
     ]
    }
   ],
-  "photoH": "medias/photos/conversation.webp"
+  "photoH": "medias/photos/aide-mentor.webp"
  },
  {
   "id": "EO-50",
@@ -40625,7 +40625,7 @@
     ]
    }
   ],
-  "photoH": "medias/photos/classe.webp"
+  "photoH": "medias/photos/etudier-ensemble.webp"
  },
  {
   "id": "REP-CO-01",
