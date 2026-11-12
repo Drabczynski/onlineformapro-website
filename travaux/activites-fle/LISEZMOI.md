@@ -9,6 +9,27 @@ Prototype de produit fini : des activités d'entraînement tirées de l'Excel «
 - Versions gardées pour comparer (même adresse, suivie du dossier) : `v1/` (tuiles et cartes en thème clair) et
   `v2-violet/` (la version 2 sur fond violet → bleu, exactement comme le premier positionnement).
 
+## État actuel (retours du 12 novembre)
+
+- **Minimalisme** : tout sur un axe ; le violet seul en accent, le vert pour continuer et pour le juste, le rose pour le
+  faux ; le retour (« Bravo ! ») centré au-dessus d'un seul bouton ; pas de barre de suivi ; pas de zoom sur les
+  photos ; confettis au bilan seulement ; police Lexend (dessinée pour la facilité de lecture).
+- **Écrans pleins** : sur grand écran, deux panneaux de la hauteur de l'écran (l'image à gauche, la carte de la
+  question à droite) ; sans image, la carte seule au centre. Vidéo : la question et les réponses au centre de
+  l'image floutée. Lecture : le document d'abord seul sur un fond de couleur, puis la question (après quelques
+  secondes, ou en touchant le document).
+- **Haut-parleur** discret au bout de chaque question et consigne : les 181 textes sont lus par ElevenLabs
+  (`generer_questions.py`, voix de Claire), avec les mots qui s'allument.
+- **Écrire** : un titre court, la consigne en petit, un support adapté (lignes à compléter en A1, téléphone, liste de
+  courses, courriel, forum) et des débuts de phrase à toucher (`donnees/aides-ecriture.json`, écrits par l'IA, à
+  relire). Après « J'ai fini » : le texte écrit et un exemple, sans liste à cocher.
+- **Parler** : une petite consigne, la phrase ou la question en grand, le micro ; l'exemple (son et texte) après
+  l'enregistrement.
+- **Photos** : les photos du positionnement retéléchargées en 1800 px (même cadrage), `primeur` et `fromagerie`
+  remplacées, et 31 photos d'ambiance Unsplash pour les écrans sans image (`donnees/habillage.json` ; auteurs et
+  liens dans `donnees/credits-photos.json`). Seule `appartement` (photo fournie) reste en 640 px. CO-21 prend une rue
+  de petite ville : l'étal de fruits soufflait la réponse « Les fruits et légumes ».
+
 ## Ce que fait la page (version 2)
 
 Plein écran, une seule chose à la fois. L'accueil montre la série comme un chemin de tuiles hexagonales : **8 ou 9
