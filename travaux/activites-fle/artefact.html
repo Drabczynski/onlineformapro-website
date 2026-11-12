@@ -1075,8 +1075,8 @@ body[data-vue="menu"] .fond { background: #fff; }
   .sc-video.vid.face .centre-q .relire-l { display: none; }
 }
 .touche, .case { text-transform: uppercase; }
-/* v18 — écoutes : pendant « Réécouter », le spectre revient, en bas de l'écran, sous les réponses ; dès qu'on répond, il s'en va */
-.sc-video:not(.vid).phase-reponse.relit .ecran .onde-g { opacity: .85; bottom: 22px; height: 96px; }
+/* v18 — écoutes : après « Réécouter », le spectre revient à sa place, flouté, derrière la question ; il ne s'en va que quand on répond */
+.sc-video:not(.vid).phase-reponse.relit .ecran .onde-g { opacity: .6; filter: blur(3px); }
 /* v17 — pendant la vidéo, plus de voile violet en haut (une ombre neutre légère, pour lire la question) ; le voile violet du bas reste */
 .sc-video.vid.phase-ecoute .ecran .voile { background: linear-gradient(180deg, rgba(10, 6, 30, .38) 0%, rgba(10, 6, 30, 0) 30%, rgba(74, 24, 190, .12) 55%, rgba(60, 40, 200, .8) 100%); }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .etoiles svg { opacity: 1; } }
@@ -1591,8 +1591,7 @@ function sceneVideo(a) {
   const m = media(a.audio, { video: vid ? $("video", sc) : null }), env = ENV[a.audio], zone = $(".centre-q", sc), jouerB = $("[data-act=jouer]", sc), st = $(".st", sc), cc = $("[data-act=cc]", sc), fil = $(".fil i", sc);
   brancherHP($(".ecoute-ui", sc));
   if (!vid) { barres($(".onde-g", sc), ondeMedia(m, env), { n: 56, min: .05 });
-    m.addEventListener("play", () => sc.classList.toggle("relit", sc.classList.contains("phase-reponse")));
-    m.addEventListener("pause", () => sc.classList.remove("relit")); m.addEventListener("ended", () => sc.classList.remove("relit")); }
+    m.addEventListener("play", () => { if (sc.classList.contains("phase-reponse")) sc.classList.add("relit"); }); }
   const majJ = () => { jouerB.innerHTML = m.paused ? I.lire : I.pause; };
   m.addEventListener("play", majJ); m.addEventListener("pause", majJ);
   m.addEventListener("timeupdate", () => {
