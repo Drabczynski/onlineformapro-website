@@ -99,7 +99,7 @@ calés sur la voix par la reconnaissance ElevenLabs (avec qui parle), deux quest
 qui est dit (`donnees/videos.json`, à relire). La vidéo passe de bout en bout, sans arrêt et sans voile violet sur l'image (juste une ombre neutre en haut et en
 bas pour lire la question et les boutons) ; ensuite,
 la question au centre, plein écran, sur la vidéo floutée sous le voile violet. « Revoir » (grand écran) passe en face
-à face : la vidéo en vignette à gauche, qui rejoue là, la question à droite, qui reste ; « Revoir » est alors en bas à
+à face : la vidéo en vignette à gauche, qui rejoue là, sur un fond noirci et très flou, la question à droite, qui reste ; « Revoir » est alors en bas à
 gauche de la vignette. Après la question, si la vidéo ne joue plus, on revient au centre. Une série au
 hasard tire deux vidéos, deux questions chacune. Écoutes : « Réécouter » rejoue le son
 sans cacher la question. Téléchargement : l'adresse
