@@ -816,6 +816,50 @@ body[data-vue="activite"] .haut .rond[aria-pressed="true"] { background: #fff; c
   .sc-duo > .carte-q.carte-ecrit { padding: 22px 18px; }
 }
 
+
+/* ------------------------------------------------------------ v6 : des fonds pastel, légers, qui changent d'une question à l'autre (six ambiances),
+   avec un halo clair ; texte indigo ; tuiles et cartes blanches ; avec une photo, elle se fond dans un voile pastel du côté de la question.
+   La vidéo garde son plein écran sombre. */
+:root { --nuit: #2f2b6e; --nuit-douce: rgba(47, 43, 110, .62); }
+.amb-1 { --amb: linear-gradient(180deg, #d8c8ee 0%, #e8d0e4 48%, #f5dfcc 100%); --amb-voile: rgba(236, 216, 232, .95); }
+.amb-2 { --amb: linear-gradient(170deg, #bcd4f0 0%, #d4d9f4 50%, #e9d8f0 100%); --amb-voile: rgba(214, 220, 244, .95); }
+.amb-3 { --amb: linear-gradient(170deg, #bfe3e8 0%, #cfdff2 55%, #e1dcf4 100%); --amb-voile: rgba(208, 224, 240, .95); }
+.amb-4 { --amb: linear-gradient(170deg, #f3d3e4 0%, #e6d6f2 55%, #d5ddf6 100%); --amb-voile: rgba(232, 214, 238, .95); }
+.amb-5 { --amb: linear-gradient(170deg, #cdeedf 0%, #d3e5f1 55%, #e2def4 100%); --amb-voile: rgba(212, 232, 236, .95); }
+.amb-6 { --amb: linear-gradient(170deg, #f7dfcd 0%, #f3d5de 50%, #e5d5ef 100%); --amb-voile: rgba(244, 218, 222, .95); }
+.sc-duo { color: var(--nuit); background: radial-gradient(55% 45% at 50% 40%, rgba(255, 255, 255, .6), rgba(255, 255, 255, 0) 70%), var(--amb, linear-gradient(170deg, #bcd4f0, #e9d8f0)); }
+.sc-duo.avec-photo { background: var(--amb, #e9e3f6); }
+.sc-duo.avec-photo::after { background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 34%, var(--amb-voile, rgba(236, 230, 248, .95)) 60%, var(--amb-voile, rgba(236, 230, 248, .95)) 100%); }
+.sc-duo .q, .sc-duo .g-phrase, .sc-duo .consigne-o, .sc-duo .phrase-o, .sc-duo .dock-mot, .sc-duo .chrono-g, .sc-duo .mon-texte { color: var(--nuit); }
+.sc-duo .g-avant, .sc-duo .aide-g, .sc-duo .consigne-mini, .sc-duo .chat-q, .sc-duo .lien-b { color: var(--nuit-douce); }
+.sc-duo .q { text-shadow: none; }
+.sc-duo .hp { color: var(--nuit-douce); }
+.sc-duo .hp:hover, .sc-duo .hp.joue { color: var(--violet); }
+.sc-duo .kara:not(.encre).suit .k { color: rgba(47, 43, 110, .3); }
+.sc-duo .kara:not(.encre).suit .k.dit { color: var(--nuit); }
+.sc-duo .kara:not(.encre).suit .k.actuel { color: var(--violet); }
+.sc-duo .fente { background: rgba(255, 255, 255, .6); box-shadow: inset 0 -.08em 0 rgba(135, 69, 253, .45); }
+.sc-duo .fente.vide { animation-name: respire-clair; }
+.sc-duo .g-phrase.form { background: rgba(255, 255, 255, .55); }
+.sc-duo .g-indice { background: rgba(255, 255, 255, .6); color: var(--nuit); }
+.sc-duo .ecoute, .sc-duo .relire { border-color: rgba(255, 255, 255, .95); background: rgba(255, 255, 255, .72); color: var(--violet); }
+.sc-duo .ecoute .rondp, .sc-duo .relire .rondp { background: var(--violet); color: #fff; }
+.sc-duo .micro-g { background: linear-gradient(#a274ff, #7b3cf5); box-shadow: inset 0 0 0 7px rgba(255, 255, 255, .26), 0 6px 0 #5b2bc4; color: #fff; }
+.sc-duo .micro-g:active { box-shadow: inset 0 0 0 7px rgba(255, 255, 255, .26), 0 2px 0 #5b2bc4; }
+.sc-duo .micro-g svg.anneau .fond-a { stroke: rgba(135, 69, 253, .15); }
+.sc-duo .micro-g svg.anneau .plein { stroke: var(--violet); }
+.sc-duo .studio:not(.enreg):not(.fini) .micro-g::before { border-color: rgba(135, 69, 253, .3); }
+.sc-duo .carte-ecrit { box-shadow: 0 6px 0 var(--blanc-levre), 0 11px 0 var(--ombre); }
+@media (min-width: 900px) and (min-height: 560px) { .sc-duo > .carte-ecrit { align-self: center; height: auto; min-height: 0; max-height: 100%; overflow-y: auto; } }
+.sc-ecrit.compare .carte-q.mien { background: rgba(255, 255, 255, .55); }
+.sc-ecrit.compare .titre-mien { color: var(--violet); }
+.sc-duo .reps .rep:not(.envoyee):not(.bonne-rep) { border-color: rgba(255, 255, 255, .95); background: rgba(255, 255, 255, .85); }
+body[data-vue="activite"] .haut .rond { background: rgba(255, 255, 255, .55); color: var(--nuit); }
+body[data-vue="activite"][data-type="video"] .haut .rond { background: rgba(40, 14, 120, .42); color: #fff; }
+@media (max-width: 899.98px), (max-height: 559.98px) {
+  .sc-duo.avec-photo::after { background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 20%, var(--amb-voile, rgba(236, 230, 248, .95)) 42%, var(--amb-voile, rgba(236, 230, 248, .95)) 100%); }
+}
+
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .etoiles svg { opacity: 1; } }
 </style>
 
@@ -1092,7 +1136,7 @@ addEventListener("pointermove", (e) => { document.documentElement.style.setPrope
 // ---------------------------------------------------------------- passer d'une scène à l'autre
 let courant = null;
 function quitter() { try { courant?.arreter?.(); } catch (e) {} courant = null; touche = null; arreterMedias(); for (const s of [...animations]) s(); }
-function rendre(html) { const S = $("#scene"); S.innerHTML = html; S.scrollTop = 0; const el = S.firstElementChild; if (el?.classList.contains("sc-duo")) { if (!el.querySelector(".visuel")) el.classList.add("solo"); if (el.querySelector(".vis-photo")) el.classList.add("avec-photo"); } return el; }
+function rendre(html) { const S = $("#scene"); S.innerHTML = html; S.scrollTop = 0; const el = S.firstElementChild; if (el?.classList.contains("sc-duo")) { el.classList.add("amb-" + ((etat.k % 6) + 1)); if (!el.querySelector(".visuel")) el.classList.add("solo"); if (el.querySelector(".vis-photo")) el.classList.add("avec-photo"); } return el; }
 function rideau(a, k, origine, monter) {
   const R = $("#rideau"), mot = MOT[a.type](a);
   R.className = `ty-${a.type} f-${a.type}`;
@@ -1476,7 +1520,7 @@ function sceneOral(a) {
     if (!vivant) return; const dpr = Math.min(2, devicePixelRatio || 1), w = Math.round(halo.clientWidth * dpr); if (w && halo.width !== w) { halo.width = w; halo.height = w; }
     hx.clearRect(0, 0, halo.width, halo.height); const c = halo.width / 2, r0 = halo.width * .27, n = 72, s = ts / 1000, enreg = S.classList.contains("enreg");
     if (analyseur) { analyseur.getByteFrequencyData(donnees); let t = 0; for (let i = 2; i < 40; i++) t += donnees[i]; niveauVoix += (t / 38 / 255 - niveauVoix) * .3; }
-    hx.strokeStyle = enreg ? "rgba(255,173,246,.85)" : (S.closest(".sc-duo") ? "rgba(255,255,255,.35)" : "rgba(135,69,253,.28)"); hx.lineWidth = 3 * dpr; hx.lineCap = "round";
+    hx.strokeStyle = enreg ? "rgba(234,98,222,.6)" : "rgba(135,69,253,.28)"; hx.lineWidth = 3 * dpr; hx.lineCap = "round";
     for (let k = 0; k < n; k++) {
       const ang = k / n * Math.PI * 2, f = analyseur && enreg ? (donnees[2 + Math.floor((k < n / 2 ? k : n - k) / (n / 2) * 60)] / 255) : 0;
       const v = enreg ? (analyseur ? f * 1.2 + niveauVoix * .5 : .25 + .2 * Math.sin(s * 5 + k * .6)) : .05 + .04 * Math.sin(s * 2 + k * .5), l = halo.width * .2 * Math.min(1, v);
