@@ -11234,6 +11234,176 @@
   ]
  },
  {
+  "id": "lettres-A1",
+  "type": "lettres",
+  "niveau": "A1",
+  "titre": "Composer le mot",
+  "theme": "Orthographe",
+  "questions": [
+   {
+    "id": "EE-05-L",
+    "source": "EE-05",
+    "niveau": "A1",
+    "mot": "habitons",
+    "extra": [
+     "e",
+     "z",
+     "t"
+    ],
+    "titre": "Écrivez le mot avec les lettres.",
+    "phrase": "Nous ______ à Vesoul.",
+    "indice": "habiter",
+    "photoH": "medias/photos/petite-ville.webp",
+    "audioQ": "medias/questions/EE-05.mp3"
+   },
+   {
+    "id": "EE-06-L",
+    "source": "EE-06",
+    "niveau": "A1",
+    "mot": "bonjour",
+    "extra": [
+     "e"
+    ],
+    "titre": "Écoutez et écrivez le mot.",
+    "son": "medias/mots/bonjour.mp3",
+    "photoH": "medias/photos/se-presenter.webp"
+   },
+   {
+    "id": "EE-07-L",
+    "source": "EE-07",
+    "niveau": "A1",
+    "mot": "quinze",
+    "extra": [
+     "c",
+     "a",
+     "n"
+    ],
+    "titre": "Comment écrit-on 15 en lettres ?",
+    "grand": "15",
+    "photoH": "medias/photos/classe.webp"
+   },
+   {
+    "id": "EE-12-L",
+    "source": "EE-12",
+    "niveau": "A1",
+    "mot": "pommes",
+    "extra": [
+     "é",
+     "t"
+    ],
+    "titre": "Écrivez le mot avec les lettres.",
+    "phrase": "J'achète deux ______.",
+    "indice": "pomme",
+    "photoH": "medias/photos/pommes.webp",
+    "audioQ": "medias/questions/EE-12.mp3"
+   },
+   {
+    "id": "EE-13-L",
+    "source": "EE-13",
+    "niveau": "A1",
+    "mot": "gentille",
+    "extra": [
+     "s"
+    ],
+    "titre": "Écrivez le mot avec les lettres.",
+    "phrase": "Ma voisine est très ______.",
+    "indice": "gentil",
+    "photoH": "medias/photos/visite.webp",
+    "audioQ": "medias/questions/EE-13.mp3"
+   }
+  ]
+ },
+ {
+  "id": "lettres-A2",
+  "type": "lettres",
+  "niveau": "A2",
+  "titre": "Composer le mot",
+  "theme": "Orthographe",
+  "questions": [
+   {
+    "id": "EE-20-L",
+    "source": "EE-20",
+    "niveau": "A2",
+    "mot": "vais",
+    "extra": [
+     "u",
+     "s"
+    ],
+    "titre": "Écrivez le mot avec les lettres.",
+    "phrase": "Demain, je ______ appeler le médecin.",
+    "indice": "aller",
+    "photoH": "medias/photos/telephone-2.webp",
+    "audioQ": "medias/questions/EE-20.mp3"
+   },
+   {
+    "id": "EE-28-L",
+    "source": "EE-28",
+    "niveau": "A2",
+    "mot": "sont",
+    "extra": [
+     "s"
+    ],
+    "titre": "Écrivez le mot avec les lettres.",
+    "phrase": "Mes enfants ______ à l'école.",
+    "indice": "être",
+    "photoH": "medias/photos/ecole.webp",
+    "audioQ": "medias/questions/EE-28.mp3"
+   }
+  ]
+ },
+ {
+  "id": "lettres-B1",
+  "type": "lettres",
+  "niveau": "B1",
+  "titre": "Composer le mot",
+  "theme": "Orthographe",
+  "questions": [
+   {
+    "id": "EE-38-L",
+    "source": "EE-38",
+    "niveau": "B1",
+    "mot": "remplisses",
+    "extra": [
+     "r",
+     "a"
+    ],
+    "titre": "Écrivez le mot avec les lettres.",
+    "phrase": "Il faut que tu ______ ce formulaire avant vendredi.",
+    "indice": "remplir",
+    "photoH": "medias/photos/remplir-fiche.webp",
+    "audioQ": "medias/questions/EE-38.mp3"
+   },
+   {
+    "id": "EE-42-L",
+    "source": "EE-42",
+    "niveau": "B1",
+    "mot": "ferais",
+    "extra": [
+     "a",
+     "i",
+     "s"
+    ],
+    "titre": "Écrivez le mot avec les lettres.",
+    "phrase": "Si j'avais plus de temps, je ______ du sport.",
+    "indice": "faire",
+    "photoH": "medias/photos/sport.webp",
+    "audioQ": "medias/questions/EE-42.mp3"
+   },
+   {
+    "id": "EE-43-L",
+    "source": "EE-43",
+    "niveau": "B1",
+    "mot": "écrites",
+    "extra": [],
+    "titre": "Écrivez le mot avec les lettres.",
+    "phrase": "Les lettres que j'ai ______ sont sur le bureau.",
+    "indice": "écrire",
+    "photoH": "medias/photos/lecture-courrier.webp",
+    "audioQ": "medias/questions/EE-43.mp3"
+   }
+  ]
+ },
+ {
   "id": "EE-14",
   "niveau": "A1",
   "titre": "Se présenter",
@@ -17912,6 +18082,106 @@
   "audio": null,
   "sous": "role",
   "role": "Rôle de l'interlocuteur : secrétaire médicale qui propose deux créneaux et demande le nom.",
+  "roleTexte": "Secrétaire médicale qui propose deux créneaux et demande le nom.",
+  "jeu": {
+   "audio": "medias/jeux/EO-23.mp3",
+   "k": [
+    [
+     [
+      "Vous",
+      0.94,
+      1.02
+     ],
+     [
+      "téléphonez",
+      1.04,
+      1.44
+     ],
+     [
+      "au",
+      1.46,
+      1.52
+     ],
+     [
+      "cabinet",
+      1.56,
+      1.84
+     ],
+     [
+      "médical",
+      1.88,
+      2.28
+     ],
+     [
+      "pour",
+      2.32,
+      2.44
+     ],
+     [
+      "prendre",
+      2.48,
+      2.7
+     ],
+     [
+      "rendez-vous.",
+      2.82,
+      3.22
+     ]
+    ],
+    [
+     [
+      "Secrétaire",
+      4.68,
+      5.06
+     ],
+     [
+      "médicale",
+      5.1,
+      5.52
+     ],
+     [
+      "qui",
+      5.54,
+      5.66
+     ],
+     [
+      "propose",
+      5.7,
+      6.04
+     ],
+     [
+      "deux",
+      6.08,
+      6.18
+     ],
+     [
+      "créneaux",
+      6.22,
+      6.66
+     ],
+     [
+      "et",
+      6.7,
+      6.78
+     ],
+     [
+      "demande",
+      6.82,
+      7.08
+     ],
+     [
+      "le",
+      7.12,
+      7.18
+     ],
+     [
+      "nom.",
+      7.24,
+      7.34
+     ]
+    ]
+   ]
+  },
   "modeleAudio": "medias/modeles/EO-23.mp3",
   "modeleK": [
    {
@@ -18569,6 +18839,141 @@
   "audio": null,
   "sous": "role",
   "role": "Rôle de l'interlocuteur : vendeur qui demande le ticket de caisse et propose un avoir.",
+  "roleTexte": "Vendeur qui demande le ticket de caisse et propose un avoir.",
+  "jeu": {
+   "audio": "medias/jeux/EO-24.mp3",
+   "k": [
+    [
+     [
+      "Vous",
+      0.74,
+      0.84
+     ],
+     [
+      "êtes",
+      0.88,
+      1.0
+     ],
+     [
+      "dans",
+      1.04,
+      1.16
+     ],
+     [
+      "un",
+      1.2,
+      1.26
+     ],
+     [
+      "magasin",
+      1.3,
+      1.62
+     ],
+     [
+      "de",
+      1.66,
+      1.72
+     ],
+     [
+      "vêtements.",
+      1.76,
+      2.04
+     ],
+     [
+      "Vous",
+      2.38,
+      2.48
+     ],
+     [
+      "voulez",
+      2.5,
+      2.76
+     ],
+     [
+      "échanger",
+      2.84,
+      3.18
+     ],
+     [
+      "un",
+      3.22,
+      3.3
+     ],
+     [
+      "pantalon",
+      3.32,
+      3.66
+     ],
+     [
+      "trop",
+      3.7,
+      3.86
+     ],
+     [
+      "petit.",
+      3.9,
+      4.12
+     ]
+    ],
+    [
+     [
+      "Vendeur",
+      5.66,
+      5.96
+     ],
+     [
+      "qui",
+      5.98,
+      6.06
+     ],
+     [
+      "demande",
+      6.1,
+      6.36
+     ],
+     [
+      "le",
+      6.4,
+      6.48
+     ],
+     [
+      "ticket",
+      6.52,
+      6.74
+     ],
+     [
+      "de",
+      6.78,
+      6.88
+     ],
+     [
+      "caisse",
+      6.92,
+      7.1
+     ],
+     [
+      "et",
+      7.14,
+      7.2
+     ],
+     [
+      "propose",
+      7.24,
+      7.5
+     ],
+     [
+      "un",
+      7.56,
+      7.62
+     ],
+     [
+      "avoir.",
+      7.7,
+      7.96
+     ]
+    ]
+   ]
+  },
   "modeleAudio": "medias/modeles/EO-24.mp3",
   "modeleK": [
    {
@@ -19257,6 +19662,101 @@
   "audio": null,
   "sous": "role",
   "role": "Rôle de l'interlocuteur : passant qui indique le chemin.",
+  "roleTexte": "Passant qui indique le chemin.",
+  "jeu": {
+   "audio": "medias/jeux/EO-25.mp3",
+   "k": [
+    [
+     [
+      "Vous",
+      0.7,
+      0.78
+     ],
+     [
+      "demandez",
+      0.82,
+      1.12
+     ],
+     [
+      "votre",
+      1.16,
+      1.36
+     ],
+     [
+      "chemin",
+      1.42,
+      1.68
+     ],
+     [
+      "pour",
+      1.72,
+      1.84
+     ],
+     [
+      "aller",
+      1.88,
+      2.02
+     ],
+     [
+      "à",
+      2.06,
+      2.08
+     ],
+     [
+      "la",
+      2.12,
+      2.22
+     ],
+     [
+      "gare.",
+      2.24,
+      2.46
+     ],
+     [
+      "Remerciez",
+      2.86,
+      3.2
+     ],
+     [
+      "la",
+      3.24,
+      3.32
+     ],
+     [
+      "personne.",
+      3.34,
+      3.7
+     ]
+    ],
+    [
+     [
+      "Passant",
+      5.1,
+      5.38
+     ],
+     [
+      "qui",
+      5.4,
+      5.5
+     ],
+     [
+      "indique",
+      5.54,
+      5.78
+     ],
+     [
+      "le",
+      5.82,
+      5.88
+     ],
+     [
+      "chemin.",
+      5.92,
+      6.16
+     ]
+    ]
+   ]
+  },
   "modeleAudio": "medias/modeles/EO-25.mp3",
   "modeleK": [
    {
@@ -20399,6 +20899,126 @@
   "audio": null,
   "sous": "role",
   "role": "Rôle de l'interlocuteur : collègue qui refuse l'invitation (indisponible).",
+  "roleTexte": "Collègue qui refuse l'invitation (indisponible).",
+  "jeu": {
+   "audio": "medias/jeux/EO-27.mp3",
+   "k": [
+    [
+     [
+      "Vous",
+      0.7,
+      0.8
+     ],
+     [
+      "invitez",
+      0.84,
+      1.1
+     ],
+     [
+      "un",
+      1.14,
+      1.22
+     ],
+     [
+      "collègue",
+      1.24,
+      1.5
+     ],
+     [
+      "à",
+      1.54,
+      1.6
+     ],
+     [
+      "boire",
+      1.62,
+      1.78
+     ],
+     [
+      "un",
+      1.82,
+      1.9
+     ],
+     [
+      "café",
+      1.94,
+      2.2
+     ],
+     [
+      "après",
+      2.24,
+      2.4
+     ],
+     [
+      "le",
+      2.44,
+      2.52
+     ],
+     [
+      "travail.",
+      2.54,
+      2.88
+     ],
+     [
+      "Il",
+      3.1,
+      3.18
+     ],
+     [
+      "refuse.",
+      3.22,
+      3.62
+     ],
+     [
+      "Proposez",
+      3.9,
+      4.24
+     ],
+     [
+      "un",
+      4.28,
+      4.34
+     ],
+     [
+      "autre",
+      4.38,
+      4.58
+     ],
+     [
+      "jour.",
+      4.66,
+      4.82
+     ]
+    ],
+    [
+     [
+      "Collègue",
+      6.4,
+      6.7
+     ],
+     [
+      "qui",
+      6.72,
+      6.82
+     ],
+     [
+      "refuse",
+      6.86,
+      7.12
+     ],
+     [
+      "l'invitation",
+      7.16,
+      7.68
+     ],
+     [
+      "(indisponible).",
+      7.82,
+      8.42
+     ]
+    ]
+   ]
+  },
   "modeleAudio": "medias/modeles/EO-27.mp3",
   "modeleK": [
    {
@@ -27966,6 +28586,151 @@
   "audio": null,
   "sous": "role",
   "role": "Rôle de l'interlocuteur : voisin d'abord sur la défensive, puis prêt à trouver un compromis.",
+  "roleTexte": "Voisin d'abord sur la défensive, puis prêt à trouver un compromis.",
+  "jeu": {
+   "audio": "medias/jeux/EO-39.mp3",
+   "k": [
+    [
+     [
+      "Votre",
+      1.0,
+      1.22
+     ],
+     [
+      "voisin",
+      1.24,
+      1.5
+     ],
+     [
+      "fait",
+      1.54,
+      1.62
+     ],
+     [
+      "du",
+      1.66,
+      1.74
+     ],
+     [
+      "bruit",
+      1.78,
+      1.96
+     ],
+     [
+      "tous",
+      2.0,
+      2.08
+     ],
+     [
+      "les",
+      2.12,
+      2.22
+     ],
+     [
+      "soirs.",
+      2.28,
+      2.54
+     ],
+     [
+      "Vous",
+      2.68,
+      2.78
+     ],
+     [
+      "allez",
+      2.82,
+      2.96
+     ],
+     [
+      "lui",
+      3.0,
+      3.1
+     ],
+     [
+      "parler",
+      3.14,
+      3.36
+     ],
+     [
+      "pour",
+      3.4,
+      3.5
+     ],
+     [
+      "trouver",
+      3.54,
+      3.74
+     ],
+     [
+      "une",
+      3.76,
+      3.86
+     ],
+     [
+      "solution.",
+      3.9,
+      4.3
+     ]
+    ],
+    [
+     [
+      "Voisin",
+      6.02,
+      6.26
+     ],
+     [
+      "d'abord",
+      6.3,
+      6.58
+     ],
+     [
+      "sur",
+      6.62,
+      6.72
+     ],
+     [
+      "la",
+      6.76,
+      6.82
+     ],
+     [
+      "défensive,",
+      6.86,
+      7.42
+     ],
+     [
+      "puis",
+      7.58,
+      7.74
+     ],
+     [
+      "prêt",
+      7.76,
+      7.9
+     ],
+     [
+      "à",
+      7.94,
+      8.0
+     ],
+     [
+      "trouver",
+      8.04,
+      8.28
+     ],
+     [
+      "un",
+      8.32,
+      8.38
+     ],
+     [
+      "compromis.",
+      8.42,
+      8.8
+     ]
+    ]
+   ]
+  },
   "modeleAudio": "medias/modeles/EO-39.mp3",
   "modeleK": [
    {
@@ -29316,6 +30081,191 @@
   "audio": null,
   "sous": "role",
   "role": "Rôle de l'interlocuteur : conseiller de l'agence qui annonce un délai de 10 jours.",
+  "roleTexte": "Conseiller de l'agence qui annonce un délai de 10 jours.",
+  "jeu": {
+   "audio": "medias/jeux/EO-40.mp3",
+   "k": [
+    [
+     [
+      "Vous",
+      1.18,
+      1.28
+     ],
+     [
+      "appelez",
+      1.34,
+      1.54
+     ],
+     [
+      "votre",
+      1.58,
+      1.74
+     ],
+     [
+      "agence",
+      1.8,
+      2.06
+     ],
+     [
+      "pour",
+      2.1,
+      2.22
+     ],
+     [
+      "signaler",
+      2.24,
+      2.52
+     ],
+     [
+      "une",
+      2.54,
+      2.66
+     ],
+     [
+      "panne",
+      2.7,
+      2.84
+     ],
+     [
+      "de",
+      2.88,
+      2.96
+     ],
+     [
+      "chauffage.",
+      2.98,
+      3.4
+     ],
+     [
+      "Le",
+      3.86,
+      3.94
+     ],
+     [
+      "conseiller",
+      3.98,
+      4.34
+     ],
+     [
+      "dit",
+      4.38,
+      4.5
+     ],
+     [
+      "qu'aucun",
+      4.52,
+      4.78
+     ],
+     [
+      "technicien",
+      4.84,
+      5.24
+     ],
+     [
+      "n'est",
+      5.28,
+      5.42
+     ],
+     [
+      "disponible",
+      5.46,
+      6.02
+     ],
+     [
+      "avant",
+      6.1,
+      6.26
+     ],
+     [
+      "10",
+      6.3,
+      6.4
+     ],
+     [
+      "jours.",
+      6.46,
+      6.64
+     ],
+     [
+      "Insistez",
+      7.1,
+      7.48
+     ],
+     [
+      "pour",
+      7.52,
+      7.62
+     ],
+     [
+      "obtenir",
+      7.66,
+      7.98
+     ],
+     [
+      "une",
+      8.04,
+      8.12
+     ],
+     [
+      "solution.",
+      8.16,
+      8.54
+     ]
+    ],
+    [
+     [
+      "Conseiller",
+      10.1,
+      10.44
+     ],
+     [
+      "de",
+      10.48,
+      10.52
+     ],
+     [
+      "l'agence",
+      10.54,
+      10.94
+     ],
+     [
+      "qui",
+      10.98,
+      11.04
+     ],
+     [
+      "annonce",
+      11.08,
+      11.32
+     ],
+     [
+      "un",
+      11.36,
+      11.42
+     ],
+     [
+      "délai",
+      11.46,
+      11.64
+     ],
+     [
+      "de",
+      11.68,
+      11.78
+     ],
+     [
+      "10",
+      11.82,
+      11.9
+     ],
+     [
+      "jours.",
+      11.96,
+      12.14
+     ]
+    ]
+   ]
+  },
   "modeleAudio": "medias/modeles/EO-40.mp3",
   "modeleK": [
    {
@@ -30706,6 +31656,141 @@
   "audio": null,
   "sous": "role",
   "role": "Questions du recruteur : « Pourquoi voulez-vous ce poste ? Quelles sont vos qualités ? Vous avez des questions ? »",
+  "roleTexte": "Le recruteur demande : « Pourquoi voulez-vous ce poste ? Quelles sont vos qualités ? Vous avez des questions ? »",
+  "jeu": {
+   "audio": "medias/jeux/EO-41.mp3",
+   "k": [
+    [
+     [
+      "Vous",
+      0.82,
+      0.9
+     ],
+     [
+      "passez",
+      0.94,
+      1.14
+     ],
+     [
+      "un",
+      1.18,
+      1.24
+     ],
+     [
+      "entretien",
+      1.28,
+      1.66
+     ],
+     [
+      "d'embauche.",
+      1.7,
+      2.14
+     ],
+     [
+      "Répondez",
+      2.32,
+      2.68
+     ],
+     [
+      "aux",
+      2.7,
+      2.78
+     ],
+     [
+      "questions",
+      2.82,
+      3.08
+     ],
+     [
+      "du",
+      3.1,
+      3.18
+     ],
+     [
+      "recruteur.",
+      3.22,
+      3.7
+     ]
+    ],
+    [
+     [
+      "Le",
+      5.42,
+      5.48
+     ],
+     [
+      "recruteur",
+      5.52,
+      5.9
+     ],
+     [
+      "demande : «",
+      5.96,
+      6.26
+     ],
+     [
+      "Pourquoi",
+      6.66,
+      6.9
+     ],
+     [
+      "voulez-vous",
+      6.96,
+      7.26
+     ],
+     [
+      "ce",
+      7.32,
+      7.4
+     ],
+     [
+      "poste ?",
+      7.48,
+      7.72
+     ],
+     [
+      "Quelles",
+      8.14,
+      8.3
+     ],
+     [
+      "sont",
+      8.34,
+      8.44
+     ],
+     [
+      "vos",
+      8.48,
+      8.56
+     ],
+     [
+      "qualités ?",
+      8.6,
+      8.94
+     ],
+     [
+      "Vous",
+      9.36,
+      9.48
+     ],
+     [
+      "avez",
+      9.52,
+      9.66
+     ],
+     [
+      "des",
+      9.68,
+      9.78
+     ],
+     [
+      "questions ? »",
+      9.82,
+      10.08
+     ]
+    ]
+   ]
+  },
   "modeleAudio": "medias/modeles/EO-41.mp3",
   "modeleK": [
    {
@@ -39541,5 +40626,555 @@
    }
   ],
   "photoH": "medias/photos/classe.webp"
+ },
+ {
+  "id": "REP-CO-01",
+  "type": "oral",
+  "sous": "repeter",
+  "niveau": "A1",
+  "titre": "Répéter",
+  "theme": "Se présenter",
+  "consigne": "Écoutez et répétez.",
+  "phrase": "Bonjour, je m'appelle Karim. J'ai trente-deux ans.",
+  "audio": "medias/sons/CO-01.mp3",
+  "duree": 6,
+  "photo": "medias/photos/lucas.webp",
+  "source": "CO-01",
+  "derive": true,
+  "verifiez": [],
+  "k": [
+   [
+    "Bonjour,",
+    0.1,
+    0.36
+   ],
+   [
+    "je",
+    0.42,
+    0.46
+   ],
+   [
+    "m'appelle",
+    0.5,
+    0.78
+   ],
+   [
+    "Karim.",
+    0.86,
+    1.24
+   ],
+   [
+    "J'ai",
+    1.88,
+    2.04
+   ],
+   [
+    "trente-deux",
+    2.18,
+    2.5
+   ],
+   [
+    "ans.",
+    2.52,
+    2.62
+   ]
+  ]
+ },
+ {
+  "id": "REP-CO-04",
+  "type": "oral",
+  "sous": "repeter",
+  "niveau": "A1",
+  "titre": "Répéter",
+  "theme": "Cours de français",
+  "consigne": "Écoutez et répétez.",
+  "phrase": "Ouvrez votre livre page 12.",
+  "audio": "medias/sons/CO-04.mp3",
+  "duree": 5,
+  "photo": "medias/photos/classe.webp",
+  "source": "CO-04",
+  "derive": true,
+  "verifiez": [],
+  "k": [
+   [
+    "Ouvrez",
+    0.08,
+    0.42
+   ],
+   [
+    "votre",
+    0.46,
+    0.76
+   ],
+   [
+    "livre",
+    0.82,
+    1.08
+   ],
+   [
+    "page",
+    1.18,
+    1.36
+   ],
+   [
+    "12.",
+    1.46,
+    1.74
+   ]
+  ]
+ },
+ {
+  "id": "REP-CO-05",
+  "type": "oral",
+  "sous": "repeter",
+  "niveau": "A1",
+  "titre": "Répéter",
+  "theme": "Se présenter",
+  "consigne": "Écoutez et répétez.",
+  "phrase": "Je suis né au Maroc, mais j'habite à Besançon.",
+  "audio": "medias/sons/CO-05.mp3",
+  "duree": 8,
+  "photo": "medias/photos/amir.webp",
+  "source": "CO-05",
+  "derive": true,
+  "verifiez": [],
+  "k": [
+   [
+    "Je",
+    0.12,
+    0.26
+   ],
+   [
+    "suis",
+    0.32,
+    0.46
+   ],
+   [
+    "né",
+    0.52,
+    0.64
+   ],
+   [
+    "au",
+    0.68,
+    0.78
+   ],
+   [
+    "Maroc,",
+    0.82,
+    1.16
+   ],
+   [
+    "mais",
+    1.26,
+    1.36
+   ],
+   [
+    "j'habite",
+    1.4,
+    1.74
+   ],
+   [
+    "à",
+    1.8,
+    1.86
+   ],
+   [
+    "Besançon.",
+    1.92,
+    2.48
+   ]
+  ]
+ },
+ {
+  "id": "REP-CO-06",
+  "type": "oral",
+  "sous": "repeter",
+  "niveau": "A1",
+  "titre": "Répéter",
+  "theme": "S'orienter",
+  "consigne": "Écoutez et répétez.",
+  "phrase": "La pharmacie est à gauche, après la boulangerie.",
+  "audio": "medias/sons/CO-06.mp3",
+  "duree": 7,
+  "photo": "medias/photos/rue.webp",
+  "source": "CO-06",
+  "derive": true,
+  "verifiez": [],
+  "k": [
+   [
+    "La",
+    0.12,
+    0.24
+   ],
+   [
+    "pharmacie",
+    0.26,
+    0.68
+   ],
+   [
+    "est",
+    0.7,
+    0.82
+   ],
+   [
+    "à",
+    0.88,
+    0.96
+   ],
+   [
+    "gauche,",
+    0.98,
+    1.38
+   ],
+   [
+    "après",
+    1.46,
+    1.68
+   ],
+   [
+    "la",
+    1.72,
+    1.82
+   ],
+   [
+    "boulangerie.",
+    1.84,
+    2.36
+   ]
+  ]
+ },
+ {
+  "id": "REP-CO-07",
+  "type": "oral",
+  "sous": "repeter",
+  "niveau": "A1",
+  "titre": "Répéter",
+  "theme": "Rendez-vous",
+  "consigne": "Écoutez et répétez.",
+  "phrase": "Aujourd'hui, nous sommes mardi. Le rendez-vous est demain.",
+  "audio": "medias/sons/CO-07.mp3",
+  "duree": 7,
+  "photo": "medias/photos/agenda-accueil.webp",
+  "source": "CO-07",
+  "derive": true,
+  "verifiez": [],
+  "k": [
+   [
+    "Aujourd'hui,",
+    0.08,
+    0.56
+   ],
+   [
+    "nous",
+    0.64,
+    0.78
+   ],
+   [
+    "sommes",
+    0.82,
+    1.14
+   ],
+   [
+    "mardi.",
+    1.2,
+    1.62
+   ],
+   [
+    "Le",
+    1.86,
+    1.96
+   ],
+   [
+    "rendez-vous",
+    2.02,
+    2.48
+   ],
+   [
+    "est",
+    2.52,
+    2.66
+   ],
+   [
+    "demain.",
+    2.7,
+    3.02
+   ]
+  ]
+ },
+ {
+  "id": "REP-CO-09",
+  "type": "oral",
+  "sous": "repeter",
+  "niveau": "A1",
+  "titre": "Répéter",
+  "theme": "Famille",
+  "consigne": "Écoutez et répétez.",
+  "phrase": "J'ai deux enfants : un garçon et une fille.",
+  "audio": "medias/sons/CO-09.mp3",
+  "duree": 8,
+  "photo": "medias/photos/couple.webp",
+  "source": "CO-09",
+  "derive": true,
+  "verifiez": [],
+  "k": [
+   [
+    "J'ai",
+    0.08,
+    0.32
+   ],
+   [
+    "deux",
+    0.36,
+    0.52
+   ],
+   [
+    "enfants :",
+    0.58,
+    0.88
+   ],
+   [
+    "un",
+    1.3,
+    1.38
+   ],
+   [
+    "garçon",
+    1.46,
+    1.86
+   ],
+   [
+    "et",
+    2.02,
+    2.08
+   ],
+   [
+    "une",
+    2.12,
+    2.3
+   ],
+   [
+    "fille.",
+    2.36,
+    2.64
+   ]
+  ]
+ },
+ {
+  "id": "REP-CO-10",
+  "type": "oral",
+  "sous": "repeter",
+  "niveau": "A1",
+  "titre": "Répéter",
+  "theme": "Météo",
+  "consigne": "Écoutez et répétez.",
+  "phrase": "Il fait froid aujourd'hui. Il neige.",
+  "audio": "medias/sons/CO-10.mp3",
+  "duree": 5,
+  "photo": "medias/photos/fenetre-the.webp",
+  "source": "CO-10",
+  "derive": true,
+  "verifiez": [],
+  "k": [
+   [
+    "Il",
+    0.08,
+    0.18
+   ],
+   [
+    "fait",
+    0.28,
+    0.48
+   ],
+   [
+    "froid",
+    0.54,
+    0.78
+   ],
+   [
+    "aujourd'hui.",
+    0.92,
+    1.48
+   ],
+   [
+    "Il",
+    1.9,
+    2.02
+   ],
+   [
+    "neige.",
+    2.14,
+    2.58
+   ]
+  ]
+ },
+ {
+  "id": "REP-CO-11",
+  "type": "oral",
+  "sous": "repeter",
+  "niveau": "A1",
+  "titre": "Répéter",
+  "theme": "Salutations",
+  "consigne": "Écoutez et répétez.",
+  "phrase": "Bonsoir madame, comment allez-vous ?",
+  "audio": "medias/sons/CO-11.mp3",
+  "duree": 5,
+  "photo": "medias/photos/conversation.webp",
+  "source": "CO-11",
+  "derive": true,
+  "verifiez": [],
+  "k": [
+   [
+    "Bonsoir",
+    0.22,
+    0.54
+   ],
+   [
+    "madame,",
+    0.6,
+    0.94
+   ],
+   [
+    "comment",
+    1.08,
+    1.36
+   ],
+   [
+    "allez-vous ?",
+    1.42,
+    1.8
+   ]
+  ]
+ },
+ {
+  "id": "REP-CO-15",
+  "type": "oral",
+  "sous": "repeter",
+  "niveau": "A1",
+  "titre": "Répéter",
+  "theme": "Travail",
+  "consigne": "Écoutez et répétez.",
+  "phrase": "Je travaille dans un restaurant. Je suis cuisinier.",
+  "audio": "medias/sons/CO-15.mp3",
+  "duree": 7,
+  "photo": "medias/photos/salle-restaurant.webp",
+  "source": "CO-15",
+  "derive": true,
+  "verifiez": [],
+  "k": [
+   [
+    "Je",
+    0.1,
+    0.2
+   ],
+   [
+    "travaille",
+    0.24,
+    0.54
+   ],
+   [
+    "dans",
+    0.58,
+    0.7
+   ],
+   [
+    "un",
+    0.74,
+    0.82
+   ],
+   [
+    "restaurant.",
+    0.86,
+    1.34
+   ],
+   [
+    "Je",
+    1.62,
+    1.68
+   ],
+   [
+    "suis",
+    1.76,
+    1.9
+   ],
+   [
+    "cuisinier.",
+    1.94,
+    2.44
+   ]
+  ]
+ },
+ {
+  "id": "REP-CO-17",
+  "type": "oral",
+  "sous": "repeter",
+  "niveau": "A1",
+  "titre": "Répéter",
+  "theme": "Famille",
+  "consigne": "Écoutez et répétez.",
+  "phrase": "Ma sœur s'appelle Amina. Elle a les cheveux longs et noirs.",
+  "audio": "medias/sons/CO-17.mp3",
+  "duree": 10,
+  "photo": "medias/photos/photos-main.webp",
+  "source": "CO-17",
+  "derive": true,
+  "verifiez": [],
+  "k": [
+   [
+    "Ma",
+    0.1,
+    0.18
+   ],
+   [
+    "sœur",
+    0.26,
+    0.44
+   ],
+   [
+    "s'appelle",
+    0.5,
+    0.82
+   ],
+   [
+    "Amina.",
+    1.0,
+    1.44
+   ],
+   [
+    "Elle",
+    1.64,
+    1.74
+   ],
+   [
+    "a",
+    1.78,
+    1.84
+   ],
+   [
+    "les",
+    1.88,
+    2.02
+   ],
+   [
+    "cheveux",
+    2.06,
+    2.4
+   ],
+   [
+    "longs",
+    2.52,
+    2.72
+   ],
+   [
+    "et",
+    2.76,
+    2.84
+   ],
+   [
+    "noirs.",
+    2.9,
+    3.24
+   ]
+  ]
  }
 ]

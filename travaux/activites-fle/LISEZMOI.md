@@ -83,6 +83,37 @@ zones : la question en haut, les réponses au centre exact (sur l'axe de l'image
 quand le retour arrive. À l'oral, le micro est au centre et ne se déplace plus quand on appuie. Les réponses en
 lignes sont à plat, sans tranche ni ombre.
 
+**Pas d'écran d'accueil** : la page entre directement dans la série (le rideau, puis la première question). En bas à
+gauche, quelques boutons discrets : « Nouvelle série », « Toutes les questions » (la revue, qui reprend où on l'a
+laissée) et le niveau (Tous, A1, A2, B1, qui tire une nouvelle série). La croix en haut ne sert plus qu'à quitter la revue.
+
+**Oral** : « Écouter » est en bas à gauche de la photo. Une consigne longue (B1) s'écrit un peu plus petit ; après
+l'enregistrement, le micro se fait petit : le bouton pour continuer reste à l'écran (il sortait de l'écran sur les
+longues consignes, d'où le blocage vers la 150ᵉ question de la revue). Vérifié sur les 60 questions orales, en
+1907 × 940, 1440 × 760, 1280 × 640 et sur téléphone.
+
+**Ce que la personne dit, écrit** : pendant qu'elle parle, ses mots s'écrivent sous le micro ; après, « Ce que j'ai
+entendu ». Dans l'artefact, c'est la dictée de claude.ai (capacité `dictation`, navigateur Chromium) ; sur le site, la
+reconnaissance vocale du navigateur (Chrome, Edge, Safari ; pas Firefox). Avec Chrome, le son part chez Google pour
+être transcrit. Sans reconnaissance possible, rien ne change.
+
+**Répéter** (rubrique à part) : la phrase s'affiche, la voix la dit ; après l'enregistrement, chaque mot passe au vert
+s'il a été dit, en rose sinon (sans tenir compte des accents ni de la ponctuation ; « 12 » vaut « douze »), avec
+« 8 mots sur 10 » ; 85 % des mots ou plus, c'est juste. Les phrases : les trois « Écoutez et répétez » de l'Excel
+(EO-01, EO-02, EO-33) et dix phrases des écoutes A1 de l'Excel, mot pour mot, avec leur son (`REP-CO-01`…, dans
+`construire.py`, `REPETER_CO`). Le niveau est respecté : une seule phrase en A2, aucune en B1.
+
+**Composer le mot** (rubrique à part) : des cases et des lettres en hexagones (celles du mot et quelques lettres des
+mauvaises réponses) ; on touche une lettre, elle vole dans la case ; le clavier marche aussi. Le mot se remplit en
+même temps dans le trou de la phrase, sur la photo. Dix QCM de l'Excel dont la réponse est un mot à bien écrire
+(`LETTRES` dans `construire.py`) : EE-05, 06 (le mot entendu, « bonjour »), 07 (« 15 » → quinze), 12, 13 en A1 ;
+EE-20, 28 en A2 ; EE-38, 42, 43 en B1. Le mot de base entre parenthèses (« pomme », « gentil », « être »…) est ajouté
+ici, à relire. Le QCM d'origine reste dans la grammaire.
+
+**Jeux de rôle** : une ouverture animée (les masques, « Jeu de rôle », la situation, « L'autre personne » et son rôle),
+lue par la voix de Claire avec les mots qui s'allument (`generer_jeux.py`, sons dans `medias/jeux/`) ; à la fin de la
+lecture (ou avec « Passer »), la situation et le rôle partent à leur place dans l'écran.
+
 **Grammaire, ce qui se lit va sur la photo** : la phrase citée (« Je viendrai demain. »), les mots à remettre dans
 l'ordre, la phrase à transformer, la situation (« Vous écrivez un SMS à un ami. ») se posent sur la photo, à gauche ;
 la question et les réponses restent à droite. Quand l'Excel ne donne que « Choisissez la bonne réponse. », le titre

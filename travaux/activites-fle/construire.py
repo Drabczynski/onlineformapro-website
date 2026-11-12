@@ -22,6 +22,7 @@ La page (page.html) tire au hasard une série d'activités variées ; rien n'est
 """
 import array, difflib, json, os, re, shutil, subprocess, unicodedata
 from prononciation import SONS as SONS_REFAITS
+from generer_jeux import texte_role, MOTS as MOTS_LUS
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 TRAVAUX = os.path.dirname(ICI)
@@ -215,7 +216,13 @@ for i, x in X.items():
         a["type"] = "oral"; a["duree"] = secondes(x["Type de réponse"]); media = x["Média à produire"]
         a["audio"] = son(i)
         if media.startswith("Audio modèle"): a["sous"] = "repeter"; a["phrase"] = entre_guillemets(support)
-        elif media.startswith("Jeu de rôle"): a["sous"] = "role"; a["role"] = support
+        elif media.startswith("Jeu de rôle"):
+            a["sous"] = "role"; a["role"] = support; a["roleTexte"] = texte_role(support)
+            rel = "medias/jeux/" + i + ".mp3"          # l'ouverture lue : « Jeu de rôle. <situation> L'autre personne : <rôle> » (generer_jeux.py)
+            if os.path.exists(os.path.join(ICI, rel)):
+                medias.add(rel); a["jeu"] = {"audio": rel}
+                k = caler([a["consigne"], a["roleTexte"]], rel)
+                if k: a["jeu"]["k"] = k
         elif media.startswith("Image"):
             a["sous"] = "image"
             if i in PHOTO_EO: a["photo"] = photo(PHOTO_EO[i])
@@ -245,6 +252,52 @@ for p_ in lire_json("ajouts.json"):
     k = caler(p_["script"], rel)
     if k: activites[-1]["karaoke"] = [{"mots": m} for m in k]
 
+# --- répéter : les phrases courtes des écoutes A1 de l'Excel, mot pour mot, avec leur son (la même voix que l'écoute).
+#     Les trois « Écoutez et répétez » de l'Excel (EO-01, EO-02, EO-33) sont dans la même rubrique.
+REPETER_CO = ["CO-01", "CO-04", "CO-05", "CO-06", "CO-07", "CO-09", "CO-10", "CO-11", "CO-15", "CO-17"]
+for g in REPETER_CO:
+    c = next(a for a in activites if a["id"] == g)
+    ph = " ".join(c["script"])
+    r = {"id": "REP-" + g, "type": "oral", "sous": "repeter", "niveau": c["niveau"], "titre": "Répéter", "theme": c["theme"],
+         "consigne": "Écoutez et répétez.", "phrase": ph, "audio": c["audio"], "duree": max(5, round(len(ph.split()) * .9)),
+         "photo": c["poster"], "source": g, "derive": True, "verifiez": []}
+    k = caler([ph], c["audio"])
+    if k: r["k"] = k[0]
+    activites.append(r)
+
+# --- composer le mot avec des lettres : des QCM de l'Excel dont la réponse est un mot à bien écrire (orthographe, accord,
+#     conjugaison). La phrase de l'Excel, le mot de base entre parenthèses (ajouté ici), les lettres du mot et quelques
+#     lettres des mauvaises réponses en plus.
+LETTRES = {"EE-06": {"son": "bonjour", "titre": "Écoutez et écrivez le mot."}, "EE-07": {"grand": "15", "titre": "Comment écrit-on 15 en lettres ?"},
+           "EE-05": {"indice": "habiter"}, "EE-12": {"indice": "pomme"}, "EE-13": {"indice": "gentil"},
+           "EE-20": {"indice": "aller"}, "EE-28": {"indice": "être"},
+           "EE-38": {"indice": "remplir"}, "EE-42": {"indice": "faire"}, "EE-43": {"indice": "écrire"}}
+def lettres_en_plus(mot, autres):
+    reste = []
+    for c in autres:
+        m = list(mot.lower())
+        for l in c.lower():
+            if l in m: m.remove(l)
+            elif l.isalpha() and l not in reste: reste.append(l)
+    return reste[:3]
+par_niv = {}
+for x in B:
+    if x["id"] not in LETTRES: continue
+    L = LETTRES[x["id"]]; mot = x["choix"][x["bonne"]]
+    q = {"id": x["id"] + "-L", "source": x["id"], "niveau": x["niveau"], "mot": mot,
+         "extra": lettres_en_plus(mot, [c for i, c in enumerate(x["choix"]) if i != x["bonne"]]), "titre": L.get("titre") or "Écrivez le mot avec les lettres."}
+    if x.get("t") == "trou": q["phrase"] = x["phrase"]
+    elif x.get("t") == "enonce" and "_" in (x.get("citation") or ""): q["phrase"] = x["citation"]
+    for k_ in ("indice", "grand"):
+        if L.get(k_): q[k_] = L[k_]
+    if L.get("son"):
+        rel = "medias/mots/" + L["son"] + ".mp3"
+        if os.path.exists(os.path.join(ICI, rel)): medias.add(rel); q["son"] = rel
+    par_niv.setdefault(x["niveau"], []).append(q)
+for niv in ("A1", "A2", "B1"):
+    if par_niv.get(niv): activites.append({"id": "lettres-" + niv, "type": "lettres", "niveau": niv, "titre": "Composer le mot", "theme": "Orthographe",
+                                            "questions": sorted(par_niv[niv], key=lambda q: q["id"])})
+
 # le haut-parleur des questions et des consignes, la photo d'ambiance, l'aide à l'écriture
 # la vidéo interactive : le moment (en secondes) où elle s'arrête pour poser chaque question ; 99 = à la fin
 ARRETS = {"demo-1": 5.3, "demo-2": 99, "demo-3": 99}
@@ -269,6 +322,11 @@ for a in activites:
             q["audioQ"] = p
             k = caler([q["q"]], p) if LUES.get(q["id"]) == q["q"] else None
             if k: q["qk"] = k[0]
+        src = q.get("source")
+        if src and a["type"] == "lettres":
+            if HAB.get(src) and photo_h(HAB[src]): q["photoH"] = photo_h(HAB[src])
+            if q.get("phrase") and lue(src): q["audioQ"] = lue(src)
+            continue
         if HAB.get(q["id"]) and photo_h(HAB[q["id"]]): q["photoH"] = photo_h(HAB[q["id"]])
     if a["type"] in ("ecriture", "oral"):
         p = lue(a["id"])
@@ -280,12 +338,13 @@ for a in activites:
     if a["id"] in AIDES: a["aide"] = AIDES[a["id"]]
 
 # ordre stable : par type puis identifiant
-ORDRE = ["video", "lecture", "grammaire", "ecriture", "reagir", "oral"]
+ORDRE = ["video", "lecture", "grammaire", "lettres", "ecriture", "reagir", "oral"]
 activites.sort(key=lambda a: (ORDRE.index(a["type"]), a["id"] != "demo-hotel", a["id"]))
 json.dump(activites, open(os.path.join(ICI, "donnees", "activites.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
 # les enveloppes de tous les sons utilisés (les ondes de la page)
-sons = sorted({a.get(c) for a in activites for c in ("audio", "modeleAudio", "audioQ") if a.get(c)}
+sons = sorted({a.get(c) for a in activites for c in ("audio", "modeleAudio", "audioQ") if a.get(c)} | {a["jeu"]["audio"] for a in activites if a.get("jeu")}
+              | {q[c] for a in activites for q in a.get("questions", []) for c in ("son",) if q.get(c)}
               | {q[c] for a in activites for q in a.get("questions", []) for c in ("audio", "audioQ") if q.get(c)})
 ENV = {s_: enveloppe(s_) for s_ in sons}
 

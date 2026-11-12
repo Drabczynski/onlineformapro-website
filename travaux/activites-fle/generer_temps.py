@@ -33,7 +33,8 @@ def stt(chemin):
 def main():
     T = json.load(open(SORTIE, encoding="utf-8")) if os.path.exists(SORTIE) else {}
     fichiers = sorted(glob.glob(os.path.join(ICI, "medias", "sons", "*.mp3")) + glob.glob(os.path.join(ICI, "medias", "modeles", "*.mp3"))
-                      + glob.glob(os.path.join(ICI, "medias", "video", "*.mp4")) + glob.glob(os.path.join(ICI, "medias", "questions", "*.mp3")))
+                      + glob.glob(os.path.join(ICI, "medias", "video", "*.mp4")) + glob.glob(os.path.join(ICI, "medias", "questions", "*.mp3"))
+                      + glob.glob(os.path.join(ICI, "medias", "jeux", "*.mp3")))
     a_faire = []
     for f in fichiers:
         cle = os.path.relpath(f, ICI)
