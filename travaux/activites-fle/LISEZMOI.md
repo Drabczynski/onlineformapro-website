@@ -97,8 +97,9 @@ A1-A2 : épicerie, café ou thé, chercher la pharmacie, fleuriste, quel quai, t
 deux, l'addition, forfait de téléphone. Compressées en 720p (environ 1,3 Mo chacune, `medias/video/`), sous-titres
 calés sur la voix par la reconnaissance ElevenLabs (avec qui parle), deux questions par vidéo écrites à partir de ce
 qui est dit (`donnees/videos.json`, à relire). La vidéo passe de bout en bout, sans arrêt ; ensuite,
-sur grand écran, elle devient une vignette à gauche, sur son image floutée, et ses deux questions arrivent à droite :
-« Revoir » (en bas à gauche de la vignette) ou un clic sur l'image la rejoue là, la question reste. Une série au
+la question au centre, plein écran, sur la vidéo floutée sous le voile violet. « Revoir » (grand écran) passe en face
+à face : la vidéo en vignette à gauche, qui rejoue là, la question à droite, qui reste ; « Revoir » est alors en bas à
+gauche de la vignette. Après la question, si la vidéo ne joue plus, on revient au centre. Une série au
 hasard tire deux vidéos, deux questions chacune. Écoutes : « Réécouter » rejoue le son
 sans cacher la question. Téléchargement : l'adresse
 `drive.usercontent.google.com/download?id=…&export=download&confirm=t`, le dossier partagé en lecture par lien.
