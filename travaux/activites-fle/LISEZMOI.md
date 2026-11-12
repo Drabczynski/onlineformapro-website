@@ -6,7 +6,8 @@ Prototype de produit fini : des activités d'entraînement tirées de l'Excel «
 - Page web : https://onlineformapro-website.vercel.app/travaux/activites-fle/ (site en « noindex »).
 - Artefact : https://claude.ai/artifact/VVuyxMQGPpX1N5ANSqdjLL, publié à partir de `artefact.html` avec les fichiers de
   `medias/` à côté (la liste est dans `donnees/medias.json`).
-- Première version (tuiles et cartes en thème clair), gardée pour comparer : `v1/` (même adresse, suivie de `v1/`).
+- Versions gardées pour comparer (même adresse, suivie du dossier) : `v1/` (tuiles et cartes en thème clair) et
+  `v2-violet/` (la version 2 sur fond violet → bleu, exactement comme le premier positionnement).
 
 ## Ce que fait la page (version 2)
 
@@ -83,7 +84,12 @@ en A1, 0,95 en A2, 1 en B1). La première voix d'homme (Theo) ajoutait des « eu
 
 ## Le style
 
-La charte du premier positionnement (`../positionnement-fle/`) : fond uni violet → bleu ; tuiles hexagonales à plat,
+La version 2 est en **thème clair** : la DA du premier positionnement sur un fond lavande pâle. Le violet passe dans
+les grands titres (avec une tranche lavande) et les repères (progression, chemin, rayons) ; les cartes sont blanches
+avec leur tranche lavande ; sur les photos et les vidéos, le texte reste blanc sur un voile violet. La version sur
+fond violet est gardée telle quelle dans `v2-violet/` (son gabarit : `v2-violet/page.html`).
+
+La DA reprise du premier positionnement (`../positionnement-fle/`) : tuiles hexagonales à plat,
 coins arrondis, face blanche lavande et tranche lavande ; réponses courtes en quatre alvéoles (haut, gauche, droite,
 bas), réponses longues en pastilles blanches avec une marque hexagonale ; jaune citron pour le choix, vert pour le
 juste, rose pour le faux, cyan pour écouter ; gros boutons verts en capitales ; panneaux ton sur ton. Une couleur de
@@ -93,7 +99,8 @@ Polices Baloo 2 et Nunito (Caveat pour l'ardoise et le post-it), Google Fonts.
 ## Fichiers
 
 - `construire.py` : construit `index.html` (page web), `artefact.html` (le même contenu, sans en-tête, pour
-  l'artefact) et `v1/index.html`, à partir de `page.html` (le gabarit : style et code), de `v1/page.html` et des données.
+  l'artefact), `v1/index.html` et `v2-violet/index.html`, à partir de `page.html` (le gabarit : style et code), de
+  `v1/page.html`, de `v2-violet/page.html` et des données.
 - `donnees/excel-200.json` : les 200 lignes de l'Excel ; les QCM mis en forme viennent de
   `../positionnement-fle/banque/banque.json` ; `donnees/modeles.json` ; `donnees/video-hotel-sous-titres.json` ;
   `donnees/temps.json` ; `donnees/activites.json` (produit) ; `donnees/medias.json` (les fichiers de l'artefact).

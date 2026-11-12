@@ -12,7 +12,8 @@ Sources :
 - les sons (../positionnement-fle/sons/) et les photos (../positionnement-fle-2/banque/img/), copiés dans medias/.
 
 La page (page.html) reçoit aussi, pour chaque son, son enveloppe (le volume toutes les 40 ms) : les ondes qui bougent
-avec la voix. La première version de la page (v1/page.html) est construite à côté, dans v1/index.html.
+avec la voix. Les versions précédentes sont construites à côté : v1/ (tuiles en thème clair) et v2-violet/
+(la version 2 sur fond violet).
 
 Une activité = un support et ses questions : une vidéo (en attendant les vraies vidéos, la photo et le son de
 l'enregistrement), un document à lire, une série de grammaire, un texte à écrire, une réponse orale à enregistrer.
@@ -247,6 +248,9 @@ open(os.path.join(ICI, "index.html"), "w", encoding="utf-8").write(page_web(cont
 # la première version (tuiles et cartes), gardée pour comparer : mêmes données, médias du dossier parent
 v1 = open(os.path.join(ICI, "v1", "page.html"), encoding="utf-8").read().replace("/*__ACTIVITES__*/[]", donnees)
 open(os.path.join(ICI, "v1", "index.html"), "w", encoding="utf-8").write(page_web(v1, '<base href="../">\n'))
+# la version 2 en violet (fond violet → bleu, comme le premier positionnement), gardée telle quelle
+v2v = open(os.path.join(ICI, "v2-violet", "page.html"), encoding="utf-8").read().replace("/*__ACTIVITES__*/[]", donnees).replace("/*__ENV__*/{}", env)
+open(os.path.join(ICI, "v2-violet", "index.html"), "w", encoding="utf-8").write(page_web(v2v, '<base href="../">\n'))
 json.dump(sorted(medias), open(os.path.join(ICI, "donnees", "medias.json"), "w"), indent=1)
 
 compte = {}

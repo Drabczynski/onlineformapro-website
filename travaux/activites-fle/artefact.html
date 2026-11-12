@@ -1,5 +1,5 @@
 <title>Activités FLE</title>
-<meta name="theme-color" content="#9748fe">
+<meta name="theme-color" content="#f4efff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@600;700;800;900&family=Caveat:wght@600;700&display=swap">
@@ -497,6 +497,52 @@ body:not([data-vue="activite"]) .haut { display: none; }
 
 #confettis { position: fixed; inset: 0; z-index: 70; width: 100%; height: 100%; pointer-events: none; }
 
+/* ------------------------------------------------------------ thème clair : la même DA sur un fond lavande pâle.
+   Le violet passe dans les titres et les repères ; les cartes sont blanches avec leur tranche lavande ; les tuiles,
+   le citron, le vert, le rose et le cyan ne changent pas. Sur les photos et les vidéos, le texte reste blanc. */
+:root { --clair-1: #f9f6ff; --clair-2: #f2edff; --clair-3: #edf0ff; --violet: #8745fd; --ton: rgba(135, 69, 253, .08); --ton-fort: rgba(135, 69, 253, .14); --ombre: rgba(120, 70, 220, .13); --trait-titre: #e3d8fb; }
+html, body { background: var(--clair-2); color: var(--encre); }
+.fond { background: linear-gradient(180deg, var(--clair-1) 0%, var(--clair-2) 50%, var(--clair-3) 100%); }
+:focus-visible { outline-color: var(--violet); }
+.rond { color: var(--encre); }
+.rond[aria-pressed="true"] { background: var(--violet); color: #fff; }
+.seg { background: rgba(135, 69, 253, .15); }
+.seg.fait { background: var(--violet); }
+body[data-type="video"] .haut .rond { background: rgba(40, 14, 120, .42); color: #fff; }
+body[data-type="video"] .seg { background: rgba(255, 255, 255, .35); }
+body[data-type="video"] .seg.fait { background: #fff; }
+.rayons { opacity: 1; background: repeating-conic-gradient(from 0deg, rgba(135, 69, 253, .1) 0deg 7deg, transparent 7deg 20deg); }
+#rideau .rayons { opacity: 1; }
+.lueur { background: radial-gradient(closest-side, rgba(255, 245, 140, .6), rgba(255, 245, 140, 0)); }
+#rideau { background: linear-gradient(180deg, var(--clair-1) 0%, var(--clair-2) 50%, var(--clair-3) 100%); color: var(--encre); }
+#rideau .r-mot, .geant { color: var(--violet); text-shadow: 0 6px 0 var(--trait-titre); }
+#rideau .r-titre, #rideau .r-num, .acc-sous, .pq-tete, .legende, .g-avant, .interloc small, .chat-q, .aide-g, .bilan .phrase-b { color: var(--encre-douce); }
+.marque, .niveaux button, .q, .dock-mot, .g-phrase, .consigne-o, .phrase-o, .chrono-g { color: var(--encre); }
+.chemin .trace path { stroke: rgba(135, 69, 253, .35); }
+.panneau-q { background: #fff; box-shadow: 0 6px 0 var(--blanc-levre), 0 11px 0 var(--ombre); color: var(--encre); }
+.sc-lecture .panneau-q { background: none; box-shadow: none; padding-inline: 0; }
+.sc-video .panneau-q { background: #fff; color: var(--encre); }
+.ecoute-ui { color: #fff; }
+.a-venir { background: rgba(40, 14, 120, .45); color: #fff; }
+.kara.suit .k { color: rgba(70, 40, 140, .3); }
+.kara.suit .k.dit { color: var(--encre); }
+.kara.suit .k.actuel { color: var(--violet); }
+.transcrit .ligne { background: var(--lavande); }
+.transcrit .ligne b { color: var(--encre-douce); }
+.o-panneau .ficelle path { stroke: var(--encre-douce); }
+.o-panneau .ficelle circle { fill: var(--encre-douce); }
+.o-prix::before { background: var(--clair-2); }
+.g-phrase.form, .sit, .horloge-g, .stat { background: #fff; box-shadow: 0 6px 0 var(--blanc-levre), 0 11px 0 var(--ombre); color: var(--encre); }
+.fente { background: rgba(135, 69, 253, .1); box-shadow: inset 0 -.08em 0 rgba(135, 69, 253, .45); }
+.fente.vide { animation-name: respire-clair; }
+@keyframes respire-clair { 50% { background-color: rgba(135, 69, 253, .2); } }
+.g-indice { background: var(--ton); color: var(--encre); }
+.micro-g svg.anneau .fond-a { stroke: rgba(135, 69, 253, .15); }
+.studio:not(.enreg):not(.fini) .micro-g::before { border-color: rgba(66, 216, 255, .55); }
+.stat { box-shadow: 0 4px 0 var(--blanc-levre); }
+.tuile.eteint { opacity: .5; }
+.bonbons > .eteint { opacity: .55; }
+
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .etoiles svg { opacity: 1; } }
 </style>
 
@@ -569,7 +615,7 @@ const hexa = (contenu, teinte = "blanc", classe = "", attrs = "", balise = "span
 const MARQUE_H = `<svg class="marque-h" viewBox="0 0 120 103.92" aria-hidden="true"><path d="${HEX}"/><path class="coche" d="M36 54l17 16 32-36"/></svg>`;
 const MARQUE = hexa("Aa", "citron");
 const TEINTE = { video: "cyan", lecture: "blanc", grammaire: "vert", ecriture: "citron", oral: "rose", reagir: "lilas" };
-const ETOILE = (on) => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.8-4.9 4.5 1.3 6.5L12 17l-5.9 3.3 1.3-6.5L2.5 9.3l6.6-.8z" fill="${on ? "#ffe35a" : "rgba(255,255,255,.25)"}" stroke="${on ? "#f0b03a" : "none"}" stroke-width="1.2" stroke-linejoin="round"/></svg>`;
+const ETOILE = (on) => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.8-4.9 4.5 1.3 6.5L12 17l-5.9 3.3 1.3-6.5L2.5 9.3l6.6-.8z" fill="${on ? "#ffe35a" : "rgba(135,69,253,.15)"}" stroke="${on ? "#f0b03a" : "none"}" stroke-width="1.2" stroke-linejoin="round"/></svg>`;
 const trouDe = (q) => q.t === "trou" ? q.phrase : q.t === "enonce" && /_{3,}/.test(q.citation || "") ? q.citation : null;
 const MOT = { video: a => a.video ? "Regardez" : "Écoutez", lecture: () => "Lisez", grammaire: a => a.questions.filter(trouDe).length >= a.questions.length / 2 ? "Complétez" : "Choisissez",
               ecriture: () => "Écrivez", oral: a => a.sous === "repeter" ? "Répétez" : "Parlez", reagir: () => "Répondez" };
@@ -649,7 +695,7 @@ document.addEventListener("pointerdown", () => Son.init(), { once: true });
 // ---------------------------------------------------------------- confettis
 const Confettis = (() => {
   const cv = $("#confettis"), cx = cv.getContext("2d"); let P = [], marche = false, dpr = 1;
-  const COUL = ["#fffc96", "#ffe35a", "#cdfc2a", "#78fdf8", "#ffadf6", "#ffffff", "#c7adff"];
+  const COUL = ["#ffe35a", "#f0b03a", "#8fe60c", "#42d8ff", "#ea62de", "#8745fd", "#c7adff"];
   const taille = () => { dpr = Math.min(2, devicePixelRatio || 1); cv.width = innerWidth * dpr; cv.height = innerHeight * dpr; };
   addEventListener("resize", taille); taille();
   function boucle() {
@@ -1129,7 +1175,7 @@ function sceneOral(a) {
     if (!vivant) return; const dpr = Math.min(2, devicePixelRatio || 1), w = Math.round(halo.clientWidth * dpr); if (w && halo.width !== w) { halo.width = w; halo.height = w; }
     hx.clearRect(0, 0, halo.width, halo.height); const c = halo.width / 2, r0 = halo.width * .27, n = 72, s = ts / 1000, enreg = S.classList.contains("enreg");
     if (analyseur) { analyseur.getByteFrequencyData(donnees); let t = 0; for (let i = 2; i < 40; i++) t += donnees[i]; niveauVoix += (t / 38 / 255 - niveauVoix) * .3; }
-    hx.strokeStyle = enreg ? "rgba(255,190,248,.9)" : "rgba(255,255,255,.35)"; hx.lineWidth = 3 * dpr; hx.lineCap = "round";
+    hx.strokeStyle = enreg ? "rgba(234,98,222,.6)" : "rgba(135,69,253,.28)"; hx.lineWidth = 3 * dpr; hx.lineCap = "round";
     for (let k = 0; k < n; k++) {
       const ang = k / n * Math.PI * 2, f = analyseur && enreg ? (donnees[2 + Math.floor((k < n / 2 ? k : n - k) / (n / 2) * 60)] / 255) : 0;
       const v = enreg ? (analyseur ? f * 1.2 + niveauVoix * .5 : .25 + .2 * Math.sin(s * 5 + k * .6)) : .05 + .04 * Math.sin(s * 2 + k * .5);
