@@ -245,6 +245,7 @@ def photo_h(nom):
 
 for a in activites:
     for q in a.get("questions", []):
+        if q["id"] in X: q["niveau"] = X[q["id"]]["Niveau CECRL"]
         p = lue(q["id"])
         if p:
             q["audioQ"] = p

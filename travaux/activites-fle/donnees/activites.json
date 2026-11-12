@@ -356,6 +356,7 @@
     ],
     "bonne": 1,
     "t": "ecoute",
+    "niveau": "A1",
     "audioQ": "medias/questions/CO-01.mp3",
     "qk": [
      [
@@ -447,6 +448,7 @@
     ],
     "bonne": 1,
     "t": "ecoute",
+    "niveau": "A1",
     "audioQ": "medias/questions/CO-02.mp3",
     "qk": [
      [
@@ -559,6 +561,7 @@
     ],
     "bonne": 0,
     "t": "ecoute",
+    "niveau": "A1",
     "audioQ": "medias/questions/CO-03.mp3",
     "qk": [
      [
@@ -664,6 +667,7 @@
     ],
     "bonne": 1,
     "t": "ecoute",
+    "niveau": "A1",
     "audioQ": "medias/questions/CO-04.mp3",
     "qk": [
      [
@@ -740,6 +744,7 @@
     ],
     "bonne": 2,
     "t": "ecoute",
+    "niveau": "A1",
     "audioQ": "medias/questions/CO-05.mp3",
     "qk": [
      [
@@ -847,6 +852,7 @@
      "↩️"
     ],
     "t": "ecoute",
+    "niveau": "A1",
     "audioQ": "medias/questions/CO-06.mp3",
     "qk": [
      [
@@ -943,6 +949,7 @@
     ],
     "bonne": 2,
     "t": "ecoute",
+    "niveau": "A1",
     "audioQ": "medias/questions/CO-07.mp3",
     "qk": [
      [
@@ -1044,6 +1051,7 @@
     ],
     "bonne": 0,
     "t": "ecoute",
+    "niveau": "A1",
     "audioQ": "medias/questions/CO-08.mp3"
    }
   ],
@@ -1133,6 +1141,7 @@
     ],
     "bonne": 1,
     "t": "ecoute",
+    "niveau": "A1",
     "audioQ": "medias/questions/CO-09.mp3",
     "qk": [
      [
@@ -1240,6 +1249,7 @@
      "🥵"
     ],
     "t": "ecoute",
+    "niveau": "A1",
     "audioQ": "medias/questions/CO-10.mp3",
     "qk": [
      [
@@ -1321,6 +1331,7 @@
     ],
     "bonne": 1,
     "t": "ecoute",
+    "niveau": "A1",
     "audioQ": "medias/questions/CO-11.mp3",
     "qk": [
      [
@@ -1422,6 +1433,7 @@
     ],
     "bonne": 2,
     "t": "ecoute",
+    "niveau": "A1",
     "audioQ": "medias/questions/CO-12.mp3",
     "qk": [
      [
@@ -1549,6 +1561,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Annonce en gare",
+    "niveau": "A1",
     "audioQ": "medias/questions/CO-13.mp3",
     "qk": [
      [
@@ -1656,6 +1669,7 @@
     ],
     "bonne": 1,
     "t": "ecoute",
+    "niveau": "A1",
     "audioQ": "medias/questions/CO-14.mp3",
     "qk": [
      [
@@ -1776,6 +1790,7 @@
     ],
     "bonne": 2,
     "t": "ecoute",
+    "niveau": "A1",
     "audioQ": "medias/questions/CO-15.mp3",
     "qk": [
      [
@@ -1872,6 +1887,7 @@
     ],
     "bonne": 0,
     "t": "ecoute",
+    "niveau": "A1",
     "audioQ": "medias/questions/CO-16.mp3",
     "qk": [
      [
@@ -1968,6 +1984,7 @@
     ],
     "bonne": 1,
     "t": "ecoute",
+    "niveau": "A1",
     "audioQ": "medias/questions/CO-17.mp3",
     "qk": [
      [
@@ -2085,6 +2102,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Message sur votre répondeur",
+    "niveau": "A2",
     "audioQ": "medias/questions/CO-18.mp3",
     "qk": [
      [
@@ -2111,6 +2129,7 @@
     "bonne": 0,
     "t": "ecoute",
     "etiquette": "Message sur votre répondeur",
+    "niveau": "A2",
     "audioQ": "medias/questions/CO-19.mp3",
     "qk": [
      [
@@ -2147,6 +2166,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Message sur votre répondeur",
+    "niveau": "A2",
     "audioQ": "medias/questions/CO-20.mp3",
     "qk": [
      [
@@ -2379,6 +2399,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Annonce dans un magasin",
+    "niveau": "A2",
     "audioQ": "medias/questions/CO-21.mp3",
     "qk": [
      [
@@ -2420,6 +2441,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Annonce dans un magasin",
+    "niveau": "A2",
     "audioQ": "medias/questions/CO-22.mp3",
     "qk": [
      [
@@ -2621,6 +2643,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Appel pour un logement",
+    "niveau": "A2",
     "audioQ": "medias/questions/CO-23.mp3",
     "qk": [
      [
@@ -2662,6 +2685,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Appel pour un logement",
+    "niveau": "A2",
     "audioQ": "medias/questions/CO-24.mp3",
     "qk": [
      [
@@ -2698,6 +2722,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Appel pour un logement",
+    "niveau": "A2",
     "audioQ": "medias/questions/CO-25.mp3",
     "qk": [
      [
@@ -2734,6 +2759,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Appel pour un logement",
+    "niveau": "A2",
     "audioQ": "medias/questions/CO-26.mp3",
     "qk": [
      [
@@ -3017,6 +3043,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Message d'une collègue",
+    "niveau": "A2",
     "audioQ": "medias/questions/CO-27.mp3",
     "qk": [
      [
@@ -3078,6 +3105,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Message d'une collègue",
+    "niveau": "A2",
     "audioQ": "medias/questions/CO-28.mp3",
     "qk": [
      [
@@ -3270,6 +3298,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Annonce de l'école",
+    "niveau": "A2",
     "audioQ": "medias/questions/CO-29.mp3",
     "qk": [
      [
@@ -3311,6 +3340,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Annonce de l'école",
+    "niveau": "A2",
     "audioQ": "medias/questions/CO-30.mp3",
     "qk": [
      [
@@ -3533,6 +3563,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "La météo à la radio",
+    "niveau": "A2",
     "audioQ": "medias/questions/CO-31.mp3",
     "qk": [
      [
@@ -3574,6 +3605,7 @@
     "bonne": 2,
     "t": "ecoute",
     "etiquette": "La météo à la radio",
+    "niveau": "A2",
     "audioQ": "medias/questions/CO-32.mp3",
     "qk": [
      [
@@ -3746,6 +3778,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Un récit",
+    "niveau": "A2",
     "audioQ": "medias/questions/CO-33.mp3",
     "qk": [
      [
@@ -3944,6 +3977,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Dans la rue",
+    "niveau": "A2",
     "audioQ": "medias/questions/CO-34.mp3",
     "qk": [
      [
@@ -4135,6 +4169,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "À la radio",
+    "niveau": "B1",
     "audioQ": "medias/questions/CO-35.mp3",
     "qk": [
      [
@@ -4176,6 +4211,7 @@
     "bonne": 2,
     "t": "ecoute",
     "etiquette": "À la radio",
+    "niveau": "B1",
     "audioQ": "medias/questions/CO-36.mp3",
     "qk": [
      [
@@ -4217,6 +4253,7 @@
     "bonne": 0,
     "t": "ecoute",
     "etiquette": "À la radio",
+    "niveau": "B1",
     "audioQ": "medias/questions/CO-37.mp3",
     "qk": [
      [
@@ -4609,6 +4646,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Un entretien d'embauche",
+    "niveau": "B1",
     "audioQ": "medias/questions/CO-38.mp3",
     "qk": [
      [
@@ -4660,6 +4698,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Un entretien d'embauche",
+    "niveau": "B1",
     "audioQ": "medias/questions/CO-39.mp3",
     "qk": [
      [
@@ -4706,6 +4745,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Un entretien d'embauche",
+    "niveau": "B1",
     "audioQ": "medias/questions/CO-40.mp3",
     "qk": [
      [
@@ -5181,6 +5221,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Discussion entre voisins",
+    "niveau": "B1",
     "audioQ": "medias/questions/CO-41.mp3",
     "qk": [
      [
@@ -5237,6 +5278,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Discussion entre voisins",
+    "niveau": "B1",
     "audioQ": "medias/questions/CO-42.mp3",
     "qk": [
      [
@@ -5293,6 +5335,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Discussion entre voisins",
+    "niveau": "B1",
     "audioQ": "medias/questions/CO-43.mp3",
     "qk": [
      [
@@ -5692,6 +5735,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Consignes de sécurité",
+    "niveau": "B1",
     "audioQ": "medias/questions/CO-44.mp3",
     "qk": [
      [
@@ -5748,6 +5792,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Consignes de sécurité",
+    "niveau": "B1",
     "audioQ": "medias/questions/CO-45.mp3",
     "qk": [
      [
@@ -5799,6 +5844,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Consignes de sécurité",
+    "niveau": "B1",
     "audioQ": "medias/questions/CO-46.mp3",
     "qk": [
      [
@@ -6086,6 +6132,7 @@
     "bonne": 2,
     "t": "ecoute",
     "etiquette": "Un témoignage",
+    "niveau": "B1",
     "audioQ": "medias/questions/CO-47.mp3",
     "qk": [
      [
@@ -6147,6 +6194,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Un témoignage",
+    "niveau": "B1",
     "audioQ": "medias/questions/CO-48.mp3",
     "qk": [
      [
@@ -6213,6 +6261,7 @@
     "bonne": 2,
     "t": "ecoute",
     "etiquette": "Un témoignage",
+    "niveau": "B1",
     "audioQ": "medias/questions/CO-49.mp3",
     "qk": [
      [
@@ -6597,6 +6646,7 @@
     "bonne": 1,
     "t": "ecoute",
     "etiquette": "Deux amis parlent",
+    "niveau": "B1",
     "audioQ": "medias/questions/CO-50.mp3",
     "qk": [
      [
@@ -6813,6 +6863,7 @@
     "t": "panneau",
     "etiquette": "Sur la porte d'un magasin",
     "texte": "FERMÉ LE DIMANCHE",
+    "niveau": "A1",
     "audioQ": "medias/questions/CE-01.mp3",
     "qk": [
      [
@@ -6868,6 +6919,7 @@
     "bonne": 1,
     "t": "panneau",
     "texte": "SORTIE",
+    "niveau": "A1",
     "audioQ": "medias/questions/CE-02.mp3",
     "qk": [
      [
@@ -6919,6 +6971,7 @@
     "t": "sms",
     "etiquette": "SMS de Léa",
     "texte": "Salut ! Rendez-vous à 15 h devant la mairie. Léa",
+    "niveau": "A1",
     "audioQ": "medias/questions/CE-03.mp3",
     "qk": [
      [
@@ -6956,6 +7009,7 @@
     "t": "sms",
     "etiquette": "SMS de Léa",
     "texte": "Salut ! Rendez-vous à 15 h devant la mairie. Léa",
+    "niveau": "A1",
     "audioQ": "medias/questions/CE-04.mp3",
     "qk": [
      [
@@ -7016,6 +7070,7 @@
     ],
     "bonne": 0,
     "t": "prix",
+    "niveau": "A1",
     "audioQ": "medias/questions/CE-05.mp3",
     "qk": [
      [
@@ -7070,6 +7125,7 @@
     ],
     "bonne": 1,
     "t": "court",
+    "niveau": "A1",
     "audioQ": "medias/questions/CE-06.mp3",
     "qk": [
      [
@@ -7120,6 +7176,7 @@
     ],
     "bonne": 1,
     "t": "court",
+    "niveau": "A1",
     "audioQ": "medias/questions/CE-07.mp3",
     "qk": [
      [
@@ -7187,6 +7244,7 @@
     ],
     "bonne": 2,
     "t": "affiche",
+    "niveau": "A1",
     "audioQ": "medias/questions/CE-08.mp3",
     "qk": [
      [
@@ -7232,6 +7290,7 @@
     ],
     "bonne": 1,
     "t": "affiche",
+    "niveau": "A1",
     "audioQ": "medias/questions/CE-09.mp3",
     "qk": [
      [
@@ -7316,6 +7375,7 @@
     ],
     "bonne": 2,
     "t": "menu",
+    "niveau": "A1",
     "audioQ": "medias/questions/CE-10.mp3"
    }
   ]
@@ -7352,6 +7412,7 @@
     ],
     "t": "court",
     "etiquette": "Carte postale",
+    "niveau": "A1",
     "audioQ": "medias/questions/CE-11.mp3",
     "qk": [
      [
@@ -7407,6 +7468,7 @@
     "bonne": 1,
     "t": "panneau",
     "texte": "INTERDIT DE FUMER",
+    "niveau": "A1",
     "audioQ": "medias/questions/CE-12.mp3",
     "qk": [
      [
@@ -7461,6 +7523,7 @@
     ],
     "bonne": 2,
     "t": "court",
+    "niveau": "A1",
     "audioQ": "medias/questions/CE-13.mp3",
     "qk": [
      [
@@ -7514,6 +7577,7 @@
     "bonne": 1,
     "t": "plaque",
     "etiquette": "Plaque à l'entrée",
+    "niveau": "A1",
     "audioQ": "medias/questions/CE-14.mp3",
     "qk": [
      [
@@ -7572,6 +7636,7 @@
     ],
     "bonne": 1,
     "t": "court",
+    "niveau": "A1",
     "audioQ": "medias/questions/CE-15.mp3",
     "qk": [
      [
@@ -7617,6 +7682,7 @@
     ],
     "bonne": 1,
     "t": "court",
+    "niveau": "A1",
     "audioQ": "medias/questions/CE-16.mp3",
     "qk": [
      [
@@ -7678,6 +7744,7 @@
     "t": "sms",
     "etiquette": "SMS de Samir",
     "texte": "Je suis malade, je ne viens pas au cours aujourd'hui. Samir",
+    "niveau": "A1",
     "audioQ": "medias/questions/CE-17.mp3",
     "qk": [
      [
@@ -7751,6 +7818,7 @@
     "bonne": 2,
     "t": "document",
     "emoji": "📋",
+    "niveau": "A2",
     "audioQ": "medias/questions/CE-18.mp3"
    },
    {
@@ -7765,6 +7833,7 @@
     "bonne": 1,
     "t": "document",
     "emoji": "📋",
+    "niveau": "A2",
     "audioQ": "medias/questions/CE-19.mp3",
     "qk": [
      [
@@ -7811,6 +7880,7 @@
     "bonne": 2,
     "t": "document",
     "emoji": "📋",
+    "niveau": "A2",
     "audioQ": "medias/questions/CE-20.mp3",
     "qk": [
      [
@@ -7847,6 +7917,7 @@
     "bonne": 1,
     "t": "document",
     "emoji": "📋",
+    "niveau": "A2",
     "audioQ": "medias/questions/CE-21.mp3",
     "qk": [
      [
@@ -7909,6 +7980,7 @@
     "bonne": 1,
     "t": "document",
     "emoji": "✉️",
+    "niveau": "A2",
     "audioQ": "medias/questions/CE-22.mp3",
     "qk": [
      [
@@ -7955,6 +8027,7 @@
     "bonne": 1,
     "t": "document",
     "emoji": "✉️",
+    "niveau": "A2",
     "audioQ": "medias/questions/CE-23.mp3",
     "qk": [
      [
@@ -8011,6 +8084,7 @@
     "bonne": 1,
     "t": "document",
     "emoji": "💊",
+    "niveau": "A2",
     "audioQ": "medias/questions/CE-24.mp3",
     "qk": [
      [
@@ -8062,6 +8136,7 @@
     "bonne": 1,
     "t": "document",
     "emoji": "💊",
+    "niveau": "A2",
     "audioQ": "medias/questions/CE-25.mp3",
     "qk": [
      [
@@ -8144,6 +8219,7 @@
     "bonne": 1,
     "t": "document",
     "emoji": "📌",
+    "niveau": "A2",
     "audioQ": "medias/questions/CE-26.mp3",
     "qk": [
      [
@@ -8185,6 +8261,7 @@
     "bonne": 2,
     "t": "document",
     "emoji": "📌",
+    "niveau": "A2",
     "audioQ": "medias/questions/CE-27.mp3",
     "qk": [
      [
@@ -8236,6 +8313,7 @@
     "bonne": 1,
     "t": "document",
     "emoji": "📌",
+    "niveau": "A2",
     "audioQ": "medias/questions/CE-28.mp3",
     "qk": [
      [
@@ -8304,6 +8382,7 @@
     "bonne": 2,
     "t": "document",
     "emoji": "✉️",
+    "niveau": "A2",
     "audioQ": "medias/questions/CE-29.mp3",
     "qk": [
      [
@@ -8350,6 +8429,7 @@
     "bonne": 1,
     "t": "document",
     "emoji": "✉️",
+    "niveau": "A2",
     "audioQ": "medias/questions/CE-30.mp3",
     "qk": [
      [
@@ -8391,6 +8471,7 @@
     "bonne": 1,
     "t": "document",
     "emoji": "✉️",
+    "niveau": "A2",
     "audioQ": "medias/questions/CE-31.mp3",
     "qk": [
      [
@@ -8453,6 +8534,7 @@
     "bonne": 1,
     "t": "document",
     "emoji": "🏊",
+    "niveau": "A2",
     "audioQ": "medias/questions/CE-32.mp3",
     "qk": [
      [
@@ -8524,6 +8606,7 @@
     "bonne": 2,
     "t": "document",
     "emoji": "🏊",
+    "niveau": "A2",
     "audioQ": "medias/questions/CE-33.mp3",
     "qk": [
      [
@@ -8578,6 +8661,7 @@
     "bonne": 0,
     "t": "document",
     "emoji": "🚆",
+    "niveau": "A2",
     "audioQ": "medias/questions/CE-34.mp3",
     "qk": [
      [
@@ -8652,6 +8736,7 @@
     "bonne": 1,
     "t": "document",
     "emoji": "📰",
+    "niveau": "B1",
     "audioQ": "medias/questions/CE-35.mp3",
     "qk": [
      [
@@ -8703,6 +8788,7 @@
     "bonne": 0,
     "t": "document",
     "emoji": "📰",
+    "niveau": "B1",
     "audioQ": "medias/questions/CE-36.mp3",
     "qk": [
      [
@@ -8759,6 +8845,7 @@
     "bonne": 1,
     "t": "document",
     "emoji": "📰",
+    "niveau": "B1",
     "audioQ": "medias/questions/CE-37.mp3",
     "qk": [
      [
@@ -8815,6 +8902,7 @@
     "bonne": 1,
     "t": "document",
     "emoji": "📰",
+    "niveau": "B1",
     "audioQ": "medias/questions/CE-38.mp3",
     "qk": [
      [
@@ -8886,6 +8974,7 @@
     "bonne": 0,
     "t": "document",
     "emoji": "📰",
+    "niveau": "B1",
     "audioQ": "medias/questions/CE-39.mp3",
     "qk": [
      [
@@ -8948,6 +9037,7 @@
     "bonne": 1,
     "t": "document",
     "emoji": "✉️",
+    "niveau": "B1",
     "audioQ": "medias/questions/CE-40.mp3",
     "qk": [
      [
@@ -8994,6 +9084,7 @@
     "bonne": 0,
     "t": "document",
     "emoji": "✉️",
+    "niveau": "B1",
     "audioQ": "medias/questions/CE-41.mp3",
     "qk": [
      [
@@ -9030,6 +9121,7 @@
     "bonne": 1,
     "t": "document",
     "emoji": "✉️",
+    "niveau": "B1",
     "audioQ": "medias/questions/CE-42.mp3",
     "qk": [
      [
@@ -9116,6 +9208,7 @@
     "bonne": 0,
     "t": "document",
     "emoji": "✉️",
+    "niveau": "B1",
     "audioQ": "medias/questions/CE-43.mp3",
     "qk": [
      [
@@ -9185,6 +9278,7 @@
     "bonne": 0,
     "t": "document",
     "emoji": "💬",
+    "niveau": "B1",
     "audioQ": "medias/questions/CE-44.mp3",
     "qk": [
      [
@@ -9226,6 +9320,7 @@
     "bonne": 1,
     "t": "document",
     "emoji": "💬",
+    "niveau": "B1",
     "audioQ": "medias/questions/CE-45.mp3",
     "qk": [
      [
@@ -9257,6 +9352,7 @@
     "bonne": 0,
     "t": "document",
     "emoji": "💬",
+    "niveau": "B1",
     "audioQ": "medias/questions/CE-46.mp3",
     "qk": [
      [
@@ -9288,6 +9384,7 @@
     "bonne": 0,
     "t": "document",
     "emoji": "💬",
+    "niveau": "B1",
     "audioQ": "medias/questions/CE-47.mp3",
     "qk": [
      [
@@ -9360,6 +9457,7 @@
     "bonne": 1,
     "t": "document",
     "emoji": "📜",
+    "niveau": "B1",
     "audioQ": "medias/questions/CE-48.mp3",
     "qk": [
      [
@@ -9461,6 +9559,7 @@
     "bonne": 2,
     "t": "document",
     "emoji": "📜",
+    "niveau": "B1",
     "audioQ": "medias/questions/CE-49.mp3",
     "qk": [
      [
@@ -9517,6 +9616,7 @@
     "bonne": 2,
     "t": "document",
     "emoji": "📜",
+    "niveau": "B1",
     "audioQ": "medias/questions/CE-50.mp3",
     "qk": [
      [
@@ -9583,6 +9683,7 @@
     "t": "enonce",
     "avant": "Sur un formulaire, vous lisez :",
     "citation": "Date de naissance : ______",
+    "niveau": "A1",
     "audioQ": "medias/questions/EE-01.mp3"
    },
    {
@@ -9599,6 +9700,7 @@
     "avant": "Sur un formulaire, vous lisez :",
     "citation": "Nationalité : ______",
     "apres": "Vous êtes née au Maroc et vous êtes marocaine.",
+    "niveau": "A1",
     "audioQ": "medias/questions/EE-02.mp3"
    },
    {
@@ -9614,6 +9716,7 @@
     "t": "trou",
     "phrase": "Je ______ Mariam.",
     "etiquette": "Complétez :",
+    "niveau": "A1",
     "audioQ": "medias/questions/EE-03.mp3"
    },
    {
@@ -9629,6 +9732,7 @@
     "t": "trou",
     "phrase": "J'______ 25 ans.",
     "etiquette": "Complétez :",
+    "niveau": "A1",
     "audioQ": "medias/questions/EE-04.mp3"
    },
    {
@@ -9645,6 +9749,7 @@
     "phrase": "Nous ______ à Vesoul.",
     "etiquette": "Complétez :",
     "indice": "(habiter)",
+    "niveau": "A1",
     "audioQ": "medias/questions/EE-05.mp3"
    }
   ]
@@ -9668,6 +9773,7 @@
     "bonne": 0,
     "t": "enonce",
     "avant": "Quel mot est bien écrit ?",
+    "niveau": "A1",
     "audioQ": "medias/questions/EE-06.mp3"
    },
    {
@@ -9684,6 +9790,7 @@
     "avant": "Comment écrit-on",
     "citation": "15",
     "apres": "en lettres ?",
+    "niveau": "A1",
     "audioQ": "medias/questions/EE-07.mp3"
    },
    {
@@ -9698,6 +9805,7 @@
     "bonne": 0,
     "t": "enonce",
     "avant": "Vous écrivez un SMS à un ami.",
+    "niveau": "A1",
     "audioQ": "medias/questions/EE-08.mp3"
    },
    {
@@ -9713,6 +9821,7 @@
     "t": "trou",
     "phrase": "J'habite ______ France.",
     "etiquette": "Complétez :",
+    "niveau": "A1",
     "audioQ": "medias/questions/EE-09.mp3"
    },
    {
@@ -9728,6 +9837,7 @@
     "t": "trou",
     "phrase": "J'aime ______ café.",
     "etiquette": "Complétez :",
+    "niveau": "A1",
     "audioQ": "medias/questions/EE-10.mp3"
    }
   ]
@@ -9756,6 +9866,7 @@
      "je",
      "content"
     ],
+    "niveau": "A1",
     "audioQ": "medias/questions/EE-11.mp3",
     "qk": [
      [
@@ -9793,6 +9904,7 @@
     "t": "trou",
     "phrase": "J'achète deux ______.",
     "etiquette": "Complétez :",
+    "niveau": "A1",
     "audioQ": "medias/questions/EE-12.mp3"
    },
    {
@@ -9808,6 +9920,7 @@
     "t": "trou",
     "phrase": "Ma voisine est très ______.",
     "etiquette": "Complétez :",
+    "niveau": "A1",
     "audioQ": "medias/questions/EE-13.mp3"
    }
   ]
@@ -9833,6 +9946,7 @@
     "phrase": "Hier, nous ______ au marché.",
     "etiquette": "Complétez :",
     "indice": "(aller)",
+    "niveau": "A2",
     "audioQ": "medias/questions/EE-18.mp3"
    },
    {
@@ -9849,6 +9963,7 @@
     "phrase": "Samedi dernier, j'______ au restaurant.",
     "etiquette": "Complétez :",
     "indice": "(manger)",
+    "niveau": "A2",
     "audioQ": "medias/questions/EE-19.mp3"
    },
    {
@@ -9864,6 +9979,7 @@
     "t": "trou",
     "phrase": "Demain, je ______ appeler le médecin.",
     "etiquette": "Complétez :",
+    "niveau": "A2",
     "audioQ": "medias/questions/EE-20.mp3"
    },
    {
@@ -9879,6 +9995,7 @@
     "t": "trou",
     "phrase": "Je ne peux pas venir ______ je suis malade.",
     "etiquette": "Complétez :",
+    "niveau": "A2",
     "audioQ": "medias/questions/EE-21.mp3"
    },
    {
@@ -9894,6 +10011,7 @@
     "t": "trou",
     "phrase": "Il pleut, ______ je prends mon parapluie.",
     "etiquette": "Complétez :",
+    "niveau": "A2",
     "audioQ": "medias/questions/EE-22.mp3"
    }
   ]
@@ -9917,6 +10035,7 @@
     "bonne": 1,
     "t": "enonce",
     "avant": "Vous écrivez un courriel à votre formatrice.",
+    "niveau": "A2",
     "audioQ": "medias/questions/EE-23.mp3"
    },
    {
@@ -9931,6 +10050,7 @@
     "bonne": 1,
     "t": "enonce",
     "avant": "Vous écrivez un courriel à la mairie.",
+    "niveau": "A2",
     "audioQ": "medias/questions/EE-24.mp3"
    },
    {
@@ -9945,6 +10065,7 @@
     "bonne": 1,
     "t": "enonce",
     "citation": "Tu connais Marie ? — Oui, je ______ connais.",
+    "niveau": "A2",
     "audioQ": "medias/questions/EE-25.mp3"
    },
    {
@@ -9960,6 +10081,7 @@
     "t": "trou",
     "phrase": "Le train est ______ rapide ______ le bus.",
     "etiquette": "Complétez :",
+    "niveau": "A2",
     "audioQ": "medias/questions/EE-26.mp3"
    },
    {
@@ -9975,6 +10097,7 @@
     "t": "trou",
     "phrase": "Il y a ______ personnes dans la salle d'attente.",
     "etiquette": "Complétez :",
+    "niveau": "A2",
     "audioQ": "medias/questions/EE-27.mp3"
    }
   ]
@@ -9999,6 +10122,7 @@
     "t": "trou",
     "phrase": "Mes enfants ______ à l'école.",
     "etiquette": "Complétez :",
+    "niveau": "A2",
     "audioQ": "medias/questions/EE-28.mp3"
    },
    {
@@ -10014,6 +10138,7 @@
     "t": "transformer",
     "phrase": "J'ai du travail.",
     "vers": "Mettez la phrase à la forme négative :",
+    "niveau": "A2",
     "audioQ": "medias/questions/EE-29.mp3"
    },
    {
@@ -10028,6 +10153,7 @@
     "bonne": 0,
     "t": "enonce",
     "avant": "Vous arrivez en retard et vous laissez un mot.",
+    "niveau": "A2",
     "audioQ": "medias/questions/EE-30.mp3"
    }
   ]
@@ -10052,6 +10178,7 @@
     "t": "trou",
     "phrase": "Quand je ______ (arriver), il ______ (pleuvoir).",
     "etiquette": "Complétez :",
+    "niveau": "B1",
     "audioQ": "medias/questions/EE-35.mp3"
    },
    {
@@ -10067,6 +10194,7 @@
     "t": "trou",
     "phrase": "C'est la ville ______ je suis né.",
     "etiquette": "Complétez :",
+    "niveau": "B1",
     "audioQ": "medias/questions/EE-36.mp3"
    },
    {
@@ -10082,6 +10210,7 @@
     "t": "trou",
     "phrase": "Le livre ______ je t'ai parlé est sur la table.",
     "etiquette": "Complétez :",
+    "niveau": "B1",
     "audioQ": "medias/questions/EE-37.mp3"
    },
    {
@@ -10097,6 +10226,7 @@
     "t": "trou",
     "phrase": "Il faut que tu ______ ce formulaire avant vendredi.",
     "etiquette": "Complétez :",
+    "niveau": "B1",
     "audioQ": "medias/questions/EE-38.mp3"
    }
   ]
@@ -10121,6 +10251,7 @@
     "t": "trou",
     "phrase": "______-vous m'envoyer le document, s'il vous plaît ?",
     "etiquette": "Complétez :",
+    "niveau": "B1",
     "audioQ": "medias/questions/EE-39.mp3"
    },
    {
@@ -10136,6 +10267,7 @@
     "t": "trou",
     "phrase": "Le logement est petit ; ______, il est très lumineux.",
     "etiquette": "Complétez :",
+    "niveau": "B1",
     "audioQ": "medias/questions/EE-40.mp3"
    },
    {
@@ -10151,6 +10283,7 @@
     "t": "trou",
     "phrase": "Le bus était en retard, ______ j'ai raté mon rendez-vous.",
     "etiquette": "Complétez :",
+    "niveau": "B1",
     "audioQ": "medias/questions/EE-41.mp3"
    },
    {
@@ -10166,6 +10299,7 @@
     "t": "trou",
     "phrase": "Si j'avais plus de temps, je ______ du sport.",
     "etiquette": "Complétez :",
+    "niveau": "B1",
     "audioQ": "medias/questions/EE-42.mp3"
    }
   ]
@@ -10190,6 +10324,7 @@
     "t": "trou",
     "phrase": "Les lettres que j'ai ______ sont sur le bureau.",
     "etiquette": "Complétez :",
+    "niveau": "B1",
     "audioQ": "medias/questions/EE-43.mp3"
    },
    {
@@ -10205,6 +10340,7 @@
     "t": "enonce",
     "avant": "Il m'a dit :",
     "citation": "Je viendrai demain.",
+    "niveau": "B1",
     "audioQ": "medias/questions/EE-44.mp3"
    },
    {
@@ -10219,6 +10355,7 @@
     "bonne": 1,
     "t": "enonce",
     "citation": "Je vous prie d'agréer, Madame, l'expression de mes salutations distinguées.",
+    "niveau": "B1",
     "audioQ": "medias/questions/EE-45.mp3"
    },
    {
@@ -10232,6 +10369,7 @@
     ],
     "bonne": 0,
     "t": "aucun",
+    "niveau": "B1",
     "audioQ": "medias/questions/EE-46.mp3",
     "qk": [
      [
@@ -11641,6 +11779,7 @@
       0.82
      ]
     ],
+    "niveau": "A1",
     "audioQ": "medias/questions/EO-17.mp3",
     "qk": [
      [
@@ -11712,6 +11851,7 @@
       1.62
      ]
     ],
+    "niveau": "A2",
     "audioQ": "medias/questions/EO-31.mp3",
     "qk": [
      [
@@ -11778,6 +11918,7 @@
       1.78
      ]
     ],
+    "niveau": "A2",
     "audioQ": "medias/questions/EO-32.mp3",
     "qk": [
      [
@@ -11859,6 +12000,7 @@
       2.84
      ]
     ],
+    "niveau": "B1",
     "audioQ": "medias/questions/EO-49.mp3",
     "qk": [
      [

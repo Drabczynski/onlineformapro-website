@@ -673,6 +673,80 @@ body { font-weight: 500; }
   .ligne-e input { flex-basis: 100%; }
 }
 
+
+/* ------------------------------------------------------------ v4 : minimalisme. Une seule couleur d'accent (le violet) ; le vert pour
+   continuer et pour le juste, le rose pour le faux ; tout sur un axe ; le haut-parleur discret au bout de la phrase ; pas de zoom
+   sur les photos ; pas de barre de suivi ; sans image, la carte de la question seule, au centre. */
+.progres { visibility: hidden; }
+.studio:not(.enreg):not(.fini) .micro-g svg.anneau .plein { opacity: 0; }
+.ecran .fil i { background: #fff; }
+.visuel .vis-photo, .ecran img.vis, .photo-g img { animation: none !important; }
+.sc-duo.solo { display: flex; align-items: center; justify-content: center; }
+.sc-duo.solo > .carte-q { width: min(920px, 100%); height: auto; min-height: min(560px, 100%); max-height: 100%; }
+.q-ligne, .consigne-l { display: block; }
+.hp { display: inline-grid; place-items: center; width: .8em; height: .8em; min-width: 24px; min-height: 24px; margin: 0 0 0 .1em; padding: 0; border: 0; border-radius: 50%; vertical-align: -.06em; background: none; box-shadow: none; color: var(--encre-douce); opacity: .7; transition: color .2s, opacity .2s; }
+.hp:hover { opacity: 1; color: var(--violet); transform: none; }
+.hp:active { translate: none; box-shadow: none; }
+.hp svg { width: 100%; height: 100%; }
+.hp.joue { animation: none; background: none; box-shadow: none; color: var(--violet); opacity: 1; }
+.ecoute-q .hp { width: .7em; height: .7em; color: rgba(255, 255, 255, .75); }
+.centre-q .hp { color: rgba(255, 255, 255, .75); }
+.consigne-p .hp { width: 1.1em; height: 1.1em; }
+.ecoute, .relire { border: 2px solid var(--lavande); background: #fff; box-shadow: none; color: var(--violet); }
+.ecoute:active, .relire:active { translate: 0 1px; box-shadow: none; }
+.ecoute .rondp, .relire .rondp { background: var(--violet); color: #fff; }
+.centre-q .relire { border-color: rgba(255, 255, 255, .4); background: rgba(255, 255, 255, .14); color: #fff; }
+.centre-q .relire .rondp { background: #fff; color: var(--violet); }
+.rond.cyan-r { border: 1.5px solid rgba(255, 255, 255, .45); background: rgba(255, 255, 255, .16); box-shadow: none; color: #fff; }
+.rond.cyan-r[aria-pressed="true"] { background: #fff; color: var(--violet); box-shadow: none; }
+.micro-g { background: linear-gradient(#a274ff, #7b3cf5); box-shadow: inset 0 0 0 7px rgba(255, 255, 255, .26), 0 6px 0 #5b2bc4; }
+.micro-g:active { box-shadow: inset 0 0 0 7px rgba(255, 255, 255, .26), 0 2px 0 #5b2bc4; }
+.micro-g svg.anneau .plein { stroke: var(--violet); }
+.studio:not(.enreg):not(.fini) .micro-g::before { border-color: rgba(135, 69, 253, .3); }
+.studio { gap: clamp(18px, 3vh, 34px); }
+.studio > .q-ligne { margin-bottom: clamp(12px, 3vh, 36px); }
+.studio:not(.enreg):not(.fini) .chrono-g { visibility: hidden; height: 0; margin: -10px 0; }
+.aide-g { margin: 0; color: var(--encre-douce); font-size: 16px; font-weight: 500; }
+.consigne-mini { margin: 0; color: var(--encre-douce); font-size: clamp(17px, 1.5vw, 20px); font-weight: 600; }
+.studio > .phrase-o { margin-bottom: clamp(12px, 3vh, 36px); }
+.phrase-o .hp { width: .55em; height: .55em; }
+.dock { flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+.dock-mot { justify-content: center; margin: 0; font-size: clamp(20px, 1.9vw, 25px); }
+.dock .go { flex: none; min-width: min(320px, 100%); }
+.lien-b { padding: 4px 8px; border: 0; background: none; color: var(--encre-douce); font: 600 16px/1.2 var(--texte); text-decoration: underline; text-underline-offset: 3px; }
+.centre-q .lien-b { color: rgba(255, 255, 255, .8); }
+.amorce { background: var(--lavande); box-shadow: none; }
+.amorce:active { translate: 0 1px; box-shadow: none; }
+.amorce.utilisee { background: var(--violet); box-shadow: none; color: #fff; }
+.ligne-e .num { background: var(--violet); box-shadow: none; color: #fff; }
+.exemple h3 { padding: 0; background: none; box-shadow: none; color: var(--violet); }
+.carte-q .exemple-o { padding: 0; background: none; box-shadow: none; }
+.reps .rep { border: 2px solid var(--lavande); background: #fff; box-shadow: none; }
+.reps .rep.envoyee { border-color: var(--violet); background: var(--violet); color: #fff; box-shadow: none; }
+.reps .rep.envoyee.ok { border-color: var(--vert-2); background: linear-gradient(var(--vert-1), var(--vert-2)); color: var(--encre); }
+.reps .rep.envoyee.faux { border-color: var(--rose-2); background: linear-gradient(var(--rose-1), var(--rose-2)); color: var(--encre); }
+.reps .rep.bonne-rep { border-color: var(--vert-2); }
+.orbe .mot, #rideau .tuile .mot, .medaille-t .mot { color: var(--violet); }
+.orbe .badge { display: none; }
+.orbe.actuelle .face { fill: url(#g-citron); } .orbe.actuelle .levre { fill: var(--citron-levre); } .orbe.actuelle .mot { color: var(--encre); }
+.orbe.faite .face { fill: url(#g-violet); } .orbe.faite .levre { fill: #5b2bc4; } .orbe.faite .mot { color: #fff; }
+.orbe.faite { opacity: 1; }
+.medaille-t .mot { color: var(--encre); }
+.visuel.couleur { background: linear-gradient(160deg, #f1e9ff, #ddd0ff); }
+.sc-lecture.phase-lire .visuel { cursor: pointer; }
+.sc-lecture .pose { transition: transform .7s var(--doux-sortie); }
+.sc-lecture.phase-lire .pose { transform: scale(1.06); }
+@media (min-width: 900px) and (min-height: 560px) {
+  .sc-lecture { transition: grid-template-columns .7s var(--doux-sortie), gap .7s var(--doux-sortie); }
+  .sc-lecture.phase-lire { grid-template-columns: minmax(0, 1fr) minmax(0, 0fr); gap: 0; }
+  .sc-lecture > .carte-q { transition: opacity .5s .35s, padding .7s; }
+  .sc-lecture.phase-lire > .carte-q { padding: 0; opacity: 0; }
+}
+@media (max-width: 899.98px), (max-height: 559.98px) {
+  .sc-lecture.phase-lire > .carte-q { display: none; }
+  .dock .go { width: 100%; }
+}
+
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .etoiles svg { opacity: 1; } }
 </style>
 
@@ -684,6 +758,7 @@ body { font-weight: 500; }
     <linearGradient id="g-vert" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cdfc2a"/><stop offset="1" stop-color="#8fe60c"/></linearGradient>
     <linearGradient id="g-cyan" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#78fdf8"/><stop offset="1" stop-color="#42d8ff"/></linearGradient>
     <linearGradient id="g-rose" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffadf6"/><stop offset="1" stop-color="#ea62de"/></linearGradient>
+    <linearGradient id="g-violet" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a274ff"/><stop offset="1" stop-color="#7b3cf5"/></linearGradient>
     <linearGradient id="g-lilas" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eadfff"/><stop offset="1" stop-color="#c7adff"/></linearGradient>
   </defs>
 </svg>
@@ -744,7 +819,7 @@ const hexa = (contenu, teinte = "blanc", classe = "", attrs = "", balise = "span
   `<${balise} class="tuile ${teinte} ${classe}" ${attrs}><svg class="socle" viewBox="0 0 120 112.92" aria-hidden="true"><path class="ombre" transform="translate(0 9)" d="${HEX}"/><path class="levre" transform="translate(0 5)" d="${HEX}"/></svg><span class="dessus"><svg viewBox="0 0 120 103.92" aria-hidden="true"><path class="face" d="${HEX}"/></svg><span class="mot">${contenu}</span></span>${plus}</${balise}>`;
 const MARQUE_H = `<svg class="marque-h" viewBox="0 0 120 103.92" aria-hidden="true"><path d="${HEX}"/><path class="coche" d="M36 54l17 16 32-36"/></svg>`;
 const MARQUE = hexa("Aa", "citron");
-const TEINTE = { video: "cyan", lecture: "blanc", grammaire: "vert", ecriture: "citron", oral: "rose", reagir: "lilas" };
+const TEINTE = { video: "blanc", lecture: "blanc", grammaire: "blanc", ecriture: "blanc", oral: "blanc", reagir: "blanc" };
 const ETOILE = (on) => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.8-4.9 4.5 1.3 6.5L12 17l-5.9 3.3 1.3-6.5L2.5 9.3l6.6-.8z" fill="${on ? "#ffe35a" : "rgba(135,69,253,.15)"}" stroke="${on ? "#f0b03a" : "none"}" stroke-width="1.2" stroke-linejoin="round"/></svg>`;
 const trouDe = (q) => q.t === "trou" ? q.phrase : q.t === "enonce" && /_{3,}/.test(q.citation || "") ? q.citation : null;
 const MOT = { video: a => a.video ? "Regardez" : "Écoutez", lecture: () => "Lisez", grammaire: a => a.questions.filter(trouDe).length >= a.questions.length / 2 ? "Complétez" : "Choisissez",
@@ -761,7 +836,7 @@ const melanger = (t) => { const a = [...t]; for (let i = a.length - 1; i > 0; i-
 // la série : 8 ou 9 questions variées, tirées au hasard dans le niveau choisi, jamais deux du même type à la suite.
 // Une seule question par activité : celle-ci est tirée au hasard dans son groupe (pour la grammaire, une phrase à trou si possible).
 function choisirQ(a) {
-  const tous = a.questions.map((_, i) => i), trous = a.type === "grammaire" ? tous.filter(i => trouDe(a.questions[i])) : [];
+  const niv = a.questions.map((_, i) => i).filter(i => etat.niveau === "tous" || !a.questions[i].niveau || a.questions[i].niveau === etat.niveau), tous = niv.length ? niv : a.questions.map((_, i) => i), trous = a.type === "grammaire" ? tous.filter(i => trouDe(a.questions[i])) : [];
   return auHasard(trous.length ? trous : tous);
 }
 function tirer() {
@@ -855,7 +930,7 @@ const Confettis = (() => {
     },
   };
 })();
-const jetDepuis = (el, n, f) => { const r = el.getBoundingClientRect(); Confettis.jet(r.left + r.width / 2, r.top + r.height / 2, n, f); };
+const jetDepuis = () => {};      // plus de confettis pendant les questions : au bilan seulement
 
 // ---------------------------------------------------------------- ondes : le volume des sons, calculé à l'avance (40 ms par pas)
 const ALPHA = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_";
@@ -907,7 +982,7 @@ function brancherEcoute(b, m, env) {
   const maj = () => { $(".rondp", b).innerHTML = m.paused ? I.lire : I.pause; };
   m.addEventListener("play", maj); m.addEventListener("pause", maj); m.addEventListener("ended", maj);
   b.onclick = () => { Son.init(); if (m.paused) jouer(m, m.ended ? 0 : undefined); else m.pause(); };
-  barres($("canvas", b), ondeMedia(m, env, { repos: .16 }), { n: 16, couleur: "#46288c", min: .14, plein: .55 });
+  barres($("canvas", b), ondeMedia(m, env, { repos: .16 }), { n: 16, couleur: "#8745fd", min: .14, plein: .55 });
 }
 
 // ---------------------------------------------------------------- les mots qui s'allument (karaoké)
@@ -948,7 +1023,7 @@ addEventListener("pointermove", (e) => { document.documentElement.style.setPrope
 // ---------------------------------------------------------------- passer d'une scène à l'autre
 let courant = null;
 function quitter() { try { courant?.arreter?.(); } catch (e) {} courant = null; touche = null; arreterMedias(); for (const s of [...animations]) s(); }
-function rendre(html) { const S = $("#scene"); S.innerHTML = html; S.scrollTop = 0; return S.firstElementChild; }
+function rendre(html) { const S = $("#scene"); S.innerHTML = html; S.scrollTop = 0; const el = S.firstElementChild; if (el?.classList.contains("sc-duo") && !el.querySelector(".visuel")) el.classList.add("solo"); return el; }
 function rideau(a, k, origine, monter) {
   const R = $("#rideau"), mot = MOT[a.type](a);
   R.className = `ty-${a.type} f-${a.type}`;
@@ -983,7 +1058,7 @@ function terminer(a, res) {
 // le bas de la scène après une réponse : un mot, et le bouton pour continuer
 function dock(place, juste, { lib = "Continuer", action, autre, defiler = true } = {}) {
   const mot = juste === null ? "" : juste ? auHasard(BRAVO) : auHasard(PRESQUE);
-  place.innerHTML = `<div class="dock ${juste === null ? "" : juste ? "ok" : "ko"}">${mot ? `<span class="dock-mot"><i>${juste ? I.ok : I.ko}</i>${echap(mot)}</span>` : ""}${autre ? `<button class="sec" type="button" data-autre>${autre.icone || ""}<span>${echap(autre.lib)}</span></button>` : ""}<button class="go" type="button">${echap(lib)} ${I.suite}</button></div>`;
+  place.innerHTML = `<div class="dock ${juste === null ? "" : juste ? "ok" : "ko"}">${mot ? `<span class="dock-mot"><i>${juste ? I.ok : I.ko}</i>${echap(mot)}</span>` : ""}<button class="go" type="button">${echap(lib)} ${I.suite}</button>${autre ? `<button class="lien-b" type="button" data-autre>${echap(autre.lib)}</button>` : ""}</div>`;
   $(".go", place).onclick = () => { Son.joue("tap"); action(); };
   if (autre) $("[data-autre]", place).onclick = () => { Son.joue("tap"); autre.action(); };
   if (mot) annoncer(mot);
@@ -1049,18 +1124,18 @@ function brancherChoix(racine, q, fin) {
 // ---------------------------------------------------------------- pièces communes : la question et son haut-parleur, le panneau de l'image
 const HP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>';
 function titreHTML(texte, audio, k, cls = "q") {
-  return `<div class="q-ligne">${audio ? `<button class="hp" type="button" data-hp="${echap(audio)}" aria-label="Écouter la question">${HP}</button>` : ""}<h2 class="${cls}${k ? " kara" : ""}">${k ? karaokeHTML(k) : echap(texte)}</h2></div>`;
+  return `<div class="q-ligne"><h2 class="${cls}${k ? " kara" : ""}">${k ? karaokeHTML(k) : echap(texte)}${audio ? `&nbsp;<button class="hp" type="button" data-hp="${echap(audio)}" aria-label="Écouter">${HP}</button>` : ""}</h2></div>`;
 }
 function brancherHP(racine) {
   $$("[data-hp]", racine).forEach(b => {
     if (b._m) return;
-    const m = media(b.dataset.hp), k = b.parentElement.querySelector(".kara"); b._m = m;
+    const m = media(b.dataset.hp), k = b.closest(".kara") || b.parentElement.querySelector(".kara"); b._m = m;
     if (k) suivreKaraoke(m, k);
     const maj = () => b.classList.toggle("joue", !m.paused); m.addEventListener("play", maj); m.addEventListener("pause", maj); m.addEventListener("ended", maj);
     b.onclick = () => { Son.init(); m.paused ? jouer(m, m.ended || !m.currentTime ? 0 : undefined) : m.pause(); };
   });
 }
-const visuelHTML = (src, contenu = "", cls = "") => `<div class="visuel ${cls}${src ? "" : " uni"}">${src ? `<img class="vis-photo" src="${echap(src)}" alt="">` : ""}${contenu}</div>`;
+const visuelHTML = (src, contenu = "", cls = "") => !src && !contenu ? "" : `<div class="visuel ${cls}${src ? "" : " uni"}">${src ? `<img class="vis-photo" src="${echap(src)}" alt="">` : ""}${contenu}</div>`;
 function suiteQuestions(a, zone, { avant = () => "", apresDerniere, fin } = {}) {
   let j = 0, bonnes = 0;
   const montrer = () => {
@@ -1084,8 +1159,8 @@ function sceneVideo(a) {
   const sc = rendre(`<section class="scene sc-video phase-ecoute">
     <div class="ecran">${vid ? `<video class="vis" src="${echap(a.video)}" poster="${echap(a.poster)}" playsinline preload="auto"></video>` : `<img class="vis" src="${echap(a.poster)}" alt="">`}
       <span class="voile"></span>${vid ? "" : `<canvas class="onde-g" aria-hidden="true"></canvas>`}<p class="st" hidden></p><span class="fil"><i></i></span></div>
-    <div class="ecoute-ui">${vid ? "" : `<span class="a-venir">Vidéo à venir · la photo et le son</span>`}
-      <div class="ecoute-q"><small>Écoutez bien</small>${titreHTML(q0.q, q0.audioQ, null, "eq")}</div>
+    <div class="ecoute-ui">${vid ? "" : `<span class="a-venir">Vidéo à venir</span>`}
+      <div class="ecoute-q">${titreHTML(q0.q, q0.audioQ, null, "eq")}</div>
       <div class="ctrl"><button class="rond cyan-r" type="button" data-act="rejouer" aria-label="Recommencer">${I.rejouer}</button><button class="rond cyan-r" type="button" data-act="jouer" aria-label="Lire ou mettre en pause">${I.lire}</button>${a.sousTitres ? `<button class="rond cyan-r" type="button" data-act="cc" aria-pressed="false" aria-label="Sous-titres">${I.cc}</button>` : ""}<button class="go" type="button" data-act="repondre">Répondre ${I.suite}</button></div></div>
     <div class="centre-q" aria-live="polite"></div></section>`);
   const m = media(a.audio, { video: vid ? $("video", sc) : null }), env = ENV[a.audio], zone = $(".centre-q", sc), jouerB = $("[data-act=jouer]", sc), st = $(".st", sc), cc = $("[data-act=cc]", sc), fil = $(".fil i", sc);
@@ -1136,13 +1211,16 @@ function objetHTML(d) {
   }
 }
 function sceneLecture(a) {
-  const sc = rendre(`<section class="scene sc-duo sc-lecture">${visuelHTML(a.photoH, `<div class="pose">${objetHTML(a.doc)}</div>`, "avec-objet")}<div class="carte-q"></div></section>`);
+  const sc = rendre(`<section class="scene sc-duo sc-lecture phase-lire">${visuelHTML(null, `<div class="pose">${objetHTML(a.doc)}</div>`, "avec-objet couleur")}<div class="carte-q"></div></section>`);
   const Q = suiteQuestions(a, $(".carte-q", sc), { fin: (bonnes) => terminer(a, { bonnes, total: a.questions.length }) });
-  Q.montrer();
+  let minuterie = 0;
+  const question = () => { if (!sc.classList.contains("phase-lire")) return; clearTimeout(minuterie); sc.classList.replace("phase-lire", "phase-q"); Son.joue("papier"); Q.montrer(); };
+  $(".visuel", sc).onclick = question;
+  const mots = (JSON.stringify(a.doc).match(/\p{L}{2,}/gu) || []).length;
   courant = { ...courant, demarrer: () => {
     if (a.doc.t === "sms") { setTimeout(() => { const [e, b] = $$(".bulle-sms", sc); e.hidden = true; b.hidden = false; b.classList.add("arrive"); Son.joue("pop"); }, 1100); }
-    else Son.joue("papier");
-  } };
+    minuterie = setTimeout(question, Math.max(2600, Math.min(7000, mots * 320 + (a.doc.t === "sms" ? 1100 : 0))));
+  }, arreter: () => clearTimeout(minuterie) };
 }
 
 // ---------------------------------------------------------------- 3. grammaire : le mot choisi vole jusqu'au trou
@@ -1155,7 +1233,7 @@ function sceneGrammaire(a) {
     const hp = q.audioQ ? `<button class="hp" type="button" data-hp="${echap(q.audioQ)}" aria-label="Écouter">${HP}</button>` : "";
     if (trou) {
       const phrase = echap(trou.replace(/ ([:?!;»])/g, " $1").replace(/ (_{3,})/, " $1")).replace(/_{3,}/, `<span class="fente vide" aria-label="mot manquant"></span>`);
-      G.innerHTML = `${q.avant ? `<p class="g-avant">${echap(q.avant)}</p>` : ""}<div class="q-ligne">${hp}<p class="g-phrase${q.t === "enonce" ? " form" : ""}">${phrase}</p></div>${q.indice ? `<p class="g-indice">${echap(q.indice)}</p>` : ""}${q.apres ? `<p class="g-avant">${echap(q.apres)}</p>` : ""}
+      G.innerHTML = `${q.avant ? `<p class="g-avant">${echap(q.avant)}</p>` : ""}<div class="q-ligne"><p class="g-phrase${q.t === "enonce" ? " form" : ""}">${phrase}${hp ? "&nbsp;" + hp : ""}</p></div>${q.indice ? `<p class="g-indice">${echap(q.indice)}</p>` : ""}${q.apres ? `<p class="g-avant">${echap(q.apres)}</p>` : ""}
         ${choixHTML(q, { cls: "puce" })}<div class="dock-place"></div>`;
       brancherHP(G); touche = brancherFente(q, fin);
     } else {
@@ -1245,7 +1323,7 @@ function brancherVerif(r) {
 // ---------------------------------------------------------------- 5. écrire
 function sceneEcriture(a) {
   const aide = a.aide || { titre: a.titre, forme: a.formulaire ? "formulaire" : "feuille" }, objectif = a.mots || null;
-  const consigne = `<div class="consigne-l">${a.audioQ ? `<button class="hp" type="button" data-hp="${echap(a.audioQ)}" aria-label="Écouter la consigne">${HP}</button>` : ""}<p class="consigne-p${a.consigneK ? " kara" : ""}">${a.consigneK ? karaokeHTML(a.consigneK) : echap(a.consigne)}</p></div>`;
+  const consigne = `<div class="consigne-l"><p class="consigne-p${a.consigneK ? " kara" : ""}">${a.consigneK ? karaokeHTML(a.consigneK) : echap(a.consigne)}${a.audioQ ? `&nbsp;<button class="hp" type="button" data-hp="${echap(a.audioQ)}" aria-label="Écouter la consigne">${HP}</button>` : ""}</p></div>`;
   let zone;
   if (aide.forme === "formulaire") zone = `<div class="champs">${a.formulaire.map((c, i) => `<label>${echap(c)}<input type="text" data-i="${i}" autocomplete="off"></label>`).join("")}</div>`;
   else if (aide.forme === "lignes") zone = `<div class="lignes-e">${aide.lignes.map(([debut, ph], i) => `<label class="ligne-e" style="--k:${i}"><span class="num">${i + 1}</span><span class="debut">${echap(debut)}</span><input type="text" placeholder="${echap(ph)}" data-debut="${echap(debut)}" autocomplete="off"></label>`).join("")}</div>`;
@@ -1284,7 +1362,7 @@ function sceneEcriture(a) {
     const mien = texte();
     const corps = a.modele && typeof a.modele === "object" && !Array.isArray(a.modele) ? `<div class="fiche-ex">${Object.entries(a.modele).map(([k, v]) => `<p><b>${echap(k)} :</b> ${echap(v)}</p>`).join("")}</div>` : `<p class="texte-ex">${echap(a.modele || "")}</p>`;
     sc.classList.add("compare");
-    sc.innerHTML = `<div class="carte-q mien"><h3 class="titre-mien">Votre texte</h3><p class="mon-texte">${echap(mien)}</p></div><div class="exemple"><h3>Un exemple</h3>${corps}${verifHTML(a)}<div class="dock-place"></div></div>`;
+    sc.innerHTML = `<div class="carte-q mien"><h3 class="titre-mien">Votre texte</h3><p class="mon-texte">${echap(mien)}</p></div><div class="exemple"><h3>Un exemple</h3>${corps}<div class="dock-place"></div></div>`;
     brancherVerif(sc); Son.joue("papier"); $("#scene").scrollTop = 0;
     dock($(".dock-place", sc), null, { action: () => terminer(a, { produit: true }), defiler: false }); majProgres();
   };
@@ -1303,22 +1381,26 @@ function sceneOral(a) {
   if (a.sous === "image" && !a.photo) { clsV = "uni"; support = a.numero ? `<div class="postit">${echap(a.numero)}</div>` : a.horloge ? `<div class="horloge-g">${horlogeSVG(...a.horloge)}</div>` : ""; }
   else if (a.sous === "role") { clsV = "avec-dit"; const r = a.role.replace(/^Rôle de l'interlocuteur\s*:\s*/i, "").replace(/^Questions du recruteur\s*:\s*/i, "Le recruteur demande : "); support = `<div class="parole"><div class="role-g"><span class="masques" aria-hidden="true">🎭</span><h3>Jeu de rôle · l'autre personne</h3><p>${echap(r.charAt(0).toUpperCase() + r.slice(1))}</p></div></div>`; }
   const photo = clsV === "uni" ? null : (a.photo || a.photoH);
-  const consigneK = a.sous === "consigne" && a.k, phraseK = a.sous === "repeter";
+  const hpP = a.audio ? `&nbsp;<button class="hp" type="button" data-hp="${echap(a.audio)}" data-principal aria-label="Écouter">${HP}</button>` : "";
   const hp = a.sous !== "consigne" && a.audioQ ? `<button class="hp" type="button" data-hp="${echap(a.audioQ)}" aria-label="Écouter la consigne">${HP}</button>` : "";
+  const entete = a.sous === "repeter" && a.phrase
+    ? `<p class="consigne-mini">${echap(a.consigne)}</p><p class="phrase-o${a.k ? " kara" : ""}">« ${a.k ? karaokeHTML(a.k) : echap(a.phrase)} »${hpP}</p>`
+    : a.sous === "consigne"
+    ? `<div class="q-ligne"><h2 class="consigne-o${a.k ? " kara" : ""}">${a.k ? karaokeHTML(a.k) : echap(a.consigne)}${hpP}</h2></div>`
+    : `<div class="q-ligne"><h2 class="consigne-o${hp && a.consigneK ? " kara" : ""}">${hp && a.consigneK ? karaokeHTML(a.consigneK) : echap(a.consigne)}${hp ? "&nbsp;" + hp : ""}</h2></div>${a.audio ? ecouteHTML(a.sous === "question" ? "Écouter la question" : "Écouter") : ""}`;
   const sc = rendre(`<section class="scene sc-duo sc-oral">${visuelHTML(photo, support, clsV)}
     <div class="carte-q"><div class="studio" id="studio">
-      <div class="q-ligne">${hp}<h2 class="consigne-o${consigneK || (hp && a.consigneK) ? " kara" : ""}">${consigneK ? karaokeHTML(a.k) : hp && a.consigneK ? karaokeHTML(a.consigneK) : echap(a.consigne)}</h2></div>
-      ${phraseK && a.phrase ? `<p class="phrase-o kara">« ${a.k ? karaokeHTML(a.k) : echap(a.phrase)} »</p>` : ""}
-      ${a.audio ? ecouteHTML(a.sous === "repeter" ? "Écouter la phrase" : a.sous === "consigne" ? "Écouter la consigne" : a.sous === "question" ? "Écouter la question" : "Écouter") : ""}
+      ${entete}
       <button class="micro-g" type="button" id="micro" aria-label="Appuyer pour parler"><canvas aria-hidden="true"></canvas><svg class="anneau" viewBox="0 0 100 100" aria-hidden="true"><circle class="fond-a" cx="50" cy="50" r="46"/><circle class="plein" cx="50" cy="50" r="46" pathLength="100" stroke-dasharray="0 100"/></svg><span class="ic-m">${I.micro}</span></button>
-      <p class="chrono-g" id="chrono">0:00</p><p class="aide-g" id="aide">Appuyez, puis parlez.${a.duree ? ` Environ ${dureeTexte(a.duree)}.` : ""}</p>
+      <p class="chrono-g" id="chrono">0:00</p><p class="aide-g" id="aide">Appuyez et parlez.</p>
       <div class="apres" id="apres"></div>
       <div class="dock-place"></div>
     </div></div></section>`);
   const S = $("#studio", sc), M = $("#micro", sc), plein = $(".plein", M), chrono = $("#chrono", sc), aide = $("#aide", sc), apres = $("#apres", sc);
   brancherHP(S);
   let consigne = null;
-  if (a.audio) { consigne = media(a.audio); brancherEcoute($(".ecoute", S), consigne, ENV[a.audio]); const k = consigneK ? $(".consigne-o", S) : $(".phrase-o", S); if (k && (consigneK || a.k)) suivreKaraoke(consigne, k); }
+  if (a.sous === "repeter" || a.sous === "consigne") consigne = $("[data-principal]", S)?._m || null;
+  else if (a.audio) { consigne = media(a.audio); brancherEcoute($(".ecoute", S), consigne, ENV[a.audio]); }
   let niveauVoix = 0, analyseur = null, donnees = null;
   const halo = $("canvas", M), hx = halo.getContext("2d"); let idHalo = 0, vivant = true;
   const dessinerHalo = (ts) => {
@@ -1374,14 +1456,12 @@ function sceneOral(a) {
     const corps = dialogue ? `<div class="dialogue kara">${a.modele.map((l, i) => `<p class="ligne${l.qui === "Vous" ? " vous" : ""}"><b>${echap(l.qui)}</b>${K ? karaokeHTML(K[i].mots) : echap(l.texte)}</p>`).join("")}</div>`
       : `<p class="texte-ex kara">${K ? K.map(l => karaokeHTML(l.mots)).join("<br><br>") : echap(a.modele || "")}</p>`;
     const ex = document.createElement("div"); ex.className = "exemple exemple-o encre";
-    ex.innerHTML = `<h3>Un exemple</h3>${a.modeleAudio ? `<div>${ecouteHTML("Écouter l'exemple")}</div>` : ""}${corps}${verifHTML(a)}`;
+    ex.innerHTML = `<h3>Un exemple</h3>${a.modeleAudio ? `<div>${ecouteHTML("Écouter")}</div>` : ""}${corps}`;
     apres.after(ex); brancherVerif(ex);
     if (a.modeleAudio) { const mm = media(a.modeleAudio); brancherEcoute($(".ecoute", ex), mm, ENV[a.modeleAudio]); const k = $(".kara", ex); suivreKaraoke(mm, k, { lignes: dialogue ? ".ligne" : null }); if (dialogue) k.classList.add("dialogue"); setTimeout(() => jouer(mm, 0), 350); }
     setTimeout(() => ex.scrollIntoView({ behavior: MOUV ? "smooth" : "auto", block: "start" }), 120);
     dock($(".dock-place", S), null, { action: () => terminer(a, { produit: true }), defiler: false }); majProgres();
   }
-  const passer = document.createElement("button"); passer.className = "sec"; passer.type = "button"; passer.innerHTML = `${I.casque}<span>Voir l'exemple</span>`; passer.onclick = () => { arret(); exemple(); };
-  $(".dock-place", S).append(passer);
   courant = {
     demarrer: () => { if (consigne) setTimeout(() => jouer(consigne, 0), 200); },
     arreter: () => { vivant = false; cancelAnimationFrame(idHalo); clearInterval(minuterie); clearInterval(echant); try { if (rec && rec.state !== "inactive") rec.stop(); } catch (e) {} flux?.getTracks().forEach(t => t.stop()); },
@@ -1401,10 +1481,8 @@ function bilan() {
     <div class="etoiles">${[0, 1, 2].map(i => ETOILE(i < nEtoiles)).join("")}</div>
     <h1 class="geant">Bravo&nbsp;!</h1>
     <p class="phrase-b">${total ? `${bonnes} bonne${bonnes > 1 ? "s" : ""} réponse${bonnes > 1 ? "s" : ""} sur ${total}.` : "Série terminée."}</p>
-    <div class="stats"><span class="stat s-ecrit" style="--k:0"><i>${I.ecriture}</i>${ecrits} texte${ecrits > 1 ? "s" : ""} écrit${ecrits > 1 ? "s" : ""}</span><span class="stat s-oral" style="--k:1"><i>${I.oral}</i>${oraux} réponse${oraux > 1 ? "s" : ""} à l'oral</span></div>
-    <div class="rangee">${serie.map((a, k) => `<span class="mini" style="--k:${k}" title="${echap(a.titre)}">${hexa(I[a.type], TEINTE[a.type])}${R[a.id]?.total ? `<small>${R[a.id].bonnes}/${R[a.id].total}</small>` : R[a.id]?.fini ? `<small>✓</small>` : ""}</span>`).join("")}</div>
     <div class="acc-bas"><button class="go" type="button" id="nouvelle">Nouvelle série ${I.hasard}</button><button class="rond" type="button" id="maison" aria-label="Accueil">${I.maison}</button></div></section>`);
-  Son.joue("fanfare"); setTimeout(() => Confettis.pluie(), 250);
+  Son.joue("fanfare"); setTimeout(() => Confettis.pluie(70), 250);
   const t0 = performance.now() + 500, compte = $("#compte", sc), anim = (t) => { const p = Math.max(0, Math.min(1, (t - t0) / 1300)); compte.textContent = Math.round(bonnes * (1 - Math.pow(1 - p, 3))); if (p < 1 && compte.isConnected) requestAnimationFrame(anim); };
   if (total) requestAnimationFrame(anim);
   $("#nouvelle", sc).onclick = () => { Son.joue("pop"); tirer(); accueil(); };
