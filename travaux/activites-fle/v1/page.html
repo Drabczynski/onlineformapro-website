@@ -1,0 +1,574 @@
+<title>Activités FLE</title>
+<meta name="theme-color" content="#c3d2ee">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=Doto:wght@700;900&display=swap">
+<style>
+/* Activités FLE : thème clair, pastel. Fond en dégradé (bleu, lilas, rose), cartes de verre dépoli sans ombre,
+   tuiles de couleur selon le type d'activité, grands titres blancs, barre d'action flottante en bas. */
+:root {
+  --encre: #1d2144; --doux: #5d6488; --pale: #8e94b4; --blanc: #ffffff;
+  --bleu: #3550d9; --bleu-fonce: #2238b0;
+  --jaune: #f5f1a0; --menthe: #b4e8d3; --menthe-fonce: #1f6b55; --lilas: #ddd2f7; --pervenche: #bcc7f7; --rose: #f8c9e1; --beurre: #f4efb6; --peche: #fbd8c6;
+  --verre: rgba(255, 255, 255, .38); --verre-fort: rgba(255, 255, 255, .78); --lisere: rgba(255, 255, 255, .7);
+  --ok: #17865a; --ok-pale: #d5f3e4; --ko: #d63d55; --ko-pale: #fde1e6;
+  --texte: "Outfit", "Segoe UI", system-ui, sans-serif; --serif: "Instrument Serif", Georgia, serif; --points: "Doto", "Outfit", monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { min-height: 100%; background: #c6d4ee; }
+body { margin: 0; min-height: 100vh; color: var(--encre); font: 400 16px/1.5 var(--texte); background: #c6d4ee; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--bleu); outline-offset: 3px; }
+
+/* le fond : un dégradé doux qui dérive lentement */
+.fond { position: fixed; inset: -10%; z-index: 0; pointer-events: none;
+  background: radial-gradient(40% 35% at 18% 12%, #a9c3f0 0%, transparent 70%), radial-gradient(38% 34% at 86% 18%, #e7c3f2 0%, transparent 70%),
+              radial-gradient(45% 40% at 78% 70%, #f6bcd9 0%, transparent 72%), radial-gradient(40% 38% at 12% 82%, #b9e0f2 0%, transparent 70%),
+              radial-gradient(50% 45% at 50% 50%, #d9d0f6 0%, transparent 75%), #c6d4ee;
+  animation: derive 28s ease-in-out infinite alternate; }
+@keyframes derive { to { transform: translate(2%, -2%) scale(1.06) rotate(2deg); } }
+#retour-q { scroll-margin-bottom: 120px; }
+.page { position: relative; z-index: 1; width: min(1200px, 100%); margin: 0 auto; padding: calc(18px + env(safe-area-inset-top, 0px)) 18px calc(132px + env(safe-area-inset-bottom, 0px)); }
+
+/* en-tête */
+.tete { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 56px; }
+.marque { display: flex; align-items: center; gap: 10px; color: var(--blanc); font-weight: 600; font-size: 15px; letter-spacing: .02em; }
+.marque svg { width: 46px; height: 46px; }
+.rond { display: grid; place-items: center; width: 52px; height: 52px; flex: none; border: 1.5px solid var(--lisere); border-radius: 50%; background: var(--verre); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); color: var(--blanc); }
+.rond svg { width: 22px; height: 22px; }
+.rond:hover { background: rgba(255, 255, 255, .55); }
+.etape { padding: 8px 16px; border: 1.5px solid var(--lisere); border-radius: 999px; background: var(--verre); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); color: var(--encre); font-size: 14px; font-weight: 500; }
+
+/* grands titres blancs, un peu laiteux */
+.titre { margin: 18px 0 6px; color: var(--blanc); font-size: clamp(46px, 11vw, 86px); font-weight: 600; line-height: .98; letter-spacing: -.035em; text-wrap: balance;
+  background: linear-gradient(180deg, #ffffff 30%, rgba(255, 255, 255, .78)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.titre.moyen { font-size: clamp(38px, 8vw, 64px); }
+.sous { margin: 0 0 18px; color: rgba(29, 33, 68, .72); font-size: 17px; max-width: 52ch; }
+
+/* pastilles (filtres, étiquettes) */
+.pastilles { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 22px; }
+.pastille { padding: 11px 22px; border: 1.5px solid var(--lisere); border-radius: 999px; background: var(--verre); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); color: var(--encre); font-size: 16px; font-weight: 500; }
+.pastille[aria-pressed="true"] { border-color: var(--jaune); background: var(--jaune); }
+.pastille.petite { padding: 6px 14px; font-size: 14px; }
+.infos { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 20px; }
+
+/* la grille des activités : des tuiles de couleurs et de hauteurs différentes */
+.tuiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 78px; grid-auto-flow: dense; gap: 14px; }
+@media (min-width: 760px) { .tuiles { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 86px; gap: 16px; } }
+@media (min-width: 1100px) { .tuiles { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.tuile { position: relative; display: flex; flex-direction: column; min-width: 0; overflow: hidden; padding: 16px; border: 1.5px solid var(--lisere); border-radius: 26px; text-align: left; animation: monte .6s cubic-bezier(.2, .8, .2, 1) backwards; }
+.tuile:hover { transform: translateY(-2px); transition: transform .2s; }
+@keyframes monte { from { opacity: 0; transform: translateY(18px); } }
+.tuile .meta { position: relative; display: flex; gap: 6px; align-items: center; margin-top: auto; font-size: 13px; font-weight: 500; }
+.tuile .niv { padding: 3px 10px; border-radius: 999px; background: rgba(255, 255, 255, .62); color: var(--encre); font-size: 12px; font-weight: 600; }
+.tuile .fait { position: absolute; top: 12px; right: 12px; z-index: 2; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--blanc); color: var(--ok); }
+.tuile .fait svg { width: 16px; height: 16px; }
+.t-video { grid-row: span 3; padding: 0; color: var(--blanc); background: #8aa0d0; }
+.t-video img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.t-video::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20, 24, 60, .05) 35%, rgba(20, 24, 60, .62)); }
+.t-video .haut { position: relative; z-index: 1; padding: 16px 16px 0; font-size: 14px; font-weight: 500; }
+.t-video .bas { position: relative; z-index: 1; margin-top: auto; padding: 16px; }
+.t-video h3 { margin: 0 0 8px; font-size: 20px; font-weight: 600; line-height: 1.1; }
+.t-video .lire { display: inline-grid; place-items: center; width: 40px; height: 40px; border: 1.5px solid rgba(255, 255, 255, .8); border-radius: 50%; background: rgba(255, 255, 255, .28); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.t-video .lire svg { width: 16px; height: 16px; margin-left: 2px; }
+.t-lecture { grid-row: span 2; background: rgba(255, 255, 255, .62); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+.t-lecture h3 { margin: 0; color: var(--bleu); font-size: 24px; font-weight: 600; line-height: 1.02; letter-spacing: -.02em; overflow-wrap: anywhere; }
+.t-lecture .meta { color: var(--doux); }
+.t-lecture .extrait { display: -webkit-box; margin-top: 8px; overflow: hidden; color: var(--doux); font-size: 14px; line-height: 1.4; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.t-grammaire { grid-row: span 3; background: linear-gradient(160deg, #c3eedb, #9cd9c2); color: var(--menthe-fonce); }
+.t-grammaire h3 { margin: 0 0 12px; font-family: var(--points); font-size: 30px; font-weight: 900; line-height: 1; letter-spacing: .02em; color: #2b5a4b; }
+.t-grammaire .coche { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; padding: 7px 12px; border-radius: 999px; background: rgba(255, 255, 255, .42); color: var(--encre); font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.t-grammaire .coche i { flex: none; width: 17px; height: 17px; border: 1.5px solid #2b5a4b; border-radius: 50%; }
+.t-grammaire .coche:first-of-type i { background: #2b5a4b radial-gradient(circle, #fff 26%, transparent 30%); }
+.t-ecriture { grid-row: span 2; background: linear-gradient(160deg, #f8f4c4, #ece5a2); color: #6b5f22; }
+.t-ecriture h3 { margin: 0; font-family: var(--serif); font-size: 46px; font-weight: 400; line-height: .9; color: #a08a2c; }
+.t-ecriture .feuilles { position: absolute; right: 14px; top: 14px; width: 64px; height: 54px; }
+.t-oral { grid-row: span 2; background: linear-gradient(160deg, #c8d0fa, #aebcf3); color: var(--encre); }
+.t-oral .onde { display: flex; align-items: center; gap: 4px; height: 34px; margin: 2px 0 10px; }
+.t-oral .onde i { width: 5px; border-radius: 3px; background: var(--blanc); }
+.t-oral h3, .t-reagir h3 { margin: 0; font-size: 18px; font-weight: 600; line-height: 1.15; }
+.t-reagir { grid-row: span 2; background: linear-gradient(160deg, #fbd3e7, #f2b6d4); color: #7a2c55; }
+.t-reagir h3 { font-family: var(--serif); font-style: italic; font-size: 34px; font-weight: 400; line-height: .95; color: #b0407c; }
+.t-oral .meta, .t-ecriture .meta, .t-reagir .meta, .t-grammaire .meta { opacity: .9; }
+
+/* la barre d'action flottante */
+.barre { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 20; display: flex; align-items: center; gap: 8px; padding: 7px; border: 1.5px solid rgba(255, 255, 255, .6); border-radius: 999px; background: rgba(40, 46, 90, .38); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); transform: translateX(-50%); }
+.principal { display: flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 28px; border: 0; border-radius: 999px; background: var(--blanc); color: var(--encre); font-size: 18px; font-weight: 600; white-space: nowrap; }
+.principal svg { width: 20px; height: 20px; }
+.principal:disabled { opacity: .55; cursor: default; }
+.second { display: grid; place-items: center; width: 56px; height: 56px; border: 1.5px solid rgba(255, 255, 255, .55); border-radius: 50%; background: rgba(255, 255, 255, .22); color: var(--blanc); }
+.second svg { width: 22px; height: 22px; }
+
+/* une activité : le support à gauche (ou en haut), la carte des questions à droite (ou dessous) */
+.corps { display: grid; gap: 18px; align-items: start; }
+.corps:not(.deux) { max-width: 820px; }
+@media (min-width: 980px) { .corps.deux { grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); gap: 24px; } .corps.deux > .support { position: sticky; top: 18px; } }
+.carte { padding: 24px; border: 1.5px solid var(--lisere); border-radius: 30px; background: rgba(255, 255, 255, .9); animation: monte .5s cubic-bezier(.2, .8, .2, 1) backwards; }
+.carte + .carte { margin-top: 16px; }
+.carte .petit { margin: 0 0 6px; color: var(--pale); font-size: 14px; font-weight: 500; }
+.question { margin: 0 0 18px; color: var(--bleu); font-size: clamp(21px, 2.4vw, 26px); font-weight: 600; line-height: 1.22; letter-spacing: -.01em; text-wrap: balance; }
+.consigne { margin: 0 0 14px; color: var(--encre); font-size: 18px; font-weight: 500; }
+.reponses { display: grid; gap: 10px; }
+.rep { display: flex; align-items: center; gap: 14px; width: 100%; min-height: 60px; padding: 10px 16px; border: 1.5px solid #e6e3f4; border-radius: 18px; background: #f6f4fd; text-align: left; font-size: 17px; font-weight: 500; transition: background .15s, border-color .15s; }
+.rep:hover:not(:disabled) { border-color: #c9c2f0; background: #efecfc; }
+.rep .lettre { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--blanc); color: var(--doux); font-size: 14px; font-weight: 600; }
+.rep .picto { font-size: 24px; }
+.rep[aria-pressed="true"] { border-color: var(--bleu); background: #eaedfd; }
+.rep[aria-pressed="true"] .lettre { background: var(--bleu); color: var(--blanc); }
+.rep.juste { border-color: var(--ok); background: var(--ok-pale); }
+.rep.juste .lettre { background: var(--ok); color: var(--blanc); }
+.rep.faux { border-color: var(--ko); background: var(--ko-pale); }
+.rep.faux .lettre { background: var(--ko); color: var(--blanc); }
+.rep:disabled { cursor: default; }
+.rep.eteint { opacity: .5; }
+.retour { display: flex; align-items: flex-start; gap: 10px; margin: 16px 0 0; padding: 12px 16px; border-radius: 16px; font-weight: 500; animation: monte .35s ease backwards; }
+.retour svg { flex: none; width: 22px; height: 22px; margin-top: 1px; }
+.retour.ok { background: var(--ok-pale); color: #0f5e3e; }
+.retour.ko { background: var(--ko-pale); color: #9b2238; }
+
+/* ce qui précède la question : phrase à trous, citation, mots à ranger */
+.enonce { margin: 0 0 16px; }
+.enonce .etiq { margin: 0 0 6px; color: var(--doux); font-size: 15px; font-weight: 500; }
+.phrase { margin: 0; font-size: 22px; font-weight: 500; line-height: 1.5; }
+.trou { display: inline-block; min-width: 4.2em; padding: 0 .3em; border-radius: 6px; background: linear-gradient(transparent 55%, var(--jaune) 55%); text-align: center; }
+.trou.rempli { background: linear-gradient(transparent 55%, #bdeed6 55%); color: var(--ok); font-weight: 600; }
+.indice { margin: 8px 0 0; color: var(--doux); font-size: 15px; }
+blockquote.cite { margin: 6px 0; padding: 12px 16px; border-left: 4px solid var(--bleu); border-radius: 0 14px 14px 0; background: #f2f4fe; font-size: 19px; font-weight: 500; }
+.mots { display: flex; flex-wrap: wrap; gap: 8px; }
+.mots span { padding: 8px 14px; border-radius: 12px; background: var(--jaune); font-size: 18px; font-weight: 500; }
+
+/* le lecteur vidéo (une vraie vidéo, ou la photo et le son en attendant) */
+.lecteur { position: relative; overflow: hidden; aspect-ratio: 16 / 10; border: 1.5px solid var(--lisere); border-radius: 30px; background: #26305e; color: var(--blanc); }
+.lecteur video, .lecteur .affiche { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.lecteur.joue .affiche { animation: zoom 22s ease-out forwards; }
+@keyframes zoom { to { transform: scale(1.12) translate(-1.5%, -1%); } }
+.lecteur .voile { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20, 24, 60, .12), transparent 30%, transparent 55%, rgba(20, 24, 60, .55)); pointer-events: none; }
+.lecteur .gros { position: absolute; left: 50%; top: 50%; display: grid; place-items: center; width: 84px; height: 84px; border: 2px solid rgba(255, 255, 255, .85); border-radius: 50%; background: rgba(255, 255, 255, .28); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: var(--blanc); transform: translate(-50%, -50%); transition: opacity .25s; }
+.lecteur .gros svg { width: 30px; height: 30px; margin-left: 4px; }
+.lecteur.joue .gros { opacity: 0; pointer-events: none; }
+.lecteur .bandeau { position: absolute; left: 14px; top: 14px; display: flex; gap: 8px; }
+.lecteur .bandeau span { padding: 6px 12px; border: 1px solid rgba(255, 255, 255, .55); border-radius: 999px; background: rgba(20, 24, 60, .32); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); font-size: 13px; font-weight: 500; }
+.lecteur .soustitre { position: absolute; left: 50%; bottom: 74px; width: min(86%, 620px); padding: 8px 16px; border-radius: 14px; background: rgba(20, 24, 60, .62); text-align: center; font-size: clamp(15px, 1.7vw, 19px); font-weight: 500; transform: translateX(-50%); }
+.lecteur .soustitre b { display: block; color: #cfd7ff; font-size: 12px; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; }
+.lecteur .commandes { position: absolute; left: 12px; right: 12px; bottom: 12px; display: flex; align-items: center; gap: 10px; padding: 8px 10px; border: 1px solid rgba(255, 255, 255, .45); border-radius: 999px; background: rgba(20, 24, 60, .34); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.lecteur .commandes button { display: grid; place-items: center; width: 38px; height: 38px; flex: none; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .2); color: var(--blanc); }
+.lecteur .commandes button[aria-pressed="true"] { background: var(--blanc); color: var(--encre); }
+.lecteur .commandes svg { width: 18px; height: 18px; }
+.lecteur .barre-temps { position: relative; flex: 1; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .3); cursor: pointer; }
+.lecteur .barre-temps i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 3px; background: var(--blanc); }
+.lecteur .temps { min-width: 78px; font-size: 13px; font-variant-numeric: tabular-nums; text-align: right; }
+.transcription { margin-top: 14px; padding: 18px 20px; border: 1.5px solid var(--lisere); border-radius: 24px; background: rgba(255, 255, 255, .82); animation: monte .35s ease backwards; }
+.transcription h4 { margin: 0 0 8px; font-family: var(--serif); font-size: 26px; font-weight: 400; color: var(--bleu); }
+.transcription p { margin: 0 0 6px; font-size: 17px; }
+.lien { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 9px 16px; border: 1.5px solid var(--lisere); border-radius: 999px; background: var(--verre); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); color: var(--encre); font-size: 15px; font-weight: 500; }
+.lien svg { width: 18px; height: 18px; }
+
+/* les documents à lire */
+.doc { padding: 26px 28px; border: 1.5px solid var(--lisere); border-radius: 28px; background: #fffefb; color: #23263f; animation: monte .5s ease backwards; }
+.doc h4 { display: flex; align-items: center; gap: 12px; margin: 0 0 14px; font-size: 22px; font-weight: 600; line-height: 1.2; }
+.doc h4 .em { display: grid; place-items: center; width: 46px; height: 46px; flex: none; border-radius: 14px; background: var(--lilas); font-size: 24px; }
+.doc p { margin: 0 0 10px; font-size: 17.5px; line-height: 1.6; text-wrap: pretty; }
+.doc.affiche { border: 0; background: linear-gradient(160deg, #fff7d6, #ffe9b8); text-align: center; }
+.doc.affiche h4 { justify-content: center; font-size: 26px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.doc.info { background: linear-gradient(160deg, #e9f0ff, #dbe5ff); }
+.doc.courrier { background: #fffefb repeating-linear-gradient(transparent 0 31px, #eef0f8 31px 32px); }
+.doc.fiche p { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px dashed #d9dcec; margin: 0; }
+.panneau { display: grid; place-items: center; gap: 8px; padding: 34px 20px; border-radius: 28px; text-align: center; animation: monte .5s ease backwards; }
+.panneau small { font-size: 15px; font-weight: 500; opacity: .85; }
+.panneau strong { padding: 16px 28px; border: 4px solid currentColor; border-radius: 14px; background: var(--blanc); font-size: clamp(26px, 4vw, 36px); font-weight: 700; letter-spacing: .06em; }
+.panneau.ferme { background: linear-gradient(160deg, #fde4e8, #f7c7d1); color: #b3263f; }
+.panneau.sortie { background: linear-gradient(160deg, #d8f6e6, #b4e8cf); color: #157548; }
+.panneau.neutre { background: linear-gradient(160deg, #e6ebff, #cfd8ff); color: var(--bleu-fonce); }
+.sms { padding: 22px; border: 1.5px solid var(--lisere); border-radius: 30px; background: rgba(255, 255, 255, .7); animation: monte .5s ease backwards; }
+.sms small { display: block; margin-bottom: 10px; color: var(--doux); font-size: 14px; font-weight: 500; }
+.sms .bulle { max-width: 88%; padding: 14px 18px; border-radius: 22px 22px 22px 6px; background: var(--blanc); font-size: 18px; }
+.prix { display: grid; justify-items: center; gap: 4px; padding: 30px; border-radius: 28px; background: linear-gradient(160deg, #fff4c9, #ffe28a); animation: monte .5s ease backwards; }
+.prix b { font-size: 22px; } .prix strong { font-size: 54px; font-weight: 700; line-height: 1; color: #b4321f; } .prix span { font-size: 18px; }
+.menu-doc h4 { justify-content: center; font-family: var(--serif); font-size: 34px; font-weight: 400; }
+.menu-doc .jour { text-align: center; color: var(--doux); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.menu-doc ul { margin: 10px 0 0; padding: 0; list-style: none; text-align: center; font-size: 20px; }
+.plaque { padding: 28px; border-radius: 22px; background: linear-gradient(160deg, #f1e3b8, #d9bf7c); color: #4a3a12; text-align: center; animation: monte .5s ease backwards; }
+.plaque small { display: block; margin-bottom: 10px; font-weight: 500; opacity: .8; }
+.plaque p { margin: 4px 0; font-size: 22px; font-weight: 600; }
+
+/* sons courts (consigne, question, modèle) */
+.son { display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px 18px 10px 10px; border: 1.5px solid var(--lisere); border-radius: 999px; background: linear-gradient(90deg, #c8d0fa, #d8cdf6); text-align: left; }
+.son .bouton { display: grid; place-items: center; width: 46px; height: 46px; flex: none; border-radius: 50%; background: var(--blanc); color: var(--bleu); }
+.son .bouton svg { width: 18px; height: 18px; }
+.son .barres { display: flex; align-items: center; gap: 3px; height: 30px; flex: 1; overflow: hidden; }
+.son .barres i { width: 4px; border-radius: 2px; background: rgba(255, 255, 255, .95); }
+.son.joue .barres i { animation: vibre .9s ease-in-out infinite; }
+.son.joue .barres i:nth-child(3n) { animation-delay: -.3s; } .son.joue .barres i:nth-child(3n+1) { animation-delay: -.6s; }
+@keyframes vibre { 50% { transform: scaleY(.45); } }
+.son .lib { font-size: 15px; font-weight: 500; white-space: nowrap; }
+
+/* production : écrire, s'enregistrer, comparer au modèle */
+textarea.ecrire { display: block; width: 100%; min-height: 200px; padding: 18px; border: 1.5px solid #e2def3; border-radius: 20px; background: #fbfaff; font-size: 18px; line-height: 1.55; resize: vertical; }
+textarea.ecrire:focus { outline: none; border-color: var(--bleu); }
+.champs { display: grid; gap: 10px; }
+.champs label { display: grid; gap: 4px; font-size: 14px; font-weight: 500; color: var(--doux); }
+.champs input { padding: 12px 14px; border: 1.5px solid #e2def3; border-radius: 14px; background: #fbfaff; font-size: 17px; color: var(--encre); }
+.compteur { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 7px 14px; border-radius: 999px; background: #f1effa; color: var(--doux); font-size: 14px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.compteur.bon { background: var(--ok-pale); color: #0f5e3e; }
+.micro { display: grid; justify-items: center; gap: 12px; padding: 12px 0 4px; text-align: center; }
+.micro .gros-micro { position: relative; display: grid; place-items: center; width: 108px; height: 108px; border: 2px solid rgba(53, 80, 217, .25); border-radius: 50%; background: linear-gradient(160deg, #e4e8ff, #d6dcff); color: var(--bleu); }
+.micro .gros-micro svg { width: 40px; height: 40px; }
+.micro.enreg .gros-micro { background: linear-gradient(160deg, #ffdfe5, #ffc6d1); color: var(--ko); border-color: rgba(214, 61, 85, .3); }
+.micro.enreg .gros-micro::before { content: ""; position: absolute; inset: -10px; border: 2px solid rgba(214, 61, 85, .45); border-radius: 50%; animation: pouls 1.4s ease-out infinite; }
+@keyframes pouls { from { transform: scale(.9); opacity: 1; } to { transform: scale(1.3); opacity: 0; } }
+.micro .chrono { font-size: 30px; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+.micro .aide { margin: 0; color: var(--doux); font-size: 15px; }
+.modele { margin-top: 16px; padding: 22px 24px; border: 1.5px solid var(--lisere); border-radius: 28px; background: linear-gradient(160deg, #fffbe2, #fff6cc); animation: monte .45s ease backwards; }
+.modele h4 { margin: 0 0 10px; font-family: var(--serif); font-size: 30px; font-weight: 400; color: #8a7620; }
+.modele p { margin: 0 0 8px; font-size: 17.5px; line-height: 1.6; white-space: pre-line; }
+.dialogue { display: grid; gap: 8px; margin-top: 6px; }
+.dialogue .ligne { max-width: 86%; padding: 10px 14px; border-radius: 18px 18px 18px 6px; background: var(--blanc); font-size: 16.5px; }
+.dialogue .ligne b { display: block; color: var(--doux); font-size: 12px; font-weight: 600; letter-spacing: .03em; text-transform: uppercase; }
+.dialogue .ligne.vous { justify-self: end; border-radius: 18px 18px 6px 18px; background: #dfe4ff; }
+.verifiez { display: grid; gap: 8px; margin-top: 16px; }
+.verifiez h5 { margin: 0 0 2px; font-size: 15px; font-weight: 600; color: var(--doux); letter-spacing: .02em; }
+.verifiez button { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border: 1.5px solid #e6e3f4; border-radius: 999px; background: rgba(255, 255, 255, .8); text-align: left; font-size: 16px; }
+.verifiez button i { flex: none; display: grid; place-items: center; width: 22px; height: 22px; border: 1.5px solid var(--doux); border-radius: 50%; color: var(--blanc); }
+.verifiez button[aria-pressed="true"] { border-color: var(--ok); background: var(--ok-pale); }
+.verifiez button[aria-pressed="true"] i { border-color: var(--ok); background: var(--ok); }
+.verifiez button i svg { width: 13px; height: 13px; }
+.photo { overflow: hidden; border: 1.5px solid var(--lisere); border-radius: 28px; animation: monte .5s ease backwards; }
+.photo img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.postit { display: grid; place-items: center; padding: 40px 20px; border-radius: 26px; background: linear-gradient(160deg, #fff8b8, #f6eb83); transform: rotate(-1.5deg); font-size: clamp(30px, 5vw, 44px); font-weight: 600; letter-spacing: .06em; }
+.horloge { display: grid; place-items: center; padding: 22px; border-radius: 28px; background: linear-gradient(160deg, #e7ecff, #d5dcff); }
+.horloge svg { width: min(260px, 70%); height: auto; }
+.role { display: grid; gap: 10px; }
+.role div { padding: 16px 18px; border-radius: 22px; background: rgba(255, 255, 255, .78); border: 1.5px solid var(--lisere); }
+.role b { display: block; margin-bottom: 4px; color: var(--doux); font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.replique { display: flex; align-items: center; gap: 14px; }
+.replique img { width: 76px; height: 76px; flex: none; border-radius: 50%; object-fit: cover; border: 3px solid var(--blanc); }
+.replique .bulle { padding: 14px 18px; border-radius: 22px 22px 22px 6px; background: var(--lilas); font-size: 19px; font-weight: 500; }
+.situation { display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-radius: 22px; background: var(--rose); font-size: 18px; font-weight: 500; }
+.situation .em { font-size: 34px; }
+
+/* le bilan */
+.chiffres { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin: 8px 0 22px; }
+.chiffre { padding: 20px 22px; border: 1.5px solid var(--lisere); border-radius: 26px; animation: monte .5s ease backwards; }
+.chiffre strong { display: block; font-size: 46px; font-weight: 600; line-height: 1; letter-spacing: -.02em; }
+.chiffre span { font-size: 15px; font-weight: 500; }
+.liste { display: grid; gap: 10px; }
+.liste .ligne { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 1.5px solid var(--lisere); border-radius: 20px; background: rgba(255, 255, 255, .6); }
+.liste .ligne .pt { width: 12px; height: 12px; flex: none; border-radius: 50%; }
+.liste .ligne span { flex: 1; font-weight: 500; }
+.liste .ligne em { color: var(--doux); font-style: normal; font-size: 14px; }
+
+@media (max-width: 520px) {
+  .t-grammaire h3 { font-size: 22px; }
+  .t-ecriture h3 { font-size: 38px; } .t-ecriture .feuilles { width: 44px; height: 38px; right: 10px; top: 12px; }
+  .t-lecture h3 { font-size: 21px; }
+  .page { padding-left: 16px; padding-right: 16px; }
+  .carte { padding: 20px 18px; border-radius: 26px; }
+  .principal { padding: 0 22px; font-size: 17px; }
+  .lecteur { border-radius: 24px; }
+  .lecteur .soustitre { bottom: 66px; }
+  .lecteur .temps { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="fond" aria-hidden="true"></div>
+<main class="page" id="app" aria-live="polite"></main>
+<div class="barre" id="barre"></div>
+
+<script>
+const ACTIVITES = /*__ACTIVITES__*/[];
+const PAR_ID = Object.fromEntries(ACTIVITES.map(a => [a.id, a]));
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const echap = (s) => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const NOM = { video: "Vidéo", lecture: "Lecture", grammaire: "Grammaire", ecriture: "Écriture", reagir: "Réagir", oral: "Oral" };
+const COULEUR = { video: "#7f93cf", lecture: "#3550d9", grammaire: "#5cc19f", ecriture: "#d8c44f", reagir: "#ea8fbd", oral: "#8f9df0" };
+const I = {
+  lire: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>',
+  pause: '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4.2" height="14" rx="1.4"/><rect x="13.8" y="5" width="4.2" height="14" rx="1.4"/></svg>',
+  retour: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',
+  suite: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+  hasard: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3.5c2.4 0 3.6 1.2 5 3.5l1 1.6c1.4 2.3 2.6 3.4 5 3.4H20M4 17h3.5c1.6 0 2.7-.5 3.6-1.5M16.5 4.5 20 7l-3.5 2.5M16.5 14.5 20 17l-3.5 2.5M20 7h-1.5c-1.6 0-2.7.5-3.6 1.5"/></svg>',
+  ok: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+  ko: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 7l10 10M17 7 7 17"/></svg>',
+  micro: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>',
+  stop: '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="6.5" width="11" height="11" rx="2.5"/></svg>',
+  cc: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10.5 10.2a2.4 2.4 0 1 0 0 3.6M17 10.2a2.4 2.4 0 1 0 0 3.6"/></svg>',
+  texte: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 6h14M5 10h14M5 14h10M5 18h7"/></svg>',
+  maison: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 12 4l8 7M6.5 9.5V20h11V9.5"/></svg>',
+  recommencer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4.5h4.5"/></svg>',
+};
+const MARQUE = '<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="4.2" stroke-linecap="round" aria-hidden="true">' +
+  Array.from({ length: 8 }, (_, k) => { const a = k * Math.PI / 8, c = Math.cos(a) * 20, s = Math.sin(a) * 20; return `<path d="M${24 - c} ${24 - s}L${24 + c} ${24 + s}"/>`; }).join("") + "</svg>";
+
+// ---------------------------------------------------------------- l'état (gardé dans le navigateur, si possible)
+let etat = { niveau: "tous", serie: [], resultats: {}, vue: "accueil", k: 0, premier: true };
+try { const s = JSON.parse(localStorage.getItem("activites-fle") || "null"); if (s && Array.isArray(s.serie) && s.serie.every(id => PAR_ID[id])) etat = { ...etat, ...s, vue: "accueil" }; } catch (e) {}
+function garder() { try { localStorage.setItem("activites-fle", JSON.stringify({ niveau: etat.niveau, serie: etat.serie, resultats: etat.resultats, premier: false })); } catch (e) {} }
+
+const melanger = (t) => { const a = [...t]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+// la série du jour : 8 activités variées, tirées au hasard dans le niveau choisi
+function tirer() {
+  const ok = (a) => etat.niveau === "tous" || !a.niveau || a.niveau === etat.niveau;
+  const pool = (t) => melanger(ACTIVITES.filter(a => a.type === t && ok(a)));
+  const pris = new Set(), serie = [];
+  const prendre = (t, n, filtre = () => true) => { for (const a of pool(t)) { if (n <= 0) break; if (!pris.has(a.id) && filtre(a)) { pris.add(a.id); serie.push(a); n--; } } };
+  if (etat.premier && ok(PAR_ID["demo-hotel"])) { pris.add("demo-hotel"); serie.push(PAR_ID["demo-hotel"]); }
+  prendre("video", 2 - serie.length); prendre("lecture", 2); prendre("grammaire", 1); prendre("ecriture", 1);
+  prendre("oral", 1, a => a.sous === "role" || a.sous === "image"); prendre("oral", 1, a => a.sous !== "role");
+  if (Math.random() < .5) prendre("reagir", 1);
+  while (serie.length < 8) { const reste = melanger(ACTIVITES.filter(a => ok(a) && !pris.has(a.id))); if (!reste.length) break; pris.add(reste[0].id); serie.push(reste[0]); }
+  // jamais deux activités du même type à la suite ; la démonstration vidéo reste en tête au premier tirage
+  const tete = etat.premier && serie[0]?.id === "demo-hotel" ? [serie.shift()] : [];
+  let reste = melanger(serie.slice(0, 8 - tete.length)), ordre = [...tete];
+  while (reste.length) { const k = reste.findIndex(a => a.type !== ordre[ordre.length - 1]?.type); ordre.push(reste.splice(k < 0 ? 0 : k, 1)[0]); }
+  etat.serie = ordre.map(a => a.id); etat.resultats = {}; etat.premier = false; garder();
+}
+if (!etat.serie.length) tirer();
+
+// ---------------------------------------------------------------- sons : un seul joue à la fois
+let sonCourant = null;
+function arreterSons() { if (sonCourant) { sonCourant.pause(); sonCourant = null; } $$(".son.joue").forEach(e => { e.classList.remove("joue"); $(".bouton", e).innerHTML = I.lire; }); }
+function barres(n = 26) { return Array.from({ length: n }, (_, k) => `<i style="height:${Math.round(22 + 70 * Math.abs(Math.sin(k * 1.7) * Math.cos(k * .6)))}%"></i>`).join(""); }
+function sonHTML(src, lib) { return src ? `<button class="son" type="button" data-son="${echap(src)}"><span class="bouton">${I.lire}</span><span class="barres">${barres()}</span><span class="lib">${echap(lib)}</span></button>` : ""; }
+function brancherSons(r) {
+  $$(".son[data-son]", r).forEach(b => b.addEventListener("click", () => {
+    const deja = b.classList.contains("joue"); arreterSons(); if (deja) return;
+    const a = new Audio(b.dataset.son); sonCourant = a; b.classList.add("joue"); $(".bouton", b).innerHTML = I.pause;
+    a.addEventListener("ended", () => { b.classList.remove("joue"); $(".bouton", b).innerHTML = I.lire; });
+    a.play().catch(() => { b.classList.remove("joue"); $(".bouton", b).innerHTML = I.lire; });
+  }));
+}
+
+// ---------------------------------------------------------------- la barre d'action flottante
+function barre(principal, second) {
+  const b = $("#barre"); b.innerHTML = "";
+  if (second) { const s = document.createElement("button"); s.className = "second"; s.type = "button"; s.innerHTML = second.icone; s.setAttribute("aria-label", second.lib); s.title = second.lib; s.onclick = second.action; b.append(s); }
+  if (principal) { const p = document.createElement("button"); p.className = "principal"; p.type = "button"; p.id = "principal"; p.innerHTML = `${principal.icone || ""}<span>${echap(principal.lib)}</span>`; p.disabled = !!principal.desactive; p.onclick = principal.action; b.append(p); }
+  b.hidden = !principal && !second;
+}
+const majPrincipal = (lib, actif, icone) => { const p = $("#principal"); if (!p) return; p.innerHTML = `${icone || I.suite}<span>${echap(lib)}</span>`; p.disabled = !actif; };
+
+// ---------------------------------------------------------------- l'accueil : la série du jour
+function tuile(a, k) {
+  const fait = etat.resultats[a.id]?.fini ? `<span class="fait" aria-label="Fait">${I.ok}</span>` : "";
+  const nq = a.questions ? `${a.questions.length} question${a.questions.length > 1 ? "s" : ""}` : a.type === "ecriture" ? "Écrire" : "S'enregistrer";
+  const niv = a.niveau ? `<span class="niv">${a.niveau}</span>` : `<span class="niv">A1 → B1</span>`;
+  const d = `style="animation-delay:${k * 60}ms"`;
+  if (a.type === "video") return `<button class="tuile t-video" type="button" data-id="${a.id}" ${d}>${fait}<img src="${echap(a.poster)}" alt="" loading="lazy"><span class="haut">Vidéo${a.demo ? " · démonstration" : ""}</span><span class="bas"><h3>${echap(a.titre)}</h3><span class="meta">${niv}<span>${nq}</span><span style="margin-left:auto" class="lire">${I.lire}</span></span></span></button>`;
+  if (a.type === "lecture") { const ex = a.doc.texte || (a.doc.lignes || a.doc.plats || [])[0] || a.doc.prix || "";
+    return `<button class="tuile t-lecture" type="button" data-id="${a.id}" ${d}>${fait}<h3>${echap(a.titre)}</h3>${ex ? `<span class="extrait">${echap(ex)}</span>` : ""}<span class="meta">${niv}<span>Lecture · ${nq}</span></span></button>`; }
+  if (a.type === "grammaire") {
+    const LIB = { trou: "Compléter la phrase", enonce: "Lire et choisir", mots: "Remettre en ordre", transformer: "Transformer", aucun: "Choisir la phrase" };
+    const libs = [...new Set(a.questions.map(q => LIB[q.t] || "Choisir"))].slice(0, 3);
+    return `<button class="tuile t-grammaire" type="button" data-id="${a.id}" ${d}>${fait}<h3>Grammaire</h3>${libs.map(l => `<span class="coche"><i></i>${l}</span>`).join("")}<span class="meta">${niv}<span>${nq}</span></span></button>`;
+  }
+  if (a.type === "ecriture") return `<button class="tuile t-ecriture" type="button" data-id="${a.id}" ${d}>${fait}<svg class="feuilles" viewBox="0 0 64 54" aria-hidden="true"><rect x="16" y="4" width="40" height="46" rx="6" fill="#fff" opacity=".7" transform="rotate(8 36 27)"/><rect x="8" y="6" width="40" height="46" rx="6" fill="#fff"/><path d="M15 18h26M15 26h26M15 34h18" stroke="#d8cf88" stroke-width="3" stroke-linecap="round"/></svg><h3>Écrire</h3><span class="meta">${niv}<span>${echap(a.titre)}</span></span></button>`;
+  if (a.type === "reagir") return `<button class="tuile t-reagir" type="button" data-id="${a.id}" ${d}>${fait}<h3>Que dites-vous&nbsp;?</h3><span class="meta">${niv}<span>${nq}</span></span></button>`;
+  return `<button class="tuile t-oral" type="button" data-id="${a.id}" ${d}>${fait}<span class="onde">${barres(18)}</span><h3>${echap(a.sous === "role" ? "Jeu de rôle · " + a.titre : a.titre)}</h3><span class="meta">${niv}<span>Oral</span></span></button>`;
+}
+function accueil() {
+  arreterSons(); etat.vue = "accueil";
+  const serie = etat.serie.map(id => PAR_ID[id]), faites = serie.filter(a => etat.resultats[a.id]?.fini).length;
+  $("#app").innerHTML = `
+    <header class="tete"><span class="marque">${MARQUE}</span><span class="etape">${faites} / ${serie.length} faites</span></header>
+    <h1 class="titre">Vos activités</h1>
+    <p class="sous">Une série tirée au hasard dans les 200 questions : vidéos, lectures, grammaire, écriture et oral.</p>
+    <div class="pastilles" role="group" aria-label="Niveau">${["tous", "A1", "A2", "B1"].map(n => `<button class="pastille" type="button" data-niveau="${n}" aria-pressed="${etat.niveau === n}">${n === "tous" ? "Tous niveaux" : n}</button>`).join("")}</div>
+    <div class="tuiles">${serie.map(tuile).join("")}</div>`;
+  $$(".pastille[data-niveau]").forEach(b => b.onclick = () => { etat.niveau = b.dataset.niveau; tirer(); accueil(); });
+  $$(".tuile").forEach(t => t.onclick = () => ouvrir(etat.serie.indexOf(t.dataset.id)));
+  const suivante = etat.serie.findIndex(id => !etat.resultats[id]?.fini);
+  barre(suivante < 0 ? { lib: "Voir le bilan", icone: I.suite, action: bilan } : { lib: faites ? "Continuer" : "Commencer", icone: I.lire, action: () => ouvrir(suivante) },
+        { lib: "Nouvelle série au hasard", icone: I.hasard, action: () => { tirer(); accueil(); } });
+  window.scrollTo(0, 0);
+}
+
+// ---------------------------------------------------------------- une activité
+function entete(a) {
+  return `<header class="tete"><button class="rond" type="button" id="retour" aria-label="Retour aux activités">${I.retour}</button><span class="etape">Activité ${etat.k + 1} sur ${etat.serie.length}</span></header>
+    <h1 class="titre moyen">${echap(a.titre)}</h1>
+    <div class="infos"><span class="pastille petite" style="background:${COULEUR[a.type]};border-color:${COULEUR[a.type]};color:#fff">${NOM[a.type]}</span>${a.niveau ? `<span class="pastille petite">${a.niveau}</span>` : ""}${a.theme ? `<span class="pastille petite">${echap(a.theme)}</span>` : ""}</div>`;
+}
+function ouvrir(k) {
+  arreterSons(); etat.k = k; etat.vue = "activite"; const a = PAR_ID[etat.serie[k]];
+  ({ video: activiteQCM, lecture: activiteQCM, grammaire: activiteQCM, reagir: activiteQCM, ecriture: activiteEcriture, oral: activiteOral })[a.type](a);
+  $("#retour").onclick = accueil; window.scrollTo(0, 0);
+}
+function terminer(a, res) {
+  etat.resultats[a.id] = { ...res, fini: true }; garder();
+  const k = etat.serie.findIndex(id => !etat.resultats[id]?.fini);
+  k < 0 ? bilan() : ouvrir(k);
+}
+
+// le support d'une activité à questions
+function lecteurHTML(a) {
+  const media = a.video ? `<video class="media" src="${echap(a.video)}" poster="${echap(a.poster)}" playsinline preload="metadata"></video>` : `<img class="affiche" src="${echap(a.poster)}" alt=""><audio class="media" src="${echap(a.audio)}" preload="metadata"></audio>`;
+  return `<div class="lecteur" id="lecteur">${media}<span class="voile"></span>
+    <span class="bandeau">${a.video ? (a.demo ? "<span>Vidéo de démonstration</span>" : "") : "<span>Vidéo à venir · photo et son</span>"}</span>
+    <button class="gros" type="button" aria-label="Lire">${I.lire}</button>
+    <span class="soustitre" hidden></span>
+    <div class="commandes"><button type="button" class="jouer" aria-label="Lire ou mettre en pause">${I.lire}</button><span class="barre-temps" role="slider" aria-label="Avancer dans la vidéo" tabindex="0"><i></i></span><span class="temps">0:00</span>${a.sousTitres ? `<button type="button" class="cc" aria-pressed="false" aria-label="Sous-titres" title="Sous-titres">${I.cc}</button>` : ""}</div></div>
+    <button class="lien" type="button" id="voir-texte" hidden>${I.texte}<span>Voir la transcription</span></button><div id="transcription"></div>`;
+}
+function brancherLecteur(a) {
+  const L = $("#lecteur"); if (!L) return;
+  const m = $(".media", L), jouer = $(".jouer", L), barreT = $(".barre-temps", L), temps = $(".temps", L), st = $(".soustitre", L), cc = $(".cc", L);
+  const fmt = (s) => isFinite(s) ? `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}` : "0:00";
+  const bascule = () => { if (m.paused) { arreterSons(); m.play().catch(() => {}); } else m.pause(); };
+  $(".gros", L).onclick = bascule; jouer.onclick = bascule; if (a.video) m.onclick = bascule;
+  m.addEventListener("play", () => { L.classList.add("joue"); jouer.innerHTML = I.pause; });
+  m.addEventListener("pause", () => { L.classList.remove("joue"); jouer.innerHTML = I.lire; });
+  m.addEventListener("ended", () => { L.classList.remove("joue"); jouer.innerHTML = I.lire; st.hidden = true; });
+  m.addEventListener("timeupdate", () => {
+    $("i", barreT).style.width = (m.duration ? 100 * m.currentTime / m.duration : 0) + "%"; temps.textContent = `${fmt(m.currentTime)} / ${fmt(m.duration)}`;
+    if (a.sousTitres && cc?.getAttribute("aria-pressed") === "true") { const c = a.sousTitres.find(c => m.currentTime >= c.d - .1 && m.currentTime <= c.f + .4); st.hidden = !c; if (c) st.innerHTML = `<b>${echap(c.qui)}</b>${echap(c.texte)}`; }
+  });
+  m.addEventListener("loadedmetadata", () => { temps.textContent = `0:00 / ${fmt(m.duration)}`; });
+  barreT.addEventListener("click", (e) => { const r = barreT.getBoundingClientRect(); if (m.duration) m.currentTime = m.duration * Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)); });
+  barreT.addEventListener("keydown", (e) => { if (e.key === "ArrowRight") m.currentTime += 3; if (e.key === "ArrowLeft") m.currentTime -= 3; });
+  if (cc) cc.onclick = () => { const on = cc.getAttribute("aria-pressed") !== "true"; cc.setAttribute("aria-pressed", on); if (!on) st.hidden = true; };
+  $("#voir-texte").onclick = () => { const t = $("#transcription"); t.innerHTML = t.innerHTML ? "" : `<div class="transcription"><h4>Transcription</h4>${a.script.map(l => `<p>${echap(l)}</p>`).join("")}</div>`; };
+}
+function docHTML(d) {
+  const lignes = (d.lignes || []).map(l => `<p>${echap(l)}</p>`).join("");
+  switch (d.t) {
+    case "panneau": return `<div class="panneau ${d.style === "ferme" ? "ferme" : d.style === "sortie" ? "sortie" : "neutre"}">${d.etiquette ? `<small>${echap(d.etiquette)}</small>` : ""}<strong>${echap(d.texte)}</strong></div>`;
+    case "sms": return `<div class="sms"><small>${echap(d.etiquette || "SMS")}</small><div class="bulle">${echap(d.texte)}</div></div>`;
+    case "prix": return `<div class="prix"><b>${echap(d.produit)}</b><strong>${echap(d.prix)}</strong><span>${echap(d.unite)}</span></div>`;
+    case "plaque": return `<div class="plaque">${d.etiquette ? `<small>${echap(d.etiquette)}</small>` : ""}${lignes}</div>`;
+    case "menu": return `<div class="doc menu-doc"><h4>${echap(d.titre)}</h4><p class="jour">${echap(d.jour)}</p><ul>${(d.plats || []).map(p => `<li>${echap(p)}</li>`).join("")}</ul></div>`;
+    case "affiche": return `<div class="doc affiche"><h4>${echap(d.titre)}</h4>${lignes}</div>`;
+    case "court": return `<div class="doc fiche"><h4><span class="em">📝</span>${echap(d.titre)}</h4>${lignes}</div>`;
+    default: return `<div class="doc ${d.style || ""}"><h4>${d.emoji ? `<span class="em">${d.emoji}</span>` : ""}${echap(d.titre || d.etiquette || "")}</h4>${d.texte ? `<p>${echap(d.texte)}</p>` : ""}${lignes}</div>`;
+  }
+}
+// ce qui accompagne une question dans la carte
+function enonceHTML(q, rempli) {
+  const trou = (p) => echap(p).replace(/_{3,}/, `<span class="trou${rempli ? " rempli" : ""}">${rempli ? echap(rempli) : "&nbsp;"}</span>`);
+  if (q.t === "trou") return `<div class="enonce">${q.etiquette ? `<p class="etiq">${echap(q.etiquette)}</p>` : ""}<p class="phrase">${trou(q.phrase)}</p>${q.indice ? `<p class="indice">${echap(q.indice)}</p>` : ""}</div>`;
+  if (q.t === "enonce") return `<div class="enonce">${q.avant ? `<p class="etiq">${echap(q.avant)}</p>` : ""}<blockquote class="cite">${trou(q.citation || "")}</blockquote>${q.apres ? `<p class="etiq">${echap(q.apres)}</p>` : ""}</div>`;
+  if (q.t === "mots") return `<div class="enonce">${q.etiquette ? `<p class="etiq">${echap(q.etiquette)}</p>` : ""}<div class="mots">${q.mots.map(m => `<span>${echap(m)}</span>`).join("")}</div></div>`;
+  if (q.t === "transformer") return `<div class="enonce"><p class="etiq">${echap(q.vers)}</p><blockquote class="cite">${echap(q.phrase)}</blockquote></div>`;
+  if (q.t === "situation") return `<div class="enonce"><div class="situation"><span class="em">${q.emoji || "💬"}</span><span>${echap(q.texte)}</span></div>${q.audio ? `<div style="margin-top:10px">${sonHTML(q.audio, "Écouter")}</div>` : ""}</div>`;
+  if (q.t === "replique") return `<div class="enonce"><div class="replique">${q.photo ? `<img src="${echap(q.photo)}" alt="">` : ""}<span class="bulle">« ${echap(q.replique)} »</span></div>${q.audio ? `<div style="margin-top:10px">${sonHTML(q.audio, "Écouter")}</div>` : ""}</div>`;
+  return "";
+}
+
+function activiteQCM(a) {
+  const support = a.type === "video" ? lecteurHTML(a) : a.type === "lecture" ? docHTML(a.doc) : "";
+  $("#app").innerHTML = `${entete(a)}<div class="corps${support ? " deux" : ""}">${support ? `<section class="support">${support}</section>` : ""}<section id="carte"></section></div>`;
+  brancherLecteur(a);
+  let j = 0, bonnes = 0;
+  const montrer = () => {
+    const q = a.questions[j]; let choix = null;
+    $("#carte").innerHTML = `<div class="carte"><p class="petit">Question ${j + 1} sur ${a.questions.length}</p><div id="enonce">${enonceHTML(q)}</div><h2 class="question">${echap(q.q)}</h2>
+      <div class="reponses">${q.choix.map((c, i) => `<button class="rep" type="button" data-i="${i}" aria-pressed="false"><span class="lettre">${"ABCD"[i]}</span>${q.pictos?.[i] ? `<span class="picto" aria-hidden="true">${q.pictos[i]}</span>` : ""}<span>${echap(c)}</span></button>`).join("")}</div><div id="retour-q"></div></div>`;
+    brancherSons($("#carte"));
+    $$(".rep").forEach(b => b.onclick = () => { $$(".rep").forEach(x => x.setAttribute("aria-pressed", x === b)); choix = +b.dataset.i; majPrincipal("Valider", true, I.ok); });
+    barre({ lib: "Valider", icone: I.ok, desactive: true, action: () => {
+      if (choix === null) return;
+      if ($("#principal").dataset.etape === "suite") { j++; if (j < a.questions.length) montrer(); else terminer(a, { bonnes, total: a.questions.length }); return; }
+      const juste = choix === q.bonne; if (juste) bonnes++;
+      $$(".rep").forEach((b, i) => { b.disabled = true; b.classList.toggle("juste", i === q.bonne); b.classList.toggle("faux", i === choix && !juste); if (i !== q.bonne && i !== choix) b.classList.add("eteint"); });
+      if (q.t === "trou" || (q.t === "enonce" && /_{3,}/.test(q.citation || ""))) $("#enonce").innerHTML = enonceHTML(q, q.choix[q.bonne]);
+      $("#retour-q").innerHTML = juste ? `<p class="retour ok">${I.ok}<span>${["Bravo, c'est la bonne réponse.", "Exact !", "C'est ça, bien joué."][Math.floor(Math.random() * 3)]}</span></p>`
+                                       : `<p class="retour ko">${I.ko}<span>Pas tout à fait. La bonne réponse : <b>${echap(q.choix[q.bonne])}</b></span></p>`;
+      if (a.type === "video") $("#voir-texte").hidden = false;
+      $("#retour-q").scrollIntoView({ behavior: "smooth", block: "nearest" });
+      const der = j === a.questions.length - 1; majPrincipal(der ? "Terminer l'activité" : "Question suivante", true); $("#principal").dataset.etape = "suite";
+    } }, { lib: "Retour aux activités", icone: I.maison, action: accueil });
+  };
+  montrer();
+}
+
+function verifiezHTML(a) {
+  return a.verifiez?.length ? `<div class="verifiez"><h5>Vérifiez votre réponse</h5>${a.verifiez.map(v => `<button type="button" aria-pressed="false"><i>${I.ok}</i><span>${echap(v)}</span></button>`).join("")}</div>` : "";
+}
+function brancherVerifiez(r) { $$(".verifiez button", r).forEach(b => b.onclick = () => b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") !== "true")); }
+function modeleHTML(a) {
+  let corps;
+  if (Array.isArray(a.modele)) corps = `<div class="dialogue">${a.modele.map(l => `<div class="ligne${l.qui === "Vous" ? " vous" : ""}"><b>${echap(l.qui)}</b>${echap(l.texte)}</div>`).join("")}</div>`;
+  else if (a.modele && typeof a.modele === "object") corps = `<div class="doc fiche" style="padding:0;border:0;background:none">${Object.entries(a.modele).map(([k, v]) => `<p><b>${echap(k)} :</b> ${echap(v)}</p>`).join("")}</div>`;
+  else corps = String(a.modele || "Le modèle de réponse arrive bientôt.").split(/\n{2,}/).map(p => `<p>${echap(p)}</p>`).join("");
+  return `<div class="modele"><h4>Un exemple de réponse</h4>${a.modeleAudio ? `<div style="margin-bottom:12px">${sonHTML(a.modeleAudio, "Écouter l'exemple")}</div>` : ""}${corps}${verifiezHTML(a)}</div>`;
+}
+
+function activiteEcriture(a) {
+  const support = a.photo ? `<div class="photo"><img src="${echap(a.photo)}" alt=""></div>` : a.support ? `<div class="doc"><h4><span class="em">💬</span>À lire</h4><p>${echap(a.support)}</p></div>` : "";
+  const objectif = a.objectif || (a.mots ? `${a.mots[0]} à ${a.mots[1]} mots` : "");
+  const zone = a.formulaire ? `<div class="champs">${a.formulaire.map((c, i) => `<label>${echap(c)}<input type="text" data-i="${i}" autocomplete="off"></label>`).join("")}</div>`
+                            : `<textarea class="ecrire" id="texte" placeholder="Écrivez ici…" spellcheck="false"></textarea><span class="compteur" id="compteur">0 mot${objectif ? " · objectif : " + objectif : ""}</span>`;
+  $("#app").innerHTML = `${entete(a)}<div class="corps${support ? " deux" : ""}">${support ? `<section class="support">${support}</section>` : ""}<section><div class="carte"><p class="petit">Écrire</p><h2 class="question">${echap(a.consigne)}</h2>${zone}</div><div id="suite"></div></section></div>`;
+  const t = $("#texte");
+  if (t) t.addEventListener("input", () => { const n = (t.value.match(/[\p{L}\d][\p{L}\d'’-]*/gu) || []).length, c = $("#compteur"); c.textContent = `${n} mot${n > 1 ? "s" : ""}${objectif ? " · objectif : " + objectif : ""}`; c.classList.toggle("bon", !!a.mots && n >= a.mots[0] && n <= a.mots[1] + 5); });
+  barre({ lib: "Voir un exemple", icone: I.suite, action: () => {
+    if ($("#principal").dataset.etape === "suite") return terminer(a, { produit: true });
+    $("#suite").innerHTML = modeleHTML(a); brancherVerifiez($("#suite")); brancherSons($("#suite")); $("#suite").scrollIntoView({ behavior: "smooth", block: "start" });
+    majPrincipal("Activité suivante", true); $("#principal").dataset.etape = "suite";
+  } }, { lib: "Retour aux activités", icone: I.maison, action: accueil });
+}
+
+function horlogeSVG(h, m) {
+  const ah = ((h % 12) + m / 60) * 30 * Math.PI / 180, am = m * 6 * Math.PI / 180, p = (a, r) => `${100 + r * Math.sin(a)} ${100 - r * Math.cos(a)}`;
+  return `<svg viewBox="0 0 200 200" role="img" aria-label="Une horloge"><circle cx="100" cy="100" r="92" fill="#fff" stroke="#3550d9" stroke-width="6"/>${Array.from({ length: 12 }, (_, k) => `<path d="M${p(k * Math.PI / 6, 80)}L${p(k * Math.PI / 6, k % 3 ? 74 : 68)}" stroke="#1d2144" stroke-width="${k % 3 ? 3 : 5}" stroke-linecap="round"/>`).join("")}<path d="M100 100L${p(ah, 48)}" stroke="#1d2144" stroke-width="8" stroke-linecap="round"/><path d="M100 100L${p(am, 70)}" stroke="#3550d9" stroke-width="5" stroke-linecap="round"/><circle cx="100" cy="100" r="7" fill="#1d2144"/></svg>`;
+}
+const duree = (s) => !s ? "" : s < 60 ? `environ ${s} s` : `environ ${Math.floor(s / 60)} min${s % 60 ? " " + (s % 60) : ""}`;
+function activiteOral(a) {
+  let support = "";
+  if (a.sous === "image") support = a.photo ? `<div class="photo"><img src="${echap(a.photo)}" alt=""></div>` : a.numero ? `<div class="postit">${echap(a.numero)}</div>` : a.horloge ? `<div class="horloge">${horlogeSVG(...a.horloge)}</div>` : "";
+  else if (a.sous === "role") { const r = a.role.replace(/^Rôle de l'interlocuteur\s*:\s*/i, "").replace(/^Questions du recruteur\s*:\s*/i, "Le recruteur demande : "); support = `<div class="role"><div><b>Jeu de rôle · l'autre personne</b>${echap(r.charAt(0).toUpperCase() + r.slice(1))}</div></div>`; }
+  const ecoute = a.audio ? `<div style="margin:0 0 14px">${sonHTML(a.audio, a.sous === "repeter" ? "Écouter la phrase" : a.sous === "consigne" ? "Écouter la consigne" : "Écouter")}</div>` : "";
+  const phrase = a.sous === "repeter" && a.phrase ? `<p class="phrase" style="margin:0 0 14px">« ${echap(a.phrase)} »</p>` : "";
+  $("#app").innerHTML = `${entete(a)}<div class="corps${support ? " deux" : ""}">${support ? `<section class="support">${support}</section>` : ""}<section>
+    <div class="carte"><p class="petit">Parler${a.duree ? " · " + duree(a.duree) : ""}</p><h2 class="question">${echap(a.consigne)}</h2>${ecoute}${phrase}
+      <div class="micro" id="micro"><button class="gros-micro" type="button" id="enreg" aria-label="S'enregistrer">${I.micro}</button><span class="chrono" id="chrono">0:00</span><p class="aide" id="aide">Appuyez pour vous enregistrer, puis appuyez de nouveau pour arrêter.</p></div>
+      <div id="ma-voix"></div></div><div id="suite"></div></section></div>`;
+  brancherSons($("#app"));
+  // l'enregistrement au micro (le navigateur demande l'autorisation)
+  let rec = null, debut = 0, minuteur = null, morceaux = [];
+  const fmt = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+  const arret = () => { if (rec && rec.state !== "inactive") rec.stop(); clearInterval(minuteur); $("#micro").classList.remove("enreg"); $("#enreg").innerHTML = I.micro; };
+  $("#enreg").onclick = async () => {
+    if (rec && rec.state === "recording") return arret();
+    arreterSons();
+    if (!navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === "undefined") { $("#aide").textContent = "Le micro n'est pas disponible ici. Dites votre réponse à voix haute, puis écoutez l'exemple."; return; }
+    try {
+      const flux = await navigator.mediaDevices.getUserMedia({ audio: true });
+      morceaux = []; rec = new MediaRecorder(flux);
+      rec.ondataavailable = (e) => e.data.size && morceaux.push(e.data);
+      rec.onstop = () => { flux.getTracks().forEach(t => t.stop()); const url = URL.createObjectURL(new Blob(morceaux, { type: rec.mimeType || "audio/webm" }));
+        $("#ma-voix").innerHTML = `<div style="margin-top:6px">${sonHTML(url, "Votre enregistrement")}</div>`; brancherSons($("#ma-voix")); $("#aide").textContent = "Écoutez-vous, puis comparez avec l'exemple. Vous pouvez recommencer."; };
+      rec.start(); debut = Date.now(); $("#micro").classList.add("enreg"); $("#enreg").innerHTML = I.stop; $("#aide").textContent = "Enregistrement en cours…";
+      const max = Math.max(30, (a.duree || 60) * 1.6);
+      minuteur = setInterval(() => { const s = (Date.now() - debut) / 1000; $("#chrono").textContent = fmt(s); if (s >= max) arret(); }, 250);
+    } catch (e) { $("#aide").textContent = "Le micro n'a pas pu s'ouvrir. Dites votre réponse à voix haute, puis écoutez l'exemple."; }
+  };
+  barre({ lib: "Voir l'exemple", icone: I.suite, action: () => {
+    if ($("#principal").dataset.etape === "suite") { arret(); return terminer(a, { produit: true }); }
+    arret(); $("#suite").innerHTML = modeleHTML(a); brancherVerifiez($("#suite")); brancherSons($("#suite")); $("#suite").scrollIntoView({ behavior: "smooth", block: "start" });
+    majPrincipal("Activité suivante", true); $("#principal").dataset.etape = "suite";
+  } }, { lib: "Retour aux activités", icone: I.maison, action: () => { arret(); accueil(); } });
+}
+
+// ---------------------------------------------------------------- le bilan de la série
+function bilan() {
+  arreterSons(); etat.vue = "bilan";
+  const serie = etat.serie.map(id => PAR_ID[id]), R = etat.resultats;
+  const qcm = serie.filter(a => a.questions && R[a.id]?.fini), bonnes = qcm.reduce((s, a) => s + R[a.id].bonnes, 0), total = qcm.reduce((s, a) => s + R[a.id].total, 0);
+  const ecrits = serie.filter(a => a.type === "ecriture" && R[a.id]?.fini).length, oraux = serie.filter(a => a.type === "oral" && R[a.id]?.fini).length;
+  $("#app").innerHTML = `<header class="tete"><span class="marque">${MARQUE}</span><span class="etape">Série terminée</span></header>
+    <h1 class="titre">Bravo&nbsp;!</h1><p class="sous">Voici votre série. Vous pouvez en tirer une nouvelle au hasard.</p>
+    <div class="chiffres"><div class="chiffre" style="background:linear-gradient(160deg,#c3eedb,#9cd9c2)"><strong>${bonnes}<small style="font-size:24px"> / ${total}</small></strong><span>bonnes réponses</span></div>
+      <div class="chiffre" style="background:linear-gradient(160deg,#f8f4c4,#ece5a2);animation-delay:80ms"><strong>${ecrits}</strong><span>texte${ecrits > 1 ? "s" : ""} écrit${ecrits > 1 ? "s" : ""}</span></div>
+      <div class="chiffre" style="background:linear-gradient(160deg,#c8d0fa,#aebcf3);animation-delay:160ms"><strong>${oraux}</strong><span>réponse${oraux > 1 ? "s" : ""} à l'oral</span></div></div>
+    <div class="liste">${serie.map(a => `<div class="ligne"><span class="pt" style="background:${COULEUR[a.type]}"></span><span>${echap(a.titre)}</span><em>${NOM[a.type]}${R[a.id]?.total ? ` · ${R[a.id].bonnes}/${R[a.id].total}` : R[a.id]?.fini ? " · fait" : " · à faire"}</em></div>`).join("")}</div>`;
+  barre({ lib: "Nouvelle série", icone: I.hasard, action: () => { tirer(); accueil(); } }, { lib: "Accueil", icone: I.maison, action: accueil });
+  window.scrollTo(0, 0);
+}
+
+accueil();
+</script>

@@ -8,13 +8,17 @@ Sources :
   document, script audio) ;
 - donnees/modeles.json : les modèles de réponse et les points « Vérifiez » des 58 productions ;
 - donnees/video-hotel-sous-titres.json : les sous-titres de la vidéo de démonstration ;
+- donnees/temps.json : le moment où chaque mot est dit dans les sons (generer_temps.py), calé ici sur le texte écrit ;
 - les sons (../positionnement-fle/sons/) et les photos (../positionnement-fle-2/banque/img/), copiés dans medias/.
+
+La page (page.html) reçoit aussi, pour chaque son, son enveloppe (le volume toutes les 40 ms) : les ondes qui bougent
+avec la voix. La première version de la page (v1/page.html) est construite à côté, dans v1/index.html.
 
 Une activité = un support et ses questions : une vidéo (en attendant les vraies vidéos, la photo et le son de
 l'enregistrement), un document à lire, une série de grammaire, un texte à écrire, une réponse orale à enregistrer.
 La page (page.html) tire au hasard une série d'activités variées ; rien n'est adaptatif.
 """
-import json, os, re, shutil
+import array, difflib, json, os, re, shutil, subprocess, unicodedata
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 TRAVAUX = os.path.dirname(ICI)
@@ -26,6 +30,9 @@ COPIES = json.load(open(os.path.join(TRAVAUX, "positionnement-fle", "sons", "cop
 f_modeles = os.path.join(ICI, "donnees", "modeles.json")
 MODELES = json.load(open(f_modeles, encoding="utf-8")) if os.path.exists(f_modeles) else {}
 SOUS_TITRES = json.load(open(os.path.join(ICI, "donnees", "video-hotel-sous-titres.json"), encoding="utf-8"))
+f_temps = os.path.join(ICI, "donnees", "temps.json")
+TEMPS = json.load(open(f_temps, encoding="utf-8")) if os.path.exists(f_temps) else {}
+ALPHA = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_"
 
 # une photo par écoute (en attendant la vidéo) : elle pose le lieu sans jamais souffler la réponse
 PHOTO_CO = {"CO-01": "lucas", "CO-02": "bus", "CO-03": "boulangerie", "CO-04": "classe", "CO-05": "amir", "CO-06": "rue",
@@ -80,6 +87,50 @@ def entre_guillemets(t):
     return m.group(1).strip() if m else None
 
 
+def _n(m):
+    return re.sub(r"[^a-z0-9]", "", unicodedata.normalize("NFKD", m.lower()).encode("ascii", "ignore").decode())
+
+
+def caler(lignes, cle):
+    """Cale les mots écrits (une liste de lignes) sur les mots entendus dans le son `cle` : pour chaque ligne,
+    la liste [mot, début, fin]. Les mots dits autrement (chiffres lus en lettres…) se partagent le temps du passage."""
+    t = TEMPS.get(cle)
+    if not t or not t["mots"]: return None
+    jetons = []
+    for li, l in enumerate(lignes):
+        for m in l.split():
+            if not _n(m) and jetons and jetons[-1][0] == li: jetons[-1][1] += "\u00a0" + m     # « ? », « : » restent avec le mot
+            else: jetons.append([li, m])
+    A, S = [_n(m) for _, m in jetons], t["mots"]
+    sm = difflib.SequenceMatcher(None, A, [_n(w) for w, _, _ in S], autojunk=False)
+    if sm.ratio() < .45: return None
+    temps = [None] * len(A)
+    for tag, i1, i2, j1, j2 in sm.get_opcodes():
+        if tag == "equal":
+            for k in range(i2 - i1): temps[i1 + k] = (S[j1 + k][1], S[j1 + k][2])
+        elif tag == "replace":
+            d, f, n = S[j1][1], S[j2 - 1][2], i2 - i1
+            for k in range(n): temps[i1 + k] = (d + (f - d) * k / n, d + (f - d) * (k + 1) / n)
+    for k in range(len(temps)):
+        if temps[k] is None:
+            av = next((temps[x][1] for x in range(k - 1, -1, -1) if temps[x]), 0.0)
+            ap = next((temps[x][0] for x in range(k + 1, len(temps)) if temps[x]), av + .3)
+            temps[k] = (av, max(av, ap))
+    sortie = [[] for _ in lignes]
+    for (li, m), (d, f) in zip(jetons, temps): sortie[li].append([m, round(d, 2), round(f, 2)])
+    return sortie
+
+
+def enveloppe(rel):
+    """Le volume du son toutes les 40 ms, sur 64 niveaux (un caractère par pas)."""
+    r = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", os.path.join(ICI, rel), "-vn", "-ac", "1", "-ar", "8000", "-f", "s16le", "-"],
+                       capture_output=True, check=True)
+    e = array.array("h"); e.frombytes(r.stdout[:len(r.stdout) // 2 * 2])
+    rms = [(sum(x * x for x in e[i:i + 320]) / max(1, len(e[i:i + 320]))) ** .5 for i in range(0, len(e), 320)]
+    ref = sorted(rms)[int(len(rms) * .97)] if rms else 1
+    return "".join(ALPHA[min(63, int(63 * min(1, v / (ref or 1)) ** .75))] for v in rms)
+
+
 activites = []
 
 # --- la vidéo de démonstration (scène fournie, générée avec Gemini) : ajoutée hors Excel, pour montrer le lecteur
@@ -90,6 +141,8 @@ activites.append({"id": "demo-hotel", "type": "video", "niveau": "A1", "titre": 
                   "questions": [
                       {"id": "demo-1", "q": "Où est la salle du petit déjeuner ?", "choix": ["Au premier étage, à droite", "Au rez-de-chaussée, à gauche", "Au rez-de-chaussée, à droite", "Au sous-sol"], "bonne": 1},
                       {"id": "demo-2", "q": "Le petit déjeuner finit à quelle heure ?", "choix": ["À 9 heures", "À 10 heures", "À 11 heures", "À midi"], "bonne": 2}]})
+k = caler([c["texte"] for c in SOUS_TITRES], "medias/video/hotel.mp4")
+if k: activites[-1]["karaoke"] = [{"qui": c["qui"], "mots": m} for c, m in zip(SOUS_TITRES, k)]
 
 # --- compréhension orale : une « vidéo » par enregistrement (photo + son en attendant la vidéo)
 groupes = {}
@@ -101,6 +154,8 @@ for g, xs in groupes.items():
         activites.append({"id": g, "type": "video", "niveau": x0["niveau"], "titre": x0.get("etiquette") or theme(g), "theme": theme(g),
                           "video": None, "poster": photo(PHOTO_CO[g]), "audio": son(x0["audio"]), "script": x0["script"],
                           "questions": [question(x) for x in xs]})
+        k = caler(x0["script"], activites[-1]["audio"])
+        if k: activites[-1]["karaoke"] = [{"mots": m} for m in k]
     elif x0["epreuve"] == "CE":
         doc = {k: x0[k] for k in ("t", "titre", "emoji", "style", "lignes", "texte", "etiquette", "produit", "prix", "unite", "jour", "plats") if k in x0}
         activites.append({"id": g, "type": "lecture", "niveau": x0["niveau"], "titre": x0.get("titre") or x0.get("etiquette") or theme(g),
@@ -120,7 +175,10 @@ eo_qcm = sorted([x for x in B if x["epreuve"] == "EO"], key=lambda x: x["n"])
 qs = []
 for x in eo_qcm:
     q = question(x)
-    if x.get("audio"): q["audio"] = son(x["audio"])
+    if x.get("audio"):
+        q["audio"] = son(x["audio"])
+        k = caler([q.get("replique") or q.get("texte") or ""], q["audio"])
+        if k: q["k"] = k[0]
     if x["id"] in PHOTO_EO: q["photo"] = photo(PHOTO_EO[x["id"]])
     qs.append(q)
 activites.append({"id": "reagir", "type": "reagir", "niveau": None, "titre": "Que dites-vous ?", "theme": "Réagir dans une situation", "questions": qs})
@@ -154,6 +212,14 @@ for i, x in X.items():
         else: a["sous"] = "ecoute"; a["phrase"] = entre_guillemets(support)
         f = os.path.join(ICI, "medias", "modeles", i + ".mp3")
         if os.path.exists(f): a["modeleAudio"] = "medias/modeles/" + i + ".mp3"; medias.add(a["modeleAudio"])
+        # les mots qui s'allument : la phrase à répéter ou la consigne lue, et le modèle
+        if a["audio"] and a["sous"] in ("repeter", "consigne"):
+            k = caler([a["phrase"] if a["sous"] == "repeter" else a["consigne"]], a["audio"])
+            if k: a["k"] = k[0]
+        if a.get("modeleAudio") and a["modele"]:
+            lignes = [l["texte"] for l in a["modele"]] if isinstance(a["modele"], list) else [p for p in str(a["modele"]).split("\n\n") if p.strip()]
+            k = caler(lignes, a["modeleAudio"])
+            if k: a["modeleK"] = [{"qui": l["qui"], "mots": m} for l, m in zip(a["modele"], k)] if isinstance(a["modele"], list) else [{"mots": m} for m in k]
     activites.append(a)
 
 # ordre stable : par type puis identifiant
@@ -161,14 +227,26 @@ ORDRE = ["video", "lecture", "grammaire", "ecriture", "reagir", "oral"]
 activites.sort(key=lambda a: (ORDRE.index(a["type"]), a["id"] != "demo-hotel", a["id"]))
 json.dump(activites, open(os.path.join(ICI, "donnees", "activites.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
-page = open(os.path.join(ICI, "page.html"), encoding="utf-8").read()
+# les enveloppes de tous les sons utilisés (les ondes de la page)
+sons = sorted({a.get(c) for a in activites for c in ("audio", "modeleAudio") if a.get(c)} | {q["audio"] for a in activites for q in a.get("questions", []) if q.get("audio")})
+ENV = {s_: enveloppe(s_) for s_ in sons}
+
 donnees = json.dumps(activites, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-contenu = page.replace("/*__ACTIVITES__*/[]", donnees)
-# artefact.html : le contenu seul (l'outil d'artefact ajoute l'en-tête) ; index.html : la page web complète
+env = json.dumps(ENV, separators=(",", ":"))
+
+
+def page_web(contenu, tete=""):
+    return ('<!doctype html>\n<html lang="fr">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n'
+            '<meta name="robots" content="noindex">\n' + tete + '</head>\n<body>\n' + contenu + '\n</body>\n</html>\n')
+
+
+# la page : artefact.html est le contenu seul (l'outil d'artefact ajoute l'en-tête) ; index.html, la page web complète
+contenu = open(os.path.join(ICI, "page.html"), encoding="utf-8").read().replace("/*__ACTIVITES__*/[]", donnees).replace("/*__ENV__*/{}", env)
 open(os.path.join(ICI, "artefact.html"), "w", encoding="utf-8").write(contenu)
-open(os.path.join(ICI, "index.html"), "w", encoding="utf-8").write(
-    '<!doctype html>\n<html lang="fr">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n'
-    '<meta name="robots" content="noindex">\n</head>\n<body>\n' + contenu + '\n</body>\n</html>\n')
+open(os.path.join(ICI, "index.html"), "w", encoding="utf-8").write(page_web(contenu))
+# la première version (tuiles et cartes), gardée pour comparer : mêmes données, médias du dossier parent
+v1 = open(os.path.join(ICI, "v1", "page.html"), encoding="utf-8").read().replace("/*__ACTIVITES__*/[]", donnees)
+open(os.path.join(ICI, "v1", "index.html"), "w", encoding="utf-8").write(page_web(v1, '<base href="../">\n'))
 json.dump(sorted(medias), open(os.path.join(ICI, "donnees", "medias.json"), "w"), indent=1)
 
 compte = {}
