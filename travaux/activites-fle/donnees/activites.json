@@ -7683,7 +7683,6 @@
      "Des oranges et du pain"
     ],
     "bonne": 0,
-    "arret": 6.63,
     "niveau": "A1"
    },
    {
@@ -7696,7 +7695,6 @@
      "Un euro"
     ],
     "bonne": 0,
-    "arret": 9.07,
     "niveau": "A1"
    }
   ],
@@ -7985,7 +7983,6 @@
      "De l'eau"
     ],
     "bonne": 0,
-    "arret": 3.83,
     "niveau": "A1"
    },
    {
@@ -7998,7 +7995,6 @@
      "Il ne sait pas"
     ],
     "bonne": 0,
-    "arret": 7.25,
     "niveau": "A1"
    }
   ],
@@ -8169,7 +8165,6 @@
      "Prendre le bus"
     ],
     "bonne": 0,
-    "arret": 4.99,
     "niveau": "A1"
    },
    {
@@ -8182,7 +8177,6 @@
      "En face de la poste"
     ],
     "bonne": 0,
-    "arret": 8.25,
     "niveau": "A1"
    }
   ],
@@ -8455,7 +8449,6 @@
      "Une amie"
     ],
     "bonne": 0,
-    "arret": 3.75,
     "niveau": "A1"
    },
    {
@@ -8468,7 +8461,6 @@
      "Des tournesols"
     ],
     "bonne": 0,
-    "arret": 8.85,
     "niveau": "A1"
    }
   ],
@@ -8744,7 +8736,6 @@
      "Le quai 4"
     ],
     "bonne": 0,
-    "arret": 3.99,
     "niveau": "A1"
    },
    {
@@ -8757,7 +8748,6 @@
      "Déjà parti"
     ],
     "bonne": 0,
-    "arret": 7.39,
     "niveau": "A1"
    }
   ],
@@ -8963,7 +8953,6 @@
      "À Lyon"
     ],
     "bonne": 0,
-    "arret": 2.91,
     "niveau": "A2"
    },
    {
@@ -8976,7 +8965,6 @@
      "Une heure"
     ],
     "bonne": 0,
-    "arret": 7.67,
     "niveau": "A2"
    }
   ],
@@ -9207,7 +9195,6 @@
      "À la gorge"
     ],
     "bonne": 0,
-    "arret": 3.57,
     "niveau": "A1"
    },
    {
@@ -9220,7 +9207,6 @@
      "Depuis ce matin"
     ],
     "bonne": 0,
-    "arret": 5.19,
     "niveau": "A1"
    }
   ],
@@ -9492,7 +9478,6 @@
      "Quatre"
     ],
     "bonne": 0,
-    "arret": 4.11,
     "niveau": "A1"
    },
    {
@@ -9505,7 +9490,6 @@
      "De l'eau"
     ],
     "bonne": 0,
-    "arret": 8.31,
     "niveau": "A1"
    }
   ],
@@ -9664,7 +9648,6 @@
      "Dix-huit euros"
     ],
     "bonne": 0,
-    "arret": 4.67,
     "niveau": "A2"
    },
    {
@@ -9677,7 +9660,6 @@
      "Avec son téléphone"
     ],
     "bonne": 0,
-    "arret": 8.05,
     "niveau": "A2"
    }
   ],
@@ -9856,7 +9838,6 @@
      "Vingt euros par an"
     ],
     "bonne": 0,
-    "arret": 4.61,
     "niveau": "A2"
    },
    {
@@ -9869,7 +9850,6 @@
      "Seulement en France"
     ],
     "bonne": 0,
-    "arret": 9.17,
     "niveau": "A2"
    }
   ],

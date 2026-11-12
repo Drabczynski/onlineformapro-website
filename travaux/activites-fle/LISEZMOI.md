@@ -96,14 +96,16 @@ lignes sont à plat, sans tranche ni ombre.
 A1-A2 : épicerie, café ou thé, chercher la pharmacie, fleuriste, quel quai, train en retard, médecin, une table pour
 deux, l'addition, forfait de téléphone. Compressées en 720p (environ 1,3 Mo chacune, `medias/video/`), sous-titres
 calés sur la voix par la reconnaissance ElevenLabs (avec qui parle), deux questions par vidéo écrites à partir de ce
-qui est dit (`donnees/videos.json`, à relire). Chaque vidéo s'arrête juste après la réplique qui donne la réponse et pose sa question (`arret` dans
-`donnees/videos.json`), puis repart. Une série au hasard tire deux vidéos. Écoutes : « Réécouter » rejoue le son
+qui est dit (`donnees/videos.json`, à relire). La vidéo passe de bout en bout, sans arrêt ; ensuite,
+sur grand écran, elle devient une vignette à gauche, sur son image floutée, et ses deux questions arrivent à droite :
+« Revoir » (en bas à gauche de la vignette) ou un clic sur l'image la rejoue là, la question reste. Une série au
+hasard tire deux vidéos, deux questions chacune. Écoutes : « Réécouter » rejoue le son
 sans cacher la question. Téléchargement : l'adresse
 `drive.usercontent.google.com/download?id=…&export=download&confirm=t`, le dossier partagé en lecture par lien.
 
 **Écran de départ : notre menu de paramétrage**, tout blanc. « Nouvelle série » lance toujours la même série de
-démonstration, en A1 (`SERIE_FIXE` dans `page.html`) : 3 vidéos (épicerie, pharmacie, médecin ; les questions
-arrivent pendant la vidéo), « Que dites-vous ? » (Merci → De rien ; Ne quittez pas → J'attends, une question A2
+démonstration, en A1 (`SERIE_FIXE` dans `page.html`) : 3 vidéos (épicerie, pharmacie, médecin ; deux questions
+après chacune), « Que dites-vous ? » (Merci → De rien ; Ne quittez pas → J'attends, une question A2
 gardée à la demande), 3 écoutes (bus, famille, météo), 3 phrases à répéter (famille, météo, Vesoul), 3 textes à
 trous (Je ___ Mariam, Nous ___ à Vesoul, J'achète deux ___), la lecture (SMS de Samir, invitation). « Série au
 hasard » tire une série dans le niveau choisi (Tous, A1, A2, B1). « Toutes les questions » : la revue, qui reprend
@@ -127,7 +129,7 @@ s'il a été dit, en rose sinon (sans tenir compte des accents ni de la ponctuat
 (EO-01, EO-02, EO-33) et dix phrases des écoutes A1 de l'Excel, mot pour mot, avec leur son (`REP-CO-01`…, dans
 `construire.py`, `REPETER_CO`). Le niveau est respecté : une seule phrase en A2, aucune en B1.
 
-**Composer le mot** (rubrique à part) : des cases et des lettres en carrés, rangés en grille (celles du mot et quelques lettres des
+**Composer le mot** (rubrique à part) : des cases et des lettres en carrés, en majuscules, rangés en grille (celles du mot et quelques lettres des
 mauvaises réponses) ; on touche une lettre, elle vole dans la case ; le clavier marche aussi. Le mot se remplit en
 même temps dans le trou de la phrase, sur la photo. Dix QCM de l'Excel dont la réponse est un mot à bien écrire
 (`LETTRES` dans `construire.py`) : EE-05, 06 (le mot entendu, « bonjour »), 07 (« 15 » → quinze), 12, 13 en A1 ;

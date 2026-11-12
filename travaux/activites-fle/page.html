@@ -1055,6 +1055,25 @@ body[data-vue="menu"] .fond { background: #fff; }
 .md-carte svg { width: 30px; height: 30px; color: var(--violet); }
 .md-carte small { color: var(--encre-douce); font: 500 14px/1.4 var(--texte); }
 @media (max-width: 560px) { .md-actions { grid-template-columns: 1fr; width: 100%; } }
+/* v15 — vidéo : elle passe de bout en bout ; pour les questions (grand écran), elle devient une vignette à gauche, sur son image
+   floutée, et la question est à droite. « Revoir » la rejoue dans la vignette, la question reste. Lettres : en majuscules. */
+.fond-v { display: none; }
+@media (min-width: 900px) and (min-height: 560px) {
+  .sc-video.vid { --vl: clamp(28px, 4vw, 64px); --vw: 44vw; --vh: calc(var(--vw) * 9 / 16); }
+  .fond-v { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(24px) brightness(.55) saturate(1.1); transform: scale(1.12); opacity: 0; transition: opacity .7s; }
+  .sc-video.vid.phase-reponse .fond-v { opacity: 1; }
+  .sc-video.vid .ecran { transition: top .7s var(--doux-sortie), right .7s var(--doux-sortie), bottom .7s var(--doux-sortie), left .7s var(--doux-sortie), border-radius .7s; }
+  .sc-video.vid.phase-reponse .ecran { top: calc(var(--haut) + (100% - var(--haut) - var(--vh)) / 2); bottom: calc((100% - var(--haut) - var(--vh)) / 2); left: var(--vl); right: calc(100% - var(--vl) - var(--vw)); border-radius: 26px; filter: none; }
+  .sc-video.vid.phase-reponse .ecran .vis { filter: none; transform: none; cursor: pointer; }
+  .sc-video.vid.phase-reponse .ecran .voile { background: linear-gradient(180deg, transparent 60%, rgba(40, 14, 120, .45) 100%); }
+  .revoir-v { position: absolute; left: 18px; bottom: 22px; z-index: 1; opacity: 0; pointer-events: none; transition: opacity .4s .3s; }
+  .sc-video.vid.phase-reponse .revoir-v { opacity: 1; pointer-events: auto; }
+  .sc-video.vid .centre-q { left: calc(var(--vl) + var(--vw)); padding-left: clamp(28px, 3.5vw, 60px); padding-right: clamp(28px, 4vw, 64px); }
+  .sc-video.vid .centre-q > .bloc-q { width: min(720px, 100%); }
+  .sc-video.vid .centre-q .q { font-size: clamp(26px, 2.5vw, 44px); }
+  .sc-video.vid .centre-q .relire-l { display: none; }
+}
+.touche, .case { text-transform: uppercase; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .etoiles svg { opacity: 1; } }
 </style>
 
@@ -1169,7 +1188,7 @@ function tirer() {
   const prod = (t, n, f) => pool(t, f).slice(0, n).map(a => ({ id: a.id }));
   const films = melanger(ACTIVITES.filter(a => a.type === "video" && a.video && ok(a))).slice(0, 2);       // deux vidéos par série
   const oral = () => { const n = N(), un = prod("oral", 1, a => a.sous === "role" || a.sous === "image"); return [...un, ...prod("oral", n - un.length, a => !["role", "image", "repeter"].includes(a.sous))]; };
-  const pas = [["film", films.map(f => ({ id: f.id, q: indices(f) }))], ["video", choix("video", N(), a => !a.video)], ["lecture", choix("lecture", N())], ["grammaire", choix("grammaire", N())],
+  const pas = [["film", films.map(f => ({ id: f.id, q: indices(f).slice(0, 2) }))], ["video", choix("video", N(), a => !a.video)], ["lecture", choix("lecture", N())], ["grammaire", choix("grammaire", N())],
                ["lettres", choix("lettres", N())], ["reagir", choix("reagir", N())], ["ecriture", prod("ecriture", 2)], ["repeter", prod("oral", N(), a => a.sous === "repeter")], ["oral", oral()]].filter(([, items]) => items.length).map(([type, items]) => ({ type, items }));
   const tete = pas.filter(p => p.type === "film"), reste = melanger(pas.filter(p => p.type !== "film"));
   etat.serie = etat.premier ? [...tete, ...reste] : melanger([...tete, ...reste]);
@@ -1556,13 +1575,13 @@ function suiteQuestions(a, zone, { avant = () => "", apresDerniere, fin } = {}) 
 
 // ---------------------------------------------------------------- 1. vidéo (en attendant la vidéo : la photo et le son)
 function sceneVideo(a) {
-  const vid = !!a.video, q0 = a.questions[0], arrets = vid && a.questions.every(q => q.arret != null);
-  const sc = rendre(`<section class="scene sc-video phase-ecoute">
+  const vid = !!a.video, q0 = a.questions[0];
+  const sc = rendre(`<section class="scene sc-video phase-ecoute${vid ? " vid" : ""}">${vid ? `<img class="fond-v" src="${echap(a.poster)}" alt="">` : ""}
     <div class="ecran">${vid ? `<video class="vis" src="${echap(a.video)}" poster="${echap(a.poster)}" playsinline preload="auto"></video>` : `<img class="vis" src="${echap(a.poster)}" alt="">`}
-      <span class="voile"></span>${vid ? "" : `<canvas class="onde-g" aria-hidden="true"></canvas>`}<p class="st" hidden></p><span class="fil"><i></i></span></div>
+      <span class="voile"></span>${vid ? "" : `<canvas class="onde-g" aria-hidden="true"></canvas>`}<p class="st" hidden></p>${vid ? `<button class="relire revoir-v" type="button" data-revoir><span class="rondp">${I.lire}</span><span>Revoir</span></button>` : ""}<span class="fil"><i></i></span></div>
     <div class="ecoute-ui">${vid ? "" : `<span class="a-venir">Vidéo à venir</span>`}
       <div class="ecoute-q">${titreHTML(q0.q, q0.audioQ, null, "eq")}</div>
-      <div class="ctrl"><button class="rond cyan-r" type="button" data-act="rejouer" aria-label="Recommencer">${I.rejouer}</button><button class="rond cyan-r" type="button" data-act="jouer" aria-label="Lire ou mettre en pause">${I.lire}</button>${a.sousTitres ? `<button class="rond cyan-r" type="button" data-act="cc" aria-pressed="false" aria-label="Sous-titres">${I.cc}</button>` : ""}${arrets ? "" : `<button class="go" type="button" data-act="repondre">Répondre ${I.suite}</button>`}</div></div>
+      <div class="ctrl"><button class="rond cyan-r" type="button" data-act="rejouer" aria-label="Recommencer">${I.rejouer}</button><button class="rond cyan-r" type="button" data-act="jouer" aria-label="Lire ou mettre en pause">${I.lire}</button>${a.sousTitres ? `<button class="rond cyan-r" type="button" data-act="cc" aria-pressed="false" aria-label="Sous-titres">${I.cc}</button>` : ""}<button class="go" type="button" data-act="repondre">Répondre ${I.suite}</button></div></div>
     <div class="centre-q" aria-live="polite"></div></section>`);
   const m = media(a.audio, { video: vid ? $("video", sc) : null }), env = ENV[a.audio], zone = $(".centre-q", sc), jouerB = $("[data-act=jouer]", sc), st = $(".st", sc), cc = $("[data-act=cc]", sc), fil = $(".fil i", sc);
   brancherHP($(".ecoute-ui", sc));
@@ -1574,10 +1593,13 @@ function sceneVideo(a) {
     if (a.sousTitres && cc?.getAttribute("aria-pressed") === "true" && sc.classList.contains("phase-ecoute")) { const c = a.sousTitres.find(c => m.currentTime >= c.d - .1 && m.currentTime <= c.f + .4); st.hidden = !c; if (c && st.dataset.c !== String(c.d)) { st.dataset.c = c.d; st.innerHTML = `<b>${echap(c.qui)}</b>${echap(c.texte)}`; } }
   });
   let repondu = false;
-  m.addEventListener("ended", () => { majJ(); st.hidden = true; if (!arrets && sc.classList.contains("phase-ecoute")) setTimeout(reponse, 500); });
+  m.addEventListener("ended", () => { majJ(); st.hidden = true; if (sc.classList.contains("phase-ecoute")) setTimeout(reponse, 500); });
   jouerB.onclick = () => { m.paused ? jouer(m, m.ended ? 0 : undefined) : m.pause(); };
   $("[data-act=rejouer]", sc).onclick = () => { Son.joue("tap"); jouer(m, 0); };
-  if (vid) m.onclick = () => { if (sc.classList.contains("phase-ecoute")) m.paused ? jouer(m) : m.pause(); };
+  if (vid) m.onclick = () => { if (sc.classList.contains("phase-ecoute") || grand()) m.paused ? jouer(m, m.ended ? 0 : undefined) : m.pause(); };
+  const rv = $("[data-revoir]", sc);
+  if (rv) { const maj = () => { $(".rondp", rv).innerHTML = m.paused ? I.lire : I.pause; }; m.addEventListener("play", maj); m.addEventListener("pause", maj);
+    rv.onclick = () => { Son.joue("tap"); m.paused ? jouer(m, m.ended ? 0 : undefined) : m.pause(); }; }
   if (cc) cc.onclick = () => { const on = cc.getAttribute("aria-pressed") !== "true"; cc.setAttribute("aria-pressed", on); if (!on) st.hidden = true; Son.joue("tap"); };
   const rb = $("[data-act=repondre]", sc); if (rb) rb.onclick = () => { Son.joue("tap"); reponse(); };
   const relire = `<button class="relire" type="button" data-relire><span class="rondp">${I.lire}</span><span>${vid ? "Revoir" : "Réécouter"}</span></button>`;
@@ -1596,32 +1618,8 @@ function sceneVideo(a) {
   // devant une question, « Réécouter » ramène au plein écran ; devant le texte, le son joue sur place et les mots s'allument
   const brancherRelire = (surPlace) => { const b = $("[data-relire]", zone); if (!b) return; if (!surPlace) { b.onclick = () => revoir(0); return; }
     const maj = () => { $(".rondp", b).innerHTML = m.paused ? I.lire : I.pause; }; m.addEventListener("play", maj); m.addEventListener("pause", maj); maj(); b.onclick = () => { m.paused ? jouer(m, m.ended || !m.currentTime ? 0 : undefined) : m.pause(); }; };
-  // la vidéo interactive : elle s'arrête d'elle-même au moment de chaque question, puis repart
-  if (arrets) {
-    let j = 0, bonnes = 0, pose = false, rendu = -1;
-    const poser = () => {
-      if (pose || !sc.isConnected) return; pose = true; m.pause(); st.hidden = true; sc.classList.replace("phase-ecoute", "phase-reponse");
-      if (rendu === j) return;                       // on revient d'un « Revoir » : la question est déjà là
-      rendu = j; Son.joue("papier"); majNiveau(a.questions[j].niveau || a.niveau);
-      const q = a.questions[j], der = j === a.questions.length - 1;
-      zone.innerHTML = `<div class="bloc-q trois glisse"><div class="tete-q"><div class="relire-l">${relire}</div>${titreHTML(q.q, q.audioQ, q.qk)}</div>${choixHTML(q)}<div class="dock-place"></div></div>`; zone.scrollTop = 0; brancherHP(zone);
-      $("[data-relire]", zone).onclick = () => { pose = false; revoir(a.questions.slice(0, j).reverse().map(x => x.arret).find(t => t < m.duration) ?? 0); };   // revoir le passage
-      touche = brancherChoix(zone, q, (juste) => {
-        if (juste) bonnes++;
-        dock($(".dock-place", zone), juste, der ? { action: () => terminer(a, { bonnes, total: a.questions.length }) } : { lib: "La suite", action: () => {
-          j++; pose = false; touche = null;
-          if (m.ended || m.currentTime >= a.questions[j].arret) return poser();          // la vidéo est finie : la question suivante arrive tout de suite
-          zone.innerHTML = ""; sc.classList.replace("phase-reponse", "phase-ecoute");
-          $(".ecoute-q", sc).innerHTML = titreHTML(a.questions[j].q, a.questions[j].audioQ, null, "eq"); brancherHP($(".ecoute-q", sc)); jouer(m);
-        } });
-      });
-    };
-    const guet = () => { if (!sc.isConnected) return; if (!pose && !m.paused && m.currentTime >= a.questions[j].arret) poser(); requestAnimationFrame(guet); };
-    requestAnimationFrame(guet);
-    m.addEventListener("ended", () => setTimeout(poser, 350));
-  }
   courant = { demarrer: () => { jouer(m, 0).then(ok => { if (!ok) jouerB.classList.add("appelle"); }); },
-    apresMontrer: (q) => { brancherRelire(!vid); $(".ecoute-q", sc).innerHTML = titreHTML(q.q, q.audioQ, null, "eq"); brancherHP($(".ecoute-q", sc)); }, espace: () => { m.paused ? jouer(m, m.ended ? 0 : undefined) : m.pause(); } };
+    apresMontrer: (q) => { brancherRelire(!vid || grand()); $(".ecoute-q", sc).innerHTML = titreHTML(q.q, q.audioQ, null, "eq"); brancherHP($(".ecoute-q", sc)); }, espace: () => { m.paused ? jouer(m, m.ended ? 0 : undefined) : m.pause(); } };
 }
 
 // ---------------------------------------------------------------- 2. lecture : le document posé, les questions à côté
