@@ -62,6 +62,21 @@ sur l'image, puis la vidéo repart jusqu'à la question suivante (les moments d'
 `construire.py`). Il n'y a pour l'instant qu'**une vraie vidéo** (« À l'hôtel », 10 secondes) : elle revient donc dans
 chaque série. Les autres scènes se génèrent avec `../videos-ia/` (clé `FAL_KEY`, environ 1 $ la scène de 8 secondes).
 
+**Écouter et regarder, après l'écoute** : l'image (photo ou vidéo) passe à gauche, nette, dans son cadre ; la
+question et les réponses sont à droite, dans la même carte que les autres rubriques. On peut réécouter ou revoir
+pendant qu'on répond (bouton « Réécouter » ou « Revoir », ou en touchant l'image) sans que rien ne se floute, et
+l'onde du son reste dans l'image, loin du retour « Bravo ! ».
+
+**Passer en revue toutes les questions** : sous le bouton « Commencer », un lien ouvre la revue. Toutes les
+questions défilent à la suite dans l'ordre des identifiants (CO, CE, EE, EO), sans rideau ; en haut, deux flèches
+et une liste pour aller directement à une question. La revue se reprend où on l'a laissée. Elle compte les 200
+questions de l'Excel, les 2 de la vidéo et celles des ajouts.
+
+**Ajouter un son avec ses questions** : `donnees/ajouts.json` (identifiant, niveau, titre, photo, transcription,
+questions) et le son dans `medias/sons/<identifiant>.mp3` ; puis `generer_questions.py`, `generer_temps.py` et
+`construire.py`. Premier ajout : `POD-02`, le dialogue « La famille » fourni le 12 novembre, avec quatre questions
+écrites à partir de ce qui est dit (à valider).
+
 **Autres points de cette version** : l'invitation (CE-15) sort d'une enveloppe qui s'ouvre ; pour écrire un SMS, la
 zone de saisie prend toute la largeur, il n'y a plus que trois débuts de phrase, sans « … » ni « (e) » à effacer, et
 toucher une deuxième fois un début de phrase le retire du texte ; au bilan, le score est écrit en grand dans

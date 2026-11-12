@@ -1,0 +1,71 @@
+[
+ {
+  "id": "POD-02",
+  "niveau": "A1",
+  "titre": "La famille",
+  "theme": "La famille",
+  "photo": "photos-main",
+  "source": "podcast-02-la-famille.mp3 (fourni le 12 novembre 2026)",
+  "script": [
+   "C'est qui sur la photo ?",
+   "C'est ma famille. Là, c'est mon père et ma mère.",
+   "Ils habitent en France ?",
+   "Non, ils habitent en Algérie, à Oran.",
+   "Et à côté de ta mère, c'est ta sœur ?",
+   "Oui, c'est ma sœur, Nour. Elle a vingt ans. Elle est étudiante.",
+   "Et le petit garçon ?",
+   "C'est mon neveu, Adam. Il a cinq ans. C'est le fils de mon frère.",
+   "Tu as un frère aussi ?",
+   "Oui, il s'appelle Yanis. Il est médecin.",
+   "Tu as une grande famille.",
+   "Oui. Et toi, tu as des frères et sœurs ?",
+   "Non, je suis fille unique."
+  ],
+  "questions": [
+   {
+    "id": "POD-02-1",
+    "q": "Où habitent les parents ?",
+    "choix": [
+     "En France",
+     "En Algérie",
+     "Au Maroc",
+     "En Tunisie"
+    ],
+    "bonne": 1
+   },
+   {
+    "id": "POD-02-2",
+    "q": "Quel âge a Nour ?",
+    "choix": [
+     "5 ans",
+     "15 ans",
+     "20 ans",
+     "25 ans"
+    ],
+    "bonne": 2
+   },
+   {
+    "id": "POD-02-3",
+    "q": "Qui est Adam ?",
+    "choix": [
+     "Son frère",
+     "Son fils",
+     "Son neveu",
+     "Son cousin"
+    ],
+    "bonne": 2
+   },
+   {
+    "id": "POD-02-4",
+    "q": "Quel est le métier de Yanis ?",
+    "choix": [
+     "Étudiant",
+     "Médecin",
+     "Professeur",
+     "Infirmier"
+    ],
+    "bonne": 1
+   }
+  ]
+ }
+]

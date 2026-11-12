@@ -232,6 +232,15 @@ for i, x in X.items():
             if k: a["modeleK"] = [{"qui": l["qui"], "mots": m} for l, m in zip(a["modele"], k)] if isinstance(a["modele"], list) else [{"mots": m} for m in k]
     activites.append(a)
 
+# --- les ajouts hors Excel (donnees/ajouts.json) : un son fourni (medias/sons/<id>.mp3), sa transcription et ses questions,
+#     sur le même écran que la compréhension orale
+for p_ in lire_json("ajouts.json"):
+    rel = "medias/sons/" + p_["id"] + ".mp3"; medias.add(rel)
+    activites.append({"id": p_["id"], "type": "video", "niveau": p_["niveau"], "titre": p_["titre"], "theme": p_["theme"], "video": None,
+                      "poster": photo(p_["photo"]), "audio": rel, "script": p_["script"], "questions": [dict(q, niveau=p_["niveau"]) for q in p_["questions"]], "ajout": True})
+    k = caler(p_["script"], rel)
+    if k: activites[-1]["karaoke"] = [{"mots": m} for m in k]
+
 # le haut-parleur des questions et des consignes, la photo d'ambiance, l'aide à l'écriture
 # la vidéo interactive : le moment (en secondes) où elle s'arrête pour poser chaque question ; 99 = à la fin
 ARRETS = {"demo-1": 5.3, "demo-2": 99}

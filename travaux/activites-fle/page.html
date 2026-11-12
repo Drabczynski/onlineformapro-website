@@ -840,6 +840,44 @@ body[data-vue="activite"][data-type="video"] .haut .rond { background: rgba(40, 
 .tel-e .saisie { min-height: clamp(170px, 26vh, 240px); font-size: clamp(21px, 1.8vw, 26px); }
 .amorce.utilisee::after { content: " ×"; opacity: .75; }
 @media (max-width: 899.98px), (max-height: 559.98px) { .o-env::before { padding-top: 60%; } }
+/* v9 — écouter et regarder : après l'écoute, l'image passe à gauche, nette, et la question reste à droite (plus de flou quand on
+   réécoute, plus d'onde sous le retour) ; une barre pour passer en revue toutes les questions */
+.sc-video { background: radial-gradient(55% 45% at 50% 40%, rgba(255, 255, 255, .55), rgba(255, 255, 255, 0) 70%), var(--amb, linear-gradient(170deg, #bcd4f0, #e9d8f0)); }
+.sc-video .ecran { transition: inset .6s var(--doux-sortie), border-radius .6s; }
+.sc-video.phase-reponse .ecran { filter: none; border-radius: 32px; cursor: pointer; }
+.sc-video.phase-reponse .ecran .vis { filter: none; transform: none; }
+.sc-video.phase-reponse .ecran .voile { background: linear-gradient(180deg, rgba(30, 22, 80, 0) 60%, rgba(30, 22, 80, .5) 100%); }
+.sc-video.phase-reponse .ecran .onde-g { left: 7%; bottom: 26px; width: 86%; height: 84px; opacity: 1; transform: none; }
+.sc-video.phase-reponse .ecran .st { bottom: 22px; max-width: 92%; font-size: clamp(18px, 1.6vw, 24px); }
+.centre-q { border: 1.5px solid rgba(255, 255, 255, .8); border-radius: 32px; background: rgba(255, 255, 255, .6); -webkit-backdrop-filter: blur(22px) saturate(1.15); backdrop-filter: blur(22px) saturate(1.15); padding: clamp(22px, 3vw, 46px); color: var(--nuit); }
+.centre-q .q { color: var(--nuit); font-size: clamp(30px, 3vw, 50px); text-shadow: none; }
+.centre-q .dock-mot { color: var(--nuit); }
+.centre-q .hp { color: var(--nuit-douce); }
+.centre-q .relire { border-color: rgba(255, 255, 255, .95); background: rgba(255, 255, 255, .72); color: var(--violet); }
+.centre-q .relire .rondp { background: var(--violet); color: #fff; }
+.centre-q .lien-b { color: var(--nuit-douce); }
+.centre-q .transcrit .ligne { box-shadow: none; }
+.centre-q .alveoles { --w: clamp(140px, 12.5vw, 188px); }
+body:has(.sc-video.phase-reponse) .haut .rond { background: rgba(255, 255, 255, .6); color: var(--nuit); }
+@media (min-width: 900px) and (min-height: 560px) {
+  .sc-video.phase-reponse .ecran { inset: calc(var(--haut) + env(safe-area-inset-top, 0px)) calc(50% + clamp(8px, 1.2vw, 16px)) calc(24px + env(safe-area-inset-bottom, 0px)) clamp(16px, 3.2vw, 44px); }
+  .sc-video .centre-q { inset: calc(var(--haut) + env(safe-area-inset-top, 0px)) clamp(16px, 3.2vw, 44px) calc(24px + env(safe-area-inset-bottom, 0px)) calc(50% + clamp(8px, 1.2vw, 16px)); }
+}
+@media (max-width: 899.98px), (max-height: 559.98px) {
+  .sc-video.phase-reponse .ecran { position: absolute; inset: calc(var(--haut) + env(safe-area-inset-top, 0px)) 16px auto 16px; height: 32vh; border-radius: 28px; }
+  .sc-video .centre-q { inset: calc(var(--haut) + env(safe-area-inset-top, 0px) + 32vh + 14px) 16px 16px 16px; padding: 20px 12px; }
+  .sc-video.phase-reponse .ecran .onde-g { height: 60px; bottom: 16px; }
+  .centre-q .alveoles { --w: min(140px, 30vw); }
+}
+/* une photo à décrire : quand l'exemple arrive, la photo se réduit pour que tout tienne à l'écran */
+.visuel.sujet .vis-photo { width: auto; max-width: 100%; margin: 0 auto; transition: max-height .45s var(--doux-sortie); }
+/* la revue de toutes les questions */
+.revue { position: absolute; left: 50%; top: calc(env(safe-area-inset-top, 0px) + (var(--haut) - 44px) / 2); display: flex; align-items: center; gap: 8px; transform: translateX(-50%); }
+.revue[hidden] { display: none; }
+.revue .rond { width: 44px; height: 44px; flex: none; }
+.revue [data-rev="-1"] svg { transform: scaleX(-1); }
+.revue select { height: 44px; max-width: min(48vw, 430px); padding: 0 14px; border: 0; border-radius: 999px; background: rgba(255, 255, 255, .9); color: var(--nuit); font: 700 15px/1 var(--texte); }
+.acc-revue { margin: 0; padding-bottom: 6px; text-align: center; animation: rebond .6s var(--ressort) .55s backwards; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .etoiles svg { opacity: 1; } }
 </style>
 
@@ -859,6 +897,7 @@ body[data-vue="activite"][data-type="video"] .haut .rond { background: rgba(40, 
 <header class="haut" id="haut">
   <button class="rond" type="button" id="fermer" aria-label="Revenir à l'accueil"></button>
   <div class="progres" id="progres" aria-hidden="true"></div>
+  <div class="revue" id="revue" hidden></div>
   <button class="rond" type="button" id="bouton-son" aria-label="Couper les sons"></button>
 </header>
 <div id="rideau" hidden></div>
@@ -924,7 +963,7 @@ const BRAVO = ["Bravo !", "Exact !", "Parfait !", "Très bien !", "C'est ça !"]
 // ---------------------------------------------------------------- l'état, gardé dans le navigateur si possible
 let etat = { niveau: "tous", serie: [], resultats: {}, k: 0, j: 0, premier: true, muet: false };
 try { const s = JSON.parse(localStorage.getItem("activites-fle-3") || "null"); if (s && Array.isArray(s.serie) && s.serie.every(p => p && Array.isArray(p.items) && p.items.length && p.items.every(it => PAR_ID[it.id]))) etat = { ...etat, ...s }; } catch (e) {}
-function garder() { try { localStorage.setItem("activites-fle-3", JSON.stringify({ niveau: etat.niveau, serie: etat.serie, resultats: etat.resultats, premier: false, muet: etat.muet })); } catch (e) {} }
+function garder() { try { localStorage.setItem("activites-fle-3", JSON.stringify({ niveau: etat.niveau, serie: etat.serie, resultats: etat.resultats, resRevue: etat.resRevue, premier: false, muet: etat.muet })); } catch (e) {} }
 const melanger = (t) => { const a = [...t]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 
 // la série : une rubrique par façon de travailler (regarder, écouter, lire, compléter, répondre, écrire, parler), et 2 ou 3
@@ -959,8 +998,25 @@ function tirer() {
 }
 if (!etat.serie.length) tirer();
 // la question (ou le document avec ses questions) numéro j de la rubrique k
-const itemDe = (k, j) => { const it = etat.serie[k]?.items[j], a = it && PAR_ID[it.id]; return !a ? null : it.q ? { ...a, questions: it.q.map(i => a.questions[i]).filter(Boolean) } : a; };
+const itemDe = (k, j) => { const it = SER()[k]?.items[j], a = it && PAR_ID[it.id]; return !a ? null : it.q ? { ...a, questions: it.q.map(i => a.questions[i]).filter(Boolean) } : a; };
 const nbQuestions = (p) => p.items.reduce((s, it) => s + (it.q ? it.q.length : 1), 0);
+// la revue : toutes les questions à la suite, dans l'ordre des identifiants (CO, CE, EE, EO), sans rideau entre elles
+const nomItem = (it) => { const a = PAR_ID[it.id]; return it.q ? it.q.map(i => a.questions[i].id).join(", ") : it.id; };
+const rangId = (id) => { const m = /^([A-Za-z]+)-?(\d+)?/.exec(id) || [], p = { demo: 0, CO: 1, POD: 2, CE: 3, EE: 4, EO: 5 }[m[1]] ?? 9; return p * 1000 + (+m[2] || 0); };
+const REVUE = [{ type: "revue", items: ACTIVITES.flatMap(a => !a.questions ? [{ id: a.id }] : (a.type === "grammaire" || a.type === "reagir") ? a.questions.map((_, i) => ({ id: a.id, q: [i] })) : [{ id: a.id, q: a.questions.map((_, i) => i) }])
+  .sort((x, y) => rangId(nomItem(x)) - rangId(nomItem(y))) }];
+const SER = () => etat.mode === "revue" ? REVUE : etat.serie;
+const RES = () => etat.mode === "revue" ? (etat.resRevue = etat.resRevue || {}) : etat.resultats;
+function majRevue() {
+  const B = $("#revue"); document.body.dataset.mode = etat.mode || "";
+  if (etat.mode !== "revue") { B.hidden = true; B.innerHTML = ""; return; }
+  const items = REVUE[0].items, niv = (x) => { const a = PAR_ID[x.id]; return (x.q && a.questions[x.q[0]].niveau) || a.niveau || ""; };
+  B.hidden = false;
+  B.innerHTML = `<button class="rond" type="button" data-rev="-1" aria-label="Question précédente">${I.suite}</button><select id="rev-choix" aria-label="Aller à une question">${items.map((x, i) => `<option value="${i}"${i === etat.j ? " selected" : ""}>${i + 1} / ${items.length} · ${echap(nomItem(x))} · ${echap(niv(x))}</option>`).join("")}</select><button class="rond" type="button" data-rev="1" aria-label="Question suivante">${I.suite}</button>`;
+  const aller = (j) => { j = Math.max(0, Math.min(items.length - 1, j)); etat.j = j; RES()[0] = { ...(RES()[0] || { bonnes: 0, total: 0 }), n: j, fini: false }; garder(); quitter(); monterScene(itemDe(0, j)); setTimeout(() => courant?.demarrer?.(), 250); };
+  $$("[data-rev]", B).forEach(b => b.onclick = () => { Son.joue("tap"); aller(etat.j + (+b.dataset.rev)); });
+  $("#rev-choix", B).onchange = (e) => aller(+e.target.value);
+}
 
 // ---------------------------------------------------------------- les sons de l'interface (synthétisés, sans fichier)
 const Son = (() => {
@@ -1114,11 +1170,11 @@ const majSon = () => { const b = $("#bouton-son"); b.innerHTML = etat.muet ? I.m
 $("#bouton-son").onclick = () => { etat.muet = !etat.muet; garder(); majSon(); Son.joue("tap"); };
 majSon();
 function majProgres() {
-  $("#progres").innerHTML = etat.serie.map((p, k) => `<i class="seg${etat.resultats[k]?.fini ? " fait" : ""}${k === etat.k ? " actuel" : ""}"></i>`).join("");
+  $("#progres").innerHTML = SER().map((p, k) => `<i class="seg${RES()[k]?.fini ? " fait" : ""}${k === etat.k ? " actuel" : ""}"></i>`).join("");
 }
 let touche = null;
 addEventListener("keydown", (e) => {
-  if (e.target.matches("textarea, input")) return;
+  if (e.target.matches("textarea, input, select")) return;
   if (e.key === "Enter") { const g = $("#scene .dock .go"); if (g) { e.preventDefault(); g.click(); return; } }
   if (e.key === " " && courant?.espace) { e.preventDefault(); courant.espace(); return; }
   touche?.(e);
@@ -1128,11 +1184,11 @@ addEventListener("pointermove", (e) => { document.documentElement.style.setPrope
 // ---------------------------------------------------------------- passer d'une scène à l'autre
 let courant = null;
 function quitter() { try { courant?.arreter?.(); } catch (e) {} courant = null; touche = null; arreterMedias(); for (const s of [...animations]) s(); }
-function rendre(html) { const S = $("#scene"); S.innerHTML = html; S.scrollTop = 0; const el = S.firstElementChild; if (el?.classList.contains("sc-duo")) { el.classList.add("amb-" + (((etat.k * 3 + etat.j) % 6) + 1)); if (!el.querySelector(".visuel")) el.classList.add("solo"); if (el.querySelector(".vis-photo")) el.classList.add("avec-photo"); } return el; }
+function rendre(html) { const S = $("#scene"); S.innerHTML = html; S.scrollTop = 0; const el = S.firstElementChild; el?.classList.add("amb-" + (((etat.k * 3 + etat.j) % 6) + 1)); if (el?.classList.contains("sc-duo")) { if (!el.querySelector(".visuel")) el.classList.add("solo"); if (el.querySelector(".vis-photo")) el.classList.add("avec-photo"); } return el; }
 function rideau(a, k, origine, monter) {
   const R = $("#rideau"), mot = MOT[a.type](a);
   R.className = `ty-${a.type} f-${a.type}`;
-  R.innerHTML = `<span class="rayons"></span><div class="r-tuile">${hexa(a.type === "video" && !a.video ? I.casque : I[a.type], TEINTE[a.type])}</div><p class="r-mot" aria-label="${echap(mot)}">${[...mot].map((c, i) => `<span style="--i:${i}" aria-hidden="true">${echap(c)}</span>`).join("")}</p><p class="r-titre">${echap(a.titre)}</p><p class="r-num">${k + 1} / ${etat.serie.length}</p>`;
+  R.innerHTML = `<span class="rayons"></span><div class="r-tuile">${hexa(a.type === "video" && !a.video ? I.casque : I[a.type], TEINTE[a.type])}</div><p class="r-mot" aria-label="${echap(mot)}">${[...mot].map((c, i) => `<span style="--i:${i}" aria-hidden="true">${echap(c)}</span>`).join("")}</p><p class="r-titre">${echap(a.titre)}</p><p class="r-num">${etat.mode === "revue" ? "Revue" : `${k + 1} / ${etat.serie.length}`}</p>`;
   R.hidden = false; R.getAnimations().forEach(x => x.cancel()); annoncer(`${mot}. ${a.titre}`);
   const S = $("#scene");
   if (!MOUV) { monter(); setTimeout(() => { R.hidden = true; courant?.demarrer?.(); }, 900); return; }
@@ -1149,22 +1205,22 @@ function rideau(a, k, origine, monter) {
   };
   entree.onfinish = () => { S.classList.add("attente"); monter(); minuterie = setTimeout(sortir, 600); R.onclick = sortir; };
 }
-const monterScene = (a) => { document.body.dataset.vue = "activite"; document.body.dataset.type = a.type; majProgres(0); SCENES[a.type](a); };
+const monterScene = (a) => { document.body.dataset.vue = "activite"; document.body.dataset.type = a.type; majProgres(0); majRevue(); SCENES[a.type](a); };
 function lancer(k, origine) {
-  const pas = etat.serie[k]; if (!pas) return accueil();
-  quitter(); etat.k = k; if (etat.resultats[k]?.fini) delete etat.resultats[k];               // refaire une rubrique : on repart de zéro
-  etat.j = Math.min(etat.resultats[k]?.n || 0, pas.items.length - 1);                          // sinon on reprend où on en était
+  const pas = SER()[k]; if (!pas) return accueil();
+  quitter(); etat.k = k; if (RES()[k]?.fini) delete RES()[k];               // refaire une rubrique : on repart de zéro
+  etat.j = Math.min(RES()[k]?.n || 0, pas.items.length - 1);                          // sinon on reprend où on en était
   const a = itemDe(k, etat.j);
   rideau(a, k, origine, () => monterScene(a));
 }
 // une question finie : la suivante de la rubrique arrive sans rideau ; la rubrique finie, on passe à la rubrique suivante
 function terminer(a, res) {
-  const pas = etat.serie[etat.k], R = etat.resultats[etat.k] = etat.resultats[etat.k] || { bonnes: 0, total: 0, n: 0 };
+  const pas = SER()[etat.k], R = RES()[etat.k] = RES()[etat.k] || { bonnes: 0, total: 0, n: 0 };
   R.bonnes += res.bonnes || 0; R.total += res.total || 0; R.n = etat.j + 1;
   if (etat.j + 1 < pas.items.length) { etat.j++; garder(); quitter(); monterScene(itemDe(etat.k, etat.j)); Son.joue("papier"); setTimeout(() => courant?.demarrer?.(), 320); return; }
   R.fini = true; garder(); majProgres(1);
-  const k = etat.serie.findIndex((_, i) => !etat.resultats[i]?.fini);
-  k < 0 ? bilan() : lancer(k);
+  const k = SER().findIndex((_, i) => !RES()[i]?.fini);
+  k < 0 ? (etat.mode === "revue" ? accueil() : bilan()) : lancer(k);
 }
 // le bas de la scène après une réponse : un mot, et le bouton pour continuer
 function dock(place, juste, { lib = "Continuer", action, autre, defiler = true } = {}) {
@@ -1178,7 +1234,7 @@ function dock(place, juste, { lib = "Continuer", action, autre, defiler = true }
 
 // ---------------------------------------------------------------- l'accueil : la série du jour, comme un chemin
 function accueil() {
-  quitter(); document.body.dataset.vue = "accueil"; delete document.body.dataset.type;
+  quitter(); etat.mode = null; majRevue(); document.body.dataset.vue = "accueil"; delete document.body.dataset.type;
   const serie = etat.serie, fait = (k) => !!etat.resultats[k]?.fini, faites = serie.filter((_, k) => fait(k)).length, suivante = serie.findIndex((_, k) => !fait(k)), nq = serie.reduce((s, p) => s + nbQuestions(p), 0);
   rendre(`<section class="scene accueil">
     <div class="acc-tete"><span class="marque">${MARQUE}<span>Activités de français</span></span>
@@ -1188,12 +1244,14 @@ function accueil() {
     <p class="acc-sous">${suivante < 0 ? "Votre série est terminée." : faites ? `${faites} rubrique${faites > 1 ? "s" : ""} faite${faites > 1 ? "s" : ""} sur ${serie.length}.` : `${serie.length} rubriques, ${nq} questions. On commence&nbsp;?`}</p>
     <div class="chemin"><svg class="trace" aria-hidden="true"><path/></svg>${serie.map((p, k) => hexa(ICONE[p.type], "blanc", `orbe${k === suivante ? " actuelle" : ""}${fait(k) ? " faite" : ""}`, `type="button" data-k="${k}" style="--k:${k};--dl:${(-k * .7).toFixed(1)}s" aria-label="${k + 1}. ${ETIQ[p.type]}, ${nbQuestions(p)} questions"`, "button", `${fait(k) ? `<span class="badge">${I.ok}</span>` : ""}<span class="etiq">${ETIQ[p.type]}</span>`)).join("")}</div>
     <div class="acc-bas"><button class="go" type="button" id="commencer">${suivante < 0 ? `Voir le bilan ${I.suite}` : `${faites ? "Continuer" : "Commencer"} ${I.lire}`}</button><button class="rond" type="button" id="hasard" aria-label="Tirer une nouvelle série" title="Nouvelle série">${I.hasard}</button></div>
+    <p class="acc-revue"><button class="lien-b" type="button" id="revoir">Passer en revue toutes les questions (${nbQuestions(REVUE[0])})${etat.resRevue?.[0]?.n && !etat.resRevue[0].fini ? `, reprendre à la ${etat.resRevue[0].n + 1}ᵉ` : ""}</button></p>
   </section>`);
   placerChemin(); document.fonts?.ready.then(placerChemin);
   $$(".niveaux button").forEach(b => b.onclick = () => { Son.joue("tap"); etat.niveau = b.dataset.niveau; tirer(); accueil(); });
   $$(".orbe").forEach(o => o.onclick = (e) => { Son.joue("tap"); lancer(+o.dataset.k, { x: e.clientX, y: e.clientY }); });
   $("#commencer").onclick = (e) => { Son.joue("tap"); suivante < 0 ? bilan() : lancer(suivante, { x: e.clientX, y: e.clientY }); };
   $("#hasard").onclick = () => { Son.joue("pop"); tirer(); accueil(); };
+  $("#revoir").onclick = (e) => { Son.joue("tap"); etat.mode = "revue"; lancer(0, { x: e.clientX, y: e.clientY }); };
   $("#son-acc").onclick = () => { etat.muet = !etat.muet; garder(); majSon(); accueil(); Son.joue("tap"); };
   courant = { arreter: () => removeEventListener("resize", placerChemin) }; addEventListener("resize", placerChemin);
 }
@@ -1288,9 +1346,10 @@ function sceneVideo(a) {
   jouerB.onclick = () => { m.paused ? jouer(m, m.ended ? 0 : undefined) : m.pause(); };
   $("[data-act=rejouer]", sc).onclick = () => { Son.joue("tap"); jouer(m, 0); };
   if (vid) m.onclick = () => { if (sc.classList.contains("phase-ecoute")) m.paused ? jouer(m) : m.pause(); };
+  $(".ecran", sc).onclick = () => { if (sc.classList.contains("phase-reponse")) m.paused ? jouer(m, m.ended || !m.currentTime ? 0 : undefined) : m.pause(); };
   if (cc) cc.onclick = () => { const on = cc.getAttribute("aria-pressed") !== "true"; cc.setAttribute("aria-pressed", on); if (!on) st.hidden = true; Son.joue("tap"); };
   const rb = $("[data-act=repondre]", sc); if (rb) rb.onclick = () => { Son.joue("tap"); reponse(); };
-  const relire = `<button class="relire" type="button" data-relire><span class="rondp">${I.lire}</span><span>Réécouter</span></button>`;
+  const relire = `<button class="relire" type="button" data-relire><span class="rondp">${I.lire}</span><span>${vid ? "Revoir" : "Réécouter"}</span></button>`;
   const Q = suiteQuestions(a, zone, {
     avant: () => `<div class="relire-l">${relire}</div>`,
     apresDerniere: (place, juste, bonnes) => dock(place, juste, { action: () => terminer(a, { bonnes, total: a.questions.length }), autre: a.karaoke ? { lib: "Le texte", icone: I.texte, action: () => texte(bonnes) } : null }),
@@ -1308,7 +1367,7 @@ function sceneVideo(a) {
     const poser = () => {
       if (pose || !sc.isConnected) return; pose = true; m.pause(); st.hidden = true; sc.classList.replace("phase-ecoute", "phase-reponse"); Son.joue("papier");
       const q = a.questions[j], der = j === a.questions.length - 1;
-      zone.innerHTML = `<div class="bloc-q glisse">${titreHTML(q.q, q.audioQ, q.qk)}${choixHTML(q)}<div class="dock-place"></div></div>`; zone.scrollTop = 0; brancherHP(zone);
+      zone.innerHTML = `<div class="bloc-q glisse"><div class="relire-l">${relire}</div>${titreHTML(q.q, q.audioQ, q.qk)}${choixHTML(q)}<div class="dock-place"></div></div>`; zone.scrollTop = 0; brancherHP(zone); brancherRelire();
       touche = brancherChoix(zone, q, (juste) => {
         if (juste) bonnes++;
         dock($(".dock-place", zone), juste, der ? { action: () => terminer(a, { bonnes, total: a.questions.length }) } : { lib: "La suite", action: () => {
@@ -1595,7 +1654,9 @@ function sceneOral(a) {
     const ex = document.createElement("div"); ex.className = "exemple exemple-o encre";
     ex.innerHTML = `<h3>Un exemple</h3>${a.modeleAudio ? `<div>${ecouteHTML("Écouter")}</div>` : ""}${corps}`;
     const V = $(".visuel", sc);
-    if (V && matchMedia("(min-width: 900px) and (min-height: 560px)").matches) { const p = document.createElement("div"); p.className = "ex-pose"; p.append(ex); const r0 = V.getBoundingClientRect(); V.append(p); V.classList.add("avec-ex"); const dy = r0.top - V.getBoundingClientRect().top; if (dy && MOUV) V.animate([{ transform: `translateY(${dy}px)` }, { transform: "none" }], { duration: 450, easing: "cubic-bezier(.2,.8,.2,1)" }); }
+    if (V && matchMedia("(min-width: 900px) and (min-height: 560px)").matches) { const p = document.createElement("div"); p.className = "ex-pose"; p.append(ex); const r0 = V.getBoundingClientRect(); V.append(p); V.classList.add("avec-ex");
+      if (V.classList.contains("sujet")) $(".vis-photo", V).style.maxHeight = Math.max(180, $(".carte-q", sc).offsetHeight - p.offsetHeight + 56) + "px";
+      const dy = r0.top - V.getBoundingClientRect().top; if (dy && MOUV) V.animate([{ transform: `translateY(${dy}px)` }, { transform: "none" }], { duration: 450, easing: "cubic-bezier(.2,.8,.2,1)" }); }
     else apres.after(ex);
     brancherVerif(ex);
     if (a.modeleAudio) { const mm = media(a.modeleAudio); brancherEcoute($(".ecoute", ex), mm, ENV[a.modeleAudio]); const k = $(".kara", ex); suivreKaraoke(mm, k, { lignes: dialogue ? ".ligne" : null }); if (dialogue) k.classList.add("dialogue"); setTimeout(() => jouer(mm, 0), 350); }
