@@ -102,7 +102,8 @@ la question au centre, plein écran, sur la vidéo floutée sous le voile violet
 à face : la vidéo en vignette à gauche, qui rejoue là, sur un fond noirci et très flou, la question à droite, qui reste ; « Revoir » est alors en bas à
 gauche de la vignette. Une fois en face à face, on y reste pour la question suivante. Une série au
 hasard tire deux vidéos, deux questions chacune. Écoutes : « Réécouter » rejoue le son
-sans cacher la question. Téléchargement : l'adresse
+sans cacher la question, et le spectre revient en bas de l'écran ; dès qu'on choisit une réponse, le son s'arrête et
+le spectre s'en va. Téléchargement : l'adresse
 `drive.usercontent.google.com/download?id=…&export=download&confirm=t`, le dossier partagé en lecture par lien.
 
 **Écran de départ : notre menu de paramétrage**, tout blanc. « Nouvelle série » lance toujours la même série de

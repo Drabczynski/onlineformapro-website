@@ -1075,6 +1075,8 @@ body[data-vue="menu"] .fond { background: #fff; }
   .sc-video.vid.face .centre-q .relire-l { display: none; }
 }
 .touche, .case { text-transform: uppercase; }
+/* v18 — écoutes : pendant « Réécouter », le spectre revient, en bas de l'écran, sous les réponses ; dès qu'on répond, il s'en va */
+.sc-video:not(.vid).phase-reponse.relit .ecran .onde-g { opacity: .85; bottom: 22px; height: 96px; }
 /* v17 — pendant la vidéo, plus de voile violet en haut (une ombre neutre légère, pour lire la question) ; le voile violet du bas reste */
 .sc-video.vid.phase-ecoute .ecran .voile { background: linear-gradient(180deg, rgba(10, 6, 30, .38) 0%, rgba(10, 6, 30, 0) 30%, rgba(74, 24, 190, .12) 55%, rgba(60, 40, 200, .8) 100%); }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .etoiles svg { opacity: 1; } }
@@ -1566,7 +1568,7 @@ function suiteQuestions(a, zone, { avant = () => "", apresDerniere, fin } = {}) 
     zone.innerHTML = `<div class="bloc-q trois glisse"><div class="tete-q">${avant(q, j)}${titreHTML(q.q, q.audioQ, q.qk)}</div>${choixHTML(q)}<div class="dock-place"></div></div>`;
     zone.scrollTop = 0; brancherHP(zone);
     touche = brancherChoix(zone, q, (juste) => {
-      if (juste) bonnes++; majProgres();
+      if (juste) bonnes++; majProgres(); courant?.apresChoix?.(juste);
       const der = j === n - 1, place = $(".dock-place", zone);
       if (!der) dock(place, juste, { lib: "Question suivante", action: () => { j++; montrer(); } });
       else apresDerniere ? apresDerniere(place, juste, bonnes) : dock(place, juste, { action: () => fin(bonnes) });
@@ -1588,7 +1590,9 @@ function sceneVideo(a) {
     <div class="centre-q" aria-live="polite"></div></section>`);
   const m = media(a.audio, { video: vid ? $("video", sc) : null }), env = ENV[a.audio], zone = $(".centre-q", sc), jouerB = $("[data-act=jouer]", sc), st = $(".st", sc), cc = $("[data-act=cc]", sc), fil = $(".fil i", sc);
   brancherHP($(".ecoute-ui", sc));
-  if (!vid) barres($(".onde-g", sc), ondeMedia(m, env), { n: 56, min: .05 });
+  if (!vid) { barres($(".onde-g", sc), ondeMedia(m, env), { n: 56, min: .05 });
+    m.addEventListener("play", () => sc.classList.toggle("relit", sc.classList.contains("phase-reponse")));
+    m.addEventListener("pause", () => sc.classList.remove("relit")); m.addEventListener("ended", () => sc.classList.remove("relit")); }
   const majJ = () => { jouerB.innerHTML = m.paused ? I.lire : I.pause; };
   m.addEventListener("play", majJ); m.addEventListener("pause", majJ);
   m.addEventListener("timeupdate", () => {
@@ -1622,7 +1626,8 @@ function sceneVideo(a) {
   const brancherRelire = (surPlace) => { const b = $("[data-relire]", zone); if (!b) return; if (!surPlace) { b.onclick = () => revoir(0); return; }
     const maj = () => { $(".rondp", b).innerHTML = m.paused ? I.lire : I.pause; }; m.addEventListener("play", maj); m.addEventListener("pause", maj); maj(); b.onclick = () => { if (vid) sc.classList.add("face"); m.paused ? jouer(m, m.ended || !m.currentTime ? 0 : undefined) : m.pause(); }; };
   courant = { demarrer: () => { jouer(m, 0).then(ok => { if (!ok) jouerB.classList.add("appelle"); }); },
-    apresMontrer: (q) => { brancherRelire(!vid || grand()); $(".ecoute-q", sc).innerHTML = titreHTML(q.q, q.audioQ, null, "eq"); brancherHP($(".ecoute-q", sc)); }, espace: () => { m.paused ? jouer(m, m.ended ? 0 : undefined) : m.pause(); } };
+    apresMontrer: (q) => { brancherRelire(!vid || grand()); $(".ecoute-q", sc).innerHTML = titreHTML(q.q, q.audioQ, null, "eq"); brancherHP($(".ecoute-q", sc)); }, espace: () => { m.paused ? jouer(m, m.ended ? 0 : undefined) : m.pause(); },
+    apresChoix: () => { if (!vid) { m.pause(); sc.classList.remove("relit"); } } };
 }
 
 // ---------------------------------------------------------------- 2. lecture : le document posé, les questions à côté
