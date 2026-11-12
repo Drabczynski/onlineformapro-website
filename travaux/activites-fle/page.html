@@ -817,6 +817,29 @@ body[data-vue="activite"][data-type="video"] .haut .rond { background: rgba(40, 
 .visuel .o-tel .tel-fil { padding: 16px 4px 6px; }
 .visuel:has(.o-tel) .pose { align-self: end; padding-bottom: clamp(18px, 2.4vw, 32px); }
 @media (min-width: 900px) and (min-height: 560px) { .sc-lecture { transition-duration: .5s; } }
+/* v8 — rubriques de 2 ou 3 questions, vidéo interactive, enveloppe d'invitation, SMS plus simple, score lisible */
+.medaille-t .tuile .dessus .mot { font-size: calc(var(--w) * .44); font-weight: 800; line-height: .95; }
+.medaille-t .tuile .dessus .mot small { margin-top: .22em; font-size: .3em; font-weight: 700; opacity: .75; }
+/* l'invitation : l'enveloppe s'ouvre, la carte en sort et se pose devant */
+.o-env { width: min(440px, 100%); }
+.env-devant::before, .env-devant::after { content: ""; position: absolute; inset: 0; background: rgba(135, 69, 253, .08); }
+.env-devant::before { clip-path: polygon(0 0, 50% 56%, 0 100%); }
+.env-devant::after { clip-path: polygon(100% 0, 50% 56%, 100% 100%); }
+.o-env::before { content: ""; display: block; padding-top: 40%; }
+.env { position: relative; width: 100%; aspect-ratio: 1.55; perspective: 900px; }
+.env-dos { position: absolute; inset: 0; border-radius: 20px; background: #e2d4ff; }
+.env-devant { position: absolute; inset: 0; z-index: 3; border-radius: 20px; background: linear-gradient(#ffffff, #f1e9ff); clip-path: polygon(0 0, 50% 56%, 100% 0, 100% 100%, 0 100%); }
+.env-rabat { position: absolute; left: 0; right: 0; top: 0; z-index: 4; height: 60%; border-radius: 20px 20px 0 0; background: linear-gradient(#f8f4ff, #e9defc); clip-path: polygon(0 0, 100% 0, 50% 100%); transform-origin: 50% 0; transition: transform .55s cubic-bezier(.5, 0, .3, 1), z-index 0s .28s; }
+.env.ouverte .env-rabat { transform: rotateX(180deg); z-index: 1; }
+.env-carte { position: absolute; left: 7%; right: 7%; bottom: 10%; z-index: 2; opacity: 0; }
+.env-carte .objet { width: 100%; }
+.env.ouverte .env-carte { opacity: 1; animation: sort-env 1.15s cubic-bezier(.3, .9, .3, 1) .4s both; }
+@keyframes sort-env { 0% { transform: translateY(0); z-index: 2; } 55% { transform: translateY(-100%); z-index: 2; } 56% { z-index: 5; } 100% { transform: translateY(-52%); z-index: 5; } }
+/* écrire un SMS : une grande zone, sur toute la largeur */
+.tel-e { width: 100%; }
+.tel-e .saisie { min-height: clamp(170px, 26vh, 240px); font-size: clamp(21px, 1.8vw, 26px); }
+.amorce.utilisee::after { content: " ×"; opacity: .75; }
+@media (max-width: 899.98px), (max-height: 559.98px) { .o-env::before { padding-top: 60%; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .etoiles svg { opacity: 1; } }
 </style>
 
@@ -894,38 +917,50 @@ const ETOILE = (on) => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12
 const trouDe = (q) => q.t === "trou" ? q.phrase : q.t === "enonce" && /_{3,}/.test(q.citation || "") ? q.citation : null;
 const MOT = { video: a => a.video ? "Regardez" : "Écoutez", lecture: () => "Lisez", grammaire: a => a.questions.filter(trouDe).length >= a.questions.length / 2 ? "Complétez" : "Choisissez",
               ecriture: () => "Écrivez", oral: a => a.sous === "repeter" ? "Répétez" : "Parlez", reagir: () => "Répondez" };
-const ETIQ = { video: "Écouter", lecture: "Lire", grammaire: "Compléter", ecriture: "Écrire", oral: "Parler", reagir: "Répondre" };
+const ETIQ = { film: "Regarder", video: "Écouter", lecture: "Lire", grammaire: "Compléter", ecriture: "Écrire", oral: "Parler", reagir: "Répondre" };
+const ICONE = { film: I.video, video: I.casque, lecture: I.lecture, grammaire: I.grammaire, ecriture: I.ecriture, oral: I.oral, reagir: I.reagir };
 const BRAVO = ["Bravo !", "Exact !", "Parfait !", "Très bien !", "C'est ça !"], PRESQUE = ["Pas tout à fait", "Presque !", "Ce n'est pas ça"];
 
 // ---------------------------------------------------------------- l'état, gardé dans le navigateur si possible
-let etat = { niveau: "tous", serie: [], qi: {}, resultats: {}, k: 0, premier: true, muet: false };
-try { const s = JSON.parse(localStorage.getItem("activites-fle-2") || "null"); if (s && Array.isArray(s.serie) && s.serie.every(id => PAR_ID[id])) etat = { ...etat, ...s }; } catch (e) {}
-function garder() { try { localStorage.setItem("activites-fle-2", JSON.stringify({ niveau: etat.niveau, serie: etat.serie, qi: etat.qi, resultats: etat.resultats, premier: false, muet: etat.muet })); } catch (e) {} }
+let etat = { niveau: "tous", serie: [], resultats: {}, k: 0, j: 0, premier: true, muet: false };
+try { const s = JSON.parse(localStorage.getItem("activites-fle-3") || "null"); if (s && Array.isArray(s.serie) && s.serie.every(p => p && Array.isArray(p.items) && p.items.length && p.items.every(it => PAR_ID[it.id]))) etat = { ...etat, ...s }; } catch (e) {}
+function garder() { try { localStorage.setItem("activites-fle-3", JSON.stringify({ niveau: etat.niveau, serie: etat.serie, resultats: etat.resultats, premier: false, muet: etat.muet })); } catch (e) {} }
 const melanger = (t) => { const a = [...t]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 
-// la série : 8 ou 9 questions variées, tirées au hasard dans le niveau choisi, jamais deux du même type à la suite.
-// Une seule question par activité : celle-ci est tirée au hasard dans son groupe (pour la grammaire, une phrase à trou si possible).
-function choisirQ(a) {
-  const niv = a.questions.map((_, i) => i).filter(i => etat.niveau === "tous" || !a.questions[i].niveau || a.questions[i].niveau === etat.niveau), tous = niv.length ? niv : a.questions.map((_, i) => i), trous = a.type === "grammaire" ? tous.filter(i => trouDe(a.questions[i])) : [];
-  return auHasard(trous.length ? trous : tous);
-}
+// la série : une rubrique par façon de travailler (regarder, écouter, lire, compléter, répondre, écrire, parler), et 2 ou 3
+// questions dans chacune, tirées au hasard dans le niveau choisi. Les questions d'un même document restent ensemble.
 function tirer() {
   const ok = (a) => etat.niveau === "tous" || !a.niveau || a.niveau === etat.niveau;
-  const pool = (t) => melanger(ACTIVITES.filter(a => a.type === t && ok(a)));
-  const pris = new Set(), serie = [];
-  const prendre = (t, n, filtre = () => true) => { for (const a of pool(t)) { if (n <= 0) break; if (!pris.has(a.id) && filtre(a)) { pris.add(a.id); serie.push(a); n--; } } };
-  if (etat.premier && ok(PAR_ID["demo-hotel"])) { pris.add("demo-hotel"); serie.push(PAR_ID["demo-hotel"]); }
-  prendre("video", 2 - serie.length); prendre("lecture", 2); prendre("grammaire", 1); prendre("ecriture", 1);
-  prendre("oral", 1, a => a.sous === "role" || a.sous === "image"); prendre("oral", 1, a => a.sous !== "role");
-  while (serie.length < 8) { const reste = melanger(ACTIVITES.filter(a => ok(a) && !pris.has(a.id) && a.type !== "reagir")); if (!reste.length) break; pris.add(reste[0].id); serie.push(reste[0]); }
-  if (Math.random() < .5) prendre("reagir", 1);                      // 8 ou 9 questions
-  const tete = etat.premier && serie[0]?.id === "demo-hotel" ? [serie.shift()] : [];
-  let reste = melanger(serie), ordre = [...tete];
-  while (reste.length) { const k = reste.findIndex(a => a.type !== ordre[ordre.length - 1]?.type); ordre.push(reste.splice(k < 0 ? 0 : k, 1)[0]); }
-  etat.serie = ordre.map(a => a.id); etat.qi = Object.fromEntries(ordre.filter(a => a.questions).map(a => [a.id, choisirQ(a)]));
+  const okQ = (q) => etat.niveau === "tous" || !q.niveau || q.niveau === etat.niveau;
+  const pool = (t, f = () => true) => melanger(ACTIVITES.filter(a => a.type === t && ok(a) && f(a)));
+  const N = () => 2 + (Math.random() < .5 ? 1 : 0);
+  const indices = (a) => { const tous = a.questions.map((_, i) => i), niv = tous.filter(i => okQ(a.questions[i])); return niv.length ? niv : tous; };
+  const choix = (t, n, f) => {
+    const items = []; let c = 0;
+    for (const a of pool(t, f)) {
+      if (c >= n) break; let ix = indices(a);
+      if (t === "grammaire") { const tr = ix.filter(i => trouDe(a.questions[i])); if (tr.length >= Math.min(2, n - c)) ix = tr; ix = melanger(ix); }
+      ix = ix.slice(0, n - c); c += ix.length;
+      if (t === "grammaire" || t === "reagir") ix.forEach(i => items.push({ id: a.id, q: [i] }));     // une scène par question : sa photo, sa bulle
+      else items.push({ id: a.id, q: ix });
+    }
+    // pas assez de questions à ce niveau (la rubrique « Répondre » n'en a que quatre) : on complète avec les niveaux voisins
+    if (c < 2) for (const a of pool(t, f)) for (let i = 0; i < a.questions.length && c < 2; i++) { if (!items.some(it => it.id === a.id && it.q.includes(i))) { items.push({ id: a.id, q: [i] }); c++; } }
+    return items;
+  };
+  const prod = (t, n, f) => pool(t, f).slice(0, n).map(a => ({ id: a.id }));
+  const film = melanger(ACTIVITES.filter(a => a.type === "video" && a.video && ok(a)))[0];
+  const oral = () => { const n = N(), un = prod("oral", 1, a => a.sous === "role" || a.sous === "image"); return [...un, ...prod("oral", n - un.length, a => a.sous !== "role" && a.sous !== "image")]; };
+  const pas = [["film", film ? [{ id: film.id, q: indices(film) }] : []], ["video", choix("video", N(), a => !a.video)], ["lecture", choix("lecture", N())], ["grammaire", choix("grammaire", N())],
+               ["reagir", choix("reagir", N())], ["ecriture", prod("ecriture", 2)], ["oral", oral()]].filter(([, items]) => items.length).map(([type, items]) => ({ type, items }));
+  const tete = pas.filter(p => p.type === "film"), reste = melanger(pas.filter(p => p.type !== "film"));
+  etat.serie = etat.premier ? [...tete, ...reste] : melanger([...tete, ...reste]);
   etat.resultats = {}; etat.premier = false; garder();
 }
 if (!etat.serie.length) tirer();
+// la question (ou le document avec ses questions) numéro j de la rubrique k
+const itemDe = (k, j) => { const it = etat.serie[k]?.items[j], a = it && PAR_ID[it.id]; return !a ? null : it.q ? { ...a, questions: it.q.map(i => a.questions[i]).filter(Boolean) } : a; };
+const nbQuestions = (p) => p.items.reduce((s, it) => s + (it.q ? it.q.length : 1), 0);
 
 // ---------------------------------------------------------------- les sons de l'interface (synthétisés, sans fichier)
 const Son = (() => {
@@ -1079,7 +1114,7 @@ const majSon = () => { const b = $("#bouton-son"); b.innerHTML = etat.muet ? I.m
 $("#bouton-son").onclick = () => { etat.muet = !etat.muet; garder(); majSon(); Son.joue("tap"); };
 majSon();
 function majProgres() {
-  $("#progres").innerHTML = etat.serie.map((id, k) => `<i class="seg${etat.resultats[id]?.fini ? " fait" : ""}${k === etat.k ? " actuel" : ""}"></i>`).join("");
+  $("#progres").innerHTML = etat.serie.map((p, k) => `<i class="seg${etat.resultats[k]?.fini ? " fait" : ""}${k === etat.k ? " actuel" : ""}"></i>`).join("");
 }
 let touche = null;
 addEventListener("keydown", (e) => {
@@ -1093,11 +1128,11 @@ addEventListener("pointermove", (e) => { document.documentElement.style.setPrope
 // ---------------------------------------------------------------- passer d'une scène à l'autre
 let courant = null;
 function quitter() { try { courant?.arreter?.(); } catch (e) {} courant = null; touche = null; arreterMedias(); for (const s of [...animations]) s(); }
-function rendre(html) { const S = $("#scene"); S.innerHTML = html; S.scrollTop = 0; const el = S.firstElementChild; if (el?.classList.contains("sc-duo")) { el.classList.add("amb-" + ((etat.k % 6) + 1)); if (!el.querySelector(".visuel")) el.classList.add("solo"); if (el.querySelector(".vis-photo")) el.classList.add("avec-photo"); } return el; }
+function rendre(html) { const S = $("#scene"); S.innerHTML = html; S.scrollTop = 0; const el = S.firstElementChild; if (el?.classList.contains("sc-duo")) { el.classList.add("amb-" + (((etat.k * 3 + etat.j) % 6) + 1)); if (!el.querySelector(".visuel")) el.classList.add("solo"); if (el.querySelector(".vis-photo")) el.classList.add("avec-photo"); } return el; }
 function rideau(a, k, origine, monter) {
   const R = $("#rideau"), mot = MOT[a.type](a);
   R.className = `ty-${a.type} f-${a.type}`;
-  R.innerHTML = `<span class="rayons"></span><div class="r-tuile">${hexa(I[a.type], TEINTE[a.type])}</div><p class="r-mot" aria-label="${echap(mot)}">${[...mot].map((c, i) => `<span style="--i:${i}" aria-hidden="true">${echap(c)}</span>`).join("")}</p><p class="r-titre">${echap(a.titre)}</p><p class="r-num">${k + 1} / ${etat.serie.length}</p>`;
+  R.innerHTML = `<span class="rayons"></span><div class="r-tuile">${hexa(a.type === "video" && !a.video ? I.casque : I[a.type], TEINTE[a.type])}</div><p class="r-mot" aria-label="${echap(mot)}">${[...mot].map((c, i) => `<span style="--i:${i}" aria-hidden="true">${echap(c)}</span>`).join("")}</p><p class="r-titre">${echap(a.titre)}</p><p class="r-num">${k + 1} / ${etat.serie.length}</p>`;
   R.hidden = false; R.getAnimations().forEach(x => x.cancel()); annoncer(`${mot}. ${a.titre}`);
   const S = $("#scene");
   if (!MOUV) { monter(); setTimeout(() => { R.hidden = true; courant?.demarrer?.(); }, 900); return; }
@@ -1114,15 +1149,21 @@ function rideau(a, k, origine, monter) {
   };
   entree.onfinish = () => { S.classList.add("attente"); monter(); minuterie = setTimeout(sortir, 600); R.onclick = sortir; };
 }
-const uneQuestion = (a) => a.questions ? { ...a, questions: [a.questions[etat.qi?.[a.id] ?? 0] || a.questions[0]] } : a;
+const monterScene = (a) => { document.body.dataset.vue = "activite"; document.body.dataset.type = a.type; majProgres(0); SCENES[a.type](a); };
 function lancer(k, origine) {
-  const a0 = PAR_ID[etat.serie[k]]; if (!a0) return accueil(); const a = uneQuestion(a0);
-  quitter(); etat.k = k;
-  rideau(a, k, origine, () => { document.body.dataset.vue = "activite"; document.body.dataset.type = a.type; majProgres(0); SCENES[a.type](a); });
+  const pas = etat.serie[k]; if (!pas) return accueil();
+  quitter(); etat.k = k; if (etat.resultats[k]?.fini) delete etat.resultats[k];               // refaire une rubrique : on repart de zéro
+  etat.j = Math.min(etat.resultats[k]?.n || 0, pas.items.length - 1);                          // sinon on reprend où on en était
+  const a = itemDe(k, etat.j);
+  rideau(a, k, origine, () => monterScene(a));
 }
+// une question finie : la suivante de la rubrique arrive sans rideau ; la rubrique finie, on passe à la rubrique suivante
 function terminer(a, res) {
-  etat.resultats[a.id] = { ...res, fini: true }; garder(); majProgres(1);
-  const k = etat.serie.findIndex(id => !etat.resultats[id]?.fini);
+  const pas = etat.serie[etat.k], R = etat.resultats[etat.k] = etat.resultats[etat.k] || { bonnes: 0, total: 0, n: 0 };
+  R.bonnes += res.bonnes || 0; R.total += res.total || 0; R.n = etat.j + 1;
+  if (etat.j + 1 < pas.items.length) { etat.j++; garder(); quitter(); monterScene(itemDe(etat.k, etat.j)); Son.joue("papier"); setTimeout(() => courant?.demarrer?.(), 320); return; }
+  R.fini = true; garder(); majProgres(1);
+  const k = etat.serie.findIndex((_, i) => !etat.resultats[i]?.fini);
   k < 0 ? bilan() : lancer(k);
 }
 // le bas de la scène après une réponse : un mot, et le bouton pour continuer
@@ -1138,14 +1179,14 @@ function dock(place, juste, { lib = "Continuer", action, autre, defiler = true }
 // ---------------------------------------------------------------- l'accueil : la série du jour, comme un chemin
 function accueil() {
   quitter(); document.body.dataset.vue = "accueil"; delete document.body.dataset.type;
-  const serie = etat.serie.map(id => PAR_ID[id]), faites = serie.filter(a => etat.resultats[a.id]?.fini).length, suivante = etat.serie.findIndex(id => !etat.resultats[id]?.fini);
+  const serie = etat.serie, fait = (k) => !!etat.resultats[k]?.fini, faites = serie.filter((_, k) => fait(k)).length, suivante = serie.findIndex((_, k) => !fait(k)), nq = serie.reduce((s, p) => s + nbQuestions(p), 0);
   rendre(`<section class="scene accueil">
     <div class="acc-tete"><span class="marque">${MARQUE}<span>Activités de français</span></span>
       <div class="acc-outils"><div class="niveaux" role="group" aria-label="Niveau">${["tous", "A1", "A2", "B1"].map(n => `<button type="button" data-niveau="${n}" aria-pressed="${etat.niveau === n}">${n === "tous" ? "Tous" : n}</button>`).join("")}</div>
       <button class="rond" type="button" id="son-acc" aria-label="${etat.muet ? "Remettre les sons" : "Couper les sons"}">${etat.muet ? I.muet : I.son}</button></div></div>
     <h1 class="geant">${suivante < 0 ? "Bravo&nbsp;!" : faites ? "On continue&nbsp;?" : "Bonjour&nbsp;!"}</h1>
-    <p class="acc-sous">${suivante < 0 ? "Votre série est terminée." : faites ? `${faites} question${faites > 1 ? "s" : ""} faite${faites > 1 ? "s" : ""} sur ${serie.length}.` : `${serie.length} questions tirées au hasard. On commence&nbsp;?`}</p>
-    <div class="chemin"><svg class="trace" aria-hidden="true"><path/></svg>${serie.map((a, k) => hexa(I[a.type], TEINTE[a.type], `orbe${k === suivante ? " actuelle" : ""}${etat.resultats[a.id]?.fini ? " faite" : ""}`, `type="button" data-k="${k}" style="--k:${k};--dl:${(-k * .7).toFixed(1)}s" aria-label="${k + 1}. ${ETIQ[a.type]} : ${echap(a.titre)}"`, "button", `${etat.resultats[a.id]?.fini ? `<span class="badge">${I.ok}</span>` : ""}<span class="etiq">${ETIQ[a.type]}</span>`)).join("")}</div>
+    <p class="acc-sous">${suivante < 0 ? "Votre série est terminée." : faites ? `${faites} rubrique${faites > 1 ? "s" : ""} faite${faites > 1 ? "s" : ""} sur ${serie.length}.` : `${serie.length} rubriques, ${nq} questions. On commence&nbsp;?`}</p>
+    <div class="chemin"><svg class="trace" aria-hidden="true"><path/></svg>${serie.map((p, k) => hexa(ICONE[p.type], "blanc", `orbe${k === suivante ? " actuelle" : ""}${fait(k) ? " faite" : ""}`, `type="button" data-k="${k}" style="--k:${k};--dl:${(-k * .7).toFixed(1)}s" aria-label="${k + 1}. ${ETIQ[p.type]}, ${nbQuestions(p)} questions"`, "button", `${fait(k) ? `<span class="badge">${I.ok}</span>` : ""}<span class="etiq">${ETIQ[p.type]}</span>`)).join("")}</div>
     <div class="acc-bas"><button class="go" type="button" id="commencer">${suivante < 0 ? `Voir le bilan ${I.suite}` : `${faites ? "Continuer" : "Commencer"} ${I.lire}`}</button><button class="rond" type="button" id="hasard" aria-label="Tirer une nouvelle série" title="Nouvelle série">${I.hasard}</button></div>
   </section>`);
   placerChemin(); document.fonts?.ready.then(placerChemin);
@@ -1225,13 +1266,13 @@ function suiteQuestions(a, zone, { avant = () => "", apresDerniere, fin } = {}) 
 
 // ---------------------------------------------------------------- 1. vidéo (en attendant la vidéo : la photo et le son)
 function sceneVideo(a) {
-  const vid = !!a.video, q0 = a.questions[0];
+  const vid = !!a.video, q0 = a.questions[0], arrets = vid && a.questions.every(q => q.arret != null);
   const sc = rendre(`<section class="scene sc-video phase-ecoute">
     <div class="ecran">${vid ? `<video class="vis" src="${echap(a.video)}" poster="${echap(a.poster)}" playsinline preload="auto"></video>` : `<img class="vis" src="${echap(a.poster)}" alt="">`}
       <span class="voile"></span>${vid ? "" : `<canvas class="onde-g" aria-hidden="true"></canvas>`}<p class="st" hidden></p><span class="fil"><i></i></span></div>
     <div class="ecoute-ui">${vid ? "" : `<span class="a-venir">Vidéo à venir</span>`}
       <div class="ecoute-q">${titreHTML(q0.q, q0.audioQ, null, "eq")}</div>
-      <div class="ctrl"><button class="rond cyan-r" type="button" data-act="rejouer" aria-label="Recommencer">${I.rejouer}</button><button class="rond cyan-r" type="button" data-act="jouer" aria-label="Lire ou mettre en pause">${I.lire}</button>${a.sousTitres ? `<button class="rond cyan-r" type="button" data-act="cc" aria-pressed="false" aria-label="Sous-titres">${I.cc}</button>` : ""}<button class="go" type="button" data-act="repondre">Répondre ${I.suite}</button></div></div>
+      <div class="ctrl"><button class="rond cyan-r" type="button" data-act="rejouer" aria-label="Recommencer">${I.rejouer}</button><button class="rond cyan-r" type="button" data-act="jouer" aria-label="Lire ou mettre en pause">${I.lire}</button>${a.sousTitres ? `<button class="rond cyan-r" type="button" data-act="cc" aria-pressed="false" aria-label="Sous-titres">${I.cc}</button>` : ""}${arrets ? "" : `<button class="go" type="button" data-act="repondre">Répondre ${I.suite}</button>`}</div></div>
     <div class="centre-q" aria-live="polite"></div></section>`);
   const m = media(a.audio, { video: vid ? $("video", sc) : null }), env = ENV[a.audio], zone = $(".centre-q", sc), jouerB = $("[data-act=jouer]", sc), st = $(".st", sc), cc = $("[data-act=cc]", sc), fil = $(".fil i", sc);
   brancherHP($(".ecoute-ui", sc));
@@ -1243,12 +1284,12 @@ function sceneVideo(a) {
     if (a.sousTitres && cc?.getAttribute("aria-pressed") === "true" && sc.classList.contains("phase-ecoute")) { const c = a.sousTitres.find(c => m.currentTime >= c.d - .1 && m.currentTime <= c.f + .4); st.hidden = !c; if (c && st.dataset.c !== String(c.d)) { st.dataset.c = c.d; st.innerHTML = `<b>${echap(c.qui)}</b>${echap(c.texte)}`; } }
   });
   let repondu = false;
-  m.addEventListener("ended", () => { majJ(); st.hidden = true; if (!repondu) setTimeout(reponse, 500); });
+  m.addEventListener("ended", () => { majJ(); st.hidden = true; if (!repondu && !arrets) setTimeout(reponse, 500); });
   jouerB.onclick = () => { m.paused ? jouer(m, m.ended ? 0 : undefined) : m.pause(); };
   $("[data-act=rejouer]", sc).onclick = () => { Son.joue("tap"); jouer(m, 0); };
   if (vid) m.onclick = () => { if (sc.classList.contains("phase-ecoute")) m.paused ? jouer(m) : m.pause(); };
   if (cc) cc.onclick = () => { const on = cc.getAttribute("aria-pressed") !== "true"; cc.setAttribute("aria-pressed", on); if (!on) st.hidden = true; Son.joue("tap"); };
-  $("[data-act=repondre]", sc).onclick = () => { Son.joue("tap"); reponse(); };
+  const rb = $("[data-act=repondre]", sc); if (rb) rb.onclick = () => { Son.joue("tap"); reponse(); };
   const relire = `<button class="relire" type="button" data-relire><span class="rondp">${I.lire}</span><span>Réécouter</span></button>`;
   const Q = suiteQuestions(a, zone, {
     avant: () => `<div class="relire-l">${relire}</div>`,
@@ -1261,6 +1302,25 @@ function sceneVideo(a) {
     dock($(".dock-place", zone), null, { action: () => terminer(a, { bonnes, total: a.questions.length }) });
   }
   const brancherRelire = () => { const b = $("[data-relire]", zone); if (!b) return; const maj = () => { $(".rondp", b).innerHTML = m.paused ? I.lire : I.pause; }; m.addEventListener("play", maj); m.addEventListener("pause", maj); maj(); b.onclick = () => { m.paused ? jouer(m, m.ended || !m.currentTime ? 0 : undefined) : m.pause(); }; };
+  // la vidéo interactive : elle s'arrête d'elle-même au moment de chaque question, puis repart
+  if (arrets) {
+    let j = 0, bonnes = 0, pose = false;
+    const poser = () => {
+      if (pose || !sc.isConnected) return; pose = true; m.pause(); st.hidden = true; sc.classList.replace("phase-ecoute", "phase-reponse"); Son.joue("papier");
+      const q = a.questions[j], der = j === a.questions.length - 1;
+      zone.innerHTML = `<div class="bloc-q glisse">${titreHTML(q.q, q.audioQ, q.qk)}${choixHTML(q)}<div class="dock-place"></div></div>`; zone.scrollTop = 0; brancherHP(zone);
+      touche = brancherChoix(zone, q, (juste) => {
+        if (juste) bonnes++;
+        dock($(".dock-place", zone), juste, der ? { action: () => terminer(a, { bonnes, total: a.questions.length }) } : { lib: "La suite", action: () => {
+          j++; pose = false; touche = null; zone.innerHTML = ""; sc.classList.replace("phase-reponse", "phase-ecoute");
+          $(".ecoute-q", sc).innerHTML = titreHTML(a.questions[j].q, a.questions[j].audioQ, null, "eq"); brancherHP($(".ecoute-q", sc)); jouer(m);
+        } });
+      });
+    };
+    const guet = () => { if (!sc.isConnected) return; if (!pose && !m.paused && m.currentTime >= a.questions[j].arret) poser(); requestAnimationFrame(guet); };
+    requestAnimationFrame(guet);
+    m.addEventListener("ended", () => setTimeout(poser, 350));
+  }
   courant = { demarrer: () => { jouer(m, 0).then(ok => { if (!ok) jouerB.classList.add("appelle"); }); }, apresMontrer: () => brancherRelire(), espace: () => { m.paused ? jouer(m, m.ended ? 0 : undefined) : m.pause(); } };
 }
 
@@ -1276,7 +1336,8 @@ function objetHTML(d) {
     case "plaque": return `<div class="objet o-plaque"><i class="vis"></i><i class="vis"></i><i class="vis"></i><i class="vis"></i>${lignes}</div>${leg(d.etiquette)}`;
     case "menu": return `<div class="objet o-ardoise"><h4>${echap(d.titre)}</h4><p class="jour">${echap(d.jour)}</p><ul>${(d.plats || []).map(p => `<li>${echap(p)}</li>`).join("")}</ul></div>`;
     case "affiche": return `<div class="objet o-affiche"><h4>${echap(d.titre)}</h4>${lignes}</div>`;
-    case "court": return `<div class="objet o-fiche"><h4>${echap(d.titre || d.etiquette || "")}</h4>${lignes}</div>`;
+    case "court": { const fiche = `<div class="objet o-fiche"><h4>${echap(d.titre || d.etiquette || "")}</h4>${lignes}</div>`;
+      return /^invitation/i.test(d.titre || "") ? `<div class="o-env"><div class="env"><span class="env-dos"></span><div class="env-carte">${fiche}</div><span class="env-devant"></span><span class="env-rabat"></span></div></div>` : fiche; }
     default: return `<div class="objet o-lettre ${d.style || ""}"><h4>${d.emoji ? `<span class="em">${d.emoji}</span>` : ""}${echap(d.titre || d.etiquette || "")}</h4>${d.texte ? `<p>${echap(d.texte)}</p>` : ""}${lignes}</div>`;
   }
 }
@@ -1289,7 +1350,8 @@ function sceneLecture(a) {
   const mots = (JSON.stringify(a.doc).match(/\p{L}{2,}/gu) || []).length;
   courant = { ...courant, demarrer: () => {
     if (a.doc.t === "sms") { setTimeout(() => { const [e, b] = $$(".bulle-sms", sc); e.hidden = true; b.hidden = false; b.classList.add("arrive"); Son.joue("pop"); }, 450); }
-    minuterie = setTimeout(question, Math.max(1100, Math.min(3400, mots * 130 + (a.doc.t === "sms" ? 450 : 0))));
+    const env = $(".env", sc); if (env) setTimeout(() => { env.classList.add("ouverte"); Son.joue("papier"); }, 200);
+    minuterie = setTimeout(question, Math.max(1100, Math.min(3400, mots * 130 + (a.doc.t === "sms" ? 450 : 0))) + (env ? 1700 : 0));
   }, arreter: () => clearTimeout(minuterie) };
 }
 
@@ -1425,7 +1487,9 @@ function sceneEcriture(a) {
   };
   carte.addEventListener("input", maj);
   $$(".amorce", sc).forEach(b => b.onclick = () => {
-    if (!saisie) return; const t = b.textContent, pos = saisie.selectionStart ?? saisie.value.length, av = saisie.value.slice(0, pos), ap = saisie.value.slice(pos);
+    if (!saisie) return; const t = b.textContent;
+    if (b.classList.contains("utilisee")) { const i = saisie.value.indexOf(t); if (i >= 0) { saisie.value = (saisie.value.slice(0, i) + saisie.value.slice(i + t.length).replace(/^[ \n]/, "")).replace(/^\s+/, ""); } b.classList.remove("utilisee"); saisie.focus(); maj(); Son.joue("tap"); return; }
+    const pos = saisie.selectionStart ?? saisie.value.length, av = saisie.value.slice(0, pos), ap = saisie.value.slice(pos);
     const sep = av && !/[\s\n]$/.test(av) ? " " : "", ajout = sep + t + (/[,:]$|\.\.\.$|…$/.test(t) || !/[.!?]$/.test(t) ? " " : "\n");
     saisie.value = av + ajout + ap; const c = (av + ajout).length; saisie.focus(); saisie.setSelectionRange(c, c); maj();
     b.classList.add("utilisee"); Son.joue("pop"); b.animate([{ transform: "scale(1)" }, { transform: "scale(1.12)" }, { transform: "scale(1)" }], { duration: 260 });
@@ -1548,9 +1612,7 @@ function sceneOral(a) {
 // ---------------------------------------------------------------- le bilan
 function bilan() {
   quitter(); document.body.dataset.vue = "bilan";
-  const serie = etat.serie.map(id => PAR_ID[id]), R = etat.resultats;
-  const qcm = serie.filter(a => a.questions && R[a.id]?.fini), bonnes = qcm.reduce((s, a) => s + R[a.id].bonnes, 0), total = qcm.reduce((s, a) => s + R[a.id].total, 0);
-  const ecrits = serie.filter(a => a.type === "ecriture" && R[a.id]?.fini).length, oraux = serie.filter(a => a.type === "oral" && R[a.id]?.fini).length;
+  const L = Object.values(etat.resultats).filter(r => r?.fini), bonnes = L.reduce((s, r) => s + (r.bonnes || 0), 0), total = L.reduce((s, r) => s + (r.total || 0), 0);
   const ratio = total ? bonnes / total : 1, nEtoiles = ratio >= .85 ? 3 : ratio >= .5 ? 2 : 1;
   const sc = rendre(`<section class="scene bilan"><span class="rayons"></span><span class="lueur"></span>
     <div class="medaille-t">${hexa(total ? `<span id="compte">0</span><small>sur ${total}</small>` : `<span id="compte">✓</span>`, "citron")}</div>

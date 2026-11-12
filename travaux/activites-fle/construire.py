@@ -21,6 +21,7 @@ l'enregistrement), un document à lire, une série de grammaire, un texte à éc
 La page (page.html) tire au hasard une série d'activités variées ; rien n'est adaptatif.
 """
 import array, difflib, json, os, re, shutil, subprocess, unicodedata
+from prononciation import SONS as SONS_REFAITS
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 TRAVAUX = os.path.dirname(ICI)
@@ -45,7 +46,7 @@ ALPHA = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_"
 # une photo par écoute (en attendant la vidéo) : elle pose le lieu sans jamais souffler la réponse
 PHOTO_CO = {"CO-01": "lucas", "CO-02": "bus", "CO-03": "boulangerie", "CO-04": "classe", "CO-05": "amir", "CO-06": "rue",
             "CO-07": "agenda-accueil", "CO-08": "telephone-2", "CO-09": "couple", "CO-10": "fenetre-the", "CO-11": "conversation",
-            "CO-12": "ecole", "CO-13": "gare", "CO-14": "amies", "CO-15": "salle-restaurant", "CO-16": "marche", "CO-17": "photos-main",
+            "CO-12": "ecole", "CO-13": "gare", "CO-14": "offrir-boisson", "CO-15": "salle-restaurant", "CO-16": "marche", "CO-17": "photos-main",
             "CO-18": "medecin", "CO-21": "courses", "CO-23": "appartement", "CO-27": "bureau", "CO-29": "enfants", "CO-31": "voiture",
             "CO-33": "vieux-lyon", "CO-34": "parc", "CO-35": "velo-travail", "CO-38": "presentation", "CO-41": "fromagerie",
             "CO-44": "atelier", "CO-47": "classe", "CO-50": "cinema-entree"}
@@ -62,7 +63,8 @@ def son(nom):
     src = os.path.join(SONS_V1, nom + ".mp3")
     if not os.path.exists(src): return None
     dst = os.path.join(ICI, "medias", "sons", nom + ".mp3")
-    if not os.path.exists(dst) or os.path.getsize(dst) != os.path.getsize(src): shutil.copy(src, dst)
+    refait = nom in SONS_REFAITS and os.path.exists(dst)      # un son refait ici (prononciation.py) n'est pas écrasé par celui du premier test
+    if not refait and (not os.path.exists(dst) or os.path.getsize(dst) != os.path.getsize(src)): shutil.copy(src, dst)
     medias.add("medias/sons/" + nom + ".mp3"); return "medias/sons/" + nom + ".mp3"
 
 
@@ -231,6 +233,8 @@ for i, x in X.items():
     activites.append(a)
 
 # le haut-parleur des questions et des consignes, la photo d'ambiance, l'aide à l'écriture
+# la vidéo interactive : le moment (en secondes) où elle s'arrête pour poser chaque question ; 99 = à la fin
+ARRETS = {"demo-1": 5.3, "demo-2": 99}
 def lue(i):
     rel = f"medias/questions/{i}.mp3"
     if not os.path.exists(os.path.join(ICI, rel)): return None
@@ -246,6 +250,7 @@ def photo_h(nom):
 for a in activites:
     for q in a.get("questions", []):
         if q["id"] in X: q["niveau"] = X[q["id"]]["Niveau CECRL"]
+        if q["id"] in ARRETS: q["arret"] = ARRETS[q["id"]]
         p = lue(q["id"])
         if p:
             q["audioQ"] = p

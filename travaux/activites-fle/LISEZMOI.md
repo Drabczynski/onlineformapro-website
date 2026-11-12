@@ -39,18 +39,33 @@ Prototype de produit fini : des activités d'entraînement tirées de l'Excel «
   réponse), CO-33 le vieux Lyon, CO-21 (annonce du magasin) un rayon de supermarché sans fruits, EE-17 le même rayon.
   Puis : CE-06 (fiche d'inscription) une main qui remplit une fiche, CO-07 (« Quel jour est le rendez-vous ? ») une
   secrétaire à l'accueil devant son agenda, CO-17 (les cheveux d'Amina) des mains qui tiennent des photos, sans visage.
+  Puis : CO-14 (« thé ou café ? ») deux amies à la maison avec des tasses dont on ne voit pas le contenu, EO-08
+  (« Vous avez des frères et sœurs ? ») un frère et une sœur.
 - **Sur la photo** : le SMS est une carte à la taille du message, posée en bas pour laisser voir le visage, et il
   arrive plus vite. L'exemple oral s'affiche toujours à gauche ; pour une photo à décrire, il s'accroche au bas de
   la photo, qui remonte pour lui laisser la place. Le micro est écarté de la consigne.
 
 ## Ce que fait la page (version 2)
 
-Plein écran, une seule chose à la fois. L'accueil montre la série comme un chemin de tuiles hexagonales : **8 ou 9
-questions tirées au hasard** (2 écoutes, 2 lectures, 1 grammaire, 1 texte à écrire, 2 réponses orales, et une fois sur
-deux « Que dites-vous ? »), jamais deux du même type à la suite. **Une seule question par activité** : quand un
-enregistrement ou un document a plusieurs questions dans l'Excel, l'une d'elles est tirée au hasard (pour la
-grammaire, une phrase à trou si possible). Les pastilles A1, A2, B1 limitent le tirage à un niveau ; le bouton
-« hasard » tire une nouvelle série. Au premier tirage, la vidéo de démonstration ouvre la série.
+Une seule chose à la fois. L'accueil montre la série comme un chemin de tuiles hexagonales : **sept rubriques**
+(Regarder, Écouter, Lire, Compléter, Répondre, Écrire, Parler), dans un ordre tiré au hasard, et **2 ou 3 questions
+dans chacune** (2 pour Regarder et Écrire), soit 14 à 19 questions. Le rideau ne passe qu'entre deux rubriques ; à
+l'intérieur d'une rubrique, la question suivante arrive directement. Les questions d'un même document ou d'un même
+enregistrement restent ensemble ; en grammaire et dans « Répondre », chaque question a son écran et sa photo. Les
+pastilles A1, A2, B1 limitent le tirage à un niveau (« Répondre » n'a que quatre questions : s'il n'y en a qu'une au
+niveau choisi, elle est complétée par une question d'un niveau voisin). Le bouton « hasard » tire une nouvelle série.
+Quitter au milieu d'une rubrique la reprend où on en était. La série est gardée dans le navigateur sous la clé
+`activites-fle-3`.
+
+**Regarder, la vidéo interactive** : la vidéo s'arrête d'elle-même juste après le passage utile, la question se pose
+sur l'image, puis la vidéo repart jusqu'à la question suivante (les moments d'arrêt sont dans `ARRETS`, dans
+`construire.py`). Il n'y a pour l'instant qu'**une vraie vidéo** (« À l'hôtel », 10 secondes) : elle revient donc dans
+chaque série. Les autres scènes se génèrent avec `../videos-ia/` (clé `FAL_KEY`, environ 1 $ la scène de 8 secondes).
+
+**Autres points de cette version** : l'invitation (CE-15) sort d'une enveloppe qui s'ouvre ; pour écrire un SMS, la
+zone de saisie prend toute la largeur, il n'y a plus que trois débuts de phrase, sans « … » ni « (e) » à effacer, et
+toucher une deuxième fois un début de phrase le retire du texte ; au bilan, le score est écrit en grand dans
+l'hexagone ; la synthèse vocale dit « Veusoul » pour Vesoul (`prononciation.py`, huit sons refaits).
 
 Chaque question est annoncée par un rideau (un grand mot : Regardez, Écoutez, Lisez, Complétez, Écrivez, Parlez,
 Répétez, Répondez), puis occupe tout l'écran :

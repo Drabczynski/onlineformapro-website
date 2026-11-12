@@ -10,6 +10,7 @@ La clé ElevenLabs n'est pas dans le dépôt : c'est un secret réseau de l'envi
 en-tête xi-api-key), ajouté par le proxy.
 """
 import concurrent.futures, hashlib, json, os, re, subprocess, sys, tempfile
+from prononciation import prononcer          # « Vesoul » se dit « Veusoul »
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 MODELE = "eleven_multilingual_v2"
@@ -32,7 +33,7 @@ def voix_vous(i, textes):
 
 
 def tts(voix, texte, debit, chemin):
-    corps = json.dumps({"text": texte, "model_id": MODELE, "language_code": "fr",
+    corps = json.dumps({"text": prononcer(texte), "model_id": MODELE, "language_code": "fr",
                         "voice_settings": {"stability": .62, "similarity_boost": .8, "style": 0, "use_speaker_boost": True, "speed": debit}}, ensure_ascii=False)
     for essai in range(3):
         r = subprocess.run(["curl", "-sS", "-o", chemin, "-w", "%{http_code}", "-X", "POST",

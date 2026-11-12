@@ -10,6 +10,7 @@ donnees/questions-lues.json ; un son déjà fait pour le même texte n'est pas r
 La clé ElevenLabs n'est pas dans le dépôt : c'est un secret réseau de l'environnement (hôte api.elevenlabs.io).
 """
 import concurrent.futures, hashlib, json, os, re, subprocess, tempfile
+from prononciation import prononcer          # « Vesoul » se dit « Veusoul »
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 VOIX, MODELE = "NEjemlRxgWmL5ZGJetsB", "eleven_multilingual_v2"      # Claire
@@ -37,7 +38,7 @@ def a_lire():
 
 
 def tts(texte, debit, chemin):
-    corps = json.dumps({"text": texte, "model_id": MODELE, "language_code": "fr",
+    corps = json.dumps({"text": prononcer(texte), "model_id": MODELE, "language_code": "fr",
                         "voice_settings": {"stability": .62, "similarity_boost": .8, "style": 0, "use_speaker_boost": True, "speed": debit}}, ensure_ascii=False)
     for _ in range(3):
         r = subprocess.run(["curl", "-sS", "-o", chemin, "-w", "%{http_code}", "-X", "POST",
