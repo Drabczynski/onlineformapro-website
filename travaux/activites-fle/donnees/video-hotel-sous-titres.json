@@ -1,0 +1,38 @@
+[
+ {
+  "d": 0.54,
+  "f": 1.26,
+  "qui": "La réceptionniste",
+  "texte": "Bonjour monsieur."
+ },
+ {
+  "d": 2.1,
+  "f": 3.34,
+  "qui": "Le client",
+  "texte": "Où est la salle du petit déjeuner ?"
+ },
+ {
+  "d": 3.9,
+  "f": 5.24,
+  "qui": "La réceptionniste",
+  "texte": "Au rez-de-chaussée, à gauche."
+ },
+ {
+  "d": 5.64,
+  "f": 7.44,
+  "qui": "Le client",
+  "texte": "Merci. Le petit déjeuner finit à quelle heure ?"
+ },
+ {
+  "d": 8.04,
+  "f": 9.04,
+  "qui": "La réceptionniste",
+  "texte": "Il termine à onze heures."
+ },
+ {
+  "d": 9.08,
+  "f": 9.96,
+  "qui": "Le client",
+  "texte": "D'accord, merci beaucoup."
+ }
+]

@@ -56,6 +56,13 @@ tout intégré. Les évolutions (version bureau) se font ailleurs. Détails dans
 « L'horizon », « L'affiche », « Le hublot », « La scène », « Le plein cadre »), à comparer avant de choisir (https://onlineformapro-website.vercel.app/travaux/positionnement-fle-3/maquettes-bureau/).
 Sources dans `src/`, `fabriquer.py` assemble les pages autonomes et la galerie.
 
+## Activités FLE (prototype)
+
+`activites-fle/` : des activités d'entraînement tirées de l'Excel des 200 questions (vidéos, lectures, grammaire,
+écriture, oral), en série de 8 tirée au hasard, corrigées tout de suite, avec un exemple de réponse pour les
+productions ; thème clair et coloré. Page web : https://onlineformapro-website.vercel.app/travaux/activites-fle/ .
+Les vidéos seront fournies (en attendant : photo et son). Détails dans `activites-fle/LISEZMOI.md`.
+
 ## Newsletter CiviCap
 
 `newsletter-civicap/email.html` est l'e-mail lui-même, en tableaux et styles
