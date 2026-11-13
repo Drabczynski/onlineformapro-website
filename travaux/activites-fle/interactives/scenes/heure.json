@@ -1,0 +1,22 @@
+{
+  "video": "gare-heure", "titre": "À quelle heure ?", "niveau": "A1", "gel": 9.4,
+  "sousTitres": [
+    {"d": 0.56, "f": 2.72, "qui": "Le voyageur", "texte": "Bonjour, à quelle heure part le train pour Marseille ?"},
+    {"d": 3.54, "f": 4.06, "qui": "L'agent", "texte": "À dix heures."},
+    {"d": 4.76, "f": 5.62, "qui": "Le voyageur", "texte": "Et il arrive à quelle heure ?"},
+    {"d": 6.8, "f": 7.84, "qui": "L'agent", "texte": "Il arrive à midi."},
+    {"d": 8.68, "f": 9.22, "qui": "Le voyageur", "texte": "Merci beaucoup."}
+  ],
+  "people": {
+    "agent": {"name": "L'agent", "qui": "L'agent", "side": "g", "spot": [17, 60, 17, 50], "anchor": [17, 37], "crop": [11, 34, 14, 25], "portrait": [3.05, [25, 14, 27, 48]]},
+    "voyageur": {"name": "Le voyageur", "qui": "Le voyageur", "side": "d", "spot": [70, 55, 18, 60], "anchor": [80, 42], "crop": [55, 8, 19, 34]}
+  },
+  "consignes": [
+    "Écoute le voyageur.",
+    "Le train va où ? Clique sur la ville.",
+    "Écoute l'agent.",
+    "Le train part à quelle heure ? Fais tourner les aiguilles.",
+    "Touche la vidéo quand tu entends l'heure d'arrivée.",
+    "Bravo ! Départ à dix heures, arrivée à midi. Bon voyage !"
+  ]
+}

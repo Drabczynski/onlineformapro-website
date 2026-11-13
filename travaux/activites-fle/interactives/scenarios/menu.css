@@ -1,0 +1,65 @@
+/* ================= le menu du jour : l'ardoise de près, l'assiette ================= */
+/* l'ardoise : un tableau noir dans son cadre en bois, écrit à la craie */
+.ardoise { position: relative; border-radius: 16px; padding: 22px 24px 24px; color: #F4F1E6; font-family: "Patrick Hand", "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+  background: radial-gradient(120% 90% at 28% 18%, #34423C 0%, #25302C 55%, #1C2522 100%);
+  box-shadow: inset 0 0 0 8px #8A5A33, inset 0 0 0 10px #6A4224, inset 0 0 24px 14px rgba(0,0,0,.32); }
+.ard-titre { margin: 0; text-align: center; font-size: 31px; line-height: 1.1; color: #FFF7DA; }
+.ard-titre span { margin-left: 10px; font-size: 24px; color: #FFE08A; }
+.ard-rub { margin-top: 8px; }
+.ard-nom { margin: 0 0 6px; font-size: 22px; line-height: 1.1; color: #FFE08A; }
+.ard-nom::after { content: ""; display: block; width: 70px; height: 2px; margin-top: 2px; border-radius: 2px; background: rgba(255,224,138,.55); }
+.ard-ligne { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.ard-choix, .ard-txt { position: relative; min-height: 52px; padding: 6px 8px; border-radius: 16px; display: grid; place-items: center; text-align: center; font-size: 22px; line-height: 1.02; }
+.ard-choix { background: rgba(255,255,255,.07); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.2); transition: background .2s, transform .3s var(--spring); }
+.ard-choix:hover { background: rgba(255,255,255,.14); }
+.ard-choix:active { transform: scale(.95); }
+.ard-choix.entoure { background: none; box-shadow: none; }     /* entouré : seul reste le trait de craie */
+.ard-choix.indice { animation: indiceA 1.1s var(--apple) infinite; }
+@keyframes indiceA { 50% { background: rgba(75,227,180,.3); transform: translateY(-2px); } }
+.ard-txt { min-height: 40px; opacity: .5; }
+.ard-note { margin: 2px 0 0; text-align: center; font-size: 19px; opacity: .5; }
+body[data-turn="listen"] .ardoise, body[data-turn="wait"] .ardoise { pointer-events: none; }
+/* le trait de craie qui entoure le choix : blanc quand on choisit, vert si c'est juste, orange s'il faut revoir */
+.cercle { position: absolute; left: -10px; top: -7px; width: calc(100% + 20px); height: calc(100% + 14px); overflow: visible; pointer-events: none; }
+.cercle path { fill: none; stroke: #F6F3EA; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: craie .65s cubic-bezier(.45,.05,.35,1) forwards; transition: stroke .3s; }
+.cercle.juste path { stroke: var(--ok); stroke-width: 3.6; }
+.cercle.faux path { stroke: var(--try); }
+@keyframes craie { to { stroke-dashoffset: 0; } }
+
+/* l'assiette, entre la fourchette et le couteau ; deux places : le plat, et ce qui va avec */
+.table { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 2px 0; }
+.couvert { width: 18px; height: 150px; flex: none; }
+.assiette { position: relative; flex: none; width: 214px; height: 214px; border-radius: 50%; transition: box-shadow .3s;
+  background: radial-gradient(circle, #FFFFFF 0 57%, #E6E9EF 58% 60.5%, #FAFBFC 61.5% 100%); box-shadow: inset 0 0 0 2px rgba(11,13,22,.1); }
+.assiette.juste { box-shadow: inset 0 0 0 2px rgba(11,13,22,.1), 0 0 0 4px var(--ok); }
+.pose { position: absolute; top: 50%; width: 92px; height: 92px; margin-top: -46px; border-radius: 50%; display: grid; place-items: center; color: rgba(11,13,22,.42); transition: box-shadow .25s, background .25s; }
+.pose[data-g="plat"] { left: 14px; }
+.pose[data-g="avec"] { right: 14px; }
+.pose:empty::before { display: grid; place-items: center; width: 70px; height: 70px; border-radius: 50%; border: 2px dashed rgba(11,13,22,.2); font-size: 13px; font-weight: 700; }
+.pose[data-g="plat"]:empty::before { content: "le plat"; }
+.pose[data-g="avec"]:empty::before { content: "avec"; }
+.pose svg { width: 86px; height: 86px; animation: pop .4s var(--spring) both; }
+.pose.faux { box-shadow: 0 0 0 3px var(--try); background: rgba(255,198,92,.2); }
+.rang { margin: 0 0 -4px; font-weight: 700; font-size: 14px; color: var(--text2); }
+.choix3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.choix3 .tuile { height: 84px; }
+.choix3 .tuile .pic { width: 56px; height: 50px; }
+.choix3 .tuile .pic svg { width: 54px; height: 54px; }
+.tuile.pris { opacity: .25; }
+.volant .vol, .volant .vol svg { width: 100%; height: 100%; }
+body[data-turn="listen"] .pose, body[data-turn="wait"] .pose { pointer-events: none; }
+
+/* téléphone tenu droit, ou couché */
+body.tall .ardoise { padding: 16px 16px 18px; }
+body.tall .ard-titre { font-size: 25px; } body.tall .ard-titre span { font-size: 20px; }
+body.tall .ard-nom { font-size: 19px; margin-bottom: 4px; }
+body.tall .ard-choix, body.tall .ard-txt { font-size: 18px; min-height: 46px; } body.tall .ard-txt { min-height: 30px; } body.tall .ard-note { font-size: 16px; }
+body.tall .assiette { width: 150px; height: 150px; } body.tall .pose { width: 64px; height: 64px; margin-top: -32px; } body.tall .pose svg { width: 60px; height: 60px; }
+body.tall .pose:empty::before { width: 50px; height: 50px; font-size: 11px; } body.tall .couvert { height: 110px; } body.tall .choix3 .tuile { height: 70px; }
+body.short .ardoise { padding: 12px 12px 14px; } body.short .ard-titre { font-size: 20px; } body.short .ard-nom { font-size: 16px; }
+body.short .ard-choix, body.short .ard-txt { font-size: 15px; min-height: 44px; } body.short .ard-txt { min-height: 26px; } body.short .ard-note { font-size: 14px; }
+body.short .assiette { width: 120px; height: 120px; } body.short .pose { width: 52px; height: 52px; margin-top: -26px; } body.short .pose svg { width: 48px; height: 48px; }
+body.short .pose:empty::before { width: 42px; height: 42px; font-size: 10px; } body.short .couvert { display: none; } body.short .choix3 .tuile { height: 60px; }
+
+/* l'étiquette posée sur l'image, centrée au-dessus de son point (l'animation « pop » du moteur remplace son « transform ») */
+.marque { translate: -50% calc(-100% - 8px); }

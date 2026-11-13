@@ -1,0 +1,53 @@
+/* ================= à la gare : la carte de France, l'horloge de la gare ================= */
+/* la carte : on clique sur la ville (un point blanc, son nom dans une pastille) */
+.carte { position: relative; width: 100%; aspect-ratio: 330 / 325; }
+.carte svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.carte .pays { fill: rgba(255,255,255,.13); stroke: rgba(255,255,255,.62); stroke-width: 2; stroke-linejoin: round; }
+.ville { position: absolute; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%; touch-action: manipulation; }
+.ville .pt { position: absolute; left: 50%; top: 50%; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: #fff;
+  box-shadow: 0 0 0 4px rgba(255,255,255,.22); transition: transform .35s var(--spring), background .25s; }
+.ville .nomv { position: absolute; top: 50%; left: 34px; transform: translateY(-50%); height: 32px; padding: 0 12px; border-radius: 99px; display: inline-flex; align-items: center; gap: 6px;
+  white-space: nowrap; font-weight: 800; font-size: 15px; letter-spacing: -.01em; color: #fff; background: rgba(16,18,28,.5); box-shadow: inset 0 0 0 1px rgba(255,255,255,.28);
+  transition: background .25s, color .25s, transform .35s var(--spring); }
+.ville[data-cote="g"] .nomv { left: auto; right: 34px; }
+.ville[data-cote="bg"] .nomv { left: auto; right: 4px; top: 37px; transform: none; }
+@media (hover: hover) { .ville:hover .nomv { background: #fff; color: var(--ink); } .ville:hover .pt { transform: scale(1.2); } }
+.ville:active .pt { transform: scale(.85); }
+.ville.faux .nomv { background: var(--try); color: var(--ink); box-shadow: none; }
+.ville.faux .pt { background: var(--try); }
+.ville.juste .nomv { background: var(--ok); color: var(--ink); box-shadow: none; }
+.ville.juste .nomv::before { content: ""; width: 14px; height: 14px; flex: none;
+  background: no-repeat center / contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B0D16' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E"); }
+.ville.juste .pt { background: var(--ok); box-shadow: 0 0 0 5px rgba(75,227,180,.35); }
+.ville.indice .nomv { animation: indiceV 1.1s var(--apple) infinite; }
+@keyframes indiceV { 50% { background: rgba(29,214,160,.55); box-shadow: inset 0 0 0 2px var(--ok); } }
+body[data-turn="listen"] .carte, body[data-turn="wait"] .carte { pointer-events: none; }
+
+/* l'horloge de la gare : on fait tourner les aiguilles (glisser), ou flèches du clavier */
+.horloge { width: fit-content; margin: 0 auto; border-radius: 50%; touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none; outline: none; }
+.horloge svg { width: 290px; height: 290px; }
+.horloge:focus-visible { box-shadow: 0 0 0 3px #fff; }
+.horloge.tire { cursor: grabbing; }
+.horloge .chiffres text { font-family: var(--font); font-size: 26px; font-weight: 800; text-anchor: middle; dominant-baseline: central; }
+.horloge .aig { transform-origin: 150px 150px; transition: transform .6s var(--apple); }
+.horloge.tire .aig { transition: none; }
+.horloge .cadran { transition: stroke .3s; }
+.horloge.faux .cadran { stroke: var(--try); }
+.horloge.juste .cadran { stroke: var(--ok); }
+.hlu { margin: 0; display: flex; align-items: baseline; justify-content: center; gap: 10px; font-weight: 700; font-size: 17px; color: var(--text2); }
+.hlu b { min-width: 3.4ch; font-size: 34px; font-weight: 800; letter-spacing: -.01em; color: #fff; font-variant-numeric: tabular-nums; }
+.hlu.juste b { color: var(--ok); }
+.hlu.juste b::after { content: " ✓"; font-size: 26px; }
+body[data-turn="listen"] .horloge, body[data-turn="wait"] .horloge { pointer-events: none; }
+
+/* téléphone tenu droit, téléphone couché : plus petit */
+body.tall .carte { width: min(100%, 300px); margin: 0 auto; }
+body.tall .horloge svg { width: 200px; height: 200px; }
+body.compact .carte { width: min(100%, 236px); }
+body.compact .horloge svg { width: 168px; height: 168px; }
+body.compact .hlu b { font-size: 26px; }
+body.short .horloge svg { width: 150px; height: 150px; }
+body.short .hlu { font-size: 14px; } body.short .hlu b { font-size: 24px; }
+body.short .ville .nomv { height: 26px; padding: 0 8px; font-size: 12px; left: 28px; }
+body.short .ville[data-cote="g"] .nomv { left: auto; right: 28px; }
+body.short .ville[data-cote="bg"] .nomv { left: auto; right: 8px; top: 33px; }

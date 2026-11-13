@@ -1,0 +1,100 @@
+/* ================= l'hôtel : la fiche de réservation, l'ascenseur ================= */
+.h-panel { gap: 14px; }
+
+/* la fiche (papier) : le nom, les nuits */
+.h-fiche { display: flex; flex-direction: column; padding: 4px 18px; border-radius: 22px; background: #FBF8F1; color: var(--ink); }
+.h-ligne { display: grid; grid-template-columns: 70px minmax(0, 1fr); align-items: center; gap: 10px; min-height: 78px; }
+.h-ligne + .h-ligne { border-top: 2px dashed rgba(11,13,22,.14); }
+.h-lbl { font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: rgba(11,13,22,.55); }
+.h-champ { display: flex; align-items: center; gap: 10px; height: 50px; border-bottom: 2px solid rgba(11,13,22,.22); }
+.h-vide { display: grid; place-items: center; width: 28px; height: 28px; color: rgba(11,13,22,.32); animation: h-ecrire 1.6s var(--apple) infinite; }
+.h-vide svg { width: 22px; height: 22px; }
+@keyframes h-ecrire { 50% { transform: translateX(6px) rotate(-6deg); } }
+.h-ecrit { font-size: 30px; font-weight: 800; letter-spacing: -.01em; color: #2346C8; animation: pop .45s var(--spring) both; }
+.h-ok { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--ok); color: var(--ink); animation: pop .45s .15s var(--spring) both; }
+.h-ok svg { width: 18px; height: 18px; }
+
+.h-nuits { display: flex; flex-direction: column; gap: 6px; padding: 12px 0 10px; }
+.h-lunes { display: flex; gap: 8px; }
+.h-lune { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 16px; background: #ECEEF4; transition: background .25s, transform .3s var(--spring), box-shadow .25s, opacity .3s; }
+.h-lune svg { width: 34px; height: 34px; }
+.h-lune .croissant { fill: #C3C8D6; transition: fill .25s; }
+.h-lune .etoile { fill: transparent; transition: fill .25s; }
+.h-lune:disabled { opacity: .4; cursor: default; }
+.h-ln.actif .h-lune:not(.on) { box-shadow: inset 0 0 0 2px rgba(34,48,106,.28); }
+.h-lune:not(:disabled):hover { transform: translateY(-2px); }
+.h-lune:not(:disabled):active { transform: scale(.9); }
+.h-lune.on { background: #22306A; }
+.h-lune.on .croissant { fill: #FFE08A; }
+.h-lune.on .etoile { fill: #FFF3C4; }
+.h-ln.actif .h-lune.juste { box-shadow: 0 0 0 3px var(--ok); }
+.h-ln.actif .h-lune.faux { box-shadow: 0 0 0 3px var(--try); }
+.h-total { min-height: 24px; font-weight: 800; font-size: 19px; color: var(--ink); }
+.h-ln.juste .h-total::after { content: " ✓"; color: #0E9E74; }
+
+/* les réservations du jour : quatre noms qui se ressemblent */
+.h-resa { display: flex; flex-direction: column; gap: 10px; max-height: 240px; overflow: hidden; transition: max-height .6s var(--apple), opacity .35s, margin .6s var(--apple); }
+.h-resa.fini { max-height: 0; opacity: 0; margin-top: -14px; }
+.h-noms { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 4px; }
+.h-nom { height: 62px; border-radius: 18px; background: rgba(255,255,255,.95); color: var(--ink); font-weight: 800; font-size: 21px; letter-spacing: -.01em; transition: transform .35s var(--spring), box-shadow .3s; }
+.h-nom:hover { transform: translateY(-2px); }
+.h-nom:active { transform: scale(.95); }
+.h-nom.juste { box-shadow: 0 0 0 3px var(--ok); }
+.h-nom.faux { box-shadow: 0 0 0 3px var(--try); }
+.h-nom.indice { animation: indice 1.1s var(--apple) infinite; }
+.h-vol { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 18px; background: #fff; color: #2346C8; font-weight: 800; font-size: 21px; }
+
+/* l'ascenseur : l'immeuble (la cabine monte), la plaque des boutons */
+.h-asc { display: grid; grid-template-columns: minmax(0, 1fr) 112px; gap: 14px; align-items: stretch; }
+.h-cage { position: relative; display: grid; grid-template-rows: repeat(5, 1fr); min-height: 330px; border-radius: 20px; background: rgba(0,0,0,.2); overflow: hidden; }
+.h-niv { position: relative; display: grid; grid-template-columns: 52px 66px minmax(0, 1fr); align-items: center; transition: background .3s; }
+.h-niv + .h-niv { border-top: 2px solid rgba(255,255,255,.12); }
+.h-et { text-align: center; font-weight: 800; font-size: 17px; color: var(--text2); transition: color .3s; }
+.h-puits { align-self: stretch; background: rgba(255,255,255,.06); border-left: 2px solid rgba(255,255,255,.18); border-right: 2px solid rgba(255,255,255,.18); }
+.h-couloir { display: flex; gap: 10px; align-self: end; padding-left: 12px; }
+.h-couloir i { width: 20px; height: 38px; border-radius: 5px 5px 0 0; background: radial-gradient(circle at 74% 56%, rgba(255,255,255,.7) 0 1.6px, transparent 2.2px), rgba(255,255,255,.15); }
+.h-dit { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); padding: 6px 11px; border-radius: 99px; font-weight: 800; font-size: 14px; white-space: nowrap; animation: pop .45s var(--spring) both; }
+.h-dit:empty { display: none; }
+.h-niv.juste { background: rgba(75,227,180,.2); }
+.h-niv.juste .h-et, .h-niv.faux .h-et { color: #fff; }
+.h-niv.juste .h-dit { background: var(--ok); color: var(--ink); }
+.h-niv.faux { background: rgba(255,170,40,.18); }
+.h-niv.faux .h-dit { background: var(--try); color: var(--ink); }
+.h-cabine { position: absolute; left: 52px; bottom: 0; width: 66px; height: 20%; transform: translateY(calc(var(--k) * -100%)); transition: transform .62s var(--apple); pointer-events: none; }
+.h-boite { position: absolute; inset: 6px 7px; border-radius: 9px; overflow: hidden; background: #F3E6C8; box-shadow: inset 0 0 0 2px rgba(255,255,255,.7); }
+.h-dedans { position: absolute; left: 50%; bottom: 0; width: 32px; height: 42px; transform: translateX(-50%); }
+.h-dedans svg { width: 100%; height: 100%; }
+.h-pg, .h-pd { position: absolute; top: 0; bottom: 0; width: 50%; background: linear-gradient(90deg, #B8C0CB, #D5DAE1); transition: width .45s var(--apple); }
+.h-pg { left: 0; box-shadow: inset -1px 0 0 rgba(11,13,22,.3); }
+.h-pd { right: 0; box-shadow: inset 1px 0 0 rgba(11,13,22,.3); }
+.h-cabine.ouverte .h-pg, .h-cabine.ouverte .h-pd { width: 3px; }
+
+.h-plaque { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 12px 10px; border-radius: 22px; background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 1px rgba(255,255,255,.16); }
+.h-ecran { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; height: 52px; border-radius: 12px; background: #0B0D16; color: #FFC76B; font-variant-numeric: tabular-nums; }
+.h-ecran b { font-size: 30px; font-weight: 800; line-height: 1; }
+.h-fl { position: absolute; left: 12px; top: 50%; width: 14px; height: 14px; margin-top: -7px; opacity: 0; transition: opacity .2s, transform .2s; }
+.h-fl svg { width: 100%; height: 100%; }
+.h-ecran.bouge .h-fl { opacity: 1; }
+.h-ecran.bas .h-fl { transform: rotate(180deg); }
+.h-boutons { display: flex; flex-direction: column; gap: 9px; }
+.h-bouton { width: 56px; height: 56px; border-radius: 50%; font-size: 23px; font-weight: 800; background: rgba(255,255,255,.14); box-shadow: inset 0 0 0 2px rgba(255,255,255,.35); transition: background .2s, color .2s, box-shadow .2s, transform .3s var(--spring); }
+.h-bouton:hover { background: rgba(255,255,255,.24); }
+.h-bouton:active { transform: scale(.9); }
+.h-bouton.choisi { background: #fff; color: var(--ink); box-shadow: 0 0 0 4px rgba(255,255,255,.3); }
+.h-bouton.juste { background: var(--ok); color: var(--ink); box-shadow: none; }
+.h-bouton.faux { background: var(--try); color: var(--ink); box-shadow: none; }
+.h-bouton.indice { animation: indiceF 1.1s var(--apple) infinite; }
+
+/* téléphone tenu droit (le panneau sous la vidéo), téléphone couché (panneau étroit) */
+body.tall .h-ligne { min-height: 60px; }
+body.tall .h-ecrit { font-size: 24px; }
+body.tall .h-lune { width: 44px; height: 44px; border-radius: 13px; } body.tall .h-lune svg { width: 28px; height: 28px; }
+body.tall .h-nom { height: 50px; font-size: 18px; }
+body.tall .h-cage { min-height: 0; }
+body.tall .h-bouton { width: 44px; height: 44px; font-size: 19px; } body.tall .h-boutons { gap: 6px; } body.tall .h-ecran { height: 42px; }
+body.short .h-ligne { grid-template-columns: 1fr; gap: 2px; min-height: 0; padding: 6px 0; }
+body.short .h-lune { width: 34px; height: 34px; border-radius: 10px; } body.short .h-lune svg { width: 22px; height: 22px; } body.short .h-lunes { gap: 5px; }
+body.short .h-nom { height: 44px; font-size: 16px; }
+body.short .h-asc { grid-template-columns: 1fr; } body.short .h-cage { display: none; }
+body.short .h-boutons { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+body.short .h-bouton { width: 44px; height: 44px; font-size: 18px; }

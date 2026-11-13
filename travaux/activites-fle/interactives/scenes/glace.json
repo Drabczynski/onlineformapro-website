@@ -1,0 +1,15 @@
+{
+  "video": "glace", "titre": "La glace", "niveau": "A1", "gel": 1.5,
+  "sousTitres": [
+    {"d": 0.34, "f": 1.84, "qui": "Le vendeur", "texte": "Bonjour, qu'est-ce que je vous sers ?"},
+    {"d": 2.68, "f": 4.9, "qui": "La cliente", "texte": "Deux boules, s'il vous plaît. Vanille et chocolat."},
+    {"d": 5.48, "f": 6.32, "qui": "Le vendeur", "texte": "En cornet ou en pot ?"},
+    {"d": 7.18, "f": 7.74, "qui": "La cliente", "texte": "En cornet."}
+  ],
+  "people": {
+    "vendeur": {"name": "Le vendeur", "qui": "Le vendeur", "side": "g", "spot": [26, 50, 13, 60], "anchor": [24, 44], "crop": [21, 8, 14, 25], "portrait": [6.5, [23, 4, 34, 60.5]]},
+    "cliente": {"name": "La cliente", "qui": "La cliente", "side": "d", "spot": [76, 52, 13, 60], "anchor": [78, 46], "crop": [66, 12, 14, 25], "portrait": [3.55, [39, 2, 34, 60.5]]}
+  },
+  "consignes": ["Écoute bien.", "Dans la boutique, clique sur ce qu'elle choisit.", "Écoute la cliente.", "Prépare sa glace : fais glisser les boules sur le cornet.",
+                "Miam ! Voilà sa glace : vanille et chocolat, en cornet."]
+}

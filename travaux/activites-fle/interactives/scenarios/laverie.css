@@ -1,0 +1,51 @@
+/* ================= la laverie : la machine dessinée (l'écran compte les pièces), le porte-monnaie ================= */
+.lav .lm { border-radius: 24px; padding: 12px; display: flex; flex-direction: column; gap: 10px; color: var(--ink);
+  background: linear-gradient(180deg, #EEF1F4, #C7CDD4); transition: transform .3s var(--spring); }
+.lav .lm-haut { display: grid; grid-template-columns: 58px 1fr 60px; gap: 10px; align-items: center; padding: 10px; border-radius: 16px;
+  background: linear-gradient(180deg, #D9DEE4, #BAC1C9); }
+/* le bac à lessive, en haut à gauche (comme sur les vraies machines) */
+.lav .lm-bac { position: relative; height: 34px; border-radius: 8px; background: linear-gradient(180deg, #F7F8FA, #D3D8DE); box-shadow: inset 0 0 0 1.5px rgba(11,13,22,.16); }
+.lav .lm-bac::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: 7px; height: 5px; border-radius: 3px; background: rgba(11,13,22,.32); }
+/* le petit écran : il compte ce qu'on a mis */
+.lav .lm-ecran { height: 62px; border-radius: 12px; background: #0F1B26; color: #CFEAFF; display: flex; align-items: center; justify-content: center; gap: 6px;
+  font-variant-numeric: tabular-nums; box-shadow: inset 0 0 0 2px rgba(255,255,255,.08); transition: box-shadow .3s, color .3s; }
+.lav .lm-ecran b { font-size: 36px; font-weight: 800; letter-spacing: .02em; line-height: 1; }
+.lav .lm-ecran small { font-size: 18px; font-weight: 700; opacity: .8; }
+.lav .lm-ecran.compte b { animation: lm-compte .35s var(--spring); }
+@keyframes lm-compte { 40% { transform: scale(1.12); } }
+.lav .lm-ecran.juste { box-shadow: inset 0 0 0 3px var(--ok); color: var(--ok); }
+.lav .lm-ecran.faux { box-shadow: inset 0 0 0 3px var(--try); color: var(--try); }
+/* la fente à pièces */
+.lav .lm-fente { width: 60px; height: 62px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  background: linear-gradient(180deg, #8E96A0, #636B75); transition: box-shadow .2s, transform .2s var(--spring); }
+.lav .lm-fente i { width: 8px; height: 32px; border-radius: 4px; background: #10141B; box-shadow: inset 0 2px 3px rgba(0,0,0,.6); }
+.lav .lm-fente small { font-size: 12px; font-weight: 800; color: rgba(255,255,255,.85); line-height: 1; }
+.lav .lm-fente.vise { box-shadow: 0 0 0 3px #fff; transform: scale(1.08); }
+/* le hublot ; le linge tourne quand la machine démarre */
+.lav .lm-bas { position: relative; height: 170px; display: grid; place-items: center; }
+.lav .lm-hublot { width: 156px; height: 156px; }
+.lav .lm-hublot svg { width: 100%; height: 100%; }
+.lav .lm-linge { transform-origin: 80px 80px; }
+.lav .lm-hublot.tourne .lm-linge { animation: lm-tourne 1.1s linear infinite; }
+@keyframes lm-tourne { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .lav .lm-hublot.tourne .lm-linge { animation: none; } }
+.lav .lm-rendre { position: absolute; right: 4px; bottom: 4px; min-height: 44px; padding: 0 14px 0 11px; border-radius: 99px; display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(11,13,22,.08); color: var(--ink); font-weight: 700; font-size: 14px; box-shadow: inset 0 0 0 1.5px rgba(11,13,22,.16); }
+.lav .lm-rendre svg { width: 16px; height: 16px; }
+.lav .lm-rendre:active { transform: scale(.94); }
+/* le porte-monnaie : on fait glisser une pièce jusqu'à la fente (ou on clique dessus) */
+.lav .lm-bourse { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; padding: 12px; border-radius: 22px; background: rgba(0,0,0,.2); min-height: 76px; }
+.lav .lm-bourse .argent { touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none; }
+.lav .lm-bourse .argent.pris { visibility: hidden; }
+.argent.piece.un { background: radial-gradient(circle at 50% 50%, #EDEFF2 0 41%, #F2C94C 43% 100%); }
+.lm-vol { display: grid; place-items: center; z-index: 60; }
+.lm-vol .argent { width: 52px; height: 52px; }
+body[data-turn="listen"] .lm-bourse, body[data-turn="wait"] .lm-bourse { pointer-events: none; }
+body.short .lav .lm-haut { grid-template-columns: 1fr 52px; } body.short .lav .lm-bac { display: none; }
+body.short .lav .lm-ecran b { font-size: 26px; } body.short .lav .lm-bas { height: 120px; } body.short .lav .lm-hublot { width: 110px; height: 110px; }
+body.short .lav .lm-rendre span { display: none; }
+body.compact .lav .lm-bas { height: 130px; } body.compact .lav .lm-hublot { width: 120px; height: 120px; }
+body.tall .lav .lm-bas { height: 118px; } body.tall .lav .lm-hublot { width: 108px; height: 108px; }
+body.tall .lav .lm-ecran { height: 52px; } body.tall .lav .lm-ecran b { font-size: 30px; } body.tall .lav .lm-fente { height: 52px; }
+body.tall .lav .lm-bourse { gap: 6px; padding: 10px; min-height: 66px; }
+body.tall .lav .lm-bourse .argent, body.tall .lm-vol .argent { width: 46px; height: 46px; font-size: 14px; }

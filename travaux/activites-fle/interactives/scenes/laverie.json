@@ -1,0 +1,15 @@
+{
+  "video": "laverie", "titre": "À la laverie", "niveau": "A1", "gel": 1.9,
+  "sousTitres": [
+    {"d": 0.32, "f": 1.92, "qui": "Le jeune homme", "texte": "Excusez-moi madame, comment ça marche ?"},
+    {"d": 2.34, "f": 4.68, "qui": "La dame", "texte": "Le linge ici dans le grand tambour et la lessive en haut."},
+    {"d": 4.82, "f": 5.16, "qui": "Le jeune homme", "texte": "C'est combien ?"},
+    {"d": 5.64, "f": 8.04, "qui": "La dame", "texte": "Quatre euros. Vous pouvez mettre les pièces directement dans la machine."}
+  ],
+  "people": {
+    "homme": {"name": "Le jeune homme", "qui": "Le jeune homme", "side": "g", "spot": [37, 52, 12, 60], "anchor": [37, 44], "crop": [32, 14, 12, 21], "portrait": [4.8, [16.5, 2, 32, 57]]},
+    "dame": {"name": "La dame", "qui": "La dame", "side": "d", "spot": [68, 55, 12, 60], "anchor": [68, 48], "crop": [61.5, 19.5, 12, 21], "portrait": [6.6, [49, 4, 31.25, 55.5]]}
+  },
+  "consignes": ["Écoute la dame.", "Où va le linge ? Clique au bon endroit.", "Et la lessive ? Clique au bon endroit.", "Écoute encore la dame.",
+                "Glisse les pièces dans la machine, puis clique sur démarrer.", "Bravo ! Le jeune homme peut laver son linge."]
+}

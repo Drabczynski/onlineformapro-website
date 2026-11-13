@@ -1,0 +1,65 @@
+/* ================= le forfait : l'affiche à compléter, la carte du réseau ================= */
+/* l'affiche : le prix est écrit, on pose les étiquettes dans les cases (les gigas, « par … ») */
+.affiche { background: #fff; color: var(--ink); border-radius: 22px; overflow: hidden; }
+.aff-tete { display: flex; align-items: center; justify-content: center; gap: 9px; padding: 11px 16px; background: var(--g-d); color: #fff; font-weight: 800; font-size: 15px; letter-spacing: .06em; text-transform: uppercase; }
+.aff-tete .barres { width: 17px; height: 15px; fill: currentColor; }
+.aff-corps { display: grid; justify-items: center; gap: 14px; padding: 20px 16px 22px; }
+.aff-go { display: flex; align-items: center; gap: 12px; font-size: 46px; font-weight: 800; letter-spacing: -.02em; line-height: 1; }
+.aff-go .unite { display: grid; justify-items: start; }
+.aff-go .unite small { font-size: 14px; font-weight: 700; letter-spacing: .02em; color: rgba(11,13,22,.55); margin-top: 3px; }
+.aff-prix { display: flex; align-items: center; gap: 10px; font-size: 22px; font-weight: 700; line-height: 1; }
+.aff-prix b { font-size: 32px; font-weight: 800; letter-spacing: -.02em; }
+.aff-prix .par { color: rgba(11,13,22,.6); }
+.case { min-width: 96px; height: 68px; padding: 0 12px; border-radius: 16px; border: 2.5px dashed rgba(11,13,22,.32); display: grid; place-items: center; color: var(--ink); font-weight: 800; font-size: 44px; letter-spacing: -.02em;
+  transition: background .25s, border-color .25s, box-shadow .25s, transform .3s var(--spring); }
+.case.mot { min-width: 140px; height: 52px; font-size: 24px; letter-spacing: 0; }
+.case .vide { color: rgba(11,13,22,.3); font-size: 34px; }
+.case.mot .vide { font-size: 26px; }
+.case .val { animation: pop .45s var(--spring) both; }
+.case.pleine { border-style: solid; border-color: rgba(11,13,22,.14); background: #EEF0F6; }
+.case:active { transform: scale(.95); }
+.case.juste { border-color: transparent; background: #D9F8EE; box-shadow: 0 0 0 3px var(--ok); }
+.case.faux { border-color: transparent; background: #FFF0D4; box-shadow: 0 0 0 3px var(--try); }
+.etiquettes { display: grid; gap: 10px; padding-top: 2px; }
+.etiquettes .rang { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+.etiq { min-width: 66px; height: 52px; padding: 0 14px; border-radius: 14px; background: rgba(255,255,255,.95); color: var(--ink); font-weight: 800; font-size: 22px; letter-spacing: -.01em;
+  box-shadow: inset 0 -3px 0 rgba(11,13,22,.12); transition: transform .3s var(--spring), opacity .3s; touch-action: manipulation; }
+.etiq.mot { min-width: 100px; font-size: 18px; letter-spacing: 0; }
+.etiq:hover { transform: translateY(-2px); }
+.etiq:active { transform: scale(.93); }
+.etiq.pris { opacity: .22; transform: scale(.92); }
+.etiq-vol { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 14px; background: #fff; color: var(--ink); font-weight: 800; font-size: 22px; }
+.etiq-vol.mot { font-size: 18px; }
+
+/* la carte du réseau : on clique sur une zone pour l'allumer (blanc), encore pour l'éteindre */
+.carte { position: relative; width: min(100%, calc((100vh - 230px) * 400 / 430)); aspect-ratio: 400 / 430; margin: 0 auto; border-radius: 22px; overflow: hidden; background: #16304C; }
+.carte svg { width: 100%; height: 100%; }
+.carte .mer { fill: #16304C; }
+.carte .decor { fill: rgba(255,255,255,.13); pointer-events: none; }
+.carte .lien { fill: none; stroke: rgba(255,255,255,.7); stroke-width: 1.4; stroke-linecap: round; pointer-events: none; }
+.carte .pays { fill: #8695AE; stroke: #16304C; stroke-width: .9; stroke-linejoin: round; cursor: pointer; transition: fill .25s; }
+.carte .pays.elargi { fill: transparent !important; stroke: transparent !important; stroke-width: 9; pointer-events: all; }
+@media (hover: hover) { .carte .pays:not(.on):not(.elargi):hover { fill: #A3B0C5; } }
+.carte .pays[data-z="france"], .carte .pays[data-z="congo"] { stroke: rgba(255,255,255,.85); stroke-width: 1.1; }
+.carte .pays.on { fill: #fff; }
+.carte .pays.on[data-z="france"], .carte .pays.on[data-z="congo"], .carte .pays.juste[data-z="france"], .carte .pays.faux[data-z="congo"] { stroke: #16304C; }
+.carte .pays.juste { fill: var(--ok); }
+.carte .pays.faux { fill: var(--try); }
+.pastille { position: absolute; z-index: 3; transform: translate(-50%, -50%); height: 34px; padding: 0 13px; border-radius: 99px; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+  background: rgba(11,13,22,.78); color: #fff; font-weight: 800; font-size: 14px; letter-spacing: .01em; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.35); transition: background .25s, color .25s, transform .3s var(--spring); }
+.pastille::after { content: ""; position: absolute; inset: -5px -2px; }
+.pastille:active { transform: translate(-50%, -50%) scale(.93); }
+.pastille.bord { box-shadow: none; border: 1.5px dashed rgba(255,255,255,.6); padding: 0 11px; }
+.pastille .dir { width: 12px; height: 12px; }
+.pastille .barres { display: none; width: 15px; height: 13px; fill: currentColor; }
+.pastille.on, .pastille.juste, .pastille.faux { color: var(--ink); }
+.pastille.on .barres, .pastille.juste .barres { display: block; }
+.pastille.on { background: #fff; }
+.pastille.juste { background: var(--ok); }
+.pastille.faux { background: var(--try); }
+.pastille.on.bord, .pastille.juste.bord, .pastille.faux.bord { border-color: transparent; }
+
+body[data-turn="listen"] .etiquettes, body[data-turn="wait"] .etiquettes, body[data-turn="listen"] .affiche, body[data-turn="wait"] .affiche,
+body[data-turn="listen"] .carte, body[data-turn="wait"] .carte { pointer-events: none; }
+body.tall .aff-go { font-size: 36px; } body.tall .case { height: 56px; font-size: 36px; } body.tall .case.mot { height: 46px; font-size: 20px; }
+body.tall .carte { width: min(100%, 300px); }

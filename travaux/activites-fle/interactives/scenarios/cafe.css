@@ -1,0 +1,53 @@
+/* ================= Café ou thé ? : préparer la tasse de l'homme ================= */
+.cafe .boissons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.cafe .boisson { height: 132px; touch-action: none; user-select: none; -webkit-user-select: none; cursor: grab; }
+.cafe .boisson .pic { width: 80px; height: 80px; }
+.cafe .boisson .pic svg { width: 76px; height: 76px; }
+.cafe .boisson[disabled] { cursor: default; }
+.cafe .boisson .nom { font-size: 15px; }
+.cafe .tenu { z-index: 20; cursor: grabbing; transition: none !important; }
+.cafe > :has(.tenu) { z-index: 5; }                /* ce qu'on glisse passe devant la tasse */
+.cafe .legende { font-weight: 700; font-size: 14px; color: var(--text2); text-align: center; line-height: 1.15; }
+
+/* la tasse, sur le comptoir : de l'eau chaude, puis du thé */
+.cafe .comptoir { border-radius: 22px; background: rgba(0,0,0,.2); padding: 14px 12px 12px; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: background .3s, box-shadow .3s; }
+.cafe .comptoir .tasse { width: 200px; }
+.cafe .tasse { display: block; }
+.cafe .tasse svg { width: 100%; height: auto; }
+.cafe .liquide { fill: #CFE2EA; transition: fill 1.4s ease; }
+.cafe .the .liquide { fill: #B26F2A; }
+.cafe .sachet { opacity: 0; transition: opacity .5s; }
+.cafe .the .sachet { opacity: 1; }
+.cafe .vapeur path { animation: cafe-vapeur 2.6s ease-in-out infinite; }
+.cafe .vapeur path:nth-child(2) { animation-delay: .5s; } .cafe .vapeur path:nth-child(3) { animation-delay: 1s; }
+@keyframes cafe-vapeur { 0%, 100% { opacity: .25; transform: translateY(3px); } 50% { opacity: .9; transform: translateY(-3px); } }
+@media (prefers-reduced-motion: reduce) { .cafe .vapeur path { animation: none; } }
+
+/* « chaud » : on survole la cible en glissant (blanc) ; juste (vert) ; à revoir (orange) — jamais de rouge */
+.cafe .chaud { background: rgba(255,255,255,.16) !important; box-shadow: inset 0 0 0 2px rgba(255,255,255,.85) !important; }
+.cafe .comptoir.juste, .cafe .poste.juste .cible { box-shadow: inset 0 0 0 3px var(--ok); }
+.cafe .comptoir.juste .legende, .cafe .poste.juste .legende { color: var(--ok); }
+.cafe .poste.faux .cible { box-shadow: inset 0 0 0 3px var(--try); }
+.cafe .poste.faux .legende { color: var(--try); }
+
+/* le sucre : la soucoupe (deux sucres), le sucrier, la tasse */
+.cafe .table { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.cafe .poste { position: relative; }
+.cafe .poste .cible { width: 100%; border-radius: 22px; background: rgba(0,0,0,.2); padding: 10px 10px 10px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 4px; transition: background .3s, box-shadow .3s; }
+.cafe .table .cible { height: 212px; }
+.cafe .table .cible svg, .cafe .table .cible .tasse { width: 178px; max-width: 100%; }
+.cafe .poste[data-ou="soucoupe"] .cible { height: 104px; }
+.cafe .poste[data-ou="soucoupe"] .cible svg { width: 170px; }
+.cafe .places { position: absolute; left: 0; right: 0; display: flex; justify-content: center; gap: 4px; pointer-events: none; }
+.cafe .poste[data-ou="soucoupe"] .places { top: 8px; gap: 10px; }
+.cafe .poste[data-ou="sucrier"] .places { top: 70px; padding-right: 8px; }
+.cafe .poste[data-ou="tasse"] .places { top: 54px; padding-right: 14px; }
+.cafe .sucre { pointer-events: auto; width: 52px; height: 52px; display: grid; place-items: center; border-radius: 14px; touch-action: none; user-select: none; -webkit-user-select: none; cursor: grab; transition: box-shadow .2s; }
+.cafe .sucre svg { width: 46px; height: 46px; }
+.cafe .sucre[aria-pressed="true"] { box-shadow: 0 0 0 3px #fff; background: rgba(255,255,255,.14); }
+.cafe .poste[data-ou="tasse"] .sucre svg, .cafe .poste[data-ou="sucrier"] .sucre svg { width: 36px; height: 36px; }
+.cafe .sucre[disabled], .cafe .cible[disabled] { cursor: default; }
+body[data-turn="listen"] .cafe .sucre, body[data-turn="wait"] .cafe .sucre { pointer-events: none; }
+body.tall .cafe .boisson { height: 96px; } body.tall .cafe .boisson .pic { width: 46px; height: 46px; } body.tall .cafe .boisson .pic svg { width: 42px; height: 42px; }
+body.tall .cafe .comptoir .tasse { width: 150px; } body.tall .cafe .table .cible { height: 170px; } body.tall .cafe .table .cible svg, body.tall .cafe .table .cible .tasse { width: 140px; }
+body.tall .cafe .poste[data-ou="sucrier"] .places { top: 30px; } body.tall .cafe .poste[data-ou="tasse"] .places { top: 40px; }

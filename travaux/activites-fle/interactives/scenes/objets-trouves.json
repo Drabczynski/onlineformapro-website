@@ -1,0 +1,18 @@
+{
+  "video": "objets-trouves", "titre": "Aux objets trouvés", "niveau": "A1", "gel": 6.94,
+  "sousTitres": [
+    {"d": 0.28, "f": 1.88, "qui": "La dame", "texte": "Bonjour, j'ai perdu mon sac dans le bus."},
+    {"d": 2.12, "f": 2.54, "qui": "L'agent", "texte": "Quel bus ?"},
+    {"d": 2.6, "f": 3.78, "qui": "La dame", "texte": "Le bus numéro douze ce matin."},
+    {"d": 4.06, "f": 5.16, "qui": "L'agent", "texte": "Il est de quelle couleur votre sac ?"},
+    {"d": 5.48, "f": 7.2, "qui": "La dame", "texte": "Il est noir avec une petite fleur rouge."},
+    {"d": 7.72, "f": 8.26, "qui": "L'agent", "texte": "C'est celui-ci ?"},
+    {"d": 8.68, "f": 9.82, "qui": "La dame", "texte": "Oui, merci beaucoup."}
+  ],
+  "people": {
+    "agent": {"name": "L'agent", "qui": "L'agent", "side": "g", "spot": [27, 50, 17, 62], "anchor": [27, 44], "crop": [19, 7, 14, 25], "portrait": [8.3, [17.5, 9, 14, 25]]},
+    "dame": {"name": "La dame", "qui": "La dame", "side": "d", "spot": [72, 55, 16, 62], "anchor": [72, 48], "crop": [63, 15, 14, 25], "portrait": [9.0, [61, 15, 14, 25]]}
+  },
+  "consignes": ["Écoute la dame.", "Elle a pris quel bus ? Clique sur les chiffres.", "Écoute encore la dame.", "Clique sur le sac de la dame.",
+                "Super ! La dame a retrouvé son sac."]
+}

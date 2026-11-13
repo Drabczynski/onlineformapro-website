@@ -1,0 +1,28 @@
+{
+  "video": "hotel-reservation", "titre": "À la réception de l'hôtel", "niveau": "A1", "gel": 9.5,
+  "sousTitres": [
+    {"d": 0.12, "f": 0.74, "qui": "La réceptionniste", "texte": "Bonjour monsieur."},
+    {"d": 0.84, "f": 1.18, "qui": "Le client", "texte": "Bonjour."},
+    {"d": 1.26, "f": 2.12, "qui": "La réceptionniste", "texte": "Vous avez une réservation ?"},
+    {"d": 2.38, "f": 3.94, "qui": "Le client", "texte": "Oui, j'ai une réservation au nom de Martin."},
+    {"d": 4.32, "f": 5.7, "qui": "La réceptionniste", "texte": "Très bien. Vous restez combien de nuits ?"},
+    {"d": 5.74, "f": 6.44, "qui": "Le client", "texte": "Je reste deux nuits."},
+    {"d": 6.52, "f": 8.4, "qui": "La réceptionniste", "texte": "Voici votre clé. Votre chambre est au deuxième étage."},
+    {"d": 8.6, "f": 9.82, "qui": "Le client", "texte": "Merci beaucoup. Parfait. Merci."}
+  ],
+  "people": {
+    "receptionniste": {"name": "La réceptionniste", "qui": "La réceptionniste", "side": "g", "spot": [20, 55, 15, 60], "anchor": [20, 60], "crop": [12.5, 13.5, 20, 35.5], "portrait": [1.5, [25, 1, 24, 43]]},
+    "client": {"name": "Le client", "qui": "Le client", "side": "d", "spot": [71, 55, 18, 62], "anchor": [73, 60], "crop": [58, 7, 20, 35.5], "portrait": [3.0, [52, 2, 26, 46]]}
+  },
+  "consignes": [
+    "Écoute le client.",
+    "La réservation est à quel nom ? Clique sur le bon nom.",
+    "Écoute encore le client.",
+    "Il reste combien de nuits ? Clique sur une lune pour chaque nuit.",
+    "Écoute la réceptionniste.",
+    "Où est la clé ? Clique dans l'image.",
+    "Écoute encore la réceptionniste.",
+    "La chambre est à quel étage ? Clique sur le bon bouton.",
+    "Bravo ! Monsieur Martin peut monter dans sa chambre."
+  ]
+}

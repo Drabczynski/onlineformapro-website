@@ -1,0 +1,47 @@
+/* L'ascenseur ne marche pas : le ciel de la journée (le soleil à faire glisser), l'affichette de la panne, le chemin tracé du doigt. */
+/* un appel : au bilan, l'image figée est le hall ; le gardien n'y est pas (il est dans sa loge), pas d'étiquette pour lui */
+.tag[data-p="gardien"] { display: none; }
+
+/* 2 · le ciel de la journée */
+.journee .ciel { width: 100%; height: auto; aspect-ratio: 460 / 200; border-radius: 22px; touch-action: none; cursor: grab; }
+.journee.tire .ciel { cursor: grabbing; }
+.journee .ciel .fond { opacity: 0; transition: opacity .5s; }
+.journee .ciel .fond.on { opacity: 1; }
+.moments { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.moment { min-height: 52px; border-radius: 14px; padding: 6px 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+  background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); transition: background .25s, color .25s, transform .3s var(--spring); }
+.moment b { font-size: 15px; font-weight: 800; letter-spacing: -.01em; white-space: nowrap; }
+.moment small { font-size: 12px; font-weight: 700; color: var(--text2); transition: color .25s; }
+.moment:active { transform: scale(.95); }
+.moment[aria-pressed="true"] { background: #fff; color: var(--ink); }
+.moment[aria-pressed="true"] small { color: rgba(11,13,22,.6); }
+.moment.juste { background: var(--ok); color: var(--ink); box-shadow: inset 0 0 0 2px #fff; }
+.moment.juste small { color: rgba(11,13,22,.7); }
+.moment.indice { animation: indiceF 1.1s var(--apple) infinite; }
+body[data-turn="listen"] .journee, body[data-turn="wait"] .journee { pointer-events: none; }
+
+/* l'affichette posée sur la porte de l'ascenseur */
+.affichette { margin: 2px 8px 2px; padding: 22px 18px 12px; border-radius: 6px; background: #FBF8EF; color: var(--ink); text-align: center; position: relative; }
+.affichette::before { content: ""; position: absolute; left: 50%; top: -8px; width: 74px; height: 20px; margin-left: -37px; background: rgba(255,236,170,.85); transform: rotate(-3deg); border-radius: 2px; }
+.affichette p { margin: 0; }
+.af-titre { font-size: 19px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: #C2410C; }
+.af-texte { margin-top: 6px !important; font-size: 17px; font-weight: 600; line-height: 1.5; }
+.trou { display: inline-block; min-width: 128px; padding: 0 6px; border-bottom: 2px dashed rgba(11,13,22,.45); color: #1D4ED8; font-weight: 800; transition: color .25s; }
+.trou.vide { color: rgba(11,13,22,.35); }
+.affichette.juste .trou { border-bottom: 3px solid #12A57B; color: #0F7B5C; }
+.af-sign { margin-top: 4px !important; font-size: 13px; font-weight: 700; color: rgba(11,13,22,.55); text-align: right !important; }
+
+/* 3 · le chemin tracé du doigt sur l'image */
+.cam.trace-on { touch-action: none; }
+.trace { left: 0; top: 0; width: 100%; height: 100%; z-index: 3; overflow: visible; }
+.trace polyline { fill: none; stroke: #fff; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 0.1 14; }
+.trace.juste polyline { stroke: var(--ok); }
+.trace.faux polyline { stroke: var(--try); }
+.trace.faux, .trace.perdu { animation: s-efface .5s 1s forwards; }
+
+body.tall .moments { grid-template-columns: repeat(2, 1fr); }
+body.tall .moment { min-height: 46px; flex-direction: row; gap: 8px; }
+body.tall .affichette { padding: 18px 14px 10px; }
+body.tall .af-titre { font-size: 16px; }
+body.tall .af-texte { font-size: 15px; }
+body.short .affichette { display: none; }

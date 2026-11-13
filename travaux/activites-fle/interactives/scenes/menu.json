@@ -1,0 +1,24 @@
+{
+  "video": "menu-du-jour", "titre": "Le menu du jour", "niveau": "A1", "gel": 9.3,
+  "sousTitres": [
+    {"d": 0.26, "f": 1.6, "qui": "Le serveur", "texte": "Bonjour monsieur, vous avez choisi quoi ?"},
+    {"d": 2.14, "f": 3.58, "qui": "Le client", "texte": "Je voudrais le menu du jour, s'il vous plaît."},
+    {"d": 3.8, "f": 4.44, "qui": "Le serveur", "texte": "Vous voulez une entrée ?"},
+    {"d": 4.92, "f": 5.98, "qui": "Le client", "texte": "Oui, une salade, s'il vous plaît."},
+    {"d": 6.42, "f": 7.58, "qui": "Le serveur", "texte": "Et comme plat principal ?"},
+    {"d": 7.62, "f": 8.82, "qui": "Le client", "texte": "Je prends le poulet avec du riz."}
+  ],
+  "people": {
+    "serveur": {"name": "Le serveur", "qui": "Le serveur", "side": "g", "spot": [43, 50, 16, 64], "anchor": [43, 62], "crop": [33, 7, 20, 35.5]},
+    "client": {"name": "Le client", "qui": "Le client", "side": "d", "spot": [91, 68, 10, 40], "anchor": [91, 62], "crop": [83, 46, 17, 30], "portrait": [2.6, [48, 6, 32, 57]]}
+  },
+  "consignes": [
+    "Écoute le client.",
+    "Dans le restaurant, clique sur ce qu'il choisit.",
+    "Écoute bien.",
+    "Il prend quelle entrée ? Clique sur l'ardoise.",
+    "Écoute la suite.",
+    "Et le plat ? Clique sur ce qu'il prend, puis sur valider.",
+    "Bon appétit ! Tu as compris toute la commande."
+  ]
+}

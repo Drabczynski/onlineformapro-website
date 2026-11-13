@@ -1,0 +1,16 @@
+{
+  "video": "cafe-the",
+  "gel": 1.5,
+  "people": {
+    "femme": {"name": "La femme", "qui": "La femme", "side": "g", "spot": [43, 55, 14, 62], "anchor": [44, 46], "crop": [37, 14, 14, 25], "portrait": [3.7, [26, 8, 36, 64]]},
+    "homme": {"name": "L'homme", "qui": "L'homme", "side": "d", "spot": [67, 52, 14, 64], "anchor": [68, 42], "crop": [57, 6, 14, 25], "portrait": [2.0, [40, 2, 36, 64]]}
+  },
+  "consignes": [
+    "La femme pose deux questions. Touche la vidéo à chaque question.",
+    "Écoute l'homme.",
+    "Qu'est-ce qu'il préfère ? Glisse-le dans sa tasse.",
+    "Écoute encore l'homme.",
+    "Il veut du sucre ? Glisse les sucres dans la tasse ou dans le sucrier, puis clique sur Servir.",
+    "Super ! Un thé sans sucre, comme il préfère."
+  ]
+}

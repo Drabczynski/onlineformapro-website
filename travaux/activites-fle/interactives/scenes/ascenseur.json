@@ -1,0 +1,22 @@
+{
+  "video": "ascenseur", "titre": "L'ascenseur ne marche pas", "niveau": "A1", "gel": 8.6,
+  "sousTitres": [
+    {"d": 0.22, "f": 0.82, "qui": "Le gardien", "texte": "Allô, oui ?"},
+    {"d": 1.24, "f": 3.92, "qui": "Madame Diallo", "texte": "Bonjour, c'est madame Diallo. L'ascenseur ne marche pas."},
+    {"d": 4.44, "f": 6.8, "qui": "Le gardien", "texte": "D'accord. Le technicien arrive cet après-midi."},
+    {"d": 7.7, "f": 8.88, "qui": "Madame Diallo", "texte": "Bon, je prends l'escalier."}
+  ],
+  "people": {
+    "gardien": {"name": "Le gardien", "qui": "Le gardien", "side": "g", "spot": [64, 40, 20, 60], "anchor": [80, 40], "crop": [51, 7, 25, 44.4], "portrait": [6.6, [51, 7, 25, 44.4]]},
+    "diallo": {"name": "Madame Diallo", "qui": "Madame Diallo", "side": "d", "spot": [48, 52, 14, 52], "anchor": [48, 64], "crop": [39.5, 7, 14, 25], "portrait": [1.0, [38.5, 6, 15, 26.7]]}
+  },
+  "consignes": [
+    "Écoute madame Diallo.",
+    "Qu'est-ce qui ne marche pas ? Clique dessus dans l'image.",
+    "Écoute le gardien.",
+    "Le technicien arrive quand ? Fais glisser le soleil.",
+    "Écoute encore madame Diallo.",
+    "Où va madame Diallo ? Fais glisser ton doigt pour montrer son chemin.",
+    "Bravo ! Madame Diallo prend l'escalier en attendant le technicien."
+  ]
+}
