@@ -10,7 +10,7 @@
 <meta name="theme-color" content="#f4efff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Figtree:wght@500;600;700;800&family=Caveat:wght@600;700&display=swap">
 <style>
 /* Activités FLE : la charte du premier positionnement (travaux/positionnement-fle), en plein écran.
    Fond uni violet → bleu ; tuiles hexagonales à plat, coins arrondis, face blanche lavande et tranche lavande ;
@@ -1065,26 +1065,31 @@ body[data-vue="menu"] .fond { background: #fff; }
 .md-carte small { color: var(--encre-douce); font: 500 14px/1.4 var(--texte); }
 @media (max-width: 560px) { .md-actions { grid-template-columns: 1fr; width: 100%; } }
 /* vidéos interactives : la liste des scènes */
-.vi-tete { display: grid; justify-items: center; gap: 12px; text-align: center; }
-.vi-tete h1 { margin: 0; font: 800 clamp(28px, 4vw, 40px)/1.1 var(--titre); letter-spacing: -.02em; text-wrap: balance; }
-.vi-tete p { margin: 0; max-width: 52ch; color: var(--encre-douce); font: 500 16px/1.5 var(--texte); text-wrap: balance; }
-.vi-liste { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; max-width: 1000px; }
-.vi-carte { position: relative; display: grid; grid-template-rows: auto 1fr; width: 300px; max-width: 100%; overflow: hidden; border: 1.5px solid #ece6fb; border-radius: 22px; background: #fff; color: var(--encre); text-decoration: none; transition: border-color .2s, background .2s, transform .3s; }
-.vi-carte:hover { border-color: var(--violet); background: #faf8ff; }
-.vi-carte:active { transform: scale(.98); }
-.vi-img { position: relative; display: block; aspect-ratio: 16 / 9; background: #ece6fb; overflow: hidden; }
-.vi-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s; }
-.vi-carte:hover .vi-img img { transform: scale(1.04); }
-.vi-lire { position: absolute; left: 50%; top: 50%; width: 54px; height: 54px; margin: -27px 0 0 -27px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.9); color: var(--violet); transition: transform .3s; }
+.vi-page { position: relative; isolation: isolate; overflow: hidden; align-items: center; justify-content: center; gap: clamp(24px, 4.5vh, 44px); min-height: 100%; padding: calc(72px + env(safe-area-inset-top, 0px)) clamp(16px, 4vw, 56px) calc(48px + env(safe-area-inset-bottom, 0px)); background: #0d0b12; color: #fff; font-family: "Figtree", system-ui, sans-serif; }
+.vi-fond { position: absolute; inset: -80px; z-index: -1; pointer-events: none; }
+.vi-fond img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; max-width: none; filter: blur(48px) saturate(1.3) brightness(.46); transform: scale(1.12); opacity: 0; transition: opacity 1s ease; }
+.vi-fond img.on { opacity: 1; }
+.vi-fond::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 70% at 50% 40%, rgba(13,11,18,0) 0%, rgba(13,11,18,.6) 100%); }
+.vi-titre { margin: 0; font: 800 clamp(24px, 3vw, 32px)/1.1 "Figtree", system-ui, sans-serif; letter-spacing: -.02em; text-align: center; }
+.vi-liste { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px 26px; width: 100%; max-width: 1140px; }
+.vi-carte { flex: 0 1 340px; display: flex; flex-direction: column; gap: 12px; min-width: 0; color: #fff; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+.vi-img { position: relative; display: block; aspect-ratio: 16 / 9; max-width: 100%; border-radius: 24px; overflow: hidden; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); transition: transform .5s cubic-bezier(.34,1.56,.64,1); }
+.vi-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .4s; filter: brightness(.92); }
+.vi-img::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px rgba(255,255,255,.16); pointer-events: none; }
+.vi-carte:hover .vi-img, .vi-carte:focus-visible .vi-img { transform: translateY(-4px); }
+.vi-carte:hover .vi-img img, .vi-carte:focus-visible .vi-img img { transform: scale(1.05); filter: brightness(1); }
+.vi-carte:active .vi-img { transform: scale(.97); }
+.vi-carte:focus-visible { outline: none; } .vi-carte:focus-visible .vi-img { box-shadow: 0 0 0 3px #fff; }
+.vi-lire { position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: rgba(255,255,255,.18); -webkit-backdrop-filter: blur(14px) saturate(1.6); backdrop-filter: blur(14px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.32); transition: transform .4s cubic-bezier(.34,1.56,.64,1), background .3s; }
 .vi-lire svg { width: 22px; height: 22px; margin-left: 3px; }
-.vi-carte:hover .vi-lire { transform: scale(1.1); }
-.vi-niv { position: absolute; top: 12px; left: 12px; padding: 5px 10px; border-radius: 999px; background: #fff; color: var(--violet); font: 800 13px/1 var(--titre); letter-spacing: .04em; }
-.vi-txt { display: grid; align-content: start; gap: 6px; padding: 16px 18px 18px; }
-.vi-txt b { font: 700 19px/1.2 var(--titre); }
-.vi-txt small { color: var(--encre-douce); font: 500 14px/1.4 var(--texte); }
-.vi-retour { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border: 1.5px solid #ece6fb; border-radius: 999px; background: #fff; color: var(--encre); font: 700 15px/1 var(--titre); }
-.vi-retour:hover { border-color: var(--violet); color: var(--violet); }
-.vi-retour svg { width: 16px; height: 16px; }
+.vi-carte:hover .vi-lire { transform: scale(1.1); background: rgba(255,255,255,.28); }
+.vi-niv { position: absolute; top: 12px; left: 12px; padding: 5px 9px; border-radius: 999px; color: #fff; background: rgba(0,0,0,.32); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); font: 700 12px/1 "Figtree", system-ui, sans-serif; letter-spacing: .05em; }
+.vi-nom { padding: 0 4px; font: 700 18px/1.25 "Figtree", system-ui, sans-serif; letter-spacing: -.01em; }
+.vi-retour { position: absolute; z-index: 2; left: max(14px, env(safe-area-inset-left)); top: calc(14px + env(safe-area-inset-top, 0px)); width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: rgba(255,255,255,.14); -webkit-backdrop-filter: blur(18px) saturate(1.6); backdrop-filter: blur(18px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.22); transition: transform .3s cubic-bezier(.34,1.56,.64,1), background .2s; }
+.vi-retour:hover { background: rgba(255,255,255,.22); }
+.vi-retour:active { transform: scale(.9); }
+.vi-retour svg { width: 20px; height: 20px; }
+@media (max-width: 560px) { .vi-page { padding-top: calc(72px + env(safe-area-inset-top, 0px)); } .vi-carte { flex-basis: 100%; } .vi-liste { gap: 24px; } }
 /* v15/v16 — vidéo : elle passe de bout en bout, puis la question au centre, plein écran, comme avant. « Revoir » (grand écran)
    passe en face à face : la vidéo en vignette à gauche, sur son image floutée sous le voile violet, la question à droite. */
 .fond-v, .voile-v { display: none; }
@@ -1548,22 +1553,27 @@ function ouvrir() {
 }
 // ---------------------------------------------------------------- vidéos interactives : la liste ; chaque scène est une page à part (interactives/)
 const VIDEOS_INTERACTIVES = [
-  { lien: "interactives/kenji/index.html", image: "interactives/kenji/poster.jpg", titre: "La colocation de Kenji", niveau: "A1", gestes: "Qui est qui, leur âge, ce qu'ils aiment." },
-  { lien: "interactives/epicerie.html", image: "medias/video/epicerie.jpg", titre: "À l'épicerie", niveau: "A1", gestes: "Remplir le sac de la cliente, puis payer avec des pièces et des billets." },
-  { lien: "interactives/pharmacie.html", image: "medias/video/pharmacie-chemin.jpg", titre: "Chercher la pharmacie", niveau: "A1", gestes: "Guider le monsieur sur le plan, puis trouver le bâtiment." },
-  { lien: "interactives/medecin.html", image: "medias/video/medecin-tete.jpg", titre: "Chez le médecin", niveau: "A1", gestes: "Montrer où elle a mal, remonter le calendrier, lire le thermomètre." },
-  { lien: "interactives/fleuriste.html", image: "medias/video/fleuriste.jpg", titre: "Chez le fleuriste", niveau: "A1", gestes: "Pour qui est le bouquet, puis cueillir les bonnes fleurs dans la boutique." },
+  { lien: "interactives/kenji/index.html", image: "interactives/kenji/poster.jpg", titre: "La colocation de Kenji", niveau: "A1" },
+  { lien: "interactives/epicerie.html", image: "medias/video/epicerie.jpg", titre: "À l'épicerie", niveau: "A1" },
+  { lien: "interactives/pharmacie.html", image: "medias/video/pharmacie-chemin.jpg", titre: "Chercher la pharmacie", niveau: "A1" },
+  { lien: "interactives/medecin.html", image: "medias/video/medecin-tete.jpg", titre: "Chez le médecin", niveau: "A1" },
+  { lien: "interactives/fleuriste.html", image: "medias/video/fleuriste.jpg", titre: "Chez le fleuriste", niveau: "A1" },
 ];
 function ouvrirVideos() {
   quitter(); etat.mode = null; majRevue(); majNiveau(null); document.body.dataset.vue = "menu"; delete document.body.dataset.type;
-  rendre(`<section class="scene menu-dev">
-    <div class="vi-tete"><p class="md-tit">Activités FLE · vidéos interactives</p><h1>Vidéos interactives</h1>
-      <p>On regarde la scène en entier. Puis on agit sur l'image pour montrer qu'on a compris : un geste différent pour chaque question.</p></div>
-    <div class="vi-liste">${VIDEOS_INTERACTIVES.map(v => `<a class="vi-carte" href="${v.lien}"><span class="vi-img"><img src="${v.image}" alt="" loading="lazy"><i class="vi-lire">${I.video}</i></span><span class="vi-niv">${v.niveau}</span>
-      <span class="vi-txt"><b>${echap(v.titre)}</b><small>${echap(v.gestes)}</small></span></a>`).join("")}</div>
-    <button class="vi-retour" type="button" id="vi-retour"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M11 6l-6 6 6 6"/></svg>Menu</button>
+  rendre(`<section class="scene vi-page">
+    <div class="vi-fond" aria-hidden="true"><img class="on" src="${VIDEOS_INTERACTIVES[0].image}" alt=""><img src="${VIDEOS_INTERACTIVES[0].image}" alt=""></div>
+    <button class="vi-retour" type="button" id="vi-retour" aria-label="Retour au menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></button>
+    <h1 class="vi-titre">Vidéos interactives</h1>
+    <div class="vi-liste">${VIDEOS_INTERACTIVES.map((v, k) => `<a class="vi-carte" href="${v.lien}" data-k="${k}"><span class="vi-img"><img src="${v.image}" alt="" loading="lazy"><i class="vi-lire">${I.video}</i><span class="vi-niv">${v.niveau}</span></span><span class="vi-nom">${echap(v.titre)}</span></a>`).join("")}</div>
   </section>`);
-  $$(".vi-carte").forEach(a => a.addEventListener("click", () => Son.joue("pop")));
+  /* le fond prend la vignette survolée, en fondu (deux images qui se relaient) */
+  const fonds = $$(".vi-fond img"); let haut = 0, courant = 0;
+  const fond = (k) => { if (k === courant) return; courant = k; const suiv = fonds[1 - haut]; suiv.src = VIDEOS_INTERACTIVES[k].image; suiv.classList.add("on"); fonds[haut].classList.remove("on"); haut = 1 - haut; };
+  $$(".vi-carte").forEach(a => {
+    a.addEventListener("pointerenter", () => fond(+a.dataset.k)); a.addEventListener("focus", () => fond(+a.dataset.k));
+    a.addEventListener("click", () => Son.joue("pop"));
+  });
   $("#vi-retour").onclick = () => { Son.joue("tap"); ouvrir(); };
 }
 function placerChemin() {
