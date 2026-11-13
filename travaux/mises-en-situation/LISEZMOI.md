@@ -10,10 +10,16 @@ Source : `source/Mises_en_situation_FLE_Niveau_A1.xlsx` (onglet « Mises en situ
 - **`A1/voix-seules/A1-sN.mp3`** : le même dialogue sans ambiance.
 - **`textes-A1.json`** : pour chaque son, les répliques dites, la voix de chaque rôle et la description de l'ambiance.
 
-Voix (ElevenLabs, modèle multilingue v2, débit 0,88 pour l'A1) : chaque rôle a une voix selon son genre (« Boulangère »,
-« Cliente », « Vendeuse »… sont des femmes) ; quand deux personnes du même genre se parlent, elles ont deux voix
-différentes. Femmes : Claire, Lucie ; hommes : Marcel, Thomas. (Emilie ajoutait des « euh », remplacée par Lucie.)
-Pause de 0,6 s entre deux répliques, 0,8 s de calme au début, 1 s à la fin.
+Voix : le dialogue est joué d'un seul coup par le modèle **v4** d'ElevenLabs (text-to-dialogue), ce qui donne le rythme
+d'une vraie conversation. Quatre **voix créées pour ce travail** avec l'outil de création de voix d'ElevenLabs (Française /
+Français de 35-40 ans, accent standard, ton naturel, micro proche, studio sec sans réverbération), choisies à l'écoute et
+enregistrées sur le compte sous « FLE situations - Femme 1 / Femme 2 / Homme 1 / Homme 2 ». Chaque rôle prend une voix
+selon son genre (« Boulangère », « Cliente », « Vendeuse »… sont des femmes) ; deux personnes du même genre ont deux voix
+différentes. 0,8 s de calme au début, 1 s à la fin.
+
+Premier essai abandonné : répliques générées une à une (modèle v2), ralenties et collées avec des blancs fixes — pas
+naturel ; et les voix de la bibliothèque sont des clones de comédiens enregistrés dans des conditions très variables
+(réverbération, micro lointain, ton radio).
 
 Vérification : les 10 premiers sons ont été retranscrits par la reconnaissance vocale ElevenLabs ; chaque réplique est
 dite telle qu'écrite.

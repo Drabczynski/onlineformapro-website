@@ -2,9 +2,11 @@
 
     python3 generer.py A1 1-10        → A1/A1-s1.mp3 … A1/A1-s10.mp3 (et A1/voix-seules/…)
 
-Chaque réplique est dite par une voix française (deux voix de femme, deux voix d'homme, attribuées selon le rôle :
-« Boulangère », « Cliente »… sont des femmes) ; une ambiance du lieu (bruitage ElevenLabs, sans voix ni musique) passe
-dessous, assez bas pour que les mots restent clairs. Un fichier déjà fait n'est pas refait tant que le texte ne change pas.
+Le dialogue est joué d'un seul coup par le modèle v4 d'ElevenLabs (text-to-dialogue : les deux personnes se répondent avec
+un rythme de vraie conversation), avec nos quatre voix créées pour ce travail (deux femmes, deux hommes, studio sec), attribuées
+selon le rôle (« Boulangère », « Cliente »… sont des femmes) ; une ambiance du lieu (bruitage ElevenLabs, sans voix ni
+musique) passe dessous, assez bas pour que les mots restent clairs. Un fichier déjà fait n'est pas refait tant que le texte
+ne change pas.
 """
 import hashlib, json, os, re, shutil, subprocess, sys, tempfile
 from concurrent.futures import ThreadPoolExecutor
@@ -12,13 +14,14 @@ import openpyxl
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 API = "https://api.elevenlabs.io/v1"
-MODELE = "eleven_multilingual_v2"
-DEBIT = {"A1": .88, "A2": .95, "B1": 1.0}
+MODELE = "eleven_v4"
 # deux voix par genre ; dans un dialogue, la première personne d'un genre prend la première voix, la deuxième l'autre
-VOIX = {"F": ["NEjemlRxgWmL5ZGJetsB",        # Claire - Conversationnel
-              "YxrwjAKoUKULGd0g8K9Y"],       # Lucie - Professional Customer Care Agent (Emilie ajoutait des « euh »)
-        "M": ["kENkNtk0xyzG09WW40xE",        # Marcel - Warm and Conversational
-              "e18dMYHSYQ18rN5m989D"]}       # Thomas San - conversational
+# voix créées avec l'outil de création de voix d'ElevenLabs (Française / Français de 35-40 ans, ton naturel, studio sec),
+# choisies à l'écoute le 13/11 ; enregistrées sur le compte sous « FLE situations - … »
+VOIX = {"F": ["87kc04olBn8nRQKuNmaf",        # FLE situations - Femme 2 (la préférée)
+              "4NTBwCMIWDfx48seeuxZ"],       # FLE situations - Femme 1
+        "M": ["W01VS3mCiWjHO239CD72",        # FLE situations - Homme 1
+              "JFppi8XcU3D1RvkAikO5"]}       # FLE situations - Homme 2
 # les rôles dont le genre ne se lit pas à la terminaison
 GENRE = {"Primeur": "M", "Agent": "M", "Guide": "M", "Accueil": "F", "Responsable": "F", "Secrétaire": "F", "Mère": "F", "Père": "M"}
 FEMININ = re.compile(r"(ère|euse|ienne|ice|ante|ente|ée|ine|esse|onne|elle|ette|Mère|Mme|Madame|Femme|Fille|Sœur|Tante)$", re.I)
@@ -87,29 +90,17 @@ def produire(niveau, s):
     nom = f"{niveau}-s{s['n']}"; dossier = os.path.join(ICI, niveau); os.makedirs(os.path.join(dossier, "voix-seules"), exist_ok=True)
     final, seul, trace = os.path.join(dossier, nom + ".mp3"), os.path.join(dossier, "voix-seules", nom + ".mp3"), os.path.join(dossier, "voix-seules", nom + ".txt")
     voix = voix_du_dialogue(s["repliques"]); amb = AMBIANCE.get(s["n"])
-    empreinte = hashlib.sha1(json.dumps([s["repliques"], voix, amb, DEBIT[niveau]], ensure_ascii=False).encode()).hexdigest()
+    empreinte = hashlib.sha1(json.dumps([s["repliques"], voix, amb, MODELE], ensure_ascii=False).encode()).hexdigest()
     if os.path.exists(final) and os.path.exists(trace) and open(trace).read() == empreinte: return nom, "déjà fait"
     with tempfile.TemporaryDirectory() as d:
-        morceaux = []
-        for i, (role, texte) in enumerate(s["repliques"]):
-            p = os.path.join(d, f"r{i}.mp3")
-            appeler(f"{API}/text-to-speech/{voix[role]}?output_format=mp3_44100_128",
-                    {"text": texte, "model_id": MODELE, "language_code": "fr",
-                     "previous_text": s["repliques"][i - 1][1] if i else None,
-                     "next_text": s["repliques"][i + 1][1] if i + 1 < len(s["repliques"]) else None,
-                     "voice_settings": {"stability": .5, "similarity_boost": .8, "style": 0, "use_speaker_boost": True, "speed": DEBIT[niveau]}}, p)
-            w = os.path.join(d, f"r{i}.wav")      # chaque réplique au même volume, sans le silence de début et de fin
-            subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", p, "-af",
-                            "silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse,loudnorm=I=-17:TP=-2:LRA=7",
-                            "-ar", "44100", "-ac", "1", w], check=True)
-            morceaux.append(w)
-        # les voix : 0,8 s de calme, une pause de 0,6 s entre deux répliques, 1 s à la fin
-        silence = lambda t, n: (subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono", "-t", str(t), os.path.join(d, n)], check=True), os.path.join(d, n))[1]
-        debut, pause, fin = silence(.8, "debut.wav"), silence(.6, "pause.wav"), silence(1.0, "fin.wav")
-        liste = [debut] + [x for i, m in enumerate(morceaux) for x in ([pause, m] if i else [m])] + [fin]
-        open(os.path.join(d, "liste.txt"), "w").write("".join(f"file '{x}'\n" for x in liste))
+        brut = os.path.join(d, "dialogue.mp3")
+        appeler(f"{API}/text-to-dialogue?output_format=mp3_44100_128",
+                {"inputs": [{"text": t, "voice_id": voix[role]} for role, t in s["repliques"]], "model_id": MODELE, "language_code": "fr"}, brut)
+        # sans les blancs du début et de la fin, au bon volume ; 0,8 s de calme au début, 1 s à la fin
         voixw = os.path.join(d, "voix.wav")
-        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-f", "concat", "-safe", "0", "-i", os.path.join(d, "liste.txt"), "-c", "copy", voixw], check=True)
+        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", brut, "-af",
+                        "silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse,"
+                        "loudnorm=I=-17:TP=-2:LRA=9,adelay=800:all=1,apad=pad_dur=1", "-ar", "44100", "-ac", "1", voixw], check=True)
         subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", voixw, "-b:a", "96k", seul], check=True)
         if amb:   # l'ambiance, à la longueur du dialogue, bien en dessous des voix, avec un fondu au début et à la fin
             t = duree(voixw); a = os.path.join(d, "amb.mp3")
