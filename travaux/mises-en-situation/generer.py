@@ -20,21 +20,30 @@ MODELE = "eleven_v4"
 # dans l'ordre : les deux femmes et les deux hommes choisis à l'écoute, puis les voix ajoutées pour varier (âges)
 _V = json.load(open(os.path.join(ICI, "voix.json"), encoding="utf-8"))
 VOIX = {g: [v["id"] for v in _V.values() if v["genre"] == g] for g in "FM"}
-ROULEMENT_DEPUIS = 11
-VOIX_FORCEE = {30: {"Léa": "Femme 3", "Invitée": "Femme 2"},     # quand le roulement donne une voix peu crédible pour le rôle
-               73: {"Jeune": "Homme 3", "Entraîneur": "Homme 4"}}
-GENRE_FORCE = {64: {"Guide": "F"},                                 # « Je m'appelle Julie, je suis votre guide »
-               81: {"Responsable": "M"}, 83: {"Responsable": "M"},  # Monsieur Bernard, Monsieur Petit
-               82: {"Collègue": "F"},                               # Sophie, « Enchantée »
-               100: {"Locataire": "F"},                             # « C'est Mme Kaya »
-               139: {"Touriste": "F"},                              # « je suis perdue »
-               144: {"Locataire": "F"}, 147: {"Témoin": "F"}}       # non précisé : pour varier
+# par niveau (chaque niveau a son Excel : les mêmes scènes, d'autres dialogues)
+ROULEMENT_DEPUIS = {"A1": 11}   # A1, de 1 à 10 : toujours les deux premières voix (déjà validées) ; ensuite (et pour A2, B1), elles tournent
+VOIX_FORCEE = {"A1": {30: {"Léa": "Femme 3", "Invitée": "Femme 2"},   # quand le roulement donne une voix peu crédible pour le rôle
+                      73: {"Jeune": "Homme 3", "Entraîneur": "Homme 4"}}}
+ALIAS = {"A2": {30: {"Message de Karim": "Karim"}}}       # la même personne écrit puis parle : une seule voix
+GENRE_FORCE = {"A2": {133: {"Stagiaire": "F"}},                         # « Enchantée »
+               "A1": {64: {"Guide": "F"},                                 # « Je m'appelle Julie, je suis votre guide »
+                      81: {"Responsable": "M"}, 83: {"Responsable": "M"},  # Monsieur Bernard, Monsieur Petit
+                      82: {"Collègue": "F"},                               # Sophie, « Enchantée »
+                      100: {"Locataire": "F"},                             # « C'est Mme Kaya »
+                      139: {"Touriste": "F"},                              # « je suis perdue »
+                      144: {"Locataire": "F"}, 147: {"Témoin": "F"}}}      # non précisé : pour varier
 # les lignes d'un même document (fiche, mot, mail, offre, écran) sont lues par une seule voix off ; la consigne par une autre
-DOCUMENT = {"Écran", "Formulaire", "Mot de l'enseignante", "Signature des parents", "Mail", "Offre", "Convocation", "Fiche de paie", "Serveur vocal"}      # de 1 à 10 : toujours les deux premières voix (déjà validées) ; ensuite, les voix tournent
+DOCUMENT = {"Écran", "Formulaire", "Mot de l'enseignante", "Signature des parents", "Mail", "Offre", "Convocation", "Fiche de paie", "Serveur vocal",
+            "Annonce", "Faire-part", "Répondeur", "Affiche", "Facture", "Message", "SMS", "Mot de l'enseignant", "Étape 1", "Étape 2", "Étape 3",
+            "Étape 4", "Étape 5"}      # de 1 à 10 : toujours les deux premières voix (déjà validées) ; ensuite, les voix tournent
 # les rôles dont le genre ne se lit pas à la terminaison
 GENRE = {"Primeur": "M", "Fleuriste": "F", "Parent 1": "F", "Parent 2": "M", "Léa": "F", "Amina": "F", "Julie": "F",
          "Bibliothécaire": "F", "Réceptionniste": "F", "Consigne": "F", "Mail": "M", "Offre": "F", "Formulaire": "F",
-         "Aïcha": "F", "Candidate": "F", "Convocation": "F", "Fiche de paie": "F", "Serveur vocal": "F", "Assistance": "F",
+         "Aïcha": "F", "Candidate": "F", "Convocation": "F",
+         # A2
+         "Amie": "F", "Assistante sociale": "F", "Conductrice B": "F", "Dame": "F", "Jeune homme": "M", "Marchande": "F",
+         "Voisine du dessus": "F", "SMS envoyé": "F", "Message de réponse": "M", "Réponse du parent": "F", "Annonce": "F",
+         "Faire-part": "F", "Affiche": "F", "Facture": "F", "Message": "F", "SMS": "F", "Étape 1": "F", "Fiche de paie": "F", "Serveur vocal": "F", "Assistance": "F",
          # les lignes qui ne sont pas des personnes : l'écran du distributeur, lu par une voix off ; les SMS, lus par leurs auteurs
          "Écran": "F", "SMS reçu": "F", "Réponse": "M", "Agent": "M", "Guide": "M", "Accueil": "F", "Responsable": "F", "Secrétaire": "F", "Mère": "F", "Père": "M"}
 FEMININ = re.compile(r"(ère|euse|ienne|ice|ante|ente|ée|ine|esse|onne|elle|ette|Mère|Mme|Madame|Femme|Fille|Sœur|Tante)$", re.I)
@@ -189,20 +198,45 @@ AMBIANCE = {
     146: "Restaurant dining room, cutlery on plates, glasses clinking, distant indistinct murmur without clear words, no music",
     147: "Emergency phone call from a street, traffic, a car horn in the distance, subtle phone line hiss, no voices, no music",
 }
+# quand la scène d'un niveau ne se passe pas comme en A1 (un SMS au lieu d'un appel, un vrai appel d'urgence…)
+AMBIANCE_NIVEAU = {"A2": {
+    25: "Bank branch counter, quiet room tone, keyboard typing, a distant door, no voices, no music",
+    30: "Quiet room, a smartphone message notification chime at the very start and once again in the middle, soft phone keyboard tapping, no voices, no music",
+    38: "Quiet room, computer mouse clicks and keyboard typing, no voices, no music",
+    76: "Quiet living room, an envelope being opened at the very start, a paper card, soft room tone, no voices, no music",
+    83: "Quiet room, a smartphone message notification chime at the very start and once again later, soft phone keyboard tapping, no voices, no music",
+    85: "Administrative office interview room, quiet room tone, papers, a pen signing a document, no voices, no music",
+    100: "Quiet apartment kitchen, water dripping into a plastic bucket, soft phone keyboard tapping, no voices, no music",
+    103: "Phone call from a quiet house, a circuit breaker clicking off once, subtle phone line hiss, no voices, no music",
+    114: "Bank branch office, quiet room tone, keyboard typing, no voices, no music",
+    115: "Quiet room, a letter envelope being opened, paper unfolding, no voices, no music",
+    124: "Emergency phone call from a quiet apartment, subtle phone line hiss, no voices, no music",
+    125: "Phone call, quiet office, subtle phone line hiss, distant warehouse sounds, no voices, no music",
+    137: "Customer service phone call, subtle phone line hiss, quiet room, no voices, no music",
+    143: "Phone call from the side of a road, cars passing, car hazard lights clicking, subtle phone line hiss, no voices, no music",
+    147: "Street just after an accident, a distant siren, stopped traffic, distant murmur without clear words, no music",
+}}
+
+
+def ambiance(niveau, n):
+    return AMBIANCE_NIVEAU.get(niveau, {}).get(n) or AMBIANCE.get(n)
+
+
 # coquilles évidentes de l'Excel, corrigées pour la voix (signalées dans le LISEZMOI)
-CORRECTIONS = {9: [("Bonjou Madame r.", "Bonjour, madame.")], 18: [("Elel adore le toboggan", "Elle adore le toboggan.")],
-               35: [("J'ai mal à une den, en bas à droite", "J'ai mal à une dent, en bas à droite.")]}
+CORRECTIONS = {"A1": {9: [("Bonjou Madame r.", "Bonjour, madame.")], 18: [("Elel adore le toboggan", "Elle adore le toboggan.")],
+                      35: [("J'ai mal à une den, en bas à droite", "J'ai mal à une dent, en bas à droite.")]}}
 
 
 def lire(niveau):
     wb = openpyxl.load_workbook(os.path.join(ICI, "source", f"Mises_en_situation_FLE_Niveau_{niveau}.xlsx"), data_only=True)
-    S = {}
-    for r in wb["Mises en situation"].iter_rows(min_row=2, values_only=True):
+    S, ws = {}, wb["Mises en situation"]
+    H = {c.value: i for i, c in enumerate(ws[1])}          # les colonnes par leur nom (l'Excel A2 a une colonne « Bloc » en plus)
+    for r in ws.iter_rows(min_row=2, values_only=True):
         if not r[0]: continue
-        n, texte = int(r[0]), r[5] or ""
-        for a, b in CORRECTIONS.get(n, []): texte = texte.replace(a, b)
+        n, texte = int(r[0]), r[H["Dialogue / support"]] or ""
+        for a, b in CORRECTIONS.get(niveau, {}).get(n, []): texte = texte.replace(a, b)
         repliques = [(l.split(":", 1)[0].strip(), l.split(":", 1)[1].strip()) for l in texte.splitlines() if ":" in l and l.split(":", 1)[1].strip()]
-        S[n] = {"n": n, "theme": r[1], "lieu": r[2], "situation": r[4], "repliques": repliques}
+        S[n] = {"n": n, "theme": r[H["Thème"]], "lieu": r[H["Lieu / situation"]], "situation": r[H["Situation"]], "repliques": repliques}
     return S
 
 
@@ -210,28 +244,44 @@ def genre(role):
     return GENRE.get(role) or ("F" if FEMININ.search(role) else "M")
 
 
-def voix_du_dialogue(repliques, n=0):
+def voix_du_dialogue(repliques, n=0, niveau="A1"):
     vus, prises, par_cle = {}, {"F": 0, "M": 0}, {}
     docs = [role for role, _ in repliques if role in DOCUMENT]
     for role, _ in repliques:
         if role in vus: continue
-        cle = ("document", docs[0]) if role in DOCUMENT else role          # un document : une seule voix pour toutes ses lignes
+        cle = ("document", docs[0]) if role in DOCUMENT else ALIAS.get(niveau, {}).get(n, {}).get(role, role)   # un document : une seule voix
         if cle not in par_cle:
-            g = GENRE_FORCE.get(n, {}).get(cle if isinstance(cle, str) else cle[1]) or genre(cle if isinstance(cle, str) else cle[1])
-            par_cle[cle] = VOIX[g][prises[g] % 2] if n < ROULEMENT_DEPUIS else VOIX[g][(n + prises[g]) % len(VOIX[g])]
+            g = GENRE_FORCE.get(niveau, {}).get(n, {}).get(cle if isinstance(cle, str) else cle[1]) or genre(cle if isinstance(cle, str) else cle[1])
+            par_cle[cle] = VOIX[g][prises[g] % 2] if n < ROULEMENT_DEPUIS.get(niveau, 1) else VOIX[g][(n + prises[g]) % len(VOIX[g])]
             prises[g] += 1
         vus[role] = par_cle[cle]
-    for role, nom in VOIX_FORCEE.get(n, {}).items():
+    for role, nom in VOIX_FORCEE.get(niveau, {}).get(n, {}).items():
         if role in vus: vus[role] = _V[nom]["id"]
     return vus
+
+
+MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
+ORDINAUX = {2: "deuxième", 3: "troisième", 4: "quatrième", 5: "cinquième", 6: "sixième", 7: "septième", 8: "huitième", 9: "neuvième"}
 
 
 def dire(t):
     """Le texte tel qu'on le donne à la voix : les prix « 4,50 euros » se disent « 4 euros 50 »."""
     t = re.sub(r"\[([^\]]*)\]", r"\1.", t)                 # « [Valider] » : un bouton, pas une indication de jeu pour la voix
-    t = re.sub(r"\b(\d{1,3}(?: \d{3})*),(\d{2})\s*€", lambda m: f"{m[1].replace(' ', '')} euros {m[2]}", t)   # « 1 443,24 € »
+    t = re.sub(r"\s*☐\s*", ", ", t); t = re.sub(r":\s*,\s*", ": ", t); t = re.sub(r"^\s*,\s*", "", t)   # cases à cocher d'une fiche
+    t = re.sub(r"\(e\)", "", t)                                                       # « agent(e) », « marié(e) »
+    t = t.replace("n° ", "numéro ").replace("H/F", "H.F.")
+    t = re.sub(r"\s/\s?(semaine|mois|jour|an)\b", r" par \1", t)                     # « 30 h / semaine »
+    t = re.sub(r"\b(\d{1,2})/(\d{1,2})/(\d{4})\b", lambda m: f"{int(m[1])} {MOIS[int(m[2]) - 1]} {m[3]}", t)   # « 15/12/2026 »
+    t = re.sub(r"\b1er\b", "premier", t); t = re.sub(r"\b([2-9])e\b", lambda m: ORDINAUX[int(m[1])], t)        # « 2e étage »
+    t = re.sub(r"\b([\w.-]+)@([\w-]+)\.(fr|com|org)\b", lambda m: " ".join(m[1]) + " arobase " + m[2].replace("-", " tiret ") + " point " + m[3], t)
+    t = re.sub(r"\b(\w+)\.(gouv|fr|com|org)\b", lambda m: m[1] + " point " + m[2], t)                         # « impots.gouv »
+    t = re.sub(r"\bFR(\d+)", r"F R \1", t)                                         # un IBAN
+    t = re.sub(r":\s*–\s*(?=\d)", ": moins ", t)                                     # « Cotisations : – 427,50 € »
+    t = re.sub(r"\b([A-ZÀ-Ý]{2,}(?:\s+[A-ZÀ-Ý]{2,})+)\b", lambda m: m[0].capitalize(), t)   # « AVIS AUX RÉSIDENTS » : une phrase, pas des sigles
+    t = re.sub(r"\b(\d{1,3}(?: \d{3})*),(\d{2})\s*€", lambda m: f"{m[1].replace(' ', '')} euros {int(m[2])}", t)   # « 1 443,24 € »
     t = re.sub(r"(\d)\s*€", r"\1 euros", t)
-    t = re.sub(r"\bM\. (?=[A-ZÉ])", "Monsieur ", t); t = re.sub(r"\bMme\b\.?", "Madame", t)
+    t = re.sub(r"\bM\.\s{2,}", "Monsieur. ", t)                                   # « ☐ M.   Nom de naissance » (une fiche)
+    t = re.sub(r"\bM\.\s+(?=[A-ZÉ])", "Monsieur ", t); t = re.sub(r"\bMme\b\.?", "Madame", t)
     t = t.replace(" & ", " et ").replace("SARL", "S.A.R.L.").replace("caf.fr", "caf point fr")
     t = re.sub(r"\b[A-ZÉÈ]{5,}\b", lambda m: m[0].capitalize(), t)        # « KOVALENKO » : un nom, pas un sigle
     t = re.sub(r"\b(\d{3}) (\d{3}) (\d{3})\b", r"\1, \2, \3", t)          # un numéro de compteur, par groupes
@@ -239,12 +289,13 @@ def dire(t):
     t = re.sub(r"(\d+),(\d{2})\s*euros?", lambda m: f"{m[1]} {'euro' if m[1] == '1' else 'euros'} {m[2]}", t)
     t = re.sub(r"\b(\d{1,2}) h (\d{2})\b", lambda m: f"{m[1]} {'heure' if m[1] == '1' else 'heures'} {m[2]}", t)     # « 10 h 15 » → « 10 heures 15 »
     t = re.sub(r"\b(\d{1,2}) h\b", lambda m: f"{m[1]} {'heure' if m[1] == '1' else 'heures'}", t)                     # « 14 h » → « 14 heures »
+    t = re.sub(r"(\d+ heures?(?: \d{2})?) – (\d+ heures?)", r"\1 à \2", t)                                          # « 6 h – 9 h »
     t = re.sub(r"_+(\s*/\s*_+)*", " ", t)                     # les blancs à remplir d'une fiche ne se lisent pas
     t = re.sub(r"\b(\d{1,2}) kilos\b", lambda m: ["zéro", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", "dix"][int(m[1])] + " kilos" if int(m[1]) <= 10 else m[0], t)   # « 3 kilos » était lu « trois kilogrammes »
     t = re.sub(r"\bCD([DI])\b", lambda m: f"C.D.{m[1]}.", t)  # « CDD », « CDI » épelés
     t = re.sub(r"\bNOM\b", "nom", t)                          # « NOM » n'est pas un sigle à épeler
     t = re.sub(r"(?<=[a-zé]) / (?=[a-zé])", " ou ", t)          # « vendeur / vendeuse » → « vendeur ou vendeuse »
-    t = re.sub(r"\s*:\s*(?=[A-ZÉ]|$)", ". ", t)               # « Objet : Absence », « Nationalité : » → une phrase par champ
+    t = re.sub(r"\s*:\s*(?=[A-ZÀ-Ý]|$)", ". ", t)            # « Objet : Absence », « Nationalité : » → une phrase par champ
     t = re.sub(r"\s+", " ", t).strip()
     t = re.sub(r"\.(\s*\.)+", ".", t)                         # « Choisissez le montant : » → « … montant. »
     t = re.sub(r"([?!])\.", r"\1", t)
@@ -273,7 +324,7 @@ def duree(chemin):
 def produire(niveau, s):
     nom = f"{niveau}-s{s['n']}"; dossier = os.path.join(ICI, niveau); os.makedirs(os.path.join(dossier, "voix-seules"), exist_ok=True)
     final, seul, trace = os.path.join(dossier, nom + ".mp3"), os.path.join(dossier, "voix-seules", nom + ".mp3"), os.path.join(dossier, "voix-seules", nom + ".txt")
-    voix = voix_du_dialogue(s["repliques"], s["n"]); amb = AMBIANCE.get(s["n"])
+    voix = voix_du_dialogue(s["repliques"], s["n"], niveau); amb = ambiance(niveau, s["n"])
     empreinte = hashlib.sha1(json.dumps([s["repliques"], voix, amb, MODELE], ensure_ascii=False).encode()).hexdigest()
     if os.path.exists(final) and os.path.exists(trace) and open(trace).read() == empreinte: return nom, "déjà fait"
     with tempfile.TemporaryDirectory() as d:
@@ -303,7 +354,7 @@ if __name__ == "__main__":
     niveau, plage = sys.argv[1], sys.argv[2]
     a, _, b = plage.partition("-"); nums = range(int(a), int(b or a) + 1)
     S = lire(niveau)
-    json.dump({f"{niveau}-s{n}": {**S[n], "voix": voix_du_dialogue(S[n]["repliques"], n), "ambiance": AMBIANCE.get(n)} for n in S},
+    json.dump({f"{niveau}-s{n}": {**S[n], "voix": voix_du_dialogue(S[n]["repliques"], n, niveau), "ambiance": ambiance(niveau, n)} for n in S},
               open(os.path.join(ICI, f"textes-{niveau}.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     with ThreadPoolExecutor(4) as ex:
         for nom, etat in ex.map(lambda n: produire(niveau, S[n]), nums): print(nom, etat, flush=True)

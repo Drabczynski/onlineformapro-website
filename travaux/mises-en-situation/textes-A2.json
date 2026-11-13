@@ -1,0 +1,5506 @@
+{
+ "A2-s1": {
+  "n": 1,
+  "theme": "Commerces",
+  "lieu": "À la boulangerie",
+  "situation": "Commander du pain pour un repas de famille et demander les horaires",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, dimanche, j'ai quinze personnes à la maison. Je peux commander du pain ?"
+   ],
+   [
+    "Boulangère",
+    "Bien sûr. Qu'est-ce que vous voulez ?"
+   ],
+   [
+    "Client",
+    "Six baguettes et un gros pain de campagne, tranché, s'il vous plaît."
+   ],
+   [
+    "Boulangère",
+    "Vous passez à quelle heure ?"
+   ],
+   [
+    "Client",
+    "Vers 11 heures. Vous êtes ouverts le dimanche ?"
+   ],
+   [
+    "Boulangère",
+    "Oui, de 7 heures à 13 heures. C'est à quel nom ?"
+   ],
+   [
+    "Client",
+    "Monsieur Haddad."
+   ]
+  ],
+  "voix": {
+   "Client": "JFppi8XcU3D1RvkAikO5",
+   "Boulangère": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Inside a small French bakery, quiet room tone, a shop door bell chimes once at the very start, paper bag rustling, soft distant cash register, no voices, no music"
+ },
+ "A2-s2": {
+  "n": 2,
+  "theme": "Commerces",
+  "lieu": "À la boucherie",
+  "situation": "Demander conseil pour une recette et faire préparer la viande",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, je voudrais faire un plat de viande en sauce pour six personnes."
+   ],
+   [
+    "Boucher",
+    "Je vous conseille du bœuf à braiser ou de l'épaule d'agneau."
+   ],
+   [
+    "Cliente",
+    "L'agneau. Vous pouvez le couper en morceaux ?"
+   ],
+   [
+    "Boucher",
+    "Oui. Il vous en faut environ 1,5 kilo. Il faut le faire mijoter deux heures."
+   ],
+   [
+    "Cliente",
+    "Est-ce que vous avez de la viande halal ?"
+   ],
+   [
+    "Boucher",
+    "Oui, toute notre viande d'agneau est halal. Voilà le certificat, sur le mur."
+   ]
+  ],
+  "voix": {
+   "Cliente": "RXG6r6Qewwp92BIFIBhE",
+   "Boucher": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Inside a French butcher shop, quiet room tone, refrigerated display hum, a butcher knife on a wooden board from time to time, no voices, no music"
+ },
+ "A2-s3": {
+  "n": 3,
+  "theme": "Commerces",
+  "lieu": "À l'épicerie",
+  "situation": "Chercher un produit de son pays et demander s'il peut être commandé",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, je cherche du piment rouge en poudre, pour la cuisine africaine."
+   ],
+   [
+    "Épicier",
+    "Les épices sont au fond, à droite. Mais ce piment-là, je n'en ai plus."
+   ],
+   [
+    "Cliente",
+    "Vous pouvez en commander ?"
+   ],
+   [
+    "Épicier",
+    "Oui, je reçois une livraison tous les mardis."
+   ],
+   [
+    "Cliente",
+    "Alors, j'en voudrais deux sachets. Je dois payer maintenant ?"
+   ],
+   [
+    "Épicier",
+    "Non, vous paierez quand vous viendrez le chercher. Laissez-moi votre numéro."
+   ]
+  ],
+  "voix": {
+   "Cliente": "TKoAvBNxOwnhLtxm7NYM",
+   "Épicier": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Small neighbourhood grocery store, quiet fridge hum, a glass bottle clinks softly, light footsteps, no voices, no music"
+ },
+ "A2-s4": {
+  "n": 4,
+  "theme": "Commerces",
+  "lieu": "Au marché",
+  "situation": "Comparer, goûter et négocier un peu en fin de marché",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, ces tomates sont de la région ?"
+   ],
+   [
+    "Marchande",
+    "Oui, elles viennent de chez nous, à dix kilomètres. Goûtez !"
+   ],
+   [
+    "Client",
+    "Elles sont très bonnes. Elles sont bio ?"
+   ],
+   [
+    "Marchande",
+    "Non, mais on n'utilise pas de produits chimiques."
+   ],
+   [
+    "Client",
+    "C'est la fin du marché. Vous me faites un prix si j'en prends trois kilos ?"
+   ],
+   [
+    "Marchande",
+    "D'accord, trois kilos pour 7 euros au lieu de 9."
+   ]
+  ],
+  "voix": {
+   "Client": "W01VS3mCiWjHO239CD72",
+   "Marchande": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Outdoor French street market in the morning, distant indistinct crowd murmur without clear words, wooden crates, paper bags, a few birds, no music"
+ },
+ "A2-s5": {
+  "n": 5,
+  "theme": "Commerces",
+  "lieu": "Au magasin",
+  "situation": "Demander si un article existe dans une autre couleur ou taille et le réserver",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, vous avez ce sac en noir ?"
+   ],
+   [
+    "Vendeur",
+    "Ici, nous avons seulement le marron. Je regarde l'ordinateur… Il y a un noir dans notre magasin du centre-ville."
+   ],
+   [
+    "Cliente",
+    "Vous pouvez le faire venir ici ?"
+   ],
+   [
+    "Vendeur",
+    "Oui, il arrive dans trois jours. Ou alors, ils peuvent vous le mettre de côté là-bas."
+   ],
+   [
+    "Cliente",
+    "Je préfère le recevoir ici. Je dois payer maintenant ?"
+   ],
+   [
+    "Vendeur",
+    "Non, vous payez quand vous venez le chercher. Votre numéro de téléphone, s'il vous plaît ?"
+   ]
+  ],
+  "voix": {
+   "Cliente": "4NTBwCMIWDfx48seeuxZ",
+   "Vendeur": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Inside a shop, quiet room tone, distant checkout scanner beeps, light footsteps, no voices, no music"
+ },
+ "A2-s6": {
+  "n": 6,
+  "theme": "Commerces",
+  "lieu": "Au supermarché (caisse, caisse automatique)",
+  "situation": "Chercher un produit dans les rayons et demander à un employé",
+  "repliques": [
+   [
+    "Client",
+    "Excusez-moi, je cherche la farine, s'il vous plaît."
+   ],
+   [
+    "Employé",
+    "C'est au rayon 8, à côté du sucre."
+   ],
+   [
+    "Client",
+    "Merci. Et vous avez du lait sans lactose ?"
+   ],
+   [
+    "Employé",
+    "Oui, au rayon frais, au fond du magasin, à gauche."
+   ],
+   [
+    "Client",
+    "D'accord. Le magasin ferme à quelle heure ?"
+   ],
+   [
+    "Employé",
+    "À 20 heures, et le dimanche à midi."
+   ]
+  ],
+  "voix": {
+   "Client": "3Yr319bDgMFZv5qX6yzA",
+   "Employé": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Supermarket checkout, barcode scanner beeps, items sliding on the conveyor belt, plastic bag rustling, no voices, no music"
+ },
+ "A2-s7": {
+  "n": 7,
+  "theme": "Commerces",
+  "lieu": "Chez le primeur",
+  "situation": "Demander des produits de saison et pour quand ils seront mûrs",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, ces avocats sont mûrs ?"
+   ],
+   [
+    "Primeur",
+    "Ceux-là, oui, pour ce soir. Ceux-ci, pour dans trois jours."
+   ],
+   [
+    "Cliente",
+    "Je prends deux pour ce soir. Qu'est-ce que vous avez de saison en ce moment ?"
+   ],
+   [
+    "Primeur",
+    "Les courges, les poireaux, les clémentines."
+   ],
+   [
+    "Cliente",
+    "Comment on cuisine la courge ?"
+   ],
+   [
+    "Primeur",
+    "En soupe, c'est très simple : courge, oignon, eau et un peu de crème."
+   ]
+  ],
+  "voix": {
+   "Cliente": "TKoAvBNxOwnhLtxm7NYM",
+   "Primeur": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Greengrocer shop, apples dropped into a paper bag, scale beep, soft street noise from the open door, no voices, no music"
+ },
+ "A2-s8": {
+  "n": 8,
+  "theme": "Commerces",
+  "lieu": "Chez le poissonnier",
+  "situation": "Demander conseil pour un repas et faire préparer le poisson",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, je fais un repas pour six personnes samedi. Qu'est-ce que vous me conseillez ?"
+   ],
+   [
+    "Poissonnier",
+    "Le cabillaud est très frais aujourd'hui. Vous le faites comment ?"
+   ],
+   [
+    "Client",
+    "Au four."
+   ],
+   [
+    "Poissonnier",
+    "Alors comptez 200 grammes par personne. Je vous le coupe en filets ?"
+   ],
+   [
+    "Client",
+    "Oui, sans la peau et sans arêtes, s'il vous plaît."
+   ],
+   [
+    "Poissonnier",
+    "Pas de problème. Il se garde deux jours au frigo."
+   ]
+  ],
+  "voix": {
+   "Client": "W01VS3mCiWjHO239CD72",
+   "Poissonnier": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Fishmonger stall, crushed ice being scooped, wet market sounds, paper wrapping, scale beep, no voices, no music"
+ },
+ "A2-s9": {
+  "n": 9,
+  "theme": "Commerces",
+  "lieu": "À la fromagerie",
+  "situation": "Composer un plateau de fromages en décrivant les goûts",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, je voudrais faire un plateau de fromages pour quatre personnes."
+   ],
+   [
+    "Fromager",
+    "Avec quatre fromages différents, c'est bien : une pâte dure, un fromage de chèvre, un bleu et un fromage doux."
+   ],
+   [
+    "Client",
+    "Mes invités n'aiment pas les fromages trop forts."
+   ],
+   [
+    "Fromager",
+    "Alors je remplace le bleu par un brie. Vous voulez goûter le chèvre ?"
+   ],
+   [
+    "Client",
+    "Oui, merci. Il est très bon ! Je le prends."
+   ]
+  ],
+  "voix": {
+   "Client": "JFppi8XcU3D1RvkAikO5",
+   "Fromager": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Cheese shop, quiet room tone, a cheese wire cutting through cheese, paper wrapping, no voices, no music"
+ },
+ "A2-s10": {
+  "n": 10,
+  "theme": "Commerces",
+  "lieu": "À la pâtisserie",
+  "situation": "Commander un gâteau d'anniversaire",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, je voudrais commander un gâteau pour l'anniversaire de mon fils, samedi."
+   ],
+   [
+    "Pâtissier",
+    "Pour combien de personnes ?"
+   ],
+   [
+    "Cliente",
+    "Dix personnes."
+   ],
+   [
+    "Pâtissier",
+    "Quel parfum ?"
+   ],
+   [
+    "Cliente",
+    "Chocolat et vanille. Vous pouvez écrire « Joyeux anniversaire Samir » ?"
+   ],
+   [
+    "Pâtissier",
+    "Bien sûr. Vous passez le chercher à quelle heure ?"
+   ],
+   [
+    "Cliente",
+    "Vers 11 heures."
+   ],
+   [
+    "Pâtissier",
+    "Très bien, je vous demande un acompte de 10 euros."
+   ]
+  ],
+  "voix": {
+   "Cliente": "RXG6r6Qewwp92BIFIBhE",
+   "Pâtissier": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Pastry shop, a shop door bell chimes once at the very start, cardboard pastry box being closed, quiet room tone, no voices, no music"
+ },
+ "A2-s11": {
+  "n": 11,
+  "theme": "Commerces",
+  "lieu": "Chez le fleuriste",
+  "situation": "Choisir une plante pour l'anniversaire d'une voisine, selon un budget",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, je cherche un cadeau pour ma voisine, elle a 70 ans."
+   ],
+   [
+    "Fleuriste",
+    "Plutôt un bouquet ou une plante ?"
+   ],
+   [
+    "Client",
+    "Une plante, elle dure plus longtemps."
+   ],
+   [
+    "Fleuriste",
+    "Cette orchidée est très facile, il faut l'arroser une fois par semaine."
+   ],
+   [
+    "Client",
+    "Elle coûte combien ?"
+   ],
+   [
+    "Fleuriste",
+    "29 euros."
+   ],
+   [
+    "Client",
+    "C'est un peu cher. Vous avez moins de 20 euros ?"
+   ],
+   [
+    "Fleuriste",
+    "Ce cyclamen, à 16 euros. Je vous ajoute une petite carte ?"
+   ]
+  ],
+  "voix": {
+   "Client": "6pqL78prQKdL6zrRhG3N",
+   "Fleuriste": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Florist shop, quiet room tone, a small door bell chimes once at the very start, cellophane and paper wrapping rustling, scissors snipping flower stems, no voices, no music"
+ },
+ "A2-s12": {
+  "n": 12,
+  "theme": "Commerces",
+  "lieu": "Au bureau de tabac / à la maison de la presse",
+  "situation": "Recharger un forfait téléphone et acheter un timbre fiscal pour un dossier",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, je voudrais une recharge pour mon téléphone."
+   ],
+   [
+    "Buraliste",
+    "Quel opérateur ?"
+   ],
+   [
+    "Client",
+    "Free, 20 euros."
+   ],
+   [
+    "Buraliste",
+    "Voilà le ticket avec le code."
+   ],
+   [
+    "Client",
+    "Est-ce que vous vendez aussi les timbres fiscaux ?"
+   ],
+   [
+    "Buraliste",
+    "Oui, c'est pour quoi ?"
+   ],
+   [
+    "Client",
+    "Pour mon titre de séjour, 75 euros."
+   ],
+   [
+    "Buraliste",
+    "Je vous l'imprime. Gardez bien le reçu."
+   ]
+  ],
+  "voix": {
+   "Client": "W01VS3mCiWjHO239CD72",
+   "Buraliste": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "French newsagent and tobacco shop, quiet room tone, a door bell chimes once at the very start, newspapers rustling, a lottery machine beep, no voices, no music"
+ },
+ "A2-s13": {
+  "n": 13,
+  "theme": "Commerces",
+  "lieu": "À la galerie marchande",
+  "situation": "Se renseigner à l'accueil : horaires, parking, objet trouvé",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, la galerie ferme à quelle heure le samedi ?"
+   ],
+   [
+    "Hôtesse",
+    "À 20 heures. Le supermarché ferme à 21 heures."
+   ],
+   [
+    "Client",
+    "Et le parking est gratuit ?"
+   ],
+   [
+    "Hôtesse",
+    "Oui, pendant trois heures."
+   ],
+   [
+    "Client",
+    "Autre chose : j'ai perdu mon écharpe tout à l'heure. Elle est grise, en laine."
+   ],
+   [
+    "Hôtesse",
+    "Je regarde dans les objets trouvés… Oui, la voilà ! Quelqu'un l'a rapportée il y a une heure."
+   ]
+  ],
+  "voix": {
+   "Client": "JFppi8XcU3D1RvkAikO5",
+   "Hôtesse": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Indoor shopping mall, large hall, distant indistinct crowd murmur without clear words, footsteps on tiles, escalator hum, no music"
+ },
+ "A2-s14": {
+  "n": 14,
+  "theme": "Restauration et loisirs",
+  "lieu": "Au café / au bar",
+  "situation": "Commander pour un groupe et poser des questions sur la carte",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, nous sommes quatre. Vous avez des boissons sans alcool ?"
+   ],
+   [
+    "Serveur",
+    "Oui : jus de fruits, sodas, sirops, et des cocktails sans alcool."
+   ],
+   [
+    "Cliente",
+    "Qu'est-ce qu'il y a dans le cocktail « Soleil » ?"
+   ],
+   [
+    "Serveur",
+    "Jus d'orange, ananas et sirop de grenadine."
+   ],
+   [
+    "Cliente",
+    "Alors deux cocktails Soleil, un thé à la menthe et un chocolat chaud."
+   ],
+   [
+    "Serveur",
+    "Très bien. Vous payez ensemble ou séparément ?"
+   ],
+   [
+    "Cliente",
+    "Séparément, s'il vous plaît."
+   ]
+  ],
+  "voix": {
+   "Cliente": "RXG6r6Qewwp92BIFIBhE",
+   "Serveur": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "French café bar, espresso machine hissing, cups and saucers clinking, distant indistinct murmur without clear words, no music"
+ },
+ "A2-s15": {
+  "n": 15,
+  "theme": "Restauration et loisirs",
+  "lieu": "Au restaurant",
+  "situation": "Réserver une table par téléphone et préciser des besoins",
+  "repliques": [
+   [
+    "Serveur",
+    "Restaurant Le Tilleul, bonjour."
+   ],
+   [
+    "Cliente",
+    "Bonjour, je voudrais réserver une table pour samedi midi."
+   ],
+   [
+    "Serveur",
+    "Pour combien de personnes ?"
+   ],
+   [
+    "Cliente",
+    "Quatre adultes et un bébé. Vous avez une chaise haute ?"
+   ],
+   [
+    "Serveur",
+    "Oui. Vous voulez être en terrasse ou à l'intérieur ?"
+   ],
+   [
+    "Cliente",
+    "À l'intérieur. Et une personne est végétarienne, vous avez des plats ?"
+   ],
+   [
+    "Serveur",
+    "Oui, deux plats végétariens. C'est à quel nom ?"
+   ]
+  ],
+  "voix": {
+   "Serveur": "6pqL78prQKdL6zrRhG3N",
+   "Cliente": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Restaurant dining room, cutlery on plates, glasses clinking softly, distant indistinct murmur without clear words, no music"
+ },
+ "A2-s16": {
+  "n": 16,
+  "theme": "Restauration et loisirs",
+  "lieu": "Au fast-food / commander à emporter",
+  "situation": "Commander sur une borne ou par téléphone et modifier la commande",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, je voudrais commander deux pizzas à emporter."
+   ],
+   [
+    "Employée",
+    "Lesquelles ?"
+   ],
+   [
+    "Client",
+    "Une margherita et une quatre fromages, mais sans gorgonzola, s'il vous plaît."
+   ],
+   [
+    "Employée",
+    "Pas de problème. Une boisson ?"
+   ],
+   [
+    "Client",
+    "Non, merci. Ce sera prêt quand ?"
+   ],
+   [
+    "Employée",
+    "Dans vingt minutes. C'est 23 euros."
+   ],
+   [
+    "Client",
+    "Je peux payer en tickets-restaurant ?"
+   ]
+  ],
+  "voix": {
+   "Client": "W01VS3mCiWjHO239CD72",
+   "Employée": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Fast food restaurant, fryer sizzling, order screen beeps, trays sliding, distant indistinct murmur without clear words, no music"
+ },
+ "A2-s17": {
+  "n": 17,
+  "theme": "Restauration et loisirs",
+  "lieu": "Au cinéma",
+  "situation": "Choisir un film et une séance en famille",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, nous voulons voir un film avec les enfants. Ils ont 6 et 9 ans."
+   ],
+   [
+    "Caissière",
+    "Il y a un dessin animé à 14 h et à 16 h 30."
+   ],
+   [
+    "Client",
+    "Il est en version française ?"
+   ],
+   [
+    "Caissière",
+    "Oui. Le film d'aventure, lui, est en version originale avec sous-titres."
+   ],
+   [
+    "Client",
+    "Alors le dessin animé à 14 heures. Il y a un tarif enfant ?"
+   ],
+   [
+    "Caissière",
+    "Oui, 6 euros pour les moins de 14 ans."
+   ]
+  ],
+  "voix": {
+   "Client": "JFppi8XcU3D1RvkAikO5",
+   "Caissière": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Cinema lobby, popcorn machine popping, ticket printer, quiet distant murmur without clear words, no music"
+ },
+ "A2-s18": {
+  "n": 18,
+  "theme": "Restauration et loisirs",
+  "lieu": "Au parc / à l'aire de jeux",
+  "situation": "Se renseigner sur les règles et les horaires du parc",
+  "repliques": [
+   [
+    "Promeneur",
+    "Excusez-moi, le parc ferme à quelle heure ?"
+   ],
+   [
+    "Gardien",
+    "À 19 heures en hiver, à 21 heures en été."
+   ],
+   [
+    "Promeneur",
+    "Est-ce que les chiens sont autorisés ?"
+   ],
+   [
+    "Gardien",
+    "Oui, mais il faut les tenir en laisse. Ils sont interdits dans l'aire de jeux."
+   ],
+   [
+    "Promeneur",
+    "Et on peut pique-niquer ?"
+   ],
+   [
+    "Gardien",
+    "Oui, sur la pelouse, là-bas. Merci de jeter vos déchets dans les poubelles."
+   ]
+  ],
+  "voix": {
+   "Promeneur": "3Yr319bDgMFZv5qX6yzA",
+   "Gardien": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Outdoor playground in a park, distant children playing and laughing without clear words, birds singing, a swing creaking, light wind, no music"
+ },
+ "A2-s19": {
+  "n": 19,
+  "theme": "Restauration et loisirs",
+  "lieu": "À la piscine",
+  "situation": "S'inscrire à des cours de natation pour un enfant",
+  "repliques": [
+   [
+    "Mère",
+    "Bonjour, je voudrais inscrire mon fils aux cours de natation."
+   ],
+   [
+    "Accueil",
+    "Il a quel âge ? Il sait nager ?"
+   ],
+   [
+    "Mère",
+    "Huit ans. Il ne sait pas nager du tout."
+   ],
+   [
+    "Accueil",
+    "Il y a un cours débutant le mercredi à 14 heures. C'est 90 euros le trimestre."
+   ],
+   [
+    "Mère",
+    "Qu'est-ce qu'il faut pour l'inscription ?"
+   ],
+   [
+    "Accueil",
+    "Ce formulaire, une photo, et le paiement. Le premier cours est le 5 janvier."
+   ]
+  ],
+  "voix": {
+   "Mère": "TKoAvBNxOwnhLtxm7NYM",
+   "Accueil": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Indoor public swimming pool, large echoing hall, distant water splashing, a lifeguard whistle far away, no clear voices, no music"
+ },
+ "A2-s20": {
+  "n": 20,
+  "theme": "Déplacements",
+  "lieu": "À l'arrêt de bus / dans le bus",
+  "situation": "Demander un itinéraire et une correspondance",
+  "repliques": [
+   [
+    "Passager",
+    "Excusez-moi, je vais à l'hôpital. Je prends quel bus ?"
+   ],
+   [
+    "Dame",
+    "Prenez la ligne 2, direction Centre. Puis vous changez à l'arrêt Mairie pour la ligne 5."
+   ],
+   [
+    "Passager",
+    "Il y a un bus toutes les combien de minutes ?"
+   ],
+   [
+    "Dame",
+    "Toutes les quinze minutes. Regardez, l'horaire est sur le panneau."
+   ],
+   [
+    "Passager",
+    "Et c'est combien d'arrêts jusqu'à la mairie ?"
+   ],
+   [
+    "Dame",
+    "Six arrêts. Le ticket est valable une heure, vous pouvez changer avec le même ticket."
+   ]
+  ],
+  "voix": {
+   "Passager": "W01VS3mCiWjHO239CD72",
+   "Dame": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Inside a city bus, engine rumble, bus doors opening with a hiss at the very start, ticket validator beep, light traffic outside, no voices, no music"
+ },
+ "A2-s21": {
+  "n": 21,
+  "theme": "Déplacements",
+  "lieu": "Dans le métro / le tramway",
+  "situation": "Faire un abonnement mensuel",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, je voudrais faire un abonnement pour le tramway."
+   ],
+   [
+    "Agent",
+    "Mensuel ou annuel ?"
+   ],
+   [
+    "Cliente",
+    "Mensuel. Il y a un tarif réduit ?"
+   ],
+   [
+    "Agent",
+    "Oui, pour les demandeurs d'emploi, le tarif solidaire est de 10 euros par mois."
+   ],
+   [
+    "Cliente",
+    "Je suis inscrite à France Travail. Qu'est-ce qu'il faut ?"
+   ],
+   [
+    "Agent",
+    "Une photo, une pièce d'identité et votre attestation France Travail. La carte est faite tout de suite."
+   ]
+  ],
+  "voix": {
+   "Cliente": "4NTBwCMIWDfx48seeuxZ",
+   "Agent": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Underground tram and metro station ticket hall, a distant tram arriving and braking, ticket gate beeps, footsteps, distant indistinct murmur without clear words, no announcements, no music"
+ },
+ "A2-s22": {
+  "n": 22,
+  "theme": "Déplacements",
+  "lieu": "À la gare (acheter un billet)",
+  "situation": "Choisir un horaire et une réduction",
+  "repliques": [
+   [
+    "Voyageur",
+    "Bonjour, je voudrais aller à Lyon vendredi matin."
+   ],
+   [
+    "Agent",
+    "Vous avez un train direct à 7 h 40 ou un train avec une correspondance à Dijon à 9 h 05."
+   ],
+   [
+    "Voyageur",
+    "Le direct. Il y a une réduction pour les jeunes ? J'ai 24 ans."
+   ],
+   [
+    "Agent",
+    "Avec la carte Avantage Jeune, vous avez 30 % de réduction. La carte coûte 49 euros par an."
+   ],
+   [
+    "Voyageur",
+    "Je voyage souvent, je la prends."
+   ],
+   [
+    "Agent",
+    "Très bien. Je vous ai mis une place côté fenêtre."
+   ]
+  ],
+  "voix": {
+   "Voyageur": "3Yr319bDgMFZv5qX6yzA",
+   "Agent": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Train station hall, large space, a distant train departure chime, rolling suitcases, distant indistinct murmur without clear words, no announcements, no music"
+ },
+ "A2-s23": {
+  "n": 23,
+  "theme": "Déplacements",
+  "lieu": "Dans un taxi",
+  "situation": "Réserver un taxi par téléphone pour un rendez-vous",
+  "repliques": [
+   [
+    "Opératrice",
+    "Taxi Express, bonjour."
+   ],
+   [
+    "Client",
+    "Bonjour, je voudrais réserver un taxi pour demain matin, pour aller à l'aéroport."
+   ],
+   [
+    "Opératrice",
+    "À quelle heure et à quelle adresse ?"
+   ],
+   [
+    "Client",
+    "À 5 h 30, au 8 avenue de la Gare. J'ai deux grosses valises."
+   ],
+   [
+    "Opératrice",
+    "C'est noté. Le prix est d'environ 45 euros."
+   ],
+   [
+    "Client",
+    "Je peux payer par carte ?"
+   ],
+   [
+    "Opératrice",
+    "Oui, tous nos taxis acceptent la carte."
+   ]
+  ],
+  "voix": {
+   "Opératrice": "TKoAvBNxOwnhLtxm7NYM",
+   "Client": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Inside a moving taxi, a car door closing at the very start, engine hum, city traffic outside, a turn signal clicking briefly, no voices, no music"
+ },
+ "A2-s24": {
+  "n": 24,
+  "theme": "Déplacements",
+  "lieu": "À la pompe à essence",
+  "situation": "Utiliser la pompe automatique et demander de l'aide",
+  "repliques": [
+   [
+    "Cliente",
+    "Excusez-moi, la pompe ne marche pas. J'ai mis ma carte et mon code."
+   ],
+   [
+    "Employé",
+    "C'est la pompe automatique : vous devez choisir le carburant avant de mettre la carte."
+   ],
+   [
+    "Cliente",
+    "Ah, d'accord. Ma voiture, c'est du gazole."
+   ],
+   [
+    "Employé",
+    "Alors c'est le pistolet jaune. Le noir, c'est pour l'essence."
+   ],
+   [
+    "Cliente",
+    "Merci. Et je peux vérifier la pression de mes pneus ici ?"
+   ],
+   [
+    "Employé",
+    "Oui, la machine est à côté de l'aspirateur. C'est gratuit."
+   ]
+  ],
+  "voix": {
+   "Cliente": "87kc04olBn8nRQKuNmaf",
+   "Employé": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Petrol station shop, quiet room tone, a door bell chimes once at the very start, a card payment terminal beep, distant cars outside, no voices, no music"
+ },
+ "A2-s25": {
+  "n": 25,
+  "theme": "Déplacements",
+  "lieu": "Au distributeur de billets",
+  "situation": "Carte bloquée : demander de l'aide à l'accueil de la banque",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, le distributeur a gardé ma carte."
+   ],
+   [
+    "Employée",
+    "Vous vous êtes trompé de code ?"
+   ],
+   [
+    "Client",
+    "Oui, trois fois. J'étais stressé."
+   ],
+   [
+    "Employée",
+    "C'est pour ça. Vous êtes client chez nous ?"
+   ],
+   [
+    "Client",
+    "Non, je suis client d'une autre banque."
+   ],
+   [
+    "Employée",
+    "Alors nous allons détruire la carte. Vous devez demander une nouvelle carte à votre banque."
+   ]
+  ],
+  "voix": {
+   "Client": "JFppi8XcU3D1RvkAikO5",
+   "Employée": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Bank branch counter, quiet room tone, keyboard typing, a distant door, no voices, no music"
+ },
+ "A2-s26": {
+  "n": 26,
+  "theme": "Déplacements",
+  "lieu": "Demander son chemin dans la rue",
+  "situation": "Comprendre un itinéraire plus long avec des repères",
+  "repliques": [
+   [
+    "Touriste",
+    "Excusez-moi, je cherche le musée de la ville."
+   ],
+   [
+    "Dame",
+    "Alors, vous continuez jusqu'au feu, et vous traversez."
+   ],
+   [
+    "Touriste",
+    "D'accord."
+   ],
+   [
+    "Dame",
+    "Ensuite, au rond-point, vous prenez la deuxième rue à droite. Le musée est en face de l'église."
+   ],
+   [
+    "Touriste",
+    "Je peux y aller à pied ?"
+   ],
+   [
+    "Dame",
+    "Oui, c'est à dix minutes. Sinon, le bus 3 s'arrête juste devant."
+   ]
+  ],
+  "voix": {
+   "Touriste": "3Yr319bDgMFZv5qX6yzA",
+   "Dame": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Quiet French town street, light traffic passing, footsteps on the pavement, distant birds, no voices, no music"
+ },
+ "A2-s27": {
+  "n": 27,
+  "theme": "Vie sociale",
+  "lieu": "Se présenter",
+  "situation": "Se présenter plus en détail en formation",
+  "repliques": [
+   [
+    "Formatrice",
+    "Présentez-vous au groupe, s'il vous plaît."
+   ],
+   [
+    "Apprenante",
+    "Bonjour, je m'appelle Marisol. J'ai 40 ans et je suis colombienne. J'habite en France depuis un an, avec mon mari et mes deux enfants."
+   ],
+   [
+    "Formatrice",
+    "Qu'est-ce que vous faisiez dans votre pays ?"
+   ],
+   [
+    "Apprenante",
+    "J'étais cuisinière dans un restaurant."
+   ],
+   [
+    "Formatrice",
+    "Et votre projet en France ?"
+   ],
+   [
+    "Apprenante",
+    "Je voudrais travailler dans la restauration. D'abord, je dois améliorer mon français."
+   ]
+  ],
+  "voix": {
+   "Formatrice": "TKoAvBNxOwnhLtxm7NYM",
+   "Apprenante": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Adult language classroom, quiet room, chairs moving softly, papers rustling, a pen on paper, no voices, no music"
+ },
+ "A2-s28": {
+  "n": 28,
+  "theme": "Vie sociale",
+  "lieu": "Se présenter à ses voisins",
+  "situation": "Parler du quartier et proposer de l'aide",
+  "repliques": [
+   [
+    "Voisin",
+    "Vous avez emménagé quand ?"
+   ],
+   [
+    "Voisine",
+    "Samedi dernier. Je ne connais pas encore le quartier."
+   ],
+   [
+    "Voisin",
+    "Il y a une boulangerie et un supermarché au bout de la rue. Le marché, c'est le jeudi matin."
+   ],
+   [
+    "Voisine",
+    "Merci ! Et les poubelles, c'est où ?"
+   ],
+   [
+    "Voisin",
+    "Dans la cour. Le jaune, c'est pour le plastique et le carton."
+   ],
+   [
+    "Voisine",
+    "Merci beaucoup. Si vous avez besoin de quelque chose, je suis au troisième."
+   ]
+  ],
+  "voix": {
+   "Voisin": "W01VS3mCiWjHO239CD72",
+   "Voisine": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Apartment building stairwell, a door closing at the very start, keys jingling, quiet echo, no voices, no music"
+ },
+ "A2-s29": {
+  "n": 29,
+  "theme": "Vie sociale",
+  "lieu": "À la sortie de l'école (avec les autres parents)",
+  "situation": "Organiser un goûter ou un échange de garde",
+  "repliques": [
+   [
+    "Parent 1",
+    "Sarah parle beaucoup d'Ilyes. Il peut venir goûter chez nous mercredi ?"
+   ],
+   [
+    "Parent 2",
+    "Oui, avec plaisir. À quelle heure ?"
+   ],
+   [
+    "Parent 1",
+    "Je peux les prendre à la sortie de l'école, à 16 h 30. Vous venez le chercher à 18 heures ?"
+   ],
+   [
+    "Parent 2",
+    "Parfait. Il est allergique aux arachides, attention."
+   ],
+   [
+    "Parent 1",
+    "D'accord, je note. On échange nos numéros ?"
+   ],
+   [
+    "Parent 2",
+    "Oui, c'est le 06 12 34 56 78."
+   ]
+  ],
+  "voix": {
+   "Parent 1": "4NTBwCMIWDfx48seeuxZ",
+   "Parent 2": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Outside a primary school at pickup time, a school bell at the very start, distant children laughing and playing without clear words, light street noise, no music"
+ },
+ "A2-s30": {
+  "n": 30,
+  "theme": "Vie sociale",
+  "lieu": "À une fête d'anniversaire",
+  "situation": "Répondre à une invitation et demander les détails",
+  "repliques": [
+   [
+    "Message de Karim",
+    "Salut ! Je fête mes 40 ans samedi 14 décembre. Tu viens ?"
+   ],
+   [
+    "Réponse",
+    "Oui, avec plaisir ! C'est à quelle heure ?"
+   ],
+   [
+    "Karim",
+    "À partir de 19 heures, chez moi, 4 rue des Écoles."
+   ],
+   [
+    "Réponse",
+    "Je peux apporter quelque chose ? Un dessert ?"
+   ],
+   [
+    "Karim",
+    "Oui, super, un dessert ! Tu peux venir avec ta femme, bien sûr."
+   ],
+   [
+    "Réponse",
+    "Merci ! On sera peut-être un peu en retard, on finit le travail à 19 heures."
+   ]
+  ],
+  "voix": {
+   "Message de Karim": "3Yr319bDgMFZv5qX6yzA",
+   "Réponse": "6pqL78prQKdL6zrRhG3N",
+   "Karim": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Quiet room, a smartphone message notification chime at the very start and once again in the middle, soft phone keyboard tapping, no voices, no music"
+ },
+ "A2-s31": {
+  "n": 31,
+  "theme": "Vie sociale",
+  "lieu": "Écrire un SMS simple",
+  "situation": "Prévenir d'un retard et proposer une autre heure",
+  "repliques": [
+   [
+    "SMS envoyé",
+    "Bonjour Nadia, désolée, je vais être en retard. Il y a un bouchon sur la route."
+   ],
+   [
+    "SMS reçu",
+    "Pas de problème ! Tu arrives à quelle heure ?"
+   ],
+   [
+    "SMS envoyé",
+    "Vers 15 h 30. Ça te va ?"
+   ],
+   [
+    "SMS reçu",
+    "Oui, je t'attends au café."
+   ],
+   [
+    "Consigne",
+    "Vous avez rendez-vous chez le coiffeur à 10 h. Vous êtes malade. Écrivez un SMS pour annuler et demander un autre rendez-vous."
+   ]
+  ],
+  "voix": {
+   "SMS envoyé": "TKoAvBNxOwnhLtxm7NYM",
+   "SMS reçu": "87kc04olBn8nRQKuNmaf",
+   "Consigne": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Quiet room, a smartphone message notification chime at the very start and once again in the middle, soft phone keyboard tapping, no voices, no music"
+ },
+ "A2-s32": {
+  "n": 32,
+  "theme": "Santé",
+  "lieu": "À la pharmacie",
+  "situation": "Présenter une ordonnance et comprendre la posologie",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, j'ai une ordonnance de mon médecin."
+   ],
+   [
+    "Pharmacien",
+    "Votre carte Vitale et votre carte de mutuelle, s'il vous plaît."
+   ],
+   [
+    "Client",
+    "Voilà."
+   ],
+   [
+    "Pharmacien",
+    "Je vous donne le générique, c'est le même médicament. Vous prenez un comprimé le matin et un le soir, pendant sept jours."
+   ],
+   [
+    "Client",
+    "Avant ou après le repas ?"
+   ],
+   [
+    "Pharmacien",
+    "Pendant le repas. Vous n'avez rien à payer, tout est pris en charge."
+   ]
+  ],
+  "voix": {
+   "Client": "W01VS3mCiWjHO239CD72",
+   "Pharmacien": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Pharmacy, quiet room tone, an automatic door opening at the very start, medicine boxes and a paper bag rustling, a cash register beep, no voices, no music"
+ },
+ "A2-s33": {
+  "n": 33,
+  "theme": "Santé",
+  "lieu": "Chez le médecin généraliste",
+  "situation": "Décrire ses symptômes et comprendre les conseils",
+  "repliques": [
+   [
+    "Médecin",
+    "Asseyez-vous. Qu'est-ce qui vous amène ?"
+   ],
+   [
+    "Patiente",
+    "Je suis très fatiguée depuis une semaine, j'ai mal partout et je tousse la nuit."
+   ],
+   [
+    "Médecin",
+    "Je vais vous examiner… Vous avez une bronchite. Je vous donne un sirop et un arrêt de travail de trois jours."
+   ],
+   [
+    "Patiente",
+    "Je dois envoyer l'arrêt à mon employeur ?"
+   ],
+   [
+    "Médecin",
+    "Oui, et à la Sécurité sociale, sous 48 heures. Je l'envoie en ligne pour la Sécurité sociale."
+   ],
+   [
+    "Patiente",
+    "D'accord. Et si ça ne va pas mieux ?"
+   ],
+   [
+    "Médecin",
+    "Revenez me voir dans une semaine."
+   ]
+  ],
+  "voix": {
+   "Médecin": "JFppi8XcU3D1RvkAikO5",
+   "Patiente": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Doctor's consulting room, quiet room tone, a chair creaking, papers rustling, no voices, no music"
+ },
+ "A2-s34": {
+  "n": 34,
+  "theme": "Santé",
+  "lieu": "Chez le pédiatre",
+  "situation": "Comprendre le carnet de santé et les vaccins",
+  "repliques": [
+   [
+    "Pédiatre",
+    "Vous avez le carnet de santé ?"
+   ],
+   [
+    "Père",
+    "Oui, le voilà."
+   ],
+   [
+    "Pédiatre",
+    "Elle a quinze mois. Aujourd'hui, elle doit avoir le vaccin contre la rougeole. Il est obligatoire."
+   ],
+   [
+    "Père",
+    "Elle va avoir de la fièvre après ?"
+   ],
+   [
+    "Pédiatre",
+    "C'est possible, quelques jours plus tard. Donnez-lui du paracétamol si elle a plus de 38,5."
+   ],
+   [
+    "Père",
+    "Et son poids, c'est normal ?"
+   ],
+   [
+    "Pédiatre",
+    "Oui, regardez la courbe : elle grandit très bien."
+   ]
+  ],
+  "voix": {
+   "Pédiatre": "3Yr319bDgMFZv5qX6yzA",
+   "Père": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Paediatrician's office, quiet room tone, a baby softly whimpering in the distance now and then, a toy rattle, no music"
+ },
+ "A2-s35": {
+  "n": 35,
+  "theme": "Santé",
+  "lieu": "Chez le dentiste",
+  "situation": "Comprendre un plan de soins et prendre les rendez-vous suivants",
+  "repliques": [
+   [
+    "Dentiste",
+    "Vous avez deux caries. Je vais soigner la première aujourd'hui."
+   ],
+   [
+    "Patient",
+    "Ça va faire mal ?"
+   ],
+   [
+    "Dentiste",
+    "Non, je vous fais une anesthésie. Pour l'autre dent, il faudra une couronne."
+   ],
+   [
+    "Patient",
+    "Elle est remboursée ?"
+   ],
+   [
+    "Dentiste",
+    "Certaines couronnes sont prises en charge à 100 %. Je vous donne un devis pour votre mutuelle."
+   ],
+   [
+    "Patient",
+    "D'accord. Je prends rendez-vous pour la deuxième dent à l'accueil ?"
+   ]
+  ],
+  "voix": {
+   "Dentiste": "6pqL78prQKdL6zrRhG3N",
+   "Patient": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Dentist's surgery, quiet room tone, a dental chair motor, faint metal dental tools clinking, no voices, no music"
+ },
+ "A2-s36": {
+  "n": 36,
+  "theme": "Santé",
+  "lieu": "Chez l'ophtalmologiste / chez l'opticien",
+  "situation": "Choisir des lunettes avec une ordonnance et une mutuelle",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, j'ai une ordonnance pour des lunettes."
+   ],
+   [
+    "Opticien",
+    "Vous avez votre carte Vitale et votre carte de mutuelle ?"
+   ],
+   [
+    "Cliente",
+    "Oui, voilà."
+   ],
+   [
+    "Opticien",
+    "Avec votre mutuelle, ces montures sont remboursées entièrement. Celles-ci, il reste 40 euros à payer."
+   ],
+   [
+    "Cliente",
+    "Je préfère les premières. Elles seront prêtes quand ?"
+   ],
+   [
+    "Opticien",
+    "Dans une semaine. Je vous envoie un SMS."
+   ]
+  ],
+  "voix": {
+   "Cliente": "87kc04olBn8nRQKuNmaf",
+   "Opticien": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Optician shop, quiet room tone, a door bell chimes once at the very start, a tiny screwdriver and metal glasses frame clicks, no voices, no music"
+ },
+ "A2-s37": {
+  "n": 37,
+  "theme": "Santé",
+  "lieu": "Au laboratoire d'analyses",
+  "situation": "Comprendre les consignes pour un examen et pour récupérer les résultats",
+  "repliques": [
+   [
+    "Patiente",
+    "Bonjour, mon médecin m'a prescrit une analyse d'urine. Comment ça se passe ?"
+   ],
+   [
+    "Secrétaire",
+    "Voici un flacon. Vous faites le prélèvement demain matin, au réveil, et vous le rapportez avant 10 heures."
+   ],
+   [
+    "Patiente",
+    "Je dois être à jeun ?"
+   ],
+   [
+    "Secrétaire",
+    "Non, pas pour cette analyse."
+   ],
+   [
+    "Patiente",
+    "Et les résultats, je les reçois comment ?"
+   ],
+   [
+    "Secrétaire",
+    "En ligne, sur notre site, le soir même. Votre identifiant est sur ce papier. Votre médecin les reçoit aussi."
+   ]
+  ],
+  "voix": {
+   "Patiente": "4NTBwCMIWDfx48seeuxZ",
+   "Secrétaire": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Medical laboratory waiting room, quiet room tone, a queue ticket machine beep, papers, distant footsteps, no voices, no music"
+ },
+ "A2-s38": {
+  "n": 38,
+  "theme": "Santé",
+  "lieu": "Prendre rendez-vous par téléphone ou sur Doctolib",
+  "situation": "Prendre rendez-vous sur Doctolib : comprendre les étapes",
+  "repliques": [
+   [
+    "Étape 1",
+    "Cherchez « médecin généraliste » et votre ville."
+   ],
+   [
+    "Étape 2",
+    "Choisissez le motif : « Première consultation » ou « Consultation de suivi »."
+   ],
+   [
+    "Étape 3",
+    "Choisissez un créneau libre, par exemple « jeudi 20 novembre, 10 h 15 »."
+   ],
+   [
+    "Étape 4",
+    "Connectez-vous ou créez un compte (nom, date de naissance, téléphone, e-mail)."
+   ],
+   [
+    "Étape 5",
+    "Confirmez le rendez-vous. Vous recevez un SMS de rappel la veille."
+   ],
+   [
+    "Consigne",
+    "Avec un camarade, expliquez à quelqu'un qui ne connaît pas Doctolib comment prendre un rendez-vous chez le dentiste."
+   ]
+  ],
+  "voix": {
+   "Étape 1": "RXG6r6Qewwp92BIFIBhE",
+   "Étape 2": "RXG6r6Qewwp92BIFIBhE",
+   "Étape 3": "RXG6r6Qewwp92BIFIBhE",
+   "Étape 4": "RXG6r6Qewwp92BIFIBhE",
+   "Étape 5": "RXG6r6Qewwp92BIFIBhE",
+   "Consigne": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Quiet room, computer mouse clicks and keyboard typing, no voices, no music"
+ },
+ "A2-s39": {
+  "n": 39,
+  "theme": "Services",
+  "lieu": "Au salon de coiffure",
+  "situation": "Prendre rendez-vous et décrire la coiffure souhaitée",
+  "repliques": [
+   [
+    "Coiffeuse",
+    "Salon Élégance, bonjour."
+   ],
+   [
+    "Cliente",
+    "Bonjour, je voudrais prendre rendez-vous pour une coupe et une couleur."
+   ],
+   [
+    "Coiffeuse",
+    "Vous voulez quelle couleur ?"
+   ],
+   [
+    "Cliente",
+    "Un peu plus clair, avec des mèches. J'ai une photo, je vous la montrerai."
+   ],
+   [
+    "Coiffeuse",
+    "Il faut compter deux heures. Samedi à 9 heures ?"
+   ],
+   [
+    "Cliente",
+    "Parfait. C'est combien, à peu près ?"
+   ],
+   [
+    "Coiffeuse",
+    "Entre 70 et 90 euros, selon la longueur."
+   ]
+  ],
+  "voix": {
+   "Coiffeuse": "TKoAvBNxOwnhLtxm7NYM",
+   "Cliente": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Hair salon, scissors snipping, a hair dryer in the distance, water running briefly, no voices, no music"
+ },
+ "A2-s40": {
+  "n": 40,
+  "theme": "Services",
+  "lieu": "Chez l'esthéticienne",
+  "situation": "Prendre rendez-vous et choisir une prestation",
+  "repliques": [
+   [
+    "Esthéticienne",
+    "Institut Belle Étoile, bonjour."
+   ],
+   [
+    "Cliente",
+    "Bonjour, je voudrais prendre rendez-vous pour une manucure avec vernis semi-permanent."
+   ],
+   [
+    "Esthéticienne",
+    "Quel jour vous arrange ?"
+   ],
+   [
+    "Cliente",
+    "Samedi matin, si possible."
+   ],
+   [
+    "Esthéticienne",
+    "J'ai 10 heures ou 11 h 30."
+   ],
+   [
+    "Cliente",
+    "10 heures. Ça dure combien de temps ?"
+   ],
+   [
+    "Esthéticienne",
+    "Une heure. Pensez à choisir votre couleur avant de venir, sur notre site."
+   ]
+  ],
+  "voix": {
+   "Esthéticienne": "87kc04olBn8nRQKuNmaf",
+   "Cliente": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Calm beauty salon, quiet room tone, a nail file, small glass bottles clinking, no voices, no music"
+ },
+ "A2-s41": {
+  "n": 41,
+  "theme": "Services",
+  "lieu": "Au pressing / à la laverie automatique",
+  "situation": "Utiliser la laverie automatique pour la première fois",
+  "repliques": [
+   [
+    "Cliente",
+    "Excusez-moi, c'est la première fois que je viens. Comment ça marche ?"
+   ],
+   [
+    "Autre client",
+    "Vous mettez le linge dans la machine, vous choisissez le numéro de la machine sur la borne et vous payez."
+   ],
+   [
+    "Cliente",
+    "Et la lessive ?"
+   ],
+   [
+    "Autre client",
+    "Elle est comprise, c'est automatique."
+   ],
+   [
+    "Cliente",
+    "Ça dure combien de temps ?"
+   ],
+   [
+    "Autre client",
+    "40 minutes pour laver, puis 20 minutes au séchoir."
+   ]
+  ],
+  "voix": {
+   "Cliente": "4NTBwCMIWDfx48seeuxZ",
+   "Autre client": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Dry cleaner shop, quiet room tone, a door bell chimes once at the very start, clothes hangers clinking, a steam press hissing softly, no voices, no music"
+ },
+ "A2-s42": {
+  "n": 42,
+  "theme": "Services",
+  "lieu": "Chez le cordonnier",
+  "situation": "Faire réparer des chaussures",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, le talon de ma chaussure est cassé. Vous pouvez le réparer ?"
+   ],
+   [
+    "Cordonnier",
+    "Oui, je change les deux talons, c'est mieux."
+   ],
+   [
+    "Client",
+    "Ça coûte combien ?"
+   ],
+   [
+    "Cordonnier",
+    "18 euros."
+   ],
+   [
+    "Client",
+    "Et c'est prêt quand ?"
+   ],
+   [
+    "Cordonnier",
+    "Mardi après-midi. Vous voulez aussi que je les cire ?"
+   ],
+   [
+    "Client",
+    "Non merci, juste les talons."
+   ]
+  ],
+  "voix": {
+   "Client": "3Yr319bDgMFZv5qX6yzA",
+   "Cordonnier": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Small cobbler and key cutting shop, a key cutting machine grinding briefly, metal keys jingling, quiet room tone, no voices, no music"
+ },
+ "A2-s43": {
+  "n": 43,
+  "theme": "Services",
+  "lieu": "Au point relais colis",
+  "situation": "Récupérer le colis d'une autre personne",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, je viens chercher le colis de ma femme. Elle travaille aujourd'hui."
+   ],
+   [
+    "Commerçante",
+    "Vous avez une procuration ?"
+   ],
+   [
+    "Client",
+    "Non, mais j'ai son code et sa carte d'identité."
+   ],
+   [
+    "Commerçante",
+    "Il me faut aussi votre pièce d'identité. Et elle doit vous désigner dans l'application."
+   ],
+   [
+    "Client",
+    "Je l'appelle tout de suite."
+   ],
+   [
+    "Commerçante",
+    "D'accord. Attention, le colis repart dans trois jours."
+   ]
+  ],
+  "voix": {
+   "Client": "6pqL78prQKdL6zrRhG3N",
+   "Commerçante": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Small corner shop used as a parcel pick-up point, quiet room tone, a barcode scanner beep, a cardboard box sliding on the counter, no voices, no music"
+ },
+ "A2-s44": {
+  "n": 44,
+  "theme": "Services",
+  "lieu": "À La Poste (envoyer un colis)",
+  "situation": "Envoyer un colis à l'étranger",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, je voudrais envoyer ce colis au Sénégal."
+   ],
+   [
+    "Guichetier",
+    "Je le pèse… 3 kilos. Avec suivi, c'est 48 euros. Il arrive en dix jours environ."
+   ],
+   [
+    "Cliente",
+    "C'est cher… Il y a moins cher ?"
+   ],
+   [
+    "Guichetier",
+    "Sans suivi, c'est 39 euros, mais on ne peut pas savoir où il est."
+   ],
+   [
+    "Cliente",
+    "Je prends avec suivi. Qu'est-ce que je dois remplir ?"
+   ],
+   [
+    "Guichetier",
+    "Cette déclaration de douane : le contenu du colis et sa valeur."
+   ]
+  ],
+  "voix": {
+   "Cliente": "87kc04olBn8nRQKuNmaf",
+   "Guichetier": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Post office counter, quiet room tone, a rubber stamp being pressed, envelopes and paper, a queue ticket beep, distant indistinct murmur without clear words, no music"
+ },
+ "A2-s45": {
+  "n": 45,
+  "theme": "Services",
+  "lieu": "Au magasin de vêtements (essayer, échanger)",
+  "situation": "Échanger un pull offert en cadeau",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, on m'a offert ce pull, mais il est trop grand. Je peux l'échanger ?"
+   ],
+   [
+    "Vendeur",
+    "Vous avez le ticket cadeau ?"
+   ],
+   [
+    "Client",
+    "Oui, le voilà."
+   ],
+   [
+    "Vendeur",
+    "Vous voulez la même chose en plus petit ?"
+   ],
+   [
+    "Client",
+    "Oui, en M, et si possible en bleu."
+   ],
+   [
+    "Vendeur",
+    "En bleu, il n'y a plus de M. Je peux le commander ou vous faire un avoir."
+   ],
+   [
+    "Client",
+    "Je préfère un avoir."
+   ]
+  ],
+  "voix": {
+   "Client": "JFppi8XcU3D1RvkAikO5",
+   "Vendeur": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Clothing store, quiet room tone, hangers sliding on a rail, a fitting room curtain being pulled, no voices, no music"
+ },
+ "A2-s46": {
+  "n": 46,
+  "theme": "Services",
+  "lieu": "Au magasin de chaussures",
+  "situation": "Acheter des chaussures pour un enfant en décrivant le besoin",
+  "repliques": [
+   [
+    "Mère",
+    "Bonjour, je cherche des chaussures pour ma fille, pour l'école."
+   ],
+   [
+    "Vendeur",
+    "Elle a quel âge ?"
+   ],
+   [
+    "Mère",
+    "Six ans. Elle fait du 30."
+   ],
+   [
+    "Vendeur",
+    "Je vous conseille des chaussures avec scratch, c'est plus facile pour elle."
+   ],
+   [
+    "Mère",
+    "Elles sont imperméables ?"
+   ],
+   [
+    "Vendeur",
+    "Celles-ci, oui. On peut mesurer son pied pour être sûr de la pointure ?"
+   ]
+  ],
+  "voix": {
+   "Mère": "RXG6r6Qewwp92BIFIBhE",
+   "Vendeur": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Shoe shop, quiet room tone, a shoe box being opened, tissue paper rustling, footsteps on the floor, no voices, no music"
+ },
+ "A2-s47": {
+  "n": 47,
+  "theme": "Services",
+  "lieu": "Au magasin de bricolage",
+  "situation": "Expliquer un petit travail et demander le matériel",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, je veux accrocher une étagère au mur. Qu'est-ce qu'il me faut ?"
+   ],
+   [
+    "Vendeur",
+    "Le mur est en placo ou en béton ?"
+   ],
+   [
+    "Cliente",
+    "Je ne sais pas… Quand je tape, ça sonne creux."
+   ],
+   [
+    "Vendeur",
+    "Alors c'est du placo. Il vous faut des chevilles spéciales placo, des vis et une perceuse."
+   ],
+   [
+    "Cliente",
+    "Je n'ai pas de perceuse."
+   ],
+   [
+    "Vendeur",
+    "On en loue à l'accueil, 10 euros la journée."
+   ]
+  ],
+  "voix": {
+   "Cliente": "TKoAvBNxOwnhLtxm7NYM",
+   "Vendeur": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Large DIY hardware store, big hall, a shopping trolley rolling, distant beeps, small metal items clinking, no voices, no music"
+ },
+ "A2-s48": {
+  "n": 48,
+  "theme": "Services",
+  "lieu": "Au magasin de téléphonie (forfait, carte SIM)",
+  "situation": "Choisir un forfait selon ses besoins (appels à l'étranger)",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, je cherche un forfait. J'appelle souvent ma famille au Maroc."
+   ],
+   [
+    "Vendeur",
+    "Vous appelez combien de temps par mois ?"
+   ],
+   [
+    "Client",
+    "Environ deux heures. Et j'utilise beaucoup internet."
+   ],
+   [
+    "Vendeur",
+    "Ce forfait à 15 euros comprend 100 Go et les appels vers le Maroc illimités."
+   ],
+   [
+    "Client",
+    "Il y a un engagement ?"
+   ],
+   [
+    "Vendeur",
+    "Non, sans engagement. Vous pouvez arrêter quand vous voulez."
+   ],
+   [
+    "Client",
+    "Je garde mon numéro ?"
+   ],
+   [
+    "Vendeur",
+    "Oui, il faut me donner votre code RIO."
+   ]
+  ],
+  "voix": {
+   "Client": "W01VS3mCiWjHO239CD72",
+   "Vendeur": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Mobile phone shop, quiet modern room tone, a phone notification sound, a printer printing a page, no voices, no music"
+ },
+ "A2-s49": {
+  "n": 49,
+  "theme": "Services",
+  "lieu": "À la librairie / à la papeterie",
+  "situation": "Chercher un livre pour apprendre le français et le commander",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, je cherche un livre facile en français. J'apprends le français, niveau A2."
+   ],
+   [
+    "Libraire",
+    "Nous avons des livres en français facile, avec un CD audio. Vous aimez quel genre ?"
+   ],
+   [
+    "Client",
+    "Les histoires policières."
+   ],
+   [
+    "Libraire",
+    "Celui-ci est très bien. Il n'est pas en rayon, mais je peux le commander."
+   ],
+   [
+    "Client",
+    "Il arrive quand ?"
+   ],
+   [
+    "Libraire",
+    "Dans trois jours. Je vous appelle quand il est là."
+   ]
+  ],
+  "voix": {
+   "Client": "JFppi8XcU3D1RvkAikO5",
+   "Libraire": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Stationery shop, quiet room tone, a door bell chimes once at the very start, notebooks and paper, a cash register beep, no voices, no music"
+ },
+ "A2-s50": {
+  "n": 50,
+  "theme": "Services",
+  "lieu": "À la jardinerie / à l'animalerie",
+  "situation": "Demander conseil pour un balcon",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, j'ai un petit balcon au soleil. Qu'est-ce que je peux planter ?"
+   ],
+   [
+    "Vendeur",
+    "Des géraniums, des herbes aromatiques comme le basilic ou le thym."
+   ],
+   [
+    "Cliente",
+    "C'est facile ? Je n'ai pas d'expérience."
+   ],
+   [
+    "Vendeur",
+    "Oui. Il faut arroser le soir, quand il fait chaud."
+   ],
+   [
+    "Cliente",
+    "Quand est-ce qu'il faut planter ?"
+   ],
+   [
+    "Vendeur",
+    "Au printemps, en avril ou en mai. Maintenant, en novembre, c'est mieux pour les bulbes de fleurs."
+   ]
+  ],
+  "voix": {
+   "Cliente": "RXG6r6Qewwp92BIFIBhE",
+   "Vendeur": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Pet and garden shop, quiet room tone, small birds chirping in cages, a bag of pet food rustling, no voices, no music"
+ },
+ "A2-s51": {
+  "n": 51,
+  "theme": "Services",
+  "lieu": "Chez le vétérinaire",
+  "situation": "Prendre rendez-vous par téléphone et décrire les symptômes",
+  "repliques": [
+   [
+    "Secrétaire",
+    "Clinique vétérinaire, bonjour."
+   ],
+   [
+    "Cliente",
+    "Bonjour, je voudrais un rendez-vous pour mon chat. Il ne mange plus depuis deux jours et il dort beaucoup."
+   ],
+   [
+    "Secrétaire",
+    "Il vomit ?"
+   ],
+   [
+    "Cliente",
+    "Oui, une fois ce matin."
+   ],
+   [
+    "Secrétaire",
+    "Je vous propose aujourd'hui à 17 h 30."
+   ],
+   [
+    "Cliente",
+    "C'est parfait. Je dois apporter son carnet de santé ?"
+   ],
+   [
+    "Secrétaire",
+    "Oui, s'il vous plaît."
+   ]
+  ],
+  "voix": {
+   "Secrétaire": "TKoAvBNxOwnhLtxm7NYM",
+   "Cliente": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Veterinary clinic waiting room, quiet room tone, a dog panting and its claws tapping on the floor, a door opening, no voices, no music"
+ },
+ "A2-s52": {
+  "n": 52,
+  "theme": "Démarches simples",
+  "lieu": "À la banque (ouvrir un compte)",
+  "situation": "Ouvrir un compte : comprendre les documents demandés",
+  "repliques": [
+   [
+    "Conseillère",
+    "Bonjour, asseyez-vous. Vous voulez ouvrir un compte courant ?"
+   ],
+   [
+    "Cliente",
+    "Oui. J'ai besoin d'un RIB pour mon employeur."
+   ],
+   [
+    "Conseillère",
+    "Vous avez une pièce d'identité et un justificatif de domicile ?"
+   ],
+   [
+    "Cliente",
+    "J'ai mon titre de séjour et une facture d'électricité."
+   ],
+   [
+    "Conseillère",
+    "Parfait. La carte bancaire coûte 3 euros par mois. Vous la recevrez dans dix jours."
+   ],
+   [
+    "Cliente",
+    "Et le RIB ?"
+   ],
+   [
+    "Conseillère",
+    "Je vous l'imprime tout de suite. Signez ici et ici, s'il vous plaît."
+   ]
+  ],
+  "voix": {
+   "Conseillère": "87kc04olBn8nRQKuNmaf",
+   "Cliente": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Bank reception area, quiet room tone, keyboard typing, a distant door, soft footsteps, no voices, no music"
+ },
+ "A2-s53": {
+  "n": 53,
+  "theme": "Démarches simples",
+  "lieu": "À la mairie",
+  "situation": "Demander une attestation et prendre rendez-vous pour une carte d'identité",
+  "repliques": [
+   [
+    "Usagère",
+    "Bonjour, je voudrais refaire la carte d'identité de mon fils."
+   ],
+   [
+    "Agent",
+    "Pour la carte d'identité, il faut prendre rendez-vous sur le site de la mairie."
+   ],
+   [
+    "Usagère",
+    "Quels documents je dois apporter ?"
+   ],
+   [
+    "Agent",
+    "Une photo d'identité, l'ancienne carte, un justificatif de domicile et la pré-demande faite en ligne."
+   ],
+   [
+    "Usagère",
+    "Mon fils doit venir ?"
+   ],
+   [
+    "Agent",
+    "Oui, il doit être présent, avec vous. À partir de 12 ans, on prend aussi ses empreintes."
+   ]
+  ],
+  "voix": {
+   "Usagère": "4NTBwCMIWDfx48seeuxZ",
+   "Agent": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Town hall reception, large quiet hall, footsteps on a stone floor, papers, a distant door closing, no voices, no music"
+ },
+ "A2-s54": {
+  "n": 54,
+  "theme": "Démarches simples",
+  "lieu": "À la bibliothèque / à la médiathèque (s'inscrire)",
+  "situation": "S'inscrire et découvrir les services",
+  "repliques": [
+   [
+    "Usagère",
+    "Bonjour, je voudrais m'inscrire à la médiathèque."
+   ],
+   [
+    "Bibliothécaire",
+    "L'inscription est gratuite pour les habitants de la commune. Il faut une pièce d'identité et un justificatif de domicile."
+   ],
+   [
+    "Usagère",
+    "On peut emprunter combien de livres ?"
+   ],
+   [
+    "Bibliothécaire",
+    "Dix documents pendant trois semaines : livres, DVD, livres audio."
+   ],
+   [
+    "Usagère",
+    "Il y a des livres pour apprendre le français ?"
+   ],
+   [
+    "Bibliothécaire",
+    "Oui, au rayon « Français langue étrangère ». Et il y a un atelier de conversation le samedi matin, et des ordinateurs en libre accès."
+   ]
+  ],
+  "voix": {
+   "Usagère": "RXG6r6Qewwp92BIFIBhE",
+   "Bibliothécaire": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Quiet public library, pages turning, a book barcode scanner beep, very soft footsteps, no voices, no music"
+ },
+ "A2-s55": {
+  "n": 55,
+  "theme": "Démarches simples",
+  "lieu": "À la déchetterie",
+  "situation": "Comprendre les règles d'accès et le tri",
+  "repliques": [
+   [
+    "Usagère",
+    "Bonjour, c'est la première fois que je viens. Il faut une carte ?"
+   ],
+   [
+    "Agent",
+    "Oui, une carte d'accès. Vous la demandez à la communauté de communes avec un justificatif de domicile. Aujourd'hui, je vous laisse entrer."
+   ],
+   [
+    "Usagère",
+    "Merci. J'ai des pots de peinture et un vieux micro-ondes."
+   ],
+   [
+    "Agent",
+    "La peinture, c'est un déchet dangereux : au local à gauche. Le micro-ondes, avec l'électroménager, là-bas."
+   ],
+   [
+    "Usagère",
+    "Et les piles ?"
+   ],
+   [
+    "Agent",
+    "Dans la boîte à l'entrée. Attention, nous fermons à 18 heures."
+   ]
+  ],
+  "voix": {
+   "Usagère": "TKoAvBNxOwnhLtxm7NYM",
+   "Agent": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Outdoor recycling centre, wind, a car boot closing, cardboard and wood thrown into a metal skip, a distant truck, no voices, no music"
+ },
+ "A2-s56": {
+  "n": 56,
+  "theme": "Démarches simples",
+  "lieu": "Remplir un formulaire simple",
+  "situation": "Remplir un formulaire avec des cases à cocher et des abréviations",
+  "repliques": [
+   [
+    "Formulaire",
+    "☐ Mme ☐ M.   Nom de naissance : ______   Nom d'usage : ______"
+   ],
+   [
+    "Formulaire",
+    "Situation familiale : ☐ célibataire ☐ marié(e) ☐ pacsé(e) ☐ divorcé(e) ☐ veuf / veuve"
+   ],
+   [
+    "Formulaire",
+    "Nombre d'enfants à charge : ___   Âge des enfants : ______"
+   ],
+   [
+    "Formulaire",
+    "Profession : ______   Employeur : ______"
+   ],
+   [
+    "Formulaire",
+    "Pièces à joindre : copie de la pièce d'identité, justificatif de domicile de moins de 3 mois"
+   ],
+   [
+    "Consigne",
+    "Expliquez à votre voisin la différence entre « nom de naissance » et « nom d'usage », puis remplissez le formulaire."
+   ]
+  ],
+  "voix": {
+   "Formulaire": "87kc04olBn8nRQKuNmaf",
+   "Consigne": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Quiet office room, a pen writing on paper, papers rustling, a clock ticking softly, no voices, no music"
+ },
+ "A2-s57": {
+  "n": 57,
+  "theme": "Transports et voyage",
+  "lieu": "Dans le train (contrôleur, correspondance)",
+  "situation": "Comprendre une annonce et demander pour la correspondance",
+  "repliques": [
+   [
+    "Annonce",
+    "Mesdames et messieurs, en raison d'un incident technique, notre train aura environ vingt minutes de retard."
+   ],
+   [
+    "Voyageur",
+    "Excusez-moi, monsieur. J'ai une correspondance à Dijon à 10 h 05. Je vais la rater ?"
+   ],
+   [
+    "Contrôleur",
+    "C'est possible. Si vous la ratez, vous pourrez prendre le train suivant avec le même billet."
+   ],
+   [
+    "Voyageur",
+    "Il part à quelle heure ?"
+   ],
+   [
+    "Contrôleur",
+    "À 10 h 50, voie B. Je vous donne une attestation de retard."
+   ],
+   [
+    "Voyageur",
+    "Merci beaucoup."
+   ]
+  ],
+  "voix": {
+   "Annonce": "4NTBwCMIWDfx48seeuxZ",
+   "Voyageur": "JFppi8XcU3D1RvkAikO5",
+   "Contrôleur": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Inside a moving train carriage, steady rhythm of the rails, gentle swaying, a sliding door opening, no voices, no announcements, no music"
+ },
+ "A2-s58": {
+  "n": 58,
+  "theme": "Transports et voyage",
+  "lieu": "À l'aéroport (enregistrement, contrôle)",
+  "situation": "Passer le contrôle de sécurité et comprendre les consignes",
+  "repliques": [
+   [
+    "Agent",
+    "Mettez votre sac dans le bac. Vous avez des liquides ?"
+   ],
+   [
+    "Voyageuse",
+    "Oui, une bouteille d'eau et du parfum."
+   ],
+   [
+    "Agent",
+    "La bouteille d'eau n'est pas autorisée. Le parfum, il fait combien ?"
+   ],
+   [
+    "Voyageuse",
+    "50 millilitres."
+   ],
+   [
+    "Agent",
+    "C'est bon, mettez-le dans un sac plastique transparent. Sortez aussi votre ordinateur, enlevez votre ceinture et votre manteau."
+   ],
+   [
+    "Voyageuse",
+    "Je dois enlever mes chaussures ?"
+   ],
+   [
+    "Agent",
+    "Non, ce n'est pas nécessaire. Passez sous le portique."
+   ]
+  ],
+  "voix": {
+   "Agent": "3Yr319bDgMFZv5qX6yzA",
+   "Voyageuse": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Airport check-in hall, large space, rolling suitcases, a luggage conveyor belt, distant indistinct murmur without clear words, no announcements, no music"
+ },
+ "A2-s59": {
+  "n": 59,
+  "theme": "Transports et voyage",
+  "lieu": "Au parking (horodateur, ticket)",
+  "situation": "Comprendre les règles de stationnement",
+  "repliques": [
+   [
+    "Conductrice",
+    "Bonjour, je peux me garer ici ?"
+   ],
+   [
+    "Agent municipal",
+    "Oui, c'est la zone bleue. C'est gratuit, mais 1 h 30 maximum. Il faut mettre le disque."
+   ],
+   [
+    "Conductrice",
+    "Je n'ai pas de disque."
+   ],
+   [
+    "Agent municipal",
+    "Vous pouvez en acheter un au bureau de tabac, ou à la mairie."
+   ],
+   [
+    "Conductrice",
+    "Et là-bas, devant la pharmacie ?"
+   ],
+   [
+    "Agent municipal",
+    "Non, c'est une place réservée aux livraisons. Le stationnement est interdit de 8 h à 12 h."
+   ]
+  ],
+  "voix": {
+   "Conductrice": "TKoAvBNxOwnhLtxm7NYM",
+   "Agent municipal": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Town street with parking spaces, light traffic, a car door closing, a parking meter beep, footsteps, no voices, no music"
+ },
+ "A2-s60": {
+  "n": 60,
+  "theme": "Transports et voyage",
+  "lieu": "Louer un vélo / une trottinette",
+  "situation": "Utiliser un vélo ou une trottinette en libre-service avec une application",
+  "repliques": [
+   [
+    "Utilisatrice",
+    "Excuse-moi, tu sais comment ça marche, ces trottinettes ?"
+   ],
+   [
+    "Jeune homme",
+    "Oui. Tu télécharges l'application, tu crées un compte et tu enregistres ta carte bancaire."
+   ],
+   [
+    "Utilisatrice",
+    "Et après ?"
+   ],
+   [
+    "Jeune homme",
+    "Tu scannes le QR code sur la trottinette, elle se déverrouille. C'est 1 euro pour commencer, puis 25 centimes la minute."
+   ],
+   [
+    "Utilisatrice",
+    "Je peux la laisser n'importe où ?"
+   ],
+   [
+    "Jeune homme",
+    "Non, seulement dans les zones autorisées, regarde sur la carte. Sinon, tu paies une pénalité."
+   ]
+  ],
+  "voix": {
+   "Utilisatrice": "87kc04olBn8nRQKuNmaf",
+   "Jeune homme": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Outdoor bike rental shop in summer, bicycle bells ringing, bike chains clicking, birds, light street noise, no voices, no music"
+ },
+ "A2-s61": {
+  "n": 61,
+  "theme": "Transports et voyage",
+  "lieu": "À l'office de tourisme",
+  "situation": "Demander des idées d'activités pour une famille",
+  "repliques": [
+   [
+    "Touriste",
+    "Bonjour, nous sommes en famille, avec deux enfants de 8 et 12 ans. Qu'est-ce qu'on peut faire ce week-end ?"
+   ],
+   [
+    "Conseiller",
+    "Samedi, il y a un marché de Noël sur la place. Dimanche, une balade avec un guide dans la forêt."
+   ],
+   [
+    "Touriste",
+    "La balade est longue ?"
+   ],
+   [
+    "Conseiller",
+    "Deux heures, c'est facile. Il faut réserver, c'est 5 euros par personne."
+   ],
+   [
+    "Touriste",
+    "Il y a aussi des activités quand il pleut ?"
+   ],
+   [
+    "Conseiller",
+    "Oui, la piscine et le musée de la mine. Voici le programme du week-end."
+   ]
+  ],
+  "voix": {
+   "Touriste": "JFppi8XcU3D1RvkAikO5",
+   "Conseiller": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Tourist information office, quiet room tone, a door bell chimes once at the very start, maps and brochures being unfolded, no voices, no music"
+ },
+ "A2-s62": {
+  "n": 62,
+  "theme": "Transports et voyage",
+  "lieu": "À l'hôtel (réservation, arrivée)",
+  "situation": "Réserver une chambre par téléphone",
+  "repliques": [
+   [
+    "Réceptionniste",
+    "Hôtel du Parc, bonjour."
+   ],
+   [
+    "Cliente",
+    "Bonjour, je voudrais réserver une chambre double pour vendredi et samedi."
+   ],
+   [
+    "Réceptionniste",
+    "Oui, il nous reste une chambre. C'est 85 euros la nuit."
+   ],
+   [
+    "Cliente",
+    "Le petit-déjeuner est compris ?"
+   ],
+   [
+    "Réceptionniste",
+    "Non, il est à 10 euros par personne. Le parking est gratuit."
+   ],
+   [
+    "Cliente",
+    "Si j'annule, je dois payer ?"
+   ],
+   [
+    "Réceptionniste",
+    "Non, l'annulation est gratuite jusqu'à 48 heures avant."
+   ]
+  ],
+  "voix": {
+   "Réceptionniste": "RXG6r6Qewwp92BIFIBhE",
+   "Cliente": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Hotel lobby in the evening, quiet room tone, a reception desk bell ding at the very start, keys jingling, soft footsteps on carpet, no voices, no music"
+ },
+ "A2-s63": {
+  "n": 63,
+  "theme": "Transports et voyage",
+  "lieu": "Au camping / dans un gîte",
+  "situation": "Réserver un gîte et poser des questions sur l'équipement",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, votre gîte est libre la semaine du 12 juillet ?"
+   ],
+   [
+    "Propriétaire",
+    "Oui. C'est 650 euros la semaine, pour six personnes."
+   ],
+   [
+    "Cliente",
+    "Les draps et les serviettes sont fournis ?"
+   ],
+   [
+    "Propriétaire",
+    "Les draps, oui. Les serviettes, non."
+   ],
+   [
+    "Cliente",
+    "La cuisine est équipée ? Il y a un lave-linge ?"
+   ],
+   [
+    "Propriétaire",
+    "Oui, tout est équipé. L'arrivée est le samedi à partir de 16 heures, le départ le samedi suivant avant 10 heures."
+   ]
+  ],
+  "voix": {
+   "Cliente": "TKoAvBNxOwnhLtxm7NYM",
+   "Propriétaire": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Campsite reception outdoors in summer, cicadas, birds, distant children playing without clear words, footsteps on gravel, no music"
+ },
+ "A2-s64": {
+  "n": 64,
+  "theme": "Transports et voyage",
+  "lieu": "Faire une visite guidée",
+  "situation": "Poser des questions pendant la visite",
+  "repliques": [
+   [
+    "Guide",
+    "Ce château a été construit au XIIe siècle."
+   ],
+   [
+    "Visiteuse",
+    "Qui habitait ici ?"
+   ],
+   [
+    "Guide",
+    "Une famille de seigneurs. Ils sont restés ici pendant 400 ans."
+   ],
+   [
+    "Visiteuse",
+    "Et aujourd'hui, à qui appartient le château ?"
+   ],
+   [
+    "Guide",
+    "À la commune. Il est ouvert au public depuis 1980."
+   ],
+   [
+    "Visiteuse",
+    "La visite dure combien de temps ?"
+   ],
+   [
+    "Guide",
+    "Encore une demi-heure. Ensuite, vous pouvez visiter les jardins."
+   ]
+  ],
+  "voix": {
+   "Guide": "W01VS3mCiWjHO239CD72",
+   "Visiteuse": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Old town square outdoors, a small group walking on cobblestones, distant church bells, pigeons, light wind, no clear voices, no music"
+ },
+ "A2-s65": {
+  "n": 65,
+  "theme": "Transports et voyage",
+  "lieu": "Au musée",
+  "situation": "Demander les réductions et les services du musée",
+  "repliques": [
+   [
+    "Visiteur",
+    "Bonjour, il y a un tarif réduit pour les demandeurs d'emploi ?"
+   ],
+   [
+    "Agente",
+    "Oui, c'est gratuit avec votre attestation de moins de six mois."
+   ],
+   [
+    "Visiteur",
+    "Super. Il y a un audioguide en arabe ?"
+   ],
+   [
+    "Agente",
+    "Non, en français, en anglais et en espagnol. Il coûte 3 euros."
+   ],
+   [
+    "Visiteur",
+    "Et l'exposition temporaire est comprise ?"
+   ],
+   [
+    "Agente",
+    "Oui. Et le premier dimanche du mois, le musée est gratuit pour tout le monde."
+   ]
+  ],
+  "voix": {
+   "Visiteur": "JFppi8XcU3D1RvkAikO5",
+   "Agente": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Museum entrance hall, large quiet space, soft footsteps, a ticket printer, no voices, no music"
+ },
+ "A2-s66": {
+  "n": 66,
+  "theme": "Enfants et école",
+  "lieu": "Inscrire son enfant à l'école",
+  "situation": "Comprendre les documents à fournir et les étapes",
+  "repliques": [
+   [
+    "Père",
+    "Bonjour, nous venons d'arriver dans la commune. Je voudrais inscrire mes deux enfants."
+   ],
+   [
+    "Agent",
+    "Ils ont quel âge ?"
+   ],
+   [
+    "Père",
+    "Quatre ans et neuf ans."
+   ],
+   [
+    "Agent",
+    "Il me faut un justificatif de domicile, le livret de famille ou les actes de naissance, et le carnet de santé avec les vaccins."
+   ],
+   [
+    "Père",
+    "Et après ?"
+   ],
+   [
+    "Agent",
+    "Je vous donne un certificat d'inscription. Ensuite, vous prenez rendez-vous avec la directrice de l'école pour l'admission."
+   ]
+  ],
+  "voix": {
+   "Père": "3Yr319bDgMFZv5qX6yzA",
+   "Agent": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Town hall office, quiet room tone, keyboard typing, papers, a stapler, no voices, no music"
+ },
+ "A2-s67": {
+  "n": 67,
+  "theme": "Enfants et école",
+  "lieu": "À la cantine / au périscolaire",
+  "situation": "Comprendre les tarifs et réserver le périscolaire",
+  "repliques": [
+   [
+    "Mère",
+    "Bonjour, je commence un travail lundi. Ma fille peut aller à la garderie le matin ?"
+   ],
+   [
+    "Animatrice",
+    "Oui, à partir de 7 h 30. Et le soir jusqu'à 18 h 30."
+   ],
+   [
+    "Mère",
+    "C'est combien ?"
+   ],
+   [
+    "Animatrice",
+    "Le prix dépend de votre quotient familial, c'est entre 1 et 3 euros la séance."
+   ],
+   [
+    "Mère",
+    "Comment je réserve ?"
+   ],
+   [
+    "Animatrice",
+    "Sur le portail famille de la mairie, avant le jeudi pour la semaine suivante."
+   ]
+  ],
+  "voix": {
+   "Mère": "TKoAvBNxOwnhLtxm7NYM",
+   "Animatrice": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "School office near the canteen, distant children's lunchtime noise without clear words, plates and cutlery clattering far away, no music"
+ },
+ "A2-s68": {
+  "n": 68,
+  "theme": "Enfants et école",
+  "lieu": "À la crèche / chez l'assistante maternelle",
+  "situation": "Rencontrer une assistante maternelle et poser des questions",
+  "repliques": [
+   [
+    "Père",
+    "Bonjour, nous cherchons quelqu'un pour garder notre fils de 10 mois."
+   ],
+   [
+    "Assistante maternelle",
+    "Bienvenue. Quels sont vos horaires ?"
+   ],
+   [
+    "Père",
+    "Du lundi au vendredi, de 8 heures à 17 heures."
+   ],
+   [
+    "Assistante maternelle",
+    "C'est possible. Je garde aussi deux autres enfants. Il fait la sieste ?"
+   ],
+   [
+    "Père",
+    "Oui, deux fois par jour. Qui prépare les repas ?"
+   ],
+   [
+    "Assistante maternelle",
+    "Moi, mais vous apportez le lait. Nous allons au parc tous les jours s'il fait beau."
+   ]
+  ],
+  "voix": {
+   "Père": "W01VS3mCiWjHO239CD72",
+   "Assistante maternelle": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Day nursery in the morning, soft distant toddlers babbling without clear words, toys, a door closing gently, no music"
+ },
+ "A2-s69": {
+  "n": 69,
+  "theme": "Enfants et école",
+  "lieu": "Au centre de loisirs",
+  "situation": "Comprendre le programme et préparer le sac",
+  "repliques": [
+   [
+    "Père",
+    "Bonjour, qu'est-ce qu'ils vont faire cette semaine ?"
+   ],
+   [
+    "Animatrice",
+    "Lundi, des jeux et de la peinture. Mercredi, une sortie à la piscine. Vendredi, un pique-nique au lac."
+   ],
+   [
+    "Père",
+    "Qu'est-ce qu'il doit apporter ?"
+   ],
+   [
+    "Animatrice",
+    "Pour la piscine, un maillot et une serviette. Pour vendredi, un pique-nique et une casquette."
+   ],
+   [
+    "Père",
+    "Il faut une autorisation pour les sorties ?"
+   ],
+   [
+    "Animatrice",
+    "Oui, signez ce papier, s'il vous plaît."
+   ]
+  ],
+  "voix": {
+   "Père": "JFppi8XcU3D1RvkAikO5",
+   "Animatrice": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Children's leisure centre office, distant children playing without clear words, a ball bouncing, no music"
+ },
+ "A2-s70": {
+  "n": 70,
+  "theme": "Enfants et école",
+  "lieu": "Lire le carnet de liaison",
+  "situation": "Comprendre une demande et répondre par écrit",
+  "repliques": [
+   [
+    "Mot de l'enseignant",
+    "Chers parents, le mardi 2 décembre, la classe ira au musée. Départ à 8 h 45, retour à 16 h 30."
+   ],
+   [
+    "Mot de l'enseignant",
+    "Prévoir un pique-nique et une tenue chaude. Nous cherchons deux parents accompagnateurs."
+   ],
+   [
+    "Réponse du parent",
+    "Bonjour, monsieur. Je suis disponible pour accompagner la classe le 2 décembre. Cordialement, Mme Benali."
+   ],
+   [
+    "Consigne",
+    "Écrivez une réponse : vous ne pouvez pas accompagner la classe, mais votre enfant participera."
+   ]
+  ],
+  "voix": {
+   "Mot de l'enseignant": "3Yr319bDgMFZv5qX6yzA",
+   "Réponse du parent": "RXG6r6Qewwp92BIFIBhE",
+   "Consigne": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Quiet kitchen at home in the evening, a school notebook being opened, a pen signing paper, a clock ticking, no voices, no music"
+ },
+ "A2-s71": {
+  "n": 71,
+  "theme": "Vie sociale et loisirs",
+  "lieu": "Inviter quelqu'un chez soi / être invité à dîner",
+  "situation": "Être invité : se comporter et parler pendant le repas",
+  "repliques": [
+   [
+    "Hôte",
+    "Entrez, entrez ! Donnez-moi vos manteaux."
+   ],
+   [
+    "Invitée",
+    "Merci. Tenez, c'est pour vous, des fleurs."
+   ],
+   [
+    "Hôte",
+    "Oh, merci, il ne fallait pas ! Asseyez-vous, je vous sers un jus ?"
+   ],
+   [
+    "Invitée",
+    "Volontiers. Ça sent très bon !"
+   ],
+   [
+    "Hôte",
+    "C'est un tajine de poulet aux citrons. Servez-vous."
+   ],
+   [
+    "Invitée",
+    "C'est délicieux ! Vous me donnez la recette ?"
+   ]
+  ],
+  "voix": {
+   "Hôte": "6pqL78prQKdL6zrRhG3N",
+   "Invitée": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Quiet living room, soft room tone, a cup set down on a table, light rain outside the window, no voices, no music"
+ },
+ "A2-s72": {
+  "n": 72,
+  "theme": "Vie sociale et loisirs",
+  "lieu": "À la salle de sport",
+  "situation": "Demander un programme adapté à un coach",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, je suis débutante. Vous pouvez m'aider à faire un programme ?"
+   ],
+   [
+    "Coach",
+    "Bien sûr. Quel est votre objectif ?"
+   ],
+   [
+    "Cliente",
+    "Je voudrais être en meilleure forme et avoir moins mal au dos."
+   ],
+   [
+    "Coach",
+    "Alors, on va faire du renforcement pour le dos et du vélo. Combien de fois par semaine vous pouvez venir ?"
+   ],
+   [
+    "Cliente",
+    "Deux fois, le mardi et le samedi."
+   ],
+   [
+    "Coach",
+    "Parfait. Commencez toujours par dix minutes d'échauffement."
+   ]
+  ],
+  "voix": {
+   "Cliente": "87kc04olBn8nRQKuNmaf",
+   "Coach": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Gym reception, distant weights clanking, a treadmill humming, a door closing, no voices, no music"
+ },
+ "A2-s73": {
+  "n": 73,
+  "theme": "Vie sociale et loisirs",
+  "lieu": "S'inscrire dans un club ou une association",
+  "situation": "Devenir bénévole dans une association",
+  "repliques": [
+   [
+    "Personne",
+    "Bonjour, je voudrais être bénévole dans votre association."
+   ],
+   [
+    "Responsable",
+    "Merci ! Qu'est-ce que vous aimeriez faire ?"
+   ],
+   [
+    "Personne",
+    "Je peux aider à la distribution alimentaire. Je parle aussi arabe et anglais."
+   ],
+   [
+    "Responsable",
+    "C'est très utile pour accueillir les familles. Vous êtes disponible quand ?"
+   ],
+   [
+    "Personne",
+    "Le mardi après-midi."
+   ],
+   [
+    "Responsable",
+    "Parfait. Venez à la réunion d'accueil des nouveaux bénévoles, jeudi à 18 heures."
+   ]
+  ],
+  "voix": {
+   "Personne": "4NTBwCMIWDfx48seeuxZ",
+   "Responsable": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Outdoor football ground in the evening, distant players calling without clear words, a ball being kicked, a coach whistle far away, no music"
+ },
+ "A2-s74": {
+  "n": 74,
+  "theme": "Vie sociale et loisirs",
+  "lieu": "Au théâtre / au concert / au stade",
+  "situation": "Choisir ses places et comprendre les conditions",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, je voudrais deux places pour le match de samedi."
+   ],
+   [
+    "Vendeur",
+    "En tribune, assis, à 25 euros, ou debout derrière les buts, à 12 euros."
+   ],
+   [
+    "Cliente",
+    "En tribune, avec mon fils de 10 ans."
+   ],
+   [
+    "Vendeur",
+    "Il y a un tarif enfant à 15 euros. Les portes ouvrent une heure avant le match."
+   ],
+   [
+    "Cliente",
+    "On peut entrer avec un sac ?"
+   ],
+   [
+    "Vendeur",
+    "Un petit sac seulement. Les bouteilles en verre sont interdites."
+   ]
+  ],
+  "voix": {
+   "Cliente": "RXG6r6Qewwp92BIFIBhE",
+   "Vendeur": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Concert hall box office in the evening, foyer ambience, distant indistinct crowd murmur without clear words, a ticket printer, no music"
+ },
+ "A2-s75": {
+  "n": 75,
+  "theme": "Vie sociale et loisirs",
+  "lieu": "À une fête de quartier / à un vide-grenier",
+  "situation": "S'inscrire comme exposant et préparer son stand",
+  "repliques": [
+   [
+    "Habitante",
+    "Bonjour, je voudrais vendre des vêtements d'enfants au vide-grenier de dimanche."
+   ],
+   [
+    "Organisateur",
+    "D'accord. C'est 3 euros le mètre. Combien de mètres vous voulez ?"
+   ],
+   [
+    "Habitante",
+    "Trois mètres. Je dois apporter une table ?"
+   ],
+   [
+    "Organisateur",
+    "Oui, apportez votre table et votre chaise. L'installation commence à 6 heures."
+   ],
+   [
+    "Habitante",
+    "Qu'est-ce qu'il faut pour l'inscription ?"
+   ],
+   [
+    "Organisateur",
+    "Votre pièce d'identité. C'est obligatoire pour la liste des exposants."
+   ]
+  ],
+  "voix": {
+   "Habitante": "TKoAvBNxOwnhLtxm7NYM",
+   "Organisateur": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Outdoor neighbourhood flea market, distant indistinct crowd murmur without clear words, objects being moved on tables, birds, no music"
+ },
+ "A2-s76": {
+  "n": 76,
+  "theme": "Vie sociale et loisirs",
+  "lieu": "À un mariage",
+  "situation": "Répondre à un faire-part et choisir un cadeau",
+  "repliques": [
+   [
+    "Faire-part",
+    "Sarah et Thomas ont la joie de vous annoncer leur mariage, le 14 juin, à 15 h, à la mairie de Vesoul. Merci de confirmer votre présence avant le 1er mai."
+   ],
+   [
+    "Message de réponse",
+    "Bonjour Sarah et Thomas, merci pour votre invitation. Nous serons très heureux de venir, à deux."
+   ],
+   [
+    "Ami",
+    "Tu sais ce qu'on peut leur offrir ?"
+   ],
+   [
+    "Amie",
+    "Ils ont une cagnotte en ligne pour leur voyage de noces. On peut participer ensemble."
+   ],
+   [
+    "Consigne",
+    "Écrivez une réponse pour dire que vous ne pouvez pas venir, en donnant une raison et en félicitant les mariés."
+   ]
+  ],
+  "voix": {
+   "Faire-part": "87kc04olBn8nRQKuNmaf",
+   "Message de réponse": "W01VS3mCiWjHO239CD72",
+   "Ami": "JFppi8XcU3D1RvkAikO5",
+   "Amie": "4NTBwCMIWDfx48seeuxZ",
+   "Consigne": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Quiet living room, an envelope being opened at the very start, a paper card, soft room tone, no voices, no music"
+ },
+ "A2-s77": {
+  "n": 77,
+  "theme": "Vie sociale et loisirs",
+  "lieu": "Au lieu de culte",
+  "situation": "Se renseigner sur les activités et l'entraide proposées",
+  "repliques": [
+   [
+    "Personne",
+    "Bonjour, je viens d'arriver dans la ville. Est-ce qu'il y a des activités pour les nouveaux ?"
+   ],
+   [
+    "Responsable",
+    "Oui, il y a un accueil des nouveaux le premier samedi du mois, avec un café."
+   ],
+   [
+    "Personne",
+    "Est-ce qu'il y a aussi de l'entraide ? Je cherche des meubles pour mon appartement."
+   ],
+   [
+    "Responsable",
+    "Oui, nous avons un groupe d'entraide. Je vous donne le numéro de la responsable."
+   ],
+   [
+    "Personne",
+    "Merci beaucoup. Il y a aussi des cours de français ?"
+   ],
+   [
+    "Responsable",
+    "Une association du quartier propose des cours le lundi soir, ici, dans notre salle."
+   ]
+  ],
+  "voix": {
+   "Personne": "4NTBwCMIWDfx48seeuxZ",
+   "Responsable": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Quiet church entrance, large stone space, soft footsteps, a distant heavy door, no voices, no music"
+ },
+ "A2-s78": {
+  "n": 78,
+  "theme": "Communication",
+  "lieu": "Téléphoner (se présenter, laisser un message)",
+  "situation": "Laisser un message sur un répondeur",
+  "repliques": [
+   [
+    "Répondeur",
+    "Bonjour, vous êtes bien chez l'entreprise Bâti-Est. Laissez votre message après le bip."
+   ],
+   [
+    "Appelante",
+    "Bonjour, c'est Mme Silva, Ana Silva. J'appelle pour l'offre d'emploi de peintre. Je suis disponible tout de suite."
+   ],
+   [
+    "Appelante",
+    "Vous pouvez me rappeler au 06 45 23 18 90. Je répète : 06 45 23 18 90."
+   ],
+   [
+    "Appelante",
+    "Merci, bonne journée."
+   ],
+   [
+    "Consigne",
+    "Laissez un message au cabinet du dentiste pour déplacer votre rendez-vous de jeudi."
+   ]
+  ],
+  "voix": {
+   "Répondeur": "3Yr319bDgMFZv5qX6yzA",
+   "Appelante": "RXG6r6Qewwp92BIFIBhE",
+   "Consigne": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Office telephone call, a telephone ringing twice at the very start and being picked up, subtle phone line hiss, quiet office room tone, no voices, no music"
+ },
+ "A2-s79": {
+  "n": 79,
+  "theme": "Communication",
+  "lieu": "Écrire un mail simple",
+  "situation": "Écrire un mail pour demander une information",
+  "repliques": [
+   [
+    "Mail",
+    "Objet : Demande d'information – cours de natation"
+   ],
+   [
+    "Mail",
+    "Bonjour, je voudrais inscrire mon fils de 7 ans aux cours de natation. Pouvez-vous me dire les jours, les horaires et le prix ?"
+   ],
+   [
+    "Mail",
+    "Merci d'avance pour votre réponse. Cordialement, Mme Nguyen – 06 12 45 78 90"
+   ],
+   [
+    "Consigne",
+    "Écrivez un mail à la médiathèque pour demander les horaires de l'atelier de conversation et s'il faut s'inscrire."
+   ]
+  ],
+  "voix": {
+   "Mail": "6pqL78prQKdL6zrRhG3N",
+   "Consigne": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Quiet room, an email notification sound at the very start, computer keyboard typing, a mouse click, no voices, no music"
+ },
+ "A2-s80": {
+  "n": 80,
+  "theme": "Travail",
+  "lieu": "Lire une offre d'emploi",
+  "situation": "Comprendre les exigences et savoir si on correspond",
+  "repliques": [
+   [
+    "Offre",
+    "Entreprise de nettoyage recrute agent(e) d'entretien H/F – CDI – 30 h / semaine."
+   ],
+   [
+    "Offre",
+    "Missions : nettoyage de bureaux et de parties communes, gestion des produits."
+   ],
+   [
+    "Offre",
+    "Profil : débutant accepté, permis B souhaité, ponctualité et autonomie."
+   ],
+   [
+    "Offre",
+    "Horaires : du lundi au vendredi, 6 h – 9 h et 17 h – 20 h. Pour postuler : envoyer CV à rh@proprete-est.fr"
+   ],
+   [
+    "Consigne",
+    "Est-ce que l'expérience est obligatoire ? Le permis est-il obligatoire ? Que veut dire « H/F » ? Les horaires vous conviennent-ils ? Pourquoi ?"
+   ]
+  ],
+  "voix": {
+   "Offre": "87kc04olBn8nRQKuNmaf",
+   "Consigne": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Quiet room, a newspaper page turning, a pen tapping on a table, no voices, no music"
+ },
+ "A2-s81": {
+  "n": 81,
+  "theme": "Travail",
+  "lieu": "Le premier jour de travail",
+  "situation": "Comprendre la visite et les consignes de sécurité",
+  "repliques": [
+   [
+    "Responsable",
+    "Voici votre badge. Vous badgez à la pointeuse quand vous arrivez et quand vous partez."
+   ],
+   [
+    "Nouvelle employée",
+    "D'accord. Et pour les pauses ?"
+   ],
+   [
+    "Responsable",
+    "Vingt minutes le matin et trente minutes à midi, en salle de pause."
+   ],
+   [
+    "Nouvelle employée",
+    "Qu'est-ce que je dois porter ?"
+   ],
+   [
+    "Responsable",
+    "Les chaussures de sécurité et les gants, tout le temps dans l'atelier. Les issues de secours sont ici et là-bas."
+   ],
+   [
+    "Nouvelle employée",
+    "Merci. Je commence par quoi ?"
+   ]
+  ],
+  "voix": {
+   "Responsable": "4NTBwCMIWDfx48seeuxZ",
+   "Nouvelle employée": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Reception of a small workshop company, quiet room tone, a distant machine humming, a door opening, footsteps, no voices, no music"
+ },
+ "A2-s82": {
+  "n": 82,
+  "theme": "Travail",
+  "lieu": "Avec un collègue (se présenter, demander de l'aide)",
+  "situation": "Demander de l'aide pour une tâche",
+  "repliques": [
+   [
+    "Nouvelle",
+    "Excuse-moi, Sophie, tu peux m'aider ? Je ne sais pas utiliser cette machine."
+   ],
+   [
+    "Collègue",
+    "Bien sûr. Tu appuies sur le bouton vert, puis tu mets le carton ici."
+   ],
+   [
+    "Nouvelle",
+    "Et si le carton est bloqué ?"
+   ],
+   [
+    "Collègue",
+    "Tu appuies sur le bouton rouge, et tu appelles le chef d'équipe. Ne mets jamais la main dans la machine."
+   ],
+   [
+    "Nouvelle",
+    "D'accord, merci. Tu peux me montrer encore une fois ?"
+   ],
+   [
+    "Collègue",
+    "Pas de problème, regarde."
+   ]
+  ],
+  "voix": {
+   "Nouvelle": "RXG6r6Qewwp92BIFIBhE",
+   "Collègue": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Warehouse break area, a distant forklift beeping, cardboard boxes being moved, quiet room tone, no voices, no music"
+ },
+ "A2-s83": {
+  "n": 83,
+  "theme": "Travail",
+  "lieu": "Prévenir d'un retard",
+  "situation": "Écrire un SMS ou un mail pour prévenir et proposer une solution",
+  "repliques": [
+   [
+    "SMS",
+    "Bonjour Monsieur Petit, ma voiture est en panne. Je vais arriver vers 9 h 30 au lieu de 8 h."
+   ],
+   [
+    "SMS",
+    "Je peux rester plus tard ce soir pour rattraper. Excusez-moi pour le dérangement. Fatou"
+   ],
+   [
+    "Réponse",
+    "Bonjour Fatou, merci de prévenir. D'accord pour ce soir. Bon courage."
+   ],
+   [
+    "Consigne",
+    "Écrivez un message à votre formatrice : vous serez en retard parce que vous devez emmener votre enfant chez le médecin."
+   ]
+  ],
+  "voix": {
+   "SMS": "TKoAvBNxOwnhLtxm7NYM",
+   "Réponse": "6pqL78prQKdL6zrRhG3N",
+   "Consigne": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Quiet room, a smartphone message notification chime at the very start and once again later, soft phone keyboard tapping, no voices, no music"
+ },
+ "A2-s84": {
+  "n": 84,
+  "theme": "Administrations",
+  "lieu": "À la préfecture",
+  "situation": "Comprendre la liste des pièces à fournir pour un renouvellement",
+  "repliques": [
+   [
+    "Usagère",
+    "Bonjour, mon titre de séjour se termine dans trois mois. Comment je fais pour le renouveler ?"
+   ],
+   [
+    "Agent",
+    "La demande se fait en ligne, sur le site de l'administration numérique pour les étrangers."
+   ],
+   [
+    "Usagère",
+    "Quels documents il faut ?"
+   ],
+   [
+    "Agent",
+    "Votre passeport, une photo d'identité récente, un justificatif de domicile de moins de six mois et un timbre fiscal."
+   ],
+   [
+    "Usagère",
+    "Je dois faire la demande quand ?"
+   ],
+   [
+    "Agent",
+    "Entre quatre mois et deux mois avant la fin de votre titre. Ne faites pas la demande trop tard."
+   ]
+  ],
+  "voix": {
+   "Usagère": "87kc04olBn8nRQKuNmaf",
+   "Agent": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Prefecture waiting room, a queue number display chime, chairs, distant indistinct murmur without clear words, no music"
+ },
+ "A2-s85": {
+  "n": 85,
+  "theme": "Administrations",
+  "lieu": "À l'OFII",
+  "situation": "Comprendre le contrat d'intégration républicaine et les formations",
+  "repliques": [
+   [
+    "Auditrice",
+    "Bonjour. Aujourd'hui, vous allez signer le contrat d'intégration républicaine."
+   ],
+   [
+    "Usager",
+    "Qu'est-ce que je dois faire avec ce contrat ?"
+   ],
+   [
+    "Auditrice",
+    "Vous suivez une formation civique sur la France et ses valeurs. Et vous avez fait un test de français ce matin."
+   ],
+   [
+    "Usager",
+    "Le résultat, c'est quoi ?"
+   ],
+   [
+    "Auditrice",
+    "Vous devez suivre 200 heures de cours de français. C'est gratuit et c'est obligatoire."
+   ],
+   [
+    "Usager",
+    "Les cours sont où ?"
+   ],
+   [
+    "Auditrice",
+    "Un organisme de formation près de chez vous va vous contacter dans les prochaines semaines."
+   ]
+  ],
+  "voix": {
+   "Auditrice": "4NTBwCMIWDfx48seeuxZ",
+   "Usager": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Administrative office interview room, quiet room tone, papers, a pen signing a document, no voices, no music"
+ },
+ "A2-s86": {
+  "n": 86,
+  "theme": "Administrations",
+  "lieu": "À la CAF",
+  "situation": "Faire une demande d'aide au logement",
+  "repliques": [
+   [
+    "Usager",
+    "Bonjour, je viens de louer un appartement. Je peux avoir une aide pour le loyer ?"
+   ],
+   [
+    "Agente",
+    "Vous pouvez faire une simulation sur le site caf.fr. Votre loyer est de combien ?"
+   ],
+   [
+    "Usager",
+    "520 euros, charges comprises."
+   ],
+   [
+    "Agente",
+    "Pour la demande, il faut votre bail, votre RIB, et vos ressources des douze derniers mois."
+   ],
+   [
+    "Usager",
+    "Et le propriétaire doit faire quelque chose ?"
+   ],
+   [
+    "Agente",
+    "Oui, il remplit une attestation de loyer. L'aide peut lui être versée directement."
+   ]
+  ],
+  "voix": {
+   "Usager": "3Yr319bDgMFZv5qX6yzA",
+   "Agente": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Public service office reception, quiet room tone, a queue ticket beep, papers, distant footsteps, no voices, no music"
+ },
+ "A2-s87": {
+  "n": 87,
+  "theme": "Administrations",
+  "lieu": "À la CPAM / à l'Assurance maladie",
+  "situation": "Comprendre le remboursement des soins et le médecin traitant",
+  "repliques": [
+   [
+    "Usagère",
+    "Bonjour, je ne comprends pas. Le médecin a coûté 30 euros, et on m'a remboursé seulement 9 euros."
+   ],
+   [
+    "Agent",
+    "Vous avez déclaré un médecin traitant ?"
+   ],
+   [
+    "Usagère",
+    "Non. C'est quoi ?"
+   ],
+   [
+    "Agent",
+    "C'est votre médecin habituel. Si vous le déclarez, vous êtes mieux remboursée : 70 % au lieu de 30 %. Le reste peut être payé par une mutuelle."
+   ],
+   [
+    "Usagère",
+    "Comment je le déclare ?"
+   ],
+   [
+    "Agent",
+    "Votre médecin peut le faire en ligne pendant la consultation. Vous pouvez aussi suivre vos remboursements sur votre compte ameli."
+   ]
+  ],
+  "voix": {
+   "Usagère": "TKoAvBNxOwnhLtxm7NYM",
+   "Agent": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Health insurance office, quiet room tone, keyboard typing, a printer, papers, no voices, no music"
+ },
+ "A2-s88": {
+  "n": 88,
+  "theme": "Administrations",
+  "lieu": "À France Travail",
+  "situation": "Premier rendez-vous avec un conseiller : parler de son projet",
+  "repliques": [
+   [
+    "Conseillère",
+    "Quel travail vous recherchez ?"
+   ],
+   [
+    "Usagère",
+    "J'étais couturière en Turquie. Ici, je voudrais travailler dans la couture ou le repassage."
+   ],
+   [
+    "Conseillère",
+    "Il y a des offres dans les pressings et dans une entreprise de vêtements à côté. Vous avez un CV en français ?"
+   ],
+   [
+    "Usagère",
+    "Non, pas encore."
+   ],
+   [
+    "Conseillère",
+    "On va le préparer ensemble. Attention : chaque mois, vous devez faire votre actualisation sur votre espace personnel."
+   ],
+   [
+    "Usagère",
+    "Si je ne la fais pas ?"
+   ],
+   [
+    "Conseillère",
+    "Vous êtes désinscrite. Je vous montre comment faire."
+   ]
+  ],
+  "voix": {
+   "Conseillère": "87kc04olBn8nRQKuNmaf",
+   "Usagère": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Employment agency office, quiet room tone, computer keyboard typing, a mouse clicking, distant footsteps, no voices, no music"
+ },
+ "A2-s89": {
+  "n": 89,
+  "theme": "Administrations",
+  "lieu": "Au centre des impôts",
+  "situation": "Comprendre la déclaration de revenus",
+  "repliques": [
+   [
+    "Usager",
+    "Bonjour, je travaille depuis cette année. Je dois faire une déclaration de revenus ?"
+   ],
+   [
+    "Agente",
+    "Oui, chaque année, au printemps, même si vos revenus sont faibles."
+   ],
+   [
+    "Usager",
+    "Je n'ai pas de numéro fiscal."
+   ],
+   [
+    "Agente",
+    "Pour la première déclaration, vous la faites sur papier ou sur le site, avec ce formulaire. Ensuite, vous recevrez votre numéro fiscal."
+   ],
+   [
+    "Usager",
+    "Je vais payer beaucoup ?"
+   ],
+   [
+    "Agente",
+    "Ça dépend de vos revenus et de votre famille. Avec la déclaration, vous recevrez un avis d'imposition. Il est souvent demandé pour les aides."
+   ]
+  ],
+  "voix": {
+   "Usager": "JFppi8XcU3D1RvkAikO5",
+   "Agente": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Tax office hall, quiet room tone, a letter dropped into a box, footsteps on tiles, no voices, no music"
+ },
+ "A2-s90": {
+  "n": 90,
+  "theme": "Administrations",
+  "lieu": "À la maison France Services",
+  "situation": "Créer un compte en ligne avec l'aide d'un conseiller",
+  "repliques": [
+   [
+    "Conseiller",
+    "Nous allons créer votre compte ameli. Vous avez votre carte Vitale ?"
+   ],
+   [
+    "Usagère",
+    "Oui. Je dois choisir un mot de passe ?"
+   ],
+   [
+    "Conseiller",
+    "Oui, au moins huit caractères, avec un chiffre et une majuscule."
+   ],
+   [
+    "Usagère",
+    "Comme « Paris2026 » ?"
+   ],
+   [
+    "Conseiller",
+    "Oui, mais choisissez quelque chose de plus personnel. Vous allez recevoir un code par SMS, tapez-le ici."
+   ],
+   [
+    "Usagère",
+    "C'est bon. Je note tout dans un petit carnet, pour ne pas oublier."
+   ]
+  ],
+  "voix": {
+   "Conseiller": "3Yr319bDgMFZv5qX6yzA",
+   "Usagère": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Public service help desk, quiet room tone, keyboard typing, a chair being pulled, no voices, no music"
+ },
+ "A2-s91": {
+  "n": 91,
+  "theme": "Administrations",
+  "lieu": "Chez l'assistante sociale",
+  "situation": "Expliquer ses difficultés et comprendre les aides possibles",
+  "repliques": [
+   [
+    "Assistante sociale",
+    "Qu'est-ce qui vous amène ?"
+   ],
+   [
+    "Usager",
+    "J'ai des difficultés pour payer mes factures. J'ai perdu mon travail il y a deux mois."
+   ],
+   [
+    "Assistante sociale",
+    "Vous avez des enfants ?"
+   ],
+   [
+    "Usager",
+    "Oui, trois enfants."
+   ],
+   [
+    "Assistante sociale",
+    "Je peux vous donner un bon pour l'aide alimentaire, cette semaine. Et nous allons regarder votre budget ensemble."
+   ],
+   [
+    "Usager",
+    "Merci. Qu'est-ce que je dois apporter la prochaine fois ?"
+   ],
+   [
+    "Assistante sociale",
+    "Vos factures, vos relevés de compte et vos courriers de la CAF."
+   ]
+  ],
+  "voix": {
+   "Assistante sociale": "TKoAvBNxOwnhLtxm7NYM",
+   "Usager": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Social services reception, quiet room tone, a phone ringing once far away, papers, no voices, no music"
+ },
+ "A2-s92": {
+  "n": 92,
+  "theme": "Administrations",
+  "lieu": "Au consulat / à l'ambassade",
+  "situation": "Demander un document d'état civil depuis la France",
+  "repliques": [
+   [
+    "Usagère",
+    "Bonjour, j'ai besoin d'une copie de mon acte de naissance pour me marier en France."
+   ],
+   [
+    "Agent",
+    "Vous devez la demander à la mairie de votre ville de naissance. Nous pouvons transmettre la demande."
+   ],
+   [
+    "Usagère",
+    "Combien de temps ça prend ?"
+   ],
+   [
+    "Agent",
+    "Deux à trois mois. Ensuite, le document doit être traduit en français."
+   ],
+   [
+    "Usagère",
+    "Par n'importe qui ?"
+   ],
+   [
+    "Agent",
+    "Non, par un traducteur assermenté. La mairie française peut aussi demander une légalisation. Renseignez-vous auprès d'elle."
+   ]
+  ],
+  "voix": {
+   "Usagère": "87kc04olBn8nRQKuNmaf",
+   "Agent": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Consulate waiting hall, quiet echoing room, a queue ticket chime, footsteps, no voices, no music"
+ },
+ "A2-s93": {
+  "n": 93,
+  "theme": "Administrations",
+  "lieu": "Au commissariat / à la gendarmerie (déclarer une perte ou un vol)",
+  "situation": "Raconter un vol simplement",
+  "repliques": [
+   [
+    "Usager",
+    "Bonjour, on m'a volé mon téléphone dans la rue."
+   ],
+   [
+    "Policière",
+    "Quand et où ?"
+   ],
+   [
+    "Usager",
+    "Hier soir, vers 22 heures, rue de la Gare. Un homme a pris le téléphone dans ma main et il est parti en courant."
+   ],
+   [
+    "Policière",
+    "Vous pouvez le décrire ?"
+   ],
+   [
+    "Usager",
+    "Il était grand, avec une veste noire et une capuche."
+   ],
+   [
+    "Policière",
+    "Vous voulez porter plainte ? Je vais vous donner un récépissé pour votre assurance."
+   ]
+  ],
+  "voix": {
+   "Usager": "JFppi8XcU3D1RvkAikO5",
+   "Policière": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Police station front desk, quiet room tone, keyboard typing, a distant door buzzer, no voices, no music"
+ },
+ "A2-s94": {
+  "n": 94,
+  "theme": "Administrations",
+  "lieu": "Chez le notaire / chez l'avocat",
+  "situation": "Se renseigner sur les frais et l'aide juridictionnelle",
+  "repliques": [
+   [
+    "Usager",
+    "Bonjour, combien coûte une consultation avec un avocat ?"
+   ],
+   [
+    "Secrétaire",
+    "Ça dépend des avocats. Ici, c'est 80 euros la première consultation."
+   ],
+   [
+    "Usager",
+    "C'est cher pour moi. Il y a une aide ?"
+   ],
+   [
+    "Secrétaire",
+    "Oui, l'aide juridictionnelle. Selon vos ressources, l'État peut payer tout ou une partie des frais."
+   ],
+   [
+    "Usager",
+    "Comment je la demande ?"
+   ],
+   [
+    "Secrétaire",
+    "Avec un formulaire, au tribunal ou en ligne. Il y a aussi des permanences gratuites d'avocats à la mairie, le premier samedi du mois."
+   ]
+  ],
+  "voix": {
+   "Usager": "3Yr319bDgMFZv5qX6yzA",
+   "Secrétaire": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Lawyer's office reception, calm quiet room tone, a clock ticking, pages turning, no voices, no music"
+ },
+ "A2-s95": {
+  "n": 95,
+  "theme": "Administrations",
+  "lieu": "Faire une démarche en ligne",
+  "situation": "Se connecter avec FranceConnect et télécharger une attestation",
+  "repliques": [
+   [
+    "Formatrice",
+    "Pour avoir votre attestation de droits, allez sur le site ameli."
+   ],
+   [
+    "Apprenant",
+    "Je n'ai pas de mot de passe ameli."
+   ],
+   [
+    "Formatrice",
+    "Vous pouvez utiliser le bouton FranceConnect, avec votre compte impots.gouv, par exemple."
+   ],
+   [
+    "Apprenant",
+    "Ça y est, je suis connecté."
+   ],
+   [
+    "Formatrice",
+    "Cliquez sur « Mes démarches », puis « Attestation de droits ». Téléchargez le PDF."
+   ],
+   [
+    "Apprenant",
+    "Je l'enregistre dans mes documents, puis je l'envoie par e-mail à mon employeur ?"
+   ]
+  ],
+  "voix": {
+   "Formatrice": "TKoAvBNxOwnhLtxm7NYM",
+   "Apprenant": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Quiet room, computer keyboard typing, mouse clicks, no voices, no music"
+ },
+ "A2-s96": {
+  "n": 96,
+  "theme": "Logement",
+  "lieu": "À l'agence immobilière",
+  "situation": "Décrire ses critères et comprendre les conditions de location",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, je cherche un T3, non meublé, près de l'école Jean-Moulin."
+   ],
+   [
+    "Agent",
+    "Avec un loyer de combien ?"
+   ],
+   [
+    "Cliente",
+    "650 euros maximum, charges comprises."
+   ],
+   [
+    "Agent",
+    "J'ai un appartement à 620 euros plus 40 euros de charges. Il faut un dossier : pièce d'identité, trois dernières fiches de paie, contrat de travail et un garant."
+   ],
+   [
+    "Cliente",
+    "Je n'ai pas de garant en France."
+   ],
+   [
+    "Agent",
+    "Vous pouvez demander la garantie Visale, c'est gratuit. Je vous donne l'adresse du site."
+   ]
+  ],
+  "voix": {
+   "Cliente": "87kc04olBn8nRQKuNmaf",
+   "Agent": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Real estate agency office, quiet room tone, a door bell chimes once at the very start, papers, keyboard typing, no voices, no music"
+ },
+ "A2-s97": {
+  "n": 97,
+  "theme": "Logement",
+  "lieu": "Visiter un appartement",
+  "situation": "Vérifier l'état et l'équipement du logement",
+  "repliques": [
+   [
+    "Visiteur",
+    "Le chauffage, c'est au gaz ou électrique ?"
+   ],
+   [
+    "Propriétaire",
+    "Électrique. Les fenêtres ont un double vitrage."
+   ],
+   [
+    "Visiteur",
+    "Quelle est l'étiquette du diagnostic énergétique ?"
+   ],
+   [
+    "Propriétaire",
+    "D."
+   ],
+   [
+    "Visiteur",
+    "Il y a une cave ? Et un ascenseur ?"
+   ],
+   [
+    "Propriétaire",
+    "Une cave, oui. Pas d'ascenseur, mais c'est seulement au deuxième étage."
+   ]
+  ],
+  "voix": {
+   "Visiteur": "JFppi8XcU3D1RvkAikO5",
+   "Propriétaire": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Empty apartment, footsteps echoing on a wooden floor, a door opening, light street noise through the window, no voices, no music"
+ },
+ "A2-s98": {
+  "n": 98,
+  "theme": "Logement",
+  "lieu": "Signer un bail / faire l'état des lieux",
+  "situation": "Comprendre les éléments principaux du bail",
+  "repliques": [
+   [
+    "Locataire",
+    "Le bail est de combien de temps ?"
+   ],
+   [
+    "Agent",
+    "Trois ans, renouvelable. Vous pouvez partir avant, avec un préavis d'un mois ici, car la ville est en zone tendue."
+   ],
+   [
+    "Locataire",
+    "Et le dépôt de garantie ?"
+   ],
+   [
+    "Agent",
+    "Un mois de loyer, hors charges. Vous le récupérez quand vous partez, si l'appartement est en bon état."
+   ],
+   [
+    "Locataire",
+    "Je dois avoir une assurance ?"
+   ],
+   [
+    "Agent",
+    "Oui, l'assurance habitation est obligatoire. Il me faut l'attestation avant de vous donner les clés."
+   ]
+  ],
+  "voix": {
+   "Locataire": "3Yr319bDgMFZv5qX6yzA",
+   "Agent": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Apartment entrance hall, keys jingling, a door lock turning, quiet echo, a pen on paper, no voices, no music"
+ },
+ "A2-s99": {
+  "n": 99,
+  "theme": "Logement",
+  "lieu": "Chez le bailleur social",
+  "situation": "Suivre sa demande et la renouveler",
+  "repliques": [
+   [
+    "Usagère",
+    "Bonjour, j'ai fait une demande de logement social il y a un an. Je n'ai pas de réponse."
+   ],
+   [
+    "Agent",
+    "Votre numéro unique, s'il vous plaît ?"
+   ],
+   [
+    "Usagère",
+    "Le voilà."
+   ],
+   [
+    "Agent",
+    "Votre demande doit être renouvelée chaque année, sinon elle est annulée. Elle expire dans quinze jours."
+   ],
+   [
+    "Usagère",
+    "Ah ! Je dois tout refaire ?"
+   ],
+   [
+    "Agent",
+    "Non, vous la renouvelez en ligne et vous mettez à jour vos revenus. Votre ancienneté est gardée."
+   ]
+  ],
+  "voix": {
+   "Usagère": "TKoAvBNxOwnhLtxm7NYM",
+   "Agent": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Social housing office reception, quiet room tone, keyboard typing, papers, no voices, no music"
+ },
+ "A2-s100": {
+  "n": 100,
+  "theme": "Logement",
+  "lieu": "Avec le propriétaire (réclamation, réparation)",
+  "situation": "Écrire un message pour demander une réparation",
+  "repliques": [
+   [
+    "Message",
+    "Bonjour monsieur Garnier, depuis lundi, il y a une fuite sous l'évier de la cuisine. J'ai mis une bassine, mais l'eau coule beaucoup."
+   ],
+   [
+    "Message",
+    "Pouvez-vous envoyer un plombier rapidement ? Je suis disponible tous les jours après 16 heures."
+   ],
+   [
+    "Message",
+    "Merci d'avance. Cordialement, Mme Kaya, 2e étage."
+   ],
+   [
+    "Consigne",
+    "Écrivez un message à votre propriétaire : la porte de la salle de bains ne ferme plus."
+   ]
+  ],
+  "voix": {
+   "Message": "87kc04olBn8nRQKuNmaf",
+   "Consigne": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Quiet apartment kitchen, water dripping into a plastic bucket, soft phone keyboard tapping, no voices, no music"
+ },
+ "A2-s101": {
+  "n": 101,
+  "theme": "Logement",
+  "lieu": "Avec les voisins (bruit, conflit)",
+  "situation": "Parler d'un problème répété et proposer une solution",
+  "repliques": [
+   [
+    "Voisin du dessous",
+    "Bonjour, je peux vous parler un moment ?"
+   ],
+   [
+    "Voisine du dessus",
+    "Oui, bien sûr."
+   ],
+   [
+    "Voisin du dessous",
+    "Tous les soirs, vers 23 heures, j'entends des meubles qu'on déplace. Ça me réveille."
+   ],
+   [
+    "Voisine du dessus",
+    "Oh, je ne savais pas ! C'est sûrement mes enfants qui jouent. Je vais faire attention."
+   ],
+   [
+    "Voisin du dessous",
+    "Merci. Peut-être un tapis dans leur chambre ?"
+   ],
+   [
+    "Voisine du dessus",
+    "Bonne idée. Si ça recommence, n'hésitez pas à me le dire."
+   ]
+  ],
+  "voix": {
+   "Voisin du dessous": "JFppi8XcU3D1RvkAikO5",
+   "Voisine du dessus": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Apartment landing in the evening, a door opening at the very start, muffled loud instrumental bass music through the door, no vocals"
+ },
+ "A2-s102": {
+  "n": 102,
+  "theme": "Logement",
+  "lieu": "Avec le gardien / le syndic",
+  "situation": "Comprendre une affiche ou un règlement d'immeuble",
+  "repliques": [
+   [
+    "Affiche",
+    "AVIS AUX RÉSIDENTS – Travaux dans la cage d'escalier du 3 au 7 mars. Merci de ne rien laisser dans les parties communes."
+   ],
+   [
+    "Affiche",
+    "Les encombrants (meubles, matelas) sont collectés le premier mardi du mois. Déposez-les devant l'immeuble la veille au soir."
+   ],
+   [
+    "Affiche",
+    "Le local vélos est réservé aux vélos et poussettes."
+   ],
+   [
+    "Consigne",
+    "Vous avez un vieux matelas. Quand et où pouvez-vous le déposer ? Pouvez-vous laisser votre poussette sur le palier ?"
+   ]
+  ],
+  "voix": {
+   "Affiche": "RXG6r6Qewwp92BIFIBhE",
+   "Consigne": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Apartment building entrance hall, footsteps, a parcel being handed over, quiet echo, no voices, no music"
+ },
+ "A2-s103": {
+  "n": 103,
+  "theme": "Logement",
+  "lieu": "Appeler un plombier, un électricien, un chauffagiste",
+  "situation": "Décrire une panne et demander un devis",
+  "repliques": [
+   [
+    "Électricien",
+    "Électricité Moreau, bonjour."
+   ],
+   [
+    "Cliente",
+    "Bonjour, le disjoncteur de ma maison saute chaque fois que j'allume le four."
+   ],
+   [
+    "Électricien",
+    "Ça arrive depuis quand ?"
+   ],
+   [
+    "Cliente",
+    "Depuis une semaine. Vous pouvez venir ?"
+   ],
+   [
+    "Électricien",
+    "Jeudi matin. Le déplacement coûte 45 euros, puis c'est 50 euros de l'heure."
+   ],
+   [
+    "Cliente",
+    "Vous pouvez me faire un devis avant les travaux ?"
+   ],
+   [
+    "Électricien",
+    "Bien sûr, après le diagnostic."
+   ]
+  ],
+  "voix": {
+   "Électricien": "6pqL78prQKdL6zrRhG3N",
+   "Cliente": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Phone call from a quiet house, a circuit breaker clicking off once, subtle phone line hiss, no voices, no music"
+ },
+ "A2-s104": {
+  "n": 104,
+  "theme": "Logement",
+  "lieu": "Ouvrir un contrat d'électricité, de gaz, d'eau ou d'internet",
+  "situation": "Choisir une offre internet et comprendre les conditions",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, je voudrais internet dans mon appartement."
+   ],
+   [
+    "Vendeuse",
+    "Vous êtes éligible à la fibre. Nous avons une offre à 25 euros par mois pendant un an, puis 35 euros."
+   ],
+   [
+    "Client",
+    "Il y a un engagement ?"
+   ],
+   [
+    "Vendeuse",
+    "Oui, de douze mois. Ou une offre sans engagement à 30 euros."
+   ],
+   [
+    "Client",
+    "Je préfère sans engagement. Un technicien doit venir ?"
+   ],
+   [
+    "Vendeuse",
+    "Oui, pour installer la prise de la fibre. Vous choisissez un rendez-vous en ligne."
+   ]
+  ],
+  "voix": {
+   "Client": "W01VS3mCiWjHO239CD72",
+   "Vendeuse": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Customer service office, quiet room tone, keyboard typing, no voices, no music"
+ },
+ "A2-s105": {
+  "n": 105,
+  "theme": "Logement",
+  "lieu": "Déménager / louer un camion",
+  "situation": "Organiser son déménagement et prévenir les organismes",
+  "repliques": [
+   [
+    "Ami",
+    "Tu as tout préparé pour samedi ?"
+   ],
+   [
+    "Amie",
+    "Presque. J'ai loué un camion et cinq amis viennent m'aider."
+   ],
+   [
+    "Ami",
+    "Tu as prévenu la CAF et la banque de ton changement d'adresse ?"
+   ],
+   [
+    "Amie",
+    "Pas encore. Il y a un site pour prévenir plusieurs organismes en même temps, non ?"
+   ],
+   [
+    "Ami",
+    "Oui, et tu peux aussi faire suivre ton courrier par La Poste pendant six mois."
+   ],
+   [
+    "Amie",
+    "Bonne idée. Tu peux m'aider à faire une liste ?"
+   ]
+  ],
+  "voix": {
+   "Ami": "JFppi8XcU3D1RvkAikO5",
+   "Amie": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Van rental agency, quiet room tone, keys jingling, a van engine starting in the distance outside, no voices, no music"
+ },
+ "A2-s106": {
+  "n": 106,
+  "theme": "Voiture et transports",
+  "lieu": "Au garage",
+  "situation": "Prendre rendez-vous pour une révision et décrire un bruit",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, je voudrais un rendez-vous pour la révision de ma voiture."
+   ],
+   [
+    "Garagiste",
+    "Vous avez remarqué un problème ?"
+   ],
+   [
+    "Client",
+    "Oui, quand je freine, il y a un bruit bizarre. Et un voyant orange s'allume sur le tableau de bord."
+   ],
+   [
+    "Garagiste",
+    "Ce sont peut-être les plaquettes de frein. Venez mardi, à 8 heures. Je vous ferai un devis."
+   ],
+   [
+    "Client",
+    "Vous pouvez m'appeler avant de faire les réparations ?"
+   ],
+   [
+    "Garagiste",
+    "Bien sûr."
+   ]
+  ],
+  "voix": {
+   "Client": "3Yr319bDgMFZv5qX6yzA",
+   "Garagiste": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Car garage workshop, an air compressor, a pneumatic wrench, metal tools, no voices, no music"
+ },
+ "A2-s107": {
+  "n": 107,
+  "theme": "Voiture et transports",
+  "lieu": "À l'auto-école",
+  "situation": "Comprendre les formules et le financement",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, combien coûte le permis ?"
+   ],
+   [
+    "Secrétaire",
+    "Notre forfait, c'est 1 400 euros, avec le code et vingt heures de conduite."
+   ],
+   [
+    "Cliente",
+    "C'est cher… Est-ce qu'il existe des aides ?"
+   ],
+   [
+    "Secrétaire",
+    "Vous pouvez utiliser votre CPF, le compte personnel de formation. France Travail peut aussi aider, si vous cherchez un travail."
+   ],
+   [
+    "Cliente",
+    "Et la boîte automatique, c'est plus facile ?"
+   ],
+   [
+    "Secrétaire",
+    "Oui, il faut seulement treize heures minimum. Mais vous ne pourrez conduire que des voitures automatiques au début."
+   ]
+  ],
+  "voix": {
+   "Cliente": "TKoAvBNxOwnhLtxm7NYM",
+   "Secrétaire": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Driving school office, quiet room tone, papers, light street traffic outside, no voices, no music"
+ },
+ "A2-s108": {
+  "n": 108,
+  "theme": "Voiture et transports",
+  "lieu": "Passer le code / le permis de conduire",
+  "situation": "Comprendre les consignes de l'inspecteur le jour de l'examen",
+  "repliques": [
+   [
+    "Inspectrice",
+    "Bonjour. Votre pièce d'identité, s'il vous plaît. Réglez votre siège et vos rétroviseurs."
+   ],
+   [
+    "Candidat",
+    "C'est fait."
+   ],
+   [
+    "Inspectrice",
+    "Au prochain carrefour, tournez à droite. Puis suivez la direction « Centre-ville »."
+   ],
+   [
+    "Candidat",
+    "D'accord."
+   ],
+   [
+    "Inspectrice",
+    "Maintenant, garez-vous en marche arrière, entre les deux voitures."
+   ],
+   [
+    "Candidat",
+    "Excusez-moi, vous pouvez répéter ? Je dois faire un créneau ?"
+   ]
+  ],
+  "voix": {
+   "Inspectrice": "87kc04olBn8nRQKuNmaf",
+   "Candidat": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Driving theory classroom, quiet room, a projector fan humming, papers, no voices, no music"
+ },
+ "A2-s109": {
+  "n": 109,
+  "theme": "Voiture et transports",
+  "lieu": "Au contrôle technique",
+  "situation": "Comprendre le résultat du contrôle",
+  "repliques": [
+   [
+    "Contrôleur",
+    "Votre voiture a une défaillance majeure : les feux arrière ne marchent pas, et un pneu est usé."
+   ],
+   [
+    "Cliente",
+    "Qu'est-ce que ça veut dire ?"
+   ],
+   [
+    "Contrôleur",
+    "Vous devez réparer et revenir pour une contre-visite dans les deux mois."
+   ],
+   [
+    "Cliente",
+    "La contre-visite est payante ?"
+   ],
+   [
+    "Contrôleur",
+    "Oui, 20 euros. Gardez bien ce procès-verbal."
+   ],
+   [
+    "Cliente",
+    "Je peux encore rouler avec ma voiture ?"
+   ],
+   [
+    "Contrôleur",
+    "Oui, pendant ce délai, mais réparez vite pour votre sécurité."
+   ]
+  ],
+  "voix": {
+   "Contrôleur": "JFppi8XcU3D1RvkAikO5",
+   "Cliente": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Vehicle inspection centre, a car engine idling, metal tools, a garage door, no voices, no music"
+ },
+ "A2-s110": {
+  "n": 110,
+  "theme": "Voiture et transports",
+  "lieu": "À l'agence de location de voitures",
+  "situation": "Comprendre le contrat : caution, carburant, assurance",
+  "repliques": [
+   [
+    "Agente",
+    "La caution est de 1 000 euros. Elle est bloquée sur votre carte, pas débitée."
+   ],
+   [
+    "Cliente",
+    "Et si j'ai un accident ?"
+   ],
+   [
+    "Agente",
+    "La franchise est de 1 000 euros. Avec notre assurance complémentaire, à 15 euros par jour, elle est de 0 euro."
+   ],
+   [
+    "Cliente",
+    "Je dois rendre la voiture avec le plein ?"
+   ],
+   [
+    "Agente",
+    "Oui, sinon on vous facture le carburant plus cher. Le kilométrage est illimité."
+   ],
+   [
+    "Cliente",
+    "D'accord, je prends l'assurance complémentaire."
+   ]
+  ],
+  "voix": {
+   "Agente": "RXG6r6Qewwp92BIFIBhE",
+   "Cliente": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Car rental desk in a station, quiet room tone, keyboard typing, keys jingling, distant indistinct murmur without clear words, no music"
+ },
+ "A2-s111": {
+  "n": 111,
+  "theme": "Voiture et transports",
+  "lieu": "Lors d'un contrôle routier",
+  "situation": "Comprendre une infraction simple",
+  "repliques": [
+   [
+    "Policière",
+    "Bonjour, madame. Vous avez utilisé votre téléphone en conduisant."
+   ],
+   [
+    "Conductrice",
+    "Je regardais juste le GPS."
+   ],
+   [
+    "Policière",
+    "Vous l'aviez dans la main. C'est interdit. C'est une amende de 135 euros et un retrait de trois points."
+   ],
+   [
+    "Conductrice",
+    "Je ne savais pas que c'était aussi grave."
+   ],
+   [
+    "Policière",
+    "Vous pouvez payer en ligne. Si vous payez vite, l'amende est minorée."
+   ]
+  ],
+  "voix": {
+   "Policière": "TKoAvBNxOwnhLtxm7NYM",
+   "Conductrice": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Roadside police check at night, a car window being lowered at the very start, a car engine idling, passing cars, no voices, no music"
+ },
+ "A2-s112": {
+  "n": 112,
+  "theme": "Voiture et transports",
+  "lieu": "Lors d'un accident (constat amiable)",
+  "situation": "Remplir un constat amiable ensemble",
+  "repliques": [
+   [
+    "Conducteur A",
+    "Vous avez un constat ?"
+   ],
+   [
+    "Conductrice B",
+    "Oui. Vous écrivez votre nom, votre adresse et votre assurance ici, dans la partie A."
+   ],
+   [
+    "Conducteur A",
+    "D'accord. Et les cases au milieu ?"
+   ],
+   [
+    "Conductrice B",
+    "On coche ce qu'on faisait. Moi, je reculais pour sortir d'une place. Vous, vous rouliez dans le parking."
+   ],
+   [
+    "Conducteur A",
+    "Il faut faire un dessin ?"
+   ],
+   [
+    "Conductrice B",
+    "Oui, le croquis, ici. Ensuite on signe tous les deux, et chacun envoie son exemplaire à son assurance."
+   ]
+  ],
+  "voix": {
+   "Conducteur A": "W01VS3mCiWjHO239CD72",
+   "Conductrice B": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Street after a minor car accident, hazard lights clicking, light traffic passing, car doors, no voices, no music"
+ },
+ "A2-s113": {
+  "n": 113,
+  "theme": "Argent",
+  "lieu": "Faire un virement / un transfert d'argent",
+  "situation": "Faire un virement en ligne et ajouter un bénéficiaire",
+  "repliques": [
+   [
+    "Formatrice",
+    "Pour payer votre loyer par virement, vous allez sur l'application de votre banque."
+   ],
+   [
+    "Apprenant",
+    "Je clique sur « Virement » ?"
+   ],
+   [
+    "Formatrice",
+    "Oui. D'abord, vous ajoutez un bénéficiaire avec son nom et son IBAN."
+   ],
+   [
+    "Apprenant",
+    "Le propriétaire m'a donné son RIB. Je recopie le numéro FR76… ?"
+   ],
+   [
+    "Formatrice",
+    "Oui. Vous recevez un code par SMS pour confirmer. Dans le libellé, écrivez « Loyer novembre »."
+   ],
+   [
+    "Apprenant",
+    "Et l'argent arrive quand ?"
+   ],
+   [
+    "Formatrice",
+    "En un ou deux jours, ou tout de suite si vous choisissez le virement instantané."
+   ]
+  ],
+  "voix": {
+   "Formatrice": "4NTBwCMIWDfx48seeuxZ",
+   "Apprenant": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Money transfer shop, quiet room tone, a receipt printer, a banknote counter whirring, no voices, no music"
+ },
+ "A2-s114": {
+  "n": 114,
+  "theme": "Argent",
+  "lieu": "Perdre sa carte bancaire (faire opposition)",
+  "situation": "Faire opposition et comprendre les étapes",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, on m'a volé mon portefeuille. Comment je fais pour bloquer ma carte ?"
+   ],
+   [
+    "Conseillère",
+    "Vous faites opposition. Vous pouvez le faire sur l'application, ou appeler le numéro d'opposition, 24 heures sur 24."
+   ],
+   [
+    "Client",
+    "Je l'ai fait cette nuit sur l'application."
+   ],
+   [
+    "Conseillère",
+    "Très bien. Je commande une nouvelle carte. Le code arrivera par courrier séparé."
+   ],
+   [
+    "Client",
+    "Il y a des frais ?"
+   ],
+   [
+    "Conseillère",
+    "15 euros pour la nouvelle carte. Vous devez aussi porter plainte, à cause du vol."
+   ]
+  ],
+  "voix": {
+   "Client": "3Yr319bDgMFZv5qX6yzA",
+   "Conseillère": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Bank branch office, quiet room tone, keyboard typing, no voices, no music"
+ },
+ "A2-s115": {
+  "n": 115,
+  "theme": "Argent",
+  "lieu": "Payer une facture / demander un échéancier",
+  "situation": "Comprendre une facture : montant, date limite, moyen de paiement",
+  "repliques": [
+   [
+    "Facture",
+    "Facture n° 2026-1145 – Référence client : 458 112"
+   ],
+   [
+    "Facture",
+    "Montant TTC à payer : 87,40 € – Date limite de paiement : 15/12/2026"
+   ],
+   [
+    "Facture",
+    "Moyens de paiement : prélèvement automatique, carte bancaire en ligne, chèque, paiement de proximité (bureau de tabac)."
+   ],
+   [
+    "Consigne",
+    "Combien devez-vous payer ? Avant quelle date ? Où trouvez-vous votre référence client ? Expliquez ce qu'est un prélèvement automatique."
+   ]
+  ],
+  "voix": {
+   "Facture": "TKoAvBNxOwnhLtxm7NYM",
+   "Consigne": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Quiet room, a letter envelope being opened, paper unfolding, no voices, no music"
+ },
+ "A2-s116": {
+  "n": 116,
+  "theme": "Argent",
+  "lieu": "Chez l'assureur",
+  "situation": "Comparer des garanties et poser des questions",
+  "repliques": [
+   [
+    "Cliente",
+    "Quelle est la différence entre vos deux formules ?"
+   ],
+   [
+    "Assureur",
+    "La formule simple couvre le dégât des eaux, l'incendie et la responsabilité civile. La formule complète couvre aussi le vol et la casse."
+   ],
+   [
+    "Cliente",
+    "La responsabilité civile, c'est quoi ?"
+   ],
+   [
+    "Assureur",
+    "Si vous causez un dommage à quelqu'un, par exemple une fuite chez votre voisin, l'assurance paie."
+   ],
+   [
+    "Cliente",
+    "Et la franchise ?"
+   ],
+   [
+    "Assureur",
+    "C'est la somme qui reste à votre charge : 150 euros pour chaque sinistre."
+   ]
+  ],
+  "voix": {
+   "Cliente": "87kc04olBn8nRQKuNmaf",
+   "Assureur": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Insurance agency office, quiet room tone, keyboard typing, a printer printing a page, no voices, no music"
+ },
+ "A2-s117": {
+  "n": 117,
+  "theme": "Argent",
+  "lieu": "Au bureau de change",
+  "situation": "Comparer les taux et les frais avant un voyage",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, je pars au Maroc. Vous avez des dirhams ?"
+   ],
+   [
+    "Employé",
+    "Oui. Le taux est de 10,4 dirhams pour un euro, avec une commission de 3 %."
+   ],
+   [
+    "Cliente",
+    "C'est mieux de changer ici ou là-bas ?"
+   ],
+   [
+    "Employé",
+    "Souvent, le taux est meilleur au Maroc. Vous pouvez aussi retirer avec votre carte, mais votre banque prend des frais."
+   ],
+   [
+    "Cliente",
+    "Je change 100 euros ici, pour l'arrivée, et le reste là-bas."
+   ]
+  ],
+  "voix": {
+   "Cliente": "4NTBwCMIWDfx48seeuxZ",
+   "Employé": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Currency exchange counter, quiet room tone, a banknote counter whirring, coins, no voices, no music"
+ },
+ "A2-s118": {
+  "n": 118,
+  "theme": "Argent",
+  "lieu": "Chez l'agent de voyages",
+  "situation": "Comparer des formules de voyage",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, je voudrais partir une semaine au soleil en février avec mon mari."
+   ],
+   [
+    "Agent",
+    "Nous avons un séjour en Égypte, tout compris, à 890 euros par personne, avec un vol direct."
+   ],
+   [
+    "Cliente",
+    "Tout compris, ça veut dire quoi ?"
+   ],
+   [
+    "Agent",
+    "Les repas, les boissons et l'hôtel. Les excursions sont en plus."
+   ],
+   [
+    "Cliente",
+    "Et le bagage en soute ?"
+   ],
+   [
+    "Agent",
+    "Il est compris : 20 kilos par personne."
+   ]
+  ],
+  "voix": {
+   "Cliente": "RXG6r6Qewwp92BIFIBhE",
+   "Agent": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Travel agency office, quiet room tone, a door bell chimes once at the very start, keyboard typing, no voices, no music"
+ },
+ "A2-s119": {
+  "n": 119,
+  "theme": "Santé",
+  "lieu": "Aux urgences",
+  "situation": "Expliquer les symptômes à l'infirmière d'accueil",
+  "repliques": [
+   [
+    "Infirmier",
+    "Sur une échelle de 0 à 10, votre douleur est à combien ?"
+   ],
+   [
+    "Patiente",
+    "À 7. C'est dans le ventre, à droite."
+   ],
+   [
+    "Infirmier",
+    "Depuis quand ?"
+   ],
+   [
+    "Patiente",
+    "Depuis ce matin. J'ai aussi vomi deux fois."
+   ],
+   [
+    "Infirmier",
+    "Vous prenez des médicaments ? Vous avez des allergies ?"
+   ],
+   [
+    "Patiente",
+    "Non, aucun médicament. Je suis allergique à la pénicilline."
+   ]
+  ],
+  "voix": {
+   "Infirmier": "6pqL78prQKdL6zrRhG3N",
+   "Patiente": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Hospital emergency department, a distant beeping monitor, a trolley rolling, distant indistinct murmur without clear words, no music"
+ },
+ "A2-s120": {
+  "n": 120,
+  "theme": "Santé",
+  "lieu": "À l'hôpital (admission, visite à un proche)",
+  "situation": "Préparer une admission pour une opération",
+  "repliques": [
+   [
+    "Secrétaire",
+    "Bonjour, c'est pour une admission ?"
+   ],
+   [
+    "Patient",
+    "Oui, je suis opéré demain."
+   ],
+   [
+    "Secrétaire",
+    "Votre carte Vitale, votre carte de mutuelle et votre pièce d'identité, s'il vous plaît. Vous voulez une chambre individuelle ?"
+   ],
+   [
+    "Patient",
+    "C'est plus cher ?"
+   ],
+   [
+    "Secrétaire",
+    "Oui, 60 euros par jour, mais votre mutuelle peut rembourser une partie."
+   ],
+   [
+    "Patient",
+    "D'accord. Je dois être à jeun ?"
+   ],
+   [
+    "Secrétaire",
+    "Oui, à partir de minuit. Ne mangez rien, ne buvez rien."
+   ]
+  ],
+  "voix": {
+   "Secrétaire": "87kc04olBn8nRQKuNmaf",
+   "Patient": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Hospital reception hall, large quiet space, footsteps, a lift chime, no voices, no music"
+ },
+ "A2-s121": {
+  "n": 121,
+  "theme": "Santé",
+  "lieu": "Chez le kinésithérapeute",
+  "situation": "Comprendre les exercices à faire à la maison",
+  "repliques": [
+   [
+    "Kiné",
+    "Allongez-vous sur le dos. Pliez le genou doucement."
+   ],
+   [
+    "Patient",
+    "Comme ça ?"
+   ],
+   [
+    "Kiné",
+    "Oui. Maintenant, tendez la jambe et levez-la. Tenez cinq secondes."
+   ],
+   [
+    "Patient",
+    "Ça fait un peu mal."
+   ],
+   [
+    "Kiné",
+    "C'est normal, mais arrêtez si la douleur est forte. Faites cet exercice dix fois, matin et soir, à la maison."
+   ],
+   [
+    "Patient",
+    "D'accord. Vous me donnez une feuille avec les exercices ?"
+   ]
+  ],
+  "voix": {
+   "Kiné": "JFppi8XcU3D1RvkAikO5",
+   "Patient": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Physiotherapy practice reception, quiet room tone, a phone ringing once far away, papers, no voices, no music"
+ },
+ "A2-s122": {
+  "n": 122,
+  "theme": "Santé",
+  "lieu": "Chez le gynécologue / la sage-femme",
+  "situation": "Comprendre le suivi de grossesse et les examens",
+  "repliques": [
+   [
+    "Sage-femme",
+    "Félicitations ! La date prévue de l'accouchement est le 20 mai."
+   ],
+   [
+    "Patiente",
+    "Qu'est-ce que je dois faire maintenant ?"
+   ],
+   [
+    "Sage-femme",
+    "Je fais la déclaration de grossesse en ligne, pour la CAF et l'Assurance maladie. Vous aurez une échographie à trois mois, cinq mois et huit mois."
+   ],
+   [
+    "Patiente",
+    "Et les prises de sang ?"
+   ],
+   [
+    "Sage-femme",
+    "Une chaque mois. Tout est pris en charge."
+   ],
+   [
+    "Patiente",
+    "Et le congé maternité commence quand ?"
+   ],
+   [
+    "Sage-femme",
+    "Six semaines avant la date prévue, pour un premier enfant."
+   ]
+  ],
+  "voix": {
+   "Sage-femme": "RXG6r6Qewwp92BIFIBhE",
+   "Patiente": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Medical practice reception, quiet room tone, keyboard typing, papers, no voices, no music"
+ },
+ "A2-s123": {
+  "n": 123,
+  "theme": "Santé",
+  "lieu": "Au centre de radiologie",
+  "situation": "Comprendre les consignes pour un examen (scanner, IRM)",
+  "repliques": [
+   [
+    "Manipulateur",
+    "Pour l'IRM, vous ne devez avoir aucun objet en métal. Vous avez un pacemaker ou une prothèse ?"
+   ],
+   [
+    "Patiente",
+    "Non."
+   ],
+   [
+    "Manipulateur",
+    "L'examen dure vingt minutes. La machine fait beaucoup de bruit, je vous donne un casque. Il ne faut pas bouger."
+   ],
+   [
+    "Patiente",
+    "Je suis un peu angoissée dans les espaces fermés."
+   ],
+   [
+    "Manipulateur",
+    "Je vous donne une sonnette. Si vous avez un problème, appuyez, j'arrête tout de suite."
+   ],
+   [
+    "Patiente",
+    "Et les résultats ?"
+   ]
+  ],
+  "voix": {
+   "Manipulateur": "6pqL78prQKdL6zrRhG3N",
+   "Patiente": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Radiology centre, quiet room tone, a machine humming, a changing cubicle door, no voices, no music"
+ },
+ "A2-s124": {
+  "n": 124,
+  "theme": "Santé",
+  "lieu": "Appeler le 15, le 18 ou le 112",
+  "situation": "Donner les informations essentielles au téléphone",
+  "repliques": [
+   [
+    "Opérateur",
+    "SAMU, quelle est votre urgence ?"
+   ],
+   [
+    "Appelante",
+    "Mon mari est tombé. Il ne répond pas bien."
+   ],
+   [
+    "Opérateur",
+    "Quelle est votre adresse exacte ?"
+   ],
+   [
+    "Appelante",
+    "8 rue Pasteur, à Lure. Troisième étage, porte gauche. Le code de la porte, c'est 2580."
+   ],
+   [
+    "Opérateur",
+    "Il respire ?"
+   ],
+   [
+    "Appelante",
+    "Oui, il respire, mais il a les yeux fermés."
+   ],
+   [
+    "Opérateur",
+    "Ne raccrochez pas, je vous envoie une équipe et je vous explique ce qu'il faut faire."
+   ]
+  ],
+  "voix": {
+   "Opérateur": "W01VS3mCiWjHO239CD72",
+   "Appelante": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Emergency phone call from a quiet apartment, subtle phone line hiss, no voices, no music"
+ },
+ "A2-s125": {
+  "n": 125,
+  "theme": "Travail",
+  "lieu": "Appeler pour une offre d'emploi",
+  "situation": "Poser des questions sur le poste et obtenir un entretien",
+  "repliques": [
+   [
+    "Candidat",
+    "Bonjour, j'appelle pour l'offre de magasinier. Le poste est toujours disponible ?"
+   ],
+   [
+    "Recruteuse",
+    "Oui. Vous avez de l'expérience ?"
+   ],
+   [
+    "Candidat",
+    "Oui, deux ans dans un entrepôt. J'ai aussi le CACES pour conduire les chariots."
+   ],
+   [
+    "Recruteuse",
+    "Très bien. C'est un CDD de six mois, en horaires d'équipe : une semaine le matin, une semaine l'après-midi."
+   ],
+   [
+    "Candidat",
+    "Ça me convient. Je peux vous envoyer mon CV ?"
+   ],
+   [
+    "Recruteuse",
+    "Oui, et je vous propose un entretien jeudi à 14 heures."
+   ]
+  ],
+  "voix": {
+   "Candidat": "JFppi8XcU3D1RvkAikO5",
+   "Recruteuse": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Phone call, quiet office, subtle phone line hiss, distant warehouse sounds, no voices, no music"
+ },
+ "A2-s126": {
+  "n": 126,
+  "theme": "Travail",
+  "lieu": "À l'entretien d'embauche",
+  "situation": "Parler de son expérience et de ses qualités",
+  "repliques": [
+   [
+    "Recruteur",
+    "Parlez-moi de votre dernière expérience."
+   ],
+   [
+    "Candidate",
+    "J'ai travaillé deux ans comme aide à domicile. J'aidais des personnes âgées pour les repas, le ménage et les courses."
+   ],
+   [
+    "Recruteur",
+    "Quelles sont vos qualités ?"
+   ],
+   [
+    "Candidate",
+    "Je suis patiente, ponctuelle, et j'aime le contact avec les gens."
+   ],
+   [
+    "Recruteur",
+    "Vous avez une voiture ?"
+   ],
+   [
+    "Candidate",
+    "Oui, et le permis B."
+   ]
+  ],
+  "voix": {
+   "Recruteur": "3Yr319bDgMFZv5qX6yzA",
+   "Candidate": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Quiet office, a chair being pulled, papers on a desk, a clock ticking, no voices, no music"
+ },
+ "A2-s127": {
+  "n": 127,
+  "theme": "Travail",
+  "lieu": "À l'agence d'intérim",
+  "situation": "Accepter une mission et comprendre les conditions",
+  "repliques": [
+   [
+    "Conseillère",
+    "J'ai une mission pour vous : préparateur de commandes, du lundi au vendredi, pendant trois semaines."
+   ],
+   [
+    "Candidat",
+    "Quels sont les horaires ?"
+   ],
+   [
+    "Conseillère",
+    "De 5 heures à 12 heures. Le salaire est de 12,50 euros de l'heure."
+   ],
+   [
+    "Candidat",
+    "D'accord. À la fin, il y a une prime ?"
+   ],
+   [
+    "Conseillère",
+    "Oui, l'indemnité de fin de mission : 10 % de votre salaire, plus 10 % pour les congés payés."
+   ],
+   [
+    "Candidat",
+    "J'accepte. Je dois signer quelque chose ?"
+   ]
+  ],
+  "voix": {
+   "Conseillère": "TKoAvBNxOwnhLtxm7NYM",
+   "Candidat": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Temp work agency office, quiet room tone, keyboard typing, papers, no voices, no music"
+ },
+ "A2-s128": {
+  "n": 128,
+  "theme": "Travail",
+  "lieu": "Avec son responsable (consignes, congés, absence)",
+  "situation": "Demander des congés",
+  "repliques": [
+   [
+    "Employé",
+    "Je voudrais poser mes congés pour l'été."
+   ],
+   [
+    "Responsable",
+    "Quelles dates ?"
+   ],
+   [
+    "Employé",
+    "Trois semaines, du 1er au 21 août. Je voudrais aller voir ma famille au Portugal."
+   ],
+   [
+    "Responsable",
+    "Deux collègues sont déjà en vacances en août. Vous pouvez partir en juillet ?"
+   ],
+   [
+    "Employé",
+    "Juillet, c'est possible, mais deux semaines seulement. Et une semaine en septembre ?"
+   ],
+   [
+    "Responsable",
+    "D'accord. Faites la demande dans le logiciel, je la valide."
+   ]
+  ],
+  "voix": {
+   "Employé": "W01VS3mCiWjHO239CD72",
+   "Responsable": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Warehouse, cardboard boxes being stacked, a distant forklift beeping, large room, no voices, no music"
+ },
+ "A2-s129": {
+  "n": 129,
+  "theme": "Travail",
+  "lieu": "En réunion",
+  "situation": "Donner une information et poser une question en réunion",
+  "repliques": [
+   [
+    "Responsable",
+    "Premier point de l'ordre du jour : le nouveau planning. Des questions ?"
+   ],
+   [
+    "Employé",
+    "Oui, je voudrais ajouter une information. La machine numéro 3 s'arrête souvent depuis lundi."
+   ],
+   [
+    "Responsable",
+    "Merci de nous le dire. Vous avez appelé la maintenance ?"
+   ],
+   [
+    "Employé",
+    "Oui, mardi. Ils ne sont pas encore venus."
+   ],
+   [
+    "Responsable",
+    "Je les relance aujourd'hui. Autre chose ?"
+   ],
+   [
+    "Employé",
+    "Oui, est-ce qu'on peut avoir le planning le jeudi au lieu du vendredi ? C'est plus facile pour s'organiser."
+   ]
+  ],
+  "voix": {
+   "Responsable": "4NTBwCMIWDfx48seeuxZ",
+   "Employé": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Small meeting room, chairs moving, coffee cups set on a table, quiet room tone, no voices, no music"
+ },
+ "A2-s130": {
+  "n": 130,
+  "theme": "Travail",
+  "lieu": "Au téléphone avec un client",
+  "situation": "Prendre un message pour un collègue",
+  "repliques": [
+   [
+    "Employé",
+    "Société Bâti-Est, bonjour."
+   ],
+   [
+    "Cliente",
+    "Bonjour, je voudrais parler à Mme Girard."
+   ],
+   [
+    "Employé",
+    "Elle est en réunion. Je peux prendre un message ?"
+   ],
+   [
+    "Cliente",
+    "Oui. C'est Mme Lefèvre, pour le devis de la toiture."
+   ],
+   [
+    "Employé",
+    "Vous pouvez épeler votre nom, s'il vous plaît ?"
+   ],
+   [
+    "Cliente",
+    "L-E-F-È-V-R-E. Mon numéro : 06 78 54 32 10. Qu'elle me rappelle avant vendredi."
+   ]
+  ],
+  "voix": {
+   "Employé": "3Yr319bDgMFZv5qX6yzA",
+   "Cliente": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Phone call in a car garage office, distant air compressor and tools, subtle phone line hiss, no voices, no music"
+ },
+ "A2-s131": {
+  "n": 131,
+  "theme": "Travail",
+  "lieu": "Comprendre sa fiche de paie",
+  "situation": "Comprendre brut, net, cotisations et heures supplémentaires",
+  "repliques": [
+   [
+    "Fiche de paie",
+    "Salaire de base : 1 823,03 € brut – Heures supplémentaires (8 h à 25 %) : 120,20 €"
+   ],
+   [
+    "Fiche de paie",
+    "Cotisations salariales (santé, retraite, chômage…) : – 427,50 €"
+   ],
+   [
+    "Fiche de paie",
+    "Net à payer avant impôt : 1 515,73 € – Impôt sur le revenu (taux 1,2 %) : – 18,19 €"
+   ],
+   [
+    "Fiche de paie",
+    "Net payé : 1 497,54 €"
+   ],
+   [
+    "Consigne",
+    "Expliquez la différence entre le brut et le net. Que veut dire « heures supplémentaires à 25 % » ? Pourquoi y a-t-il une ligne « impôt sur le revenu » ?"
+   ]
+  ],
+  "voix": {
+   "Fiche de paie": "TKoAvBNxOwnhLtxm7NYM",
+   "Consigne": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Quiet room, a sheet of paper being unfolded, a calculator beeping, no voices, no music"
+ },
+ "A2-s132": {
+  "n": 132,
+  "theme": "Travail",
+  "lieu": "Chez le médecin du travail",
+  "situation": "Parler de ses conditions de travail",
+  "repliques": [
+   [
+    "Médecin",
+    "Comment se passe votre travail ?"
+   ],
+   [
+    "Salarié",
+    "Je suis debout toute la journée, et je porte des sacs de 25 kilos."
+   ],
+   [
+    "Médecin",
+    "Vous avez des douleurs ?"
+   ],
+   [
+    "Salarié",
+    "Oui, au dos, surtout le soir."
+   ],
+   [
+    "Médecin",
+    "Vous avez assez de pauses ?"
+   ],
+   [
+    "Salarié",
+    "Vingt minutes le matin et une heure à midi. Mais l'après-midi, il n'y a pas de pause."
+   ]
+  ],
+  "voix": {
+   "Médecin": "W01VS3mCiWjHO239CD72",
+   "Salarié": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Occupational health doctor's office, quiet room tone, a chair creaking, papers, no voices, no music"
+ },
+ "A2-s133": {
+  "n": 133,
+  "theme": "Travail",
+  "lieu": "En formation / en stage",
+  "situation": "Premier jour de stage : comprendre ses tâches et son tuteur",
+  "repliques": [
+   [
+    "Tuteur",
+    "Bienvenue. Je suis votre tuteur pendant le stage."
+   ],
+   [
+    "Stagiaire",
+    "Enchantée. Qu'est-ce que je vais faire ?"
+   ],
+   [
+    "Tuteur",
+    "Cette semaine, vous observez. Ensuite, vous préparerez les commandes avec moi."
+   ],
+   [
+    "Stagiaire",
+    "Je dois remplir un carnet de bord pour mon organisme de formation."
+   ],
+   [
+    "Tuteur",
+    "Pas de problème. On le regarde ensemble chaque vendredi."
+   ],
+   [
+    "Stagiaire",
+    "Et si j'ai une question ?"
+   ],
+   [
+    "Tuteur",
+    "Vous venez me voir, ou vous demandez à Paul, il est là depuis dix ans."
+   ]
+  ],
+  "voix": {
+   "Tuteur": "JFppi8XcU3D1RvkAikO5",
+   "Stagiaire": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Training centre classroom, quiet room, chairs, papers, a door closing, no voices, no music"
+ },
+ "A2-s134": {
+  "n": 134,
+  "theme": "École",
+  "lieu": "À la réunion parents-professeurs",
+  "situation": "Comprendre le fonctionnement de la classe et l'année scolaire",
+  "repliques": [
+   [
+    "Professeur",
+    "Cette année, les élèves ont des devoirs tous les soirs, environ vingt minutes. Ils sont écrits dans le cahier de textes."
+   ],
+   [
+    "Père",
+    "Il faut signer le cahier chaque jour ?"
+   ],
+   [
+    "Professeur",
+    "Non, seulement le vendredi. Le bulletin est donné à la fin de chaque trimestre."
+   ],
+   [
+    "Père",
+    "Il y a des sorties prévues ?"
+   ],
+   [
+    "Professeur",
+    "Oui, une classe de découverte en mai. Nous en reparlerons en janvier."
+   ],
+   [
+    "Père",
+    "Merci. Je peux vous contacter comment ?"
+   ]
+  ],
+  "voix": {
+   "Professeur": "3Yr319bDgMFZv5qX6yzA",
+   "Père": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Primary school classroom after school, quiet room, small chairs moving, distant children far away without clear words, no music"
+ },
+ "A2-s135": {
+  "n": 135,
+  "theme": "École",
+  "lieu": "Au rendez-vous avec l'enseignant",
+  "situation": "Comprendre les difficultés de son enfant et ce qu'on peut faire à la maison",
+  "repliques": [
+   [
+    "Enseignant",
+    "Votre fille a des difficultés en lecture. Elle lit lentement et elle a du mal à comprendre les textes."
+   ],
+   [
+    "Mère",
+    "Qu'est-ce que je peux faire à la maison ? Je ne lis pas très bien le français."
+   ],
+   [
+    "Enseignant",
+    "Vous pouvez lire avec elle dans votre langue : l'important est de lui donner le goût de lire. Et la médiathèque prête des livres audio."
+   ],
+   [
+    "Mère",
+    "Elle a des cours en plus à l'école ?"
+   ],
+   [
+    "Enseignant",
+    "Oui, je la prends en petit groupe le lundi. Encouragez-la beaucoup, elle fait des efforts."
+   ]
+  ],
+  "voix": {
+   "Enseignant": "6pqL78prQKdL6zrRhG3N",
+   "Mère": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Primary school classroom, quiet room tone, pages of a school book turning, no voices, no music"
+ },
+ "A2-s136": {
+  "n": 136,
+  "theme": "École",
+  "lieu": "Utiliser l'ENT",
+  "situation": "Trouver les devoirs, les notes et les messages",
+  "repliques": [
+   [
+    "Formatrice",
+    "Cliquez sur « Cahier de textes » : vous voyez les devoirs pour demain."
+   ],
+   [
+    "Apprenant",
+    "Oui : « Maths : exercice 4 page 32 »."
+   ],
+   [
+    "Formatrice",
+    "Maintenant, « Vie scolaire ». Ici, vous voyez les absences et les retards."
+   ],
+   [
+    "Apprenant",
+    "Il y a un retard mardi ! Mon fils ne m'a rien dit."
+   ],
+   [
+    "Formatrice",
+    "Et dans « Messagerie », vous pouvez écrire au professeur."
+   ],
+   [
+    "Apprenant",
+    "Je vais activer les notifications sur mon téléphone, comme ça je saurai tout de suite."
+   ]
+  ],
+  "voix": {
+   "Formatrice": "87kc04olBn8nRQKuNmaf",
+   "Apprenant": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Quiet room, computer keyboard typing, mouse clicks, papers, no voices, no music"
+ },
+ "A2-s137": {
+  "n": 137,
+  "theme": "Communication",
+  "lieu": "Appeler un service client",
+  "situation": "Donner ses références et expliquer sa demande",
+  "repliques": [
+   [
+    "Conseiller",
+    "Bonjour, Kevin à votre écoute. Pouvez-vous me donner votre référence client ?"
+   ],
+   [
+    "Cliente",
+    "Oui, 458 221."
+   ],
+   [
+    "Conseiller",
+    "Et votre date de naissance, pour vérifier ?"
+   ],
+   [
+    "Cliente",
+    "Le 3 mars 1988."
+   ],
+   [
+    "Conseiller",
+    "Merci. Que puis-je faire pour vous ?"
+   ],
+   [
+    "Cliente",
+    "Je voudrais changer mon adresse e-mail et recevoir mes factures par e-mail."
+   ]
+  ],
+  "voix": {
+   "Conseiller": "JFppi8XcU3D1RvkAikO5",
+   "Cliente": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Customer service phone call, subtle phone line hiss, quiet room, no voices, no music"
+ },
+ "A2-s138": {
+  "n": 138,
+  "theme": "Communication",
+  "lieu": "En visioconférence",
+  "situation": "Gérer un problème technique pendant la visio",
+  "repliques": [
+   [
+    "Apprenante",
+    "Excusez-moi, le son coupe. Je n'ai pas entendu la consigne."
+   ],
+   [
+    "Formateur",
+    "Votre connexion n'est pas très bonne. Vous pouvez désactiver votre caméra, ça aide."
+   ],
+   [
+    "Apprenante",
+    "D'accord. Vous pouvez répéter ?"
+   ],
+   [
+    "Formateur",
+    "Faites l'exercice 3. Je partage mon écran."
+   ],
+   [
+    "Apprenante",
+    "Je ne vois pas votre écran."
+   ],
+   [
+    "Formateur",
+    "Je mets le document dans le chat. Si ça ne marche pas, quittez la réunion et reconnectez-vous avec le lien."
+   ]
+  ],
+  "voix": {
+   "Apprenante": "RXG6r6Qewwp92BIFIBhE",
+   "Formateur": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Video call on a laptop, a soft notification sound at the very start, light keyboard typing, quiet room tone, no voices, no music"
+ },
+ "A2-s139": {
+  "n": 139,
+  "theme": "Situations imprévues",
+  "lieu": "Se perdre",
+  "situation": "Décrire où on est pour qu'on vienne vous chercher",
+  "repliques": [
+   [
+    "Amie",
+    "Tu es où ? Je ne te trouve pas."
+   ],
+   [
+    "Ahmed",
+    "Je ne sais pas. Je suis devant une pharmacie, en face d'une église."
+   ],
+   [
+    "Amie",
+    "Tu vois le nom de la rue ?"
+   ],
+   [
+    "Ahmed",
+    "Oui, « rue Victor-Hugo »."
+   ],
+   [
+    "Amie",
+    "Envoie-moi ta localisation sur ton téléphone."
+   ],
+   [
+    "Ahmed",
+    "C'est fait. Je t'attends ici."
+   ]
+  ],
+  "voix": {
+   "Amie": "TKoAvBNxOwnhLtxm7NYM",
+   "Ahmed": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Busy town street, traffic, footsteps, a distant bus, no voices, no music"
+ },
+ "A2-s140": {
+  "n": 140,
+  "theme": "Situations imprévues",
+  "lieu": "Perdre un objet / ses papiers",
+  "situation": "Décrire un objet perdu et laisser ses coordonnées",
+  "repliques": [
+   [
+    "Usager",
+    "Bonjour, j'ai oublié mon parapluie dans le bus 4, ce matin."
+   ],
+   [
+    "Agente",
+    "Comment est-il ?"
+   ],
+   [
+    "Usager",
+    "Il est bleu foncé, avec un manche en bois. Il est assez grand."
+   ],
+   [
+    "Agente",
+    "Nous n'avons rien reçu pour le moment. Laissez-moi vos coordonnées."
+   ],
+   [
+    "Usager",
+    "Je m'appelle M. Diaz, 06 22 34 56 78."
+   ],
+   [
+    "Agente",
+    "Je vous rappelle si on le retrouve. Les objets arrivent parfois deux ou trois jours plus tard."
+   ]
+  ],
+  "voix": {
+   "Usager": "W01VS3mCiWjHO239CD72",
+   "Agente": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Shopping centre lost and found desk, quiet room tone, distant indistinct murmur without clear words, a drawer opening, no music"
+ },
+ "A2-s141": {
+  "n": 141,
+  "theme": "Situations imprévues",
+  "lieu": "Rater son train ou son bus (retard, remboursement)",
+  "situation": "Comprendre ses options après un retard",
+  "repliques": [
+   [
+    "Voyageuse",
+    "Mon premier train a eu quarante minutes de retard, et j'ai raté ma correspondance."
+   ],
+   [
+    "Agent",
+    "Vous pouvez prendre le train suivant, à 18 h 20, sans frais."
+   ],
+   [
+    "Voyageuse",
+    "J'arriverai très tard. Il y a un bus après pour mon village ?"
+   ],
+   [
+    "Agent",
+    "Non, plus de bus à cette heure. Je peux vous donner un bon pour un taxi."
+   ],
+   [
+    "Voyageuse",
+    "Merci beaucoup. Je dois garder un document ?"
+   ],
+   [
+    "Agent",
+    "Oui, gardez votre billet et ce bon. Vous pourrez aussi demander une compensation pour le retard."
+   ]
+  ],
+  "voix": {
+   "Voyageuse": "4NTBwCMIWDfx48seeuxZ",
+   "Agent": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Train station ticket office, a train departing in the distance, rolling suitcases, distant indistinct murmur without clear words, no announcements, no music"
+ },
+ "A2-s142": {
+  "n": 142,
+  "theme": "Situations imprévues",
+  "lieu": "Bagage perdu à l'aéroport",
+  "situation": "Décrire sa valise et faire une déclaration",
+  "repliques": [
+   [
+    "Agent",
+    "Pouvez-vous décrire votre valise ?"
+   ],
+   [
+    "Voyageur",
+    "Elle est grande, grise, avec quatre roulettes et un ruban rouge sur la poignée."
+   ],
+   [
+    "Agent",
+    "Qu'est-ce qu'il y a dedans ?"
+   ],
+   [
+    "Voyageur",
+    "Des vêtements, des chaussures et des cadeaux."
+   ],
+   [
+    "Agent",
+    "Voici votre numéro de dossier. Quand nous la retrouverons, nous la livrerons chez vous."
+   ],
+   [
+    "Voyageur",
+    "Je peux suivre le dossier en ligne ?"
+   ]
+  ],
+  "voix": {
+   "Agent": "3Yr319bDgMFZv5qX6yzA",
+   "Voyageur": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Airport baggage claim hall, luggage carousel rumbling, distant indistinct murmur without clear words, no announcements, no music"
+ },
+ "A2-s143": {
+  "n": 143,
+  "theme": "Situations imprévues",
+  "lieu": "Une panne de voiture",
+  "situation": "Décrire la panne et sa position sur la route",
+  "repliques": [
+   [
+    "Assistance",
+    "Que se passe-t-il ?"
+   ],
+   [
+    "Conductrice",
+    "Un voyant rouge s'est allumé, puis il y a eu de la fumée. Je me suis arrêtée."
+   ],
+   [
+    "Assistance",
+    "Où êtes-vous exactement ?"
+   ],
+   [
+    "Conductrice",
+    "Sur l'autoroute A36, direction Mulhouse, sur la bande d'arrêt d'urgence, après la sortie 5."
+   ],
+   [
+    "Assistance",
+    "Vous avez mis votre gilet jaune ? Les passagers sont derrière la glissière ?"
+   ],
+   [
+    "Conductrice",
+    "Oui, nous sommes tous derrière la glissière. J'ai aussi mis le triangle."
+   ]
+  ],
+  "voix": {
+   "Assistance": "TKoAvBNxOwnhLtxm7NYM",
+   "Conductrice": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Phone call from the side of a road, cars passing, car hazard lights clicking, subtle phone line hiss, no voices, no music"
+ },
+ "A2-s144": {
+  "n": 144,
+  "theme": "Situations imprévues",
+  "lieu": "Une fuite d'eau ou une panne de courant chez soi",
+  "situation": "Réagir à une panne de courant et se renseigner",
+  "repliques": [
+   [
+    "Voisine",
+    "Vous aussi, vous n'avez plus de courant ?"
+   ],
+   [
+    "Voisin",
+    "Oui, depuis dix minutes. J'ai vérifié mon disjoncteur, il est normal."
+   ],
+   [
+    "Voisine",
+    "Alors c'est peut-être tout le quartier."
+   ],
+   [
+    "Voisin",
+    "Je regarde sur le site du dépannage électricité… Oui, il y a une panne dans le quartier. Le courant reviendra vers 20 heures."
+   ],
+   [
+    "Voisine",
+    "Mon congélateur est plein."
+   ],
+   [
+    "Voisin",
+    "Ne l'ouvrez pas : il garde le froid plusieurs heures."
+   ]
+  ],
+  "voix": {
+   "Voisine": "87kc04olBn8nRQKuNmaf",
+   "Voisin": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Apartment kitchen, water running and splashing on the floor, a dripping pipe, no voices, no music"
+ },
+ "A2-s145": {
+  "n": 145,
+  "theme": "Situations imprévues",
+  "lieu": "Un litige avec un commerçant (produit défectueux, erreur de caisse)",
+  "situation": "Demander un échange ou un remboursement en expliquant le problème",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, j'ai acheté ce grille-pain il y a trois semaines. Il est tombé en panne au bout de dix jours."
+   ],
+   [
+    "Vendeuse",
+    "Vous avez le ticket ?"
+   ],
+   [
+    "Client",
+    "Oui. Je voudrais être remboursé."
+   ],
+   [
+    "Vendeuse",
+    "Nous pouvons l'échanger ou faire un avoir."
+   ],
+   [
+    "Client",
+    "Je préfère être remboursé, je n'ai pas besoin d'autre chose."
+   ],
+   [
+    "Vendeuse",
+    "Comme il est défectueux, c'est possible. Je vous rembourse sur votre carte."
+   ]
+  ],
+  "voix": {
+   "Client": "JFppi8XcU3D1RvkAikO5",
+   "Vendeuse": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Electronics shop counter, quiet room tone, a box being opened, a barcode scanner beep, no voices, no music"
+ },
+ "A2-s146": {
+  "n": 146,
+  "theme": "Situations imprévues",
+  "lieu": "Réclamer à l'hôtel ou au restaurant",
+  "situation": "Demander poliment un changement",
+  "repliques": [
+   [
+    "Client",
+    "Bonsoir, la climatisation de la chambre 18 ne fonctionne pas, et il fait très chaud."
+   ],
+   [
+    "Réceptionniste",
+    "Je suis désolée. J'envoie le technicien."
+   ],
+   [
+    "Client",
+    "Il peut venir tout de suite ? Nous voulons dormir."
+   ],
+   [
+    "Réceptionniste",
+    "Il n'est pas là ce soir. Je peux vous changer de chambre."
+   ],
+   [
+    "Client",
+    "Oui, merci, c'est parfait."
+   ],
+   [
+    "Réceptionniste",
+    "Chambre 24. Voici la nouvelle clé."
+   ]
+  ],
+  "voix": {
+   "Client": "3Yr319bDgMFZv5qX6yzA",
+   "Réceptionniste": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Restaurant dining room, cutlery on plates, glasses clinking, distant indistinct murmur without clear words, no music"
+ },
+ "A2-s147": {
+  "n": 147,
+  "theme": "Situations imprévues",
+  "lieu": "Être témoin d'un accident",
+  "situation": "Raconter ce qu'on a vu aux policiers",
+  "repliques": [
+   [
+    "Policier",
+    "Vous avez vu l'accident ?"
+   ],
+   [
+    "Témoin",
+    "Oui. La dame traversait sur le passage piéton."
+   ],
+   [
+    "Policier",
+    "Et la voiture ?"
+   ],
+   [
+    "Témoin",
+    "Elle roulait vite. Elle ne s'est pas arrêtée au feu rouge."
+   ],
+   [
+    "Policier",
+    "De quelle couleur était la voiture ?"
+   ],
+   [
+    "Témoin",
+    "Blanche. Une petite voiture."
+   ]
+  ],
+  "voix": {
+   "Policier": "6pqL78prQKdL6zrRhG3N",
+   "Témoin": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Street just after an accident, a distant siren, stopped traffic, distant murmur without clear words, no music"
+ }
+}

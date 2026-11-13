@@ -39,6 +39,17 @@ dite telle qu'écrite.
 Corrigé pour la voix (coquilles de l'Excel) : situation 9, « Bonjou Madame r. » → « Bonjour, madame. » ; situation 18,
 « Elel adore le toboggan » → « Elle adore le toboggan. » ; situation 35, « une den » → « une dent ».
 
+**Niveau A2** (`source/Mises_en_situation_FLE_Niveau_A2.xlsx`, `A2/A2-s1.mp3` … `A2-s147.mp3`) : les mêmes scènes, des
+dialogues environ trois fois plus longs. L'Excel A2 a une colonne de plus (« Bloc ») : les colonnes sont lues par leur
+nom (« Dialogue / support »). Mêmes voix, qui tournent dès la situation 1 ; mêmes ambiances par numéro, sauf quand la
+scène A2 ne se passe pas comme en A1 (`AMBIANCE_NIVEAU` : SMS au lieu d'un appel, vrai appel d'urgence en s124, guichet
+de banque en s25…). Réglages propres à l'A2 : Karim (s30) écrit puis parle avec la même voix (`ALIAS`) ; la stagiaire
+de s133 est une femme (« Enchantée ») ; documents lus par une voix off (annonce du train, étapes Doctolib, faire-part,
+répondeur, affiche, facture, SMS, message) ; lus pour la voix : cases à cocher et « (e) » des fiches, « H/F », « 30 h /
+semaine », « 15/12/2026 », « 1er », « 2e », adresses mail et sites (« impots.gouv »), « AVIS AUX RÉSIDENTS ». Le
+correcteur orthographique ne relève aucune coquille dans l'Excel A2. Vérification : `verifier.py` (nombres écrits en
+lettres des deux côtés, une deuxième retranscription quand la première rate).
+
 **Les 147 situations A1 sont faites.** L'ambiance de chacune est décrite à la main (`AMBIANCE` dans `generer.py`). Les
 niveaux A2 et B1 (mêmes numéros, autres fichiers Excel) se font de la même façon : déposer l'Excel dans `source/`,
 puis `python3 generer.py A2 1-147` (les ambiances, décrites par numéro, resservent).
