@@ -1,4 +1,4 @@
-/* L'ascenseur ne marche pas : le ciel de la journée (le soleil à faire glisser), l'affichette de la panne, le chemin tracé du doigt. */
+/* L'ascenseur ne marche pas : le ciel de la journée (le soleil à faire glisser) et l'affichette de la panne. */
 /* un appel : au bilan, l'image figée est le hall ; le gardien n'y est pas (il est dans sa loge), pas d'étiquette pour lui */
 .tag[data-p="gardien"] { display: none; }
 
@@ -30,14 +30,6 @@ body[data-turn="listen"] .journee, body[data-turn="wait"] .journee { pointer-eve
 .trou.vide { color: rgba(11,13,22,.35); }
 .affichette.juste .trou { border-bottom: 3px solid #12A57B; color: #0F7B5C; }
 .af-sign { margin-top: 4px !important; font-size: 13px; font-weight: 700; color: rgba(11,13,22,.55); text-align: right !important; }
-
-/* 3 · le chemin tracé du doigt sur l'image */
-.cam.trace-on { touch-action: none; }
-.trace { left: 0; top: 0; width: 100%; height: 100%; z-index: 3; overflow: visible; }
-.trace polyline { fill: none; stroke: #fff; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 0.1 14; }
-.trace.juste polyline { stroke: var(--ok); }
-.trace.faux polyline { stroke: var(--try); }
-.trace.faux, .trace.perdu { animation: s-efface .5s 1s forwards; }
 
 body.tall .moments { grid-template-columns: repeat(2, 1fr); }
 body.tall .moment { min-height: 46px; flex-direction: row; gap: 8px; }

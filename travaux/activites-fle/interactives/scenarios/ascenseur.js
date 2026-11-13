@@ -1,12 +1,11 @@
 /* L'ascenseur ne marche pas : un appel entre deux lieux, la loge du gardien et le hall de l'immeuble (coupes à 0,92, 3,96
    et 6,88 s). Madame Diallo redit la panne (la vidéo resserrée sur elle) : dans le hall, on clique sur ce qui ne marche
    pas ; le gardien redit quand le technicien arrive : on fait glisser le soleil dans le ciel de la journée, et l'affichette
-   de la panne se complète ; elle redit « je prends l'escalier » : dans le hall, on trace son chemin du doigt, puis la fin
-   de la vidéo le montre (elle range son téléphone, reprend ses sacs et part vers l'escalier). Les images figées du hall
-   sont prises avant qu'elle bouge ; rien n'y montre la panne. */
+   de la panne se complète. (Pas de question sur l'escalier : une fois la panne trouvée, il se devine sans écouter.)
+   L'image figée du hall est prise avant qu'elle bouge ; rien n'y montre la panne. */
 window.SCENARIO = (() => {
   const NB = ' ';
-  const GEL_HALL = 7.0, GEL_LOGE = 4.05, FIN = 10.0;
+  const GEL_HALL = 7.0, GEL_LOGE = 4.05;
   /* les vrais éléments du hall (image à 7 s, en %) ; l'ascenseur est derrière elle : quatre morceaux autour d'elle.
      « ou » : le coin haut-gauche de l'étiquette (marque), pour qu'elle ne cache pas un visage et ne sorte pas de l'image */
   const LIEUX = {
@@ -26,7 +25,6 @@ window.SCENARIO = (() => {
     escalier: "Ça, c'est l'escalier. Écoute encore.", boites: 'Ça, ce sont les boîtes aux lettres. Écoute encore.',
     porte: "Ça, c'est la porte. Écoute encore.", telephone: 'Le téléphone marche' + NB + ': elle appelle le gardien. Écoute encore.',
   };
-  const PAS_LA = { ascenseur: "Non, l'ascenseur ne marche pas. Écoute encore.", porte: 'Pas la porte. Écoute encore.', boites: 'Pas les boîtes aux lettres. Écoute encore.' };
 
   /* le ciel de la journée : le soleil suit un arc ; quatre moments */
   const MOMENTS = [
@@ -53,11 +51,11 @@ window.SCENARIO = (() => {
 
   return {
     plans: [{ de: 0, cx: { gardien: .62, diallo: .5 } }, { de: .917, cx: { diallo: .47, gardien: .5 } }, { de: 3.958, cx: { gardien: .66, diallo: .5 } }, { de: 6.875, cx: { diallo: .47, gardien: .5 } }],
-    ordre: ['panne', 'quand', 'chemin'],
+    ordre: ['panne', 'quand'],
     bravo: 'Bravo' + NB + "! Madame Diallo prend l'escalier en attendant le technicien.",
     etapes: A => {
-      const { $, $$, state, alive, Q, yourTurn, setTurn, playSegment, phrase, ligne, side, idle, tapHere, at, sfx, faux, juste, suite, goBtn, wait, zones, cam, avant, cadreZone, marque, gel } = A;
-      const PANNE = phrase("L'ascenseur ne marche pas"), TECH = [phrase('le technicien')[0], ligne(2)[1]], ESC = ligne(3);
+      const { $, $$, state, alive, Q, yourTurn, setTurn, playSegment, phrase, ligne, side, idle, tapHere, at, sfx, faux, juste, suite, goBtn, zones, cam, avant, cadreZone, marque, gel } = A;
+      const PANNE = phrase("L'ascenseur ne marche pas"), TECH = [phrase('le technicien')[0], ligne(2)[1]];
       const tour = () => document.body.dataset.turn === 'you';
       return {
         /* 1 · dans la vidéo : elle redit la panne ; on clique, dans le hall, sur ce qui ne marche pas */
@@ -133,71 +131,6 @@ window.SCENARIO = (() => {
               ask();
             }
           }
-          ask();
-        },
-
-        /* 3 · dans la vidéo : elle redit « je prends l'escalier » ; on trace son chemin du doigt dans le hall ; la fin de la vidéo le montre */
-        async chemin(f) {
-          const SVGNS = 'http://www.w3.org/2000/svg', Z = ZONES.filter(z => z.lieu !== 'telephone'), ac = new AbortController();
-          let trace = null, pts = [], dernier = 0;
-          const surCam = e => { const r = cam.getBoundingClientRect(); return { x: (e.clientX - r.left) / r.width * 100, y: (e.clientY - r.top) / r.height * 100 }; };
-          const zoneEn = p => Z.slice().reverse().find(z => p.x >= z.x && p.x <= z.x + z.w && p.y >= z.y && p.y <= z.y + z.h);
-          const dessiner = () => trace && trace.firstChild.setAttribute('points', pts.map(p => p.x.toFixed(2) + ',' + p.y.toFixed(2)).join(' '));
-          const glisse = () => { const r = cam.getBoundingClientRect(), P = (x, y) => [r.left + r.width * x / 100, r.top + r.height * y / 100], [x1, y1] = P(49, 56), [x2, y2] = P(27, 86); return [at(x1, y1 + 40, 0), at(x1, y1, 1), at(x1, y1, 1, .82), at(x2, y2, 1, .82), at(x2, y2, 1), at(x2, y2, 0)]; };
-          const ask = () => { Q.show('you', state.ask); yourTurn(); cam.classList.add('asking', 'trace-on'); idle.set(glisse, 4500); };
-          if (!await avant(f, { question: 'Écoute encore madame Diallo.', qui: 'diallo', seg: ESC, gel: GEL_HALL, consigne: 'Où va madame Diallo' + NB + '? Fais glisser ton doigt pour montrer son chemin.' })) return;
-          state.replay = async () => { setTurn('listen'); cam.classList.remove('asking'); $$('.trace', cam).forEach(x => x.remove()); await playSegment(ESC[0], ESC[1], gel()); if (alive(f)) ask(); };
-          const fini = () => { ac.abort(); cam.classList.remove('trace-on'); };
-          async function arriver(z, tr) {
-            setTurn('wait'); cam.classList.remove('asking'); idle.clear(); sfx.tick();
-            const L = LIEUX[z.lieu];
-            if (z.lieu === 'escalier') {
-              $$('.hit', cam).forEach(h => h.classList.remove('indice'));
-              if (tr) tr.classList.add('juste');
-              cadreZone(L.cadre); marque(L.ou || L.cadre, L.label, 'juste');
-              fini(); zones(null);
-              if (!await juste(f, 'Oui' + NB + "! Elle prend l'escalier.")) return;
-              await wait(600); if (!alive(f)) return;
-              if (tr) tr.remove();
-              await playSegment(ESC[1] - .05, FIN, null); if (!alive(f)) return;
-              suite();
-            } else {
-              if (tr) tr.classList.add('faux');
-              cadreZone(L.cadre, 'faux'); marque(L.ou || L.cadre, L.label, 'faux');
-              const montrer = await faux(f, ESC, PAS_LA[z.lieu]); if (montrer === null) return;
-              $$('.trace', cam).forEach(x => x.remove());
-              if (montrer) $('.hit[data-id="escalier"]', cam).classList.add('indice');
-              ask();
-            }
-          }
-          /* au clavier (ou un simple clic sur un endroit) : le bouton de la zone */
-          zones(Z, (id, ev, z) => { if (Date.now() - dernier < 600) return; arriver(z, null); });
-          const pret = () => alive(f) && tour() && cam.classList.contains('asking');
-          cam.addEventListener('pointerdown', e => {
-            if (!alive(f)) return fini();
-            if (!pret() || e.button > 0) return;
-            A.unlock(); idle.clear(); e.preventDefault();
-            try { cam.setPointerCapture(e.pointerId); } catch (x) {}
-            $$('.trace', cam).forEach(x => x.remove());
-            pts = [surCam(e)];
-            trace = document.createElementNS(SVGNS, 'svg'); trace.setAttribute('class', 'surimage trace'); trace.setAttribute('viewBox', '0 0 100 100'); trace.setAttribute('preserveAspectRatio', 'none'); trace.setAttribute('aria-hidden', 'true');
-            const l = document.createElementNS(SVGNS, 'polyline'); l.setAttribute('vector-effect', 'non-scaling-stroke'); trace.append(l); cam.append(trace); dessiner();
-          }, { signal: ac.signal });
-          cam.addEventListener('pointermove', e => {
-            if (!trace) return;
-            const p = surCam(e), q = pts[pts.length - 1]; if (Math.hypot((p.x - q.x) * 16 / 9, p.y - q.y) < .7) return;
-            pts.push(p); dessiner();
-          }, { signal: ac.signal });
-          const lacher = e => {
-            if (!trace) return;
-            const tr = trace; trace = null; dernier = Date.now();
-            if (!pret() || e.type === 'pointercancel') { tr.remove(); return; }
-            const p = surCam(e); pts.push(p); dessiner();
-            const z = zoneEn(p);
-            if (!z) { tr.classList.add('perdu'); setTimeout(() => tr.remove(), 1500); Q.show('you', "Glisse jusqu'à l'endroit où elle va."); idle.set(glisse, 4500); return; }
-            arriver(z, tr);
-          };
-          cam.addEventListener('pointerup', lacher, { signal: ac.signal }); cam.addEventListener('pointercancel', lacher, { signal: ac.signal });
           ask();
         },
       };

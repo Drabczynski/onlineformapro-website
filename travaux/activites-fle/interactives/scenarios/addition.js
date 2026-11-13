@@ -75,7 +75,7 @@ window.SCENARIO = (() => {
     bravo: 'Super' + NB + '! Le client a payé ses vingt-huit euros par carte.',
     etapes: A => {
       const { $, $$, state, alive, Q, yourTurn, setTurn, playSegment, freeze, frameTo, CROPS, setSide, phrase, ligne, side, idle, tapHere, at, sfx, fly, faux, juste, suite, wait, zones, cam, avant, cadreZone, marque, gel } = A;
-      const PRIX_SEG = ligne(1), VINGT_HUIT = phrase('ça fait vingt-huit euros'), OUI = ligne(3);
+      const PRIX_SEG = ligne(1), VINGT_HUIT = [phrase('ça fait')[0], ligne(1)[1]], OUI = ligne(3);
       const CARTE = [ligne(2)[0], 6.44];     // « Je peux payer par carte ? » (la coupe vers le serveur est à 6,46 s)
       return {
         /* 1 · le prix : le serveur le redit (la vidéo resserrée sur lui), on le tape sur son terminal, puis la touche verte */
@@ -215,7 +215,7 @@ window.SCENARIO = (() => {
     },
     bilan: A => ({
       faits: {
-        serveur: [{ text: 'Ça fait vingt-huit euros.', seg: A.phrase('ça fait vingt-huit euros') }, { text: 'Oui, bien sûr.', seg: A.ligne(3) }],
+        serveur: [{ text: 'Ça fait vingt-huit euros.', seg: [A.phrase('ça fait')[0], A.ligne(1)[1]] }, { text: 'Oui, bien sûr.', seg: A.ligne(3) }],
         client: [{ text: "J'aimerais payer l'addition.", seg: A.ligne(0) }, { text: 'Je peux payer par carte' + A.NB + '?', seg: [A.ligne(2)[0], 6.44] }],
       },
     }),

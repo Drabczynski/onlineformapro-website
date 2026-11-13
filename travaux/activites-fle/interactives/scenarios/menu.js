@@ -21,10 +21,10 @@ window.SCENARIO = (() => {
       <p class="ard-titre">Menu du jour <span>15&nbsp;€</span></p>
       <div class="ard-rub"><p class="ard-nom">Entrées</p>
         <div class="ard-ligne">${ENTREES.map(e => `<button class="ard-choix" data-id="${e.id}">${e.nom}</button>`).join('')}</div></div>
-      <div class="ard-rub"><p class="ard-nom">Plats</p>
+      <div class="ard-rub deco"><p class="ard-nom">Plats</p>
         <div class="ard-ligne"><span class="ard-txt">Poulet</span><span class="ard-txt">Poisson</span><span class="ard-txt">Steak</span></div>
         <p class="ard-note">avec riz, frites ou légumes</p></div>
-      <div class="ard-rub"><p class="ard-nom">Desserts</p>
+      <div class="ard-rub deco"><p class="ard-nom">Desserts</p>
         <div class="ard-ligne"><span class="ard-txt">Tarte aux pommes</span><span class="ard-txt">Crème caramel</span><span class="ard-txt">Mousse au chocolat</span></div></div>
     </div>`;
   /* un trait de craie tracé à la main autour d'un choix : un peu plus d'un tour, qui finit légèrement à l'intérieur */

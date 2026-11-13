@@ -502,10 +502,13 @@ body.tall .ard-nom { font-size: 19px; margin-bottom: 4px; }
 body.tall .ard-choix, body.tall .ard-txt { font-size: 18px; min-height: 46px; } body.tall .ard-txt { min-height: 30px; } body.tall .ard-note { font-size: 16px; }
 body.tall .assiette { width: 150px; height: 150px; } body.tall .pose { width: 64px; height: 64px; margin-top: -32px; } body.tall .pose svg { width: 60px; height: 60px; }
 body.tall .pose:empty::before { width: 50px; height: 50px; font-size: 11px; } body.tall .couvert { height: 110px; } body.tall .choix3 .tuile { height: 70px; }
-body.short .ardoise { padding: 12px 12px 14px; } body.short .ard-titre { font-size: 20px; } body.short .ard-nom { font-size: 16px; }
-body.short .ard-choix, body.short .ard-txt { font-size: 15px; min-height: 44px; } body.short .ard-txt { min-height: 26px; } body.short .ard-note { font-size: 14px; }
-body.short .assiette { width: 120px; height: 120px; } body.short .pose { width: 52px; height: 52px; margin-top: -26px; } body.short .pose svg { width: 48px; height: 48px; }
-body.short .pose:empty::before { width: 42px; height: 42px; font-size: 10px; } body.short .couvert { display: none; } body.short .choix3 .tuile { height: 60px; }
+/* téléphone couché : le panneau est étroit (230 px) ; sur l'ardoise, seulement les entrées, l'une sous l'autre */
+body.short .ardoise { padding: 12px 14px 14px; } body.short .ard-titre { font-size: 21px; } body.short .ard-titre span { font-size: 17px; } body.short .ard-nom { font-size: 17px; }
+body.short .ard-rub.deco { display: none; } body.short .ard-ligne { grid-template-columns: 1fr; gap: 6px; }
+body.short .ard-choix { font-size: 18px; min-height: 44px; }
+body.short .assiette { width: 108px; height: 108px; } body.short .pose { width: 48px; height: 48px; margin-top: -24px; } body.short .pose[data-g="plat"] { left: 6px; } body.short .pose[data-g="avec"] { right: 6px; }
+body.short .pose svg { width: 44px; height: 44px; } body.short .pose:empty::before { width: 38px; height: 38px; font-size: 10px; } body.short .couvert { display: none; }
+body.short .choix3 { gap: 6px; } body.short .choix3 .tuile { height: 58px; gap: 1px; } body.short .choix3 .tuile .pic { width: 32px; height: 30px; } body.short .choix3 .tuile .pic svg { width: 32px; height: 32px; } body.short .choix3 .tuile .nom { font-size: 12px; }
 
 /* l'étiquette posée sur l'image, centrée au-dessus de son point (l'animation « pop » du moteur remplace son « transform ») */
 .marque { translate: -50% calc(-100% - 8px); }
@@ -893,10 +896,10 @@ window.SCENARIO = (() => {
       <p class="ard-titre">Menu du jour <span>15&nbsp;€</span></p>
       <div class="ard-rub"><p class="ard-nom">Entrées</p>
         <div class="ard-ligne">${ENTREES.map(e => `<button class="ard-choix" data-id="${e.id}">${e.nom}</button>`).join('')}</div></div>
-      <div class="ard-rub"><p class="ard-nom">Plats</p>
+      <div class="ard-rub deco"><p class="ard-nom">Plats</p>
         <div class="ard-ligne"><span class="ard-txt">Poulet</span><span class="ard-txt">Poisson</span><span class="ard-txt">Steak</span></div>
         <p class="ard-note">avec riz, frites ou légumes</p></div>
-      <div class="ard-rub"><p class="ard-nom">Desserts</p>
+      <div class="ard-rub deco"><p class="ard-nom">Desserts</p>
         <div class="ard-ligne"><span class="ard-txt">Tarte aux pommes</span><span class="ard-txt">Crème caramel</span><span class="ard-txt">Mousse au chocolat</span></div></div>
     </div>`;
   /* un trait de craie tracé à la main autour d'un choix : un peu plus d'un tour, qui finit légèrement à l'intérieur */

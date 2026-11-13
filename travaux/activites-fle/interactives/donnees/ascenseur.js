@@ -223,32 +223,6 @@ window.DONNEES = {
     2.48
    ]
   },
-  "Écoute encore madame Diallo.": {
-   "src": "medias/voix-c611696e33.mp3",
-   "w": [
-    0.0,
-    0.44,
-    0.8,
-    1.12
-   ]
-  },
-  "Où va madame Diallo ? Fais glisser ton doigt pour montrer son chemin.": {
-   "src": "medias/voix-f72d43630d.mp3",
-   "w": [
-    0.0,
-    0.16,
-    0.4,
-    0.68,
-    1.52,
-    1.72,
-    2.08,
-    2.24,
-    2.56,
-    2.76,
-    3.12,
-    3.28
-   ]
-  },
   "Bravo ! Madame Diallo prend l'escalier en attendant le technicien.": {
    "src": "medias/voix-459370eead.mp3",
    "w": [
