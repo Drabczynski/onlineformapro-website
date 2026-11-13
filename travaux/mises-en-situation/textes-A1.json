@@ -1,0 +1,4771 @@
+{
+ "A1-s1": {
+  "n": 1,
+  "theme": "Commerces",
+  "lieu": "À la boulangerie",
+  "situation": "Acheter du pain et des viennoiseries",
+  "repliques": [
+   [
+    "Boulangère",
+    "Bonjour, madame !"
+   ],
+   [
+    "Cliente",
+    "Bonjour. Une baguette et deux croissants, s'il vous plaît."
+   ]
+  ],
+  "voix": {
+   "Boulangère": "NEjemlRxgWmL5ZGJetsB",
+   "Cliente": "YxrwjAKoUKULGd0g8K9Y"
+  },
+  "ambiance": "Inside a small French bakery, quiet room tone, a shop door bell chimes once at the very start, paper bag rustling, soft distant cash register, no voices, no music"
+ },
+ "A1-s2": {
+  "n": 2,
+  "theme": "Commerces",
+  "lieu": "À la boucherie",
+  "situation": "Acheter de la viande",
+  "repliques": [
+   [
+    "Boucher",
+    "Bonjour, monsieur. Qu'est-ce qu'il vous faut ?"
+   ],
+   [
+    "Client",
+    "Bonjour. Un poulet, s'il vous plaît."
+   ]
+  ],
+  "voix": {
+   "Boucher": "kENkNtk0xyzG09WW40xE",
+   "Client": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": "Inside a French butcher shop, quiet room tone, refrigerated display hum, a butcher knife on a wooden board from time to time, no voices, no music"
+ },
+ "A1-s3": {
+  "n": 3,
+  "theme": "Commerces",
+  "lieu": "À l'épicerie",
+  "situation": "Acheter quelques produits de base",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Vous avez du lait ?"
+   ],
+   [
+    "Épicier",
+    "Oui, là, dans le frigo."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Épicier": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": "Small neighbourhood grocery store, quiet fridge hum, a glass bottle clinks softly, light footsteps, no voices, no music"
+ },
+ "A1-s4": {
+  "n": 4,
+  "theme": "Commerces",
+  "lieu": "Au marché",
+  "situation": "Acheter des fruits au stand",
+  "repliques": [
+   [
+    "Marchand",
+    "Bonjour ! Qu'est-ce qu'il vous faut ?"
+   ],
+   [
+    "Cliente",
+    "Bonjour. Une barquette de fraises, s'il vous plaît."
+   ]
+  ],
+  "voix": {
+   "Marchand": "kENkNtk0xyzG09WW40xE",
+   "Cliente": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": "Outdoor French street market in the morning, distant indistinct crowd murmur without clear words, wooden crates, paper bags, a few birds, no music"
+ },
+ "A1-s5": {
+  "n": 5,
+  "theme": "Commerces",
+  "lieu": "Au magasin",
+  "situation": "Demander où se trouve un article et payer",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Je cherche les piles, s'il vous plaît."
+   ],
+   [
+    "Vendeuse",
+    "Les piles ? Là-bas, à côté de la caisse."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Vendeuse": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": "Inside a shop, quiet room tone, distant checkout scanner beeps, light footsteps, no voices, no music"
+ },
+ "A1-s6": {
+  "n": 6,
+  "theme": "Commerces",
+  "lieu": "Au supermarché (caisse, caisse automatique)",
+  "situation": "À la caisse : payer ses courses",
+  "repliques": [
+   [
+    "Caissière",
+    "Vous voulez un sac ?"
+   ],
+   [
+    "Client",
+    "Oui, s'il vous plaît."
+   ]
+  ],
+  "voix": {
+   "Caissière": "NEjemlRxgWmL5ZGJetsB",
+   "Client": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": "Supermarket checkout, barcode scanner beeps, items sliding on the conveyor belt, plastic bag rustling, no voices, no music"
+ },
+ "A1-s7": {
+  "n": 7,
+  "theme": "Commerces",
+  "lieu": "Chez le primeur",
+  "situation": "Acheter des fruits et légumes",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Un kilo de pommes, s'il vous plaît."
+   ],
+   [
+    "Primeur",
+    "Voilà. Et avec ça ?"
+   ],
+   [
+    "Client",
+    "Trois tomates et une salade."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Primeur": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": "Greengrocer shop, apples dropped into a paper bag, scale beep, soft street noise from the open door, no voices, no music"
+ },
+ "A1-s8": {
+  "n": 8,
+  "theme": "Commerces",
+  "lieu": "Chez le poissonnier",
+  "situation": "Acheter du poisson au poids",
+  "repliques": [
+   [
+    "Poissonnier",
+    "Bonjour, madame."
+   ],
+   [
+    "Cliente",
+    "Bonjour. Je voudrais du saumon, s'il vous plaît."
+   ],
+   [
+    "Poissonnier",
+    "Combien ?"
+   ],
+   [
+    "Cliente",
+    "500 grammes."
+   ],
+   [
+    "Poissonnier",
+    "Voilà, 510 grammes, ça va ?"
+   ]
+  ],
+  "voix": {
+   "Poissonnier": "kENkNtk0xyzG09WW40xE",
+   "Cliente": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": "Fishmonger stall, crushed ice being scooped, wet market sounds, paper wrapping, scale beep, no voices, no music"
+ },
+ "A1-s9": {
+  "n": 9,
+  "theme": "Commerces",
+  "lieu": "À la fromagerie",
+  "situation": "Acheter un morceau de fromage",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, madame. Je voudrais du comté, s'il vous plaît."
+   ],
+   [
+    "Fromagère",
+    "Un morceau comme ça ?"
+   ],
+   [
+    "Cliente",
+    "Un peu plus petit."
+   ]
+  ],
+  "voix": {
+   "Cliente": "NEjemlRxgWmL5ZGJetsB",
+   "Fromagère": "YxrwjAKoUKULGd0g8K9Y"
+  },
+  "ambiance": "Cheese shop, quiet room tone, a cheese wire cutting through cheese, paper wrapping, no voices, no music"
+ },
+ "A1-s10": {
+  "n": 10,
+  "theme": "Commerces",
+  "lieu": "À la pâtisserie",
+  "situation": "Acheter des gâteaux individuels",
+  "repliques": [
+   [
+    "Vendeuse",
+    "Bonjour, qu'est-ce que vous désirez ?"
+   ],
+   [
+    "Client",
+    "Deux éclairs au chocolat et une tarte aux fraises, s'il vous plaît."
+   ],
+   [
+    "Vendeuse",
+    "C'est tout ?"
+   ],
+   [
+    "Client",
+    "Oui, c'est tout."
+   ]
+  ],
+  "voix": {
+   "Vendeuse": "NEjemlRxgWmL5ZGJetsB",
+   "Client": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": "Pastry shop, a shop door bell chimes once at the very start, cardboard pastry box being closed, quiet room tone, no voices, no music"
+ },
+ "A1-s11": {
+  "n": 11,
+  "theme": "Commerces",
+  "lieu": "Chez le fleuriste",
+  "situation": "Acheter un bouquet simple",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Je voudrais des roses, s'il vous plaît."
+   ],
+   [
+    "Fleuriste",
+    "Combien ?"
+   ],
+   [
+    "Client",
+    "Cinq roses rouges."
+   ],
+   [
+    "Fleuriste",
+    "Voilà. C'est un cadeau ?"
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Fleuriste": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s12": {
+  "n": 12,
+  "theme": "Commerces",
+  "lieu": "Au bureau de tabac / à la maison de la presse",
+  "situation": "Acheter un journal et des timbres",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Le journal L'Est Républicain, s'il vous plaît."
+   ],
+   [
+    "Vendeur",
+    "Voilà. Et avec ça ?"
+   ],
+   [
+    "Client",
+    "Trois timbres."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Vendeur": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s13": {
+  "n": 13,
+  "theme": "Commerces",
+  "lieu": "À la galerie marchande",
+  "situation": "Demander où se trouve un magasin",
+  "repliques": [
+   [
+    "Cliente",
+    "Excusez-moi, où est la pharmacie, s'il vous plaît ?"
+   ],
+   [
+    "Agent d'accueil",
+    "Au rez-de-chaussée, en face du supermarché."
+   ]
+  ],
+  "voix": {
+   "Cliente": "NEjemlRxgWmL5ZGJetsB",
+   "Agent d'accueil": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s14": {
+  "n": 14,
+  "theme": "Restauration et loisirs",
+  "lieu": "Au café / au bar",
+  "situation": "Commander une boisson",
+  "repliques": [
+   [
+    "Serveur",
+    "Bonjour, qu'est-ce que je vous sers ?"
+   ],
+   [
+    "Cliente",
+    "Un café, s'il vous plaît."
+   ]
+  ],
+  "voix": {
+   "Serveur": "kENkNtk0xyzG09WW40xE",
+   "Cliente": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s15": {
+  "n": 15,
+  "theme": "Restauration et loisirs",
+  "lieu": "Au restaurant",
+  "situation": "Commander un plat",
+  "repliques": [
+   [
+    "Serveuse",
+    "Bonjour, vous avez choisi ?"
+   ],
+   [
+    "Client",
+    "Oui. Le menu du jour, s'il vous plaît."
+   ]
+  ],
+  "voix": {
+   "Serveuse": "NEjemlRxgWmL5ZGJetsB",
+   "Client": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s16": {
+  "n": 16,
+  "theme": "Restauration et loisirs",
+  "lieu": "Au fast-food / commander à emporter",
+  "situation": "Commander un menu",
+  "repliques": [
+   [
+    "Employé",
+    "Bonjour, sur place ou à emporter ?"
+   ],
+   [
+    "Client",
+    "À emporter."
+   ]
+  ],
+  "voix": {
+   "Employé": "kENkNtk0xyzG09WW40xE",
+   "Client": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s17": {
+  "n": 17,
+  "theme": "Restauration et loisirs",
+  "lieu": "Au cinéma",
+  "situation": "Acheter une place",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour. Une place pour le film de 20 heures, s'il vous plaît."
+   ],
+   [
+    "Caissier",
+    "Tarif normal ?"
+   ]
+  ],
+  "voix": {
+   "Cliente": "NEjemlRxgWmL5ZGJetsB",
+   "Caissier": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s18": {
+  "n": 18,
+  "theme": "Restauration et loisirs",
+  "lieu": "Au parc / à l'aire de jeux",
+  "situation": "Parler avec un autre parent au parc",
+  "repliques": [
+   [
+    "Parent 1",
+    "Bonjour ! C'est votre fille ?"
+   ],
+   [
+    "Parent 2",
+    "Oui, elle s'appelle Lina. Elel adore le toboggan"
+   ]
+  ],
+  "voix": {
+   "Parent 1": "kENkNtk0xyzG09WW40xE",
+   "Parent 2": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s19": {
+  "n": 19,
+  "theme": "Restauration et loisirs",
+  "lieu": "À la piscine",
+  "situation": "Payer l'entrée",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Une entrée adulte, s'il vous plaît."
+   ],
+   [
+    "Caissière",
+    "4,50 euros. Vous avez un bonnet ?"
+   ],
+   [
+    "Client",
+    "Non."
+   ],
+   [
+    "Caissière",
+    "Le bonnet est obligatoire. Il coûte 3 euros."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Caissière": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s20": {
+  "n": 20,
+  "theme": "Déplacements",
+  "lieu": "À l'arrêt de bus / dans le bus",
+  "situation": "Acheter un ticket au chauffeur",
+  "repliques": [
+   [
+    "Passagère",
+    "Bonjour. Un ticket, s'il vous plaît."
+   ],
+   [
+    "Chauffeur",
+    "1,80 euro."
+   ],
+   [
+    "Passagère",
+    "Le bus va à la gare ?"
+   ],
+   [
+    "Chauffeur",
+    "Oui, c'est le dernier arrêt."
+   ],
+   [
+    "Passagère",
+    "Merci."
+   ],
+   [
+    "Chauffeur",
+    "Validez votre ticket, là."
+   ]
+  ],
+  "voix": {
+   "Passagère": "NEjemlRxgWmL5ZGJetsB",
+   "Chauffeur": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s21": {
+  "n": 21,
+  "theme": "Déplacements",
+  "lieu": "Dans le métro / le tramway",
+  "situation": "Acheter un ticket au guichet",
+  "repliques": [
+   [
+    "Voyageur",
+    "Bonjour. Un ticket de tramway, s'il vous plaît."
+   ],
+   [
+    "Agent",
+    "Un ticket ou un carnet de dix ?"
+   ],
+   [
+    "Voyageur",
+    "Un carnet. C'est combien ?"
+   ],
+   [
+    "Agent",
+    "15 euros."
+   ],
+   [
+    "Voyageur",
+    "Pour aller à la station Université, c'est quelle ligne ?"
+   ],
+   [
+    "Agent",
+    "La ligne A."
+   ]
+  ],
+  "voix": {
+   "Voyageur": "kENkNtk0xyzG09WW40xE",
+   "Agent": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s22": {
+  "n": 22,
+  "theme": "Déplacements",
+  "lieu": "À la gare (acheter un billet)",
+  "situation": "Acheter un billet de train",
+  "repliques": [
+   [
+    "Voyageuse",
+    "Bonjour. Un billet pour Besançon, s'il vous plaît."
+   ],
+   [
+    "Agent",
+    "Aller simple ou aller-retour ?"
+   ],
+   [
+    "Voyageuse",
+    "Aller-retour."
+   ],
+   [
+    "Agent",
+    "Pour aujourd'hui ?"
+   ],
+   [
+    "Voyageuse",
+    "Oui. Le train part à quelle heure ?"
+   ],
+   [
+    "Agent",
+    "À 10 h 15, voie 2. 24 euros, s'il vous plaît."
+   ]
+  ],
+  "voix": {
+   "Voyageuse": "NEjemlRxgWmL5ZGJetsB",
+   "Agent": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s23": {
+  "n": 23,
+  "theme": "Déplacements",
+  "lieu": "Dans un taxi",
+  "situation": "Donner une adresse au chauffeur",
+  "repliques": [
+   [
+    "Chauffeur",
+    "Bonjour. Où allez-vous ?"
+   ],
+   [
+    "Cliente",
+    "Bonjour. 15 rue Victor-Hugo, s'il vous plaît."
+   ],
+   [
+    "Chauffeur",
+    "D'accord."
+   ]
+  ],
+  "voix": {
+   "Chauffeur": "kENkNtk0xyzG09WW40xE",
+   "Cliente": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s24": {
+  "n": 24,
+  "theme": "Déplacements",
+  "lieu": "À la pompe à essence",
+  "situation": "Payer l'essence à la caisse",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. La pompe numéro 4, s'il vous plaît."
+   ],
+   [
+    "Caissière",
+    "60 euros."
+   ],
+   [
+    "Client",
+    "Par carte."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Caissière": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s25": {
+  "n": 25,
+  "theme": "Déplacements",
+  "lieu": "Au distributeur de billets",
+  "situation": "Retirer de l'argent et comprendre l'écran",
+  "repliques": [
+   [
+    "Écran",
+    "Introduisez votre carte."
+   ],
+   [
+    "Écran",
+    "Tapez votre code secret, puis validez."
+   ],
+   [
+    "Écran",
+    "Choisissez le montant :"
+   ]
+  ],
+  "voix": {
+   "Écran": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s26": {
+  "n": 26,
+  "theme": "Déplacements",
+  "lieu": "Demander son chemin dans la rue",
+  "situation": "Demander où se trouve un lieu",
+  "repliques": [
+   [
+    "Passante",
+    "Excusez-moi, la poste, s'il vous plaît ?"
+   ],
+   [
+    "Monsieur",
+    "Allez tout droit, puis à gauche."
+   ]
+  ],
+  "voix": {
+   "Passante": "NEjemlRxgWmL5ZGJetsB",
+   "Monsieur": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s27": {
+  "n": 27,
+  "theme": "Vie sociale",
+  "lieu": "Se présenter",
+  "situation": "Dire son nom, sa nationalité, son âge",
+  "repliques": [
+   [
+    "Formatrice",
+    "Bonjour ! Comment vous appelez-vous ?"
+   ],
+   [
+    "Apprenant",
+    "Je m'appelle Ahmed."
+   ],
+   [
+    "Formatrice",
+    "Vous venez d'où ?"
+   ],
+   [
+    "Apprenant",
+    "Je viens d'Afghanistan. J'habite à Lure."
+   ]
+  ],
+  "voix": {
+   "Formatrice": "NEjemlRxgWmL5ZGJetsB",
+   "Apprenant": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s28": {
+  "n": 28,
+  "theme": "Vie sociale",
+  "lieu": "Se présenter à ses voisins",
+  "situation": "Dire bonjour à un nouveau voisin",
+  "repliques": [
+   [
+    "Voisine",
+    "Bonjour ! Vous êtes nouveau ?"
+   ],
+   [
+    "Voisin",
+    "Oui, j'habite au deuxième étage."
+   ]
+  ],
+  "voix": {
+   "Voisine": "NEjemlRxgWmL5ZGJetsB",
+   "Voisin": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s29": {
+  "n": 29,
+  "theme": "Vie sociale",
+  "lieu": "À la sortie de l'école (avec les autres parents)",
+  "situation": "Parler avec un parent à la sortie de l'école",
+  "repliques": [
+   [
+    "Parent 1",
+    "Bonjour ! Votre fille est dans quelle classe ?"
+   ],
+   [
+    "Parent 2",
+    "En CP, avec Madame Durand."
+   ]
+  ],
+  "voix": {
+   "Parent 1": "kENkNtk0xyzG09WW40xE",
+   "Parent 2": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s30": {
+  "n": 30,
+  "theme": "Vie sociale",
+  "lieu": "À une fête d'anniversaire",
+  "situation": "Souhaiter un bon anniversaire et offrir un cadeau",
+  "repliques": [
+   [
+    "Invitée",
+    "Joyeux anniversaire, Léa !"
+   ],
+   [
+    "Léa",
+    "Merci !"
+   ],
+   [
+    "Invitée",
+    "C'est pour toi, un petit cadeau."
+   ]
+  ],
+  "voix": {
+   "Invitée": "NEjemlRxgWmL5ZGJetsB",
+   "Léa": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s31": {
+  "n": 31,
+  "theme": "Vie sociale",
+  "lieu": "Écrire un SMS simple",
+  "situation": "Prévenir un ami d'un rendez-vous (lire et écrire un SMS court)",
+  "repliques": [
+   [
+    "SMS reçu",
+    "Salut ! On se voit demain ?"
+   ],
+   [
+    "Réponse",
+    "Oui ! À quelle heure ?"
+   ],
+   [
+    "SMS reçu",
+    "À 14 h, devant la mairie."
+   ]
+  ],
+  "voix": {
+   "SMS reçu": "kENkNtk0xyzG09WW40xE",
+   "Réponse": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s32": {
+  "n": 32,
+  "theme": "Santé",
+  "lieu": "À la pharmacie",
+  "situation": "Acheter un médicament simple",
+  "repliques": [
+   [
+    "Pharmacienne",
+    "Bonjour, madame."
+   ],
+   [
+    "Cliente",
+    "Bonjour. J'ai mal à la tête. Je voudrais du paracétamol, s'il vous plaît."
+   ],
+   [
+    "Pharmacienne",
+    "En comprimés ?"
+   ],
+   [
+    "Cliente",
+    "Oui."
+   ],
+   [
+    "Pharmacienne",
+    "Voilà. Un comprimé toutes les six heures, maximum quatre par jour. 2,50 euros."
+   ],
+   [
+    "Cliente",
+    "Merci, au revoir."
+   ]
+  ],
+  "voix": {
+   "Pharmacienne": "NEjemlRxgWmL5ZGJetsB",
+   "Cliente": "YxrwjAKoUKULGd0g8K9Y"
+  },
+  "ambiance": null
+ },
+ "A1-s33": {
+  "n": 33,
+  "theme": "Santé",
+  "lieu": "Chez le médecin généraliste",
+  "situation": "Dire où on a mal",
+  "repliques": [
+   [
+    "Médecin",
+    "Bonjour. Qu'est-ce qui ne va pas ?"
+   ],
+   [
+    "Patient",
+    "J'ai mal à la gorge et je tousse."
+   ],
+   [
+    "Médecin",
+    "Depuis quand ?"
+   ]
+  ],
+  "voix": {
+   "Médecin": "kENkNtk0xyzG09WW40xE",
+   "Patient": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s34": {
+  "n": 34,
+  "theme": "Santé",
+  "lieu": "Chez le pédiatre",
+  "situation": "Dire ce qui ne va pas chez son enfant",
+  "repliques": [
+   [
+    "Pédiatre",
+    "Bonjour. Comment va votre bébé ?"
+   ],
+   [
+    "Mère",
+    "Il a de la fièvre. Il pleure beaucoup."
+   ],
+   [
+    "Pédiatre",
+    "Il mange bien ?"
+   ],
+   [
+    "Mère",
+    "Non, il ne mange pas bien."
+   ]
+  ],
+  "voix": {
+   "Pédiatre": "kENkNtk0xyzG09WW40xE",
+   "Mère": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s35": {
+  "n": 35,
+  "theme": "Santé",
+  "lieu": "Chez le dentiste",
+  "situation": "Dire qu'on a mal à une dent",
+  "repliques": [
+   [
+    "Dentiste",
+    "Bonjour. Asseyez-vous. Qu'est-ce qui se passe ?"
+   ],
+   [
+    "Patiente",
+    "J'ai mal à une den, en bas à droite"
+   ]
+  ],
+  "voix": {
+   "Dentiste": "kENkNtk0xyzG09WW40xE",
+   "Patiente": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s36": {
+  "n": 36,
+  "theme": "Santé",
+  "lieu": "Chez l'ophtalmologiste / chez l'opticien",
+  "situation": "Faire resserrer ses lunettes",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Mes lunettes tombent."
+   ],
+   [
+    "Opticienne",
+    "Je regarde. Asseyez-vous."
+   ],
+   [
+    "Opticienne",
+    "Voilà, c'est réparé. Essayez."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Opticienne": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s37": {
+  "n": 37,
+  "theme": "Santé",
+  "lieu": "Au laboratoire d'analyses",
+  "situation": "Arriver au laboratoire pour une prise de sang",
+  "repliques": [
+   [
+    "Secrétaire",
+    "Bonjour. Vous avez une ordonnance ?"
+   ],
+   [
+    "Patient",
+    "Oui, pour une prise de sang."
+   ],
+   [
+    "Secrétaire",
+    "Vous êtes à jeun ?"
+   ]
+  ],
+  "voix": {
+   "Secrétaire": "NEjemlRxgWmL5ZGJetsB",
+   "Patient": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s38": {
+  "n": 38,
+  "theme": "Santé",
+  "lieu": "Prendre rendez-vous par téléphone ou sur Doctolib",
+  "situation": "Prendre un rendez-vous simple par téléphone",
+  "repliques": [
+   [
+    "Secrétaire",
+    "Cabinet médical, bonjour."
+   ],
+   [
+    "Patient",
+    "Bonjour. Je voudrais un rendez-vous avec le docteur Leroy."
+   ],
+   [
+    "Secrétaire",
+    "C'est urgent ?"
+   ],
+   [
+    "Patient",
+    "Non."
+   ]
+  ],
+  "voix": {
+   "Secrétaire": "NEjemlRxgWmL5ZGJetsB",
+   "Patient": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s39": {
+  "n": 39,
+  "theme": "Services",
+  "lieu": "Au salon de coiffure",
+  "situation": "Demander une coupe simple",
+  "repliques": [
+   [
+    "Coiffeur",
+    "Bonjour ! Qu'est-ce que je vous fais ?"
+   ],
+   [
+    "Client",
+    "Bonjour. Une coupe, s'il vous plaît."
+   ],
+   [
+    "Coiffeur",
+    "Court ?"
+   ]
+  ],
+  "voix": {
+   "Coiffeur": "kENkNtk0xyzG09WW40xE",
+   "Client": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s40": {
+  "n": 40,
+  "theme": "Services",
+  "lieu": "Chez l'esthéticienne",
+  "situation": "Demander le prix et un horaire",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour. C'est combien, une manucure ?"
+   ],
+   [
+    "Esthéticienne",
+    "25 euros."
+   ],
+   [
+    "Cliente",
+    "C'est possible maintenant ?"
+   ],
+   [
+    "Esthéticienne",
+    "Non, à 15 heures."
+   ],
+   [
+    "Cliente",
+    "D'accord, à 15 heures."
+   ],
+   [
+    "Esthéticienne",
+    "Votre prénom ?"
+   ],
+   [
+    "Cliente",
+    "Amina."
+   ]
+  ],
+  "voix": {
+   "Cliente": "NEjemlRxgWmL5ZGJetsB",
+   "Esthéticienne": "YxrwjAKoUKULGd0g8K9Y"
+  },
+  "ambiance": null
+ },
+ "A1-s41": {
+  "n": 41,
+  "theme": "Services",
+  "lieu": "Au pressing / à la laverie automatique",
+  "situation": "Déposer une veste au pressing",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Je voudrais nettoyer cette veste."
+   ],
+   [
+    "Employée",
+    "D'accord. C'est prêt jeudi."
+   ],
+   [
+    "Client",
+    "C'est combien ?"
+   ],
+   [
+    "Employée",
+    "9 euros. Voilà votre ticket."
+   ],
+   [
+    "Client",
+    "Merci. À jeudi !"
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Employée": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s42": {
+  "n": 42,
+  "theme": "Services",
+  "lieu": "Chez le cordonnier",
+  "situation": "Faire refaire une clé",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour. Je voudrais une copie de cette clé, s'il vous plaît."
+   ],
+   [
+    "Cordonnier",
+    "Une seule ?"
+   ],
+   [
+    "Cliente",
+    "Non, deux."
+   ],
+   [
+    "Cordonnier",
+    "D'accord. Cinq minutes."
+   ],
+   [
+    "Cordonnier",
+    "Voilà, 12 euros."
+   ],
+   [
+    "Cliente",
+    "Merci !"
+   ]
+  ],
+  "voix": {
+   "Cliente": "NEjemlRxgWmL5ZGJetsB",
+   "Cordonnier": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s43": {
+  "n": 43,
+  "theme": "Services",
+  "lieu": "Au point relais colis",
+  "situation": "Récupérer un colis",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour. Je viens chercher un colis."
+   ],
+   [
+    "Commerçant",
+    "Votre nom ?"
+   ],
+   [
+    "Cliente",
+    "Fatima Koné."
+   ],
+   [
+    "Commerçant",
+    "Vous avez le code ?"
+   ],
+   [
+    "Cliente",
+    "Oui, sur mon téléphone : 4 8 2 7."
+   ],
+   [
+    "Commerçant",
+    "Et une pièce d'identité. Voilà votre colis. Signez ici."
+   ]
+  ],
+  "voix": {
+   "Cliente": "NEjemlRxgWmL5ZGJetsB",
+   "Commerçant": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s44": {
+  "n": 44,
+  "theme": "Services",
+  "lieu": "À La Poste (envoyer un colis)",
+  "situation": "Acheter des timbres et envoyer une lettre",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Je voudrais envoyer cette lettre en Algérie."
+   ],
+   [
+    "Guichetière",
+    "C'est 2,10 euros."
+   ],
+   [
+    "Client",
+    "Voilà."
+   ],
+   [
+    "Guichetière",
+    "Voilà votre timbre."
+   ],
+   [
+    "Client",
+    "Où est la boîte aux lettres ?"
+   ],
+   [
+    "Guichetière",
+    "Juste devant la porte."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Guichetière": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s45": {
+  "n": 45,
+  "theme": "Services",
+  "lieu": "Au magasin de vêtements (essayer, échanger)",
+  "situation": "Essayer un pantalon (cabine d'essayage)",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour. Je peux essayer ce pantalon ?"
+   ],
+   [
+    "Vendeuse",
+    "Oui, la cabine est là. Quelle taille ?"
+   ],
+   [
+    "Cliente",
+    "40."
+   ],
+   [
+    "Vendeuse",
+    "Voilà."
+   ],
+   [
+    "Vendeuse",
+    "Ça va ?"
+   ],
+   [
+    "Cliente",
+    "Non, c'est trop petit. Vous avez le 42 ?"
+   ],
+   [
+    "Vendeuse",
+    "Oui, voilà."
+   ]
+  ],
+  "voix": {
+   "Cliente": "NEjemlRxgWmL5ZGJetsB",
+   "Vendeuse": "YxrwjAKoUKULGd0g8K9Y"
+  },
+  "ambiance": null
+ },
+ "A1-s46": {
+  "n": 46,
+  "theme": "Services",
+  "lieu": "Au magasin de chaussures",
+  "situation": "Demander sa pointure",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Je voudrais ces baskets, en 43."
+   ],
+   [
+    "Vendeuse",
+    "Je regarde… Voilà, en 43."
+   ],
+   [
+    "Client",
+    "Merci."
+   ],
+   [
+    "Vendeuse",
+    "Ça va ?"
+   ],
+   [
+    "Client",
+    "Oui, c'est bien. Elles coûtent combien ?"
+   ],
+   [
+    "Vendeuse",
+    "59 euros."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Vendeuse": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s47": {
+  "n": 47,
+  "theme": "Services",
+  "lieu": "Au magasin de bricolage",
+  "situation": "Acheter une ampoule",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Je cherche une ampoule."
+   ],
+   [
+    "Vendeur",
+    "C'est là, au rayon électricité. Vous avez l'ancienne ?"
+   ],
+   [
+    "Client",
+    "Oui, voilà."
+   ],
+   [
+    "Vendeur",
+    "Alors, c'est celle-ci. 4,90 euros."
+   ],
+   [
+    "Client",
+    "Merci."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Vendeur": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s48": {
+  "n": 48,
+  "theme": "Services",
+  "lieu": "Au magasin de téléphonie (forfait, carte SIM)",
+  "situation": "Acheter une carte SIM",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Je voudrais une carte SIM."
+   ],
+   [
+    "Vendeuse",
+    "Avec un forfait ?"
+   ],
+   [
+    "Client",
+    "Oui. Pas cher, s'il vous plaît."
+   ],
+   [
+    "Vendeuse",
+    "Ce forfait, c'est 10 euros par mois."
+   ],
+   [
+    "Client",
+    "D'accord."
+   ],
+   [
+    "Vendeuse",
+    "Votre pièce d'identité, s'il vous plaît."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Vendeuse": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s49": {
+  "n": 49,
+  "theme": "Services",
+  "lieu": "À la librairie / à la papeterie",
+  "situation": "Acheter des fournitures scolaires",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour. Je voudrais un cahier, deux stylos bleus et une gomme."
+   ],
+   [
+    "Vendeur",
+    "Voilà. C'est tout ?"
+   ],
+   [
+    "Cliente",
+    "Et une règle, s'il vous plaît."
+   ],
+   [
+    "Vendeur",
+    "Ça fait 6,50 euros."
+   ],
+   [
+    "Cliente",
+    "Merci."
+   ]
+  ],
+  "voix": {
+   "Cliente": "NEjemlRxgWmL5ZGJetsB",
+   "Vendeur": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s50": {
+  "n": 50,
+  "theme": "Services",
+  "lieu": "À la jardinerie / à l'animalerie",
+  "situation": "Acheter de la nourriture pour son chat",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour. Je voudrais des croquettes pour mon chat."
+   ],
+   [
+    "Vendeur",
+    "Il a quel âge ?"
+   ],
+   [
+    "Cliente",
+    "Deux ans."
+   ],
+   [
+    "Vendeur",
+    "Alors ce paquet, 3 kilos, 18 euros."
+   ],
+   [
+    "Cliente",
+    "D'accord, merci."
+   ]
+  ],
+  "voix": {
+   "Cliente": "NEjemlRxgWmL5ZGJetsB",
+   "Vendeur": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s51": {
+  "n": 51,
+  "theme": "Services",
+  "lieu": "Chez le vétérinaire",
+  "situation": "Arriver à l'accueil pour un rendez-vous",
+  "repliques": [
+   [
+    "Secrétaire",
+    "Bonjour."
+   ],
+   [
+    "Client",
+    "Bonjour. J'ai rendez-vous à 10 heures."
+   ],
+   [
+    "Secrétaire",
+    "C'est à quel nom ?"
+   ],
+   [
+    "Client",
+    "Monsieur Benali. C'est pour mon chien, Rocky."
+   ],
+   [
+    "Secrétaire",
+    "Merci. Asseyez-vous, le docteur arrive."
+   ]
+  ],
+  "voix": {
+   "Secrétaire": "NEjemlRxgWmL5ZGJetsB",
+   "Client": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s52": {
+  "n": 52,
+  "theme": "Démarches simples",
+  "lieu": "À la banque (ouvrir un compte)",
+  "situation": "Demander un rendez-vous à l'accueil",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Je voudrais ouvrir un compte."
+   ],
+   [
+    "Hôtesse",
+    "Vous avez rendez-vous ?"
+   ],
+   [
+    "Client",
+    "Non."
+   ],
+   [
+    "Hôtesse",
+    "Je vous donne un rendez-vous avec un conseiller. Mardi, à 10 heures ?"
+   ],
+   [
+    "Client",
+    "Oui, merci."
+   ],
+   [
+    "Hôtesse",
+    "Apportez votre pièce d'identité."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Hôtesse": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s53": {
+  "n": 53,
+  "theme": "Démarches simples",
+  "lieu": "À la mairie",
+  "situation": "Demander un renseignement à l'accueil",
+  "repliques": [
+   [
+    "Usager",
+    "Bonjour. Je voudrais un renseignement."
+   ],
+   [
+    "Agente",
+    "Oui ?"
+   ],
+   [
+    "Usager",
+    "Pour l'inscription à l'école, c'est où ?"
+   ],
+   [
+    "Agente",
+    "Au premier étage, bureau 12."
+   ],
+   [
+    "Usager",
+    "C'est ouvert maintenant ?"
+   ],
+   [
+    "Agente",
+    "Oui, jusqu'à midi."
+   ]
+  ],
+  "voix": {
+   "Usager": "kENkNtk0xyzG09WW40xE",
+   "Agente": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s54": {
+  "n": 54,
+  "theme": "Démarches simples",
+  "lieu": "À la bibliothèque / à la médiathèque (s'inscrire)",
+  "situation": "Emprunter un livre",
+  "repliques": [
+   [
+    "Lecteur",
+    "Bonjour. Je voudrais emprunter ce livre."
+   ],
+   [
+    "Bibliothécaire",
+    "Votre carte, s'il vous plaît."
+   ],
+   [
+    "Lecteur",
+    "Voilà."
+   ],
+   [
+    "Bibliothécaire",
+    "Vous devez le rendre dans trois semaines."
+   ],
+   [
+    "Lecteur",
+    "D'accord. Merci !"
+   ]
+  ],
+  "voix": {
+   "Lecteur": "kENkNtk0xyzG09WW40xE",
+   "Bibliothécaire": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s55": {
+  "n": 55,
+  "theme": "Démarches simples",
+  "lieu": "À la déchetterie",
+  "situation": "Demander où déposer ses déchets",
+  "repliques": [
+   [
+    "Agent",
+    "Bonjour. Qu'est-ce que vous avez ?"
+   ],
+   [
+    "Usager",
+    "Des cartons et une vieille chaise."
+   ],
+   [
+    "Agent",
+    "Les cartons, benne numéro 2. La chaise, c'est du bois ?"
+   ],
+   [
+    "Usager",
+    "Oui."
+   ],
+   [
+    "Agent",
+    "Alors, benne numéro 5."
+   ],
+   [
+    "Usager",
+    "Merci !"
+   ]
+  ],
+  "voix": {
+   "Agent": "kENkNtk0xyzG09WW40xE",
+   "Usager": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s56": {
+  "n": 56,
+  "theme": "Démarches simples",
+  "lieu": "Remplir un formulaire simple",
+  "situation": "Remplir une fiche d'inscription",
+  "repliques": [
+   [
+    "Formulaire",
+    "NOM : ______  Prénom : ______"
+   ],
+   [
+    "Formulaire",
+    "Date de naissance : __ / __ / ____  Nationalité : ______"
+   ],
+   [
+    "Formulaire",
+    "Adresse : ______  Code postal : _____  Ville : ______"
+   ],
+   [
+    "Formulaire",
+    "Téléphone : ______  E-mail : ______"
+   ],
+   [
+    "Formulaire",
+    "Date et signature : ______"
+   ],
+   [
+    "Consigne",
+    "Remplissez la fiche avec vos informations. Attention : le NOM s'écrit en majuscules."
+   ]
+  ],
+  "voix": {
+   "Formulaire": "kENkNtk0xyzG09WW40xE",
+   "Consigne": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s57": {
+  "n": 57,
+  "theme": "Transports et voyage",
+  "lieu": "Dans le train (contrôleur, correspondance)",
+  "situation": "Montrer son billet au contrôleur",
+  "repliques": [
+   [
+    "Contrôleur",
+    "Bonjour, votre billet, s'il vous plaît."
+   ],
+   [
+    "Voyageuse",
+    "Voilà."
+   ],
+   [
+    "Contrôleur",
+    "Merci. Vous êtes dans la voiture 5. Ici, c'est la voiture 3."
+   ],
+   [
+    "Voyageuse",
+    "Oh, pardon ! C'est où ?"
+   ],
+   [
+    "Contrôleur",
+    "Par là, deux voitures plus loin."
+   ],
+   [
+    "Voyageuse",
+    "Merci."
+   ]
+  ],
+  "voix": {
+   "Contrôleur": "kENkNtk0xyzG09WW40xE",
+   "Voyageuse": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s58": {
+  "n": 58,
+  "theme": "Transports et voyage",
+  "lieu": "À l'aéroport (enregistrement, contrôle)",
+  "situation": "S'enregistrer au comptoir",
+  "repliques": [
+   [
+    "Agente",
+    "Bonjour. Votre passeport, s'il vous plaît."
+   ],
+   [
+    "Voyageur",
+    "Voilà."
+   ],
+   [
+    "Agente",
+    "Vous avez une valise ?"
+   ],
+   [
+    "Voyageur",
+    "Oui, une."
+   ],
+   [
+    "Agente",
+    "Mettez-la ici. Porte 12, embarquement à 14 h 30."
+   ],
+   [
+    "Voyageur",
+    "Merci."
+   ]
+  ],
+  "voix": {
+   "Agente": "NEjemlRxgWmL5ZGJetsB",
+   "Voyageur": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s59": {
+  "n": 59,
+  "theme": "Transports et voyage",
+  "lieu": "Au parking (horodateur, ticket)",
+  "situation": "Payer à l'horodateur",
+  "repliques": [
+   [
+    "Conducteur",
+    "Excusez-moi, je paie où ?"
+   ],
+   [
+    "Passante",
+    "À l'horodateur, là-bas."
+   ],
+   [
+    "Conducteur",
+    "C'est combien, une heure ?"
+   ],
+   [
+    "Passante",
+    "1,50 euro."
+   ],
+   [
+    "Conducteur",
+    "Je dois mettre le ticket dans la voiture ?"
+   ],
+   [
+    "Passante",
+    "Non, ici, on tape seulement la plaque d'immatriculation."
+   ]
+  ],
+  "voix": {
+   "Conducteur": "kENkNtk0xyzG09WW40xE",
+   "Passante": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s60": {
+  "n": 60,
+  "theme": "Transports et voyage",
+  "lieu": "Louer un vélo / une trottinette",
+  "situation": "Louer un vélo pour la journée",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Je voudrais louer un vélo."
+   ],
+   [
+    "Loueuse",
+    "Pour combien de temps ?"
+   ],
+   [
+    "Client",
+    "Pour la journée."
+   ],
+   [
+    "Loueuse",
+    "15 euros. Vous voulez un casque ?"
+   ],
+   [
+    "Client",
+    "Oui, s'il vous plaît."
+   ],
+   [
+    "Loueuse",
+    "Votre pièce d'identité pour la caution, s'il vous plaît."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Loueuse": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s61": {
+  "n": 61,
+  "theme": "Transports et voyage",
+  "lieu": "À l'office de tourisme",
+  "situation": "Demander un plan de la ville",
+  "repliques": [
+   [
+    "Touriste",
+    "Bonjour. Vous avez un plan de la ville ?"
+   ],
+   [
+    "Conseillère",
+    "Oui, voilà. C'est gratuit."
+   ],
+   [
+    "Touriste",
+    "Merci. Le musée est où ?"
+   ],
+   [
+    "Conseillère",
+    "Ici, sur le plan. À dix minutes à pied."
+   ],
+   [
+    "Touriste",
+    "Merci beaucoup."
+   ]
+  ],
+  "voix": {
+   "Touriste": "kENkNtk0xyzG09WW40xE",
+   "Conseillère": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s62": {
+  "n": 62,
+  "theme": "Transports et voyage",
+  "lieu": "À l'hôtel (réservation, arrivée)",
+  "situation": "Arriver à l'hôtel",
+  "repliques": [
+   [
+    "Réceptionniste",
+    "Bonsoir, bienvenue."
+   ],
+   [
+    "Client",
+    "Bonsoir. J'ai une réservation au nom de Diop."
+   ],
+   [
+    "Réceptionniste",
+    "Oui, une chambre pour deux nuits. Voilà votre clé. Chambre 21, au deuxième étage."
+   ],
+   [
+    "Client",
+    "Le petit-déjeuner est à quelle heure ?"
+   ],
+   [
+    "Réceptionniste",
+    "De 7 heures à 10 heures."
+   ],
+   [
+    "Client",
+    "Merci."
+   ]
+  ],
+  "voix": {
+   "Réceptionniste": "kENkNtk0xyzG09WW40xE",
+   "Client": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s63": {
+  "n": 63,
+  "theme": "Transports et voyage",
+  "lieu": "Au camping / dans un gîte",
+  "situation": "Arriver au camping",
+  "repliques": [
+   [
+    "Campeur",
+    "Bonjour. Vous avez un emplacement pour une tente ?"
+   ],
+   [
+    "Accueil",
+    "Oui. Pour combien de nuits ?"
+   ],
+   [
+    "Campeur",
+    "Deux nuits."
+   ],
+   [
+    "Accueil",
+    "22 euros. C'est l'emplacement 14."
+   ],
+   [
+    "Campeur",
+    "Les douches sont où ?"
+   ],
+   [
+    "Accueil",
+    "Au bâtiment blanc, là-bas."
+   ]
+  ],
+  "voix": {
+   "Campeur": "kENkNtk0xyzG09WW40xE",
+   "Accueil": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s64": {
+  "n": 64,
+  "theme": "Transports et voyage",
+  "lieu": "Faire une visite guidée",
+  "situation": "Suivre les consignes du guide",
+  "repliques": [
+   [
+    "Guide",
+    "Bonjour à tous ! Je m'appelle Julie, je suis votre guide."
+   ],
+   [
+    "Guide",
+    "Suivez-moi, s'il vous plaît."
+   ],
+   [
+    "Guide",
+    "Regardez à gauche : c'est l'église Saint-Martin."
+   ],
+   [
+    "Visiteur",
+    "On peut prendre des photos ?"
+   ],
+   [
+    "Guide",
+    "Oui, mais sans flash."
+   ],
+   [
+    "Visiteur",
+    "Merci."
+   ]
+  ],
+  "voix": {
+   "Guide": "kENkNtk0xyzG09WW40xE",
+   "Visiteur": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s65": {
+  "n": 65,
+  "theme": "Transports et voyage",
+  "lieu": "Au musée",
+  "situation": "Acheter un billet d'entrée",
+  "repliques": [
+   [
+    "Visiteuse",
+    "Bonjour. Un billet, s'il vous plaît."
+   ],
+   [
+    "Caissier",
+    "Tarif normal ? 8 euros."
+   ],
+   [
+    "Visiteuse",
+    "C'est gratuit pour les enfants ?"
+   ],
+   [
+    "Caissier",
+    "Oui, pour les moins de 18 ans."
+   ],
+   [
+    "Visiteuse",
+    "Merci. Le vestiaire, c'est où ?"
+   ],
+   [
+    "Caissier",
+    "À droite."
+   ]
+  ],
+  "voix": {
+   "Visiteuse": "NEjemlRxgWmL5ZGJetsB",
+   "Caissier": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s66": {
+  "n": 66,
+  "theme": "Enfants et école",
+  "lieu": "Inscrire son enfant à l'école",
+  "situation": "Demander où et comment inscrire son enfant",
+  "repliques": [
+   [
+    "Mère",
+    "Bonjour. Je voudrais inscrire mon fils à l'école."
+   ],
+   [
+    "Agente",
+    "Il a quel âge ?"
+   ],
+   [
+    "Mère",
+    "Six ans."
+   ],
+   [
+    "Agente",
+    "Il va au CP. Voilà le dossier."
+   ],
+   [
+    "Mère",
+    "Merci. Je le rapporte ici ?"
+   ],
+   [
+    "Agente",
+    "Oui, à la mairie."
+   ]
+  ],
+  "voix": {
+   "Mère": "NEjemlRxgWmL5ZGJetsB",
+   "Agente": "YxrwjAKoUKULGd0g8K9Y"
+  },
+  "ambiance": null
+ },
+ "A1-s67": {
+  "n": 67,
+  "theme": "Enfants et école",
+  "lieu": "À la cantine / au périscolaire",
+  "situation": "Inscrire son enfant à la cantine",
+  "repliques": [
+   [
+    "Père",
+    "Bonjour. Mon fils peut manger à la cantine ?"
+   ],
+   [
+    "Agente",
+    "Oui. Quels jours ?"
+   ],
+   [
+    "Père",
+    "Le lundi et le jeudi."
+   ],
+   [
+    "Agente",
+    "D'accord. Il mange de tout ?"
+   ],
+   [
+    "Père",
+    "Sans porc, s'il vous plaît."
+   ],
+   [
+    "Agente",
+    "C'est noté."
+   ]
+  ],
+  "voix": {
+   "Père": "kENkNtk0xyzG09WW40xE",
+   "Agente": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s68": {
+  "n": 68,
+  "theme": "Enfants et école",
+  "lieu": "À la crèche / chez l'assistante maternelle",
+  "situation": "Déposer son enfant le matin",
+  "repliques": [
+   [
+    "Puéricultrice",
+    "Bonjour, Inès ! Bonjour, madame."
+   ],
+   [
+    "Mère",
+    "Bonjour. Voilà son sac."
+   ],
+   [
+    "Puéricultrice",
+    "Elle a bien dormi ?"
+   ],
+   [
+    "Mère",
+    "Oui. Elle a pris son biberon à 7 heures."
+   ],
+   [
+    "Puéricultrice",
+    "D'accord. À ce soir !"
+   ],
+   [
+    "Mère",
+    "À ce soir. Bisous, ma chérie !"
+   ]
+  ],
+  "voix": {
+   "Puéricultrice": "NEjemlRxgWmL5ZGJetsB",
+   "Mère": "YxrwjAKoUKULGd0g8K9Y"
+  },
+  "ambiance": null
+ },
+ "A1-s69": {
+  "n": 69,
+  "theme": "Enfants et école",
+  "lieu": "Au centre de loisirs",
+  "situation": "Inscrire son enfant pour les vacances",
+  "repliques": [
+   [
+    "Mère",
+    "Bonjour. Je voudrais inscrire ma fille pour les vacances."
+   ],
+   [
+    "Animateur",
+    "Quelle semaine ?"
+   ],
+   [
+    "Mère",
+    "La première semaine."
+   ],
+   [
+    "Animateur",
+    "Toute la journée ?"
+   ],
+   [
+    "Mère",
+    "Oui, de 9 heures à 17 heures."
+   ],
+   [
+    "Animateur",
+    "D'accord. Voilà le programme."
+   ]
+  ],
+  "voix": {
+   "Mère": "NEjemlRxgWmL5ZGJetsB",
+   "Animateur": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s70": {
+  "n": 70,
+  "theme": "Enfants et école",
+  "lieu": "Lire le carnet de liaison",
+  "situation": "Lire un mot simple de l'enseignant",
+  "repliques": [
+   [
+    "Mot de l'enseignante",
+    "Le jeudi 20 novembre, photo de classe."
+   ],
+   [
+    "Mot de l'enseignante",
+    "Merci de signer."
+   ],
+   [
+    "Signature des parents",
+    "______"
+   ],
+   [
+    "Consigne",
+    "Quelle est la date de la photo ? Qu'est-ce que vous devez faire ?"
+   ]
+  ],
+  "voix": {
+   "Mot de l'enseignante": "NEjemlRxgWmL5ZGJetsB",
+   "Signature des parents": "kENkNtk0xyzG09WW40xE",
+   "Consigne": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s71": {
+  "n": 71,
+  "theme": "Vie sociale et loisirs",
+  "lieu": "Inviter quelqu'un chez soi / être invité à dîner",
+  "situation": "Inviter un ami et accepter",
+  "repliques": [
+   [
+    "Amina",
+    "Tu viens dîner chez moi samedi ?"
+   ],
+   [
+    "Julie",
+    "Oui, avec plaisir ! À quelle heure ?"
+   ],
+   [
+    "Amina",
+    "À 19 heures."
+   ],
+   [
+    "Julie",
+    "Je peux apporter un dessert ?"
+   ],
+   [
+    "Amina",
+    "Oui, merci !"
+   ],
+   [
+    "Julie",
+    "À samedi !"
+   ]
+  ],
+  "voix": {
+   "Amina": "kENkNtk0xyzG09WW40xE",
+   "Julie": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s72": {
+  "n": 72,
+  "theme": "Vie sociale et loisirs",
+  "lieu": "À la salle de sport",
+  "situation": "S'inscrire à la salle de sport",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Je voudrais m'inscrire."
+   ],
+   [
+    "Accueil",
+    "D'accord. L'abonnement, c'est 25 euros par mois."
+   ],
+   [
+    "Client",
+    "C'est ouvert le dimanche ?"
+   ],
+   [
+    "Accueil",
+    "Oui, de 9 heures à 13 heures."
+   ],
+   [
+    "Client",
+    "Il y a des cours ?"
+   ],
+   [
+    "Accueil",
+    "Oui, voilà le planning."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Accueil": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s73": {
+  "n": 73,
+  "theme": "Vie sociale et loisirs",
+  "lieu": "S'inscrire dans un club ou une association",
+  "situation": "Demander à s'inscrire",
+  "repliques": [
+   [
+    "Jeune",
+    "Bonjour. Je voudrais jouer au football."
+   ],
+   [
+    "Entraîneur",
+    "Tu as quel âge ?"
+   ],
+   [
+    "Jeune",
+    "16 ans."
+   ],
+   [
+    "Entraîneur",
+    "L'entraînement, c'est le mercredi et le vendredi, à 18 heures."
+   ],
+   [
+    "Jeune",
+    "C'est combien ?"
+   ],
+   [
+    "Entraîneur",
+    "La cotisation, c'est 90 euros par an."
+   ]
+  ],
+  "voix": {
+   "Jeune": "kENkNtk0xyzG09WW40xE",
+   "Entraîneur": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s74": {
+  "n": 74,
+  "theme": "Vie sociale et loisirs",
+  "lieu": "Au théâtre / au concert / au stade",
+  "situation": "Acheter un billet",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Deux places pour le concert, s'il vous plaît."
+   ],
+   [
+    "Guichetière",
+    "Pour ce soir ?"
+   ],
+   [
+    "Client",
+    "Oui."
+   ],
+   [
+    "Guichetière",
+    "30 euros les deux."
+   ],
+   [
+    "Client",
+    "C'est à quelle heure ?"
+   ],
+   [
+    "Guichetière",
+    "À 20 h 30."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Guichetière": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s75": {
+  "n": 75,
+  "theme": "Vie sociale et loisirs",
+  "lieu": "À une fête de quartier / à un vide-grenier",
+  "situation": "Acheter un objet au vide-grenier",
+  "repliques": [
+   [
+    "Acheteuse",
+    "Bonjour. C'est combien, le vélo ?"
+   ],
+   [
+    "Vendeur",
+    "20 euros."
+   ],
+   [
+    "Acheteuse",
+    "15 euros ?"
+   ],
+   [
+    "Vendeur",
+    "D'accord, 15 euros."
+   ],
+   [
+    "Acheteuse",
+    "Merci !"
+   ]
+  ],
+  "voix": {
+   "Acheteuse": "NEjemlRxgWmL5ZGJetsB",
+   "Vendeur": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s76": {
+  "n": 76,
+  "theme": "Vie sociale et loisirs",
+  "lieu": "À un mariage",
+  "situation": "Féliciter les mariés",
+  "repliques": [
+   [
+    "Invité",
+    "Félicitations !"
+   ],
+   [
+    "Mariée",
+    "Merci beaucoup !"
+   ],
+   [
+    "Invité",
+    "Ta robe est très belle."
+   ],
+   [
+    "Mariée",
+    "Merci ! Tu viens à la fête ce soir ?"
+   ],
+   [
+    "Invité",
+    "Oui, bien sûr !"
+   ]
+  ],
+  "voix": {
+   "Invité": "kENkNtk0xyzG09WW40xE",
+   "Mariée": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s77": {
+  "n": 77,
+  "theme": "Vie sociale et loisirs",
+  "lieu": "Au lieu de culte",
+  "situation": "Demander les horaires",
+  "repliques": [
+   [
+    "Visiteur",
+    "Bonjour. La messe est à quelle heure ?"
+   ],
+   [
+    "Bénévole",
+    "Le dimanche à 10 h 30."
+   ],
+   [
+    "Visiteur",
+    "Et en semaine ?"
+   ],
+   [
+    "Bénévole",
+    "Le mercredi à 18 heures."
+   ],
+   [
+    "Visiteur",
+    "Merci."
+   ]
+  ],
+  "voix": {
+   "Visiteur": "kENkNtk0xyzG09WW40xE",
+   "Bénévole": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s78": {
+  "n": 78,
+  "theme": "Communication",
+  "lieu": "Téléphoner (se présenter, laisser un message)",
+  "situation": "Appeler et demander quelqu'un",
+  "repliques": [
+   [
+    "Secrétaire",
+    "Allô, bonjour."
+   ],
+   [
+    "Appelant",
+    "Bonjour. C'est Ibrahim Touré. Je peux parler à Madame Martin ?"
+   ],
+   [
+    "Secrétaire",
+    "Elle n'est pas là."
+   ],
+   [
+    "Appelant",
+    "D'accord. Je rappelle demain."
+   ],
+   [
+    "Secrétaire",
+    "Très bien. Au revoir."
+   ]
+  ],
+  "voix": {
+   "Secrétaire": "NEjemlRxgWmL5ZGJetsB",
+   "Appelant": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s79": {
+  "n": 79,
+  "theme": "Communication",
+  "lieu": "Écrire un mail simple",
+  "situation": "Lire et écrire un mail très court",
+  "repliques": [
+   [
+    "Mail",
+    "Objet : Absence"
+   ],
+   [
+    "Mail",
+    "Bonjour Madame, je suis malade aujourd'hui. Je ne viens pas en formation. Cordialement, Omar."
+   ],
+   [
+    "Consigne",
+    "Écrivez un mail à votre formatrice : vous avez un rendez-vous chez le médecin demain matin, vous arrivez à 11 heures."
+   ]
+  ],
+  "voix": {
+   "Mail": "kENkNtk0xyzG09WW40xE",
+   "Consigne": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s80": {
+  "n": 80,
+  "theme": "Travail",
+  "lieu": "Lire une offre d'emploi",
+  "situation": "Repérer les informations essentielles",
+  "repliques": [
+   [
+    "Offre",
+    "Boulangerie cherche vendeur / vendeuse. CDD 6 mois. Temps partiel : 24 h par semaine. Le matin, de 6 h à 12 h."
+   ],
+   [
+    "Offre",
+    "Salaire : SMIC. Contact : 03 84 00 00 00."
+   ],
+   [
+    "Consigne",
+    "Quel est le poste ? C'est un CDI ou un CDD ? Combien d'heures par semaine ? Le matin ou l'après-midi ?"
+   ]
+  ],
+  "voix": {
+   "Offre": "kENkNtk0xyzG09WW40xE",
+   "Consigne": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s81": {
+  "n": 81,
+  "theme": "Travail",
+  "lieu": "Le premier jour de travail",
+  "situation": "Se présenter à l'accueil de l'entreprise",
+  "repliques": [
+   [
+    "Employé",
+    "Bonjour. Je m'appelle Moussa Diallo. C'est mon premier jour."
+   ],
+   [
+    "Accueil",
+    "Bienvenue ! Vous travaillez avec qui ?"
+   ],
+   [
+    "Employé",
+    "Avec Monsieur Bernard, à l'atelier."
+   ],
+   [
+    "Accueil",
+    "Je l'appelle. Asseyez-vous."
+   ],
+   [
+    "Responsable",
+    "Bonjour, Moussa ! Je vous montre le vestiaire et votre tenue."
+   ]
+  ],
+  "voix": {
+   "Employé": "kENkNtk0xyzG09WW40xE",
+   "Accueil": "NEjemlRxgWmL5ZGJetsB",
+   "Responsable": "YxrwjAKoUKULGd0g8K9Y"
+  },
+  "ambiance": null
+ },
+ "A1-s82": {
+  "n": 82,
+  "theme": "Travail",
+  "lieu": "Avec un collègue (se présenter, demander de l'aide)",
+  "situation": "Se présenter à un collègue",
+  "repliques": [
+   [
+    "Collègue",
+    "Bonjour ! Tu es nouveau ?"
+   ],
+   [
+    "Nouveau",
+    "Oui, je m'appelle Hamid. Je commence aujourd'hui."
+   ],
+   [
+    "Collègue",
+    "Moi, c'est Sophie. Je travaille ici depuis trois ans."
+   ],
+   [
+    "Nouveau",
+    "Tu travailles dans quel service ?"
+   ],
+   [
+    "Collègue",
+    "À l'expédition. Enchantée !"
+   ]
+  ],
+  "voix": {
+   "Collègue": "kENkNtk0xyzG09WW40xE",
+   "Nouveau": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s83": {
+  "n": 83,
+  "theme": "Travail",
+  "lieu": "Prévenir d'un retard",
+  "situation": "Téléphoner pour dire qu'on est en retard",
+  "repliques": [
+   [
+    "Employée",
+    "Allô, Monsieur Petit ? C'est Fatou."
+   ],
+   [
+    "Responsable",
+    "Oui, Fatou ?"
+   ],
+   [
+    "Employée",
+    "Je suis en retard. Le bus n'est pas passé."
+   ],
+   [
+    "Responsable",
+    "Vous arrivez à quelle heure ?"
+   ],
+   [
+    "Employée",
+    "Dans vingt minutes. Désolée."
+   ],
+   [
+    "Responsable",
+    "D'accord, à tout à l'heure."
+   ]
+  ],
+  "voix": {
+   "Employée": "NEjemlRxgWmL5ZGJetsB",
+   "Responsable": "YxrwjAKoUKULGd0g8K9Y"
+  },
+  "ambiance": null
+ },
+ "A1-s84": {
+  "n": 84,
+  "theme": "Administrations",
+  "lieu": "À la préfecture",
+  "situation": "Se présenter à l'accueil avec sa convocation",
+  "repliques": [
+   [
+    "Agent",
+    "Bonjour. Vous avez une convocation ?"
+   ],
+   [
+    "Usager",
+    "Oui, voilà."
+   ],
+   [
+    "Agent",
+    "Rendez-vous à 10 heures. Prenez ce ticket : numéro 45."
+   ],
+   [
+    "Usager",
+    "Où est-ce que j'attends ?"
+   ],
+   [
+    "Agent",
+    "Dans la salle à gauche. Regardez l'écran."
+   ],
+   [
+    "Usager",
+    "Merci."
+   ]
+  ],
+  "voix": {
+   "Agent": "kENkNtk0xyzG09WW40xE",
+   "Usager": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s85": {
+  "n": 85,
+  "theme": "Administrations",
+  "lieu": "À l'OFII",
+  "situation": "Comprendre une convocation simple",
+  "repliques": [
+   [
+    "Convocation",
+    "Office français de l'immigration et de l'intégration"
+   ],
+   [
+    "Convocation",
+    "Madame KOVALENKO Olena – Rendez-vous le mardi 9 décembre à 9 h 00."
+   ],
+   [
+    "Convocation",
+    "Adresse : 3 rue de la République, Besançon."
+   ],
+   [
+    "Convocation",
+    "Apporter : passeport, titre de séjour, cette convocation."
+   ],
+   [
+    "Consigne",
+    "Quel jour ? À quelle heure ? Où ? Qu'est-ce que vous devez apporter ?"
+   ]
+  ],
+  "voix": {
+   "Convocation": "kENkNtk0xyzG09WW40xE",
+   "Consigne": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s86": {
+  "n": 86,
+  "theme": "Administrations",
+  "lieu": "À la CAF",
+  "situation": "Demander à quoi sert la CAF",
+  "repliques": [
+   [
+    "Usagère",
+    "Bonjour. C'est quoi, la CAF ?"
+   ],
+   [
+    "Agent",
+    "C'est la Caisse d'allocations familiales. Elle aide les familles."
+   ],
+   [
+    "Usagère",
+    "Pour les enfants ?"
+   ],
+   [
+    "Agent",
+    "Oui, et aussi pour le logement."
+   ],
+   [
+    "Usagère",
+    "Comment je fais ?"
+   ],
+   [
+    "Agent",
+    "Vous faites une demande sur le site caf.fr."
+   ]
+  ],
+  "voix": {
+   "Usagère": "NEjemlRxgWmL5ZGJetsB",
+   "Agent": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s87": {
+  "n": 87,
+  "theme": "Administrations",
+  "lieu": "À la CPAM / à l'Assurance maladie",
+  "situation": "Demander une carte Vitale",
+  "repliques": [
+   [
+    "Usager",
+    "Bonjour. Je voudrais une carte Vitale."
+   ],
+   [
+    "Agente",
+    "Vous avez un numéro de sécurité sociale ?"
+   ],
+   [
+    "Usager",
+    "Oui, voilà."
+   ],
+   [
+    "Agente",
+    "Vous remplissez ce formulaire avec une photo."
+   ],
+   [
+    "Usager",
+    "C'est long ?"
+   ],
+   [
+    "Agente",
+    "Trois semaines environ."
+   ]
+  ],
+  "voix": {
+   "Usager": "kENkNtk0xyzG09WW40xE",
+   "Agente": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s88": {
+  "n": 88,
+  "theme": "Administrations",
+  "lieu": "À France Travail",
+  "situation": "S'inscrire à l'accueil",
+  "repliques": [
+   [
+    "Usager",
+    "Bonjour. Je cherche du travail. Je voudrais m'inscrire."
+   ],
+   [
+    "Agent",
+    "Vous avez un ordinateur ?"
+   ],
+   [
+    "Usager",
+    "Non."
+   ],
+   [
+    "Agent",
+    "Vous pouvez utiliser cet ordinateur. Je vous aide."
+   ],
+   [
+    "Usager",
+    "Merci."
+   ],
+   [
+    "Agent",
+    "Ensuite, vous aurez un rendez-vous avec un conseiller."
+   ]
+  ],
+  "voix": {
+   "Usager": "kENkNtk0xyzG09WW40xE",
+   "Agent": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s89": {
+  "n": 89,
+  "theme": "Administrations",
+  "lieu": "Au centre des impôts",
+  "situation": "Demander où déposer un document",
+  "repliques": [
+   [
+    "Usagère",
+    "Bonjour. C'est pour les impôts."
+   ],
+   [
+    "Agent",
+    "Qu'est-ce que vous voulez ?"
+   ],
+   [
+    "Usagère",
+    "Je voudrais déposer ce papier."
+   ],
+   [
+    "Agent",
+    "Mettez-le dans cette boîte, avec votre nom."
+   ],
+   [
+    "Usagère",
+    "Merci."
+   ]
+  ],
+  "voix": {
+   "Usagère": "NEjemlRxgWmL5ZGJetsB",
+   "Agent": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s90": {
+  "n": 90,
+  "theme": "Administrations",
+  "lieu": "À la maison France Services",
+  "situation": "Demander de l'aide pour une démarche",
+  "repliques": [
+   [
+    "Usager",
+    "Bonjour. Vous pouvez m'aider ?"
+   ],
+   [
+    "Conseillère",
+    "Oui, bien sûr. C'est pour quoi ?"
+   ],
+   [
+    "Usager",
+    "C'est pour la CAF. Je n'ai pas d'ordinateur."
+   ],
+   [
+    "Conseillère",
+    "Asseyez-vous ici. Vous avez votre numéro allocataire ?"
+   ],
+   [
+    "Usager",
+    "Oui, voilà."
+   ]
+  ],
+  "voix": {
+   "Usager": "kENkNtk0xyzG09WW40xE",
+   "Conseillère": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s91": {
+  "n": 91,
+  "theme": "Administrations",
+  "lieu": "Chez l'assistante sociale",
+  "situation": "Prendre rendez-vous",
+  "repliques": [
+   [
+    "Usagère",
+    "Bonjour. Je voudrais voir l'assistante sociale."
+   ],
+   [
+    "Accueil",
+    "C'est pour quoi ?"
+   ],
+   [
+    "Usagère",
+    "J'ai besoin d'aide."
+   ],
+   [
+    "Accueil",
+    "Elle peut vous recevoir mardi, à 14 heures."
+   ],
+   [
+    "Usagère",
+    "D'accord, merci."
+   ]
+  ],
+  "voix": {
+   "Usagère": "NEjemlRxgWmL5ZGJetsB",
+   "Accueil": "YxrwjAKoUKULGd0g8K9Y"
+  },
+  "ambiance": null
+ },
+ "A1-s92": {
+  "n": 92,
+  "theme": "Administrations",
+  "lieu": "Au consulat / à l'ambassade",
+  "situation": "Prendre rendez-vous pour un passeport",
+  "repliques": [
+   [
+    "Usager",
+    "Bonjour. Je voudrais un nouveau passeport."
+   ],
+   [
+    "Agent",
+    "Vous devez prendre rendez-vous sur le site internet."
+   ],
+   [
+    "Usager",
+    "Qu'est-ce que j'apporte ?"
+   ],
+   [
+    "Agent",
+    "L'ancien passeport, deux photos et votre acte de naissance."
+   ],
+   [
+    "Usager",
+    "Merci."
+   ]
+  ],
+  "voix": {
+   "Usager": "kENkNtk0xyzG09WW40xE",
+   "Agent": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s93": {
+  "n": 93,
+  "theme": "Administrations",
+  "lieu": "Au commissariat / à la gendarmerie (déclarer une perte ou un vol)",
+  "situation": "Dire qu'on a perdu quelque chose",
+  "repliques": [
+   [
+    "Policier",
+    "Bonjour. Qu'est-ce qui se passe ?"
+   ],
+   [
+    "Usagère",
+    "J'ai perdu mon portefeuille."
+   ],
+   [
+    "Policier",
+    "Où ?"
+   ],
+   [
+    "Usagère",
+    "Dans le bus, ce matin."
+   ],
+   [
+    "Policier",
+    "Il y avait quoi dedans ?"
+   ],
+   [
+    "Usagère",
+    "Ma carte bancaire et ma carte d'identité."
+   ]
+  ],
+  "voix": {
+   "Policier": "kENkNtk0xyzG09WW40xE",
+   "Usagère": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s94": {
+  "n": 94,
+  "theme": "Administrations",
+  "lieu": "Chez le notaire / chez l'avocat",
+  "situation": "Prendre rendez-vous chez l'avocat",
+  "repliques": [
+   [
+    "Usagère",
+    "Bonjour. Je voudrais un rendez-vous avec un avocat."
+   ],
+   [
+    "Secrétaire",
+    "C'est pour quoi ?"
+   ],
+   [
+    "Usagère",
+    "Un problème avec mon travail."
+   ],
+   [
+    "Secrétaire",
+    "Lundi, à 16 heures ?"
+   ],
+   [
+    "Usagère",
+    "Oui, merci."
+   ]
+  ],
+  "voix": {
+   "Usagère": "NEjemlRxgWmL5ZGJetsB",
+   "Secrétaire": "YxrwjAKoUKULGd0g8K9Y"
+  },
+  "ambiance": null
+ },
+ "A1-s95": {
+  "n": 95,
+  "theme": "Administrations",
+  "lieu": "Faire une démarche en ligne",
+  "situation": "Comprendre les mots d'un site administratif",
+  "repliques": [
+   [
+    "Écran",
+    "Se connecter"
+   ],
+   [
+    "Écran",
+    "Identifiant : ______  Mot de passe : ______"
+   ],
+   [
+    "Écran",
+    "[Mot de passe oublié ?]  [Valider]"
+   ],
+   [
+    "Écran",
+    "[Retour]  [Suivant]"
+   ],
+   [
+    "Consigne",
+    "Montrez où vous écrivez votre identifiant. Sur quel bouton vous cliquez si vous avez oublié votre mot de passe ?"
+   ]
+  ],
+  "voix": {
+   "Écran": "kENkNtk0xyzG09WW40xE",
+   "Consigne": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s96": {
+  "n": 96,
+  "theme": "Logement",
+  "lieu": "À l'agence immobilière",
+  "situation": "Dire ce qu'on cherche",
+  "repliques": [
+   [
+    "Agent",
+    "Bonjour. Je peux vous aider ?"
+   ],
+   [
+    "Client",
+    "Je cherche un appartement à louer."
+   ],
+   [
+    "Agent",
+    "Combien de chambres ?"
+   ],
+   [
+    "Client",
+    "Deux chambres."
+   ],
+   [
+    "Agent",
+    "Quel est votre budget ?"
+   ],
+   [
+    "Client",
+    "600 euros par mois."
+   ]
+  ],
+  "voix": {
+   "Agent": "kENkNtk0xyzG09WW40xE",
+   "Client": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s97": {
+  "n": 97,
+  "theme": "Logement",
+  "lieu": "Visiter un appartement",
+  "situation": "Poser des questions simples pendant la visite",
+  "repliques": [
+   [
+    "Agent",
+    "Voici la cuisine."
+   ],
+   [
+    "Visiteuse",
+    "Elle est petite."
+   ],
+   [
+    "Agent",
+    "Oui, mais la salle de bains est grande."
+   ],
+   [
+    "Visiteuse",
+    "Il y a combien de chambres ?"
+   ],
+   [
+    "Agent",
+    "Deux chambres. L'appartement est très lumineux."
+   ],
+   [
+    "Visiteuse",
+    "C'est à quel étage ?"
+   ]
+  ],
+  "voix": {
+   "Agent": "kENkNtk0xyzG09WW40xE",
+   "Visiteuse": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s98": {
+  "n": 98,
+  "theme": "Logement",
+  "lieu": "Signer un bail / faire l'état des lieux",
+  "situation": "Recevoir les clés",
+  "repliques": [
+   [
+    "Agent",
+    "Voilà vos clés."
+   ],
+   [
+    "Locataire",
+    "Merci. Celle-ci, c'est pour quoi ?"
+   ],
+   [
+    "Agent",
+    "C'est la boîte aux lettres. Et le badge, c'est pour la porte d'entrée."
+   ],
+   [
+    "Locataire",
+    "D'accord."
+   ],
+   [
+    "Agent",
+    "Signez ici, s'il vous plaît."
+   ]
+  ],
+  "voix": {
+   "Agent": "kENkNtk0xyzG09WW40xE",
+   "Locataire": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s99": {
+  "n": 99,
+  "theme": "Logement",
+  "lieu": "Chez le bailleur social",
+  "situation": "Demander un logement social",
+  "repliques": [
+   [
+    "Usager",
+    "Bonjour. Je voudrais un logement social."
+   ],
+   [
+    "Agente",
+    "Vous avez fait une demande ?"
+   ],
+   [
+    "Usager",
+    "Non."
+   ],
+   [
+    "Agente",
+    "Vous remplissez ce formulaire, ou vous faites la demande en ligne."
+   ],
+   [
+    "Usager",
+    "Merci."
+   ]
+  ],
+  "voix": {
+   "Usager": "kENkNtk0xyzG09WW40xE",
+   "Agente": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s100": {
+  "n": 100,
+  "theme": "Logement",
+  "lieu": "Avec le propriétaire (réclamation, réparation)",
+  "situation": "Signaler une panne simple",
+  "repliques": [
+   [
+    "Locataire",
+    "Allô, monsieur Garnier ? C'est Mme Kaya, votre locataire."
+   ],
+   [
+    "Propriétaire",
+    "Oui, bonjour."
+   ],
+   [
+    "Locataire",
+    "Le chauffage ne marche pas."
+   ],
+   [
+    "Propriétaire",
+    "Depuis quand ?"
+   ],
+   [
+    "Locataire",
+    "Depuis hier."
+   ],
+   [
+    "Propriétaire",
+    "J'envoie un technicien demain."
+   ]
+  ],
+  "voix": {
+   "Locataire": "kENkNtk0xyzG09WW40xE",
+   "Propriétaire": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s101": {
+  "n": 101,
+  "theme": "Logement",
+  "lieu": "Avec les voisins (bruit, conflit)",
+  "situation": "Demander poliment moins de bruit",
+  "repliques": [
+   [
+    "Voisine",
+    "Bonsoir. La musique est très forte."
+   ],
+   [
+    "Voisin",
+    "Ah, pardon !"
+   ],
+   [
+    "Voisine",
+    "Mon bébé dort."
+   ],
+   [
+    "Voisin",
+    "Je baisse. Excusez-moi."
+   ],
+   [
+    "Voisine",
+    "Merci. Bonne soirée."
+   ]
+  ],
+  "voix": {
+   "Voisine": "NEjemlRxgWmL5ZGJetsB",
+   "Voisin": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s102": {
+  "n": 102,
+  "theme": "Logement",
+  "lieu": "Avec le gardien / le syndic",
+  "situation": "Demander un service au gardien",
+  "repliques": [
+   [
+    "Locataire",
+    "Bonjour, monsieur. L'ascenseur ne marche pas."
+   ],
+   [
+    "Gardien",
+    "Oui, je sais. Le technicien vient cet après-midi."
+   ],
+   [
+    "Locataire",
+    "Merci. Et vous avez un colis pour moi ?"
+   ],
+   [
+    "Gardien",
+    "Oui, attendez. Voilà."
+   ],
+   [
+    "Locataire",
+    "Merci beaucoup !"
+   ]
+  ],
+  "voix": {
+   "Locataire": "kENkNtk0xyzG09WW40xE",
+   "Gardien": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s103": {
+  "n": 103,
+  "theme": "Logement",
+  "lieu": "Appeler un plombier, un électricien, un chauffagiste",
+  "situation": "Appeler pour une urgence simple",
+  "repliques": [
+   [
+    "Plombier",
+    "Allô, plomberie Durand."
+   ],
+   [
+    "Client",
+    "Bonjour. J'ai une fuite d'eau."
+   ],
+   [
+    "Plombier",
+    "Où ?"
+   ],
+   [
+    "Client",
+    "Dans la salle de bains."
+   ],
+   [
+    "Plombier",
+    "Fermez l'eau. J'arrive dans une heure."
+   ],
+   [
+    "Client",
+    "Merci !"
+   ]
+  ],
+  "voix": {
+   "Plombier": "kENkNtk0xyzG09WW40xE",
+   "Client": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s104": {
+  "n": 104,
+  "theme": "Logement",
+  "lieu": "Ouvrir un contrat d'électricité, de gaz, d'eau ou d'internet",
+  "situation": "Ouvrir l'électricité par téléphone",
+  "repliques": [
+   [
+    "Conseillère",
+    "Bonjour, c'est pour quoi ?"
+   ],
+   [
+    "Client",
+    "Je voudrais l'électricité dans mon nouvel appartement."
+   ],
+   [
+    "Conseillère",
+    "Votre adresse ?"
+   ],
+   [
+    "Client",
+    "12 rue des Lilas, à Vesoul."
+   ],
+   [
+    "Conseillère",
+    "Vous avez le numéro du compteur ?"
+   ],
+   [
+    "Client",
+    "Oui, c'est le 245 678 912."
+   ]
+  ],
+  "voix": {
+   "Conseillère": "NEjemlRxgWmL5ZGJetsB",
+   "Client": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s105": {
+  "n": 105,
+  "theme": "Logement",
+  "lieu": "Déménager / louer un camion",
+  "situation": "Louer un camion pour une journée",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Je voudrais louer un camion pour samedi."
+   ],
+   [
+    "Employée",
+    "Pour la journée ?"
+   ],
+   [
+    "Client",
+    "Oui."
+   ],
+   [
+    "Employée",
+    "80 euros. Votre permis de conduire, s'il vous plaît."
+   ],
+   [
+    "Client",
+    "Voilà."
+   ],
+   [
+    "Employée",
+    "Merci. Vous venez chercher la clé à 8 heures."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Employée": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s106": {
+  "n": 106,
+  "theme": "Voiture et transports",
+  "lieu": "Au garage",
+  "situation": "Dire que la voiture a un problème",
+  "repliques": [
+   [
+    "Garagiste",
+    "Bonjour. Je peux vous aider ?"
+   ],
+   [
+    "Cliente",
+    "Oui. Mon pneu est crevé."
+   ],
+   [
+    "Garagiste",
+    "Je regarde… Oui, il faut le changer."
+   ],
+   [
+    "Cliente",
+    "C'est combien ?"
+   ],
+   [
+    "Garagiste",
+    "70 euros. C'est prêt dans une heure."
+   ],
+   [
+    "Cliente",
+    "D'accord, merci."
+   ]
+  ],
+  "voix": {
+   "Garagiste": "kENkNtk0xyzG09WW40xE",
+   "Cliente": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s107": {
+  "n": 107,
+  "theme": "Voiture et transports",
+  "lieu": "À l'auto-école",
+  "situation": "S'inscrire à l'auto-école",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Je voudrais passer le permis."
+   ],
+   [
+    "Secrétaire",
+    "Vous avez déjà le code ?"
+   ],
+   [
+    "Client",
+    "Non."
+   ],
+   [
+    "Secrétaire",
+    "D'accord. Voilà les prix."
+   ],
+   [
+    "Client",
+    "Les leçons, c'est quand ?"
+   ],
+   [
+    "Secrétaire",
+    "Du lundi au samedi."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Secrétaire": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s108": {
+  "n": 108,
+  "theme": "Voiture et transports",
+  "lieu": "Passer le code / le permis de conduire",
+  "situation": "Comprendre des panneaux simples",
+  "repliques": [
+   [
+    "Formateur",
+    "Ce panneau, c'est quoi ?"
+   ],
+   [
+    "Apprenant",
+    "C'est un stop. Il faut s'arrêter."
+   ],
+   [
+    "Formateur",
+    "Et celui-là, rouge avec 50 ?"
+   ],
+   [
+    "Apprenant",
+    "La vitesse maximum : 50 kilomètres à l'heure."
+   ],
+   [
+    "Formateur",
+    "Et le triangle ?"
+   ],
+   [
+    "Apprenant",
+    "Céder le passage."
+   ]
+  ],
+  "voix": {
+   "Formateur": "kENkNtk0xyzG09WW40xE",
+   "Apprenant": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s109": {
+  "n": 109,
+  "theme": "Voiture et transports",
+  "lieu": "Au contrôle technique",
+  "situation": "Prendre rendez-vous",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Je voudrais faire le contrôle technique."
+   ],
+   [
+    "Employée",
+    "Pour quand ?"
+   ],
+   [
+    "Client",
+    "Demain matin."
+   ],
+   [
+    "Employée",
+    "9 heures, ça va ? Apportez la carte grise."
+   ],
+   [
+    "Client",
+    "C'est combien ?"
+   ],
+   [
+    "Employée",
+    "80 euros."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Employée": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s110": {
+  "n": 110,
+  "theme": "Voiture et transports",
+  "lieu": "À l'agence de location de voitures",
+  "situation": "Louer une petite voiture",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Je voudrais louer une voiture."
+   ],
+   [
+    "Agent",
+    "Pour combien de jours ?"
+   ],
+   [
+    "Client",
+    "Trois jours."
+   ],
+   [
+    "Agent",
+    "Une petite voiture, 120 euros."
+   ],
+   [
+    "Client",
+    "D'accord."
+   ],
+   [
+    "Agent",
+    "Votre permis et votre carte bancaire, s'il vous plaît."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Agent": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s111": {
+  "n": 111,
+  "theme": "Voiture et transports",
+  "lieu": "Lors d'un contrôle routier",
+  "situation": "Montrer ses papiers",
+  "repliques": [
+   [
+    "Gendarme",
+    "Bonjour, monsieur. Contrôle de gendarmerie. Vos papiers, s'il vous plaît."
+   ],
+   [
+    "Conducteur",
+    "Voilà mon permis."
+   ],
+   [
+    "Gendarme",
+    "La carte grise aussi."
+   ],
+   [
+    "Conducteur",
+    "Voilà."
+   ],
+   [
+    "Gendarme",
+    "Merci. Bonne route."
+   ]
+  ],
+  "voix": {
+   "Gendarme": "kENkNtk0xyzG09WW40xE",
+   "Conducteur": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s112": {
+  "n": 112,
+  "theme": "Voiture et transports",
+  "lieu": "Lors d'un accident (constat amiable)",
+  "situation": "Demander si tout va bien après un petit accident",
+  "repliques": [
+   [
+    "Conductrice",
+    "Ça va ? Vous n'êtes pas blessé ?"
+   ],
+   [
+    "Conducteur",
+    "Non, ça va. Et vous ?"
+   ],
+   [
+    "Conductrice",
+    "Ça va. Ma voiture est abîmée."
+   ],
+   [
+    "Conducteur",
+    "La mienne aussi. On fait un constat ?"
+   ],
+   [
+    "Conductrice",
+    "Oui."
+   ]
+  ],
+  "voix": {
+   "Conductrice": "NEjemlRxgWmL5ZGJetsB",
+   "Conducteur": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s113": {
+  "n": 113,
+  "theme": "Argent",
+  "lieu": "Faire un virement / un transfert d'argent",
+  "situation": "Envoyer de l'argent au guichet",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Je voudrais envoyer de l'argent au Cameroun."
+   ],
+   [
+    "Employée",
+    "Combien ?"
+   ],
+   [
+    "Client",
+    "200 euros."
+   ],
+   [
+    "Employée",
+    "Les frais, c'est 8 euros."
+   ],
+   [
+    "Client",
+    "D'accord."
+   ],
+   [
+    "Employée",
+    "Votre pièce d'identité, s'il vous plaît."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Employée": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s114": {
+  "n": 114,
+  "theme": "Argent",
+  "lieu": "Perdre sa carte bancaire (faire opposition)",
+  "situation": "Dire qu'on a perdu sa carte",
+  "repliques": [
+   [
+    "Cliente",
+    "Allô, la banque ? J'ai perdu ma carte bancaire."
+   ],
+   [
+    "Conseiller",
+    "Je la bloque tout de suite. Votre nom ?"
+   ],
+   [
+    "Cliente",
+    "Mme Lopez."
+   ],
+   [
+    "Conseiller",
+    "C'est fait. Vous recevez une nouvelle carte dans une semaine."
+   ],
+   [
+    "Cliente",
+    "Merci."
+   ]
+  ],
+  "voix": {
+   "Cliente": "NEjemlRxgWmL5ZGJetsB",
+   "Conseiller": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s115": {
+  "n": 115,
+  "theme": "Argent",
+  "lieu": "Payer une facture / demander un échéancier",
+  "situation": "Payer une facture au guichet",
+  "repliques": [
+   [
+    "Usager",
+    "Bonjour. Je voudrais payer cette facture."
+   ],
+   [
+    "Agente",
+    "C'est 65 euros."
+   ],
+   [
+    "Usager",
+    "Par carte."
+   ],
+   [
+    "Agente",
+    "Voilà votre reçu."
+   ],
+   [
+    "Usager",
+    "Merci."
+   ]
+  ],
+  "voix": {
+   "Usager": "kENkNtk0xyzG09WW40xE",
+   "Agente": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s116": {
+  "n": 116,
+  "theme": "Argent",
+  "lieu": "Chez l'assureur",
+  "situation": "Demander une assurance habitation",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Je voudrais une assurance pour mon appartement."
+   ],
+   [
+    "Agente",
+    "Il fait combien de mètres carrés ?"
+   ],
+   [
+    "Client",
+    "50 mètres carrés."
+   ],
+   [
+    "Agente",
+    "C'est 12 euros par mois."
+   ],
+   [
+    "Client",
+    "D'accord. J'ai besoin d'une attestation pour mon propriétaire."
+   ],
+   [
+    "Agente",
+    "Je vous l'imprime."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Agente": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s117": {
+  "n": 117,
+  "theme": "Argent",
+  "lieu": "Au bureau de change",
+  "situation": "Changer de l'argent",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Je voudrais changer 200 euros en dollars."
+   ],
+   [
+    "Employée",
+    "Le taux est de 1,05. Ça fait 210 dollars."
+   ],
+   [
+    "Client",
+    "Il y a des frais ?"
+   ],
+   [
+    "Employée",
+    "5 euros."
+   ],
+   [
+    "Client",
+    "D'accord."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Employée": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s118": {
+  "n": 118,
+  "theme": "Argent",
+  "lieu": "Chez l'agent de voyages",
+  "situation": "Demander le prix d'un billet d'avion",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Un billet pour Tunis, s'il vous plaît."
+   ],
+   [
+    "Agent",
+    "Pour quelle date ?"
+   ],
+   [
+    "Client",
+    "Le 15 décembre."
+   ],
+   [
+    "Agent",
+    "Aller-retour ?"
+   ],
+   [
+    "Client",
+    "Oui, retour le 5 janvier."
+   ],
+   [
+    "Agent",
+    "C'est 320 euros."
+   ]
+  ],
+  "voix": {
+   "Client": "kENkNtk0xyzG09WW40xE",
+   "Agent": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s119": {
+  "n": 119,
+  "theme": "Santé",
+  "lieu": "Aux urgences",
+  "situation": "Dire où on a mal à l'accueil des urgences",
+  "repliques": [
+   [
+    "Infirmière",
+    "Bonjour. Qu'est-ce qui s'est passé ?"
+   ],
+   [
+    "Patient",
+    "Je suis tombé. J'ai mal au bras."
+   ],
+   [
+    "Infirmière",
+    "À quelle heure ?"
+   ],
+   [
+    "Patient",
+    "Il y a une heure."
+   ],
+   [
+    "Infirmière",
+    "Votre carte Vitale, s'il vous plaît. Asseyez-vous, on vous appelle."
+   ]
+  ],
+  "voix": {
+   "Infirmière": "NEjemlRxgWmL5ZGJetsB",
+   "Patient": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s120": {
+  "n": 120,
+  "theme": "Santé",
+  "lieu": "À l'hôpital (admission, visite à un proche)",
+  "situation": "Demander la chambre d'un proche",
+  "repliques": [
+   [
+    "Visiteuse",
+    "Bonjour. Je viens voir M. Rossi."
+   ],
+   [
+    "Accueil",
+    "Chambre 312, troisième étage."
+   ],
+   [
+    "Visiteuse",
+    "Les visites sont jusqu'à quelle heure ?"
+   ],
+   [
+    "Accueil",
+    "Jusqu'à 20 heures."
+   ],
+   [
+    "Visiteuse",
+    "Merci."
+   ]
+  ],
+  "voix": {
+   "Visiteuse": "NEjemlRxgWmL5ZGJetsB",
+   "Accueil": "YxrwjAKoUKULGd0g8K9Y"
+  },
+  "ambiance": null
+ },
+ "A1-s121": {
+  "n": 121,
+  "theme": "Santé",
+  "lieu": "Chez le kinésithérapeute",
+  "situation": "Prendre rendez-vous chez le kiné",
+  "repliques": [
+   [
+    "Patiente",
+    "Bonjour. J'ai une ordonnance pour le kiné."
+   ],
+   [
+    "Secrétaire",
+    "Pour combien de séances ?"
+   ],
+   [
+    "Patiente",
+    "Dix séances."
+   ],
+   [
+    "Secrétaire",
+    "Lundi, à 17 heures ?"
+   ],
+   [
+    "Patiente",
+    "Oui, merci."
+   ]
+  ],
+  "voix": {
+   "Patiente": "NEjemlRxgWmL5ZGJetsB",
+   "Secrétaire": "YxrwjAKoUKULGd0g8K9Y"
+  },
+  "ambiance": null
+ },
+ "A1-s122": {
+  "n": 122,
+  "theme": "Santé",
+  "lieu": "Chez le gynécologue / la sage-femme",
+  "situation": "Prendre rendez-vous pour un suivi",
+  "repliques": [
+   [
+    "Patiente",
+    "Bonjour. Je voudrais un rendez-vous avec la sage-femme."
+   ],
+   [
+    "Secrétaire",
+    "C'est pour un suivi de grossesse ?"
+   ],
+   [
+    "Patiente",
+    "Oui, je suis enceinte de trois mois."
+   ],
+   [
+    "Secrétaire",
+    "Mardi, à 10 heures ?"
+   ],
+   [
+    "Patiente",
+    "D'accord, merci."
+   ]
+  ],
+  "voix": {
+   "Patiente": "NEjemlRxgWmL5ZGJetsB",
+   "Secrétaire": "YxrwjAKoUKULGd0g8K9Y"
+  },
+  "ambiance": null
+ },
+ "A1-s123": {
+  "n": 123,
+  "theme": "Santé",
+  "lieu": "Au centre de radiologie",
+  "situation": "Arriver pour une radio",
+  "repliques": [
+   [
+    "Secrétaire",
+    "Bonjour. C'est pour une radio ?"
+   ],
+   [
+    "Patient",
+    "Oui, voilà l'ordonnance."
+   ],
+   [
+    "Secrétaire",
+    "Attendez ici. Ensuite, vous allez dans la cabine 2."
+   ],
+   [
+    "Manipulatrice",
+    "Enlevez votre pull et votre chaîne, s'il vous plaît."
+   ],
+   [
+    "Patient",
+    "D'accord."
+   ]
+  ],
+  "voix": {
+   "Secrétaire": "NEjemlRxgWmL5ZGJetsB",
+   "Patient": "kENkNtk0xyzG09WW40xE",
+   "Manipulatrice": "YxrwjAKoUKULGd0g8K9Y"
+  },
+  "ambiance": null
+ },
+ "A1-s124": {
+  "n": 124,
+  "theme": "Santé",
+  "lieu": "Appeler le 15, le 18 ou le 112",
+  "situation": "Connaître les numéros d'urgence",
+  "repliques": [
+   [
+    "Formatrice",
+    "Pour un problème médical grave, vous appelez quel numéro ?"
+   ],
+   [
+    "Apprenant",
+    "Le 15, le SAMU."
+   ],
+   [
+    "Formatrice",
+    "Pour un incendie ?"
+   ],
+   [
+    "Apprenant",
+    "Le 18, les pompiers."
+   ],
+   [
+    "Formatrice",
+    "Pour la police ?"
+   ],
+   [
+    "Apprenant",
+    "Le 17. Et le 112 marche partout en Europe."
+   ]
+  ],
+  "voix": {
+   "Formatrice": "NEjemlRxgWmL5ZGJetsB",
+   "Apprenant": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s125": {
+  "n": 125,
+  "theme": "Travail",
+  "lieu": "Appeler pour une offre d'emploi",
+  "situation": "Dire qu'on appelle pour l'annonce",
+  "repliques": [
+   [
+    "Employeur",
+    "Allô, boulangerie Martin."
+   ],
+   [
+    "Candidate",
+    "Bonjour. J'appelle pour l'annonce. Le travail de vendeuse."
+   ],
+   [
+    "Employeur",
+    "Vous avez de l'expérience ?"
+   ],
+   [
+    "Candidate",
+    "Oui, un an."
+   ],
+   [
+    "Employeur",
+    "Venez demain avec votre CV."
+   ],
+   [
+    "Candidate",
+    "Merci, à demain."
+   ]
+  ],
+  "voix": {
+   "Employeur": "kENkNtk0xyzG09WW40xE",
+   "Candidate": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s126": {
+  "n": 126,
+  "theme": "Travail",
+  "lieu": "À l'entretien d'embauche",
+  "situation": "Répondre aux questions simples",
+  "repliques": [
+   [
+    "Recruteuse",
+    "Bonjour. Asseyez-vous. Comment vous appelez-vous ?"
+   ],
+   [
+    "Candidat",
+    "Je m'appelle Amadou Sy."
+   ],
+   [
+    "Recruteuse",
+    "Vous avez de l'expérience ?"
+   ],
+   [
+    "Candidat",
+    "Oui, j'ai travaillé dans un restaurant."
+   ],
+   [
+    "Recruteuse",
+    "Vous pouvez commencer quand ?"
+   ],
+   [
+    "Candidat",
+    "Lundi."
+   ]
+  ],
+  "voix": {
+   "Recruteuse": "NEjemlRxgWmL5ZGJetsB",
+   "Candidat": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s127": {
+  "n": 127,
+  "theme": "Travail",
+  "lieu": "À l'agence d'intérim",
+  "situation": "S'inscrire dans une agence",
+  "repliques": [
+   [
+    "Candidate",
+    "Bonjour. Je voudrais travailler."
+   ],
+   [
+    "Conseiller",
+    "Vous avez un CV ?"
+   ],
+   [
+    "Candidate",
+    "Oui, voilà."
+   ],
+   [
+    "Conseiller",
+    "Vous faites quel métier ?"
+   ],
+   [
+    "Candidate",
+    "Agent d'entretien."
+   ],
+   [
+    "Conseiller",
+    "D'accord. Je vous appelle s'il y a une mission."
+   ]
+  ],
+  "voix": {
+   "Candidate": "kENkNtk0xyzG09WW40xE",
+   "Conseiller": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s128": {
+  "n": 128,
+  "theme": "Travail",
+  "lieu": "Avec son responsable (consignes, congés, absence)",
+  "situation": "Comprendre une consigne simple",
+  "repliques": [
+   [
+    "Responsable",
+    "D'abord, vous rangez les cartons."
+   ],
+   [
+    "Employée",
+    "D'accord."
+   ],
+   [
+    "Responsable",
+    "Ensuite, vous nettoyez le sol."
+   ],
+   [
+    "Employée",
+    "Avec quel produit ?"
+   ],
+   [
+    "Responsable",
+    "Le produit bleu."
+   ],
+   [
+    "Employée",
+    "Je finis à quelle heure ?"
+   ]
+  ],
+  "voix": {
+   "Responsable": "NEjemlRxgWmL5ZGJetsB",
+   "Employée": "YxrwjAKoUKULGd0g8K9Y"
+  },
+  "ambiance": null
+ },
+ "A1-s129": {
+  "n": 129,
+  "theme": "Travail",
+  "lieu": "En réunion",
+  "situation": "Se présenter et dire oui / non en réunion",
+  "repliques": [
+   [
+    "Responsable",
+    "Bonjour à tous. Voici Aïcha, notre nouvelle collègue."
+   ],
+   [
+    "Aïcha",
+    "Bonjour à tous."
+   ],
+   [
+    "Responsable",
+    "Aïcha, vous êtes d'accord pour travailler le samedi ?"
+   ],
+   [
+    "Aïcha",
+    "Oui, d'accord."
+   ],
+   [
+    "Responsable",
+    "Vous avez des questions ?"
+   ],
+   [
+    "Aïcha",
+    "Non, merci."
+   ]
+  ],
+  "voix": {
+   "Responsable": "NEjemlRxgWmL5ZGJetsB",
+   "Aïcha": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s130": {
+  "n": 130,
+  "theme": "Travail",
+  "lieu": "Au téléphone avec un client",
+  "situation": "Répondre au téléphone professionnel",
+  "repliques": [
+   [
+    "Employée",
+    "Garage Moreau, bonjour."
+   ],
+   [
+    "Client",
+    "Bonjour. Je voudrais parler à M. Moreau."
+   ],
+   [
+    "Employée",
+    "Ne quittez pas, je vous le passe."
+   ],
+   [
+    "Employée",
+    "Il n'est pas disponible. Vous pouvez rappeler à 14 heures ?"
+   ],
+   [
+    "Client",
+    "D'accord. Au revoir."
+   ]
+  ],
+  "voix": {
+   "Employée": "NEjemlRxgWmL5ZGJetsB",
+   "Client": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s131": {
+  "n": 131,
+  "theme": "Travail",
+  "lieu": "Comprendre sa fiche de paie",
+  "situation": "Repérer les informations de base",
+  "repliques": [
+   [
+    "Fiche de paie",
+    "Employeur : SARL Propre & Net – Salarié : M. Karimi – Période : octobre 2026"
+   ],
+   [
+    "Fiche de paie",
+    "Heures travaillées : 151,67 h"
+   ],
+   [
+    "Fiche de paie",
+    "Net à payer : 1 443,24 €"
+   ],
+   [
+    "Consigne",
+    "Quel est le nom de l'employeur ? Pour quel mois ? Combien d'heures ? Combien d'argent le salarié reçoit-il ?"
+   ]
+  ],
+  "voix": {
+   "Fiche de paie": "kENkNtk0xyzG09WW40xE",
+   "Consigne": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s132": {
+  "n": 132,
+  "theme": "Travail",
+  "lieu": "Chez le médecin du travail",
+  "situation": "Passer la visite d'information",
+  "repliques": [
+   [
+    "Médecin",
+    "Bonjour. Asseyez-vous. Quel est votre travail ?"
+   ],
+   [
+    "Salariée",
+    "Je suis caissière."
+   ],
+   [
+    "Médecin",
+    "Vous avez des problèmes de santé ?"
+   ],
+   [
+    "Salariée",
+    "Non."
+   ],
+   [
+    "Médecin",
+    "Vous pouvez lire les lettres sur le mur ?"
+   ],
+   [
+    "Salariée",
+    "Oui, A, F, P, T…"
+   ]
+  ],
+  "voix": {
+   "Médecin": "kENkNtk0xyzG09WW40xE",
+   "Salariée": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s133": {
+  "n": 133,
+  "theme": "Travail",
+  "lieu": "En formation / en stage",
+  "situation": "Comprendre les règles de la formation",
+  "repliques": [
+   [
+    "Formatrice",
+    "Bonjour à tous. La formation commence à 9 heures."
+   ],
+   [
+    "Apprenant",
+    "Et elle finit à quelle heure ?"
+   ],
+   [
+    "Formatrice",
+    "À 16 h 30. La pause, c'est à 10 h 30."
+   ],
+   [
+    "Apprenant",
+    "Si je suis malade ?"
+   ],
+   [
+    "Formatrice",
+    "Vous me prévenez par téléphone ou par SMS."
+   ]
+  ],
+  "voix": {
+   "Formatrice": "NEjemlRxgWmL5ZGJetsB",
+   "Apprenant": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s134": {
+  "n": 134,
+  "theme": "École",
+  "lieu": "À la réunion parents-professeurs",
+  "situation": "Se présenter à l'enseignant",
+  "repliques": [
+   [
+    "Mère",
+    "Bonjour. Je suis la maman de Yasmine."
+   ],
+   [
+    "Maîtresse",
+    "Bonjour, madame. Yasmine travaille bien."
+   ],
+   [
+    "Mère",
+    "Elle est sage ?"
+   ],
+   [
+    "Maîtresse",
+    "Oui, très sage."
+   ],
+   [
+    "Mère",
+    "Merci beaucoup."
+   ]
+  ],
+  "voix": {
+   "Mère": "NEjemlRxgWmL5ZGJetsB",
+   "Maîtresse": "YxrwjAKoUKULGd0g8K9Y"
+  },
+  "ambiance": null
+ },
+ "A1-s135": {
+  "n": 135,
+  "theme": "École",
+  "lieu": "Au rendez-vous avec l'enseignant",
+  "situation": "Demander comment va son enfant",
+  "repliques": [
+   [
+    "Père",
+    "Bonjour. Comment va mon fils ?"
+   ],
+   [
+    "Enseignante",
+    "Il est gentil. Il a des amis."
+   ],
+   [
+    "Père",
+    "Il lit bien ?"
+   ],
+   [
+    "Enseignante",
+    "Un peu. Il doit lire tous les soirs."
+   ],
+   [
+    "Père",
+    "D'accord, merci."
+   ]
+  ],
+  "voix": {
+   "Père": "kENkNtk0xyzG09WW40xE",
+   "Enseignante": "NEjemlRxgWmL5ZGJetsB"
+  },
+  "ambiance": null
+ },
+ "A1-s136": {
+  "n": 136,
+  "theme": "École",
+  "lieu": "Utiliser l'ENT",
+  "situation": "Se connecter à l'ENT",
+  "repliques": [
+   [
+    "Formatrice",
+    "L'ENT, c'est le site de l'école."
+   ],
+   [
+    "Apprenante",
+    "Comment je me connecte ?"
+   ],
+   [
+    "Formatrice",
+    "Avec votre identifiant et votre mot de passe. Ils sont sur ce papier de l'école."
+   ],
+   [
+    "Apprenante",
+    "Je vois le nom de mon fils !"
+   ],
+   [
+    "Formatrice",
+    "Très bien."
+   ]
+  ],
+  "voix": {
+   "Formatrice": "NEjemlRxgWmL5ZGJetsB",
+   "Apprenante": "YxrwjAKoUKULGd0g8K9Y"
+  },
+  "ambiance": null
+ },
+ "A1-s137": {
+  "n": 137,
+  "theme": "Communication",
+  "lieu": "Appeler un service client",
+  "situation": "Comprendre le serveur vocal",
+  "repliques": [
+   [
+    "Serveur vocal",
+    "Bonjour, bienvenue chez Énergie Plus."
+   ],
+   [
+    "Serveur vocal",
+    "Pour une question sur votre facture, tapez 1."
+   ],
+   [
+    "Serveur vocal",
+    "Pour un déménagement, tapez 2."
+   ],
+   [
+    "Serveur vocal",
+    "Pour parler à un conseiller, tapez 0."
+   ],
+   [
+    "Consigne",
+    "Vous déménagez. Sur quelle touche tapez-vous ? Et pour parler à quelqu'un ?"
+   ]
+  ],
+  "voix": {
+   "Serveur vocal": "kENkNtk0xyzG09WW40xE",
+   "Consigne": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s138": {
+  "n": 138,
+  "theme": "Communication",
+  "lieu": "En visioconférence",
+  "situation": "Comprendre les mots de la visio",
+  "repliques": [
+   [
+    "Formatrice",
+    "Bonjour ! Vous m'entendez ?"
+   ],
+   [
+    "Apprenant",
+    "Oui, je vous entends."
+   ],
+   [
+    "Formatrice",
+    "Je ne vous vois pas. Activez votre caméra, s'il vous plaît."
+   ],
+   [
+    "Apprenant",
+    "Voilà !"
+   ],
+   [
+    "Formatrice",
+    "Merci. Coupez votre micro quand vous ne parlez pas."
+   ]
+  ],
+  "voix": {
+   "Formatrice": "NEjemlRxgWmL5ZGJetsB",
+   "Apprenant": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s139": {
+  "n": 139,
+  "theme": "Situations imprévues",
+  "lieu": "Se perdre",
+  "situation": "Dire qu'on est perdu",
+  "repliques": [
+   [
+    "Touriste",
+    "Excusez-moi, je suis perdue."
+   ],
+   [
+    "Monsieur",
+    "Vous cherchez quoi ?"
+   ],
+   [
+    "Touriste",
+    "La gare."
+   ],
+   [
+    "Monsieur",
+    "C'est par là, tout droit."
+   ],
+   [
+    "Touriste",
+    "Merci beaucoup !"
+   ]
+  ],
+  "voix": {
+   "Touriste": "kENkNtk0xyzG09WW40xE",
+   "Monsieur": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s140": {
+  "n": 140,
+  "theme": "Situations imprévues",
+  "lieu": "Perdre un objet / ses papiers",
+  "situation": "Demander si on a trouvé un objet",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour. J'ai perdu mon sac."
+   ],
+   [
+    "Employé",
+    "Il est comment ?"
+   ],
+   [
+    "Cliente",
+    "Il est noir."
+   ],
+   [
+    "Employé",
+    "Je regarde… Non, désolé."
+   ],
+   [
+    "Cliente",
+    "Merci."
+   ]
+  ],
+  "voix": {
+   "Cliente": "NEjemlRxgWmL5ZGJetsB",
+   "Employé": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s141": {
+  "n": 141,
+  "theme": "Situations imprévues",
+  "lieu": "Rater son train ou son bus (retard, remboursement)",
+  "situation": "Dire qu'on a raté son train",
+  "repliques": [
+   [
+    "Voyageur",
+    "Bonjour. J'ai raté mon train."
+   ],
+   [
+    "Agent",
+    "Pour où ?"
+   ],
+   [
+    "Voyageur",
+    "Pour Nancy."
+   ],
+   [
+    "Agent",
+    "Le prochain train est à 16 heures."
+   ],
+   [
+    "Voyageur",
+    "Mon billet est bon ?"
+   ],
+   [
+    "Agent",
+    "Oui, c'est le même prix. Je change le billet."
+   ]
+  ],
+  "voix": {
+   "Voyageur": "kENkNtk0xyzG09WW40xE",
+   "Agent": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s142": {
+  "n": 142,
+  "theme": "Situations imprévues",
+  "lieu": "Bagage perdu à l'aéroport",
+  "situation": "Dire que sa valise n'est pas arrivée",
+  "repliques": [
+   [
+    "Voyageuse",
+    "Bonjour. Ma valise n'est pas arrivée."
+   ],
+   [
+    "Agent",
+    "Quel vol ?"
+   ],
+   [
+    "Voyageuse",
+    "Le vol de Lisbonne."
+   ],
+   [
+    "Agent",
+    "Votre étiquette bagage, s'il vous plaît."
+   ],
+   [
+    "Voyageuse",
+    "Voilà."
+   ]
+  ],
+  "voix": {
+   "Voyageuse": "NEjemlRxgWmL5ZGJetsB",
+   "Agent": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s143": {
+  "n": 143,
+  "theme": "Situations imprévues",
+  "lieu": "Une panne de voiture",
+  "situation": "Appeler l'assistance",
+  "repliques": [
+   [
+    "Assistance",
+    "Assistance auto, bonjour."
+   ],
+   [
+    "Conducteur",
+    "Bonjour. Ma voiture ne démarre pas."
+   ],
+   [
+    "Assistance",
+    "Où êtes-vous ?"
+   ],
+   [
+    "Conducteur",
+    "Devant la gare de Lure."
+   ],
+   [
+    "Assistance",
+    "Une dépanneuse arrive dans une heure."
+   ],
+   [
+    "Conducteur",
+    "Merci."
+   ]
+  ],
+  "voix": {
+   "Assistance": "kENkNtk0xyzG09WW40xE",
+   "Conducteur": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s144": {
+  "n": 144,
+  "theme": "Situations imprévues",
+  "lieu": "Une fuite d'eau ou une panne de courant chez soi",
+  "situation": "Prévenir le gardien",
+  "repliques": [
+   [
+    "Locataire",
+    "Monsieur, il y a de l'eau partout dans la cuisine !"
+   ],
+   [
+    "Gardien",
+    "Fermez le robinet, là, sous l'évier."
+   ],
+   [
+    "Locataire",
+    "C'est fait."
+   ],
+   [
+    "Gardien",
+    "J'appelle le plombier."
+   ],
+   [
+    "Locataire",
+    "Merci."
+   ]
+  ],
+  "voix": {
+   "Locataire": "kENkNtk0xyzG09WW40xE",
+   "Gardien": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ },
+ "A1-s145": {
+  "n": 145,
+  "theme": "Situations imprévues",
+  "lieu": "Un litige avec un commerçant (produit défectueux, erreur de caisse)",
+  "situation": "Rapporter un produit qui ne marche pas",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour. Ce sèche-cheveux ne marche pas."
+   ],
+   [
+    "Vendeur",
+    "Vous avez le ticket ?"
+   ],
+   [
+    "Cliente",
+    "Oui, voilà."
+   ],
+   [
+    "Vendeur",
+    "Je vous l'échange."
+   ],
+   [
+    "Cliente",
+    "Merci."
+   ]
+  ],
+  "voix": {
+   "Cliente": "NEjemlRxgWmL5ZGJetsB",
+   "Vendeur": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s146": {
+  "n": 146,
+  "theme": "Situations imprévues",
+  "lieu": "Réclamer à l'hôtel ou au restaurant",
+  "situation": "Dire qu'il y a un problème",
+  "repliques": [
+   [
+    "Cliente",
+    "Excusez-moi, il y a un problème."
+   ],
+   [
+    "Serveur",
+    "Oui ?"
+   ],
+   [
+    "Cliente",
+    "La soupe est froide."
+   ],
+   [
+    "Serveur",
+    "Pardon, je la change."
+   ],
+   [
+    "Cliente",
+    "Merci."
+   ]
+  ],
+  "voix": {
+   "Cliente": "NEjemlRxgWmL5ZGJetsB",
+   "Serveur": "kENkNtk0xyzG09WW40xE"
+  },
+  "ambiance": null
+ },
+ "A1-s147": {
+  "n": 147,
+  "theme": "Situations imprévues",
+  "lieu": "Être témoin d'un accident",
+  "situation": "Appeler les secours",
+  "repliques": [
+   [
+    "Témoin",
+    "Allô ? Il y a un accident !"
+   ],
+   [
+    "Opérateur",
+    "Où ?"
+   ],
+   [
+    "Témoin",
+    "Rue de la Mairie, à Lure."
+   ],
+   [
+    "Opérateur",
+    "Il y a des blessés ?"
+   ],
+   [
+    "Témoin",
+    "Oui, une personne."
+   ],
+   [
+    "Opérateur",
+    "Les pompiers arrivent."
+   ]
+  ],
+  "voix": {
+   "Témoin": "kENkNtk0xyzG09WW40xE",
+   "Opérateur": "e18dMYHSYQ18rN5m989D"
+  },
+  "ambiance": null
+ }
+}
