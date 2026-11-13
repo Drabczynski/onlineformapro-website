@@ -1,14 +1,14 @@
 """Vidéos interactives : assemble chaque page en un seul fichier (styles, données, scénario et moteur intégrés).
 
-    python3 construire.py          → epicerie.html, pharmacie.html, medecin.html, fleuriste.html
+    python3 construire.py              → une page par scénario (scenarios/<scène>.js + donnees/<scène>.js)
+    python3 construire.py glace        → seulement cette page
 
-Les médias restent à côté (medias/, ../medias/video/). La vidéo de Kenji est la page d'origine du prototype (kenji/).
+Les portraits et les consignes lues sont intégrés dans la page ; la vidéo et son affiche restent dans ../medias/video/. La vidéo de Kenji est la page d'origine du prototype (kenji/).
 La liste des vidéos de la page d'accueil est dans ../page.html (VIDEOS_INTERACTIVES).
 """
-import json, os
+import base64, json, os, re, sys
 
 ICI = os.path.dirname(os.path.abspath(__file__))
-PAGES = ["epicerie", "pharmacie", "medecin", "fleuriste"]
 lire = lambda p: open(os.path.join(ICI, p), encoding="utf-8").read()
 
 GABARIT = """<!doctype html>
@@ -31,11 +31,24 @@ GABARIT = """<!doctype html>
 </body></html>
 """
 
+def integrer(donnees):
+    """Les portraits et les consignes lues, intégrés dans la page (data:) : une scène = une page + sa vidéo + son affiche."""
+    def remplace(m):
+        f = os.path.join(ICI, m.group(1))
+        if not os.path.exists(f): return m.group(0)
+        typ = "image/jpeg" if f.endswith(".jpg") else "audio/mpeg"
+        return '"data:%s;base64,%s"' % (typ, base64.b64encode(open(f, "rb").read()).decode())
+    return re.sub(r'"(medias/[a-z0-9-]+\.(?:jpg|mp3))"', remplace, donnees)
+
+
 if __name__ == "__main__":
     css, moteur = lire("moteur.css"), lire("moteur.js")
-    for p in PAGES:
+    pages = sys.argv[1:] or sorted(f[:-3] for f in os.listdir(os.path.join(ICI, "scenarios")) if f.endswith(".js") and os.path.exists(os.path.join(ICI, "donnees", f)))
+    for p in pages:
         donnees = lire(f"donnees/{p}.js")
         titre = json.loads(donnees[donnees.index("{"):donnees.rindex("}") + 1])["titre"]
-        html = GABARIT.format(titre=titre, css=css, donnees=donnees, scenario=lire(f"scenarios/{p}.js") if os.path.exists(os.path.join(ICI, f"scenarios/{p}.js")) else "window.SCENARIO = null;", moteur=moteur)
+        propre = os.path.join(ICI, "scenarios", p + ".css")      # les styles propres à une scène, s'il y en a
+        html = GABARIT.format(titre=titre, css=css + ("\n" + open(propre, encoding="utf-8").read() if os.path.exists(propre) else ""),
+                              donnees=integrer(donnees), scenario=lire(f"scenarios/{p}.js"), moteur=moteur)
         open(os.path.join(ICI, p + ".html"), "w", encoding="utf-8").write(html)
         print(p + ".html", len(html) // 1024, "Ko")

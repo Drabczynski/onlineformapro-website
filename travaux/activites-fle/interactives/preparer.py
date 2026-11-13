@@ -10,7 +10,7 @@
 """
 import base64, hashlib, json, os, re, subprocess, sys
 ICI = os.path.dirname(os.path.abspath(__file__)); RACINE = os.path.dirname(ICI)
-STT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ICI, "stt")
+STT = os.path.join(ICI, "stt")          # les transcriptions mot à mot (scribe), une par vidéo
 VOIX = "87kc04olBn8nRQKuNmaf"          # Femme 2 (../../mises-en-situation/voix.json)
 MODELE = "eleven_v4"
 NIVEAU = -20.0                         # LUFS
@@ -37,6 +37,10 @@ SCENES = {
                   "consignes": ["Écoute le client.", "Pour qui sont les fleurs ? Clique sur la bonne personne.", "Écoute bien.", "Dans la boutique, clique sur les fleurs qu'elle adore.",
                                 "Et la couleur ? Clique sur les roses qu'il choisit.", "Génial ! Sa mère va adorer ses roses blanches."]},
 }
+# les scènes décrites chacune dans scenes/<scène>.json (même forme que ci-dessus, plus « titre », « niveau » et « sousTitres »
+# quand la vidéo n'est pas dans ../donnees/videos.json)
+for f in sorted(os.listdir(os.path.join(ICI, "scenes"))) if os.path.isdir(os.path.join(ICI, "scenes")) else []:
+    if f.endswith(".json"): SCENES[f[:-5]] = json.load(open(os.path.join(ICI, "scenes", f), encoding="utf-8"))
 COMMUNES = []      # (texte, vitesse) : consignes communes à toutes les scènes (le bravo est propre à chaque scène)
 
 
@@ -81,7 +85,7 @@ def verifier(texte, chemin):
 
 
 def repliques(cle, sc):
-    v = next(x for x in json.load(open(os.path.join(RACINE, "donnees", "videos.json"), encoding="utf-8")) if x["fichier"] == sc["video"])
+    v = sc if "sousTitres" in sc else next(x for x in json.load(open(os.path.join(RACINE, "donnees", "videos.json"), encoding="utf-8")) if x["fichier"] == sc["video"])
     mots = [m for m in json.load(open(os.path.join(STT, sc["video"] + ".json")))["words"] if m["type"] == "word"]
     qui = {p["qui"]: k for k, p in sc["people"].items()}
     L = []
@@ -101,27 +105,21 @@ def repliques(cle, sc):
 
 
 def portraits(cle, sc):
-    if all(os.path.exists(os.path.join(ICI, "medias", f"{cle}-{k}.jpg")) for k in sc["people"]):     # déjà découpés : on les garde
-        for k, p in sc["people"].items(): p["img"] = f"medias/{cle}-{k}.jpg"
-        return
-    gel = os.path.join(ICI, "medias", f"{cle}-gel.png")
-    subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-ss", str(sc["gel"]), "-i", os.path.join(RACINE, "medias", "video", sc["video"] + ".mp4"), "-frames:v", "1", gel], check=True)
-    from PIL import Image
-    im0 = Image.open(gel); W, H = im0.size
+    """Le visage de chaque personne, découpé (crop = [gauche, haut, largeur, hauteur] en %) dans l'image où la vidéo s'arrête,
+    ou dans une autre image (portrait = [temps, crop]) quand la personne y est de dos. Déjà découpé : on le garde."""
     for k, p in sc["people"].items():
-        l, t, w, h = p["crop"]; im = im0
-        if "portrait" in p:                     # une autre image, quand la personne est de dos au moment de l'arrêt
-            t_, (l, t, w, h) = p["portrait"]; autre = gel.replace(".png", f"-{k}.png")
-            subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-ss", str(t_), "-i", os.path.join(RACINE, "medias", "video", sc["video"] + ".mp4"), "-frames:v", "1", autre], check=True)
-            im = Image.open(autre); os.remove(autre)
-        im.crop((round(W * l / 100), round(H * t / 100), round(W * (l + w) / 100), round(H * (t + h) / 100))).resize((240, 240)).convert("RGB").save(os.path.join(ICI, "medias", f"{cle}-{k}.jpg"), quality=86)
-        p["img"] = f"medias/{cle}-{k}.jpg"
-    os.remove(gel)
+        p["img"] = f"medias/{cle}-{k}.jpg"; dst = os.path.join(ICI, p["img"])
+        if os.path.exists(dst): continue
+        t, (l, h_, w, h) = (p["portrait"] if "portrait" in p else (sc["gel"], p["crop"]))
+        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-ss", str(t), "-i", os.path.join(RACINE, "medias", "video", sc["video"] + ".mp4"), "-frames:v", "1",
+                        "-vf", f"crop=iw*{w}/100:ih*{h}/100:iw*{l}/100:ih*{h_}/100,scale=240:240", "-q:v", "3", dst], check=True)
 
 
 if __name__ == "__main__":
     communes = {affiche(t): dict(zip(("src", "w"), tts(t, v))) for t, v in COMMUNES}
-    for cle, sc in SCENES.items():
+    voulues = sys.argv[1:] or list(SCENES)          # python3 preparer.py glace laverie … : seulement ces scènes
+    for cle in voulues:
+        sc = SCENES[cle]
         L, v = repliques(cle, sc); portraits(cle, sc)
         clips = dict(communes)
         for t in sc["consignes"]:
