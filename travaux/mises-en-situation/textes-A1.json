@@ -2469,9 +2469,9 @@
   "voix": {
    "Employé": "JFppi8XcU3D1RvkAikO5",
    "Accueil": "4NTBwCMIWDfx48seeuxZ",
-   "Responsable": "RXG6r6Qewwp92BIFIBhE"
+   "Responsable": "3Yr319bDgMFZv5qX6yzA"
   },
-  "ambiance": null
+  "ambiance": "Reception of a small workshop company, quiet room tone, a distant machine humming, a door opening, footsteps, no voices, no music"
  },
  "A1-s82": {
   "n": 82,
@@ -2501,10 +2501,10 @@
    ]
   ],
   "voix": {
-   "Collègue": "3Yr319bDgMFZv5qX6yzA",
-   "Nouveau": "6pqL78prQKdL6zrRhG3N"
+   "Collègue": "RXG6r6Qewwp92BIFIBhE",
+   "Nouveau": "3Yr319bDgMFZv5qX6yzA"
   },
-  "ambiance": null
+  "ambiance": "Warehouse break area, a distant forklift beeping, cardboard boxes being moved, quiet room tone, no voices, no music"
  },
  "A1-s83": {
   "n": 83,
@@ -2539,9 +2539,9 @@
   ],
   "voix": {
    "Employée": "TKoAvBNxOwnhLtxm7NYM",
-   "Responsable": "87kc04olBn8nRQKuNmaf"
+   "Responsable": "6pqL78prQKdL6zrRhG3N"
   },
-  "ambiance": null
+  "ambiance": "Phone call from a bus stop, light street traffic, a bus passing, subtle phone line hiss, no voices, no music"
  },
  "A1-s84": {
   "n": 84,
@@ -2578,7 +2578,7 @@
    "Agent": "W01VS3mCiWjHO239CD72",
    "Usager": "JFppi8XcU3D1RvkAikO5"
   },
-  "ambiance": null
+  "ambiance": "Prefecture waiting room, a queue number display chime, chairs, distant indistinct murmur without clear words, no music"
  },
  "A1-s85": {
   "n": 85,
@@ -2608,10 +2608,10 @@
    ]
   ],
   "voix": {
-   "Convocation": "JFppi8XcU3D1RvkAikO5",
-   "Consigne": "4NTBwCMIWDfx48seeuxZ"
+   "Convocation": "4NTBwCMIWDfx48seeuxZ",
+   "Consigne": "RXG6r6Qewwp92BIFIBhE"
   },
-  "ambiance": null
+  "ambiance": "Quiet room, a letter envelope being opened, paper unfolding, a clock ticking, no voices, no music"
  },
  "A1-s86": {
   "n": 86,
@@ -2648,7 +2648,7 @@
    "Usagère": "RXG6r6Qewwp92BIFIBhE",
    "Agent": "3Yr319bDgMFZv5qX6yzA"
   },
-  "ambiance": null
+  "ambiance": "Public service office reception, quiet room tone, a queue ticket beep, papers, distant footsteps, no voices, no music"
  },
  "A1-s87": {
   "n": 87,
@@ -2685,7 +2685,7 @@
    "Usager": "6pqL78prQKdL6zrRhG3N",
    "Agente": "TKoAvBNxOwnhLtxm7NYM"
   },
-  "ambiance": null
+  "ambiance": "Health insurance office, quiet room tone, keyboard typing, a printer, papers, no voices, no music"
  },
  "A1-s88": {
   "n": 88,
@@ -2722,7 +2722,7 @@
    "Usager": "W01VS3mCiWjHO239CD72",
    "Agent": "JFppi8XcU3D1RvkAikO5"
   },
-  "ambiance": null
+  "ambiance": "Employment agency office, quiet room tone, computer keyboard typing, a mouse clicking, distant footsteps, no voices, no music"
  },
  "A1-s89": {
   "n": 89,
@@ -2755,7 +2755,7 @@
    "Usagère": "4NTBwCMIWDfx48seeuxZ",
    "Agent": "JFppi8XcU3D1RvkAikO5"
   },
-  "ambiance": null
+  "ambiance": "Tax office hall, quiet room tone, a letter dropped into a box, footsteps on tiles, no voices, no music"
  },
  "A1-s90": {
   "n": 90,
@@ -2788,7 +2788,7 @@
    "Usager": "3Yr319bDgMFZv5qX6yzA",
    "Conseillère": "RXG6r6Qewwp92BIFIBhE"
   },
-  "ambiance": null
+  "ambiance": "Public service help desk, quiet room tone, keyboard typing, a chair being pulled, no voices, no music"
  },
  "A1-s91": {
   "n": 91,
@@ -2821,7 +2821,7 @@
    "Usagère": "TKoAvBNxOwnhLtxm7NYM",
    "Accueil": "87kc04olBn8nRQKuNmaf"
   },
-  "ambiance": null
+  "ambiance": "Social services reception, quiet room tone, a phone ringing once far away, papers, no voices, no music"
  },
  "A1-s92": {
   "n": 92,
@@ -2854,7 +2854,7 @@
    "Usager": "W01VS3mCiWjHO239CD72",
    "Agent": "JFppi8XcU3D1RvkAikO5"
   },
-  "ambiance": null
+  "ambiance": "Consulate waiting hall, quiet echoing room, a queue ticket chime, footsteps, no voices, no music"
  },
  "A1-s93": {
   "n": 93,
@@ -2891,7 +2891,7 @@
    "Policier": "JFppi8XcU3D1RvkAikO5",
    "Usagère": "4NTBwCMIWDfx48seeuxZ"
   },
-  "ambiance": null
+  "ambiance": "Police station front desk, quiet room tone, keyboard typing, a distant door buzzer, no voices, no music"
  },
  "A1-s94": {
   "n": 94,
@@ -2924,7 +2924,7 @@
    "Usagère": "RXG6r6Qewwp92BIFIBhE",
    "Secrétaire": "TKoAvBNxOwnhLtxm7NYM"
   },
-  "ambiance": null
+  "ambiance": "Lawyer's office reception, calm quiet room tone, a clock ticking, pages turning, no voices, no music"
  },
  "A1-s95": {
   "n": 95,
@@ -2957,7 +2957,7 @@
    "Écran": "TKoAvBNxOwnhLtxm7NYM",
    "Consigne": "87kc04olBn8nRQKuNmaf"
   },
-  "ambiance": null
+  "ambiance": "Quiet room, computer keyboard typing, mouse clicks, no voices, no music"
  },
  "A1-s96": {
   "n": 96,
@@ -2994,7 +2994,7 @@
    "Agent": "W01VS3mCiWjHO239CD72",
    "Client": "JFppi8XcU3D1RvkAikO5"
   },
-  "ambiance": null
+  "ambiance": "Real estate agency office, quiet room tone, a door bell chimes once at the very start, papers, keyboard typing, no voices, no music"
  },
  "A1-s97": {
   "n": 97,
@@ -3031,7 +3031,7 @@
    "Agent": "JFppi8XcU3D1RvkAikO5",
    "Visiteuse": "4NTBwCMIWDfx48seeuxZ"
   },
-  "ambiance": null
+  "ambiance": "Empty apartment, footsteps echoing on a wooden floor, a door opening, light street noise through the window, no voices, no music"
  },
  "A1-s98": {
   "n": 98,
@@ -3064,7 +3064,7 @@
    "Agent": "3Yr319bDgMFZv5qX6yzA",
    "Locataire": "6pqL78prQKdL6zrRhG3N"
   },
-  "ambiance": null
+  "ambiance": "Apartment entrance hall, keys jingling, a door lock turning, quiet echo, a pen on paper, no voices, no music"
  },
  "A1-s99": {
   "n": 99,
@@ -3097,7 +3097,7 @@
    "Usager": "6pqL78prQKdL6zrRhG3N",
    "Agente": "TKoAvBNxOwnhLtxm7NYM"
   },
-  "ambiance": null
+  "ambiance": "Social housing office reception, quiet room tone, keyboard typing, papers, no voices, no music"
  },
  "A1-s100": {
   "n": 100,
@@ -3131,10 +3131,10 @@
    ]
   ],
   "voix": {
-   "Locataire": "W01VS3mCiWjHO239CD72",
-   "Propriétaire": "JFppi8XcU3D1RvkAikO5"
+   "Locataire": "87kc04olBn8nRQKuNmaf",
+   "Propriétaire": "W01VS3mCiWjHO239CD72"
   },
-  "ambiance": null
+  "ambiance": "Phone call in a quiet cold apartment, a radiator ticking, subtle phone line hiss, no voices, no music"
  },
  "A1-s101": {
   "n": 101,
@@ -3167,7 +3167,7 @@
    "Voisine": "4NTBwCMIWDfx48seeuxZ",
    "Voisin": "JFppi8XcU3D1RvkAikO5"
   },
-  "ambiance": null
+  "ambiance": "Apartment landing in the evening, a door opening at the very start, muffled loud instrumental bass music through the door, no vocals"
  },
  "A1-s102": {
   "n": 102,
@@ -3200,7 +3200,7 @@
    "Locataire": "3Yr319bDgMFZv5qX6yzA",
    "Gardien": "6pqL78prQKdL6zrRhG3N"
   },
-  "ambiance": null
+  "ambiance": "Apartment building entrance hall, footsteps, a parcel being handed over, quiet echo, no voices, no music"
  },
  "A1-s103": {
   "n": 103,
@@ -3237,7 +3237,7 @@
    "Plombier": "6pqL78prQKdL6zrRhG3N",
    "Client": "W01VS3mCiWjHO239CD72"
   },
-  "ambiance": null
+  "ambiance": "Phone call, water dripping and running in a bathroom, subtle phone line hiss, no voices, no music"
  },
  "A1-s104": {
   "n": 104,
@@ -3274,7 +3274,7 @@
    "Conseillère": "87kc04olBn8nRQKuNmaf",
    "Client": "W01VS3mCiWjHO239CD72"
   },
-  "ambiance": null
+  "ambiance": "Customer service office, quiet room tone, keyboard typing, no voices, no music"
  },
  "A1-s105": {
   "n": 105,
@@ -3311,7 +3311,7 @@
    "Client": "JFppi8XcU3D1RvkAikO5",
    "Employée": "4NTBwCMIWDfx48seeuxZ"
   },
-  "ambiance": null
+  "ambiance": "Van rental agency, quiet room tone, keys jingling, a van engine starting in the distance outside, no voices, no music"
  },
  "A1-s106": {
   "n": 106,
@@ -3348,7 +3348,7 @@
    "Garagiste": "3Yr319bDgMFZv5qX6yzA",
    "Cliente": "RXG6r6Qewwp92BIFIBhE"
   },
-  "ambiance": null
+  "ambiance": "Car garage workshop, an air compressor, a pneumatic wrench, metal tools, no voices, no music"
  },
  "A1-s107": {
   "n": 107,
@@ -3385,7 +3385,7 @@
    "Client": "6pqL78prQKdL6zrRhG3N",
    "Secrétaire": "TKoAvBNxOwnhLtxm7NYM"
   },
-  "ambiance": null
+  "ambiance": "Driving school office, quiet room tone, papers, light street traffic outside, no voices, no music"
  },
  "A1-s108": {
   "n": 108,
@@ -3422,7 +3422,7 @@
    "Formateur": "W01VS3mCiWjHO239CD72",
    "Apprenant": "JFppi8XcU3D1RvkAikO5"
   },
-  "ambiance": null
+  "ambiance": "Driving theory classroom, quiet room, a projector fan humming, papers, no voices, no music"
  },
  "A1-s109": {
   "n": 109,
@@ -3459,7 +3459,7 @@
    "Client": "JFppi8XcU3D1RvkAikO5",
    "Employée": "4NTBwCMIWDfx48seeuxZ"
   },
-  "ambiance": null
+  "ambiance": "Vehicle inspection centre, a car engine idling, metal tools, a garage door, no voices, no music"
  },
  "A1-s110": {
   "n": 110,
@@ -3496,7 +3496,7 @@
    "Client": "3Yr319bDgMFZv5qX6yzA",
    "Agent": "6pqL78prQKdL6zrRhG3N"
   },
-  "ambiance": null
+  "ambiance": "Car rental desk in a station, quiet room tone, keyboard typing, keys jingling, distant indistinct murmur without clear words, no music"
  },
  "A1-s111": {
   "n": 111,
@@ -3529,7 +3529,7 @@
    "Gendarme": "6pqL78prQKdL6zrRhG3N",
    "Conducteur": "W01VS3mCiWjHO239CD72"
   },
-  "ambiance": null
+  "ambiance": "Roadside police check at night, a car window being lowered at the very start, a car engine idling, passing cars, no voices, no music"
  },
  "A1-s112": {
   "n": 112,
@@ -3562,7 +3562,7 @@
    "Conductrice": "87kc04olBn8nRQKuNmaf",
    "Conducteur": "W01VS3mCiWjHO239CD72"
   },
-  "ambiance": null
+  "ambiance": "Street after a minor car accident, hazard lights clicking, light traffic passing, car doors, no voices, no music"
  },
  "A1-s113": {
   "n": 113,
@@ -3599,7 +3599,7 @@
    "Client": "JFppi8XcU3D1RvkAikO5",
    "Employée": "4NTBwCMIWDfx48seeuxZ"
   },
-  "ambiance": null
+  "ambiance": "Money transfer shop, quiet room tone, a receipt printer, a banknote counter whirring, no voices, no music"
  },
  "A1-s114": {
   "n": 114,
@@ -3632,7 +3632,7 @@
    "Cliente": "RXG6r6Qewwp92BIFIBhE",
    "Conseiller": "3Yr319bDgMFZv5qX6yzA"
   },
-  "ambiance": null
+  "ambiance": "Phone call from a quiet home, subtle phone line hiss, no voices, no music"
  },
  "A1-s115": {
   "n": 115,
@@ -3665,7 +3665,7 @@
    "Usager": "6pqL78prQKdL6zrRhG3N",
    "Agente": "TKoAvBNxOwnhLtxm7NYM"
   },
-  "ambiance": null
+  "ambiance": "Office payment counter, quiet room tone, a card terminal beep, a receipt printer, no voices, no music"
  },
  "A1-s116": {
   "n": 116,
@@ -3702,7 +3702,7 @@
    "Client": "W01VS3mCiWjHO239CD72",
    "Agente": "87kc04olBn8nRQKuNmaf"
   },
-  "ambiance": null
+  "ambiance": "Insurance agency office, quiet room tone, keyboard typing, a printer printing a page, no voices, no music"
  },
  "A1-s117": {
   "n": 117,
@@ -3735,7 +3735,7 @@
    "Client": "JFppi8XcU3D1RvkAikO5",
    "Employée": "4NTBwCMIWDfx48seeuxZ"
   },
-  "ambiance": null
+  "ambiance": "Currency exchange counter, quiet room tone, a banknote counter whirring, coins, no voices, no music"
  },
  "A1-s118": {
   "n": 118,
@@ -3772,7 +3772,7 @@
    "Client": "3Yr319bDgMFZv5qX6yzA",
    "Agent": "6pqL78prQKdL6zrRhG3N"
   },
-  "ambiance": null
+  "ambiance": "Travel agency office, quiet room tone, a door bell chimes once at the very start, keyboard typing, no voices, no music"
  },
  "A1-s119": {
   "n": 119,
@@ -3805,7 +3805,7 @@
    "Infirmière": "TKoAvBNxOwnhLtxm7NYM",
    "Patient": "6pqL78prQKdL6zrRhG3N"
   },
-  "ambiance": null
+  "ambiance": "Hospital emergency department, a distant beeping monitor, a trolley rolling, distant indistinct murmur without clear words, no music"
  },
  "A1-s120": {
   "n": 120,
@@ -3838,7 +3838,7 @@
    "Visiteuse": "87kc04olBn8nRQKuNmaf",
    "Accueil": "4NTBwCMIWDfx48seeuxZ"
   },
-  "ambiance": null
+  "ambiance": "Hospital reception hall, large quiet space, footsteps, a lift chime, no voices, no music"
  },
  "A1-s121": {
   "n": 121,
@@ -3871,7 +3871,7 @@
    "Patiente": "4NTBwCMIWDfx48seeuxZ",
    "Secrétaire": "RXG6r6Qewwp92BIFIBhE"
   },
-  "ambiance": null
+  "ambiance": "Physiotherapy practice reception, quiet room tone, a phone ringing once far away, papers, no voices, no music"
  },
  "A1-s122": {
   "n": 122,
@@ -3904,7 +3904,7 @@
    "Patiente": "RXG6r6Qewwp92BIFIBhE",
    "Secrétaire": "TKoAvBNxOwnhLtxm7NYM"
   },
-  "ambiance": null
+  "ambiance": "Medical practice reception, quiet room tone, keyboard typing, papers, no voices, no music"
  },
  "A1-s123": {
   "n": 123,
@@ -3938,7 +3938,7 @@
    "Patient": "6pqL78prQKdL6zrRhG3N",
    "Manipulatrice": "87kc04olBn8nRQKuNmaf"
   },
-  "ambiance": null
+  "ambiance": "Radiology centre, quiet room tone, a machine humming, a changing cubicle door, no voices, no music"
  },
  "A1-s124": {
   "n": 124,
@@ -3975,7 +3975,7 @@
    "Formatrice": "87kc04olBn8nRQKuNmaf",
    "Apprenant": "W01VS3mCiWjHO239CD72"
   },
-  "ambiance": null
+  "ambiance": "Adult classroom, quiet room, papers, a pen tapping, no voices, no music"
  },
  "A1-s125": {
   "n": 125,
@@ -4010,9 +4010,9 @@
   ],
   "voix": {
    "Employeur": "JFppi8XcU3D1RvkAikO5",
-   "Candidate": "3Yr319bDgMFZv5qX6yzA"
+   "Candidate": "4NTBwCMIWDfx48seeuxZ"
   },
-  "ambiance": null
+  "ambiance": "Phone call answered in a bakery, a shop door bell, paper bags, subtle phone line hiss, no voices, no music"
  },
  "A1-s126": {
   "n": 126,
@@ -4049,7 +4049,7 @@
    "Recruteuse": "RXG6r6Qewwp92BIFIBhE",
    "Candidat": "3Yr319bDgMFZv5qX6yzA"
   },
-  "ambiance": null
+  "ambiance": "Quiet office, a chair being pulled, papers on a desk, a clock ticking, no voices, no music"
  },
  "A1-s127": {
   "n": 127,
@@ -4083,10 +4083,10 @@
    ]
   ],
   "voix": {
-   "Candidate": "6pqL78prQKdL6zrRhG3N",
-   "Conseiller": "W01VS3mCiWjHO239CD72"
+   "Candidate": "TKoAvBNxOwnhLtxm7NYM",
+   "Conseiller": "6pqL78prQKdL6zrRhG3N"
   },
-  "ambiance": null
+  "ambiance": "Temp work agency office, quiet room tone, keyboard typing, papers, no voices, no music"
  },
  "A1-s128": {
   "n": 128,
@@ -4123,7 +4123,7 @@
    "Responsable": "87kc04olBn8nRQKuNmaf",
    "Employée": "4NTBwCMIWDfx48seeuxZ"
   },
-  "ambiance": null
+  "ambiance": "Warehouse, cardboard boxes being stacked, a distant forklift beeping, large room, no voices, no music"
  },
  "A1-s129": {
   "n": 129,
@@ -4158,9 +4158,9 @@
   ],
   "voix": {
    "Responsable": "4NTBwCMIWDfx48seeuxZ",
-   "Aïcha": "JFppi8XcU3D1RvkAikO5"
+   "Aïcha": "RXG6r6Qewwp92BIFIBhE"
   },
-  "ambiance": null
+  "ambiance": "Small meeting room, chairs moving, coffee cups set on a table, quiet room tone, no voices, no music"
  },
  "A1-s130": {
   "n": 130,
@@ -4193,7 +4193,7 @@
    "Employée": "RXG6r6Qewwp92BIFIBhE",
    "Client": "3Yr319bDgMFZv5qX6yzA"
   },
-  "ambiance": null
+  "ambiance": "Phone call in a car garage office, distant air compressor and tools, subtle phone line hiss, no voices, no music"
  },
  "A1-s131": {
   "n": 131,
@@ -4219,10 +4219,10 @@
    ]
   ],
   "voix": {
-   "Fiche de paie": "6pqL78prQKdL6zrRhG3N",
-   "Consigne": "TKoAvBNxOwnhLtxm7NYM"
+   "Fiche de paie": "TKoAvBNxOwnhLtxm7NYM",
+   "Consigne": "87kc04olBn8nRQKuNmaf"
   },
-  "ambiance": null
+  "ambiance": "Quiet room, a sheet of paper being unfolded, a calculator beeping, no voices, no music"
  },
  "A1-s132": {
   "n": 132,
@@ -4259,7 +4259,7 @@
    "Médecin": "W01VS3mCiWjHO239CD72",
    "Salariée": "87kc04olBn8nRQKuNmaf"
   },
-  "ambiance": null
+  "ambiance": "Occupational health doctor's office, quiet room tone, a chair creaking, papers, no voices, no music"
  },
  "A1-s133": {
   "n": 133,
@@ -4292,7 +4292,7 @@
    "Formatrice": "4NTBwCMIWDfx48seeuxZ",
    "Apprenant": "JFppi8XcU3D1RvkAikO5"
   },
-  "ambiance": null
+  "ambiance": "Training centre classroom, quiet room, chairs, papers, a door closing, no voices, no music"
  },
  "A1-s134": {
   "n": 134,
@@ -4325,7 +4325,7 @@
    "Mère": "RXG6r6Qewwp92BIFIBhE",
    "Maîtresse": "TKoAvBNxOwnhLtxm7NYM"
   },
-  "ambiance": null
+  "ambiance": "Primary school classroom after school, quiet room, small chairs moving, distant children far away without clear words, no music"
  },
  "A1-s135": {
   "n": 135,
@@ -4358,7 +4358,7 @@
    "Père": "6pqL78prQKdL6zrRhG3N",
    "Enseignante": "TKoAvBNxOwnhLtxm7NYM"
   },
-  "ambiance": null
+  "ambiance": "Primary school classroom, quiet room tone, pages of a school book turning, no voices, no music"
  },
  "A1-s136": {
   "n": 136,
@@ -4391,7 +4391,7 @@
    "Formatrice": "87kc04olBn8nRQKuNmaf",
    "Apprenante": "4NTBwCMIWDfx48seeuxZ"
   },
-  "ambiance": null
+  "ambiance": "Quiet room, computer keyboard typing, mouse clicks, papers, no voices, no music"
  },
  "A1-s137": {
   "n": 137,
@@ -4421,10 +4421,10 @@
    ]
   ],
   "voix": {
-   "Serveur vocal": "JFppi8XcU3D1RvkAikO5",
-   "Consigne": "4NTBwCMIWDfx48seeuxZ"
+   "Serveur vocal": "4NTBwCMIWDfx48seeuxZ",
+   "Consigne": "RXG6r6Qewwp92BIFIBhE"
   },
-  "ambiance": null
+  "ambiance": "Telephone call to an automated service, phone line hiss, telephone keypad tone beeps, no voices, no music"
  },
  "A1-s138": {
   "n": 138,
@@ -4457,7 +4457,7 @@
    "Formatrice": "RXG6r6Qewwp92BIFIBhE",
    "Apprenant": "3Yr319bDgMFZv5qX6yzA"
   },
-  "ambiance": null
+  "ambiance": "Video call on a laptop, a soft notification sound at the very start, light keyboard typing, quiet room tone, no voices, no music"
  },
  "A1-s139": {
   "n": 139,
@@ -4487,10 +4487,10 @@
    ]
   ],
   "voix": {
-   "Touriste": "6pqL78prQKdL6zrRhG3N",
-   "Monsieur": "W01VS3mCiWjHO239CD72"
+   "Touriste": "TKoAvBNxOwnhLtxm7NYM",
+   "Monsieur": "6pqL78prQKdL6zrRhG3N"
   },
-  "ambiance": null
+  "ambiance": "Busy town street, traffic, footsteps, a distant bus, no voices, no music"
  },
  "A1-s140": {
   "n": 140,
@@ -4523,7 +4523,7 @@
    "Cliente": "87kc04olBn8nRQKuNmaf",
    "Employé": "W01VS3mCiWjHO239CD72"
   },
-  "ambiance": null
+  "ambiance": "Shopping centre lost and found desk, quiet room tone, distant indistinct murmur without clear words, a drawer opening, no music"
  },
  "A1-s141": {
   "n": 141,
@@ -4560,7 +4560,7 @@
    "Voyageur": "JFppi8XcU3D1RvkAikO5",
    "Agent": "3Yr319bDgMFZv5qX6yzA"
   },
-  "ambiance": null
+  "ambiance": "Train station ticket office, a train departing in the distance, rolling suitcases, distant indistinct murmur without clear words, no announcements, no music"
  },
  "A1-s142": {
   "n": 142,
@@ -4593,7 +4593,7 @@
    "Voyageuse": "RXG6r6Qewwp92BIFIBhE",
    "Agent": "3Yr319bDgMFZv5qX6yzA"
   },
-  "ambiance": null
+  "ambiance": "Airport baggage claim hall, luggage carousel rumbling, distant indistinct murmur without clear words, no announcements, no music"
  },
  "A1-s143": {
   "n": 143,
@@ -4627,10 +4627,10 @@
    ]
   ],
   "voix": {
-   "Assistance": "6pqL78prQKdL6zrRhG3N",
-   "Conducteur": "W01VS3mCiWjHO239CD72"
+   "Assistance": "TKoAvBNxOwnhLtxm7NYM",
+   "Conducteur": "6pqL78prQKdL6zrRhG3N"
   },
-  "ambiance": null
+  "ambiance": "Phone call from outside a train station, light traffic, car hazard lights clicking, subtle phone line hiss, no voices, no music"
  },
  "A1-s144": {
   "n": 144,
@@ -4660,10 +4660,10 @@
    ]
   ],
   "voix": {
-   "Locataire": "W01VS3mCiWjHO239CD72",
-   "Gardien": "JFppi8XcU3D1RvkAikO5"
+   "Locataire": "87kc04olBn8nRQKuNmaf",
+   "Gardien": "W01VS3mCiWjHO239CD72"
   },
-  "ambiance": null
+  "ambiance": "Apartment kitchen, water running and splashing on the floor, a dripping pipe, no voices, no music"
  },
  "A1-s145": {
   "n": 145,
@@ -4696,7 +4696,7 @@
    "Cliente": "4NTBwCMIWDfx48seeuxZ",
    "Vendeur": "JFppi8XcU3D1RvkAikO5"
   },
-  "ambiance": null
+  "ambiance": "Electronics shop counter, quiet room tone, a box being opened, a barcode scanner beep, no voices, no music"
  },
  "A1-s146": {
   "n": 146,
@@ -4729,7 +4729,7 @@
    "Cliente": "RXG6r6Qewwp92BIFIBhE",
    "Serveur": "3Yr319bDgMFZv5qX6yzA"
   },
-  "ambiance": null
+  "ambiance": "Restaurant dining room, cutlery on plates, glasses clinking, distant indistinct murmur without clear words, no music"
  },
  "A1-s147": {
   "n": 147,
@@ -4763,9 +4763,9 @@
    ]
   ],
   "voix": {
-   "Témoin": "6pqL78prQKdL6zrRhG3N",
-   "Opérateur": "W01VS3mCiWjHO239CD72"
+   "Témoin": "TKoAvBNxOwnhLtxm7NYM",
+   "Opérateur": "6pqL78prQKdL6zrRhG3N"
   },
-  "ambiance": null
+  "ambiance": "Emergency phone call from a street, traffic, a car horn in the distance, subtle phone line hiss, no voices, no music"
  }
 }

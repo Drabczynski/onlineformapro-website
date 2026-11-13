@@ -23,12 +23,18 @@ VOIX = {g: [v["id"] for v in _V.values() if v["genre"] == g] for g in "FM"}
 ROULEMENT_DEPUIS = 11
 VOIX_FORCEE = {30: {"Léa": "Femme 3", "Invitée": "Femme 2"},     # quand le roulement donne une voix peu crédible pour le rôle
                73: {"Jeune": "Homme 3", "Entraîneur": "Homme 4"}}
-GENRE_FORCE = {64: {"Guide": "F"}}                                  # « Je m'appelle Julie, je suis votre guide »
+GENRE_FORCE = {64: {"Guide": "F"},                                 # « Je m'appelle Julie, je suis votre guide »
+               81: {"Responsable": "M"}, 83: {"Responsable": "M"},  # Monsieur Bernard, Monsieur Petit
+               82: {"Collègue": "F"},                               # Sophie, « Enchantée »
+               100: {"Locataire": "F"},                             # « C'est Mme Kaya »
+               139: {"Touriste": "F"},                              # « je suis perdue »
+               144: {"Locataire": "F"}, 147: {"Témoin": "F"}}       # non précisé : pour varier
 # les lignes d'un même document (fiche, mot, mail, offre, écran) sont lues par une seule voix off ; la consigne par une autre
-DOCUMENT = {"Écran", "Formulaire", "Mot de l'enseignante", "Signature des parents", "Mail", "Offre"}      # de 1 à 10 : toujours les deux premières voix (déjà validées) ; ensuite, les voix tournent
+DOCUMENT = {"Écran", "Formulaire", "Mot de l'enseignante", "Signature des parents", "Mail", "Offre", "Convocation", "Fiche de paie", "Serveur vocal"}      # de 1 à 10 : toujours les deux premières voix (déjà validées) ; ensuite, les voix tournent
 # les rôles dont le genre ne se lit pas à la terminaison
 GENRE = {"Primeur": "M", "Fleuriste": "F", "Parent 1": "F", "Parent 2": "M", "Léa": "F", "Amina": "F", "Julie": "F",
          "Bibliothécaire": "F", "Réceptionniste": "F", "Consigne": "F", "Mail": "M", "Offre": "F", "Formulaire": "F",
+         "Aïcha": "F", "Candidate": "F", "Convocation": "F", "Fiche de paie": "F", "Serveur vocal": "F", "Assistance": "F",
          # les lignes qui ne sont pas des personnes : l'écran du distributeur, lu par une voix off ; les SMS, lus par leurs auteurs
          "Écran": "F", "SMS reçu": "F", "Réponse": "M", "Agent": "M", "Guide": "M", "Accueil": "F", "Responsable": "F", "Secrétaire": "F", "Mère": "F", "Père": "M"}
 FEMININ = re.compile(r"(ère|euse|ienne|ice|ante|ente|ée|ine|esse|onne|elle|ette|Mère|Mme|Madame|Femme|Fille|Sœur|Tante)$", re.I)
@@ -115,6 +121,73 @@ AMBIANCE = {
     78: "Office telephone call, a telephone ringing twice at the very start and being picked up, subtle phone line hiss, quiet office room tone, no voices, no music",
     79: "Quiet room, an email notification sound at the very start, computer keyboard typing, a mouse click, no voices, no music",
     80: "Quiet room, a newspaper page turning, a pen tapping on a table, no voices, no music",
+    81: "Reception of a small workshop company, quiet room tone, a distant machine humming, a door opening, footsteps, no voices, no music",
+    82: "Warehouse break area, a distant forklift beeping, cardboard boxes being moved, quiet room tone, no voices, no music",
+    83: "Phone call from a bus stop, light street traffic, a bus passing, subtle phone line hiss, no voices, no music",
+    84: "Prefecture waiting room, a queue number display chime, chairs, distant indistinct murmur without clear words, no music",
+    85: "Quiet room, a letter envelope being opened, paper unfolding, a clock ticking, no voices, no music",
+    86: "Public service office reception, quiet room tone, a queue ticket beep, papers, distant footsteps, no voices, no music",
+    87: "Health insurance office, quiet room tone, keyboard typing, a printer, papers, no voices, no music",
+    88: "Employment agency office, quiet room tone, computer keyboard typing, a mouse clicking, distant footsteps, no voices, no music",
+    89: "Tax office hall, quiet room tone, a letter dropped into a box, footsteps on tiles, no voices, no music",
+    90: "Public service help desk, quiet room tone, keyboard typing, a chair being pulled, no voices, no music",
+    91: "Social services reception, quiet room tone, a phone ringing once far away, papers, no voices, no music",
+    92: "Consulate waiting hall, quiet echoing room, a queue ticket chime, footsteps, no voices, no music",
+    93: "Police station front desk, quiet room tone, keyboard typing, a distant door buzzer, no voices, no music",
+    94: "Lawyer's office reception, calm quiet room tone, a clock ticking, pages turning, no voices, no music",
+    95: "Quiet room, computer keyboard typing, mouse clicks, no voices, no music",
+    96: "Real estate agency office, quiet room tone, a door bell chimes once at the very start, papers, keyboard typing, no voices, no music",
+    97: "Empty apartment, footsteps echoing on a wooden floor, a door opening, light street noise through the window, no voices, no music",
+    98: "Apartment entrance hall, keys jingling, a door lock turning, quiet echo, a pen on paper, no voices, no music",
+    99: "Social housing office reception, quiet room tone, keyboard typing, papers, no voices, no music",
+    100: "Phone call in a quiet cold apartment, a radiator ticking, subtle phone line hiss, no voices, no music",
+    101: "Apartment landing in the evening, a door opening at the very start, muffled loud instrumental bass music through the door, no vocals",
+    102: "Apartment building entrance hall, footsteps, a parcel being handed over, quiet echo, no voices, no music",
+    103: "Phone call, water dripping and running in a bathroom, subtle phone line hiss, no voices, no music",
+    104: "Customer service office, quiet room tone, keyboard typing, no voices, no music",
+    105: "Van rental agency, quiet room tone, keys jingling, a van engine starting in the distance outside, no voices, no music",
+    106: "Car garage workshop, an air compressor, a pneumatic wrench, metal tools, no voices, no music",
+    107: "Driving school office, quiet room tone, papers, light street traffic outside, no voices, no music",
+    108: "Driving theory classroom, quiet room, a projector fan humming, papers, no voices, no music",
+    109: "Vehicle inspection centre, a car engine idling, metal tools, a garage door, no voices, no music",
+    110: "Car rental desk in a station, quiet room tone, keyboard typing, keys jingling, distant indistinct murmur without clear words, no music",
+    111: "Roadside police check at night, a car window being lowered at the very start, a car engine idling, passing cars, no voices, no music",
+    112: "Street after a minor car accident, hazard lights clicking, light traffic passing, car doors, no voices, no music",
+    113: "Money transfer shop, quiet room tone, a receipt printer, a banknote counter whirring, no voices, no music",
+    114: "Phone call from a quiet home, subtle phone line hiss, no voices, no music",
+    115: "Office payment counter, quiet room tone, a card terminal beep, a receipt printer, no voices, no music",
+    116: "Insurance agency office, quiet room tone, keyboard typing, a printer printing a page, no voices, no music",
+    117: "Currency exchange counter, quiet room tone, a banknote counter whirring, coins, no voices, no music",
+    118: "Travel agency office, quiet room tone, a door bell chimes once at the very start, keyboard typing, no voices, no music",
+    119: "Hospital emergency department, a distant beeping monitor, a trolley rolling, distant indistinct murmur without clear words, no music",
+    120: "Hospital reception hall, large quiet space, footsteps, a lift chime, no voices, no music",
+    121: "Physiotherapy practice reception, quiet room tone, a phone ringing once far away, papers, no voices, no music",
+    122: "Medical practice reception, quiet room tone, keyboard typing, papers, no voices, no music",
+    123: "Radiology centre, quiet room tone, a machine humming, a changing cubicle door, no voices, no music",
+    124: "Adult classroom, quiet room, papers, a pen tapping, no voices, no music",
+    125: "Phone call answered in a bakery, a shop door bell, paper bags, subtle phone line hiss, no voices, no music",
+    126: "Quiet office, a chair being pulled, papers on a desk, a clock ticking, no voices, no music",
+    127: "Temp work agency office, quiet room tone, keyboard typing, papers, no voices, no music",
+    128: "Warehouse, cardboard boxes being stacked, a distant forklift beeping, large room, no voices, no music",
+    129: "Small meeting room, chairs moving, coffee cups set on a table, quiet room tone, no voices, no music",
+    130: "Phone call in a car garage office, distant air compressor and tools, subtle phone line hiss, no voices, no music",
+    131: "Quiet room, a sheet of paper being unfolded, a calculator beeping, no voices, no music",
+    132: "Occupational health doctor's office, quiet room tone, a chair creaking, papers, no voices, no music",
+    133: "Training centre classroom, quiet room, chairs, papers, a door closing, no voices, no music",
+    134: "Primary school classroom after school, quiet room, small chairs moving, distant children far away without clear words, no music",
+    135: "Primary school classroom, quiet room tone, pages of a school book turning, no voices, no music",
+    136: "Quiet room, computer keyboard typing, mouse clicks, papers, no voices, no music",
+    137: "Telephone call to an automated service, phone line hiss, telephone keypad tone beeps, no voices, no music",
+    138: "Video call on a laptop, a soft notification sound at the very start, light keyboard typing, quiet room tone, no voices, no music",
+    139: "Busy town street, traffic, footsteps, a distant bus, no voices, no music",
+    140: "Shopping centre lost and found desk, quiet room tone, distant indistinct murmur without clear words, a drawer opening, no music",
+    141: "Train station ticket office, a train departing in the distance, rolling suitcases, distant indistinct murmur without clear words, no announcements, no music",
+    142: "Airport baggage claim hall, luggage carousel rumbling, distant indistinct murmur without clear words, no announcements, no music",
+    143: "Phone call from outside a train station, light traffic, car hazard lights clicking, subtle phone line hiss, no voices, no music",
+    144: "Apartment kitchen, water running and splashing on the floor, a dripping pipe, no voices, no music",
+    145: "Electronics shop counter, quiet room tone, a box being opened, a barcode scanner beep, no voices, no music",
+    146: "Restaurant dining room, cutlery on plates, glasses clinking, distant indistinct murmur without clear words, no music",
+    147: "Emergency phone call from a street, traffic, a car horn in the distance, subtle phone line hiss, no voices, no music",
 }
 # coquilles évidentes de l'Excel, corrigées pour la voix (signalées dans le LISEZMOI)
 CORRECTIONS = {9: [("Bonjou Madame r.", "Bonjour, madame.")], 18: [("Elel adore le toboggan", "Elle adore le toboggan.")],
@@ -155,6 +228,14 @@ def voix_du_dialogue(repliques, n=0):
 
 def dire(t):
     """Le texte tel qu'on le donne à la voix : les prix « 4,50 euros » se disent « 4 euros 50 »."""
+    t = re.sub(r"\[([^\]]*)\]", r"\1.", t)                 # « [Valider] » : un bouton, pas une indication de jeu pour la voix
+    t = re.sub(r"\b(\d{1,3}(?: \d{3})*),(\d{2})\s*€", lambda m: f"{m[1].replace(' ', '')} euros {m[2]}", t)   # « 1 443,24 € »
+    t = re.sub(r"(\d)\s*€", r"\1 euros", t)
+    t = re.sub(r"\bM\. (?=[A-ZÉ])", "Monsieur ", t); t = re.sub(r"\bMme\b\.?", "Madame", t)
+    t = t.replace(" & ", " et ").replace("SARL", "S.A.R.L.").replace("caf.fr", "caf point fr")
+    t = re.sub(r"\b[A-ZÉÈ]{5,}\b", lambda m: m[0].capitalize(), t)        # « KOVALENKO » : un nom, pas un sigle
+    t = re.sub(r"\b(\d{3}) (\d{3}) (\d{3})\b", r"\1, \2, \3", t)          # un numéro de compteur, par groupes
+    t = re.sub(r"\b(\d{1,2}) h 00\b", lambda m: f"{m[1]} {'heure' if m[1] == '1' else 'heures'}", t)   # « 9 h 00 »
     t = re.sub(r"(\d+),(\d{2})\s*euros?", lambda m: f"{m[1]} {'euro' if m[1] == '1' else 'euros'} {m[2]}", t)
     t = re.sub(r"\b(\d{1,2}) h (\d{2})\b", lambda m: f"{m[1]} {'heure' if m[1] == '1' else 'heures'} {m[2]}", t)     # « 10 h 15 » → « 10 heures 15 »
     t = re.sub(r"\b(\d{1,2}) h\b", lambda m: f"{m[1]} {'heure' if m[1] == '1' else 'heures'}", t)                     # « 14 h » → « 14 heures »
@@ -166,6 +247,7 @@ def dire(t):
     t = re.sub(r"\s*:\s*(?=[A-ZÉ]|$)", ". ", t)               # « Objet : Absence », « Nationalité : » → une phrase par champ
     t = re.sub(r"\s+", " ", t).strip()
     t = re.sub(r"\.(\s*\.)+", ".", t)                         # « Choisissez le montant : » → « … montant. »
+    t = re.sub(r"([?!])\.", r"\1", t)
     return t[:1].upper() + t[1:]
 
 
