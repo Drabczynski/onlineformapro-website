@@ -275,14 +275,14 @@ window.DONNEES = {
  },
  "clips": {
   "Bravo ! Tu as compris la scène.": {
-   "src": "medias/voix-8b808bc38c.mp3",
+   "src": "medias/voix-bc8b1281b9.mp3",
    "w": [
     0.0,
-    0.5,
-    0.66,
-    0.73,
-    1.0,
-    1.11
+    0.89,
+    1.11,
+    1.18,
+    1.57,
+    1.74
    ]
   },
   "Le bouquet, c'est pour qui ?": {
@@ -295,6 +295,16 @@ window.DONNEES = {
     1.18
    ]
   },
+  "Clique sur la bonne personne.": {
+   "src": "medias/voix-d6c5dabae3.mp3",
+   "w": [
+    0.0,
+    0.33,
+    0.5,
+    0.6,
+    0.79
+   ]
+  },
   "Il choisit quelles fleurs ?": {
    "src": "medias/voix-d412161ccb.mp3",
    "w": [
@@ -302,6 +312,20 @@ window.DONNEES = {
     0.21,
     0.57,
     0.81
+   ]
+  },
+  "Dans la boutique, clique sur les fleurs qu'il choisit.": {
+   "src": "medias/voix-290b251030.mp3",
+   "w": [
+    0.0,
+    0.21,
+    0.33,
+    1.24,
+    1.58,
+    1.74,
+    1.87,
+    2.16,
+    2.37
    ]
   }
  }

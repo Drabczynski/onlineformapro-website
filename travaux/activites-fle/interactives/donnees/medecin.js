@@ -4,7 +4,7 @@ window.DONNEES = {
  "video": "../medias/video/medecin-tete.mp4",
  "poster": "../medias/video/medecin-tete.jpg",
  "duree": 10.26,
- "gel": 6.0,
+ "gel": 5.8,
  "lines": [
   {
    "who": "medecin",
@@ -293,23 +293,14 @@ window.DONNEES = {
  },
  "clips": {
   "Bravo ! Tu as compris la scène.": {
-   "src": "medias/voix-8b808bc38c.mp3",
+   "src": "medias/voix-bc8b1281b9.mp3",
    "w": [
     0.0,
-    0.5,
-    0.66,
-    0.73,
-    1.0,
-    1.11
-   ]
-  },
-  "Elle a mal où ?": {
-   "src": "medias/voix-64b5ba5345.mp3",
-   "w": [
-    0.0,
-    0.22,
-    0.31,
-    0.57
+    0.89,
+    1.11,
+    1.18,
+    1.57,
+    1.74
    ]
   },
   "Depuis quand ?": {
@@ -317,6 +308,20 @@ window.DONNEES = {
    "w": [
     0.0,
     0.52
+   ]
+  },
+  "Aujourd'hui, c'est jeudi. Elle a mal depuis quel jour ?": {
+   "src": "medias/voix-bbc2e83fda.mp3",
+   "w": [
+    0.0,
+    0.51,
+    0.7,
+    1.23,
+    1.44,
+    1.56,
+    1.86,
+    2.15,
+    2.36
    ]
   },
   "Elle a de la fièvre ?": {
@@ -327,6 +332,38 @@ window.DONNEES = {
     0.43,
     0.51,
     0.66
+   ]
+  },
+  "Monte le thermomètre.": {
+   "src": "medias/voix-7f5ef14103.mp3",
+   "w": [
+    0.0,
+    0.42,
+    0.53
+   ]
+  },
+  "Le médecin va donner quoi ?": {
+   "src": "medias/voix-cbfe0bf917.mp3",
+   "w": [
+    0.0,
+    0.3,
+    0.61,
+    0.74,
+    1.01
+   ]
+  },
+  "Sur le bureau, clique sur ce qu'il va donner.": {
+   "src": "medias/voix-18fe45ea83.mp3",
+   "w": [
+    0.0,
+    0.26,
+    0.36,
+    0.95,
+    1.25,
+    1.41,
+    1.53,
+    1.71,
+    1.83
    ]
   }
  }

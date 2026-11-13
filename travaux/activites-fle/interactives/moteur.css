@@ -351,17 +351,19 @@ body[data-turn="listen"] .fleches, body[data-turn="wait"] .fleches, body[data-tu
 .corps .zc.juste { fill: rgba(255,77,100,.75); animation: battre 1.2s var(--apple) infinite; transform-box: fill-box; transform-origin: center; }
 .corps .zc.faux { fill: rgba(255,170,40,.55); }
 @keyframes battre { 50% { transform: scale(1.06); } }
-.semaine { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
-.jour { position: relative; height: 70px; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); transition: background .3s, transform .3s var(--spring); }
-.jour b { font-size: 15px; font-weight: 800; }
-.jour span { font-size: 11px; font-weight: 600; color: var(--text2); }
+.semaine { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+.jour { position: relative; height: 128px; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); transition: background .3s, transform .3s var(--spring); }
+.jour b { font-size: 32px; font-weight: 800; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1; }
+.jour span { font-size: 13px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: .06em; }
+.jour small { min-height: 13px; font-size: 10px; font-weight: 700; color: var(--text2); }
+.mois { margin: 0; text-align: center; font-weight: 800; font-size: 20px; letter-spacing: -.01em; }
 .jour:active { transform: scale(.92); }
 .jour.auj { box-shadow: inset 0 0 0 2px #fff; }
 .jour.mal { background: rgba(255,77,100,.55); }
 .jour.mal.juste { background: rgba(29,214,160,.55); }
-.jour .tete { position: absolute; top: -9px; right: -5px; width: 22px; height: 22px; display: none; }
+.jour .tete { position: absolute; top: -11px; right: -7px; width: 28px; height: 28px; display: none; }
 .jour.debut .tete { display: block; animation: pop .45s var(--spring) both; }
-.legende { margin: 0; text-align: center; font-size: 14px; font-weight: 600; color: var(--text2); min-height: 18px; }
+.legende { margin: 0; text-align: center; font-size: 17px; font-weight: 700; color: var(--text1, #fff); min-height: 22px; }
 .thermo { display: grid; grid-template-columns: 70px 1fr; gap: 14px; align-items: stretch; padding: 4px 6px; }
 .thermo svg { width: 70px; height: 240px; }
 .thermo .mercure { transition: y .7s var(--spring), height .7s var(--spring); }
@@ -384,7 +386,7 @@ body[data-turn="listen"] .corps, body[data-turn="wait"] .corps, body[data-turn="
 /* téléphone tenu droit : le panneau du geste passe sous la vidéo */
 body.tall .grille .tuile { height: 80px; } body.tall .tuile .pic { width: 40px; height: 40px; } body.tall .tuile .pic svg { width: 36px; height: 36px; }
 body.tall .plan { aspect-ratio: 1.5 / 1; } body.tall .corps svg { height: 200px; width: 112px; } body.tall .thermo svg { height: 190px; }
-body.tall .famille .tuile { height: 92px; } body.tall .jour { height: 58px; }
+body.tall .famille .tuile { height: 92px; } body.tall .jour { height: 76px; } body.tall .jour b { font-size: 20px; } body.tall .jour small { display: none; }
 body.tall .sac { min-height: 64px; } body.tall .sac .sacpic svg { width: 46px; height: 50px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
@@ -401,5 +403,20 @@ body.tall .sac { min-height: 64px; } body.tall .sac .sacpic svg { width: 46px; h
 .cam.asking .hit.indice { animation: indiceH 1.1s var(--apple) infinite; }
 @keyframes indiceH { 50% { box-shadow: inset 0 0 0 3px rgba(75,227,180,.9); background: rgba(75,227,180,.18); } }
 .jour[disabled] { opacity: .35; }
-.jour .tete svg { width: 22px; height: 22px; display: block; }
+.jour .tete svg { width: 28px; height: 28px; display: block; }
 .corps .zc.faux, .plan .bat.faux { transition: fill .15s; }
+
+/* repères posés sur l'image : cadre d'une zone touchée, étiquette, objets sur la scène */
+.surimage { position: absolute; pointer-events: none; }
+.zcadre { z-index: 1; border-radius: 22px; box-shadow: inset 0 0 0 3px var(--ok); background: rgba(75,227,180,.14); animation: pop .45s var(--spring) both; }
+.zcadre.faux { box-shadow: inset 0 0 0 3px var(--try); background: rgba(255,170,40,.16); animation: pop .45s var(--spring) both, s-efface .5s 1.4s forwards; }
+@keyframes s-efface { to { opacity: 0; } }
+.marque { z-index: 3; transform: translate(-50%, calc(-100% - 8px)); white-space: nowrap; padding: 7px 13px; border-radius: 999px; background: rgba(255,255,255,.96); color: var(--ink); font-weight: 800; font-size: 15px; letter-spacing: -.01em; animation: pop .45s var(--spring) both; }
+.marque.juste { background: var(--ok); }
+.marque.faux { background: #FFD9A0; animation: pop .45s var(--spring) both, s-efface .5s 1.4s forwards; }
+.objet { position: absolute; z-index: 1; display: grid; place-items: center; transition: left .9s var(--apple), top .9s var(--apple), transform .4s var(--spring), opacity .4s; }
+.objet svg { width: 100%; height: 100%; display: block; }
+.objet.donne { transform: rotate(-8deg) scale(1.1); }
+.sacv { position: absolute; z-index: 1; display: flex; gap: 4px; transform: translate(-50%, -50%); }
+.sacv .mini { width: 34px; height: 34px; border-radius: 50%; }
+.sacv .mini svg { width: 24px; height: 24px; }

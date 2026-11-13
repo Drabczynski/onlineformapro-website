@@ -77,13 +77,14 @@
     const Wd = innerWidth, Hd = innerHeight, wide = Wd / Hd >= 1.1, short = wide && Hd < 520, compact = !wide && Hd < 740;
     const B = document.body; B.classList.toggle('wide', wide); B.classList.toggle('tall', !wide); B.classList.toggle('short', short); B.classList.toggle('compact', compact);
     let c = (!wide && state.crop === CROPS.full) ? CROPS.fullTall : state.crop;
+    if (!wide && c.qui) c = { ...c, a: 1.2 };
     if (short && c.a < 1.3) c = { ...c, a: 1.3 };
     const sideOn = state.sideOn, split = state.split;
     const dockH = short ? 46 : 52, dockGap = short ? 10 : 16;
     let wx, wy, ww, wh;
     if (wide) {
       const vm = short ? 12 : 36, pad = short ? 14 : 32, gap = (sideOn || split) ? (short ? 14 : 28) : 0;
-      const sw = sideOn ? Math.min(short ? 230 : (state.sideW || 320), Wd * .32) : split ? Math.min(short ? 140 : 210, Wd * .18) : 0;
+      const sw = sideOn ? Math.min(short ? 230 : (state.sideW || 320), Wd * ((state.sideW || 320) > 400 ? .4 : .32)) : split ? Math.min(short ? 140 : 210, Wd * .18) : 0;
       const extra = sideOn ? sw + gap : split ? 2 * (sw + gap) : 0;
       const aw = Wd - pad * 2 - extra, ah = Hd - vm * 2 - dockGap - dockH;
       wh = Math.min(ah, aw / c.a); ww = wh * c.a;
@@ -120,7 +121,11 @@
     Object.assign(talk.style, { left: wx + inset + 'px', width: ww - inset * 2 + 'px', bottom: Hd - (wy + wh) + inset + 'px' });
     Object.assign(dock.style, { left: wx + ww / 2 + 'px', top: wy + wh + dockGap + 'px' });
   }
-  function frameTo(crop, sideOn, sideW) { state.crop = crop; state.sideOn = sideOn; state.sideW = sideW; layout(); side.classList.toggle('on', sideOn && side.children.length > 0); }
+  function frameTo(crop, sideOn, sideW) { state.crop = crop; state.focus = crop.qui || null; state.sideOn = sideOn; state.sideW = sideW; layout(); side.classList.toggle('on', sideOn && side.children.length > 0); }
+  /* resserrer la vidéo sur une personne, comme sur Kenji ; SC.plans dit où elle est dans chaque plan (les coupes de la vidéo) */
+  const PLANS = (SC.plans || [{ de: 0 }]).slice().sort((a, b) => a.de - b.de);
+  function cadre(qui, t) { let p = PLANS[0]; for (const x of PLANS) if (t >= x.de - .01) p = x; const cx = p.cx && p.cx[qui] != null ? p.cx[qui] : .5; return { a: SC.serre || .82, h: 1, cx, cy: .5, qui }; }
+  function focus(qui, sideOn, sideW) { frameTo(qui ? cadre(qui, vid.currentTime) : CROPS.full, sideOn, sideW); }
   addEventListener('resize', () => { document.body.classList.add('boot'); layout(); requestAnimationFrame(() => document.body.classList.remove('boot')); idle.reset(); });
 
   /* ================= médias : une seule voix à la fois ================= */
@@ -304,6 +309,7 @@
     talk.classList.toggle('playing', state.lineView);
     cam.classList.toggle('moving', movingTok === media);
     if (li !== curLine) renderLine(li);
+    if (state.focus) { const c = cadre(state.focus, t); if (Math.abs(c.cx - state.crop.cx) > .001) { state.crop = c; cam.style.transition = 'none'; layout(); void cam.offsetWidth; cam.style.transition = ''; } }
     if (li >= 0 && state.cc) $$('.w', lwords).forEach((span, k) => { const w = LINES[li].words[k]; span.classList.toggle('past', t >= w.e); span.classList.toggle('now', t >= w.s - .03 && t < w.e); });
     if (Math.abs(t - lastAmb) > .04 && vid.readyState >= 2) { lastAmb = t; try { amb.getContext('2d').drawImage(vid, 0, 0, amb.width, amb.height); } catch (e) {} }
     requestAnimationFrame(loop);
@@ -388,10 +394,28 @@
   function suivant(step) { const i = ORDRE.indexOf(step); return i >= 0 && i + 1 < ORDRE.length ? ORDRE[i + 1] : 'end'; }
   function suite(label = 'Suivant') { const nx = suivant(state.step); goBtn('next', label, () => go(nx)); setTurn('you'); }
 
+  /* avant(f, { question, qui, seg, panneau, sideW, consigne }) : la question ; la vidéo se resserre sur « qui » et rejoue
+     sa réplique ; puis le panneau du geste s'ouvre à côté (ou, sans panneau, la vidéo revient en grand pour toucher l'image) ;
+     enfin la consigne du geste. Renvoie false si on a quitté l'étape. */
+  async function avant(f, o) {
+    setSide(null); o.qui ? focus(o.qui, false) : frameTo(CROPS.full, false);
+    await freeze(WIDE); if (!alive(f)) return false;
+    if (!await Q.say(o.question, f)) return false;
+    setTurn('listen'); await wait(250); if (!alive(f)) return false;
+    await playSegment(o.seg[0], o.seg[1], WIDE); if (!alive(f)) return false;
+    if (o.panneau) { setSide(o.panneau, o.monte); o.qui ? focus(o.qui, true, o.sideW) : frameTo(CROPS.full, true, o.sideW); }
+    else { frameTo(CROPS.full, false); o.monte && o.monte(cam); }
+    state.ask = o.consigne;
+    await wait(o.panneau ? 450 : 650); if (!alive(f)) return false;
+    return Q.say(o.consigne, f);
+  }
+  /* un repère posé sur l'image : un cadre autour d'une zone, une étiquette au-dessus */
+  function cadreZone(z, cls) { const d = document.createElement('div'); d.className = 'surimage zcadre ' + (cls || ''); Object.assign(d.style, { left: z.x + '%', top: z.y + '%', width: z.w + '%', height: z.h + '%' }); cam.append(d); return d; }
+  function marque(z, txt, cls) { const d = document.createElement('div'); d.className = 'surimage marque ' + (cls || ''); d.textContent = txt; Object.assign(d.style, { left: z.x + z.w / 2 + '%', top: z.y + '%' }); cam.append(d); return d; }
   function go(step) {
     flow++; stopAll(); idle.clear();
     Object.assign(state, { step, ask: null, replay: null, lineView: false, essais: 0 });
-    cam.classList.remove('asking'); zones(null); spotOff(); goBtn(null); setSplit(false);
+    cam.classList.remove('asking'); zones(null); spotOff(); goBtn(null); setSplit(false); $$('.surimage', cam).forEach(e => e.remove());
     STEPS[step](flow);
   }
   const STEPS = {};
@@ -428,6 +452,7 @@
     });
     frameTo(CROPS.full, true);
     setTimeout(() => { if (alive(f)) flyFaces(); }, 800);
+    await wait(1500); if (!alive(f)) return;
     state.ask = 'Bravo' + NB + '! Tu as compris la scène.';
     if (!await Q.say(state.ask, f)) return;
     Q.mode('ok');
@@ -460,7 +485,7 @@
   var api = {
     $, $$, wait, NB, reduced, state, alive, go, suite, Q, goBtn, yourTurn, setTurn, frameTo, CROPS, WIDE, LINES, PEOPLE,
     freeze, playSegment, hear, phrase, ligne, tag, tagAll, hideTags, spotOn, spotAt, spotOff, rippleAt, zones, fly,
-    setSide, side, setSplit, binNo, binYes, deck, idle, at, tapHere, sfx, ICON, win, cam, layout, speak, unlock, faux, juste,
+    setSide, side, setSplit, binNo, binYes, deck, idle, at, tapHere, sfx, ICON, win, cam, layout, speak, unlock, faux, juste, focus, avant, cadreZone, marque,
     flow: () => flow,
   };
   Object.assign(STEPS, SC.etapes(api));

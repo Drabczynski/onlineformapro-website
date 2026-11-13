@@ -220,17 +220,19 @@ sous-titres (bouton « CC »). Ses 2 questions ont été écrites d'après son d
 
 Une quatrième carte du menu, **« Vidéos interactives »**, ouvre la liste de 5 scènes (lien direct :
 `index.html#videos`). Chaque scène est une page à part, dans `interactives/`, sur le design et la pédagogie du
-prototype de Kenji : on regarde la scène en entier, puis chaque question se répond par un geste sur l'image ou à
-côté ; deux essais (la vidéo rejoue le passage exact), puis la réponse ; un bilan où chaque élément se réécoute.
-Les gestes changent d'une scène à l'autre :
+prototype de Kenji : on regarde la scène en entier ; à chaque question, la vidéo se resserre sur la personne qui
+parle et rejoue sa réplique, puis le geste s'ouvre à côté (avec une consigne dite : « Sur le plan, clique sur la
+pharmacie. ») ou se fait directement sur l'image ; deux essais (la vidéo rejoue le passage exact), puis la réponse ;
+un bilan où chaque élément se réécoute. Le cadre resserré suit les changements de plan de la vidéo (`plans` dans
+chaque scénario). Chaque scène a au moins un geste dans la vidéo :
 
 | Scène | Questions et gestes |
 | --- | --- |
 | La colocation de Kenji (`kenji/`) | le prototype d'origine, tel quel, avec un bouton de retour |
-| À l'épicerie | ce que la cliente achète va dans le sac ; payer 5 € avec des pièces et des billets (toute combinaison juste) |
-| Chercher la pharmacie | guider le monsieur sur un plan avec les flèches (tout droit, puis à droite au feu) ; toucher le bâtiment en face de la boulangerie |
-| Chez le médecin | toucher la tête sur le corps ; remonter le calendrier jusqu'à mardi (« depuis deux jours », on est jeudi) ; monter le thermomètre à « un peu » |
-| Chez le fleuriste | pour qui est le bouquet (son père, sa sœur, sa mère, sa copine) ; toucher les roses blanches dans la boutique, elles volent dans le bouquet |
+| À l'épicerie | dans la vidéo : toucher ce que la cliente achète dans la boutique (ça part dans le sac en papier du comptoir) ; à côté : payer 5 € avec des pièces et des billets |
+| Chercher la pharmacie | à côté, sur un plan : guider le monsieur avec les flèches (tout droit, puis à droite au feu) ; cliquer sur le bâtiment en face de la boulangerie |
+| Chez le médecin | à côté : le calendrier (on est jeudi, « depuis deux jours » : mardi) ; le thermomètre (« un peu ») ; dans la vidéo : sur le bureau, toucher ce que le médecin va donner (des médicaments, pas le thermomètre ni le stéthoscope) |
+| Chez le fleuriste | à côté : pour qui est le bouquet (son père, sa sœur, sa mère, sa copine) ; dans la vidéo : toucher les roses blanches dans la boutique |
 
 Les quatre nouvelles scènes reprennent les vidéos de `medias/video/` et leurs transcriptions mot à mot (`interactives/stt/`).
 Les consignes sont dites par la voix du prototype (ElevenLabs). Pour les refaire :

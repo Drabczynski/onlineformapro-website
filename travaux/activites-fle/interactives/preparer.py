@@ -15,33 +15,35 @@ SCENES = {
     "epicerie": {"video": "epicerie", "gel": 9.2,
                  "people": {"vendeur": {"name": "Le vendeur", "qui": "Le vendeur", "side": "g", "spot": [27, 50, 18, 62], "anchor": [24, 46], "crop": [21, 12, 14, 25]},
                             "cliente": {"name": "La cliente", "qui": "La cliente", "side": "d", "spot": [72, 50, 18, 62], "anchor": [75, 46], "crop": [57, 16, 14, 25]}},
-                 "consignes": ["Qu'est-ce que la cliente achète ?", "Combien ça coûte ?"]},
+                 "consignes": ["Qu'est-ce que la cliente achète ?", "Dans la boutique, clique sur ce qu'elle achète.", "Combien ça coûte ?", "Pose l'argent, puis clique sur Payer."]},
     "pharmacie": {"video": "pharmacie-chemin", "gel": 6.0,
                   "people": {"homme": {"name": "Le monsieur", "qui": "L'homme", "side": "g", "spot": [32, 52, 16, 62], "anchor": [29, 50], "crop": [29, 16, 14, 25]},
                              "dame": {"name": "La dame", "qui": "La dame", "side": "d", "spot": [67, 55, 16, 62], "anchor": [70, 52], "crop": [59, 19, 14, 25]}},
-                  "consignes": ["Écoute la dame. Montre le chemin.", "Où est la pharmacie ?"]},
-    "medecin": {"video": "medecin-tete", "gel": 6.0,
+                  "consignes": ["Écoute la dame.", "Sur le plan, guide le monsieur avec les flèches.", "Où est la pharmacie ?", "Sur le plan, clique sur la pharmacie."]},
+    "medecin": {"video": "medecin-tete", "gel": 5.8,
                 "people": {"patiente": {"name": "La patiente", "qui": "La patiente", "side": "g", "spot": [18, 55, 18, 64], "anchor": [16, 52], "crop": [17, 19, 14, 25]},
                            "medecin": {"name": "Le médecin", "qui": "Le médecin", "side": "d", "spot": [72, 52, 18, 64], "anchor": [72, 56], "crop": [65, 17, 14, 25]}},
-                "consignes": ["Elle a mal où ?", "Depuis quand ?", "Elle a de la fièvre ?"]},
+                "consignes": ["Depuis quand ?", "Aujourd'hui, c'est jeudi. Elle a mal depuis quel jour ?", "Elle a de la fièvre ?", "Monte le thermomètre.",
+                               "Le médecin va donner quoi ?", "Sur le bureau, clique sur ce qu'il va donner."]},
     "fleuriste": {"video": "fleuriste", "gel": 9.2,
                   "people": {"fleuriste": {"name": "La fleuriste", "qui": "La fleuriste", "side": "g", "spot": [34, 52, 16, 64], "anchor": [31, 46], "crop": [27, 19, 14, 25]},
                              "client": {"name": "Le client", "qui": "Le client", "side": "d", "spot": [74, 52, 16, 64], "anchor": [77, 46], "crop": [67, 10, 14, 25], "portrait": [3.0, [36, 8, 28, 50]]}},
-                  "consignes": ["Le bouquet, c'est pour qui ?", "Il choisit quelles fleurs ?"]},
+                  "consignes": ["Le bouquet, c'est pour qui ?", "Clique sur la bonne personne.", "Il choisit quelles fleurs ?", "Dans la boutique, clique sur les fleurs qu'il choisit."]},
 }
-COMMUNES = ["Bravo ! Tu as compris la scène."]
+COMMUNES = [("Bravo ! Tu as compris la scène.", .8)]     # (texte, vitesse) : le bravo, dit plus lentement
 
 
 def affiche(t):     # l'espace fine avant ? ! : comme dans le prototype
     return re.sub(r" ([?!:])", NB + r"\1", t)
 
 
-def tts(texte):
-    nom = "voix-" + hashlib.sha1(texte.encode()).hexdigest()[:10] + ".mp3"; chemin = os.path.join(ICI, "medias", nom)
+def tts(texte, vitesse=1.0):
+    cle = texte if vitesse == 1.0 else f"{texte}|{vitesse}"
+    nom = "voix-" + hashlib.sha1(cle.encode()).hexdigest()[:10] + ".mp3"; chemin = os.path.join(ICI, "medias", nom)
     meta = chemin + ".json"
     if os.path.exists(chemin) and os.path.exists(meta): return nom, json.load(open(meta))
     corps = json.dumps({"text": texte, "model_id": "eleven_multilingual_v2", "language_code": "fr",
-                        "voice_settings": {"stability": .55, "similarity_boost": .8, "style": 0, "use_speaker_boost": True}}, ensure_ascii=False)
+                        "voice_settings": {"stability": .55, "similarity_boost": .8, "style": 0, "use_speaker_boost": True, "speed": vitesse}}, ensure_ascii=False)
     r = subprocess.run(["curl", "-sS", f"https://api.elevenlabs.io/v1/text-to-speech/{VOIX}/with-timestamps", "-H", "xi-api-key: secret-du-proxy",
                         "-H", "Content-Type: application/json", "--data-binary", corps], capture_output=True, text=True)
     d = json.loads(r.stdout); open(chemin, "wb").write(base64.b64decode(d["audio_base64"]))
@@ -75,6 +77,9 @@ def repliques(cle, sc):
 
 
 def portraits(cle, sc):
+    if all(os.path.exists(os.path.join(ICI, "medias", f"{cle}-{k}.jpg")) for k in sc["people"]):     # déjà découpés : on les garde
+        for k, p in sc["people"].items(): p["img"] = f"medias/{cle}-{k}.jpg"
+        return
     gel = os.path.join(ICI, "medias", f"{cle}-gel.png")
     subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-ss", str(sc["gel"]), "-i", os.path.join(RACINE, "medias", "video", sc["video"] + ".mp4"), "-frames:v", "1", gel], check=True)
     from PIL import Image
@@ -91,7 +96,7 @@ def portraits(cle, sc):
 
 
 if __name__ == "__main__":
-    communes = {affiche(t): dict(zip(("src", "w"), tts(t))) for t in COMMUNES}
+    communes = {affiche(t): dict(zip(("src", "w"), tts(t, v))) for t, v in COMMUNES}
     for cle, sc in SCENES.items():
         L, v = repliques(cle, sc); portraits(cle, sc)
         clips = dict(communes)

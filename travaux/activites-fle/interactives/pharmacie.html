@@ -357,17 +357,19 @@ body[data-turn="listen"] .fleches, body[data-turn="wait"] .fleches, body[data-tu
 .corps .zc.juste { fill: rgba(255,77,100,.75); animation: battre 1.2s var(--apple) infinite; transform-box: fill-box; transform-origin: center; }
 .corps .zc.faux { fill: rgba(255,170,40,.55); }
 @keyframes battre { 50% { transform: scale(1.06); } }
-.semaine { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
-.jour { position: relative; height: 70px; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); transition: background .3s, transform .3s var(--spring); }
-.jour b { font-size: 15px; font-weight: 800; }
-.jour span { font-size: 11px; font-weight: 600; color: var(--text2); }
+.semaine { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+.jour { position: relative; height: 128px; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); transition: background .3s, transform .3s var(--spring); }
+.jour b { font-size: 32px; font-weight: 800; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1; }
+.jour span { font-size: 13px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: .06em; }
+.jour small { min-height: 13px; font-size: 10px; font-weight: 700; color: var(--text2); }
+.mois { margin: 0; text-align: center; font-weight: 800; font-size: 20px; letter-spacing: -.01em; }
 .jour:active { transform: scale(.92); }
 .jour.auj { box-shadow: inset 0 0 0 2px #fff; }
 .jour.mal { background: rgba(255,77,100,.55); }
 .jour.mal.juste { background: rgba(29,214,160,.55); }
-.jour .tete { position: absolute; top: -9px; right: -5px; width: 22px; height: 22px; display: none; }
+.jour .tete { position: absolute; top: -11px; right: -7px; width: 28px; height: 28px; display: none; }
 .jour.debut .tete { display: block; animation: pop .45s var(--spring) both; }
-.legende { margin: 0; text-align: center; font-size: 14px; font-weight: 600; color: var(--text2); min-height: 18px; }
+.legende { margin: 0; text-align: center; font-size: 17px; font-weight: 700; color: var(--text1, #fff); min-height: 22px; }
 .thermo { display: grid; grid-template-columns: 70px 1fr; gap: 14px; align-items: stretch; padding: 4px 6px; }
 .thermo svg { width: 70px; height: 240px; }
 .thermo .mercure { transition: y .7s var(--spring), height .7s var(--spring); }
@@ -390,7 +392,7 @@ body[data-turn="listen"] .corps, body[data-turn="wait"] .corps, body[data-turn="
 /* téléphone tenu droit : le panneau du geste passe sous la vidéo */
 body.tall .grille .tuile { height: 80px; } body.tall .tuile .pic { width: 40px; height: 40px; } body.tall .tuile .pic svg { width: 36px; height: 36px; }
 body.tall .plan { aspect-ratio: 1.5 / 1; } body.tall .corps svg { height: 200px; width: 112px; } body.tall .thermo svg { height: 190px; }
-body.tall .famille .tuile { height: 92px; } body.tall .jour { height: 58px; }
+body.tall .famille .tuile { height: 92px; } body.tall .jour { height: 76px; } body.tall .jour b { font-size: 20px; } body.tall .jour small { display: none; }
 body.tall .sac { min-height: 64px; } body.tall .sac .sacpic svg { width: 46px; height: 50px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
@@ -407,8 +409,23 @@ body.tall .sac { min-height: 64px; } body.tall .sac .sacpic svg { width: 46px; h
 .cam.asking .hit.indice { animation: indiceH 1.1s var(--apple) infinite; }
 @keyframes indiceH { 50% { box-shadow: inset 0 0 0 3px rgba(75,227,180,.9); background: rgba(75,227,180,.18); } }
 .jour[disabled] { opacity: .35; }
-.jour .tete svg { width: 22px; height: 22px; display: block; }
+.jour .tete svg { width: 28px; height: 28px; display: block; }
 .corps .zc.faux, .plan .bat.faux { transition: fill .15s; }
+
+/* repères posés sur l'image : cadre d'une zone touchée, étiquette, objets sur la scène */
+.surimage { position: absolute; pointer-events: none; }
+.zcadre { z-index: 1; border-radius: 22px; box-shadow: inset 0 0 0 3px var(--ok); background: rgba(75,227,180,.14); animation: pop .45s var(--spring) both; }
+.zcadre.faux { box-shadow: inset 0 0 0 3px var(--try); background: rgba(255,170,40,.16); animation: pop .45s var(--spring) both, s-efface .5s 1.4s forwards; }
+@keyframes s-efface { to { opacity: 0; } }
+.marque { z-index: 3; transform: translate(-50%, calc(-100% - 8px)); white-space: nowrap; padding: 7px 13px; border-radius: 999px; background: rgba(255,255,255,.96); color: var(--ink); font-weight: 800; font-size: 15px; letter-spacing: -.01em; animation: pop .45s var(--spring) both; }
+.marque.juste { background: var(--ok); }
+.marque.faux { background: #FFD9A0; animation: pop .45s var(--spring) both, s-efface .5s 1.4s forwards; }
+.objet { position: absolute; z-index: 1; display: grid; place-items: center; transition: left .9s var(--apple), top .9s var(--apple), transform .4s var(--spring), opacity .4s; }
+.objet svg { width: 100%; height: 100%; display: block; }
+.objet.donne { transform: rotate(-8deg) scale(1.1); }
+.sacv { position: absolute; z-index: 1; display: flex; gap: 4px; transform: translate(-50%, -50%); }
+.sacv .mini { width: 34px; height: 34px; border-radius: 50%; }
+.sacv .mini svg { width: 24px; height: 24px; }
 
 </style></head><body>
 <script>
@@ -677,25 +694,36 @@ window.DONNEES = {
  },
  "clips": {
   "Bravo ! Tu as compris la scène.": {
-   "src": "medias/voix-8b808bc38c.mp3",
+   "src": "medias/voix-bc8b1281b9.mp3",
    "w": [
     0.0,
-    0.5,
-    0.66,
-    0.73,
-    1.0,
-    1.11
+    0.89,
+    1.11,
+    1.18,
+    1.57,
+    1.74
    ]
   },
-  "Écoute la dame. Montre le chemin.": {
-   "src": "medias/voix-b1f61a7b72.mp3",
+  "Écoute la dame.": {
+   "src": "medias/voix-0070fe19f2.mp3",
    "w": [
     0.0,
-    0.38,
-    0.51,
-    1.02,
-    1.36,
-    1.46
+    0.48,
+    0.6
+   ]
+  },
+  "Sur le plan, guide le monsieur avec les flèches.": {
+   "src": "medias/voix-16d5b3e9d4.mp3",
+   "w": [
+    0.0,
+    0.26,
+    0.37,
+    0.87,
+    1.13,
+    1.24,
+    1.78,
+    2.09,
+    2.21
    ]
   },
   "Où est la pharmacie ?": {
@@ -706,13 +734,26 @@ window.DONNEES = {
     0.49,
     0.59
    ]
+  },
+  "Sur le plan, clique sur la pharmacie.": {
+   "src": "medias/voix-30c806646a.mp3",
+   "w": [
+    0.0,
+    0.26,
+    0.37,
+    0.73,
+    1.07,
+    1.23,
+    1.35
+   ]
   }
  }
 };
 
 </script>
 <script>
-/* Le chemin de la pharmacie : on guide le monsieur sur un plan avec les flèches, puis on montre le bâtiment. */
+/* Le chemin de la pharmacie : la dame redit le chemin (la vidéo resserrée sur elle), on guide le monsieur sur le plan avec
+   les flèches ; puis elle redit où est la pharmacie, et on clique sur le bâtiment. */
 window.SCENARIO = (() => {
   const FL = {
     g: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>',
@@ -743,9 +784,10 @@ window.SCENARIO = (() => {
     </svg></div>`;
 
   return {
+    plans: [{ de: 0, cx: { homme: .31, dame: .67 } }, { de: 2.46, cx: { homme: .5, dame: .6 } }, { de: 4.63, cx: { homme: .31, dame: .67 } }],
     ordre: ['chemin', 'ou'],
     etapes: A => {
-      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, frameTo, CROPS, WIDE, freeze, playSegment, phrase, ligne, setSide, side, idle, tapHere, sfx, faux, juste, suite, wait } = A;
+      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, WIDE, playSegment, phrase, ligne, side, idle, tapHere, sfx, faux, juste, suite, wait, avant } = A;
       const DROIT = phrase('allez tout droit'), FEU = phrase('puis tournez à droite au feu'), CHEMIN = ligne(1), FACE = ligne(3);
       let pos = 0;
       const placer = (k, vite) => {
@@ -760,17 +802,17 @@ window.SCENARIO = (() => {
         if (m) m.animate([{ transform: `translate(${x}px, ${y}px)` }, { transform: `translate(${x + d[0]}px, ${y + d[1]}px)` }, { transform: `translate(${x}px, ${y}px)` }], { duration: 520, easing: 'ease-in-out' });
       };
       return {
-        /* 1 · le chemin : tout droit, puis à droite au feu */
+        /* 1 · le chemin : la dame le redit, puis on guide le monsieur (tout droit, puis à droite au feu) */
         async chemin(f) {
-          setSide(null); frameTo(CROPS.full, false);
-          await freeze(WIDE); if (!alive(f)) return;
-          state.ask = 'Écoute la dame. Montre le chemin.'; pos = 0;
+          pos = 0;
           const ask = () => { Q.show('you', pos === 0 ? state.ask : 'Et au feu' + NB + '?'); yourTurn(); idle.set(tapHere($('.fleche', side)), 5000); };
+          if (!await avant(f, {
+            question: 'Écoute la dame.', qui: 'dame', seg: CHEMIN, sideW: 540, consigne: 'Sur le plan, guide le monsieur avec les flèches.',
+            panneau: `<div class="panel glass"><p class="ptitre">Guide le monsieur jusqu'à la pharmacie</p>${plan()}
+              <div class="fleches">${['g', 'h', 'd'].map(k => `<button class="fleche" data-k="${k}" aria-label="${NOM[k]}">${FL[k]}</button>`).join('')}</div></div>`,
+            monte: () => requestAnimationFrame(() => placer(0, true)),
+          })) return;
           state.replay = async () => { setTurn('listen'); await playSegment(CHEMIN[0], CHEMIN[1], WIDE); if (alive(f)) ask(); };
-          if (!await Q.say(state.ask, f)) return;
-          setSide(`<div class="panel glass"><p class="ptitre">Guidez le monsieur jusqu'à la pharmacie</p>${plan()}
-            <div class="fleches">${['g', 'h', 'd'].map(k => `<button class="fleche" data-k="${k}" aria-label="${NOM[k]}">${FL[k]}</button>`).join('')}</div></div>`);
-          frameTo(CROPS.full, true); placer(0, true);
           $$('.fleche', side).forEach(b => b.addEventListener('click', async () => {
             if (document.body.dataset.turn !== 'you') return;
             A.unlock(); idle.clear(); setTurn('wait');
@@ -795,17 +837,16 @@ window.SCENARIO = (() => {
           ask();
         },
 
-        /* 2 · le bâtiment : la pharmacie est en face de la boulangerie */
+        /* 2 · le bâtiment : la dame redit « en face de la boulangerie », on clique sur la pharmacie */
         async ou(f) {
-          setSide(null); frameTo(CROPS.full, false);
-          await freeze(WIDE); if (!alive(f)) return;
-          state.ask = 'Où est la pharmacie' + NB + '?';
           const ask = () => { Q.show('you', state.ask); yourTurn(); idle.set(tapHere($('.bat[data-id="b8"]', side)), 5000); };
+          if (!await avant(f, {
+            question: 'Où est la pharmacie' + NB + '?', qui: 'dame', seg: FACE, sideW: 540, consigne: 'Sur le plan, clique sur la pharmacie.',
+            panneau: `<div class="panel glass"><p class="ptitre">Clique sur la pharmacie</p>${plan()}</div>`,
+            monte: () => requestAnimationFrame(() => { placer(2, true); $('#plan').classList.add('choisir'); }),
+          })) return;
           state.replay = async () => { setTurn('listen'); await playSegment(FACE[0], FACE[1], WIDE); if (alive(f)) ask(); };
-          if (!await Q.say(state.ask, f)) return;
-          setSide(`<div class="panel glass"><p class="ptitre">Touchez la pharmacie</p>${plan()}</div>`);
-          frameTo(CROPS.full, true); placer(2, true);
-          const pl = $('#plan'); pl.classList.add('choisir');
+          const pl = $('#plan');
           $$('.bat', side).forEach(r => { if (r.dataset.id !== 'boul') r.classList.add('cible'); r.addEventListener('click', async () => {
             if (document.body.dataset.turn !== 'you') return;
             A.unlock(); idle.clear(); setTurn('wait');
@@ -916,13 +957,14 @@ window.SCENARIO = (() => {
     const Wd = innerWidth, Hd = innerHeight, wide = Wd / Hd >= 1.1, short = wide && Hd < 520, compact = !wide && Hd < 740;
     const B = document.body; B.classList.toggle('wide', wide); B.classList.toggle('tall', !wide); B.classList.toggle('short', short); B.classList.toggle('compact', compact);
     let c = (!wide && state.crop === CROPS.full) ? CROPS.fullTall : state.crop;
+    if (!wide && c.qui) c = { ...c, a: 1.2 };
     if (short && c.a < 1.3) c = { ...c, a: 1.3 };
     const sideOn = state.sideOn, split = state.split;
     const dockH = short ? 46 : 52, dockGap = short ? 10 : 16;
     let wx, wy, ww, wh;
     if (wide) {
       const vm = short ? 12 : 36, pad = short ? 14 : 32, gap = (sideOn || split) ? (short ? 14 : 28) : 0;
-      const sw = sideOn ? Math.min(short ? 230 : (state.sideW || 320), Wd * .32) : split ? Math.min(short ? 140 : 210, Wd * .18) : 0;
+      const sw = sideOn ? Math.min(short ? 230 : (state.sideW || 320), Wd * ((state.sideW || 320) > 400 ? .4 : .32)) : split ? Math.min(short ? 140 : 210, Wd * .18) : 0;
       const extra = sideOn ? sw + gap : split ? 2 * (sw + gap) : 0;
       const aw = Wd - pad * 2 - extra, ah = Hd - vm * 2 - dockGap - dockH;
       wh = Math.min(ah, aw / c.a); ww = wh * c.a;
@@ -959,7 +1001,11 @@ window.SCENARIO = (() => {
     Object.assign(talk.style, { left: wx + inset + 'px', width: ww - inset * 2 + 'px', bottom: Hd - (wy + wh) + inset + 'px' });
     Object.assign(dock.style, { left: wx + ww / 2 + 'px', top: wy + wh + dockGap + 'px' });
   }
-  function frameTo(crop, sideOn, sideW) { state.crop = crop; state.sideOn = sideOn; state.sideW = sideW; layout(); side.classList.toggle('on', sideOn && side.children.length > 0); }
+  function frameTo(crop, sideOn, sideW) { state.crop = crop; state.focus = crop.qui || null; state.sideOn = sideOn; state.sideW = sideW; layout(); side.classList.toggle('on', sideOn && side.children.length > 0); }
+  /* resserrer la vidéo sur une personne, comme sur Kenji ; SC.plans dit où elle est dans chaque plan (les coupes de la vidéo) */
+  const PLANS = (SC.plans || [{ de: 0 }]).slice().sort((a, b) => a.de - b.de);
+  function cadre(qui, t) { let p = PLANS[0]; for (const x of PLANS) if (t >= x.de - .01) p = x; const cx = p.cx && p.cx[qui] != null ? p.cx[qui] : .5; return { a: SC.serre || .82, h: 1, cx, cy: .5, qui }; }
+  function focus(qui, sideOn, sideW) { frameTo(qui ? cadre(qui, vid.currentTime) : CROPS.full, sideOn, sideW); }
   addEventListener('resize', () => { document.body.classList.add('boot'); layout(); requestAnimationFrame(() => document.body.classList.remove('boot')); idle.reset(); });
 
   /* ================= médias : une seule voix à la fois ================= */
@@ -1143,6 +1189,7 @@ window.SCENARIO = (() => {
     talk.classList.toggle('playing', state.lineView);
     cam.classList.toggle('moving', movingTok === media);
     if (li !== curLine) renderLine(li);
+    if (state.focus) { const c = cadre(state.focus, t); if (Math.abs(c.cx - state.crop.cx) > .001) { state.crop = c; cam.style.transition = 'none'; layout(); void cam.offsetWidth; cam.style.transition = ''; } }
     if (li >= 0 && state.cc) $$('.w', lwords).forEach((span, k) => { const w = LINES[li].words[k]; span.classList.toggle('past', t >= w.e); span.classList.toggle('now', t >= w.s - .03 && t < w.e); });
     if (Math.abs(t - lastAmb) > .04 && vid.readyState >= 2) { lastAmb = t; try { amb.getContext('2d').drawImage(vid, 0, 0, amb.width, amb.height); } catch (e) {} }
     requestAnimationFrame(loop);
@@ -1227,10 +1274,28 @@ window.SCENARIO = (() => {
   function suivant(step) { const i = ORDRE.indexOf(step); return i >= 0 && i + 1 < ORDRE.length ? ORDRE[i + 1] : 'end'; }
   function suite(label = 'Suivant') { const nx = suivant(state.step); goBtn('next', label, () => go(nx)); setTurn('you'); }
 
+  /* avant(f, { question, qui, seg, panneau, sideW, consigne }) : la question ; la vidéo se resserre sur « qui » et rejoue
+     sa réplique ; puis le panneau du geste s'ouvre à côté (ou, sans panneau, la vidéo revient en grand pour toucher l'image) ;
+     enfin la consigne du geste. Renvoie false si on a quitté l'étape. */
+  async function avant(f, o) {
+    setSide(null); o.qui ? focus(o.qui, false) : frameTo(CROPS.full, false);
+    await freeze(WIDE); if (!alive(f)) return false;
+    if (!await Q.say(o.question, f)) return false;
+    setTurn('listen'); await wait(250); if (!alive(f)) return false;
+    await playSegment(o.seg[0], o.seg[1], WIDE); if (!alive(f)) return false;
+    if (o.panneau) { setSide(o.panneau, o.monte); o.qui ? focus(o.qui, true, o.sideW) : frameTo(CROPS.full, true, o.sideW); }
+    else { frameTo(CROPS.full, false); o.monte && o.monte(cam); }
+    state.ask = o.consigne;
+    await wait(o.panneau ? 450 : 650); if (!alive(f)) return false;
+    return Q.say(o.consigne, f);
+  }
+  /* un repère posé sur l'image : un cadre autour d'une zone, une étiquette au-dessus */
+  function cadreZone(z, cls) { const d = document.createElement('div'); d.className = 'surimage zcadre ' + (cls || ''); Object.assign(d.style, { left: z.x + '%', top: z.y + '%', width: z.w + '%', height: z.h + '%' }); cam.append(d); return d; }
+  function marque(z, txt, cls) { const d = document.createElement('div'); d.className = 'surimage marque ' + (cls || ''); d.textContent = txt; Object.assign(d.style, { left: z.x + z.w / 2 + '%', top: z.y + '%' }); cam.append(d); return d; }
   function go(step) {
     flow++; stopAll(); idle.clear();
     Object.assign(state, { step, ask: null, replay: null, lineView: false, essais: 0 });
-    cam.classList.remove('asking'); zones(null); spotOff(); goBtn(null); setSplit(false);
+    cam.classList.remove('asking'); zones(null); spotOff(); goBtn(null); setSplit(false); $$('.surimage', cam).forEach(e => e.remove());
     STEPS[step](flow);
   }
   const STEPS = {};
@@ -1267,6 +1332,7 @@ window.SCENARIO = (() => {
     });
     frameTo(CROPS.full, true);
     setTimeout(() => { if (alive(f)) flyFaces(); }, 800);
+    await wait(1500); if (!alive(f)) return;
     state.ask = 'Bravo' + NB + '! Tu as compris la scène.';
     if (!await Q.say(state.ask, f)) return;
     Q.mode('ok');
@@ -1299,7 +1365,7 @@ window.SCENARIO = (() => {
   var api = {
     $, $$, wait, NB, reduced, state, alive, go, suite, Q, goBtn, yourTurn, setTurn, frameTo, CROPS, WIDE, LINES, PEOPLE,
     freeze, playSegment, hear, phrase, ligne, tag, tagAll, hideTags, spotOn, spotAt, spotOff, rippleAt, zones, fly,
-    setSide, side, setSplit, binNo, binYes, deck, idle, at, tapHere, sfx, ICON, win, cam, layout, speak, unlock, faux, juste,
+    setSide, side, setSplit, binNo, binYes, deck, idle, at, tapHere, sfx, ICON, win, cam, layout, speak, unlock, faux, juste, focus, avant, cadreZone, marque,
     flow: () => flow,
   };
   Object.assign(STEPS, SC.etapes(api));

@@ -357,17 +357,19 @@ body[data-turn="listen"] .fleches, body[data-turn="wait"] .fleches, body[data-tu
 .corps .zc.juste { fill: rgba(255,77,100,.75); animation: battre 1.2s var(--apple) infinite; transform-box: fill-box; transform-origin: center; }
 .corps .zc.faux { fill: rgba(255,170,40,.55); }
 @keyframes battre { 50% { transform: scale(1.06); } }
-.semaine { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
-.jour { position: relative; height: 70px; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); transition: background .3s, transform .3s var(--spring); }
-.jour b { font-size: 15px; font-weight: 800; }
-.jour span { font-size: 11px; font-weight: 600; color: var(--text2); }
+.semaine { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+.jour { position: relative; height: 128px; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); transition: background .3s, transform .3s var(--spring); }
+.jour b { font-size: 32px; font-weight: 800; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1; }
+.jour span { font-size: 13px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: .06em; }
+.jour small { min-height: 13px; font-size: 10px; font-weight: 700; color: var(--text2); }
+.mois { margin: 0; text-align: center; font-weight: 800; font-size: 20px; letter-spacing: -.01em; }
 .jour:active { transform: scale(.92); }
 .jour.auj { box-shadow: inset 0 0 0 2px #fff; }
 .jour.mal { background: rgba(255,77,100,.55); }
 .jour.mal.juste { background: rgba(29,214,160,.55); }
-.jour .tete { position: absolute; top: -9px; right: -5px; width: 22px; height: 22px; display: none; }
+.jour .tete { position: absolute; top: -11px; right: -7px; width: 28px; height: 28px; display: none; }
 .jour.debut .tete { display: block; animation: pop .45s var(--spring) both; }
-.legende { margin: 0; text-align: center; font-size: 14px; font-weight: 600; color: var(--text2); min-height: 18px; }
+.legende { margin: 0; text-align: center; font-size: 17px; font-weight: 700; color: var(--text1, #fff); min-height: 22px; }
 .thermo { display: grid; grid-template-columns: 70px 1fr; gap: 14px; align-items: stretch; padding: 4px 6px; }
 .thermo svg { width: 70px; height: 240px; }
 .thermo .mercure { transition: y .7s var(--spring), height .7s var(--spring); }
@@ -390,7 +392,7 @@ body[data-turn="listen"] .corps, body[data-turn="wait"] .corps, body[data-turn="
 /* téléphone tenu droit : le panneau du geste passe sous la vidéo */
 body.tall .grille .tuile { height: 80px; } body.tall .tuile .pic { width: 40px; height: 40px; } body.tall .tuile .pic svg { width: 36px; height: 36px; }
 body.tall .plan { aspect-ratio: 1.5 / 1; } body.tall .corps svg { height: 200px; width: 112px; } body.tall .thermo svg { height: 190px; }
-body.tall .famille .tuile { height: 92px; } body.tall .jour { height: 58px; }
+body.tall .famille .tuile { height: 92px; } body.tall .jour { height: 76px; } body.tall .jour b { font-size: 20px; } body.tall .jour small { display: none; }
 body.tall .sac { min-height: 64px; } body.tall .sac .sacpic svg { width: 46px; height: 50px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
@@ -407,8 +409,23 @@ body.tall .sac { min-height: 64px; } body.tall .sac .sacpic svg { width: 46px; h
 .cam.asking .hit.indice { animation: indiceH 1.1s var(--apple) infinite; }
 @keyframes indiceH { 50% { box-shadow: inset 0 0 0 3px rgba(75,227,180,.9); background: rgba(75,227,180,.18); } }
 .jour[disabled] { opacity: .35; }
-.jour .tete svg { width: 22px; height: 22px; display: block; }
+.jour .tete svg { width: 28px; height: 28px; display: block; }
 .corps .zc.faux, .plan .bat.faux { transition: fill .15s; }
+
+/* repères posés sur l'image : cadre d'une zone touchée, étiquette, objets sur la scène */
+.surimage { position: absolute; pointer-events: none; }
+.zcadre { z-index: 1; border-radius: 22px; box-shadow: inset 0 0 0 3px var(--ok); background: rgba(75,227,180,.14); animation: pop .45s var(--spring) both; }
+.zcadre.faux { box-shadow: inset 0 0 0 3px var(--try); background: rgba(255,170,40,.16); animation: pop .45s var(--spring) both, s-efface .5s 1.4s forwards; }
+@keyframes s-efface { to { opacity: 0; } }
+.marque { z-index: 3; transform: translate(-50%, calc(-100% - 8px)); white-space: nowrap; padding: 7px 13px; border-radius: 999px; background: rgba(255,255,255,.96); color: var(--ink); font-weight: 800; font-size: 15px; letter-spacing: -.01em; animation: pop .45s var(--spring) both; }
+.marque.juste { background: var(--ok); }
+.marque.faux { background: #FFD9A0; animation: pop .45s var(--spring) both, s-efface .5s 1.4s forwards; }
+.objet { position: absolute; z-index: 1; display: grid; place-items: center; transition: left .9s var(--apple), top .9s var(--apple), transform .4s var(--spring), opacity .4s; }
+.objet svg { width: 100%; height: 100%; display: block; }
+.objet.donne { transform: rotate(-8deg) scale(1.1); }
+.sacv { position: absolute; z-index: 1; display: flex; gap: 4px; transform: translate(-50%, -50%); }
+.sacv .mini { width: 34px; height: 34px; border-radius: 50%; }
+.sacv .mini svg { width: 24px; height: 24px; }
 
 </style></head><body>
 <script>
@@ -418,7 +435,7 @@ window.DONNEES = {
  "video": "../medias/video/medecin-tete.mp4",
  "poster": "../medias/video/medecin-tete.jpg",
  "duree": 10.26,
- "gel": 6.0,
+ "gel": 5.8,
  "lines": [
   {
    "who": "medecin",
@@ -707,23 +724,14 @@ window.DONNEES = {
  },
  "clips": {
   "Bravo ! Tu as compris la scène.": {
-   "src": "medias/voix-8b808bc38c.mp3",
+   "src": "medias/voix-bc8b1281b9.mp3",
    "w": [
     0.0,
-    0.5,
-    0.66,
-    0.73,
-    1.0,
-    1.11
-   ]
-  },
-  "Elle a mal où ?": {
-   "src": "medias/voix-64b5ba5345.mp3",
-   "w": [
-    0.0,
-    0.22,
-    0.31,
-    0.57
+    0.89,
+    1.11,
+    1.18,
+    1.57,
+    1.74
    ]
   },
   "Depuis quand ?": {
@@ -731,6 +739,20 @@ window.DONNEES = {
    "w": [
     0.0,
     0.52
+   ]
+  },
+  "Aujourd'hui, c'est jeudi. Elle a mal depuis quel jour ?": {
+   "src": "medias/voix-bbc2e83fda.mp3",
+   "w": [
+    0.0,
+    0.51,
+    0.7,
+    1.23,
+    1.44,
+    1.56,
+    1.86,
+    2.15,
+    2.36
    ]
   },
   "Elle a de la fièvre ?": {
@@ -742,22 +764,48 @@ window.DONNEES = {
     0.51,
     0.66
    ]
+  },
+  "Monte le thermomètre.": {
+   "src": "medias/voix-7f5ef14103.mp3",
+   "w": [
+    0.0,
+    0.42,
+    0.53
+   ]
+  },
+  "Le médecin va donner quoi ?": {
+   "src": "medias/voix-cbfe0bf917.mp3",
+   "w": [
+    0.0,
+    0.3,
+    0.61,
+    0.74,
+    1.01
+   ]
+  },
+  "Sur le bureau, clique sur ce qu'il va donner.": {
+   "src": "medias/voix-18fe45ea83.mp3",
+   "w": [
+    0.0,
+    0.26,
+    0.36,
+    0.95,
+    1.25,
+    1.41,
+    1.53,
+    1.71,
+    1.83
+   ]
   }
  }
 };
 
 </script>
 <script>
-/* Chez le médecin : on montre où elle a mal sur le corps, on remonte le calendrier jusqu'au premier jour, on lit le thermomètre. */
+/* Chez le médecin : elle redit « depuis deux jours » (la vidéo resserrée sur elle), on remonte le calendrier jusqu'au premier
+   jour ; elle redit « un peu » de fièvre, on monte le thermomètre ; enfin, sur le bureau, dans la vidéo, on touche ce que le
+   médecin va donner. (Pas de question sur « où elle a mal » : elle se tient la tête, la réponse se voit.) */
 window.SCENARIO = (() => {
-  const PARTIES = { tete: 'la tête', gorge: 'la gorge', ventre: 'le ventre', bras: 'le bras', jambes: 'les jambes' };
-  const CORPS = `<svg viewBox="0 0 150 270" aria-label="Le corps">
-      <circle class="zc" data-id="tete" cx="75" cy="32" r="24"/>
-      <rect class="zc" data-id="gorge" x="64" y="58" width="22" height="16" rx="6"/>
-      <rect class="zc" data-id="ventre" x="46" y="78" width="58" height="88" rx="18"/>
-      <rect class="zc" data-id="bras" x="20" y="80" width="21" height="90" rx="10"/><rect class="zc" data-id="bras" x="109" y="80" width="21" height="90" rx="10"/>
-      <rect class="zc" data-id="jambes" x="48" y="170" width="25" height="94" rx="12"/><rect class="zc" data-id="jambes" x="77" y="170" width="25" height="94" rx="12"/>
-    </svg>`;
   const JOURS = ['lun', 'mar', 'mer', 'jeu', 'ven', 'sam', 'dim'], AUJ = 3;
   const TETE = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#FF4D64"/><path d="M7 9.5l3 1.5M17 9.5l-3 1.5M8.5 16.5c2-1.6 5-1.6 7 0" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>';
   const NIV = [{ id: 'beaucoup', t: 'Beaucoup', y: 26 }, { id: 'peu', t: 'Un peu', y: 98 }, { id: 'non', t: 'Pas de fièvre', y: 166 }];
@@ -770,66 +818,44 @@ window.SCENARIO = (() => {
       <rect class="mercure" id="mercure" x="29" width="12" rx="6" fill="#FF4D64" style="y: 190px; height: 22px"/>
       <circle cx="35" cy="214" r="19" fill="#FF4D64" stroke="rgba(255,255,255,.55)" stroke-width="2"/>
     </svg>`;
+  /* sur le bureau (image à 5,8 s, en %) : des objets posés, plus le vrai stéthoscope */
+  const OBJETS = [
+    { id: 'medicament', nom: 'des médicaments', ok: true, x: 37, y: 83, w: 7, h: 8, svg: '<svg viewBox="0 0 60 44"><rect x="2" y="6" width="56" height="34" rx="4" fill="#fff" stroke="#9FB4D6" stroke-width="2"/><rect x="2" y="6" width="56" height="10" rx="3" fill="#3AA8FF"/><path d="M23 28h14M30 21v14" stroke="#19A974" stroke-width="5" stroke-linecap="round"/></svg>' },
+    { id: 'thermometre', nom: 'le thermomètre', pas: 'Pas le thermomètre.', x: 45.5, y: 88, w: 8, h: 4, svg: '<svg viewBox="0 0 60 20"><rect x="2" y="6" width="46" height="8" rx="4" fill="#fff" stroke="#9FB4D6" stroke-width="1.5"/><rect x="6" y="8.5" width="24" height="3" rx="1.5" fill="#FF4D64"/><circle cx="51" cy="10" r="6" fill="#FF4D64"/></svg>' },
+    { id: 'pansement', nom: 'un pansement', pas: 'Pas de pansement.', x: 54.5, y: 88, w: 6.5, h: 5, svg: '<svg viewBox="0 0 60 30"><g transform="rotate(-12 30 15)"><rect x="4" y="7" width="52" height="16" rx="8" fill="#E8B48A"/><rect x="22" y="9" width="16" height="12" rx="2" fill="#F6D7BC"/></g></svg>' },
+    { id: 'lunettes', nom: 'les lunettes', pas: 'Pas les lunettes.', x: 85, y: 87, w: 7, h: 5, svg: '<svg viewBox="0 0 60 26"><circle cx="16" cy="14" r="10" fill="rgba(180,220,255,.35)" stroke="#2A2D34" stroke-width="3"/><circle cx="44" cy="14" r="10" fill="rgba(180,220,255,.35)" stroke="#2A2D34" stroke-width="3"/><path d="M26 12q4-4 8 0" stroke="#2A2D34" stroke-width="3" fill="none"/></svg>' },
+    { id: 'stethoscope', nom: 'le stéthoscope', pas: "C'est son stéthoscope.", x: 64, y: 80, w: 16, h: 7 },
+  ];
   const nbJours = n => (n === 1 ? 'un jour' : ['zéro', 'un', 'deux', 'trois'][n] + ' jours');
+  const cap = s => s[0].toUpperCase() + s.slice(1);
 
   return {
-    ordre: ['ou', 'quand', 'fievre'],
+    plans: [{ de: 0, cx: { patiente: .24, medecin: .7 } }, { de: 6.04, cx: { patiente: .38, medecin: .5 } }, { de: 7.5, cx: { patiente: .24, medecin: .72 } }],
+    ordre: ['quand', 'fievre', 'donne'],
     etapes: A => {
-      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, frameTo, CROPS, WIDE, freeze, playSegment, phrase, ligne, setSide, side, idle, tapHere, sfx, faux, juste, suite, goBtn, wait } = A;
-      const MAL = [ligne(2)[0], ligne(3)[1]], DEPUIS = [ligne(4)[0], ligne(5)[1]], FIEVRE = [ligne(6)[0], ligne(7)[1]];
+      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, WIDE, playSegment, ligne, side, idle, tapHere, sfx, faux, juste, suite, goBtn, wait, zones, cam, avant, cadreZone, marque } = A;
+      const DEPUIS = [ligne(4)[0], ligne(5)[1]], FIEVRE = [ligne(6)[0], ligne(7)[1]], DONNE = ligne(8);
       return {
-        /* 1 · où elle a mal : toucher la partie du corps */
-        async ou(f) {
-          setSide(null); frameTo(CROPS.full, false);
-          await freeze(WIDE); if (!alive(f)) return;
-          state.ask = 'Elle a mal où' + NB + '?';
-          const ask = () => { Q.show('you', state.ask); yourTurn(); idle.set(tapHere($('.zc[data-id="ventre"]', side)), 5000); };
-          state.replay = async () => { setTurn('listen'); await playSegment(MAL[0], MAL[1], WIDE); if (alive(f)) ask(); };
-          if (!await Q.say(state.ask, f)) return;
-          setSide(`<div class="panel glass"><p class="ptitre">Touchez où elle a mal</p><div class="corps">${CORPS}</div><p class="legende" id="leg"></p></div>`);
-          frameTo(CROPS.full, true);
-          $$('.zc', side).forEach(z => z.addEventListener('click', async () => {
-            if (document.body.dataset.turn !== 'you') return;
-            A.unlock(); idle.clear(); setTurn('wait');
-            const id = z.dataset.id, toutes = $$(`.zc[data-id="${id}"]`, side);
-            $('#leg').textContent = PARTIES[id];
-            if (id === 'tete') {
-              toutes.forEach(x => { x.classList.remove('indice'); x.classList.add('juste'); });
-              if (!await juste(f, 'Oui' + NB + '! Elle a mal à la tête.', ligne(3))) return;
-              suite();
-            } else {
-              toutes.forEach(x => x.classList.add('faux'));
-              const montrer = await faux(f, MAL, 'Pas ' + PARTIES[id] + '. Écoute encore.'); if (montrer === null) return;
-              toutes.forEach(x => x.classList.remove('faux')); $('#leg').textContent = '';
-              if (montrer) $('.zc[data-id="tete"]', side).classList.add('indice');
-              ask();
-            }
-          }));
-          ask();
-        },
-
-        /* 2 · depuis quand : aujourd'hui c'est jeudi, on touche le premier jour du mal de tête */
+        /* 1 · depuis quand : elle le redit, puis on touche le premier jour du mal de tête (on est jeudi) */
         async quand(f) {
-          setSide(null); frameTo(CROPS.full, false);
-          await freeze(WIDE); if (!alive(f)) return;
-          state.ask = 'Depuis quand' + NB + '?';
           let choix = -1;
-          const ask = () => { Q.show('you', state.ask); goBtn('check', 'Valider', valider); yourTurn(); idle.set(tapHere($(`.jour[data-k="${choix < 0 ? AUJ : choix}"]`, side)), 5000); };
-          state.replay = async () => { setTurn('listen'); goBtn(null); await playSegment(DEPUIS[0], DEPUIS[1], WIDE); if (alive(f)) ask(); };
-          if (!await Q.say(state.ask, f)) return;
-          setSide(`<div class="panel glass"><p class="ptitre">Aujourd'hui, c'est jeudi. Touchez le premier jour du mal de tête.</p>
-            <div class="semaine">${JOURS.map((j, k) => `<button class="jour${k === AUJ ? ' auj' : ''}" data-k="${k}" ${k > AUJ ? 'disabled' : ''}><b>${j}</b><span>${k === AUJ ? 'auj.' : ''}</span><i class="tete">${TETE}</i></button>`).join('')}</div>
-            <p class="legende" id="leg"></p></div>`);
-          frameTo(CROPS.full, true);
           const marquer = k => {
             choix = k;
             $$('.jour', side).forEach(b => { const i = +b.dataset.k; b.classList.toggle('mal', i >= k && i <= AUJ); b.classList.toggle('debut', i === k); b.classList.remove('juste'); });
             const n = AUJ - k; $('#leg').textContent = n ? 'Depuis ' + ({ 0: 'lundi', 1: 'mardi', 2: 'mercredi' })[k] + NB + ': ' + nbJours(n) : "Depuis aujourd'hui";
           };
-          $$('.jour:not([disabled])', side).forEach(b => b.addEventListener('click', () => { if (document.body.dataset.turn !== 'you') return; A.unlock(); idle.reset(); sfx.tick(); marquer(+b.dataset.k); }));
+          const ask = () => { Q.show('you', state.ask); goBtn('check', 'Valider', valider); yourTurn(); idle.set(tapHere($(`.jour[data-k="${choix < 0 ? AUJ : choix}"]`, side)), 5000); };
+          if (!await avant(f, {
+            question: 'Depuis quand' + NB + '?', qui: 'patiente', seg: DEPUIS, sideW: 580, consigne: "Aujourd'hui, c'est jeudi. Elle a mal depuis quel jour" + NB + '?',
+            panneau: `<div class="panel glass"><p class="ptitre">Aujourd'hui, c'est jeudi. Clique sur le premier jour du mal de tête.</p><p class="mois">Novembre</p>
+              <div class="semaine">${JOURS.map((j, k) => `<button class="jour${k === AUJ ? ' auj' : ''}" data-k="${k}" ${k > AUJ ? 'disabled' : ''}><span>${j}</span><b>${9 + k}</b><small>${k === AUJ ? "aujourd'hui" : ''}</small><i class="tete">${TETE}</i></button>`).join('')}</div>
+              <p class="legende" id="leg"></p></div>`,
+            monte: p => $$('.jour:not([disabled])', p).forEach(b => b.addEventListener('click', () => { if (document.body.dataset.turn !== 'you') return; A.unlock(); idle.reset(); sfx.tick(); marquer(+b.dataset.k); })),
+          })) return;
+          state.replay = async () => { setTurn('listen'); goBtn(null); await playSegment(DEPUIS[0], DEPUIS[1], WIDE); if (alive(f)) ask(); };
           async function valider() {
             if (document.body.dataset.turn !== 'you') return;
-            if (choix < 0) { Q.show('you', 'Touchez un jour.'); return; }
+            if (choix < 0) { Q.show('you', 'Clique sur un jour.'); return; }
             setTurn('wait'); goBtn(null); idle.clear();
             if (choix === 1) {
               $$('.jour.mal', side).forEach(b => b.classList.add('juste'));
@@ -845,18 +871,16 @@ window.SCENARIO = (() => {
           ask();
         },
 
-        /* 3 · la fièvre : on fait monter le thermomètre au bon niveau */
+        /* 2 · la fièvre : elle redit « un peu », on fait monter le thermomètre au bon niveau */
         async fievre(f) {
-          setSide(null); frameTo(CROPS.full, false);
-          await freeze(WIDE); if (!alive(f)) return;
-          state.ask = 'Elle a de la fièvre' + NB + '?';
-          const ask = () => { Q.show('you', state.ask); yourTurn(); idle.set(tapHere($('.niveau[data-id="non"]', side)), 5000); };
-          state.replay = async () => { setTurn('listen'); await playSegment(FIEVRE[0], FIEVRE[1], WIDE); if (alive(f)) ask(); };
-          if (!await Q.say(state.ask, f)) return;
-          setSide(`<div class="panel glass"><p class="ptitre">Montez le thermomètre</p><div class="thermo">${THERMO}
-            <div class="niveaux">${NIV.map(n => `<button class="niveau" data-id="${n.id}" aria-pressed="false">${n.t}</button>`).join('')}</div></div></div>`);
-          frameTo(CROPS.full, true);
           const monter = y => { const m = $('#mercure'); m.style.y = y + 'px'; m.style.height = (212 - y) + 'px'; };
+          const ask = () => { Q.show('you', state.ask); yourTurn(); idle.set(tapHere($('.niveau[data-id="non"]', side)), 5000); };
+          if (!await avant(f, {
+            question: 'Elle a de la fièvre' + NB + '?', qui: 'patiente', seg: FIEVRE, sideW: 380, consigne: 'Monte le thermomètre.',
+            panneau: `<div class="panel glass"><p class="ptitre">Monte le thermomètre</p><div class="thermo">${THERMO}
+              <div class="niveaux">${NIV.map(n => `<button class="niveau" data-id="${n.id}" aria-pressed="false">${n.t}</button>`).join('')}</div></div></div>`,
+          })) return;
+          state.replay = async () => { setTurn('listen'); await playSegment(FIEVRE[0], FIEVRE[1], WIDE); if (alive(f)) ask(); };
           $$('.niveau', side).forEach(b => b.addEventListener('click', async () => {
             if (document.body.dataset.turn !== 'you') return;
             A.unlock(); idle.clear(); setTurn('wait');
@@ -874,6 +898,37 @@ window.SCENARIO = (() => {
               ask();
             }
           }));
+          ask();
+        },
+
+        /* 3 · dans la vidéo : le médecin redit sa phrase, puis on touche sur le bureau ce qu'il va donner */
+        async donne(f) {
+          const els = {};
+          const ask = () => { Q.show('you', state.ask); yourTurn(); cam.classList.add('asking'); idle.set(tapHere($('.hit[data-id="lunettes"]', cam)), 5000); };
+          if (!await avant(f, {
+            question: 'Le médecin va donner quoi' + NB + '?', qui: 'medecin', seg: DONNE, consigne: "Sur le bureau, clique sur ce qu'il va donner.",
+            monte: () => OBJETS.filter(o => o.svg).forEach(o => {
+              const d = document.createElement('div'); d.className = 'surimage objet'; d.innerHTML = o.svg;
+              Object.assign(d.style, { left: o.x + '%', top: o.y + '%', width: o.w + '%', height: o.h + '%' }); cam.append(d); els[o.id] = d;
+            }),
+          })) return;
+          state.replay = async () => { setTurn('listen'); cam.classList.remove('asking'); await playSegment(DONNE[0], DONNE[1], WIDE); if (alive(f)) ask(); };
+          zones(OBJETS.map(o => ({ ...o, label: o.nom })), async (id, ev, z) => {
+            setTurn('wait'); cam.classList.remove('asking');
+            if (z.ok) {
+              $$('.hit', cam).forEach(h => h.classList.remove('indice'));
+              const b = els[id]; b.classList.add('donne'); b.style.left = '27%'; b.style.top = '79%'; sfx.tick();
+              await wait(900); if (!alive(f)) return;
+              marque({ x: 27, y: 79, w: z.w, h: z.h }, 'Un médicament', 'juste');
+              if (!await juste(f, 'Oui' + NB + '! Un médicament.', DONNE)) return;
+              zones(null); suite();
+            } else {
+              cadreZone(z, 'faux'); marque(z, cap(z.nom), 'faux');
+              const montrer = await faux(f, DONNE, z.pas + ' Écoute encore.'); if (montrer === null) return;
+              if (montrer) $('.hit[data-id="medicament"]', cam).classList.add('indice');
+              ask();
+            }
+          });
           ask();
         },
       };
@@ -968,13 +1023,14 @@ window.SCENARIO = (() => {
     const Wd = innerWidth, Hd = innerHeight, wide = Wd / Hd >= 1.1, short = wide && Hd < 520, compact = !wide && Hd < 740;
     const B = document.body; B.classList.toggle('wide', wide); B.classList.toggle('tall', !wide); B.classList.toggle('short', short); B.classList.toggle('compact', compact);
     let c = (!wide && state.crop === CROPS.full) ? CROPS.fullTall : state.crop;
+    if (!wide && c.qui) c = { ...c, a: 1.2 };
     if (short && c.a < 1.3) c = { ...c, a: 1.3 };
     const sideOn = state.sideOn, split = state.split;
     const dockH = short ? 46 : 52, dockGap = short ? 10 : 16;
     let wx, wy, ww, wh;
     if (wide) {
       const vm = short ? 12 : 36, pad = short ? 14 : 32, gap = (sideOn || split) ? (short ? 14 : 28) : 0;
-      const sw = sideOn ? Math.min(short ? 230 : (state.sideW || 320), Wd * .32) : split ? Math.min(short ? 140 : 210, Wd * .18) : 0;
+      const sw = sideOn ? Math.min(short ? 230 : (state.sideW || 320), Wd * ((state.sideW || 320) > 400 ? .4 : .32)) : split ? Math.min(short ? 140 : 210, Wd * .18) : 0;
       const extra = sideOn ? sw + gap : split ? 2 * (sw + gap) : 0;
       const aw = Wd - pad * 2 - extra, ah = Hd - vm * 2 - dockGap - dockH;
       wh = Math.min(ah, aw / c.a); ww = wh * c.a;
@@ -1011,7 +1067,11 @@ window.SCENARIO = (() => {
     Object.assign(talk.style, { left: wx + inset + 'px', width: ww - inset * 2 + 'px', bottom: Hd - (wy + wh) + inset + 'px' });
     Object.assign(dock.style, { left: wx + ww / 2 + 'px', top: wy + wh + dockGap + 'px' });
   }
-  function frameTo(crop, sideOn, sideW) { state.crop = crop; state.sideOn = sideOn; state.sideW = sideW; layout(); side.classList.toggle('on', sideOn && side.children.length > 0); }
+  function frameTo(crop, sideOn, sideW) { state.crop = crop; state.focus = crop.qui || null; state.sideOn = sideOn; state.sideW = sideW; layout(); side.classList.toggle('on', sideOn && side.children.length > 0); }
+  /* resserrer la vidéo sur une personne, comme sur Kenji ; SC.plans dit où elle est dans chaque plan (les coupes de la vidéo) */
+  const PLANS = (SC.plans || [{ de: 0 }]).slice().sort((a, b) => a.de - b.de);
+  function cadre(qui, t) { let p = PLANS[0]; for (const x of PLANS) if (t >= x.de - .01) p = x; const cx = p.cx && p.cx[qui] != null ? p.cx[qui] : .5; return { a: SC.serre || .82, h: 1, cx, cy: .5, qui }; }
+  function focus(qui, sideOn, sideW) { frameTo(qui ? cadre(qui, vid.currentTime) : CROPS.full, sideOn, sideW); }
   addEventListener('resize', () => { document.body.classList.add('boot'); layout(); requestAnimationFrame(() => document.body.classList.remove('boot')); idle.reset(); });
 
   /* ================= médias : une seule voix à la fois ================= */
@@ -1195,6 +1255,7 @@ window.SCENARIO = (() => {
     talk.classList.toggle('playing', state.lineView);
     cam.classList.toggle('moving', movingTok === media);
     if (li !== curLine) renderLine(li);
+    if (state.focus) { const c = cadre(state.focus, t); if (Math.abs(c.cx - state.crop.cx) > .001) { state.crop = c; cam.style.transition = 'none'; layout(); void cam.offsetWidth; cam.style.transition = ''; } }
     if (li >= 0 && state.cc) $$('.w', lwords).forEach((span, k) => { const w = LINES[li].words[k]; span.classList.toggle('past', t >= w.e); span.classList.toggle('now', t >= w.s - .03 && t < w.e); });
     if (Math.abs(t - lastAmb) > .04 && vid.readyState >= 2) { lastAmb = t; try { amb.getContext('2d').drawImage(vid, 0, 0, amb.width, amb.height); } catch (e) {} }
     requestAnimationFrame(loop);
@@ -1279,10 +1340,28 @@ window.SCENARIO = (() => {
   function suivant(step) { const i = ORDRE.indexOf(step); return i >= 0 && i + 1 < ORDRE.length ? ORDRE[i + 1] : 'end'; }
   function suite(label = 'Suivant') { const nx = suivant(state.step); goBtn('next', label, () => go(nx)); setTurn('you'); }
 
+  /* avant(f, { question, qui, seg, panneau, sideW, consigne }) : la question ; la vidéo se resserre sur « qui » et rejoue
+     sa réplique ; puis le panneau du geste s'ouvre à côté (ou, sans panneau, la vidéo revient en grand pour toucher l'image) ;
+     enfin la consigne du geste. Renvoie false si on a quitté l'étape. */
+  async function avant(f, o) {
+    setSide(null); o.qui ? focus(o.qui, false) : frameTo(CROPS.full, false);
+    await freeze(WIDE); if (!alive(f)) return false;
+    if (!await Q.say(o.question, f)) return false;
+    setTurn('listen'); await wait(250); if (!alive(f)) return false;
+    await playSegment(o.seg[0], o.seg[1], WIDE); if (!alive(f)) return false;
+    if (o.panneau) { setSide(o.panneau, o.monte); o.qui ? focus(o.qui, true, o.sideW) : frameTo(CROPS.full, true, o.sideW); }
+    else { frameTo(CROPS.full, false); o.monte && o.monte(cam); }
+    state.ask = o.consigne;
+    await wait(o.panneau ? 450 : 650); if (!alive(f)) return false;
+    return Q.say(o.consigne, f);
+  }
+  /* un repère posé sur l'image : un cadre autour d'une zone, une étiquette au-dessus */
+  function cadreZone(z, cls) { const d = document.createElement('div'); d.className = 'surimage zcadre ' + (cls || ''); Object.assign(d.style, { left: z.x + '%', top: z.y + '%', width: z.w + '%', height: z.h + '%' }); cam.append(d); return d; }
+  function marque(z, txt, cls) { const d = document.createElement('div'); d.className = 'surimage marque ' + (cls || ''); d.textContent = txt; Object.assign(d.style, { left: z.x + z.w / 2 + '%', top: z.y + '%' }); cam.append(d); return d; }
   function go(step) {
     flow++; stopAll(); idle.clear();
     Object.assign(state, { step, ask: null, replay: null, lineView: false, essais: 0 });
-    cam.classList.remove('asking'); zones(null); spotOff(); goBtn(null); setSplit(false);
+    cam.classList.remove('asking'); zones(null); spotOff(); goBtn(null); setSplit(false); $$('.surimage', cam).forEach(e => e.remove());
     STEPS[step](flow);
   }
   const STEPS = {};
@@ -1319,6 +1398,7 @@ window.SCENARIO = (() => {
     });
     frameTo(CROPS.full, true);
     setTimeout(() => { if (alive(f)) flyFaces(); }, 800);
+    await wait(1500); if (!alive(f)) return;
     state.ask = 'Bravo' + NB + '! Tu as compris la scène.';
     if (!await Q.say(state.ask, f)) return;
     Q.mode('ok');
@@ -1351,7 +1431,7 @@ window.SCENARIO = (() => {
   var api = {
     $, $$, wait, NB, reduced, state, alive, go, suite, Q, goBtn, yourTurn, setTurn, frameTo, CROPS, WIDE, LINES, PEOPLE,
     freeze, playSegment, hear, phrase, ligne, tag, tagAll, hideTags, spotOn, spotAt, spotOff, rippleAt, zones, fly,
-    setSide, side, setSplit, binNo, binYes, deck, idle, at, tapHere, sfx, ICON, win, cam, layout, speak, unlock, faux, juste,
+    setSide, side, setSplit, binNo, binYes, deck, idle, at, tapHere, sfx, ICON, win, cam, layout, speak, unlock, faux, juste, focus, avant, cadreZone, marque,
     flow: () => flow,
   };
   Object.assign(STEPS, SC.etapes(api));

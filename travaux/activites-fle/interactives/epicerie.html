@@ -357,17 +357,19 @@ body[data-turn="listen"] .fleches, body[data-turn="wait"] .fleches, body[data-tu
 .corps .zc.juste { fill: rgba(255,77,100,.75); animation: battre 1.2s var(--apple) infinite; transform-box: fill-box; transform-origin: center; }
 .corps .zc.faux { fill: rgba(255,170,40,.55); }
 @keyframes battre { 50% { transform: scale(1.06); } }
-.semaine { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
-.jour { position: relative; height: 70px; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); transition: background .3s, transform .3s var(--spring); }
-.jour b { font-size: 15px; font-weight: 800; }
-.jour span { font-size: 11px; font-weight: 600; color: var(--text2); }
+.semaine { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+.jour { position: relative; height: 128px; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); transition: background .3s, transform .3s var(--spring); }
+.jour b { font-size: 32px; font-weight: 800; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1; }
+.jour span { font-size: 13px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: .06em; }
+.jour small { min-height: 13px; font-size: 10px; font-weight: 700; color: var(--text2); }
+.mois { margin: 0; text-align: center; font-weight: 800; font-size: 20px; letter-spacing: -.01em; }
 .jour:active { transform: scale(.92); }
 .jour.auj { box-shadow: inset 0 0 0 2px #fff; }
 .jour.mal { background: rgba(255,77,100,.55); }
 .jour.mal.juste { background: rgba(29,214,160,.55); }
-.jour .tete { position: absolute; top: -9px; right: -5px; width: 22px; height: 22px; display: none; }
+.jour .tete { position: absolute; top: -11px; right: -7px; width: 28px; height: 28px; display: none; }
 .jour.debut .tete { display: block; animation: pop .45s var(--spring) both; }
-.legende { margin: 0; text-align: center; font-size: 14px; font-weight: 600; color: var(--text2); min-height: 18px; }
+.legende { margin: 0; text-align: center; font-size: 17px; font-weight: 700; color: var(--text1, #fff); min-height: 22px; }
 .thermo { display: grid; grid-template-columns: 70px 1fr; gap: 14px; align-items: stretch; padding: 4px 6px; }
 .thermo svg { width: 70px; height: 240px; }
 .thermo .mercure { transition: y .7s var(--spring), height .7s var(--spring); }
@@ -390,7 +392,7 @@ body[data-turn="listen"] .corps, body[data-turn="wait"] .corps, body[data-turn="
 /* téléphone tenu droit : le panneau du geste passe sous la vidéo */
 body.tall .grille .tuile { height: 80px; } body.tall .tuile .pic { width: 40px; height: 40px; } body.tall .tuile .pic svg { width: 36px; height: 36px; }
 body.tall .plan { aspect-ratio: 1.5 / 1; } body.tall .corps svg { height: 200px; width: 112px; } body.tall .thermo svg { height: 190px; }
-body.tall .famille .tuile { height: 92px; } body.tall .jour { height: 58px; }
+body.tall .famille .tuile { height: 92px; } body.tall .jour { height: 76px; } body.tall .jour b { font-size: 20px; } body.tall .jour small { display: none; }
 body.tall .sac { min-height: 64px; } body.tall .sac .sacpic svg { width: 46px; height: 50px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
@@ -407,8 +409,23 @@ body.tall .sac { min-height: 64px; } body.tall .sac .sacpic svg { width: 46px; h
 .cam.asking .hit.indice { animation: indiceH 1.1s var(--apple) infinite; }
 @keyframes indiceH { 50% { box-shadow: inset 0 0 0 3px rgba(75,227,180,.9); background: rgba(75,227,180,.18); } }
 .jour[disabled] { opacity: .35; }
-.jour .tete svg { width: 22px; height: 22px; display: block; }
+.jour .tete svg { width: 28px; height: 28px; display: block; }
 .corps .zc.faux, .plan .bat.faux { transition: fill .15s; }
+
+/* repères posés sur l'image : cadre d'une zone touchée, étiquette, objets sur la scène */
+.surimage { position: absolute; pointer-events: none; }
+.zcadre { z-index: 1; border-radius: 22px; box-shadow: inset 0 0 0 3px var(--ok); background: rgba(75,227,180,.14); animation: pop .45s var(--spring) both; }
+.zcadre.faux { box-shadow: inset 0 0 0 3px var(--try); background: rgba(255,170,40,.16); animation: pop .45s var(--spring) both, s-efface .5s 1.4s forwards; }
+@keyframes s-efface { to { opacity: 0; } }
+.marque { z-index: 3; transform: translate(-50%, calc(-100% - 8px)); white-space: nowrap; padding: 7px 13px; border-radius: 999px; background: rgba(255,255,255,.96); color: var(--ink); font-weight: 800; font-size: 15px; letter-spacing: -.01em; animation: pop .45s var(--spring) both; }
+.marque.juste { background: var(--ok); }
+.marque.faux { background: #FFD9A0; animation: pop .45s var(--spring) both, s-efface .5s 1.4s forwards; }
+.objet { position: absolute; z-index: 1; display: grid; place-items: center; transition: left .9s var(--apple), top .9s var(--apple), transform .4s var(--spring), opacity .4s; }
+.objet svg { width: 100%; height: 100%; display: block; }
+.objet.donne { transform: rotate(-8deg) scale(1.1); }
+.sacv { position: absolute; z-index: 1; display: flex; gap: 4px; transform: translate(-50%, -50%); }
+.sacv .mini { width: 34px; height: 34px; border-radius: 50%; }
+.sacv .mini svg { width: 24px; height: 24px; }
 
 </style></head><body>
 <script>
@@ -719,14 +736,14 @@ window.DONNEES = {
  },
  "clips": {
   "Bravo ! Tu as compris la scène.": {
-   "src": "medias/voix-8b808bc38c.mp3",
+   "src": "medias/voix-bc8b1281b9.mp3",
    "w": [
     0.0,
-    0.5,
-    0.66,
-    0.73,
-    1.0,
-    1.11
+    0.89,
+    1.11,
+    1.18,
+    1.57,
+    1.74
    ]
   },
   "Qu'est-ce que la cliente achète ?": {
@@ -739,6 +756,19 @@ window.DONNEES = {
     1.07
    ]
   },
+  "Dans la boutique, clique sur ce qu'elle achète.": {
+   "src": "medias/voix-0b9e090043.mp3",
+   "w": [
+    0.0,
+    0.23,
+    0.35,
+    1.03,
+    1.33,
+    1.5,
+    1.57,
+    1.79
+   ]
+  },
   "Combien ça coûte ?": {
    "src": "medias/voix-056892f02f.mp3",
    "w": [
@@ -746,100 +776,111 @@ window.DONNEES = {
     0.4,
     0.53
    ]
+  },
+  "Pose l'argent, puis clique sur Payer.": {
+   "src": "medias/voix-9755ccb141.mp3",
+   "w": [
+    0.0,
+    0.33,
+    0.82,
+    1.1,
+    1.39,
+    1.6
+   ]
   }
  }
 };
 
 </script>
 <script>
-/* À l'épicerie : ce que la cliente achète va dans le sac ; puis on paie, avec des pièces et des billets. */
+/* À l'épicerie : on touche dans la boutique, sur l'image, ce que la cliente achète (ça part dans son sac en papier) ;
+   puis le vendeur redit le prix, la vidéo resserrée sur lui, et on pose l'argent sur le comptoir. */
 window.SCENARIO = (() => {
   const SVG = {
-    sac: '<svg viewBox="0 0 60 64"><path d="M8 18h44l-3 42H11z" fill="#C8955A"/><path d="M8 18l6-8h32l6 8z" fill="#B07D45"/><path d="M22 25c0 7 16 7 16 0" stroke="#7A5128" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg>',
     pommes: '<svg viewBox="0 0 48 48"><path d="M24 15c-4-3-12-3-14 5-2 9 4 21 10 21 2 0 3-1 4-1s2 1 4 1c6 0 12-12 10-21-2-8-10-8-14-5z" fill="#E5383B"/><path d="M24 15c0-4 1-7 4-9" stroke="#6B4226" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M26 11c4-3 8-2 9 0-3 3-7 3-9 0z" fill="#3FA34D"/><ellipse cx="16" cy="22" rx="2.5" ry="4.5" fill="#fff" opacity=".35"/></svg>',
     pain: '<svg viewBox="0 0 48 48"><path d="M9 34C5 30 27 10 34 9c5-1 8 2 6 6C38 22 17 40 13 38z" fill="#D9A15B"/><path d="M17 28l4 2M22 23l4 2M27 18l4 2M32 14l3 1.5" stroke="#B5762F" stroke-width="2.4" stroke-linecap="round"/></svg>',
-    lait: '<svg viewBox="0 0 48 48"><path d="M15 17l4-8h10l4 8v26H15z" fill="#fff" stroke="#9FB4D6" stroke-width="2" stroke-linejoin="round"/><path d="M15 17h18" stroke="#9FB4D6" stroke-width="2"/><rect x="18" y="23" width="12" height="12" rx="3" fill="#3AA8FF"/><path d="M19 9h10V5H19z" fill="#3AA8FF"/></svg>',
-    oranges: '<svg viewBox="0 0 48 48"><circle cx="24" cy="28" r="14" fill="#FF9F1C"/><circle cx="19" cy="23" r="1.3" fill="#E07F00"/><circle cx="28" cy="31" r="1.3" fill="#E07F00"/><circle cx="23" cy="35" r="1.1" fill="#E07F00"/><circle cx="31" cy="24" r="1.1" fill="#E07F00"/><path d="M24 14c2-4 6-5 9-4-2 4-6 5-9 4z" fill="#3FA34D"/></svg>',
-    fromage: '<svg viewBox="0 0 48 48"><path d="M5 35L31 14l12 7v14z" fill="#FFD166" stroke="#E0A800" stroke-width="1.6" stroke-linejoin="round"/><circle cx="20" cy="29" r="2.8" fill="#E9B949"/><circle cx="31" cy="25" r="2" fill="#E9B949"/><circle cx="35" cy="31" r="1.7" fill="#E9B949"/></svg>',
-    oeufs: '<svg viewBox="0 0 48 48"><ellipse cx="18" cy="28" rx="9" ry="12" fill="#F4E3C9" stroke="#D9C2A0" stroke-width="1.5"/><ellipse cx="31" cy="30" rx="8.5" ry="11" fill="#FFF6E8" stroke="#D9C2A0" stroke-width="1.5"/></svg>',
   };
+  /* les produits de la boutique, repérés sur l'image où la vidéo s'arrête (9,2 s), en % */
+  const PROD = [
+    { id: 'pommes', nom: 'des pommes', ok: true, zones: [{ x: 0, y: 59, w: 12, h: 11 }, { x: 21, y: 92, w: 27, h: 8 }, { x: 82, y: 56, w: 7, h: 10 }] },
+    { id: 'pain', nom: 'du pain', ok: true, zones: [{ x: 56, y: 54, w: 8, h: 10 }, { x: 44, y: 55, w: 7, h: 12 }] },
+    { id: 'confiture', nom: 'de la confiture', pas: 'Pas de confiture.', zones: [{ x: 0, y: 4, w: 18, h: 38 }] },
+    { id: 'vin', nom: 'du vin', pas: 'Pas de vin.', zones: [{ x: 40, y: 13, w: 17, h: 32 }] },
+    { id: 'legumes', nom: 'des légumes', pas: 'Pas de légumes.', zones: [{ x: 6, y: 52, w: 9, h: 9 }, { x: 34, y: 52, w: 9, h: 9 }] },
+    { id: 'oranges', nom: 'des oranges', pas: "Pas d'oranges.", zones: [{ x: 86, y: 78, w: 10, h: 10 }] },
+  ];
+  const SAC = { x: 40, y: 81 };     // le sac en papier, sur le comptoir
   const cap = s => s[0].toUpperCase() + s.slice(1);
   const euros = v => (Number.isInteger(v) ? String(v) : v.toFixed(2).replace('.', ','));
   return {
+    plans: [{ de: 0, cx: { vendeur: .25, cliente: .72 } }, { de: 4.17, cx: { vendeur: .35, cliente: .6 } }, { de: 5.42, cx: { vendeur: .25, cliente: .72 } }],
     ordre: ['sac', 'payer'],
     etapes: A => {
-      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, frameTo, CROPS, WIDE, freeze, playSegment, phrase, setSide, side, idle, tapHere, sfx, fly, faux, juste, suite, goBtn } = A;
-      const PROD = [
-        { id: 'lait', nom: 'du lait' }, { id: 'pommes', nom: 'des pommes', ok: true, seg: phrase('je voudrais un kilo de pommes') },
-        { id: 'oranges', nom: 'des oranges' }, { id: 'pain', nom: 'du pain', ok: true, seg: phrase('oui je voudrais du pain') },
-        { id: 'fromage', nom: 'du fromage' }, { id: 'oeufs', nom: 'des œufs' },
-      ];
-      const ACHATS = [phrase('je voudrais un kilo de pommes')[0], phrase('oui je voudrais du pain')[1]];
+      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, WIDE, playSegment, phrase, side, idle, tapHere, sfx, fly, faux, juste, suite, goBtn, zones, cam, avant, cadreZone, marque } = A;
+      PROD[0].seg = phrase('je voudrais un kilo de pommes'); PROD[1].seg = phrase('oui je voudrais du pain');
+      const ACHATS = [PROD[0].seg[0], PROD[1].seg[1]];
       const PRIX = phrase('cela fait cinq euros'), SEG_PRIX = [phrase('combien ça coûte')[0], PRIX[1]];
       return {
-        /* 1 · le sac : on y met ce que la cliente achète */
+        /* 1 · dans la boutique : toucher ce qu'elle achète, ça vole dans le sac en papier du comptoir */
         async sac(f) {
-          setSide(null); frameTo(CROPS.full, false);
-          await freeze(WIDE); if (!alive(f)) return;
-          state.ask = "Qu'est-ce que la cliente achète" + NB + '?';
+          let sac;
+          const ZL = PROD.flatMap(p => p.zones.map((z, k) => ({ ...z, id: p.id + '-' + k, label: p.nom, p })));
           const pris = new Set(), reste = () => PROD.filter(p => p.ok && !pris.has(p.id));
-          const ask = () => { Q.show('you', state.ask); yourTurn(); idle.set(tapHere($('.tuile', side)), 5000); };
-          state.replay = async () => { setTurn('listen'); await playSegment(ACHATS[0], ACHATS[1], WIDE); if (alive(f)) ask(); };
-          if (!await Q.say(state.ask, f)) return;
-          setSide(`<div class="panel glass"><div class="sac" id="sac"><div class="sacpic">${SVG.sac}</div><div class="dans" id="dans"></div></div>
-            <div class="grille">${PROD.map(p => `<button class="tuile" data-id="${p.id}"><span class="pic">${SVG[p.id]}</span><span class="nom">${p.nom}</span></button>`).join('')}</div></div>`);
-          frameTo(CROPS.full, true);
-          $$('.tuile', side).forEach(b => b.addEventListener('click', async () => {
-            if (document.body.dataset.turn !== 'you') return;
-            A.unlock(); idle.clear(); setTurn('wait');
-            const p = PROD.find(x => x.id === b.dataset.id);
+          const ask = () => { Q.show('you', state.ask); yourTurn(); cam.classList.add('asking'); idle.set(tapHere($('.hit[data-id="vin-0"]', cam)), 5000); };
+          if (!await avant(f, {
+            question: "Qu'est-ce que la cliente achète" + NB + '?', seg: ACHATS, consigne: "Dans la boutique, clique sur ce qu'elle achète.",
+            monte: () => { sac = document.createElement('div'); sac.className = 'surimage sacv'; Object.assign(sac.style, { left: SAC.x + '%', top: SAC.y + '%' }); cam.append(sac); },
+          })) return;
+          state.replay = async () => { setTurn('listen'); cam.classList.remove('asking'); await playSegment(ACHATS[0], ACHATS[1], WIDE); if (alive(f)) ask(); };
+          zones(ZL, async (id, ev, z) => {
+            setTurn('wait'); cam.classList.remove('asking');
+            const p = z.p;
+            if (p.ok && pris.has(p.id)) { Q.show('you', cap(p.nom) + NB + ': déjà dans le sac.'); setTimeout(() => { if (alive(f)) ask(); }, 900); return; }
             if (p.ok) {
-              b.classList.remove('indice'); b.classList.add('pris'); pris.add(p.id);
-              await fly(b, $('#sac'), `<div class="mini" style="width:100%;height:100%">${SVG[p.id]}</div>`, { scale: .4 });
-              $('#dans').insertAdjacentHTML('beforeend', `<span class="mini">${SVG[p.id]}</span>`);
-              $('#sac').classList.add('chaud'); setTimeout(() => { const s = $('#sac'); if (s) s.classList.remove('chaud'); }, 600);
+              pris.add(p.id); sfx.tick();
+              $$(`.hit[data-id^="${p.id}-"]`, cam).forEach(h => h.classList.remove('indice'));
+              const c = cadreZone(z); p.zones.filter(x => x !== p.zones[+id.split('-')[1]]).forEach(x => cadreZone(x)); marque(z, cap(p.nom), 'juste');
+              await fly(c, sac, `<div class="mini" style="width:100%;height:100%;border-radius:50%">${SVG[p.id]}</div>`, { scale: .3 });
+              sac.insertAdjacentHTML('beforeend', `<span class="mini">${SVG[p.id]}</span>`);
               if (!await juste(f, 'Oui' + NB + '! ' + cap(p.nom) + '.', p.seg)) return;
               if (reste().length) ask();
-              else { Q.show('ok', 'Oui' + NB + '! Des pommes et du pain.'); suite(); }
+              else { zones(null); Q.show('ok', 'Oui' + NB + '! Des pommes et du pain.'); suite(); }
             } else {
-              b.classList.add('faux'); b.classList.remove('shake'); void b.offsetWidth; b.classList.add('shake');
-              const montrer = await faux(f, ACHATS); if (montrer === null) return;
-              b.classList.remove('faux');
-              if (montrer) reste().forEach(x => $(`.tuile[data-id="${x.id}"]`, side).classList.add('indice'));
+              cadreZone(z, 'faux'); marque(z, cap(p.nom), 'faux');
+              const montrer = await faux(f, ACHATS, p.pas + ' Écoute encore.'); if (montrer === null) return;
+              if (montrer) reste().forEach(x => $$(`.hit[data-id^="${x.id}-"]`, cam).forEach(h => h.classList.add('indice')));
               ask();
             }
-          }));
+          });
           ask();
         },
 
-        /* 2 · payer : poser sur le comptoir la somme que dit le vendeur (toute façon de faire cinq euros est juste) */
+        /* 2 · payer : le vendeur redit le prix (la vidéo resserrée sur lui), on pose l'argent sur le comptoir */
         async payer(f) {
-          setSide(null); frameTo(CROPS.full, false);
-          await freeze(WIDE); if (!alive(f)) return;
-          state.ask = 'Combien ça coûte' + NB + '?';
           let total = 0;
-          const ask = () => { Q.show('you', state.ask); goBtn('check', 'Payer', valider); yourTurn(); idle.set(tapHere($('.bourse .argent', side)), 5000); };
-          state.replay = async () => { setTurn('listen'); goBtn(null); await playSegment(SEG_PRIX[0], SEG_PRIX[1], WIDE); if (alive(f)) ask(); };
-          if (!await Q.say(state.ask, f)) return;
           const MONNAIE = [{ v: .5, c: 'piece', t: '50' + NB + 'c' }, { v: 1, c: 'piece blanche', t: '1' + NB + '€' }, { v: 2, c: 'piece deux', t: '2' + NB + '€' }, { v: 5, c: 'billet cinq', t: '5' + NB + '€' }, { v: 10, c: 'billet dix', t: '10' + NB + '€' }];
           const argent = (m, k) => `<button class="argent ${m.c}" data-v="${m.v}" data-k="${k}" aria-label="${m.t}">${m.t}</button>`;
-          setSide(`<div class="panel glass"><p class="ptitre">Posez l'argent sur le comptoir</p>
-            <div class="plateau" id="plateau"><div class="somme"><span id="somme">0</span><small>€</small></div><div class="posees" id="posees"></div></div>
-            <div class="bourse">${MONNAIE.map(argent).join('')}</div></div>`);
-          frameTo(CROPS.full, true);
           const maj = () => { total = Math.round([...$$('#posees .argent', side)].reduce((s, b) => s + +b.dataset.v, 0) * 100) / 100; $('#somme').textContent = euros(total); };
           const poser = k => {
             const box = document.createElement('div'); box.innerHTML = argent(MONNAIE[k], k); const b = box.firstChild;
             $('#posees').append(b); maj();
             b.addEventListener('click', () => { if (document.body.dataset.turn !== 'you') return; sfx.tick(); b.remove(); maj(); });
           };
-          $$('.bourse .argent', side).forEach(b => b.addEventListener('click', () => {
-            if (document.body.dataset.turn !== 'you') return;
-            A.unlock(); idle.reset(); sfx.coin(); poser(+b.dataset.k);
-          }));
+          const ask = () => { Q.show('you', state.ask); goBtn('check', 'Payer', valider); yourTurn(); idle.set(tapHere($('.bourse .argent', side)), 5000); };
+          if (!await avant(f, {
+            question: 'Combien ça coûte' + NB + '?', qui: 'vendeur', seg: SEG_PRIX, sideW: 400, consigne: "Pose l'argent, puis clique sur Payer.",
+            panneau: `<div class="panel glass"><p class="ptitre">Pose l'argent sur le comptoir</p>
+              <div class="plateau" id="plateau"><div class="somme"><span id="somme">0</span><small>€</small></div><div class="posees" id="posees"></div></div>
+              <div class="bourse">${MONNAIE.map(argent).join('')}</div></div>`,
+            monte: p => $$('.bourse .argent', p).forEach(b => b.addEventListener('click', () => {
+              if (document.body.dataset.turn !== 'you') return;
+              A.unlock(); idle.reset(); sfx.coin(); poser(+b.dataset.k);
+            })),
+          })) return;
+          state.replay = async () => { setTurn('listen'); goBtn(null); await playSegment(SEG_PRIX[0], SEG_PRIX[1], WIDE); if (alive(f)) ask(); };
           async function valider() {
             if (document.body.dataset.turn !== 'you') return;
-            if (!total) { Q.show('you', "Posez l'argent sur le comptoir."); return; }
+            if (!total) { Q.show('you', "Pose l'argent sur le comptoir."); return; }
             setTurn('wait'); goBtn(null); idle.clear();
             if (total === 5) {
               $('#plateau').classList.add('juste');
@@ -860,8 +901,8 @@ window.SCENARIO = (() => {
     },
     bilan: A => ({
       faits: {
-        vendeur: [{ text: 'Vous désirez quoi ?', seg: A.ligne(2) }, { text: 'Merci, bonne journée.', seg: A.ligne(10) }],
-        cliente: [{ text: 'un kilo de pommes', seg: A.phrase('un kilo de pommes') }, { text: 'du pain', seg: A.phrase('du pain') }, { text: '5 €', seg: A.phrase('cela fait cinq euros') }],
+        vendeur: [{ text: 'Vous désirez quoi' + A.NB + '?', seg: A.ligne(2) }, { text: 'Cela fait cinq euros.', seg: A.ligne(8) }],
+        cliente: [{ text: 'un kilo de pommes', seg: A.phrase('un kilo de pommes') }, { text: 'du pain', seg: A.phrase('du pain') }, { text: 'Combien ça coûte' + A.NB + '?', seg: A.ligne(7) }],
       },
     }),
   };
@@ -948,13 +989,14 @@ window.SCENARIO = (() => {
     const Wd = innerWidth, Hd = innerHeight, wide = Wd / Hd >= 1.1, short = wide && Hd < 520, compact = !wide && Hd < 740;
     const B = document.body; B.classList.toggle('wide', wide); B.classList.toggle('tall', !wide); B.classList.toggle('short', short); B.classList.toggle('compact', compact);
     let c = (!wide && state.crop === CROPS.full) ? CROPS.fullTall : state.crop;
+    if (!wide && c.qui) c = { ...c, a: 1.2 };
     if (short && c.a < 1.3) c = { ...c, a: 1.3 };
     const sideOn = state.sideOn, split = state.split;
     const dockH = short ? 46 : 52, dockGap = short ? 10 : 16;
     let wx, wy, ww, wh;
     if (wide) {
       const vm = short ? 12 : 36, pad = short ? 14 : 32, gap = (sideOn || split) ? (short ? 14 : 28) : 0;
-      const sw = sideOn ? Math.min(short ? 230 : (state.sideW || 320), Wd * .32) : split ? Math.min(short ? 140 : 210, Wd * .18) : 0;
+      const sw = sideOn ? Math.min(short ? 230 : (state.sideW || 320), Wd * ((state.sideW || 320) > 400 ? .4 : .32)) : split ? Math.min(short ? 140 : 210, Wd * .18) : 0;
       const extra = sideOn ? sw + gap : split ? 2 * (sw + gap) : 0;
       const aw = Wd - pad * 2 - extra, ah = Hd - vm * 2 - dockGap - dockH;
       wh = Math.min(ah, aw / c.a); ww = wh * c.a;
@@ -991,7 +1033,11 @@ window.SCENARIO = (() => {
     Object.assign(talk.style, { left: wx + inset + 'px', width: ww - inset * 2 + 'px', bottom: Hd - (wy + wh) + inset + 'px' });
     Object.assign(dock.style, { left: wx + ww / 2 + 'px', top: wy + wh + dockGap + 'px' });
   }
-  function frameTo(crop, sideOn, sideW) { state.crop = crop; state.sideOn = sideOn; state.sideW = sideW; layout(); side.classList.toggle('on', sideOn && side.children.length > 0); }
+  function frameTo(crop, sideOn, sideW) { state.crop = crop; state.focus = crop.qui || null; state.sideOn = sideOn; state.sideW = sideW; layout(); side.classList.toggle('on', sideOn && side.children.length > 0); }
+  /* resserrer la vidéo sur une personne, comme sur Kenji ; SC.plans dit où elle est dans chaque plan (les coupes de la vidéo) */
+  const PLANS = (SC.plans || [{ de: 0 }]).slice().sort((a, b) => a.de - b.de);
+  function cadre(qui, t) { let p = PLANS[0]; for (const x of PLANS) if (t >= x.de - .01) p = x; const cx = p.cx && p.cx[qui] != null ? p.cx[qui] : .5; return { a: SC.serre || .82, h: 1, cx, cy: .5, qui }; }
+  function focus(qui, sideOn, sideW) { frameTo(qui ? cadre(qui, vid.currentTime) : CROPS.full, sideOn, sideW); }
   addEventListener('resize', () => { document.body.classList.add('boot'); layout(); requestAnimationFrame(() => document.body.classList.remove('boot')); idle.reset(); });
 
   /* ================= médias : une seule voix à la fois ================= */
@@ -1175,6 +1221,7 @@ window.SCENARIO = (() => {
     talk.classList.toggle('playing', state.lineView);
     cam.classList.toggle('moving', movingTok === media);
     if (li !== curLine) renderLine(li);
+    if (state.focus) { const c = cadre(state.focus, t); if (Math.abs(c.cx - state.crop.cx) > .001) { state.crop = c; cam.style.transition = 'none'; layout(); void cam.offsetWidth; cam.style.transition = ''; } }
     if (li >= 0 && state.cc) $$('.w', lwords).forEach((span, k) => { const w = LINES[li].words[k]; span.classList.toggle('past', t >= w.e); span.classList.toggle('now', t >= w.s - .03 && t < w.e); });
     if (Math.abs(t - lastAmb) > .04 && vid.readyState >= 2) { lastAmb = t; try { amb.getContext('2d').drawImage(vid, 0, 0, amb.width, amb.height); } catch (e) {} }
     requestAnimationFrame(loop);
@@ -1259,10 +1306,28 @@ window.SCENARIO = (() => {
   function suivant(step) { const i = ORDRE.indexOf(step); return i >= 0 && i + 1 < ORDRE.length ? ORDRE[i + 1] : 'end'; }
   function suite(label = 'Suivant') { const nx = suivant(state.step); goBtn('next', label, () => go(nx)); setTurn('you'); }
 
+  /* avant(f, { question, qui, seg, panneau, sideW, consigne }) : la question ; la vidéo se resserre sur « qui » et rejoue
+     sa réplique ; puis le panneau du geste s'ouvre à côté (ou, sans panneau, la vidéo revient en grand pour toucher l'image) ;
+     enfin la consigne du geste. Renvoie false si on a quitté l'étape. */
+  async function avant(f, o) {
+    setSide(null); o.qui ? focus(o.qui, false) : frameTo(CROPS.full, false);
+    await freeze(WIDE); if (!alive(f)) return false;
+    if (!await Q.say(o.question, f)) return false;
+    setTurn('listen'); await wait(250); if (!alive(f)) return false;
+    await playSegment(o.seg[0], o.seg[1], WIDE); if (!alive(f)) return false;
+    if (o.panneau) { setSide(o.panneau, o.monte); o.qui ? focus(o.qui, true, o.sideW) : frameTo(CROPS.full, true, o.sideW); }
+    else { frameTo(CROPS.full, false); o.monte && o.monte(cam); }
+    state.ask = o.consigne;
+    await wait(o.panneau ? 450 : 650); if (!alive(f)) return false;
+    return Q.say(o.consigne, f);
+  }
+  /* un repère posé sur l'image : un cadre autour d'une zone, une étiquette au-dessus */
+  function cadreZone(z, cls) { const d = document.createElement('div'); d.className = 'surimage zcadre ' + (cls || ''); Object.assign(d.style, { left: z.x + '%', top: z.y + '%', width: z.w + '%', height: z.h + '%' }); cam.append(d); return d; }
+  function marque(z, txt, cls) { const d = document.createElement('div'); d.className = 'surimage marque ' + (cls || ''); d.textContent = txt; Object.assign(d.style, { left: z.x + z.w / 2 + '%', top: z.y + '%' }); cam.append(d); return d; }
   function go(step) {
     flow++; stopAll(); idle.clear();
     Object.assign(state, { step, ask: null, replay: null, lineView: false, essais: 0 });
-    cam.classList.remove('asking'); zones(null); spotOff(); goBtn(null); setSplit(false);
+    cam.classList.remove('asking'); zones(null); spotOff(); goBtn(null); setSplit(false); $$('.surimage', cam).forEach(e => e.remove());
     STEPS[step](flow);
   }
   const STEPS = {};
@@ -1299,6 +1364,7 @@ window.SCENARIO = (() => {
     });
     frameTo(CROPS.full, true);
     setTimeout(() => { if (alive(f)) flyFaces(); }, 800);
+    await wait(1500); if (!alive(f)) return;
     state.ask = 'Bravo' + NB + '! Tu as compris la scène.';
     if (!await Q.say(state.ask, f)) return;
     Q.mode('ok');
@@ -1331,7 +1397,7 @@ window.SCENARIO = (() => {
   var api = {
     $, $$, wait, NB, reduced, state, alive, go, suite, Q, goBtn, yourTurn, setTurn, frameTo, CROPS, WIDE, LINES, PEOPLE,
     freeze, playSegment, hear, phrase, ligne, tag, tagAll, hideTags, spotOn, spotAt, spotOff, rippleAt, zones, fly,
-    setSide, side, setSplit, binNo, binYes, deck, idle, at, tapHere, sfx, ICON, win, cam, layout, speak, unlock, faux, juste,
+    setSide, side, setSplit, binNo, binYes, deck, idle, at, tapHere, sfx, ICON, win, cam, layout, speak, unlock, faux, juste, focus, avant, cadreZone, marque,
     flow: () => flow,
   };
   Object.assign(STEPS, SC.etapes(api));

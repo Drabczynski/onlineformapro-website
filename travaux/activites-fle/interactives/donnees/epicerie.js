@@ -305,14 +305,14 @@ window.DONNEES = {
  },
  "clips": {
   "Bravo ! Tu as compris la scène.": {
-   "src": "medias/voix-8b808bc38c.mp3",
+   "src": "medias/voix-bc8b1281b9.mp3",
    "w": [
     0.0,
-    0.5,
-    0.66,
-    0.73,
-    1.0,
-    1.11
+    0.89,
+    1.11,
+    1.18,
+    1.57,
+    1.74
    ]
   },
   "Qu'est-ce que la cliente achète ?": {
@@ -325,12 +325,36 @@ window.DONNEES = {
     1.07
    ]
   },
+  "Dans la boutique, clique sur ce qu'elle achète.": {
+   "src": "medias/voix-0b9e090043.mp3",
+   "w": [
+    0.0,
+    0.23,
+    0.35,
+    1.03,
+    1.33,
+    1.5,
+    1.57,
+    1.79
+   ]
+  },
   "Combien ça coûte ?": {
    "src": "medias/voix-056892f02f.mp3",
    "w": [
     0.0,
     0.4,
     0.53
+   ]
+  },
+  "Pose l'argent, puis clique sur Payer.": {
+   "src": "medias/voix-9755ccb141.mp3",
+   "w": [
+    0.0,
+    0.33,
+    0.82,
+    1.1,
+    1.39,
+    1.6
    ]
   }
  }

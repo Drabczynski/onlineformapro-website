@@ -1,4 +1,5 @@
-/* Le chemin de la pharmacie : on guide le monsieur sur un plan avec les flèches, puis on montre le bâtiment. */
+/* Le chemin de la pharmacie : la dame redit le chemin (la vidéo resserrée sur elle), on guide le monsieur sur le plan avec
+   les flèches ; puis elle redit où est la pharmacie, et on clique sur le bâtiment. */
 window.SCENARIO = (() => {
   const FL = {
     g: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>',
@@ -29,9 +30,10 @@ window.SCENARIO = (() => {
     </svg></div>`;
 
   return {
+    plans: [{ de: 0, cx: { homme: .31, dame: .67 } }, { de: 2.46, cx: { homme: .5, dame: .6 } }, { de: 4.63, cx: { homme: .31, dame: .67 } }],
     ordre: ['chemin', 'ou'],
     etapes: A => {
-      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, frameTo, CROPS, WIDE, freeze, playSegment, phrase, ligne, setSide, side, idle, tapHere, sfx, faux, juste, suite, wait } = A;
+      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, WIDE, playSegment, phrase, ligne, side, idle, tapHere, sfx, faux, juste, suite, wait, avant } = A;
       const DROIT = phrase('allez tout droit'), FEU = phrase('puis tournez à droite au feu'), CHEMIN = ligne(1), FACE = ligne(3);
       let pos = 0;
       const placer = (k, vite) => {
@@ -46,17 +48,17 @@ window.SCENARIO = (() => {
         if (m) m.animate([{ transform: `translate(${x}px, ${y}px)` }, { transform: `translate(${x + d[0]}px, ${y + d[1]}px)` }, { transform: `translate(${x}px, ${y}px)` }], { duration: 520, easing: 'ease-in-out' });
       };
       return {
-        /* 1 · le chemin : tout droit, puis à droite au feu */
+        /* 1 · le chemin : la dame le redit, puis on guide le monsieur (tout droit, puis à droite au feu) */
         async chemin(f) {
-          setSide(null); frameTo(CROPS.full, false);
-          await freeze(WIDE); if (!alive(f)) return;
-          state.ask = 'Écoute la dame. Montre le chemin.'; pos = 0;
+          pos = 0;
           const ask = () => { Q.show('you', pos === 0 ? state.ask : 'Et au feu' + NB + '?'); yourTurn(); idle.set(tapHere($('.fleche', side)), 5000); };
+          if (!await avant(f, {
+            question: 'Écoute la dame.', qui: 'dame', seg: CHEMIN, sideW: 540, consigne: 'Sur le plan, guide le monsieur avec les flèches.',
+            panneau: `<div class="panel glass"><p class="ptitre">Guide le monsieur jusqu'à la pharmacie</p>${plan()}
+              <div class="fleches">${['g', 'h', 'd'].map(k => `<button class="fleche" data-k="${k}" aria-label="${NOM[k]}">${FL[k]}</button>`).join('')}</div></div>`,
+            monte: () => requestAnimationFrame(() => placer(0, true)),
+          })) return;
           state.replay = async () => { setTurn('listen'); await playSegment(CHEMIN[0], CHEMIN[1], WIDE); if (alive(f)) ask(); };
-          if (!await Q.say(state.ask, f)) return;
-          setSide(`<div class="panel glass"><p class="ptitre">Guidez le monsieur jusqu'à la pharmacie</p>${plan()}
-            <div class="fleches">${['g', 'h', 'd'].map(k => `<button class="fleche" data-k="${k}" aria-label="${NOM[k]}">${FL[k]}</button>`).join('')}</div></div>`);
-          frameTo(CROPS.full, true); placer(0, true);
           $$('.fleche', side).forEach(b => b.addEventListener('click', async () => {
             if (document.body.dataset.turn !== 'you') return;
             A.unlock(); idle.clear(); setTurn('wait');
@@ -81,17 +83,16 @@ window.SCENARIO = (() => {
           ask();
         },
 
-        /* 2 · le bâtiment : la pharmacie est en face de la boulangerie */
+        /* 2 · le bâtiment : la dame redit « en face de la boulangerie », on clique sur la pharmacie */
         async ou(f) {
-          setSide(null); frameTo(CROPS.full, false);
-          await freeze(WIDE); if (!alive(f)) return;
-          state.ask = 'Où est la pharmacie' + NB + '?';
           const ask = () => { Q.show('you', state.ask); yourTurn(); idle.set(tapHere($('.bat[data-id="b8"]', side)), 5000); };
+          if (!await avant(f, {
+            question: 'Où est la pharmacie' + NB + '?', qui: 'dame', seg: FACE, sideW: 540, consigne: 'Sur le plan, clique sur la pharmacie.',
+            panneau: `<div class="panel glass"><p class="ptitre">Clique sur la pharmacie</p>${plan()}</div>`,
+            monte: () => requestAnimationFrame(() => { placer(2, true); $('#plan').classList.add('choisir'); }),
+          })) return;
           state.replay = async () => { setTurn('listen'); await playSegment(FACE[0], FACE[1], WIDE); if (alive(f)) ask(); };
-          if (!await Q.say(state.ask, f)) return;
-          setSide(`<div class="panel glass"><p class="ptitre">Touchez la pharmacie</p>${plan()}</div>`);
-          frameTo(CROPS.full, true); placer(2, true);
-          const pl = $('#plan'); pl.classList.add('choisir');
+          const pl = $('#plan');
           $$('.bat', side).forEach(r => { if (r.dataset.id !== 'boul') r.classList.add('cible'); r.addEventListener('click', async () => {
             if (document.body.dataset.turn !== 'you') return;
             A.unlock(); idle.clear(); setTurn('wait');

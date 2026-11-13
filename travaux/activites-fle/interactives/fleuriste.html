@@ -357,17 +357,19 @@ body[data-turn="listen"] .fleches, body[data-turn="wait"] .fleches, body[data-tu
 .corps .zc.juste { fill: rgba(255,77,100,.75); animation: battre 1.2s var(--apple) infinite; transform-box: fill-box; transform-origin: center; }
 .corps .zc.faux { fill: rgba(255,170,40,.55); }
 @keyframes battre { 50% { transform: scale(1.06); } }
-.semaine { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
-.jour { position: relative; height: 70px; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); transition: background .3s, transform .3s var(--spring); }
-.jour b { font-size: 15px; font-weight: 800; }
-.jour span { font-size: 11px; font-weight: 600; color: var(--text2); }
+.semaine { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+.jour { position: relative; height: 128px; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); transition: background .3s, transform .3s var(--spring); }
+.jour b { font-size: 32px; font-weight: 800; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1; }
+.jour span { font-size: 13px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: .06em; }
+.jour small { min-height: 13px; font-size: 10px; font-weight: 700; color: var(--text2); }
+.mois { margin: 0; text-align: center; font-weight: 800; font-size: 20px; letter-spacing: -.01em; }
 .jour:active { transform: scale(.92); }
 .jour.auj { box-shadow: inset 0 0 0 2px #fff; }
 .jour.mal { background: rgba(255,77,100,.55); }
 .jour.mal.juste { background: rgba(29,214,160,.55); }
-.jour .tete { position: absolute; top: -9px; right: -5px; width: 22px; height: 22px; display: none; }
+.jour .tete { position: absolute; top: -11px; right: -7px; width: 28px; height: 28px; display: none; }
 .jour.debut .tete { display: block; animation: pop .45s var(--spring) both; }
-.legende { margin: 0; text-align: center; font-size: 14px; font-weight: 600; color: var(--text2); min-height: 18px; }
+.legende { margin: 0; text-align: center; font-size: 17px; font-weight: 700; color: var(--text1, #fff); min-height: 22px; }
 .thermo { display: grid; grid-template-columns: 70px 1fr; gap: 14px; align-items: stretch; padding: 4px 6px; }
 .thermo svg { width: 70px; height: 240px; }
 .thermo .mercure { transition: y .7s var(--spring), height .7s var(--spring); }
@@ -390,7 +392,7 @@ body[data-turn="listen"] .corps, body[data-turn="wait"] .corps, body[data-turn="
 /* téléphone tenu droit : le panneau du geste passe sous la vidéo */
 body.tall .grille .tuile { height: 80px; } body.tall .tuile .pic { width: 40px; height: 40px; } body.tall .tuile .pic svg { width: 36px; height: 36px; }
 body.tall .plan { aspect-ratio: 1.5 / 1; } body.tall .corps svg { height: 200px; width: 112px; } body.tall .thermo svg { height: 190px; }
-body.tall .famille .tuile { height: 92px; } body.tall .jour { height: 58px; }
+body.tall .famille .tuile { height: 92px; } body.tall .jour { height: 76px; } body.tall .jour b { font-size: 20px; } body.tall .jour small { display: none; }
 body.tall .sac { min-height: 64px; } body.tall .sac .sacpic svg { width: 46px; height: 50px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
@@ -407,8 +409,23 @@ body.tall .sac { min-height: 64px; } body.tall .sac .sacpic svg { width: 46px; h
 .cam.asking .hit.indice { animation: indiceH 1.1s var(--apple) infinite; }
 @keyframes indiceH { 50% { box-shadow: inset 0 0 0 3px rgba(75,227,180,.9); background: rgba(75,227,180,.18); } }
 .jour[disabled] { opacity: .35; }
-.jour .tete svg { width: 22px; height: 22px; display: block; }
+.jour .tete svg { width: 28px; height: 28px; display: block; }
 .corps .zc.faux, .plan .bat.faux { transition: fill .15s; }
+
+/* repères posés sur l'image : cadre d'une zone touchée, étiquette, objets sur la scène */
+.surimage { position: absolute; pointer-events: none; }
+.zcadre { z-index: 1; border-radius: 22px; box-shadow: inset 0 0 0 3px var(--ok); background: rgba(75,227,180,.14); animation: pop .45s var(--spring) both; }
+.zcadre.faux { box-shadow: inset 0 0 0 3px var(--try); background: rgba(255,170,40,.16); animation: pop .45s var(--spring) both, s-efface .5s 1.4s forwards; }
+@keyframes s-efface { to { opacity: 0; } }
+.marque { z-index: 3; transform: translate(-50%, calc(-100% - 8px)); white-space: nowrap; padding: 7px 13px; border-radius: 999px; background: rgba(255,255,255,.96); color: var(--ink); font-weight: 800; font-size: 15px; letter-spacing: -.01em; animation: pop .45s var(--spring) both; }
+.marque.juste { background: var(--ok); }
+.marque.faux { background: #FFD9A0; animation: pop .45s var(--spring) both, s-efface .5s 1.4s forwards; }
+.objet { position: absolute; z-index: 1; display: grid; place-items: center; transition: left .9s var(--apple), top .9s var(--apple), transform .4s var(--spring), opacity .4s; }
+.objet svg { width: 100%; height: 100%; display: block; }
+.objet.donne { transform: rotate(-8deg) scale(1.1); }
+.sacv { position: absolute; z-index: 1; display: flex; gap: 4px; transform: translate(-50%, -50%); }
+.sacv .mini { width: 34px; height: 34px; border-radius: 50%; }
+.sacv .mini svg { width: 24px; height: 24px; }
 
 </style></head><body>
 <script>
@@ -689,14 +706,14 @@ window.DONNEES = {
  },
  "clips": {
   "Bravo ! Tu as compris la scène.": {
-   "src": "medias/voix-8b808bc38c.mp3",
+   "src": "medias/voix-bc8b1281b9.mp3",
    "w": [
     0.0,
-    0.5,
-    0.66,
-    0.73,
-    1.0,
-    1.11
+    0.89,
+    1.11,
+    1.18,
+    1.57,
+    1.74
    ]
   },
   "Le bouquet, c'est pour qui ?": {
@@ -709,6 +726,16 @@ window.DONNEES = {
     1.18
    ]
   },
+  "Clique sur la bonne personne.": {
+   "src": "medias/voix-d6c5dabae3.mp3",
+   "w": [
+    0.0,
+    0.33,
+    0.5,
+    0.6,
+    0.79
+   ]
+  },
   "Il choisit quelles fleurs ?": {
    "src": "medias/voix-d412161ccb.mp3",
    "w": [
@@ -717,13 +744,28 @@ window.DONNEES = {
     0.57,
     0.81
    ]
+  },
+  "Dans la boutique, clique sur les fleurs qu'il choisit.": {
+   "src": "medias/voix-290b251030.mp3",
+   "w": [
+    0.0,
+    0.21,
+    0.33,
+    1.24,
+    1.58,
+    1.74,
+    1.87,
+    2.16,
+    2.37
+   ]
   }
  }
 };
 
 </script>
 <script>
-/* Chez la fleuriste : pour qui est le bouquet (la famille), puis on cueille les bonnes fleurs dans la boutique, sur l'image. */
+/* Chez le fleuriste : le client redit pour qui est le bouquet (la vidéo resserrée sur lui), on clique sur la personne de sa
+   famille ; puis on écoute le choix des fleurs et on les touche dans la boutique, directement sur l'image (sans panneau). */
 window.SCENARIO = (() => {
   const VISAGE = (peau, cheveux, extra) => `<svg viewBox="0 0 48 48">${extra.fond || ''}<circle cx="24" cy="25" r="12" fill="${peau}"/>${cheveux}<circle cx="19.5" cy="25" r="1.4" fill="#2B2B2B"/><circle cx="28.5" cy="25" r="1.4" fill="#2B2B2B"/><path d="M20.5 30.5c2 1.6 5 1.6 7 0" stroke="#9A5B4A" stroke-width="1.6" fill="none" stroke-linecap="round"/>${extra.dessus || ''}<path d="M10 47c1-7 7-10 14-10s13 3 14 10z" fill="${extra.haut}"/></svg>`;
   const FAMILLE = [
@@ -732,40 +774,34 @@ window.SCENARIO = (() => {
     { id: 'mere', nom: 'sa mère', svg: VISAGE('#EDBE9B', '<path d="M11 28c-1-12 5-17 13-17s14 5 13 17c-1-7-5-10-13-10s-12 3-13 10z" fill="#B9B3AA"/><circle cx="24" cy="10" r="5" fill="#B9B3AA"/>', { haut: '#7E57C2' }) },
     { id: 'copine', nom: 'sa copine', svg: VISAGE('#C68E66', '<path d="M10 38c-2-17 4-27 14-27s16 10 14 27c-2-9-3-17-14-19-11 2-12 10-14 19z" fill="#2D1E16"/>', { haut: '#2EC4B6' }) },
   ];
-  const ROSE = c => `<g><circle r="9" fill="${c}"/><path d="M-4-1c2-4 7-3 7 1s-5 5-7 2" stroke="rgba(0,0,0,.18)" stroke-width="1.4" fill="none"/><circle r="2.6" fill="rgba(0,0,0,.12)"/></g>`;
-  const BOUQUET = `<svg viewBox="0 0 170 200" aria-label="Le bouquet">
-      <g id="tiges" opacity="0"><path d="M85 150L60 70M85 150L85 60M85 150l25-80M85 150L45 92M85 150l40-58" stroke="#3FA34D" stroke-width="3" stroke-linecap="round"/></g>
-      <g id="fleurs" opacity="0">${[[60, 66], [85, 54], [110, 66], [45, 90], [125, 90], [72, 84], [98, 84]].map(([x, y]) => `<g transform="translate(${x} ${y})">${ROSE('#FFFFFF')}</g>`).join('')}</g>
-      <path d="M40 104l45 90 45-90-20 8-25-10-25 10z" fill="#E7C9A0" stroke="#C9A06A" stroke-width="2" stroke-linejoin="round"/>
-      <path d="M70 160c10 6 20 6 30 0" stroke="#E5383B" stroke-width="4" fill="none" stroke-linecap="round"/>
-    </svg>`;
+  /* les fleurs de la boutique, sur l'image où la vidéo s'arrête (9,2 s), en % */
   const ZONES = [
-    { id: 'rouges', label: 'Les roses rouges', x: 35, y: 46, w: 12, h: 16, c: '#C1121F' },
-    { id: 'blanches', label: 'Les roses blanches', x: 47, y: 53, w: 16, h: 12, c: '#FFFFFF' },
-    { id: 'tournesols', label: 'Les tournesols', x: 47, y: 40, w: 17, h: 12, c: '#FFC300' },
-    { id: 'orange', label: 'Les roses orange', x: 0, y: 45, w: 12.5, h: 16, c: '#F4A261' },
-    { id: 'tulipes', label: 'Les tulipes', x: 13, y: 47, w: 7, h: 13, c: '#E07BB4' },
-    { id: 'roses', label: 'Les roses roses', x: 0, y: 80, w: 19, h: 20, c: '#F4A7B9' },
+    { id: 'rouges', label: 'Les roses rouges', x: 35, y: 46, w: 12, h: 16 },
+    { id: 'blanches', label: 'Les roses blanches', x: 47, y: 53, w: 16, h: 12 },
+    { id: 'tournesols', label: 'Les tournesols', x: 47, y: 40, w: 17, h: 12 },
+    { id: 'orange', label: 'Les roses orange', x: 0, y: 45, w: 12.5, h: 16 },
+    { id: 'tulipes', label: 'Les tulipes', x: 13, y: 47, w: 7, h: 13 },
+    { id: 'roses', label: 'Les roses roses', x: 0, y: 80, w: 19, h: 20 },
   ];
   const ROSES = ['rouges', 'orange', 'roses'];
 
   return {
+    plans: [{ de: 0, cx: { fleuriste: .3, client: .8 } }, { de: 1.29, cx: { fleuriste: .3, client: .6 } }, { de: 3.46, cx: { fleuriste: .35, client: .7 } },
+      { de: 4.46, cx: { fleuriste: .3, client: .6 } }, { de: 5.58, cx: { fleuriste: .28, client: .8 } }, { de: 7.42, cx: { fleuriste: .3, client: .6 } }, { de: 8.75, cx: { fleuriste: .35, client: .76 } }],
     ordre: ['qui', 'fleurs'],
     etapes: A => {
-      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, frameTo, CROPS, WIDE, freeze, playSegment, phrase, ligne, setSide, side, idle, tapHere, sfx, fly, faux, juste, suite, zones, cam, wait } = A;
+      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, WIDE, playSegment, phrase, ligne, side, idle, tapHere, sfx, faux, juste, suite, zones, cam, avant, cadreZone, marque } = A;
       const MERE = phrase("pour l'anniversaire de ma mère"), CHOIX = [ligne(4)[0], ligne(5)[1]];
       return {
-        /* 1 · pour qui : on touche la personne de sa famille */
+        /* 1 · pour qui : le client le redit, on clique sur la personne de sa famille */
         async qui(f) {
-          setSide(null); frameTo(CROPS.full, false);
-          await freeze(WIDE); if (!alive(f)) return;
-          state.ask = "Le bouquet, c'est pour qui" + NB + '?';
           const ask = () => { Q.show('you', state.ask); yourTurn(); idle.set(tapHere($('.tuile', side)), 5000); };
+          if (!await avant(f, {
+            question: "Le bouquet, c'est pour qui" + NB + '?', qui: 'client', seg: ligne(1), sideW: 380, consigne: 'Clique sur la bonne personne.',
+            panneau: `<div class="panel glass"><p class="ptitre">Le bouquet est pour…</p>
+              <div class="famille">${FAMILLE.map(p => `<button class="tuile" data-id="${p.id}"><span class="pic">${p.svg}</span><span class="nom">${p.nom}</span></button>`).join('')}</div></div>`,
+          })) return;
           state.replay = async () => { setTurn('listen'); await playSegment(ligne(1)[0], ligne(1)[1], WIDE); if (alive(f)) ask(); };
-          if (!await Q.say(state.ask, f)) return;
-          setSide(`<div class="panel glass"><p class="ptitre">Le bouquet est pour…</p>
-            <div class="famille">${FAMILLE.map(p => `<button class="tuile" data-id="${p.id}"><span class="pic">${p.svg}</span><span class="nom">${p.nom}</span></button>`).join('')}</div></div>`);
-          frameTo(CROPS.full, true);
           $$('.tuile', side).forEach(b => b.addEventListener('click', async () => {
             if (document.body.dataset.turn !== 'you') return;
             A.unlock(); idle.clear(); setTurn('wait');
@@ -784,33 +820,22 @@ window.SCENARIO = (() => {
           ask();
         },
 
-        /* 2 · quelles fleurs : on les touche dans la boutique, elles volent dans le bouquet */
+        /* 2 · dans la vidéo : on écoute le choix, puis on touche les fleurs dans la boutique */
         async fleurs(f) {
-          setSide(null); frameTo(CROPS.full, false);
-          await freeze(WIDE); if (!alive(f)) return;
-          state.ask = 'Il choisit quelles fleurs' + NB + '?';
           const ask = () => { Q.show('you', state.ask); yourTurn(); cam.classList.add('asking'); idle.set(tapHere($('.hit[data-id="tournesols"]', cam)), 5000); };
+          if (!await avant(f, { question: 'Il choisit quelles fleurs' + NB + '?', seg: CHOIX, consigne: "Dans la boutique, clique sur les fleurs qu'il choisit." })) return;
           state.replay = async () => { setTurn('listen'); cam.classList.remove('asking'); await playSegment(CHOIX[0], CHOIX[1], WIDE); if (alive(f)) ask(); };
-          if (!await Q.say(state.ask, f)) return;
-          setSide(`<div class="panel glass"><p class="ptitre">Touchez les fleurs dans la boutique</p><div class="bouquet" id="bouquet">${BOUQUET}</div><p class="etiquette" id="etiq">Le bouquet de sa mère</p></div>`);
-          frameTo(CROPS.full, true);
-          zones(ZONES, async id => {
-            setTurn('wait'); cam.classList.remove('asking');
-            const z = ZONES.find(x => x.id === id), hit = $(`.hit[data-id="${id}"]`, cam);
-            const fl = $('#fleurs'), ti = $('#tiges');
-            await fly(hit, $('#bouquet'), `<svg viewBox="-12 -12 24 24" style="width:100%;height:100%">${ROSE(z.c)}</svg>`, { scale: .3 });
-            $$('#fleurs circle:first-child', side).forEach(c => c.setAttribute('fill', z.c));
-            fl.setAttribute('opacity', 1); ti.setAttribute('opacity', 1); sfx.tick();
+          zones(ZONES, async (id, ev, z) => {
+            setTurn('wait'); cam.classList.remove('asking'); sfx.tick();
             if (id === 'blanches') {
               $$('.hit', cam).forEach(h => h.classList.remove('indice'));
-              $('#etiq').textContent = 'Des roses blanches';
+              cadreZone(z); marque(z, 'Des roses blanches', 'juste');
               if (!await juste(f, 'Oui' + NB + '! Des roses blanches.', ligne(5))) return;
               zones(null); suite();
             } else {
-              const b = $('#bouquet'); b.classList.remove('shake'); void b.offsetWidth; b.classList.add('shake');
+              cadreZone(z, 'faux'); marque(z, z.label, 'faux');
               const msg = ROSES.includes(id) ? 'Des roses, oui. Mais écoute la couleur.' : 'Non. Écoute encore.';
               const montrer = await faux(f, CHOIX, msg); if (montrer === null) return;
-              fl.setAttribute('opacity', 0); ti.setAttribute('opacity', 0);
               if (montrer) $('.hit[data-id="blanches"]', cam).classList.add('indice');
               ask();
             }
@@ -909,13 +934,14 @@ window.SCENARIO = (() => {
     const Wd = innerWidth, Hd = innerHeight, wide = Wd / Hd >= 1.1, short = wide && Hd < 520, compact = !wide && Hd < 740;
     const B = document.body; B.classList.toggle('wide', wide); B.classList.toggle('tall', !wide); B.classList.toggle('short', short); B.classList.toggle('compact', compact);
     let c = (!wide && state.crop === CROPS.full) ? CROPS.fullTall : state.crop;
+    if (!wide && c.qui) c = { ...c, a: 1.2 };
     if (short && c.a < 1.3) c = { ...c, a: 1.3 };
     const sideOn = state.sideOn, split = state.split;
     const dockH = short ? 46 : 52, dockGap = short ? 10 : 16;
     let wx, wy, ww, wh;
     if (wide) {
       const vm = short ? 12 : 36, pad = short ? 14 : 32, gap = (sideOn || split) ? (short ? 14 : 28) : 0;
-      const sw = sideOn ? Math.min(short ? 230 : (state.sideW || 320), Wd * .32) : split ? Math.min(short ? 140 : 210, Wd * .18) : 0;
+      const sw = sideOn ? Math.min(short ? 230 : (state.sideW || 320), Wd * ((state.sideW || 320) > 400 ? .4 : .32)) : split ? Math.min(short ? 140 : 210, Wd * .18) : 0;
       const extra = sideOn ? sw + gap : split ? 2 * (sw + gap) : 0;
       const aw = Wd - pad * 2 - extra, ah = Hd - vm * 2 - dockGap - dockH;
       wh = Math.min(ah, aw / c.a); ww = wh * c.a;
@@ -952,7 +978,11 @@ window.SCENARIO = (() => {
     Object.assign(talk.style, { left: wx + inset + 'px', width: ww - inset * 2 + 'px', bottom: Hd - (wy + wh) + inset + 'px' });
     Object.assign(dock.style, { left: wx + ww / 2 + 'px', top: wy + wh + dockGap + 'px' });
   }
-  function frameTo(crop, sideOn, sideW) { state.crop = crop; state.sideOn = sideOn; state.sideW = sideW; layout(); side.classList.toggle('on', sideOn && side.children.length > 0); }
+  function frameTo(crop, sideOn, sideW) { state.crop = crop; state.focus = crop.qui || null; state.sideOn = sideOn; state.sideW = sideW; layout(); side.classList.toggle('on', sideOn && side.children.length > 0); }
+  /* resserrer la vidéo sur une personne, comme sur Kenji ; SC.plans dit où elle est dans chaque plan (les coupes de la vidéo) */
+  const PLANS = (SC.plans || [{ de: 0 }]).slice().sort((a, b) => a.de - b.de);
+  function cadre(qui, t) { let p = PLANS[0]; for (const x of PLANS) if (t >= x.de - .01) p = x; const cx = p.cx && p.cx[qui] != null ? p.cx[qui] : .5; return { a: SC.serre || .82, h: 1, cx, cy: .5, qui }; }
+  function focus(qui, sideOn, sideW) { frameTo(qui ? cadre(qui, vid.currentTime) : CROPS.full, sideOn, sideW); }
   addEventListener('resize', () => { document.body.classList.add('boot'); layout(); requestAnimationFrame(() => document.body.classList.remove('boot')); idle.reset(); });
 
   /* ================= médias : une seule voix à la fois ================= */
@@ -1136,6 +1166,7 @@ window.SCENARIO = (() => {
     talk.classList.toggle('playing', state.lineView);
     cam.classList.toggle('moving', movingTok === media);
     if (li !== curLine) renderLine(li);
+    if (state.focus) { const c = cadre(state.focus, t); if (Math.abs(c.cx - state.crop.cx) > .001) { state.crop = c; cam.style.transition = 'none'; layout(); void cam.offsetWidth; cam.style.transition = ''; } }
     if (li >= 0 && state.cc) $$('.w', lwords).forEach((span, k) => { const w = LINES[li].words[k]; span.classList.toggle('past', t >= w.e); span.classList.toggle('now', t >= w.s - .03 && t < w.e); });
     if (Math.abs(t - lastAmb) > .04 && vid.readyState >= 2) { lastAmb = t; try { amb.getContext('2d').drawImage(vid, 0, 0, amb.width, amb.height); } catch (e) {} }
     requestAnimationFrame(loop);
@@ -1220,10 +1251,28 @@ window.SCENARIO = (() => {
   function suivant(step) { const i = ORDRE.indexOf(step); return i >= 0 && i + 1 < ORDRE.length ? ORDRE[i + 1] : 'end'; }
   function suite(label = 'Suivant') { const nx = suivant(state.step); goBtn('next', label, () => go(nx)); setTurn('you'); }
 
+  /* avant(f, { question, qui, seg, panneau, sideW, consigne }) : la question ; la vidéo se resserre sur « qui » et rejoue
+     sa réplique ; puis le panneau du geste s'ouvre à côté (ou, sans panneau, la vidéo revient en grand pour toucher l'image) ;
+     enfin la consigne du geste. Renvoie false si on a quitté l'étape. */
+  async function avant(f, o) {
+    setSide(null); o.qui ? focus(o.qui, false) : frameTo(CROPS.full, false);
+    await freeze(WIDE); if (!alive(f)) return false;
+    if (!await Q.say(o.question, f)) return false;
+    setTurn('listen'); await wait(250); if (!alive(f)) return false;
+    await playSegment(o.seg[0], o.seg[1], WIDE); if (!alive(f)) return false;
+    if (o.panneau) { setSide(o.panneau, o.monte); o.qui ? focus(o.qui, true, o.sideW) : frameTo(CROPS.full, true, o.sideW); }
+    else { frameTo(CROPS.full, false); o.monte && o.monte(cam); }
+    state.ask = o.consigne;
+    await wait(o.panneau ? 450 : 650); if (!alive(f)) return false;
+    return Q.say(o.consigne, f);
+  }
+  /* un repère posé sur l'image : un cadre autour d'une zone, une étiquette au-dessus */
+  function cadreZone(z, cls) { const d = document.createElement('div'); d.className = 'surimage zcadre ' + (cls || ''); Object.assign(d.style, { left: z.x + '%', top: z.y + '%', width: z.w + '%', height: z.h + '%' }); cam.append(d); return d; }
+  function marque(z, txt, cls) { const d = document.createElement('div'); d.className = 'surimage marque ' + (cls || ''); d.textContent = txt; Object.assign(d.style, { left: z.x + z.w / 2 + '%', top: z.y + '%' }); cam.append(d); return d; }
   function go(step) {
     flow++; stopAll(); idle.clear();
     Object.assign(state, { step, ask: null, replay: null, lineView: false, essais: 0 });
-    cam.classList.remove('asking'); zones(null); spotOff(); goBtn(null); setSplit(false);
+    cam.classList.remove('asking'); zones(null); spotOff(); goBtn(null); setSplit(false); $$('.surimage', cam).forEach(e => e.remove());
     STEPS[step](flow);
   }
   const STEPS = {};
@@ -1260,6 +1309,7 @@ window.SCENARIO = (() => {
     });
     frameTo(CROPS.full, true);
     setTimeout(() => { if (alive(f)) flyFaces(); }, 800);
+    await wait(1500); if (!alive(f)) return;
     state.ask = 'Bravo' + NB + '! Tu as compris la scène.';
     if (!await Q.say(state.ask, f)) return;
     Q.mode('ok');
@@ -1292,7 +1342,7 @@ window.SCENARIO = (() => {
   var api = {
     $, $$, wait, NB, reduced, state, alive, go, suite, Q, goBtn, yourTurn, setTurn, frameTo, CROPS, WIDE, LINES, PEOPLE,
     freeze, playSegment, hear, phrase, ligne, tag, tagAll, hideTags, spotOn, spotAt, spotOff, rippleAt, zones, fly,
-    setSide, side, setSplit, binNo, binYes, deck, idle, at, tapHere, sfx, ICON, win, cam, layout, speak, unlock, faux, juste,
+    setSide, side, setSplit, binNo, binYes, deck, idle, at, tapHere, sfx, ICON, win, cam, layout, speak, unlock, faux, juste, focus, avant, cadreZone, marque,
     flow: () => flow,
   };
   Object.assign(STEPS, SC.etapes(api));

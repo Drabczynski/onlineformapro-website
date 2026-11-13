@@ -263,25 +263,36 @@ window.DONNEES = {
  },
  "clips": {
   "Bravo ! Tu as compris la scène.": {
-   "src": "medias/voix-8b808bc38c.mp3",
+   "src": "medias/voix-bc8b1281b9.mp3",
    "w": [
     0.0,
-    0.5,
-    0.66,
-    0.73,
-    1.0,
-    1.11
+    0.89,
+    1.11,
+    1.18,
+    1.57,
+    1.74
    ]
   },
-  "Écoute la dame. Montre le chemin.": {
-   "src": "medias/voix-b1f61a7b72.mp3",
+  "Écoute la dame.": {
+   "src": "medias/voix-0070fe19f2.mp3",
    "w": [
     0.0,
-    0.38,
-    0.51,
-    1.02,
-    1.36,
-    1.46
+    0.48,
+    0.6
+   ]
+  },
+  "Sur le plan, guide le monsieur avec les flèches.": {
+   "src": "medias/voix-16d5b3e9d4.mp3",
+   "w": [
+    0.0,
+    0.26,
+    0.37,
+    0.87,
+    1.13,
+    1.24,
+    1.78,
+    2.09,
+    2.21
    ]
   },
   "Où est la pharmacie ?": {
@@ -291,6 +302,18 @@ window.DONNEES = {
     0.3,
     0.49,
     0.59
+   ]
+  },
+  "Sur le plan, clique sur la pharmacie.": {
+   "src": "medias/voix-30c806646a.mp3",
+   "w": [
+    0.0,
+    0.26,
+    0.37,
+    0.73,
+    1.07,
+    1.23,
+    1.35
    ]
   }
  }
