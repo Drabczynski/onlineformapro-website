@@ -16,6 +16,6 @@
 .touche.zero { grid-column: span 2; }
 .touche svg { width: 28px; height: 24px; }
 .touche.indice { animation: indiceF 1.1s var(--apple) infinite; }
-body[data-turn="listen"] .clavier, body[data-turn="wait"] .clavier { pointer-events: none; }
+body[data-turn="listen"] .clavier, body[data-turn="wait"] .clavier, .clavier.fini { pointer-events: none; }
 body.tall .bus svg { max-width: 190px; } body.tall .touche { height: 46px; font-size: 20px; }
 body.short .bus svg { max-width: 150px; } body.short .touche { height: 44px; font-size: 18px; } body.short .clavier { gap: 6px; }

@@ -55,7 +55,8 @@ window.SCENARIO = (() => {
             idle.set(() => tapHere(tape ? $('#goSlot .go') : $('.touche[data-k="5"]', side))(), 5000);
           };
           const taper = k => {
-            if (document.body.dataset.turn !== 'you' || !$('.clavier', side)) return;
+            const clavier = $('.clavier', side);
+            if (document.body.dataset.turn !== 'you' || !clavier || clavier.classList.contains('fini')) return;
             A.unlock(); idle.reset(); sfx.tick();
             const bus = $('.bus', side); bus.classList.remove('faux');
             if (k === 'x') tape = tape.slice(0, -1);
@@ -84,7 +85,7 @@ window.SCENARIO = (() => {
             setTurn('wait'); goBtn(null); idle.clear();
             const bus = $('.bus', side);
             if (tape === BON) {
-              bus.classList.add('juste');
+              bus.classList.add('juste'); $('.clavier', side).classList.add('fini');
               if (!await juste(f, 'Oui' + NB + '! Le bus numéro douze.', phrase('le bus numéro douze'))) return;
               suite();
             } else {
@@ -92,7 +93,7 @@ window.SCENARIO = (() => {
               const montrer = await faux(f, NUMERO, "Ça, c'est le bus " + enLettres(parseInt(tape, 10)) + '. Écoute encore.'); if (montrer === null) return;
               bus.classList.remove('faux'); tape = ''; afficher();
               if (montrer) {
-                tape = BON; afficher(); bus.classList.add('juste');
+                tape = BON; afficher(); bus.classList.add('juste'); $('.clavier', side).classList.add('fini');
                 $$('.touche[data-k="1"], .touche[data-k="2"]', side).forEach(b => b.classList.add('indice'));
                 Q.show('ok', 'Le bus numéro douze' + NB + ': 1 et 2.'); state.essais = 0; suite();
               } else ask();

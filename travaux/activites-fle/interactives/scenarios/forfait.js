@@ -72,7 +72,7 @@ window.SCENARIO = (() => {
           }
           async function rater(msg) {
             const montrer = await faux(f, OFFRE, msg); if (montrer === null) return;
-            if (montrer) { Q.show('ok', "C'est là" + NB + ': «' + NB + 'dix euros' + NB + '».'); state.essais = 0; suite(); }
+            if (montrer) { Q.show('ok', 'Le prix' + NB + ': «' + NB + 'dix euros' + NB + '».'); state.essais = 0; suite(); }
             else { debut = 1.9; await wait(300); if (alive(f)) lancer(); }   // la 2e fois, on repart juste avant le vendeur
           }
           zones([{ id: 'ecran', label: 'Cliquer sur la vidéo', x: 0, y: 0, w: 100, h: 100 }], async (id, ev) => {

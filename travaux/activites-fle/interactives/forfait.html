@@ -509,6 +509,9 @@ body[data-turn="listen"] .etiquettes, body[data-turn="wait"] .etiquettes, body[d
 body[data-turn="listen"] .carte, body[data-turn="wait"] .carte { pointer-events: none; }
 body.tall .aff-go { font-size: 36px; } body.tall .case { height: 56px; font-size: 36px; } body.tall .case.mot { height: 46px; font-size: 20px; }
 body.tall .carte { width: min(100%, 300px); }
+body.tall .pastille { height: 30px; padding: 0 9px; font-size: 12px; gap: 4px; } body.tall .pastille.bord { padding: 0 8px; }
+body.tall .pastille::after { inset: -7px -2px; }
+body.tall .pastille[data-z="amerique"] { left: 15% !important; } body.tall .pastille[data-z="asie"] { left: 87% !important; }
 
 </style></head><body>
 <script>
@@ -872,7 +875,7 @@ window.SCENARIO = (() => {
           }
           async function rater(msg) {
             const montrer = await faux(f, OFFRE, msg); if (montrer === null) return;
-            if (montrer) { Q.show('ok', "C'est là" + NB + ': «' + NB + 'dix euros' + NB + '».'); state.essais = 0; suite(); }
+            if (montrer) { Q.show('ok', 'Le prix' + NB + ': «' + NB + 'dix euros' + NB + '».'); state.essais = 0; suite(); }
             else { debut = 1.9; await wait(300); if (alive(f)) lancer(); }   // la 2e fois, on repart juste avant le vendeur
           }
           zones([{ id: 'ecran', label: 'Cliquer sur la vidéo', x: 0, y: 0, w: 100, h: 100 }], async (id, ev) => {

@@ -131,8 +131,8 @@ window.DONNEES = {
     62
    ],
    "anchor": [
-    44,
-    46
+    43,
+    58
    ],
    "crop": [
     37,
@@ -152,8 +152,8 @@ window.DONNEES = {
     64
    ],
    "anchor": [
-    68,
-    42
+    67,
+    38
    ],
    "crop": [
     57,

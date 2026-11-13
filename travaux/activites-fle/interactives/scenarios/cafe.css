@@ -50,4 +50,4 @@
 body[data-turn="listen"] .cafe .sucre, body[data-turn="wait"] .cafe .sucre { pointer-events: none; }
 body.tall .cafe .boisson { height: 96px; } body.tall .cafe .boisson .pic { width: 46px; height: 46px; } body.tall .cafe .boisson .pic svg { width: 42px; height: 42px; }
 body.tall .cafe .comptoir .tasse { width: 150px; } body.tall .cafe .table .cible { height: 170px; } body.tall .cafe .table .cible svg, body.tall .cafe .table .cible .tasse { width: 140px; }
-body.tall .cafe .poste[data-ou="sucrier"] .places { top: 30px; } body.tall .cafe .poste[data-ou="tasse"] .places { top: 40px; }
+body.tall .cafe .poste[data-ou="sucrier"] .places { top: 46px; } body.tall .cafe .poste[data-ou="tasse"] .places { top: 30px; }

@@ -24,7 +24,7 @@ body[data-turn="listen"] .journee, body[data-turn="wait"] .journee { pointer-eve
 .affichette { margin: 2px 8px 2px; padding: 22px 18px 12px; border-radius: 6px; background: #FBF8EF; color: var(--ink); text-align: center; position: relative; }
 .affichette::before { content: ""; position: absolute; left: 50%; top: -8px; width: 74px; height: 20px; margin-left: -37px; background: rgba(255,236,170,.85); transform: rotate(-3deg); border-radius: 2px; }
 .affichette p { margin: 0; }
-.af-titre { font-size: 19px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: #C2410C; }
+.af-titre { font-size: 19px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--ink); }
 .af-texte { margin-top: 6px !important; font-size: 17px; font-weight: 600; line-height: 1.5; }
 .trou { display: inline-block; min-width: 128px; padding: 0 6px; border-bottom: 2px dashed rgba(11,13,22,.45); color: #1D4ED8; font-weight: 800; transition: color .25s; }
 .trou.vide { color: rgba(11,13,22,.35); }
@@ -45,3 +45,6 @@ body.tall .affichette { padding: 18px 14px 10px; }
 body.tall .af-titre { font-size: 16px; }
 body.tall .af-texte { font-size: 15px; }
 body.short .affichette { display: none; }
+body.short .moments { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+body.short .moment { min-height: 44px; padding: 4px; }
+body.short .moment b { font-size: 13px; }

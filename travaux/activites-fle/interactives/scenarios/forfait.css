@@ -63,3 +63,6 @@ body[data-turn="listen"] .etiquettes, body[data-turn="wait"] .etiquettes, body[d
 body[data-turn="listen"] .carte, body[data-turn="wait"] .carte { pointer-events: none; }
 body.tall .aff-go { font-size: 36px; } body.tall .case { height: 56px; font-size: 36px; } body.tall .case.mot { height: 46px; font-size: 20px; }
 body.tall .carte { width: min(100%, 300px); }
+body.tall .pastille { height: 30px; padding: 0 9px; font-size: 12px; gap: 4px; } body.tall .pastille.bord { padding: 0 8px; }
+body.tall .pastille::after { inset: -7px -2px; }
+body.tall .pastille[data-z="amerique"] { left: 15% !important; } body.tall .pastille[data-z="asie"] { left: 87% !important; }

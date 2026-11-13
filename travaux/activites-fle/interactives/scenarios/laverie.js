@@ -157,7 +157,7 @@ window.SCENARIO = (() => {
                 <div class="lm-bas"><div class="lm-hublot" id="hublot">${HUBLOT}</div>
                   <button class="lm-rendre" id="rendre" aria-label="Rendre les pièces"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></svg><span>Rendre</span></button></div>
               </div>
-              <div class="lm-bourse" aria-label="Le porte-monnaie">${BOURSE.map((v, k) => `<button class="argent ${PIECE[v].c}" data-v="${v}" data-k="${k}" aria-label="Mettre ${PIECE[v].t}">${PIECE[v].t}</button>`).join('')}</div></div>`,
+              <div class="lm-bourse" role="group" aria-label="Le porte-monnaie">${BOURSE.map((v, k) => `<button class="argent ${PIECE[v].c}" data-v="${v}" data-k="${k}" aria-label="Mettre ${PIECE[v].t}">${PIECE[v].t}</button>`).join('')}</div></div>`,
             monte: brancher,
           })) return;
           state.replay = async () => { setTurn('listen'); goBtn(null); await playSegment(PRIX[0], PRIX[1], gel()); if (alive(f)) ask(); };
