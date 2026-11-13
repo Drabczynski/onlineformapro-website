@@ -57,7 +57,10 @@ d'environ 500 caractères. Réglages propres au B1 : les indications de jeu en t
 signé M. Benali (voix d'homme) ; le monsieur âgé de s26 a la voix d'homme la plus âgée. Lus pour la voix : « Dr »,
 « RDV », « OUI / NON », « 18/11 », « -30 % », « 13e mois », « g/L », « M. et Mme », le lien du SMS frauduleux, « HACCP »
 épelé. Ambiances propres au B1 pour 18 scènes qui ne se passent pas comme en A1 (appel au service client, mail de
-réclamation, guichet de banque…).
+réclamation, guichet de banque…). Vérification B1 : 147 sons retranscrits ; refaits : s4 (« 1,6 kilo » dit « un kilo
+six », lu « kilogramme » sinon), s13 (plaque « AB-123-CD » : le tiret était lu), s129 (« 3 × 8 » dit « trois-huit »).
+s132 : la retranscription entend « à longues manches » au lieu de « à long manche », avec trois voix et plusieurs prises
+(dite seule par la voix Claire, la phrase est bien entendue « à long manche ») — à écouter.
 
 **Les 147 situations A1 sont faites.** L'ambiance de chacune est décrite à la main (`AMBIANCE` dans `generer.py`). Les
 niveaux A2 et B1 (mêmes numéros, autres fichiers Excel) se font de la même façon : déposer l'Excel dans `source/`,

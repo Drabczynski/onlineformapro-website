@@ -25,7 +25,8 @@ ROULEMENT_DEPUIS = {"A1": 11}   # A1, de 1 à 10 : toujours les deux premières 
 VOIX_FORCEE = {"A1": {30: {"Léa": "Femme 3", "Invitée": "Femme 2"},   # quand le roulement donne une voix peu crédible pour le rôle
                       73: {"Jeune": "Homme 3", "Entraîneur": "Homme 4"}}}
 ALIAS = {"A2": {30: {"Message de Karim": "Karim"}}}       # la même personne écrit puis parle : une seule voix
-VOIX_FORCEE["B1"] = {26: {"Monsieur âgé": "Homme 4"}}
+VOIX_FORCEE["B1"] = {26: {"Monsieur âgé": "Homme 4"},
+                     132: {"Médecin": "Homme 4"}}          # avec la voix Homme 1, « à long manche » s'entendait « à longues manches »
 GENRE_FORCE = {"A2": {133: {"Stagiaire": "F"}},                         # « Enchantée »
                "B1": {49: {"Libraire": "F"}, 71: {"Hôte": "F"},            # « Je suis désolée »
                       100: {"Locataire": "F"}, 144: {"Locataire": "F"},    # Mme Kaya (s100) ; « Je suis vraiment désolée » (s144)
@@ -247,6 +248,12 @@ def ambiance(niveau, n):
     return AMBIANCE_NIVEAU.get(niveau, {}).get(n) or AMBIANCE.get(n)
 
 
+# une nouvelle prise (graine différente) quand le modèle a changé un mot du texte
+NOUVELLE_PRISE = {}
+# une écriture pour la voix seulement, quand le modèle « corrige » un mot (le texte de l'Excel reste celui des fiches)
+POUR_LA_VOIX = {}
+
+
 # coquilles évidentes de l'Excel, corrigées pour la voix (signalées dans le LISEZMOI)
 CORRECTIONS = {"A1": {9: [("Bonjou Madame r.", "Bonjour, madame.")], 18: [("Elel adore le toboggan", "Elle adore le toboggan.")],
                       35: [("J'ai mal à une den, en bas à droite", "J'ai mal à une dent, en bas à droite.")]}}
@@ -340,7 +347,9 @@ def dire(t):
     t = re.sub(r"\b(\d{1,2}) h\b", lambda m: f"{m[1]} {'heure' if m[1] == '1' else 'heures'}", t)                     # « 14 h » → « 14 heures »
     t = re.sub(r"(\d+ heures?(?: \d{2})?) – (\d+ heures?)", r"\1 à \2", t)                                          # « 6 h – 9 h »
     t = re.sub(r"_+(\s*/\s*_+)*", " ", t)                     # les blancs à remplir d'une fiche ne se lisent pas
-    t = re.sub(r"\b(\d{1,2}) kilos\b", lambda m: lettres(int(m[1])) + " kilos", t)   # « 20 kilos » était lu « vingt kilogrammes »
+    t = re.sub(r"\b(\d{1,2})(?:,(\d))? (kilos?)\b", lambda m: lettres(int(m[1])) + " kilo" + ("s" if m[3] == "kilos" and not m[2] else "") + (f" {lettres(int(m[2]))}" if m[2] else ""), t)   # « 20 kilos », « 1,6 kilo » (dit « un kilo six ») étaient lus « kilogrammes »
+    t = re.sub(r"\b([A-Z]{2})-(\d{3})-([A-Z]{2})\b", r"\1, \2, \3", t)          # une plaque « AB-123-CD » (le tiret était lu)
+    t = re.sub(r"\b3\s?[x×]\s?8\b", "trois-huit", t)                               # les horaires en « 3x8 »
     t = re.sub(r"\bCD([DI])\b", lambda m: f"C.D.{m[1]}.", t)  # « CDD », « CDI » épelés
     t = re.sub(r"\bNOM\b", "nom", t)                          # « NOM » n'est pas un sigle à épeler
     t = re.sub(r"(?<=[a-zé]) / (?=[a-zé])", " ou ", t)          # « vendeur / vendeuse » → « vendeur ou vendeuse »
@@ -366,6 +375,11 @@ def _appeler(url, corps, chemin):
     raise RuntimeError(f"HTTP {r.stdout} : {open(chemin, errors='replace').read()[:300]}")
 
 
+def pour_la_voix(niveau, n, t):
+    for a, b in POUR_LA_VOIX.get(niveau, {}).get(n, []): t = t.replace(a, b)
+    return t
+
+
 def duree(chemin):
     return float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", chemin], capture_output=True, text=True).stdout)
 
@@ -379,7 +393,8 @@ def produire(niveau, s):
     with tempfile.TemporaryDirectory() as d:
         brut = os.path.join(d, "dialogue.mp3")
         appeler(f"{API}/text-to-dialogue?output_format=mp3_44100_128",
-                {"inputs": [{"text": dire(t) or dire(role) + ".", "voice_id": voix[role]} for role, t in s["repliques"]], "model_id": MODELE, "language_code": "fr"}, brut)
+                {"inputs": [{"text": pour_la_voix(niveau, s["n"], dire(t) or dire(role) + "."), "voice_id": voix[role]} for role, t in s["repliques"]], "model_id": MODELE, "language_code": "fr",
+                 **({"seed": NOUVELLE_PRISE[niveau][s["n"]]} if s["n"] in NOUVELLE_PRISE.get(niveau, {}) else {})}, brut)
         # sans les blancs du début et de la fin, au bon volume ; 0,8 s de calme au début, 1 s à la fin
         voixw = os.path.join(d, "voix.wav")
         subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", brut, "-af",
