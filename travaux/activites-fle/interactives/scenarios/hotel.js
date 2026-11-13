@@ -87,7 +87,7 @@ window.SCENARIO = (() => {
               /* 2e partie : les nuits */
               partie = 2; $('#hResa', side).classList.add('fini'); $('#hLn', side).classList.add('actif');
               $$('.h-lune', side).forEach(x => { x.disabled = false; });
-              if (!await Q.say('Écoute encore le client.', f)) return;
+              if (!await Q.say('Écoute le client.', f)) return;
               setTurn('listen'); await wait(250); if (!alive(f)) return;
               await playSegment(SEJOUR[0], SEJOUR[1], gel()); if (!alive(f)) return;
               state.ask = 'Il reste combien de nuits' + NB + '? Clique sur une lune pour chaque nuit.';
@@ -163,7 +163,7 @@ window.SCENARIO = (() => {
             if (!vite) { await wait(200); c.classList.add('ouverte'); await wait(450); }
           }
           if (!await avant(f, {
-            question: 'Écoute encore la réceptionniste.', qui: 'receptionniste', seg: ETAGE, sideW: 460, consigne: 'La chambre est à quel étage' + NB + '? Clique sur le bon bouton.',
+            question: 'Écoute la réceptionniste.', qui: 'receptionniste', seg: ETAGE, sideW: 460, consigne: 'La chambre est à quel étage' + NB + '? Clique sur le bon bouton.',
             panneau: `<div class="panel glass h-panel"><p class="ptitre">Dans l'ascenseur</p>
               <div class="h-asc">
                 <div class="h-cage" aria-hidden="true">

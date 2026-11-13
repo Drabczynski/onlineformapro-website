@@ -327,15 +327,6 @@ window.DONNEES = {
     2.8
    ]
   },
-  "Écoute encore le client.": {
-   "src": "medias/voix-2dd198a2e6.mp3",
-   "w": [
-    0.0,
-    0.56,
-    1.08,
-    1.2
-   ]
-  },
   "Il reste combien de nuits ? Clique sur une lune pour chaque nuit.": {
    "src": "medias/voix-688fa64bec.mp3",
    "w": [
@@ -371,15 +362,6 @@ window.DONNEES = {
     1.2,
     1.48,
     1.6
-   ]
-  },
-  "Écoute encore la réceptionniste.": {
-   "src": "medias/voix-3d17a4ac8b.mp3",
-   "w": [
-    0.0,
-    0.52,
-    0.88,
-    1.04
    ]
   },
   "La chambre est à quel étage ? Clique sur le bon bouton.": {

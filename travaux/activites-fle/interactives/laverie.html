@@ -1116,7 +1116,9 @@ window.SCENARIO = (() => {
   const voice = new Audio(SRC); voice.preload = 'auto';
   const CLIPS = DON.clips;
   const plainSp = t => t.replace(/[  ]/g, ' ');
-  const CLIPSN = {}; for (const [t, c] of Object.entries(CLIPS)) { c.el = new Audio(c.src); c.el.preload = 'auto'; CLIPSN[plainSp(t)] = c; }
+  const clipEl = new Audio(); clipEl.preload = 'auto';
+  const CLIPSN = {}; for (const [t, c] of Object.entries(CLIPS)) { c.el = clipEl; CLIPSN[plainSp(t)] = c; }
+  const premier = Object.values(CLIPS)[0]; if (premier) clipEl.src = premier.src;
   const clipFor = t => CLIPSN[plainSp(t)] || null;
   vid.addEventListener('loadedmetadata', async () => {
     if (vid.seekable.length && vid.seekable.end(0) >= vid.duration - .5) return;
@@ -1126,14 +1128,14 @@ window.SCENARIO = (() => {
   function unlock() {
     if (unlocked) return; unlocked = true;
     voice.muted = true; const p = voice.play(); if (p && p.then) p.then(() => { voice.pause(); voice.muted = false; }).catch(() => { voice.muted = false; });
-    for (const c of Object.values(CLIPS)) {
-      const a = c.el; a.muted = true; const q = a.play();
-      if (q && q.then) q.then(() => { if (a.muted) { a.pause(); try { a.currentTime = 0; } catch (e) {} } a.muted = false; }).catch(() => { a.muted = false; });
+    if (clipEl.src) {
+      clipEl.muted = true; const q = clipEl.play();
+      if (q && q.then) q.then(() => { if (clipEl.muted) { clipEl.pause(); try { clipEl.currentTime = 0; } catch (e) {} } clipEl.muted = false; }).catch(() => { clipEl.muted = false; });
     }
     audioCtx();
   }
   let media = 0;
-  function stopAll() { media++; vid.pause(); voice.pause(); for (const c of Object.values(CLIPS)) c.el.pause(); if ('speechSynthesis' in window) try { speechSynthesis.cancel(); } catch (e) {} }
+  function stopAll() { media++; vid.pause(); voice.pause(); clipEl.pause(); if ('speechSynthesis' in window) try { speechSynthesis.cancel(); } catch (e) {} }
   function seek(el, t) {
     return new Promise(res => {
       if (Math.abs(el.currentTime - t) < .02) return res();
@@ -1192,11 +1194,15 @@ window.SCENARIO = (() => {
     });
   }
   function playClip(c, onTime) {
-    stopAll(); const my = media, el = c.el;
+    stopAll(); const my = media, el = clipEl;
     return new Promise(async res => {
+      if (el.getAttribute('src') !== c.src) el.src = c.src;
       el.muted = false; try { el.currentTime = 0; } catch (e) {}
       el.playbackRate = state.slow ? .8 : 1;
-      try { await el.play(); } catch (err) { return res(null); }
+      /* si la lecture ne démarre pas (navigateur qui bloque le son), on n'attend pas indéfiniment : les mots s'affichent quand même */
+      const demarre = await Promise.race([el.play().then(() => 'ok', () => 'non'), wait(2500).then(() => 'lent')]);
+      if (demarre === 'non') return res(null);
+      if (demarre === 'lent') { el.pause(); return res(my === media ? true : false); }
       if (my !== media) { el.pause(); return res(false); }
       const loop = () => {
         if (my !== media) { el.pause(); return res(false); }
