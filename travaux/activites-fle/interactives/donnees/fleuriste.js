@@ -282,14 +282,19 @@ window.DONNEES = {
     0.84
    ]
   },
-  "Clique sur la bonne personne.": {
-   "src": "medias/voix-0ed67dee7d.mp3",
+  "Pour qui sont les fleurs ? Clique sur la bonne personne.": {
+   "src": "medias/voix-591149dd6d.mp3",
    "w": [
     0.0,
-    0.4,
+    0.24,
+    0.44,
     0.64,
-    0.8,
-    0.96
+    0.76,
+    1.6,
+    1.92,
+    2.08,
+    2.24,
+    2.56
    ]
   },
   "Écoute bien.": {

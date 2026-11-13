@@ -730,14 +730,19 @@ window.DONNEES = {
     0.84
    ]
   },
-  "Clique sur la bonne personne.": {
-   "src": "medias/voix-0ed67dee7d.mp3",
+  "Pour qui sont les fleurs ? Clique sur la bonne personne.": {
+   "src": "medias/voix-591149dd6d.mp3",
    "w": [
     0.0,
-    0.4,
+    0.24,
+    0.44,
     0.64,
-    0.8,
-    0.96
+    0.76,
+    1.6,
+    1.92,
+    2.08,
+    2.24,
+    2.56
    ]
   },
   "Écoute bien.": {
@@ -830,7 +835,7 @@ window.SCENARIO = (() => {
         async qui(f) {
           const ask = () => { Q.show('you', state.ask); yourTurn(); idle.set(tapHere($('.tuile', side)), 5000); };
           if (!await avant(f, {
-            question: 'Écoute le client.', qui: 'client', seg: ligne(1), sideW: 380, consigne: 'Clique sur la bonne personne.',
+            question: 'Écoute le client.', qui: 'client', seg: ligne(1), sideW: 380, consigne: 'Pour qui sont les fleurs' + NB + '? Clique sur la bonne personne.',
             panneau: `<div class="panel glass"><p class="ptitre">Le bouquet est pour…</p>
               <div class="famille">${FAMILLE.map(p => `<button class="tuile" data-id="${p.id}"><span class="pic">${p.svg}</span><span class="nom">${p.nom}</span></button>`).join('')}</div></div>`,
           })) return;

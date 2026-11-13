@@ -35,7 +35,7 @@ window.SCENARIO = (() => {
         async qui(f) {
           const ask = () => { Q.show('you', state.ask); yourTurn(); idle.set(tapHere($('.tuile', side)), 5000); };
           if (!await avant(f, {
-            question: 'Écoute le client.', qui: 'client', seg: ligne(1), sideW: 380, consigne: 'Clique sur la bonne personne.',
+            question: 'Écoute le client.', qui: 'client', seg: ligne(1), sideW: 380, consigne: 'Pour qui sont les fleurs' + NB + '? Clique sur la bonne personne.',
             panneau: `<div class="panel glass"><p class="ptitre">Le bouquet est pour…</p>
               <div class="famille">${FAMILLE.map(p => `<button class="tuile" data-id="${p.id}"><span class="pic">${p.svg}</span><span class="nom">${p.nom}</span></button>`).join('')}</div></div>`,
           })) return;

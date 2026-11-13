@@ -946,7 +946,7 @@ window.SCENARIO = (() => {
             const r = cam.getBoundingClientRect(), z = { x: (ev.clientX - r.left) / r.width * 100, y: (ev.clientY - r.top) / r.height * 100, w: 0, h: 0 };
             if (t >= BON[0] && t <= BON[1]) {
               marque(z, 'médicament', 'juste');
-              if (!await juste(f, 'Oui' + NB + '! «' + NB + 'Un médicament' + NB + '».', DONNE)) return;
+              if (!await juste(f, 'Oui' + NB + '! «' + NB + 'Un médicament' + NB + '».')) return;
               zones(null); suite();
             } else {
               marque(z, t < BON[0] ? 'trop tôt' : 'trop tard', 'faux');

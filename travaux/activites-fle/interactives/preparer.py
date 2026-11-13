@@ -34,7 +34,7 @@ SCENES = {
     "fleuriste": {"video": "fleuriste", "gel": 9.2,
                   "people": {"fleuriste": {"name": "La fleuriste", "qui": "La fleuriste", "side": "g", "spot": [34, 52, 16, 64], "anchor": [31, 46], "crop": [27, 19, 14, 25]},
                              "client": {"name": "Le client", "qui": "Le client", "side": "d", "spot": [74, 52, 16, 64], "anchor": [77, 46], "crop": [67, 10, 14, 25], "portrait": [3.0, [36, 8, 28, 50]]}},
-                  "consignes": ["Écoute le client.", "Clique sur la bonne personne.", "Écoute bien.", "Dans la boutique, clique sur les fleurs qu'elle adore.",
+                  "consignes": ["Écoute le client.", "Pour qui sont les fleurs ? Clique sur la bonne personne.", "Écoute bien.", "Dans la boutique, clique sur les fleurs qu'elle adore.",
                                 "Et la couleur ? Clique sur les roses qu'il choisit.", "Génial ! Sa mère va adorer ses roses blanches."]},
 }
 COMMUNES = []      # (texte, vitesse) : consignes communes à toutes les scènes (le bravo est propre à chaque scène)
