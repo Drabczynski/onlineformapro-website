@@ -365,7 +365,10 @@ body[data-turn="listen"] .fleches, body[data-turn="wait"] .fleches, body[data-tu
 .mois { margin: 0; text-align: center; font-weight: 800; font-size: 20px; letter-spacing: -.01em; }
 .jour:active { transform: scale(.92); }
 .jour.auj { box-shadow: inset 0 0 0 2px #fff; }
-.jour.mal { background: rgba(255,77,100,.55); }
+.jour.mal { background: rgba(255,255,255,.24); }
+.jour.debut { background: #fff; color: var(--ink); }
+.jour.debut span, .jour.debut small { color: rgba(20,16,40,.6); }
+.jour.debut.juste { background: var(--ok); }
 .jour.mal.juste { background: rgba(29,214,160,.55); }
 .jour .tete { position: absolute; top: -11px; right: -7px; width: 28px; height: 28px; display: none; }
 .jour.debut .tete { display: block; animation: pop .45s var(--spring) both; }
@@ -426,6 +429,20 @@ body.tall .sac { min-height: 64px; } body.tall .sac .sacpic svg { width: 46px; h
 .sacv { position: absolute; z-index: 1; display: flex; gap: 4px; transform: translate(-50%, -50%); }
 .sacv .mini { width: 34px; height: 34px; border-radius: 50%; }
 .sacv .mini svg { width: 24px; height: 24px; }
+
+/* le thermomètre se fait glisser (ou on clique sur un niveau) */
+.thermo svg { touch-action: none; cursor: grab; }
+.thermo.tire svg { cursor: grabbing; }
+.thermo .poignee { transition: cy .7s var(--spring); }
+.thermo.tire .mercure, .thermo.tire .poignee { transition: none; }
+/* toucher la vidéo au bon moment */
+.hit.zone { cursor: pointer; }
+.cam.asking .hit.ecran { border-radius: 0; }
+@media (hover: hover) { .cam.asking .hit.ecran:hover { box-shadow: none; background: none; } }
+/* bilan : une réplique par ligne, alignée à gauche, même si elle passe sur deux lignes */
+.facts { flex-direction: column; align-items: flex-start; }
+.fact { height: auto; min-height: 30px; padding: 6px 12px 6px 9px; max-width: 100%; text-align: left; line-height: 1.25; }
+.fact span { text-align: left; }
 
 </style></head><body>
 <script>
@@ -693,58 +710,59 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Bravo ! Tu as compris la scène.": {
-   "src": "medias/voix-bc8b1281b9.mp3",
-   "w": [
-    0.0,
-    0.89,
-    1.11,
-    1.18,
-    1.57,
-    1.74
-   ]
-  },
   "Écoute la dame.": {
-   "src": "medias/voix-0070fe19f2.mp3",
+   "src": "medias/voix-b9f1b6db45.mp3",
    "w": [
     0.0,
-    0.48,
-    0.6
+    0.56,
+    0.72
    ]
   },
   "Sur le plan, guide le monsieur avec les flèches.": {
-   "src": "medias/voix-16d5b3e9d4.mp3",
+   "src": "medias/voix-2e92fc940e.mp3",
    "w": [
     0.0,
-    0.26,
-    0.37,
-    0.87,
-    1.13,
-    1.24,
-    1.78,
-    2.09,
-    2.21
+    0.28,
+    0.48,
+    1.2,
+    1.48,
+    1.6,
+    2.08,
+    2.4,
+    2.52
    ]
   },
-  "Où est la pharmacie ?": {
-   "src": "medias/voix-9430eedd09.mp3",
+  "Écoute encore la dame.": {
+   "src": "medias/voix-717bdcb1b1.mp3",
    "w": [
     0.0,
-    0.3,
-    0.49,
-    0.59
+    0.44,
+    0.76,
+    0.88
    ]
   },
   "Sur le plan, clique sur la pharmacie.": {
-   "src": "medias/voix-30c806646a.mp3",
+   "src": "medias/voix-78a43ef2a3.mp3",
    "w": [
     0.0,
-    0.26,
-    0.37,
-    0.73,
-    1.07,
-    1.23,
-    1.35
+    0.28,
+    0.4,
+    1.12,
+    1.44,
+    1.6,
+    1.76
+   ]
+  },
+  "Bravo ! Le monsieur a trouvé la pharmacie.": {
+   "src": "medias/voix-9751abd3cf.mp3",
+   "w": [
+    0.0,
+    1.04,
+    1.2,
+    1.6,
+    1.84,
+    2.16,
+    2.28
    ]
   }
  }
@@ -786,6 +804,7 @@ window.SCENARIO = (() => {
   return {
     plans: [{ de: 0, cx: { homme: .31, dame: .67 } }, { de: 2.46, cx: { homme: .5, dame: .6 } }, { de: 4.63, cx: { homme: .31, dame: .67 } }],
     ordre: ['chemin', 'ou'],
+    bravo: 'Bravo ! Le monsieur a trouvé la pharmacie.',
     etapes: A => {
       const { $, $$, NB, state, alive, Q, yourTurn, setTurn, WIDE, playSegment, phrase, ligne, side, idle, tapHere, sfx, faux, juste, suite, wait, avant } = A;
       const DROIT = phrase('allez tout droit'), FEU = phrase('puis tournez à droite au feu'), CHEMIN = ligne(1), FACE = ligne(3);
@@ -841,7 +860,7 @@ window.SCENARIO = (() => {
         async ou(f) {
           const ask = () => { Q.show('you', state.ask); yourTurn(); idle.set(tapHere($('.bat[data-id="b8"]', side)), 5000); };
           if (!await avant(f, {
-            question: 'Où est la pharmacie' + NB + '?', qui: 'dame', seg: FACE, sideW: 540, consigne: 'Sur le plan, clique sur la pharmacie.',
+            question: 'Écoute encore la dame.', qui: 'dame', seg: FACE, sideW: 540, consigne: 'Sur le plan, clique sur la pharmacie.',
             panneau: `<div class="panel glass"><p class="ptitre">Clique sur la pharmacie</p>${plan()}</div>`,
             monte: () => requestAnimationFrame(() => { placer(2, true); $('#plan').classList.add('choisir'); }),
           })) return;
@@ -1261,7 +1280,7 @@ window.SCENARIO = (() => {
     state.essais++; sfx.try();
     Q.show('try', state.essais >= 2 ? 'Écoute bien.' : msg);
     await wait(850); if (!alive(f)) return null;
-    await playSegment(seg[0], seg[1], WIDE); if (!alive(f)) return null;
+    await playSegment(seg[0], seg[1], gel()); if (!alive(f)) return null;
     return state.essais >= 2;
   }
   async function juste(f, msg, seg) {
@@ -1279,10 +1298,10 @@ window.SCENARIO = (() => {
      enfin la consigne du geste. Renvoie false si on a quitté l'étape. */
   async function avant(f, o) {
     setSide(null); o.qui ? focus(o.qui, false) : frameTo(CROPS.full, false);
-    await freeze(WIDE); if (!alive(f)) return false;
+    state.gel = o.gel; await freeze(gel()); if (!alive(f)) return false;
     if (!await Q.say(o.question, f)) return false;
     setTurn('listen'); await wait(250); if (!alive(f)) return false;
-    await playSegment(o.seg[0], o.seg[1], WIDE); if (!alive(f)) return false;
+    await playSegment(o.seg[0], o.seg[1], gel()); if (!alive(f)) return false;
     if (o.panneau) { setSide(o.panneau, o.monte); o.qui ? focus(o.qui, true, o.sideW) : frameTo(CROPS.full, true, o.sideW); }
     else { frameTo(CROPS.full, false); o.monte && o.monte(cam); }
     state.ask = o.consigne;
@@ -1292,9 +1311,10 @@ window.SCENARIO = (() => {
   /* un repère posé sur l'image : un cadre autour d'une zone, une étiquette au-dessus */
   function cadreZone(z, cls) { const d = document.createElement('div'); d.className = 'surimage zcadre ' + (cls || ''); Object.assign(d.style, { left: z.x + '%', top: z.y + '%', width: z.w + '%', height: z.h + '%' }); cam.append(d); return d; }
   function marque(z, txt, cls) { const d = document.createElement('div'); d.className = 'surimage marque ' + (cls || ''); d.textContent = txt; Object.assign(d.style, { left: z.x + z.w / 2 + '%', top: z.y + '%' }); cam.append(d); return d; }
+  const gel = () => (state.gel != null ? state.gel : WIDE);
   function go(step) {
     flow++; stopAll(); idle.clear();
-    Object.assign(state, { step, ask: null, replay: null, lineView: false, essais: 0 });
+    Object.assign(state, { step, ask: null, replay: null, lineView: false, essais: 0, gel: null });
     cam.classList.remove('asking'); zones(null); spotOff(); goBtn(null); setSplit(false); $$('.surimage', cam).forEach(e => e.remove());
     STEPS[step](flow);
   }
@@ -1330,10 +1350,10 @@ window.SCENARIO = (() => {
       </div></div>`, p => {
       $$('.fact', p).forEach(b => b.addEventListener('click', async () => { unlock(); if (document.body.dataset.turn !== 'you') return; setTurn('listen'); await playSegment(+b.dataset.s, +b.dataset.e, WIDE); if (alive(f)) setTurn('you'); }));
     });
-    frameTo(CROPS.full, true);
+    frameTo(CROPS.full, true, 400);
     setTimeout(() => { if (alive(f)) flyFaces(); }, 800);
     await wait(1500); if (!alive(f)) return;
-    state.ask = 'Bravo' + NB + '! Tu as compris la scène.';
+    state.ask = SC.bravo || 'Bravo' + NB + '! Tu as compris la scène.';
     if (!await Q.say(state.ask, f)) return;
     Q.mode('ok');
     state.replay = async () => { setTurn('listen'); await playSegment(0, DON.duree, WIDE); if (alive(f)) { Q.mode('ok'); setTurn('you'); } };
@@ -1365,7 +1385,7 @@ window.SCENARIO = (() => {
   var api = {
     $, $$, wait, NB, reduced, state, alive, go, suite, Q, goBtn, yourTurn, setTurn, frameTo, CROPS, WIDE, LINES, PEOPLE,
     freeze, playSegment, hear, phrase, ligne, tag, tagAll, hideTags, spotOn, spotAt, spotOff, rippleAt, zones, fly,
-    setSide, side, setSplit, binNo, binYes, deck, idle, at, tapHere, sfx, ICON, win, cam, layout, speak, unlock, faux, juste, focus, avant, cadreZone, marque,
+    setSide, side, setSplit, binNo, binYes, deck, idle, at, tapHere, sfx, ICON, win, cam, layout, speak, unlock, faux, juste, focus, avant, cadreZone, marque, gel, stopAll,
     flow: () => flow,
   };
   Object.assign(STEPS, SC.etapes(api));

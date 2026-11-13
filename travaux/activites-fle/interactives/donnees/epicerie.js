@@ -304,57 +304,58 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Bravo ! Tu as compris la scène.": {
-   "src": "medias/voix-bc8b1281b9.mp3",
+  "Écoute la cliente.": {
+   "src": "medias/voix-ee42e419b0.mp3",
    "w": [
     0.0,
-    0.89,
-    1.11,
-    1.18,
-    1.57,
-    1.74
-   ]
-  },
-  "Qu'est-ce que la cliente achète ?": {
-   "src": "medias/voix-516cc64867.mp3",
-   "w": [
-    0.0,
-    0.49,
-    0.6,
-    0.7,
-    1.07
+    0.56,
+    0.92
    ]
   },
   "Dans la boutique, clique sur ce qu'elle achète.": {
-   "src": "medias/voix-0b9e090043.mp3",
+   "src": "medias/voix-dcb8015fab.mp3",
    "w": [
     0.0,
-    0.23,
-    0.35,
-    1.03,
-    1.33,
-    1.5,
-    1.57,
-    1.79
+    0.2,
+    0.32,
+    1.12,
+    1.44,
+    1.6,
+    1.72,
+    1.92
    ]
   },
-  "Combien ça coûte ?": {
-   "src": "medias/voix-056892f02f.mp3",
+  "Écoute le vendeur.": {
+   "src": "medias/voix-396bfccd3d.mp3",
    "w": [
     0.0,
-    0.4,
-    0.53
+    0.48,
+    0.6
    ]
   },
-  "Pose l'argent, puis clique sur Payer.": {
-   "src": "medias/voix-9755ccb141.mp3",
+  "Pose l'argent, puis clique sur payer.": {
+   "src": "medias/voix-0a416df1d4.mp3",
    "w": [
     0.0,
-    0.33,
-    0.82,
-    1.1,
-    1.39,
-    1.6
+    0.27,
+    1.04,
+    1.44,
+    1.76,
+    2.0
+   ]
+  },
+  "Parfait ! La cliente a ses pommes et son pain.": {
+   "src": "medias/voix-c4a4b783d4.mp3",
+   "w": [
+    0.0,
+    0.99,
+    1.12,
+    1.52,
+    1.72,
+    1.88,
+    2.28,
+    2.4,
+    2.56
    ]
   }
  }

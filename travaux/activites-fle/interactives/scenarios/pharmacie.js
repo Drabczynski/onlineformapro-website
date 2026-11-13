@@ -32,6 +32,7 @@ window.SCENARIO = (() => {
   return {
     plans: [{ de: 0, cx: { homme: .31, dame: .67 } }, { de: 2.46, cx: { homme: .5, dame: .6 } }, { de: 4.63, cx: { homme: .31, dame: .67 } }],
     ordre: ['chemin', 'ou'],
+    bravo: 'Bravo ! Le monsieur a trouvé la pharmacie.',
     etapes: A => {
       const { $, $$, NB, state, alive, Q, yourTurn, setTurn, WIDE, playSegment, phrase, ligne, side, idle, tapHere, sfx, faux, juste, suite, wait, avant } = A;
       const DROIT = phrase('allez tout droit'), FEU = phrase('puis tournez à droite au feu'), CHEMIN = ligne(1), FACE = ligne(3);
@@ -87,7 +88,7 @@ window.SCENARIO = (() => {
         async ou(f) {
           const ask = () => { Q.show('you', state.ask); yourTurn(); idle.set(tapHere($('.bat[data-id="b8"]', side)), 5000); };
           if (!await avant(f, {
-            question: 'Où est la pharmacie' + NB + '?', qui: 'dame', seg: FACE, sideW: 540, consigne: 'Sur le plan, clique sur la pharmacie.',
+            question: 'Écoute encore la dame.', qui: 'dame', seg: FACE, sideW: 540, consigne: 'Sur le plan, clique sur la pharmacie.',
             panneau: `<div class="panel glass"><p class="ptitre">Clique sur la pharmacie</p>${plan()}</div>`,
             monte: () => requestAnimationFrame(() => { placer(2, true); $('#plan').classList.add('choisir'); }),
           })) return;

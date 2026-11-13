@@ -381,7 +381,7 @@
     state.essais++; sfx.try();
     Q.show('try', state.essais >= 2 ? 'Écoute bien.' : msg);
     await wait(850); if (!alive(f)) return null;
-    await playSegment(seg[0], seg[1], WIDE); if (!alive(f)) return null;
+    await playSegment(seg[0], seg[1], gel()); if (!alive(f)) return null;
     return state.essais >= 2;
   }
   async function juste(f, msg, seg) {
@@ -399,10 +399,10 @@
      enfin la consigne du geste. Renvoie false si on a quitté l'étape. */
   async function avant(f, o) {
     setSide(null); o.qui ? focus(o.qui, false) : frameTo(CROPS.full, false);
-    await freeze(WIDE); if (!alive(f)) return false;
+    state.gel = o.gel; await freeze(gel()); if (!alive(f)) return false;
     if (!await Q.say(o.question, f)) return false;
     setTurn('listen'); await wait(250); if (!alive(f)) return false;
-    await playSegment(o.seg[0], o.seg[1], WIDE); if (!alive(f)) return false;
+    await playSegment(o.seg[0], o.seg[1], gel()); if (!alive(f)) return false;
     if (o.panneau) { setSide(o.panneau, o.monte); o.qui ? focus(o.qui, true, o.sideW) : frameTo(CROPS.full, true, o.sideW); }
     else { frameTo(CROPS.full, false); o.monte && o.monte(cam); }
     state.ask = o.consigne;
@@ -412,9 +412,10 @@
   /* un repère posé sur l'image : un cadre autour d'une zone, une étiquette au-dessus */
   function cadreZone(z, cls) { const d = document.createElement('div'); d.className = 'surimage zcadre ' + (cls || ''); Object.assign(d.style, { left: z.x + '%', top: z.y + '%', width: z.w + '%', height: z.h + '%' }); cam.append(d); return d; }
   function marque(z, txt, cls) { const d = document.createElement('div'); d.className = 'surimage marque ' + (cls || ''); d.textContent = txt; Object.assign(d.style, { left: z.x + z.w / 2 + '%', top: z.y + '%' }); cam.append(d); return d; }
+  const gel = () => (state.gel != null ? state.gel : WIDE);
   function go(step) {
     flow++; stopAll(); idle.clear();
-    Object.assign(state, { step, ask: null, replay: null, lineView: false, essais: 0 });
+    Object.assign(state, { step, ask: null, replay: null, lineView: false, essais: 0, gel: null });
     cam.classList.remove('asking'); zones(null); spotOff(); goBtn(null); setSplit(false); $$('.surimage', cam).forEach(e => e.remove());
     STEPS[step](flow);
   }
@@ -450,10 +451,10 @@
       </div></div>`, p => {
       $$('.fact', p).forEach(b => b.addEventListener('click', async () => { unlock(); if (document.body.dataset.turn !== 'you') return; setTurn('listen'); await playSegment(+b.dataset.s, +b.dataset.e, WIDE); if (alive(f)) setTurn('you'); }));
     });
-    frameTo(CROPS.full, true);
+    frameTo(CROPS.full, true, 400);
     setTimeout(() => { if (alive(f)) flyFaces(); }, 800);
     await wait(1500); if (!alive(f)) return;
-    state.ask = 'Bravo' + NB + '! Tu as compris la scène.';
+    state.ask = SC.bravo || 'Bravo' + NB + '! Tu as compris la scène.';
     if (!await Q.say(state.ask, f)) return;
     Q.mode('ok');
     state.replay = async () => { setTurn('listen'); await playSegment(0, DON.duree, WIDE); if (alive(f)) { Q.mode('ok'); setTurn('you'); } };
@@ -485,7 +486,7 @@
   var api = {
     $, $$, wait, NB, reduced, state, alive, go, suite, Q, goBtn, yourTurn, setTurn, frameTo, CROPS, WIDE, LINES, PEOPLE,
     freeze, playSegment, hear, phrase, ligne, tag, tagAll, hideTags, spotOn, spotAt, spotOff, rippleAt, zones, fly,
-    setSide, side, setSplit, binNo, binYes, deck, idle, at, tapHere, sfx, ICON, win, cam, layout, speak, unlock, faux, juste, focus, avant, cadreZone, marque,
+    setSide, side, setSplit, binNo, binYes, deck, idle, at, tapHere, sfx, ICON, win, cam, layout, speak, unlock, faux, juste, focus, avant, cadreZone, marque, gel, stopAll,
     flow: () => flow,
   };
   Object.assign(STEPS, SC.etapes(api));

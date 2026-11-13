@@ -274,58 +274,70 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Bravo ! Tu as compris la scène.": {
-   "src": "medias/voix-bc8b1281b9.mp3",
+  "Écoute le client.": {
+   "src": "medias/voix-c63ecc4e5d.mp3",
    "w": [
     0.0,
-    0.89,
-    1.11,
-    1.18,
-    1.57,
-    1.74
-   ]
-  },
-  "Le bouquet, c'est pour qui ?": {
-   "src": "medias/voix-2d53b96230.mp3",
-   "w": [
-    0.0,
-    0.35,
-    0.79,
-    0.99,
-    1.18
+    0.56,
+    0.84
    ]
   },
   "Clique sur la bonne personne.": {
-   "src": "medias/voix-d6c5dabae3.mp3",
+   "src": "medias/voix-0ed67dee7d.mp3",
    "w": [
     0.0,
-    0.33,
-    0.5,
-    0.6,
-    0.79
+    0.4,
+    0.64,
+    0.8,
+    0.96
    ]
   },
-  "Il choisit quelles fleurs ?": {
-   "src": "medias/voix-d412161ccb.mp3",
+  "Écoute bien.": {
+   "src": "medias/voix-785bf678cc.mp3",
    "w": [
     0.0,
-    0.21,
-    0.57,
-    0.81
+    0.4
    ]
   },
-  "Dans la boutique, clique sur les fleurs qu'il choisit.": {
-   "src": "medias/voix-290b251030.mp3",
+  "Dans la boutique, clique sur les fleurs qu'elle adore.": {
+   "src": "medias/voix-fb29cdf063.mp3",
    "w": [
     0.0,
-    0.21,
-    0.33,
-    1.24,
-    1.58,
-    1.74,
-    1.87,
-    2.16,
-    2.37
+    0.2,
+    0.32,
+    1.08,
+    1.36,
+    1.52,
+    1.68,
+    2.0,
+    2.28
+   ]
+  },
+  "Et la couleur ? Clique sur les roses qu'il choisit.": {
+   "src": "medias/voix-62e018600f.mp3",
+   "w": [
+    0.0,
+    0.12,
+    0.24,
+    1.12,
+    1.44,
+    1.6,
+    1.76,
+    2.05,
+    2.24
+   ]
+  },
+  "Génial ! Sa mère va adorer ses roses blanches.": {
+   "src": "medias/voix-c34fa3b51d.mp3",
+   "w": [
+    0.0,
+    1.31,
+    1.44,
+    1.68,
+    2.12,
+    2.48,
+    2.64,
+    2.88
    ]
   }
  }

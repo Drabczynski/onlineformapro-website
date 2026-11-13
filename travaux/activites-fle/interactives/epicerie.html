@@ -365,7 +365,10 @@ body[data-turn="listen"] .fleches, body[data-turn="wait"] .fleches, body[data-tu
 .mois { margin: 0; text-align: center; font-weight: 800; font-size: 20px; letter-spacing: -.01em; }
 .jour:active { transform: scale(.92); }
 .jour.auj { box-shadow: inset 0 0 0 2px #fff; }
-.jour.mal { background: rgba(255,77,100,.55); }
+.jour.mal { background: rgba(255,255,255,.24); }
+.jour.debut { background: #fff; color: var(--ink); }
+.jour.debut span, .jour.debut small { color: rgba(20,16,40,.6); }
+.jour.debut.juste { background: var(--ok); }
 .jour.mal.juste { background: rgba(29,214,160,.55); }
 .jour .tete { position: absolute; top: -11px; right: -7px; width: 28px; height: 28px; display: none; }
 .jour.debut .tete { display: block; animation: pop .45s var(--spring) both; }
@@ -426,6 +429,20 @@ body.tall .sac { min-height: 64px; } body.tall .sac .sacpic svg { width: 46px; h
 .sacv { position: absolute; z-index: 1; display: flex; gap: 4px; transform: translate(-50%, -50%); }
 .sacv .mini { width: 34px; height: 34px; border-radius: 50%; }
 .sacv .mini svg { width: 24px; height: 24px; }
+
+/* le thermomètre se fait glisser (ou on clique sur un niveau) */
+.thermo svg { touch-action: none; cursor: grab; }
+.thermo.tire svg { cursor: grabbing; }
+.thermo .poignee { transition: cy .7s var(--spring); }
+.thermo.tire .mercure, .thermo.tire .poignee { transition: none; }
+/* toucher la vidéo au bon moment */
+.hit.zone { cursor: pointer; }
+.cam.asking .hit.ecran { border-radius: 0; }
+@media (hover: hover) { .cam.asking .hit.ecran:hover { box-shadow: none; background: none; } }
+/* bilan : une réplique par ligne, alignée à gauche, même si elle passe sur deux lignes */
+.facts { flex-direction: column; align-items: flex-start; }
+.fact { height: auto; min-height: 30px; padding: 6px 12px 6px 9px; max-width: 100%; text-align: left; line-height: 1.25; }
+.fact span { text-align: left; }
 
 </style></head><body>
 <script>
@@ -735,57 +752,58 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Bravo ! Tu as compris la scène.": {
-   "src": "medias/voix-bc8b1281b9.mp3",
+  "Écoute la cliente.": {
+   "src": "medias/voix-ee42e419b0.mp3",
    "w": [
     0.0,
-    0.89,
-    1.11,
-    1.18,
-    1.57,
-    1.74
-   ]
-  },
-  "Qu'est-ce que la cliente achète ?": {
-   "src": "medias/voix-516cc64867.mp3",
-   "w": [
-    0.0,
-    0.49,
-    0.6,
-    0.7,
-    1.07
+    0.56,
+    0.92
    ]
   },
   "Dans la boutique, clique sur ce qu'elle achète.": {
-   "src": "medias/voix-0b9e090043.mp3",
+   "src": "medias/voix-dcb8015fab.mp3",
    "w": [
     0.0,
-    0.23,
-    0.35,
-    1.03,
-    1.33,
-    1.5,
-    1.57,
-    1.79
+    0.2,
+    0.32,
+    1.12,
+    1.44,
+    1.6,
+    1.72,
+    1.92
    ]
   },
-  "Combien ça coûte ?": {
-   "src": "medias/voix-056892f02f.mp3",
+  "Écoute le vendeur.": {
+   "src": "medias/voix-396bfccd3d.mp3",
    "w": [
     0.0,
-    0.4,
-    0.53
+    0.48,
+    0.6
    ]
   },
-  "Pose l'argent, puis clique sur Payer.": {
-   "src": "medias/voix-9755ccb141.mp3",
+  "Pose l'argent, puis clique sur payer.": {
+   "src": "medias/voix-0a416df1d4.mp3",
    "w": [
     0.0,
-    0.33,
-    0.82,
-    1.1,
-    1.39,
-    1.6
+    0.27,
+    1.04,
+    1.44,
+    1.76,
+    2.0
+   ]
+  },
+  "Parfait ! La cliente a ses pommes et son pain.": {
+   "src": "medias/voix-c4a4b783d4.mp3",
+   "w": [
+    0.0,
+    0.99,
+    1.12,
+    1.52,
+    1.72,
+    1.88,
+    2.28,
+    2.4,
+    2.56
    ]
   }
  }
@@ -815,6 +833,7 @@ window.SCENARIO = (() => {
   return {
     plans: [{ de: 0, cx: { vendeur: .25, cliente: .72 } }, { de: 4.17, cx: { vendeur: .35, cliente: .6 } }, { de: 5.42, cx: { vendeur: .25, cliente: .72 } }],
     ordre: ['sac', 'payer'],
+    bravo: 'Parfait ! La cliente a ses pommes et son pain.',
     etapes: A => {
       const { $, $$, NB, state, alive, Q, yourTurn, setTurn, WIDE, playSegment, phrase, side, idle, tapHere, sfx, fly, faux, juste, suite, goBtn, zones, cam, avant, cadreZone, marque } = A;
       PROD[0].seg = phrase('je voudrais un kilo de pommes'); PROD[1].seg = phrase('oui je voudrais du pain');
@@ -828,7 +847,7 @@ window.SCENARIO = (() => {
           const pris = new Set(), reste = () => PROD.filter(p => p.ok && !pris.has(p.id));
           const ask = () => { Q.show('you', state.ask); yourTurn(); cam.classList.add('asking'); idle.set(tapHere($('.hit[data-id="vin-0"]', cam)), 5000); };
           if (!await avant(f, {
-            question: "Qu'est-ce que la cliente achète" + NB + '?', seg: ACHATS, consigne: "Dans la boutique, clique sur ce qu'elle achète.",
+            question: 'Écoute la cliente.', qui: 'cliente', seg: ACHATS, consigne: "Dans la boutique, clique sur ce qu'elle achète.",
             monte: () => { sac = document.createElement('div'); sac.className = 'surimage sacv'; Object.assign(sac.style, { left: SAC.x + '%', top: SAC.y + '%' }); cam.append(sac); },
           })) return;
           state.replay = async () => { setTurn('listen'); cam.classList.remove('asking'); await playSegment(ACHATS[0], ACHATS[1], WIDE); if (alive(f)) ask(); };
@@ -868,7 +887,7 @@ window.SCENARIO = (() => {
           };
           const ask = () => { Q.show('you', state.ask); goBtn('check', 'Payer', valider); yourTurn(); idle.set(tapHere($('.bourse .argent', side)), 5000); };
           if (!await avant(f, {
-            question: 'Combien ça coûte' + NB + '?', qui: 'vendeur', seg: SEG_PRIX, sideW: 400, consigne: "Pose l'argent, puis clique sur Payer.",
+            question: 'Écoute le vendeur.', qui: 'vendeur', seg: SEG_PRIX, sideW: 400, consigne: "Pose l'argent, puis clique sur payer.",
             panneau: `<div class="panel glass"><p class="ptitre">Pose l'argent sur le comptoir</p>
               <div class="plateau" id="plateau"><div class="somme"><span id="somme">0</span><small>€</small></div><div class="posees" id="posees"></div></div>
               <div class="bourse">${MONNAIE.map(argent).join('')}</div></div>`,
@@ -1293,7 +1312,7 @@ window.SCENARIO = (() => {
     state.essais++; sfx.try();
     Q.show('try', state.essais >= 2 ? 'Écoute bien.' : msg);
     await wait(850); if (!alive(f)) return null;
-    await playSegment(seg[0], seg[1], WIDE); if (!alive(f)) return null;
+    await playSegment(seg[0], seg[1], gel()); if (!alive(f)) return null;
     return state.essais >= 2;
   }
   async function juste(f, msg, seg) {
@@ -1311,10 +1330,10 @@ window.SCENARIO = (() => {
      enfin la consigne du geste. Renvoie false si on a quitté l'étape. */
   async function avant(f, o) {
     setSide(null); o.qui ? focus(o.qui, false) : frameTo(CROPS.full, false);
-    await freeze(WIDE); if (!alive(f)) return false;
+    state.gel = o.gel; await freeze(gel()); if (!alive(f)) return false;
     if (!await Q.say(o.question, f)) return false;
     setTurn('listen'); await wait(250); if (!alive(f)) return false;
-    await playSegment(o.seg[0], o.seg[1], WIDE); if (!alive(f)) return false;
+    await playSegment(o.seg[0], o.seg[1], gel()); if (!alive(f)) return false;
     if (o.panneau) { setSide(o.panneau, o.monte); o.qui ? focus(o.qui, true, o.sideW) : frameTo(CROPS.full, true, o.sideW); }
     else { frameTo(CROPS.full, false); o.monte && o.monte(cam); }
     state.ask = o.consigne;
@@ -1324,9 +1343,10 @@ window.SCENARIO = (() => {
   /* un repère posé sur l'image : un cadre autour d'une zone, une étiquette au-dessus */
   function cadreZone(z, cls) { const d = document.createElement('div'); d.className = 'surimage zcadre ' + (cls || ''); Object.assign(d.style, { left: z.x + '%', top: z.y + '%', width: z.w + '%', height: z.h + '%' }); cam.append(d); return d; }
   function marque(z, txt, cls) { const d = document.createElement('div'); d.className = 'surimage marque ' + (cls || ''); d.textContent = txt; Object.assign(d.style, { left: z.x + z.w / 2 + '%', top: z.y + '%' }); cam.append(d); return d; }
+  const gel = () => (state.gel != null ? state.gel : WIDE);
   function go(step) {
     flow++; stopAll(); idle.clear();
-    Object.assign(state, { step, ask: null, replay: null, lineView: false, essais: 0 });
+    Object.assign(state, { step, ask: null, replay: null, lineView: false, essais: 0, gel: null });
     cam.classList.remove('asking'); zones(null); spotOff(); goBtn(null); setSplit(false); $$('.surimage', cam).forEach(e => e.remove());
     STEPS[step](flow);
   }
@@ -1362,10 +1382,10 @@ window.SCENARIO = (() => {
       </div></div>`, p => {
       $$('.fact', p).forEach(b => b.addEventListener('click', async () => { unlock(); if (document.body.dataset.turn !== 'you') return; setTurn('listen'); await playSegment(+b.dataset.s, +b.dataset.e, WIDE); if (alive(f)) setTurn('you'); }));
     });
-    frameTo(CROPS.full, true);
+    frameTo(CROPS.full, true, 400);
     setTimeout(() => { if (alive(f)) flyFaces(); }, 800);
     await wait(1500); if (!alive(f)) return;
-    state.ask = 'Bravo' + NB + '! Tu as compris la scène.';
+    state.ask = SC.bravo || 'Bravo' + NB + '! Tu as compris la scène.';
     if (!await Q.say(state.ask, f)) return;
     Q.mode('ok');
     state.replay = async () => { setTurn('listen'); await playSegment(0, DON.duree, WIDE); if (alive(f)) { Q.mode('ok'); setTurn('you'); } };
@@ -1397,7 +1417,7 @@ window.SCENARIO = (() => {
   var api = {
     $, $$, wait, NB, reduced, state, alive, go, suite, Q, goBtn, yourTurn, setTurn, frameTo, CROPS, WIDE, LINES, PEOPLE,
     freeze, playSegment, hear, phrase, ligne, tag, tagAll, hideTags, spotOn, spotAt, spotOff, rippleAt, zones, fly,
-    setSide, side, setSplit, binNo, binYes, deck, idle, at, tapHere, sfx, ICON, win, cam, layout, speak, unlock, faux, juste, focus, avant, cadreZone, marque,
+    setSide, side, setSplit, binNo, binYes, deck, idle, at, tapHere, sfx, ICON, win, cam, layout, speak, unlock, faux, juste, focus, avant, cadreZone, marque, gel, stopAll,
     flow: () => flow,
   };
   Object.assign(STEPS, SC.etapes(api));

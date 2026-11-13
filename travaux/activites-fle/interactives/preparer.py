@@ -3,34 +3,41 @@
     python3 preparer.py
 
 - les répliques calées mot à mot (retranscription ElevenLabs, avec qui parle) → donnees/<id>.js ;
-- les consignes dites par la voix « FLE - femme-38 » (celle du prototype de Kenji), avec le début de chaque mot → medias/ ;
+- les consignes dites par la voix « Femme 2 » (créée pour les mises en situation), modèle eleven_v4, toutes au même
+  niveau sonore (−20 LUFS, un peu au-dessus des dialogues des vidéos), chacune vérifiée par une transcription, avec le
+  début de chaque mot → medias/ ;
 - les portraits des personnes, découpés dans l'image où la vidéo s'arrête → medias/.
 """
 import base64, hashlib, json, os, re, subprocess, sys
 ICI = os.path.dirname(os.path.abspath(__file__)); RACINE = os.path.dirname(ICI)
 STT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ICI, "stt")
-VOIX = "RBkAZvACIOn52Hc7XASF"          # FLE - femme-38
+VOIX = "87kc04olBn8nRQKuNmaf"          # Femme 2 (../../mises-en-situation/voix.json)
+MODELE = "eleven_v4"
+NIVEAU = -20.0                         # LUFS
 NB = " "
 SCENES = {
     "epicerie": {"video": "epicerie", "gel": 9.2,
                  "people": {"vendeur": {"name": "Le vendeur", "qui": "Le vendeur", "side": "g", "spot": [27, 50, 18, 62], "anchor": [24, 46], "crop": [21, 12, 14, 25]},
                             "cliente": {"name": "La cliente", "qui": "La cliente", "side": "d", "spot": [72, 50, 18, 62], "anchor": [75, 46], "crop": [57, 16, 14, 25]}},
-                 "consignes": ["Qu'est-ce que la cliente achète ?", "Dans la boutique, clique sur ce qu'elle achète.", "Combien ça coûte ?", "Pose l'argent, puis clique sur Payer."]},
+                 "consignes": ["Écoute la cliente.", "Dans la boutique, clique sur ce qu'elle achète.", "Écoute le vendeur.", "Pose l'argent, puis clique sur payer.",
+                               "Parfait ! La cliente a ses pommes et son pain."]},
     "pharmacie": {"video": "pharmacie-chemin", "gel": 6.0,
                   "people": {"homme": {"name": "Le monsieur", "qui": "L'homme", "side": "g", "spot": [32, 52, 16, 62], "anchor": [29, 50], "crop": [29, 16, 14, 25]},
                              "dame": {"name": "La dame", "qui": "La dame", "side": "d", "spot": [67, 55, 16, 62], "anchor": [70, 52], "crop": [59, 19, 14, 25]}},
-                  "consignes": ["Écoute la dame.", "Sur le plan, guide le monsieur avec les flèches.", "Où est la pharmacie ?", "Sur le plan, clique sur la pharmacie."]},
+                  "consignes": ["Écoute la dame.", "Sur le plan, guide le monsieur avec les flèches.", "Écoute encore la dame.", "Sur le plan, clique sur la pharmacie.",
+                                "Bravo ! Le monsieur a trouvé la pharmacie."]},
     "medecin": {"video": "medecin-tete", "gel": 5.8,
                 "people": {"patiente": {"name": "La patiente", "qui": "La patiente", "side": "g", "spot": [18, 55, 18, 64], "anchor": [16, 52], "crop": [17, 19, 14, 25]},
                            "medecin": {"name": "Le médecin", "qui": "Le médecin", "side": "d", "spot": [72, 52, 18, 64], "anchor": [72, 56], "crop": [65, 17, 14, 25]}},
-                "consignes": ["Depuis quand ?", "Aujourd'hui, c'est jeudi. Elle a mal depuis quel jour ?", "Elle a de la fièvre ?", "Monte le thermomètre.",
-                               "Le médecin va donner quoi ?", "Sur le bureau, clique sur ce qu'il va donner."]},
+                "consignes": ["Écoute la patiente.", "Aujourd'hui, c'est jeudi. Elle a mal depuis quel jour ?", "Écoute encore la patiente.", "Fais monter le thermomètre.",
+                              "Touche la vidéo quand tu entends le mot médicament.", "Très bien ! Tu as tout compris chez le médecin."]},
     "fleuriste": {"video": "fleuriste", "gel": 9.2,
                   "people": {"fleuriste": {"name": "La fleuriste", "qui": "La fleuriste", "side": "g", "spot": [34, 52, 16, 64], "anchor": [31, 46], "crop": [27, 19, 14, 25]},
                              "client": {"name": "Le client", "qui": "Le client", "side": "d", "spot": [74, 52, 16, 64], "anchor": [77, 46], "crop": [67, 10, 14, 25], "portrait": [3.0, [36, 8, 28, 50]]}},
-                  "consignes": ["Le bouquet, c'est pour qui ?", "Clique sur la bonne personne.", "Il choisit quelles fleurs ?", "Dans la boutique, clique sur les fleurs qu'il choisit."]},
+                  "consignes": ["Écoute le client.", "Clique sur la bonne personne.", "Écoute bien.", "Dans la boutique, clique sur les fleurs qu'elle adore.",
+                                "Et la couleur ? Clique sur les roses qu'il choisit.", "Génial ! Sa mère va adorer ses roses blanches."]},
 }
-COMMUNES = [("Bravo ! Tu as compris la scène.", .8)]     # (texte, vitesse) : le bravo, dit plus lentement
+COMMUNES = []      # (texte, vitesse) : consignes communes à toutes les scènes (le bravo est propre à chaque scène)
 
 
 def affiche(t):     # l'espace fine avant ? ! : comme dans le prototype
@@ -38,15 +45,16 @@ def affiche(t):     # l'espace fine avant ? ! : comme dans le prototype
 
 
 def tts(texte, vitesse=1.0):
-    cle = texte if vitesse == 1.0 else f"{texte}|{vitesse}"
+    cle = f"{VOIX}|{MODELE}|{texte}" + ("" if vitesse == 1.0 else f"|{vitesse}")
     nom = "voix-" + hashlib.sha1(cle.encode()).hexdigest()[:10] + ".mp3"; chemin = os.path.join(ICI, "medias", nom)
     meta = chemin + ".json"
     if os.path.exists(chemin) and os.path.exists(meta): return nom, json.load(open(meta))
-    corps = json.dumps({"text": texte, "model_id": "eleven_multilingual_v2", "language_code": "fr",
-                        "voice_settings": {"stability": .55, "similarity_boost": .8, "style": 0, "use_speaker_boost": True, "speed": vitesse}}, ensure_ascii=False)
+    corps = json.dumps({"text": texte, "model_id": MODELE, "language_code": "fr",
+                        "voice_settings": {"stability": .5, "similarity_boost": .8, "speed": vitesse}}, ensure_ascii=False)
     r = subprocess.run(["curl", "-sS", f"https://api.elevenlabs.io/v1/text-to-speech/{VOIX}/with-timestamps", "-H", "xi-api-key: secret-du-proxy",
                         "-H", "Content-Type: application/json", "--data-binary", corps], capture_output=True, text=True)
-    d = json.loads(r.stdout); open(chemin, "wb").write(base64.b64decode(d["audio_base64"]))
+    d = json.loads(r.stdout); brut = chemin + ".brut.mp3"; open(brut, "wb").write(base64.b64decode(d["audio_base64"]))
+    niveau(brut, chemin); os.remove(brut); verifier(texte, chemin)
     al = d["alignment"]; car, deb = al["characters"], al["character_start_times_seconds"]
     # le début de chaque mot affiché : « Bravo ! » est un seul mot (le « ! » suit une espace fine)
     w, i = [], 0
@@ -54,6 +62,22 @@ def tts(texte, vitesse=1.0):
         if not (re.fullmatch(r"[?!:;]", tok) and w): w.append(round(deb[i], 2))
         i += len(tok) + 1
     json.dump(w, open(meta, "w")); return nom, w
+
+
+def niveau(src, dst):
+    """Toutes les consignes au même niveau sonore : un simple gain (pas de compression), calculé sur la mesure EBU R128."""
+    o = subprocess.run(["ffmpeg", "-hide_banner", "-i", src, "-af", "ebur128=framelog=quiet", "-f", "null", "-"], capture_output=True, text=True).stderr
+    mesure = float(re.findall(r"I:\s+(-?[0-9.]+) LUFS", o)[-1])
+    subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", src, "-af", f"volume={NIVEAU - mesure:.2f}dB,alimiter=limit=0.89", "-b:a", "128k", dst], check=True)
+
+
+def verifier(texte, chemin):
+    """La consigne retranscrite (scribe) doit redonner le texte : sinon on le signale (mot avalé, mot déformé)."""
+    r = subprocess.run(["curl", "-sS", "https://api.elevenlabs.io/v1/speech-to-text", "-H", "xi-api-key: secret-du-proxy", "-F", "model_id=scribe_v1",
+                        "-F", "language_code=fr", "-F", f"file=@{chemin}"], capture_output=True, text=True)
+    lu = json.loads(r.stdout).get("text", "")
+    n = lambda t: re.sub(r"[^a-zàâçéèêëîïôûùüÿœ' ]", " ", t.lower().replace("’", "'")).split()
+    print(("  ok      " if n(lu) == n(texte) else "  ÉCART   ") + texte + ("" if n(lu) == n(texte) else "  →  " + lu))
 
 
 def repliques(cle, sc):

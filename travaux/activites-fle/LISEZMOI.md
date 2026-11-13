@@ -231,11 +231,12 @@ chaque scénario). Chaque scène a au moins un geste dans la vidéo :
 | La colocation de Kenji (`kenji/`) | le prototype d'origine, tel quel, avec un bouton de retour |
 | À l'épicerie | dans la vidéo : toucher ce que la cliente achète dans la boutique (ça part dans le sac en papier du comptoir) ; à côté : payer 5 € avec des pièces et des billets |
 | Chercher la pharmacie | à côté, sur un plan : guider le monsieur avec les flèches (tout droit, puis à droite au feu) ; cliquer sur le bâtiment en face de la boulangerie |
-| Chez le médecin | à côté : le calendrier (on est jeudi, « depuis deux jours » : mardi) ; le thermomètre (« un peu ») ; dans la vidéo : sur le bureau, toucher ce que le médecin va donner (des médicaments, pas le thermomètre ni le stéthoscope) |
-| Chez le fleuriste | à côté : pour qui est le bouquet (son père, sa sœur, sa mère, sa copine) ; dans la vidéo : toucher les roses blanches dans la boutique |
+| Chez le médecin | à côté : le calendrier (on est jeudi, « depuis deux jours » : mardi) ; le thermomètre, qu'on fait glisser jusqu'à « un peu » ; dans la vidéo : la fin repart et on touche l'image au moment où le médecin dit « médicament » |
+| Chez le fleuriste | à côté : pour qui est le bouquet (son père, sa sœur, sa mère, sa copine) ; dans la vidéo, sur une image du début (personne ne touche les fleurs) : les fleurs que sa mère adore (des roses), puis la couleur choisie (blanches) |
 
 Les quatre nouvelles scènes reprennent les vidéos de `medias/video/` et leurs transcriptions mot à mot (`interactives/stt/`).
-Les consignes sont dites par la voix du prototype (ElevenLabs). Pour les refaire :
+Les consignes sont dites par la voix « Femme 2 » des mises en situation (ElevenLabs, modèle eleven_v4), toutes au même
+niveau sonore et vérifiées par une transcription ; chaque scène a son propre bravo. Pour les refaire :
 
     python3 travaux/activites-fle/interactives/preparer.py     # répliques, consignes lues, portraits → donnees/, medias/
     python3 travaux/activites-fle/interactives/construire.py   # assemble epicerie.html, pharmacie.html, medecin.html, fleuriste.html

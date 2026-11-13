@@ -20,6 +20,7 @@ window.SCENARIO = (() => {
   return {
     plans: [{ de: 0, cx: { vendeur: .25, cliente: .72 } }, { de: 4.17, cx: { vendeur: .35, cliente: .6 } }, { de: 5.42, cx: { vendeur: .25, cliente: .72 } }],
     ordre: ['sac', 'payer'],
+    bravo: 'Parfait ! La cliente a ses pommes et son pain.',
     etapes: A => {
       const { $, $$, NB, state, alive, Q, yourTurn, setTurn, WIDE, playSegment, phrase, side, idle, tapHere, sfx, fly, faux, juste, suite, goBtn, zones, cam, avant, cadreZone, marque } = A;
       PROD[0].seg = phrase('je voudrais un kilo de pommes'); PROD[1].seg = phrase('oui je voudrais du pain');
@@ -33,7 +34,7 @@ window.SCENARIO = (() => {
           const pris = new Set(), reste = () => PROD.filter(p => p.ok && !pris.has(p.id));
           const ask = () => { Q.show('you', state.ask); yourTurn(); cam.classList.add('asking'); idle.set(tapHere($('.hit[data-id="vin-0"]', cam)), 5000); };
           if (!await avant(f, {
-            question: "Qu'est-ce que la cliente achète" + NB + '?', seg: ACHATS, consigne: "Dans la boutique, clique sur ce qu'elle achète.",
+            question: 'Écoute la cliente.', qui: 'cliente', seg: ACHATS, consigne: "Dans la boutique, clique sur ce qu'elle achète.",
             monte: () => { sac = document.createElement('div'); sac.className = 'surimage sacv'; Object.assign(sac.style, { left: SAC.x + '%', top: SAC.y + '%' }); cam.append(sac); },
           })) return;
           state.replay = async () => { setTurn('listen'); cam.classList.remove('asking'); await playSegment(ACHATS[0], ACHATS[1], WIDE); if (alive(f)) ask(); };
@@ -73,7 +74,7 @@ window.SCENARIO = (() => {
           };
           const ask = () => { Q.show('you', state.ask); goBtn('check', 'Payer', valider); yourTurn(); idle.set(tapHere($('.bourse .argent', side)), 5000); };
           if (!await avant(f, {
-            question: 'Combien ça coûte' + NB + '?', qui: 'vendeur', seg: SEG_PRIX, sideW: 400, consigne: "Pose l'argent, puis clique sur Payer.",
+            question: 'Écoute le vendeur.', qui: 'vendeur', seg: SEG_PRIX, sideW: 400, consigne: "Pose l'argent, puis clique sur payer.",
             panneau: `<div class="panel glass"><p class="ptitre">Pose l'argent sur le comptoir</p>
               <div class="plateau" id="plateau"><div class="somme"><span id="somme">0</span><small>€</small></div><div class="posees" id="posees"></div></div>
               <div class="bourse">${MONNAIE.map(argent).join('')}</div></div>`,

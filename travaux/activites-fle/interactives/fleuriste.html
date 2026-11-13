@@ -365,7 +365,10 @@ body[data-turn="listen"] .fleches, body[data-turn="wait"] .fleches, body[data-tu
 .mois { margin: 0; text-align: center; font-weight: 800; font-size: 20px; letter-spacing: -.01em; }
 .jour:active { transform: scale(.92); }
 .jour.auj { box-shadow: inset 0 0 0 2px #fff; }
-.jour.mal { background: rgba(255,77,100,.55); }
+.jour.mal { background: rgba(255,255,255,.24); }
+.jour.debut { background: #fff; color: var(--ink); }
+.jour.debut span, .jour.debut small { color: rgba(20,16,40,.6); }
+.jour.debut.juste { background: var(--ok); }
 .jour.mal.juste { background: rgba(29,214,160,.55); }
 .jour .tete { position: absolute; top: -11px; right: -7px; width: 28px; height: 28px; display: none; }
 .jour.debut .tete { display: block; animation: pop .45s var(--spring) both; }
@@ -426,6 +429,20 @@ body.tall .sac { min-height: 64px; } body.tall .sac .sacpic svg { width: 46px; h
 .sacv { position: absolute; z-index: 1; display: flex; gap: 4px; transform: translate(-50%, -50%); }
 .sacv .mini { width: 34px; height: 34px; border-radius: 50%; }
 .sacv .mini svg { width: 24px; height: 24px; }
+
+/* le thermomètre se fait glisser (ou on clique sur un niveau) */
+.thermo svg { touch-action: none; cursor: grab; }
+.thermo.tire svg { cursor: grabbing; }
+.thermo .poignee { transition: cy .7s var(--spring); }
+.thermo.tire .mercure, .thermo.tire .poignee { transition: none; }
+/* toucher la vidéo au bon moment */
+.hit.zone { cursor: pointer; }
+.cam.asking .hit.ecran { border-radius: 0; }
+@media (hover: hover) { .cam.asking .hit.ecran:hover { box-shadow: none; background: none; } }
+/* bilan : une réplique par ligne, alignée à gauche, même si elle passe sur deux lignes */
+.facts { flex-direction: column; align-items: flex-start; }
+.fact { height: auto; min-height: 30px; padding: 6px 12px 6px 9px; max-width: 100%; text-align: left; line-height: 1.25; }
+.fact span { text-align: left; }
 
 </style></head><body>
 <script>
@@ -705,58 +722,70 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Bravo ! Tu as compris la scène.": {
-   "src": "medias/voix-bc8b1281b9.mp3",
+  "Écoute le client.": {
+   "src": "medias/voix-c63ecc4e5d.mp3",
    "w": [
     0.0,
-    0.89,
-    1.11,
-    1.18,
-    1.57,
-    1.74
-   ]
-  },
-  "Le bouquet, c'est pour qui ?": {
-   "src": "medias/voix-2d53b96230.mp3",
-   "w": [
-    0.0,
-    0.35,
-    0.79,
-    0.99,
-    1.18
+    0.56,
+    0.84
    ]
   },
   "Clique sur la bonne personne.": {
-   "src": "medias/voix-d6c5dabae3.mp3",
+   "src": "medias/voix-0ed67dee7d.mp3",
    "w": [
     0.0,
-    0.33,
-    0.5,
-    0.6,
-    0.79
+    0.4,
+    0.64,
+    0.8,
+    0.96
    ]
   },
-  "Il choisit quelles fleurs ?": {
-   "src": "medias/voix-d412161ccb.mp3",
+  "Écoute bien.": {
+   "src": "medias/voix-785bf678cc.mp3",
    "w": [
     0.0,
-    0.21,
-    0.57,
-    0.81
+    0.4
    ]
   },
-  "Dans la boutique, clique sur les fleurs qu'il choisit.": {
-   "src": "medias/voix-290b251030.mp3",
+  "Dans la boutique, clique sur les fleurs qu'elle adore.": {
+   "src": "medias/voix-fb29cdf063.mp3",
    "w": [
     0.0,
-    0.21,
-    0.33,
-    1.24,
-    1.58,
-    1.74,
-    1.87,
-    2.16,
-    2.37
+    0.2,
+    0.32,
+    1.08,
+    1.36,
+    1.52,
+    1.68,
+    2.0,
+    2.28
+   ]
+  },
+  "Et la couleur ? Clique sur les roses qu'il choisit.": {
+   "src": "medias/voix-62e018600f.mp3",
+   "w": [
+    0.0,
+    0.12,
+    0.24,
+    1.12,
+    1.44,
+    1.6,
+    1.76,
+    2.05,
+    2.24
+   ]
+  },
+  "Génial ! Sa mère va adorer ses roses blanches.": {
+   "src": "medias/voix-c34fa3b51d.mp3",
+   "w": [
+    0.0,
+    1.31,
+    1.44,
+    1.68,
+    2.12,
+    2.48,
+    2.64,
+    2.88
    ]
   }
  }
@@ -765,7 +794,8 @@ window.DONNEES = {
 </script>
 <script>
 /* Chez le fleuriste : le client redit pour qui est le bouquet (la vidéo resserrée sur lui), on clique sur la personne de sa
-   famille ; puis on écoute le choix des fleurs et on les touche dans la boutique, directement sur l'image (sans panneau). */
+   famille ; puis, sur une image du début (personne ne touche encore les fleurs), on touche dans la boutique les fleurs
+   que sa mère adore, puis la couleur qu'il choisit. */
 window.SCENARIO = (() => {
   const VISAGE = (peau, cheveux, extra) => `<svg viewBox="0 0 48 48">${extra.fond || ''}<circle cx="24" cy="25" r="12" fill="${peau}"/>${cheveux}<circle cx="19.5" cy="25" r="1.4" fill="#2B2B2B"/><circle cx="28.5" cy="25" r="1.4" fill="#2B2B2B"/><path d="M20.5 30.5c2 1.6 5 1.6 7 0" stroke="#9A5B4A" stroke-width="1.6" fill="none" stroke-linecap="round"/>${extra.dessus || ''}<path d="M10 47c1-7 7-10 14-10s13 3 14 10z" fill="${extra.haut}"/></svg>`;
   const FAMILLE = [
@@ -774,34 +804,37 @@ window.SCENARIO = (() => {
     { id: 'mere', nom: 'sa mère', svg: VISAGE('#EDBE9B', '<path d="M11 28c-1-12 5-17 13-17s14 5 13 17c-1-7-5-10-13-10s-12 3-13 10z" fill="#B9B3AA"/><circle cx="24" cy="10" r="5" fill="#B9B3AA"/>', { haut: '#7E57C2' }) },
     { id: 'copine', nom: 'sa copine', svg: VISAGE('#C68E66', '<path d="M10 38c-2-17 4-27 14-27s16 10 14 27c-2-9-3-17-14-19-11 2-12 10-14 19z" fill="#2D1E16"/>', { haut: '#2EC4B6' }) },
   ];
-  /* les fleurs de la boutique, sur l'image où la vidéo s'arrête (9,2 s), en % */
+  /* les fleurs de la boutique, sur l'image à 0,4 s (la fleuriste a les mains sur le comptoir), en % */
+  const GEL_FLEURS = .4;
   const ZONES = [
-    { id: 'rouges', label: 'Les roses rouges', x: 35, y: 46, w: 12, h: 16 },
-    { id: 'blanches', label: 'Les roses blanches', x: 47, y: 53, w: 16, h: 12 },
-    { id: 'tournesols', label: 'Les tournesols', x: 47, y: 40, w: 17, h: 12 },
-    { id: 'orange', label: 'Les roses orange', x: 0, y: 45, w: 12.5, h: 16 },
-    { id: 'tulipes', label: 'Les tulipes', x: 13, y: 47, w: 7, h: 13 },
-    { id: 'roses', label: 'Les roses roses', x: 0, y: 80, w: 19, h: 20 },
+    { id: 'rouges', label: 'Les roses rouges', rose: true, x: 40, y: 54, w: 12, h: 20 },
+    { id: 'blanches', label: 'Les roses blanches', rose: true, x: 52, y: 57, w: 17, h: 14 },
+    { id: 'tournesols', label: 'Les tournesols', x: 52, y: 45, w: 16, h: 11 },
+    { id: 'orange', label: 'Les roses orange', rose: true, x: 0, y: 50, w: 12, h: 13 },
+    { id: 'tulipes', label: 'Les tulipes', x: 12, y: 50, w: 7, h: 12 },
+    { id: 'roses', label: 'Les roses roses', rose: true, x: 0, y: 82, w: 19, h: 18 },
+    { id: 'roses2', label: 'Les roses roses', rose: true, x: 0, y: 27, w: 20, h: 11 },
   ];
-  const ROSES = ['rouges', 'orange', 'roses'];
+  const bas = s => s[0].toLowerCase() + s.slice(1);
 
   return {
     plans: [{ de: 0, cx: { fleuriste: .3, client: .8 } }, { de: 1.29, cx: { fleuriste: .3, client: .6 } }, { de: 3.46, cx: { fleuriste: .35, client: .7 } },
       { de: 4.46, cx: { fleuriste: .3, client: .6 } }, { de: 5.58, cx: { fleuriste: .28, client: .8 } }, { de: 7.42, cx: { fleuriste: .3, client: .6 } }, { de: 8.75, cx: { fleuriste: .35, client: .76 } }],
     ordre: ['qui', 'fleurs'],
+    bravo: 'Génial ! Sa mère va adorer ses roses blanches.',
     etapes: A => {
-      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, WIDE, playSegment, phrase, ligne, side, idle, tapHere, sfx, faux, juste, suite, zones, cam, avant, cadreZone, marque } = A;
-      const MERE = phrase("pour l'anniversaire de ma mère"), CHOIX = [ligne(4)[0], ligne(5)[1]];
+      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, playSegment, phrase, ligne, side, idle, tapHere, sfx, faux, juste, suite, wait, zones, cam, avant, cadreZone, marque, gel } = A;
+      const MERE = phrase("pour l'anniversaire de ma mère"), AIME = [ligne(2)[0], ligne(3)[1]], CHOIX = [ligne(4)[0], ligne(5)[1]];
       return {
         /* 1 · pour qui : le client le redit, on clique sur la personne de sa famille */
         async qui(f) {
           const ask = () => { Q.show('you', state.ask); yourTurn(); idle.set(tapHere($('.tuile', side)), 5000); };
           if (!await avant(f, {
-            question: "Le bouquet, c'est pour qui" + NB + '?', qui: 'client', seg: ligne(1), sideW: 380, consigne: 'Clique sur la bonne personne.',
+            question: 'Écoute le client.', qui: 'client', seg: ligne(1), sideW: 380, consigne: 'Clique sur la bonne personne.',
             panneau: `<div class="panel glass"><p class="ptitre">Le bouquet est pour…</p>
               <div class="famille">${FAMILLE.map(p => `<button class="tuile" data-id="${p.id}"><span class="pic">${p.svg}</span><span class="nom">${p.nom}</span></button>`).join('')}</div></div>`,
           })) return;
-          state.replay = async () => { setTurn('listen'); await playSegment(ligne(1)[0], ligne(1)[1], WIDE); if (alive(f)) ask(); };
+          state.replay = async () => { setTurn('listen'); await playSegment(ligne(1)[0], ligne(1)[1], gel()); if (alive(f)) ask(); };
           $$('.tuile', side).forEach(b => b.addEventListener('click', async () => {
             if (document.body.dataset.turn !== 'you') return;
             A.unlock(); idle.clear(); setTurn('wait');
@@ -820,23 +853,36 @@ window.SCENARIO = (() => {
           ask();
         },
 
-        /* 2 · dans la vidéo : on écoute le choix, puis on touche les fleurs dans la boutique */
+        /* 2 · dans la vidéo : les fleurs qu'elle adore (des roses, de n'importe quelle couleur), puis la couleur choisie */
         async fleurs(f) {
+          let partie = 1;
+          const seg = () => (partie === 1 ? AIME : CHOIX);
           const ask = () => { Q.show('you', state.ask); yourTurn(); cam.classList.add('asking'); idle.set(tapHere($('.hit[data-id="tournesols"]', cam)), 5000); };
-          if (!await avant(f, { question: 'Il choisit quelles fleurs' + NB + '?', seg: CHOIX, consigne: "Dans la boutique, clique sur les fleurs qu'il choisit." })) return;
-          state.replay = async () => { setTurn('listen'); cam.classList.remove('asking'); await playSegment(CHOIX[0], CHOIX[1], WIDE); if (alive(f)) ask(); };
+          if (!await avant(f, { question: 'Écoute bien.', seg: AIME, gel: GEL_FLEURS, consigne: "Dans la boutique, clique sur les fleurs qu'elle adore." })) return;
+          state.replay = async () => { setTurn('listen'); cam.classList.remove('asking'); await playSegment(seg()[0], seg()[1], gel()); if (alive(f)) ask(); };
           zones(ZONES, async (id, ev, z) => {
             setTurn('wait'); cam.classList.remove('asking'); sfx.tick();
-            if (id === 'blanches') {
+            const bon = partie === 1 ? !!z.rose : id === 'blanches';
+            if (bon && partie === 1) {
+              $$('.hit', cam).forEach(h => h.classList.remove('indice'));
+              const c = cadreZone(z), m = marque(z, 'Des roses', 'juste');
+              if (!await juste(f, 'Oui' + NB + '! Elle adore les roses.', ligne(3))) return;
+              await wait(500); if (!alive(f)) return;
+              c.remove(); m.remove(); partie = 2;
+              await playSegment(CHOIX[0], CHOIX[1], gel()); if (!alive(f)) return;
+              state.ask = 'Et la couleur' + NB + "? Clique sur les roses qu'il choisit.";
+              if (!await Q.say(state.ask, f)) return;
+              ask();
+            } else if (bon) {
               $$('.hit', cam).forEach(h => h.classList.remove('indice'));
               cadreZone(z); marque(z, 'Des roses blanches', 'juste');
               if (!await juste(f, 'Oui' + NB + '! Des roses blanches.', ligne(5))) return;
               zones(null); suite();
             } else {
               cadreZone(z, 'faux'); marque(z, z.label, 'faux');
-              const msg = ROSES.includes(id) ? 'Des roses, oui. Mais écoute la couleur.' : 'Non. Écoute encore.';
-              const montrer = await faux(f, CHOIX, msg); if (montrer === null) return;
-              if (montrer) $('.hit[data-id="blanches"]', cam).classList.add('indice');
+              const msg = partie === 1 ? 'Pas ' + bas(z.label) + '. Écoute encore.' : (z.rose ? 'Pas ' + bas(z.label) + '. Écoute la couleur.' : 'Ce ne sont pas des roses. Écoute encore.');
+              const montrer = await faux(f, seg(), msg); if (montrer === null) return;
+              if (montrer) (partie === 1 ? ZONES.filter(x => x.rose) : ZONES.filter(x => x.id === 'blanches')).forEach(x => $(`.hit[data-id="${x.id}"]`, cam).classList.add('indice'));
               ask();
             }
           });
@@ -1238,7 +1284,7 @@ window.SCENARIO = (() => {
     state.essais++; sfx.try();
     Q.show('try', state.essais >= 2 ? 'Écoute bien.' : msg);
     await wait(850); if (!alive(f)) return null;
-    await playSegment(seg[0], seg[1], WIDE); if (!alive(f)) return null;
+    await playSegment(seg[0], seg[1], gel()); if (!alive(f)) return null;
     return state.essais >= 2;
   }
   async function juste(f, msg, seg) {
@@ -1256,10 +1302,10 @@ window.SCENARIO = (() => {
      enfin la consigne du geste. Renvoie false si on a quitté l'étape. */
   async function avant(f, o) {
     setSide(null); o.qui ? focus(o.qui, false) : frameTo(CROPS.full, false);
-    await freeze(WIDE); if (!alive(f)) return false;
+    state.gel = o.gel; await freeze(gel()); if (!alive(f)) return false;
     if (!await Q.say(o.question, f)) return false;
     setTurn('listen'); await wait(250); if (!alive(f)) return false;
-    await playSegment(o.seg[0], o.seg[1], WIDE); if (!alive(f)) return false;
+    await playSegment(o.seg[0], o.seg[1], gel()); if (!alive(f)) return false;
     if (o.panneau) { setSide(o.panneau, o.monte); o.qui ? focus(o.qui, true, o.sideW) : frameTo(CROPS.full, true, o.sideW); }
     else { frameTo(CROPS.full, false); o.monte && o.monte(cam); }
     state.ask = o.consigne;
@@ -1269,9 +1315,10 @@ window.SCENARIO = (() => {
   /* un repère posé sur l'image : un cadre autour d'une zone, une étiquette au-dessus */
   function cadreZone(z, cls) { const d = document.createElement('div'); d.className = 'surimage zcadre ' + (cls || ''); Object.assign(d.style, { left: z.x + '%', top: z.y + '%', width: z.w + '%', height: z.h + '%' }); cam.append(d); return d; }
   function marque(z, txt, cls) { const d = document.createElement('div'); d.className = 'surimage marque ' + (cls || ''); d.textContent = txt; Object.assign(d.style, { left: z.x + z.w / 2 + '%', top: z.y + '%' }); cam.append(d); return d; }
+  const gel = () => (state.gel != null ? state.gel : WIDE);
   function go(step) {
     flow++; stopAll(); idle.clear();
-    Object.assign(state, { step, ask: null, replay: null, lineView: false, essais: 0 });
+    Object.assign(state, { step, ask: null, replay: null, lineView: false, essais: 0, gel: null });
     cam.classList.remove('asking'); zones(null); spotOff(); goBtn(null); setSplit(false); $$('.surimage', cam).forEach(e => e.remove());
     STEPS[step](flow);
   }
@@ -1307,10 +1354,10 @@ window.SCENARIO = (() => {
       </div></div>`, p => {
       $$('.fact', p).forEach(b => b.addEventListener('click', async () => { unlock(); if (document.body.dataset.turn !== 'you') return; setTurn('listen'); await playSegment(+b.dataset.s, +b.dataset.e, WIDE); if (alive(f)) setTurn('you'); }));
     });
-    frameTo(CROPS.full, true);
+    frameTo(CROPS.full, true, 400);
     setTimeout(() => { if (alive(f)) flyFaces(); }, 800);
     await wait(1500); if (!alive(f)) return;
-    state.ask = 'Bravo' + NB + '! Tu as compris la scène.';
+    state.ask = SC.bravo || 'Bravo' + NB + '! Tu as compris la scène.';
     if (!await Q.say(state.ask, f)) return;
     Q.mode('ok');
     state.replay = async () => { setTurn('listen'); await playSegment(0, DON.duree, WIDE); if (alive(f)) { Q.mode('ok'); setTurn('you'); } };
@@ -1342,7 +1389,7 @@ window.SCENARIO = (() => {
   var api = {
     $, $$, wait, NB, reduced, state, alive, go, suite, Q, goBtn, yourTurn, setTurn, frameTo, CROPS, WIDE, LINES, PEOPLE,
     freeze, playSegment, hear, phrase, ligne, tag, tagAll, hideTags, spotOn, spotAt, spotOff, rippleAt, zones, fly,
-    setSide, side, setSplit, binNo, binYes, deck, idle, at, tapHere, sfx, ICON, win, cam, layout, speak, unlock, faux, juste, focus, avant, cadreZone, marque,
+    setSide, side, setSplit, binNo, binYes, deck, idle, at, tapHere, sfx, ICON, win, cam, layout, speak, unlock, faux, juste, focus, avant, cadreZone, marque, gel, stopAll,
     flow: () => flow,
   };
   Object.assign(STEPS, SC.etapes(api));

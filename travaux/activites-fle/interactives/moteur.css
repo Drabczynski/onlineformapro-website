@@ -359,7 +359,10 @@ body[data-turn="listen"] .fleches, body[data-turn="wait"] .fleches, body[data-tu
 .mois { margin: 0; text-align: center; font-weight: 800; font-size: 20px; letter-spacing: -.01em; }
 .jour:active { transform: scale(.92); }
 .jour.auj { box-shadow: inset 0 0 0 2px #fff; }
-.jour.mal { background: rgba(255,77,100,.55); }
+.jour.mal { background: rgba(255,255,255,.24); }
+.jour.debut { background: #fff; color: var(--ink); }
+.jour.debut span, .jour.debut small { color: rgba(20,16,40,.6); }
+.jour.debut.juste { background: var(--ok); }
 .jour.mal.juste { background: rgba(29,214,160,.55); }
 .jour .tete { position: absolute; top: -11px; right: -7px; width: 28px; height: 28px; display: none; }
 .jour.debut .tete { display: block; animation: pop .45s var(--spring) both; }
@@ -420,3 +423,17 @@ body.tall .sac { min-height: 64px; } body.tall .sac .sacpic svg { width: 46px; h
 .sacv { position: absolute; z-index: 1; display: flex; gap: 4px; transform: translate(-50%, -50%); }
 .sacv .mini { width: 34px; height: 34px; border-radius: 50%; }
 .sacv .mini svg { width: 24px; height: 24px; }
+
+/* le thermomètre se fait glisser (ou on clique sur un niveau) */
+.thermo svg { touch-action: none; cursor: grab; }
+.thermo.tire svg { cursor: grabbing; }
+.thermo .poignee { transition: cy .7s var(--spring); }
+.thermo.tire .mercure, .thermo.tire .poignee { transition: none; }
+/* toucher la vidéo au bon moment */
+.hit.zone { cursor: pointer; }
+.cam.asking .hit.ecran { border-radius: 0; }
+@media (hover: hover) { .cam.asking .hit.ecran:hover { box-shadow: none; background: none; } }
+/* bilan : une réplique par ligne, alignée à gauche, même si elle passe sur deux lignes */
+.facts { flex-direction: column; align-items: flex-start; }
+.fact { height: auto; min-height: 30px; padding: 6px 12px 6px 9px; max-width: 100%; text-align: left; line-height: 1.25; }
+.fact span { text-align: left; }

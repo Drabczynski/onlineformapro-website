@@ -262,58 +262,59 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Bravo ! Tu as compris la scène.": {
-   "src": "medias/voix-bc8b1281b9.mp3",
-   "w": [
-    0.0,
-    0.89,
-    1.11,
-    1.18,
-    1.57,
-    1.74
-   ]
-  },
   "Écoute la dame.": {
-   "src": "medias/voix-0070fe19f2.mp3",
+   "src": "medias/voix-b9f1b6db45.mp3",
    "w": [
     0.0,
-    0.48,
-    0.6
+    0.56,
+    0.72
    ]
   },
   "Sur le plan, guide le monsieur avec les flèches.": {
-   "src": "medias/voix-16d5b3e9d4.mp3",
+   "src": "medias/voix-2e92fc940e.mp3",
    "w": [
     0.0,
-    0.26,
-    0.37,
-    0.87,
-    1.13,
-    1.24,
-    1.78,
-    2.09,
-    2.21
+    0.28,
+    0.48,
+    1.2,
+    1.48,
+    1.6,
+    2.08,
+    2.4,
+    2.52
    ]
   },
-  "Où est la pharmacie ?": {
-   "src": "medias/voix-9430eedd09.mp3",
+  "Écoute encore la dame.": {
+   "src": "medias/voix-717bdcb1b1.mp3",
    "w": [
     0.0,
-    0.3,
-    0.49,
-    0.59
+    0.44,
+    0.76,
+    0.88
    ]
   },
   "Sur le plan, clique sur la pharmacie.": {
-   "src": "medias/voix-30c806646a.mp3",
+   "src": "medias/voix-78a43ef2a3.mp3",
    "w": [
     0.0,
-    0.26,
-    0.37,
-    0.73,
-    1.07,
-    1.23,
-    1.35
+    0.28,
+    0.4,
+    1.12,
+    1.44,
+    1.6,
+    1.76
+   ]
+  },
+  "Bravo ! Le monsieur a trouvé la pharmacie.": {
+   "src": "medias/voix-9751abd3cf.mp3",
+   "w": [
+    0.0,
+    1.04,
+    1.2,
+    1.6,
+    1.84,
+    2.16,
+    2.28
    ]
   }
  }

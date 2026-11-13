@@ -292,78 +292,72 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Bravo ! Tu as compris la scène.": {
-   "src": "medias/voix-bc8b1281b9.mp3",
+  "Écoute la patiente.": {
+   "src": "medias/voix-88b7da2fe8.mp3",
    "w": [
     0.0,
-    0.89,
-    1.11,
-    1.18,
-    1.57,
-    1.74
-   ]
-  },
-  "Depuis quand ?": {
-   "src": "medias/voix-e644e007d1.mp3",
-   "w": [
-    0.0,
-    0.52
+    0.52,
+    0.64
    ]
   },
   "Aujourd'hui, c'est jeudi. Elle a mal depuis quel jour ?": {
-   "src": "medias/voix-bbc2e83fda.mp3",
+   "src": "medias/voix-36a466a7f6.mp3",
    "w": [
     0.0,
-    0.51,
-    0.7,
-    1.23,
-    1.44,
-    1.56,
-    1.86,
-    2.15,
-    2.36
+    0.8,
+    1.04,
+    1.84,
+    2.0,
+    2.08,
+    2.4,
+    2.64,
+    2.88
    ]
   },
-  "Elle a de la fièvre ?": {
-   "src": "medias/voix-b253d6ab58.mp3",
+  "Écoute encore la patiente.": {
+   "src": "medias/voix-2971e163f7.mp3",
    "w": [
     0.0,
-    0.36,
-    0.43,
-    0.51,
-    0.66
+    0.4,
+    0.76,
+    0.88
    ]
   },
-  "Monte le thermomètre.": {
-   "src": "medias/voix-7f5ef14103.mp3",
+  "Fais monter le thermomètre.": {
+   "src": "medias/voix-77a81781c9.mp3",
    "w": [
     0.0,
-    0.42,
-    0.53
+    0.24,
+    0.56,
+    0.64
    ]
   },
-  "Le médecin va donner quoi ?": {
-   "src": "medias/voix-cbfe0bf917.mp3",
+  "Touche la vidéo quand tu entends le mot médicament.": {
+   "src": "medias/voix-f884806db2.mp3",
    "w": [
     0.0,
-    0.3,
-    0.61,
-    0.74,
-    1.01
+    0.28,
+    0.4,
+    0.88,
+    1.12,
+    1.28,
+    1.52,
+    1.68,
+    2.16
    ]
   },
-  "Sur le bureau, clique sur ce qu'il va donner.": {
-   "src": "medias/voix-18fe45ea83.mp3",
+  "Très bien ! Tu as tout compris chez le médecin.": {
+   "src": "medias/voix-6a2e086eb5.mp3",
    "w": [
     0.0,
-    0.26,
-    0.36,
-    0.95,
-    1.25,
-    1.41,
-    1.53,
-    1.71,
-    1.83
+    0.24,
+    0.96,
+    1.16,
+    1.36,
+    1.52,
+    1.92,
+    2.04,
+    2.16
    ]
   }
  }
