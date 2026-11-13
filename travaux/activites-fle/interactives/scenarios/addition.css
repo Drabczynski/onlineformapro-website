@@ -53,9 +53,12 @@ body.short .tpe { width: 196px; padding: 10px 11px 11px; gap: 7px; }
 body.short .tpe .touche { height: 30px; font-size: 16px; border-bottom-width: 3px; }
 body.short .tpe .couleur { height: 34px; font-size: 9.5px; }
 body.short .tpe-ecran b { font-size: 24px; }
-body.tall .tpe { width: 250px; gap: 9px; }
-body.tall .tpe .touche { height: 42px; }
-body.tall .tpe .couleur { height: 48px; }
+body.tall .tpe { width: 250px; padding: 10px 12px 12px; gap: 7px; }
+body.tall .tpe-clavier, body.tall .tpe-couleurs { gap: 6px; }
+body.tall .tpe .touche { height: 44px; font-size: 20px; }
+body.tall .tpe .couleur { height: 46px; font-size: 11px; }
+body.tall .tpe-ecran { padding: 6px 10px 6px; }
+body.tall .tpe-ecran b { font-size: 28px; }
 body.tall .caisse { gap: 10px; }
 body.tall .tpe.deco { width: 168px; padding: 10px; gap: 7px; }
 body.tall .tpe.deco .touche { height: 26px; font-size: 14px; }

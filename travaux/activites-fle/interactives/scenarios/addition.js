@@ -6,7 +6,7 @@
 window.SCENARIO = (() => {
   /* on regarde la scène jusqu'au bout : le paiement par carte et le ticket (le dialogue finit à 7,8 s, la vidéo à 10 s) */
   if (window.DONNEES) window.DONNEES.duree = Math.max(window.DONNEES.duree, 9.92);
-  const NB = ' ';
+  const NB = '\u202F';     // l'espace fine avant ? ! : (comme dans le moteur)
   const GEL_SERVEUR = 2.55;   // le serveur, les yeux sur son terminal
   const GEL_CLIENT = 6.1;     // le client seul, sa carte déjà rangée : l'image ne dit pas comment il paie
   const PRIX = 28;
