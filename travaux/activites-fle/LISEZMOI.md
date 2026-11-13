@@ -216,6 +216,33 @@ un bandeau dit « Vidéo à venir ». Pour brancher une vraie vidéo : la dépos
 **La vidéo de démonstration** (« À l'hôtel ») est la scène générée avec Gemini fournie le 4 novembre, avec des
 sous-titres (bouton « CC »). Ses 2 questions ont été écrites d'après son dialogue : **elle ne vient pas de l'Excel.**
 
+## Les vidéos interactives
+
+Une quatrième carte du menu, **« Vidéos interactives »**, ouvre la liste de 5 scènes (lien direct :
+`index.html#videos`). Chaque scène est une page à part, dans `interactives/`, sur le design et la pédagogie du
+prototype de Kenji : on regarde la scène en entier, puis chaque question se répond par un geste sur l'image ou à
+côté ; deux essais (la vidéo rejoue le passage exact), puis la réponse ; un bilan où chaque élément se réécoute.
+Les gestes changent d'une scène à l'autre :
+
+| Scène | Questions et gestes |
+| --- | --- |
+| La colocation de Kenji (`kenji/`) | le prototype d'origine, tel quel, avec un bouton de retour |
+| À l'épicerie | ce que la cliente achète va dans le sac ; payer 5 € avec des pièces et des billets (toute combinaison juste) |
+| Chercher la pharmacie | guider le monsieur sur un plan avec les flèches (tout droit, puis à droite au feu) ; toucher le bâtiment en face de la boulangerie |
+| Chez le médecin | toucher la tête sur le corps ; remonter le calendrier jusqu'à mardi (« depuis deux jours », on est jeudi) ; monter le thermomètre à « un peu » |
+| Chez le fleuriste | pour qui est le bouquet (son père, sa sœur, sa mère, sa copine) ; toucher les roses blanches dans la boutique, elles volent dans le bouquet |
+
+Les quatre nouvelles scènes reprennent les vidéos de `medias/video/` et leurs transcriptions mot à mot (`interactives/stt/`).
+Les consignes sont dites par la voix du prototype (ElevenLabs). Pour les refaire :
+
+    python3 travaux/activites-fle/interactives/preparer.py     # répliques, consignes lues, portraits → donnees/, medias/
+    python3 travaux/activites-fle/interactives/construire.py   # assemble epicerie.html, pharmacie.html, medecin.html, fleuriste.html
+
+- `moteur.js`, `moteur.css` : le moteur commun (repris du prototype : fond flouté, bulle de consigne, doigt fantôme,
+  deux essais, bilan) et les styles des gestes ;
+- `scenarios/<scène>.js` : les étapes et les gestes de chaque scène ;
+- `donnees/<scène>.js` : produit par `preparer.py`.
+
 ## Les mots qui s'allument
 
 `generer_temps.py` fait retranscrire chaque son par la reconnaissance vocale d'ElevenLabs, qui donne le moment où

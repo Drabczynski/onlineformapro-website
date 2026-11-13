@@ -1,0 +1,935 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<style>.retour-v{position:fixed;z-index:60;left:max(14px,env(safe-area-inset-left));top:calc(14px + env(safe-area-inset-top,0px));width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;text-decoration:none;background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22);transition:transform .3s cubic-bezier(.34,1.56,.64,1)}.retour-v:active{transform:scale(.9)}.retour-v svg{width:20px;height:20px}</style><a class="retour-v" href="../../index.html#videos" aria-label="Retour aux vidéos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></a>
+<title>La colocation de Kenji</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap">
+<style>
+/* Version 4, allégée : la vidéo est une fenêtre posée dans sa propre scène, floutée tout autour.
+   Ce qui est dit apparaît en bulles de verre SUR la vidéo : la question au centre, Camille à gauche,
+   Kenji à droite. Sous la fenêtre, une petite barre (réécouter, mots, lent, le bouton blanc).
+   Le geste vit à côté de la vidéo : le ruban des nombres à droite, « il n'aime pas » à gauche et
+   « il aime » à droite pour trier les cartes. Plus d'étapes écrites, plus de frise de la voix. */
+@property --sx  { syntax: '<percentage>'; inherits: false; initial-value: 50%; }
+@property --sy  { syntax: '<percentage>'; inherits: false; initial-value: 50%; }
+@property --srx { syntax: '<percentage>'; inherits: false; initial-value: 140%; }
+@property --sry { syntax: '<percentage>'; inherits: false; initial-value: 140%; }
+@property --dim { syntax: '<number>'; inherits: false; initial-value: 0; }
+@property --spin { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+
+:root {
+  --text: #FFFFFF;
+  --text2: rgba(255,255,255,.72);
+  --text3: rgba(255,255,255,.48);
+  --ink: #0B0D16;
+  --env: #10121A;
+  --glass: rgba(255,255,255,.13);
+  --g-brand: linear-gradient(135deg, #FF4D8A 0%, #FF8A3D 100%);
+  --g-camille: linear-gradient(135deg, #FF5A5F 0%, #FFB020 100%);
+  --g-kenji: linear-gradient(135deg, #3AA8FF 0%, #8A5CFF 100%);
+  --g-ok: linear-gradient(135deg, #1DD6A0 0%, #2BC4F0 100%);
+  --g-try: linear-gradient(135deg, #FF9A2E 0%, #FFD24A 100%);
+  --rainbow: conic-gradient(from var(--spin), #FF4D8A, #FF8A3D, #FFD24A, #1DD6A0, #3AA8FF, #8A5CFF, #FF4D8A);
+  --heart: #FF4D8A;
+  --ok: #4BE3B4;
+  --try: #FFC65C;
+  --font: "Figtree", system-ui, -apple-system, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  --apple: cubic-bezier(.32,.72,0,1);
+  --spring: cubic-bezier(.34,1.56,.64,1);
+  color-scheme: dark;
+}
+@supports (transition-timing-function: linear(0, 1)) {
+  :root { --spring: linear(0, 0.009, 0.035 2.1%, 0.141, 0.281 6.7%, 0.723 12.9%, 0.938 16.7%, 1.017, 1.077, 1.121 24%, 1.149 26.3%, 1.159, 1.163, 1.161, 1.154 34.5%, 1.129 38.1%, 1.051 46.4%, 1.017 50.7%, 0.991 55.6%, 0.977 59.6%, 0.975 63.3%, 0.982 68.4%, 1.001 79%, 1.004 85.2%, 1); }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0; background: var(--env); color: var(--text); font-family: var(--font); font-size: 16px; line-height: 1.3;
+  -webkit-font-smoothing: antialiased; overflow: hidden; -webkit-tap-highlight-color: transparent;
+}
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+button:focus-visible, [tabindex]:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+svg { display: block; }
+
+/* ---------- la scène autour : la vidéo elle-même, floutée ---------- */
+.env { position: fixed; inset: -10%; width: 120%; height: 120%; filter: blur(42px) saturate(1.5) brightness(.8); z-index: 0; }
+.env-dim { position: fixed; inset: 0; z-index: 0; background: radial-gradient(70% 60% at 50% 45%, rgba(10,12,20,.10), rgba(10,12,20,.55)), rgba(10,12,20,.22); }
+
+/* ---------- le verre ---------- */
+.glass {
+  position: relative; background: var(--glass); isolation: isolate;
+  backdrop-filter: blur(30px) saturate(1.8); -webkit-backdrop-filter: blur(30px) saturate(1.8);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.28), 0 12px 32px -12px rgba(0,0,0,.45);
+}
+.glass::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none; z-index: 1;
+  background: linear-gradient(140deg, rgba(255,255,255,.55), rgba(255,255,255,.08) 38%, rgba(255,255,255,.04) 62%, rgba(255,255,255,.25));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
+}
+
+.scene { position: fixed; inset: 0; z-index: 1; }
+.win, .cam, .orn, .side, .bin, .deck, .talk { position: absolute; transition: left .75s var(--apple), top .75s var(--apple), width .75s var(--apple), height .75s var(--apple), bottom .75s var(--apple), opacity .4s, transform .6s var(--apple), translate .6s var(--apple), scale .35s var(--spring); }
+body.boot .win, body.boot .cam, body.boot .orn, body.boot .side, body.boot .bin, body.boot .deck, body.boot .talk { transition: none; }
+
+/* ---------- la fenêtre ---------- */
+.win { border-radius: 34px; overflow: hidden; background: #000; box-shadow: 0 40px 90px -30px rgba(0,0,0,.75), 0 0 0 1px rgba(255,255,255,.14); isolation: isolate; }
+.cam video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.veil { position: absolute; inset: 0; background: #000; opacity: 0; pointer-events: none; transition: opacity .22s ease; z-index: 1; }
+.veil.on { opacity: .55; }
+.spot { position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background: radial-gradient(var(--srx) var(--sry) at var(--sx) var(--sy), rgba(0,0,0,0) 0%, rgba(0,0,0,0) 60%, rgba(0,0,0, calc(var(--dim) * .66)) 100%);
+  transition: --sx .7s var(--apple), --sy .7s var(--apple), --srx .8s var(--apple), --sry .8s var(--apple), --dim .6s var(--apple); }
+.hit { position: absolute; z-index: 2; border-radius: 42% 42% 20% 20%; display: none; }
+body[data-turn="you"] .cam.asking .hit { display: block; }
+@media (hover: hover) { .cam.asking .hit:hover { box-shadow: inset 0 0 0 2px rgba(255,255,255,.7); background: rgba(255,255,255,.06); } }
+.ripple { position: absolute; z-index: 3; width: 20px; height: 20px; margin: -10px 0 0 -10px; border-radius: 50%; border: 2px solid #fff; pointer-events: none; animation: ripple .7s var(--apple) forwards; }
+@keyframes ripple { from { transform: scale(.3); opacity: 1; } to { transform: scale(4); opacity: 0; } }
+
+/* étiquette posée sur la personne : un point, un fil, le prénom */
+.tag { position: absolute; z-index: 4; pointer-events: none; width: 0; height: 0; opacity: 0; transition: opacity .35s; }
+.tag.show { opacity: 1; }
+.cam.moving .tag.show { opacity: 0; transition: opacity .18s; }
+.tag .dot { position: absolute; left: -5px; top: -5px; width: 10px; height: 10px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px rgba(255,255,255,.28), 0 2px 8px rgba(0,0,0,.4); transform: scale(0); transition: transform .5s var(--spring); }
+.tag .stem { position: absolute; left: -.5px; bottom: 0; width: 1px; height: var(--stem, 34px); background: linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,.4)); transform-origin: bottom; transform: scaleY(0); transition: transform .45s var(--apple) .12s; }
+.tag .lab { position: absolute; left: 0; bottom: var(--stem, 34px); transform: translate(calc(-50% + var(--dx, 0px)), -6px) scale(.7); opacity: 0; transition: transform .55s var(--spring) .28s, opacity .3s .28s;
+  display: flex; align-items: center; height: 30px; padding: 0 13px; border-radius: 99px; white-space: nowrap; font-weight: 700; font-size: 14.5px;
+  background: rgba(16,18,28,.36); backdrop-filter: blur(20px) saturate(1.8); -webkit-backdrop-filter: blur(20px) saturate(1.8); box-shadow: inset 0 0 0 1px rgba(255,255,255,.22), 0 6px 18px rgba(0,0,0,.3); }
+.tag .lab small { font-size: 13px; font-weight: 600; padding-left: 8px; margin-left: 8px; border-left: 1px solid rgba(255,255,255,.25); display: none; color: var(--text2); }
+.tag.aged .lab small { display: inline; }
+.tag.show .dot { transform: scale(1); }
+.tag.show .stem { transform: scaleY(1); }
+.tag.show .lab { transform: translate(calc(-50% + var(--dx, 0px)), -6px) scale(1); opacity: 1; }
+
+/* ---------- ce qui est dit : des bulles de verre sur la vidéo ---------- */
+.talk { z-index: 6; display: grid; pointer-events: none; --fs: clamp(19px, .55vw + 13px, 24px); }
+.talk > * { grid-area: 1 / 1; align-self: end; transition: opacity .3s var(--apple), transform .45s var(--apple); }
+.bub {
+  background: rgba(22,24,32,.30); backdrop-filter: blur(22px) saturate(1.7); -webkit-backdrop-filter: blur(22px) saturate(1.7);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.16), inset 0 1px 0 rgba(255,255,255,.2), 0 12px 30px -14px rgba(0,0,0,.55);
+  transition: background .35s;
+}
+/* la question : au centre, la voix de l'appli */
+.qb { justify-self: center; max-width: 100%; display: flex; align-items: center; gap: 12px; padding: 7px 20px 7px 7px; border-radius: 99px; pointer-events: auto; }
+.qb.empty, .talk.line .qb { opacity: 0; transform: translateY(8px) scale(.96); pointer-events: none; }
+.qb[data-mode="ok"] { background: rgba(29,214,160,.26); }
+.qb[data-mode="try"] { background: rgba(255,170,40,.26); }
+.qt { margin: 0; font-size: var(--fs); font-weight: 700; letter-spacing: -.012em; line-height: 1.15; text-wrap: balance; }
+.qt .wd { display: inline-block; transition: opacity .18s linear; }
+.qt .wd.hid { opacity: .2; }
+.orb { position: relative; flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; isolation: isolate; }
+.orb::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--rainbow); z-index: -2; }
+.orb::after { content: ""; position: absolute; inset: -5px; border-radius: 50%; background: var(--rainbow); filter: blur(10px); opacity: .5; z-index: -3; transition: opacity .4s; }
+.orb .core { position: absolute; inset: 2.5px; border-radius: 50%; background: rgba(12,14,22,.85); z-index: -1; transition: inset .35s, background .35s; }
+.orb .ic { position: absolute; inset: 0; display: grid; place-items: center; }
+.orb svg { width: 17px; height: 17px; color: #fff; }
+.qb[data-mode="talk"] .orb::before, .qb[data-mode="talk"] .orb::after { animation: spin 2.2s linear infinite; }
+.qb[data-mode="talk"] .orb::after { opacity: .95; }
+.qb[data-mode="you"] .orb::after { opacity: .2; }
+.qb[data-mode="ok"] .orb .core { background: var(--g-ok); inset: 0; }
+.qb[data-mode="try"] .orb .core { background: var(--g-try); inset: 0; }
+.qb[data-mode="ok"] .orb::after { background: #1DD6A0; }
+.qb[data-mode="try"] .orb::after { background: #FFB020; }
+@keyframes spin { to { --spin: 360deg; } }
+.bars { display: flex; gap: 2.5px; align-items: center; height: 16px; }
+.bars b { width: 3px; border-radius: 3px; background: #fff; height: 35%; animation: eq .9s ease-in-out infinite; }
+.bars b:nth-child(2) { animation-delay: -.3s; } .bars b:nth-child(3) { animation-delay: -.6s; } .bars b:nth-child(4) { animation-delay: -.15s; }
+@keyframes eq { 0%, 100% { height: 30%; } 50% { height: 100%; } }
+/* une réplique : Camille à gauche, Kenji à droite, avec son visage */
+.lrow { display: flex; align-items: flex-end; gap: 9px; max-width: 100%; opacity: 0; transform: translateY(10px) scale(.96); }
+.lrow[data-who="camille"] { justify-self: start; transform-origin: left bottom; }
+.lrow[data-who="kenji"] { justify-self: end; flex-direction: row-reverse; transform-origin: right bottom; }
+.talk.line .lrow { opacity: 1; transform: none; pointer-events: auto; }
+.av { flex: none; width: 38px; height: 38px; border-radius: 50%; object-fit: cover; max-width: none; box-shadow: 0 0 0 2px rgba(255,255,255,.85), 0 4px 12px rgba(0,0,0,.35); }
+.lb { min-width: 0; padding: 10px 18px 11px; border-radius: 24px; }
+.lrow[data-who="camille"] .lb { border-bottom-left-radius: 8px; }
+.lrow[data-who="kenji"] .lb { border-bottom-right-radius: 8px; }
+.words { display: flex; flex-wrap: wrap; column-gap: .28em; row-gap: .12em; font-size: var(--fs); font-weight: 700; letter-spacing: -.01em; line-height: 1.16; }
+.w { position: relative; color: rgba(255,255,255,.42); transition: color .12s linear; cursor: pointer; }
+.w.past { color: #fff; }
+.w.now { color: #FFD24A; }
+.talk.playing .qb { opacity: 0; transform: translateY(8px) scale(.96); pointer-events: none; }
+
+.bigplay { position: absolute; left: 50%; top: 46%; width: 84px; height: 84px; margin: -42px 0 0 -42px; border-radius: 50%; z-index: 6; display: grid; place-items: center; color: #fff; transition: transform .5s var(--spring), opacity .3s; }
+.bigplay:hover { transform: scale(1.06); } .bigplay:active { transform: scale(.94); }
+.bigplay.gone { opacity: 0; transform: scale(.5); pointer-events: none; }
+.bigplay svg { width: 30px; height: 30px; margin-left: 4px; position: relative; z-index: 2; }
+
+/* ---------- sous la fenêtre : la petite barre ---------- */
+.orn { z-index: 7; transform: translateX(-50%); }
+.dock { display: flex; align-items: center; gap: 2px; height: 52px; padding: 0 6px; border-radius: 99px; }
+.dock > * { position: relative; z-index: 2; }
+.ico { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; color: #fff; transition: background .2s, transform .3s var(--spring); font-weight: 800; font-size: 15px; }
+.ico:hover { background: rgba(255,255,255,.12); }
+.ico:active { transform: scale(.88); }
+.ico svg { width: 20px; height: 20px; }
+.ico[aria-pressed="true"] { background: #fff; color: var(--ink); }
+.goslot { display: flex; align-items: center; }
+.goslot:empty { display: none; }
+.go { flex: none; height: 40px; margin-left: 6px; padding: 0 16px 0 18px; border-radius: 99px; display: inline-flex; align-items: center; gap: 8px; background: #fff; color: var(--ink); font-weight: 700; font-size: 15px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.25); transition: transform .35s var(--spring), opacity .3s; animation: pop .5s var(--spring) both; position: relative; z-index: 2; }
+.go svg { width: 18px; height: 18px; }
+.go:active { transform: scale(.94); }
+@keyframes pop { from { transform: scale(.5); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* ---------- panneau du geste, à côté de la fenêtre ---------- */
+.side { z-index: 6; opacity: 0; pointer-events: none; transform: translateY(-50%) scale(.96); overflow: visible; }
+.side.on { opacity: 1; pointer-events: auto; transform: translateY(-50%) scale(1); }
+body.tall .side { transform: translateY(12px) scale(.98); }
+body.tall .side.on { transform: none; }
+.panel { border-radius: 30px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.panel > * { position: relative; z-index: 2; }
+body[data-turn="listen"] .side, body[data-turn="wait"] .side { pointer-events: none; }
+
+/* ruban des nombres */
+.tape { position: relative; height: 92px; border-radius: 20px; overflow: hidden; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; outline: none; background: rgba(0,0,0,.18); }
+.tape:focus-visible { box-shadow: 0 0 0 2px #fff; }
+.tape.grab { cursor: grabbing; }
+.tape .num { position: absolute; left: 0; top: 50%; font-weight: 700; font-variant-numeric: tabular-nums; font-size: 22px; color: #fff; will-change: transform, opacity; }
+.tape .num.c { font-weight: 800; }
+.tape::before, .tape::after { content: ""; position: absolute; top: 0; bottom: 0; width: 26%; z-index: 2; pointer-events: none; }
+.tape::before { left: 0; background: linear-gradient(90deg, rgba(20,22,32,.55), rgba(20,22,32,0)); }
+.tape::after { right: 0; background: linear-gradient(270deg, rgba(20,22,32,.55), rgba(20,22,32,0)); }
+.tape .notch { position: absolute; left: 50%; bottom: 10px; width: 24px; height: 4px; margin-left: -12px; border-radius: 4px; background: #fff; z-index: 3; transition: width .4s var(--spring), margin .4s var(--spring), background .3s; }
+.tape.right .notch { background: var(--ok); width: 44px; margin-left: -22px; }
+.tape.right .num.c { color: var(--ok); }
+.punit { margin: -4px 0 0; text-align: center; font-size: 14px; font-weight: 600; color: var(--text2); }
+.shake { animation: shake .5s var(--apple); }
+@keyframes shake { 15% { transform: translateX(-9px); } 35% { transform: translateX(7px); } 55% { transform: translateX(-4px); } 75% { transform: translateX(2px); } }
+
+/* trier : « il n'aime pas » à gauche de la vidéo, « il aime » à droite, la carte au milieu */
+.bin { z-index: 6; border-radius: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 26px 14px 22px; text-align: center;
+  opacity: 0; pointer-events: none; transform: translateY(-50%); }
+.bin.no { translate: -18px 0; } .bin.yes { translate: 18px 0; }
+.bin.on { opacity: 1; translate: 0 0; pointer-events: auto; }
+body[data-turn="listen"] .bin, body[data-turn="wait"] .bin { pointer-events: none; }
+.bin > * { position: relative; z-index: 2; }
+.bin .bic { width: 46px; height: 46px; }
+.bin.no .bic { color: #B9A8FF; } .bin.yes .bic { color: var(--heart); }
+.bin .bl { font-weight: 700; font-size: 17px; line-height: 1.15; }
+.bin .got { display: flex; gap: 6px; min-height: 40px; align-items: center; justify-content: center; }
+.bin .mini { width: 40px; height: 40px; border-radius: 12px; background: #fff; display: grid; place-items: center; color: var(--ink); box-shadow: 0 4px 12px rgba(0,0,0,.3); animation: pop .55s var(--spring) both; }
+.bin .mini svg { width: 30px; height: 30px; }
+.bin.hot { scale: 1.06; }
+.bin.yes.hot { background: rgba(255,77,138,.30); }
+.bin.no.hot { background: rgba(140,110,255,.30); }
+.deck { z-index: 8; transform: translate(-50%, -50%); width: 132px; height: 146px; pointer-events: none; }
+.deck:empty { display: none; }
+.deck .card { pointer-events: auto; }
+.card { position: relative; width: 132px; height: 146px; border-radius: 26px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none; will-change: transform;
+  background: rgba(255,255,255,.95); color: var(--ink); box-shadow: 0 22px 50px -14px rgba(0,0,0,.65); }
+.card .pic { width: 78px; height: 78px; display: grid; place-items: center; }
+.card .pic svg { width: 66px; height: 66px; }
+.card[data-id="cook"] .pic { color: #F06A1F; }
+.card[data-id="noise"] .pic { color: #6D44E8; }
+.card .word { font-weight: 800; font-size: 19px; letter-spacing: -.01em; }
+.card .ear { position: absolute; top: 9px; right: 9px; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: #EEF0FF; color: #5B57F0; }
+.card .ear svg { width: 14px; height: 14px; }
+.card.spring { transition: transform .55s var(--spring); }
+
+/* fiches de fin */
+.cast { display: flex; flex-direction: column; gap: 8px; }
+.fiche { display: grid; grid-template-columns: 58px minmax(0, 1fr); gap: 12px; align-items: center; padding: 8px; border-radius: 22px; background: rgba(255,255,255,.07); }
+.fiche .portrait { width: 58px; height: 58px; border-radius: 18px; padding: 2px; }
+.fiche[data-p="camille"] .portrait { background: var(--g-camille); }
+.fiche[data-p="kenji"] .portrait { background: var(--g-kenji); }
+.fiche .portrait img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 16px; max-width: none; }
+.fiche .who { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+.fiche .name { font-weight: 800; font-size: 18px; line-height: 1; }
+.facts { display: flex; flex-wrap: wrap; gap: 6px; }
+.fact { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 11px 0 8px; border-radius: 99px; font-weight: 600; font-size: 14px; background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); transition: transform .3s var(--spring), background .2s; }
+.fact:hover { background: rgba(255,255,255,.2); }
+.fact:active { transform: scale(.93); }
+.fact svg { width: 16px; height: 16px; flex: none; }
+.fact.yes svg { color: var(--heart); } .fact.no svg { color: #B9A8FF; } .fact.quote svg, .fact.age svg { color: #9FD0FF; }
+.flyer { position: fixed; z-index: 50; object-fit: cover; pointer-events: none; border-radius: 6px; max-width: none; }
+
+.ghost { position: fixed; z-index: 60; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%; pointer-events: none; opacity: 0;
+  background: radial-gradient(circle, rgba(255,255,255,1) 0 30%, rgba(255,255,255,.35) 32% 100%); box-shadow: 0 0 0 1px rgba(255,255,255,.6), 0 8px 22px rgba(0,0,0,.35); }
+
+/* ---------- téléphone tenu droit, téléphone couché ---------- */
+body.tall .talk { --fs: 18px; }
+body.tall .win { border-radius: 28px; }
+body.tall .orb { width: 30px; height: 30px; }
+body.tall .orb svg { width: 15px; height: 15px; }
+body.tall .qb { gap: 10px; padding: 6px 16px 6px 6px; }
+body.tall .lb { padding: 8px 14px 9px; border-radius: 20px; }
+body.tall .av { width: 32px; height: 32px; }
+body.tall .bin { transform: translateY(-50%); padding: 10px 8px; gap: 6px; border-radius: 24px; }
+body.tall .bin .bic { width: 30px; height: 30px; }
+body.tall .bin .bl { font-size: 14px; }
+body.tall .bin .got { min-height: 30px; }
+body.tall .bin .mini { width: 30px; height: 30px; border-radius: 9px; } body.tall .bin .mini svg { width: 22px; height: 22px; }
+body.compact .talk { --fs: 17px; }
+body.compact .tape { height: 70px; }
+body.compact .deck, body.compact .card { width: 100px; height: 108px; } body.compact .card { border-radius: 20px; } body.compact .card .pic { width: 52px; height: 52px; } body.compact .card .pic svg { width: 44px; height: 44px; } body.compact .card .word { font-size: 16px; }
+body.compact .panel { padding: 12px; gap: 8px; }
+body.compact .fiche { grid-template-columns: 46px minmax(0, 1fr); padding: 6px; gap: 10px; } body.compact .fiche .portrait { width: 46px; height: 46px; border-radius: 14px; } body.compact .fiche .name { font-size: 16px; } body.compact .fact { height: 27px; font-size: 13px; }
+body.short .talk { --fs: 16px; }
+body.short .orb { width: 28px; height: 28px; }
+body.short .qb { gap: 9px; padding: 5px 14px 5px 5px; }
+body.short .lb { padding: 7px 13px 8px; border-radius: 18px; }
+body.short .av { width: 28px; height: 28px; }
+body.short .dock { height: 46px; } body.short .ico { width: 36px; height: 36px; } body.short .go { height: 36px; }
+body.short .tape { height: 66px; }
+body.short .deck, body.short .card { width: 92px; height: 98px; } body.short .card { border-radius: 20px; } body.short .card .pic svg { width: 40px; height: 40px; } body.short .card .pic { width: 46px; height: 46px; } body.short .card .word { font-size: 15px; }
+body.short .bin { padding: 12px 8px; gap: 6px; border-radius: 24px; } body.short .bin .bic { width: 30px; height: 30px; } body.short .bin .bl { font-size: 14px; } body.short .bin .got { min-height: 30px; }
+body.short .bin .mini { width: 30px; height: 30px; border-radius: 9px; } body.short .bin .mini svg { width: 22px; height: 22px; }
+body.short .panel { padding: 12px; gap: 8px; border-radius: 24px; }
+body.short .fiche { grid-template-columns: 44px minmax(0, 1fr); padding: 6px; gap: 8px; } body.short .fiche .portrait { width: 44px; height: 44px; border-radius: 14px; } body.short .fiche .name { font-size: 15px; } body.short .fact { height: 26px; font-size: 12.5px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+</style>
+
+<canvas class="env" id="amb" width="64" height="36" aria-hidden="true"></canvas>
+<div class="env-dim" aria-hidden="true"></div>
+<div class="scene" id="scene">
+  <div class="win" id="win">
+    <div class="cam" id="cam">
+      <video id="vid" playsinline preload="auto" poster="poster.jpg">
+        <source src="colocation.mp4" type='video/mp4; codecs="avc1.640028, mp4a.40.2"'>
+        <source src="colocation.webm" type='video/webm; codecs="vp9, opus"'>
+      </video>
+      <div class="veil" id="veil"></div>
+      <div class="spot" id="spot"></div>
+      <button class="hit" data-p="camille" aria-label="La personne à gauche" style="left:16%;top:18%;width:26%;height:82%"></button>
+      <button class="hit" data-p="kenji" aria-label="La personne à droite" style="left:57%;top:8%;width:34%;height:92%"></button>
+      <div class="tag" data-p="camille"><span class="stem"></span><span class="dot"></span><span class="lab">Camille</span></div>
+      <div class="tag" data-p="kenji"><span class="stem"></span><span class="dot"></span><span class="lab">Kenji<small>22 ans</small></span></div>
+    </div>
+    <button class="bigplay glass" id="bigplay" aria-label="Regarder la scène">
+      <svg viewBox="0 0 30 34" aria-hidden="true"><path d="M4 3.5v27a2 2 0 0 0 3 1.7l20-13.5a2 2 0 0 0 0-3.4L7 1.8A2 2 0 0 0 4 3.5Z" fill="currentColor"/></svg>
+    </button>
+  </div>
+
+  <div class="talk" id="talk" aria-live="polite">
+    <div class="qb bub empty" id="qb" data-mode="you">
+      <button class="orb" id="orb" aria-label="Réécouter la question"><span class="core"></span><span class="ic" id="orbIc"></span></button>
+      <p class="qt" id="qt"></p>
+    </div>
+    <div class="lrow" id="lrow" data-who="camille" aria-hidden="true">
+      <img class="av" id="lav" src="camille.jpg" alt="">
+      <div class="lb bub" id="lb"><span class="words" id="lwords"></span></div>
+    </div>
+  </div>
+
+  <div class="orn glass dock" id="dock">
+    <button class="ico" id="replayBtn" aria-label="Réécouter">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></svg>
+    </button>
+    <button class="ico" id="ccBtn" aria-pressed="false" aria-label="Afficher les mots" title="Les mots">Aa</button>
+    <button class="ico" id="slowBtn" aria-pressed="false" aria-label="Plus lentement" title="Plus lentement">
+      <svg viewBox="0 0 26 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16h17.5a3 3 0 0 0 3-3V9"/><path d="M5 16a6.5 6.5 0 1 1 13 0"/><path d="M11.5 16a2.6 2.6 0 0 1 0-5.2 1.6 1.6 0 0 1 0 3.2"/><path d="M21 9.5 20 4.5M24 9.5l1-4.6"/></svg>
+    </button>
+    <span id="goSlot" class="goslot"></span>
+  </div>
+
+  <aside class="side" id="side"></aside>
+  <button class="bin no glass" id="binNo" data-side="no" aria-label="Il n'aime pas"></button>
+  <button class="bin yes glass" id="binYes" data-side="yes" aria-label="Il aime"></button>
+  <div class="deck" id="deck"></div>
+</div>
+<div class="ghost" id="ghost" aria-hidden="true"></div>
+
+<script>
+(() => {
+  'use strict';
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const NB = ' ';
+  document.body.classList.add('boot');
+
+  /* ================= la scène ================= */
+  const W = (t, s, e) => ({ t, s, e });
+  const LINES = [
+    { who: 'camille', s: 0.00, e: 2.14, words: [W('Salut,', 0, .4), W("t'es", .5, .86), W('Kenji' + NB + '?', .86, 1.26), W('Moi,', 1.26, 1.58), W("c'est", 1.58, 1.8), W('Camille.', 1.8, 2.14)] },
+    { who: 'kenji', s: 2.52, e: 4.68, words: [W('Enchanté,', 2.52, 2.8), W("j'ai", 2.82, 3.04), W('22', 3.04, 3.22), W('ans,', 3.22, 3.48), W('je', 3.54, 3.6), W('suis', 3.6, 3.66), W('japonais', 3.66, 4.1), W('et', 4.1, 4.18), W('je', 4.18, 4.22), W('suis', 4.22, 4.34), W('étudiant.', 4.34, 4.68)] },
+    { who: 'camille', s: 4.78, e: 5.66, words: [W("T'aimes", 4.78, 5.08), W('cuisiner' + NB + '?', 5.08, 5.66)] },
+    { who: 'kenji', s: 5.66, e: 7.44, words: [W('Oui,', 5.66, 5.86), W("j'adore,", 5.88, 6.14), W('mais', 6.34, 6.68), W('je', 6.68, 6.82), W("n'aime", 6.82, 7.02), W('pas', 7.02, 7.1), W('le', 7.1, 7.18), W('bruit.', 7.18, 7.44)] },
+    { who: 'camille', s: 7.84, e: 9.06, words: [W('Parfait,', 7.84, 8.12), W('ici', 8.14, 8.32), W("c'est", 8.32, 8.6), W('très', 8.6, 8.7), W('calme.', 8.7, 9.06)] },
+  ];
+  const WIDE = 8.5, CLOSE = 3.2;
+  const PEOPLE = {
+    camille: { name: 'Camille', img: 'camille.jpg', spot: [29, 52, 20, 64], anchor: [21, 47], crop: [17.19, 13.19, 23.44, 41.67] },
+    kenji: { name: 'Kenji', img: 'kenji.jpg', spot: [71, 48, 22, 66], anchor: [77, 50], anchorClose: [62, 74], crop: [55.16, 5.56, 23.44, 41.67] },
+  };
+  /* cadrages de la fenêtre : rapport largeur / hauteur, part de la hauteur de l'image, centre */
+  const CROPS = { full: { a: 16 / 9, h: 1, cx: .5, cy: .5 }, fullTall: { a: 4 / 3, h: 1, cx: .53, cy: .5 }, kenjiClose: { a: .82, h: 1, cx: .51, cy: .5 }, kenjiWide: { a: .82, h: 1, cx: .72, cy: .5 } };
+
+  /* ================= éléments et état ================= */
+  const vid = $('#vid'), win = $('#win'), cam = $('#cam'), veil = $('#veil'), spot = $('#spot'), bigplay = $('#bigplay');
+  const talk = $('#talk'), qb = $('#qb'), orbIc = $('#orbIc'), qt = $('#qt'), lrow = $('#lrow'), lav = $('#lav'), lb = $('#lb'), lwords = $('#lwords');
+  const dock = $('#dock'), side = $('#side'), goSlot = $('#goSlot'), ghost = $('#ghost'), amb = $('#amb');
+  const binNo = $('#binNo'), binYes = $('#binYes'), deck = $('#deck');
+  const ccBtn = $('#ccBtn'), slowBtn = $('#slowBtn'), replayBtn = $('#replayBtn');
+  const state = { step: 'intro', cc: false, slow: false, named: false, q1: 0, q2: 0, q3: 0, sorted: [], lineView: false, crop: CROPS.full, sideOn: false, split: false };
+  let flow = 0;
+  const alive = f => f === flow;
+
+  /* ================= mise en place : fenêtre, barre, panneau, cases ================= */
+  function layout() {
+    const Wd = innerWidth, Hd = innerHeight, wide = Wd / Hd >= 1.1, short = wide && Hd < 520, compact = !wide && Hd < 740;
+    const B = document.body; B.classList.toggle('wide', wide); B.classList.toggle('tall', !wide); B.classList.toggle('short', short); B.classList.toggle('compact', compact);
+    let c = (!wide && state.crop === CROPS.full) ? CROPS.fullTall : state.crop;
+    if (short && c.a < 1.3) c = { ...c, a: 1.3 };
+    const sideOn = state.sideOn, split = state.split;
+    const dockH = short ? 46 : 52, dockGap = short ? 10 : 16;
+    let wx, wy, ww, wh;
+    if (wide) {
+      const vm = short ? 12 : 36, pad = short ? 14 : 32, gap = (sideOn || split) ? (short ? 14 : 28) : 0;
+      const sw = sideOn ? Math.min(short ? 230 : 320, Wd * .3) : split ? Math.min(short ? 140 : 210, Wd * .18) : 0;
+      const extra = sideOn ? sw + gap : split ? 2 * (sw + gap) : 0;
+      const aw = Wd - pad * 2 - extra, ah = Hd - vm * 2 - dockGap - dockH;
+      wh = Math.min(ah, aw / c.a); ww = wh * c.a;
+      const gx = (Wd - ww - extra) / 2;
+      wx = split ? gx + sw + gap : gx; wy = (Hd - (wh + dockGap + dockH)) / 2;
+      Object.assign(side.style, { left: wx + ww + gap + 'px', top: wy + wh / 2 + 'px', width: (sideOn ? sw : Math.min(320, Wd * .3)) + 'px' });
+      const bw = split ? sw : Math.min(210, Wd * .18);
+      const yc = wy + wh * (short ? .46 : .56);
+      Object.assign(binNo.style, { left: wx - gap - bw + 'px', top: yc + 'px', width: bw + 'px', height: '' });
+      Object.assign(binYes.style, { left: wx + ww + gap + 'px', top: yc + 'px', width: bw + 'px', height: '' });
+      Object.assign(deck.style, { left: wx + ww / 2 + 'px', top: yc + 'px' });
+    } else {
+      const pad = 12, top = Math.max(14, Math.round(Hd * .04));
+      const sideH = sideOn && side.firstElementChild ? side.firstElementChild.offsetHeight : 0, rowH = compact ? 118 : 156;
+      const below = sideOn ? sideH + 12 : split ? rowH + 12 : 0;
+      ww = Wd - pad * 2; wh = ww / c.a;
+      const maxH = Hd - top - dockGap - dockH - below - 14;
+      if (wh > maxH) { wh = Math.max(150, maxH); ww = Math.min(Wd - pad * 2, wh * c.a); }
+      wx = (Wd - ww) / 2; wy = Math.max(top, Math.round((Hd - (wh + dockGap + dockH + below)) / 2));
+      const yBelow = wy + wh + dockGap + dockH + 12;
+      Object.assign(side.style, { left: pad + 'px', width: Wd - pad * 2 + 'px', top: yBelow + 'px' });
+      const cw = compact ? 100 : 132, bw = (Wd - pad * 2 - cw - 20) / 2, yc = yBelow + rowH / 2;
+      Object.assign(binNo.style, { left: pad + 'px', top: yc + 'px', width: bw + 'px', height: rowH + 'px' });
+      Object.assign(binYes.style, { left: Wd - pad - bw + 'px', top: yc + 'px', width: bw + 'px', height: rowH + 'px' });
+      Object.assign(deck.style, { left: Wd / 2 + 'px', top: yc + 'px' });
+    }
+    Object.assign(win.style, { left: wx + 'px', top: wy + 'px', width: ww + 'px', height: wh + 'px' });
+    const Vh = wh / c.h, Vw = Vh * 16 / 9;
+    const cl = Math.min(0, Math.max(ww - Vw, ww / 2 - c.cx * Vw)), ct = Math.min(0, Math.max(wh - Vh, wh / 2 - c.cy * Vh));
+    Object.assign(cam.style, { left: cl + 'px', top: ct + 'px', width: Vw + 'px', height: Vh + 'px' });
+    $$('.tag').forEach(t => { const lab = $('.lab', t), half = (lab.offsetWidth || 90) / 2, ax = cl + parseFloat(t.style.left || 0) / 100 * Vw;
+      t.style.setProperty('--dx', Math.max(0, 10 - (ax - half)) - Math.max(0, ax + half - (ww - 10)) + 'px'); });
+    const inset = short ? 10 : wide ? 18 : 10;
+    Object.assign(talk.style, { left: wx + inset + 'px', width: ww - inset * 2 + 'px', bottom: Hd - (wy + wh) + inset + 'px' });
+    Object.assign(dock.style, { left: wx + ww / 2 + 'px', top: wy + wh + dockGap + 'px' });
+  }
+  function frameTo(crop, sideOn) { state.crop = crop; state.sideOn = sideOn; layout(); side.classList.toggle('on', sideOn && side.children.length > 0); }
+  addEventListener('resize', () => { document.body.classList.add('boot'); layout(); requestAnimationFrame(() => document.body.classList.remove('boot')); idle.reset(); });
+
+  /* ================= médias : une seule voix à la fois ================= */
+  const SRC = vid.canPlayType('video/mp4; codecs="avc1.640028, mp4a.40.2"') ? 'colocation.mp4' : 'colocation.webm';
+  const voice = new Audio(SRC); voice.preload = 'auto';
+  /* voix ElevenLabs des consignes (« FLE - femme-38 ») : w = début de chaque mot affiché, en secondes */
+  const CLIPS = {
+    'Où est Camille ? Clique sur elle.': { src: 'voix-camille.mp3', w: [0, .18, .28, 1.45, 1.66, 1.89] },
+    'Bravo ! Tu as compris la scène.': { src: 'voix-bravo.mp3', w: [0, .85, .93, 1.08, 1.39, 1.49] },
+    'Kenji a quel âge ?': { src: 'voix-age.mp3', w: [0, .36, .45, .68] },
+    'Kenji aime… ?': { src: 'voix-aime.mp3', w: [0, .72] },
+  };
+  const plainSp = t => t.replace(/[\u202f\u00a0]/g, ' ');
+  for (const c of Object.values(CLIPS)) { c.el = new Audio(c.src); c.el.preload = 'auto'; }
+  const clipFor = t => CLIPS[plainSp(t)] || null;
+  vid.addEventListener('loadedmetadata', async () => {
+    if (vid.seekable.length && vid.seekable.end(0) >= vid.duration - .5) return;
+    try { const url = URL.createObjectURL(await (await fetch(SRC)).blob()); const t = vid.currentTime; vid.src = url; voice.src = url; vid.load(); seek(vid, t); } catch (e) {}
+  }, { once: true });
+  let unlocked = false;
+  function unlock() {
+    if (unlocked) return; unlocked = true;
+    voice.muted = true; const p = voice.play(); if (p && p.then) p.then(() => { voice.pause(); voice.muted = false; }).catch(() => { voice.muted = false; });
+    for (const c of Object.values(CLIPS)) {
+      const a = c.el; a.muted = true; const q = a.play();
+      if (q && q.then) q.then(() => { if (a.muted) { a.pause(); try { a.currentTime = 0; } catch (e) {} } a.muted = false; }).catch(() => { a.muted = false; });
+    }
+    audioCtx();
+  }
+  let media = 0;
+  function stopAll() { media++; vid.pause(); voice.pause(); for (const c of Object.values(CLIPS)) c.el.pause(); if ('speechSynthesis' in window) try { speechSynthesis.cancel(); } catch (e) {} }
+  function seek(el, t) {
+    return new Promise(res => {
+      if (Math.abs(el.currentTime - t) < .02) return res();
+      let done = false; const fin = () => { if (done) return; done = true; el.removeEventListener('seeked', fin); res(); };
+      el.addEventListener('seeked', fin); try { el.currentTime = t; } catch (e) {} setTimeout(fin, 800);
+    });
+  }
+  async function freeze(t) {
+    stopAll();
+    if (Math.abs(vid.currentTime - t) > .3) { veil.classList.add('on'); await seek(vid, t); requestAnimationFrame(() => veil.classList.remove('on')); }
+    else await seek(vid, t);
+  }
+  let movingTok = -1;
+  async function playSegment(s, e, back) {
+    stopAll(); const my = media; movingTok = my;
+    vid.playbackRate = state.slow ? .75 : 1;
+    await seek(vid, s); if (my !== media) return false;
+    state.lineView = true;
+    try { await vid.play(); } catch (err) { state.lineView = false; if (movingTok === my) movingTok = -1; return false; }
+    await new Promise(res => { const loop = () => { if (my !== media) return res(); if (vid.currentTime >= e - .02 || vid.ended) { vid.pause(); return res(); } requestAnimationFrame(loop); }; requestAnimationFrame(loop); });
+    if (my !== media) { state.lineView = false; return false; }
+    await wait(380); state.lineView = false;
+    if (back != null && my === media) { const fz = freeze(back); movingTok = media; await fz; await wait(60); }
+    if (movingTok === media) movingTok = -1;
+    return true;
+  }
+  async function hear(s, e) {
+    stopAll(); const my = media;
+    voice.playbackRate = state.slow ? .75 : 1;
+    await seek(voice, s); if (my !== media) return false;
+    try { await voice.play(); } catch (err) { return false; }
+    await new Promise(res => { const loop = () => { if (my !== media) { voice.pause(); return res(); } if (voice.currentTime >= e - .02 || voice.ended) { voice.pause(); return res(); } requestAnimationFrame(loop); }; requestAnimationFrame(loop); });
+    return my === media;
+  }
+
+  /* ================= voix de synthèse (consignes du prototype) ================= */
+  let frVoice = null;
+  function pickVoice() {
+    if (!('speechSynthesis' in window)) return;
+    const vs = speechSynthesis.getVoices();
+    frVoice = vs.find(v => /^fr[-_]FR/i.test(v.lang) && /google|amélie|amelie|thomas|audrey|marie|denise|premium|enhanced|natural/i.test(v.name)) || vs.find(v => /^fr[-_]FR/i.test(v.lang)) || vs.find(v => /^fr/i.test(v.lang)) || null;
+  }
+  if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.addEventListener?.('voiceschanged', pickVoice); }
+  function speak(text) {
+    stopAll(); const my = media;
+    const est = 700 + text.length * (state.slow ? 95 : 72);
+    return new Promise(res => {
+      let done = false; const fin = () => { if (done) return; done = true; clearTimeout(to); res(my === media); };
+      const to = setTimeout(fin, frVoice ? est + 2500 : est);
+      if (!frVoice) return;
+      try {
+        const u = new SpeechSynthesisUtterance(text);
+        u.voice = frVoice; u.lang = frVoice.lang; u.rate = state.slow ? .74 : .92; u.onend = fin; u.onerror = fin;
+        setTimeout(() => { if (my === media) speechSynthesis.speak(u); else fin(); }, 60);
+      } catch (e) { fin(); }
+    });
+  }
+
+  /* une consigne enregistrée : true une fois finie, false si interrompue, null si le navigateur refuse de la jouer */
+  function playClip(c, onTime) {
+    stopAll(); const my = media, el = c.el;
+    return new Promise(async res => {
+      el.muted = false; try { el.currentTime = 0; } catch (e) {}
+      el.playbackRate = state.slow ? .8 : 1;
+      try { await el.play(); } catch (err) { return res(null); }
+      if (my !== media) { el.pause(); return res(false); }
+      const loop = () => {
+        if (my !== media) { el.pause(); return res(false); }
+        if (onTime) onTime(el.currentTime);
+        if (el.ended || el.paused) return res(true);
+        requestAnimationFrame(loop);
+      };
+      requestAnimationFrame(loop);
+    });
+  }
+
+  /* ================= petits sons ================= */
+  let ctx = null;
+  function audioCtx() { try { if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)(); if (ctx.state === 'suspended') ctx.resume(); } catch (e) {} return ctx; }
+  function tone(f, t0, dur, gain, type = 'sine') {
+    const c = audioCtx(); if (!c) return;
+    const o = c.createOscillator(), g = c.createGain(); o.type = type; o.frequency.value = f;
+    g.gain.setValueAtTime(0, c.currentTime + t0); g.gain.linearRampToValueAtTime(gain, c.currentTime + t0 + .01);
+    g.gain.exponentialRampToValueAtTime(.0001, c.currentTime + t0 + dur);
+    o.connect(g).connect(c.destination); o.start(c.currentTime + t0); o.stop(c.currentTime + t0 + dur + .02);
+  }
+  const sfx = {
+    tick() { tone(2300, 0, .02, .02, 'triangle'); if (navigator.vibrate) try { navigator.vibrate(4); } catch (e) {} },
+    ok() { tone(784, 0, .22, .06); tone(1175, .09, .38, .05); tone(1568, .18, .4, .03); },
+    try() { tone(392, 0, .18, .045, 'triangle'); tone(330, .1, .22, .035, 'triangle'); },
+  };
+
+  /* ================= icônes ================= */
+  const ICON = {
+    bars: '<span class="bars"><b></b><b></b><b></b><b></b></span>',
+    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+    ear: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 9a5.5 5.5 0 0 1 11 0c0 3-3 3.6-3 6.3a3.2 3.2 0 0 1-5.6 2.1"/><path d="M9.5 9.3a2.5 2.5 0 0 1 5 0"/></svg>',
+    arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>',
+    speaker: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor" stroke-width="1.4"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18.5 6.5a7.5 7.5 0 0 1 0 11"/></svg>',
+    heart: '<svg viewBox="0 0 40 40" fill="currentColor"><path d="M20 34.5S5 25.6 5 15.2A7.7 7.7 0 0 1 20 11a7.7 7.7 0 0 1 15 4.2C35 25.6 20 34.5 20 34.5Z"/></svg>',
+    noheart: '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 34.5S5 25.6 5 15.2A7.7 7.7 0 0 1 20 11a7.7 7.7 0 0 1 15 4.2C35 25.6 20 34.5 20 34.5Z"/><path d="M7 33 33 7"/></svg>',
+    pan: '<svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 52h54c0 12-9.5 21-21 21H33c-11.5 0-21-9-21-21z" fill="currentColor" fill-opacity=".16"/><path d="M66 56h20"/><path d="M29 41c-3-4 3-7 0-11M39.5 39c-3-5 4-8 0-14M50 41c-3-4 3-7 0-11"/></svg>',
+    noise: '<svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 39h12l18-14v46L24 57H12z" fill="currentColor" fill-opacity=".16"/><path d="M55 35l6 6-6 6 6 6-6 6"/><path d="M67 27l7 7-7 7 7 7-7 7 7 7-7 7"/><path d="M80 33l5 5-5 5 5 5-5 5 5 5"/></svg>',
+  };
+
+  /* ================= la bulle de l'appli ================= */
+  const Q = {
+    mode(m, icon) { qb.dataset.mode = m; orbIc.innerHTML = icon || (m === 'talk' ? ICON.bars : m === 'ok' ? ICON.check : m === 'try' ? ICON.ear : ICON.speaker); },
+    text(t) { qt.innerHTML = t ? t.split(' ').map(w => `<span class="wd">${w}</span>`).join(' ') : ''; qb.classList.toggle('empty', !t); },
+    show(m, t, icon) { this.mode(m, icon); this.text(t); },
+    async say(t, f) {
+      this.mode('talk'); this.text(t); setTurn('listen');
+      const words = $$('.wd', qt); words.forEach(w => w.classList.add('hid'));
+      const c = clipFor(t);
+      if (c) {
+        const at = k => c.w.length === words.length ? c.w[k] : (c.el.duration || 2) * k / words.length;
+        const r = await playClip(c, now => words.forEach((w, k) => { if (now >= at(k) - .03) w.classList.remove('hid'); }));
+        if (r !== null) { words.forEach(w => w.classList.remove('hid')); return alive(f); }
+      }
+      const dur = 450 + t.length * (state.slow ? 85 : 62);
+      words.forEach((w, k) => setTimeout(() => w.classList.remove('hid'), 80 + dur * k / words.length));
+      await speak(t.replace(/[  ]/g, ' '));
+      words.forEach(w => w.classList.remove('hid'));
+      return alive(f);
+    },
+  };
+  function setTurn(t) { document.body.dataset.turn = t; if (t !== 'you') idle.stop(); }
+  function goBtn(kind, label, fn) {
+    goSlot.innerHTML = ''; if (!kind) return;
+    const b = document.createElement('button'); b.className = 'go';
+    b.innerHTML = `<span>${label}</span>${kind === 'check' ? ICON.check : ICON.arrow}`;
+    b.addEventListener('click', () => { unlock(); idle.reset(); fn(); });
+    goSlot.append(b);
+  }
+  $('#orb').addEventListener('click', () => {
+    unlock();
+    if (!state.ask || document.body.dataset.turn !== 'you' || qb.dataset.mode !== 'you') return;
+    const f = flow;
+    Q.say(state.ask, f).then(ok => { if (ok && alive(f)) yourTurn(); });
+  });
+  replayBtn.addEventListener('click', () => { unlock(); idle.reset(); if (document.body.dataset.turn === 'you' && state.replay) state.replay(); });
+
+  /* ================= la réplique en cours, en bulle, et la scène autour ================= */
+  let curLine = -1, lastAmb = -1;
+  function renderLine(li) {
+    curLine = li;
+    if (li < 0 || !state.cc) { talk.classList.remove('line'); return; }
+    const L = LINES[li];
+    lrow.dataset.who = L.who; lav.src = PEOPLE[L.who].img;
+    lwords.innerHTML = L.words.map((w, k) => `<span class="w" data-k="${k}">${w.t}</span>`).join('');
+    $$('.w', lwords).forEach(span => span.addEventListener('click', () => { const w = L.words[+span.dataset.k]; hear(w.s - .02, w.e + .06); }));
+    talk.classList.add('line');
+    if (!reduced) lrow.animate([{ opacity: 0, transform: 'translateY(12px) scale(.88)' }, { opacity: 1, transform: 'none' }], { duration: 520, easing: 'cubic-bezier(.34,1.56,.64,1)' });
+  }
+  function loop() {
+    const t = vid.currentTime;
+    let li = -1;
+    if (state.lineView) { li = LINES.findIndex(L => t >= L.s - .1 && t <= L.e + .45); if (li < 0) li = curLine; }
+    talk.classList.toggle('playing', state.lineView);
+    cam.classList.toggle('moving', movingTok === media);
+    if (li !== curLine) renderLine(li);
+    if (li >= 0 && state.cc) $$('.w', lwords).forEach((span, k) => { const w = LINES[li].words[k]; span.classList.toggle('past', t >= w.e); span.classList.toggle('now', t >= w.s - .03 && t < w.e); });
+    if (Math.abs(t - lastAmb) > .04 && vid.readyState >= 2) { lastAmb = t; try { amb.getContext('2d').drawImage(vid, 0, 0, amb.width, amb.height); } catch (e) {} }
+    requestAnimationFrame(loop);
+  }
+  const posterImg = new Image(); posterImg.src = 'poster.jpg'; posterImg.onload = () => { try { amb.getContext('2d').drawImage(posterImg, 0, 0, amb.width, amb.height); } catch (e) {} };
+
+  /* ================= sur l'image ================= */
+  function tag(p, pos, show = true, stem = 34) {
+    const el = $(`.tag[data-p="${p}"]`);
+    el.style.left = pos[0] + '%'; el.style.top = pos[1] + '%'; el.style.setProperty('--stem', stem + 'px');
+    if (!show) { el.classList.remove('show'); return; }
+    layout();
+    if (!el.classList.contains('show')) { void el.offsetWidth; el.classList.add('show'); }
+  }
+  function hideTags() { $$('.tag').forEach(el => el.classList.remove('show', 'aged')); }
+  function spotOn(p, dim = 1) { const [x, y, rx, ry] = PEOPLE[p].spot; spot.style.setProperty('--sx', x + '%'); spot.style.setProperty('--sy', y + '%'); spot.style.setProperty('--srx', rx + '%'); spot.style.setProperty('--sry', ry + '%'); spot.style.setProperty('--dim', dim); }
+  function spotOff() { spot.style.setProperty('--dim', 0); spot.style.setProperty('--srx', '140%'); spot.style.setProperty('--sry', '140%'); }
+  function rippleAt(ev) { const b = cam.getBoundingClientRect(), r = document.createElement('div'); r.className = 'ripple'; r.style.left = (ev.clientX - b.left) + 'px'; r.style.top = (ev.clientY - b.top) + 'px'; cam.append(r); setTimeout(() => r.remove(), 800); }
+
+  /* ================= doigt fantôme ================= */
+  const idle = {
+    timer: null, anim: null, fn: null,
+    set(fn, w = 3500) { this.fn = fn; this.reset(w); },
+    reset(w = 7000) { clearTimeout(this.timer); this.stop(); if (this.fn && !reduced) this.timer = setTimeout(() => this.play(), w); },
+    stop() { if (this.anim) { this.anim.cancel(); this.anim = null; } ghost.style.opacity = 0; },
+    clear() { this.fn = null; clearTimeout(this.timer); this.stop(); },
+    play() { if (!this.fn || document.body.dataset.turn !== 'you') return this.reset(3000); const fr = this.fn(); if (!fr) return; this.anim = ghost.animate(fr, { duration: 2600, easing: 'ease-in-out' }); this.anim.onfinish = () => { ghost.style.opacity = 0; this.reset(6500); }; },
+  };
+  const at = (x, y, o = 1, s = 1) => ({ left: x + 'px', top: y + 'px', opacity: o, transform: `scale(${s})` });
+
+  /* ================= panneau du geste, cases à trier ================= */
+  function setSide(html, onMount) {
+    if (!html) { side.classList.remove('on'); state.sideOn = false; setTimeout(() => { if (!side.classList.contains('on')) side.innerHTML = ''; }, 400); return; }
+    side.innerHTML = html; onMount && onMount(side);
+  }
+  binNo.innerHTML = `<span class="bic">${ICON.noheart}</span><span class="bl">il n'aime pas</span><span class="got"></span>`;
+  binYes.innerHTML = `<span class="bic">${ICON.heart}</span><span class="bl">il aime</span><span class="got"></span>`;
+  function setSplit(on) {
+    state.split = on; layout();
+    [binNo, binYes].forEach(b => b.classList.toggle('on', on));
+    if (!on) { deck.innerHTML = ''; setTimeout(() => { if (!state.split) $$('.got', binNo.parentElement).forEach(g => g.innerHTML = ''); }, 450); }
+  }
+  function yourTurn() { Q.mode('you'); setTurn('you'); }
+
+  function go(step) {
+    flow++; stopAll(); idle.clear();
+    Object.assign(state, { step, ask: null, replay: null, lineView: false });
+    cam.classList.remove('asking'); spotOff(); goBtn(null); setSplit(false);
+    STEPS[step](flow);
+  }
+  const STEPS = {};
+
+  /* ================= 0 · regarder ================= */
+  STEPS.intro = f => {
+    hideTags(); setSide(null); frameTo(CROPS.full, false); state.named = false;
+    Object.assign(state, { q1: 0, q2: 0, q3: 0, sorted: [] });
+    bigplay.classList.remove('gone'); seek(vid, 0);
+    Q.show('you', '');
+    state.replay = watch; setTurn('you');
+  };
+  async function watch() {
+    unlock(); idle.clear(); bigplay.classList.add('gone');
+    const f = flow; Q.text(''); goBtn(null); setTurn('listen');
+    await playSegment(0, 9.3, null);
+    if (!alive(f) || state.step !== 'intro') return;
+    goBtn('next', 'Commencer', () => go('q1'));
+    Q.mode('you'); setTurn('you');
+  }
+  bigplay.addEventListener('click', watch);
+
+  /* ================= 1 · toucher la personne ================= */
+  STEPS.q1 = async f => {
+    hideTags(); setSide(null); frameTo(CROPS.full, false); state.named = false;
+    await freeze(WIDE); if (!alive(f)) return;
+    state.ask = 'Où est Camille' + NB + '? Clique sur elle.';
+    state.replay = async () => { setTurn('listen'); cam.classList.remove('asking'); await playSegment(0, 2.24, WIDE); if (alive(f)) askQ1(f, false); };
+    askQ1(f, true);
+  };
+  async function askQ1(f, speakIt) {
+    if (speakIt) { if (!await Q.say(state.ask, f)) return; } else Q.show('you', state.ask);
+    cam.classList.add('asking'); yourTurn();
+    idle.set(() => { const r = win.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height * .4; return [at(x, y + 60, 0), at(x, y + 20, 1), at(x, y, 1), at(x, y, 1, .75), at(x, y, 1), at(x, y, 0)]; });
+  }
+  $$('.hit').forEach(h => h.addEventListener('click', async ev => {
+    const f = flow;
+    if (state.step !== 'q1' || document.body.dataset.turn !== 'you') return;
+    unlock(); rippleAt(ev); idle.clear(); cam.classList.remove('asking'); setTurn('wait');
+    if (h.dataset.p === 'camille') {
+      sfx.ok(); spotOn('camille'); tag('camille', PEOPLE.camille.anchor, true, 64);
+      Q.show('ok', 'Oui' + NB + '! C\'est Camille.');
+      await hear(1.26, 2.2); if (!alive(f)) return;
+      await wait(250); spotOff(); tag('kenji', PEOPLE.kenji.anchor, true, 64); state.named = true;
+      await wait(450); if (!alive(f)) return;
+      Q.show('ok', 'Et lui, c\'est Kenji.');
+      await hear(.5, 1.26); if (!alive(f)) return;
+      goBtn('next', 'Suivant', () => go('q2')); setTurn('you');
+    } else {
+      state.q1++; sfx.try(); spotOn('kenji', .85); tag('kenji', PEOPLE.kenji.anchor, true, 64);
+      Q.show('try', 'Non. Lui, c\'est Kenji.');
+      await hear(.4, 1.26); if (!alive(f)) return;
+      await wait(500); spotOff(); Q.show('try', 'Écoute encore.');
+      await wait(700); if (!alive(f)) return;
+      await playSegment(0, 2.24, WIDE); if (!alive(f)) return;
+      askQ1(f, false);
+    }
+  }));
+
+  /* ================= 2 · le ruban des nombres ================= */
+  function makeTape(el, { min, max, start, onSettle, onMove }) {
+    const S = 44;
+    const nums = []; for (let n = min; n <= max; n++) { const s = document.createElement('span'); s.className = 'num'; s.textContent = n; el.append(s); nums.push(s); }
+    const notch = document.createElement('i'); notch.className = 'notch'; el.append(notch);
+    let v = start, vel = 0, target = null, dragging = false, lastInt = Math.round(v), settled = true, alive_ = true;
+    let px0 = 0, v0 = 0, lastX = 0, lastT = 0, moved = 0;
+    function lay() {
+      const c = el.clientWidth / 2;
+      for (let k = 0; k < nums.length; k++) {
+        const d = (min + k) - v, ad = Math.abs(d);
+        const x = c + d * S + Math.sign(d) * Math.min(ad, 1) * .55 * S;
+        const sc = 1 + .9 * Math.max(0, 1 - ad / 1.1);
+        nums[k].style.transform = `translate3d(${x}px, -50%, 0) translateX(-50%) scale(${sc.toFixed(3)})`;
+        nums[k].style.opacity = Math.max(.1, 1 - ad * .22).toFixed(3);
+        nums[k].classList.toggle('c', ad < .5);
+      }
+    }
+    function step() {
+      if (!alive_) return;
+      if (!dragging) {
+        if (target == null) { vel *= .93; v += vel; if (v < min || v > max) vel *= .6; if (Math.abs(vel) < .045) target = Math.round(Math.min(max, Math.max(min, v))); }
+        else { vel = vel * .74 + (target - v) * .16; v += vel; if (Math.abs(target - v) < .002 && Math.abs(vel) < .002) { v = target; vel = 0; if (!settled) { settled = true; onSettle && onSettle(target); } } }
+      }
+      const ri = Math.round(v); if (ri !== lastInt && ri >= min && ri <= max) { lastInt = ri; sfx.tick(); onMove && onMove(ri); }
+      lay(); requestAnimationFrame(step);
+    }
+    const unsettle = () => { settled = false; el.classList.remove('right'); };
+    el.addEventListener('pointerdown', e => { if (document.body.dataset.turn !== 'you') return; unlock(); idle.reset(); dragging = true; unsettle(); target = null; vel = 0; moved = 0; px0 = lastX = e.clientX; v0 = v; lastT = performance.now(); el.setPointerCapture(e.pointerId); el.classList.add('grab'); });
+    el.addEventListener('pointermove', e => { if (!dragging) return; const now = performance.now(), dx = e.clientX - lastX, dt = Math.max(1, now - lastT); moved += Math.abs(dx); let nv = v0 - (e.clientX - px0) / S; if (nv < min) nv = min - (min - nv) * .35; if (nv > max) nv = max + (nv - max) * .35; vel = vel * .4 + (-dx / S) * (16.7 / dt) * .6; v = nv; lastX = e.clientX; lastT = now; });
+    const end = e => { if (!dragging) return; dragging = false; el.classList.remove('grab'); if (moved < 6) { const r = el.getBoundingClientRect(); const d = Math.round((e.clientX - (r.left + r.width / 2)) / (S * 1.3)); target = Math.min(max, Math.max(min, Math.round(v) + d)); vel = 0; } else if (performance.now() - lastT > 90) vel = 0; };
+    el.addEventListener('pointerup', end); el.addEventListener('pointercancel', end);
+    el.addEventListener('keydown', e => { if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); unsettle(); target = Math.min(max, Math.max(min, (target ?? Math.round(v)) + (e.key === 'ArrowRight' ? 1 : -1))); } });
+    el.addEventListener('wheel', e => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) { e.preventDefault(); unsettle(); target = null; vel = e.deltaX / S * .25; } }, { passive: false });
+    requestAnimationFrame(step);
+    return { get value() { return Math.round(v); }, to(n) { unsettle(); target = n; }, mark() { el.classList.add('right'); }, kill() { alive_ = false; } };
+  }
+  let tape = null;
+  STEPS.q2 = async f => {
+    hideTags(); spotOff(); setSide(null); frameTo(CROPS.kenjiClose, false);
+    await freeze(CLOSE); if (!alive(f)) return;
+    tag('kenji', PEOPLE.kenji.anchorClose, true, 80);
+    state.ask = 'Kenji a quel âge' + NB + '?';
+    if (!await Q.say(state.ask, f)) return;
+    setSide(`<div class="panel glass"><div class="tape" id="tape" tabindex="0" role="slider" aria-label="L'âge de Kenji" aria-valuemin="10" aria-valuemax="60" aria-valuenow="35"></div><p class="punit">ans</p></div>`);
+    frameTo(CROPS.kenjiClose, true);
+    const el = $('#tape', side); tape && tape.kill();
+    tape = makeTape(el, { min: 10, max: 60, start: 35, onMove: n => el.setAttribute('aria-valuenow', n), onSettle: n => { if (document.body.dataset.turn === 'you') speak(String(n)); } });
+    idle.set(() => { const r = el.getBoundingClientRect(), y = r.top + r.height / 2, c = r.left + r.width / 2; return [at(c + 60, y, 0), at(c + 60, y, 1), at(c + 60, y, 1, .82), at(c - 70, y, 1, .82), at(c - 70, y, 1), at(c - 70, y, 0)]; });
+    state.replay = async () => { setTurn('listen'); await playSegment(2.52, 4.7, CLOSE); if (alive(f)) askQ2(); };
+    askQ2();
+  };
+  function askQ2() {
+    const f = flow;
+    Q.show('you', state.ask);
+    goBtn('check', 'Valider', () => checkAge(f)); yourTurn();
+  }
+  async function checkAge(f) {
+    if (document.body.dataset.turn !== 'you' || !tape) return;
+    const n = tape.value, el = $('#tape');
+    setTurn('wait'); idle.clear(); goBtn(null);
+    if (n === 22) {
+      tape.mark(); sfx.ok(); $('.tag[data-p="kenji"]').classList.add('aged');
+      Q.show('ok', 'Oui' + NB + '! Il a vingt-deux ans.');
+      await hear(2.82, 3.5); if (!alive(f)) return;
+      goBtn('next', 'Suivant', () => go('q3')); setTurn('you');
+    } else {
+      state.q2++; sfx.try(); el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake');
+      Q.show('try', state.q2 >= 2 ? 'Écoute bien.' : `Pas ${n}. Écoute encore.`);
+      await wait(900); if (!alive(f)) return;
+      await playSegment(2.52, 3.55, CLOSE); if (!alive(f)) return;
+      if (state.q2 >= 2) {
+        tape.to(22); await wait(1000); if (!alive(f)) return;
+        tape.mark(); $('.tag[data-p="kenji"]').classList.add('aged'); Q.show('ok', 'Il a vingt-deux ans.');
+        goBtn('next', 'Suivant', () => go('q3')); setTurn('you');
+      } else askQ2();
+    }
+  }
+
+  /* ================= 3 · trier : à gauche il n'aime pas, à droite il aime ================= */
+  const CARDS = [
+    { id: 'cook', word: 'cuisiner', pic: 'pan', likes: true, say: [4.78, 6.24], seg: [4.78, 6.24], ok: 'Oui' + NB + '! Il aime cuisiner.', proof: [5.66, 6.2] },
+    { id: 'noise', word: 'le bruit', pic: 'noise', likes: false, say: [6.28, 7.5], seg: [6.28, 7.5], ok: 'Oui' + NB + '! Il n\'aime pas le bruit.', proof: [6.3, 7.5] },
+  ];
+  STEPS.q3 = async f => {
+    hideTags(); setSide(null); state.sorted = []; frameTo(CROPS.kenjiWide, false);
+    await freeze(WIDE); if (!alive(f)) return;
+    tag('kenji', PEOPLE.kenji.anchor, true, 64); $('.tag[data-p="kenji"]').classList.add('aged'); state.named = true;
+    state.ask = 'Kenji aime…' + NB + '?';
+    if (!await Q.say(state.ask, f)) return;
+    setSplit(true); $('.tag[data-p="kenji"]').classList.remove('show');
+    state.replay = async () => { setTurn('listen'); await playSegment(4.78, 7.5, WIDE); if (alive(f)) askQ3(); };
+    await wait(500); if (!alive(f)) return;
+    nextCard(f);
+  };
+  function askQ3() { Q.show('you', state.ask); yourTurn(); }
+  async function nextCard(f) {
+    const bins = { no: binNo, yes: binYes };
+    const card = CARDS.find(c => !state.sorted.includes(c.id)); if (!card) return;
+    deck.innerHTML = `<div class="card" data-id="${card.id}" tabindex="0" role="button" aria-label="${card.word}, écouter"><span class="ear">${ICON.speaker}</span><span class="pic">${ICON[card.pic]}</span><span class="word">${card.word}</span></div>`;
+    const top = $('.card', deck);
+    if (!reduced) top.animate([{ transform: 'translateY(30px) scale(.8) rotate(-6deg)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 650, easing: 'cubic-bezier(.34,1.56,.64,1)' });
+    setTurn('listen'); Q.show('talk', card.word, ICON.bars);
+    await wait(380); if (!alive(f)) return;
+    await playSegment(card.say[0], card.say[1]); if (!alive(f)) return;
+    askQ3();
+    let x0 = 0, y0 = 0, dx = 0, dy = 0, drag = false, t0 = 0;
+    const setT = () => { top.style.transform = `translate(${dx}px, ${dy * .3}px) rotate(${dx * .06}deg)`; };
+    const heat = () => { bins.no.classList.toggle('hot', dx < -40); bins.yes.classList.toggle('hot', dx > 40); };
+    const canAct = () => document.body.dataset.turn === 'you' && top.isConnected;
+    top.addEventListener('pointerdown', e => { if (!canAct()) return; unlock(); idle.reset(); drag = true; x0 = e.clientX; y0 = e.clientY; dx = dy = 0; t0 = performance.now(); top.classList.remove('spring'); top.setPointerCapture(e.pointerId); });
+    top.addEventListener('pointermove', e => { if (!drag) return; dx = e.clientX - x0; dy = e.clientY - y0; setT(); heat(); });
+    const up = async () => {
+      if (!drag) return; drag = false;
+      const v = dx / Math.max(1, performance.now() - t0);
+      if (Math.abs(dx) < 6 && Math.abs(dy) < 6) { reset(); setTurn('listen'); await playSegment(card.say[0], card.say[1]); if (alive(f)) setTurn('you'); return; }
+      if (dx > 70 || v > .6) commit('yes'); else if (dx < -70 || v < -.6) commit('no'); else reset();
+    };
+    top.addEventListener('pointerup', up); top.addEventListener('pointercancel', up);
+    top.addEventListener('keydown', e => { if (!canAct()) return; if (e.key === 'ArrowRight') commit('yes'); if (e.key === 'ArrowLeft') commit('no'); });
+    Object.values(bins).forEach(b => { b.onclick = () => { if (canAct()) { unlock(); commit(b.dataset.side); } }; });
+    function reset() { dx = dy = 0; top.classList.add('spring'); setT(); bins.no.classList.remove('hot'); bins.yes.classList.remove('hot'); }
+    async function commit(sideKey) {
+      setTurn('wait'); idle.clear();
+      const bin = bins[sideKey], right = (sideKey === 'yes') === card.likes;
+      if (right) {
+        sfx.ok();
+        const br = bin.getBoundingClientRect(), cr = top.getBoundingClientRect();
+        const tx = br.left + br.width / 2 - (cr.left + cr.width / 2) + dx, ty = br.top + br.height / 2 - (cr.top + cr.height / 2) + dy * .3;
+        const a = top.animate([{ transform: top.style.transform || 'none', opacity: 1 }, { transform: `translate(${tx}px, ${ty}px) rotate(0deg) scale(.25)`, opacity: .1 }], { duration: reduced ? 1 : 460, easing: 'cubic-bezier(.5,0,.75,0)', fill: 'forwards' });
+        await a.finished.catch(() => {});
+        bin.classList.remove('hot');
+        const mini = document.createElement('span'); mini.className = 'mini'; mini.innerHTML = ICON[card.pic]; $('.got', bin).append(mini);
+        bin.animate([{ transform: 'translateY(-50%) scale(1.08)' }, { transform: 'translateY(-50%) scale(1)' }], { duration: 550, easing: 'cubic-bezier(.34,1.56,.64,1)' });
+        state.sorted.push(card.id); top.remove();
+        Q.show('ok', card.ok);
+        await hear(card.proof[0], card.proof[1]); if (!alive(f)) return;
+        await wait(350); if (!alive(f)) return;
+        if (state.sorted.length < CARDS.length) nextCard(f);
+        else { Q.show('ok', 'Bravo' + NB + '! Tu as tout trouvé.'); goBtn('next', 'Suivant', () => go('end')); setTurn('you'); }
+      } else {
+        state.q3++; sfx.try(); reset(); bin.classList.remove('hot');
+        top.classList.remove('shake'); void top.offsetWidth; top.classList.add('shake');
+        Q.show('try', 'Non. Écoute encore.');
+        await wait(800); if (!alive(f)) return;
+        await playSegment(card.seg[0], card.seg[1], WIDE); if (!alive(f)) return;
+        askQ3();
+      }
+    }
+    idle.set(() => {
+      if (!top.isConnected) return null;
+      const r = top.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height * .6, d = Math.min(150, r.width * 1.1);
+      return [at(x, y, 0), at(x, y, 1), at(x, y, 1, .82), at(x + d, y, 1, .82), at(x, y, 1, .82), at(x - d, y, 1, .82), at(x - d, y, 0, 1)];
+    }, 4000);
+  }
+
+  /* ================= bilan ================= */
+  STEPS.end = async f => {
+    hideTags(); setSide(null); frameTo(CROPS.full, false);
+    await freeze(WIDE); if (!alive(f)) return;
+    tag('camille', PEOPLE.camille.anchor, true, 64); tag('kenji', PEOPLE.kenji.anchor, true, 64); $('.tag[data-p="kenji"]').classList.add('aged'); state.named = true;
+    const fact = (cls, icon, text, seg) => `<button class="fact ${cls}" data-s="${seg[0]}" data-e="${seg[1]}">${icon}<span>${text}</span></button>`;
+    setSide(`<div class="panel glass"><div class="cast">
+        <div class="fiche" data-p="camille"><div class="portrait"><img src="camille.jpg" alt="Camille"></div>
+          <div class="who"><span class="name">Camille</span><div class="facts">${fact('quote', ICON.speaker, 'Moi, c\'est Camille.', [0, 2.2])}</div></div></div>
+        <div class="fiche" data-p="kenji"><div class="portrait"><img src="kenji.jpg" alt="Kenji"></div>
+          <div class="who"><span class="name">Kenji</span><div class="facts">${fact('age', ICON.speaker, '22 ans', [2.52, 3.55])}${fact('yes', ICON.heart, 'cuisiner', [4.78, 6.2])}${fact('no', ICON.noheart, 'le bruit', [6.3, 7.5])}</div></div></div>
+      </div></div>`, p => {
+      $$('.fact', p).forEach(b => b.addEventListener('click', async () => { unlock(); if (document.body.dataset.turn !== 'you') return; setTurn('listen'); await playSegment(+b.dataset.s, +b.dataset.e, WIDE); if (alive(f)) setTurn('you'); }));
+    });
+    frameTo(CROPS.full, true);
+    setTimeout(() => { if (alive(f)) flyFaces(); }, 800);
+    state.ask = 'Bravo' + NB + '! Tu as compris la scène.';
+    if (!await Q.say(state.ask, f)) return;
+    Q.mode('ok');
+    state.replay = async () => { setTurn('listen'); await playSegment(0, 9.2, WIDE); if (alive(f)) { Q.mode('ok'); setTurn('you'); } };
+    goBtn('next', 'Recommencer', () => go('intro'));
+    setTurn('you');
+  };
+  function flyFaces() {
+    const sr = cam.getBoundingClientRect();
+    ['camille', 'kenji'].forEach((who, k) => {
+      const img = $(`.fiche[data-p="${who}"] .portrait img`, side); if (!img) return;
+      const tr = img.getBoundingClientRect(); if (!tr.width || reduced) return;
+      const [l, t, w, h] = PEOPLE[who].crop;
+      const fx = sr.left + sr.width * l / 100, fy = sr.top + sr.height * t / 100, fw = sr.width * w / 100, fh = sr.height * h / 100;
+      const fl = document.createElement('img'); fl.className = 'flyer'; fl.src = PEOPLE[who].img; fl.alt = '';
+      Object.assign(fl.style, { left: tr.left + 'px', top: tr.top + 'px', width: tr.width + 'px', height: tr.height + 'px' });
+      document.body.append(fl); img.style.opacity = 0;
+      const sx = fw / tr.width, sy = fh / tr.height;
+      const a = fl.animate([
+        { transform: `translate(${fx - tr.left}px, ${fy - tr.top}px) scale(${sx}, ${sy})`, transformOrigin: '0 0', borderRadius: '4px', opacity: 0 },
+        { opacity: 1, offset: .12 },
+        { transform: `translate(${(fx - tr.left) * .4}px, ${(fy - tr.top) * .4 - 30}px) scale(${1 + (sx - 1) * .4}, ${1 + (sy - 1) * .4})`, transformOrigin: '0 0', offset: .5, boxShadow: '0 30px 60px rgba(0,0,0,.45)' },
+        { transform: 'translate(0,0) scale(1,1)', transformOrigin: '0 0', borderRadius: '16px', boxShadow: '0 0 0 rgba(0,0,0,0)' },
+      ], { duration: 950, delay: k * 140, easing: 'cubic-bezier(.65,0,.2,1)', fill: 'both' });
+      a.finished.then(() => { img.style.opacity = 1; fl.remove(); }).catch(() => fl.remove());
+    });
+  }
+
+  /* ================= outils ================= */
+  ccBtn.addEventListener('click', () => { state.cc = !state.cc; ccBtn.setAttribute('aria-pressed', state.cc); curLine = -99; });
+  slowBtn.addEventListener('click', () => { state.slow = !state.slow; slowBtn.setAttribute('aria-pressed', state.slow); vid.playbackRate = voice.playbackRate = state.slow ? .75 : 1; });
+  document.addEventListener('pointerdown', () => unlock(), { once: true });
+  cam.addEventListener('click', ev => { if (state.step === 'q1' && cam.classList.contains('asking') && !ev.target.closest('.hit')) { rippleAt(ev); idle.reset(); } });
+
+  layout();
+  requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.remove('boot')));
+  requestAnimationFrame(loop);
+  const start = (location.hash || '').replace('#', '');
+  if (['q1', 'q2', 'q3', 'end'].includes(start)) { bigplay.classList.add('gone'); go(start); } else go('intro');
+})();
+</script>
+
+</body></html>
