@@ -806,7 +806,7 @@ window.SCENARIO = (() => {
       function tirer(el, { cibles, lacher, clic }) {
         let st = null;
         el.addEventListener('pointerdown', e => {
-          if (!tour() || e.button > 0) return;
+          if (!tour() || e.button > 0 || el.disabled) return;
           A.unlock(); idle.reset(); st = { x: e.clientX, y: e.clientY, id: e.pointerId, bouge: false };
           try { el.setPointerCapture(e.pointerId); } catch (err) {}
         });
@@ -827,7 +827,7 @@ window.SCENARIO = (() => {
           lacher(el, c || null, e);
         };
         el.addEventListener('pointerup', fin); el.addEventListener('pointercancel', fin);
-        el.addEventListener('click', () => { if (el.dataset.glisse || !tour()) return; A.unlock(); idle.reset(); clic(el); });
+        el.addEventListener('click', () => { if (el.dataset.glisse || !tour() || el.disabled) return; A.unlock(); idle.reset(); clic(el); });
       }
       const retour = el => { el.style.transition = 'transform .45s cubic-bezier(.34,1.56,.64,1)'; el.style.transform = ''; setTimeout(() => { el.style.transition = ''; }, 460); };
       const glisseVers = (de, vers, fin = .45) => () => {
@@ -919,7 +919,7 @@ window.SCENARIO = (() => {
               <div class="comptoir"><div class="tasse" role="img" aria-label="Sa tasse d'eau chaude">${TASSE}</div><span class="legende">sa tasse</span></div></div>`,
             monte: p => $$('.boisson', p).forEach(el => tirer(el, {
               cibles: () => [comptoir()],
-              lacher: (x, c) => { if (c) { x.style.transition = 'transform .25s, opacity .25s'; x.style.transform += ' scale(.4)'; setTimeout(() => { x.style.transition = ''; poser(x); }, 230); } else retour(x); },
+              lacher: (x, c) => { if (c) { setTurn('wait'); x.style.transition = 'transform .25s, opacity .25s'; x.style.transform += ' scale(.4)'; setTimeout(() => { x.style.transition = ''; poser(x); }, 230); } else retour(x); },
               clic: x => { setTurn('wait'); fly(x, $('.tasse', side), `<div class="mini" style="width:100%;height:100%">${SVG[x.dataset.id]}</div>`, { scale: .3 }).then(() => { if (alive(f)) poser(x); }); },
             })),
           })) return;

@@ -238,29 +238,17 @@ window.DONNEES = {
     0.72
    ]
   },
-  "Où va le linge ? Clique au bon endroit.": {
-   "src": "medias/voix-c42fb703d9.mp3",
+  "Où va la lessive ? Clique au bon endroit.": {
+   "src": "medias/voix-5596d77cc8.mp3",
    "w": [
     0.0,
     0.16,
     0.32,
-    0.48,
-    1.28,
-    1.68,
+    0.56,
+    1.44,
     1.84,
-    2.0
-   ]
-  },
-  "Et la lessive ? Clique au bon endroit.": {
-   "src": "medias/voix-879f3acb2b.mp3",
-   "w": [
-    0.0,
-    0.2,
-    0.32,
-    1.28,
-    1.68,
-    1.84,
-    2.08
+    1.92,
+    2.16
    ]
   },
   "Écoute encore la dame.": {
