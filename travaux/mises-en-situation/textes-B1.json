@@ -1,0 +1,5473 @@
+{
+ "B1-s1": {
+  "n": 1,
+  "theme": "Commerces",
+  "lieu": "À la boulangerie",
+  "situation": "Signaler une erreur sur la monnaie rendue",
+  "repliques": [
+   [
+    "Cliente",
+    "Excusez-moi, je crois qu'il y a une erreur. Je vous ai donné un billet de 20 euros, et vous m'avez rendu la monnaie sur 10 euros."
+   ],
+   [
+    "Boulangère",
+    "Ah ? Je suis presque sûre que c'était un billet de 10."
+   ],
+   [
+    "Cliente",
+    "Non, c'était un billet de 20, je l'ai retiré ce matin au distributeur. C'était le seul billet dans mon porte-monnaie."
+   ],
+   [
+    "Boulangère",
+    "Je ne peux pas vérifier tout de suite, j'ai beaucoup de clients."
+   ],
+   [
+    "Cliente",
+    "Je comprends. Je peux attendre, ou repasser ce soir quand vous comptez la caisse."
+   ],
+   [
+    "Boulangère",
+    "Repassez ce soir à 19 heures. Si la caisse a 10 euros de trop, je vous les rends."
+   ],
+   [
+    "Cliente",
+    "D'accord. Je laisse mon nom et mon numéro de téléphone ?"
+   ]
+  ],
+  "voix": {
+   "Cliente": "4NTBwCMIWDfx48seeuxZ",
+   "Boulangère": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Inside a small French bakery, quiet room tone, a shop door bell chimes once at the very start, paper bag rustling, soft distant cash register, no voices, no music"
+ },
+ "B1-s2": {
+  "n": 2,
+  "theme": "Commerces",
+  "lieu": "À la boucherie",
+  "situation": "Contester la qualité d'une viande achetée",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Samedi, j'ai acheté ici un rôti de bœuf à 32 euros le kilo. Il était très dur et plein de gras."
+   ],
+   [
+    "Boucher",
+    "Vous l'avez cuit comment ?"
+   ],
+   [
+    "Client",
+    "Au four, 40 minutes, comme vous me l'aviez dit. Les invités n'ont presque rien mangé."
+   ],
+   [
+    "Boucher",
+    "Je suis désolé. Parfois, un morceau est moins bon, même avec la même découpe."
+   ],
+   [
+    "Client",
+    "Pour ce prix, je m'attendais à une meilleure qualité. Qu'est-ce que vous me proposez ?"
+   ],
+   [
+    "Boucher",
+    "Je ne peux pas rembourser une viande consommée, mais je vous fais un bon d'achat de 20 euros."
+   ],
+   [
+    "Client",
+    "D'accord. La prochaine fois, je voudrais choisir le morceau avec vous."
+   ]
+  ],
+  "voix": {
+   "Client": "3Yr319bDgMFZv5qX6yzA",
+   "Boucher": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Inside a French butcher shop, quiet room tone, refrigerated display hum, a butcher knife on a wooden board from time to time, no voices, no music"
+ },
+ "B1-s3": {
+  "n": 3,
+  "theme": "Commerces",
+  "lieu": "À l'épicerie",
+  "situation": "Produit périmé acheté : demander un remboursement",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour. Hier, j'ai acheté ce yaourt ici. En rentrant, j'ai vu que la date était dépassée depuis cinq jours."
+   ],
+   [
+    "Épicier",
+    "Vous avez le ticket ?"
+   ],
+   [
+    "Client",
+    "Oui, le voilà, avec la date d'hier."
+   ],
+   [
+    "Épicier",
+    "Effectivement. Excusez-moi, j'ai dû oublier de retirer ce lot."
+   ],
+   [
+    "Client",
+    "Je voudrais être remboursé. Et vous devriez vérifier les autres yaourts du rayon."
+   ],
+   [
+    "Épicier",
+    "Vous avez raison. Je vous rembourse et je vérifie tout le rayon maintenant."
+   ]
+  ],
+  "voix": {
+   "Client": "6pqL78prQKdL6zrRhG3N",
+   "Épicier": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Small neighbourhood grocery store, quiet fridge hum, a glass bottle clinks softly, light footsteps, no voices, no music"
+ },
+ "B1-s4": {
+  "n": 4,
+  "theme": "Commerces",
+  "lieu": "Au marché",
+  "situation": "Poids incorrect : vérifier et réclamer poliment",
+  "repliques": [
+   [
+    "Cliente",
+    "Excusez-moi, vous m'avez compté deux kilos de pommes de terre. Mais j'ai pesé le sac sur la balance de l'autre stand : il y a seulement 1,6 kilo."
+   ],
+   [
+    "Marchand",
+    "Ma balance est bonne, madame."
+   ],
+   [
+    "Cliente",
+    "Je ne dis pas que vous voulez tricher. On peut repeser ensemble sur votre balance ?"
+   ],
+   [
+    "Marchand",
+    "Bon… Ah oui, 1,6 kilo. Le sac est tombé, j'ai mal regardé."
+   ],
+   [
+    "Cliente",
+    "Ce n'est pas grave. Vous pouvez compléter ou me rendre la différence."
+   ],
+   [
+    "Marchand",
+    "Je complète, et je vous ajoute un petit bouquet de persil."
+   ]
+  ],
+  "voix": {
+   "Cliente": "87kc04olBn8nRQKuNmaf",
+   "Marchand": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Outdoor French street market in the morning, distant indistinct crowd murmur without clear words, wooden crates, paper bags, a few birds, no music"
+ },
+ "B1-s5": {
+  "n": 5,
+  "theme": "Commerces",
+  "lieu": "Au magasin",
+  "situation": "Le prix affiché en promotion n'est pas appliqué à la caisse",
+  "repliques": [
+   [
+    "Client",
+    "Excusez-moi, ce ventilateur est affiché à -30 % en rayon, mais la caisse m'a compté le prix normal."
+   ],
+   [
+    "Caissière",
+    "La promotion est peut-être finie."
+   ],
+   [
+    "Client",
+    "L'affiche est encore en rayon, et elle dit « jusqu'au 30 novembre ». Nous sommes le 12."
+   ],
+   [
+    "Caissière",
+    "Je ne peux pas changer le prix moi-même. J'appelle la responsable."
+   ],
+   [
+    "Responsable",
+    "Vous avez raison, le prix affiché doit être respecté. Je vous fais la réduction."
+   ],
+   [
+    "Client",
+    "Merci. Vous pourriez aussi mettre à jour la caisse, pour les autres clients."
+   ]
+  ],
+  "voix": {
+   "Client": "JFppi8XcU3D1RvkAikO5",
+   "Caissière": "4NTBwCMIWDfx48seeuxZ",
+   "Responsable": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Inside a shop, quiet room tone, distant checkout scanner beeps, light footsteps, no voices, no music"
+ },
+ "B1-s6": {
+  "n": 6,
+  "theme": "Commerces",
+  "lieu": "Au supermarché (caisse, caisse automatique)",
+  "situation": "Caisse automatique : un article ne passe pas, puis erreur de prix sur le ticket",
+  "repliques": [
+   [
+    "Client",
+    "Excusez-moi, la caisse affiche « article inattendu dans la zone d'ensachage »."
+   ],
+   [
+    "Employée",
+    "Je viens débloquer. Voilà."
+   ],
+   [
+    "Client",
+    "Merci. Autre chose : les yaourts sont en promotion à 2 € en rayon, mais la caisse m'a compté 3,50 €."
+   ],
+   [
+    "Employée",
+    "Vous avez le ticket ?"
+   ],
+   [
+    "Client",
+    "Oui, le voilà."
+   ],
+   [
+    "Employée",
+    "Allez à l'accueil, ils vont vous rembourser la différence."
+   ],
+   [
+    "Client",
+    "Je dois montrer l'étiquette du rayon ?"
+   ],
+   [
+    "Employée",
+    "Prenez une photo, ça ira plus vite."
+   ]
+  ],
+  "voix": {
+   "Client": "3Yr319bDgMFZv5qX6yzA",
+   "Employée": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Supermarket checkout, barcode scanner beeps, items sliding on the conveyor belt, plastic bag rustling, no voices, no music"
+ },
+ "B1-s7": {
+  "n": 7,
+  "theme": "Commerces",
+  "lieu": "Chez le primeur",
+  "situation": "Contester le poids ou le prix à la caisse",
+  "repliques": [
+   [
+    "Client",
+    "Excusez-moi, je crois qu'il y a une erreur. Sur l'étiquette, les cerises sont à 6 euros le kilo, et vous m'avez compté 9 euros pour 1 kilo."
+   ],
+   [
+    "Primeur",
+    "Ah, celles-là, ce sont les cerises bio, à 9 euros."
+   ],
+   [
+    "Client",
+    "Je n'ai pas vu de différence, elles sont dans la même caisse."
+   ],
+   [
+    "Primeur",
+    "Vous avez raison, l'étiquette est mal placée. Je vous les fais au prix affiché."
+   ],
+   [
+    "Client",
+    "Merci. Vous devriez changer l'étiquette, d'autres clients vont se tromper."
+   ]
+  ],
+  "voix": {
+   "Client": "6pqL78prQKdL6zrRhG3N",
+   "Primeur": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Greengrocer shop, apples dropped into a paper bag, scale beep, soft street noise from the open door, no voices, no music"
+ },
+ "B1-s8": {
+  "n": 8,
+  "theme": "Commerces",
+  "lieu": "Chez le poissonnier",
+  "situation": "Rapporter des moules achetées la veille qui sentaient mauvais",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour. Hier, j'ai acheté un kilo de moules ici. Le soir, beaucoup étaient ouvertes et elles sentaient mauvais."
+   ],
+   [
+    "Poissonnier",
+    "Vous les avez gardées au frais ?"
+   ],
+   [
+    "Cliente",
+    "Oui, directement au réfrigérateur. J'ai le ticket et une photo."
+   ],
+   [
+    "Poissonnier",
+    "Je suis désolé. Je peux vous les remplacer ou vous rembourser."
+   ],
+   [
+    "Cliente",
+    "Je préfère un remboursement, je n'ai plus besoin de moules."
+   ],
+   [
+    "Poissonnier",
+    "Très bien. Et merci de nous avoir prévenus, je vais vérifier le lot."
+   ]
+  ],
+  "voix": {
+   "Cliente": "87kc04olBn8nRQKuNmaf",
+   "Poissonnier": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Fishmonger stall, crushed ice being scooped, wet market sounds, paper wrapping, scale beep, no voices, no music"
+ },
+ "B1-s9": {
+  "n": 9,
+  "theme": "Commerces",
+  "lieu": "À la fromagerie",
+  "situation": "Expliquer une contrainte alimentaire et obtenir des informations précises",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, je reçois une amie enceinte samedi. Je sais qu'elle ne doit pas manger certains fromages. Vous pouvez m'aider ?"
+   ],
+   [
+    "Fromagère",
+    "Oui. On évite le lait cru et les croûtes fleuries. Je vous conseille plutôt des fromages au lait pasteurisé ou des pâtes cuites, comme le comté."
+   ],
+   [
+    "Cliente",
+    "Le comté est au lait cru, non ?"
+   ],
+   [
+    "Fromagère",
+    "Oui, mais les pâtes cuites dures sont généralement acceptées, sans la croûte. En cas de doute, elle peut demander à son médecin."
+   ],
+   [
+    "Cliente",
+    "D'accord. Vous pouvez m'écrire le nom des fromages sur l'emballage ?"
+   ]
+  ],
+  "voix": {
+   "Cliente": "4NTBwCMIWDfx48seeuxZ",
+   "Fromagère": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Cheese shop, quiet room tone, a cheese wire cutting through cheese, paper wrapping, no voices, no music"
+ },
+ "B1-s10": {
+  "n": 10,
+  "theme": "Commerces",
+  "lieu": "À la pâtisserie",
+  "situation": "La commande n'est pas prête ou ne correspond pas",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, je viens chercher le gâteau commandé au nom de Diallo."
+   ],
+   [
+    "Vendeuse",
+    "Voilà…"
+   ],
+   [
+    "Cliente",
+    "Il y a une erreur : j'avais demandé un gâteau sans fruits à coque, mon fils est allergique. Et là, il y a des noisettes."
+   ],
+   [
+    "Vendeuse",
+    "Je suis vraiment désolée. Je vais voir le pâtissier."
+   ],
+   [
+    "Vendeuse",
+    "Il peut en refaire un, mais il sera prêt dans deux heures."
+   ],
+   [
+    "Cliente",
+    "La fête commence à 15 heures, ça va être juste. Vous pouvez me faire un geste ?"
+   ],
+   [
+    "Vendeuse",
+    "On vous offre le gâteau et on vous rend l'acompte."
+   ]
+  ],
+  "voix": {
+   "Cliente": "RXG6r6Qewwp92BIFIBhE",
+   "Vendeuse": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Pastry shop, a shop door bell chimes once at the very start, cardboard pastry box being closed, quiet room tone, no voices, no music"
+ },
+ "B1-s11": {
+  "n": 11,
+  "theme": "Commerces",
+  "lieu": "Chez le fleuriste",
+  "situation": "Commander des fleurs pour des obsèques, livraison à organiser",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, un collègue est décédé, je voudrais commander une composition au nom de l'équipe."
+   ],
+   [
+    "Fleuriste",
+    "Toutes mes condoléances. La cérémonie a lieu quand ?"
+   ],
+   [
+    "Client",
+    "Vendredi à 10 h, à l'église du village."
+   ],
+   [
+    "Fleuriste",
+    "Je peux livrer directement à l'église jeudi soir ou vendredi matin."
+   ],
+   [
+    "Client",
+    "Vendredi matin plutôt. Notre budget est de 80 euros. Qu'est-ce que vous conseillez ?"
+   ],
+   [
+    "Fleuriste",
+    "Une gerbe de fleurs blanches, avec un ruban « De la part de vos collègues »."
+   ],
+   [
+    "Client",
+    "Parfait. Je peux payer maintenant et recevoir une facture au nom de l'entreprise ?"
+   ]
+  ],
+  "voix": {
+   "Client": "6pqL78prQKdL6zrRhG3N",
+   "Fleuriste": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Florist shop, quiet room tone, a small door bell chimes once at the very start, cellophane and paper wrapping rustling, scissors snipping flower stems, no voices, no music"
+ },
+ "B1-s12": {
+  "n": 12,
+  "theme": "Commerces",
+  "lieu": "Au bureau de tabac / à la maison de la presse",
+  "situation": "Payer une amende ou une facture au guichet, mais le paiement ne passe pas",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, je voudrais payer cette facture d'électricité, il y a un QR code « paiement de proximité »."
+   ],
+   [
+    "Buraliste",
+    "Je scanne… Ça ne marche pas, le code a expiré."
+   ],
+   [
+    "Client",
+    "Ah bon ? La date limite est demain pourtant."
+   ],
+   [
+    "Buraliste",
+    "Le code expire parfois avant. Il faut appeler le fournisseur ou payer en ligne."
+   ],
+   [
+    "Client",
+    "Si je paie en retard, est-ce que j'aurai des frais ?"
+   ],
+   [
+    "Buraliste",
+    "Ça dépend du fournisseur. Appelez-les aujourd'hui pour expliquer et demander un délai."
+   ]
+  ],
+  "voix": {
+   "Client": "W01VS3mCiWjHO239CD72",
+   "Buraliste": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "French newsagent and tobacco shop, quiet room tone, a door bell chimes once at the very start, newspapers rustling, a lottery machine beep, no voices, no music"
+ },
+ "B1-s13": {
+  "n": 13,
+  "theme": "Commerces",
+  "lieu": "À la galerie marchande",
+  "situation": "Ticket de parking perdu : négocier les frais",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, j'ai perdu mon ticket de parking. La borne me demande de payer un forfait de 25 euros."
+   ],
+   [
+    "Agent",
+    "Oui, c'est le tarif quand on perd le ticket."
+   ],
+   [
+    "Client",
+    "Je suis arrivé il y a deux heures seulement. Voici mon ticket de caisse du supermarché, avec l'heure : 14 h 10."
+   ],
+   [
+    "Agent",
+    "Je vois. Votre plaque d'immatriculation, s'il vous plaît ?"
+   ],
+   [
+    "Client",
+    "AB-123-CD."
+   ],
+   [
+    "Agent",
+    "La caméra vous a enregistré à 14 h 02. Je vous fais un ticket de sortie au tarif normal : c'est gratuit, moins de trois heures."
+   ],
+   [
+    "Client",
+    "Merci beaucoup, c'est très aimable."
+   ]
+  ],
+  "voix": {
+   "Client": "JFppi8XcU3D1RvkAikO5",
+   "Agent": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Indoor shopping mall, large hall, distant indistinct crowd murmur without clear words, footsteps on tiles, escalator hum, no music"
+ },
+ "B1-s14": {
+  "n": 14,
+  "theme": "Restauration et loisirs",
+  "lieu": "Au café / au bar",
+  "situation": "Erreur sur l'addition et attente trop longue",
+  "repliques": [
+   [
+    "Client",
+    "Excusez-moi, je crois qu'il y a une erreur sur l'addition. Vous avez compté trois cafés, nous en avons pris deux."
+   ],
+   [
+    "Serveur",
+    "Ah oui, pardon, je corrige."
+   ],
+   [
+    "Client",
+    "Merci. Et, sans vouloir vous embêter, nous avons attendu nos boissons presque trente minutes."
+   ],
+   [
+    "Serveur",
+    "Je suis désolé, nous avons un serveur malade aujourd'hui."
+   ],
+   [
+    "Client",
+    "Je comprends, ce n'est pas votre faute. Mais vous auriez pu nous prévenir à l'arrivée."
+   ],
+   [
+    "Serveur",
+    "Vous avez raison. Je vous offre les cafés, pour nous excuser."
+   ]
+  ],
+  "voix": {
+   "Client": "3Yr319bDgMFZv5qX6yzA",
+   "Serveur": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "French café bar, espresso machine hissing, cups and saucers clinking, distant indistinct murmur without clear words, no music"
+ },
+ "B1-s15": {
+  "n": 15,
+  "theme": "Restauration et loisirs",
+  "lieu": "Au restaurant",
+  "situation": "Un plat ne correspond pas à la commande : réclamer et obtenir un geste",
+  "repliques": [
+   [
+    "Client",
+    "Excusez-moi, j'avais demandé ma viande bien cuite, et elle est presque crue."
+   ],
+   [
+    "Serveur",
+    "Je suis désolé, je la renvoie en cuisine."
+   ],
+   [
+    "Client",
+    "Merci. Mais mes amis ont déjà fini leur plat, je vais manger seul."
+   ],
+   [
+    "Serveur",
+    "Je comprends. Je peux vous proposer un autre plat, plus rapide ?"
+   ],
+   [
+    "Client",
+    "Non, je vais attendre. Mais j'aimerais que ce soit pris en compte sur l'addition."
+   ],
+   [
+    "Serveur",
+    "Bien sûr. Le responsable vous offre le dessert et le café."
+   ]
+  ],
+  "voix": {
+   "Client": "6pqL78prQKdL6zrRhG3N",
+   "Serveur": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Restaurant dining room, cutlery on plates, glasses clinking softly, distant indistinct murmur without clear words, no music"
+ },
+ "B1-s16": {
+  "n": 16,
+  "theme": "Restauration et loisirs",
+  "lieu": "Au fast-food / commander à emporter",
+  "situation": "Livraison incomplète et en retard : appeler le service client",
+  "repliques": [
+   [
+    "Opératrice",
+    "Service client, bonjour."
+   ],
+   [
+    "Cliente",
+    "Bonjour, j'ai commandé un repas par l'application. Il est arrivé avec une heure de retard, et il manque une boisson et un dessert."
+   ],
+   [
+    "Opératrice",
+    "Je suis désolée. Votre numéro de commande, s'il vous plaît ?"
+   ],
+   [
+    "Cliente",
+    "58 241. Et les plats étaient froids."
+   ],
+   [
+    "Opératrice",
+    "Je vous rembourse la boisson et le dessert. Pour le retard, je vous propose un bon de réduction de 10 euros."
+   ],
+   [
+    "Cliente",
+    "Je préfère un remboursement partiel plutôt qu'un bon. Je ne suis pas sûre de recommander."
+   ],
+   [
+    "Opératrice",
+    "D'accord, je vous rembourse 10 euros sur votre carte, sous cinq jours."
+   ]
+  ],
+  "voix": {
+   "Opératrice": "87kc04olBn8nRQKuNmaf",
+   "Cliente": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Customer service phone call, subtle phone line hiss, quiet room, no voices, no music"
+ },
+ "B1-s17": {
+  "n": 17,
+  "theme": "Restauration et loisirs",
+  "lieu": "Au cinéma",
+  "situation": "Séance annulée après un problème technique : demander un remboursement",
+  "repliques": [
+   [
+    "Client",
+    "Excusez-moi, la séance s'est arrêtée au milieu du film et on nous a demandé de sortir."
+   ],
+   [
+    "Responsable",
+    "Oui, nous avons une panne de projecteur. Nous vous proposons une place gratuite pour une autre séance."
+   ],
+   [
+    "Client",
+    "J'avais réservé en ligne pour quatre personnes. Nous venons de loin, nous ne pourrons pas revenir facilement."
+   ],
+   [
+    "Responsable",
+    "Dans ce cas, nous pouvons vous rembourser."
+   ],
+   [
+    "Client",
+    "Le remboursement se fera sur ma carte bancaire ?"
+   ],
+   [
+    "Responsable",
+    "Oui. Donnez-moi votre numéro de réservation, vous serez remboursé sous une semaine."
+   ]
+  ],
+  "voix": {
+   "Client": "JFppi8XcU3D1RvkAikO5",
+   "Responsable": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Cinema lobby, popcorn machine popping, ticket printer, quiet distant murmur without clear words, no music"
+ },
+ "B1-s18": {
+  "n": 18,
+  "theme": "Restauration et loisirs",
+  "lieu": "Au parc / à l'aire de jeux",
+  "situation": "Conflit entre enfants : en parler calmement avec un autre parent",
+  "repliques": [
+   [
+    "Parent 1",
+    "Excusez-moi, votre fils a poussé ma fille du toboggan. Elle est tombée et elle a mal au bras."
+   ],
+   [
+    "Parent 2",
+    "Ah, je n'ai pas vu. Elle va bien ?"
+   ],
+   [
+    "Parent 1",
+    "Elle pleure, mais je crois que ce n'est pas grave. Je voulais juste vous prévenir."
+   ],
+   [
+    "Parent 2",
+    "Merci de me le dire calmement. Je vais lui parler. Adam, viens ici, s'il te plaît."
+   ],
+   [
+    "Parent 1",
+    "Ce sont des enfants, ça arrive. Mais il faut qu'il apprenne à attendre son tour."
+   ],
+   [
+    "Parent 2",
+    "Vous avez raison. Adam, tu t'excuses auprès de la petite fille ?"
+   ]
+  ],
+  "voix": {
+   "Parent 1": "RXG6r6Qewwp92BIFIBhE",
+   "Parent 2": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Outdoor playground in a park, distant children playing and laughing without clear words, birds singing, a swing creaking, light wind, no music"
+ },
+ "B1-s19": {
+  "n": 19,
+  "theme": "Restauration et loisirs",
+  "lieu": "À la piscine",
+  "situation": "Objet volé au vestiaire : faire une réclamation",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, on a volé mon téléphone dans mon casier. Le casier était fermé, mais il est ouvert maintenant."
+   ],
+   [
+    "Responsable",
+    "Je suis désolé. Vous avez gardé la clé ?"
+   ],
+   [
+    "Cliente",
+    "Oui, la voilà. Le casier a été forcé. Qui est responsable ?"
+   ],
+   [
+    "Responsable",
+    "Le règlement dit que la piscine n'est pas responsable des objets. Mais si le casier est cassé, nous allons faire un rapport."
+   ],
+   [
+    "Cliente",
+    "J'ai besoin de ce rapport pour mon assurance et pour porter plainte."
+   ],
+   [
+    "Responsable",
+    "Je vous le prépare maintenant. Je note aussi l'heure et le numéro du casier."
+   ]
+  ],
+  "voix": {
+   "Cliente": "TKoAvBNxOwnhLtxm7NYM",
+   "Responsable": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Indoor public swimming pool, large echoing hall, distant water splashing, a lifeguard whistle far away, no clear voices, no music"
+ },
+ "B1-s20": {
+  "n": 20,
+  "theme": "Déplacements",
+  "lieu": "À l'arrêt de bus / dans le bus",
+  "situation": "Contester une amende reçue dans le bus",
+  "repliques": [
+   [
+    "Contrôleur",
+    "Contrôle des titres de transport. Votre ticket, s'il vous plaît."
+   ],
+   [
+    "Passagère",
+    "Voilà. Je l'ai acheté sur l'application, mais mon téléphone vient de s'éteindre."
+   ],
+   [
+    "Contrôleur",
+    "Sans titre visible, je dois vous mettre une amende de 50 euros."
+   ],
+   [
+    "Passagère",
+    "Je comprends le règlement, mais j'ai bien payé mon ticket. Je peux le prouver avec mon compte."
+   ],
+   [
+    "Contrôleur",
+    "Dans ce cas, vous pourrez contester l'amende. Écrivez au service réclamation sous deux mois, avec la preuve d'achat."
+   ],
+   [
+    "Passagère",
+    "D'accord. Vous pouvez noter sur le procès-verbal que mon téléphone était éteint ?"
+   ]
+  ],
+  "voix": {
+   "Contrôleur": "W01VS3mCiWjHO239CD72",
+   "Passagère": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Inside a city bus, engine rumble, bus doors opening with a hiss at the very start, ticket validator beep, light traffic outside, no voices, no music"
+ },
+ "B1-s21": {
+  "n": 21,
+  "theme": "Déplacements",
+  "lieu": "Dans le métro / le tramway",
+  "situation": "Ligne interrompue : trouver une solution et justifier un retard au travail",
+  "repliques": [
+   [
+    "Voyageur",
+    "Excusez-moi, il n'y a pas de tramway ce matin ?"
+   ],
+   [
+    "Agent",
+    "Non, la ligne est interrompue à cause d'un accident. Il y a des bus de remplacement devant la station."
+   ],
+   [
+    "Voyageur",
+    "Ils mettent combien de temps ? Je dois être au travail à 8 heures."
+   ],
+   [
+    "Agent",
+    "Environ trente minutes de plus que d'habitude."
+   ],
+   [
+    "Voyageur",
+    "Mon employeur va me demander une preuve. Vous pouvez me donner une attestation ?"
+   ],
+   [
+    "Agent",
+    "Oui, vous pouvez la télécharger sur le site, rubrique « bulletin de retard ». Je vous conseille de prévenir votre employeur maintenant."
+   ]
+  ],
+  "voix": {
+   "Voyageur": "JFppi8XcU3D1RvkAikO5",
+   "Agent": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Underground tram and metro station ticket hall, a distant tram arriving and braking, ticket gate beeps, footsteps, distant indistinct murmur without clear words, no announcements, no music"
+ },
+ "B1-s22": {
+  "n": 22,
+  "theme": "Déplacements",
+  "lieu": "À la gare (acheter un billet)",
+  "situation": "Échanger un billet non échangeable après un imprévu",
+  "repliques": [
+   [
+    "Voyageuse",
+    "Bonjour, j'ai un billet pour demain, mais ma mère vient d'être hospitalisée. Je dois partir aujourd'hui."
+   ],
+   [
+    "Agent",
+    "Votre billet est en tarif non échangeable. Normalement, ce n'est pas possible."
+   ],
+   [
+    "Voyageuse",
+    "Je comprends. Mais c'est une urgence familiale. J'ai un message de l'hôpital, si vous voulez."
+   ],
+   [
+    "Agent",
+    "Je peux faire une demande exceptionnelle. Montrez-moi le message, s'il vous plaît."
+   ],
+   [
+    "Voyageuse",
+    "Voilà. Et s'il y a un supplément, je le paierai."
+   ],
+   [
+    "Agent",
+    "C'est accepté. Vous payez seulement la différence de prix : 8 euros. Bon courage pour votre mère."
+   ]
+  ],
+  "voix": {
+   "Voyageuse": "RXG6r6Qewwp92BIFIBhE",
+   "Agent": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Train station hall, large space, a distant train departure chime, rolling suitcases, distant indistinct murmur without clear words, no announcements, no music"
+ },
+ "B1-s23": {
+  "n": 23,
+  "theme": "Déplacements",
+  "lieu": "Dans un taxi",
+  "situation": "Objet oublié dans un taxi et désaccord sur le prix",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, j'ai pris un de vos taxis hier soir. J'ai oublié mon ordinateur sur la banquette arrière."
+   ],
+   [
+    "Opératrice",
+    "Vous avez le reçu, avec le numéro du taxi ?"
+   ],
+   [
+    "Client",
+    "Oui, taxi numéro 27. Et je voulais aussi signaler que le chauffeur a fait un long détour : j'ai payé 38 euros au lieu de 20 d'habitude."
+   ],
+   [
+    "Opératrice",
+    "Je contacte le chauffeur pour l'ordinateur. Pour le prix, je vais vérifier le trajet sur le GPS."
+   ],
+   [
+    "Client",
+    "Merci. Si le détour n'était pas nécessaire, je voudrais être remboursé de la différence."
+   ],
+   [
+    "Opératrice",
+    "Je vous rappelle cet après-midi avec une réponse pour les deux."
+   ]
+  ],
+  "voix": {
+   "Client": "6pqL78prQKdL6zrRhG3N",
+   "Opératrice": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Inside a moving taxi, a car door closing at the very start, engine hum, city traffic outside, a turn signal clicking briefly, no voices, no music"
+ },
+ "B1-s24": {
+  "n": 24,
+  "theme": "Déplacements",
+  "lieu": "À la pompe à essence",
+  "situation": "Erreur de carburant : demander de l'aide et comprendre les solutions",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, j'ai un problème. J'ai mis de l'essence dans ma voiture diesel."
+   ],
+   [
+    "Employé",
+    "Vous avez démarré le moteur ?"
+   ],
+   [
+    "Cliente",
+    "Non, je me suis rendu compte de l'erreur tout de suite."
+   ],
+   [
+    "Employé",
+    "Très bien, surtout ne démarrez pas. Il faut vider le réservoir. Il faut appeler une dépanneuse."
+   ],
+   [
+    "Cliente",
+    "Est-ce que mon assurance peut payer ?"
+   ],
+   [
+    "Employé",
+    "Regardez votre contrat : beaucoup d'assurances ont une assistance pour les erreurs de carburant. Je vous aide à pousser la voiture sur le côté."
+   ]
+  ],
+  "voix": {
+   "Cliente": "87kc04olBn8nRQKuNmaf",
+   "Employé": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Petrol station shop, quiet room tone, a door bell chimes once at the very start, a card payment terminal beep, distant cars outside, no voices, no music"
+ },
+ "B1-s25": {
+  "n": 25,
+  "theme": "Déplacements",
+  "lieu": "Au distributeur de billets",
+  "situation": "L'argent n'est pas sorti mais le compte est débité : réclamer",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, hier, j'ai voulu retirer 100 euros. Le distributeur n'a donné aucun billet, mais mon compte est débité."
+   ],
+   [
+    "Conseiller",
+    "Vous avez votre relevé de compte ?"
+   ],
+   [
+    "Cliente",
+    "Oui, sur mon téléphone. Voilà : retrait de 100 euros, hier à 18 h 12, au distributeur de la place du marché."
+   ],
+   [
+    "Conseiller",
+    "Je fais une réclamation. La banque va vérifier le contenu du distributeur."
+   ],
+   [
+    "Cliente",
+    "Combien de temps ça va prendre ? J'ai besoin de cet argent pour payer mon loyer."
+   ],
+   [
+    "Conseiller",
+    "Généralement une à deux semaines. Si vous avez un problème pour le loyer, je peux vous proposer une avance, sans frais."
+   ]
+  ],
+  "voix": {
+   "Cliente": "4NTBwCMIWDfx48seeuxZ",
+   "Conseiller": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Bank branch office, quiet room tone, keyboard typing, a distant door, no voices, no music"
+ },
+ "B1-s26": {
+  "n": 26,
+  "theme": "Déplacements",
+  "lieu": "Demander son chemin dans la rue",
+  "situation": "Aider quelqu'un d'autre à trouver son chemin et expliquer une déviation",
+  "repliques": [
+   [
+    "Monsieur âgé",
+    "Excusez-moi, je dois aller à la pharmacie de garde, mais la rue est fermée."
+   ],
+   [
+    "Passante",
+    "Oui, il y a des travaux. Vous devez contourner par la rue Pasteur."
+   ],
+   [
+    "Monsieur âgé",
+    "Je ne connais pas bien le quartier."
+   ],
+   [
+    "Passante",
+    "Je vous montre sur mon téléphone. Vous voyez, ici, c'est nous. Vous prenez la petite rue à droite, puis vous longez le parc."
+   ],
+   [
+    "Monsieur âgé",
+    "C'est un peu compliqué pour moi."
+   ],
+   [
+    "Passante",
+    "Je vais dans cette direction, je peux vous accompagner jusqu'au parc. Ensuite, la pharmacie est juste à côté."
+   ]
+  ],
+  "voix": {
+   "Monsieur âgé": "6pqL78prQKdL6zrRhG3N",
+   "Passante": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Quiet French town street, light traffic passing, footsteps on the pavement, distant birds, no voices, no music"
+ },
+ "B1-s27": {
+  "n": 27,
+  "theme": "Vie sociale",
+  "lieu": "Se présenter",
+  "situation": "Se présenter en entretien ou en réunion : parcours et motivation",
+  "repliques": [
+   [
+    "Recruteur",
+    "Parlez-moi de vous."
+   ],
+   [
+    "Candidat",
+    "J'ai travaillé dix ans comme mécanicien au Soudan, dans un garage de poids lourds. En France, j'ai fait une formation de remise à niveau en français et un stage de trois semaines dans un garage."
+   ],
+   [
+    "Recruteur",
+    "Qu'avez-vous appris pendant ce stage ?"
+   ],
+   [
+    "Candidat",
+    "J'ai découvert les outils de diagnostic électronique, que je ne connaissais pas. J'ai appris vite, et le patron était satisfait."
+   ],
+   [
+    "Recruteur",
+    "Pourquoi voulez-vous travailler chez nous ?"
+   ],
+   [
+    "Candidat",
+    "Votre entreprise forme ses salariés. Je veux progresser et passer le permis poids lourd français."
+   ]
+  ],
+  "voix": {
+   "Recruteur": "6pqL78prQKdL6zrRhG3N",
+   "Candidat": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Adult language classroom, quiet room, chairs moving softly, papers rustling, a pen on paper, no voices, no music"
+ },
+ "B1-s28": {
+  "n": 28,
+  "theme": "Vie sociale",
+  "lieu": "Se présenter à ses voisins",
+  "situation": "Informer ses voisins d'une fête et gérer leur inquiétude",
+  "repliques": [
+   [
+    "Voisine",
+    "Bonjour, je voulais vous prévenir : samedi, nous fêtons l'anniversaire de mon fils. Il y aura un peu de bruit."
+   ],
+   [
+    "Voisin",
+    "Jusqu'à quelle heure ? Je travaille tôt le dimanche."
+   ],
+   [
+    "Voisine",
+    "Je vous promets que la musique sera arrêtée à 23 heures."
+   ],
+   [
+    "Voisin",
+    "D'accord. La dernière fois, chez les voisins du dessus, c'était jusqu'à 3 heures du matin."
+   ],
+   [
+    "Voisine",
+    "Je comprends. Je vais aussi mettre un mot dans le hall, avec mon numéro de téléphone. S'il y a un problème, appelez-moi."
+   ],
+   [
+    "Voisin",
+    "C'est gentil. Bonne fête à votre fils !"
+   ]
+  ],
+  "voix": {
+   "Voisine": "87kc04olBn8nRQKuNmaf",
+   "Voisin": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Apartment building stairwell, a door closing at the very start, keys jingling, quiet echo, no voices, no music"
+ },
+ "B1-s29": {
+  "n": 29,
+  "theme": "Vie sociale",
+  "lieu": "À la sortie de l'école (avec les autres parents)",
+  "situation": "Parler d'un problème dans la classe et décider ensemble d'en informer l'enseignante",
+  "repliques": [
+   [
+    "Parent 1",
+    "Je peux vous parler ? Mon fils m'a dit que des enfants se moquent de Sarah dans la cour."
+   ],
+   [
+    "Parent 2",
+    "Ah bon ? Elle ne m'a rien dit, mais elle ne veut plus aller à l'école le matin."
+   ],
+   [
+    "Parent 1",
+    "C'est peut-être lié. Il dit que ça dure depuis plusieurs semaines."
+   ],
+   [
+    "Parent 2",
+    "Je vais lui parler ce soir. Vous pensez qu'il faut prévenir la maîtresse ?"
+   ],
+   [
+    "Parent 1",
+    "Oui. Votre fils pourrait expliquer ce qu'il a vu. Je peux venir avec vous au rendez-vous, si vous voulez."
+   ],
+   [
+    "Parent 2",
+    "Merci, c'est gentil. Je demande un rendez-vous demain."
+   ]
+  ],
+  "voix": {
+   "Parent 1": "4NTBwCMIWDfx48seeuxZ",
+   "Parent 2": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Outside a primary school at pickup time, a school bell at the very start, distant children laughing and playing without clear words, light street noise, no music"
+ },
+ "B1-s30": {
+  "n": 30,
+  "theme": "Vie sociale",
+  "lieu": "À une fête d'anniversaire",
+  "situation": "Annuler sa venue au dernier moment et s'excuser",
+  "repliques": [
+   [
+    "Invité",
+    "Allô, Karim ? C'est Paolo. Je suis vraiment désolé, je ne vais pas pouvoir venir ce soir."
+   ],
+   [
+    "Karim",
+    "Ah bon ? Qu'est-ce qui se passe ?"
+   ],
+   [
+    "Invité",
+    "Ma fille a beaucoup de fièvre, je dois rester avec elle. Ma femme travaille de nuit."
+   ],
+   [
+    "Karim",
+    "Je comprends, ce n'est pas grave. Je suis un peu déçu, mais la santé d'abord."
+   ],
+   [
+    "Invité",
+    "Je te promets qu'on se rattrape. Je t'invite au restaurant la semaine prochaine ?"
+   ],
+   [
+    "Karim",
+    "Avec plaisir. Soigne bien ta fille !"
+   ]
+  ],
+  "voix": {
+   "Invité": "3Yr319bDgMFZv5qX6yzA",
+   "Karim": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Phone call from a quiet room, subtle phone line hiss, no voices, no music"
+ },
+ "B1-s31": {
+  "n": 31,
+  "theme": "Vie sociale",
+  "lieu": "Écrire un SMS simple",
+  "situation": "Comprendre un SMS automatique et y répondre correctement",
+  "repliques": [
+   [
+    "SMS reçu 1",
+    "Cabinet dentaire Dr Martin : rappel de votre RDV le 18/11 à 9 h 30. Répondez OUI pour confirmer ou NON pour annuler."
+   ],
+   [
+    "SMS reçu 2",
+    "Votre colis est bloqué. Payez 1,99 € de frais ici : http://colis-livr-fr.info"
+   ],
+   [
+    "Consigne 1",
+    "Répondez correctement au premier message pour confirmer le rendez-vous."
+   ],
+   [
+    "Consigne 2",
+    "Expliquez à un ami pourquoi il ne faut pas cliquer sur le lien du deuxième message (adresse bizarre, demande d'argent, pas de nom de transporteur)."
+   ],
+   [
+    "Consigne 3",
+    "Écrivez à votre voisin pour lui demander de récupérer un colis pour vous et expliquez pourquoi vous ne pouvez pas y aller."
+   ]
+  ],
+  "voix": {
+   "SMS reçu 1": "TKoAvBNxOwnhLtxm7NYM",
+   "SMS reçu 2": "TKoAvBNxOwnhLtxm7NYM",
+   "Consigne 1": "87kc04olBn8nRQKuNmaf",
+   "Consigne 2": "87kc04olBn8nRQKuNmaf",
+   "Consigne 3": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Quiet room, a smartphone message notification chime at the very start and once again in the middle, soft phone keyboard tapping, no voices, no music"
+ },
+ "B1-s32": {
+  "n": 32,
+  "theme": "Santé",
+  "lieu": "À la pharmacie",
+  "situation": "Médicament indisponible : comprendre la situation et trouver une solution",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, j'ai une ordonnance pour un sirop pour mon fils. Il a de la fièvre depuis hier."
+   ],
+   [
+    "Pharmacien",
+    "Je suis désolé, ce sirop est en rupture de stock dans toute la région."
+   ],
+   [
+    "Cliente",
+    "Qu'est-ce que je peux faire ? Il en a besoin aujourd'hui."
+   ],
+   [
+    "Pharmacien",
+    "Il existe un équivalent en comprimé à écraser. Mais je dois avoir l'accord du médecin pour le changer."
+   ],
+   [
+    "Cliente",
+    "Vous pouvez l'appeler ? Je n'arrive pas à le joindre."
+   ],
+   [
+    "Pharmacien",
+    "J'essaie maintenant. En attendant, s'il a des difficultés à respirer ou si la fièvre ne baisse pas, appelez le 15."
+   ]
+  ],
+  "voix": {
+   "Cliente": "87kc04olBn8nRQKuNmaf",
+   "Pharmacien": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Pharmacy, quiet room tone, an automatic door opening at the very start, medicine boxes and a paper bag rustling, a cash register beep, no voices, no music"
+ },
+ "B1-s33": {
+  "n": 33,
+  "theme": "Santé",
+  "lieu": "Chez le médecin généraliste",
+  "situation": "Expliquer un problème de santé qui dure et demander un examen ou un spécialiste",
+  "repliques": [
+   [
+    "Patient",
+    "Docteur, je reviens pour mes douleurs au dos. Les médicaments ne marchent pas, et la douleur descend maintenant dans la jambe."
+   ],
+   [
+    "Médecin",
+    "Depuis combien de temps ?"
+   ],
+   [
+    "Patient",
+    "Deux mois. Je travaille dans le bâtiment, je porte des charges lourdes toute la journée."
+   ],
+   [
+    "Médecin",
+    "Je vais vous prescrire une IRM et vous orienter vers un rhumatologue."
+   ],
+   [
+    "Patient",
+    "J'ai peur de perdre mon travail si je m'arrête. Est-ce que c'est possible de travailler en attendant ?"
+   ],
+   [
+    "Médecin",
+    "Je vous conseille d'en parler avec le médecin du travail. Il peut proposer un aménagement de poste. Je vous fais une lettre pour lui."
+   ]
+  ],
+  "voix": {
+   "Patient": "JFppi8XcU3D1RvkAikO5",
+   "Médecin": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Doctor's consulting room, quiet room tone, a chair creaking, papers rustling, no voices, no music"
+ },
+ "B1-s34": {
+  "n": 34,
+  "theme": "Santé",
+  "lieu": "Chez le pédiatre",
+  "situation": "Exprimer une inquiétude sur le développement de son enfant",
+  "repliques": [
+   [
+    "Mère",
+    "Docteur, mon fils a trois ans et il parle très peu. À l'école, la maîtresse dit qu'il ne comprend pas toujours les consignes."
+   ],
+   [
+    "Pédiatre",
+    "À la maison, vous parlez quelle langue ?"
+   ],
+   [
+    "Mère",
+    "L'arabe. Mon mari et moi, nous parlons peu français."
+   ],
+   [
+    "Pédiatre",
+    "C'est normal qu'il apprenne deux langues en même temps. Mais je vais vérifier son audition et je vous propose un bilan chez un orthophoniste."
+   ],
+   [
+    "Mère",
+    "Est-ce que je dois arrêter de lui parler arabe ?"
+   ],
+   [
+    "Pédiatre",
+    "Non, surtout pas. Parlez-lui dans la langue que vous maîtrisez le mieux. C'est le plus important pour lui."
+   ]
+  ],
+  "voix": {
+   "Mère": "RXG6r6Qewwp92BIFIBhE",
+   "Pédiatre": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Paediatrician's office, quiet room tone, a baby softly whimpering in the distance now and then, a toy rattle, no music"
+ },
+ "B1-s35": {
+  "n": 35,
+  "theme": "Santé",
+  "lieu": "Chez le dentiste",
+  "situation": "Contester un devis et demander des explications sur le reste à charge",
+  "repliques": [
+   [
+    "Patiente",
+    "Docteur, j'ai reçu votre devis pour l'implant : 1 800 euros, et ma mutuelle rembourse seulement 400 euros."
+   ],
+   [
+    "Dentiste",
+    "Oui, l'implant n'est pas dans le panier 100 % Santé."
+   ],
+   [
+    "Patiente",
+    "C'est trop cher pour moi. Est-ce qu'il existe une autre solution ?"
+   ],
+   [
+    "Dentiste",
+    "Oui, un bridge ou un appareil amovible. Certains sont pris en charge à 100 %."
+   ],
+   [
+    "Patiente",
+    "Quelle est la différence pour ma santé et pour le confort ?"
+   ],
+   [
+    "Dentiste",
+    "L'implant est plus confortable, mais le bridge marche bien aussi. Prenez le temps de réfléchir, et demandez un devis à votre mutuelle pour comparer."
+   ]
+  ],
+  "voix": {
+   "Patiente": "TKoAvBNxOwnhLtxm7NYM",
+   "Dentiste": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Dentist's surgery, quiet room tone, a dental chair motor, faint metal dental tools clinking, no voices, no music"
+ },
+ "B1-s36": {
+  "n": 36,
+  "theme": "Santé",
+  "lieu": "Chez l'ophtalmologiste / chez l'opticien",
+  "situation": "Les nouvelles lunettes donnent mal à la tête",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, j'ai récupéré mes lunettes la semaine dernière, mais je vois flou de loin et j'ai mal à la tête le soir."
+   ],
+   [
+    "Opticienne",
+    "Il faut parfois quelques jours d'adaptation. Depuis combien de temps vous les portez ?"
+   ],
+   [
+    "Client",
+    "Huit jours, tous les jours."
+   ],
+   [
+    "Opticienne",
+    "Je vais vérifier les verres et la mesure. Si c'est une erreur de notre part, on refait les verres gratuitement."
+   ],
+   [
+    "Client",
+    "Et si l'erreur vient de l'ordonnance ?"
+   ],
+   [
+    "Opticienne",
+    "Dans ce cas, il faudra revoir l'ophtalmologiste. Je vous fais un courrier pour lui expliquer."
+   ]
+  ],
+  "voix": {
+   "Client": "W01VS3mCiWjHO239CD72",
+   "Opticienne": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Optician shop, quiet room tone, a door bell chimes once at the very start, a tiny screwdriver and metal glasses frame clicks, no voices, no music"
+ },
+ "B1-s37": {
+  "n": 37,
+  "theme": "Santé",
+  "lieu": "Au laboratoire d'analyses",
+  "situation": "Comprendre des résultats inquiétants et savoir quoi faire",
+  "repliques": [
+   [
+    "Patient",
+    "Bonjour, j'ai reçu mes résultats, et il y a plusieurs chiffres en gras avec une étoile. Je ne comprends pas."
+   ],
+   [
+    "Biologiste",
+    "Les chiffres en gras sont en dehors des valeurs normales. Mais ce n'est pas toujours grave."
+   ],
+   [
+    "Patient",
+    "Ici, c'est écrit « glycémie : 1,40 g/L ». C'est dangereux ?"
+   ],
+   [
+    "Biologiste",
+    "C'est un peu élevé. Je ne peux pas faire de diagnostic : c'est votre médecin qui interprète les résultats avec vous."
+   ],
+   [
+    "Patient",
+    "Je dois prendre rendez-vous rapidement ?"
+   ],
+   [
+    "Biologiste",
+    "Oui, dans les prochains jours. Il vous dira s'il faut refaire l'analyse ou faire d'autres examens."
+   ]
+  ],
+  "voix": {
+   "Patient": "JFppi8XcU3D1RvkAikO5",
+   "Biologiste": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Medical laboratory waiting room, quiet room tone, a queue ticket machine beep, papers, distant footsteps, no voices, no music"
+ },
+ "B1-s38": {
+  "n": 38,
+  "theme": "Santé",
+  "lieu": "Prendre rendez-vous par téléphone ou sur Doctolib",
+  "situation": "Pas de médecin traitant : expliquer sa situation et négocier un rendez-vous",
+  "repliques": [
+   [
+    "Secrétaire",
+    "Cabinet du docteur Petit, bonjour."
+   ],
+   [
+    "Patiente",
+    "Bonjour, je viens d'arriver dans la ville et je n'ai pas de médecin traitant. Est-ce que le docteur prend de nouveaux patients ?"
+   ],
+   [
+    "Secrétaire",
+    "Désolée, il ne prend plus de nouveaux patients."
+   ],
+   [
+    "Patiente",
+    "Je comprends. Mais j'ai une maladie chronique et mon traitement se termine dans dix jours."
+   ],
+   [
+    "Secrétaire",
+    "Dans ce cas, je peux vous proposer une consultation ponctuelle pour renouveler l'ordonnance, le 28. Pour un médecin traitant, contactez la CPAM : elle a un service pour aider les patients sans médecin."
+   ],
+   [
+    "Patiente",
+    "Merci beaucoup. Je peux vous envoyer mon dossier médical avant ?"
+   ]
+  ],
+  "voix": {
+   "Secrétaire": "RXG6r6Qewwp92BIFIBhE",
+   "Patiente": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Quiet room at home, a telephone ringing twice at the very start and being picked up, subtle phone line hiss, no voices, no music"
+ },
+ "B1-s39": {
+  "n": 39,
+  "theme": "Services",
+  "lieu": "Au salon de coiffure",
+  "situation": "Résultat décevant : exprimer son mécontentement et obtenir une correction",
+  "repliques": [
+   [
+    "Cliente",
+    "Excusez-moi, je ne suis pas contente. J'avais demandé un blond doré, comme sur la photo, et le résultat est presque orange."
+   ],
+   [
+    "Coiffeuse",
+    "C'est la lumière du salon, ça va changer."
+   ],
+   [
+    "Cliente",
+    "Non, regardez dehors, c'est vraiment orange. Ce n'est pas du tout ce que nous avions décidé."
+   ],
+   [
+    "Coiffeuse",
+    "Je comprends. Je peux faire une patine pour corriger la couleur."
+   ],
+   [
+    "Cliente",
+    "D'accord, mais je ne veux pas payer ce soin. Et si ça ne marche pas ?"
+   ],
+   [
+    "Coiffeuse",
+    "La correction est offerte. Si vous n'êtes pas satisfaite, revenez dans la semaine, on refait la couleur gratuitement."
+   ]
+  ],
+  "voix": {
+   "Cliente": "TKoAvBNxOwnhLtxm7NYM",
+   "Coiffeuse": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Hair salon, scissors snipping, a hair dryer in the distance, water running briefly, no voices, no music"
+ },
+ "B1-s40": {
+  "n": 40,
+  "theme": "Services",
+  "lieu": "Chez l'esthéticienne",
+  "situation": "Réaction cutanée après un soin : expliquer, demander des informations et une solution",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, je suis venue mardi pour un soin du visage. Depuis, j'ai des rougeurs et ça me gratte."
+   ],
+   [
+    "Esthéticienne",
+    "Je suis désolée. Vous avez des allergies connues ?"
+   ],
+   [
+    "Cliente",
+    "Pas à ma connaissance. Vous ne m'avez pas posé la question avant le soin."
+   ],
+   [
+    "Esthéticienne",
+    "Vous avez raison. Je vous donne la liste des produits utilisés, pour la montrer à un médecin ou un pharmacien."
+   ],
+   [
+    "Cliente",
+    "Merci. Et si je dois acheter une crème, qui la paie ?"
+   ],
+   [
+    "Esthéticienne",
+    "Gardez la facture, on vous la rembourse. Et nous ferons désormais un questionnaire avant chaque soin."
+   ]
+  ],
+  "voix": {
+   "Cliente": "87kc04olBn8nRQKuNmaf",
+   "Esthéticienne": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Calm beauty salon, quiet room tone, a nail file, small glass bottles clinking, no voices, no music"
+ },
+ "B1-s41": {
+  "n": 41,
+  "theme": "Services",
+  "lieu": "Au pressing / à la laverie automatique",
+  "situation": "Un vêtement est abîmé après le pressing",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, je viens récupérer ma robe… Elle a une tache blanche qui n'était pas là avant !"
+   ],
+   [
+    "Employé",
+    "Vous êtes sûre ? Parfois, la tache était déjà là."
+   ],
+   [
+    "Cliente",
+    "Oui, je suis sûre. J'ai même une photo de la robe avant de la déposer."
+   ],
+   [
+    "Employé",
+    "Je comprends. Je vais la faire repasser au nettoyage. Si ça ne part pas, on vous rembourse selon la valeur du vêtement."
+   ],
+   [
+    "Cliente",
+    "Elle a coûté 80 euros il y a six mois, j'ai la facture."
+   ],
+   [
+    "Employé",
+    "Apportez-la, je ferai une déclaration à notre assurance."
+   ]
+  ],
+  "voix": {
+   "Cliente": "4NTBwCMIWDfx48seeuxZ",
+   "Employé": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Dry cleaner shop, quiet room tone, a door bell chimes once at the very start, clothes hangers clinking, a steam press hissing softly, no voices, no music"
+ },
+ "B1-s42": {
+  "n": 42,
+  "theme": "Services",
+  "lieu": "Chez le cordonnier",
+  "situation": "Le travail n'est pas fait comme demandé",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, je viens chercher mon sac. Je vous avais demandé de recoudre seulement l'anse, mais vous avez aussi changé la fermeture éclair. Le ticket indique 45 euros au lieu de 15."
+   ],
+   [
+    "Cordonnier",
+    "La fermeture était très usée, je pensais vous rendre service."
+   ],
+   [
+    "Cliente",
+    "Je comprends, mais vous auriez dû m'appeler avant. Mon numéro est sur le ticket."
+   ],
+   [
+    "Cordonnier",
+    "C'est vrai. Je vous fais la fermeture à moitié prix."
+   ],
+   [
+    "Cliente",
+    "D'accord, mais à l'avenir, demandez toujours l'accord du client."
+   ]
+  ],
+  "voix": {
+   "Cliente": "RXG6r6Qewwp92BIFIBhE",
+   "Cordonnier": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Small cobbler and key cutting shop, a key cutting machine grinding briefly, metal keys jingling, quiet room tone, no voices, no music"
+ },
+ "B1-s43": {
+  "n": 43,
+  "theme": "Services",
+  "lieu": "Au point relais colis",
+  "situation": "Colis indiqué « livré » mais introuvable, puis renvoyer un colis",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, mon suivi indique que le colis est livré ici depuis hier, mais vous ne le trouvez pas."
+   ],
+   [
+    "Commerçant",
+    "Je regarde encore… Non, il n'est pas là. Il a peut-être été déposé dans un autre point relais."
+   ],
+   [
+    "Client",
+    "Qu'est-ce que je dois faire ?"
+   ],
+   [
+    "Commerçant",
+    "Contactez le vendeur, pas le transporteur. C'est lui qui doit ouvrir une enquête."
+   ],
+   [
+    "Client",
+    "D'accord. Et j'ai aussi un retour à envoyer, c'est un pantalon trop petit."
+   ],
+   [
+    "Commerçant",
+    "Vous avez l'étiquette de retour ?"
+   ],
+   [
+    "Client",
+    "Oui, en QR code."
+   ],
+   [
+    "Commerçant",
+    "Je scanne, et je vous donne une preuve de dépôt. Gardez-la bien."
+   ]
+  ],
+  "voix": {
+   "Client": "6pqL78prQKdL6zrRhG3N",
+   "Commerçant": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Small corner shop used as a parcel pick-up point, quiet room tone, a barcode scanner beep, a cardboard box sliding on the counter, no voices, no music"
+ },
+ "B1-s44": {
+  "n": 44,
+  "theme": "Services",
+  "lieu": "À La Poste (envoyer un colis)",
+  "situation": "Lettre recommandée non reçue : faire une réclamation",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, j'ai envoyé une lettre recommandée avec accusé de réception il y a trois semaines. Le destinataire dit qu'il ne l'a jamais reçue."
+   ],
+   [
+    "Guichetière",
+    "Vous avez la preuve de dépôt ?"
+   ],
+   [
+    "Client",
+    "Oui, avec le numéro de suivi. Sur le site, c'est écrit « en cours d'acheminement » depuis quinze jours."
+   ],
+   [
+    "Guichetière",
+    "Je peux ouvrir une réclamation. Nous allons faire une enquête."
+   ],
+   [
+    "Client",
+    "C'était une lettre pour résilier mon contrat. C'est très important, j'avais une date limite."
+   ],
+   [
+    "Guichetière",
+    "Je comprends. La preuve de dépôt montre que vous avez envoyé la lettre à temps. Gardez-la précieusement. Si la lettre est perdue, vous serez indemnisé."
+   ]
+  ],
+  "voix": {
+   "Client": "W01VS3mCiWjHO239CD72",
+   "Guichetière": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Post office counter, quiet room tone, a rubber stamp being pressed, envelopes and paper, a queue ticket beep, distant indistinct murmur without clear words, no music"
+ },
+ "B1-s45": {
+  "n": 45,
+  "theme": "Services",
+  "lieu": "Au magasin de vêtements (essayer, échanger)",
+  "situation": "Demander un remboursement pour un vêtement défectueux, le magasin propose seulement un avoir",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, j'ai acheté ce manteau il y a dix jours. La couture de la manche s'est défaite après deux utilisations. Je voudrais être remboursée."
+   ],
+   [
+    "Vendeuse",
+    "Chez nous, on ne rembourse pas, on fait un avoir."
+   ],
+   [
+    "Cliente",
+    "Pour un changement d'avis, je comprends. Mais là, le produit est défectueux. La loi prévoit une garantie."
+   ],
+   [
+    "Vendeuse",
+    "Je vais appeler la responsable."
+   ],
+   [
+    "Responsable",
+    "Vous avez raison, c'est un défaut de fabrication. Je vous propose un remboursement sur votre carte."
+   ]
+  ],
+  "voix": {
+   "Cliente": "4NTBwCMIWDfx48seeuxZ",
+   "Vendeuse": "RXG6r6Qewwp92BIFIBhE",
+   "Responsable": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Clothing store, quiet room tone, hangers sliding on a rail, a fitting room curtain being pulled, no voices, no music"
+ },
+ "B1-s46": {
+  "n": 46,
+  "theme": "Services",
+  "lieu": "Au magasin de chaussures",
+  "situation": "Les chaussures font mal après quelques jours : négocier une solution",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, j'ai acheté ces chaussures de travail samedi. Après trois jours, j'ai des ampoules aux talons."
+   ],
+   [
+    "Vendeuse",
+    "Elles ont été portées, je ne peux pas les reprendre."
+   ],
+   [
+    "Client",
+    "Je comprends, mais au magasin, vous m'avez dit que c'était la bonne pointure. Il y a peut-être un problème de forme."
+   ],
+   [
+    "Vendeuse",
+    "Je peux vous proposer des semelles de confort ou les faire élargir chez le cordonnier, à nos frais."
+   ],
+   [
+    "Client",
+    "Si ça ne marche pas, est-ce que je pourrai les échanger ?"
+   ],
+   [
+    "Vendeuse",
+    "Oui, revenez dans la semaine avec le ticket."
+   ]
+  ],
+  "voix": {
+   "Client": "3Yr319bDgMFZv5qX6yzA",
+   "Vendeuse": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Shoe shop, quiet room tone, a shoe box being opened, tissue paper rustling, footsteps on the floor, no voices, no music"
+ },
+ "B1-s47": {
+  "n": 47,
+  "theme": "Services",
+  "lieu": "Au magasin de bricolage",
+  "situation": "Rapporter un produit défectueux et demander un échange sans ticket",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, j'ai acheté cette perceuse il y a trois semaines, elle s'arrête toute seule après deux minutes."
+   ],
+   [
+    "Employée",
+    "Vous avez le ticket de caisse ?"
+   ],
+   [
+    "Client",
+    "Je l'ai perdu, mais j'ai payé par carte avec la carte du magasin."
+   ],
+   [
+    "Employée",
+    "Alors je retrouve l'achat dans votre compte. Oui, le 20 octobre. Elle est sous garantie deux ans."
+   ],
+   [
+    "Client",
+    "Je préfère un échange immédiat plutôt qu'une réparation."
+   ],
+   [
+    "Employée",
+    "C'est possible, nous l'avons en stock. Je vous fais l'échange."
+   ]
+  ],
+  "voix": {
+   "Client": "6pqL78prQKdL6zrRhG3N",
+   "Employée": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Large DIY hardware store, big hall, a shopping trolley rolling, distant beeps, small metal items clinking, no voices, no music"
+ },
+ "B1-s48": {
+  "n": 48,
+  "theme": "Services",
+  "lieu": "Au magasin de téléphonie (forfait, carte SIM)",
+  "situation": "Contester une facture avec des frais inconnus",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, ma facture de ce mois est de 48 euros au lieu de 15. Il y a des « services tiers » que je n'ai jamais demandés."
+   ],
+   [
+    "Conseiller",
+    "Je regarde… C'est un abonnement à un jeu, activé le 3 octobre."
+   ],
+   [
+    "Cliente",
+    "Je n'ai rien activé. C'est peut-être une publicité sur laquelle j'ai cliqué par erreur."
+   ],
+   [
+    "Conseiller",
+    "Je peux résilier ce service et bloquer les services tiers sur votre ligne."
+   ],
+   [
+    "Cliente",
+    "Merci. Et je voudrais être remboursée des 33 euros."
+   ],
+   [
+    "Conseiller",
+    "Je fais une demande de remboursement. Vous recevrez une réponse sous 10 jours."
+   ]
+  ],
+  "voix": {
+   "Cliente": "87kc04olBn8nRQKuNmaf",
+   "Conseiller": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Mobile phone shop, quiet modern room tone, a phone notification sound, a printer printing a page, no voices, no music"
+ },
+ "B1-s49": {
+  "n": 49,
+  "theme": "Services",
+  "lieu": "À la librairie / à la papeterie",
+  "situation": "Livre commandé jamais arrivé, puis demande de conseil précis",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, j'ai commandé un livre il y a trois semaines. On m'avait dit trois jours, et je n'ai pas de nouvelles."
+   ],
+   [
+    "Libraire",
+    "Je regarde… Le livre est en rupture chez l'éditeur. Je suis désolée, vous auriez dû être prévenu."
+   ],
+   [
+    "Client",
+    "C'est pour préparer un examen, le DELF B1, dans un mois."
+   ],
+   [
+    "Libraire",
+    "Je vous propose un autre manuel du même niveau, disponible tout de suite. Vous pouvez le feuilleter."
+   ],
+   [
+    "Client",
+    "Il y a des sujets d'examen corrigés ?"
+   ],
+   [
+    "Libraire",
+    "Oui, quatre sujets complets avec les corrigés. Je vous rembourse l'acompte de la première commande."
+   ]
+  ],
+  "voix": {
+   "Client": "JFppi8XcU3D1RvkAikO5",
+   "Libraire": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Stationery shop, quiet room tone, a door bell chimes once at the very start, notebooks and paper, a cash register beep, no voices, no music"
+ },
+ "B1-s50": {
+  "n": 50,
+  "theme": "Services",
+  "lieu": "À la jardinerie / à l'animalerie",
+  "situation": "Un arbre acheté est mort : faire jouer la garantie végétale",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, j'ai acheté un olivier ici au printemps. Il a perdu toutes ses feuilles et il est sec."
+   ],
+   [
+    "Vendeuse",
+    "Vous l'avez planté où ?"
+   ],
+   [
+    "Client",
+    "En pleine terre, au soleil, comme vous me l'aviez conseillé. J'ai arrosé régulièrement."
+   ],
+   [
+    "Vendeuse",
+    "Vous avez une photo et le ticket ? Nous avons une garantie d'un an sur les arbres."
+   ],
+   [
+    "Client",
+    "Oui, voilà. Mais je voudrais savoir pourquoi il est mort, pour ne pas refaire la même erreur."
+   ],
+   [
+    "Vendeuse",
+    "Avec l'hiver dernier, il a peut-être gelé. Je vous le remplace et je vous conseille de le protéger avec un voile d'hivernage."
+   ]
+  ],
+  "voix": {
+   "Client": "3Yr319bDgMFZv5qX6yzA",
+   "Vendeuse": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Pet and garden shop, quiet room tone, small birds chirping in cages, a bag of pet food rustling, no voices, no music"
+ },
+ "B1-s51": {
+  "n": 51,
+  "theme": "Services",
+  "lieu": "Chez le vétérinaire",
+  "situation": "Comprendre un diagnostic et discuter d'un devis coûteux",
+  "repliques": [
+   [
+    "Vétérinaire",
+    "Votre chien a une fracture de la patte. Il faut l'opérer."
+   ],
+   [
+    "Client",
+    "C'est grave ?"
+   ],
+   [
+    "Vétérinaire",
+    "Non, s'il est opéré rapidement. Voici le devis : 950 euros, avec l'anesthésie et deux jours d'hospitalisation."
+   ],
+   [
+    "Client",
+    "C'est beaucoup pour moi. Est-ce qu'il y a une autre solution ?"
+   ],
+   [
+    "Vétérinaire",
+    "On peut essayer un plâtre, mais la guérison est moins sûre."
+   ],
+   [
+    "Client",
+    "Est-ce que je peux payer en plusieurs fois ?"
+   ],
+   [
+    "Vétérinaire",
+    "Oui, en trois fois sans frais. Vous pouvez aussi vérifier si vous avez une assurance pour animaux."
+   ]
+  ],
+  "voix": {
+   "Vétérinaire": "6pqL78prQKdL6zrRhG3N",
+   "Client": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Veterinary clinic waiting room, quiet room tone, a dog panting and its claws tapping on the floor, a door opening, no voices, no music"
+ },
+ "B1-s52": {
+  "n": 52,
+  "theme": "Démarches simples",
+  "lieu": "À la banque (ouvrir un compte)",
+  "situation": "Refus d'ouverture de compte : comprendre et faire valoir le droit au compte",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, j'ai demandé l'ouverture d'un compte dans trois banques, et toutes ont refusé."
+   ],
+   [
+    "Conseillère",
+    "Elles vous ont donné une lettre de refus ?"
+   ],
+   [
+    "Client",
+    "Seulement une. Les autres m'ont dit non à l'oral."
+   ],
+   [
+    "Conseillère",
+    "Demandez une lettre écrite. Avec cette lettre, vous pouvez faire valoir le droit au compte : la Banque de France désigne une banque qui doit vous ouvrir un compte."
+   ],
+   [
+    "Client",
+    "Et comment je fais la demande ?"
+   ],
+   [
+    "Conseillère",
+    "En ligne sur le site de la Banque de France, ou par courrier, avec la lettre de refus et une pièce d'identité. Le compte vous donne droit aux services bancaires de base gratuitement."
+   ]
+  ],
+  "voix": {
+   "Client": "W01VS3mCiWjHO239CD72",
+   "Conseillère": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Bank reception area, quiet room tone, keyboard typing, a distant door, soft footsteps, no voices, no music"
+ },
+ "B1-s53": {
+  "n": 53,
+  "theme": "Démarches simples",
+  "lieu": "À la mairie",
+  "situation": "Signaler un problème dans le quartier et demander une intervention",
+  "repliques": [
+   [
+    "Habitante",
+    "Bonjour, je voudrais signaler un problème. Le lampadaire devant l'école ne marche plus depuis trois semaines."
+   ],
+   [
+    "Agent",
+    "Vous avez déjà fait un signalement ?"
+   ],
+   [
+    "Habitante",
+    "Oui, sur le site de la mairie, mais personne n'est venu. Le soir, les enfants traversent dans le noir, c'est dangereux."
+   ],
+   [
+    "Agent",
+    "Je transmets aux services techniques aujourd'hui, en indiquant que c'est urgent."
+   ],
+   [
+    "Habitante",
+    "Est-ce que je peux avoir un numéro de suivi ? Et je peux écrire au maire ?"
+   ],
+   [
+    "Agent",
+    "Voici le numéro de votre demande. Oui, vous pouvez écrire au maire : un courrier signé par plusieurs parents aura plus de poids."
+   ]
+  ],
+  "voix": {
+   "Habitante": "4NTBwCMIWDfx48seeuxZ",
+   "Agent": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Town hall reception, large quiet hall, footsteps on a stone floor, papers, a distant door closing, no voices, no music"
+ },
+ "B1-s54": {
+  "n": 54,
+  "theme": "Démarches simples",
+  "lieu": "À la bibliothèque / à la médiathèque (s'inscrire)",
+  "situation": "Livre perdu ou abîmé : expliquer et négocier le remboursement",
+  "repliques": [
+   [
+    "Lecteur",
+    "Bonjour, j'ai un problème. Mon fils a renversé de l'eau sur un livre de la bibliothèque. Il est très abîmé."
+   ],
+   [
+    "Bibliothécaire",
+    "Je vois. Normalement, il faut le remplacer ou le rembourser."
+   ],
+   [
+    "Lecteur",
+    "Il coûte combien ?"
+   ],
+   [
+    "Bibliothécaire",
+    "24 euros. Vous pouvez aussi acheter le même livre neuf et nous l'apporter."
+   ],
+   [
+    "Lecteur",
+    "Je préfère l'acheter, c'est peut-être moins cher d'occasion. Est-ce que ma carte est bloquée en attendant ?"
+   ],
+   [
+    "Bibliothécaire",
+    "Oui, jusqu'au remplacement. Mais je vous laisse emprunter les livres de votre formation, c'est important."
+   ]
+  ],
+  "voix": {
+   "Lecteur": "3Yr319bDgMFZv5qX6yzA",
+   "Bibliothécaire": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Quiet public library, pages turning, a book barcode scanner beep, very soft footsteps, no voices, no music"
+ },
+ "B1-s55": {
+  "n": 55,
+  "theme": "Démarches simples",
+  "lieu": "À la déchetterie",
+  "situation": "Refus d'accès : comprendre le règlement et trouver une solution",
+  "repliques": [
+   [
+    "Agent",
+    "Désolé, monsieur, je ne peux pas accepter tous ces gravats. C'est limité à 1 mètre cube par jour."
+   ],
+   [
+    "Usager",
+    "Je refais ma salle de bains, j'en ai au moins 3 mètres cubes. Qu'est-ce que je dois faire ?"
+   ],
+   [
+    "Agent",
+    "Vous pouvez revenir trois jours différents, ou louer une benne chez un professionnel."
+   ],
+   [
+    "Usager",
+    "C'est compliqué, je n'ai pas de voiture tous les jours. Je ne peux pas les laisser devant l'entrée ?"
+   ],
+   [
+    "Agent",
+    "Non, c'est un dépôt sauvage, c'est interdit. L'amende peut aller jusqu'à 1 500 euros."
+   ],
+   [
+    "Usager",
+    "D'accord. Je prends 1 mètre cube aujourd'hui et je reviens samedi et lundi."
+   ]
+  ],
+  "voix": {
+   "Agent": "6pqL78prQKdL6zrRhG3N",
+   "Usager": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Outdoor recycling centre, wind, a car boot closing, cardboard and wood thrown into a metal skip, a distant truck, no voices, no music"
+ },
+ "B1-s56": {
+  "n": 56,
+  "theme": "Démarches simples",
+  "lieu": "Remplir un formulaire simple",
+  "situation": "Comprendre un formulaire administratif et identifier ce qui manque",
+  "repliques": [
+   [
+    "Document",
+    "Formulaire de demande d'aide au transport scolaire – à retourner avant le 15 septembre."
+   ],
+   [
+    "Document",
+    "Cadre A – Représentant légal. Cadre B – Enfant. Cadre C – Ressources du foyer (joindre le dernier avis d'imposition)."
+   ],
+   [
+    "Document",
+    "« Je certifie sur l'honneur l'exactitude des renseignements fournis. » Cadre réservé à l'administration : ne rien écrire."
+   ],
+   [
+    "Document",
+    "Tout dossier incomplet sera retourné."
+   ],
+   [
+    "Consigne 1",
+    "Dites quels documents vous devez joindre et avant quelle date."
+   ],
+   [
+    "Consigne 2",
+    "Expliquez ce que veut dire « certifier sur l'honneur » et pourquoi c'est important."
+   ],
+   [
+    "Consigne 3",
+    "Vous n'avez pas votre avis d'imposition. Écrivez un court message au service pour demander quoi faire."
+   ]
+  ],
+  "voix": {
+   "Document": "87kc04olBn8nRQKuNmaf",
+   "Consigne 1": "4NTBwCMIWDfx48seeuxZ",
+   "Consigne 2": "4NTBwCMIWDfx48seeuxZ",
+   "Consigne 3": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Quiet office room, a pen writing on paper, papers rustling, a clock ticking softly, no voices, no music"
+ },
+ "B1-s57": {
+  "n": 57,
+  "theme": "Transports et voyage",
+  "lieu": "Dans le train (contrôleur, correspondance)",
+  "situation": "Pas de billet valide : expliquer et régulariser sa situation",
+  "repliques": [
+   [
+    "Contrôleur",
+    "Votre billet, s'il vous plaît."
+   ],
+   [
+    "Voyageur",
+    "Je n'en ai pas. L'automate de la gare était en panne, et le guichet était fermé."
+   ],
+   [
+    "Contrôleur",
+    "Vous auriez pu l'acheter sur l'application."
+   ],
+   [
+    "Voyageur",
+    "Mon téléphone n'a plus de batterie. Je voulais justement venir vous voir pour acheter un billet."
+   ],
+   [
+    "Contrôleur",
+    "Normalement, sans billet, c'est une amende. Mais je vois que vous êtes de bonne foi. Je vous vends un billet au tarif à bord, avec 10 euros de supplément."
+   ],
+   [
+    "Voyageur",
+    "D'accord. Si je prouve que l'automate était en panne, je peux récupérer le supplément ?"
+   ],
+   [
+    "Contrôleur",
+    "Vous pouvez faire une réclamation au service client, avec votre billet."
+   ]
+  ],
+  "voix": {
+   "Contrôleur": "JFppi8XcU3D1RvkAikO5",
+   "Voyageur": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Inside a moving train carriage, steady rhythm of the rails, gentle swaying, a sliding door opening, no voices, no announcements, no music"
+ },
+ "B1-s58": {
+  "n": 58,
+  "theme": "Transports et voyage",
+  "lieu": "À l'aéroport (enregistrement, contrôle)",
+  "situation": "Vol annulé : connaître ses droits et obtenir une solution",
+  "repliques": [
+   [
+    "Voyageuse",
+    "Bonjour, notre vol pour Casablanca est annulé. Qu'est-ce qu'on fait ?"
+   ],
+   [
+    "Agent",
+    "Nous vous proposons un vol demain matin à 7 heures."
+   ],
+   [
+    "Voyageuse",
+    "Nous sommes avec deux enfants. Où est-ce qu'on va dormir ?"
+   ],
+   [
+    "Agent",
+    "La compagnie prend en charge l'hôtel, le repas et le transport jusqu'à l'hôtel. Voici les bons."
+   ],
+   [
+    "Voyageuse",
+    "Et nous avons droit à une indemnisation ?"
+   ],
+   [
+    "Agent",
+    "Si l'annulation n'est pas due à un cas exceptionnel, comme la météo, oui. Vous devez faire la demande en ligne, avec vos cartes d'embarquement."
+   ]
+  ],
+  "voix": {
+   "Voyageuse": "RXG6r6Qewwp92BIFIBhE",
+   "Agent": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Airport check-in hall, large space, rolling suitcases, a luggage conveyor belt, distant indistinct murmur without clear words, no announcements, no music"
+ },
+ "B1-s59": {
+  "n": 59,
+  "theme": "Transports et voyage",
+  "lieu": "Au parking (horodateur, ticket)",
+  "situation": "Contester un avis de stationnement (amende)",
+  "repliques": [
+   [
+    "Situation",
+    "Vous avez payé votre stationnement avec l'application, mais vous recevez un avis de « forfait post-stationnement » de 35 euros."
+   ],
+   [
+    "Usager",
+    "Bonjour, je voudrais contester cet avis. J'avais payé deux heures sur l'application, de 14 h à 16 h."
+   ],
+   [
+    "Agent",
+    "L'avis indique 15 h 20. Vous avez la preuve du paiement ?"
+   ],
+   [
+    "Usager",
+    "Oui, voici la capture d'écran, avec la bonne plaque et la bonne rue."
+   ],
+   [
+    "Agent",
+    "Je vois. Il faut faire un recours administratif préalable, par écrit, dans un délai d'un mois, avec cette preuve."
+   ],
+   [
+    "Usager",
+    "Je dois payer en attendant ?"
+   ],
+   [
+    "Agent",
+    "Non, pas pour ce recours. Gardez une copie de tout ce que vous envoyez."
+   ]
+  ],
+  "voix": {
+   "Situation": "TKoAvBNxOwnhLtxm7NYM",
+   "Usager": "6pqL78prQKdL6zrRhG3N",
+   "Agent": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Town hall office counter, quiet room tone, papers, keyboard typing, no voices, no music"
+ },
+ "B1-s60": {
+  "n": 60,
+  "theme": "Transports et voyage",
+  "lieu": "Louer un vélo / une trottinette",
+  "situation": "Vélo endommagé : contester des frais de réparation",
+  "repliques": [
+   [
+    "Loueur",
+    "Le vélo a une grosse rayure et le phare est cassé. Je dois garder 80 euros sur la caution."
+   ],
+   [
+    "Cliente",
+    "Le phare était déjà cassé quand je l'ai pris. Je l'ai dit à votre collègue ce matin."
+   ],
+   [
+    "Loueur",
+    "Ce n'est pas écrit sur la fiche."
+   ],
+   [
+    "Cliente",
+    "J'ai pris des photos du vélo avant de partir, regardez. Le phare est déjà cassé, et la rayure aussi est là."
+   ],
+   [
+    "Loueur",
+    "Ah oui, c'est vrai. Je m'excuse, mon collègue a oublié de le noter."
+   ],
+   [
+    "Cliente",
+    "Merci de me rendre toute la caution. Et il faudrait que votre collègue fasse l'état des lieux plus attentivement."
+   ]
+  ],
+  "voix": {
+   "Loueur": "W01VS3mCiWjHO239CD72",
+   "Cliente": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Outdoor bike rental shop in summer, bicycle bells ringing, bike chains clicking, birds, light street noise, no voices, no music"
+ },
+ "B1-s61": {
+  "n": 61,
+  "theme": "Transports et voyage",
+  "lieu": "À l'office de tourisme",
+  "situation": "Organiser une sortie de groupe : demander des informations précises et un devis",
+  "repliques": [
+   [
+    "Formatrice",
+    "Bonjour, j'organise une sortie pour un groupe de 15 adultes en formation. Nous voudrions visiter le château et la vieille ville."
+   ],
+   [
+    "Conseiller",
+    "Nous avons une visite guidée de deux heures. Le tarif de groupe est de 6 euros par personne."
+   ],
+   [
+    "Formatrice",
+    "Une personne est en fauteuil roulant. Le parcours est accessible ?"
+   ],
+   [
+    "Conseiller",
+    "La vieille ville, oui. Le château, seulement le rez-de-chaussée."
+   ],
+   [
+    "Formatrice",
+    "Est-ce que le guide peut parler lentement ? Le groupe apprend le français."
+   ],
+   [
+    "Conseiller",
+    "Bien sûr, je le préviens. Je vous envoie un devis par e-mail, avec les conditions d'annulation."
+   ]
+  ],
+  "voix": {
+   "Formatrice": "4NTBwCMIWDfx48seeuxZ",
+   "Conseiller": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Tourist information office, quiet room tone, a door bell chimes once at the very start, maps and brochures being unfolded, no voices, no music"
+ },
+ "B1-s62": {
+  "n": 62,
+  "theme": "Transports et voyage",
+  "lieu": "À l'hôtel (réservation, arrivée)",
+  "situation": "Chambre non conforme à la réservation : réclamer",
+  "repliques": [
+   [
+    "Client",
+    "Bonsoir, je suis désolé, mais la chambre ne correspond pas à ma réservation. J'avais réservé une chambre calme, avec vue sur le lac."
+   ],
+   [
+    "Réceptionniste",
+    "Qu'est-ce qui ne va pas ?"
+   ],
+   [
+    "Client",
+    "Elle donne sur la route, c'est très bruyant. Et la salle de bains n'est pas propre."
+   ],
+   [
+    "Réceptionniste",
+    "Je suis désolée. Ce soir, l'hôtel est complet. Je peux vous changer de chambre demain."
+   ],
+   [
+    "Client",
+    "Alors je voudrais une réduction pour cette nuit, et une chambre propre maintenant."
+   ],
+   [
+    "Réceptionniste",
+    "Je fais nettoyer la salle de bains tout de suite, et je vous offre cette nuit à moitié prix."
+   ]
+  ],
+  "voix": {
+   "Client": "3Yr319bDgMFZv5qX6yzA",
+   "Réceptionniste": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Hotel lobby in the evening, quiet room tone, a reception desk bell ding at the very start, keys jingling, soft footsteps on carpet, no voices, no music"
+ },
+ "B1-s63": {
+  "n": 63,
+  "theme": "Transports et voyage",
+  "lieu": "Au camping / dans un gîte",
+  "situation": "Caution non rendue après un séjour : négocier avec le propriétaire",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, nous sommes partis il y a trois semaines, et vous ne nous avez pas rendu la caution de 300 euros."
+   ],
+   [
+    "Propriétaire",
+    "J'ai dû retenir 150 euros. Le ménage n'était pas fait, et un verre était cassé."
+   ],
+   [
+    "Cliente",
+    "Nous avons fait le ménage avant de partir. Nous n'avons pas fait d'état des lieux de sortie, parce que vous n'étiez pas là."
+   ],
+   [
+    "Propriétaire",
+    "J'ai dû payer une femme de ménage."
+   ],
+   [
+    "Cliente",
+    "Pouvez-vous me montrer une facture ? Pour le verre, je suis d'accord pour payer, mais pas 150 euros."
+   ],
+   [
+    "Propriétaire",
+    "D'accord, je vous rends 270 euros. Je retiens seulement le verre et une heure de ménage."
+   ]
+  ],
+  "voix": {
+   "Cliente": "TKoAvBNxOwnhLtxm7NYM",
+   "Propriétaire": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Campsite reception outdoors in summer, cicadas, birds, distant children playing without clear words, footsteps on gravel, no music"
+ },
+ "B1-s64": {
+  "n": 64,
+  "theme": "Transports et voyage",
+  "lieu": "Faire une visite guidée",
+  "situation": "Ne pas comprendre et demander des précisions, donner son avis à la fin",
+  "repliques": [
+   [
+    "Guide",
+    "Pendant la Révolution, le château a été en partie détruit, puis il a servi de prison au XIXe siècle."
+   ],
+   [
+    "Visiteur",
+    "Excusez-moi, je n'ai pas bien compris. Il a été détruit par qui, et pourquoi ?"
+   ],
+   [
+    "Guide",
+    "Par des habitants du village. Pour eux, le château représentait le pouvoir des seigneurs."
+   ],
+   [
+    "Visiteur",
+    "Merci. Et pourquoi en faire une prison ensuite ?"
+   ],
+   [
+    "Guide",
+    "Les murs étaient solides, et l'État avait besoin de place."
+   ],
+   [
+    "Visiteur",
+    "(à la fin) Merci beaucoup, c'était très intéressant. Vous parlez clairement, c'est agréable pour nous qui apprenons le français. Je vais conseiller cette visite à mes amis."
+   ]
+  ],
+  "voix": {
+   "Guide": "W01VS3mCiWjHO239CD72",
+   "Visiteur": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Old town square outdoors, a small group walking on cobblestones, distant church bells, pigeons, light wind, no clear voices, no music"
+ },
+ "B1-s65": {
+  "n": 65,
+  "theme": "Transports et voyage",
+  "lieu": "Au musée",
+  "situation": "Décrire une œuvre et exprimer ses impressions",
+  "repliques": [
+   [
+    "Formatrice",
+    "Choisissez une œuvre et présentez-la à un camarade."
+   ],
+   [
+    "Apprenant",
+    "J'ai choisi ce tableau. Il représente un port, au coucher du soleil. Il y a des bateaux et des gens qui travaillent."
+   ],
+   [
+    "Formatrice",
+    "Qu'est-ce que vous ressentez ?"
+   ],
+   [
+    "Apprenant",
+    "Je trouve que les couleurs sont très chaudes. Ça me rappelle le port de ma ville, quand j'étais enfant."
+   ],
+   [
+    "Formatrice",
+    "Pourquoi l'avez-vous choisi ?"
+   ],
+   [
+    "Apprenant",
+    "Parce qu'il me donne de la nostalgie, mais aussi de la joie. Je préfère ce tableau aux portraits : il raconte une histoire."
+   ]
+  ],
+  "voix": {
+   "Formatrice": "4NTBwCMIWDfx48seeuxZ",
+   "Apprenant": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Museum entrance hall, large quiet space, soft footsteps, a ticket printer, no voices, no music"
+ },
+ "B1-s66": {
+  "n": 66,
+  "theme": "Enfants et école",
+  "lieu": "Inscrire son enfant à l'école",
+  "situation": "Enfant non francophone : demander un accompagnement adapté",
+  "repliques": [
+   [
+    "Mère",
+    "Madame la directrice, ma fille a dix ans. Elle a été scolarisée en Ukraine, mais elle ne parle pas encore français."
+   ],
+   [
+    "Directrice",
+    "Elle sera dans une classe de CM2, et elle pourra aller quelques heures par semaine en UPE2A, une classe spéciale pour apprendre le français."
+   ],
+   [
+    "Mère",
+    "Est-ce qu'elle va être évaluée en mathématiques ? Elle est très bonne."
+   ],
+   [
+    "Directrice",
+    "Oui, un enseignant fera une évaluation dans sa langue, si possible, pour connaître son niveau."
+   ],
+   [
+    "Mère",
+    "Je voudrais aussi savoir comment je peux l'aider à la maison."
+   ],
+   [
+    "Directrice",
+    "Continuez à lui lire des livres dans votre langue. Et nous ferons un point ensemble dans un mois."
+   ]
+  ],
+  "voix": {
+   "Mère": "RXG6r6Qewwp92BIFIBhE",
+   "Directrice": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Town hall office, quiet room tone, keyboard typing, papers, a stapler, no voices, no music"
+ },
+ "B1-s67": {
+  "n": 67,
+  "theme": "Enfants et école",
+  "lieu": "À la cantine / au périscolaire",
+  "situation": "Facture de cantine incorrecte et allergie non respectée",
+  "repliques": [
+   [
+    "Mère",
+    "Bonjour, j'ai deux problèmes. D'abord, la facture : vous avez compté douze repas, mais mon fils était malade une semaine."
+   ],
+   [
+    "Agent",
+    "Vous nous avez prévenus de son absence ?"
+   ],
+   [
+    "Mère",
+    "Oui, par e-mail, avec le certificat médical. Je peux vous le montrer."
+   ],
+   [
+    "Agent",
+    "D'accord, je corrige la facture."
+   ],
+   [
+    "Mère",
+    "Merci. Ensuite, hier, on lui a servi un dessert aux noix, alors qu'il est allergique. Il a un PAI."
+   ],
+   [
+    "Agent",
+    "C'est très grave. Je préviens tout de suite la responsable de la cantine, et nous allons vérifier la procédure avec l'équipe."
+   ]
+  ],
+  "voix": {
+   "Mère": "TKoAvBNxOwnhLtxm7NYM",
+   "Agent": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "School office near the canteen, distant children's lunchtime noise without clear words, plates and cutlery clattering far away, no music"
+ },
+ "B1-s68": {
+  "n": 68,
+  "theme": "Enfants et école",
+  "lieu": "À la crèche / chez l'assistante maternelle",
+  "situation": "Signaler une inquiétude et rédiger le contrat ensemble",
+  "repliques": [
+   [
+    "Mère",
+    "Bonjour, hier soir, j'ai vu une morsure sur le bras de ma fille. Personne ne m'a rien dit."
+   ],
+   [
+    "Puéricultrice",
+    "Excusez-nous. Un autre enfant l'a mordue l'après-midi. Ma collègue a oublié de vous le dire."
+   ],
+   [
+    "Mère",
+    "Je comprends que ça arrive entre petits, mais je voudrais être informée à chaque fois."
+   ],
+   [
+    "Puéricultrice",
+    "Vous avez raison. Nous allons noter les incidents dans le cahier de transmission."
+   ],
+   [
+    "Mère",
+    "Merci. Et l'autre enfant mord souvent ?"
+   ],
+   [
+    "Puéricultrice",
+    "Je ne peux pas parler des autres enfants, mais l'équipe surveille la situation de près."
+   ]
+  ],
+  "voix": {
+   "Mère": "87kc04olBn8nRQKuNmaf",
+   "Puéricultrice": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Day nursery in the morning, soft distant toddlers babbling without clear words, toys, a door closing gently, no music"
+ },
+ "B1-s69": {
+  "n": 69,
+  "theme": "Enfants et école",
+  "lieu": "Au centre de loisirs",
+  "situation": "Enfant revenu avec un problème : demander des explications",
+  "repliques": [
+   [
+    "Père",
+    "Bonjour, mon fils est rentré hier avec une bosse sur la tête. Il dit qu'il est tombé, mais personne ne m'a appelé."
+   ],
+   [
+    "Directrice",
+    "Je suis désolée. Il est tombé d'un banc, l'animateur l'a soigné et il allait bien."
+   ],
+   [
+    "Père",
+    "Pour une blessure à la tête, je pense que vous devez prévenir les parents. Il a eu mal à la tête toute la soirée."
+   ],
+   [
+    "Directrice",
+    "Vous avez raison, c'est notre règle. L'animateur aurait dû vous appeler."
+   ],
+   [
+    "Père",
+    "Je l'emmène chez le médecin cet après-midi. Je voudrais une copie du rapport d'incident."
+   ],
+   [
+    "Directrice",
+    "Je vous la prépare. Et je vais rappeler la règle à toute l'équipe."
+   ]
+  ],
+  "voix": {
+   "Père": "JFppi8XcU3D1RvkAikO5",
+   "Directrice": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Children's leisure centre office, distant children playing without clear words, a ball bouncing, no music"
+ },
+ "B1-s70": {
+  "n": 70,
+  "theme": "Enfants et école",
+  "lieu": "Lire le carnet de liaison",
+  "situation": "Répondre à un mot sur le comportement et demander un rendez-vous",
+  "repliques": [
+   [
+    "Mot de l'enseignante",
+    "Madame, Monsieur, Rayan perturbe souvent la classe depuis deux semaines et ne fait pas ses devoirs. Je souhaiterais vous rencontrer."
+   ],
+   [
+    "Réponse du parent",
+    "Madame, merci pour votre message. Nous avons parlé avec Rayan. Il est fatigué depuis l'arrivée de sa petite sœur."
+   ],
+   [
+    "Réponse du parent",
+    "Nous sommes disponibles pour un rendez-vous le lundi ou le jeudi après 17 heures."
+   ],
+   [
+    "Réponse du parent",
+    "Nous voulons travailler avec vous pour l'aider. Cordialement, M. et Mme Kaci."
+   ],
+   [
+    "Consigne",
+    "Repérez dans la réponse : le remerciement, l'explication, la proposition de rendez-vous, la formule de politesse. Puis écrivez votre propre réponse."
+   ]
+  ],
+  "voix": {
+   "Mot de l'enseignante": "RXG6r6Qewwp92BIFIBhE",
+   "Réponse du parent": "TKoAvBNxOwnhLtxm7NYM",
+   "Consigne": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Quiet kitchen at home in the evening, a school notebook being opened, a pen signing paper, a clock ticking, no voices, no music"
+ },
+ "B1-s71": {
+  "n": 71,
+  "theme": "Vie sociale et loisirs",
+  "lieu": "Inviter quelqu'un chez soi / être invité à dîner",
+  "situation": "Expliquer un régime alimentaire et refuser poliment sans vexer",
+  "repliques": [
+   [
+    "Hôte",
+    "Vous reprenez un peu de rôti de porc ?"
+   ],
+   [
+    "Invité",
+    "C'est très gentil, mais je ne mange pas de porc. J'aurais dû vous le dire avant, je suis désolé."
+   ],
+   [
+    "Hôte",
+    "Oh, je suis désolée, je ne savais pas ! Vous n'avez rien mangé alors ?"
+   ],
+   [
+    "Invité",
+    "Ne vous inquiétez pas, j'ai pris beaucoup de légumes et de salade, c'était délicieux."
+   ],
+   [
+    "Hôte",
+    "La prochaine fois, dites-le-moi, je ferai autre chose."
+   ],
+   [
+    "Invité",
+    "Merci, c'est très attentionné. Et la prochaine fois, c'est moi qui vous invite."
+   ]
+  ],
+  "voix": {
+   "Hôte": "TKoAvBNxOwnhLtxm7NYM",
+   "Invité": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Quiet living room, soft room tone, a cup set down on a table, light rain outside the window, no voices, no music"
+ },
+ "B1-s72": {
+  "n": 72,
+  "theme": "Vie sociale et loisirs",
+  "lieu": "À la salle de sport",
+  "situation": "Résilier un abonnement avec engagement",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, je voudrais résilier mon abonnement. Je déménage dans une autre région le mois prochain."
+   ],
+   [
+    "Accueil",
+    "Votre contrat a un engagement de douze mois. Il vous reste cinq mois."
+   ],
+   [
+    "Client",
+    "Je sais, mais un déménagement est un motif légitime dans votre contrat, article 8."
+   ],
+   [
+    "Accueil",
+    "Effectivement. Il me faut un justificatif : le nouveau bail ou une attestation de votre employeur."
+   ],
+   [
+    "Client",
+    "J'ai mon nouveau bail. Je dois envoyer une lettre recommandée ?"
+   ],
+   [
+    "Accueil",
+    "Vous pouvez aussi faire la demande ici, je vous donne un reçu. La résiliation prendra effet dans un mois."
+   ]
+  ],
+  "voix": {
+   "Client": "W01VS3mCiWjHO239CD72",
+   "Accueil": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Gym reception, distant weights clanking, a treadmill humming, a door closing, no voices, no music"
+ },
+ "B1-s73": {
+  "n": 73,
+  "theme": "Vie sociale et loisirs",
+  "lieu": "S'inscrire dans un club ou une association",
+  "situation": "Participer à l'assemblée générale et proposer une idée",
+  "repliques": [
+   [
+    "Présidente",
+    "Avez-vous des propositions pour l'année prochaine ?"
+   ],
+   [
+    "Membre",
+    "Oui. Je propose d'organiser un repas des cultures du monde, une fois par trimestre."
+   ],
+   [
+    "Présidente",
+    "Pouvez-vous expliquer l'objectif ?"
+   ],
+   [
+    "Membre",
+    "Créer des liens entre les habitants, et récolter un peu d'argent pour l'association. Chaque famille cuisinerait un plat de son pays."
+   ],
+   [
+    "Trésorier",
+    "Quel serait le budget ?"
+   ],
+   [
+    "Membre",
+    "Environ 200 euros pour la salle et les boissons. Si on vend les repas 5 euros, on peut gagner 300 euros. Je peux m'occuper de l'organisation avec deux autres bénévoles."
+   ]
+  ],
+  "voix": {
+   "Présidente": "4NTBwCMIWDfx48seeuxZ",
+   "Membre": "JFppi8XcU3D1RvkAikO5",
+   "Trésorier": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Outdoor football ground in the evening, distant players calling without clear words, a ball being kicked, a coach whistle far away, no music"
+ },
+ "B1-s74": {
+  "n": 74,
+  "theme": "Vie sociale et loisirs",
+  "lieu": "Au théâtre / au concert / au stade",
+  "situation": "Événement annulé ou reporté : demander un remboursement",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, le concert de samedi est reporté au mois de mars. Je ne pourrai pas venir à cette date."
+   ],
+   [
+    "Billetterie",
+    "Vous pouvez garder votre billet pour la nouvelle date, ou demander un remboursement."
+   ],
+   [
+    "Client",
+    "Je préfère le remboursement. Comment je fais ?"
+   ],
+   [
+    "Billetterie",
+    "Remplissez le formulaire sur notre site avant le 31 décembre."
+   ],
+   [
+    "Client",
+    "Les frais de dossier sont remboursés aussi ? J'ai payé 4 euros par billet."
+   ],
+   [
+    "Billetterie",
+    "Quand l'événement est reporté par l'organisateur, oui, tout est remboursé."
+   ]
+  ],
+  "voix": {
+   "Client": "3Yr319bDgMFZv5qX6yzA",
+   "Billetterie": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Concert hall box office in the evening, foyer ambience, distant indistinct crowd murmur without clear words, a ticket printer, no music"
+ },
+ "B1-s75": {
+  "n": 75,
+  "theme": "Vie sociale et loisirs",
+  "lieu": "À une fête de quartier / à un vide-grenier",
+  "situation": "Organiser une fête de quartier avec les voisins : répartir les tâches et gérer les désaccords",
+  "repliques": [
+   [
+    "Voisin 1",
+    "Pour la fête de quartier, il faut demander une autorisation à la mairie pour fermer la rue."
+   ],
+   [
+    "Voisine 2",
+    "Je m'en charge. Je connais bien la secrétaire de mairie."
+   ],
+   [
+    "Voisin 3",
+    "Moi, je ne suis pas d'accord pour la musique jusqu'à minuit. Il y a des personnes âgées dans la rue."
+   ],
+   [
+    "Voisin 1",
+    "On peut faire un compromis : de la musique jusqu'à 22 heures, puis seulement des discussions."
+   ],
+   [
+    "Voisin 3",
+    "D'accord, ça me va."
+   ],
+   [
+    "Voisine 2",
+    "Alors, chacun apporte un plat. Qui s'occupe des tables et des chaises ?"
+   ]
+  ],
+  "voix": {
+   "Voisin 1": "6pqL78prQKdL6zrRhG3N",
+   "Voisine 2": "TKoAvBNxOwnhLtxm7NYM",
+   "Voisin 3": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Outdoor neighbourhood flea market, distant indistinct crowd murmur without clear words, objects being moved on tables, birds, no music"
+ },
+ "B1-s76": {
+  "n": 76,
+  "theme": "Vie sociale et loisirs",
+  "lieu": "À un mariage",
+  "situation": "Faire un petit discours ou parler de traditions différentes",
+  "repliques": [
+   [
+    "Invitée française",
+    "Chez vous, au Mali, comment se passe un mariage ?"
+   ],
+   [
+    "Invité malien",
+    "C'est souvent plusieurs jours de fête, avec toute la famille, et parfois tout le village. Les familles se rencontrent avant le mariage."
+   ],
+   [
+    "Invitée française",
+    "Ici, en revanche, c'est souvent une seule journée : la mairie, parfois l'église, puis le repas."
+   ],
+   [
+    "Invité malien",
+    "J'aime bien le moment des discours. On n'en fait pas comme ça chez nous."
+   ],
+   [
+    "Invitée française",
+    "Tu veux dire quelques mots ?"
+   ],
+   [
+    "Invité malien",
+    "(lève son verre) Je voudrais porter un toast aux mariés. Je vous souhaite beaucoup de bonheur, et que votre maison soit toujours ouverte, comme aujourd'hui."
+   ]
+  ],
+  "voix": {
+   "Invitée française": "87kc04olBn8nRQKuNmaf",
+   "Invité malien": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Outdoor wedding reception, distant cheerful chatter without clear words, glasses clinking, light wind, no music"
+ },
+ "B1-s77": {
+  "n": 77,
+  "theme": "Vie sociale et loisirs",
+  "lieu": "Au lieu de culte",
+  "situation": "Expliquer une fête religieuse ou une tradition à un collègue",
+  "repliques": [
+   [
+    "Collègue",
+    "Tu ne déjeunes pas avec nous ce midi ?"
+   ],
+   [
+    "Employé",
+    "Non, c'est le ramadan. Je jeûne du lever au coucher du soleil."
+   ],
+   [
+    "Collègue",
+    "Pendant tout le mois ? Ce n'est pas trop difficile, avec le travail ?"
+   ],
+   [
+    "Employé",
+    "Les premiers jours, si. Après, on s'habitue. Le soir, on mange en famille ; c'est un moment de partage."
+   ],
+   [
+    "Collègue",
+    "Et à la fin du mois, il y a une fête ?"
+   ],
+   [
+    "Employé",
+    "Oui, l'Aïd. J'ai demandé un jour de congé. Je vous apporterai des gâteaux le lendemain !"
+   ]
+  ],
+  "voix": {
+   "Collègue": "JFppi8XcU3D1RvkAikO5",
+   "Employé": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Quiet church entrance, large stone space, soft footsteps, a distant heavy door, no voices, no music"
+ },
+ "B1-s78": {
+  "n": 78,
+  "theme": "Communication",
+  "lieu": "Téléphoner (se présenter, laisser un message)",
+  "situation": "Gérer un appel difficile : mal comprendre, faire répéter, reformuler",
+  "repliques": [
+   [
+    "Conseillère",
+    "… et donc il faudra envoyer l'attestation avant le quinze, sinon le dossier sera clôturé."
+   ],
+   [
+    "Appelant",
+    "Excusez-moi, la ligne est mauvaise. Vous pouvez répéter plus lentement, s'il vous plaît ?"
+   ],
+   [
+    "Conseillère",
+    "Il faut envoyer l'attestation avant le 15 décembre."
+   ],
+   [
+    "Appelant",
+    "Si j'ai bien compris, je dois envoyer l'attestation de mon employeur avant le 15 décembre, sinon mon dossier sera fermé. C'est bien ça ?"
+   ],
+   [
+    "Conseillère",
+    "Exactement."
+   ],
+   [
+    "Appelant",
+    "Pouvez-vous m'épeler l'adresse e-mail ? Et est-ce que vous pouvez me confirmer tout ça par écrit ?"
+   ]
+  ],
+  "voix": {
+   "Conseillère": "RXG6r6Qewwp92BIFIBhE",
+   "Appelant": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Phone call with a bad line, crackling and phone line hiss, quiet room, no voices, no music"
+ },
+ "B1-s79": {
+  "n": 79,
+  "theme": "Communication",
+  "lieu": "Écrire un mail simple",
+  "situation": "Écrire un mail de réclamation clair et poli",
+  "repliques": [
+   [
+    "Mail",
+    "Objet : Réclamation – commande n° 45821"
+   ],
+   [
+    "Mail",
+    "Madame, Monsieur, le 3 novembre, j'ai commandé une bouilloire sur votre site. Je l'ai reçue le 10 novembre, mais elle ne fonctionne pas."
+   ],
+   [
+    "Mail",
+    "Je vous serais reconnaissant de bien vouloir me la remplacer ou me rembourser. Vous trouverez en pièces jointes la facture et une photo."
+   ],
+   [
+    "Mail",
+    "Dans l'attente de votre réponse, je vous prie d'agréer mes salutations distinguées. Karim Mansour."
+   ],
+   [
+    "Consigne",
+    "Repérez les quatre parties du mail (contexte, problème, demande, politesse), puis écrivez une réclamation pour un colis jamais livré."
+   ]
+  ],
+  "voix": {
+   "Mail": "6pqL78prQKdL6zrRhG3N",
+   "Consigne": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Quiet room, an email notification sound at the very start, computer keyboard typing, a mouse click, no voices, no music"
+ },
+ "B1-s80": {
+  "n": 80,
+  "theme": "Travail",
+  "lieu": "Lire une offre d'emploi",
+  "situation": "Analyser une offre et préparer sa candidature",
+  "repliques": [
+   [
+    "Offre",
+    "Aide-cuisinier H/F – Restaurant collectif – CDI 35 h – Salaire : 1 900 € brut + 13e mois – Tickets-restaurant – Mutuelle d'entreprise."
+   ],
+   [
+    "Offre",
+    "Vous assurez la préparation des entrées et des desserts, le respect des règles d'hygiène (HACCP) et le nettoyage du poste."
+   ],
+   [
+    "Offre",
+    "Une première expérience en cuisine est demandée. Formation HACCP appréciée."
+   ],
+   [
+    "Consigne 1",
+    "Quelle est la différence entre salaire brut et salaire net ? Quels sont les avantages de ce poste ?"
+   ],
+   [
+    "Consigne 2",
+    "Listez vos trois points forts pour ce poste, puis rédigez trois phrases de votre lettre de motivation."
+   ]
+  ],
+  "voix": {
+   "Offre": "87kc04olBn8nRQKuNmaf",
+   "Consigne 1": "4NTBwCMIWDfx48seeuxZ",
+   "Consigne 2": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Quiet room, a newspaper page turning, a pen tapping on a table, no voices, no music"
+ },
+ "B1-s81": {
+  "n": 81,
+  "theme": "Travail",
+  "lieu": "Le premier jour de travail",
+  "situation": "Clarifier ses missions et ce qui n'a pas été dit au recrutement",
+  "repliques": [
+   [
+    "Nouvelle employée",
+    "Avant de commencer, je voudrais clarifier deux ou trois points, si vous avez un moment."
+   ],
+   [
+    "Responsable",
+    "Bien sûr."
+   ],
+   [
+    "Nouvelle employée",
+    "À l'entretien, on m'a parlé d'accueil des clients. Mais sur le planning, je suis aussi en caisse et en réserve. C'est normal ?"
+   ],
+   [
+    "Responsable",
+    "Oui, au début, tout le monde tourne sur les postes. Ensuite, vous serez surtout à l'accueil."
+   ],
+   [
+    "Nouvelle employée",
+    "D'accord. Et les heures supplémentaires, elles sont payées ou récupérées ?"
+   ],
+   [
+    "Responsable",
+    "Payées, avec une majoration. Votre période d'essai est de deux mois ; on fera un point à la fin du premier mois."
+   ]
+  ],
+  "voix": {
+   "Nouvelle employée": "4NTBwCMIWDfx48seeuxZ",
+   "Responsable": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Reception of a small workshop company, quiet room tone, a distant machine humming, a door opening, footsteps, no voices, no music"
+ },
+ "B1-s82": {
+  "n": 82,
+  "theme": "Travail",
+  "lieu": "Avec un collègue (se présenter, demander de l'aide)",
+  "situation": "Gérer un malentendu ou un désaccord avec un collègue",
+  "repliques": [
+   [
+    "Collègue",
+    "Tu as encore laissé le poste en désordre hier soir. C'est moi qui ai dû tout ranger ce matin."
+   ],
+   [
+    "Employée",
+    "Je suis désolée, mais hier je suis partie à 17 heures, et c'est Marc qui a travaillé après moi."
+   ],
+   [
+    "Collègue",
+    "Ah bon ? Je pensais que c'était toi."
+   ],
+   [
+    "Employée",
+    "Je comprends que ce soit énervant. On pourrait faire une petite liste de ce qu'il faut ranger à la fin de chaque poste ?"
+   ],
+   [
+    "Collègue",
+    "Oui, c'est une bonne idée. Désolé de t'avoir accusée."
+   ],
+   [
+    "Employée",
+    "Pas de souci. On en parle au chef d'équipe à la réunion de lundi ?"
+   ]
+  ],
+  "voix": {
+   "Collègue": "3Yr319bDgMFZv5qX6yzA",
+   "Employée": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Warehouse break area, a distant forklift beeping, cardboard boxes being moved, quiet room tone, no voices, no music"
+ },
+ "B1-s83": {
+  "n": 83,
+  "theme": "Travail",
+  "lieu": "Prévenir d'un retard",
+  "situation": "Retards répétés : expliquer sa situation et trouver une solution durable",
+  "repliques": [
+   [
+    "Responsable",
+    "Fatou, c'est la quatrième fois ce mois-ci que vous arrivez en retard. Je dois vous en parler."
+   ],
+   [
+    "Employée",
+    "Vous avez raison, je suis désolée. Depuis un mois, la crèche de ma fille ouvre à 7 h 45 au lieu de 7 h. Je ne peux pas arriver à 8 h."
+   ],
+   [
+    "Responsable",
+    "Il fallait me le dire plus tôt. Les retards répétés peuvent donner un avertissement."
+   ],
+   [
+    "Employée",
+    "Je le sais. Est-ce que je pourrais commencer à 8 h 30 et finir à 17 h 30 ?"
+   ],
+   [
+    "Responsable",
+    "C'est possible, si l'équipe est d'accord. Je vous réponds demain."
+   ],
+   [
+    "Employée",
+    "Merci. Je m'engage à respecter ces nouveaux horaires."
+   ]
+  ],
+  "voix": {
+   "Responsable": "TKoAvBNxOwnhLtxm7NYM",
+   "Employée": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Small office, quiet room tone, a door closing at the very start, no voices, no music"
+ },
+ "B1-s84": {
+  "n": 84,
+  "theme": "Administrations",
+  "lieu": "À la préfecture",
+  "situation": "Titre expiré, nouveau titre en attente : demander un document provisoire pour son employeur",
+  "repliques": [
+   [
+    "Usager",
+    "Bonjour, j'ai fait ma demande de renouvellement en ligne il y a trois mois. Mon titre expire la semaine prochaine, et je n'ai pas encore de réponse."
+   ],
+   [
+    "Agent",
+    "Votre demande est en cours d'instruction. Vous avez reçu une attestation de prolongation d'instruction ?"
+   ],
+   [
+    "Usager",
+    "Non. Mon employeur me dit que sans document valable, il ne peut pas me garder."
+   ],
+   [
+    "Agent",
+    "L'attestation doit être disponible dans votre espace en ligne. Elle prouve que votre séjour est régulier et vous permet de continuer à travailler, si votre titre actuel vous y autorise."
+   ],
+   [
+    "Usager",
+    "Je n'arrive pas à la trouver. Vous pouvez vérifier, s'il vous plaît ?"
+   ],
+   [
+    "Agent",
+    "Je regarde… Elle a été générée hier. Je vous l'imprime. Donnez-en une copie à votre employeur."
+   ]
+  ],
+  "voix": {
+   "Usager": "W01VS3mCiWjHO239CD72",
+   "Agent": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Prefecture waiting room, a queue number display chime, chairs, distant indistinct murmur without clear words, no music"
+ },
+ "B1-s85": {
+  "n": 85,
+  "theme": "Administrations",
+  "lieu": "À l'OFII",
+  "situation": "Absence à une formation : se justifier et demander à la reporter",
+  "repliques": [
+   [
+    "Usagère",
+    "Bonjour, j'ai manqué deux jours de formation civique la semaine dernière. J'ai reçu un courrier."
+   ],
+   [
+    "Agent",
+    "Oui, l'assiduité est obligatoire. Pourquoi étiez-vous absente ?"
+   ],
+   [
+    "Usagère",
+    "Mon fils a été hospitalisé en urgence. J'ai le bulletin d'hospitalisation."
+   ],
+   [
+    "Agent",
+    "C'est un motif justifié. Envoyez-le-nous par e-mail ou déposez-le ici."
+   ],
+   [
+    "Usagère",
+    "Est-ce que je peux rattraper les deux jours ?"
+   ],
+   [
+    "Agent",
+    "Oui, je vous inscris sur la prochaine session. Il est important que le contrat soit respecté : il est pris en compte pour le renouvellement de votre titre."
+   ]
+  ],
+  "voix": {
+   "Usagère": "4NTBwCMIWDfx48seeuxZ",
+   "Agent": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Administrative office interview room, quiet room tone, papers, a pen, no voices, no music"
+ },
+ "B1-s86": {
+  "n": 86,
+  "theme": "Administrations",
+  "lieu": "À la CAF",
+  "situation": "Contester un trop-perçu réclamé par la CAF",
+  "repliques": [
+   [
+    "Usagère",
+    "Bonjour, j'ai reçu un courrier : la CAF me demande de rembourser 1 200 euros de trop-perçu. Je ne comprends pas."
+   ],
+   [
+    "Conseiller",
+    "Je regarde… Vous avez repris un travail en mars, mais vos déclarations trimestrielles indiquent zéro revenu."
+   ],
+   [
+    "Usagère",
+    "Je me suis trompée. Je pensais qu'il fallait déclarer seulement après la période d'essai."
+   ],
+   [
+    "Conseiller",
+    "Les revenus doivent être déclarés dès le premier mois. Le montant est donc dû."
+   ],
+   [
+    "Usagère",
+    "Je ne peux pas rembourser 1 200 euros d'un coup. J'ai deux enfants, et mon salaire est de 1 300 euros."
+   ],
+   [
+    "Conseiller",
+    "Vous pouvez demander un échéancier, ou une remise de dette si votre situation est difficile. Écrivez un recours amiable avec vos justificatifs de revenus et de charges."
+   ]
+  ],
+  "voix": {
+   "Usagère": "RXG6r6Qewwp92BIFIBhE",
+   "Conseiller": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Public service office reception, quiet room tone, a queue ticket beep, papers, distant footsteps, no voices, no music"
+ },
+ "B1-s87": {
+  "n": 87,
+  "theme": "Administrations",
+  "lieu": "À la CPAM / à l'Assurance maladie",
+  "situation": "Demander la Complémentaire santé solidaire et faire face à un refus",
+  "repliques": [
+   [
+    "Usager",
+    "Bonjour, ma demande de Complémentaire santé solidaire a été refusée. Je ne comprends pas pourquoi."
+   ],
+   [
+    "Agente",
+    "Vos ressources dépassent le plafond pour la C2S gratuite. Mais vous avez droit à la C2S avec une participation."
+   ],
+   [
+    "Usager",
+    "Combien je vais payer ?"
+   ],
+   [
+    "Agente",
+    "Pour votre âge, environ 25 euros par mois et par personne."
+   ],
+   [
+    "Usager",
+    "Les revenus pris en compte sont ceux de l'année dernière. Cette année, j'ai perdu mon emploi, mes revenus ont beaucoup baissé."
+   ],
+   [
+    "Agente",
+    "Dans ce cas, envoyez-nous une nouvelle demande avec vos justificatifs récents : attestation France Travail et derniers relevés. Nous pourrons réexaminer votre dossier."
+   ]
+  ],
+  "voix": {
+   "Usager": "6pqL78prQKdL6zrRhG3N",
+   "Agente": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Health insurance office, quiet room tone, keyboard typing, a printer, papers, no voices, no music"
+ },
+ "B1-s88": {
+  "n": 88,
+  "theme": "Administrations",
+  "lieu": "À France Travail",
+  "situation": "Radiation ou sanction : expliquer sa situation et demander un réexamen",
+  "repliques": [
+   [
+    "Usager",
+    "Bonjour, j'ai reçu un courrier qui dit que je vais être radié parce que je n'ai pas répondu à une convocation."
+   ],
+   [
+    "Conseiller",
+    "Oui, vous aviez un rendez-vous le 4 novembre, et vous n'êtes pas venu."
+   ],
+   [
+    "Usager",
+    "Je n'ai jamais reçu cette convocation. J'ai changé d'adresse e-mail en octobre, et je l'ai signalé ici, à l'accueil."
+   ],
+   [
+    "Conseiller",
+    "Dans votre dossier, c'est encore l'ancienne adresse."
+   ],
+   [
+    "Usager",
+    "Alors ce n'est pas de ma faute. Qu'est-ce que je peux faire ?"
+   ],
+   [
+    "Conseiller",
+    "Le courrier vous laisse dix jours pour présenter vos observations. Écrivez en expliquant le changement d'adresse ; je mets à jour votre e-mail et je note dans le dossier que vous êtes venu aujourd'hui."
+   ]
+  ],
+  "voix": {
+   "Usager": "W01VS3mCiWjHO239CD72",
+   "Conseiller": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Employment agency office, quiet room tone, computer keyboard typing, a mouse clicking, distant footsteps, no voices, no music"
+ },
+ "B1-s89": {
+  "n": 89,
+  "theme": "Administrations",
+  "lieu": "Au centre des impôts",
+  "situation": "Comprendre le prélèvement à la source et corriger un taux trop élevé",
+  "repliques": [
+   [
+    "Usagère",
+    "Bonjour, depuis janvier, on prélève 7 % sur mon salaire. Avant, c'était 0 %. Pourquoi ?"
+   ],
+   [
+    "Agent",
+    "Votre taux a été calculé sur vos revenus de l'année dernière, quand vous étiez en couple et sans enfant."
+   ],
+   [
+    "Usagère",
+    "Depuis, j'ai eu un bébé et je me suis séparée. Mes revenus ont baissé."
+   ],
+   [
+    "Agent",
+    "C'est un changement de situation. Vous devez le déclarer dans votre espace particulier, rubrique « Gérer mon prélèvement à la source »."
+   ],
+   [
+    "Usagère",
+    "Et mon taux va changer tout de suite ?"
+   ],
+   [
+    "Agent",
+    "Il sera recalculé, et il s'appliquera sur vos salaires dans deux ou trois mois. Le trop-payé sera régularisé l'année prochaine."
+   ]
+  ],
+  "voix": {
+   "Usagère": "4NTBwCMIWDfx48seeuxZ",
+   "Agent": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Tax office hall, quiet room tone, a letter dropped into a box, footsteps on tiles, no voices, no music"
+ },
+ "B1-s90": {
+  "n": 90,
+  "theme": "Administrations",
+  "lieu": "À la maison France Services",
+  "situation": "Préparer un dossier complexe : aide, justificatifs manquants, délais",
+  "repliques": [
+   [
+    "Usager",
+    "Bonjour, je dois faire trois choses : renouveler ma demande de logement social, déclarer un changement à la CAF, et faire ma déclaration d'impôts. Je suis perdu."
+   ],
+   [
+    "Conseillère",
+    "Commençons par les dates limites. La déclaration d'impôts est à faire avant le 22 mai."
+   ],
+   [
+    "Usager",
+    "Pour le logement social, il me manque l'avis d'imposition."
+   ],
+   [
+    "Conseillère",
+    "Vous pouvez le télécharger dans votre espace impôts. Je vous montre."
+   ],
+   [
+    "Usager",
+    "Et pour la CAF, je dois déclarer que ma fille a 20 ans et qu'elle travaille."
+   ],
+   [
+    "Conseillère",
+    "D'accord. Je vous fais un récapitulatif écrit : ce qu'on fait aujourd'hui, ce qu'il manque, et les dates. Vous reviendrez jeudi pour finir."
+   ]
+  ],
+  "voix": {
+   "Usager": "3Yr319bDgMFZv5qX6yzA",
+   "Conseillère": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Public service help desk, quiet room tone, keyboard typing, a chair being pulled, no voices, no music"
+ },
+ "B1-s91": {
+  "n": 91,
+  "theme": "Administrations",
+  "lieu": "Chez l'assistante sociale",
+  "situation": "Dette de loyer et risque d'expulsion : construire un plan d'action",
+  "repliques": [
+   [
+    "Usagère",
+    "J'ai reçu un « commandement de payer » d'un huissier. Je dois 2 400 euros de loyer."
+   ],
+   [
+    "Assistante sociale",
+    "C'est sérieux, mais il y a des solutions. Avez-vous parlé à votre bailleur ?"
+   ],
+   [
+    "Usagère",
+    "Non, j'avais honte."
+   ],
+   [
+    "Assistante sociale",
+    "Il faut le contacter rapidement. Je vais faire une demande au Fonds de solidarité logement, le FSL, pour une partie de la dette."
+   ],
+   [
+    "Usagère",
+    "Et le reste ?"
+   ],
+   [
+    "Assistante sociale",
+    "On proposera au bailleur un plan d'apurement : vous rembourserez un peu chaque mois, en plus du loyer. Si vous avez d'autres dettes, on pourra envisager un dossier de surendettement."
+   ]
+  ],
+  "voix": {
+   "Usagère": "TKoAvBNxOwnhLtxm7NYM",
+   "Assistante sociale": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Social services reception, quiet room tone, a phone ringing once far away, papers, no voices, no music"
+ },
+ "B1-s92": {
+  "n": 92,
+  "theme": "Administrations",
+  "lieu": "Au consulat / à l'ambassade",
+  "situation": "Passeport perdu avant un voyage urgent : obtenir un document de voyage",
+  "repliques": [
+   [
+    "Usager",
+    "Bonjour, mon père est très malade au pays. Je dois partir dans trois jours, mais j'ai perdu mon passeport."
+   ],
+   [
+    "Agent",
+    "Vous avez fait une déclaration de perte ?"
+   ],
+   [
+    "Usager",
+    "Oui, au commissariat, hier. La voilà."
+   ],
+   [
+    "Agent",
+    "Un nouveau passeport prend plusieurs semaines. Dans l'urgence, nous pouvons délivrer un laissez-passer, valable pour un seul voyage."
+   ],
+   [
+    "Usager",
+    "Qu'est-ce qu'il faut pour prouver mon identité ?"
+   ],
+   [
+    "Agent",
+    "Une copie de l'ancien passeport, votre carte consulaire ou votre titre de séjour, et un justificatif de l'urgence, par exemple un certificat médical de votre père."
+   ]
+  ],
+  "voix": {
+   "Usager": "W01VS3mCiWjHO239CD72",
+   "Agent": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Consulate waiting hall, quiet echoing room, a queue ticket chime, footsteps, no voices, no music"
+ },
+ "B1-s93": {
+  "n": 93,
+  "theme": "Administrations",
+  "lieu": "Au commissariat / à la gendarmerie (déclarer une perte ou un vol)",
+  "situation": "Porter plainte : raconter précisément, faire corriger le procès-verbal",
+  "repliques": [
+   [
+    "Policier",
+    "Je vous relis votre déposition : « Le 10 novembre, vers 18 heures, ma voiture a été fracturée sur le parking du supermarché… »"
+   ],
+   [
+    "Usagère",
+    "Excusez-moi, ce n'était pas à 18 heures. Je suis arrivée à 17 h 30 et je suis ressortie à 18 h 15. Le vol a eu lieu entre les deux."
+   ],
+   [
+    "Policier",
+    "Je corrige. On vous a pris quoi ?"
+   ],
+   [
+    "Usagère",
+    "Mon sac, avec mon ordinateur portable et des documents de travail. Une dame m'a dit qu'elle avait vu un homme près de ma voiture. J'ai son numéro."
+   ],
+   [
+    "Policier",
+    "Très bien, je note le témoin. Le supermarché a des caméras ; nous allons demander les images."
+   ],
+   [
+    "Usagère",
+    "Je peux avoir une copie du procès-verbal pour mon assurance et mon employeur ?"
+   ]
+  ],
+  "voix": {
+   "Policier": "JFppi8XcU3D1RvkAikO5",
+   "Usagère": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Police station front desk, quiet room tone, keyboard typing, a distant door buzzer, no voices, no music"
+ },
+ "B1-s94": {
+  "n": 94,
+  "theme": "Administrations",
+  "lieu": "Chez le notaire / chez l'avocat",
+  "situation": "Comprendre un document avant de signer (achat, succession, bail commercial)",
+  "repliques": [
+   [
+    "Notaire",
+    "Voici le compromis de vente. Prenez le temps de le lire. Avez-vous des questions ?"
+   ],
+   [
+    "Acheteur",
+    "Oui. Ici, il y a une « condition suspensive d'obtention de prêt ». Qu'est-ce que ça veut dire ?"
+   ],
+   [
+    "Notaire",
+    "Si la banque refuse votre prêt, la vente est annulée et vous récupérez votre dépôt de garantie."
+   ],
+   [
+    "Acheteur",
+    "Et si je change d'avis ?"
+   ],
+   [
+    "Notaire",
+    "Vous avez dix jours de délai de rétractation après la signature, sans justification."
+   ],
+   [
+    "Acheteur",
+    "D'accord. Les frais de notaire, c'est combien exactement ? Je veux être sûr de mon budget avant de signer."
+   ]
+  ],
+  "voix": {
+   "Notaire": "3Yr319bDgMFZv5qX6yzA",
+   "Acheteur": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Lawyer's office reception, calm quiet room tone, a clock ticking, pages turning, no voices, no music"
+ },
+ "B1-s95": {
+  "n": 95,
+  "theme": "Administrations",
+  "lieu": "Faire une démarche en ligne",
+  "situation": "Démarche bloquée : comprendre un message d'erreur et contacter le bon service",
+  "repliques": [
+   [
+    "Écran",
+    "« Erreur : le fichier doit être au format PDF, JPG ou PNG, et ne pas dépasser 2 Mo. »"
+   ],
+   [
+    "Apprenante",
+    "Ma photo du justificatif fait 5 Mo. Qu'est-ce que je fais ?"
+   ],
+   [
+    "Formateur",
+    "Tu peux réduire la taille de la photo, ou scanner le document avec une application qui crée un PDF léger."
+   ],
+   [
+    "Apprenante",
+    "Ça marche ! Mais maintenant, le site affiche « Erreur technique, veuillez réessayer ultérieurement » depuis deux jours."
+   ],
+   [
+    "Formateur",
+    "Fais une capture d'écran du message, avec la date et l'heure. Ensuite, utilise le formulaire de contact ou appelle l'assistance."
+   ],
+   [
+    "Apprenante",
+    "Je vais aussi préciser que ma date limite est vendredi, pour ne pas être pénalisée."
+   ]
+  ],
+  "voix": {
+   "Écran": "TKoAvBNxOwnhLtxm7NYM",
+   "Apprenante": "87kc04olBn8nRQKuNmaf",
+   "Formateur": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Quiet room, computer keyboard typing, mouse clicks, no voices, no music"
+ },
+ "B1-s96": {
+  "n": 96,
+  "theme": "Logement",
+  "lieu": "À l'agence immobilière",
+  "situation": "Discrimination ou refus non justifié : demander des explications et connaître ses droits",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, mon dossier pour l'appartement de la rue Pasteur a été refusé. Je voudrais savoir pourquoi."
+   ],
+   [
+    "Agent",
+    "Le propriétaire a choisi un autre candidat."
+   ],
+   [
+    "Client",
+    "Mes revenus sont trois fois supérieurs au loyer et j'ai la garantie Visale. Au téléphone, votre collègue m'a demandé ma nationalité."
+   ],
+   [
+    "Agent",
+    "Ce n'est pas une question que nous devons poser, je m'en excuse."
+   ],
+   [
+    "Client",
+    "Pouvez-vous me confirmer par écrit le motif du refus ?"
+   ],
+   [
+    "Agent",
+    "Je vais en parler au propriétaire. Si vous pensez être victime de discrimination, vous pouvez aussi saisir le Défenseur des droits."
+   ]
+  ],
+  "voix": {
+   "Client": "W01VS3mCiWjHO239CD72",
+   "Agent": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Real estate agency office, quiet room tone, a door bell chimes once at the very start, papers, keyboard typing, no voices, no music"
+ },
+ "B1-s97": {
+  "n": 97,
+  "theme": "Logement",
+  "lieu": "Visiter un appartement",
+  "situation": "Repérer des défauts et négocier avant de signer",
+  "repliques": [
+   [
+    "Visiteuse",
+    "Je vois des taches noires au plafond de la salle de bains. Il y a de l'humidité ?"
+   ],
+   [
+    "Propriétaire",
+    "C'est juste un peu de condensation, il faut aérer."
+   ],
+   [
+    "Visiteuse",
+    "La fenêtre de la salle de bains ne s'ouvre pas, et il n'y a pas de ventilation. Avec deux jeunes enfants, je ne peux pas accepter un logement humide."
+   ],
+   [
+    "Propriétaire",
+    "Je peux repeindre avant votre arrivée."
+   ],
+   [
+    "Visiteuse",
+    "Repeindre ne suffit pas. Il faudrait installer une ventilation. Si vous vous engagez par écrit à faire les travaux avant mon entrée, je suis intéressée."
+   ],
+   [
+    "Propriétaire",
+    "D'accord, je fais faire un devis cette semaine, et on l'ajoute au bail."
+   ]
+  ],
+  "voix": {
+   "Visiteuse": "4NTBwCMIWDfx48seeuxZ",
+   "Propriétaire": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Empty apartment, footsteps echoing on a wooden floor, a door opening, light street noise through the window, no voices, no music"
+ },
+ "B1-s98": {
+  "n": 98,
+  "theme": "Logement",
+  "lieu": "Signer un bail / faire l'état des lieux",
+  "situation": "État des lieux : faire noter les défauts pour protéger son dépôt de garantie",
+  "repliques": [
+   [
+    "Agent",
+    "Dans le salon, tout est en bon état."
+   ],
+   [
+    "Locataire",
+    "Excusez-moi, il y a une rayure sur le parquet, près de la fenêtre, et une tache sur le mur. Je voudrais que ce soit noté."
+   ],
+   [
+    "Agent",
+    "C'est très petit."
+   ],
+   [
+    "Locataire",
+    "Peut-être, mais je ne veux pas qu'on me les reproche à mon départ. Je prends aussi des photos."
+   ],
+   [
+    "Agent",
+    "D'accord, je l'écris. Autre chose ?"
+   ],
+   [
+    "Locataire",
+    "Le robinet de la cuisine fuit. Et si je découvre un problème de chauffage cet hiver, je pourrai encore le signaler ?"
+   ],
+   [
+    "Agent",
+    "Pour le chauffage, oui, pendant le premier mois de chauffe. Pour le reste, vous avez dix jours après aujourd'hui."
+   ]
+  ],
+  "voix": {
+   "Agent": "3Yr319bDgMFZv5qX6yzA",
+   "Locataire": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Apartment entrance hall, keys jingling, a door lock turning, quiet echo, a pen on paper, no voices, no music"
+ },
+ "B1-s99": {
+  "n": 99,
+  "theme": "Logement",
+  "lieu": "Chez le bailleur social",
+  "situation": "Demander un logement adapté ou une mutation pour un motif sérieux",
+  "repliques": [
+   [
+    "Locataire",
+    "Bonjour, je suis locataire chez vous depuis cinq ans. Je voudrais demander une mutation dans un logement plus grand."
+   ],
+   [
+    "Conseillère",
+    "Quelle est votre situation ?"
+   ],
+   [
+    "Locataire",
+    "Nous sommes six dans un T3. Et mon fils est en fauteuil roulant depuis son accident. Il n'y a pas d'ascenseur."
+   ],
+   [
+    "Conseillère",
+    "Votre logement est sur-occupé et inadapté. Ce sont deux critères de priorité."
+   ],
+   [
+    "Locataire",
+    "Qu'est-ce que je dois fournir ?"
+   ],
+   [
+    "Conseillère",
+    "Un certificat médical et la reconnaissance de handicap de votre fils. Nous présenterons votre demande en commission avec un avis favorable."
+   ]
+  ],
+  "voix": {
+   "Locataire": "6pqL78prQKdL6zrRhG3N",
+   "Conseillère": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Social housing office reception, quiet room tone, keyboard typing, papers, no voices, no music"
+ },
+ "B1-s100": {
+  "n": 100,
+  "theme": "Logement",
+  "lieu": "Avec le propriétaire (réclamation, réparation)",
+  "situation": "Le propriétaire ne fait pas les réparations : mettre en demeure et connaître les recours",
+  "repliques": [
+   [
+    "Locataire",
+    "Monsieur Garnier, je vous ai signalé le problème de chauffage il y a un mois. Il fait 14 degrés dans l'appartement."
+   ],
+   [
+    "Propriétaire",
+    "Je n'ai pas encore trouvé d'entreprise disponible."
+   ],
+   [
+    "Locataire",
+    "Je comprends, mais mes enfants sont malades. Un logement doit être décent, et le chauffage en fait partie."
+   ],
+   [
+    "Propriétaire",
+    "Je fais au plus vite."
+   ],
+   [
+    "Locataire",
+    "Je vais vous envoyer une lettre recommandée avec une date limite. Si rien n'est fait, je saisirai la commission de conciliation."
+   ],
+   [
+    "Locataire",
+    "(plus tard, à l'ADIL) Bonjour, je voudrais être sûre de mes droits avant d'envoyer cette lettre."
+   ]
+  ],
+  "voix": {
+   "Locataire": "87kc04olBn8nRQKuNmaf",
+   "Propriétaire": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Apartment building hallway, quiet echo, a door closing, no voices, no music"
+ },
+ "B1-s101": {
+  "n": 101,
+  "theme": "Logement",
+  "lieu": "Avec les voisins (bruit, conflit)",
+  "situation": "Conflit persistant : passer par une médiation et connaître les étapes",
+  "repliques": [
+   [
+    "Locataire",
+    "Je viens vous voir, monsieur le gardien, parce que la situation avec mes voisins du troisième ne s'améliore pas. J'ai parlé avec eux deux fois, je leur ai écrit un mot."
+   ],
+   [
+    "Gardien",
+    "Ils font du bruit à quelle heure ?"
+   ],
+   [
+    "Locataire",
+    "Tous les week-ends, jusqu'à 3 heures du matin. J'ai noté les dates, et deux autres voisins se plaignent aussi."
+   ],
+   [
+    "Gardien",
+    "Je vais prévenir le bailleur. Il peut leur envoyer un courrier de rappel au règlement."
+   ],
+   [
+    "Locataire",
+    "Et si ça continue ?"
+   ],
+   [
+    "Gardien",
+    "Il y a un service de médiation gratuit à la mairie. Sinon, un conciliateur de justice. C'est mieux que d'aller directement au tribunal."
+   ]
+  ],
+  "voix": {
+   "Locataire": "JFppi8XcU3D1RvkAikO5",
+   "Gardien": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Apartment landing in the evening, a door opening at the very start, muffled loud instrumental bass music through the door, no vocals"
+ },
+ "B1-s102": {
+  "n": 102,
+  "theme": "Logement",
+  "lieu": "Avec le gardien / le syndic",
+  "situation": "Contester une régularisation de charges trop élevée",
+  "repliques": [
+   [
+    "Locataire",
+    "Bonjour, j'ai reçu la régularisation des charges : je dois payer 480 euros de plus. C'est beaucoup."
+   ],
+   [
+    "Syndic",
+    "C'est principalement l'eau chaude et le chauffage collectif. Les prix de l'énergie ont augmenté."
+   ],
+   [
+    "Locataire",
+    "Je comprends, mais j'ai été absente trois mois l'année dernière. Ma consommation devrait être plus faible."
+   ],
+   [
+    "Syndic",
+    "Le chauffage collectif est réparti selon la surface, pas selon la présence."
+   ],
+   [
+    "Locataire",
+    "D'accord, mais l'eau chaude est individuelle. Je voudrais consulter les relevés de mon compteur et les factures."
+   ],
+   [
+    "Syndic",
+    "C'est votre droit. Vous pouvez venir les consulter à l'agence pendant six mois."
+   ]
+  ],
+  "voix": {
+   "Locataire": "3Yr319bDgMFZv5qX6yzA",
+   "Syndic": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Apartment building entrance hall, footsteps, a parcel being handed over, quiet echo, no voices, no music"
+ },
+ "B1-s103": {
+  "n": 103,
+  "theme": "Logement",
+  "lieu": "Appeler un plombier, un électricien, un chauffagiste",
+  "situation": "Travaux mal faits ou facture différente du devis : réclamer",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, votre technicien est venu changer la chaudière la semaine dernière. Depuis, elle s'arrête plusieurs fois par jour."
+   ],
+   [
+    "Chauffagiste",
+    "Ah ? Il faut peut-être la régler."
+   ],
+   [
+    "Client",
+    "Et la facture est de 3 400 euros. Le devis signé était de 2 900 euros. Personne ne m'a prévenu d'un supplément."
+   ],
+   [
+    "Chauffagiste",
+    "Il a dû changer une pièce supplémentaire."
+   ],
+   [
+    "Client",
+    "Un supplément doit être accepté avant les travaux. Je paierai le montant du devis. Et je voudrais que le technicien revienne cette semaine, gratuitement, puisque l'installation est sous garantie."
+   ],
+   [
+    "Chauffagiste",
+    "D'accord, je vous envoie quelqu'un jeudi, et je vérifie la facture."
+   ]
+  ],
+  "voix": {
+   "Client": "6pqL78prQKdL6zrRhG3N",
+   "Chauffagiste": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Quiet house, a gas boiler humming, a radiator ticking, no voices, no music"
+ },
+ "B1-s104": {
+  "n": 104,
+  "theme": "Logement",
+  "lieu": "Ouvrir un contrat d'électricité, de gaz, d'eau ou d'internet",
+  "situation": "Comprendre une facture d'énergie très élevée et négocier",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, ma facture d'électricité est de 420 euros pour deux mois. D'habitude, c'est 120 euros."
+   ],
+   [
+    "Conseiller",
+    "Votre facture précédente était une estimation. Cette fois, c'est un relevé réel du compteur : c'est une régularisation."
+   ],
+   [
+    "Cliente",
+    "Je ne peux pas payer 420 euros en une fois."
+   ],
+   [
+    "Conseiller",
+    "Je peux vous proposer un paiement en trois fois. Et je vous conseille la mensualisation : vous paierez la même somme chaque mois."
+   ],
+   [
+    "Cliente",
+    "Et pour éviter une estimation la prochaine fois ?"
+   ],
+   [
+    "Conseiller",
+    "Donnez votre index chaque mois sur votre espace client. Vérifiez aussi si vous avez droit au chèque énergie : il peut payer une partie de vos factures."
+   ]
+  ],
+  "voix": {
+   "Cliente": "87kc04olBn8nRQKuNmaf",
+   "Conseiller": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Customer service office, quiet room tone, keyboard typing, no voices, no music"
+ },
+ "B1-s105": {
+  "n": 105,
+  "theme": "Logement",
+  "lieu": "Déménager / louer un camion",
+  "situation": "Dommage pendant le déménagement : gérer le litige avec l'entreprise",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, vos déménageurs ont cassé mon miroir et rayé la table. Je l'ai remarqué après leur départ."
+   ],
+   [
+    "Responsable",
+    "Vous avez noté des réserves sur la lettre de voiture, à la livraison ?"
+   ],
+   [
+    "Cliente",
+    "Non, ils étaient pressés, j'ai signé sans tout vérifier."
+   ],
+   [
+    "Responsable",
+    "Dans ce cas, vous devez nous envoyer une lettre recommandée dans les dix jours, avec des photos."
+   ],
+   [
+    "Cliente",
+    "Je vais le faire aujourd'hui. Quelle indemnisation est prévue ?"
+   ],
+   [
+    "Responsable",
+    "Selon votre déclaration de valeur dans le contrat. Envoyez aussi les factures d'achat, si vous les avez."
+   ]
+  ],
+  "voix": {
+   "Cliente": "4NTBwCMIWDfx48seeuxZ",
+   "Responsable": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Van rental agency, quiet room tone, keys jingling, a van engine starting in the distance outside, no voices, no music"
+ },
+ "B1-s106": {
+  "n": 106,
+  "theme": "Voiture et transports",
+  "lieu": "Au garage",
+  "situation": "Réparation facturée sans accord et problème non résolu",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, je viens chercher ma voiture. La facture est de 680 euros, mais vous m'aviez parlé de 300 euros."
+   ],
+   [
+    "Garagiste",
+    "On a aussi changé l'embrayage, il était usé."
+   ],
+   [
+    "Client",
+    "Je n'ai jamais donné mon accord pour l'embrayage. J'avais demandé que vous m'appeliez avant."
+   ],
+   [
+    "Garagiste",
+    "Il aurait cassé bientôt, c'était pour votre sécurité."
+   ],
+   [
+    "Client",
+    "Peut-être, mais la loi dit que vous devez avoir mon accord. Et en plus, le bruit au freinage est toujours là."
+   ],
+   [
+    "Garagiste",
+    "Bon. Je vous facture seulement le devis initial et je regarde les freins gratuitement."
+   ]
+  ],
+  "voix": {
+   "Client": "3Yr319bDgMFZv5qX6yzA",
+   "Garagiste": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Car garage workshop, an air compressor, a pneumatic wrench, metal tools, no voices, no music"
+ },
+ "B1-s107": {
+  "n": 107,
+  "theme": "Voiture et transports",
+  "lieu": "À l'auto-école",
+  "situation": "Désaccord avec l'auto-école sur le nombre d'heures et le départ à l'examen",
+  "repliques": [
+   [
+    "Élève",
+    "Bonjour, j'ai fait trente heures de conduite. Mon moniteur dit que je ne suis pas encore prêt pour l'examen."
+   ],
+   [
+    "Directeur",
+    "Il vous a expliqué pourquoi ?"
+   ],
+   [
+    "Élève",
+    "Il dit que je ne regarde pas assez dans les rétroviseurs. Mais je pense que je suis prêt, et chaque heure coûte 55 euros."
+   ],
+   [
+    "Directeur",
+    "Je vous propose une heure d'évaluation avec un autre moniteur. Si vous êtes prêt, on vous inscrit à l'examen."
+   ],
+   [
+    "Élève",
+    "D'accord. Et si je veux changer d'auto-école ?"
+   ],
+   [
+    "Directeur",
+    "C'est votre droit. Le transfert de dossier est gratuit, mais j'espère qu'on trouvera une solution ensemble."
+   ]
+  ],
+  "voix": {
+   "Élève": "6pqL78prQKdL6zrRhG3N",
+   "Directeur": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Driving school office, quiet room tone, papers, light street traffic outside, no voices, no music"
+ },
+ "B1-s108": {
+  "n": 108,
+  "theme": "Voiture et transports",
+  "lieu": "Passer le code / le permis de conduire",
+  "situation": "Expliquer une règle de priorité et justifier une réponse au code",
+  "repliques": [
+   [
+    "Formateur",
+    "Question 12 : vous arrivez à ce carrefour sans panneau. Une voiture arrive à droite. Qui passe ?"
+   ],
+   [
+    "Apprenante",
+    "La voiture à droite, parce qu'il n'y a pas de panneau : c'est la priorité à droite."
+   ],
+   [
+    "Formateur",
+    "Bien. Et au rond-point ?"
+   ],
+   [
+    "Apprenante",
+    "Je cède le passage aux voitures qui sont déjà dans le rond-point, parce qu'il y a un panneau « Cédez le passage » à l'entrée."
+   ],
+   [
+    "Formateur",
+    "Et dans votre pays, c'est la même règle ?"
+   ],
+   [
+    "Apprenante",
+    "Non, chez nous, c'est souvent la voiture la plus grosse qui passe ! Ici, il faut regarder la signalisation, pas la taille."
+   ]
+  ],
+  "voix": {
+   "Formateur": "W01VS3mCiWjHO239CD72",
+   "Apprenante": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Driving theory classroom, quiet room, a projector fan humming, papers, no voices, no music"
+ },
+ "B1-s109": {
+  "n": 109,
+  "theme": "Voiture et transports",
+  "lieu": "Au contrôle technique",
+  "situation": "Défaillance critique : comprendre les conséquences et organiser la suite",
+  "repliques": [
+   [
+    "Contrôleur",
+    "Votre voiture a une défaillance critique : les freins avant sont dangereux."
+   ],
+   [
+    "Client",
+    "Qu'est-ce que je dois faire ?"
+   ],
+   [
+    "Contrôleur",
+    "Vous pouvez circuler aujourd'hui seulement, jusqu'à minuit, pour aller au garage. Après, la voiture ne doit plus rouler avant réparation."
+   ],
+   [
+    "Client",
+    "Et si je roule quand même demain ?"
+   ],
+   [
+    "Contrôleur",
+    "Vous risquez une amende et l'immobilisation du véhicule. Et en cas d'accident, votre assurance peut refuser de payer."
+   ],
+   [
+    "Client",
+    "D'accord. Le garage est à 30 kilomètres. Je préfère appeler une dépanneuse, c'est plus prudent."
+   ]
+  ],
+  "voix": {
+   "Contrôleur": "JFppi8XcU3D1RvkAikO5",
+   "Client": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Vehicle inspection centre, a car engine idling, metal tools, a garage door, no voices, no music"
+ },
+ "B1-s110": {
+  "n": 110,
+  "theme": "Voiture et transports",
+  "lieu": "À l'agence de location de voitures",
+  "situation": "Contester des frais de dommages après la restitution",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, vous m'avez débité 450 euros pour une rayure sur la portière. Cette rayure était déjà là quand j'ai pris la voiture."
+   ],
+   [
+    "Agent",
+    "Elle n'est pas notée sur l'état des lieux de départ."
+   ],
+   [
+    "Client",
+    "Votre collègue a fait l'état des lieux très vite. Mais j'ai pris des photos au départ, sur le parking de l'agence. Elles sont datées."
+   ],
+   [
+    "Agent",
+    "Vous pouvez me les montrer ?"
+   ],
+   [
+    "Client",
+    "Voilà : 8 h 03, le jour de la location. On voit la rayure."
+   ],
+   [
+    "Agent",
+    "Effectivement. Je fais une demande de remboursement des 450 euros."
+   ]
+  ],
+  "voix": {
+   "Client": "3Yr319bDgMFZv5qX6yzA",
+   "Agent": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Car rental desk in a station, quiet room tone, keyboard typing, keys jingling, distant indistinct murmur without clear words, no music"
+ },
+ "B1-s111": {
+  "n": 111,
+  "theme": "Voiture et transports",
+  "lieu": "Lors d'un contrôle routier",
+  "situation": "Expliquer sa situation lors d'un contrôle et garder une attitude adaptée",
+  "repliques": [
+   [
+    "Gendarme",
+    "Votre permis est un permis étranger. Depuis quand résidez-vous en France ?"
+   ],
+   [
+    "Conducteur",
+    "Depuis dix mois. J'ai déposé une demande d'échange de mon permis le mois dernier."
+   ],
+   [
+    "Gendarme",
+    "Vous avez la preuve de cette demande ?"
+   ],
+   [
+    "Conducteur",
+    "Oui, voici l'attestation de dépôt en ligne. Mon permis est valable en France pendant un an après l'obtention de mon premier titre de séjour."
+   ],
+   [
+    "Gendarme",
+    "C'est exact. Gardez toujours cette attestation dans la voiture."
+   ],
+   [
+    "Conducteur",
+    "Merci. Je le ferai. Est-ce que tout est en règle ?"
+   ]
+  ],
+  "voix": {
+   "Gendarme": "6pqL78prQKdL6zrRhG3N",
+   "Conducteur": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Roadside police check at night, a car window being lowered at the very start, a car engine idling, passing cars, no voices, no music"
+ },
+ "B1-s112": {
+  "n": 112,
+  "theme": "Voiture et transports",
+  "lieu": "Lors d'un accident (constat amiable)",
+  "situation": "Désaccord sur les circonstances : refuser de signer et défendre sa version",
+  "repliques": [
+   [
+    "Conducteur A",
+    "Vous avez grillé le feu rouge !"
+   ],
+   [
+    "Conductrice B",
+    "Non, il était orange quand j'ai traversé."
+   ],
+   [
+    "Conducteur A",
+    "Je ne vais pas signer un constat qui dit que nous sommes responsables tous les deux."
+   ],
+   [
+    "Conductrice B",
+    "Alors on écrit chacun notre version dans la case « observations ». Personne ne coche quelque chose qui n'est pas vrai."
+   ],
+   [
+    "Conducteur A",
+    "D'accord. Et ce monsieur, là, a tout vu. Monsieur, vous pouvez nous donner votre nom et votre téléphone comme témoin ?"
+   ],
+   [
+    "Témoin",
+    "Oui, bien sûr. Le feu était rouge pour la voiture blanche, j'en suis sûr."
+   ]
+  ],
+  "voix": {
+   "Conducteur A": "W01VS3mCiWjHO239CD72",
+   "Conductrice B": "87kc04olBn8nRQKuNmaf",
+   "Témoin": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Street after a minor car accident, hazard lights clicking, light traffic passing, car doors, no voices, no music"
+ },
+ "B1-s113": {
+  "n": 113,
+  "theme": "Argent",
+  "lieu": "Faire un virement / un transfert d'argent",
+  "situation": "Virement envoyé à la mauvaise personne ou arnaque : réagir rapidement",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, hier, quelqu'un m'a appelée en disant qu'il travaillait pour ma banque. Il m'a demandé de valider un virement pour « sécuriser mon compte »."
+   ],
+   [
+    "Conseiller",
+    "Vous avez validé ?"
+   ],
+   [
+    "Cliente",
+    "Oui, 1 500 euros. Ce matin, j'ai compris que c'était une arnaque."
+   ],
+   [
+    "Conseiller",
+    "Je bloque votre accès et je fais une demande de rappel de fonds tout de suite. Je ne peux pas vous promettre de récupérer l'argent."
+   ],
+   [
+    "Cliente",
+    "Qu'est-ce que je dois faire d'autre ?"
+   ],
+   [
+    "Conseiller",
+    "Portez plainte et faites un signalement en ligne. Et rappelez-vous : votre banque ne vous demandera jamais de valider une opération par téléphone."
+   ]
+  ],
+  "voix": {
+   "Cliente": "4NTBwCMIWDfx48seeuxZ",
+   "Conseiller": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Money transfer shop, quiet room tone, a receipt printer, a banknote counter whirring, no voices, no music"
+ },
+ "B1-s114": {
+  "n": 114,
+  "theme": "Argent",
+  "lieu": "Perdre sa carte bancaire (faire opposition)",
+  "situation": "Paiements frauduleux après le vol : demander le remboursement",
+  "repliques": [
+   [
+    "Client",
+    "J'ai fait opposition samedi matin, mais je vois deux paiements de vendredi soir que je n'ai pas faits : 340 euros et 210 euros."
+   ],
+   [
+    "Conseillère",
+    "Les paiements ont été faits avant l'opposition. Vous devez les contester."
+   ],
+   [
+    "Client",
+    "La banque va me rembourser ?"
+   ],
+   [
+    "Conseillère",
+    "En principe, oui, pour les opérations non autorisées, sauf négligence grave. Par exemple, si le code était écrit sur la carte."
+   ],
+   [
+    "Client",
+    "Non, je ne l'ai jamais écrit nulle part."
+   ],
+   [
+    "Conseillère",
+    "Remplissez ce formulaire de contestation et joignez votre plainte. Le remboursement est en général fait rapidement, puis la banque vérifie."
+   ]
+  ],
+  "voix": {
+   "Client": "3Yr319bDgMFZv5qX6yzA",
+   "Conseillère": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Bank branch office, quiet room tone, keyboard typing, no voices, no music"
+ },
+ "B1-s115": {
+  "n": 115,
+  "theme": "Argent",
+  "lieu": "Payer une facture / demander un échéancier",
+  "situation": "Demander un échéancier en expliquant ses difficultés",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, j'ai reçu une relance pour ma facture d'eau de 380 euros. Je ne peux pas la payer en une fois."
+   ],
+   [
+    "Conseillère",
+    "Quelle est votre situation ?"
+   ],
+   [
+    "Client",
+    "J'ai été en arrêt maladie pendant deux mois, avec un salaire plus faible. Je reprends le travail lundi."
+   ],
+   [
+    "Conseillère",
+    "Je peux vous proposer un échéancier en quatre mensualités de 95 euros."
+   ],
+   [
+    "Client",
+    "Est-ce que je dois payer des pénalités de retard ?"
+   ],
+   [
+    "Conseillère",
+    "Non, si vous respectez l'échéancier. Je vous l'envoie par écrit, et vous vous engagez à payer avant le 10 de chaque mois."
+   ]
+  ],
+  "voix": {
+   "Client": "6pqL78prQKdL6zrRhG3N",
+   "Conseillère": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Office payment counter, quiet room tone, a card terminal beep, a receipt printer, no voices, no music"
+ },
+ "B1-s116": {
+  "n": 116,
+  "theme": "Argent",
+  "lieu": "Chez l'assureur",
+  "situation": "Déclarer un sinistre et contester une indemnisation trop faible",
+  "repliques": [
+   [
+    "Assuré",
+    "Bonjour, j'ai reçu votre proposition d'indemnisation pour le dégât des eaux : 600 euros. Les réparations coûtent 2 100 euros."
+   ],
+   [
+    "Conseillère",
+    "L'expert a appliqué un coefficient de vétusté : votre parquet avait quinze ans."
+   ],
+   [
+    "Assuré",
+    "Je comprends, mais le devis du peintre et du menuisier n'a pas été pris en compte entièrement. J'ai aussi perdu un canapé."
+   ],
+   [
+    "Conseillère",
+    "Le canapé n'est pas dans le rapport de l'expert."
+   ],
+   [
+    "Assuré",
+    "Je l'ai montré à l'expert, et j'ai des photos. Je conteste cette indemnisation et je demande que mon dossier soit réexaminé."
+   ],
+   [
+    "Conseillère",
+    "Envoyez-nous les photos et les factures. Si vous n'êtes toujours pas d'accord, vous pouvez demander une contre-expertise ou saisir le médiateur de l'assurance."
+   ]
+  ],
+  "voix": {
+   "Assuré": "W01VS3mCiWjHO239CD72",
+   "Conseillère": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Insurance agency office, quiet room tone, keyboard typing, a printer printing a page, no voices, no music"
+ },
+ "B1-s117": {
+  "n": 117,
+  "theme": "Argent",
+  "lieu": "Au bureau de change",
+  "situation": "Erreur dans le calcul du change : vérifier et réclamer",
+  "repliques": [
+   [
+    "Client",
+    "Excusez-moi, je viens de compter : vous m'avez donné 1 950 livres turques pour 100 euros. Le taux affiché est de 35, donc je devrais avoir 3 500 livres moins la commission."
+   ],
+   [
+    "Employée",
+    "Montrez-moi le bordereau… Vous avez raison, j'ai appliqué un mauvais taux."
+   ],
+   [
+    "Client",
+    "Pouvez-vous recalculer devant moi ?"
+   ],
+   [
+    "Employée",
+    "100 euros fois 35, ça fait 3 500 livres. Moins 4 % de commission : 3 360 livres."
+   ],
+   [
+    "Client",
+    "Donc il manque 1 410 livres."
+   ],
+   [
+    "Employée",
+    "Exactement. Je vous les donne et je vous fais un nouveau bordereau. Toutes mes excuses."
+   ]
+  ],
+  "voix": {
+   "Client": "JFppi8XcU3D1RvkAikO5",
+   "Employée": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Currency exchange counter, quiet room tone, a banknote counter whirring, coins, no voices, no music"
+ },
+ "B1-s118": {
+  "n": 118,
+  "theme": "Argent",
+  "lieu": "Chez l'agent de voyages",
+  "situation": "Voyage annulé par l'agence ou modifié : faire valoir ses droits",
+  "repliques": [
+   [
+    "Cliente",
+    "Bonjour, l'agence a changé notre hôtel et nos horaires de vol. Ce n'est plus du tout le voyage que j'ai acheté."
+   ],
+   [
+    "Agent",
+    "L'hôtel prévu était complet. Nous vous proposons un autre hôtel de même catégorie."
+   ],
+   [
+    "Cliente",
+    "Il est à 20 kilomètres de la plage, alors que nous avions choisi un hôtel au bord de la mer. C'est une modification importante."
+   ],
+   [
+    "Agent",
+    "Dans ce cas, vous pouvez accepter la modification ou annuler le voyage."
+   ],
+   [
+    "Cliente",
+    "Si j'annule, je suis remboursée intégralement ?"
+   ],
+   [
+    "Agent",
+    "Oui, sans frais, sous quatorze jours. Nous pouvons aussi vous proposer un avoir avec 10 % de plus."
+   ]
+  ],
+  "voix": {
+   "Cliente": "RXG6r6Qewwp92BIFIBhE",
+   "Agent": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Travel agency office, quiet room tone, a door bell chimes once at the very start, keyboard typing, no voices, no music"
+ },
+ "B1-s119": {
+  "n": 119,
+  "theme": "Santé",
+  "lieu": "Aux urgences",
+  "situation": "Attente très longue et état qui s'aggrave : alerter et se faire entendre",
+  "repliques": [
+   [
+    "Accompagnant",
+    "Excusez-moi, nous attendons depuis quatre heures. L'état de ma mère s'aggrave."
+   ],
+   [
+    "Infirmière",
+    "Qu'est-ce qui a changé ?"
+   ],
+   [
+    "Accompagnant",
+    "Elle a maintenant du mal à parler, et sa main gauche ne bouge plus bien. Avant, elle avait seulement mal à la tête."
+   ],
+   [
+    "Infirmière",
+    "C'est important, merci de me le dire. Je la réévalue tout de suite."
+   ],
+   [
+    "Accompagnant",
+    "Je ne veux pas déranger, mais je suis très inquiet."
+   ],
+   [
+    "Infirmière",
+    "Vous avez bien fait. Ces symptômes sont prioritaires. Nous la prenons en charge maintenant."
+   ]
+  ],
+  "voix": {
+   "Accompagnant": "6pqL78prQKdL6zrRhG3N",
+   "Infirmière": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Hospital emergency department, a distant beeping monitor, a trolley rolling, distant indistinct murmur without clear words, no music"
+ },
+ "B1-s120": {
+  "n": 120,
+  "theme": "Santé",
+  "lieu": "À l'hôpital (admission, visite à un proche)",
+  "situation": "Parler avec le médecin d'un proche hospitalisé : comprendre et poser les bonnes questions",
+  "repliques": [
+   [
+    "Fille",
+    "Docteur, pouvez-vous m'expliquer comment va mon père ? Je suis sa personne de confiance."
+   ],
+   [
+    "Médecin",
+    "Il a fait un accident vasculaire cérébral. Il a été soigné rapidement, c'est positif. Mais il a des difficultés à marcher et à parler."
+   ],
+   [
+    "Fille",
+    "Est-ce que ça va s'améliorer ?"
+   ],
+   [
+    "Médecin",
+    "En partie, avec de la rééducation. Il est difficile de dire combien de temps cela prendra."
+   ],
+   [
+    "Fille",
+    "Quand pourra-t-il sortir ? Il vit seul."
+   ],
+   [
+    "Médecin",
+    "Il ira d'abord dans un centre de rééducation. L'assistante sociale de l'hôpital va vous aider à préparer la suite."
+   ]
+  ],
+  "voix": {
+   "Fille": "87kc04olBn8nRQKuNmaf",
+   "Médecin": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Hospital reception hall, large quiet space, footsteps, a lift chime, no voices, no music"
+ },
+ "B1-s121": {
+  "n": 121,
+  "theme": "Santé",
+  "lieu": "Chez le kinésithérapeute",
+  "situation": "Pas de progrès : en discuter et décider de la suite avec le kiné",
+  "repliques": [
+   [
+    "Patiente",
+    "Ça fait quinze séances, et j'ai toujours aussi mal à l'épaule. Je commence à me décourager."
+   ],
+   [
+    "Kiné",
+    "Vous faites les exercices à la maison ?"
+   ],
+   [
+    "Patiente",
+    "Oui, presque tous les jours. Mais au travail, je porte des cartons toute la journée."
+   ],
+   [
+    "Kiné",
+    "C'est sûrement pour ça. L'épaule n'a pas le temps de récupérer."
+   ],
+   [
+    "Patiente",
+    "Qu'est-ce que vous proposez ?"
+   ],
+   [
+    "Kiné",
+    "Je vais adapter les exercices, et je vous écris un compte rendu pour votre médecin. Il faudra peut-être un examen ou un aménagement de poste temporaire."
+   ]
+  ],
+  "voix": {
+   "Patiente": "4NTBwCMIWDfx48seeuxZ",
+   "Kiné": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Physiotherapy practice reception, quiet room tone, a phone ringing once far away, papers, no voices, no music"
+ },
+ "B1-s122": {
+  "n": 122,
+  "theme": "Santé",
+  "lieu": "Chez le gynécologue / la sage-femme",
+  "situation": "Exprimer ses préférences pour l'accouchement et poser des questions sensibles",
+  "repliques": [
+   [
+    "Patiente",
+    "Je voudrais parler de mon projet de naissance. Je ne suis pas sûre de vouloir la péridurale."
+   ],
+   [
+    "Sage-femme",
+    "Vous pourrez décider le jour même. Vous voulez qu'on parle des autres moyens contre la douleur ?"
+   ],
+   [
+    "Patiente",
+    "Oui, s'il vous plaît. Et mon mari doit être présent, c'est important pour nous."
+   ],
+   [
+    "Sage-femme",
+    "Bien sûr, c'est possible. Avez-vous d'autres souhaits ?"
+   ],
+   [
+    "Patiente",
+    "Je préférerais être examinée par une femme, si c'est possible. Et, comme je ne comprends pas tous les mots médicaux, je voudrais un interprète le jour de l'accouchement."
+   ],
+   [
+    "Sage-femme",
+    "Je note vos souhaits. L'équipe fera au mieux. Pour l'interprète, on peut organiser un service par téléphone."
+   ]
+  ],
+  "voix": {
+   "Patiente": "RXG6r6Qewwp92BIFIBhE",
+   "Sage-femme": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Medical practice reception, quiet room tone, keyboard typing, papers, no voices, no music"
+ },
+ "B1-s123": {
+  "n": 123,
+  "theme": "Santé",
+  "lieu": "Au centre de radiologie",
+  "situation": "Comprendre le compte rendu et demander une explication",
+  "repliques": [
+   [
+    "Patient",
+    "Bonjour, j'ai reçu le compte rendu de mon scanner. Il y a beaucoup de mots que je ne comprends pas : « nodule infracentimétrique ». C'est grave ?"
+   ],
+   [
+    "Radiologue",
+    "Cela veut dire une petite boule de moins d'un centimètre. Dans la grande majorité des cas, ce n'est pas grave."
+   ],
+   [
+    "Patient",
+    "Qu'est-ce que je dois faire ?"
+   ],
+   [
+    "Radiologue",
+    "Votre médecin va décider s'il faut une surveillance, par exemple un nouveau scanner dans quelques mois."
+   ],
+   [
+    "Patient",
+    "Est-ce que je dois m'inquiéter en attendant ?"
+   ],
+   [
+    "Radiologue",
+    "Je comprends votre inquiétude. Prenez rendez-vous avec votre médecin dans les prochaines semaines : c'est lui qui connaît votre dossier complet."
+   ]
+  ],
+  "voix": {
+   "Patient": "6pqL78prQKdL6zrRhG3N",
+   "Radiologue": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Radiology centre, quiet room tone, a machine humming, a changing cubicle door, no voices, no music"
+ },
+ "B1-s124": {
+  "n": 124,
+  "theme": "Santé",
+  "lieu": "Appeler le 15, le 18 ou le 112",
+  "situation": "Décrire une situation grave avec précision et suivre des instructions",
+  "repliques": [
+   [
+    "Opératrice",
+    "Pompiers, j'écoute."
+   ],
+   [
+    "Témoin",
+    "Il y a un accident sur la route départementale 19, entre Lure et Saint-Germain, juste après le pont. Une voiture est dans le fossé."
+   ],
+   [
+    "Opératrice",
+    "Combien de personnes sont blessées ?"
+   ],
+   [
+    "Témoin",
+    "Une seule, le conducteur. Il est conscient, mais il saigne à la tête et il a mal à la jambe."
+   ],
+   [
+    "Opératrice",
+    "Ne le déplacez pas. Appuyez sur la plaie avec un tissu propre. Mettez votre gilet jaune et votre triangle pour protéger les lieux."
+   ],
+   [
+    "Témoin",
+    "D'accord. Je reste avec lui et je lui parle jusqu'à votre arrivée."
+   ]
+  ],
+  "voix": {
+   "Opératrice": "87kc04olBn8nRQKuNmaf",
+   "Témoin": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Adult classroom, quiet room, papers, a pen tapping, no voices, no music"
+ },
+ "B1-s125": {
+  "n": 125,
+  "theme": "Travail",
+  "lieu": "Appeler pour une offre d'emploi",
+  "situation": "Convaincre au téléphone malgré un profil incomplet",
+  "repliques": [
+   [
+    "Recruteur",
+    "Merci pour votre appel. Mais nous cherchons quelqu'un avec le permis B, et vous ne l'avez pas."
+   ],
+   [
+    "Candidate",
+    "Je comprends. Je passe l'examen dans un mois. En attendant, j'habite à dix minutes en bus de l'entreprise."
+   ],
+   [
+    "Recruteur",
+    "Le poste demande des livraisons de temps en temps."
+   ],
+   [
+    "Candidate",
+    "Je pourrais m'occuper uniquement de la préparation des commandes au début, puis faire les livraisons après le permis."
+   ],
+   [
+    "Recruteur",
+    "Hum… Vous avez de l'expérience en préparation de commandes ?"
+   ],
+   [
+    "Candidate",
+    "Oui, trois ans dans une entreprise de logistique en Roumanie. Je vous propose une journée d'essai pour vous montrer mon travail."
+   ]
+  ],
+  "voix": {
+   "Recruteur": "JFppi8XcU3D1RvkAikO5",
+   "Candidate": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Phone call, quiet office, subtle phone line hiss, no voices, no music"
+ },
+ "B1-s126": {
+  "n": 126,
+  "theme": "Travail",
+  "lieu": "À l'entretien d'embauche",
+  "situation": "Répondre aux questions difficiles : défauts, trou dans le CV, salaire",
+  "repliques": [
+   [
+    "Recruteuse",
+    "Il y a deux ans sans emploi dans votre CV. Que s'est-il passé ?"
+   ],
+   [
+    "Candidat",
+    "Je suis arrivé en France en 2023. J'ai d'abord suivi une formation de français, puis une remise à niveau en mathématiques. C'était nécessaire pour travailler ici."
+   ],
+   [
+    "Recruteuse",
+    "Quel est votre principal défaut ?"
+   ],
+   [
+    "Candidat",
+    "Je suis parfois trop perfectionniste, je vérifie plusieurs fois. J'apprends à mieux m'organiser pour ne pas perdre de temps."
+   ],
+   [
+    "Recruteuse",
+    "Quelles sont vos prétentions salariales ?"
+   ],
+   [
+    "Candidat",
+    "Pour ce poste, avec mon expérience, je pensais à 1 950 euros brut. Mais je suis ouvert à la discussion, notamment sur la formation proposée."
+   ]
+  ],
+  "voix": {
+   "Recruteuse": "RXG6r6Qewwp92BIFIBhE",
+   "Candidat": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Quiet office, a chair being pulled, papers on a desk, a clock ticking, no voices, no music"
+ },
+ "B1-s127": {
+  "n": 127,
+  "theme": "Travail",
+  "lieu": "À l'agence d'intérim",
+  "situation": "Problème de paie ou de sécurité pendant une mission : alerter l'agence",
+  "repliques": [
+   [
+    "Intérimaire",
+    "Bonjour, je vous appelle pour deux problèmes sur ma mission chez Logistique Plus."
+   ],
+   [
+    "Conseillère",
+    "Je vous écoute."
+   ],
+   [
+    "Intérimaire",
+    "D'abord, sur mon relevé, il manque six heures supplémentaires de la semaine dernière. J'ai noté mes horaires chaque jour."
+   ],
+   [
+    "Conseillère",
+    "Envoyez-moi vos notes, je vérifie avec le client."
+   ],
+   [
+    "Intérimaire",
+    "Ensuite, on me demande de conduire un chariot élévateur, mais je n'ai pas le CACES. Je trouve ça dangereux."
+   ],
+   [
+    "Conseillère",
+    "Vous avez raison, c'est interdit. Ne conduisez pas le chariot. J'appelle le client immédiatement."
+   ]
+  ],
+  "voix": {
+   "Intérimaire": "6pqL78prQKdL6zrRhG3N",
+   "Conseillère": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Temp work agency office, quiet room tone, keyboard typing, papers, no voices, no music"
+ },
+ "B1-s128": {
+  "n": 128,
+  "theme": "Travail",
+  "lieu": "Avec son responsable (consignes, congés, absence)",
+  "situation": "Refuser poliment une consigne contraire à la sécurité ou au contrat",
+  "repliques": [
+   [
+    "Responsable",
+    "Ce soir, vous restez jusqu'à 22 heures pour finir la commande."
+   ],
+   [
+    "Employée",
+    "Je comprends l'urgence, mais je ne peux pas ce soir. Je n'ai personne pour garder mes enfants."
+   ],
+   [
+    "Responsable",
+    "C'est important pour l'entreprise."
+   ],
+   [
+    "Employée",
+    "Je le sais. Mon contrat prévoit des horaires de jour. Je peux venir plus tôt demain matin, à 6 heures, pour finir la commande."
+   ],
+   [
+    "Responsable",
+    "Et l'autre jour, vous avez refusé de monter sur l'échelle."
+   ],
+   [
+    "Employée",
+    "L'échelle était cassée. C'était dangereux. Je l'ai signalé par écrit. Si elle est réparée, je n'ai aucun problème."
+   ]
+  ],
+  "voix": {
+   "Responsable": "87kc04olBn8nRQKuNmaf",
+   "Employée": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Warehouse, cardboard boxes being stacked, a distant forklift beeping, large room, no voices, no music"
+ },
+ "B1-s129": {
+  "n": 129,
+  "theme": "Travail",
+  "lieu": "En réunion",
+  "situation": "Exprimer un désaccord et argumenter en réunion",
+  "repliques": [
+   [
+    "Directrice",
+    "Nous avons décidé de passer aux horaires en 3 × 8 à partir de janvier."
+   ],
+   [
+    "Employé",
+    "Je comprends l'objectif de production, mais je ne suis pas tout à fait d'accord avec la méthode."
+   ],
+   [
+    "Directrice",
+    "Pourquoi ?"
+   ],
+   [
+    "Employé",
+    "D'un côté, cela augmente la production. De l'autre, beaucoup de collègues ont des enfants ou n'ont pas de voiture pour venir la nuit."
+   ],
+   [
+    "Directrice",
+    "Qu'est-ce que vous proposez ?"
+   ],
+   [
+    "Employé",
+    "Un test de trois mois, avec des volontaires pour l'équipe de nuit, et un bilan en avril. Si j'ai bien résumé, on garde l'objectif, mais on change l'organisation progressivement."
+   ]
+  ],
+  "voix": {
+   "Directrice": "4NTBwCMIWDfx48seeuxZ",
+   "Employé": "JFppi8XcU3D1RvkAikO5"
+  },
+  "ambiance": "Small meeting room, chairs moving, coffee cups set on a table, quiet room tone, no voices, no music"
+ },
+ "B1-s130": {
+  "n": 130,
+  "theme": "Travail",
+  "lieu": "Au téléphone avec un client",
+  "situation": "Gérer un client mécontent au téléphone",
+  "repliques": [
+   [
+    "Client",
+    "Ça fait trois fois que j'appelle ! Ma commande devait arriver lundi, et je n'ai toujours rien !"
+   ],
+   [
+    "Employée",
+    "Je comprends votre agacement, et je suis désolée pour ce retard. Pouvez-vous me donner votre numéro de commande ?"
+   ],
+   [
+    "Client",
+    "22 785."
+   ],
+   [
+    "Employée",
+    "Si je comprends bien, vous attendez deux fenêtres pour un chantier, et le retard bloque vos travaux ?"
+   ],
+   [
+    "Client",
+    "Exactement. Les ouvriers sont payés à ne rien faire."
+   ],
+   [
+    "Employée",
+    "Je vérifie avec le transporteur et je vous rappelle personnellement avant 16 heures, avec une date précise. Si le retard vient de nous, nous vous offrirons la livraison."
+   ]
+  ],
+  "voix": {
+   "Client": "3Yr319bDgMFZv5qX6yzA",
+   "Employée": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Phone call in a car garage office, distant air compressor and tools, subtle phone line hiss, no voices, no music"
+ },
+ "B1-s131": {
+  "n": 131,
+  "theme": "Travail",
+  "lieu": "Comprendre sa fiche de paie",
+  "situation": "Repérer une erreur sur la fiche de paie et la signaler",
+  "repliques": [
+   [
+    "Salarié",
+    "Bonjour, je pense qu'il y a une erreur sur ma fiche de paie d'octobre."
+   ],
+   [
+    "Gestionnaire paie",
+    "Laquelle ?"
+   ],
+   [
+    "Salarié",
+    "Il n'y a aucune heure supplémentaire. Pourtant, j'ai travaillé quatre samedis matin, soit douze heures. J'ai le planning signé par mon chef."
+   ],
+   [
+    "Gestionnaire paie",
+    "Et la prime de panier ?"
+   ],
+   [
+    "Salarié",
+    "Elle manque aussi pour les samedis. Je voudrais une régularisation."
+   ],
+   [
+    "Gestionnaire paie",
+    "Envoyez-moi le planning signé. Si tout est correct, la régularisation sera faite sur la paie de novembre."
+   ]
+  ],
+  "voix": {
+   "Salarié": "6pqL78prQKdL6zrRhG3N",
+   "Gestionnaire paie": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Payroll office, quiet room tone, keyboard typing, papers, no voices, no music"
+ },
+ "B1-s132": {
+  "n": 132,
+  "theme": "Travail",
+  "lieu": "Chez le médecin du travail",
+  "situation": "Demander un aménagement de poste et comprendre l'avis du médecin",
+  "repliques": [
+   [
+    "Salariée",
+    "Docteur, depuis mon opération du genou, je ne peux plus rester à genoux pour nettoyer les sols. J'ai peur de perdre mon travail."
+   ],
+   [
+    "Médecin",
+    "Ce que vous me dites est confidentiel. Je peux proposer un aménagement de votre poste à votre employeur."
+   ],
+   [
+    "Salariée",
+    "Qu'est-ce que ça veut dire, concrètement ?"
+   ],
+   [
+    "Médecin",
+    "Par exemple, utiliser du matériel à long manche, ne plus faire certaines tâches, ou avoir plus de pauses. Je vous déclare apte avec restrictions."
+   ],
+   [
+    "Salariée",
+    "Et si mon employeur ne peut pas adapter mon poste ?"
+   ],
+   [
+    "Médecin",
+    "Il devra chercher un autre poste dans l'entreprise. L'inaptitude est la dernière solution. On fait le point dans trois mois."
+   ]
+  ],
+  "voix": {
+   "Salariée": "87kc04olBn8nRQKuNmaf",
+   "Médecin": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Occupational health doctor's office, quiet room tone, a chair creaking, papers, no voices, no music"
+ },
+ "B1-s133": {
+  "n": 133,
+  "theme": "Travail",
+  "lieu": "En formation / en stage",
+  "situation": "Bilan de stage : parler de ses réussites, ses difficultés et son projet",
+  "repliques": [
+   [
+    "Formatrice",
+    "Faisons le bilan de votre stage. Qu'avez-vous appris ?"
+   ],
+   [
+    "Stagiaire",
+    "J'ai appris à utiliser le logiciel de gestion des stocks et à préparer les commandes rapidement, sans erreur."
+   ],
+   [
+    "Formatrice",
+    "Qu'est-ce qui a été difficile ?"
+   ],
+   [
+    "Stagiaire",
+    "Au début, comprendre les consignes au téléphone. Les gens parlaient vite. J'ai pris l'habitude de reformuler pour vérifier."
+   ],
+   [
+    "Tuteur",
+    "Je confirme : vous avez beaucoup progressé, et l'équipe vous apprécie."
+   ],
+   [
+    "Stagiaire",
+    "Merci. Mon projet, c'est de travailler dans la logistique. Est-ce qu'il y aurait une possibilité d'embauche chez vous ?"
+   ]
+  ],
+  "voix": {
+   "Formatrice": "4NTBwCMIWDfx48seeuxZ",
+   "Stagiaire": "JFppi8XcU3D1RvkAikO5",
+   "Tuteur": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Training centre classroom, quiet room, chairs, papers, a door closing, no voices, no music"
+ },
+ "B1-s134": {
+  "n": 134,
+  "theme": "École",
+  "lieu": "À la réunion parents-professeurs",
+  "situation": "Exprimer une inquiétude devant d'autres parents et faire une proposition",
+  "repliques": [
+   [
+    "Mère",
+    "Je voudrais exprimer une inquiétude. Beaucoup d'enfants ont plus d'une heure de devoirs certains soirs. Pour les familles qui ne parlent pas bien français, c'est difficile d'aider."
+   ],
+   [
+    "Professeure",
+    "Je comprends. Les devoirs sont normalement des révisions."
+   ],
+   [
+    "Père",
+    "Mon fils me demande des explications que je ne peux pas lui donner."
+   ],
+   [
+    "Mère",
+    "Est-ce qu'on pourrait organiser une aide aux devoirs à l'école, avec des parents volontaires ?"
+   ],
+   [
+    "Professeure",
+    "Il existe déjà un dispositif d'accompagnement le mardi et le jeudi. Je vais en parler à la directrice pour l'ouvrir à plus d'élèves."
+   ],
+   [
+    "Mère",
+    "Merci. Je peux me proposer comme bénévole le jeudi."
+   ]
+  ],
+  "voix": {
+   "Mère": "RXG6r6Qewwp92BIFIBhE",
+   "Professeure": "TKoAvBNxOwnhLtxm7NYM",
+   "Père": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Primary school classroom after school, quiet room, small chairs moving, distant children far away without clear words, no music"
+ },
+ "B1-s135": {
+  "n": 135,
+  "theme": "École",
+  "lieu": "Au rendez-vous avec l'enseignant",
+  "situation": "Discuter d'une orientation ou d'un redoublement et donner son avis",
+  "repliques": [
+   [
+    "Professeur principal",
+    "Le conseil de classe propose une orientation en CAP pour votre fils."
+   ],
+   [
+    "Père",
+    "Je ne suis pas d'accord. Il veut faire un bac professionnel."
+   ],
+   [
+    "Professeur principal",
+    "Ses résultats sont faibles en français et en mathématiques."
+   ],
+   [
+    "Père",
+    "Il est arrivé en France il y a deux ans seulement. Il a beaucoup progressé, vous l'avez écrit sur le bulletin."
+   ],
+   [
+    "Professeur principal",
+    "C'est vrai. Vous pouvez donner votre avis et demander un rendez-vous avec la direction. Si la décision ne vous convient pas, vous pourrez faire appel."
+   ],
+   [
+    "Père",
+    "Je vais demander le rendez-vous. Je voudrais aussi savoir s'il existe un soutien pour l'aider à atteindre le niveau."
+   ]
+  ],
+  "voix": {
+   "Professeur principal": "6pqL78prQKdL6zrRhG3N",
+   "Père": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Primary school classroom, quiet room tone, pages of a school book turning, no voices, no music"
+ },
+ "B1-s136": {
+  "n": 136,
+  "theme": "École",
+  "lieu": "Utiliser l'ENT",
+  "situation": "Justifier une absence et écrire au professeur via l'ENT",
+  "repliques": [
+   [
+    "Message",
+    "Objet : Absence de Lucas – 12 et 13 novembre"
+   ],
+   [
+    "Message",
+    "Madame, mon fils Lucas a été absent le 12 et le 13 novembre, car il avait une forte fièvre. Vous trouverez en pièce jointe le certificat médical."
+   ],
+   [
+    "Message",
+    "Il a manqué le contrôle de sciences du 13 novembre. Serait-il possible qu'il le rattrape ? Pourriez-vous aussi m'indiquer les leçons à revoir ?"
+   ],
+   [
+    "Message",
+    "Je vous remercie par avance. Cordialement, Mme Durand."
+   ],
+   [
+    "Consigne",
+    "Écrivez un message à un professeur pour justifier un retard de votre enfant et demander comment rattraper le cours manqué."
+   ]
+  ],
+  "voix": {
+   "Message": "87kc04olBn8nRQKuNmaf",
+   "Consigne": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Quiet room, computer keyboard typing, mouse clicks, papers, no voices, no music"
+ },
+ "B1-s137": {
+  "n": 137,
+  "theme": "Communication",
+  "lieu": "Appeler un service client",
+  "situation": "Obtenir une solution après plusieurs appels sans résultat",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, c'est mon quatrième appel pour le même problème : ma box internet ne marche plus depuis dix jours."
+   ],
+   [
+    "Conseillère",
+    "Avez-vous un numéro de dossier ?"
+   ],
+   [
+    "Client",
+    "Oui, 98 412. Chaque fois, on me dit qu'un technicien va me rappeler, et personne ne rappelle."
+   ],
+   [
+    "Conseillère",
+    "Je suis désolée. Je transmets votre dossier au service technique en priorité."
+   ],
+   [
+    "Client",
+    "Je voudrais parler à un responsable, et avoir une confirmation écrite avec une date d'intervention. Je demande aussi un remboursement pour les jours sans internet."
+   ],
+   [
+    "Conseillère",
+    "Je vous mets en relation avec mon responsable. Si vous n'obtenez pas de solution, vous pourrez saisir le médiateur des communications électroniques."
+   ]
+  ],
+  "voix": {
+   "Client": "JFppi8XcU3D1RvkAikO5",
+   "Conseillère": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Customer service phone call, subtle phone line hiss, quiet room, no voices, no music"
+ },
+ "B1-s138": {
+  "n": 138,
+  "theme": "Communication",
+  "lieu": "En visioconférence",
+  "situation": "Participer à un entretien ou une réunion à distance de façon professionnelle",
+  "repliques": [
+   [
+    "Recruteur",
+    "Bonjour, vous m'entendez bien ?"
+   ],
+   [
+    "Candidate",
+    "Parfaitement, bonjour. J'ai testé ma connexion avant l'entretien."
+   ],
+   [
+    "Recruteur",
+    "Parfait. Pouvez-vous présenter votre parcours ?"
+   ],
+   [
+    "Candidate",
+    "Bien sûr… Excusez-moi, je crois que vous avez été coupé. Pouvez-vous répéter votre dernière question ?"
+   ],
+   [
+    "Recruteur",
+    "Je vous demandais vos disponibilités."
+   ],
+   [
+    "Candidate",
+    "Je suis disponible dès le 1er décembre. Avant de conclure, puis-je vous poser une question sur l'organisation de l'équipe ?"
+   ]
+  ],
+  "voix": {
+   "Recruteur": "3Yr319bDgMFZv5qX6yzA",
+   "Candidate": "RXG6r6Qewwp92BIFIBhE"
+  },
+  "ambiance": "Video call on a laptop, a soft notification sound at the very start, light keyboard typing, quiet room tone, no voices, no music"
+ },
+ "B1-s139": {
+  "n": 139,
+  "theme": "Situations imprévues",
+  "lieu": "Se perdre",
+  "situation": "Enfant perdu dans un lieu public : donner l'alerte et le décrire précisément",
+  "repliques": [
+   [
+    "Mère",
+    "Excusez-moi, je ne trouve plus mon fils ! Il était à côté de moi il y a cinq minutes."
+   ],
+   [
+    "Agent de sécurité",
+    "Restez calme. Comment s'appelle-t-il ? Quel âge a-t-il ?"
+   ],
+   [
+    "Mère",
+    "Noah, six ans. Il porte un manteau rouge, un jean et des baskets blanches. Il a les cheveux bruns et courts."
+   ],
+   [
+    "Agent de sécurité",
+    "Où l'avez-vous vu pour la dernière fois ?"
+   ],
+   [
+    "Mère",
+    "Au rayon des jouets, au premier étage."
+   ],
+   [
+    "Agent de sécurité",
+    "Je fais une annonce et je préviens les sorties. Restez ici, à l'accueil : c'est là qu'on lui demandera de venir."
+   ]
+  ],
+  "voix": {
+   "Mère": "TKoAvBNxOwnhLtxm7NYM",
+   "Agent de sécurité": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Busy town street, traffic, footsteps, a distant bus, no voices, no music"
+ },
+ "B1-s140": {
+  "n": 140,
+  "theme": "Situations imprévues",
+  "lieu": "Perdre un objet / ses papiers",
+  "situation": "Perte de tous ses papiers : organiser les démarches dans le bon ordre",
+  "repliques": [
+   [
+    "Apprenante",
+    "J'ai perdu mon portefeuille avec ma carte d'identité, ma carte bancaire, ma carte Vitale et mon permis. Je ne sais pas par où commencer."
+   ],
+   [
+    "Formateur",
+    "D'abord, ce qui est urgent : faire opposition sur la carte bancaire, tout de suite, pour éviter des paiements."
+   ],
+   [
+    "Apprenante",
+    "C'est fait. Ensuite ?"
+   ],
+   [
+    "Formateur",
+    "Pour la carte d'identité, la déclaration de perte se fait au moment de la demande de nouvelle carte, à la mairie. Pour le permis, en ligne."
+   ],
+   [
+    "Apprenante",
+    "Et la carte Vitale ?"
+   ],
+   [
+    "Formateur",
+    "Tu la déclares sur ton compte ameli. En attendant, une attestation de droits suffit chez le médecin. Faisons une liste, avec les sites et les documents à préparer."
+   ]
+  ],
+  "voix": {
+   "Apprenante": "87kc04olBn8nRQKuNmaf",
+   "Formateur": "W01VS3mCiWjHO239CD72"
+  },
+  "ambiance": "Shopping centre lost and found desk, quiet room tone, distant indistinct murmur without clear words, a drawer opening, no music"
+ },
+ "B1-s141": {
+  "n": 141,
+  "theme": "Situations imprévues",
+  "lieu": "Rater son train ou son bus (retard, remboursement)",
+  "situation": "Demander une indemnisation pour un retard important",
+  "repliques": [
+   [
+    "Message",
+    "Objet : Demande de compensation – retard du train du 4 novembre"
+   ],
+   [
+    "Message",
+    "Madame, Monsieur, le 4 novembre, j'ai voyagé de Besançon à Paris (train n° 6704). Le train est arrivé avec 1 h 25 de retard."
+   ],
+   [
+    "Message",
+    "À cause de ce retard, j'ai manqué un entretien d'embauche. Conformément à vos conditions, je vous demande une compensation pour ce retard."
+   ],
+   [
+    "Message",
+    "Vous trouverez en pièce jointe mon billet et l'attestation de retard. Cordialement, M. Benali."
+   ],
+   [
+    "Consigne",
+    "Repérez dans le message : les faits, la conséquence, la demande, les pièces jointes. Puis rédigez une demande pour un bus annulé qui vous a fait payer un taxi."
+   ]
+  ],
+  "voix": {
+   "Message": "JFppi8XcU3D1RvkAikO5",
+   "Consigne": "4NTBwCMIWDfx48seeuxZ"
+  },
+  "ambiance": "Quiet room, computer keyboard typing, mouse clicks, no voices, no music"
+ },
+ "B1-s142": {
+  "n": 142,
+  "theme": "Situations imprévues",
+  "lieu": "Bagage perdu à l'aéroport",
+  "situation": "Valise retrouvée abîmée ou jamais retrouvée : demander une indemnisation",
+  "repliques": [
+   [
+    "Voyageuse",
+    "Ma valise a été retrouvée après cinq jours, mais elle est cassée et une partie du contenu est abîmée."
+   ],
+   [
+    "Agent",
+    "Vous devez faire une réclamation écrite dans les sept jours après la réception."
+   ],
+   [
+    "Voyageuse",
+    "Pendant ces cinq jours, j'ai dû acheter des vêtements et des produits d'hygiène. Ils sont remboursés ?"
+   ],
+   [
+    "Agent",
+    "Oui, les achats de première nécessité, sur présentation des factures."
+   ],
+   [
+    "Voyageuse",
+    "Et pour la valise et les objets abîmés ?"
+   ],
+   [
+    "Agent",
+    "Envoyez des photos et, si possible, les factures d'achat. L'indemnisation est calculée selon la valeur, avec un plafond fixé par les conventions internationales."
+   ]
+  ],
+  "voix": {
+   "Voyageuse": "RXG6r6Qewwp92BIFIBhE",
+   "Agent": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Airport baggage claim hall, luggage carousel rumbling, distant indistinct murmur without clear words, no announcements, no music"
+ },
+ "B1-s143": {
+  "n": 143,
+  "theme": "Situations imprévues",
+  "lieu": "Une panne de voiture",
+  "situation": "Panne loin de chez soi : organiser la suite avec l'assistance",
+  "repliques": [
+   [
+    "Conducteur",
+    "Le garage dit que la réparation prendra quatre jours. Je suis à 600 kilomètres de chez moi, avec ma famille."
+   ],
+   [
+    "Assistance",
+    "Votre contrat prévoit soit une voiture de remplacement pendant trois jours, soit l'hébergement à l'hôtel pendant deux nuits."
+   ],
+   [
+    "Conducteur",
+    "Je dois être au travail lundi. Je préfère la voiture de remplacement."
+   ],
+   [
+    "Assistance",
+    "Très bien. Et ensuite, pour récupérer votre voiture ?"
+   ],
+   [
+    "Conducteur",
+    "C'est justement ma question. Je ne peux pas revenir la chercher. Le contrat prévoit un rapatriement du véhicule ?"
+   ],
+   [
+    "Assistance",
+    "Oui, à partir de 100 kilomètres. Je l'organise dès qu'elle sera réparée."
+   ]
+  ],
+  "voix": {
+   "Conducteur": "6pqL78prQKdL6zrRhG3N",
+   "Assistance": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Phone call, quiet room, subtle phone line hiss, no voices, no music"
+ },
+ "B1-s144": {
+  "n": 144,
+  "theme": "Situations imprévues",
+  "lieu": "Une fuite d'eau ou une panne de courant chez soi",
+  "situation": "Dégât des eaux chez le voisin du dessous : gérer la situation et les assurances",
+  "repliques": [
+   [
+    "Voisin du dessous",
+    "Bonjour, il y a de l'eau qui coule de mon plafond dans la salle de bains. Ça vient sûrement de chez vous."
+   ],
+   [
+    "Locataire",
+    "Oh non ! Je vérifie tout de suite… Oui, le joint de la baignoire fuit. Je ferme l'eau."
+   ],
+   [
+    "Voisin du dessous",
+    "Mon plafond est taché, et la peinture tombe."
+   ],
+   [
+    "Locataire",
+    "Je suis vraiment désolée. Il faut remplir un constat amiable de dégât des eaux ensemble, pour nos deux assurances."
+   ],
+   [
+    "Voisin du dessous",
+    "J'en ai un. Il faut aussi prévenir le propriétaire ?"
+   ],
+   [
+    "Locataire",
+    "Oui, je l'appelle aujourd'hui. Et chacun déclare le sinistre à son assurance dans les cinq jours ouvrés."
+   ]
+  ],
+  "voix": {
+   "Voisin du dessous": "W01VS3mCiWjHO239CD72",
+   "Locataire": "87kc04olBn8nRQKuNmaf"
+  },
+  "ambiance": "Apartment landing, a door opening at the very start, quiet echo, water dripping faintly, no voices, no music"
+ },
+ "B1-s145": {
+  "n": 145,
+  "theme": "Situations imprévues",
+  "lieu": "Un litige avec un commerçant (produit défectueux, erreur de caisse)",
+  "situation": "Le commerçant refuse : faire valoir la garantie légale et les recours",
+  "repliques": [
+   [
+    "Client",
+    "Bonjour, mon lave-linge acheté chez vous il y a un an ne fonctionne plus."
+   ],
+   [
+    "Vendeur",
+    "La garantie du magasin est finie. Il faut contacter le fabricant."
+   ],
+   [
+    "Client",
+    "Je ne suis pas d'accord. La garantie légale de conformité dure deux ans, et c'est le vendeur qui est responsable, pas le fabricant."
+   ],
+   [
+    "Vendeur",
+    "Ce n'est pas notre politique."
+   ],
+   [
+    "Client",
+    "La loi s'applique à tous les vendeurs. Je vous demande la réparation ou le remplacement. Sinon, je vous enverrai une mise en demeure."
+   ],
+   [
+    "Vendeur",
+    "Je vais voir avec mon responsable. Laissez-moi votre facture."
+   ]
+  ],
+  "voix": {
+   "Client": "JFppi8XcU3D1RvkAikO5",
+   "Vendeur": "3Yr319bDgMFZv5qX6yzA"
+  },
+  "ambiance": "Electronics shop counter, quiet room tone, a box being opened, a barcode scanner beep, no voices, no music"
+ },
+ "B1-s146": {
+  "n": 146,
+  "theme": "Situations imprévues",
+  "lieu": "Réclamer à l'hôtel ou au restaurant",
+  "situation": "Écrire une réclamation après le séjour et répondre à un avis",
+  "repliques": [
+   [
+    "Message",
+    "Objet : Réclamation – séjour du 2 au 4 novembre, chambre 18"
+   ],
+   [
+    "Message",
+    "Madame, Monsieur, lors de notre séjour, la climatisation ne fonctionnait pas, la chambre n'a pas été nettoyée le deuxième jour et le petit-déjeuner compris dans notre réservation nous a été facturé."
+   ],
+   [
+    "Message",
+    "Nous vous demandons le remboursement des petits-déjeuners (36 €) et un geste commercial pour la gêne occasionnée."
+   ],
+   [
+    "Message",
+    "Dans l'attente de votre réponse, nous vous prions d'agréer nos salutations distinguées. M. et Mme Ferreira."
+   ],
+   [
+    "Consigne",
+    "Jouez ensuite le rôle du directeur de l'hôtel : rédigez une réponse polie qui reconnaît les problèmes et propose une solution."
+   ]
+  ],
+  "voix": {
+   "Message": "RXG6r6Qewwp92BIFIBhE",
+   "Consigne": "TKoAvBNxOwnhLtxm7NYM"
+  },
+  "ambiance": "Quiet room, computer keyboard typing, mouse clicks, no voices, no music"
+ },
+ "B1-s147": {
+  "n": 147,
+  "theme": "Situations imprévues",
+  "lieu": "Être témoin d'un accident",
+  "situation": "Faire un témoignage écrit précis et objectif",
+  "repliques": [
+   [
+    "Policière",
+    "Pouvez-vous rédiger une attestation de témoin ? Écrivez seulement ce que vous avez vu, pas ce que vous pensez."
+   ],
+   [
+    "Témoin",
+    "D'accord. « Le 10 novembre, vers 17 h 45, j'attendais le bus à l'arrêt Mairie. J'ai vu une voiture blanche venir de la rue Pasteur. »"
+   ],
+   [
+    "Témoin",
+    "« Le feu était rouge pour elle. Elle n'a pas freiné et elle a heurté un cycliste qui traversait au feu vert. »"
+   ],
+   [
+    "Policière",
+    "Très bien. Ajoutez votre nom, votre adresse, la date, et la phrase « Je certifie sur l'honneur l'exactitude de ces faits »."
+   ],
+   [
+    "Témoin",
+    "Je dois joindre une copie de ma pièce d'identité ?"
+   ],
+   [
+    "Policière",
+    "Oui, c'est obligatoire pour que l'attestation soit valable."
+   ]
+  ],
+  "voix": {
+   "Policière": "TKoAvBNxOwnhLtxm7NYM",
+   "Témoin": "6pqL78prQKdL6zrRhG3N"
+  },
+  "ambiance": "Street after an accident, a police car radio crackling in the distance, light traffic, no clear voices, no music"
+ }
+}

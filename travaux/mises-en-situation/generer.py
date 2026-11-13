@@ -25,7 +25,11 @@ ROULEMENT_DEPUIS = {"A1": 11}   # A1, de 1 à 10 : toujours les deux premières 
 VOIX_FORCEE = {"A1": {30: {"Léa": "Femme 3", "Invitée": "Femme 2"},   # quand le roulement donne une voix peu crédible pour le rôle
                       73: {"Jeune": "Homme 3", "Entraîneur": "Homme 4"}}}
 ALIAS = {"A2": {30: {"Message de Karim": "Karim"}}}       # la même personne écrit puis parle : une seule voix
+VOIX_FORCEE["B1"] = {26: {"Monsieur âgé": "Homme 4"}}
 GENRE_FORCE = {"A2": {133: {"Stagiaire": "F"}},                         # « Enchantée »
+               "B1": {49: {"Libraire": "F"}, 71: {"Hôte": "F"},            # « Je suis désolée »
+                      100: {"Locataire": "F"}, 144: {"Locataire": "F"},    # Mme Kaya (s100) ; « Je suis vraiment désolée » (s144)
+                      141: {"Message": "M"}},                              # signé « M. Benali »
                "A1": {64: {"Guide": "F"},                                 # « Je m'appelle Julie, je suis votre guide »
                       81: {"Responsable": "M"}, 83: {"Responsable": "M"},  # Monsieur Bernard, Monsieur Petit
                       82: {"Collègue": "F"},                               # Sophie, « Enchantée »
@@ -35,7 +39,7 @@ GENRE_FORCE = {"A2": {133: {"Stagiaire": "F"}},                         # « Enc
 # les lignes d'un même document (fiche, mot, mail, offre, écran) sont lues par une seule voix off ; la consigne par une autre
 DOCUMENT = {"Écran", "Formulaire", "Mot de l'enseignante", "Signature des parents", "Mail", "Offre", "Convocation", "Fiche de paie", "Serveur vocal",
             "Annonce", "Faire-part", "Répondeur", "Affiche", "Facture", "Message", "SMS", "Mot de l'enseignant", "Étape 1", "Étape 2", "Étape 3",
-            "Étape 4", "Étape 5"}      # de 1 à 10 : toujours les deux premières voix (déjà validées) ; ensuite, les voix tournent
+            "Étape 4", "Étape 5", "Document", "Situation", "SMS reçu 1", "SMS reçu 2"}      # de 1 à 10 : toujours les deux premières voix (déjà validées) ; ensuite, les voix tournent
 # les rôles dont le genre ne se lit pas à la terminaison
 GENRE = {"Primeur": "M", "Fleuriste": "F", "Parent 1": "F", "Parent 2": "M", "Léa": "F", "Amina": "F", "Julie": "F",
          "Bibliothécaire": "F", "Réceptionniste": "F", "Consigne": "F", "Mail": "M", "Offre": "F", "Formulaire": "F",
@@ -43,7 +47,9 @@ GENRE = {"Primeur": "M", "Fleuriste": "F", "Parent 1": "F", "Parent 2": "M", "L�
          # A2
          "Amie": "F", "Assistante sociale": "F", "Conductrice B": "F", "Dame": "F", "Jeune homme": "M", "Marchande": "F",
          "Voisine du dessus": "F", "SMS envoyé": "F", "Message de réponse": "M", "Réponse du parent": "F", "Annonce": "F",
-         "Faire-part": "F", "Affiche": "F", "Facture": "F", "Message": "F", "SMS": "F", "Étape 1": "F", "Fiche de paie": "F", "Serveur vocal": "F", "Assistance": "F",
+         "Faire-part": "F", "Affiche": "F", "Facture": "F", "Message": "F", "SMS": "F", "Étape 1": "F",
+         # B1
+         "Invitée française": "F", "Professeure": "F", "Voisine 2": "F", "Document": "F", "Situation": "F", "SMS reçu 1": "F", "SMS reçu 2": "F", "Fiche de paie": "F", "Serveur vocal": "F", "Assistance": "F",
          # les lignes qui ne sont pas des personnes : l'écran du distributeur, lu par une voix off ; les SMS, lus par leurs auteurs
          "Écran": "F", "SMS reçu": "F", "Réponse": "M", "Agent": "M", "Guide": "M", "Accueil": "F", "Responsable": "F", "Secrétaire": "F", "Mère": "F", "Père": "M"}
 FEMININ = re.compile(r"(ère|euse|ienne|ice|ante|ente|ée|ine|esse|onne|elle|ette|Mère|Mme|Madame|Femme|Fille|Sœur|Tante)$", re.I)
@@ -199,7 +205,26 @@ AMBIANCE = {
     147: "Emergency phone call from a street, traffic, a car horn in the distance, subtle phone line hiss, no voices, no music",
 }
 # quand la scène d'un niveau ne se passe pas comme en A1 (un SMS au lieu d'un appel, un vrai appel d'urgence…)
-AMBIANCE_NIVEAU = {"A2": {
+AMBIANCE_NIVEAU = {"B1": {
+    16: "Customer service phone call, subtle phone line hiss, quiet room, no voices, no music",
+    25: "Bank branch office, quiet room tone, keyboard typing, a distant door, no voices, no music",
+    30: "Phone call from a quiet room, subtle phone line hiss, no voices, no music",
+    59: "Town hall office counter, quiet room tone, papers, keyboard typing, no voices, no music",
+    78: "Phone call with a bad line, crackling and phone line hiss, quiet room, no voices, no music",
+    83: "Small office, quiet room tone, a door closing at the very start, no voices, no music",
+    85: "Administrative office interview room, quiet room tone, papers, a pen, no voices, no music",
+    100: "Apartment building hallway, quiet echo, a door closing, no voices, no music",
+    103: "Quiet house, a gas boiler humming, a radiator ticking, no voices, no music",
+    114: "Bank branch office, quiet room tone, keyboard typing, no voices, no music",
+    125: "Phone call, quiet office, subtle phone line hiss, no voices, no music",
+    131: "Payroll office, quiet room tone, keyboard typing, papers, no voices, no music",
+    137: "Customer service phone call, subtle phone line hiss, quiet room, no voices, no music",
+    141: "Quiet room, computer keyboard typing, mouse clicks, no voices, no music",
+    143: "Phone call, quiet room, subtle phone line hiss, no voices, no music",
+    144: "Apartment landing, a door opening at the very start, quiet echo, water dripping faintly, no voices, no music",
+    146: "Quiet room, computer keyboard typing, mouse clicks, no voices, no music",
+    147: "Street after an accident, a police car radio crackling in the distance, light traffic, no clear voices, no music",
+}, "A2": {
     25: "Bank branch counter, quiet room tone, keyboard typing, a distant door, no voices, no music",
     30: "Quiet room, a smartphone message notification chime at the very start and once again in the middle, soft phone keyboard tapping, no voices, no music",
     38: "Quiet room, computer mouse clicks and keyboard typing, no voices, no music",
@@ -250,6 +275,7 @@ def voix_du_dialogue(repliques, n=0, niveau="A1"):
     for role, _ in repliques:
         if role in vus: continue
         cle = ("document", docs[0]) if role in DOCUMENT else ALIAS.get(niveau, {}).get(n, {}).get(role, role)   # un document : une seule voix
+        if isinstance(cle, str) and re.fullmatch(r"Consigne \d+", cle): cle = "Consigne"                         # « Consigne 1, 2, 3 » : une seule voix
         if cle not in par_cle:
             g = GENRE_FORCE.get(niveau, {}).get(n, {}).get(cle if isinstance(cle, str) else cle[1]) or genre(cle if isinstance(cle, str) else cle[1])
             par_cle[cle] = VOIX[g][prises[g] % 2] if n < ROULEMENT_DEPUIS.get(niveau, 1) else VOIX[g][(n + prises[g]) % len(VOIX[g])]
@@ -261,7 +287,10 @@ def voix_du_dialogue(repliques, n=0, niveau="A1"):
 
 
 MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
-ORDINAUX = {2: "deuxième", 3: "troisième", 4: "quatrième", 5: "cinquième", 6: "sixième", 7: "septième", 8: "huitième", 9: "neuvième"}
+ORDINAUX = {2: "deuxième", 3: "troisième", 4: "quatrième", 5: "cinquième", 6: "sixième", 7: "septième", 8: "huitième", 9: "neuvième",
+            10: "dixième", 11: "onzième", 12: "douzième", 13: "treizième", 14: "quatorzième", 15: "quinzième", 16: "seizième", 17: "dix-septième",
+            18: "dix-huitième", 19: "dix-neuvième"}
+SIGLES = {"HACCP"}          # des sigles de cinq lettres ou plus, à épeler (les autres mots en majuscules sont des noms)
 
 
 def lettres(n):
@@ -278,24 +307,32 @@ def lettres(n):
 
 def dire(t):
     """Le texte tel qu'on le donne à la voix : les prix « 4,50 euros » se disent « 4 euros 50 »."""
+    t = re.sub(r"^\s*\([^)]*\)\s*", "", t)                  # « (lève son verre) » en tête de réplique : une indication de jeu, pas un texte
     t = re.sub(r"\[([^\]]*)\]", r"\1.", t)                 # « [Valider] » : un bouton, pas une indication de jeu pour la voix
+    t = re.sub(r"\bDr\b\.?", "Docteur", t).replace("RDV", "rendez-vous")
+    t = re.sub(r"\bOUI\b", "oui", t); t = re.sub(r"\bNON\b", "non", t)
+    t = re.sub(r"https?://([\w.-]+)", lambda m: m[1].replace("-", " tiret ").replace(".", " point "), t)   # le lien d'un SMS frauduleux
+    t = t.replace("g/L", "gramme par litre")
+    t = re.sub(r"(?<![\w,])-(?=\d)", "moins ", t)               # « -30 % »
+    t = re.sub(r"\bM\. et\b", "Monsieur et", t)
     t = re.sub(r"\s*☐\s*", ", ", t); t = re.sub(r":\s*,\s*", ": ", t); t = re.sub(r"^\s*,\s*", "", t)   # cases à cocher d'une fiche
     t = re.sub(r"\(e\)", "", t)                                                       # « agent(e) », « marié(e) »
     t = t.replace("n° ", "numéro ").replace("H/F", "H.F.")
     t = re.sub(r"\s/\s?(semaine|mois|jour|an)\b", r" par \1", t)                     # « 30 h / semaine »
     t = re.sub(r"\b(\d{1,2})/(\d{1,2})/(\d{4})\b", lambda m: f"{int(m[1])} {MOIS[int(m[2]) - 1]} {m[3]}", t)   # « 15/12/2026 »
-    t = re.sub(r"\b1er\b", "premier", t); t = re.sub(r"\b([2-9])e\b", lambda m: ORDINAUX[int(m[1])], t)        # « 2e étage »
+    t = re.sub(r"\b1er\b", "premier", t); t = re.sub(r"\b([2-9]|1[0-9])e\b", lambda m: ORDINAUX[int(m[1])], t)   # « 2e étage », « 13e mois »
+    t = re.sub(r"\b(\d{1,2})/(\d{1,2})\b(?!/)", lambda m: f"{int(m[1])} {MOIS[int(m[2]) - 1]}" if 1 <= int(m[2]) <= 12 else m[0], t)   # « le 18/11 »
     t = re.sub(r"\b([\w.-]+)@([\w-]+)\.(fr|com|org)\b", lambda m: " ".join(m[1]) + " arobase " + m[2].replace("-", " tiret ") + " point " + m[3], t)
     t = re.sub(r"\b(\w+)\.(gouv|fr|com|org)\b", lambda m: m[1] + " point " + m[2], t)                         # « impots.gouv »
     t = re.sub(r"\bFR(\d+)", r"F R \1", t)                                         # un IBAN
     t = re.sub(r":\s*–\s*(?=\d)", ": moins ", t)                                     # « Cotisations : – 427,50 € »
     t = re.sub(r"\b([A-ZÀ-Ý]{2,}(?:\s+[A-ZÀ-Ý]{2,})+)\b", lambda m: m[0].capitalize(), t)   # « AVIS AUX RÉSIDENTS » : une phrase, pas des sigles
-    t = re.sub(r"\b(\d{1,3}(?: \d{3})*),(\d{2})\s*€", lambda m: f"{m[1].replace(' ', '')} euros " + (f"et {int(m[2])} centimes" if int(m[2]) < 10 else m[2]), t)   # « 1 443,24 € », « 1 823,03 € »
+    t = re.sub(r"\b(\d{1,3}(?: \d{3})*),(\d{2})\s*€", lambda m: f"{m[1].replace(' ', '')} {'euro' if m[1] == '1' else 'euros'} " + (f"et {int(m[2])} centimes" if int(m[2]) < 10 else m[2]), t)   # « 1 443,24 € », « 1 823,03 € »
     t = re.sub(r"(\d)\s*€", r"\1 euros", t)
     t = re.sub(r"\bM\.\s{2,}", "Monsieur. ", t)                                   # « ☐ M.   Nom de naissance » (une fiche)
     t = re.sub(r"\bM\.\s+(?=[A-ZÉ])", "Monsieur ", t); t = re.sub(r"\bMme\b\.?", "Madame", t)
     t = t.replace(" & ", " et ").replace("SARL", "S.A.R.L.").replace("caf.fr", "caf point fr")
-    t = re.sub(r"\b[A-ZÉÈ]{5,}\b", lambda m: m[0].capitalize(), t)        # « KOVALENKO » : un nom, pas un sigle
+    t = re.sub(r"\b[A-ZÉÈ]{5,}\b", lambda m: m[0] if m[0] in SIGLES else m[0].capitalize(), t)   # « KOVALENKO » : un nom, pas un sigle
     t = re.sub(r"\b(\d{3}) (\d{3}) (\d{3})\b", r"\1, \2, \3", t)          # un numéro de compteur, par groupes
     t = re.sub(r"\b(\d{1,2}) h 00\b", lambda m: f"{m[1]} {'heure' if m[1] == '1' else 'heures'}", t)   # « 9 h 00 »
     t = re.sub(r"(\d+),(\d{2})\s*euros?", lambda m: f"{m[1]} {'euro' if m[1] == '1' else 'euros'} {m[2]}", t)

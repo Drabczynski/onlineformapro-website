@@ -50,6 +50,15 @@ semaine », « 15/12/2026 », « 1er », « 2e », adresses mail et sites (« im
 correcteur orthographique ne relève aucune coquille dans l'Excel A2. Vérification : `verifier.py` (nombres écrits en
 lettres des deux côtés, une deuxième retranscription quand la première rate).
 
+**Niveau B1** (`source/Mises_en_situation_FLE_Niveau_B1.xlsx`, `B1/B1-s1.mp3` … `B1-s147.mp3`) : mêmes scènes, dialogues
+d'environ 500 caractères. Réglages propres au B1 : les indications de jeu en tête de réplique (« (lève son verre) »,
+« (à la fin) », « (plus tard, à l'ADIL) ») ne sont pas lues ; « Consigne 1, 2, 3 » ont une seule voix ; la libraire
+(s49) et l'hôtesse (s71) sont des femmes (« désolée »), comme les locataires de s100 et s144 ; le message de s141 est
+signé M. Benali (voix d'homme) ; le monsieur âgé de s26 a la voix d'homme la plus âgée. Lus pour la voix : « Dr »,
+« RDV », « OUI / NON », « 18/11 », « -30 % », « 13e mois », « g/L », « M. et Mme », le lien du SMS frauduleux, « HACCP »
+épelé. Ambiances propres au B1 pour 18 scènes qui ne se passent pas comme en A1 (appel au service client, mail de
+réclamation, guichet de banque…).
+
 **Les 147 situations A1 sont faites.** L'ambiance de chacune est décrite à la main (`AMBIANCE` dans `generer.py`). Les
 niveaux A2 et B1 (mêmes numéros, autres fichiers Excel) se font de la même façon : déposer l'Excel dans `source/`,
 puis `python3 generer.py A2 1-147` (les ambiances, décrites par numéro, resservent).
