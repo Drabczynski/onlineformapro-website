@@ -21,9 +21,14 @@ MODELE = "eleven_v4"
 _V = json.load(open(os.path.join(ICI, "voix.json"), encoding="utf-8"))
 VOIX = {g: [v["id"] for v in _V.values() if v["genre"] == g] for g in "FM"}
 ROULEMENT_DEPUIS = 11
-VOIX_FORCEE = {30: {"Léa": "Femme 3", "Invitée": "Femme 2"}}     # quand le roulement donne une voix peu crédible pour le rôle      # de 1 à 10 : toujours les deux premières voix (déjà validées) ; ensuite, les voix tournent
+VOIX_FORCEE = {30: {"Léa": "Femme 3", "Invitée": "Femme 2"},     # quand le roulement donne une voix peu crédible pour le rôle
+               73: {"Jeune": "Homme 3", "Entraîneur": "Homme 4"}}
+GENRE_FORCE = {64: {"Guide": "F"}}                                  # « Je m'appelle Julie, je suis votre guide »
+# les lignes d'un même document (fiche, mot, mail, offre, écran) sont lues par une seule voix off ; la consigne par une autre
+DOCUMENT = {"Écran", "Formulaire", "Mot de l'enseignante", "Signature des parents", "Mail", "Offre"}      # de 1 à 10 : toujours les deux premières voix (déjà validées) ; ensuite, les voix tournent
 # les rôles dont le genre ne se lit pas à la terminaison
-GENRE = {"Primeur": "M", "Fleuriste": "F", "Parent 1": "F", "Parent 2": "M", "Léa": "F",
+GENRE = {"Primeur": "M", "Fleuriste": "F", "Parent 1": "F", "Parent 2": "M", "Léa": "F", "Amina": "F", "Julie": "F",
+         "Bibliothécaire": "F", "Réceptionniste": "F", "Consigne": "F", "Mail": "M", "Offre": "F", "Formulaire": "F",
          # les lignes qui ne sont pas des personnes : l'écran du distributeur, lu par une voix off ; les SMS, lus par leurs auteurs
          "Écran": "F", "SMS reçu": "F", "Réponse": "M", "Agent": "M", "Guide": "M", "Accueil": "F", "Responsable": "F", "Secrétaire": "F", "Mère": "F", "Père": "M"}
 FEMININ = re.compile(r"(ère|euse|ienne|ice|ante|ente|ée|ine|esse|onne|elle|ette|Mère|Mme|Madame|Femme|Fille|Sœur|Tante)$", re.I)
@@ -70,6 +75,46 @@ AMBIANCE = {
     38: "Quiet room at home, a telephone ringing twice at the very start and being picked up, subtle phone line hiss, no voices, no music",
     39: "Hair salon, scissors snipping, a hair dryer in the distance, water running briefly, no voices, no music",
     40: "Calm beauty salon, quiet room tone, a nail file, small glass bottles clinking, no voices, no music",
+    41: "Dry cleaner shop, quiet room tone, a door bell chimes once at the very start, clothes hangers clinking, a steam press hissing softly, no voices, no music",
+    42: "Small cobbler and key cutting shop, a key cutting machine grinding briefly, metal keys jingling, quiet room tone, no voices, no music",
+    43: "Small corner shop used as a parcel pick-up point, quiet room tone, a barcode scanner beep, a cardboard box sliding on the counter, no voices, no music",
+    44: "Post office counter, quiet room tone, a rubber stamp being pressed, envelopes and paper, a queue ticket beep, distant indistinct murmur without clear words, no music",
+    45: "Clothing store, quiet room tone, hangers sliding on a rail, a fitting room curtain being pulled, no voices, no music",
+    46: "Shoe shop, quiet room tone, a shoe box being opened, tissue paper rustling, footsteps on the floor, no voices, no music",
+    47: "Large DIY hardware store, big hall, a shopping trolley rolling, distant beeps, small metal items clinking, no voices, no music",
+    48: "Mobile phone shop, quiet modern room tone, a phone notification sound, a printer printing a page, no voices, no music",
+    49: "Stationery shop, quiet room tone, a door bell chimes once at the very start, notebooks and paper, a cash register beep, no voices, no music",
+    50: "Pet and garden shop, quiet room tone, small birds chirping in cages, a bag of pet food rustling, no voices, no music",
+    51: "Veterinary clinic waiting room, quiet room tone, a dog panting and its claws tapping on the floor, a door opening, no voices, no music",
+    52: "Bank reception area, quiet room tone, keyboard typing, a distant door, soft footsteps, no voices, no music",
+    53: "Town hall reception, large quiet hall, footsteps on a stone floor, papers, a distant door closing, no voices, no music",
+    54: "Quiet public library, pages turning, a book barcode scanner beep, very soft footsteps, no voices, no music",
+    55: "Outdoor recycling centre, wind, a car boot closing, cardboard and wood thrown into a metal skip, a distant truck, no voices, no music",
+    56: "Quiet office room, a pen writing on paper, papers rustling, a clock ticking softly, no voices, no music",
+    57: "Inside a moving train carriage, steady rhythm of the rails, gentle swaying, a sliding door opening, no voices, no announcements, no music",
+    58: "Airport check-in hall, large space, rolling suitcases, a luggage conveyor belt, distant indistinct murmur without clear words, no announcements, no music",
+    59: "Town street with parking spaces, light traffic, a car door closing, a parking meter beep, footsteps, no voices, no music",
+    60: "Outdoor bike rental shop in summer, bicycle bells ringing, bike chains clicking, birds, light street noise, no voices, no music",
+    61: "Tourist information office, quiet room tone, a door bell chimes once at the very start, maps and brochures being unfolded, no voices, no music",
+    62: "Hotel lobby in the evening, quiet room tone, a reception desk bell ding at the very start, keys jingling, soft footsteps on carpet, no voices, no music",
+    63: "Campsite reception outdoors in summer, cicadas, birds, distant children playing without clear words, footsteps on gravel, no music",
+    64: "Old town square outdoors, a small group walking on cobblestones, distant church bells, pigeons, light wind, no clear voices, no music",
+    65: "Museum entrance hall, large quiet space, soft footsteps, a ticket printer, no voices, no music",
+    66: "Town hall office, quiet room tone, keyboard typing, papers, a stapler, no voices, no music",
+    67: "School office near the canteen, distant children's lunchtime noise without clear words, plates and cutlery clattering far away, no music",
+    68: "Day nursery in the morning, soft distant toddlers babbling without clear words, toys, a door closing gently, no music",
+    69: "Children's leisure centre office, distant children playing without clear words, a ball bouncing, no music",
+    70: "Quiet kitchen at home in the evening, a school notebook being opened, a pen signing paper, a clock ticking, no voices, no music",
+    71: "Quiet living room, soft room tone, a cup set down on a table, light rain outside the window, no voices, no music",
+    72: "Gym reception, distant weights clanking, a treadmill humming, a door closing, no voices, no music",
+    73: "Outdoor football ground in the evening, distant players calling without clear words, a ball being kicked, a coach whistle far away, no music",
+    74: "Concert hall box office in the evening, foyer ambience, distant indistinct crowd murmur without clear words, a ticket printer, no music",
+    75: "Outdoor neighbourhood flea market, distant indistinct crowd murmur without clear words, objects being moved on tables, birds, no music",
+    76: "Outdoor wedding reception, distant cheerful chatter without clear words, glasses clinking, light wind, no music",
+    77: "Quiet church entrance, large stone space, soft footsteps, a distant heavy door, no voices, no music",
+    78: "Office telephone call, a telephone ringing twice at the very start and being picked up, subtle phone line hiss, quiet office room tone, no voices, no music",
+    79: "Quiet room, an email notification sound at the very start, computer keyboard typing, a mouse click, no voices, no music",
+    80: "Quiet room, a newspaper page turning, a pen tapping on a table, no voices, no music",
 }
 # coquilles évidentes de l'Excel, corrigées pour la voix (signalées dans le LISEZMOI)
 CORRECTIONS = {9: [("Bonjou Madame r.", "Bonjour, madame.")], 18: [("Elel adore le toboggan", "Elle adore le toboggan.")],
@@ -93,12 +138,16 @@ def genre(role):
 
 
 def voix_du_dialogue(repliques, n=0):
-    vus, prises = {}, {"F": 0, "M": 0}
+    vus, prises, par_cle = {}, {"F": 0, "M": 0}, {}
+    docs = [role for role, _ in repliques if role in DOCUMENT]
     for role, _ in repliques:
-        if role not in vus:
-            g = genre(role)
-            vus[role] = VOIX[g][prises[g] % 2] if n < ROULEMENT_DEPUIS else VOIX[g][(n + prises[g]) % len(VOIX[g])]
+        if role in vus: continue
+        cle = ("document", docs[0]) if role in DOCUMENT else role          # un document : une seule voix pour toutes ses lignes
+        if cle not in par_cle:
+            g = GENRE_FORCE.get(n, {}).get(cle if isinstance(cle, str) else cle[1]) or genre(cle if isinstance(cle, str) else cle[1])
+            par_cle[cle] = VOIX[g][prises[g] % 2] if n < ROULEMENT_DEPUIS else VOIX[g][(n + prises[g]) % len(VOIX[g])]
             prises[g] += 1
+        vus[role] = par_cle[cle]
     for role, nom in VOIX_FORCEE.get(n, {}).items():
         if role in vus: vus[role] = _V[nom]["id"]
     return vus
@@ -109,7 +158,15 @@ def dire(t):
     t = re.sub(r"(\d+),(\d{2})\s*euros?", lambda m: f"{m[1]} {'euro' if m[1] == '1' else 'euros'} {m[2]}", t)
     t = re.sub(r"\b(\d{1,2}) h (\d{2})\b", lambda m: f"{m[1]} {'heure' if m[1] == '1' else 'heures'} {m[2]}", t)     # « 10 h 15 » → « 10 heures 15 »
     t = re.sub(r"\b(\d{1,2}) h\b", lambda m: f"{m[1]} {'heure' if m[1] == '1' else 'heures'}", t)                     # « 14 h » → « 14 heures »
-    return re.sub(r"\s*:\s*$", ".", t)                                                                                # « Choisissez le montant : » → « … montant. »
+    t = re.sub(r"_+(\s*/\s*_+)*", " ", t)                     # les blancs à remplir d'une fiche ne se lisent pas
+    t = re.sub(r"\b(\d{1,2}) kilos\b", lambda m: ["zéro", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", "dix"][int(m[1])] + " kilos" if int(m[1]) <= 10 else m[0], t)   # « 3 kilos » était lu « trois kilogrammes »
+    t = re.sub(r"\bCD([DI])\b", lambda m: f"C.D.{m[1]}.", t)  # « CDD », « CDI » épelés
+    t = re.sub(r"\bNOM\b", "nom", t)                          # « NOM » n'est pas un sigle à épeler
+    t = re.sub(r"(?<=[a-zé]) / (?=[a-zé])", " ou ", t)          # « vendeur / vendeuse » → « vendeur ou vendeuse »
+    t = re.sub(r"\s*:\s*(?=[A-ZÉ]|$)", ". ", t)               # « Objet : Absence », « Nationalité : » → une phrase par champ
+    t = re.sub(r"\s+", " ", t).strip()
+    t = re.sub(r"\.(\s*\.)+", ".", t)                         # « Choisissez le montant : » → « … montant. »
+    return t[:1].upper() + t[1:]
 
 
 def appeler(url, corps, chemin):
@@ -140,7 +197,7 @@ def produire(niveau, s):
     with tempfile.TemporaryDirectory() as d:
         brut = os.path.join(d, "dialogue.mp3")
         appeler(f"{API}/text-to-dialogue?output_format=mp3_44100_128",
-                {"inputs": [{"text": dire(t), "voice_id": voix[role]} for role, t in s["repliques"]], "model_id": MODELE, "language_code": "fr"}, brut)
+                {"inputs": [{"text": dire(t) or dire(role) + ".", "voice_id": voix[role]} for role, t in s["repliques"]], "model_id": MODELE, "language_code": "fr"}, brut)
         # sans les blancs du début et de la fin, au bon volume ; 0,8 s de calme au début, 1 s à la fin
         voixw = os.path.join(d, "voix.wav")
         subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", brut, "-af",

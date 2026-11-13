@@ -1061,7 +1061,7 @@
    "Client": "JFppi8XcU3D1RvkAikO5",
    "Employée": "4NTBwCMIWDfx48seeuxZ"
   },
-  "ambiance": null
+  "ambiance": "Dry cleaner shop, quiet room tone, a door bell chimes once at the very start, clothes hangers clinking, a steam press hissing softly, no voices, no music"
  },
  "A1-s42": {
   "n": 42,
@@ -1098,7 +1098,7 @@
    "Cliente": "RXG6r6Qewwp92BIFIBhE",
    "Cordonnier": "3Yr319bDgMFZv5qX6yzA"
   },
-  "ambiance": null
+  "ambiance": "Small cobbler and key cutting shop, a key cutting machine grinding briefly, metal keys jingling, quiet room tone, no voices, no music"
  },
  "A1-s43": {
   "n": 43,
@@ -1135,7 +1135,7 @@
    "Cliente": "TKoAvBNxOwnhLtxm7NYM",
    "Commerçant": "6pqL78prQKdL6zrRhG3N"
   },
-  "ambiance": null
+  "ambiance": "Small corner shop used as a parcel pick-up point, quiet room tone, a barcode scanner beep, a cardboard box sliding on the counter, no voices, no music"
  },
  "A1-s44": {
   "n": 44,
@@ -1172,7 +1172,7 @@
    "Client": "W01VS3mCiWjHO239CD72",
    "Guichetière": "87kc04olBn8nRQKuNmaf"
   },
-  "ambiance": null
+  "ambiance": "Post office counter, quiet room tone, a rubber stamp being pressed, envelopes and paper, a queue ticket beep, distant indistinct murmur without clear words, no music"
  },
  "A1-s45": {
   "n": 45,
@@ -1213,7 +1213,7 @@
    "Cliente": "4NTBwCMIWDfx48seeuxZ",
    "Vendeuse": "RXG6r6Qewwp92BIFIBhE"
   },
-  "ambiance": null
+  "ambiance": "Clothing store, quiet room tone, hangers sliding on a rail, a fitting room curtain being pulled, no voices, no music"
  },
  "A1-s46": {
   "n": 46,
@@ -1250,7 +1250,7 @@
    "Client": "3Yr319bDgMFZv5qX6yzA",
    "Vendeuse": "RXG6r6Qewwp92BIFIBhE"
   },
-  "ambiance": null
+  "ambiance": "Shoe shop, quiet room tone, a shoe box being opened, tissue paper rustling, footsteps on the floor, no voices, no music"
  },
  "A1-s47": {
   "n": 47,
@@ -1283,7 +1283,7 @@
    "Client": "6pqL78prQKdL6zrRhG3N",
    "Vendeur": "W01VS3mCiWjHO239CD72"
   },
-  "ambiance": null
+  "ambiance": "Large DIY hardware store, big hall, a shopping trolley rolling, distant beeps, small metal items clinking, no voices, no music"
  },
  "A1-s48": {
   "n": 48,
@@ -1320,7 +1320,7 @@
    "Client": "W01VS3mCiWjHO239CD72",
    "Vendeuse": "87kc04olBn8nRQKuNmaf"
   },
-  "ambiance": null
+  "ambiance": "Mobile phone shop, quiet modern room tone, a phone notification sound, a printer printing a page, no voices, no music"
  },
  "A1-s49": {
   "n": 49,
@@ -1353,7 +1353,7 @@
    "Cliente": "4NTBwCMIWDfx48seeuxZ",
    "Vendeur": "JFppi8XcU3D1RvkAikO5"
   },
-  "ambiance": null
+  "ambiance": "Stationery shop, quiet room tone, a door bell chimes once at the very start, notebooks and paper, a cash register beep, no voices, no music"
  },
  "A1-s50": {
   "n": 50,
@@ -1386,7 +1386,7 @@
    "Cliente": "RXG6r6Qewwp92BIFIBhE",
    "Vendeur": "3Yr319bDgMFZv5qX6yzA"
   },
-  "ambiance": null
+  "ambiance": "Pet and garden shop, quiet room tone, small birds chirping in cages, a bag of pet food rustling, no voices, no music"
  },
  "A1-s51": {
   "n": 51,
@@ -1419,7 +1419,7 @@
    "Secrétaire": "TKoAvBNxOwnhLtxm7NYM",
    "Client": "6pqL78prQKdL6zrRhG3N"
   },
-  "ambiance": null
+  "ambiance": "Veterinary clinic waiting room, quiet room tone, a dog panting and its claws tapping on the floor, a door opening, no voices, no music"
  },
  "A1-s52": {
   "n": 52,
@@ -1456,7 +1456,7 @@
    "Client": "W01VS3mCiWjHO239CD72",
    "Hôtesse": "87kc04olBn8nRQKuNmaf"
   },
-  "ambiance": null
+  "ambiance": "Bank reception area, quiet room tone, keyboard typing, a distant door, soft footsteps, no voices, no music"
  },
  "A1-s53": {
   "n": 53,
@@ -1493,7 +1493,7 @@
    "Usager": "JFppi8XcU3D1RvkAikO5",
    "Agente": "4NTBwCMIWDfx48seeuxZ"
   },
-  "ambiance": null
+  "ambiance": "Town hall reception, large quiet hall, footsteps on a stone floor, papers, a distant door closing, no voices, no music"
  },
  "A1-s54": {
   "n": 54,
@@ -1524,9 +1524,9 @@
   ],
   "voix": {
    "Lecteur": "3Yr319bDgMFZv5qX6yzA",
-   "Bibliothécaire": "6pqL78prQKdL6zrRhG3N"
+   "Bibliothécaire": "RXG6r6Qewwp92BIFIBhE"
   },
-  "ambiance": null
+  "ambiance": "Quiet public library, pages turning, a book barcode scanner beep, very soft footsteps, no voices, no music"
  },
  "A1-s55": {
   "n": 55,
@@ -1563,7 +1563,7 @@
    "Agent": "6pqL78prQKdL6zrRhG3N",
    "Usager": "W01VS3mCiWjHO239CD72"
   },
-  "ambiance": null
+  "ambiance": "Outdoor recycling centre, wind, a car boot closing, cardboard and wood thrown into a metal skip, a distant truck, no voices, no music"
  },
  "A1-s56": {
   "n": 56,
@@ -1597,10 +1597,10 @@
    ]
   ],
   "voix": {
-   "Formulaire": "W01VS3mCiWjHO239CD72",
-   "Consigne": "JFppi8XcU3D1RvkAikO5"
+   "Formulaire": "87kc04olBn8nRQKuNmaf",
+   "Consigne": "4NTBwCMIWDfx48seeuxZ"
   },
-  "ambiance": null
+  "ambiance": "Quiet office room, a pen writing on paper, papers rustling, a clock ticking softly, no voices, no music"
  },
  "A1-s57": {
   "n": 57,
@@ -1637,7 +1637,7 @@
    "Contrôleur": "JFppi8XcU3D1RvkAikO5",
    "Voyageuse": "4NTBwCMIWDfx48seeuxZ"
   },
-  "ambiance": null
+  "ambiance": "Inside a moving train carriage, steady rhythm of the rails, gentle swaying, a sliding door opening, no voices, no announcements, no music"
  },
  "A1-s58": {
   "n": 58,
@@ -1674,7 +1674,7 @@
    "Agente": "RXG6r6Qewwp92BIFIBhE",
    "Voyageur": "3Yr319bDgMFZv5qX6yzA"
   },
-  "ambiance": null
+  "ambiance": "Airport check-in hall, large space, rolling suitcases, a luggage conveyor belt, distant indistinct murmur without clear words, no announcements, no music"
  },
  "A1-s59": {
   "n": 59,
@@ -1711,7 +1711,7 @@
    "Conducteur": "6pqL78prQKdL6zrRhG3N",
    "Passante": "TKoAvBNxOwnhLtxm7NYM"
   },
-  "ambiance": null
+  "ambiance": "Town street with parking spaces, light traffic, a car door closing, a parking meter beep, footsteps, no voices, no music"
  },
  "A1-s60": {
   "n": 60,
@@ -1748,7 +1748,7 @@
    "Client": "W01VS3mCiWjHO239CD72",
    "Loueuse": "87kc04olBn8nRQKuNmaf"
   },
-  "ambiance": null
+  "ambiance": "Outdoor bike rental shop in summer, bicycle bells ringing, bike chains clicking, birds, light street noise, no voices, no music"
  },
  "A1-s61": {
   "n": 61,
@@ -1781,7 +1781,7 @@
    "Touriste": "JFppi8XcU3D1RvkAikO5",
    "Conseillère": "4NTBwCMIWDfx48seeuxZ"
   },
-  "ambiance": null
+  "ambiance": "Tourist information office, quiet room tone, a door bell chimes once at the very start, maps and brochures being unfolded, no voices, no music"
  },
  "A1-s62": {
   "n": 62,
@@ -1815,10 +1815,10 @@
    ]
   ],
   "voix": {
-   "Réceptionniste": "3Yr319bDgMFZv5qX6yzA",
-   "Client": "6pqL78prQKdL6zrRhG3N"
+   "Réceptionniste": "RXG6r6Qewwp92BIFIBhE",
+   "Client": "3Yr319bDgMFZv5qX6yzA"
   },
-  "ambiance": null
+  "ambiance": "Hotel lobby in the evening, quiet room tone, a reception desk bell ding at the very start, keys jingling, soft footsteps on carpet, no voices, no music"
  },
  "A1-s63": {
   "n": 63,
@@ -1855,7 +1855,7 @@
    "Campeur": "6pqL78prQKdL6zrRhG3N",
    "Accueil": "TKoAvBNxOwnhLtxm7NYM"
   },
-  "ambiance": null
+  "ambiance": "Campsite reception outdoors in summer, cicadas, birds, distant children playing without clear words, footsteps on gravel, no music"
  },
  "A1-s64": {
   "n": 64,
@@ -1889,10 +1889,10 @@
    ]
   ],
   "voix": {
-   "Guide": "W01VS3mCiWjHO239CD72",
-   "Visiteur": "JFppi8XcU3D1RvkAikO5"
+   "Guide": "87kc04olBn8nRQKuNmaf",
+   "Visiteur": "W01VS3mCiWjHO239CD72"
   },
-  "ambiance": null
+  "ambiance": "Old town square outdoors, a small group walking on cobblestones, distant church bells, pigeons, light wind, no clear voices, no music"
  },
  "A1-s65": {
   "n": 65,
@@ -1929,7 +1929,7 @@
    "Visiteuse": "4NTBwCMIWDfx48seeuxZ",
    "Caissier": "JFppi8XcU3D1RvkAikO5"
   },
-  "ambiance": null
+  "ambiance": "Museum entrance hall, large quiet space, soft footsteps, a ticket printer, no voices, no music"
  },
  "A1-s66": {
   "n": 66,
@@ -1966,7 +1966,7 @@
    "Mère": "RXG6r6Qewwp92BIFIBhE",
    "Agente": "TKoAvBNxOwnhLtxm7NYM"
   },
-  "ambiance": null
+  "ambiance": "Town hall office, quiet room tone, keyboard typing, papers, a stapler, no voices, no music"
  },
  "A1-s67": {
   "n": 67,
@@ -2003,7 +2003,7 @@
    "Père": "6pqL78prQKdL6zrRhG3N",
    "Agente": "TKoAvBNxOwnhLtxm7NYM"
   },
-  "ambiance": null
+  "ambiance": "School office near the canteen, distant children's lunchtime noise without clear words, plates and cutlery clattering far away, no music"
  },
  "A1-s68": {
   "n": 68,
@@ -2040,7 +2040,7 @@
    "Puéricultrice": "87kc04olBn8nRQKuNmaf",
    "Mère": "4NTBwCMIWDfx48seeuxZ"
   },
-  "ambiance": null
+  "ambiance": "Day nursery in the morning, soft distant toddlers babbling without clear words, toys, a door closing gently, no music"
  },
  "A1-s69": {
   "n": 69,
@@ -2077,7 +2077,7 @@
    "Mère": "4NTBwCMIWDfx48seeuxZ",
    "Animateur": "JFppi8XcU3D1RvkAikO5"
   },
-  "ambiance": null
+  "ambiance": "Children's leisure centre office, distant children playing without clear words, a ball bouncing, no music"
  },
  "A1-s70": {
   "n": 70,
@@ -2104,10 +2104,10 @@
   ],
   "voix": {
    "Mot de l'enseignante": "RXG6r6Qewwp92BIFIBhE",
-   "Signature des parents": "3Yr319bDgMFZv5qX6yzA",
-   "Consigne": "6pqL78prQKdL6zrRhG3N"
+   "Signature des parents": "RXG6r6Qewwp92BIFIBhE",
+   "Consigne": "TKoAvBNxOwnhLtxm7NYM"
   },
-  "ambiance": null
+  "ambiance": "Quiet kitchen at home in the evening, a school notebook being opened, a pen signing paper, a clock ticking, no voices, no music"
  },
  "A1-s71": {
   "n": 71,
@@ -2141,10 +2141,10 @@
    ]
   ],
   "voix": {
-   "Amina": "6pqL78prQKdL6zrRhG3N",
-   "Julie": "W01VS3mCiWjHO239CD72"
+   "Amina": "TKoAvBNxOwnhLtxm7NYM",
+   "Julie": "87kc04olBn8nRQKuNmaf"
   },
-  "ambiance": null
+  "ambiance": "Quiet living room, soft room tone, a cup set down on a table, light rain outside the window, no voices, no music"
  },
  "A1-s72": {
   "n": 72,
@@ -2181,7 +2181,7 @@
    "Client": "W01VS3mCiWjHO239CD72",
    "Accueil": "87kc04olBn8nRQKuNmaf"
   },
-  "ambiance": null
+  "ambiance": "Gym reception, distant weights clanking, a treadmill humming, a door closing, no voices, no music"
  },
  "A1-s73": {
   "n": 73,
@@ -2215,10 +2215,10 @@
    ]
   ],
   "voix": {
-   "Jeune": "JFppi8XcU3D1RvkAikO5",
-   "Entraîneur": "3Yr319bDgMFZv5qX6yzA"
+   "Jeune": "3Yr319bDgMFZv5qX6yzA",
+   "Entraîneur": "6pqL78prQKdL6zrRhG3N"
   },
-  "ambiance": null
+  "ambiance": "Outdoor football ground in the evening, distant players calling without clear words, a ball being kicked, a coach whistle far away, no music"
  },
  "A1-s74": {
   "n": 74,
@@ -2255,7 +2255,7 @@
    "Client": "3Yr319bDgMFZv5qX6yzA",
    "Guichetière": "RXG6r6Qewwp92BIFIBhE"
   },
-  "ambiance": null
+  "ambiance": "Concert hall box office in the evening, foyer ambience, distant indistinct crowd murmur without clear words, a ticket printer, no music"
  },
  "A1-s75": {
   "n": 75,
@@ -2288,7 +2288,7 @@
    "Acheteuse": "TKoAvBNxOwnhLtxm7NYM",
    "Vendeur": "6pqL78prQKdL6zrRhG3N"
   },
-  "ambiance": null
+  "ambiance": "Outdoor neighbourhood flea market, distant indistinct crowd murmur without clear words, objects being moved on tables, birds, no music"
  },
  "A1-s76": {
   "n": 76,
@@ -2321,7 +2321,7 @@
    "Invité": "W01VS3mCiWjHO239CD72",
    "Mariée": "87kc04olBn8nRQKuNmaf"
   },
-  "ambiance": null
+  "ambiance": "Outdoor wedding reception, distant cheerful chatter without clear words, glasses clinking, light wind, no music"
  },
  "A1-s77": {
   "n": 77,
@@ -2354,7 +2354,7 @@
    "Visiteur": "JFppi8XcU3D1RvkAikO5",
    "Bénévole": "3Yr319bDgMFZv5qX6yzA"
   },
-  "ambiance": null
+  "ambiance": "Quiet church entrance, large stone space, soft footsteps, a distant heavy door, no voices, no music"
  },
  "A1-s78": {
   "n": 78,
@@ -2387,7 +2387,7 @@
    "Secrétaire": "RXG6r6Qewwp92BIFIBhE",
    "Appelant": "3Yr319bDgMFZv5qX6yzA"
   },
-  "ambiance": null
+  "ambiance": "Office telephone call, a telephone ringing twice at the very start and being picked up, subtle phone line hiss, quiet office room tone, no voices, no music"
  },
  "A1-s79": {
   "n": 79,
@@ -2410,9 +2410,9 @@
   ],
   "voix": {
    "Mail": "6pqL78prQKdL6zrRhG3N",
-   "Consigne": "W01VS3mCiWjHO239CD72"
+   "Consigne": "TKoAvBNxOwnhLtxm7NYM"
   },
-  "ambiance": null
+  "ambiance": "Quiet room, an email notification sound at the very start, computer keyboard typing, a mouse click, no voices, no music"
  },
  "A1-s80": {
   "n": 80,
@@ -2434,10 +2434,10 @@
    ]
   ],
   "voix": {
-   "Offre": "W01VS3mCiWjHO239CD72",
-   "Consigne": "JFppi8XcU3D1RvkAikO5"
+   "Offre": "87kc04olBn8nRQKuNmaf",
+   "Consigne": "4NTBwCMIWDfx48seeuxZ"
   },
-  "ambiance": null
+  "ambiance": "Quiet room, a newspaper page turning, a pen tapping on a table, no voices, no music"
  },
  "A1-s81": {
   "n": 81,
@@ -2609,7 +2609,7 @@
   ],
   "voix": {
    "Convocation": "JFppi8XcU3D1RvkAikO5",
-   "Consigne": "3Yr319bDgMFZv5qX6yzA"
+   "Consigne": "4NTBwCMIWDfx48seeuxZ"
   },
   "ambiance": null
  },
@@ -2955,7 +2955,7 @@
   ],
   "voix": {
    "Écran": "TKoAvBNxOwnhLtxm7NYM",
-   "Consigne": "6pqL78prQKdL6zrRhG3N"
+   "Consigne": "87kc04olBn8nRQKuNmaf"
   },
   "ambiance": null
  },
@@ -4220,7 +4220,7 @@
   ],
   "voix": {
    "Fiche de paie": "6pqL78prQKdL6zrRhG3N",
-   "Consigne": "W01VS3mCiWjHO239CD72"
+   "Consigne": "TKoAvBNxOwnhLtxm7NYM"
   },
   "ambiance": null
  },
@@ -4422,7 +4422,7 @@
   ],
   "voix": {
    "Serveur vocal": "JFppi8XcU3D1RvkAikO5",
-   "Consigne": "3Yr319bDgMFZv5qX6yzA"
+   "Consigne": "4NTBwCMIWDfx48seeuxZ"
   },
   "ambiance": null
  },
