@@ -537,6 +537,14 @@ body.tall .h-ecrit { font-size: 24px; }
 body.tall .h-lune { width: 44px; height: 44px; border-radius: 13px; } body.tall .h-lune svg { width: 28px; height: 28px; }
 body.tall .h-nom { height: 50px; font-size: 18px; }
 body.tall .h-cage { min-height: 0; }
+body.tall .h-asc { grid-template-columns: minmax(0, 1fr) 84px; gap: 10px; }
+body.tall .h-niv { grid-template-columns: 40px 56px minmax(0, 1fr); }
+body.tall .h-cabine { left: 40px; width: 56px; }
+body.tall .h-et { font-size: 15px; }
+body.tall .h-couloir { gap: 8px; padding-left: 10px; } body.tall .h-couloir i { width: 20px; height: 34px; }
+body.tall .h-niv.juste .h-couloir, body.tall .h-niv.faux .h-couloir { opacity: 0; }
+body.tall .h-dit { right: 6px; padding: 5px 9px; font-size: 13px; }
+body.tall .h-plaque { padding: 10px 8px; }
 body.tall .h-bouton { width: 44px; height: 44px; font-size: 19px; } body.tall .h-boutons { gap: 6px; } body.tall .h-ecran { height: 42px; }
 body.short .h-ligne { grid-template-columns: 1fr; gap: 2px; min-height: 0; padding: 6px 0; }
 body.short .h-lune { width: 34px; height: 34px; border-radius: 10px; } body.short .h-lune svg { width: 22px; height: 22px; } body.short .h-lunes { gap: 5px; }
@@ -991,7 +999,6 @@ window.SCENARIO = (() => {
   const GEL_CLE = 6.62;
   const ZONES = [
     { id: 'cle', label: 'La clé', x: 24, y: 64, w: 17, h: 18 },
-    { id: 'badge', label: 'Le badge', nom: 'le badge', dit: 'son badge', x: 25.5, y: 53.5, w: 7, h: 10 },
     { id: 'ecran', label: "L'écran", nom: "l'écran", dit: "l'écran", x: 45, y: 64, w: 18, h: 20 },
     { id: 'lampe', label: 'La lampe', nom: 'la lampe', dit: 'une lampe', x: 79, y: 34, w: 10, h: 15 },
     { id: 'comptoir', label: 'Le comptoir', nom: 'le comptoir', dit: 'le comptoir', x: 0, y: 87, w: 55, h: 13 },
@@ -1090,7 +1097,7 @@ window.SCENARIO = (() => {
           ask();
         },
 
-        /* 2 · dans la vidéo : elle redit « Voici votre clé » ; sur l'image, on touche la clé (une carte), pas l'écran ni le badge */
+        /* 2 · dans la vidéo : elle redit « Voici votre clé » ; sur l'image, on touche la clé (une carte), pas l'écran, la lampe ni le comptoir */
         async cle(f) {
           const ask = () => { Q.show('you', state.ask); yourTurn(); cam.classList.add('asking'); idle.set(tapHere($('.hit[data-id="ecran"]', cam)), 5000); };
           if (!await avant(f, { question: 'Écoute la réceptionniste.', qui: 'receptionniste', seg: VOICI, gel: GEL_CLE, consigne: 'Où est la clé' + NB + "? Clique dans l'image." })) return;

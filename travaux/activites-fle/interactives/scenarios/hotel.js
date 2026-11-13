@@ -24,7 +24,6 @@ window.SCENARIO = (() => {
   const GEL_CLE = 6.62;
   const ZONES = [
     { id: 'cle', label: 'La clé', x: 24, y: 64, w: 17, h: 18 },
-    { id: 'badge', label: 'Le badge', nom: 'le badge', dit: 'son badge', x: 25.5, y: 53.5, w: 7, h: 10 },
     { id: 'ecran', label: "L'écran", nom: "l'écran", dit: "l'écran", x: 45, y: 64, w: 18, h: 20 },
     { id: 'lampe', label: 'La lampe', nom: 'la lampe', dit: 'une lampe', x: 79, y: 34, w: 10, h: 15 },
     { id: 'comptoir', label: 'Le comptoir', nom: 'le comptoir', dit: 'le comptoir', x: 0, y: 87, w: 55, h: 13 },
@@ -123,7 +122,7 @@ window.SCENARIO = (() => {
           ask();
         },
 
-        /* 2 · dans la vidéo : elle redit « Voici votre clé » ; sur l'image, on touche la clé (une carte), pas l'écran ni le badge */
+        /* 2 · dans la vidéo : elle redit « Voici votre clé » ; sur l'image, on touche la clé (une carte), pas l'écran, la lampe ni le comptoir */
         async cle(f) {
           const ask = () => { Q.show('you', state.ask); yourTurn(); cam.classList.add('asking'); idle.set(tapHere($('.hit[data-id="ecran"]', cam)), 5000); };
           if (!await avant(f, { question: 'Écoute la réceptionniste.', qui: 'receptionniste', seg: VOICI, gel: GEL_CLE, consigne: 'Où est la clé' + NB + "? Clique dans l'image." })) return;

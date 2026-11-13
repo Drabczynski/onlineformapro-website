@@ -91,6 +91,14 @@ body.tall .h-ecrit { font-size: 24px; }
 body.tall .h-lune { width: 44px; height: 44px; border-radius: 13px; } body.tall .h-lune svg { width: 28px; height: 28px; }
 body.tall .h-nom { height: 50px; font-size: 18px; }
 body.tall .h-cage { min-height: 0; }
+body.tall .h-asc { grid-template-columns: minmax(0, 1fr) 84px; gap: 10px; }
+body.tall .h-niv { grid-template-columns: 40px 56px minmax(0, 1fr); }
+body.tall .h-cabine { left: 40px; width: 56px; }
+body.tall .h-et { font-size: 15px; }
+body.tall .h-couloir { gap: 8px; padding-left: 10px; } body.tall .h-couloir i { width: 20px; height: 34px; }
+body.tall .h-niv.juste .h-couloir, body.tall .h-niv.faux .h-couloir { opacity: 0; }
+body.tall .h-dit { right: 6px; padding: 5px 9px; font-size: 13px; }
+body.tall .h-plaque { padding: 10px 8px; }
 body.tall .h-bouton { width: 44px; height: 44px; font-size: 19px; } body.tall .h-boutons { gap: 6px; } body.tall .h-ecran { height: 42px; }
 body.short .h-ligne { grid-template-columns: 1fr; gap: 2px; min-height: 0; padding: 6px 0; }
 body.short .h-lune { width: 34px; height: 34px; border-radius: 10px; } body.short .h-lune svg { width: 22px; height: 22px; } body.short .h-lunes { gap: 5px; }
