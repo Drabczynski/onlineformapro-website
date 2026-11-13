@@ -98,19 +98,20 @@ window.SCENARIO = (() => {
 
         /* 2 · l'ardoise de près : le serveur demande une entrée, le client répond ; on clique sur l'entrée, la craie l'entoure */
         async entree(f) {
-          const ask = () => { Q.show('you', state.ask); yourTurn(); idle.set(tapHere($('.ard-choix[data-id="oeuf"]', side)), 5000); };
+          let fini = false;
+          const ask =() => { Q.show('you', state.ask); yourTurn(); idle.set(tapHere($('.ard-choix[data-id="oeuf"]', side)), 5000); };
           if (!await avant(f, {
             question: 'Écoute bien.', seg: ENTREE, sideW: 540, consigne: 'Il prend quelle entrée' + NB + "? Clique sur l'ardoise.",
             panneau: `<div class="panel glass"><p class="ptitre">L'ardoise du restaurant</p>${ARDOISE()}</div>`,
           })) return;
           state.replay = async () => { setTurn('listen'); await playSegment(ENTREE[0], ENTREE[1], gel()); if (alive(f)) ask(); };
           $$('.ard-choix', side).forEach(b => b.addEventListener('click', async () => {
-            if (document.body.dataset.turn !== 'you') return;
+            if (document.body.dataset.turn !== 'you' || fini) return;
             A.unlock(); idle.clear(); setTurn('wait'); sfx.tick();
             const c = entourer(b);
             await wait(700); if (!alive(f)) return;
             if (b.dataset.id === 'salade') {
-              b.classList.remove('indice'); b.classList.add('juste'); c.classList.add('juste');
+              fini = true; b.classList.remove('indice'); c.classList.add('juste'); $('.ardoise', side).classList.add('fini');
               if (!await juste(f, 'Oui' + NB + '! Une salade.', SALADE)) return;
               suite();
             } else {
@@ -127,6 +128,7 @@ window.SCENARIO = (() => {
         /* 3 · l'assiette : le serveur demande le plat, le client répond ; on pose le plat et ce qui va avec, puis Valider */
         async plat(f) {
           const choix = { plat: null, avec: null };
+          let fini = false;
           const pose = g => $(`.pose[data-g="${g}"]`, side);
           const vider = g => {
             const id = choix[g]; choix[g] = null; const p = pose(g);
@@ -148,8 +150,8 @@ window.SCENARIO = (() => {
               <p class="rang">Le plat</p><div class="choix3">${ALIMENTS.filter(a => a.g === 'plat').map(tuile).join('')}</div>
               <p class="rang">Avec</p><div class="choix3">${ALIMENTS.filter(a => a.g === 'avec').map(tuile).join('')}</div></div>`,
             monte: p => {
-              $$('.tuile', p).forEach(b => b.addEventListener('click', () => { if (document.body.dataset.turn !== 'you') return; A.unlock(); idle.reset(); sfx.tick(); poser(b); }));
-              $$('.pose', p).forEach(b => b.addEventListener('click', () => { if (document.body.dataset.turn !== 'you' || !choix[b.dataset.g]) return; A.unlock(); idle.reset(); sfx.tick(); vider(b.dataset.g); }));
+              $$('.tuile', p).forEach(b => b.addEventListener('click', () => { if (document.body.dataset.turn !== 'you' || fini) return; A.unlock(); idle.reset(); sfx.tick(); poser(b); }));
+              $$('.pose', p).forEach(b => b.addEventListener('click', () => { if (document.body.dataset.turn !== 'you' || fini || !choix[b.dataset.g]) return; A.unlock(); idle.reset(); sfx.tick(); vider(b.dataset.g); }));
             },
           })) return;
           state.replay = async () => { setTurn('listen'); goBtn(null); await playSegment(PLAT[0], PLAT[1], gel()); if (alive(f)) ask(); };
@@ -158,7 +160,7 @@ window.SCENARIO = (() => {
             if (!choix.plat && !choix.avec) { Q.show('you', "Clique sur ce qu'il prend."); return; }
             setTurn('wait'); goBtn(null); idle.clear();
             if (choix.plat === 'poulet' && choix.avec === 'riz') {
-              $('#assiette', side).classList.add('juste');
+              fini = true; $('#assiette', side).classList.add('juste'); $('.panel', side).classList.add('fini');
               if (!await juste(f, 'Oui' + NB + '! Le poulet avec du riz.', POULET)) return;
               suite();
             } else {

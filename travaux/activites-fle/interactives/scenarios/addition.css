@@ -32,21 +32,22 @@
 .tpe.deco .touche { height: 34px; font-size: 17px; border-bottom-width: 3px; border-radius: 10px; }
 .tpe.deco .couleur { height: 38px; font-size: 10px; }
 .tpe.deco .couleur svg { width: 15px; height: 15px; }
-.tpe-carte { position: absolute; z-index: 3; width: 104px; top: -26px; right: -30px; transform: rotate(-14deg); animation: tpe-pose .5s var(--spring) both; pointer-events: none; }
+.tpe-carte { position: absolute; z-index: 3; width: 128px; left: 50%; top: 118px; margin-left: -64px; transform: rotate(-10deg); animation: tpe-pose .5s var(--spring) both; pointer-events: none; }
 .tpe-carte svg { width: 100%; height: auto; }
-@keyframes tpe-pose { from { transform: translate(40px, -10px) rotate(-30deg) scale(1.15); opacity: 0; } to { transform: rotate(-14deg); opacity: 1; } }
+@keyframes tpe-pose { from { transform: translate(60px, -20px) rotate(-30deg) scale(1.15); opacity: 0; } to { transform: rotate(-10deg); opacity: 1; } }
 
 .caisse { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 20px; align-items: center; }
 .poche { display: flex; flex-direction: column; gap: 12px; }
-.tuile.moyen { flex-direction: row; justify-content: flex-start; gap: 12px; height: 82px; padding: 8px 14px 8px 10px; }
-.tuile.moyen .pic { width: 80px; height: 60px; flex: none; }
-.tuile.moyen .pic svg { width: 80px; height: 52px; }
-.tuile.moyen .nom { font-size: 16px; text-align: left; }
+.tuile.moyen { flex-direction: row; justify-content: flex-start; gap: 14px; height: 92px; padding: 8px 14px 8px 10px; }
+.tuile.moyen .pic { width: 100px; height: 70px; flex: none; }
+.tuile.moyen .pic svg { width: 100px; height: 65px; }
+.tuile.moyen .nom { font-size: 17px; text-align: left; }
 .tuile.moyen.posee .pic { visibility: hidden; }
 .vol-pic, .vol-pic svg { width: 100%; height: 100%; }
 /* la vraie carte, dans la vidéo, se fait glisser jusqu'au terminal */
 .cam .hit.glissable { touch-action: none; cursor: grab; }
-.cam .hit.glissable:active { cursor: grabbing; }
+.cam .hit.glissable:active, .cam .hit.glissable.tire { cursor: grabbing; }
+.cam.asking .hit.glissable.tire { box-shadow: none; background: none; }
 
 body.short .tpe { width: 196px; padding: 10px 11px 11px; gap: 7px; }
 body.short .tpe .touche { height: 30px; font-size: 16px; border-bottom-width: 3px; }
@@ -63,4 +64,5 @@ body.tall .tpe.deco .tpe-ecran b { font-size: 22px; }
 body.tall .tuile.moyen { height: 66px; gap: 6px; padding: 6px 8px; }
 body.tall .tuile.moyen .pic { width: 56px; height: 44px; }
 body.tall .tuile.moyen .pic svg { width: 56px; height: 38px; }
+body.tall .tpe-carte { width: 96px; margin-left: -48px; top: 86px; }
 body.tall .tuile.moyen .nom { font-size: 13px; }

@@ -176,7 +176,7 @@ window.SCENARIO = (() => {
             /* le doigt fait avancer la vidéo : on projette son déplacement sur le chemin carte → terminal */
             h.addEventListener('pointerdown', e => {
               if (document.body.dataset.turn !== 'you' || partie !== 2 || e.button > 0) return;
-              A.unlock(); idle.reset(); e.preventDefault(); glisse = false;
+              A.unlock(); idle.reset(); e.preventDefault(); glisse = false; h.classList.add('tire');
               try { h.setPointerCapture(e.pointerId); } catch (err) {}
               const r = cam.getBoundingClientRect(), x0 = e.clientX, y0 = e.clientY, [xc, yc] = pct(GLISSE.cible, r), [xd, yd] = pct(GLISSE.depart, r);
               const vx = xc - xd, vy = yc - yd, L2 = vx * vx + vy * vy;
@@ -191,7 +191,7 @@ window.SCENARIO = (() => {
               };
               const lache = () => {
                 h.removeEventListener('pointermove', bouge); h.removeEventListener('pointerup', lache); h.removeEventListener('pointercancel', lache);
-                vid.removeEventListener('seeked', vu);
+                vid.removeEventListener('seeked', vu); h.classList.remove('tire');
                 if (!glisse) return;
                 if (p >= .75) payer(GLISSE.de + p * (GLISSE.a - GLISSE.de));
                 else { aller(GLISSE.de); Q.show('you', 'Encore un peu' + NB + ": jusqu'au terminal."); idle.reset(4000); }
@@ -206,7 +206,7 @@ window.SCENARIO = (() => {
             await playSegment(depuis, GLISSE.fin, null); if (!alive(f)) return;
             state.gel = GLISSE.fin; await freeze(GLISSE.fin); if (!alive(f)) return;
             sfx.coin(); cadreZone(ZTERMINAL); marque(ZTERMINAL, 'Payé', 'juste');
-            if (!await juste(f, 'Bravo' + NB + '! Il a payé sans contact.')) return;
+            if (!await juste(f, 'Oui' + NB + '! Il a payé sans contact.')) return;
             suite();
           }
           ask();

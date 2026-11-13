@@ -460,13 +460,12 @@ body.tall .sac { min-height: 64px; } body.tall .sac .sacpic svg { width: 46px; h
 .tpe .touche { height: 50px; border-radius: 13px; background: #ECEEF1; color: #1B1E24; font-size: 23px; font-weight: 800; font-variant-numeric: tabular-nums;
   border-bottom: 4px solid #AEB4BE; display: grid; place-items: center; transition: transform .08s, border-bottom-width .08s; }
 .tpe button.touche:active { transform: translateY(3px); border-bottom-width: 1px; }
-@media (hover: hover) { .tpe button.touche:hover { background: #fff; } .tpe button.couleur:hover { filter: brightness(1.08); } }
+@media (hover: hover) { .tpe button.touche:not(.couleur):hover { background: #fff; } .tpe button.couleur:hover { filter: brightness(1.08); } }
 .tpe .couleur { height: 56px; display: flex; flex-direction: column; gap: 2px; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: #fff; }
 .tpe .couleur svg { width: 20px; height: 20px; }
 .tpe .rouge { background: #D9474C; border-bottom-color: #9E2A2F; }
 .tpe .jaune { background: #F1C24B; border-bottom-color: #B98A22; color: #3A2B05; }
 .tpe .verte { background: #2E9E66; border-bottom-color: #1A6942; }
-@media (hover: hover) { .tpe .rouge:hover { background: #D9474C; } .tpe .jaune:hover { background: #F1C24B; } .tpe .verte:hover { background: #2E9E66; } }
 /* juste : cadre vert + « ✓ Validé » ; à revoir : cadre orange ; la réponse montrée respire */
 .tpe.juste .tpe-ecran { outline-color: var(--ok); }
 .tpe.faux .tpe-ecran { outline-color: var(--try); }
@@ -479,21 +478,22 @@ body.tall .sac { min-height: 64px; } body.tall .sac .sacpic svg { width: 46px; h
 .tpe.deco .touche { height: 34px; font-size: 17px; border-bottom-width: 3px; border-radius: 10px; }
 .tpe.deco .couleur { height: 38px; font-size: 10px; }
 .tpe.deco .couleur svg { width: 15px; height: 15px; }
-.tpe-carte { position: absolute; z-index: 3; width: 104px; top: -26px; right: -30px; transform: rotate(-14deg); animation: tpe-pose .5s var(--spring) both; pointer-events: none; }
+.tpe-carte { position: absolute; z-index: 3; width: 128px; left: 50%; top: 118px; margin-left: -64px; transform: rotate(-10deg); animation: tpe-pose .5s var(--spring) both; pointer-events: none; }
 .tpe-carte svg { width: 100%; height: auto; }
-@keyframes tpe-pose { from { transform: translate(40px, -10px) rotate(-30deg) scale(1.15); opacity: 0; } to { transform: rotate(-14deg); opacity: 1; } }
+@keyframes tpe-pose { from { transform: translate(60px, -20px) rotate(-30deg) scale(1.15); opacity: 0; } to { transform: rotate(-10deg); opacity: 1; } }
 
 .caisse { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 20px; align-items: center; }
 .poche { display: flex; flex-direction: column; gap: 12px; }
-.tuile.moyen { flex-direction: row; justify-content: flex-start; gap: 12px; height: 82px; padding: 8px 14px 8px 10px; }
-.tuile.moyen .pic { width: 80px; height: 60px; flex: none; }
-.tuile.moyen .pic svg { width: 80px; height: 52px; }
-.tuile.moyen .nom { font-size: 16px; text-align: left; }
+.tuile.moyen { flex-direction: row; justify-content: flex-start; gap: 14px; height: 92px; padding: 8px 14px 8px 10px; }
+.tuile.moyen .pic { width: 100px; height: 70px; flex: none; }
+.tuile.moyen .pic svg { width: 100px; height: 65px; }
+.tuile.moyen .nom { font-size: 17px; text-align: left; }
 .tuile.moyen.posee .pic { visibility: hidden; }
 .vol-pic, .vol-pic svg { width: 100%; height: 100%; }
 /* la vraie carte, dans la vidéo, se fait glisser jusqu'au terminal */
 .cam .hit.glissable { touch-action: none; cursor: grab; }
-.cam .hit.glissable:active { cursor: grabbing; }
+.cam .hit.glissable:active, .cam .hit.glissable.tire { cursor: grabbing; }
+.cam.asking .hit.glissable.tire { box-shadow: none; background: none; }
 
 body.short .tpe { width: 196px; padding: 10px 11px 11px; gap: 7px; }
 body.short .tpe .touche { height: 30px; font-size: 16px; border-bottom-width: 3px; }
@@ -510,6 +510,7 @@ body.tall .tpe.deco .tpe-ecran b { font-size: 22px; }
 body.tall .tuile.moyen { height: 66px; gap: 6px; padding: 6px 8px; }
 body.tall .tuile.moyen .pic { width: 56px; height: 44px; }
 body.tall .tuile.moyen .pic svg { width: 56px; height: 38px; }
+body.tall .tpe-carte { width: 96px; margin-left: -48px; top: 86px; }
 body.tall .tuile.moyen .nom { font-size: 13px; }
 
 </style></head><body>
@@ -955,7 +956,7 @@ window.SCENARIO = (() => {
             /* le doigt fait avancer la vidéo : on projette son déplacement sur le chemin carte → terminal */
             h.addEventListener('pointerdown', e => {
               if (document.body.dataset.turn !== 'you' || partie !== 2 || e.button > 0) return;
-              A.unlock(); idle.reset(); e.preventDefault(); glisse = false;
+              A.unlock(); idle.reset(); e.preventDefault(); glisse = false; h.classList.add('tire');
               try { h.setPointerCapture(e.pointerId); } catch (err) {}
               const r = cam.getBoundingClientRect(), x0 = e.clientX, y0 = e.clientY, [xc, yc] = pct(GLISSE.cible, r), [xd, yd] = pct(GLISSE.depart, r);
               const vx = xc - xd, vy = yc - yd, L2 = vx * vx + vy * vy;
@@ -970,7 +971,7 @@ window.SCENARIO = (() => {
               };
               const lache = () => {
                 h.removeEventListener('pointermove', bouge); h.removeEventListener('pointerup', lache); h.removeEventListener('pointercancel', lache);
-                vid.removeEventListener('seeked', vu);
+                vid.removeEventListener('seeked', vu); h.classList.remove('tire');
                 if (!glisse) return;
                 if (p >= .75) payer(GLISSE.de + p * (GLISSE.a - GLISSE.de));
                 else { aller(GLISSE.de); Q.show('you', 'Encore un peu' + NB + ": jusqu'au terminal."); idle.reset(4000); }
@@ -985,7 +986,7 @@ window.SCENARIO = (() => {
             await playSegment(depuis, GLISSE.fin, null); if (!alive(f)) return;
             state.gel = GLISSE.fin; await freeze(GLISSE.fin); if (!alive(f)) return;
             sfx.coin(); cadreZone(ZTERMINAL); marque(ZTERMINAL, 'Payé', 'juste');
-            if (!await juste(f, 'Bravo' + NB + '! Il a payé sans contact.')) return;
+            if (!await juste(f, 'Oui' + NB + '! Il a payé sans contact.')) return;
             suite();
           }
           ask();
