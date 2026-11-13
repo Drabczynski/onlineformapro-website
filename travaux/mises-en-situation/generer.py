@@ -264,6 +264,18 @@ MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août
 ORDINAUX = {2: "deuxième", 3: "troisième", 4: "quatrième", 5: "cinquième", 6: "sixième", 7: "septième", 8: "huitième", 9: "neuvième"}
 
 
+def lettres(n):
+    """Un nombre de 0 à 99 en lettres."""
+    U = "zéro un deux trois quatre cinq six sept huit neuf dix onze douze treize quatorze quinze seize".split()
+    if n < 17: return U[n]
+    if n < 20: return "dix-" + U[n - 10]
+    d, u = divmod(n, 10); D = {2: "vingt", 3: "trente", 4: "quarante", 5: "cinquante", 6: "soixante"}
+    if d in D: return D[d] + ("" if u == 0 else " et un" if u == 1 else "-" + U[u])
+    if d == 7: return "soixante" + (" et onze" if u == 1 else "-" + lettres(10 + u))
+    if d == 8: return "quatre-vingts" if u == 0 else "quatre-vingt-" + U[u]
+    return "quatre-vingt-" + lettres(10 + u)
+
+
 def dire(t):
     """Le texte tel qu'on le donne à la voix : les prix « 4,50 euros » se disent « 4 euros 50 »."""
     t = re.sub(r"\[([^\]]*)\]", r"\1.", t)                 # « [Valider] » : un bouton, pas une indication de jeu pour la voix
@@ -278,7 +290,7 @@ def dire(t):
     t = re.sub(r"\bFR(\d+)", r"F R \1", t)                                         # un IBAN
     t = re.sub(r":\s*–\s*(?=\d)", ": moins ", t)                                     # « Cotisations : – 427,50 € »
     t = re.sub(r"\b([A-ZÀ-Ý]{2,}(?:\s+[A-ZÀ-Ý]{2,})+)\b", lambda m: m[0].capitalize(), t)   # « AVIS AUX RÉSIDENTS » : une phrase, pas des sigles
-    t = re.sub(r"\b(\d{1,3}(?: \d{3})*),(\d{2})\s*€", lambda m: f"{m[1].replace(' ', '')} euros {int(m[2])}", t)   # « 1 443,24 € »
+    t = re.sub(r"\b(\d{1,3}(?: \d{3})*),(\d{2})\s*€", lambda m: f"{m[1].replace(' ', '')} euros " + (f"et {int(m[2])} centimes" if int(m[2]) < 10 else m[2]), t)   # « 1 443,24 € », « 1 823,03 € »
     t = re.sub(r"(\d)\s*€", r"\1 euros", t)
     t = re.sub(r"\bM\.\s{2,}", "Monsieur. ", t)                                   # « ☐ M.   Nom de naissance » (une fiche)
     t = re.sub(r"\bM\.\s+(?=[A-ZÉ])", "Monsieur ", t); t = re.sub(r"\bMme\b\.?", "Madame", t)
@@ -291,7 +303,7 @@ def dire(t):
     t = re.sub(r"\b(\d{1,2}) h\b", lambda m: f"{m[1]} {'heure' if m[1] == '1' else 'heures'}", t)                     # « 14 h » → « 14 heures »
     t = re.sub(r"(\d+ heures?(?: \d{2})?) – (\d+ heures?)", r"\1 à \2", t)                                          # « 6 h – 9 h »
     t = re.sub(r"_+(\s*/\s*_+)*", " ", t)                     # les blancs à remplir d'une fiche ne se lisent pas
-    t = re.sub(r"\b(\d{1,2}) kilos\b", lambda m: ["zéro", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", "dix"][int(m[1])] + " kilos" if int(m[1]) <= 10 else m[0], t)   # « 3 kilos » était lu « trois kilogrammes »
+    t = re.sub(r"\b(\d{1,2}) kilos\b", lambda m: lettres(int(m[1])) + " kilos", t)   # « 20 kilos » était lu « vingt kilogrammes »
     t = re.sub(r"\bCD([DI])\b", lambda m: f"C.D.{m[1]}.", t)  # « CDD », « CDI » épelés
     t = re.sub(r"\bNOM\b", "nom", t)                          # « NOM » n'est pas un sigle à épeler
     t = re.sub(r"(?<=[a-zé]) / (?=[a-zé])", " ou ", t)          # « vendeur / vendeuse » → « vendeur ou vendeuse »

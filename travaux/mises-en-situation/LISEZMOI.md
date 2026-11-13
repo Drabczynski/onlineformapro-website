@@ -46,7 +46,7 @@ scène A2 ne se passe pas comme en A1 (`AMBIANCE_NIVEAU` : SMS au lieu d'un appe
 de banque en s25…). Réglages propres à l'A2 : Karim (s30) écrit puis parle avec la même voix (`ALIAS`) ; la stagiaire
 de s133 est une femme (« Enchantée ») ; documents lus par une voix off (annonce du train, étapes Doctolib, faire-part,
 répondeur, affiche, facture, SMS, message) ; lus pour la voix : cases à cocher et « (e) » des fiches, « H/F », « 30 h /
-semaine », « 15/12/2026 », « 1er », « 2e », adresses mail et sites (« impots.gouv »), « AVIS AUX RÉSIDENTS ». Le
+semaine », « 15/12/2026 », « 1er », « 2e », adresses mail et sites (« impots.gouv »), « AVIS AUX RÉSIDENTS ». « 20 kilos » en lettres pour la voix (lu « kilogrammes » sinon), « 1 823,03 € » → « … euros et 3 centimes ». Le
 correcteur orthographique ne relève aucune coquille dans l'Excel A2. Vérification : `verifier.py` (nombres écrits en
 lettres des deux côtés, une deuxième retranscription quand la première rate).
 
