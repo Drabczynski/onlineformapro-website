@@ -180,30 +180,6 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Écoute le client.": {
-   "src": "medias/voix-c63ecc4e5d.mp3",
-   "w": [
-    0.0,
-    0.56,
-    0.84
-   ]
-  },
-  "Qu'est-ce qu'il veut faire ? Clique sur le bon objet dans l'image.": {
-   "src": "medias/voix-7dd4912d8d.mp3",
-   "w": [
-    0.0,
-    0.29,
-    0.44,
-    0.64,
-    1.44,
-    1.84,
-    1.96,
-    2.08,
-    2.4,
-    2.6,
-    2.88
-   ]
-  },
   "Écoute le serveur.": {
    "src": "medias/voix-5928c627d7.mp3",
    "w": [
@@ -229,30 +205,40 @@ window.DONNEES = {
     3.8
    ]
   },
-  "Écoute encore le client.": {
-   "src": "medias/voix-2dd198a2e6.mp3",
+  "Écoute le client.": {
+   "src": "medias/voix-c63ecc4e5d.mp3",
    "w": [
     0.0,
     0.56,
-    1.08,
-    1.2
+    0.84
    ]
   },
-  "Il veut payer comment ? Fais glisser le bon objet sur le terminal.": {
-   "src": "medias/voix-55b3488b2a.mp3",
+  "Il veut payer comment ? Clique sur le bon objet.": {
+   "src": "medias/voix-aa1d0f2269.mp3",
    "w": [
     0.0,
     0.2,
     0.48,
-    0.8,
+    0.84,
     1.44,
-    1.64,
+    1.84,
+    1.96,
+    2.08,
+    2.4
+   ]
+  },
+  "Dans la vidéo, fais glisser sa carte jusqu'au terminal.": {
+   "src": "medias/voix-de6d74978d.mp3",
+   "w": [
+    0.0,
+    0.2,
+    0.32,
+    1.12,
+    1.32,
+    1.68,
     2.0,
-    2.16,
-    2.32,
-    2.72,
-    2.88,
-    3.04
+    2.36,
+    2.72
    ]
   },
   "Super ! Le client a payé ses vingt-huit euros par carte.": {

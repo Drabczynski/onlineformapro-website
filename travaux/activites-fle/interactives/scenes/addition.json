@@ -6,12 +6,11 @@
     "client": {"name": "Le client", "qui": "Le client", "side": "d", "spot": [77, 50, 18, 62], "anchor": [77, 46], "crop": [66, 10, 25, 44]}
   },
   "consignes": [
-    "Écoute le client.",
-    "Qu'est-ce qu'il veut faire ? Clique sur le bon objet dans l'image.",
     "Écoute le serveur.",
     "Ça fait combien ? Clique sur les chiffres, puis sur la touche verte.",
-    "Écoute encore le client.",
-    "Il veut payer comment ? Fais glisser le bon objet sur le terminal.",
+    "Écoute le client.",
+    "Il veut payer comment ? Clique sur le bon objet.",
+    "Dans la vidéo, fais glisser sa carte jusqu'au terminal.",
     "Super ! Le client a payé ses vingt-huit euros par carte."
   ]
 }

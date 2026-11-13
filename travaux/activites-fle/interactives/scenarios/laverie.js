@@ -1,7 +1,8 @@
 /* À la laverie : la dame redit comment ça marche (la vidéo resserrée sur elle) ; puis, sur une image où elle ne montre
-   encore rien (2,2 s : les mains sur ses serviettes, les machines à gauche), on touche sur les vraies machines où va le
-   linge (le grand tambour), puis où va la lessive (en haut). Enfin elle redit le prix : on glisse les pièces du
-   porte-monnaie dans la fente d'une machine dessinée, son petit écran compte, et on la démarre. */
+   encore rien (2,2 s : les mains sur ses serviettes, les machines à gauche), on touche sur les vraies machines où va la
+   lessive (en haut). (Pas de question sur le linge : il va dans le tambour, ça se devine sans écouter.) Enfin elle redit
+   le prix : on glisse les pièces du porte-monnaie dans la fente d'une machine dessinée, son petit écran compte, et on la
+   démarre. */
 window.SCENARIO = (() => {
   const GEL_MACHINES = 2.2;
   /* sur l'image à 2,2 s, en % : trois machines (le haut avec le bac et l'écran, le tambour), la borne au mur, la table */
@@ -15,8 +16,8 @@ window.SCENARIO = (() => {
     { id: 'borne', label: 'La borne pour payer', quoi: 'borne', x: 41.7, y: 25, w: 8.6, h: 25 },
     { id: 'table', label: 'La table', quoi: 'table', x: 77, y: 79, w: 23, h: 21 },
   ];
-  const PAS = { haut: 'Pas en haut.', tambour: 'Pas dans le tambour.', table: 'Pas sur la table.', borne: "Non, ça, c'est pour payer." };
-  const ETIQ = { haut: 'En haut', tambour: 'Le tambour', table: 'La table', borne: 'Pour payer' };
+  const PAS = { tambour: 'Pas dans le tambour.', table: 'Pas sur la table.', borne: "Non, ça, c'est pour payer." };
+  const ETIQ = { tambour: 'Le tambour', table: 'La table', borne: 'Pour payer' };
   const milieu = z => ({ ...z, y: z.y + z.h * .55 });          // une étiquette au milieu du tambour, pas sur le haut
 
   /* la machine dessinée : le porte-monnaie (6 pièces, 7 €), l'écran qui compte, la fente, le hublot */
@@ -43,39 +44,25 @@ window.SCENARIO = (() => {
     bravo: 'Bravo' + NB_ + '! Le jeune homme peut laver son linge.',
     etapes: A => {
       const { $, $$, NB, state, alive, Q, yourTurn, setTurn, playSegment, phrase, ligne, side, idle, tapHere, at, sfx, faux, juste, suite, goBtn, wait, zones, cam, avant, cadreZone, marque, gel, reduced } = A;
-      const LINGE = ligne(1), LESSIVE = phrase('et la lessive en haut');
+      const LIGNE = ligne(1);
       const PRIX = [ligne(2)[0], ligne(3)[1]], QUATRE = [ligne(2)[0], phrase('quatre euros')[1]];
       return {
-        /* 1 · dans la vidéo : où va le linge (le grand tambour), puis la lessive (en haut) */
+        /* 1 · dans la vidéo : où va la lessive (en haut de la machine) ; pièges : les tambours, la borne, la table */
         async machine(f) {
-          let partie = 1;
-          const seg = () => (partie === 1 ? LINGE : LESSIVE);
-          const bon = z => z.quoi === (partie === 1 ? 'tambour' : 'haut');
           const ask = () => { Q.show('you', state.ask); yourTurn(); cam.classList.add('asking'); idle.set(tapHere($('.hit[data-id="table"]', cam)), 5000); };
-          if (!await avant(f, { question: 'Écoute la dame.', qui: 'dame', seg: LINGE, gel: GEL_MACHINES, consigne: 'Où va le linge' + NB + '? Clique au bon endroit.' })) return;
-          state.replay = async () => { setTurn('listen'); cam.classList.remove('asking'); await playSegment(seg()[0], seg()[1], gel()); if (alive(f)) ask(); };
+          if (!await avant(f, { question: 'Écoute la dame.', qui: 'dame', seg: LIGNE, gel: GEL_MACHINES, consigne: 'Où va la lessive' + NB + '? Clique au bon endroit.' })) return;
+          state.replay = async () => { setTurn('listen'); cam.classList.remove('asking'); await playSegment(LIGNE[0], LIGNE[1], gel()); if (alive(f)) ask(); };
           zones(ZONES, async (id, ev, z) => {
             setTurn('wait'); cam.classList.remove('asking'); sfx.tick();
-            if (bon(z) && partie === 1) {
+            if (z.quoi === 'haut') {
               $$('.hit', cam).forEach(h => h.classList.remove('indice'));
-              const c = cadreZone(z), m = marque(milieu(z), 'Le linge', 'juste');
-              if (!await juste(f, 'Oui' + NB + '! Le linge va dans le grand tambour.')) return;
-              await wait(1100); if (!alive(f)) return;
-              c.remove(); m.remove(); partie = 2;
-              await playSegment(LESSIVE[0], LESSIVE[1], gel()); if (!alive(f)) return;
-              state.ask = 'Et la lessive' + NB + '? Clique au bon endroit.';
-              if (!await Q.say(state.ask, f)) return;
-              ask();
-            } else if (bon(z)) {
-              $$('.hit', cam).forEach(h => h.classList.remove('indice'));
-              const t = ZONES.find(x => x.id === 'tambour' + id.slice(-1));
-              cadreZone(z); marque(z, 'La lessive', 'juste'); cadreZone(t); marque(milieu(t), 'Le linge', 'juste');
+              cadreZone(z); marque(z, 'La lessive', 'juste');
               if (!await juste(f, 'Oui' + NB + '! La lessive va en haut.')) return;
               zones(null); suite();
             } else {
               cadreZone(z, 'faux'); marque(z.quoi === 'tambour' ? milieu(z) : z, ETIQ[z.quoi], 'faux');
-              const montrer = await faux(f, seg(), PAS[z.quoi] + ' Écoute encore.'); if (montrer === null) return;
-              if (montrer) ZONES.filter(bon).forEach(x => $(`.hit[data-id="${x.id}"]`, cam).classList.add('indice'));
+              const montrer = await faux(f, LIGNE, PAS[z.quoi] + ' Écoute encore.'); if (montrer === null) return;
+              if (montrer) ZONES.filter(x => x.quoi === 'haut').forEach(x => $(`.hit[data-id="${x.id}"]`, cam).classList.add('indice'));
               ask();
             }
           });
