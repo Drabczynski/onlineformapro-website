@@ -518,7 +518,7 @@
    "Voyageur": "JFppi8XcU3D1RvkAikO5",
    "Agent": "3Yr319bDgMFZv5qX6yzA"
   },
-  "ambiance": null
+  "ambiance": "Underground tram and metro station ticket hall, a distant tram arriving and braking, ticket gate beeps, footsteps, distant indistinct murmur without clear words, no announcements, no music"
  },
  "A1-s22": {
   "n": 22,
@@ -555,7 +555,7 @@
    "Voyageuse": "RXG6r6Qewwp92BIFIBhE",
    "Agent": "3Yr319bDgMFZv5qX6yzA"
   },
-  "ambiance": null
+  "ambiance": "Train station hall, large space, a distant train departure chime, rolling suitcases, distant indistinct murmur without clear words, no announcements, no music"
  },
  "A1-s23": {
   "n": 23,
@@ -580,7 +580,7 @@
    "Chauffeur": "6pqL78prQKdL6zrRhG3N",
    "Cliente": "TKoAvBNxOwnhLtxm7NYM"
   },
-  "ambiance": null
+  "ambiance": "Inside a moving taxi, a car door closing at the very start, engine hum, city traffic outside, a turn signal clicking briefly, no voices, no music"
  },
  "A1-s24": {
   "n": 24,
@@ -605,7 +605,7 @@
    "Client": "W01VS3mCiWjHO239CD72",
    "Caissière": "87kc04olBn8nRQKuNmaf"
   },
-  "ambiance": null
+  "ambiance": "Petrol station shop, quiet room tone, a door bell chimes once at the very start, a card payment terminal beep, distant cars outside, no voices, no music"
  },
  "A1-s25": {
   "n": 25,
@@ -627,9 +627,9 @@
    ]
   ],
   "voix": {
-   "Écran": "JFppi8XcU3D1RvkAikO5"
+   "Écran": "4NTBwCMIWDfx48seeuxZ"
   },
-  "ambiance": null
+  "ambiance": "Cash machine on a city street, ATM keypad beeps, card slot motor, light street traffic, no voices, no music"
  },
  "A1-s26": {
   "n": 26,
@@ -650,7 +650,7 @@
    "Passante": "RXG6r6Qewwp92BIFIBhE",
    "Monsieur": "3Yr319bDgMFZv5qX6yzA"
   },
-  "ambiance": null
+  "ambiance": "Quiet French town street, light traffic passing, footsteps on the pavement, distant birds, no voices, no music"
  },
  "A1-s27": {
   "n": 27,
@@ -679,7 +679,7 @@
    "Formatrice": "TKoAvBNxOwnhLtxm7NYM",
    "Apprenant": "6pqL78prQKdL6zrRhG3N"
   },
-  "ambiance": null
+  "ambiance": "Adult language classroom, quiet room, chairs moving softly, papers rustling, a pen on paper, no voices, no music"
  },
  "A1-s28": {
   "n": 28,
@@ -700,7 +700,7 @@
    "Voisine": "87kc04olBn8nRQKuNmaf",
    "Voisin": "W01VS3mCiWjHO239CD72"
   },
-  "ambiance": null
+  "ambiance": "Apartment building stairwell, a door closing at the very start, keys jingling, quiet echo, no voices, no music"
  },
  "A1-s29": {
   "n": 29,
@@ -721,7 +721,7 @@
    "Parent 1": "4NTBwCMIWDfx48seeuxZ",
    "Parent 2": "JFppi8XcU3D1RvkAikO5"
   },
-  "ambiance": null
+  "ambiance": "Outside a primary school at pickup time, a school bell at the very start, distant children laughing and playing without clear words, light street noise, no music"
  },
  "A1-s30": {
   "n": 30,
@@ -743,10 +743,10 @@
    ]
   ],
   "voix": {
-   "Invitée": "RXG6r6Qewwp92BIFIBhE",
-   "Léa": "3Yr319bDgMFZv5qX6yzA"
+   "Invitée": "87kc04olBn8nRQKuNmaf",
+   "Léa": "RXG6r6Qewwp92BIFIBhE"
   },
-  "ambiance": null
+  "ambiance": "Small birthday party at home, gentle distant chatter without clear words, gift wrapping paper rustling, balloons squeaking, no music"
  },
  "A1-s31": {
   "n": 31,
@@ -768,10 +768,10 @@
    ]
   ],
   "voix": {
-   "SMS reçu": "6pqL78prQKdL6zrRhG3N",
-   "Réponse": "W01VS3mCiWjHO239CD72"
+   "SMS reçu": "TKoAvBNxOwnhLtxm7NYM",
+   "Réponse": "6pqL78prQKdL6zrRhG3N"
   },
-  "ambiance": null
+  "ambiance": "Quiet room, a smartphone message notification chime at the very start and once again in the middle, soft phone keyboard tapping, no voices, no music"
  },
  "A1-s32": {
   "n": 32,
@@ -808,7 +808,7 @@
    "Pharmacienne": "87kc04olBn8nRQKuNmaf",
    "Cliente": "4NTBwCMIWDfx48seeuxZ"
   },
-  "ambiance": null
+  "ambiance": "Pharmacy, quiet room tone, an automatic door opening at the very start, medicine boxes and a paper bag rustling, a cash register beep, no voices, no music"
  },
  "A1-s33": {
   "n": 33,
@@ -833,7 +833,7 @@
    "Médecin": "JFppi8XcU3D1RvkAikO5",
    "Patient": "3Yr319bDgMFZv5qX6yzA"
   },
-  "ambiance": null
+  "ambiance": "Doctor's consulting room, quiet room tone, a chair creaking, papers rustling, no voices, no music"
  },
  "A1-s34": {
   "n": 34,
@@ -862,7 +862,7 @@
    "Pédiatre": "3Yr319bDgMFZv5qX6yzA",
    "Mère": "RXG6r6Qewwp92BIFIBhE"
   },
-  "ambiance": null
+  "ambiance": "Paediatrician's office, quiet room tone, a baby softly whimpering in the distance now and then, a toy rattle, no music"
  },
  "A1-s35": {
   "n": 35,
@@ -876,14 +876,14 @@
    ],
    [
     "Patiente",
-    "J'ai mal à une den, en bas à droite"
+    "J'ai mal à une dent, en bas à droite."
    ]
   ],
   "voix": {
    "Dentiste": "6pqL78prQKdL6zrRhG3N",
    "Patiente": "TKoAvBNxOwnhLtxm7NYM"
   },
-  "ambiance": null
+  "ambiance": "Dentist's surgery, quiet room tone, a dental chair motor, faint metal dental tools clinking, no voices, no music"
  },
  "A1-s36": {
   "n": 36,
@@ -908,7 +908,7 @@
    "Client": "W01VS3mCiWjHO239CD72",
    "Opticienne": "87kc04olBn8nRQKuNmaf"
   },
-  "ambiance": null
+  "ambiance": "Optician shop, quiet room tone, a door bell chimes once at the very start, a tiny screwdriver and metal glasses frame clicks, no voices, no music"
  },
  "A1-s37": {
   "n": 37,
@@ -933,7 +933,7 @@
    "Secrétaire": "4NTBwCMIWDfx48seeuxZ",
    "Patient": "JFppi8XcU3D1RvkAikO5"
   },
-  "ambiance": null
+  "ambiance": "Medical laboratory waiting room, quiet room tone, a queue ticket machine beep, papers, distant footsteps, no voices, no music"
  },
  "A1-s38": {
   "n": 38,
@@ -962,7 +962,7 @@
    "Secrétaire": "RXG6r6Qewwp92BIFIBhE",
    "Patient": "3Yr319bDgMFZv5qX6yzA"
   },
-  "ambiance": null
+  "ambiance": "Quiet room at home, a telephone ringing twice at the very start and being picked up, subtle phone line hiss, no voices, no music"
  },
  "A1-s39": {
   "n": 39,
@@ -987,7 +987,7 @@
    "Coiffeur": "6pqL78prQKdL6zrRhG3N",
    "Client": "W01VS3mCiWjHO239CD72"
   },
-  "ambiance": null
+  "ambiance": "Hair salon, scissors snipping, a hair dryer in the distance, water running briefly, no voices, no music"
  },
  "A1-s40": {
   "n": 40,
@@ -1028,7 +1028,7 @@
    "Cliente": "87kc04olBn8nRQKuNmaf",
    "Esthéticienne": "4NTBwCMIWDfx48seeuxZ"
   },
-  "ambiance": null
+  "ambiance": "Calm beauty salon, quiet room tone, a nail file, small glass bottles clinking, no voices, no music"
  },
  "A1-s41": {
   "n": 41,
@@ -2954,8 +2954,8 @@
    ]
   ],
   "voix": {
-   "Écran": "6pqL78prQKdL6zrRhG3N",
-   "Consigne": "W01VS3mCiWjHO239CD72"
+   "Écran": "TKoAvBNxOwnhLtxm7NYM",
+   "Consigne": "6pqL78prQKdL6zrRhG3N"
   },
   "ambiance": null
  },

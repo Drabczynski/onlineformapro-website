@@ -18,18 +18,20 @@ selon son genre (« Boulangère », « Cliente », « Vendeuse »… sont des fe
 différentes. 0,8 s de calme au début, 1 s à la fin. Pour varier, quatre voix de plus (Femme 3 : une vingtaine d'années ;
 Femme 4 : la cinquantaine ; Homme 3 : 25 ans ; Homme 4 : 60 ans) ; à partir de la situation 11, les voix tournent d'une
 situation à l'autre (de 1 à 10, les deux premières de chaque genre, déjà validées). Les prix « 4,50 euros » sont dits
-« 4 euros 50 ».
+« 4 euros 50 », les heures « 10 h 15 » « 10 heures 15 ». Lignes qui ne sont pas des personnes : « Écran » (distributeur,
+s25) est lu par une voix off ; « SMS reçu » / « Réponse » (s31) sont lus par deux voix, comme leurs auteurs. Léa (s30)
+a la voix de femme jeune (`VOIX_FORCEE`).
 
 Premier essai abandonné : répliques générées une à une (modèle v2), ralenties et collées avec des blancs fixes — pas
 naturel ; et les voix de la bibliothèque sont des clones de comédiens enregistrés dans des conditions très variables
 (réverbération, micro lointain, ton radio).
 
-Vérification : les 20 premiers sons ont été retranscrits par la reconnaissance vocale ElevenLabs ; chaque réplique est
+Vérification : les 40 premiers sons ont été retranscrits par la reconnaissance vocale ElevenLabs ; chaque réplique est
 dite telle qu'écrite.
 
 Corrigé pour la voix (coquilles de l'Excel) : situation 9, « Bonjou Madame r. » → « Bonjour, madame. » ; situation 18,
-« Elel adore le toboggan » → « Elle adore le toboggan. ».
+« Elel adore le toboggan » → « Elle adore le toboggan. » ; situation 35, « une den » → « une dent ».
 
 À prévoir pour la suite : l'ambiance est décrite à la main pour chaque situation (`AMBIANCE` dans `generer.py`, faite
-pour 1 à 20) ; certains dialogues ont des lignes qui ne sont pas des personnes (« Consigne », « Écran », « Formulaire »…),
+pour 1 à 40) ; certains dialogues ont des lignes qui ne sont pas des personnes (« Consigne », « Écran », « Formulaire »…),
 à décider avant de les faire (voix off neutre, ou pas lues).
