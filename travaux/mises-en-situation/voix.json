@@ -1,0 +1,66 @@
+{
+ "Femme 2": {
+  "id": "87kc04olBn8nRQKuNmaf",
+  "genre": "F",
+  "description": "Française, milieu de la trentaine, Paris, ton naturel du quotidien, chaleureuse ; studio sec. Choisie à l'écoute (« excellente »)."
+ },
+ "Femme 1": {
+  "id": "4NTBwCMIWDfx48seeuxZ",
+  "genre": "F",
+  "description": "Française, milieu de la trentaine, Paris, ton naturel du quotidien ; studio sec. Choisie à l'écoute (« ok »)."
+ },
+ "Homme 1": {
+  "id": "W01VS3mCiWjHO239CD72",
+  "genre": "M",
+  "description": "Français, début de la quarantaine, Paris, ton naturel du quotidien ; studio sec. Choisi à l'écoute (« très bien »)."
+ },
+ "Homme 2": {
+  "id": "JFppi8XcU3D1RvkAikO5",
+  "genre": "M",
+  "description": "Français, début de la quarantaine, Paris, ton naturel du quotidien ; studio sec. Choisi à l'écoute (« très bien »)."
+ },
+ "Femme 3": {
+  "id": "RXG6r6Qewwp92BIFIBhE",
+  "genre": "F",
+  "description": "A young French woman in her early twenties from Paris, native standard French accent, bright, natural and relaxed everyday conversational tone, friendly, medium pace, like a student working in a shop. Recorded close to a high-quality microphone in a completely dry, quiet studio: no reverb, no room echo, no music, no background noise.",
+  "apercu": {
+   "debit": 2.78,
+   "blanc": 0.96,
+   "ecart": 0,
+   "lu": "Bonjour. Alors aujourd'hui, j'ai des fraises et des tomates du marché. Vous voulez autre chose ? Voilà, ça fait quatre euros, s'il vous plaît. Merci, bonne journée"
+  }
+ },
+ "Femme 4": {
+  "id": "TKoAvBNxOwnhLtxm7NYM",
+  "genre": "F",
+  "description": "A French woman in her late fifties, native standard French accent, warm, calm and natural everyday conversational tone, slightly lower voice, medium pace, like an experienced shopkeeper. Recorded close to a high-quality microphone in a completely dry, quiet studio: no reverb, no room echo, no music, no background noise.",
+  "apercu": {
+   "debit": 2.17,
+   "blanc": 1.06,
+   "ecart": 0,
+   "lu": "Bonjour. Alors aujourd'hui, j'ai des fraises et des tomates du marché. Vous voulez autre chose ? Voilà, ça fait quatre euros, s'il vous plaît. Merci, bonne journée"
+  }
+ },
+ "Homme 3": {
+  "id": "3Yr319bDgMFZv5qX6yzA",
+  "genre": "M",
+  "description": "A young French man in his mid-twenties, native standard French accent, natural, relaxed and friendly everyday conversational tone, medium pace, like a young waiter. Recorded close to a high-quality microphone in a completely dry, quiet studio: no reverb, no room echo, no music, no background noise.",
+  "apercu": {
+   "debit": 2.84,
+   "blanc": 0.84,
+   "ecart": 2,
+   "lu": "Bonjour monsieur. Qu'est-ce qu'il vous faut aujourd'hui ? Un ticket ? Très bien. Ça fait un euro quatre-vingt s'il vous plaît. Merci et bonne journée"
+  }
+ },
+ "Homme 4": {
+  "id": "6pqL78prQKdL6zrRhG3N",
+  "genre": "M",
+  "description": "A French man around sixty, native standard French accent, warm, calm, slightly deep natural everyday conversational voice, medium pace, like a friendly older shopkeeper. Recorded close to a high-quality microphone in a completely dry, quiet studio: no reverb, no room echo, no music, no background noise.",
+  "apercu": {
+   "debit": 2.84,
+   "blanc": 0.58,
+   "ecart": 2,
+   "lu": "Bonjour monsieur. Qu'est-ce qu'il vous faut aujourd'hui ? Un ticket ? Très bien. Ça fait un euro quatre-vingt, s'il vous plaît. Merci et bonne journée"
+  }
+ }
+}
