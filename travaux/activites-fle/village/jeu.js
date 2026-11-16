@@ -245,17 +245,17 @@ function personnage(gltf, nom) {
     const a = actions[n]; if (!a || p.courante === a) return;
     a.reset().setEffectiveWeight(1).fadeIn(fondu).play(); p.courante?.fadeOut(fondu); p.courante = a;
   };
-  p.jouer('Idle_Loop', 0);
+  p.jouer('Idle_A', 0);
   return p;
 }
 
 function avancer(p, dt) {
   if (p.chemin.length) {
     const cible = p.chemin[0], pos = p.o.position, d = cible.clone().sub(pos).setY(0), L = d.length();
-    if (L < .08) { p.chemin.shift(); if (!p.chemin.length) { p.jouer('Idle_Loop'); const f = p.arrivee; p.arrivee = null; f?.(); } }
+    if (L < .08) { p.chemin.shift(); if (!p.chemin.length) { p.jouer('Idle_A'); const f = p.arrivee; p.arrivee = null; f?.(); } }
     else {
       const pasDt = Math.min(L, p.vitesse * dt); pos.addScaledVector(d.normalize(), pasDt);
-      p.rot = Math.atan2(d.x, d.z); p.jouer('Walk_Loop');
+      p.rot = Math.atan2(d.x, d.z); p.jouer('Walking_A');
     }
   }
   const diff = ((p.rot - p.o.rotation.y + Math.PI * 3) % (Math.PI * 2)) - Math.PI;
@@ -345,9 +345,9 @@ async function construireExterieur() {
   }
   // le passant fait le tour de la place
   const passant = personnage(gPassant, 'passant'); const hp = plan.habitants.passant;
-  passant.o.position.set(...hp.pos); passant.vitesse = 1.25; passant.ronde = hp.chemin.map(p => new THREE.Vector3(...p)); passant.etape = 0;
+  passant.o.position.set(...hp.pos); passant.vitesse = 1.1; passant.ronde = hp.chemin.map(p => new THREE.Vector3(...p)); passant.etape = 0;
   scene.add(passant.o);
-  const zp = zone([0, 0, 0], .9, 1.9, .9, { type: 'pnj', qui: 'passant', etiquette: 'Parler au passant' });
+  const zp = zone([0, 0, 0], .9, 1.6, .9, { type: 'pnj', qui: 'passant', etiquette: 'Parler au passant' });
   const bp = pointBulle('#ffffff', '?'); scene.add(bp);
   scene.add(marqueur, fleche);
   const depart = new THREE.Vector3(...plan.depart);
@@ -370,8 +370,8 @@ async function construireExterieur() {
         if (passant.attente <= 0) { passant.etape = (passant.etape + 1) % passant.ronde.length; passant.chemin = grille.chemin(passant.o.position, passant.ronde[passant.etape]) || []; passant.arrivee = () => passant.attente = 2.5 + Math.random() * 3; }
       }
       avancer(passant, dt);
-      zp.position.set(passant.o.position.x, .95, passant.o.position.z);
-      bp.visible = !etat.guide && !passant.parle; bp.position.set(passant.o.position.x, 2.25 + Math.sin(temps.value * 3) * .06, passant.o.position.z);
+      zp.position.set(passant.o.position.x, .8, passant.o.position.z);
+      bp.visible = !etat.guide && !passant.parle; bp.position.set(passant.o.position.x, 1.95 + Math.sin(temps.value * 3) * .06, passant.o.position.z);
     }
   };
 }
@@ -403,7 +403,7 @@ async function construireBoulangerie() {
   const zone = (pos, l, h, p, d) => { const m = new THREE.Mesh(new THREE.BoxGeometry(l, h, p), new THREE.MeshBasicMaterial({ visible: false })); m.position.set(pos[0], pos[1] ?? h / 2, pos[2]); m.userData = d; scene.add(m); cliquables.push(m); return m; };
   zone([hb.pos[0], .95, hb.pos[2]], 1, 1.9, 1, { type: 'pnj', qui: 'boulangere', etiquette: 'Parler à la boulangère' });
   zone([plan.porte.pos[0], 1.2, plan.porte.pos[2] - .2], 1.4, 2.4, .6, { type: 'sortie', etiquette: 'Sortir' });
-  const bb = pointBulle('#ffffff', '…'); bb.position.set(hb.pos[0], 2.3, hb.pos[2]); scene.add(bb);
+  const bb = pointBulle('#ffffff', '…'); bb.position.set(hb.pos[0], 1.95, hb.pos[2]); scene.add(bb);
   const dedans = new THREE.Vector3(...plan.porte.dedans), cp = new THREE.Vector3(...plan.camera.pos), cc = new THREE.Vector3(...plan.camera.cible);
   LIEUX.boulangerie = {
     scene, soleil, grille, cliquables, plan, habitants: [boulangere],
@@ -413,7 +413,7 @@ async function construireBoulangerie() {
       if (pres) { pos = pres.pos; regard = pres.cible; }
       camera.position.lerp(pos, 1 - Math.exp(-dt * 3)); camLook.lerp(regard, 1 - Math.exp(-dt * 3)); camera.lookAt(camLook);
     },
-    maj(dt) { avancer(boulangere, dt); bb.visible = !boulangere.parle && etat.mission === 'pain'; bb.position.y = 2.3 + Math.sin(temps.value * 3) * .05; }
+    maj(dt) { avancer(boulangere, dt); bb.visible = !boulangere.parle && etat.mission === 'pain'; bb.position.y = 1.95 + Math.sin(temps.value * 3) * .05; }
   };
 }
 
@@ -422,7 +422,7 @@ const DIALOGUES = {
   passant: {
     nom: 'Le passant', debut: 'bonjour',
     noeuds: {
-      bonjour: { voix: 'p-bonjour', texte: 'Bonjour' + NB + '! Je peux vous aider' + NB + '?', choix: [
+      bonjour: { voix: 'p-bonjour', geste: 'Waving', texte: 'Bonjour' + NB + '! Je peux vous aider' + NB + '?', choix: [
         { t: 'Bonjour' + NB + '! Où est la boulangerie, s’il vous plaît' + NB + '?', aller: 'chemin' },
         { t: 'Je voudrais du pain.', reponse: { voix: 'p-pain', texte: 'Du pain' + NB + '? Il faut aller à la boulangerie' + NB + '!' }, aide: 'Demande où est la boulangerie.' },
         { t: 'Au revoir' + NB + '!', aller: 'revoir' }] },
@@ -435,7 +435,7 @@ const DIALOGUES = {
     nom: 'La boulangère', debut: () => etat.mission === 'pain' ? 'bonjour' : 'encore',
     noeuds: {
       encore: { voix: 'b-revoir', texte: 'Au revoir, à demain' + NB + '!', fin: true },
-      bonjour: { voix: 'b-bonjour', texte: 'Bonjour' + NB + '! Qu’est-ce que je vous sers' + NB + '?', choix: [
+      bonjour: { voix: 'b-bonjour', geste: 'Waving', texte: 'Bonjour' + NB + '! Qu’est-ce que je vous sers' + NB + '?', choix: [
         { t: 'Bonjour' + NB + '! Une baguette, s’il vous plaît.', aller: 'voila', faire: s => { s.panier = [['une baguette', 120]]; } },
         { t: 'Je voudrais un médicament, s’il vous plaît.', reponse: { voix: 'b-medicament', texte: 'Ici, c’est une boulangerie' + NB + '! Les médicaments, c’est à la pharmacie.' } },
         { t: 'Au revoir' + NB + '!', reponse: { voix: 'b-deja', texte: 'Vous partez déjà' + NB + '? Qu’est-ce que vous voulez' + NB + '?' } }] },
@@ -472,15 +472,15 @@ function ouvrirDialogue(qui, pnj) {
   const dir = b.clone().sub(a).setY(0).normalize(), cote = new THREE.Vector3(-dir.z, 0, dir.x);
   if (cote.z < 0) cote.negate();
   plan = etat.lieu === 'boulangerie'
-    ? { pos: milieu.clone().add(new THREE.Vector3(1.3, 1.9, 3.4)), cible: milieu.clone().add(new THREE.Vector3(0, 1.15, 0)) }
-    : { pos: milieu.clone().addScaledVector(cote, 4.6).addScaledVector(dir, -1.4).add(new THREE.Vector3(0, 2.1, 0)), cible: milieu.clone().add(new THREE.Vector3(0, 1.25, 0)) };
+    ? { pos: milieu.clone().add(new THREE.Vector3(2.5, 1.55, 1.9)), cible: milieu.clone().add(new THREE.Vector3(-.2, .9, 0)) }
+    : { pos: milieu.clone().addScaledVector(cote, 3.8).addScaledVector(dir, -1.2).add(new THREE.Vector3(0, 1.8, 0)), cible: milieu.clone().add(new THREE.Vector3(0, 1.0, 0)) };
   noeud(typeof D.debut === 'function' ? D.debut() : D.debut);
 }
 let plan = null;
 function fermerDialogue() {
   $('dialogue').style.display = 'none'; etat.occupe = false; plan = null;
-  if (session) { session.pnj.parle = false; session.pnj.jouer('Idle_Loop'); }
-  session = null; joueur.jouer('Idle_Loop');
+  if (session) { session.pnj.parle = false; session.pnj.jouer('Idle_A'); }
+  session = null; joueur.jouer('Idle_A');
   if (etat.lieu === 'boulangerie') $('sortir').style.display = 'block';
 }
 function val(v) { return typeof v === 'function' ? v(session) : v; }
@@ -488,7 +488,7 @@ function noeud(id) {
   const n = session.D.noeuds[id]; session.n = n;
   n.faire?.(session);
   $('dit').textContent = val(n.texte); $('retour').textContent = ''; voix(val(n.voix));
-  session.pnj.jouer(n.geste || 'Idle_Talking_Loop'); if (n.geste) setTimeout(() => session?.pnj.jouer('Idle_Talking_Loop'), 1800);
+  session.pnj.jouer(n.geste || 'Idle_B'); if (n.geste) setTimeout(() => session?.pnj.jouer('Idle_B'), 1800);
   const c = $('choix'); c.innerHTML = ''; c.className = '';
   if (n.payer) return payer();
   if (n.fin) { const b = document.createElement('button'); b.textContent = 'Continuer'; b.onclick = fermerDialogue; c.appendChild(b); return; }
@@ -514,7 +514,7 @@ function payer() {
       b.onclick = () => {
         etat.argent.splice(etat.argent.indexOf(v), 1); donne += v; majBourse();
         if (donne >= du) {
-          session.rendu = donne - du; rendreMonnaie(session.rendu); majBourse(); joueur.jouer('Interact'); setTimeout(() => joueur.jouer('Idle_Loop'), 1400);
+          session.rendu = donne - du; rendreMonnaie(session.rendu); majBourse(); joueur.jouer('Interact'); setTimeout(() => joueur.jouer('Idle_A'), 1400);
           setTimeout(() => noeud('fin'), 500);
         } else { $('retour').textContent = 'Tu as donné ' + euros(donne) + '. Il manque ' + euros(du - donne) + '.'; dessiner(); }
       };
@@ -574,7 +574,7 @@ function agir(d) {
   } else if (d.type === 'pnj') {
     const pnj = L.habitants.find(h => h.nom === d.qui);
     if (d.qui === 'boulangere') allerVers(new THREE.Vector3(...L.plan.comptoir), () => ouvrirDialogue('boulangere', pnj));
-    else { pnj.chemin = []; pnj.parle = true; pnj.jouer('Idle_Loop'); if (!allerVers(pnj.o.position, () => ouvrirDialogue(d.qui, pnj), 1.3)) pnj.parle = false; }
+    else { pnj.chemin = []; pnj.parle = true; pnj.jouer('Idle_A'); if (!allerVers(pnj.o.position, () => ouvrirDialogue(d.qui, pnj), 1.3)) pnj.parle = false; }
   } else if (d.type === 'sortie') {
     allerVers(new THREE.Vector3(...L.plan.porte.dedans), () => changerLieu('exterieur'));
   }
@@ -585,7 +585,7 @@ $('rejouer').onclick = () => { if (derniereVoix) voix(derniereVoix); };
 async function changerLieu(lieu) {
   etat.occupe = true; await fondu(1);
   const avant = etat.lieu; LIEUX[avant]?.scene.remove(joueur.o);
-  joueur.chemin = []; joueur.jouer('Idle_Loop', 0); marqueur.visible = false;
+  joueur.chemin = []; joueur.jouer('Idle_A', 0); marqueur.visible = false;
   etat.lieu = lieu;
   if (lieu === 'exterieur') {
     const pd = LIEUX.exterieur.plan.portes[avant]; const pos = pd ? new THREE.Vector3(...pd.devant) : null;
@@ -618,7 +618,7 @@ function boucle() {
 (async () => {
   try {
     [gJoueur, gPassant, gBoulangere] = await Promise.all([glbDebut('modeles/joueur.glb'), glbDebut('modeles/passant.glb'), glbDebut('modeles/boulangere.glb')]);
-    joueur = personnage(gJoueur, 'joueur'); joueur.vitesse = 3.1;
+    joueur = personnage(gJoueur, 'joueur'); joueur.vitesse = 2.6;
     await Promise.all([construireExterieur(), construireBoulangerie()]);
     etat.lieu = 'exterieur'; LIEUX.exterieur.entrer();
     joueur.rot = Math.PI; joueur.o.rotation.y = Math.PI;
