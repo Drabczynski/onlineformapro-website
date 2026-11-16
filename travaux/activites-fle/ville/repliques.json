@@ -498,5 +498,289 @@
  "s-encore": [
   "maire",
   "Encore une fois."
+ ],
+ "w-lit": [
+  "maire",
+  "Le lit."
+ ],
+ "w-table": [
+  "maire",
+  "La table."
+ ],
+ "w-chaise": [
+  "maire",
+  "La chaise."
+ ],
+ "w-porte": [
+  "maire",
+  "La porte."
+ ],
+ "w-fenetre": [
+  "maire",
+  "La fenêtre."
+ ],
+ "w-pain": [
+  "maire",
+  "Le pain."
+ ],
+ "w-baguette": [
+  "maire",
+  "La baguette."
+ ],
+ "w-croissant": [
+  "maire",
+  "Le croissant."
+ ],
+ "w-gateau": [
+  "maire",
+  "Le gâteau."
+ ],
+ "w-farine": [
+  "maire",
+  "La farine."
+ ],
+ "w-pomme": [
+  "maire",
+  "La pomme."
+ ],
+ "w-banane": [
+  "maire",
+  "La banane."
+ ],
+ "w-tomate": [
+  "maire",
+  "La tomate."
+ ],
+ "w-lait": [
+  "maire",
+  "Le lait."
+ ],
+ "w-fromage": [
+  "maire",
+  "Le fromage."
+ ],
+ "w-voiture": [
+  "maire",
+  "La voiture."
+ ],
+ "w-roue": [
+  "maire",
+  "La roue."
+ ],
+ "w-volant": [
+  "maire",
+  "Le volant."
+ ],
+ "w-cle": [
+  "maire",
+  "La clé."
+ ],
+ "w-essence": [
+  "maire",
+  "L'essence."
+ ],
+ "w-livre": [
+  "maire",
+  "Le livre."
+ ],
+ "w-cahier": [
+  "maire",
+  "Le cahier."
+ ],
+ "w-stylo": [
+  "maire",
+  "Le stylo."
+ ],
+ "w-sac": [
+  "maire",
+  "Le sac."
+ ],
+ "w-tableau": [
+  "maire",
+  "Le tableau."
+ ],
+ "w-medecin": [
+  "maire",
+  "Le médecin."
+ ],
+ "w-medicament": [
+  "maire",
+  "Le médicament."
+ ],
+ "w-thermometre": [
+  "maire",
+  "Le thermomètre."
+ ],
+ "w-pansement": [
+  "maire",
+  "Le pansement."
+ ],
+ "w-ambulance": [
+  "maire",
+  "L'ambulance."
+ ],
+ "w-lettre": [
+  "maire",
+  "La lettre."
+ ],
+ "w-timbre": [
+  "maire",
+  "Le timbre."
+ ],
+ "w-colis": [
+  "maire",
+  "Le colis."
+ ],
+ "w-facteur": [
+  "maire",
+  "Le facteur."
+ ],
+ "w-boite": [
+  "maire",
+  "La boîte aux lettres."
+ ],
+ "w-billet": [
+  "maire",
+  "Le billet."
+ ],
+ "w-piece": [
+  "maire",
+  "La pièce."
+ ],
+ "w-carte": [
+  "maire",
+  "La carte bancaire."
+ ],
+ "w-distributeur": [
+  "maire",
+  "Le distributeur."
+ ],
+ "w-portefeuille": [
+  "maire",
+  "Le portefeuille."
+ ],
+ "w-arbre": [
+  "maire",
+  "L'arbre."
+ ],
+ "w-fleur": [
+  "maire",
+  "La fleur."
+ ],
+ "w-banc": [
+  "maire",
+  "Le banc."
+ ],
+ "w-ballon": [
+  "maire",
+  "Le ballon."
+ ],
+ "w-oiseau": [
+  "maire",
+  "L'oiseau."
+ ],
+ "c-quoi": [
+  "maire",
+  "Qu'est-ce que c'est ?"
+ ],
+ "c-ecoute": [
+  "maire",
+  "Écoute. Touche la bonne image."
+ ],
+ "c-ecris": [
+  "maire",
+  "Écris le mot."
+ ],
+ "c-regarde": [
+  "maire",
+  "Regarde et écoute."
+ ],
+ "g-pieces": [
+  "maire",
+  "Touche les pièces !"
+ ],
+ "g-apprendre": [
+  "maire",
+  "Entre dans le bâtiment. Apprends les mots !"
+ ],
+ "d2-route": [
+  "h1",
+  "Bonjour ! Il faut une route."
+ ],
+ "d2-maison": [
+  "f",
+  "Je veux une maison."
+ ],
+ "d2-pain": [
+  "h1",
+  "J'ai faim. Je veux du pain."
+ ],
+ "d2-eau": [
+  "f",
+  "J'ai soif. Je veux de l'eau."
+ ],
+ "d2-fruits": [
+  "h2",
+  "Je veux des fruits et des légumes."
+ ],
+ "d2-garage": [
+  "h1",
+  "Ma voiture est en panne."
+ ],
+ "d2-ecole": [
+  "f",
+  "J'ai deux enfants. Il faut une école."
+ ],
+ "d2-malade": [
+  "h2",
+  "Je suis malade."
+ ],
+ "d2-parc": [
+  "f",
+  "Je veux un parc pour mes enfants."
+ ],
+ "d2-lettre": [
+  "h2",
+  "Je veux envoyer une lettre."
+ ],
+ "d2-argent": [
+  "h1",
+  "Je veux de l'argent."
+ ],
+ "d2-foot": [
+  "h2",
+  "J'aime le football !"
+ ],
+ "d2-voleur": [
+  "f",
+  "Au secours ! Un voleur !"
+ ],
+ "d2-feu": [
+  "h1",
+  "Au feu ! Au feu !"
+ ],
+ "d2-habiter": [
+  "f",
+  "Ma famille veut habiter ici."
+ ],
+ "a-epicerie": [
+  "maire",
+  "J'ouvre une épicerie."
+ ],
+ "a-garage": [
+  "maire",
+  "Je construis un garage."
+ ],
+ "a-poste": [
+  "maire",
+  "Je construis une poste."
+ ],
+ "a-banque": [
+  "maire",
+  "Je construis une banque."
+ ],
+ "a-stade": [
+  "maire",
+  "Je construis un stade."
  ]
 }
