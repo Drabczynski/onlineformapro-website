@@ -1,0 +1,338 @@
+<meta charset="utf-8">
+<title>Ma ville</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700;800;900&display=swap">
+<style>
+:root{--encre:#16202b;--doux:#5b6875;--bleu:#1f5fbf;--vert:#22a05a;--rouge:#e04848;--or:#f5b72e;--papier:#ffffff;--nuit:#0f1b2b;color-scheme:light}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0}
+body{background:#9cc0e4;color:var(--encre);font:16px/1.35 Figtree,system-ui,sans-serif;overflow:hidden;-webkit-user-select:none;user-select:none;touch-action:none}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;padding:0}
+[hidden]{display:none!important}
+
+/* ---------- la ville ---------- */
+#vue{position:fixed;inset:0;overflow:hidden;background:#6d9fd0;touch-action:none}
+#monde{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+#monde img{position:absolute;display:block;max-width:none;pointer-events:none}
+#monde img.bati{opacity:0}
+#monde img.bati.la{opacity:1}
+#monde img.bati.pose{animation:pose .9s cubic-bezier(.2,1.3,.4,1) both}
+@keyframes pose{0%{opacity:0;transform:translateY(-140px) scale(1.04)}55%{opacity:1}100%{opacity:1;transform:none}}
+.bulle{position:absolute;width:150px;height:150px;margin:-170px 0 0 -75px;border-radius:50%;background:#fff;border:9px solid var(--bleu);padding:0;overflow:visible;animation:saut 1.3s ease-in-out infinite;z-index:999}
+.bulle::after{content:"";position:absolute;left:50%;bottom:-34px;margin-left:-20px;border:20px solid transparent;border-top:28px solid var(--bleu);border-bottom:0}
+.bulle img{position:static!important;width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 18%;background:#dbe8fa}
+.bulle i{position:absolute;right:-18px;top:-18px;width:58px;height:58px;border-radius:50%;background:var(--rouge);color:#fff;font:900 38px/58px Figtree,sans-serif;text-align:center;font-style:normal}
+@keyframes saut{50%{transform:translateY(-16px)}}
+.etiq{position:absolute;transform:translate(-50%,0);background:rgba(15,27,43,.82);color:#fff;border-radius:12px;padding:6px 16px;font-weight:800;font-size:30px;white-space:nowrap;z-index:998;animation:fondu .4s both}
+@keyframes fondu{from{opacity:0}}
+#main{position:absolute;width:120px;height:120px;z-index:1000;pointer-events:none;animation:tape 1.2s ease-in-out infinite;font-size:100px;line-height:1}
+@keyframes tape{0%,100%{transform:translate(40px,40px)}50%{transform:translate(0,0) scale(.9)}}
+
+/* ---------- barre du haut ---------- */
+#haut{position:fixed;left:0;right:0;top:0;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 0;display:flex;gap:8px;align-items:center;pointer-events:none;z-index:5}
+#haut>*{pointer-events:auto}
+.pastille{background:rgba(255,255,255,.95);border-radius:99px;height:44px;padding:0 14px;font-weight:800;display:flex;gap:7px;align-items:center;font-variant-numeric:tabular-nums}
+#bmenu{width:44px;justify-content:center;padding:0;font-size:22px}
+#niv{background:var(--bleu);color:#fff}
+#pts{margin-left:auto;display:flex;gap:6px}
+#pts b{width:14px;height:14px;border-radius:50%;background:#cfd8e2}
+#pts b.ok{background:var(--vert)}
+
+/* ---------- dialogue ---------- */
+#dial{position:fixed;left:0;right:0;bottom:0;z-index:8;display:grid;justify-items:center;padding:0 10px calc(10px + env(safe-area-inset-bottom,0px));transform:translateY(110%);transition:transform .35s cubic-bezier(.2,.9,.3,1)}
+#dial.ouvert{transform:none}
+.feuille{width:100%;max-width:680px;background:var(--papier);border-radius:24px;padding:16px;display:grid;gap:14px}
+.pnj{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
+.portrait{width:92px;height:92px;border-radius:50%;background:#dbe8fa;border:4px solid var(--bleu);overflow:hidden;flex:none}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block}
+.portrait.parle{animation:parle .5s ease-in-out infinite}
+@keyframes parle{50%{transform:scale(1.05)}}
+.pnj small{display:block;font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--bleu)}
+.pnj p{margin:2px 0 0;font-size:clamp(20px,5.4vw,26px);font-weight:800;line-height:1.2}
+.son{width:52px;height:52px;border-radius:50%;background:#e8f0fc;display:grid;place-items:center;flex:none}
+.son svg{width:26px;height:26px;stroke:var(--bleu)}
+#choix{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.carte{background:#f3f6fa;border:3px solid transparent;border-radius:18px;padding:12px 6px 10px;display:grid;gap:6px;justify-items:center;text-align:center;min-height:118px;align-content:center;transition:transform .12s,border-color .12s,background .12s}
+.carte .picto{font-size:44px;line-height:1.1}
+.carte .mot{font-size:14px;font-weight:700;color:var(--doux);line-height:1.2}
+.carte.choisi{border-color:var(--bleu);background:#e8f0fc;transform:translateY(-3px)}
+.carte.juste{border-color:var(--vert);background:#e2f6ea}
+.carte.faux{animation:non .4s;opacity:.35;pointer-events:none}
+@keyframes non{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.piece{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:22px;border:5px solid #c29a2c;background:radial-gradient(circle at 35% 30%,#ffe9a6,#e8bd4a)}
+.piece.argent{border-color:#a7adb5;background:radial-gradient(circle at 35% 30%,#fff,#cfd5dc)}
+.piece.bi{border-color:#c29a2c;background:radial-gradient(circle,#e9edf1 0 52%,#e8bd4a 54%)}
+#valider{height:58px;border-radius:99px;background:var(--vert);color:#fff;font-size:30px;font-weight:900;display:grid;place-items:center;transition:opacity .2s,transform .2s}
+#valider:disabled{opacity:.25}
+
+/* ---------- récompense ---------- */
+#toast{position:fixed;left:50%;top:22%;transform:translate(-50%,-50%) scale(.8);background:#fff;border-radius:24px;padding:18px 26px;display:grid;justify-items:center;gap:4px;opacity:0;transition:all .35s cubic-bezier(.2,1.3,.4,1);pointer-events:none;z-index:9;text-align:center}
+#toast.vu{opacity:1;transform:translate(-50%,-50%) scale(1)}
+#toast .picto{font-size:54px;line-height:1}
+#toast b{font-size:22px;font-weight:900}
+#toast span{font-size:14px;font-weight:700;color:var(--vert)}
+
+/* ---------- menu ---------- */
+#menu{position:fixed;inset:0;z-index:20;background:linear-gradient(180deg,rgba(15,27,43,.55),rgba(15,27,43,.92)),url(sprites/menu.jpg) center/cover #0f1b2b;color:#fff;overflow:auto;touch-action:pan-y;padding:calc(26px + env(safe-area-inset-top,0px)) 18px calc(30px + env(safe-area-inset-bottom,0px))}
+#menu .dedans{max-width:680px;margin:0 auto;display:grid;gap:26px}
+#menu h1{margin:0;font-size:clamp(44px,13vw,72px);font-weight:900;letter-spacing:-.03em;line-height:.95}
+#menu h1 small{display:block;font-size:.3em;font-weight:700;letter-spacing:.02em;opacity:.8;margin-top:8px}
+#jouer{justify-self:start;height:76px;padding:0 34px 0 28px;border-radius:99px;background:var(--or);color:var(--nuit);font-size:26px;font-weight:900;display:flex;gap:14px;align-items:center}
+#jouer svg{width:30px;height:30px;fill:var(--nuit)}
+#menu h2{margin:0 0 10px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:.75}
+.niveaux{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.niveaux span{height:40px;padding:0 16px;border-radius:99px;background:rgba(255,255,255,.12);display:flex;align-items:center;gap:6px;font-weight:800}
+.niveaux span.actif{background:#fff;color:var(--nuit)}
+.etapes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.etape{background:rgba(255,255,255,.1);border-radius:18px;padding:14px 8px;display:grid;justify-items:center;gap:4px;text-align:center;position:relative;min-height:104px;align-content:center}
+.etape .picto{font-size:34px;line-height:1.1}
+.etape b{font-size:14px;font-weight:800}
+.etape.ouverte{background:#fff;color:var(--nuit)}
+.etape.finie::after{content:"✓";position:absolute;right:8px;top:8px;width:24px;height:24px;border-radius:50%;background:var(--vert);color:#fff;font-weight:900;font-size:15px;line-height:24px}
+.etape:not(.ouverte){opacity:.6}
+.etape:not(.ouverte)::before{content:"🔒";position:absolute;right:8px;top:6px;font-size:14px}
+.actes{display:flex;flex-wrap:wrap;gap:8px}
+.actes span{height:38px;padding:0 13px;border-radius:99px;background:rgba(255,255,255,.1);display:flex;align-items:center;gap:7px;font-size:14px;font-weight:700;opacity:.55}
+.actes span.su{background:var(--vert);opacity:1}
+#zero{justify-self:start;opacity:.6;font-size:14px;font-weight:700;text-decoration:underline}
+#charge{position:fixed;inset:0;z-index:30;background:var(--nuit);display:grid;place-items:center}
+#charge i{width:54px;height:54px;border-radius:50%;border:6px solid rgba(255,255,255,.2);border-top-color:var(--or);animation:tour 1s linear infinite}
+@keyframes tour{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.bulle,#main,.portrait.parle{animation:none}}
+</style>
+
+<div id="vue"><div id="monde"></div></div>
+
+<div id="haut">
+  <button id="bmenu" class="pastille" aria-label="Menu">☰</button>
+  <span id="niv" class="pastille">A1 · 1</span>
+  <span class="pastille">⭐ <span id="etoiles">0</span></span>
+  <span id="pts" class="pastille" aria-label="Progression"></span>
+</div>
+
+<div id="dial" aria-live="polite">
+  <div class="feuille">
+    <div class="pnj">
+      <div class="portrait" id="portrait"><img id="visage" alt=""></div>
+      <div><small id="qui"></small><p id="dit"></p></div>
+      <button class="son" id="reecouter" aria-label="Réécouter"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
+    </div>
+    <div id="choix"></div>
+    <button id="valider" disabled aria-label="Valider">✓</button>
+  </div>
+</div>
+
+<div id="toast"><div class="picto"></div><b></b><span></span></div>
+
+<div id="menu">
+  <div class="dedans">
+    <h1>Ma ville<small>J'apprends le français</small></h1>
+    <button id="jouer"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.500z"/></svg><span>Jouer</span></button>
+    <section>
+      <h2>Niveaux</h2>
+      <div class="niveaux"><span class="actif">A1</span><span>A2 🔒</span><span>B1 🔒</span><span>B2 🔒</span></div>
+      <div class="etapes" id="etapes"></div>
+    </section>
+    <section>
+      <h2>Je sais</h2>
+      <div class="actes" id="actes"></div>
+    </section>
+    <button id="zero">↺ Recommencer</button>
+  </div>
+</div>
+<div id="charge"><i></i></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const NB = ' ';
+
+/* ------------------------------------------------------------ contenu : étape 1 « Arriver » */
+const GENS = {
+  gare: { nom: 'Le chef de gare', img: 'portrait-gare' }, mairie: { nom: 'Madame Martin', img: 'portrait-mairie' },
+  voisin: { nom: 'Le voisin', img: 'portrait-voisin' }, boulangere: { nom: 'La boulangère', img: 'portrait-boulangere' }
+};
+const R = {   // les phrases du joueur
+  bonjour: ['👋', 'Bonjour' + NB + '!', 'j-bonjour'], nuit: ['🌙', 'Bonne nuit' + NB + '!', 'j-nuit'], revoir: ['🚪', 'Au revoir' + NB + '!', 'j-revoir'],
+  nom: ['🙂', 'Je m’appelle Sam.', 'j-nom'], habite: ['🏠', 'J’habite ici.', 'j-habite'], merci: ['🙏', 'Merci' + NB + '!', 'j-merci'],
+  cava: ['👍', 'Ça va bien, merci' + NB + '!', 'j-cava'], baguette: ['🥖', 'Une baguette, s’il vous plaît.', 'j-baguette'],
+  medicament: ['💊', 'Un médicament, s’il vous plaît.', 'j-medicament'], billet: ['🎫', 'Un billet, s’il vous plaît.', 'j-billet']
+};
+const MISSIONS = [
+  { lieu: 'gare', qui: 'gare', acte: 0, construit: ['mairie'], nomBati: 'La mairie', tours: [
+    { dit: 'Bonjour' + NB + '!', voix: 'g-bonjour', choix: ['nuit', 'bonjour', 'revoir'], juste: 'bonjour' },
+    { dit: 'Bienvenue' + NB + '!', voix: 'g-bienvenue' }] },
+  { lieu: 'mairie', qui: 'mairie', acte: 1, construit: ['logement'], nomBati: 'Ta maison', tours: [
+    { dit: 'Comment vous appelez-vous' + NB + '?', voix: 'm-nom', choix: ['nom', 'baguette', 'revoir'], juste: 'nom' },
+    { dit: 'Vous habitez où' + NB + '?', voix: 'm-ou', choix: ['merci', 'nom', 'habite'], juste: 'habite' },
+    { dit: 'Très bien' + NB + '! Voici votre adresse.', voix: 'm-adresse' }] },
+  { lieu: 'logement', qui: 'voisin', acte: 2, construit: ['boulangerie'], nomBati: 'La boulangerie', tours: [
+    { dit: 'Bonjour' + NB + '! Ça va' + NB + '?', voix: 'v-cava', choix: ['cava', 'nuit', 'habite'], juste: 'cava' },
+    { dit: 'La boulangerie est ouverte' + NB + '!', voix: 'v-boul' }] },
+  { lieu: 'boulangerie', qui: 'boulangere', acte: 3, construit: ['parc', 'pharmacie'], nomBati: 'Le parc', tours: [
+    { dit: 'Bonjour' + NB + '! Vous désirez' + NB + '?', voix: 'b-desire', choix: ['billet', 'medicament', 'baguette'], juste: 'baguette' },
+    { dit: 'Un euro, s’il vous plaît.', voix: 'b-euro', pieces: [[50, '50 c', ''], [200, '2 €', 'bi'], [100, '1 €', 'bi']], juste: 100 },
+    { dit: 'Merci' + NB + '! Au revoir' + NB + '!', voix: 'b-merci', choix: ['bonjour', 'revoir', 'nuit'], juste: 'revoir' }] }
+];
+const DEPART = ['gare'];
+const ACTES = [['👋', 'Saluer'], ['🙂', 'Se présenter'], ['👍', 'Dire comment ça va'], ['🛒', 'Acheter'], ['🔢', 'Compter'], ['🧭', 'Demander son chemin'],
+  ['🕐', 'Dire l’heure'], ['🩺', 'Dire où j’ai mal'], ['📝', 'Remplir un papier'], ['📞', 'Téléphoner'], ['📖', 'Raconter'], ['💬', 'Donner son avis']];
+const ETAPES = [['🚆', 'Arriver'], ['🥖', 'Manger'], ['🚌', 'Bouger'], ['💊', 'Se soigner'], ['📮', 'Les papiers'], ['🏫', 'École, travail']];
+
+/* ------------------------------------------------------------ sauvegarde */
+let etat = { fait: 0, etoiles: 0 };
+try { const s = JSON.parse(localStorage.getItem('ma-ville') || 'null'); if (s && s.fait <= MISSIONS.length) etat = s; } catch (e) {}
+const sauver = () => { try { localStorage.setItem('ma-ville', JSON.stringify(etat)); } catch (e) {} };
+
+/* ------------------------------------------------------------ sons */
+const voixEl = new Audio(); let derniere = null, AC = null;
+function dire(id, fin) { derniere = id; voixEl.onended = fin || null; voixEl.src = 'voix/' + id + '.mp3'; voixEl.play().catch(() => fin && fin()); }
+function bip(notes, type = 'sine', vol = .15) {
+  try {
+    AC = AC || new (window.AudioContext || window.webkitAudioContext)(); let t = AC.currentTime;
+    for (const [f, d] of notes) { const o = AC.createOscillator(), g = AC.createGain(); o.type = type; o.frequency.value = f; g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(.001, t + d); o.connect(g).connect(AC.destination); o.start(t); o.stop(t + d); t += d * .7; }
+  } catch (e) {}
+}
+const sonJuste = () => bip([[660, .12], [880, .2]]), sonFaux = () => bip([[200, .18]], 'triangle', .12), sonBati = () => bip([[392, .12], [523, .12], [659, .12], [784, .3]]);
+
+/* ------------------------------------------------------------ la ville : image du sol + un calque par bâtiment */
+const vue = $('vue'), monde = $('monde'); let PLAN, cam = { x: 0, y: 0, s: 1 }, bulle = null, main = null;
+const sMin = () => Math.max(innerWidth / PLAN.largeur, innerHeight / PLAN.hauteur);
+function borner() {
+  cam.s = Math.min(Math.max(cam.s, sMin()), 1.6);
+  cam.x = Math.min(0, Math.max(innerWidth - PLAN.largeur * cam.s, cam.x)); cam.y = Math.min(0, Math.max(innerHeight - PLAN.hauteur * cam.s, cam.y));
+}
+function appliquer() { borner(); monde.style.transform = `translate(${cam.x}px,${cam.y}px) scale(${cam.s})`; }
+let anim = 0;
+function viser(px, py, s, ms = 900, decalY = 0) {
+  return new Promise(ok => {
+    const d = { ...cam }, f = { s: Math.max(s, sMin()) }; f.x = innerWidth / 2 - px * f.s; f.y = innerHeight / 2 - decalY - py * f.s;
+    const t0 = performance.now(), id = ++anim;
+    (function pas(t) {
+      if (id !== anim) return ok();
+      const k = Math.min(1, (t - t0) / ms), e = k < .5 ? 2 * k * k : 1 - (-2 * k + 2) ** 2 / 2;
+      cam.s = d.s + (f.s - d.s) * e; cam.x = d.x + (f.x - d.x) * e; cam.y = d.y + (f.y - d.y) * e; appliquer();
+      k < 1 ? requestAnimationFrame(pas) : ok();
+    })(t0);
+  });
+}
+const zoomConfort = () => Math.max(sMin(), Math.min(.75, innerWidth / 900 + .28));
+const centre = g => { const G = PLAN.groupes[g]; return [G.ancre[0], (G.ancre[1] + G.pied[1]) / 2]; };
+
+// déplacer et zoomer au doigt, à la souris, à la molette
+const doigts = new Map(); let bouge = 0, pince = 0;
+vue.addEventListener('pointerdown', e => { doigts.set(e.pointerId, e); bouge = 0; anim++; if (doigts.size === 2) pince = ecart(); });
+vue.addEventListener('pointermove', e => {
+  if (!doigts.has(e.pointerId)) return; const a = doigts.get(e.pointerId);
+  if (doigts.size === 1) { cam.x += e.clientX - a.clientX; cam.y += e.clientY - a.clientY; bouge += Math.abs(e.clientX - a.clientX) + Math.abs(e.clientY - a.clientY); }
+  doigts.set(e.pointerId, e);
+  if (doigts.size === 2) { const d = ecart(), [p, q] = [...doigts.values()]; zoomer(d / pince, (p.clientX + q.clientX) / 2, (p.clientY + q.clientY) / 2); pince = d; }
+  appliquer();
+});
+const fin = e => doigts.delete(e.pointerId);
+vue.addEventListener('pointerup', fin); vue.addEventListener('pointercancel', fin); vue.addEventListener('pointerleave', fin);
+vue.addEventListener('wheel', e => { e.preventDefault(); zoomer(e.deltaY < 0 ? 1.12 : .89, e.clientX, e.clientY); appliquer(); }, { passive: false });
+function ecart() { const [p, q] = [...doigts.values()]; return Math.hypot(p.clientX - q.clientX, p.clientY - q.clientY) || 1; }
+function zoomer(f, cx, cy) { const s = Math.min(Math.max(cam.s * f, sMin()), 1.6); cam.x = cx - (cx - cam.x) * s / cam.s; cam.y = cy - (cy - cam.y) * s / cam.s; cam.s = s; }
+addEventListener('resize', () => PLAN && appliquer());
+
+function construits() { const l = [...DEPART]; for (let i = 0; i < etat.fait; i++) l.push(...MISSIONS[i].construit); return l; }
+function monter() {
+  monde.style.width = PLAN.largeur + 'px'; monde.style.height = PLAN.hauteur + 'px';
+  const sol = new Image(); sol.src = 'sprites/sol.jpg'; sol.style.cssText = 'left:0;top:0'; monde.appendChild(sol);
+  const ordre = Object.entries(PLAN.groupes).sort((a, b) => a[1].profondeur - b[1].profondeur);
+  ordre.forEach(([g, G], i) => { const im = new Image(); im.src = 'sprites/' + g + '.webp'; im.className = 'bati'; im.id = 'b-' + g; im.style.cssText = `left:${G.x}px;top:${G.y}px;z-index:${i + 1}`; monde.appendChild(im); });
+  const deja = construits(); for (const g of deja) $('b-' + g).classList.add('la');
+}
+function poserBulle() {
+  bulle?.remove(); main?.remove(); bulle = main = null;
+  const m = MISSIONS[etat.fait]; if (!m) return;
+  const G = PLAN.groupes[m.lieu];
+  bulle = document.createElement('button'); bulle.className = 'bulle'; bulle.style.left = G.ancre[0] + 'px'; bulle.style.top = (G.ancre[1] + 30) + 'px';
+  bulle.innerHTML = `<img src="sprites/${GENS[m.qui].img}.webp" alt="${GENS[m.qui].nom}"><i>!</i>`;
+  bulle.addEventListener('click', () => { if (bouge < 12) ouvrir(m); });
+  monde.appendChild(bulle);
+  if (etat.fait === 0) { main = document.createElement('div'); main.id = 'main'; main.textContent = '👆'; main.style.left = (G.ancre[0] - 20) + 'px'; main.style.top = (G.ancre[1] - 70) + 'px'; monde.appendChild(main); }
+}
+
+/* ------------------------------------------------------------ dialogue */
+let mission = null, tour = 0, choisi = null, essais = 0;
+function ouvrir(m) {
+  mission = m; tour = 0; main?.remove(); bulle.hidden = true;
+  $('visage').src = 'sprites/' + GENS[m.qui].img + '.webp'; $('qui').textContent = GENS[m.qui].nom;
+  const [x, y] = centre(m.lieu); viser(x, y, zoomConfort() * 1.15, 700, innerHeight * .2);
+  $('dial').classList.add('ouvert'); jouerTour();
+}
+function parler(id) { $('portrait').classList.add('parle'); dire(id, () => $('portrait').classList.remove('parle')); }
+function jouerTour() {
+  const t = mission.tours[tour]; choisi = null; essais = 0;
+  $('dit').textContent = t.dit; parler(t.voix);
+  const c = $('choix'); c.innerHTML = ''; $('valider').disabled = true; $('valider').hidden = false;
+  if (t.pieces) {
+    $('valider').hidden = true;
+    for (const [v, txt, cl] of t.pieces) {
+      const b = document.createElement('button'); b.className = 'carte'; b.innerHTML = `<span class="piece ${cl}">${txt}</span>`;
+      b.onclick = () => { if (v === t.juste) { b.classList.add('juste'); bon(); } else rate(b, t); };
+      c.appendChild(b);
+    }
+  } else if (t.choix) {
+    for (const cle of t.choix) {
+      const [picto, mot, voix] = R[cle]; const b = document.createElement('button'); b.className = 'carte'; b.dataset.cle = cle;
+      b.innerHTML = `<span class="picto">${picto}</span><span class="mot">${mot}</span>`;
+      b.onclick = () => { [...c.children].forEach(x => x.classList.remove('choisi')); b.classList.add('choisi'); choisi = b; $('valider').disabled = false; dire(voix); };
+      c.appendChild(b);
+    }
+  } else {            // dernière réplique : on écoute, puis la ville grandit
+    $('valider').hidden = true; let passe = false; const suite = () => { if (passe) return; passe = true; finMission(); };
+    voixEl.onended = () => { $('portrait').classList.remove('parle'); setTimeout(suite, 500); }; setTimeout(suite, 4500);
+  }
+}
+$('valider').onclick = () => {
+  if (!choisi) return; const t = mission.tours[tour];
+  if (choisi.dataset.cle === t.juste) { choisi.classList.remove('choisi'); choisi.classList.add('juste'); bon(); }
+  else { const b = choisi; choisi = null; $('valider').disabled = true; b.classList.remove('choisi'); rate(b, t); }
+};
+function bon() { sonJuste(); if (essais === 0) etat.etoiles++; $('etoiles').textContent = etat.etoiles; $('valider').disabled = true; setTimeout(() => { tour++; jouerTour(); }, 1100); }
+function rate(b, t) { essais++; sonFaux(); b.classList.add('faux'); setTimeout(() => parler(t.voix), 500); }
+$('reecouter').onclick = () => mission && parler(mission.tours[tour].voix);
+
+async function finMission() {
+  const m = mission; mission = null; $('dial').classList.remove('ouvert');
+  etat.fait++; sauver(); majHaut();
+  await new Promise(r => setTimeout(r, 350));
+  const [x, y] = centre(m.construit[0]); await viser(x, y, zoomConfort(), 1100);
+  for (const g of m.construit) { const im = $('b-' + g); im.classList.add('pose'); sonBati(); await new Promise(r => setTimeout(r, 700)); im.classList.add('la'); }
+  const G = PLAN.groupes[m.construit[0]], e = document.createElement('div'); e.className = 'etiq'; e.textContent = m.nomBati; e.style.left = G.ancre[0] + 'px'; e.style.top = (G.pied[1] - 10) + 'px'; monde.appendChild(e);
+  toast(ACTES[m.acte][0], ACTES[m.acte][1], 'Je sais' + NB + '!');
+  await new Promise(r => setTimeout(r, 2600)); e.remove();
+  if (etat.fait >= MISSIONS.length) { toast('🎉', 'Étape 1', 'Bravo' + NB + '!'); await new Promise(r => setTimeout(r, 2600)); await viser(PLAN.largeur / 2, PLAN.hauteur / 2, sMin(), 1400); setTimeout(ouvrirMenu, 1800); return; }
+  poserBulle(); const [bx, by] = centre(MISSIONS[etat.fait].lieu); viser(bx, by, zoomConfort(), 1000);
+}
+function toast(picto, titre, sous) { const t = $('toast'); t.children[0].textContent = picto; t.children[1].textContent = titre; t.children[2].textContent = sous; t.classList.add('vu'); setTimeout(() => t.classList.remove('vu'), 2300); }
+
+/* ------------------------------------------------------------ barre du haut et menu */
+function majHaut() {
+  $('etoiles').textContent = etat.etoiles;
+  $('pts').innerHTML = MISSIONS.map((m, i) => `<b class="${i < etat.fait ? 'ok' : ''}"></b>`).join('');
+}
+function ouvrirMenu() {
+  const fini = etat.fait >= MISSIONS.length;
+  $('etapes').innerHTML = ETAPES.map(([p, n], i) => `<div class="etape ${i === 0 ? 'ouverte' : ''} ${i === 0 && fini ? 'finie' : ''}"><span class="picto">${p}</span><b>${n}</b></div>`).join('');
+  const sus = new Set(MISSIONS.slice(0, etat.fait).map(m => m.acte));
+  $('actes').innerHTML = ACTES.map(([p, n], i) => `<span class="${sus.has(i) ? 'su' : ''}">${p} ${n}</span>`).join('');
+  $('jouer').lastElementChild.textContent = etat.fait === 0 ? 'Jouer' : fini ? 'Voir ma ville' : 'Continuer';
+  $('menu').hidden = false;
+}
+$('bmenu').onclick = ouvrirMenu;
+$('jouer').onclick = () => {
+  $('menu').hidden = true; voixEl.play().catch(() => {}); voixEl.pause();
+  const m = MISSIONS[etat.fait];
+  if (m) { const [x, y] = centre(m.lieu); cam.s = sMin(); cam.x = innerWidth / 2 - PLAN.largeur * cam.s / 2; cam.y = innerHeight / 2 - PLAN.hauteur * cam.s / 2; appliquer(); viser(x, y, zoomConfort(), 1600); }
+};
+$('zero').onclick = () => { etat = { fait: 0, etoiles: 0 }; sauver(); document.querySelectorAll('#monde .bati').forEach(b => b.classList.remove('la', 'pose')); for (const g of DEPART) $('b-' + g).classList.add('la'); poserBulle(); majHaut(); ouvrirMenu(); };
+
+fetch('sprites/plan.json').then(r => r.json()).then(p => {
+  PLAN = p; monter(); cam.s = sMin(); cam.x = innerWidth / 2 - PLAN.largeur * cam.s / 2; cam.y = innerHeight / 2 - PLAN.hauteur * cam.s / 2; appliquer();
+  poserBulle(); majHaut(); ouvrirMenu(); $('charge').remove();
+  window.__ville = { etat, MISSIONS, ouvrir, cam };
+}).catch(e => { $('charge').innerHTML = '<p style="color:#fff;padding:20px;text-align:center">Le jeu n’a pas pu se charger.</p>'; console.error(e); });
+</script>

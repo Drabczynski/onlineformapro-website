@@ -1,0 +1,22 @@
+{
+ "g-bonjour": ["gare", "Bonjour !"],
+ "g-bienvenue": ["gare", "Bienvenue !"],
+ "m-nom": ["mairie", "Bonjour ! Comment vous appelez-vous ?"],
+ "m-ou": ["mairie", "Vous habitez où ?"],
+ "m-adresse": ["mairie", "Très bien ! Voici votre adresse."],
+ "v-cava": ["voisin", "Bonjour ! Ça va ?"],
+ "v-boul": ["voisin", "Super ! La boulangerie est ouverte."],
+ "b-desire": ["boulangere", "Bonjour ! Vous désirez ?"],
+ "b-euro": ["boulangere", "Un euro, s'il vous plaît."],
+ "b-merci": ["boulangere", "Merci ! Au revoir !"],
+ "j-bonjour": ["joueur", "Bonjour !"],
+ "j-nuit": ["joueur", "Bonne nuit !"],
+ "j-revoir": ["joueur", "Au revoir !"],
+ "j-nom": ["joueur", "Je m'appelle Sam."],
+ "j-habite": ["joueur", "J'habite ici."],
+ "j-merci": ["joueur", "Merci !"],
+ "j-cava": ["joueur", "Ça va bien, merci !"],
+ "j-baguette": ["joueur", "Une baguette, s'il vous plaît."],
+ "j-medicament": ["joueur", "Un médicament, s'il vous plaît."],
+ "j-billet": ["joueur", "Un billet, s'il vous plaît."]
+}
