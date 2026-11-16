@@ -2,7 +2,7 @@
 usage : python3 voix.py   (ne refait que les répliques nouvelles ou modifiées)"""
 import json, os, subprocess, re, hashlib
 ICI = os.path.dirname(os.path.abspath(__file__))
-VOIX = {"gare": "W01VS3mCiWjHO239CD72", "mairie": "87kc04olBn8nRQKuNmaf", "voisin": "JFppi8XcU3D1RvkAikO5", "boulangere": "RXG6r6Qewwp92BIFIBhE", "joueur": "4NTBwCMIWDfx48seeuxZ"}   # Homme 1, Femme 2, Homme 2, Femme 3, Femme 1
+VOIX = {"f": "87kc04olBn8nRQKuNmaf", "h1": "W01VS3mCiWjHO239CD72", "h2": "JFppi8XcU3D1RvkAikO5"}   # Femme 2, Homme 1, Homme 2
 MODELE, NIVEAU = "eleven_v4", -20.0
 REPLIQUES = json.load(open(os.path.join(ICI, "repliques.json"), encoding="utf-8"))
 

@@ -1,22 +1,90 @@
 {
- "g-bonjour": ["gare", "Bonjour !"],
- "g-bienvenue": ["gare", "Bienvenue !"],
- "m-nom": ["mairie", "Bonjour ! Comment vous appelez-vous ?"],
- "m-ou": ["mairie", "Vous habitez où ?"],
- "m-adresse": ["mairie", "Très bien ! Voici votre adresse."],
- "v-cava": ["voisin", "Bonjour ! Ça va ?"],
- "v-boul": ["voisin", "Super ! La boulangerie est ouverte."],
- "b-desire": ["boulangere", "Bonjour ! Vous désirez ?"],
- "b-euro": ["boulangere", "Un euro, s'il vous plaît."],
- "b-merci": ["boulangere", "Merci ! Au revoir !"],
- "j-bonjour": ["joueur", "Bonjour !"],
- "j-nuit": ["joueur", "Bonne nuit !"],
- "j-revoir": ["joueur", "Au revoir !"],
- "j-nom": ["joueur", "Je m'appelle Sam."],
- "j-habite": ["joueur", "J'habite ici."],
- "j-merci": ["joueur", "Merci !"],
- "j-cava": ["joueur", "Ça va bien, merci !"],
- "j-baguette": ["joueur", "Une baguette, s'il vous plaît."],
- "j-medicament": ["joueur", "Un médicament, s'il vous plaît."],
- "j-billet": ["joueur", "Un billet, s'il vous plaît."]
+ "d-maison": [
+  "f",
+  "Bonjour ! Je cherche une maison."
+ ],
+ "d-boulangerie": [
+  "h1",
+  "Bonjour ! J'ai faim. Je voudrais une boulangerie."
+ ],
+ "d-ecole": [
+  "f",
+  "Bonjour ! Mes enfants ont six ans. Il faut une école."
+ ],
+ "d-pharmacie": [
+  "h2",
+  "Je suis malade. Où est la pharmacie ?"
+ ],
+ "d-parc": [
+  "f",
+  "Je voudrais un parc, pour les enfants."
+ ],
+ "d-cafe": [
+  "h1",
+  "Je voudrais boire un café."
+ ],
+ "d-medecin": [
+  "h2",
+  "J'ai mal à la tête. Il faut un médecin."
+ ],
+ "merci-f": [
+  "f",
+  "Merci beaucoup !"
+ ],
+ "merci-h1": [
+  "h1",
+  "Merci beaucoup !"
+ ],
+ "merci-h2": [
+  "h2",
+  "Merci beaucoup !"
+ ],
+ "non-f": [
+  "f",
+  "Non, ce n'est pas ça."
+ ],
+ "non-h1": [
+  "h1",
+  "Non, ce n'est pas ça."
+ ],
+ "non-h2": [
+  "h2",
+  "Non, ce n'est pas ça."
+ ],
+ "q-bois": [
+  "h1",
+  "Il me faut du bois, s'il te plaît."
+ ],
+ "q-metal": [
+  "h2",
+  "Il me faut du métal, s'il te plaît."
+ ],
+ "q-plastique": [
+  "f",
+  "Il me faut du plastique, s'il te plaît."
+ ],
+ "q-clous": [
+  "h1",
+  "Je voudrais des clous."
+ ],
+ "q-planches": [
+  "f",
+  "Je voudrais des planches."
+ ],
+ "bienvenue": [
+  "f",
+  "Bonjour ! Bienvenue dans votre ville !"
+ ],
+ "pasla-f": [
+  "f",
+  "Tu n'en as pas ? Je reviens plus tard."
+ ],
+ "pasla-h1": [
+  "h1",
+  "Tu n'en as pas ? Je reviens plus tard."
+ ],
+ "pasla-h2": [
+  "h2",
+  "Tu n'en as pas ? Je reviens plus tard."
+ ]
 }

@@ -1,339 +1,684 @@
 <meta charset="utf-8">
 <title>Ma ville</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Figtree:wght@500;600;700;800;900&display=swap">
 <style>
-:root{--encre:#16202b;--doux:#5b6875;--bleu:#1f5fbf;--vert:#22a05a;--rouge:#e04848;--or:#f5b72e;--papier:#ffffff;--nuit:#0f1b2b;color-scheme:light}
+:root{--encre:#1b2533;--doux:#5b6875;--bleu:#2f6fd6;--vert:#29a35e;--rouge:#e5484d;--or:#f6b630;--nuit:#13233a;--papier:#fffdf8;color-scheme:light}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;margin:0}
-body{background:#9cc0e4;color:var(--encre);font:16px/1.35 Figtree,system-ui,sans-serif;overflow:hidden;-webkit-user-select:none;user-select:none;touch-action:none}
+body{background:#5ec3ee;color:var(--encre);font:16px/1.3 Figtree,system-ui,sans-serif;overflow:hidden;-webkit-user-select:none;user-select:none;touch-action:none}
 button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;padding:0}
 [hidden]{display:none!important}
-
-/* ---------- la ville ---------- */
-#vue{position:fixed;inset:0;overflow:hidden;background:#6d9fd0;touch-action:none}
-#monde{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
-#monde img{position:absolute;display:block;max-width:none;pointer-events:none}
-#monde img.bati{opacity:0}
-#monde img.bati.la{opacity:1}
-#monde img.bati.pose{animation:pose .9s cubic-bezier(.2,1.3,.4,1) both}
-@keyframes pose{0%{opacity:0;transform:translateY(-140px) scale(1.04)}55%{opacity:1}100%{opacity:1;transform:none}}
-.bulle{position:absolute;width:150px;height:150px;margin:-170px 0 0 -75px;border-radius:50%;background:#fff;border:9px solid var(--bleu);padding:0;overflow:visible;animation:saut 1.3s ease-in-out infinite;z-index:999}
-.bulle::after{content:"";position:absolute;left:50%;bottom:-34px;margin-left:-20px;border:20px solid transparent;border-top:28px solid var(--bleu);border-bottom:0}
-.bulle img{position:static!important;width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 18%;background:#dbe8fa}
-.bulle i{position:absolute;right:-18px;top:-18px;width:58px;height:58px;border-radius:50%;background:var(--rouge);color:#fff;font:900 38px/58px Figtree,sans-serif;text-align:center;font-style:normal}
-@keyframes saut{50%{transform:translateY(-16px)}}
-.etiq{position:absolute;transform:translate(-50%,0);background:rgba(15,27,43,.82);color:#fff;border-radius:12px;padding:6px 16px;font-weight:800;font-size:30px;white-space:nowrap;z-index:998;animation:fondu .4s both}
-@keyframes fondu{from{opacity:0}}
-#main{position:absolute;width:120px;height:120px;z-index:1000;pointer-events:none;animation:tape 1.2s ease-in-out infinite;font-size:100px;line-height:1}
-@keyframes tape{0%,100%{transform:translate(40px,40px)}50%{transform:translate(0,0) scale(.9)}}
+#c{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.chiffre{font-family:"Baloo 2",Figtree,sans-serif;font-weight:800;font-variant-numeric:tabular-nums}
 
 /* ---------- barre du haut ---------- */
-#haut{position:fixed;left:0;right:0;top:0;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 0;display:flex;gap:8px;align-items:center;pointer-events:none;z-index:5}
+#haut{position:fixed;left:0;right:0;top:0;z-index:5;padding:calc(8px + env(safe-area-inset-top,0px)) 8px 0;display:flex;gap:6px;align-items:center;pointer-events:none}
 #haut>*{pointer-events:auto}
-.pastille{background:rgba(255,255,255,.95);border-radius:99px;height:44px;padding:0 14px;font-weight:800;display:flex;gap:7px;align-items:center;font-variant-numeric:tabular-nums}
-#bmenu{width:44px;justify-content:center;padding:0;font-size:22px}
-#niv{background:var(--bleu);color:#fff}
-#pts{margin-left:auto;display:flex;gap:6px}
-#pts b{width:14px;height:14px;border-radius:50%;background:#cfd8e2}
-#pts b.ok{background:var(--vert)}
+#niveau{position:relative;width:54px;height:54px;flex:none}
+#niveau svg{position:absolute;inset:0;transform:rotate(-90deg)}
+#niveau b{position:absolute;inset:6px;border-radius:50%;background:linear-gradient(160deg,#7c5cff,#4b2fd1);color:#fff;display:grid;place-items:center;font-size:22px;border:3px solid #fff}
+.jauge{height:36px;border-radius:99px;background:rgba(19,35,58,.72);color:#fff;display:flex;align-items:center;gap:6px;padding:0 12px 0 4px;font-size:18px}
+.jauge i{font-style:normal;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:17px;background:rgba(255,255,255,.18)}
+#piecesJ{margin-left:auto}
+#piecesJ i{background:var(--or)}
+.jauge.pulse{animation:pulse .5s}
+@keyframes pulse{50%{transform:scale(1.12)}}
+
+/* ---------- boutons du bas ---------- */
+.rond{position:fixed;z-index:5;width:64px;height:64px;border-radius:20px;background:linear-gradient(180deg,#fff,#e9eef5);display:grid;place-items:center;font-size:32px;border-bottom:4px solid #b9c6d6}
+.rond small{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:800;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5);white-space:nowrap}
+#bConstruire{left:10px;bottom:calc(30px + env(safe-area-inset-bottom,0px));background:linear-gradient(180deg,#ffd35c,#f6a623);border-color:#c97f0a}
+#bEntrepot{right:10px;bottom:calc(30px + env(safe-area-inset-bottom,0px))}
+#bTaches{right:10px;bottom:calc(122px + env(safe-area-inset-bottom,0px))}
+#bTaches b{position:absolute;right:-6px;top:-6px;min-width:24px;height:24px;border-radius:99px;background:var(--rouge);color:#fff;font-size:14px;display:grid;place-items:center;padding:0 6px;border:2px solid #fff}
+#bAnnuler{left:50%;transform:translateX(-50%);bottom:calc(30px + env(safe-area-inset-bottom,0px));width:auto;padding:0 22px;height:56px;border-radius:99px;font-size:18px;font-weight:800;gap:8px;display:flex;align-items:center}
+
+/* ---------- catalogue de construction ---------- */
+.tiroir{position:fixed;left:0;right:0;bottom:0;z-index:7;background:var(--papier);border-radius:24px 24px 0 0;padding:14px 10px calc(14px + env(safe-area-inset-bottom,0px));transform:translateY(105%);transition:transform .3s cubic-bezier(.2,.9,.3,1)}
+.tiroir.ouvert{transform:none}
+.tiroir header{display:flex;align-items:center;gap:10px;padding:0 6px 10px}
+.tiroir header b{font-size:20px;font-weight:900}
+.tiroir header button{margin-left:auto;width:40px;height:40px;border-radius:50%;background:#eef2f7;font-size:20px}
+.onglets{display:flex;gap:6px;padding:0 6px 10px;overflow-x:auto;scrollbar-width:none}
+.onglets button{flex:none;height:40px;padding:0 14px;border-radius:99px;background:#eef2f7;font-weight:800;font-size:20px}
+.onglets button.actif{background:var(--bleu);color:#fff}
+.liste{display:flex;gap:10px;overflow-x:auto;padding:4px 6px 6px;touch-action:pan-x;scrollbar-width:none}
+.article{flex:none;width:108px;border-radius:18px;background:#fff;border:3px solid #e6ecf3;padding:10px 6px 8px;display:grid;justify-items:center;gap:4px;position:relative}
+.article .picto{font-size:40px;line-height:1.1}
+.article b{font-size:13px;font-weight:800;text-align:center;line-height:1.15;min-height:30px;display:grid;place-items:center}
+.article .prix{font-size:16px;display:flex;align-items:center;gap:3px}
+.article.verrou{opacity:.5}
+.article.verrou::after{content:attr(data-niv);position:absolute;inset:0;border-radius:15px;background:rgba(255,255,255,.55);display:grid;place-items:center;font-size:15px;font-weight:900;color:var(--nuit)}
+.article.cher .prix{color:var(--rouge)}
+
+/* ---------- fiche d'un bâtiment ---------- */
+#fiche .contenu{display:grid;gap:12px;padding:0 6px}
+.ligne-prod{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+.produit{flex:none;width:96px;border-radius:16px;background:#fff;border:3px solid #e6ecf3;padding:8px 4px;display:grid;justify-items:center;gap:2px}
+.produit .picto{font-size:34px;line-height:1.1}
+.produit small{font-size:12px;font-weight:700;color:var(--doux)}
+.produit.verrou{opacity:.4;pointer-events:none}
+.file{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.case{width:58px;height:58px;border-radius:14px;background:#eef2f7;display:grid;place-items:center;font-size:28px;position:relative;overflow:hidden}
+.case .barre{position:absolute;left:0;bottom:0;height:6px;background:var(--vert)}
+.case.pret{background:#dcf5e5;animation:pulse 1s infinite}
+.case.vide{border:2px dashed #c8d2de;background:none}
+.besoins{display:flex;gap:10px;flex-wrap:wrap}
+.besoin{display:flex;align-items:center;gap:6px;background:#fff;border:3px solid #e6ecf3;border-radius:14px;padding:6px 12px;font-size:24px}
+.besoin.ok{border-color:var(--vert)}
+.besoin .chiffre{font-size:18px}
+.besoin.manque .chiffre{color:var(--rouge)}
+.gros{height:56px;border-radius:99px;background:var(--vert);color:#fff;font-size:20px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:10px;border-bottom:4px solid #1b7a44}
+.gros:disabled{background:#b9c3cd;border-color:#9aa5b1}
+.recomp{display:flex;gap:12px;font-size:18px;color:var(--doux);align-items:center}
+
+/* ---------- entrepôt ---------- */
+.stock{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:8px;padding:0 6px}
+.stock .case{width:auto;height:76px;flex-direction:column;font-size:30px;display:flex;justify-content:center}
+.stock .case .chiffre{font-size:16px}
+
+/* ---------- bulles au-dessus des bâtiments et des habitants ---------- */
+#bulles{position:fixed;inset:0;pointer-events:none;z-index:3}
+.b{position:absolute;pointer-events:auto;transform:translate(-50%,-100%);width:46px;height:46px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:24px;border:3px solid #fff;animation:flotte 1.6s ease-in-out infinite}
+.b::after{content:"";position:absolute;left:50%;bottom:-9px;margin-left:-6px;border:6px solid transparent;border-top:9px solid #fff;border-bottom:0}
+.b.perso{width:60px;height:60px;border:4px solid var(--bleu);padding:0;overflow:visible}
+.b.perso::after{border-top-color:var(--bleu)}
+.b.perso img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 18%;background:#dbe8fa}
+.b.perso i{position:absolute;right:-8px;top:-8px;width:24px;height:24px;border-radius:50%;background:var(--rouge);color:#fff;font:900 16px/24px Figtree,sans-serif;text-align:center;font-style:normal}
+@keyframes flotte{50%{margin-top:-6px}}
+.vol{position:fixed;z-index:9;pointer-events:none;font-size:30px;transition:all .7s cubic-bezier(.5,0,.5,1)}
 
 /* ---------- dialogue ---------- */
 #dial{position:fixed;left:0;right:0;bottom:0;z-index:8;display:grid;justify-items:center;padding:0 10px calc(10px + env(safe-area-inset-bottom,0px));transform:translateY(110%);transition:transform .35s cubic-bezier(.2,.9,.3,1)}
 #dial.ouvert{transform:none}
-.feuille{width:100%;max-width:680px;background:var(--papier);border-radius:24px;padding:16px;display:grid;gap:14px}
+.feuille{width:100%;max-width:640px;background:var(--papier);border-radius:24px;padding:16px;display:grid;gap:13px}
 .pnj{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
-.portrait{width:92px;height:92px;border-radius:50%;background:#dbe8fa;border:4px solid var(--bleu);overflow:hidden;flex:none}
+.portrait{width:86px;height:86px;border-radius:50%;background:#dbe8fa;border:4px solid var(--bleu);overflow:hidden}
 .portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block}
 .portrait.parle{animation:parle .5s ease-in-out infinite}
-@keyframes parle{50%{transform:scale(1.05)}}
-.pnj small{display:block;font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--bleu)}
-.pnj p{margin:2px 0 0;font-size:clamp(20px,5.4vw,26px);font-weight:800;line-height:1.2}
-.son{width:52px;height:52px;border-radius:50%;background:#e8f0fc;display:grid;place-items:center;flex:none}
-.son svg{width:26px;height:26px;stroke:var(--bleu)}
-#choix{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.carte{background:#f3f6fa;border:3px solid transparent;border-radius:18px;padding:12px 6px 10px;display:grid;gap:6px;justify-items:center;text-align:center;min-height:118px;align-content:center;transition:transform .12s,border-color .12s,background .12s}
+@keyframes parle{50%{transform:scale(1.06)}}
+.pnj p{margin:0;font-size:clamp(19px,5.2vw,24px);font-weight:800;line-height:1.2}
+.son{width:50px;height:50px;border-radius:50%;background:#e8f0fc;display:grid;place-items:center}
+.son svg{width:25px;height:25px;stroke:var(--bleu)}
+#choix{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.carte{background:#f1f5f9;border:3px solid transparent;border-radius:18px;padding:10px 4px;display:grid;gap:4px;justify-items:center;min-height:100px;align-content:center}
 .carte .picto{font-size:44px;line-height:1.1}
-.carte .mot{font-size:14px;font-weight:700;color:var(--doux);line-height:1.2}
-.carte.choisi{border-color:var(--bleu);background:#e8f0fc;transform:translateY(-3px)}
+.carte .mot{font-size:13px;font-weight:700;color:var(--doux)}
 .carte.juste{border-color:var(--vert);background:#e2f6ea}
-.carte.faux{animation:non .4s;opacity:.35;pointer-events:none}
+.carte.faux{animation:non .4s;opacity:.3;pointer-events:none}
 @keyframes non{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
-.piece{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:22px;border:5px solid #c29a2c;background:radial-gradient(circle at 35% 30%,#ffe9a6,#e8bd4a)}
-.piece.argent{border-color:#a7adb5;background:radial-gradient(circle at 35% 30%,#fff,#cfd5dc)}
-.piece.bi{border-color:#c29a2c;background:radial-gradient(circle,#e9edf1 0 52%,#e8bd4a 54%)}
-#valider{height:58px;border-radius:99px;background:var(--vert);color:#fff;font-size:30px;font-weight:900;display:grid;place-items:center;transition:opacity .2s,transform .2s}
-#valider:disabled{opacity:.25}
 
-/* ---------- récompense ---------- */
-#toast{position:fixed;left:50%;top:22%;transform:translate(-50%,-50%) scale(.8);background:#fff;border-radius:24px;padding:18px 26px;display:grid;justify-items:center;gap:4px;opacity:0;transition:all .35s cubic-bezier(.2,1.3,.4,1);pointer-events:none;z-index:9;text-align:center}
+#toast{position:fixed;left:50%;top:22%;transform:translate(-50%,-50%) scale(.8);background:var(--papier);border-radius:22px;padding:14px 24px;display:grid;justify-items:center;gap:2px;opacity:0;transition:all .35s cubic-bezier(.2,1.3,.4,1);pointer-events:none;z-index:9;text-align:center}
 #toast.vu{opacity:1;transform:translate(-50%,-50%) scale(1)}
-#toast .picto{font-size:54px;line-height:1}
-#toast b{font-size:22px;font-weight:900}
-#toast span{font-size:14px;font-weight:700;color:var(--vert)}
+#toast .picto{font-size:48px;line-height:1.1}
+#toast b{font-size:20px;font-weight:900}
+#toast span{font-size:15px;color:var(--doux);font-weight:700}
 
 /* ---------- menu ---------- */
-#menu{position:fixed;inset:0;z-index:20;background:linear-gradient(180deg,rgba(15,27,43,.55),rgba(15,27,43,.92)),url(sprites/menu.jpg) center/cover #0f1b2b;color:#fff;overflow:auto;touch-action:pan-y;padding:calc(26px + env(safe-area-inset-top,0px)) 18px calc(30px + env(safe-area-inset-bottom,0px))}
-#menu .dedans{max-width:680px;margin:0 auto;display:grid;gap:26px}
-#menu h1{margin:0;font-size:clamp(44px,13vw,72px);font-weight:900;letter-spacing:-.03em;line-height:.95}
-#menu h1 small{display:block;font-size:.3em;font-weight:700;letter-spacing:.02em;opacity:.8;margin-top:8px}
-#jouer{justify-self:start;height:76px;padding:0 34px 0 28px;border-radius:99px;background:var(--or);color:var(--nuit);font-size:26px;font-weight:900;display:flex;gap:14px;align-items:center}
-#jouer svg{width:30px;height:30px;fill:var(--nuit)}
-#menu h2{margin:0 0 10px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:.75}
-.niveaux{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-.niveaux span{height:40px;padding:0 16px;border-radius:99px;background:rgba(255,255,255,.12);display:flex;align-items:center;gap:6px;font-weight:800}
-.niveaux span.actif{background:#fff;color:var(--nuit)}
-.etapes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.etape{background:rgba(255,255,255,.1);border-radius:18px;padding:14px 8px;display:grid;justify-items:center;gap:4px;text-align:center;position:relative;min-height:104px;align-content:center}
-.etape .picto{font-size:34px;line-height:1.1}
-.etape b{font-size:14px;font-weight:800}
-.etape.ouverte{background:#fff;color:var(--nuit)}
-.etape.finie::after{content:"✓";position:absolute;right:8px;top:8px;width:24px;height:24px;border-radius:50%;background:var(--vert);color:#fff;font-weight:900;font-size:15px;line-height:24px}
-.etape:not(.ouverte){opacity:.6}
-.etape:not(.ouverte)::before{content:"🔒";position:absolute;right:8px;top:6px;font-size:14px}
-.actes{display:flex;flex-wrap:wrap;gap:8px}
-.actes span{height:38px;padding:0 13px;border-radius:99px;background:rgba(255,255,255,.1);display:flex;align-items:center;gap:7px;font-size:14px;font-weight:700;opacity:.55}
-.actes span.su{background:var(--vert);opacity:1}
-#zero{justify-self:start;opacity:.6;font-size:14px;font-weight:700;text-decoration:underline}
-#charge{position:fixed;inset:0;z-index:30;background:var(--nuit);display:grid;place-items:center}
+#menu{position:fixed;inset:0;z-index:20;background:linear-gradient(180deg,rgba(19,35,58,.15),rgba(19,35,58,.88));color:#fff;display:grid;align-content:end;padding:28px 22px calc(44px + env(safe-area-inset-bottom,0px));gap:18px}
+#menu h1{margin:0;font:800 clamp(52px,15vw,92px)/.9 "Baloo 2",Figtree,sans-serif;letter-spacing:-.02em;text-shadow:0 3px 0 rgba(0,0,0,.2)}
+#menu p{margin:0;font-size:17px;font-weight:700;opacity:.9;max-width:32ch}
+#jouer{justify-self:start;height:74px;padding:0 36px 0 28px;border-radius:99px;background:linear-gradient(180deg,#ffd35c,#f6a623);color:var(--nuit);font-size:26px;font-weight:900;display:flex;gap:12px;align-items:center;border-bottom:5px solid #c97f0a}
+#jouer svg{width:28px;height:28px;fill:var(--nuit)}
+#zero{justify-self:start;opacity:.7;font-size:14px;font-weight:700;text-decoration:underline}
+#charge{position:fixed;inset:0;z-index:30;background:var(--nuit);display:grid;place-items:center;color:#fff;font-weight:700;text-align:center;padding:20px}
 #charge i{width:54px;height:54px;border-radius:50%;border:6px solid rgba(255,255,255,.2);border-top-color:var(--or);animation:tour 1s linear infinite}
 @keyframes tour{to{transform:rotate(360deg)}}
-@media (prefers-reduced-motion:reduce){.bulle,#main,.portrait.parle{animation:none}}
 </style>
 
-<div id="vue"><div id="monde"></div></div>
+<canvas id="c"></canvas>
+<div id="bulles"></div>
 
 <div id="haut">
-  <button id="bmenu" class="pastille" aria-label="Menu">☰</button>
-  <span id="niv" class="pastille">A1 · 1</span>
-  <span class="pastille">⭐ <span id="etoiles">0</span></span>
-  <span id="pts" class="pastille" aria-label="Progression"></span>
+  <div id="niveau" title="Niveau"><svg viewBox="0 0 54 54"><circle cx="27" cy="27" r="24" fill="none" stroke="rgba(19,35,58,.5)" stroke-width="5"/><circle id="xpArc" cx="27" cy="27" r="24" fill="none" stroke="#ffd35c" stroke-width="5" stroke-linecap="round" stroke-dasharray="151" stroke-dashoffset="151"/></svg><b class="chiffre" id="niv">1</b></div>
+  <span class="jauge" id="popJ"><i>👥</i><span class="chiffre" id="pop">0</span></span>
+  <span class="jauge" id="joieJ"><i>😊</i><span class="chiffre" id="joie">0</span></span>
+  <span class="jauge" id="piecesJ"><i>🪙</i><span class="chiffre" id="pieces">0</span></span>
 </div>
 
-<div id="dial" aria-live="polite">
-  <div class="feuille">
-    <div class="pnj">
-      <div class="portrait" id="portrait"><img id="visage" alt=""></div>
-      <div><small id="qui"></small><p id="dit"></p></div>
-      <button class="son" id="reecouter" aria-label="Réécouter"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
-    </div>
-    <div id="choix"></div>
-    <button id="valider" disabled aria-label="Valider">✓</button>
+<button class="rond" id="bConstruire" aria-label="Construire">🏗️<small>Construire</small></button>
+<button class="rond" id="bTaches" aria-label="Demandes">📋<b class="chiffre" id="nbTaches" hidden>0</b><small>Demandes</small></button>
+<button class="rond" id="bEntrepot" aria-label="Entrepôt">📦<small id="entrepotTxt">0/30</small></button>
+<button class="rond" id="bAnnuler" hidden>✓ Terminé</button>
+
+<div class="tiroir" id="catalogue">
+  <header><b>🏗️</b><b id="catTitre">Construire</b><button data-fermer>✕</button></header>
+  <div class="onglets" id="onglets"></div>
+  <div class="liste" id="articles"></div>
+</div>
+<div class="tiroir" id="fiche">
+  <header><b id="ficheIcone"></b><b id="ficheTitre"></b><button data-fermer>✕</button></header>
+  <div class="contenu" id="ficheContenu"></div>
+</div>
+<div class="tiroir" id="entrepot">
+  <header><b>📦</b><b>Entrepôt</b><span class="chiffre" id="entrepotNb" style="font-size:18px;color:var(--doux)"></span><button data-fermer>✕</button></header>
+  <div class="stock" id="stock"></div>
+</div>
+<div class="tiroir" id="taches">
+  <header><b>📋</b><b>Demandes</b><button data-fermer>✕</button></header>
+  <div class="contenu" id="tachesContenu" style="display:grid;gap:10px;padding:0 6px"></div>
+</div>
+
+<div id="dial" aria-live="polite"><div class="feuille">
+  <div class="pnj">
+    <div class="portrait" id="portrait"><img id="visage" alt=""></div>
+    <p id="dit"></p>
+    <button class="son" id="reecouter" aria-label="Réécouter"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
   </div>
-</div>
-
+  <div id="choix"></div>
+</div></div>
 <div id="toast"><div class="picto"></div><b></b><span></span></div>
 
 <div id="menu">
-  <div class="dedans">
-    <h1>Ma ville<small>J'apprends le français</small></h1>
-    <button id="jouer"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.500z"/></svg><span>Jouer</span></button>
-    <section>
-      <h2>Niveaux</h2>
-      <div class="niveaux"><span class="actif">A1</span><span>A2 🔒</span><span>B1 🔒</span><span>B2 🔒</span></div>
-      <div class="etapes" id="etapes"></div>
-    </section>
-    <section>
-      <h2>Je sais</h2>
-      <div class="actes" id="actes"></div>
-    </section>
-    <button id="zero">↺ Recommencer</button>
-  </div>
+  <h1>Ma ville</h1>
+  <p>Construis ta ville. Aide tes habitants. Parle français.</p>
+  <button id="jouer"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg><span>Jouer</span></button>
+  <button id="zero">↺ Nouvelle ville</button>
 </div>
 <div id="charge"><i></i></div>
 
-<script>
-const $ = id => document.getElementById(id);
-const NB = ' ';
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import * as SkeletonUtils from 'three/addons/utils/SkeletonUtils.js';
+const $ = id => document.getElementById(id), NB = ' ';
+const TEL = matchMedia('(pointer: coarse)').matches;
+const maintenant = () => Date.now() / 1000;
 
-/* ------------------------------------------------------------ contenu : étape 1 « Arriver » */
-const GENS = {
-  gare: { nom: 'Le chef de gare', img: 'portrait-gare' }, mairie: { nom: 'Madame Martin', img: 'portrait-mairie' },
-  voisin: { nom: 'Le voisin', img: 'portrait-voisin' }, boulangere: { nom: 'La boulangère', img: 'portrait-boulangere' }
+/* ================================================================ RÈGLES DU JEU */
+// matières premières (usine) et objets fabriqués (atelier)
+const BIENS = {
+  metal: { picto: '🔩', nom: 'Métal', duree: 12 }, bois: { picto: '🪵', nom: 'Bois', duree: 18 }, plastique: { picto: '🧴', nom: 'Plastique', duree: 30, niv: 3 },
+  clous: { picto: '🔨', nom: 'Clous', duree: 25, recette: { metal: 2 } }, planches: { picto: '🪚', nom: 'Planches', duree: 30, recette: { bois: 2 } },
+  pain: { picto: '🥖', nom: 'Pain', duree: 20, recette: { bois: 1 }, niv: 4 }
 };
-const R = {   // les phrases du joueur
-  bonjour: ['👋', 'Bonjour' + NB + '!', 'j-bonjour'], nuit: ['🌙', 'Bonne nuit' + NB + '!', 'j-nuit'], revoir: ['🚪', 'Au revoir' + NB + '!', 'j-revoir'],
-  nom: ['🙂', 'Je m’appelle Sam.', 'j-nom'], habite: ['🏠', 'J’habite ici.', 'j-habite'], merci: ['🙏', 'Merci' + NB + '!', 'j-merci'],
-  cava: ['👍', 'Ça va bien, merci' + NB + '!', 'j-cava'], baguette: ['🥖', 'Une baguette, s’il vous plaît.', 'j-baguette'],
-  medicament: ['💊', 'Un médicament, s’il vous plaît.', 'j-medicament'], billet: ['🎫', 'Un billet, s’il vous plaît.', 'j-billet']
+const BATIS = {
+  route: { picto: '🛣️', nom: 'Route', prix: 10, cat: 'route', niv: 1 },
+  maison: { picto: '🏠', nom: 'Maison', prix: 50, cat: 'maison', niv: 1 },
+  usine: { picto: '🏭', nom: 'Usine', prix: 150, cat: 'travail', niv: 1, produit: ['metal', 'bois', 'plastique'], places: 3 },
+  atelier: { picto: '🔨', nom: 'Atelier', prix: 300, cat: 'travail', niv: 2, modele: 'building_D', produit: ['clous', 'planches', 'pain'], places: 2 },
+  parc: { picto: '🌳', nom: 'Parc', prix: 80, cat: 'service', niv: 1, joie: 10 },
+  boulangerie: { picto: '🥖', nom: 'Boulangerie', prix: 250, cat: 'service', niv: 2, modele: 'building_B', joie: 15 },
+  ecole: { picto: '🏫', nom: 'École', prix: 500, cat: 'service', niv: 3, modele: 'building_H', joie: 20 },
+  pharmacie: { picto: '💊', nom: 'Pharmacie', prix: 400, cat: 'service', niv: 3, modele: 'building_F', joie: 15 },
+  cafe: { picto: '☕', nom: 'Café', prix: 350, cat: 'service', niv: 4, modele: 'building_G', joie: 15 },
+  medecin: { picto: '🩺', nom: 'Médecin', prix: 600, cat: 'service', niv: 4, modele: 'building_E', joie: 20 },
+  mairie: { picto: '🏛️', nom: 'Mairie', prix: 0, cat: 'aucune', modele: 'building_E' }
 };
-const MISSIONS = [
-  { lieu: 'gare', qui: 'gare', acte: 0, construit: ['mairie'], nomBati: 'La mairie', tours: [
-    { dit: 'Bonjour' + NB + '!', voix: 'g-bonjour', choix: ['nuit', 'bonjour', 'revoir'], juste: 'bonjour' },
-    { dit: 'Bienvenue' + NB + '!', voix: 'g-bienvenue' }] },
-  { lieu: 'mairie', qui: 'mairie', acte: 1, construit: ['logement'], nomBati: 'Ta maison', tours: [
-    { dit: 'Comment vous appelez-vous' + NB + '?', voix: 'm-nom', choix: ['nom', 'baguette', 'revoir'], juste: 'nom' },
-    { dit: 'Vous habitez où' + NB + '?', voix: 'm-ou', choix: ['merci', 'nom', 'habite'], juste: 'habite' },
-    { dit: 'Très bien' + NB + '! Voici votre adresse.', voix: 'm-adresse' }] },
-  { lieu: 'logement', qui: 'voisin', acte: 2, construit: ['boulangerie'], nomBati: 'La boulangerie', tours: [
-    { dit: 'Bonjour' + NB + '! Ça va' + NB + '?', voix: 'v-cava', choix: ['cava', 'nuit', 'habite'], juste: 'cava' },
-    { dit: 'La boulangerie est ouverte' + NB + '!', voix: 'v-boul' }] },
-  { lieu: 'boulangerie', qui: 'boulangere', acte: 3, construit: ['parc', 'pharmacie'], nomBati: 'Le parc', tours: [
-    { dit: 'Bonjour' + NB + '! Vous désirez' + NB + '?', voix: 'b-desire', choix: ['billet', 'medicament', 'baguette'], juste: 'baguette' },
-    { dit: 'Un euro, s’il vous plaît.', voix: 'b-euro', pieces: [[50, '50 c', ''], [200, '2 €', 'bi'], [100, '1 €', 'bi']], juste: 100 },
-    { dit: 'Merci' + NB + '! Au revoir' + NB + '!', voix: 'b-merci', choix: ['bonjour', 'revoir', 'nuit'], juste: 'revoir' }] }
+const CATS = [['maison', '🏠'], ['route', '🛣️'], ['travail', '🏭'], ['service', '🌳']];
+// une maison grandit par niveaux : il faut des objets pour l'améliorer
+const MAISONS = [
+  { modeles: ['building_A', 'building_B'], hab: 6, impot: 3 },
+  { modeles: ['building_E', 'building_F'], hab: 16, impot: 7, cout: { bois: 1, metal: 1 } },
+  { modeles: ['building_C', 'building_G'], hab: 34, impot: 14, cout: { planches: 1, clous: 1 } },
+  { modeles: ['building_H', 'building_D'], hab: 60, impot: 24, cout: { planches: 2, clous: 2, plastique: 1 } }
 ];
-const DEPART = ['gare'];
-const ACTES = [['👋', 'Saluer'], ['🙂', 'Se présenter'], ['👍', 'Dire comment ça va'], ['🛒', 'Acheter'], ['🔢', 'Compter'], ['🧭', 'Demander son chemin'],
-  ['🕐', 'Dire l’heure'], ['🩺', 'Dire où j’ai mal'], ['📝', 'Remplir un papier'], ['📞', 'Téléphoner'], ['📖', 'Raconter'], ['💬', 'Donner son avis']];
-const ETAPES = [['🚆', 'Arriver'], ['🥖', 'Manger'], ['🚌', 'Bouger'], ['💊', 'Se soigner'], ['📮', 'Les papiers'], ['🏫', 'École, travail']];
+const XP_NIV = [0, 25, 70, 150, 260, 420, 650];
+const CAPA = 30;
 
-/* ------------------------------------------------------------ sauvegarde */
-let etat = { fait: 0, etoiles: 0 };
-try { const s = JSON.parse(localStorage.getItem('ma-ville') || 'null'); if (s && s.fait <= MISSIONS.length) etat = s; } catch (e) {}
-const sauver = () => { try { localStorage.setItem('ma-ville', JSON.stringify(etat)); } catch (e) {} };
+/* les habitants et ce qu'ils disent (voix enregistrées) */
+const GENS = [{ glb: 'boulangere', img: 'portrait-mairie', v: 'f' }, { glb: 'joueur', img: 'portrait-gare', v: 'h1' }, { glb: 'passant', img: 'portrait-voisin', v: 'h2' }];
+const DEMANDES = {   // c = ce qu'il faut comprendre ; donner = objets à donner ; batir = bâtiment à construire
+  maison: { voix: 'd-maison', qui: 0, dit: 'Bonjour' + NB + '! Je cherche une maison.', c: 'maison', batir: 'maison' },
+  boulangerie: { voix: 'd-boulangerie', qui: 1, dit: 'J’ai faim. Je voudrais une boulangerie.', c: 'boulangerie', batir: 'boulangerie', niv: 2 },
+  ecole: { voix: 'd-ecole', qui: 0, dit: 'Mes enfants ont six ans. Il faut une école.', c: 'ecole', batir: 'ecole', niv: 3 },
+  pharmacie: { voix: 'd-pharmacie', qui: 2, dit: 'Je suis malade. Où est la pharmacie' + NB + '?', c: 'pharmacie', batir: 'pharmacie', niv: 3 },
+  parc: { voix: 'd-parc', qui: 0, dit: 'Je voudrais un parc, pour les enfants.', c: 'parc', batir: 'parc' },
+  cafe: { voix: 'd-cafe', qui: 1, dit: 'Je voudrais boire un café.', c: 'cafe', batir: 'cafe', niv: 4 },
+  medecin: { voix: 'd-medecin', qui: 2, dit: 'J’ai mal à la tête. Il faut un médecin.', c: 'medecin', batir: 'medecin', niv: 4 },
+  bois: { voix: 'q-bois', qui: 1, dit: 'Il me faut du bois, s’il te plaît.', c: 'bois', donner: { bois: 2 } },
+  metal: { voix: 'q-metal', qui: 2, dit: 'Il me faut du métal, s’il te plaît.', c: 'metal', donner: { metal: 2 } },
+  plastique: { voix: 'q-plastique', qui: 0, dit: 'Il me faut du plastique, s’il te plaît.', c: 'plastique', donner: { plastique: 1 }, niv: 3 },
+  clous: { voix: 'q-clous', qui: 1, dit: 'Je voudrais des clous.', c: 'clous', donner: { clous: 1 }, niv: 2 },
+  planches: { voix: 'q-planches', qui: 0, dit: 'Je voudrais des planches.', c: 'planches', donner: { planches: 1 }, niv: 2 }
+};
+const ORDRE = ['maison', 'metal', 'parc', 'bois', 'boulangerie', 'clous', 'planches', 'ecole', 'plastique', 'pharmacie', 'cafe', 'medecin'];
+const infos = k => BATIS[k] || BIENS[k];
 
-/* ------------------------------------------------------------ sons */
-const voixEl = new Audio(); let derniere = null, AC = null;
-function dire(id, fin) { derniere = id; voixEl.onended = fin || null; voixEl.src = 'voix/' + id + '.mp3'; voixEl.play().catch(() => fin && fin()); }
-function bip(notes, type = 'sine', vol = .15) {
-  try {
-    AC = AC || new (window.AudioContext || window.webkitAudioContext)(); let t = AC.currentTime;
-    for (const [f, d] of notes) { const o = AC.createOscillator(), g = AC.createGain(); o.type = type; o.frequency.value = f; g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(.001, t + d); o.connect(g).connect(AC.destination); o.start(t); o.stop(t + d); t += d * .7; }
-  } catch (e) {}
+/* ================================================================ ÉTAT ET SAUVEGARDE */
+const N = 24, T = 2, CLE = 'ma-ville-3';
+function neuf() {
+  const c = {}, m = N / 2;
+  c[cle(m, m - 1)] = { t: 'mairie' };
+  for (let i = 2; i < N - 2; i++) c[cle(i, m)] = { t: 'route' };
+  c[cle(m - 3, m - 1)] = { t: 'usine', file: [] };
+  return { cases: c, pieces: 400, xp: 0, stock: { metal: 2, bois: 2 }, joie: 50, prochaine: 0, taches: [], vu: [], debut: true };
 }
-const sonJuste = () => bip([[660, .12], [880, .2]]), sonFaux = () => bip([[200, .18]], 'triangle', .12), sonBati = () => bip([[392, .12], [523, .12], [659, .12], [784, .3]]);
+let E;
+try { E = JSON.parse(localStorage.getItem(CLE) || 'null'); } catch (e) {}
+if (!E || !E.cases) E = neuf();
+const sauver = () => { try { localStorage.setItem(CLE, JSON.stringify(E)); } catch (e) {} };
+function cle(i, j) { return i + ',' + j; }
+const niveau = () => { let n = 1; for (let k = 0; k < XP_NIV.length; k++) if (E.xp >= XP_NIV[k]) n = k + 1; return Math.min(n, XP_NIV.length); };
+const nbStock = () => Object.values(E.stock).reduce((a, b) => a + b, 0);
 
-/* ------------------------------------------------------------ la ville : image du sol + un calque par bâtiment */
-const vue = $('vue'), monde = $('monde'); let PLAN, cam = { x: 0, y: 0, s: 1 }, bulle = null, main = null;
-const sMin = () => Math.max(innerWidth / PLAN.largeur, innerHeight / PLAN.hauteur);
-function borner() {
-  cam.s = Math.min(Math.max(cam.s, sMin()), 1.6);
-  cam.x = Math.min(0, Math.max(innerWidth - PLAN.largeur * cam.s, cam.x)); cam.y = Math.min(0, Math.max(innerHeight - PLAN.hauteur * cam.s, cam.y));
+/* ================================================================ SONS */
+const voixEl = new Audio(); let AC = null;
+function dire(id, fin) { voixEl.onended = fin || null; voixEl.src = 'voix/' + id + '.mp3'; voixEl.play().catch(() => fin && fin()); }
+function bip(notes, type = 'sine', vol = .12) {
+  try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); let t = AC.currentTime;
+    for (const [f, d] of notes) { const o = AC.createOscillator(), g = AC.createGain(); o.type = type; o.frequency.value = f; g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(.001, t + d); o.connect(g).connect(AC.destination); o.start(t); o.stop(t + d); t += d * .7; } } catch (e) {}
 }
-function appliquer() { borner(); monde.style.transform = `translate(${cam.x}px,${cam.y}px) scale(${cam.s})`; }
-let anim = 0;
-function viser(px, py, s, ms = 900, decalY = 0) {
-  return new Promise(ok => {
-    const d = { ...cam }, f = { s: Math.max(s, sMin()) }; f.x = innerWidth / 2 - px * f.s; f.y = innerHeight / 2 - decalY - py * f.s;
-    const t0 = performance.now(), id = ++anim;
-    (function pas(t) {
-      if (id !== anim) return ok();
-      const k = Math.min(1, (t - t0) / ms), e = k < .5 ? 2 * k * k : 1 - (-2 * k + 2) ** 2 / 2;
-      cam.s = d.s + (f.s - d.s) * e; cam.x = d.x + (f.x - d.x) * e; cam.y = d.y + (f.y - d.y) * e; appliquer();
-      k < 1 ? requestAnimationFrame(pas) : ok();
-    })(t0);
+const S = { pose: () => bip([[330, .07], [440, .1]]), piece: () => bip([[988, .06], [1319, .12]], 'square', .05), juste: () => bip([[660, .12], [880, .2]]),
+  faux: () => bip([[200, .18]], 'triangle'), fete: () => bip([[392, .12], [523, .12], [659, .12], [784, .35]]), clic: () => bip([[600, .04]], 'sine', .06) };
+
+/* ================================================================ SCÈNE 3D */
+const canvas = $('c');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); renderer.setSize(innerWidth, innerHeight);
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.15;
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x5ec3ee); scene.fog = new THREE.Fog(0x8fd6f2, 120, 260);
+const cam = new THREE.OrthographicCamera(-1, 1, 1, -1, -300, 500);
+const vise = new THREE.Vector3(0, 0, 0); let taille = TEL ? 10 : 13;
+const DIRCAM = new THREE.Vector3(1, 1.05, 1).normalize();
+function majCam() {
+  const a = innerWidth / innerHeight; cam.left = -taille * a; cam.right = taille * a; cam.top = taille; cam.bottom = -taille; cam.updateProjectionMatrix();
+  const lim = N * T / 2; vise.x = THREE.MathUtils.clamp(vise.x, -lim, lim); vise.z = THREE.MathUtils.clamp(vise.z, -lim, lim);
+  cam.position.copy(vise).addScaledVector(DIRCAM, 150); cam.lookAt(vise);
+}
+addEventListener('resize', () => { renderer.setSize(innerWidth, innerHeight); majCam(); });
+scene.add(new THREE.HemisphereLight(0xe8f6ff, 0x86b45e, 1.3));
+const soleil = new THREE.DirectionalLight(0xfff0d2, 2.9); soleil.position.set(-34, 52, 22); soleil.castShadow = true;
+soleil.shadow.mapSize.set(TEL ? 2048 : 4096, TEL ? 2048 : 4096); { const s = soleil.shadow.camera, e = N * T / 2 + 6; s.left = -e; s.right = e; s.top = e; s.bottom = -e; s.near = 1; s.far = 200; }
+soleil.shadow.bias = -.0004; soleil.shadow.normalBias = .02; scene.add(soleil);
+
+// l'île : herbe, sable, eau peu profonde, mer
+const sol = new THREE.Group(); scene.add(sol);
+{
+  const cv = document.createElement('canvas'); cv.width = cv.height = 256; const g = cv.getContext('2d');
+  g.fillStyle = '#77c24e'; g.fillRect(0, 0, 256, 256);
+  for (let k = 0; k < 2600; k++) { g.fillStyle = ['#6fb946', '#80ca57', '#88d05e', '#6aad43'][k % 4]; g.fillRect(Math.random() * 256, Math.random() * 256, 2 + Math.random() * 3, 2 + Math.random() * 3); }
+  const tx = new THREE.CanvasTexture(cv); tx.wrapS = tx.wrapT = THREE.RepeatWrapping; tx.repeat.set(10, 10); tx.colorSpace = THREE.SRGBColorSpace;
+  const L = N * T;
+  const herbe = new THREE.Mesh(new THREE.BoxGeometry(L + 6, 1, L + 6), new THREE.MeshStandardMaterial({ map: tx, roughness: 1 })); herbe.position.y = -.5; herbe.receiveShadow = true; sol.add(herbe);
+  const sable = new THREE.Mesh(new THREE.CylinderGeometry(L * .9, L * .98, 1.1, 48), new THREE.MeshStandardMaterial({ color: 0xf2dc9d, roughness: 1 })); sable.position.y = -.62; sable.receiveShadow = true; sol.add(sable);
+  const eau = new THREE.Mesh(new THREE.CircleGeometry(L * 1.18, 48), new THREE.MeshStandardMaterial({ color: 0x4fd0e0, roughness: .3, transparent: true, opacity: .85 })); eau.rotation.x = -Math.PI / 2; eau.position.y = -.95; sol.add(eau);
+  const mer = new THREE.Mesh(new THREE.PlaneGeometry(900, 900), new THREE.MeshStandardMaterial({ color: 0x1e7fd0, roughness: .35 })); mer.rotation.x = -Math.PI / 2; mer.position.y = -1.3; sol.add(mer);
+}
+const monde = new THREE.Group(); scene.add(monde);
+const grille = new THREE.GridHelper(N * T, N, 0xffffff, 0xffffff); grille.material.transparent = true; grille.material.opacity = .28; grille.position.y = .02; grille.visible = false; scene.add(grille);
+const fantome = new THREE.Group(); fantome.visible = false; scene.add(fantome);
+const pos = (i, j) => new THREE.Vector3((i - N / 2 + .5) * T, 0, (j - N / 2 + .5) * T);
+const dans = (i, j) => i >= 0 && j >= 0 && i < N && j < N;
+const estRoute = (i, j) => E.cases[cle(i, j)]?.t === 'route';
+const VOIS = [[0, -1], [1, 0], [0, 1], [-1, 0]];
+
+/* ================================================================ MODÈLES */
+let PACK, GLB = {};
+const chargeur = new GLTFLoader();
+const glb = url => fetch(url + '.json').then(r => { if (!r.ok) throw 0; return r.json(); })
+  .then(d => { const b = atob(d.glb), u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return new Promise((ok, ko) => chargeur.parse(u.buffer, '', ok, ko)); },
+        () => new Promise((ok, ko) => chargeur.load(url, ok, undefined, ko)));
+function piece(nom) { const o = PACK.getObjectByName(nom).clone(true); o.position.set(0, 0, 0); o.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); return o; }
+const MAT_ARBRE = [0x3f9d3a, 0x56b13f, 0x6cbf47].map(c => new THREE.MeshStandardMaterial({ color: c, roughness: .9, flatShading: true }));
+const MAT_TRONC = new THREE.MeshStandardMaterial({ color: 0x8a5a36, roughness: 1 });
+function arbre(s = 1) {
+  const g = new THREE.Group(), t = new THREE.Mesh(new THREE.CylinderGeometry(.06 * s, .09 * s, .5 * s, 6), MAT_TRONC); t.position.y = .25 * s; g.add(t);
+  const f = new THREE.Mesh(new THREE.IcosahedronGeometry(.42 * s, 0), MAT_ARBRE[Math.floor(Math.random() * 3)]); f.position.y = .75 * s; f.scale.y = 1.15; g.add(f);
+  g.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); return g;
+}
+function batiment(c, i, j) {
+  const g = new THREE.Group();
+  if (c.t === 'route') {
+    const m = VOIS.map(([a, b]) => estRoute(i + a, j + b)), [n, e, s, o] = m, nb = m.filter(Boolean).length; let nom = 'road_straight', r = 0;
+    if (nb === 4) nom = 'road_junction';
+    else if (nb === 3) { nom = 'road_tsplit'; r = !o ? 0 : !s ? 1 : !e ? 2 : 3; }
+    else if (nb === 2 && !((n && s) || (e && o))) { nom = 'road_corner_curved'; r = e && s ? 0 : n && e ? 1 : o && n ? 2 : 3; }
+    else r = (e || o) ? 1 : 0;
+    const p = piece(nom); p.rotation.y = r * Math.PI / 2; g.add(p); return g;
+  }
+  let r = 0; for (const [d, rot] of [[2, 0], [1, 1], [0, 2], [3, 3]]) if (estRoute(i + VOIS[d][0], j + VOIS[d][1])) { r = rot; break; }
+  if (c.t === 'parc') {
+    const b = piece('base'); g.add(b);
+    const gazon = new THREE.Mesh(new THREE.BoxGeometry(1.7, .06, 1.7), new THREE.MeshStandardMaterial({ color: 0x6cc24a, roughness: 1 })); gazon.position.y = .1; gazon.receiveShadow = true; g.add(gazon);
+    for (const [x, z, s] of [[-.5, -.45, 1.3], [.5, -.5, 1.1], [-.45, .45, 1.0], [.55, .4, 1.2]]) { const a = arbre(s); a.position.set(x, .12, z); g.add(a); }
+    const banc = piece('bench'); banc.position.set(0, .12, .7); banc.scale.setScalar(1.5); g.add(banc);
+  } else if (c.t === 'usine') {
+    const b = piece('base'); g.add(b);
+    const hangar = new THREE.Mesh(new THREE.BoxGeometry(1.3, .7, 1), new THREE.MeshStandardMaterial({ color: 0x9aa7b4, roughness: .8 })); hangar.position.set(-.1, .45, -.25); g.add(hangar);
+    const toit = new THREE.Mesh(new THREE.CylinderGeometry(.5, .5, 1.32, 12, 1, false, 0, Math.PI), new THREE.MeshStandardMaterial({ color: 0x3d78c2, roughness: .6 })); toit.rotation.z = Math.PI / 2; toit.position.set(-.1, .8, -.25); g.add(toit);
+    const che = new THREE.Mesh(new THREE.CylinderGeometry(.09, .12, 1.3, 10), new THREE.MeshStandardMaterial({ color: 0xc9483c })); che.position.set(.55, .75, -.55); g.add(che);
+    const tour = piece('watertower'); tour.position.set(.6, .1, .45); tour.scale.setScalar(1.2); g.add(tour);
+    for (const [x, z] of [[-.6, .55], [-.35, .6]]) { const bx = piece('box_A'); bx.position.set(x, .1, z); bx.scale.setScalar(1.8); g.add(bx); }
+    g.userData.fumee = new THREE.Vector3(.55, 1.45, -.55);
+  } else if (c.t === 'maison') {
+    const L = MAISONS[c.n || 0], p = piece(L.modeles[(c.v || 0) % L.modeles.length]); g.add(p);
+  } else {
+    const p = piece(BATIS[c.t].modele); g.add(p);
+    const cv = document.createElement('canvas'); cv.width = cv.height = 96; const x = cv.getContext('2d'); x.fillStyle = '#fff'; x.beginPath(); x.arc(48, 48, 44, 0, 7); x.fill();
+    x.font = '56px serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(BATIS[c.t].picto, 48, 52);
+    const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace;
+    const ens = new THREE.Mesh(new THREE.CircleGeometry(.32, 24), new THREE.MeshBasicMaterial({ map: t, transparent: true })); ens.position.set(0, new THREE.Box3().setFromObject(p).max.y + .02, 0); ens.rotation.x = -Math.PI / 2; g.add(ens);
+  }
+  g.children.forEach(o => o.rotation.y += r * Math.PI / 2);
+  if (c.t !== 'maison' && c.t !== 'parc' && c.t !== 'usine') {}
+  return g;
+}
+const objets = {};
+function redessiner(i, j, anime) {
+  const k = cle(i, j); if (objets[k]) { monde.remove(objets[k]); delete objets[k]; }
+  const c = E.cases[k]; if (!c) return; const g = batiment(c, i, j); g.position.copy(pos(i, j)); objets[k] = g; monde.add(g);
+  if (anime) { g.scale.set(.8, .01, .8); g.userData.pousse = performance.now(); poussiere(pos(i, j)); }
+}
+const autour = (i, j) => { for (const [a, b] of VOIS) if (dans(i + a, j + b) && E.cases[cle(i + a, j + b)]) redessiner(i + a, j + b); };
+// décor : arbres sur les cases libres du bord
+const decor = new THREE.Group(); scene.add(decor);
+function semerDecor() {
+  decor.clear();
+  for (let k = 0; k < 90; k++) {
+    const i = Math.floor(Math.random() * N), j = Math.floor(Math.random() * N); if (E.cases[cle(i, j)]) continue;
+    if (Math.abs(i - N / 2) < 5 && Math.abs(j - N / 2) < 4) continue;
+    const a = arbre(.9 + Math.random() * .7); a.position.copy(pos(i, j)).add(new THREE.Vector3((Math.random() - .5) * 1.2, 0, (Math.random() - .5) * 1.2)); a.userData.c = cle(i, j); decor.add(a);
+  }
+  for (let k = 0; k < 40; k++) { const ang = Math.random() * 7, r = N * T * (.56 + Math.random() * .2); const a = arbre(1 + Math.random() * .6); a.position.set(Math.cos(ang) * r, 0, Math.sin(ang) * r); decor.add(a); }
+}
+const nettoyerDecor = k => decor.children.filter(a => a.userData.c === k).forEach(a => decor.remove(a));
+
+/* petites particules : poussière de chantier, fumée d'usine */
+const parts = [];
+const MAT_P = new THREE.MeshStandardMaterial({ color: 0xffffff, transparent: true, opacity: .8, roughness: 1 });
+function poussiere(p) { for (let k = 0; k < 14; k++) { const m = new THREE.Mesh(new THREE.IcosahedronGeometry(.18 + Math.random() * .15, 0), MAT_P.clone()); m.position.copy(p).add(new THREE.Vector3((Math.random() - .5) * 1.6, .2, (Math.random() - .5) * 1.6)); m.userData = { v: new THREE.Vector3((Math.random() - .5) * 1.5, 1 + Math.random(), (Math.random() - .5) * 1.5), vie: 1 }; scene.add(m); parts.push(m); } }
+function fumee(p) { const m = new THREE.Mesh(new THREE.IcosahedronGeometry(.13, 0), MAT_P.clone()); m.material.color.set(0xd8dde3); m.position.copy(p); m.userData = { v: new THREE.Vector3(.15, .6, .1), vie: 1.6 }; scene.add(m); parts.push(m); }
+function majParts(dt) { for (const m of [...parts]) { m.userData.vie -= dt; m.position.addScaledVector(m.userData.v, dt); m.scale.multiplyScalar(1 + dt * .8); m.material.opacity = Math.max(0, m.userData.vie * .6); if (m.userData.vie <= 0) { scene.remove(m); parts.splice(parts.indexOf(m), 1); } } }
+
+/* ================================================================ INTERFACE : CHIFFRES */
+function compter() {
+  let hab = 0, joie = 40;
+  for (const c of Object.values(E.cases)) { if (c.t === 'maison') hab += MAISONS[c.n || 0].hab; if (BATIS[c.t]?.joie) joie += BATIS[c.t].joie; }
+  E.joie = Math.min(100, joie); E.hab = hab;
+  $('pop').textContent = hab.toLocaleString('fr-FR'); $('joie').textContent = E.joie + '%'; $('pieces').textContent = E.pieces.toLocaleString('fr-FR');
+  const n = niveau(); $('niv').textContent = n;
+  const a = XP_NIV[n - 1], b = XP_NIV[n] ?? XP_NIV[n - 1] + 400; $('xpArc').style.strokeDashoffset = 151 * (1 - Math.min(1, (E.xp - a) / (b - a)));
+  $('entrepotTxt').textContent = nbStock() + '/' + CAPA;
+  const nt = E.taches.length; $('nbTaches').textContent = nt; $('nbTaches').hidden = !nt;
+}
+function gagner(xp, pieces = 0) {
+  const avant = niveau(); E.xp += xp; E.pieces += pieces; compter();
+  if (pieces) { const j = $('piecesJ'); j.classList.remove('pulse'); void j.offsetWidth; j.classList.add('pulse'); }
+  if (niveau() > avant) setTimeout(() => { S.fete(); const neufs = Object.entries(BATIS).filter(([k, b]) => b.niv === niveau()).map(([k, b]) => b.picto).join(' '); toast('⭐', 'Niveau ' + niveau(), neufs ? 'Nouveau' + NB + ': ' + neufs : ''); }, 600);
+}
+function voler(picto, de, vers) {
+  const e = document.createElement('div'); e.className = 'vol'; e.textContent = picto; e.style.left = de[0] + 'px'; e.style.top = de[1] + 'px'; document.body.appendChild(e);
+  requestAnimationFrame(() => { e.style.left = vers[0] + 'px'; e.style.top = vers[1] + 'px'; e.style.transform = 'scale(.6)'; e.style.opacity = '.4'; });
+  setTimeout(() => e.remove(), 750);
+}
+const centreDe = el => { const r = $(el).getBoundingClientRect(); return [r.left + r.width / 2 - 14, r.top + r.height / 2 - 18]; };
+function toast(picto, titre, sous = '') { const t = $('toast'); t.children[0].textContent = picto; t.children[1].textContent = titre; t.children[2].textContent = sous; t.classList.add('vu'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('vu'), 2400); }
+
+/* ================================================================ CONSTRUIRE */
+let mode = null;     // null = regarder ; sinon le type à poser
+const tiroirs = ['catalogue', 'fiche', 'entrepot', 'taches'];
+function fermerTout() { tiroirs.forEach(t => $(t).classList.remove('ouvert')); }
+document.querySelectorAll('[data-fermer]').forEach(b => b.onclick = () => { fermerTout(); S.clic(); });
+let onglet = 'maison';
+function catalogue() {
+  $('onglets').innerHTML = CATS.map(([k, p]) => `<button data-cat="${k}" class="${k === onglet ? 'actif' : ''}">${p}</button>`).join('');
+  $('onglets').querySelectorAll('button').forEach(b => b.onclick = () => { onglet = b.dataset.cat; S.clic(); catalogue(); });
+  const n = niveau();
+  $('articles').innerHTML = Object.entries(BATIS).filter(([k, b]) => b.cat === onglet).map(([k, b]) =>
+    `<button class="article ${b.niv > n ? 'verrou' : ''} ${E.pieces < b.prix ? 'cher' : ''}" data-t="${k}" data-niv="⭐ ${b.niv}"><span class="picto">${b.picto}</span><b>${b.nom}</b><span class="prix chiffre">🪙 ${b.prix}</span></button>`).join('');
+  $('articles').querySelectorAll('.article').forEach(a => a.onclick = () => {
+    const b = BATIS[a.dataset.t]; if (b.niv > n) { S.faux(); return; } if (E.pieces < b.prix) { S.faux(); toast('🪙', 'Pas assez de pièces'); return; }
+    S.clic(); entrerMode(a.dataset.t);
   });
 }
-const zoomConfort = () => Math.max(sMin(), Math.min(.75, innerWidth / 900 + .28));
-const centre = g => { const G = PLAN.groupes[g]; return [G.ancre[0], (G.ancre[1] + G.pied[1]) / 2]; };
-
-// déplacer et zoomer au doigt, à la souris, à la molette
-const doigts = new Map(); let bouge = 0, pince = 0;
-vue.addEventListener('pointerdown', e => { doigts.set(e.pointerId, e); bouge = 0; anim++; if (doigts.size === 2) pince = ecart(); });
-vue.addEventListener('pointermove', e => {
-  if (!doigts.has(e.pointerId)) return; const a = doigts.get(e.pointerId);
-  if (doigts.size === 1) { cam.x += e.clientX - a.clientX; cam.y += e.clientY - a.clientY; bouge += Math.abs(e.clientX - a.clientX) + Math.abs(e.clientY - a.clientY); }
-  doigts.set(e.pointerId, e);
-  if (doigts.size === 2) { const d = ecart(), [p, q] = [...doigts.values()]; zoomer(d / pince, (p.clientX + q.clientX) / 2, (p.clientY + q.clientY) / 2); pince = d; }
-  appliquer();
-});
-const fin = e => doigts.delete(e.pointerId);
-vue.addEventListener('pointerup', fin); vue.addEventListener('pointercancel', fin); vue.addEventListener('pointerleave', fin);
-vue.addEventListener('wheel', e => { e.preventDefault(); zoomer(e.deltaY < 0 ? 1.12 : .89, e.clientX, e.clientY); appliquer(); }, { passive: false });
-function ecart() { const [p, q] = [...doigts.values()]; return Math.hypot(p.clientX - q.clientX, p.clientY - q.clientY) || 1; }
-function zoomer(f, cx, cy) { const s = Math.min(Math.max(cam.s * f, sMin()), 1.6); cam.x = cx - (cx - cam.x) * s / cam.s; cam.y = cy - (cy - cam.y) * s / cam.s; cam.s = s; }
-addEventListener('resize', () => PLAN && appliquer());
-
-function construits() { const l = [...DEPART]; for (let i = 0; i < etat.fait; i++) l.push(...MISSIONS[i].construit); return l; }
-function monter() {
-  monde.style.width = PLAN.largeur + 'px'; monde.style.height = PLAN.hauteur + 'px';
-  const sol = new Image(); sol.src = 'sprites/sol.jpg'; sol.style.cssText = 'left:0;top:0'; monde.appendChild(sol);
-  const ordre = Object.entries(PLAN.groupes).sort((a, b) => a[1].profondeur - b[1].profondeur);
-  ordre.forEach(([g, G], i) => { const im = new Image(); im.src = 'sprites/' + g + '.webp'; im.className = 'bati'; im.id = 'b-' + g; im.style.cssText = `left:${G.x}px;top:${G.y}px;z-index:${i + 1}`; monde.appendChild(im); });
-  const deja = construits(); for (const g of deja) $('b-' + g).classList.add('la');
+$('bConstruire').onclick = () => { S.clic(); fermerTout(); catalogue(); $('catalogue').classList.add('ouvert'); };
+function entrerMode(t) {
+  mode = t; fermerTout(); grille.visible = true; $('bAnnuler').hidden = false; $('bConstruire').hidden = true;
+  fantome.clear(); const g = t === 'route' ? piece('road_straight') : batiment({ t, n: 0, v: 0 }, -99, -99); g.traverse(m => { if (m.isMesh) { m.material = m.material.clone(); m.material.transparent = true; m.material.opacity = .55; m.castShadow = false; } }); fantome.add(g);
 }
-function poserBulle() {
-  bulle?.remove(); main?.remove(); bulle = main = null;
-  const m = MISSIONS[etat.fait]; if (!m) return;
-  const G = PLAN.groupes[m.lieu];
-  bulle = document.createElement('button'); bulle.className = 'bulle'; bulle.style.left = G.ancre[0] + 'px'; bulle.style.top = (G.ancre[1] + 30) + 'px';
-  bulle.innerHTML = `<img src="sprites/${GENS[m.qui].img}.webp" alt="${GENS[m.qui].nom}"><i>!</i>`;
-  bulle.addEventListener('click', () => { if (bouge < 12) ouvrir(m); });
-  monde.appendChild(bulle);
-  if (etat.fait === 0) { main = document.createElement('div'); main.id = 'main'; main.textContent = '👆'; main.style.left = (G.ancre[0] - 20) + 'px'; main.style.top = (G.ancre[1] - 70) + 'px'; monde.appendChild(main); }
+function sortirMode() { mode = null; grille.visible = false; fantome.visible = false; $('bAnnuler').hidden = true; $('bConstruire').hidden = false; }
+$('bAnnuler').onclick = () => { S.clic(); sortirMode(); };
+function poser(i, j) {
+  if (!dans(i, j) || !mode) return false; const k = cle(i, j); if (E.cases[k]) return false;
+  const b = BATIS[mode]; if (E.pieces < b.prix) { S.faux(); toast('🪙', 'Pas assez de pièces'); sortirMode(); return false; }
+  E.pieces -= b.prix; const c = { t: mode }; if (mode === 'maison') { c.n = 0; c.v = Math.floor(Math.random() * 2); c.recolte = maintenant(); }
+  if (b.produit) c.file = []; E.cases[k] = c; nettoyerDecor(k);
+  redessiner(i, j, mode !== 'route'); autour(i, j); S.pose(); gagner(mode === 'route' ? 0 : 3);
+  verifierTaches(); sauver();
+  if (mode !== 'route') sortirMode();
+  return true;
 }
 
-/* ------------------------------------------------------------ dialogue */
-let mission = null, tour = 0, choisi = null, essais = 0;
-function ouvrir(m) {
-  mission = m; tour = 0; main?.remove(); bulle.hidden = true;
-  $('visage').src = 'sprites/' + GENS[m.qui].img + '.webp'; $('qui').textContent = GENS[m.qui].nom;
-  const [x, y] = centre(m.lieu); viser(x, y, zoomConfort() * 1.15, 700, innerHeight * .2);
-  $('dial').classList.add('ouvert'); jouerTour();
+/* ================================================================ PRODUIRE ET AMÉLIORER */
+let ficheCase = null;
+function ouvrirFiche(k) {
+  const c = E.cases[k]; if (!c || c.t === 'route') return; ficheCase = k; S.clic();
+  const b = BATIS[c.t]; $('ficheIcone').textContent = b.picto; $('ficheTitre').textContent = c.t === 'maison' ? 'Maison · ⭐' + ((c.n || 0) + 1) : b.nom;
+  remplirFiche(); fermerTout(); $('fiche').classList.add('ouvert');
 }
-function parler(id) { $('portrait').classList.add('parle'); dire(id, () => $('portrait').classList.remove('parle')); }
-function jouerTour() {
-  const t = mission.tours[tour]; choisi = null; essais = 0;
-  if (!t) return finMission();
-  $('dit').textContent = t.dit; parler(t.voix);
-  const c = $('choix'); c.innerHTML = ''; $('valider').disabled = true; $('valider').hidden = false;
-  if (t.pieces) {
-    $('valider').hidden = true;
-    for (const [v, txt, cl] of t.pieces) {
-      const b = document.createElement('button'); b.className = 'carte'; b.innerHTML = `<span class="piece ${cl}">${txt}</span>`;
-      b.onclick = () => { if (v === t.juste) { b.classList.add('juste'); bon(); } else rate(b, t); };
-      c.appendChild(b);
-    }
-  } else if (t.choix) {
-    for (const cle of t.choix) {
-      const [picto, mot, voix] = R[cle]; const b = document.createElement('button'); b.className = 'carte'; b.dataset.cle = cle;
-      b.innerHTML = `<span class="picto">${picto}</span><span class="mot">${mot}</span>`;
-      b.onclick = () => { [...c.children].forEach(x => x.classList.remove('choisi')); b.classList.add('choisi'); choisi = b; $('valider').disabled = false; dire(voix); };
-      c.appendChild(b);
-    }
-  } else {            // dernière réplique : on écoute, puis la ville grandit
-    $('valider').hidden = true; let passe = false; const suite = () => { if (passe) return; passe = true; finMission(); };
-    voixEl.onended = () => { $('portrait').classList.remove('parle'); setTimeout(suite, 500); }; setTimeout(suite, 4500);
+function remplirFiche() {
+  const c = E.cases[ficheCase]; if (!c) return; const b = BATIS[c.t], F = $('ficheContenu');
+  if (b.produit) {
+    const n = niveau(), t = maintenant();
+    F.innerHTML = `<div class="ligne-prod">${b.produit.map(p => { const P = BIENS[p], verrou = (P.niv || 1) > n;
+      const rec = P.recette ? Object.entries(P.recette).map(([r, q]) => q + BIENS[r].picto).join(' ') : '⏱ ' + P.duree + 's';
+      return `<button class="produit ${verrou ? 'verrou' : ''}" data-p="${p}"><span class="picto">${verrou ? '🔒' : P.picto}</span><b style="font-size:13px">${P.nom}</b><small>${verrou ? '⭐ ' + P.niv : rec}</small></button>`; }).join('')}</div>
+      <div class="file">${Array.from({ length: b.places }, (_, k) => { const f = c.file[k]; if (!f) return '<span class="case vide"></span>';
+        const P = BIENS[f.p], pr = Math.min(1, (t - f.debut) / P.duree); return `<button class="case ${pr >= 1 ? 'pret' : ''}" data-k="${k}">${P.picto}<span class="barre" style="width:${pr * 100}%"></span></button>`; }).join('')}</div>`;
+    F.querySelectorAll('.produit').forEach(e => e.onclick = () => lancer(e.dataset.p));
+    F.querySelectorAll('.case[data-k]').forEach(e => e.onclick = () => recolter(ficheCase, +e.dataset.k));
+  } else if (c.t === 'maison') {
+    const L = MAISONS[c.n || 0], S2 = MAISONS[(c.n || 0) + 1];
+    let h = `<div class="recomp"><span>👥 <b class="chiffre">${L.hab}</b></span><span>🪙 <b class="chiffre">${L.impot}</b>/10 s</span></div>`;
+    if (S2) { const ok = Object.entries(S2.cout).every(([r, q]) => (E.stock[r] || 0) >= q);
+      h += `<b style="font-size:16px">⬆️ ⭐${(c.n || 0) + 2}</b><div class="besoins">${Object.entries(S2.cout).map(([r, q]) => { const a = E.stock[r] || 0; return `<span class="besoin ${a >= q ? 'ok' : 'manque'}">${BIENS[r].picto}<span class="chiffre">${Math.min(a, q)}/${q}</span></span>`; }).join('')}</div>
+        <div class="recomp">→ <span>👥 <b class="chiffre">${S2.hab}</b></span><span>⭐ +10</span></div><button class="gros" id="ameliorer" ${ok ? '' : 'disabled'}>⬆️ Améliorer</button>`; }
+    else h += '<b>⭐ Maximum</b>';
+    F.innerHTML = h; const bt = $('ameliorer'); if (bt) bt.onclick = ameliorer;
+  } else {
+    F.innerHTML = `<div class="recomp"><span>😊 +${b.joie || 0}%</span></div>`;
   }
 }
-$('valider').onclick = () => {
-  if (!choisi) return; const t = mission.tours[tour];
-  if (choisi.dataset.cle === t.juste) { choisi.classList.remove('choisi'); choisi.classList.add('juste'); bon(); }
-  else { const b = choisi; choisi = null; $('valider').disabled = true; b.classList.remove('choisi'); rate(b, t); }
-};
-function bon() { sonJuste(); if (essais === 0) etat.etoiles++; $('etoiles').textContent = etat.etoiles; $('valider').disabled = true; setTimeout(() => { tour++; jouerTour(); }, 1100); }
-function rate(b, t) { essais++; sonFaux(); b.classList.add('faux'); setTimeout(() => parler(t.voix), 500); }
-$('reecouter').onclick = () => mission && parler(mission.tours[tour].voix);
-
-async function finMission() {
-  const m = mission; mission = null; $('dial').classList.remove('ouvert');
-  etat.fait++; sauver(); majHaut();
-  await new Promise(r => setTimeout(r, 350));
-  const [x, y] = centre(m.construit[0]); await viser(x, y, zoomConfort(), 1100);
-  for (const g of m.construit) { const im = $('b-' + g); im.classList.add('pose'); sonBati(); await new Promise(r => setTimeout(r, 700)); im.classList.add('la'); }
-  const G = PLAN.groupes[m.construit[0]], e = document.createElement('div'); e.className = 'etiq'; e.textContent = m.nomBati; e.style.left = G.ancre[0] + 'px'; e.style.top = (G.pied[1] - 10) + 'px'; monde.appendChild(e);
-  toast(ACTES[m.acte][0], ACTES[m.acte][1], 'Je sais' + NB + '!');
-  await new Promise(r => setTimeout(r, 2600)); e.remove();
-  if (etat.fait >= MISSIONS.length) { toast('🎉', 'Étape 1', 'Bravo' + NB + '!'); await new Promise(r => setTimeout(r, 2600)); await viser(PLAN.largeur / 2, PLAN.hauteur / 2, sMin(), 1400); setTimeout(ouvrirMenu, 1800); return; }
-  poserBulle(); const [bx, by] = centre(MISSIONS[etat.fait].lieu); viser(bx, by, zoomConfort(), 1000);
+function lancer(p) {
+  const c = E.cases[ficheCase], b = BATIS[c.t], P = BIENS[p]; if (c.file.length >= b.places) { S.faux(); return; }
+  if (P.recette) { if (!Object.entries(P.recette).every(([r, q]) => (E.stock[r] || 0) >= q)) { S.faux(); toast(Object.keys(P.recette).map(r => BIENS[r].picto).join(''), 'Il manque des matières'); return; }
+    for (const [r, q] of Object.entries(P.recette)) E.stock[r] -= q; }
+  const depart = c.file.length ? Math.max(maintenant(), c.file[c.file.length - 1].debut + BIENS[c.file[c.file.length - 1].p].duree) : maintenant();
+  c.file.push({ p, debut: depart }); S.clic(); compter(); sauver(); remplirFiche();
 }
-function toast(picto, titre, sous) { const t = $('toast'); t.children[0].textContent = picto; t.children[1].textContent = titre; t.children[2].textContent = sous; t.classList.add('vu'); setTimeout(() => t.classList.remove('vu'), 2300); }
-
-/* ------------------------------------------------------------ barre du haut et menu */
-function majHaut() {
-  $('etoiles').textContent = etat.etoiles;
-  $('pts').innerHTML = MISSIONS.map((m, i) => `<b class="${i < etat.fait ? 'ok' : ''}"></b>`).join('');
+function recolter(k, idx) {
+  const c = E.cases[k], f = c.file[idx]; if (!f || maintenant() - f.debut < BIENS[f.p].duree) return false;
+  if (nbStock() >= CAPA) { S.faux(); toast('📦', 'Entrepôt plein'); return false; }
+  c.file.splice(idx, 1); E.stock[f.p] = (E.stock[f.p] || 0) + 1; S.piece(); gagner(1);
+  const [i, j] = k.split(',').map(Number), e = ecran(pos(i, j).setY(1.5)); voler(BIENS[f.p].picto, e, centreDe('bEntrepot'));
+  verifierTaches(); sauver(); if (ficheCase === k) remplirFiche(); return true;
 }
-function ouvrirMenu() {
-  const fini = etat.fait >= MISSIONS.length;
-  $('etapes').innerHTML = ETAPES.map(([p, n], i) => `<div class="etape ${i === 0 ? 'ouverte' : ''} ${i === 0 && fini ? 'finie' : ''}"><span class="picto">${p}</span><b>${n}</b></div>`).join('');
-  const sus = new Set(MISSIONS.slice(0, etat.fait).map(m => m.acte));
-  $('actes').innerHTML = ACTES.map(([p, n], i) => `<span class="${sus.has(i) ? 'su' : ''}">${p} ${n}</span>`).join('');
-  $('jouer').lastElementChild.textContent = etat.fait === 0 ? 'Jouer' : fini ? 'Voir ma ville' : 'Continuer';
-  $('menu').hidden = false;
+function ameliorer() {
+  const c = E.cases[ficheCase], S2 = MAISONS[(c.n || 0) + 1]; if (!S2) return;
+  for (const [r, q] of Object.entries(S2.cout)) if ((E.stock[r] || 0) < q) return;
+  for (const [r, q] of Object.entries(S2.cout)) E.stock[r] -= q;
+  c.n = (c.n || 0) + 1; const [i, j] = ficheCase.split(',').map(Number); redessiner(i, j, true); S.fete(); gagner(10); fermerTout(); sauver();
+  toast('🏠', 'Maison ⭐' + (c.n + 1), '👥 ' + S2.hab);
 }
-$('bmenu').onclick = ouvrirMenu;
-$('jouer').onclick = () => {
-  $('menu').hidden = true; voixEl.play().catch(() => {}); voixEl.pause();
-  const m = MISSIONS[etat.fait];
-  if (m) { const [x, y] = centre(m.lieu); cam.s = sMin(); cam.x = innerWidth / 2 - PLAN.largeur * cam.s / 2; cam.y = innerHeight / 2 - PLAN.hauteur * cam.s / 2; appliquer(); viser(x, y, zoomConfort(), 1600); }
-};
-$('zero').onclick = () => { etat = { fait: 0, etoiles: 0 }; sauver(); document.querySelectorAll('#monde .bati').forEach(b => b.classList.remove('la', 'pose')); for (const g of DEPART) $('b-' + g).classList.add('la'); poserBulle(); majHaut(); ouvrirMenu(); };
+function impots() {
+  const t = maintenant();
+  for (const [k, c] of Object.entries(E.cases)) if (c.t === 'maison') { const L = MAISONS[c.n || 0]; c.pret = Math.min(L.impot * 5, Math.floor((t - (c.recolte || t)) / 10) * L.impot); }
+}
+function encaisser(k) {
+  const c = E.cases[k]; if (!c.pret) return; const [i, j] = k.split(',').map(Number);
+  voler('🪙', ecran(pos(i, j).setY(2)), centreDe('piecesJ')); S.piece(); gagner(1, c.pret); c.pret = 0; c.recolte = maintenant(); sauver();
+}
+function ouvrirEntrepot() {
+  $('entrepotNb').textContent = nbStock() + '/' + CAPA;
+  $('stock').innerHTML = Object.entries(BIENS).map(([k, b]) => `<div class="case">${b.picto}<span class="chiffre">${E.stock[k] || 0}</span></div>`).join('');
+  fermerTout(); $('entrepot').classList.add('ouvert');
+}
+$('bEntrepot').onclick = () => { S.clic(); ouvrirEntrepot(); };
 
-fetch('sprites/plan.json').then(r => r.json()).then(p => {
-  PLAN = p; monter(); cam.s = sMin(); cam.x = innerWidth / 2 - PLAN.largeur * cam.s / 2; cam.y = innerHeight / 2 - PLAN.hauteur * cam.s / 2; appliquer();
-  poserBulle(); majHaut(); ouvrirMenu(); $('charge').remove();
-  window.__ville = { etat, MISSIONS, ouvrir, cam };
-}).catch(e => { $('charge').innerHTML = '<p style="color:#fff;padding:20px;text-align:center">Le jeu n’a pas pu se charger.</p>'; console.error(e); });
+/* ================================================================ LES HABITANTS : ILS MARCHENT ET DEMANDENT DES CHOSES AU MAIRE */
+const mobiles = [];
+const routes = () => Object.keys(E.cases).filter(k => E.cases[k].t === 'route').map(k => k.split(',').map(Number));
+function nouveau(sorte, qui) {
+  const R = routes(); if (!R.length) return null; const [i, j] = R[Math.floor(Math.random() * R.length)]; let o, mixer = null, actions = {};
+  if (sorte === 'gens') { const G = GLB[GENS[qui].glb]; o = SkeletonUtils.clone(G.scene); o.scale.setScalar(.22); mixer = new THREE.AnimationMixer(o); for (const c of G.animations) actions[c.name] = mixer.clipAction(c); actions.Walking_A?.play(); }
+  else { o = piece(['car_hatchback', 'car_sedan', 'car_taxi', 'car_stationwagon', 'car_police'][Math.floor(Math.random() * 5)]); }
+  o.traverse(m => { if (m.isMesh) { m.castShadow = true; m.frustumCulled = false; } });
+  const m = { sorte, qui, o, mixer, actions, de: [i, j], vers: [i, j], t: 1, v: sorte === 'gens' ? .3 + Math.random() * .12 : .9 + Math.random() * .4, arret: false };
+  monde.add(o); mobiles.push(m); return m;
+}
+function enlever(m) { monde.remove(m.o); mobiles.splice(mobiles.indexOf(m), 1); }
+function avancer(m, dt) {
+  m.mixer?.update(dt); if (m.arret) return;
+  if (!estRoute(...m.vers) && !estRoute(...m.de)) return enlever(m);
+  m.t += dt * m.v;
+  if (m.t >= 1) { const [i, j] = m.vers; let ch = VOIS.map(([a, b]) => [i + a, j + b]).filter(([a, b]) => estRoute(a, b));
+    const sans = ch.filter(([a, b]) => !(a === m.de[0] && b === m.de[1])); if (sans.length) ch = sans; if (!ch.length) { m.t = 1; return; }
+    m.de = m.vers; m.vers = ch[Math.floor(Math.random() * ch.length)]; m.t = 0; }
+  const a = pos(...m.de), b = pos(...m.vers), d = b.clone().sub(a); if (d.lengthSq() < .01) return; d.normalize();
+  m.o.position.copy(a).lerp(b, m.t).addScaledVector(new THREE.Vector3(-d.z, 0, d.x), m.sorte === 'gens' ? .82 : .3).setY(.1);
+  const cib = Math.atan2(d.x, d.z), df = ((cib - m.o.rotation.y + Math.PI * 3) % (Math.PI * 2)) - Math.PI; m.o.rotation.y += df * Math.min(1, dt * 8);
+}
+let tPeuple = 0;
+function peupler(dt) {
+  tPeuple -= dt; if (tPeuple > 0) return; tPeuple = 1; const nbR = routes().length;
+  const gens = mobiles.filter(m => m.sorte === 'gens').length, autos = mobiles.length - gens;
+  if (gens < Math.min(TEL ? 12 : 18, 4 + Math.floor((E.hab || 0) / 8))) nouveau('gens', Math.floor(Math.random() * 3));
+  if (autos < Math.min(10, Math.floor(nbR / 4))) nouveau('auto');
+}
+
+/* une demande : l'habitant s'arrête, une bulle apparaît ; on comprend (cartes), puis on aide */
+let demandeur = null, attente = 4, enDialogue = false;
+function choisirDemande() {
+  const n = niveau(), deja = new Set(E.taches.map(t => t.id));
+  for (let k = 0; k < ORDRE.length; k++) { const id = ORDRE[(E.prochaine + k) % ORDRE.length], D = DEMANDES[id];
+    if ((D.niv || 1) > n || deja.has(id)) continue; if (D.batir && Object.values(E.cases).some(c => c.t === D.batir) && id !== 'maison') continue;
+    E.prochaine = (E.prochaine + k + 1) % ORDRE.length; return id; }
+  return null;
+}
+function prochaineDemande(dt) {
+  if (demandeur || enDialogue || !$('menu').hidden || E.taches.length >= 3) return;
+  attente -= dt; if (attente > 0) return;
+  const id = choisirDemande(); if (!id) { attente = 10; return; } const D = DEMANDES[id];
+  const m = mobiles.find(x => x.sorte === 'gens' && x.qui === D.qui && !x.arret) || nouveau('gens', D.qui); if (!m) return;
+  demandeur = { m, id }; m.arret = true; m.actions.Walking_A?.stop(); m.actions.Waving?.play(); bip([[880, .1], [1100, .15]]);
+}
+function ecouter() {
+  const { m, id } = demandeur, D = DEMANDES[id]; enDialogue = true; fermerTout();
+  $('visage').src = 'sprites/' + GENS[D.qui].img + '.webp'; $('dit').textContent = D.dit; parler(D.voix);
+  const pool = [...new Set([...Object.keys(BIENS), ...Object.keys(BATIS).filter(k => !['route', 'mairie', 'usine', 'atelier'].includes(k))])].filter(k => k !== D.c);
+  const cartes = [D.c, ...pool.sort(() => Math.random() - .5).slice(0, 2)].sort(() => Math.random() - .5);
+  const c = $('choix'); c.innerHTML = '';
+  for (const k of cartes) { const I = infos(k), b = document.createElement('button'); b.className = 'carte'; b.dataset.k = k; b.innerHTML = `<span class="picto">${I.picto}</span><span class="mot">${I.nom}</span>`;
+    b.onclick = () => { if (k !== D.c) { b.classList.add('faux'); S.faux(); setTimeout(() => parler('non-' + GENS[D.qui].v, () => parler(D.voix)), 250); return; }
+      b.classList.add('juste'); S.juste(); setTimeout(() => accepter(), 800); };
+    c.appendChild(b); }
+  $('dial').classList.add('ouvert');
+}
+function accepter() {
+  const { m, id } = demandeur, D = DEMANDES[id]; $('dial').classList.remove('ouvert'); enDialogue = false;
+  E.taches.push({ id, qui: D.qui, base: D.batir ? Object.values(E.cases).filter(c => c.t === D.batir).length : 0 }); gagner(2); sauver(); compter();
+  m.arret = false; m.actions.Waving?.stop(); m.actions.Walking_A?.play(); demandeur = null; attente = 14;
+  if (D.batir) { toast(BATIS[D.batir].picto, 'Construis' + NB + ': ' + BATIS[D.batir].nom); }
+  else toast(Object.entries(D.donner).map(([r, q]) => q + ' ' + BIENS[r].picto).join(' '), 'À donner');
+  verifierTaches();
+}
+function parler(id, fin) { $('portrait').classList.add('parle'); dire(id, () => { $('portrait').classList.remove('parle'); fin && fin(); }); }
+$('reecouter').onclick = () => demandeur && parler(DEMANDES[demandeur.id].voix);
+
+/* la liste des demandes : on livre les objets ; une construction se valide toute seule */
+function verifierTaches() {
+  let fini = false;
+  for (const t of [...E.taches]) { const D = DEMANDES[t.id];
+    if (D.batir && Object.values(E.cases).filter(c => c.t === D.batir).length > (t.base ?? 0)) { terminer(t); fini = true; } }
+  compter(); if ($('taches').classList.contains('ouvert')) remplirTaches(); return fini;
+}
+function terminer(t) {
+  const D = DEMANDES[t.id]; E.taches.splice(E.taches.indexOf(t), 1);
+  dire('merci-' + GENS[D.qui].v); S.fete(); gagner(15, 120); toast('❤️', 'Merci beaucoup' + NB + '!', '+120 🪙  +15 ⭐'); sauver();
+}
+function remplirTaches() {
+  const C = $('tachesContenu');
+  if (!E.taches.length) { C.innerHTML = '<div style="text-align:center;font-size:40px;padding:16px">😊</div>'; return; }
+  C.innerHTML = E.taches.map((t, k) => { const D = DEMANDES[t.id];
+    const que = D.batir ? `<span class="besoin">${BATIS[D.batir].picto}</span>` : Object.entries(D.donner).map(([r, q]) => { const a = E.stock[r] || 0; return `<span class="besoin ${a >= q ? 'ok' : 'manque'}">${BIENS[r].picto}<span class="chiffre">${Math.min(a, q)}/${q}</span></span>`; }).join('');
+    const ok = D.donner && Object.entries(D.donner).every(([r, q]) => (E.stock[r] || 0) >= q);
+    return `<div style="display:flex;gap:10px;align-items:center;background:#fff;border:3px solid #e6ecf3;border-radius:18px;padding:8px">
+      <button class="portrait" style="width:58px;height:58px;border-width:3px" data-ecoute="${k}"><img src="sprites/${GENS[D.qui].img}.webp" alt=""></button>
+      <div class="besoins" style="flex:1">${que}</div>
+      ${D.donner ? `<button class="gros" style="height:48px;padding:0 16px;font-size:16px" data-donner="${k}" ${ok ? '' : 'disabled'}>🎁</button>` : '<span style="font-size:22px">🏗️</span>'}</div>`; }).join('');
+  C.querySelectorAll('[data-ecoute]').forEach(b => b.onclick = () => { const D = DEMANDES[E.taches[+b.dataset.ecoute].id]; dire(D.voix); });
+  C.querySelectorAll('[data-donner]').forEach(b => b.onclick = () => { const t = E.taches[+b.dataset.donner], D = DEMANDES[t.id];
+    for (const [r, q] of Object.entries(D.donner)) E.stock[r] -= q; terminer(t); remplirTaches(); compter(); });
+}
+$('bTaches').onclick = () => { S.clic(); fermerTout(); remplirTaches(); $('taches').classList.add('ouvert'); };
+
+/* ================================================================ BULLES (au-dessus des bâtiments et des habitants) */
+const ecran = v => { const q = v.clone().project(cam); return [(q.x + 1) / 2 * innerWidth, (1 - q.y) / 2 * innerHeight]; };
+const bulles = {};
+function bulle(cle, html, cls, monde3, clic) {
+  let b = bulles[cle]; if (!b) { b = document.createElement('button'); b.className = 'b ' + cls; b.innerHTML = html; b.onclick = e => { e.stopPropagation(); clic(); }; $('bulles').appendChild(b); bulles[cle] = b; }
+  const [x, y] = ecran(monde3); b.style.left = x + 'px'; b.style.top = y + 'px'; b.dataset.vu = 1;
+}
+function majBulles() {
+  for (const b of Object.values(bulles)) b.dataset.vu = 0;
+  if (!mode) {
+    const t = maintenant();
+    for (const [k, c] of Object.entries(E.cases)) { const [i, j] = k.split(',').map(Number), haut = pos(i, j).setY(c.t === 'maison' ? 1.2 + (c.n || 0) * .6 : 1.6);
+      if (c.t === 'maison' && c.pret > 0) bulle('p' + k, '🪙', '', haut, () => encaisser(k));
+      if (c.file && c.file.length && t - c.file[0].debut >= BIENS[c.file[0].p].duree) bulle('f' + k, BIENS[c.file[0].p].picto, '', haut, () => { while (recolter(k, 0)); });
+      if (c.t === 'maison' && MAISONS[(c.n || 0) + 1] && Object.entries(MAISONS[(c.n || 0) + 1].cout).every(([r, q]) => (E.stock[r] || 0) >= q) && !(c.pret > 0)) bulle('u' + k, '⬆️', '', haut, () => ouvrirFiche(k)); }
+    if (demandeur && !enDialogue) bulle('d', `<img src="sprites/${GENS[DEMANDES[demandeur.id].qui].img}.webp" alt=""><i>!</i>`, 'perso', demandeur.m.o.position.clone().setY(.55), ecouter);
+  }
+  for (const [k, b] of Object.entries(bulles)) if (b.dataset.vu === '0') { b.remove(); delete bulles[k]; }
+}
+
+/* ================================================================ DOIGTS : DÉPLACER, ZOOMER, POSER, OUVRIR */
+const rayon = new THREE.Raycaster(), plan = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0), v2 = new THREE.Vector2();
+function caseSous(x, y) { v2.set(x / innerWidth * 2 - 1, -(y / innerHeight) * 2 + 1); rayon.setFromCamera(v2, cam); const p = new THREE.Vector3(); if (!rayon.ray.intersectPlane(plan, p)) return null; return [Math.floor(p.x / T + N / 2), Math.floor(p.z / T + N / 2)]; }
+function caseBatie(x, y) {   // le bâtiment touché (même en touchant sa façade)
+  v2.set(x / innerWidth * 2 - 1, -(y / innerHeight) * 2 + 1); rayon.setFromCamera(v2, cam);
+  const h = rayon.intersectObjects(Object.values(objets), true)[0]; if (!h) return null;
+  let o = h.object; while (o.parent && o.parent !== monde) o = o.parent; return Object.keys(objets).find(k => objets[k] === o) || null;
+}
+const doigts = new Map(); let bouge = 0, pince = 0, trace = null;
+function glisser(dx, dy) { const u = 2 * taille / innerHeight; vise.addScaledVector(new THREE.Vector3(1, 0, -1).normalize(), -dx * u).addScaledVector(new THREE.Vector3(1, 0, 1).normalize(), -dy * u * 1.42); majCam(); }
+canvas.addEventListener('pointerdown', e => { canvas.setPointerCapture(e.pointerId); doigts.set(e.pointerId, e); bouge = 0; trace = null;
+  if (doigts.size === 2) pince = ecart(); else if (mode === 'route') { const c = caseSous(e.clientX, e.clientY); if (c) { poser(...c); trace = cle(...c); } } });
+canvas.addEventListener('pointermove', e => {
+  const c = caseSous(e.clientX, e.clientY);
+  if (mode && c && dans(...c)) { fantome.visible = true; fantome.position.copy(pos(...c)); }
+  if (!doigts.has(e.pointerId)) return; const a = doigts.get(e.pointerId), dx = e.clientX - a.clientX, dy = e.clientY - a.clientY; doigts.set(e.pointerId, e);
+  if (doigts.size === 2) { const d = ecart(); taille = THREE.MathUtils.clamp(taille * pince / d, 5, 30); pince = d; majCam(); return; }
+  bouge += Math.abs(dx) + Math.abs(dy);
+  if (mode === 'route') { if (c && cle(...c) !== trace) { poser(...c); trace = cle(...c); } } else glisser(dx, dy);
+});
+canvas.addEventListener('pointerup', e => {
+  if (!doigts.has(e.pointerId)) return; const seul = doigts.size === 1; doigts.delete(e.pointerId); if (!seul || bouge > 10) return;
+  if (mode && mode !== 'route') { const c = caseSous(e.clientX, e.clientY); if (c) poser(...c); return; }
+  if (!mode) { const k = caseBatie(e.clientX, e.clientY); if (k) ouvrirFiche(k); else fermerTout(); }
+});
+canvas.addEventListener('pointercancel', e => doigts.delete(e.pointerId));
+canvas.addEventListener('wheel', e => { e.preventDefault(); taille = THREE.MathUtils.clamp(taille * (e.deltaY > 0 ? 1.1 : .9), 5, 30); majCam(); }, { passive: false });
+function ecart() { const [p, q] = [...doigts.values()]; return Math.hypot(p.clientX - q.clientX, p.clientY - q.clientY) || 1; }
+
+/* ================================================================ BOUCLE ET DÉMARRAGE */
+$('jouer').onclick = () => { $('menu').hidden = true; voixEl.play().catch(() => {}); voixEl.pause();
+  if (E.debut) { E.debut = false; sauver(); setTimeout(() => { dire('bienvenue'); toast('🏛️', 'Bienvenue, maire' + NB + '!', '🏗️ → 🏠'); }, 600); } };
+$('zero').onclick = () => { try { localStorage.removeItem(CLE); } catch (e) {} location.reload(); };
+const horloge = new THREE.Clock(); let tSec = 0, tFumee = 0;
+function boucle() {
+  const dt = Math.min(horloge.getDelta(), .05), t = performance.now();
+  for (const g of Object.values(objets)) if (g.userData.pousse) { const k = Math.min(1, (t - g.userData.pousse) / 520), e = 1 - Math.pow(1 - k, 3); g.scale.set(.8 + .2 * e, e * (1 + .14 * Math.sin(k * Math.PI)), .8 + .2 * e); if (k >= 1) { g.scale.set(1, 1, 1); g.userData.pousse = 0; } }
+  for (const m of [...mobiles]) avancer(m, dt);
+  peupler(dt); prochaineDemande(dt); majParts(dt);
+  tFumee -= dt; if (tFumee < 0) { tFumee = .35; for (const [k, c] of Object.entries(E.cases)) if (c.t === 'usine' && c.file?.length && objets[k]?.userData.fumee) fumee(objets[k].position.clone().add(objets[k].userData.fumee)); }
+  tSec += dt; if (tSec > .5) { tSec = 0; impots(); if ($('fiche').classList.contains('ouvert')) remplirFiche(); }
+  majBulles(); renderer.render(scene, cam); requestAnimationFrame(boucle);
+}
+(async () => {
+  try {
+    const [p, a, b, c] = await Promise.all([glb('modeles/ville_pack.glb'), glb('modeles/boulangere.glb'), glb('modeles/joueur.glb'), glb('modeles/passant.glb')]);
+    PACK = p.scene; GLB = { boulangere: a, joueur: b, passant: c };
+    PACK.traverse(m => { if (m.isMesh && m.material.map) { m.material.map.anisotropy = 4; m.material.roughness = .8; m.material.metalness = 0; } });
+    for (const k of Object.keys(E.cases)) redessiner(...k.split(',').map(Number));
+    semerDecor(); majCam(); compter(); impots(); boucle(); $('charge').remove();
+    window.__ville = { E, poser, entrerMode, sortirMode, ouvrirFiche, lancer: p => lancer(p), recolter, encaisser, verifierTaches, vite: () => { attente = 0; }, ecouter: () => demandeur && ecouter(),
+      demandeur: () => demandeur, caseEcran: (i, j) => ecran(pos(i, j)), ficheCase: k => { ficheCase = k; }, ameliorer: () => ameliorer(), remplirTaches };
+  } catch (e) { console.error(e); $('charge').textContent = 'Le jeu n’a pas pu se charger.'; }
+})();
 </script>
