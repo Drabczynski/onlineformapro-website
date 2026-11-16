@@ -56,7 +56,7 @@ window.SCENARIO = (() => {
   /* 3 · comment est son sac : six sacs dessinés, un seul noir avec une petite fleur rouge */
   const FLEUR = (x, y, r, c) => [0, 1, 2, 3, 4].map(k => { const a = (k * 72 - 90) * Math.PI / 180; return `<circle cx="${(x + r * Math.cos(a)).toFixed(1)}" cy="${(y + r * Math.sin(a)).toFixed(1)}" r="${(r * .8).toFixed(1)}" fill="${c}"/>`; }).join('')
     + `<circle cx="${x}" cy="${y}" r="${(r * .55).toFixed(1)}" fill="#FFD34D"/>`;
-  const PETITE = c => FLEUR(86, 70, 4.6, c), GRANDE = c => FLEUR(60, 67, 12.5, c);
+  const PETITE = c => FLEUR(86, 70, 5.4, c), GRANDE = c => FLEUR(60, 67, 13.5, c);
   const DESSIN = (corps, fleur) => `<svg viewBox="0 0 120 100" aria-hidden="true">
       <path d="M38 41C38 12 82 12 82 41" fill="none" stroke="${corps}" stroke-width="5.5" stroke-linecap="round"/>
       <path d="M22 38H98Q104 38 105 44L110 84Q111 92 103 92H17Q9 92 10 84L15 44Q16 38 22 38Z" fill="${corps}"/>
@@ -73,18 +73,42 @@ window.SCENARIO = (() => {
     { id: 'bon', nom: 'Un sac noir avec une petite fleur rouge', svg: DESSIN(NOIR, PETITE(ROUGEF)) },
     { id: 'blanche', nom: 'Un sac noir avec une petite fleur blanche', svg: DESSIN(NOIR, PETITE('#FFFFFF')), msg: 'La fleur est blanche.' },
   ];
-  /* la dame redit « il est noir avec une petite fleur rouge » ; la vidéo coupe sur l'étagère (et sur son sac) à 7,17 s,
-     avant la fin du mot « rouge » : la réécoute s'arrête juste avant la coupe, pour ne pas montrer la réponse */
+  /* la dame redit « il est noir avec une petite fleur rouge » ; la vidéo coupe sur l'étagère, sur son sac (la réponse),
+     à 7,17 s, 30 ms avant la fin du mot « rouge » */
   const COUPE = 7.17;
 
   return {
-    plans: [{ de: 0, cx: { agent: .27, dame: .72 } }, { de: COUPE, cx: { agent: .3, dame: .5 } }, { de: 7.96, cx: { agent: .26, dame: .72 } }],
+    /* sur le gros plan de l'étagère (7,17 à 7,96 s), le cadre de la dame ne bouge pas : pendant la fin de « rouge », on y voit
+       encore la dernière image du plan large */
+    plans: [{ de: 0, cx: { agent: .27, dame: .72 } }, { de: COUPE, cx: { agent: .3, dame: .72 } }, { de: 7.96, cx: { agent: .26, dame: .72 } }],
     ordre: ['perdu', 'bus', 'sac'],
     bravo: 'Super ! La dame a retrouvé son sac.',
     etapes: A => {
-      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, playSegment, phrase, ligne, side, idle, tapHere, sfx, faux, juste, suite, goBtn, zones, cam, avant, cadreZone, marque, gel } = A;
-      const PERDU = ligne(0), NUMERO = ligne(2), COULEUR = [ligne(4)[0], COUPE - .02];
+      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, playSegment, ligne, side, idle, tapHere, sfx, faux, juste, suite, goBtn, zones, cam, avant, cadreZone, marque, gel } = A;
+      const PERDU = ligne(0), NUMERO = ligne(2), COULEUR = ligne(4);
       const secouer = el => { el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); };
+      /* pendant les réécoutes de l'étape 3, on entend tout le mot « rouge » sans voir la coupe sur son sac : juste avant la
+         coupe, une copie de la dernière image du plan large (la vraie image, rien de dessiné) reste à l'écran, jusqu'au
+         retour à l'image figée */
+      const garderPlanLarge = f => {
+        const v = $('#vid'), DE = COUPE - .12, AVANT = COUPE - .03; let copie = null;
+        const poser = () => {
+          if (copie || !v.videoWidth) return;
+          copie = document.createElement('canvas'); copie.className = 'arret'; copie.width = v.videoWidth; copie.height = v.videoHeight;
+          try { copie.getContext('2d').drawImage(v, 0, 0, copie.width, copie.height); v.after(copie); } catch (e) { copie = null; }
+        };
+        const lever = () => { if (copie) { copie.remove(); copie = null; } };
+        const auRetour = () => { if (v.currentTime < DE) setTimeout(() => { if (v.currentTime < DE) lever(); }, 100); };
+        const veille = setInterval(() => {
+          if (!alive(f)) { clearInterval(veille); v.removeEventListener('seeked', auRetour); lever(); return; }
+          if (!v.paused && v.currentTime >= DE && v.currentTime < AVANT) poser();
+        }, 8);
+        v.addEventListener('seeked', auRetour);
+        if (v.requestVideoFrameCallback) {
+          const image = (n, m) => { if (!alive(f)) return; if (!v.paused && m.mediaTime >= DE && m.mediaTime < AVANT) poser(); v.requestVideoFrameCallback(image); };
+          v.requestVideoFrameCallback(image);
+        }
+      };
       return {
         /* 1 · dans la vidéo : elle redit qu'elle a perdu son sac ; sur le plan large, on cherche un sac parmi les objets trouvés */
         async perdu(f) {
@@ -167,8 +191,9 @@ window.SCENARIO = (() => {
         /* 3 · son sac : elle redit comment il est ; on clique sur le bon parmi six sacs dessinés */
         async sac(f) {
           const ask = () => { Q.show('you', state.ask); yourTurn(); idle.set(tapHere($('.modele', side)), 5000); };
+          garderPlanLarge(f);
           if (!await avant(f, {
-            qui: 'dame', seg: COULEUR, sideW: 520, consigne: 'Son sac est comment' + NB + '? Clique sur le bon sac.',
+            qui: 'dame', seg: COULEUR, sideW: 560, consigne: 'Son sac est comment' + NB + '? Clique sur le bon sac.',
             panneau: `<div class="panel glass"><p class="ptitre">Clique sur son sac.</p>
               <div class="rayon">${SACS.map(s => `<button class="tuile modele" data-id="${s.id}" aria-label="${s.nom}"><span class="dessin">${s.svg}</span></button>`).join('')}</div></div>`,
           })) return;

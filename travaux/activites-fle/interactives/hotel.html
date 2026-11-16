@@ -997,7 +997,7 @@ window.SCENARIO = (() => {
      elle, elle ne la tend pas encore ; elle la tend (6,8 s), la pose sur le comptoir devant lui (7,0 → 7,3 s), puis
      monsieur Martin avance la main (7,75 s) et la prend (8,25 → 8,4 s ; la coupe suivante est à 8,46 s). */
   const CLE = {
-    gel: 6.6, fin: 8.4,
+    gel: 6.6, joue: 8.3, fin: 8.4,     // on joue jusqu'à 8,3 s puis on fige à 8,4 s : jamais d'image du plan suivant
     depart: [35, 70.5],     // la carte, dans la main de la réceptionniste
     cible: [57, 85],        // la main de monsieur Martin, posée sur le comptoir
     /* [avancée du doigt sur le trajet départ → cible (0 → 1), temps de la vidéo] : la carte suit le doigt jusqu'au comptoir
@@ -1130,8 +1130,10 @@ window.SCENARIO = (() => {
           const h = $('.hit[data-id="cle-video"]', cam); h.classList.add('glissable');
           h.addEventListener('pointerdown', e => {
             if (document.body.dataset.turn !== 'you' || fait || e.button > 0) return;
-            A.unlock(); idle.reset(); e.preventDefault(); h.classList.add('tire');
+            A.unlock(); idle.clear(); e.preventDefault(); h.classList.add('tire');
             try { h.setPointerCapture(e.pointerId); } catch (err) {}
+            const bulle = $('#qt').textContent;
+            Q.text('');     // pendant le geste, la bulle s'efface : on voit la carte arriver sur le comptoir et sa main (sur un téléphone, la bulle les cache)
             const r = cam.getBoundingClientRect(), x0 = e.clientX, y0 = e.clientY, [xd, yd] = pct(CLE.depart, r), [xc, yc] = pct(CLE.cible, r);
             const vx = xc - xd, vy = yc - yd, L2 = vx * vx + vy * vy, d = defiler();
             let p = 0, glisse = false;
@@ -1143,7 +1145,7 @@ window.SCENARIO = (() => {
             const lache = async () => {
               h.removeEventListener('pointermove', bouge); h.removeEventListener('pointerup', lache); h.removeEventListener('pointercancel', lache);
               h.classList.remove('tire');
-              if (!glisse) { d.fin(); return; }
+              if (!glisse) { d.fin(); Q.show('you', bulle); idle.set(geste, 5000); return; }
               lacheA = performance.now();
               if (p >= CLE.assez) { d.fin(); donner(tempsDe(p)); return; }
               /* trop tôt : la carte revient dans la main de la réceptionniste */
@@ -1161,10 +1163,12 @@ window.SCENARIO = (() => {
              étage », est pour l'étape d'après) */
           async function donner(depuis = CLE.gel) {
             if (fait || document.body.dataset.turn !== 'you') return;
-            fait = true; zones(null); idle.clear(); setTurn('wait');
-            vid.muted = true;
-            try { await playSegment(depuis, CLE.fin, null); } finally { vid.muted = false; }
-            if (!alive(f)) return;
+            fait = true; zones(null); idle.clear(); setTurn('wait'); Q.show('you', '');
+            if (depuis < CLE.joue - .02) {
+              vid.muted = true;
+              try { await playSegment(depuis, CLE.joue, null); } finally { vid.muted = false; }
+              if (!alive(f)) return;
+            }
             state.gel = CLE.fin; await freeze(CLE.fin); if (!alive(f)) return;
             cadreZone(ZPRISE); marque(ZPRISE, 'Sa clé', 'juste');
             if (!await juste(f, 'Oui' + NB + "! Monsieur Martin a sa clé" + NB + ": c'est une carte.")) return;

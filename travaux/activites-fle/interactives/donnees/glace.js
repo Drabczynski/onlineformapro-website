@@ -185,47 +185,38 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Écoute bien.": {
-   "src": "medias/voix-785bf678cc.mp3",
+  "Elle veut quels parfums ? Dans la vitrine, clique sur ses deux parfums.": {
+   "src": "medias/voix-258cf7c635.mp3",
    "w": [
     0.0,
-    0.4
-   ]
-  },
-  "Dans la boutique, clique sur ce qu'elle choisit.": {
-   "src": "medias/voix-67ed169a21.mp3",
-   "w": [
-    0.0,
-    0.2,
-    0.32,
-    1.12,
-    1.44,
+    0.16,
+    0.36,
+    0.68,
     1.6,
     1.72,
-    1.96
+    1.84,
+    2.6,
+    2.96,
+    3.12,
+    3.32,
+    3.44
    ]
   },
-  "Écoute la cliente.": {
-   "src": "medias/voix-ee42e419b0.mp3",
+  "En cornet ou en pot ? Fais glisser les boules dans le bon.": {
+   "src": "medias/voix-ba9920d687.mp3",
    "w": [
     0.0,
-    0.56,
-    0.92
-   ]
-  },
-  "Prépare sa glace : fais glisser les boules sur le cornet.": {
-   "src": "medias/voix-8c2c60b34b.mp3",
-   "w": [
-    0.0,
-    0.48,
-    0.6,
-    1.52,
-    1.72,
-    2.16,
-    2.28,
-    2.64,
-    2.76,
-    2.88
+    0.24,
+    0.8,
+    0.96,
+    1.16,
+    1.84,
+    2.0,
+    2.4,
+    2.52,
+    2.88,
+    3.04,
+    3.2
    ]
   },
   "Miam ! Voilà sa glace : vanille et chocolat, en cornet.": {

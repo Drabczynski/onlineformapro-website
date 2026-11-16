@@ -21,8 +21,10 @@ body.tall .bus svg { max-width: 190px; } body.tall .touche { height: 46px; font-
 body.short .bus svg { max-width: 150px; } body.short .touche { height: 44px; font-size: 18px; } body.short .clavier { gap: 6px; }
 /* comment est son sac : six sacs dessinés, sur trois colonnes */
 .rayon { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.rayon .tuile { height: 120px; padding: 6px; }
+.rayon .tuile { height: 134px; padding: 6px; }
 .rayon .dessin { display: grid; place-items: center; }
-.rayon .dessin svg { width: 118px; height: 98px; display: block; }
+.rayon .dessin svg { width: 138px; height: 115px; display: block; }
 body.tall .rayon .tuile { height: 92px; } body.tall .rayon .dessin svg { width: 86px; height: 72px; }
 body.short .rayon { gap: 6px; } body.short .rayon .tuile { height: 72px; padding: 4px; } body.short .rayon .dessin svg { width: 64px; height: 54px; }
+/* la dernière image du plan large, gardée à l'écran pendant la fin du mot « rouge » (la vidéo coupe sur son sac) */
+.cam .arret { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }

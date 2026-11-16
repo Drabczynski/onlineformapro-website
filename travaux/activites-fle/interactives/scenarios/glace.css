@@ -1,39 +1,57 @@
-/* ================= la glace : le cornet, les bacs de la vitrine ================= */
-.glace .comptoir { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 14px; align-items: stretch; }
-.glace .cornet { position: relative; min-height: 312px; border-radius: 24px; background: rgba(0,0,0,.18); transition: background .25s, box-shadow .25s;
-  --bw: 92px; --bh: 72px; --pas: 48px; --base: 122px; --cw: 104px; --ch: 142px; }
-.glace .cornet .cone { position: absolute; left: 50%; bottom: 10px; width: var(--cw); height: var(--ch); translate: -50% 0; z-index: 1; }
-.glace .boules { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
-.glace .boule { position: absolute; left: 50%; bottom: calc(var(--base) + var(--k) * var(--pas)); width: var(--bw); height: var(--bh); translate: -50% 0; z-index: calc(2 + var(--k));
-  border-radius: 50% 50% 38% 38%; pointer-events: auto; transition: bottom .35s var(--spring); }
-.glace .boule svg { width: 100%; height: 100%; }
-.glace .boule:hover { filter: brightness(1.06); }
-.glace .boule.neuve { animation: gl-pose .5s var(--spring) both; }
-.glace .boule.neuve.tapee { animation-delay: .45s; }
-@keyframes gl-pose { from { transform: translateY(-28px) scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
-.glace .cornet.survol { background: rgba(255,255,255,.14); box-shadow: inset 0 0 0 2px rgba(255,255,255,.8); }
-.glace .cornet.faux { box-shadow: inset 0 0 0 3px var(--try); }
-.glace .cornet.juste { box-shadow: inset 0 0 0 3px var(--ok); background: rgba(75,227,180,.14); }
-.glace .bacs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: 8px; }
-.glace .bac { min-height: 92px; touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none; }
-.glace .bac:active { cursor: grabbing; }
-.glace .bac.tire { opacity: .55; }
-.glace .bac .pic { width: 72px; height: 56px; }
-.glace .bac .pic svg { width: 72px; height: 56px; }
-.glace .bac .nom { font-size: 15px; }
-.glace .legende { font-size: 18px; }
-.glace .astuce { margin: -6px 0 0; text-align: center; font-size: 13px; font-weight: 600; color: var(--text2); }
-.boule-vol { position: fixed; z-index: 60; width: 92px; height: 72px; translate: -50% -55%; pointer-events: none; }
-.boule-vol svg, .volant > svg { width: 100%; height: 100%; }
-body[data-turn="listen"] .glace .comptoir, body[data-turn="wait"] .glace .comptoir { pointer-events: none; }
+/* ================= la glace ================= */
+/* 1 · la vitrine : les bacs sont en bas de l'image, la bulle de consigne passe en haut de la vidéo (--gl-haut : posé par le scénario) */
+body.gl-haut .talk { bottom: auto !important; top: var(--gl-haut, 18px); }
+/* ici la couleur des bacs EST la réponse : les cadres et l'indice sans voile coloré par-dessus (la vanille paraîtrait verte) */
+.zcadre, .zcadre.faux { background: none; }
+.cam.asking .hit.indice { animation: gl-indiceH 1.1s var(--apple) infinite; }
+@keyframes gl-indiceH { 50% { box-shadow: inset 0 0 0 4px rgba(75,227,180,.95); } }
 
-/* téléphone tenu droit : le panneau passe sous la vidéo */
-body.tall .glace .comptoir { grid-template-columns: 116px minmax(0, 1fr); gap: 10px; }
-body.tall .glace .cornet { min-height: 216px; --bw: 68px; --bh: 53px; --pas: 37px; --base: 84px; --cw: 76px; --ch: 104px; }
-body.tall .glace .bac { min-height: 66px; }
-body.tall .glace .bac .pic { width: 50px; height: 39px; } body.tall .glace .bac .pic svg { width: 50px; height: 39px; }
-body.tall .glace .bac .nom { font-size: 13px; }
-body.tall .glace .astuce { display: none; }
-body.short .glace .cornet { min-height: 216px; --bw: 68px; --bh: 53px; --pas: 37px; --base: 84px; --cw: 76px; --ch: 104px; }
-body.short .glace .comptoir { grid-template-columns: 116px minmax(0, 1fr); }
-body.short .glace .bac { min-height: 66px; }
+/* 2 · en cornet ou en pot : les deux boules, à faire glisser dans le cornet ou dans le pot */
+.gl-pot .gl-depart { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.gl-paire { display: grid; place-items: center; min-width: 190px; min-height: 92px; padding: 10px 18px; border-radius: 24px; background: rgba(255,255,255,.12);
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.55); touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none; transition: opacity .25s, transform .25s var(--spring); }
+.gl-paire:hover { transform: translateY(-2px); }
+.gl-paire:active { cursor: grabbing; }
+.gl-paire.tire { opacity: .5; }
+.gl-paire.pris { opacity: .18; transform: scale(.92); pointer-events: none; }
+.gl-duo { display: flex; align-items: flex-end; justify-content: center; }
+.gl-boule { display: block; width: 80px; height: 62px; }
+.gl-boule svg { width: 100%; height: 100%; }
+.gl-duo .gl-boule + .gl-boule { margin-left: -14px; }
+.gl-nom { font-weight: 800; font-size: 16px; letter-spacing: -.01em; color: var(--text); }
+.gl-depart .gl-nom { font-size: 14px; color: var(--text2); }
+
+.gl-choix { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.gl-cont { position: relative; height: 262px; border-radius: 24px; background: rgba(0,0,0,.2); display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+  gap: 6px; padding: 10px 8px 12px; transition: background .25s, box-shadow .25s; }
+.gl-cont:hover { background: rgba(255,255,255,.08); }
+.gl-cont .gl-svg { position: relative; z-index: 2; flex: none; }
+.gl-cont .cone { width: 88px; height: 120px; }
+.gl-cont .pot { width: 132px; height: 102px; }
+.gl-dessus { position: relative; flex: none; display: flex; justify-content: center; align-items: flex-end; pointer-events: none; }
+/* dans le cornet : la vanille en bas, le chocolat dessus, posées sur le bord du cornet */
+.gl-cont[data-id="cornet"] .gl-dessus { z-index: 3; margin-bottom: -26px; }
+.gl-cont[data-id="cornet"] .gl-duo { flex-direction: column-reverse; align-items: center; }
+.gl-cont[data-id="cornet"] .gl-duo .gl-boule + .gl-boule { margin: 0 0 -26px; position: relative; z-index: 1; }
+/* dans le pot : côte à côte, à moitié dedans */
+.gl-cont[data-id="pot"] .gl-dessus { z-index: 1; margin-bottom: -40px; }
+.gl-dessus.neuve .gl-duo { animation: gl-pose .5s var(--spring) both; }
+@keyframes gl-pose { from { transform: translateY(-28px) scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
+.gl-cont.survol { background: rgba(255,255,255,.14); box-shadow: inset 0 0 0 2px rgba(255,255,255,.85); }
+.gl-cont.faux { box-shadow: inset 0 0 0 3px var(--try); background: rgba(255,170,40,.14); }
+.gl-cont.juste { box-shadow: inset 0 0 0 3px var(--ok); background: rgba(75,227,180,.14); }
+.gl-cont.indice { animation: gl-indice 1.1s var(--apple) infinite; }
+@keyframes gl-indice { 50% { box-shadow: inset 0 0 0 4px rgba(75,227,180,.85); background: rgba(75,227,180,.12); } }
+.gl-vol { position: fixed; z-index: 60; translate: -50% -55%; pointer-events: none; }
+body[data-turn="listen"] .gl-pot .gl-paire, body[data-turn="wait"] .gl-pot .gl-paire,
+body[data-turn="listen"] .gl-pot .gl-cont, body[data-turn="wait"] .gl-pot .gl-cont { pointer-events: none; }
+
+/* téléphone tenu droit ou écran bas : tout plus petit */
+body.tall .gl-cont, body.short .gl-cont { height: 196px; }
+body.tall .gl-boule, body.short .gl-boule { width: 60px; height: 47px; }
+body.tall .gl-cont .cone, body.short .gl-cont .cone { width: 66px; height: 90px; }
+body.tall .gl-cont .pot, body.short .gl-cont .pot { width: 100px; height: 77px; }
+body.tall .gl-paire, body.short .gl-paire { min-height: 70px; min-width: 150px; padding: 8px 14px; }
+body.tall .gl-cont[data-id="cornet"] .gl-dessus, body.short .gl-cont[data-id="cornet"] .gl-dessus { margin-bottom: -20px; }
+body.tall .gl-cont[data-id="cornet"] .gl-duo .gl-boule + .gl-boule, body.short .gl-cont[data-id="cornet"] .gl-duo .gl-boule + .gl-boule { margin-bottom: -20px; }
+body.tall .gl-cont[data-id="pot"] .gl-dessus, body.short .gl-cont[data-id="pot"] .gl-dessus { margin-bottom: -30px; }

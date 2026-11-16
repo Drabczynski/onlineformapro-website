@@ -99,7 +99,7 @@ window.SCENARIO = (() => {
               { s: PREF[0] + .06, e: THE[0] - .1, msg: 'Presque' + NB + '! Là, il dit «' + NB + 'je préfère' + NB + '».' },
               { s: fin, e: ligne(2)[1] + .2, msg: 'Trop tard' + NB + ': là, elle dit «' + NB + 'Avec du sucre' + NB + '».' },
             ],
-            juste: 'Oui' + NB + '! «' + NB + 'Non merci, je préfère un thé.' + NB + '»' })) return;
+            juste: 'Oui' + NB + '! «' + NB + 'Non merci, je préfère un thé.' + NB + '»', montre: "C'est là" + NB + ': «' + NB + 'je préfère un thé' + NB + '».' })) return;
           suite();
         },
 
@@ -120,7 +120,8 @@ window.SCENARIO = (() => {
             $('.contenu', z).innerHTML = dans.map(id => `<button class="puce${id === nouveau ? ' neuf' : ''}" data-id="${id}" aria-label="Retirer ${nomDe(id)} de la tasse"><span class="mini">${SVG[id]}</span><span class="x" aria-hidden="true">×</span></button>`).join('');
             $$('.puce', z).forEach(b => b.addEventListener('click', () => { if (!tour()) return; A.unlock(); idle.reset(); retirer(b.dataset.id, true); }));
           }
-          function ajouter(id) { if (dans.includes(id)) return; dans.push(id); chose(id).classList.add('pris'); sfx.tick(); peindre(id); }
+          let vide = false;                                     // « La tasse est vide » est affiché : on remet la consigne dès qu'on y met quelque chose
+          function ajouter(id) { if (dans.includes(id)) return; dans.push(id); chose(id).classList.add('pris'); sfx.tick(); peindre(id); if (vide && tour()) { vide = false; Q.show('you', state.ask); } }
           function retirer(id, vole) {
             const i = dans.indexOf(id); if (i < 0) return;
             const p = puce(id), c = chose(id);
@@ -155,7 +156,7 @@ window.SCENARIO = (() => {
           state.replay = async () => { setTurn('listen'); goBtn(null); idle.clear(); await playSegment(SEG[0], SEG[1], gel()); if (alive(f)) ask(); };
           async function servir() {
             if (!tour()) return;
-            if (!dans.length) { secouer(zone()); Q.show('you', "La tasse est vide. Mets dedans ce qu'il veut."); return; }
+            if (!dans.length) { secouer(zone()); vide = true; Q.show('you', "La tasse est vide. Mets dedans ce qu'il veut."); return; }
             setTurn('wait'); goBtn(null); idle.clear();
             const faute = ['cafe', 'sucre', 'lait'].find(id => dans.includes(id));
             if (!faute) {                                       // le thé seul
