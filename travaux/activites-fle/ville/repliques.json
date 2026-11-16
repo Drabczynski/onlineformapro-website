@@ -86,5 +86,113 @@
  "pasla-h2": [
   "h2",
   "Tu n'en as pas ? Je reviens plus tard."
+ ],
+ "p-logement": [
+  "f",
+  "Bonjour ! Je viens d'arriver. Je n'ai pas de logement."
+ ],
+ "p-faim": [
+  "h1",
+  "Bonjour ! J'ai faim. Je voudrais du pain frais."
+ ],
+ "p-enfants": [
+  "f",
+  "Mes enfants ont six ans. Ils veulent apprendre à lire."
+ ],
+ "p-fievre": [
+  "h2",
+  "J'ai de la fièvre. Il me faut des médicaments."
+ ],
+ "p-jouer": [
+  "f",
+  "Les enfants n'ont pas d'endroit pour jouer."
+ ],
+ "p-amis": [
+  "h1",
+  "Je voudrais voir mes amis et boire quelque chose."
+ ],
+ "p-ventre": [
+  "h2",
+  "J'ai très mal au ventre depuis hier."
+ ],
+ "p-toit": [
+  "f",
+  "Mon toit est cassé ! Il pleut dans ma maison."
+ ],
+ "p-porte": [
+  "h1",
+  "Ma porte est cassée. Je ne peux pas fermer."
+ ],
+ "p-froid": [
+  "h2",
+  "Il fait froid chez moi. Je n'ai plus de bois pour le feu."
+ ],
+ "p-velo": [
+  "h1",
+  "Mon vélo est cassé. Je ne peux pas aller au travail."
+ ],
+ "ok-f": [
+  "f",
+  "Super ! D'accord, j'attends."
+ ],
+ "ok-h1": [
+  "h1",
+  "Super ! D'accord, j'attends."
+ ],
+ "ok-h2": [
+  "h2",
+  "Super ! D'accord, j'attends."
+ ],
+ "r-maison": [
+  "maire",
+  "Je vais construire une maison."
+ ],
+ "r-boulangerie": [
+  "maire",
+  "Je vais construire une boulangerie."
+ ],
+ "r-ecole": [
+  "maire",
+  "Je vais construire une école."
+ ],
+ "r-pharmacie": [
+  "maire",
+  "Je vais construire une pharmacie."
+ ],
+ "r-parc": [
+  "maire",
+  "Je vais construire un parc."
+ ],
+ "r-cafe": [
+  "maire",
+  "Je vais construire un café."
+ ],
+ "r-medecin": [
+  "maire",
+  "Je vais construire un cabinet médical."
+ ],
+ "r-planches": [
+  "maire",
+  "Je t'apporte des planches."
+ ],
+ "r-clous": [
+  "maire",
+  "Je t'apporte des clous."
+ ],
+ "r-bois": [
+  "maire",
+  "Je t'apporte du bois."
+ ],
+ "r-metal": [
+  "maire",
+  "Je t'apporte du métal."
+ ],
+ "r-revoir": [
+  "maire",
+  "Au revoir !"
+ ],
+ "r-nuit": [
+  "maire",
+  "Bonne nuit !"
  ]
 }
