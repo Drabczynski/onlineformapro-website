@@ -335,6 +335,29 @@ const DEMANDES = [
   { id: 'q12', voix: 'd2-foot', v: 'h2', dit: 'J’aime le football' + NB + '!', rep: 'stade', t: 'stade', n: 1, quand: s => s.niv >= 5 }
 ];
 const DEM = Object.fromEntries(DEMANDES.map(d => [d.id, d]));
+/* les habitants viennent aussi simplement discuter : une question, trois réponses */
+const RB = { cava: ['😊', 'Ça va bien, merci' + NB + '!'], nom: ['🙋', 'Je m’appelle Sara.'], age: ['🎂', 'J’ai trente ans.'], habite: ['🏘️', 'J’habite dans la ville.'],
+  beau: ['☀️', 'Oui, il fait beau' + NB + '!'], heure: ['🕗', 'Il est huit heures.'], pain: ['🥖', 'Oui, j’aime le pain.'], maire: ['🎩', 'Oui, je suis le maire.'],
+  labas: ['👉', 'La boulangerie est là-bas.'], ouimerci: ['☕', 'Oui, merci' + NB + '!'], derien: ['🤝', 'De rien' + NB + '!'], revoir: ['👋', 'Au revoir' + NB + '! Bonne journée' + NB + '!'],
+  peu: ['🤏', 'Oui, un peu.'], enfants: ['👧👦', 'Oui, j’ai deux enfants.'], faim: ['🍽️', 'Oui, j’ai faim.'], nuit: ['🌙', 'Bonne nuit' + NB + '!'] };
+const BAVARDAGES = [
+  { id: 'b01', v: 'h1', dit: 'Bonjour' + NB + '! Ça va' + NB + '?', bon: 'cava', faux: ['nom', 'age'] },
+  { id: 'b02', v: 'f', dit: 'Comment tu t’appelles' + NB + '?', bon: 'nom', faux: ['habite', 'beau'] },
+  { id: 'b03', v: 'h2', dit: 'Tu habites où' + NB + '?', bon: 'habite', faux: ['cava', 'pain'] },
+  { id: 'b04', v: 'f', dit: 'Il fait beau aujourd’hui' + NB + '?', bon: 'beau', faux: ['derien', 'maire'] },
+  { id: 'b05', v: 'h1', dit: 'Quelle heure est-il' + NB + '?', bon: 'heure', faux: ['age', 'labas'] },
+  { id: 'b06', v: 'h2', dit: 'Tu aimes le pain' + NB + '?', bon: 'pain', faux: ['heure', 'habite'] },
+  { id: 'b07', v: 'f', dit: 'Tu es le maire' + NB + '?', bon: 'maire', faux: ['beau', 'nom'] },
+  { id: 'b08', v: 'h1', dit: 'Où est la boulangerie' + NB + '?', bon: 'labas', faux: ['cava', 'heure'] },
+  { id: 'b09', v: 'h2', dit: 'Tu veux un café' + NB + '?', bon: 'ouimerci', faux: ['habite', 'nuit'] },
+  { id: 'b10', v: 'f', dit: 'Merci pour la maison' + NB + '!', bon: 'derien', faux: ['nuit', 'heure'] },
+  { id: 'b11', v: 'h1', dit: 'Au revoir' + NB + '!', bon: 'revoir', faux: ['cava', 'pain'] },
+  { id: 'b12', v: 'h2', dit: 'Tu parles français' + NB + '?', bon: 'peu', faux: ['beau', 'derien'] },
+  { id: 'b13', v: 'f', dit: 'Tu as des enfants' + NB + '?', bon: 'enfants', faux: ['heure', 'maire'] },
+  { id: 'b14', v: 'h1', dit: 'Tu as faim' + NB + '?', bon: 'faim', faux: ['derien', 'beau'] }
+].map(b => ({ ...b, voix: 'bq-' + b.id.slice(1) }));
+const BAV = Object.fromEntries(BAVARDAGES.map(b => [b.id, b]));
+const GAIN_BAVARD = 35, ATTENTE_BAVARD = 150;
 
 /* ================================================================ LE VOCABULAIRE : 5 mots par bâtiment, avec une photo */
 const MOTS = { lit: 'le lit', table: 'la table', chaise: 'la chaise', porte: 'la porte', fenetre: 'la fenêtre', pain: 'le pain', baguette: 'la baguette', croissant: 'le croissant', gateau: 'le gâteau', farine: 'la farine',
@@ -363,7 +386,7 @@ function neuf() {
 }
 let E; try { E = JSON.parse(localStorage.getItem(CLE) || 'null'); } catch (e) {}
 if (!E || !E.cases) E = neuf();
-for (const [k, v] of Object.entries({ vus: {}, fait: {}, lecons: {}, themesVus: {}, tuto: {} })) E[k] ||= v;
+for (const [k, v] of Object.entries({ vus: {}, fait: {}, lecons: {}, themesVus: {}, tuto: {}, bav: {} })) E[k] ||= v;
 const sauver = () => { try { localStorage.setItem(CLE, JSON.stringify(E)); } catch (e) {} };
 const niveau = () => { let n = 1; for (let k = 0; k < XP_NIV.length; k++) if (E.xp >= XP_NIV[k]) n = k + 1; return n; };
 const VOIS = [[0, -1], [1, 0], [0, 1], [-1, 0]];
@@ -443,8 +466,8 @@ const miniature = new ShaderPass({
   vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.); }',
   fragmentShader: `uniform sampler2D tDiffuse; uniform vec2 res; uniform float force; varying vec2 vUv;
     void main(){ float d = smoothstep(.16,.6,abs(vUv.y-.5)); vec2 px = force*d/res*1.7; vec4 c = vec4(0.); float w = 0.;
-      for(int x=-2;x<=2;x++) for(int y=-2;y<=2;y++){ float k = 1. - length(vec2(float(x),float(y)))/3.3; c += texture2D(tDiffuse, vUv + vec2(float(x),float(y))*px)*k; w += k; }
-      c /= w; vec2 q = vUv - .5; c.rgb *= 1. - dot(q,q)*.6; c.rgb *= vec3(1.035,1.,.95); c.rgb = (c.rgb-.5)*1.06+.5; gl_FragColor = vec4(c.rgb,1.); }`
+      for(int x=-2;x<=2;x++) for(int y=-2;y<=2;y++){ float k = 1. - length(vec2(float(x),float(y)))/3.3; vec4 e = texture2D(tDiffuse, vUv + vec2(float(x),float(y))*px); if (e.r == e.r && e.g == e.g && e.b == e.b) { c += e*k; w += k; } }
+      c /= max(w, 1e-3); vec2 q = vUv - .5; c.rgb *= 1. - dot(q,q)*.6; c.rgb *= vec3(1.035,1.,.95); c.rgb = (c.rgb-.5)*1.06+.5; gl_FragColor = vec4(c.rgb,1.); }`
 });
 composer.addPass(miniature);
 function redim() { renderer.setSize(innerWidth, innerHeight); composer.setSize(innerWidth, innerHeight); miniature.uniforms.res.value.set(innerWidth, innerHeight); cam.aspect = innerWidth / innerHeight; cam.updateProjectionMatrix(); }
@@ -520,13 +543,23 @@ function batiment(c, i, j) {
   const corps = new THREE.Group(); g.add(corps); let nom = c.t;
   if (c.t === 'maison') { const M = MAISONS[c.n || 0]; nom = M.modeles[(c.v || 0) % M.modeles.length]; }
   if (c.t === 'parc') nom = (c.v || 0) % 2 ? 'parc2' : 'parc';
-  corps.add(c.t === 'pompiers' ? teinte(piece('pompiers'), 0xffb4a6) : piece(nom));
+  const modele = c.t === 'pompiers' ? teinte(piece('pompiers'), 0xffb4a6) : piece(nom);
+  // un socle relie chaque bâtiment à la route : trottoir, pelouse, allée jusqu'au trottoir de la rue
+  const bb = new THREE.Box3().setFromObject(modele), W = w * T, H = h * T, pave = !['maison', 'parc', 'chateau'].includes(c.t);
+  corps.add(dalle(W, H, .035, MAT_TROTTOIR));
+  if (!pave) corps.add(dalle(W - .2, H - .2, .05, c.t === 'parc' ? MAT_PELOUSE2 : MAT_PELOUSE));
+  else corps.add(dalle(W - .16, H - .16, .045, MAT_PARVIS));
+  if (bb.max.z < H / 2 - .05) { const lg = H / 2 - bb.max.z + .1, a = dalle(c.t === 'maison' ? .32 : .7, lg, .058, MAT_TROTTOIR); a.position.z = H / 2 - lg / 2; corps.add(a); }
+  modele.position.y = .05; corps.add(modele);
   corps.rotation.y = r * Math.PI / 2;
-  const haut = new THREE.Box3().setFromObject(corps).max.y;
+  const haut = bb.max.y + .05;
   const ens = ENSEIGNE[c.t]; if (ens) { const s = enseigne(ens[0], ens[1]); s.position.y = haut + .45; g.add(s); }
   g.userData.corps = corps; g.userData.haut = haut;
   return g;
 }
+const MAT_TROTTOIR = mat(0xb4b1a8, .95), MAT_PELOUSE = mat(0x76bb47, 1), MAT_PELOUSE2 = mat(0x6cb543, 1), MAT_PARVIS = mat(0xd9d2c3, .9);
+const GEO_DALLE = new THREE.BoxGeometry(1, 1, 1);
+function dalle(w, d, h, m) { const b = new THREE.Mesh(GEO_DALLE, m); b.scale.set(w, h, d); b.position.y = h / 2; b.receiveShadow = true; return b; }
 const objets = {};
 function redessiner(i, j, anime) {
   const k = cle(i, j); if (objets[k]) { monde.remove(objets[k]); delete objets[k]; }
@@ -736,7 +769,7 @@ function nouveau(sorte, v) {
 }
 function avancer(m, dt) {
   m.mixer?.update(dt); if (m.arret) return;
-  if (!estRoute(...m.vers) && !estRoute(...m.de)) { if (m.dem) { m.de = m.vers = routes()[0] || m.de; } else { monde.remove(m.o); mobiles.splice(mobiles.indexOf(m), 1); return; } }
+  if (!estRoute(...m.vers) && !estRoute(...m.de)) { if (m.dem || m.bav) { m.de = m.vers = routes()[0] || m.de; } else { monde.remove(m.o); mobiles.splice(mobiles.indexOf(m), 1); return; } }
   m.t += dt * m.vit;
   if (m.t >= 1) { const [i, j] = m.vers; let ch = VOIS.map(([a, b]) => [i + a, j + b]).filter(([a, b]) => estRoute(a, b));
     const sans = ch.filter(([a, b]) => !(a === m.de[0] && b === m.de[1])); if (sans.length) ch = sans; if (!ch.length) { m.t = 1; return; }
@@ -759,45 +792,53 @@ function demandePossible() {
 }
 function appels(dt) {
   if (!$('menu').hidden || dialogue || !$('quiz').hidden) return; attente -= dt; if (attente > 0) return; attente = E.tuto.fini ? 6 + Math.random() * 4 : 2.5;
-  if (mobiles.filter(m => m.dem).length + E.taches.length >= (E.tuto.fini ? 3 : 1)) return;
-  const d = demandePossible(); if (!d) return;
-  const m = mobiles.find(x => x.sorte === 'gens' && x.v === d.v && !x.dem) || nouveau('gens', d.v); if (!m) return;
-  m.dem = d.id; m.arret = true; m.actions.Walking_A?.stop(); m.actions.Waving?.play(); SON.appel();
+  if (mobiles.filter(m => m.dem || m.bav).length + E.taches.length >= (E.tuto.fini ? 4 : 1)) return;
+  const d = demandePossible();
+  const bavard = E.tuto.fini && !mobiles.some(m => m.bav) && (!d || Math.random() < .5) ? melange(BAVARDAGES.filter(b => maintenant() - (E.bav[b.id] || 0) > ATTENTE_BAVARD))[0] : null;
+  const choisi = bavard || d; if (!choisi) return;
+  const m = mobiles.find(x => x.sorte === 'gens' && x.v === choisi.v && !x.dem && !x.bav) || nouveau('gens', choisi.v); if (!m) return;
+  if (bavard) m.bav = bavard.id; else m.dem = d.id;
+  m.arret = true; m.actions.Walking_A?.stop(); m.actions.Waving?.play(); SON.appel();
 }
 
 /* ================================================================ LE MAIRE ÉCOUTE ET RÉPOND */
 let dialogue = null;
 function ecouter(m) {
-  const D = DEM[m.dem]; dialogue = { m, D, choisi: null }; fermerTout(); E.vus[D.id] = (E.vus[D.id] || 0) + 1;
+  const bav = !m.dem, D = bav ? BAV[m.bav] : DEM[m.dem]; dialogue = { m, D, bav, choisi: null }; fermerTout(); if (!bav) E.vus[D.id] = (E.vus[D.id] || 0) + 1;
   cible.x = m.o.position.x; cible.z = m.o.position.z; cible.dist = Math.min(cible.dist, 36);
   m.actions.Waving?.stop(); m.actions.Idle_A?.play(); m.o.rotation.y = vue.az;
   $('visage').src = 'sprites/' + GENS[D.v].img + '.webp'; $('dit').textContent = D.dit; parler(D.voix);
   const autres = melange(Object.keys(REPONSES).filter(k => k !== D.rep)).slice(0, E.tuto.fini ? 2 : 1);
+  const table = bav ? RB : REPONSES, pref = bav ? 'rb-' : 'a-';
   const c = $('choix'); c.innerHTML = '';
-  for (const k of melange([D.rep, ...autres])) {
-    const [picto, txt] = REPONSES[k], b = document.createElement('button'); b.className = 'rep'; b.dataset.k = k;
+  for (const k of melange(bav ? [D.bon, ...D.faux] : [D.rep, ...autres])) {
+    const [picto, txt] = table[k], b = document.createElement('button'); b.className = 'rep'; b.dataset.k = k;
     b.innerHTML = `<span class="picto">${picto}</span><span class="mot">${txt}</span><span class="ok">✓</span>`;
     b.onclick = e => {
       if (e.target.classList.contains('ok') || dialogue.choisi === k) return repondre(b, k);
-      c.querySelectorAll('.rep').forEach(x => x.classList.remove('choisi')); b.classList.add('choisi'); dialogue.choisi = k; dire('a-' + k); SON.clic();
+      c.querySelectorAll('.rep').forEach(x => x.classList.remove('choisi')); b.classList.add('choisi'); dialogue.choisi = k; dire(pref + k); SON.clic();
     };
     c.appendChild(b);
   }
   $('dial').classList.add('ouvert'); document.body.classList.add('parle');
 }
 function repondre(b, k) {
-  const { D } = dialogue;
-  if (k !== D.rep) { b.classList.remove('choisi'); b.classList.add('faux'); dialogue.choisi = null; SON.faux(); vibrer([20, 30, 20]); setTimeout(() => parler('non-' + D.v, () => parler(D.voix)), 200); return; }
+  const { D, bav } = dialogue;
+  if (k !== (bav ? D.bon : D.rep)) { b.classList.remove('choisi'); b.classList.add('faux'); dialogue.choisi = null; SON.faux(); vibrer([20, 30, 20]); setTimeout(() => parler('non-' + D.v, () => parler(D.voix)), 200); return; }
   if (dialogue.fini) return; dialogue.fini = true;
   b.classList.add('juste'); SON.juste(); vibrer(15); $('choix').querySelectorAll('.rep:not(.juste)').forEach(x => x.style.opacity = .3);
-  parler('ok-' + D.v, () => fermerDialogue(true));
+  parler((bav ? 'tb-' : 'ok-') + D.v, () => fermerDialogue(true));
   setTimeout(() => dialogue && fermerDialogue(true), 3500);
 }
 function fermerDialogue(accord) {
-  if (!dialogue) return; const { m, D } = dialogue; dialogue = null; $('dial').classList.remove('ouvert'); document.body.classList.remove('parle');
-  m.arret = false; m.actions.Idle_A?.stop(); m.actions.Walking_A?.play(); m.dem = null;
+  if (!dialogue) return; const { m, D, bav } = dialogue; dialogue = null; $('dial').classList.remove('ouvert'); document.body.classList.remove('parle');
+  m.arret = false; m.actions.Idle_A?.stop(); m.actions.Walking_A?.play(); m.dem = null; m.bav = null;
   if (!accord) return;
   const xy = ecran(m.o.position.clone().setY(1));
+  if (bav) {   // une bonne réponse en conversation rapporte des pièces et un cœur
+    E.bav[D.id] = maintenant(); E.coeurs++; pluie(GAIN_BAVARD, m.o.position.clone().setY(1.1), 7); plus(PC + '+' + GAIN_BAVARD, [xy[0], xy[1] - 30]);
+    voler('❤️', xy, centreDe('coeurJ'), 1, () => bump('coeurJ')); etoiles(3, xy); confettis(m.o.position.clone().setY(1)); sauver(); compter(); return;
+  }
   E.taches.push({ id: D.id, v: D.v, base: S.nb[D.t] }); etoiles(3, xy); plus('+3 ⭐', xy);
   const B = BATIS[D.t]; toast(B.picto, (D.n > 1 ? D.n + ' × ' : '') + B.nom, PC + ' ' + prix(D.t));
   verifierTaches(); sauver(); compter();
@@ -812,7 +853,7 @@ function verifierTaches() {
 }
 function terminer(t) {
   E.taches.splice(E.taches.indexOf(t), 1); E.coeurs++; E.fait[t.id] = maintenant();
-  const pres = mobiles.find(x => x.sorte === 'gens' && x.v === t.v && !x.dem) || nouveau('gens', t.v);
+  const pres = mobiles.find(x => x.sorte === 'gens' && x.v === t.v && !x.dem && !x.bav) || nouveau('gens', t.v);
   const p3 = pres ? pres.o.position.clone().setY(1.2) : new THREE.Vector3(vue.x, 1, vue.z), xy = ecran(p3);
   confettis(p3, 40); dire('merci-' + t.v); SON.fete(); vibrer([20, 30, 40]); plus('❤️ Merci' + NB + '!', [xy[0], xy[1] - 30]);
   pluie(40, p3, 6); voler('❤️', xy, centreDe('coeurJ'), 2, () => bump('coeurJ')); etoiles(12, xy);
@@ -920,7 +961,7 @@ function majBulles() {
       else if (E.phase2 && th && th !== 'maison' && leconDispo(th)) bulle('l' + k, '🎓', 'lecon', haut, () => ouvrirQuiz(th, k));
       else if (E.phase2 && c.t === 'maison' && !voisin && leconDispo('maison')) { voisin = true; bulle('l' + k, '🎓', 'lecon', haut, () => ouvrirQuiz('maison', k)); }
     }
-    for (const m of mobiles) if (m.dem) bulle('m' + m.dem, `<img src="sprites/${GENS[m.v].img}.webp" alt=""><i>!</i>`, 'perso', m.o.position.clone().setY(.7), () => ecouter(m));
+    for (const m of mobiles) if (m.dem || m.bav) bulle('m' + (m.dem || m.bav), `<img src="sprites/${GENS[m.v].img}.webp" alt=""><i style="${m.bav ? 'background:#1fbf73;font-size:13px' : ''}">${m.bav ? '💬' : '!'}</i>`, 'perso', m.o.position.clone().setY(.7), () => ecouter(m));
   }
   for (const [k, b] of Object.entries(bulles)) if (b.dataset.vu === '0') { b.classList.add('part'); delete bulles[k]; setTimeout(() => b.remove(), 250); }
 }
@@ -934,7 +975,7 @@ function guide() {
   const tache = E.taches[0], D = tache && DEM[tache.id];
   if (!E.tuto.fini) {
     if (dialogue) { aide('Écoute 🔊 · Choisis · ✓', '💬'); doigt($('choix').querySelector('.rep.choisi .ok')); return; }
-    const perso = document.querySelector('.b.perso');
+    const perso = [...document.querySelectorAll('.b.perso')].find(b => /^mq/.test(b.dataset.cle));
     if (perso && !tache) { aide('Touche l’habitant', '👆'); doigt(perso); return; }
     if (tache && !mode) {
       if ($('catalogue').classList.contains('ouvert')) { aide('Touche ' + BATIS[D.t].picto + ' ' + BATIS[D.t].nom, '👆'); const a = document.querySelector(`.article[data-t="${D.t}"]`); doigt(a); if (a) a.scrollIntoView({ inline: 'center', block: 'nearest' }); return; }

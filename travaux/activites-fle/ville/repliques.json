@@ -782,5 +782,137 @@
  "a-stade": [
   "maire",
   "Je construis un stade."
+ ],
+ "bq-01": [
+  "h1",
+  "Bonjour ! Ça va ?"
+ ],
+ "bq-02": [
+  "f",
+  "Comment tu t'appelles ?"
+ ],
+ "bq-03": [
+  "h2",
+  "Tu habites où ?"
+ ],
+ "bq-04": [
+  "f",
+  "Il fait beau aujourd'hui ?"
+ ],
+ "bq-05": [
+  "h1",
+  "Quelle heure est-il ?"
+ ],
+ "bq-06": [
+  "h2",
+  "Tu aimes le pain ?"
+ ],
+ "bq-07": [
+  "f",
+  "Tu es le maire ?"
+ ],
+ "bq-08": [
+  "h1",
+  "Où est la boulangerie ?"
+ ],
+ "bq-09": [
+  "h2",
+  "Tu veux un café ?"
+ ],
+ "bq-10": [
+  "f",
+  "Merci pour la maison !"
+ ],
+ "bq-11": [
+  "h1",
+  "Au revoir !"
+ ],
+ "bq-12": [
+  "h2",
+  "Tu parles français ?"
+ ],
+ "bq-13": [
+  "f",
+  "Tu as des enfants ?"
+ ],
+ "bq-14": [
+  "h1",
+  "Tu as faim ?"
+ ],
+ "rb-cava": [
+  "maire",
+  "Ça va bien, merci !"
+ ],
+ "rb-nom": [
+  "maire",
+  "Je m'appelle Sara."
+ ],
+ "rb-age": [
+  "maire",
+  "J'ai trente ans."
+ ],
+ "rb-habite": [
+  "maire",
+  "J'habite dans la ville."
+ ],
+ "rb-beau": [
+  "maire",
+  "Oui, il fait beau !"
+ ],
+ "rb-heure": [
+  "maire",
+  "Il est huit heures."
+ ],
+ "rb-pain": [
+  "maire",
+  "Oui, j'aime le pain."
+ ],
+ "rb-maire": [
+  "maire",
+  "Oui, je suis le maire."
+ ],
+ "rb-labas": [
+  "maire",
+  "La boulangerie est là-bas."
+ ],
+ "rb-ouimerci": [
+  "maire",
+  "Oui, merci !"
+ ],
+ "rb-derien": [
+  "maire",
+  "De rien !"
+ ],
+ "rb-revoir": [
+  "maire",
+  "Au revoir ! Bonne journée !"
+ ],
+ "rb-peu": [
+  "maire",
+  "Oui, un peu."
+ ],
+ "rb-enfants": [
+  "maire",
+  "Oui, j'ai deux enfants."
+ ],
+ "rb-faim": [
+  "maire",
+  "Oui, j'ai faim."
+ ],
+ "rb-nuit": [
+  "maire",
+  "Bonne nuit !"
+ ],
+ "tb-f": [
+  "f",
+  "Très bien !"
+ ],
+ "tb-h1": [
+  "h1",
+  "Très bien !"
+ ],
+ "tb-h2": [
+  "h2",
+  "Très bien !"
  ]
 }
