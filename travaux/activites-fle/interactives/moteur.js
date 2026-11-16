@@ -250,6 +250,7 @@
 
   /* ================= icônes ================= */
   const ICON = {
+    tap: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10"/><path d="M12 9.5a1.5 1.5 0 0 1 3 0V11"/><path d="M15 10.5a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-1a5.5 5.5 0 0 1-4.6-2.5L4 14.7a1.5 1.5 0 0 1 2.4-1.8L9 15"/><path d="M5 3.5L6.5 5M3 7h2M12 2v1.5"/></svg>',
     bars: '<span class="bars"><b></b><b></b><b></b><b></b></span>',
     check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
     ear: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 9a5.5 5.5 0 0 1 11 0c0 3-3 3.6-3 6.3a3.2 3.2 0 0 1-5.6 2.1"/><path d="M9.5 9.3a2.5 2.5 0 0 1 5 0"/></svg>',
@@ -383,17 +384,84 @@
   function yourTurn() { Q.mode('you'); setTurn('you'); }
 
   /* deux essais, puis la réponse : faux(f, n) dit « Écoute encore », rejoue le passage, et renvoie true quand il faut montrer la réponse */
-  async function faux(f, seg, msg = 'Non. Écoute encore.') {
+  const sansEcoute = m => (m || '').replace(/\s*Écoute (encore|bien)\.\s*$/, '').trim() || 'Non.';
+  async function faux(f, seg, msg = 'Non.') {
     state.essais++; sfx.try();
-    Q.show('try', state.essais >= 2 ? 'Écoute bien.' : msg);
+    Q.show('try', sansEcoute(msg));
     await wait(850); if (!alive(f)) return null;
     await playSegment(seg[0], seg[1], gel()); if (!alive(f)) return null;
     return state.essais >= 2;
   }
-  async function juste(f, msg, seg) {
+  async function juste(f, msg) {             /* juste : on le dit, sans remettre l'extrait (c'est répétitif) */
     sfx.ok(); Q.show('ok', msg); state.essais = 0;
-    if (seg) await hear(seg[0], seg[1]);
+    await wait(400);
     return alive(f);
+  }
+
+  /* QTE, comme dans les jeux : le mot à guetter s'affiche sur la vidéo ; pendant la consigne, le doigt fantôme appuie sur
+     le gros bouton ; 3, 2, 1, la scène repart et l'apprenant appuie (clic, doigt, espace ou entrée) quand il entend le mot.
+     qte(f, { mot, consigne, de, a, cibles: [{ s, e }], pieges: [{ s, e, msg }], tot, tard, rien, juste, montre, titre })
+     — cibles : les moments justes (dans l'ordre, tous à trouver) ; pieges : un message pour un moment précis (un autre mot).
+     Deux essais ratés : la scène repart et le doigt appuie au bon moment. Renvoie false si on a quitté l'étape. */
+  async function qte(f, o) {
+    setSide(null); frameTo(CROPS.full, false); idle.clear(); zones(null);
+    state.gel = o.gel != null ? o.gel : o.de; await freeze(gel()); if (!alive(f)) return false;
+    const boite = document.createElement('div'); boite.className = 'qte';
+    boite.innerHTML = `<div class="qte-mot"><small>${o.titre || 'Appuie quand tu entends'}</small><b>${o.mot}</b></div>
+      <button class="qte-btn" type="button" aria-label="Appuyer quand tu entends ${o.mot.replace(/"/g, '')}"><svg class="anneau" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46"/><circle class="prog" cx="50" cy="50" r="46"/></svg><span class="qte-c">${ICON.tap}</span></button>`;
+    win.append(boite);
+    const btn = $('.qte-btn', boite), c = $('.qte-c', boite), prog = $('.prog', boite), motEl = $('.qte-mot', boite), TOUR = 289;
+    const presser = () => { btn.classList.remove('appui'); void btn.offsetWidth; btn.classList.add('appui'); setTimeout(() => btn.classList.remove('appui'), 200); };
+    const doigt = () => { const r = btn.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
+      setTimeout(presser, 640); return ghost.animate([at(x + 46, y + 70, 0), at(x + 8, y + 12, 1), at(x, y, 1), at(x, y, 1, .78), at(x, y, 1), at(x, y, 0)], { duration: 1500, easing: 'ease-in-out' }).finished.catch(() => {}); };
+    /* la consigne, avec le geste montré pendant qu'elle est dite */
+    let demo = true;
+    (async () => { await wait(300); while (demo && alive(f)) { await doigt(); await wait(350); } })();
+    state.ask = o.consigne;
+    const dit = await Q.say(o.consigne, f); demo = false; if (!dit) return false;
+    const n = o.cibles.length;
+    const jouer = () => new Promise(async res => {
+      let fini = false, fait = 0, raf = 0;
+      const finir = r => { if (fini) return; fini = true; cancelAnimationFrame(raf); btn.classList.remove('actif'); document.removeEventListener('keydown', clavier); btn.onclick = null; res(r); };
+      const appui = () => {
+        if (fini) return; unlock(); presser();
+        const t = vid.currentTime, cible = o.cibles[fait];
+        if (t >= cible.s && t <= cible.e) { fait++; sfx.tick(); btn.classList.add('touche'); setTimeout(() => btn.classList.remove('touche'), 500);
+          if (fait >= n) { stopAll(); finir({ juste: true }); } return; }
+        const p = (o.pieges || []).find(x => t >= x.s && t <= x.e);
+        stopAll(); finir({ msg: p ? p.msg : t < cible.s ? (o.tot || 'Pas encore.') : (o.tard || 'Trop tard.') });
+      };
+      const clavier = ev => { if (ev.key === ' ' || ev.key === 'Enter') { ev.preventDefault(); appui(); } };
+      btn.onclick = appui; document.addEventListener('keydown', clavier);
+      const suivre = () => { const k = Math.min(1, Math.max(0, (vid.currentTime - o.de) / (o.a - o.de))); prog.style.strokeDashoffset = TOUR * (1 - k); raf = requestAnimationFrame(suivre); };
+      btn.classList.add('actif'); suivre(); setTurn('you');
+      await playSegment(o.de, o.a, null);
+      finir({ msg: o.rien || "Tu n'as pas appuyé." });
+    });
+    for (;;) {
+      btn.classList.remove('juste', 'faux'); prog.style.strokeDashoffset = TOUR;
+      for (const k of ['3', '2', '1']) { c.textContent = k; sfx.tick(); await wait(650); if (!alive(f)) return false; }
+      c.innerHTML = ICON.tap; btn.focus({ preventScroll: true });
+      const r = await jouer(); if (!alive(f)) return false;
+      if (r.juste) {
+        btn.classList.add('juste'); motEl.classList.add('juste'); c.innerHTML = ICON.check;
+        sfx.ok(); Q.show('ok', o.juste || 'Oui' + NB + '! «' + NB + o.mot + NB + '»'); state.essais = 0; setTurn('you');
+        return true;
+      }
+      state.essais++; sfx.try(); btn.classList.add('faux'); setTurn('wait');
+      Q.show('try', sansEcoute(r.msg)); await wait(1900); if (!alive(f)) return false;
+      if (state.essais >= 2) {          /* la réponse : la scène repart, le doigt appuie au bon moment */
+        btn.classList.remove('faux'); prog.style.strokeDashoffset = TOUR; Q.show('you', '');
+        const lecture = playSegment(Math.max(o.de, o.cibles[0].s - 1.6), Math.min(o.a, o.cibles[n - 1].e + .4), null);
+        for (const cible of o.cibles) {
+          while (alive(f) && vid.currentTime < cible.s + .05 && !vid.paused) await wait(30);
+          if (!alive(f)) return false; doigt(); await wait(640); btn.classList.add('juste'); motEl.classList.add('juste');
+        }
+        await lecture; if (!alive(f)) return false; await freeze(gel());
+        c.innerHTML = ICON.check; Q.show('ok', o.montre || 'C\'est là' + NB + ': «' + NB + o.mot + NB + '»'); state.essais = 0; setTurn('you');
+        return true;
+      }
+    }
   }
 
   const ORDRE = SC.ordre;
@@ -406,8 +474,7 @@
   async function avant(f, o) {
     setSide(null); o.qui ? focus(o.qui, false) : frameTo(CROPS.full, false);
     state.gel = o.gel; await freeze(gel()); if (!alive(f)) return false;
-    if (!await Q.say(o.question, f)) return false;
-    setTurn('listen'); await wait(250); if (!alive(f)) return false;
+    Q.show('you', ''); setTurn('listen'); await wait(450); if (!alive(f)) return false;
     await playSegment(o.seg[0], o.seg[1], gel()); if (!alive(f)) return false;
     if (o.panneau) { setSide(o.panneau, o.monte); o.qui ? focus(o.qui, true, o.sideW) : frameTo(CROPS.full, true, o.sideW); }
     else { frameTo(CROPS.full, false); o.monte && o.monte(cam); }
@@ -422,7 +489,7 @@
   function go(step) {
     flow++; stopAll(); idle.clear();
     Object.assign(state, { step, ask: null, replay: null, lineView: false, essais: 0, gel: null });
-    cam.classList.remove('asking'); zones(null); spotOff(); goBtn(null); setSplit(false); $$('.surimage', cam).forEach(e => e.remove());
+    cam.classList.remove('asking'); zones(null); spotOff(); goBtn(null); setSplit(false); $$('.surimage', cam).forEach(e => e.remove()); $$('.qte', win).forEach(e => e.remove());
     STEPS[step](flow);
   }
   const STEPS = {};
@@ -492,7 +559,7 @@
   var api = {
     $, $$, wait, NB, reduced, state, alive, go, suite, Q, goBtn, yourTurn, setTurn, frameTo, CROPS, WIDE, LINES, PEOPLE,
     freeze, playSegment, hear, phrase, ligne, tag, tagAll, hideTags, spotOn, spotAt, spotOff, rippleAt, zones, fly,
-    setSide, side, setSplit, binNo, binYes, deck, idle, at, tapHere, sfx, ICON, win, cam, layout, speak, unlock, faux, juste, focus, avant, cadreZone, marque, gel, stopAll,
+    setSide, side, setSplit, binNo, binYes, deck, idle, at, tapHere, sfx, ICON, win, cam, layout, speak, unlock, faux, juste, focus, avant, cadreZone, marque, gel, stopAll, qte, ghost,
     flow: () => flow,
   };
   Object.assign(STEPS, SC.etapes(api));

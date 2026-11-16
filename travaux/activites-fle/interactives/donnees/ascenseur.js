@@ -180,14 +180,6 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Écoute madame Diallo.": {
-   "src": "medias/voix-ea4a8b3ef3.mp3",
-   "w": [
-    0.0,
-    0.64,
-    0.92
-   ]
-  },
   "Qu'est-ce qui ne marche pas ? Clique dessus dans l'image.": {
    "src": "medias/voix-e127f6ce49.mp3",
    "w": [
@@ -200,14 +192,6 @@ window.DONNEES = {
     1.84,
     2.2,
     2.48
-   ]
-  },
-  "Écoute le gardien.": {
-   "src": "medias/voix-637a3fa43d.mp3",
-   "w": [
-    0.0,
-    0.52,
-    0.64
    ]
   },
   "Le technicien arrive quand ? Fais glisser le soleil.": {

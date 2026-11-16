@@ -262,14 +262,6 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Écoute la dame.": {
-   "src": "medias/voix-b9f1b6db45.mp3",
-   "w": [
-    0.0,
-    0.56,
-    0.72
-   ]
-  },
   "Sur le plan, guide le monsieur avec les flèches.": {
    "src": "medias/voix-2e92fc940e.mp3",
    "w": [
@@ -282,15 +274,6 @@ window.DONNEES = {
     2.08,
     2.4,
     2.52
-   ]
-  },
-  "Écoute encore la dame.": {
-   "src": "medias/voix-717bdcb1b1.mp3",
-   "w": [
-    0.0,
-    0.44,
-    0.76,
-    0.88
    ]
   },
   "Sur le plan, clique sur la pharmacie.": {

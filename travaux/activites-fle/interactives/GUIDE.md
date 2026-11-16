@@ -71,13 +71,14 @@ window.SCENARIO = (() => ({
 
 | Outil | Rôle |
 | --- | --- |
-| `avant(f, { question, qui, seg, panneau, sideW, consigne, monte, gel })` | le déroulé de chaque question : la voix dit `question` (« Écoute la cliente. ») ; la vidéo se resserre sur `qui` et rejoue `seg` ; puis le `panneau` (HTML) s'ouvre à côté, large de `sideW` px (ou, sans panneau, la vidéo revient en grand pour toucher l'image) ; `monte(el)` branche les gestes ; enfin la voix dit la `consigne`. `gel` : une autre image figée pour cette étape. Renvoie `false` si on a quitté l'étape. |
+| `avant(f, { qui, seg, panneau, sideW, consigne, monte, gel })` | le déroulé de chaque question : (plus rien n'est dit avant : pas de « Écoute la cliente ») la vidéo se resserre sur `qui` et rejoue `seg` ; puis le `panneau` (HTML) s'ouvre à côté, large de `sideW` px (ou, sans panneau, la vidéo revient en grand pour toucher l'image) ; `monte(el)` branche les gestes ; enfin la voix dit la `consigne`. `gel` : une autre image figée pour cette étape. Renvoie `false` si on a quitté l'étape. |
+| `qte(f, { mot, consigne, de, a, cibles: [{s, e}], pieges: [{s, e, msg}], juste })` | le QTE, comme dans les jeux, pour « appuyer quand on entend » : le mot s'affiche sur la vidéo, le doigt fantôme montre l'appui pendant la consigne, 3-2-1, la scène repart, on appuie sur le gros bouton (ou espace). Ne jamais recoder un « toucher la vidéo au bon moment » à la main. Exemple : `scenarios/medecin.js` (étape `moment`). |
 | `phrase('texte exact')` → `[début, fin]` | un passage retrouvé par ses mots (première occurrence) |
 | `ligne(i)` → `[début, fin]` | la réplique `i` |
 | `playSegment(s, e, gel())` | rejoue un passage puis revient à l'image figée |
 | `state.ask`, `state.replay`, `Q.show(mode, texte)` | la consigne en cours, le bouton « réécouter », la bulle (`'you'`, `'ok'`, `'try'`) |
 | `yourTurn()`, `setTurn('wait')` | à l'apprenant / en attente (les gestes vérifient `document.body.dataset.turn === 'you'`) |
-| `juste(f, msg, seg?)` | bravo + (facultatif) réécoute de la preuve ; renvoie `false` si on a quitté |
+| `juste(f, msg)` | le bravo (sans réécoute : quand c'est juste, on ne remet pas l'extrait) ; renvoie `false` si on a quitté |
 | `faux(f, seg, msg?)` | « Écoute encore », rejoue `seg` ; renvoie `true` au 2e essai raté (montrer la réponse), `null` si on a quitté |
 | `suite(label?)` | bouton vers l'étape suivante |
 | `goBtn('check', 'Valider', fn)` | le bouton d'action du dock |
@@ -120,6 +121,15 @@ Classes de `moteur.css` réutilisables : `.panel.glass`, `.ptitre`, `.tuile` (+ 
 12. Bilan : 2 ou 3 faits par personne, courts, chacun avec son passage (`seg`).
 13. Accessible : `aria-label` sur les boutons sans texte, cibles d'au moins 44 px, pas de couleur seule pour dire
     juste/faux (cadre + texte). Pas d'ombres portées.
+
+14. **Rien de dit avant la réécoute** : pas de « Écoute la dame », « Écoute bien »… (on sait qu'il faut écouter). Pas de
+    « Écoute encore » dans les messages non plus (le moteur l'enlève).
+15. **Quand c'est juste, pas de réécoute** de l'extrait : on le dit, et on passe à la suite.
+16. **Une question dans l'image doit demander une vraie recherche** : plusieurs objets plausibles, à une taille normale.
+    Jamais un seul objet énorme à l'écran, jamais l'objet que la personne tient déjà dans la main (« Où est la clé ? »).
+17. **La question doit dire exactement ce que le dialogue dit** : « elle veut une glace en cornet » n'est pas « elle choisit
+    des cornets ». Pour des A1, une consigne simple, qui dit le but et le geste ; si on ne comprend pas tout de suite ce
+    qu'il faut faire, c'est raté.
 
 ## Vérifier
 

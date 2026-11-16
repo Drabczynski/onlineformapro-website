@@ -437,3 +437,25 @@ body.tall .sac { min-height: 64px; } body.tall .sac .sacpic svg { width: 46px; h
 .facts { flex-direction: column; align-items: flex-start; }
 .fact { height: auto; min-height: 30px; padding: 6px 12px 6px 9px; max-width: 100%; text-align: left; line-height: 1.25; }
 .fact span { text-align: left; }
+
+/* QTE : le mot à guetter en haut, le gros bouton en bas à droite */
+.qte { position: absolute; inset: 0; z-index: 5; pointer-events: none; }
+.qte-mot { position: absolute; top: 18px; left: 50%; translate: -50% 0; display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 9px 24px 11px; border-radius: 22px; color: #fff; background: rgba(14,11,22,.55); -webkit-backdrop-filter: blur(16px) saturate(1.4); backdrop-filter: blur(16px) saturate(1.4); box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); animation: pop .5s var(--spring) both; transition: background .3s, color .3s; white-space: nowrap; }
+.qte-mot small { font-size: 13px; font-weight: 700; letter-spacing: .02em; color: rgba(255,255,255,.75); }
+.qte-mot b { font-size: clamp(24px, 2.4vw, 34px); font-weight: 800; letter-spacing: -.01em; line-height: 1.1; }
+.qte-mot.juste { background: var(--ok); color: var(--ink); } .qte-mot.juste small { color: rgba(20,16,40,.65); }
+.qte-btn { pointer-events: auto; position: absolute; right: 24px; bottom: 24px; width: 104px; height: 104px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 42px; background: rgba(255,255,255,.16); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: inset 0 0 0 2px rgba(255,255,255,.55); transition: transform .15s ease, background .25s; touch-action: manipulation; animation: pop .5s var(--spring) both; }
+.qte-btn .anneau { position: absolute; inset: -8px; width: calc(100% + 16px); height: calc(100% + 16px); transform: rotate(-90deg); pointer-events: none; }
+.qte-btn .anneau circle { fill: none; stroke: rgba(255,255,255,.22); stroke-width: 4; }
+.qte-btn .anneau .prog { stroke: #fff; stroke-dasharray: 289; stroke-dashoffset: 289; stroke-linecap: round; }
+.qte-c { display: grid; place-items: center; line-height: 1; }
+.qte-c svg { width: 46px; height: 46px; }
+.qte-btn.actif { animation: qte-pouls 1.1s ease-in-out infinite; }
+@keyframes qte-pouls { 50% { box-shadow: inset 0 0 0 2px #fff, 0 0 0 12px rgba(255,255,255,.12); } }
+.qte-btn.appui { transform: scale(.86); background: rgba(255,255,255,.34); }
+.qte-btn.touche { background: rgba(75,227,180,.55); }
+.qte-btn.juste { background: var(--ok); color: var(--ink); box-shadow: inset 0 0 0 2px var(--ok); animation: none; }
+.qte-btn.faux { background: rgba(255,170,40,.65); animation: shake .5s var(--apple); }
+.qte-btn:focus-visible { outline: 3px solid #fff; outline-offset: 6px; }
+body.tall .qte-btn { width: 84px; height: 84px; right: 14px; bottom: 14px; font-size: 34px; } body.tall .qte-c svg { width: 36px; height: 36px; }
+body.tall .qte-mot { top: 10px; padding: 7px 16px 9px; }

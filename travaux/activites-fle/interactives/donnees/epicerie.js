@@ -304,14 +304,6 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Écoute la cliente.": {
-   "src": "medias/voix-ee42e419b0.mp3",
-   "w": [
-    0.0,
-    0.56,
-    0.92
-   ]
-  },
   "Dans la boutique, clique sur ce qu'elle achète.": {
    "src": "medias/voix-dcb8015fab.mp3",
    "w": [
@@ -323,14 +315,6 @@ window.DONNEES = {
     1.6,
     1.72,
     1.92
-   ]
-  },
-  "Écoute le vendeur.": {
-   "src": "medias/voix-396bfccd3d.mp3",
-   "w": [
-    0.0,
-    0.48,
-    0.6
    ]
   },
   "Pose l'argent, puis clique sur payer.": {

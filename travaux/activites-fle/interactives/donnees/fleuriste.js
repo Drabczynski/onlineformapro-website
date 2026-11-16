@@ -274,14 +274,6 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Écoute le client.": {
-   "src": "medias/voix-c63ecc4e5d.mp3",
-   "w": [
-    0.0,
-    0.56,
-    0.84
-   ]
-  },
   "Pour qui sont les fleurs ? Clique sur la bonne personne.": {
    "src": "medias/voix-591149dd6d.mp3",
    "w": [
@@ -295,13 +287,6 @@ window.DONNEES = {
     2.08,
     2.24,
     2.56
-   ]
-  },
-  "Écoute bien.": {
-   "src": "medias/voix-785bf678cc.mp3",
-   "w": [
-    0.0,
-    0.4
    ]
   },
   "Dans la boutique, clique sur les fleurs qu'elle adore.": {

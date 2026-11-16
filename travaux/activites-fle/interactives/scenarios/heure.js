@@ -37,7 +37,7 @@ window.SCENARIO = (() => {
     ordre: ['ville', 'depart', 'arrivee'],
     bravo: 'Bravo ! Départ à dix heures, arrivée à midi. Bon voyage !',
     etapes: A => {
-      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, setSide, frameTo, CROPS, freeze, playSegment, phrase, ligne, side, idle, tapHere, at, sfx, faux, juste, suite, goBtn, wait, zones, cam, avant, marque, gel, stopAll } = A;
+      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, setSide, frameTo, CROPS, freeze, playSegment, phrase, ligne, side, idle, tapHere, at, sfx, faux, juste, suite, goBtn, wait, zones, cam, avant, marque, gel, stopAll, qte } = A;
       const aToi = () => document.body.dataset.turn === 'you';
       const secouer = el => { el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); };
       return {
@@ -138,48 +138,13 @@ window.SCENARIO = (() => {
           ask();
         },
 
-        /* 3 · dans la vidéo : la scène repart de la réponse de l'agent ; on touche l'image quand on entend l'heure d'arrivée */
+        /* 3 · dans la vidéo, un QTE : appuyer quand l'agent dit l'heure d'arrivée, « midi » (pas « dix heures », le départ) */
         async arrivee(f) {
-          const DEB = 3.0, D1 = ligne(1)[0] - .08, Q2 = ligne(2)[0] - .12, BON = ligne(3)[0] - .12, FIN = ligne(3)[1] + .3;
-          const PREUVE = [ligne(2)[0], ligne(3)[1]];
-          let touche = null, tour = 0;
-          setSide(null); frameTo(CROPS.full, false); idle.clear();
-          state.gel = DEB; await freeze(DEB); if (!alive(f)) return;
-          state.ask = "Touche la vidéo quand tu entends l'heure d'arrivée.";
-          if (!await Q.say(state.ask, f)) return;
-          async function lancer() {
-            const moi = ++tour;
-            touche = null; Q.show('you', state.ask); setTurn('you'); cam.classList.add('asking');
-            const fini = await playSegment(DEB, FIN, null);
-            if (!alive(f) || moi !== tour || touche !== null) return;
-            cam.classList.remove('asking');
-            if (!fini) {             // interrompu (la question réécoutée) : on relance quand c'est de nouveau à l'apprenant
-              while (alive(f) && moi === tour && !aToi()) await wait(150);
-              if (alive(f) && moi === tour && touche === null) lancer();
-              return;
-            }
-            setTurn('wait');
-            rater("Tu n'as pas touché. Écoute encore.");
-          }
-          async function rater(msg) {
-            const montrer = await faux(f, PREUVE, msg); if (montrer === null) return;
-            if (montrer) { Q.show('ok', "C'est là" + NB + ': «' + NB + 'Il arrive à midi.' + NB + '»'); state.essais = 0; suite(); }
-            else { await wait(300); if (alive(f)) lancer(); }
-          }
-          zones([{ id: 'ecran', label: 'Toucher la vidéo', x: 0, y: 0, w: 100, h: 100 }], async (id, ev) => {
-            const t = $('#vid').currentTime; touche = t; tour++; stopAll(); cam.classList.remove('asking'); setTurn('wait');
-            const r = cam.getBoundingClientRect(), z = { x: (ev.clientX - r.left) / r.width * 100, y: (ev.clientY - r.top) / r.height * 100, w: 0, h: 0 };
-            if (t >= BON) {
-              marque(z, 'midi', 'juste');
-              if (!await juste(f, 'Oui' + NB + '! Il arrive à midi' + NB + ': 12' + NB + 'h.')) return;
-              zones(null); suite();
-            } else if (t >= Q2) { marque(z, 'la question', 'faux'); rater("C'est la question. Écoute la réponse."); }
-            else if (t >= D1) { marque(z, 'le départ', 'faux'); rater("Dix heures, c'est le départ. Écoute encore."); }
-            else { marque(z, 'trop tôt', 'faux'); rater('Pas encore. Écoute bien.'); }
-          });
-          $('.hit[data-id="ecran"]', cam).classList.add('ecran');
-          state.replay = () => { if (!aToi()) return; stopAll(); lancer(); };
-          lancer();
+          if (!await qte(f, { mot: 'midi', consigne: 'Appuie sur le bouton quand tu entends le mot midi.', de: 3.0, a: ligne(3)[1] + .3,
+            cibles: [{ s: phrase('midi')[0] - .15, e: ligne(3)[1] + .6 }],
+            pieges: [{ s: ligne(1)[0] - .08, e: ligne(1)[1] + .4, msg: "Dix heures, c'est le départ." }, { s: ligne(2)[0] - .12, e: ligne(2)[1] + .2, msg: "Là, c'est la question." }],
+            juste: 'Oui' + NB + '! Il arrive à midi' + NB + ': 12' + NB + 'h.' })) return;
+          suite();
         },
       };
     },

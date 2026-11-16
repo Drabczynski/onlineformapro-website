@@ -1,16 +1,54 @@
 {
-  "video": "restaurant-addition",
-  "gel": 9.9,
-  "people": {
-    "serveur": {"name": "Le serveur", "qui": "Le serveur", "side": "g", "spot": [21, 50, 18, 62], "anchor": [21, 46], "crop": [8, 1, 29, 51.5]},
-    "client": {"name": "Le client", "qui": "Le client", "side": "d", "spot": [77, 50, 18, 62], "anchor": [77, 46], "crop": [66, 10, 25, 44]}
+ "video": "restaurant-addition",
+ "gel": 9.9,
+ "people": {
+  "serveur": {
+   "name": "Le serveur",
+   "qui": "Le serveur",
+   "side": "g",
+   "spot": [
+    21,
+    50,
+    18,
+    62
+   ],
+   "anchor": [
+    21,
+    46
+   ],
+   "crop": [
+    8,
+    1,
+    29,
+    51.5
+   ]
   },
-  "consignes": [
-    "Écoute le serveur.",
-    "Ça fait combien ? Clique sur les chiffres, puis sur la touche verte.",
-    "Écoute le client.",
-    "Il veut payer comment ? Clique sur le bon objet.",
-    "Dans la vidéo, fais glisser sa carte jusqu'au terminal.",
-    "Super ! Le client a payé ses vingt-huit euros par carte."
-  ]
+  "client": {
+   "name": "Le client",
+   "qui": "Le client",
+   "side": "d",
+   "spot": [
+    77,
+    50,
+    18,
+    62
+   ],
+   "anchor": [
+    77,
+    46
+   ],
+   "crop": [
+    66,
+    10,
+    25,
+    44
+   ]
+  }
+ },
+ "consignes": [
+  "Ça fait combien ? Clique sur les chiffres, puis sur la touche verte.",
+  "Il veut payer comment ? Clique sur le bon objet.",
+  "Dans la vidéo, fais glisser sa carte jusqu'au terminal.",
+  "Super ! Le client a payé ses vingt-huit euros par carte."
+ ]
 }

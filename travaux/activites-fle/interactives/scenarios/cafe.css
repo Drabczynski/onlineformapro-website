@@ -1,53 +1,64 @@
-/* ================= Café ou thé ? : préparer la tasse de l'homme ================= */
-.cafe .boissons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.cafe .boisson { height: 132px; touch-action: none; user-select: none; -webkit-user-select: none; cursor: grab; }
-.cafe .boisson .pic { width: 80px; height: 80px; }
-.cafe .boisson .pic svg { width: 76px; height: 76px; }
-.cafe .boisson[disabled] { cursor: default; }
-.cafe .boisson .nom { font-size: 15px; }
+/* ================= Café ou thé ? : préparer la boisson de l'homme ================= */
+/* une tasse au centre, quatre choses autour : du café, du thé (en haut), du sucre, du lait (en bas) */
+.cafe .table { display: grid; grid-template-columns: 124px 1fr 124px; grid-template-rows: 1fr 1fr; grid-template-areas: "a t b" "c t d"; gap: 12px; }
+.cafe .chose[data-id="cafe"] { grid-area: a; } .cafe .chose[data-id="the"] { grid-area: b; }
+.cafe .chose[data-id="sucre"] { grid-area: c; } .cafe .chose[data-id="lait"] { grid-area: d; }
+.cafe .tz { grid-area: t; }
+.cafe .chose { height: 132px; touch-action: none; user-select: none; -webkit-user-select: none; cursor: grab; }
+.cafe .chose .pic { width: 78px; height: 78px; }
+.cafe .chose .pic svg { width: 72px; height: 72px; }
+.cafe .chose .nom { font-size: 16px; }
+.cafe .chose[disabled] { cursor: default; }
 .cafe .tenu { z-index: 20; cursor: grabbing; transition: none !important; }
-.cafe > :has(.tenu) { z-index: 5; }                /* ce qu'on glisse passe devant la tasse */
 .cafe .legende { font-weight: 700; font-size: 14px; color: var(--text2); text-align: center; line-height: 1.15; }
 
-/* la tasse, sur le comptoir : de l'eau chaude, puis du thé */
-.cafe .comptoir { border-radius: 22px; background: rgba(0,0,0,.2); padding: 14px 12px 12px; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: background .3s, box-shadow .3s; }
-.cafe .comptoir .tasse { width: 200px; }
-.cafe .tasse { display: block; }
-.cafe .tasse svg { width: 100%; height: auto; }
-.cafe .liquide { fill: #CFE2EA; transition: fill 1.4s ease; }
-.cafe .the .liquide { fill: #B26F2A; }
+/* sa tasse : vide, puis le liquide prend la couleur de ce qu'on y met */
+.cafe .tz { border-radius: 22px; background: rgba(0,0,0,.2); padding: 10px 8px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; transition: background .3s, box-shadow .3s; }
+.cafe .tasse { position: relative; width: 252px; max-width: 100%; }
+.cafe .tasse svg { display: block; width: 100%; height: auto; }
+.cafe .liquide { fill: #E9EEF3; opacity: 0; transition: fill 1s ease, opacity .5s; }
+.cafe .tz.l-the .liquide, .cafe .tz.l-cafe .liquide, .cafe .tz.l-lait .liquide { opacity: 1; }
+.cafe .tz.l-the .liquide { fill: #B26F2A; }
+.cafe .tz.l-lait .liquide { fill: #FBF8F1; }
+.cafe .tz.l-cafe .liquide { fill: #4A2A17; }
+.cafe .tz.l-the.l-lait .liquide { fill: #CF9E6B; }
+.cafe .tz.l-cafe.l-lait .liquide { fill: #9A6A44; }
 .cafe .sachet { opacity: 0; transition: opacity .5s; }
-.cafe .the .sachet { opacity: 1; }
+.cafe .tz.l-the .sachet { opacity: 1; }
+.cafe .vapeur { opacity: 0; transition: opacity .6s; }
+.cafe .tz.l-the .vapeur, .cafe .tz.l-cafe .vapeur { opacity: 1; }
 .cafe .vapeur path { animation: cafe-vapeur 2.6s ease-in-out infinite; }
 .cafe .vapeur path:nth-child(2) { animation-delay: .5s; } .cafe .vapeur path:nth-child(3) { animation-delay: 1s; }
 @keyframes cafe-vapeur { 0%, 100% { opacity: .25; transform: translateY(3px); } 50% { opacity: .9; transform: translateY(-3px); } }
+
+/* ce qu'il y a dans la tasse, posé sur la tasse : un clic le retire (la croix le dit) */
+.cafe .contenu { position: absolute; left: 22%; width: 49%; top: 37%; height: 52%; display: flex; flex-wrap: wrap; align-content: center; justify-content: center; gap: 6px; }
+.cafe .puce { position: relative; width: 48px; height: 48px; border-radius: 50%; background: #fff; display: grid; place-items: center; transition: box-shadow .2s, background .2s; }
+.cafe .puce .mini { width: 34px; height: 34px; display: grid; place-items: center; }
+.cafe .puce .mini svg { width: 34px; height: 34px; }
+.cafe .puce .x { position: absolute; top: -5px; right: -5px; width: 20px; height: 20px; border-radius: 50%; background: var(--ink); color: #fff; font-size: 15px; font-weight: 800; line-height: 19px; text-align: center; box-shadow: 0 0 0 2px #fff; }
+.cafe .puce.neuf { animation: pop .45s var(--spring) both; }
+.cafe .puce:hover { background: #F1F4F8; }
+.cafe .puce.faux { box-shadow: 0 0 0 3px var(--try); background: #FFF3DA; }
+.cafe .puce[disabled] { cursor: default; }
+.cafe .puce[disabled] .x { display: none; }
+body[data-turn="listen"] .cafe .puce, body[data-turn="wait"] .cafe .puce { pointer-events: none; }
+.volant .mini svg { width: 100%; height: 100%; }
+
+/* « chaud » : on survole la tasse en glissant (blanc) ; juste (vert) — jamais de rouge */
+.cafe .tz.chaud { background: rgba(255,255,255,.16); box-shadow: inset 0 0 0 2px rgba(255,255,255,.85); }
+.cafe .tz.juste { box-shadow: inset 0 0 0 3px var(--ok); }
+.cafe .tz.juste .legende { color: var(--ok); }
+
 @media (prefers-reduced-motion: reduce) { .cafe .vapeur path { animation: none; } }
 
-/* « chaud » : on survole la cible en glissant (blanc) ; juste (vert) ; à revoir (orange) — jamais de rouge */
-.cafe .chaud { background: rgba(255,255,255,.16) !important; box-shadow: inset 0 0 0 2px rgba(255,255,255,.85) !important; }
-.cafe .comptoir.juste, .cafe .poste.juste .cible { box-shadow: inset 0 0 0 3px var(--ok); }
-.cafe .comptoir.juste .legende, .cafe .poste.juste .legende { color: var(--ok); }
-.cafe .poste.faux .cible { box-shadow: inset 0 0 0 3px var(--try); }
-.cafe .poste.faux .legende { color: var(--try); }
-
-/* le sucre : la soucoupe (deux sucres), le sucrier, la tasse */
-.cafe .table { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.cafe .poste { position: relative; }
-.cafe .poste .cible { width: 100%; border-radius: 22px; background: rgba(0,0,0,.2); padding: 10px 10px 10px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 4px; transition: background .3s, box-shadow .3s; }
-.cafe .table .cible { height: 212px; }
-.cafe .table .cible svg, .cafe .table .cible .tasse { width: 178px; max-width: 100%; }
-.cafe .poste[data-ou="soucoupe"] .cible { height: 104px; }
-.cafe .poste[data-ou="soucoupe"] .cible svg { width: 170px; }
-.cafe .places { position: absolute; left: 0; right: 0; display: flex; justify-content: center; gap: 4px; pointer-events: none; }
-.cafe .poste[data-ou="soucoupe"] .places { top: 8px; gap: 10px; }
-.cafe .poste[data-ou="sucrier"] .places { top: 70px; padding-right: 8px; }
-.cafe .poste[data-ou="tasse"] .places { top: 54px; padding-right: 14px; }
-.cafe .sucre { pointer-events: auto; width: 52px; height: 52px; display: grid; place-items: center; border-radius: 14px; touch-action: none; user-select: none; -webkit-user-select: none; cursor: grab; transition: box-shadow .2s; }
-.cafe .sucre svg { width: 46px; height: 46px; }
-.cafe .sucre[aria-pressed="true"] { box-shadow: 0 0 0 3px #fff; background: rgba(255,255,255,.14); }
-.cafe .poste[data-ou="tasse"] .sucre svg, .cafe .poste[data-ou="sucrier"] .sucre svg { width: 36px; height: 36px; }
-.cafe .sucre[disabled], .cafe .cible[disabled] { cursor: default; }
-body[data-turn="listen"] .cafe .sucre, body[data-turn="wait"] .cafe .sucre { pointer-events: none; }
-body.tall .cafe .boisson { height: 96px; } body.tall .cafe .boisson .pic { width: 46px; height: 46px; } body.tall .cafe .boisson .pic svg { width: 42px; height: 42px; }
-body.tall .cafe .comptoir .tasse { width: 150px; } body.tall .cafe .table .cible { height: 170px; } body.tall .cafe .table .cible svg, body.tall .cafe .table .cible .tasse { width: 140px; }
-body.tall .cafe .poste[data-ou="sucrier"] .places { top: 46px; } body.tall .cafe .poste[data-ou="tasse"] .places { top: 30px; }
+/* téléphone en hauteur : les quatre choses sur une ligne, la tasse dessous */
+body.tall .cafe .table { grid-template-columns: repeat(4, 1fr); grid-template-rows: auto auto; grid-template-areas: "a b c d" "t t t t"; gap: 8px; }
+body.tall .cafe .chose { height: 92px; } body.tall .cafe .chose .pic { width: 50px; height: 50px; } body.tall .cafe .chose .pic svg { width: 46px; height: 46px; }
+body.tall .cafe .chose .nom { font-size: 14px; }
+body.tall .cafe .tasse { width: 220px; }
+body.compact .cafe .chose { height: 78px; } body.compact .cafe .tasse { width: 190px; }
+/* écran bas (téléphone couché) : panneau étroit */
+body.short .cafe .table { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto auto; grid-template-areas: "a b" "t t" "c d"; gap: 6px; }
+body.short .cafe .chose { height: 64px; } body.short .cafe .chose .pic { width: 34px; height: 34px; } body.short .cafe .chose .pic svg { width: 32px; height: 32px; }
+body.short .cafe .chose .nom { font-size: 13px; } body.short .cafe .tasse { width: 190px; }

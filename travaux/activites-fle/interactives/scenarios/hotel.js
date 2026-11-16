@@ -1,7 +1,9 @@
 /* À la réception de l'hôtel : le client redit son nom (la vidéo resserrée sur lui), on remplit la fiche de réservation
-   (on clique sur son nom dans les réservations du jour, puis une lune pour chaque nuit) ; dans la vidéo, sur une image où
-   la réceptionniste tient encore la carte, on touche la clé (ici, c'est une carte) ; enfin, dans l'ascenseur dessiné à
-   côté, on appuie sur le bouton de son étage et la cabine monte. */
+   (on clique sur son nom dans les réservations du jour, puis une lune pour chaque nuit) ; puis, dans la vidéo, après
+   « Voici votre clé », on donne la vraie clé (une carte) à monsieur Martin : on la fait glisser de la main de la
+   réceptionniste jusqu'à lui, et la vidéo avance sous le doigt ; enfin, dans l'ascenseur dessiné à côté, on appuie sur le
+   bouton de son étage et la cabine monte.
+   (Plus de « Où est la clé ? » : elle la tient dans la main, c'était trop évident.) */
 window.SCENARIO = (() => {
   const NB = '\u202f';
   const NOMS = [{ id: 'marin', t: 'Marin' }, { id: 'martin', t: 'Martin' }, { id: 'morin', t: 'Morin' }, { id: 'martel', t: 'Martel' }];
@@ -20,14 +22,21 @@ window.SCENARIO = (() => {
   const CLIENT = '<svg viewBox="0 0 40 52" aria-hidden="true"><path d="M6 52c0-13 6-20 14-20s14 7 14 20z" fill="#8C8F94"/><path d="M15.5 33.5c1.4 2.4 7.6 2.4 9 0" fill="none" stroke="#F4F1EA" stroke-width="2.4"/><circle cx="20" cy="17" r="9" fill="#E9B994"/><path d="M11 16c-.4-7 3.6-11 9.2-11 5.4 0 9.2 3.6 8.8 10-1.8-3.4-4.6-5-9-5s-7.2 2-9 6z" fill="#6B4A32"/></svg>';
   const FLECHE = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3l5 7H3z" fill="currentColor"/></svg>';
 
-  /* la clé, sur l'image à 6,62 s : la réceptionniste tient la carte, elle ne la tend pas encore (en %) */
-  const GEL_CLE = 6.62;
-  const ZONES = [
-    { id: 'cle', label: 'La clé', x: 24, y: 64, w: 17, h: 18 },
-    { id: 'ecran', label: "L'écran", nom: "l'écran", dit: "l'écran", x: 45, y: 64, w: 18, h: 20 },
-    { id: 'lampe', label: 'La lampe', nom: 'la lampe', dit: 'une lampe', x: 79, y: 34, w: 10, h: 15 },
-    { id: 'comptoir', label: 'Le comptoir', nom: 'le comptoir', dit: 'le comptoir', x: 0, y: 87, w: 55, h: 13 },
-  ];
+  /* la clé, dans la vidéo (mesurée image par image, en % de l'image) : à 6,6 s, la réceptionniste tient la carte devant
+     elle, elle ne la tend pas encore ; elle la tend (6,8 s), la pose sur le comptoir devant lui (7,0 → 7,3 s), puis
+     monsieur Martin avance la main (7,75 s) et la prend (8,25 → 8,4 s ; la coupe suivante est à 8,46 s). */
+  const CLE = {
+    gel: 6.6, fin: 8.4,
+    depart: [35, 70.5],     // la carte, dans la main de la réceptionniste
+    cible: [57, 85],        // la main de monsieur Martin, posée sur le comptoir
+    /* [avancée du doigt sur le trajet départ → cible (0 → 1), temps de la vidéo] : la carte suit le doigt jusqu'au comptoir
+       (0 → 0,5), puis la main de monsieur Martin vient la prendre (0,6 → 1) */
+    courbe: [[0, 6.6], [.25, 6.8], [.42, 7.0], [.5, 7.3], [.6, 7.75], [1, 8.3]],
+    assez: .8,              // lâchée avant, la carte revient
+  };
+  const ZCARTE = { id: 'cle-video', label: "La clé : fais-la glisser jusqu'à monsieur Martin", x: 28, y: 60, w: 14, h: 20 };
+  const ZPRISE = { x: 40, y: 80, w: 10, h: 9 };     // la clé dans la main de monsieur Martin, à 8,4 s
+  const tempsDe = p => { const C = CLE.courbe; for (let k = 1; k < C.length; k++) if (p <= C[k][0]) { const [p0, t0] = C[k - 1], [p1, t1] = C[k]; return t0 + (p - p0) / (p1 - p0) * (t1 - t0); } return C[C.length - 1][1]; };
 
   return {
     plans: [{ de: 0, cx: { receptionniste: .4, client: .4 } }, { de: .625, cx: { receptionniste: .62, client: .62 } }, { de: .958, cx: { receptionniste: .4, client: .4 } },
@@ -36,7 +45,7 @@ window.SCENARIO = (() => {
     ordre: ['fiche', 'cle', 'etage'],
     bravo: 'Bravo' + NB + '! Monsieur Martin peut monter dans sa chambre.',
     etapes: A => {
-      const { $, $$, state, alive, Q, yourTurn, setTurn, playSegment, phrase, ligne, side, idle, tapHere, sfx, faux, juste, suite, goBtn, wait, zones, cam, avant, cadreZone, marque, gel, fly } = A;
+      const { $, $$, state, alive, Q, yourTurn, setTurn, playSegment, freeze, phrase, ligne, side, idle, tapHere, at, sfx, faux, juste, suite, goBtn, wait, zones, cam, avant, cadreZone, marque, gel, fly } = A;
       /* les passages : la question de la réceptionniste, puis la réponse du client (on coupe avant le plan suivant) */
       const NOM = [ligne(2)[0], 4.0], SEJOUR = [phrase('Vous restez combien de nuits')[0], 6.45];
       const VOICI = phrase('Voici votre clé'), ETAGE = [phrase('Votre chambre est au deuxième étage')[0], 8.45];
@@ -57,7 +66,7 @@ window.SCENARIO = (() => {
             $('#hTotal', side).textContent = n ? nuitsTxt(n) : '';
           };
           if (!await avant(f, {
-            question: 'Écoute le client.', qui: 'client', seg: NOM, sideW: 460, consigne: 'La réservation est à quel nom' + NB + '? Clique sur le bon nom.',
+            qui: 'client', seg: NOM, sideW: 460, consigne: 'La réservation est à quel nom' + NB + '? Clique sur le bon nom.',
             panneau: `<div class="panel glass h-panel"><p class="ptitre">Fiche de réservation</p>
               <div class="h-fiche">
                 <div class="h-ligne"><span class="h-lbl">Nom</span><span class="h-champ" id="hNom"><span class="h-vide">${CRAYON}</span></span></div>
@@ -82,12 +91,11 @@ window.SCENARIO = (() => {
               $$('.h-nom', side).forEach(x => x.classList.remove('indice')); b.classList.add('juste');
               await fly(b, $('#hNom', side), `<span class="h-vol">${n.t}</span>`, { scale: .8 }); if (!alive(f)) return;
               const champ = $('#hNom', side); champ.innerHTML = `<span class="h-ecrit">${n.t}</span><span class="h-ok">${CHECK}</span>`; champ.classList.add('rempli');
-              if (!await juste(f, 'Oui' + NB + '! Au nom de Martin.', phrase('au nom de Martin'))) return;
+              if (!await juste(f, 'Oui' + NB + '! Au nom de Martin.')) return;
               await wait(700); if (!alive(f)) return;
               /* 2e partie : les nuits */
               partie = 2; $('#hResa', side).classList.add('fini'); $('#hLn', side).classList.add('actif');
               $$('.h-lune', side).forEach(x => { x.disabled = false; });
-              if (!await Q.say('Écoute le client.', f)) return;
               setTurn('listen'); await wait(250); if (!alive(f)) return;
               await playSegment(SEJOUR[0], SEJOUR[1], gel()); if (!alive(f)) return;
               state.ask = 'Il reste combien de nuits' + NB + '? Clique sur une lune pour chaque nuit.';
@@ -96,7 +104,7 @@ window.SCENARIO = (() => {
               ask();
             } else {
               b.classList.add('faux'); vibre(b);
-              const montrer = await faux(f, NOM, 'Pas ' + n.t + '. Écoute encore.'); if (montrer === null) return;
+              const montrer = await faux(f, NOM, 'Pas ' + n.t + '.'); if (montrer === null) return;
               b.classList.remove('faux');
               if (montrer) $(`.h-nom[data-id="${BON_NOM}"]`, side).classList.add('indice');
               ask();
@@ -108,11 +116,11 @@ window.SCENARIO = (() => {
             setTurn('wait'); goBtn(null); idle.clear();
             if (nuits === BONNES_NUITS) {
               $$('.h-lune.on', side).forEach(x => x.classList.add('juste')); $('#hLn', side).classList.add('juste');
-              if (!await juste(f, 'Oui' + NB + '! Il reste deux nuits.', ligne(5))) return;
+              if (!await juste(f, 'Oui' + NB + '! Il reste deux nuits.')) return;
               suite();
             } else {
               $$('.h-lune.on', side).forEach(x => x.classList.add('faux')); vibre($('.h-lunes', side));
-              const montrer = await faux(f, SEJOUR, 'Ça fait ' + NUITS_MOTS[nuits] + '. Écoute encore.'); if (montrer === null) return;
+              const montrer = await faux(f, SEJOUR, 'Ça fait ' + NUITS_MOTS[nuits] + '.'); if (montrer === null) return;
               if (montrer) {
                 allumer(BONNES_NUITS); $$('.h-lune.on', side).forEach(x => x.classList.add('juste')); $('#hLn', side).classList.add('juste');
                 Q.show('ok', 'Il reste deux nuits' + NB + ': deux lunes.'); state.essais = 0; suite();
@@ -122,25 +130,75 @@ window.SCENARIO = (() => {
           ask();
         },
 
-        /* 2 · dans la vidéo : elle redit « Voici votre clé » ; sur l'image, on touche la clé (une carte), pas l'écran, la lampe ni le comptoir */
+        /* 2 · dans la vidéo : elle redit « Voici votre clé » ; sur l'image d'avant (elle tient la carte devant elle), on fait
+           glisser la vraie carte jusqu'à la main de monsieur Martin : la vidéo avance sous le doigt (elle la pose devant lui,
+           il avance la main) ; lâchée trop tôt, la carte revient. Un clic sur la carte (ou Entrée) marche aussi. */
         async cle(f) {
-          const ask = () => { Q.show('you', state.ask); yourTurn(); cam.classList.add('asking'); idle.set(tapHere($('.hit[data-id="ecran"]', cam)), 5000); };
-          if (!await avant(f, { question: 'Écoute la réceptionniste.', qui: 'receptionniste', seg: VOICI, gel: GEL_CLE, consigne: 'Où est la clé' + NB + "? Clique dans l'image." })) return;
-          state.replay = async () => { setTurn('listen'); cam.classList.remove('asking'); await playSegment(VOICI[0], VOICI[1], gel()); if (alive(f)) ask(); };
-          zones(ZONES, async (id, ev, z) => {
-            setTurn('wait'); cam.classList.remove('asking'); sfx.tick();
-            if (id === 'cle') {
-              $$('.hit', cam).forEach(h => h.classList.remove('indice'));
-              cadreZone(z); marque(z, 'la clé', 'juste');
-              if (!await juste(f, 'Oui' + NB + "! Ici, la clé, c'est une carte.")) return;
-              zones(null); suite();
-            } else {
-              cadreZone(z, 'faux'); marque(z, z.nom, 'faux');
-              const montrer = await faux(f, VOICI, "Ça, c'est " + z.dit + '. Écoute encore.'); if (montrer === null) return;
-              if (montrer) $('.hit[data-id="cle"]', cam).classList.add('indice');
-              ask();
-            }
+          const vid = $('#vid');
+          let fait = false, rates = 0, lacheA = 0;
+          const pct = (q, r) => [r.left + q[0] / 100 * r.width, r.top + q[1] / 100 * r.height];
+          /* le doigt fantôme montre le geste : prendre la carte, la faire glisser jusqu'à lui */
+          const geste = () => {
+            const r = cam.getBoundingClientRect(), [x, y] = pct(CLE.depart, r), [x2, y2] = pct(CLE.cible, r);
+            return [at(x, y + 40, 0), at(x, y, 1), at(x, y, 1, .82), at(x2, y2, 1, .82), at(x2, y2, 1), at(x2, y2, 0)];
+          };
+          const ask = () => { Q.show('you', state.ask); yourTurn(); cam.classList.add('asking'); idle.set(geste, 5000); };
+          /* la vidéo suit le doigt : une seule recherche à la fois, toujours vers le dernier temps demandé */
+          const defiler = () => {
+            let cible = null, occupe = false;
+            const aller = t => { cible = t; if (occupe) return; occupe = true; try { vid.currentTime = t; } catch (err) { occupe = false; } };
+            const vu = () => { occupe = false; if (cible != null && Math.abs(vid.currentTime - cible) > .02) aller(cible); };
+            vid.addEventListener('seeked', vu);
+            return { aller, fin() { vid.removeEventListener('seeked', vu); cible = null; } };
+          };
+          if (!await avant(f, {
+            qui: 'receptionniste', seg: VOICI, gel: CLE.gel, consigne: 'Donne la clé à monsieur Martin' + NB + ": fais-la glisser jusqu'à lui.",
+            monte: () => zones([ZCARTE], () => { if (performance.now() - lacheA > 400) donner(); }),     // un clic, sans glisser : la carte y va seule
+          })) return;
+          state.replay = async () => { setTurn('listen'); cam.classList.remove('asking'); await playSegment(VOICI[0], VOICI[1], gel()); if (alive(f) && !fait) ask(); };
+          const h = $('.hit[data-id="cle-video"]', cam); h.classList.add('glissable');
+          h.addEventListener('pointerdown', e => {
+            if (document.body.dataset.turn !== 'you' || fait || e.button > 0) return;
+            A.unlock(); idle.reset(); e.preventDefault(); h.classList.add('tire');
+            try { h.setPointerCapture(e.pointerId); } catch (err) {}
+            const r = cam.getBoundingClientRect(), x0 = e.clientX, y0 = e.clientY, [xd, yd] = pct(CLE.depart, r), [xc, yc] = pct(CLE.cible, r);
+            const vx = xc - xd, vy = yc - yd, L2 = vx * vx + vy * vy, d = defiler();
+            let p = 0, glisse = false;
+            const bouge = ev => {
+              p = Math.max(0, Math.min(1, ((ev.clientX - x0) * vx + (ev.clientY - y0) * vy) / L2));
+              if (p > .03) glisse = true;
+              d.aller(tempsDe(p));
+            };
+            const lache = async () => {
+              h.removeEventListener('pointermove', bouge); h.removeEventListener('pointerup', lache); h.removeEventListener('pointercancel', lache);
+              h.classList.remove('tire');
+              if (!glisse) { d.fin(); return; }
+              lacheA = performance.now();
+              if (p >= CLE.assez) { d.fin(); donner(tempsDe(p)); return; }
+              /* trop tôt : la carte revient dans la main de la réceptionniste */
+              setTurn('wait'); rates++;
+              const t1 = tempsDe(p), t0 = performance.now();
+              for (let k = 0; k < 1 && alive(f);) { k = Math.min(1, (performance.now() - t0) / 380); d.aller(t1 + (CLE.gel - t1) * k); await new Promise(res => requestAnimationFrame(res)); }
+              d.fin(); if (!alive(f)) return;
+              await freeze(CLE.gel); if (!alive(f) || fait) return;
+              Q.show('you', 'Encore un peu' + NB + ": jusqu'à lui."); yourTurn(); cam.classList.add('asking');
+              idle.set(geste, rates >= 2 ? 700 : 5000);     // au 2e essai, le doigt montre tout de suite le geste
+            };
+            h.addEventListener('pointermove', bouge); h.addEventListener('pointerup', lache); h.addEventListener('pointercancel', lache);
           });
+          /* donnée : la vidéo va jusqu'au bout du geste (il prend la carte), sans le son (la suite de la phrase, « …deuxième
+             étage », est pour l'étape d'après) */
+          async function donner(depuis = CLE.gel) {
+            if (fait || document.body.dataset.turn !== 'you') return;
+            fait = true; zones(null); idle.clear(); setTurn('wait');
+            vid.muted = true;
+            try { await playSegment(depuis, CLE.fin, null); } finally { vid.muted = false; }
+            if (!alive(f)) return;
+            state.gel = CLE.fin; await freeze(CLE.fin); if (!alive(f)) return;
+            cadreZone(ZPRISE); marque(ZPRISE, 'Sa clé', 'juste');
+            if (!await juste(f, 'Oui' + NB + "! Monsieur Martin a sa clé" + NB + ": c'est une carte.")) return;
+            suite();
+          }
           ask();
         },
 
@@ -163,7 +221,7 @@ window.SCENARIO = (() => {
             if (!vite) { await wait(200); c.classList.add('ouverte'); await wait(450); }
           }
           if (!await avant(f, {
-            question: 'Écoute la réceptionniste.', qui: 'receptionniste', seg: ETAGE, sideW: 460, consigne: 'La chambre est à quel étage' + NB + '? Clique sur le bon bouton.',
+            qui: 'receptionniste', seg: ETAGE, sideW: 460, consigne: 'La chambre est à quel étage' + NB + '? Clique sur le bon bouton.',
             panneau: `<div class="panel glass h-panel"><p class="ptitre">Dans l'ascenseur</p>
               <div class="h-asc">
                 <div class="h-cage" aria-hidden="true">
@@ -192,7 +250,7 @@ window.SCENARIO = (() => {
               suite();
             } else {
               b.classList.replace('choisi', 'faux'); n.classList.add('faux'); dit.textContent = 'Pas ici';
-              const montrer = await faux(f, ETAGE, "Non, ici, c'est " + DIT[e] + '. Écoute encore.'); if (montrer === null) return;
+              const montrer = await faux(f, ETAGE, "Non, ici, c'est " + DIT[e] + '.'); if (montrer === null) return;
               b.classList.remove('faux'); n.classList.remove('faux'); dit.textContent = '';
               await aller(0, true); if (!alive(f)) return;
               if (montrer) btn(BON_ETAGE).classList.add('indice');

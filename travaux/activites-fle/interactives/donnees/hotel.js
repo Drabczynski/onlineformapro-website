@@ -303,14 +303,6 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Écoute le client.": {
-   "src": "medias/voix-c63ecc4e5d.mp3",
-   "w": [
-    0.0,
-    0.56,
-    0.84
-   ]
-  },
   "La réservation est à quel nom ? Clique sur le bon nom.": {
    "src": "medias/voix-61d3967dc9.mp3",
    "w": [
@@ -344,24 +336,19 @@ window.DONNEES = {
     3.44
    ]
   },
-  "Écoute la réceptionniste.": {
-   "src": "medias/voix-d5e89d9380.mp3",
+  "Donne la clé à monsieur Martin : fais-la glisser jusqu'à lui.": {
+   "src": "medias/voix-547d7a19ca.mp3",
    "w": [
     0.0,
-    0.52,
-    0.64
-   ]
-  },
-  "Où est la clé ? Clique dans l'image.": {
-   "src": "medias/voix-020aa19577.mp3",
-   "w": [
-    0.0,
-    0.16,
     0.28,
     0.4,
+    0.64,
+    0.72,
     1.2,
-    1.48,
-    1.6
+    1.92,
+    2.2,
+    2.6,
+    2.92
    ]
   },
   "La chambre est à quel étage ? Clique sur le bon bouton.": {

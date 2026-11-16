@@ -52,47 +52,16 @@ window.SCENARIO = (() => {
     ordre: ['prix', 'affiche', 'carte'],
     bravo: 'Bravo\u202f! Tu as bien compris le forfait de la cliente.',
     etapes: A => {
-      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, setSide, frameTo, CROPS, freeze, playSegment, phrase, ligne, side, idle, tapHere, sfx, faux, juste, suite, goBtn, wait, zones, cam, avant, marque, fly, gel, stopAll } = A;
+      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, setSide, frameTo, CROPS, freeze, playSegment, phrase, ligne, side, idle, tapHere, sfx, faux, juste, suite, goBtn, wait, zones, cam, avant, marque, fly, gel, stopAll, qte } = A;
       const OFFRE = ligne(1), APPEL = [ligne(2)[0], ligne(3)[1]];
       return {
-        /* 1 · dans la vidéo : la cliente demande, le vendeur répond ; on clique quand il dit le prix (pas les gigas) */
+        /* 1 · dans la vidéo, un QTE : appuyer quand le vendeur dit le prix, « dix euros » (pas « vingt gigas ») */
         async prix(f) {
-          const PRIX = phrase('dix euros'), BON = [PRIX[0] - .06, OFFRE[1] + .5], GIG = OFFRE[0] - .1, FIN = 4.85;
-          let touche = null, debut = ligne(0)[0];
-          setSide(null); frameTo(CROPS.full, false); idle.clear();
-          state.gel = debut; await freeze(debut); if (!alive(f)) return;
-          state.ask = 'Clique sur la vidéo quand tu entends le prix.';
-          if (!await Q.say(state.ask, f)) return;
-          async function lancer() {
-            touche = null; Q.show('you', state.ask); setTurn('you'); cam.classList.add('asking');
-            await playSegment(debut, FIN, null);
-            if (!alive(f) || touche !== null) return;
-            cam.classList.remove('asking'); setTurn('wait');
-            rater("Tu n'as pas cliqué. Écoute encore.");
-          }
-          async function rater(msg) {
-            const montrer = await faux(f, OFFRE, msg); if (montrer === null) return;
-            if (montrer) { Q.show('ok', 'Le prix' + NB + ': «' + NB + 'dix euros' + NB + '».'); state.essais = 0; suite(); }
-            else { debut = 1.9; await wait(300); if (alive(f)) lancer(); }   // la 2e fois, on repart juste avant le vendeur
-          }
-          zones([{ id: 'ecran', label: 'Cliquer sur la vidéo', x: 0, y: 0, w: 100, h: 100 }], async (id, ev) => {
-            const t = $('#vid').currentTime; touche = t; stopAll(); cam.classList.remove('asking'); setTurn('wait');
-            const r = cam.getBoundingClientRect(), z = { x: (ev.clientX - r.left) / r.width * 100, y: (ev.clientY - r.top) / r.height * 100, w: 0, h: 0 };
-            if (t >= BON[0] && t <= BON[1]) {
-              marque(z, 'dix euros', 'juste');
-              if (!await juste(f, 'Oui' + NB + '! Dix euros, c\'est le prix.')) return;
-              zones(null); suite();
-            } else if (t >= GIG) {
-              marque(z, 'pas le prix', 'faux');
-              rater('Les gigas, c\'est pour internet. Écoute le prix.');
-            } else {
-              marque(z, 'trop tôt', 'faux');
-              rater('Pas encore. Écoute le vendeur.');
-            }
-          });
-          $('.hit[data-id="ecran"]', cam).classList.add('ecran');
-          state.replay = () => { if (document.body.dataset.turn !== 'you') return; stopAll(); lancer(); };
-          lancer();
+          const PRIX = phrase('dix euros');
+          if (!await qte(f, { mot: 'dix euros', consigne: 'Appuie sur le bouton quand tu entends le prix : dix euros.', de: ligne(0)[0], a: 4.85,
+            cibles: [{ s: PRIX[0] - .06, e: OFFRE[1] + .5 }], pieges: [{ s: OFFRE[0] - .1, e: PRIX[0] - .06, msg: "Vingt gigas, c'est pour internet. Attends le prix." }],
+            juste: 'Oui' + NB + "! Dix euros, c'est le prix." })) return;
+          suite();
         },
 
         /* 2 · l'affiche : le vendeur redit l'offre ; on pose les étiquettes (les gigas, « par … »), puis Valider */

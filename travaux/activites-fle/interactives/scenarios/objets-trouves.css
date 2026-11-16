@@ -1,4 +1,4 @@
-/* ================= aux objets trouvés : l'avant du bus, sa girouette, le clavier ================= */
+/* ================= aux objets trouvés : l'avant du bus, sa girouette, le clavier ; les sacs dessinés ================= */
 .bus { display: grid; place-items: center; padding: 2px 0; }
 .bus svg { width: 100%; max-width: 320px; height: auto; }
 .bus .girouette { stroke: transparent; stroke-width: 4; transition: stroke .3s; }
@@ -19,3 +19,10 @@
 body[data-turn="listen"] .clavier, body[data-turn="wait"] .clavier, .clavier.fini { pointer-events: none; }
 body.tall .bus svg { max-width: 190px; } body.tall .touche { height: 46px; font-size: 20px; }
 body.short .bus svg { max-width: 150px; } body.short .touche { height: 44px; font-size: 18px; } body.short .clavier { gap: 6px; }
+/* comment est son sac : six sacs dessinés, sur trois colonnes */
+.rayon { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.rayon .tuile { height: 120px; padding: 6px; }
+.rayon .dessin { display: grid; place-items: center; }
+.rayon .dessin svg { width: 118px; height: 98px; display: block; }
+body.tall .rayon .tuile { height: 92px; } body.tall .rayon .dessin svg { width: 86px; height: 72px; }
+body.short .rayon { gap: 6px; } body.short .rayon .tuile { height: 72px; padding: 4px; } body.short .rayon .dessin svg { width: 64px; height: 54px; }

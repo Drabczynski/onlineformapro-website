@@ -281,12 +281,17 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Écoute la dame.": {
-   "src": "medias/voix-b9f1b6db45.mp3",
+  "Qu'est-ce qu'elle a perdu ? Clique dessus dans l'image.": {
+   "src": "medias/voix-2d9d3763ae.mp3",
    "w": [
     0.0,
-    0.56,
-    0.72
+    0.29,
+    0.44,
+    0.6,
+    1.44,
+    1.8,
+    2.04,
+    2.32
    ]
   },
   "Elle a pris quel bus ? Clique sur les chiffres.": {
@@ -303,25 +308,18 @@ window.DONNEES = {
     2.08
    ]
   },
-  "Écoute encore la dame.": {
-   "src": "medias/voix-717bdcb1b1.mp3",
+  "Son sac est comment ? Clique sur le bon sac.": {
+   "src": "medias/voix-c6433a49fa.mp3",
    "w": [
     0.0,
-    0.44,
-    0.76,
-    0.88
-   ]
-  },
-  "Clique sur le sac de la dame.": {
-   "src": "medias/voix-9db64475ee.mp3",
-   "w": [
-    0.0,
-    0.4,
-    0.6,
+    0.32,
+    0.64,
     0.8,
-    1.04,
-    1.12,
-    1.28
+    1.6,
+    1.92,
+    2.08,
+    2.24,
+    2.8
    ]
   },
   "Super ! La dame a retrouvé son sac.": {

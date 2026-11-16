@@ -22,7 +22,7 @@ window.SCENARIO = (() => {
     ordre: ['quand', 'fievre', 'moment'],
     bravo: 'Très bien ! Tu as tout compris chez le médecin.',
     etapes: A => {
-      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, setSide, frameTo, CROPS, freeze, playSegment, phrase, ligne, side, idle, tapHere, at, sfx, faux, juste, suite, goBtn, wait, zones, cam, avant, marque, gel, stopAll } = A;
+      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, setSide, frameTo, CROPS, freeze, playSegment, phrase, ligne, side, idle, tapHere, at, sfx, faux, juste, suite, goBtn, wait, zones, cam, avant, marque, gel, stopAll, qte } = A;
       const DEPUIS = [ligne(4)[0], ligne(5)[1]], FIEVRE = [ligne(6)[0], ligne(7)[1]], DONNE = ligne(8);
       return {
         /* 1 · depuis quand : elle le redit, puis on touche le premier jour du mal de tête (on est jeudi) */
@@ -106,41 +106,13 @@ window.SCENARIO = (() => {
           ask();
         },
 
-        /* 3 · dans la vidéo : la fin de la scène repart, on touche l'image au moment où le médecin dit « médicament » */
+        /* 3 · dans la vidéo, un QTE : appuyer sur le bouton quand le médecin dit « médicament » */
         async moment(f) {
-          const MED = phrase('médicament'), BON = [MED[0] - .15, MED[1] + .8], DEB = ligne(6)[0], FIN = ligne(9)[1];
-          let touche = null;
-          setSide(null); frameTo(CROPS.full, false); idle.clear();
-          state.gel = DEB; await freeze(DEB); if (!alive(f)) return;
-          state.ask = 'Touche la vidéo quand tu entends le mot médicament.';
-          if (!await Q.say(state.ask, f)) return;
-          async function lancer() {
-            touche = null; Q.show('you', state.ask); setTurn('you'); cam.classList.add('asking');
-            await playSegment(DEB, FIN, null);
-            if (!alive(f) || touche !== null) return;
-            cam.classList.remove('asking'); setTurn('wait');
-            rater("Tu n'as pas touché. Écoute encore.");
-          }
-          async function rater(msg) {
-            const montrer = await faux(f, DONNE, msg); if (montrer === null) return;
-            if (montrer) { Q.show('ok', 'C\'est là' + NB + ': «' + NB + 'je vais vous donner un médicament' + NB + '».'); state.essais = 0; suite(); }
-            else { await wait(300); if (alive(f)) lancer(); }
-          }
-          zones([{ id: 'ecran', label: 'Toucher la vidéo', x: 0, y: 0, w: 100, h: 100 }], async (id, ev) => {
-            const t = $('#vid').currentTime; touche = t; stopAll(); cam.classList.remove('asking'); setTurn('wait');
-            const r = cam.getBoundingClientRect(), z = { x: (ev.clientX - r.left) / r.width * 100, y: (ev.clientY - r.top) / r.height * 100, w: 0, h: 0 };
-            if (t >= BON[0] && t <= BON[1]) {
-              marque(z, 'médicament', 'juste');
-              if (!await juste(f, 'Oui' + NB + '! «' + NB + 'Un médicament' + NB + '».')) return;
-              zones(null); suite();
-            } else {
-              marque(z, t < BON[0] ? 'trop tôt' : 'trop tard', 'faux');
-              rater(t < BON[0] ? 'Pas encore. Écoute bien.' : 'Trop tard. Écoute encore.');
-            }
-          });
-          $('.hit[data-id="ecran"]', cam).classList.add('ecran');
-          state.replay = () => { if (document.body.dataset.turn !== 'you') return; stopAll(); lancer(); };
-          lancer();
+          const MED = phrase('médicament');
+          if (!await qte(f, { mot: 'médicament', consigne: 'Appuie sur le bouton quand tu entends le mot médicament.', de: ligne(6)[0], a: ligne(9)[1],
+            cibles: [{ s: MED[0] - .15, e: MED[1] + .8 }], pieges: [{ s: ligne(6)[0], e: ligne(7)[1] + .3, msg: 'Pas encore' + NB + ': là, ils parlent de la fièvre.' }],
+            juste: 'Oui' + NB + '! «' + NB + 'Je vais vous donner un médicament.' + NB + '»' })) return;
+          suite();
         },
       };
     },

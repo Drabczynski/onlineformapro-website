@@ -180,14 +180,6 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Écoute le serveur.": {
-   "src": "medias/voix-5928c627d7.mp3",
-   "w": [
-    0.0,
-    0.52,
-    0.64
-   ]
-  },
   "Ça fait combien ? Clique sur les chiffres, puis sur la touche verte.": {
    "src": "medias/voix-bf08ee741e.mp3",
    "w": [
@@ -203,14 +195,6 @@ window.DONNEES = {
     3.24,
     3.36,
     3.8
-   ]
-  },
-  "Écoute le client.": {
-   "src": "medias/voix-c63ecc4e5d.mp3",
-   "w": [
-    0.0,
-    0.56,
-    0.84
    ]
   },
   "Il veut payer comment ? Clique sur le bon objet.": {

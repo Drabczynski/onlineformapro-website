@@ -207,14 +207,6 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Écoute le voyageur.": {
-   "src": "medias/voix-644407f4f5.mp3",
-   "w": [
-    0.0,
-    0.48,
-    0.64
-   ]
-  },
   "Le train va où ? Clique sur la ville.": {
    "src": "medias/voix-fff8543626.mp3",
    "w": [
@@ -226,13 +218,6 @@ window.DONNEES = {
     1.84,
     1.96,
     2.08
-   ]
-  },
-  "Écoute l'agent.": {
-   "src": "medias/voix-eb0afed3e6.mp3",
-   "w": [
-    0.0,
-    0.52
    ]
   },
   "Le train part à quelle heure ? Fais tourner les aiguilles.": {
@@ -250,17 +235,19 @@ window.DONNEES = {
     2.2
    ]
   },
-  "Touche la vidéo quand tu entends l'heure d'arrivée.": {
-   "src": "medias/voix-1f600641a4.mp3",
+  "Appuie sur le bouton quand tu entends le mot midi.": {
+   "src": "medias/voix-01d5762499.mp3",
    "w": [
     0.0,
-    0.32,
-    0.52,
-    0.96,
+    0.48,
+    0.6,
+    0.72,
     1.2,
-    1.36,
+    1.44,
     1.6,
-    1.84
+    1.84,
+    2.0,
+    2.48
    ]
   },
   "Bravo ! Départ à dix heures, arrivée à midi. Bon voyage !": {

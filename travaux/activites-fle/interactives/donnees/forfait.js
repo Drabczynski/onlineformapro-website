@@ -205,27 +205,20 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Clique sur la vidéo quand tu entends le prix.": {
-   "src": "medias/voix-b46e8b3edc.mp3",
+  "Appuie sur le bouton quand tu entends le prix : dix euros.": {
+   "src": "medias/voix-5764a5cd70.mp3",
    "w": [
     0.0,
     0.4,
-    0.52,
+    0.56,
     0.64,
-    1.12,
-    1.36,
-    1.52,
+    1.04,
+    1.28,
+    1.44,
+    1.64,
     1.76,
-    1.96
-   ]
-  },
-  "Écoute encore le vendeur.": {
-   "src": "medias/voix-748feb46c0.mp3",
-   "w": [
-    0.0,
-    0.44,
-    0.8,
-    0.92
+    2.56,
+    2.8
    ]
   },
   "Complète l'affiche : clique sur les bonnes étiquettes.": {
@@ -238,13 +231,6 @@ window.DONNEES = {
     2.08,
     2.24,
     2.48
-   ]
-  },
-  "Écoute bien.": {
-   "src": "medias/voix-785bf678cc.mp3",
-   "w": [
-    0.0,
-    0.4
    ]
   },
   "Avec ce forfait, elle peut appeler où ? Clique sur les bonnes zones.": {

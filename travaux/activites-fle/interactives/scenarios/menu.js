@@ -69,31 +69,19 @@ window.SCENARIO = (() => {
     ordre: ['menu', 'entree', 'plat'],
     bravo: 'Bon appétit ! Tu as compris toute la commande.',
     etapes: A => {
-      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, playSegment, phrase, ligne, side, idle, tapHere, sfx, fly, faux, juste, suite, goBtn, wait, zones, cam, avant, cadreZone, marque, gel } = A;
+      const { $, $$, NB, state, alive, Q, yourTurn, setTurn, playSegment, phrase, ligne, side, idle, tapHere, sfx, fly, faux, juste, suite, goBtn, wait, zones, cam, avant, cadreZone, marque, gel, qte } = A;
       const DEMANDE = ligne(1), MENU = phrase('le menu du jour'), SALADE = phrase('une salade'), POULET = phrase('le poulet avec du riz');
       const ENTREE = [ligne(2)[0], ligne(3)[1]], PLAT = [ligne(4)[0], ligne(5)[1]];
       const secouer = el => { el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); };
       return {
-        /* 1 · dans la vidéo : il redit ce qu'il veut ; dans le restaurant, on touche la vraie ardoise du menu du jour */
+        /* 1 · dans la vidéo, un QTE : appuyer quand le serveur dit « entrée » (pas « plat principal ») */
         async menu(f) {
-          const ask = () => { Q.show('you', state.ask); yourTurn(); cam.classList.add('asking'); idle.set(tapHere($('.hit[data-id="vin-d"]', cam)), 5000); };
-          if (!await avant(f, { question: 'Écoute le client.', qui: 'client', seg: DEMANDE, consigne: "Dans le restaurant, clique sur ce qu'il choisit." })) return;
-          state.replay = async () => { setTurn('listen'); cam.classList.remove('asking'); await playSegment(DEMANDE[0], DEMANDE[1], gel()); if (alive(f)) ask(); };
-          zones(ZONES, async (id, ev, z) => {
-            setTurn('wait'); cam.classList.remove('asking'); sfx.tick();
-            if (z.ok) {
-              $$('.hit', cam).forEach(h => h.classList.remove('indice'));
-              ZONES.filter(x => x.ok).forEach(x => cadreZone(x)); marque({ ...z, y: z.my }, 'Le menu du jour', 'juste');
-              if (!await juste(f, 'Oui' + NB + "! Le menu du jour est sur l'ardoise.", MENU)) return;
-              zones(null); suite();
-            } else {
-              cadreZone(z, 'faux'); marque(z, z.nom, 'faux');
-              const montrer = await faux(f, DEMANDE, z.pas + ' Écoute encore.'); if (montrer === null) return;
-              if (montrer) ZONES.filter(x => x.ok).forEach(x => $(`.hit[data-id="${x.id}"]`, cam).classList.add('indice'));
-              ask();
-            }
-          });
-          ask();
+          const E = phrase('une entrée');
+          if (!await qte(f, { mot: 'entrée', consigne: 'Appuie sur le bouton quand tu entends le mot entrée.', de: ligne(1)[0] - .1, a: ligne(4)[1] + .4,
+            cibles: [{ s: E[0] - .1, e: ligne(2)[1] + .6 }],
+            pieges: [{ s: ligne(1)[0] - .1, e: ligne(1)[1] + .2, msg: "Là, c'est « le menu du jour »." }, { s: ligne(4)[0] - .1, e: ligne(4)[1] + .4, msg: "Ça, c'est « le plat principal »." }],
+            juste: 'Oui' + NB + '! «' + NB + 'Vous voulez une entrée' + NB + '?' + NB + '»' })) return;
+          suite();
         },
 
         /* 2 · l'ardoise de près : le serveur demande une entrée, le client répond ; on clique sur l'entrée, la craie l'entoure */

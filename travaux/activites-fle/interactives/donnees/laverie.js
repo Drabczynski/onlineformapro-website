@@ -230,14 +230,6 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Écoute la dame.": {
-   "src": "medias/voix-b9f1b6db45.mp3",
-   "w": [
-    0.0,
-    0.56,
-    0.72
-   ]
-  },
   "Où va la lessive ? Clique au bon endroit.": {
    "src": "medias/voix-5596d77cc8.mp3",
    "w": [
@@ -249,15 +241,6 @@ window.DONNEES = {
     1.84,
     1.92,
     2.16
-   ]
-  },
-  "Écoute encore la dame.": {
-   "src": "medias/voix-717bdcb1b1.mp3",
-   "w": [
-    0.0,
-    0.44,
-    0.76,
-    0.88
    ]
   },
   "Glisse les pièces dans la machine, puis clique sur démarrer.": {

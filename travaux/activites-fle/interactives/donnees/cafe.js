@@ -165,70 +165,40 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "La femme pose deux questions. Touche la vidéo à chaque question.": {
-   "src": "medias/voix-cd8c054783.mp3",
+  "Appuie sur le bouton quand tu entends le mot thé.": {
+   "src": "medias/voix-69a7e650a2.mp3",
    "w": [
     0.0,
-    0.24,
-    0.72,
-    0.96,
-    1.12,
-    2.08,
-    2.36,
-    2.48,
-    2.96,
-    3.2,
-    3.44
-   ]
-  },
-  "Écoute l'homme.": {
-   "src": "medias/voix-22d6620068.mp3",
-   "w": [
-    0.0,
-    0.56
-   ]
-  },
-  "Qu'est-ce qu'il préfère ? Glisse-le dans sa tasse.": {
-   "src": "medias/voix-0028403693.mp3",
-   "w": [
-    0.0,
-    0.2,
-    0.4,
-    1.36,
-    1.8,
-    2.0,
-    2.12
-   ]
-  },
-  "Écoute encore l'homme.": {
-   "src": "medias/voix-d681d840b2.mp3",
-   "w": [
-    0.0,
-    0.4,
-    0.8
-   ]
-  },
-  "Il veut du sucre ? Glisse les sucres dans la tasse ou dans le sucrier, puis clique sur Servir.": {
-   "src": "medias/voix-fd2048c640.mp3",
-   "w": [
-    0.0,
-    0.24,
-    0.36,
     0.48,
-    1.28,
-    1.64,
-    1.76,
-    2.04,
-    2.2,
+    0.6,
+    0.72,
+    1.12,
+    1.36,
+    1.52,
+    1.8,
+    1.92,
+    2.4
+   ]
+  },
+  "Prépare la boisson de l'homme : mets dans la tasse ce qu'il veut, puis clique sur Servir.": {
+   "src": "medias/voix-7f6deff5dc.mp3",
+   "w": [
+    0.0,
+    0.44,
+    0.56,
+    0.92,
+    1.0,
+    1.84,
+    2.03,
+    2.16,
     2.32,
+    2.64,
     2.8,
-    2.96,
-    3.08,
-    3.2,
-    4.16,
-    4.48,
-    4.88,
-    5.44
+    3.04,
+    3.6,
+    3.92,
+    4.32,
+    4.56
    ]
   },
   "Super ! Un thé sans sucre, comme il préfère.": {

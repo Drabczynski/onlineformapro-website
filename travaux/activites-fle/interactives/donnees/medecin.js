@@ -292,14 +292,6 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Écoute la patiente.": {
-   "src": "medias/voix-88b7da2fe8.mp3",
-   "w": [
-    0.0,
-    0.52,
-    0.64
-   ]
-  },
   "Aujourd'hui, c'est jeudi. Elle a mal depuis quel jour ?": {
    "src": "medias/voix-36a466a7f6.mp3",
    "w": [
@@ -314,15 +306,6 @@ window.DONNEES = {
     2.88
    ]
   },
-  "Écoute encore la patiente.": {
-   "src": "medias/voix-2971e163f7.mp3",
-   "w": [
-    0.0,
-    0.4,
-    0.76,
-    0.88
-   ]
-  },
   "Fais monter le thermomètre.": {
    "src": "medias/voix-77a81781c9.mp3",
    "w": [
@@ -332,18 +315,19 @@ window.DONNEES = {
     0.64
    ]
   },
-  "Touche la vidéo quand tu entends le mot médicament.": {
-   "src": "medias/voix-f884806db2.mp3",
+  "Appuie sur le bouton quand tu entends le mot médicament.": {
+   "src": "medias/voix-f5a796ad64.mp3",
    "w": [
     0.0,
-    0.28,
-    0.4,
-    0.88,
-    1.12,
-    1.28,
+    0.48,
+    0.6,
+    0.72,
+    1.2,
+    1.36,
     1.52,
-    1.68,
-    2.16
+    1.84,
+    2.0,
+    2.48
    ]
   },
   "Très bien ! Tu as tout compris chez le médecin.": {

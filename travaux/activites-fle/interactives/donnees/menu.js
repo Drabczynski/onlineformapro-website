@@ -274,32 +274,19 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Écoute le client.": {
-   "src": "medias/voix-c63ecc4e5d.mp3",
+  "Appuie sur le bouton quand tu entends le mot entrée.": {
+   "src": "medias/voix-b5c37f66ed.mp3",
    "w": [
     0.0,
-    0.56,
-    0.84
-   ]
-  },
-  "Dans le restaurant, clique sur ce qu'il choisit.": {
-   "src": "medias/voix-c47d1c43fd.mp3",
-   "w": [
-    0.0,
-    0.2,
-    0.32,
+    0.48,
+    0.6,
+    0.72,
     1.2,
+    1.44,
     1.6,
-    1.76,
-    1.89,
-    2.08
-   ]
-  },
-  "Écoute bien.": {
-   "src": "medias/voix-785bf678cc.mp3",
-   "w": [
-    0.0,
-    0.4
+    1.84,
+    2.0,
+    2.4
    ]
   },
   "Il prend quelle entrée ? Clique sur l'ardoise.": {
@@ -312,14 +299,6 @@ window.DONNEES = {
     1.52,
     1.84,
     1.96
-   ]
-  },
-  "Écoute la suite.": {
-   "src": "medias/voix-c43cdb81be.mp3",
-   "w": [
-    0.0,
-    0.36,
-    0.48
    ]
   },
   "Et le plat ? Clique sur ce qu'il prend, puis sur valider.": {
