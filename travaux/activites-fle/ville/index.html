@@ -521,7 +521,7 @@ function enseigne(picto, fond = '#fff') {
     const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; enseignes[cl] = new THREE.SpriteMaterial({ map: t }); }
   const s = new THREE.Sprite(enseignes[cl]); s.scale.set(.7, .7, 1); return s;
 }
-const ECHELLE = { parc: [1.06, 1.3], stade: [1, 1.2], tour: [1, 1.15], gratteciel: [1, 1.1], tourgeante: [1, 1.1], hotel: [1.06, 1.25], affaires: [1.06, 1.25], chateau: [1, 1.3] };
+const ECHELLE_H = { parc: 1, stade: .9, tour: .85, gratteciel: .8, tourgeante: .8, hotel: .9, affaires: .9, chateau: .8, epicerie: 1, garage: .9, ecole: 1, medecin: 1, mairie: 1 };
 const TEINTES = [0xffffff, 0xffe4ec, 0xe2f0ff, 0xfff3c4, 0xe6ffe0, 0xf3e6ff, 0xffe9d6];
 const TAILLE = { mairie: [2, 1], epicerie: [2, 1], garage: [2, 2], ecole: [2, 2], medecin: [2, 1], stade: [5, 3], tour: [2, 2], gratteciel: [3, 2], tourgeante: [4, 2] };
 const taille = t => TAILLE[t] || [1, 1];
@@ -555,13 +555,14 @@ function batiment(c, i, j) {
   const modele = c.t === 'pompiers' ? teinte(piece('pompiers'), 0xffb4a6) : couleur ? teinte(piece(nom), couleur) : piece(nom);
   // un socle relie chaque bâtiment à la route : trottoir, pelouse, allée jusqu'au trottoir de la rue
   // les bâtiments sont grandis (surtout en hauteur) pour avoir la bonne échelle face aux routes et aux voitures
-  const ech = ECHELLE[c.t] || [1, 1.55]; modele.scale.multiply(new THREE.Vector3(ech[0], ech[1], ech[0]));
-  const bb = new THREE.Box3().setFromObject(modele), W = w * T, H = h * T, pave = !['maison', 'parc', 'chateau'].includes(c.t);
-  corps.add(dalle(W, H, .035, MAT_TROTTOIR));
-  if (!pave) corps.add(dalle(W - .2, H - .2, .05, c.t === 'parc' ? MAT_PELOUSE2 : MAT_PELOUSE));
-  else corps.add(dalle(W - .16, H - .16, .045, MAT_PARVIS));
-  if (bb.max.z < H / 2 - .05) { const lg = H / 2 - bb.max.z + .1, a = dalle(c.t === 'maison' ? .32 : .7, lg, .058, MAT_TROTTOIR); a.position.z = H / 2 - lg / 2; corps.add(a); }
-  modele.position.y = .05; corps.add(modele);
+  // le modèle remplit toute sa case, jusqu'aux bords : il est étiré en largeur et en profondeur, et grandi en hauteur d'autant
+  const W = w * T, H = h * T, b0 = new THREE.Box3().setFromObject(modele), t0 = b0.getSize(new THREE.Vector3());
+  let kx = W * .98 / t0.x, kz = H * .98 / t0.z, ky = (ECHELLE_H[c.t] ?? 1.15) * Math.sqrt(kx * kz);
+  if (c.t === 'chateau') kx = kz = ky = 1.25;   // le château d'eau reste une tour fine
+  modele.scale.multiply(new THREE.Vector3(kx, ky, kz));
+  const bb = new THREE.Box3().setFromObject(modele), ctr = bb.getCenter(new THREE.Vector3());
+  modele.position.set(modele.position.x - ctr.x, .03 - bb.min.y + modele.position.y, modele.position.z - ctr.z);
+  corps.add(dalle(W, H, .03, MAT_TROTTOIR)); corps.add(modele); bb.setFromObject(modele);
   corps.rotation.y = r * Math.PI / 2;
   const haut = bb.max.y + .05;
   const ens = ENSEIGNE[c.t]; if (ens) { const s = enseigne(ens[0], ens[1]); s.position.y = haut + .45; g.add(s); }
