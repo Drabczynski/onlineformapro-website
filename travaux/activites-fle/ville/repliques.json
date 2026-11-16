@@ -194,5 +194,309 @@
  "r-nuit": [
   "maire",
   "Bonne nuit !"
+ ],
+ "q01": [
+  "h1",
+  "Bonjour ! Les premiers habitants arrivent. Il faut une route pour venir en ville."
+ ],
+ "q02": [
+  "f",
+  "Nous voulons habiter ici. Il nous faut des maisons."
+ ],
+ "q03": [
+  "h2",
+  "Il n'y a pas d'électricité. Le soir, il fait tout noir !"
+ ],
+ "q04": [
+  "f",
+  "J'ouvre le robinet : il n'y a pas d'eau ! Il faut un château d'eau."
+ ],
+ "q05": [
+  "h1",
+  "L'eau n'arrive pas dans ma rue. Il faut des tuyaux."
+ ],
+ "q06": [
+  "h2",
+  "Les maisons sont jolies. Mais où est-ce qu'on travaille ?"
+ ],
+ "q07": [
+  "f",
+  "Pour acheter du pain, je dois quitter la ville !"
+ ],
+ "q08": [
+  "h1",
+  "Les camions ne vont pas jusqu'à l'usine. Il manque une route."
+ ],
+ "q09": [
+  "h2",
+  "Les poubelles sont pleines. Qui ramasse les déchets ?"
+ ],
+ "q10": [
+  "f",
+  "J'ai deux enfants. Il faudrait une école."
+ ],
+ "q11": [
+  "h2",
+  "Le médecin est dans une autre ville. C'est trop loin !"
+ ],
+ "q12": [
+  "h1",
+  "Il y a beaucoup de maisons. Et s'il y a un incendie ?"
+ ],
+ "q13": [
+  "f",
+  "Des voleurs sont entrés dans trois maisons cette semaine !"
+ ],
+ "q14": [
+  "h2",
+  "Je voudrais un petit parc, pour me promener."
+ ],
+ "q15": [
+  "f",
+  "La fumée de l'usine entre dans ma chambre."
+ ],
+ "q16": [
+  "h1",
+  "Le matin, il y a des bouchons. Il faut une autre route."
+ ],
+ "q17": [
+  "h2",
+  "Je n'ai pas de voiture. Comment je vais au travail ?"
+ ],
+ "q18": [
+  "f",
+  "Beaucoup de gens veulent venir. Il faut plus de maisons !"
+ ],
+ "q19": [
+  "h1",
+  "La centrale ne suffit plus. Il faut plus d'électricité !"
+ ],
+ "q20": [
+  "h2",
+  "Les impôts sont trop chers pour les petits magasins."
+ ],
+ "a-route": [
+  "maire",
+  "Je construis une route."
+ ],
+ "a-maison": [
+  "maire",
+  "Je construis des maisons."
+ ],
+ "a-centrale": [
+  "maire",
+  "Je construis une centrale électrique."
+ ],
+ "a-eau": [
+  "maire",
+  "Je construis un château d'eau."
+ ],
+ "a-tuyau": [
+  "maire",
+  "J'installe des tuyaux."
+ ],
+ "a-usine": [
+  "maire",
+  "Je construis une usine."
+ ],
+ "a-boulangerie": [
+  "maire",
+  "J'ouvre une boulangerie."
+ ],
+ "a-dechets": [
+  "maire",
+  "Je construis une déchetterie."
+ ],
+ "a-ecole": [
+  "maire",
+  "Je construis une école."
+ ],
+ "a-medecin": [
+  "maire",
+  "Je construis un cabinet médical."
+ ],
+ "a-pompiers": [
+  "maire",
+  "Je construis une caserne de pompiers."
+ ],
+ "a-police": [
+  "maire",
+  "Je construis un commissariat."
+ ],
+ "a-parc": [
+  "maire",
+  "Je construis un parc."
+ ],
+ "a-bus": [
+  "maire",
+  "J'installe un arrêt de bus."
+ ],
+ "a-loin": [
+  "maire",
+  "Je construis les usines loin des maisons."
+ ],
+ "a-impots": [
+  "maire",
+  "D'accord, je baisse les impôts."
+ ],
+ "s-b1": [
+  "f",
+  "Bonjour ! Vous désirez ?"
+ ],
+ "s-b2": [
+  "maire",
+  "Je voudrais une baguette, s'il vous plaît."
+ ],
+ "s-b3": [
+  "f",
+  "Et avec ça ?"
+ ],
+ "s-b4": [
+  "maire",
+  "Un croissant, s'il vous plaît."
+ ],
+ "s-b4x": [
+  "maire",
+  "Une voiture, s'il vous plaît."
+ ],
+ "s-b5": [
+  "f",
+  "Ça fait deux euros, s'il vous plaît."
+ ],
+ "s-b6": [
+  "maire",
+  "Voilà. Merci, au revoir !"
+ ],
+ "s-b7": [
+  "f",
+  "Merci ! Bonne journée !"
+ ],
+ "s-m1": [
+  "h1",
+  "Bonjour ! Vous voulez vous inscrire ? Comment vous appelez-vous ?"
+ ],
+ "s-m2": [
+  "maire",
+  "Je m'appelle Sara Diallo."
+ ],
+ "s-m3": [
+  "h1",
+  "Vous habitez où ?"
+ ],
+ "s-m4": [
+  "maire",
+  "J'habite rue de la Gare."
+ ],
+ "s-m5": [
+  "h1",
+  "Vous avez des enfants ?"
+ ],
+ "s-m6": [
+  "maire",
+  "Oui, j'ai deux enfants."
+ ],
+ "s-m6x": [
+  "maire",
+  "Oui, j'ai deux voitures."
+ ],
+ "s-m7": [
+  "h1",
+  "Très bien. Signez ici, s'il vous plaît."
+ ],
+ "s-e1": [
+  "f",
+  "Bonjour ! Votre fils a quel âge ?"
+ ],
+ "s-e2": [
+  "maire",
+  "Il a six ans."
+ ],
+ "s-e3": [
+  "f",
+  "Comment il s'appelle ?"
+ ],
+ "s-e4": [
+  "maire",
+  "Il s'appelle Léo."
+ ],
+ "s-e5": [
+  "f",
+  "L'école commence à huit heures et demie."
+ ],
+ "s-e6": [
+  "maire",
+  "À huit heures et demie."
+ ],
+ "s-e6x": [
+  "maire",
+  "À dix heures."
+ ],
+ "s-e7": [
+  "f",
+  "Parfait. À lundi !"
+ ],
+ "s-d1": [
+  "h1",
+  "Bonjour ! Qu'est-ce qui ne va pas ?"
+ ],
+ "s-d2": [
+  "maire",
+  "J'ai mal à la tête."
+ ],
+ "s-d3": [
+  "h1",
+  "Depuis quand ?"
+ ],
+ "s-d4": [
+  "maire",
+  "Depuis hier."
+ ],
+ "s-d4x": [
+  "maire",
+  "Avec du sucre."
+ ],
+ "s-d5": [
+  "h1",
+  "Prenez ce médicament trois fois par jour."
+ ],
+ "s-d6": [
+  "maire",
+  "Trois fois par jour. Merci, docteur !"
+ ],
+ "s-v1": [
+  "h2",
+  "Bonjour ! Je suis votre nouveau voisin. Je m'appelle Karim."
+ ],
+ "s-v2": [
+  "maire",
+  "Enchantée, Karim ! Bienvenue !"
+ ],
+ "s-v3": [
+  "h2",
+  "Vous voulez un café ?"
+ ],
+ "s-v4": [
+  "maire",
+  "Oui, avec plaisir !"
+ ],
+ "s-v4x": [
+  "maire",
+  "Il est trois heures."
+ ],
+ "s-v5": [
+  "h2",
+  "Vous prenez du sucre ?"
+ ],
+ "s-v6": [
+  "maire",
+  "Non, sans sucre, merci."
+ ],
+ "s-bravo": [
+  "maire",
+  "Bravo ! Très bien !"
+ ],
+ "s-encore": [
+  "maire",
+  "Encore une fois."
  ]
 }
