@@ -17,4 +17,5 @@ Les modèles de `../modeles/` sont assemblés par ces scripts à partir des pack
     python village.py interieur rendu       # la boulangerie : boulangerie.glb + boulangerie.json
 
 Les chemins des packs sont en tête de `kit.py` et `perso.py` (dossier de travail de la session) : à adapter.
+Publication : les artefacts ne servent pas les `.glb` ; `python3 emballer.py <dossier>` les emballe en `.glb.json` (base64), que `jeu.js` lit en priorité.
 Les voix : `../voix.py` (répliques dans `../repliques.json`, ElevenLabs eleven_v4, -20 LUFS, vérifiées par transcription).

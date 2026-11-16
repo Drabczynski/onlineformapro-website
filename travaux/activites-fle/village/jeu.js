@@ -30,7 +30,11 @@ addEventListener('resize', () => {
 const gestion = new THREE.LoadingManager();
 gestion.onProgress = (u, n, total) => { $('barre').firstElementChild.style.width = Math.round(100 * n / total) + '%'; };
 const chargeur = new GLTFLoader(gestion);
-const glb = url => new Promise((ok, ko) => chargeur.load(url, ok, undefined, ko));
+// sur l'artefact, les modèles sont emballés en .glb.json (base64) ; en local, on lit le .glb directement
+const glb = url => fetch(url + '.json').then(r => { if (!r.ok) throw 0; return r.json(); })
+  .then(d => { const bin = atob(d.glb), u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); gestion.itemEnd(url); return new Promise((ok, ko) => chargeur.parse(u.buffer, '', ok, ko)); },
+        () => { gestion.itemEnd(url); return new Promise((ok, ko) => chargeur.load(url, ok, undefined, ko)); });
+const glbDebut = url => { gestion.itemStart(url); return glb(url); };
 const json = url => fetch(url).then(r => r.json());
 
 /* ------------------------------------------------------------------ matériaux : vent, feuillage, sol */
@@ -306,7 +310,7 @@ function pointBulle(couleur = '#ffffff', signe = '…') {
 }
 
 async function construireExterieur() {
-  const [g, plan] = await Promise.all([glb('modeles/village.glb'), json('modeles/village.json')]);
+  const [g, plan] = await Promise.all([glbDebut('modeles/village.glb'), json('modeles/village.json')]);
   const scene = new THREE.Scene();
   scene.fog = new THREE.Fog(0xcfe3f2, 45, 140);
   const nuages = ciel(scene);
@@ -373,7 +377,7 @@ async function construireExterieur() {
 }
 
 async function construireBoulangerie() {
-  const [g, plan] = await Promise.all([glb('modeles/boulangerie.glb'), json('modeles/boulangerie.json')]);
+  const [g, plan] = await Promise.all([glbDebut('modeles/boulangerie.glb'), json('modeles/boulangerie.json')]);
   const scene = new THREE.Scene(); scene.background = new THREE.Color(0x2a1d14);
   const soleil = lumieres(scene, true);
   soleil.position.set(-4, 9, 6); soleil.target.position.set(0, 0, -1);
@@ -613,7 +617,7 @@ function boucle() {
 /* ------------------------------------------------------------------ démarrage */
 (async () => {
   try {
-    [gJoueur, gPassant, gBoulangere] = await Promise.all([glb('modeles/joueur.glb'), glb('modeles/passant.glb'), glb('modeles/boulangere.glb')]);
+    [gJoueur, gPassant, gBoulangere] = await Promise.all([glbDebut('modeles/joueur.glb'), glbDebut('modeles/passant.glb'), glbDebut('modeles/boulangere.glb')]);
     joueur = personnage(gJoueur, 'joueur'); joueur.vitesse = 3.1;
     await Promise.all([construireExterieur(), construireBoulangerie()]);
     etat.lieu = 'exterieur'; LIEUX.exterieur.entrer();
