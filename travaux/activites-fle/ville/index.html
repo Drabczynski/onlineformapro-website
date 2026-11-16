@@ -777,7 +777,7 @@ const routes = () => Object.keys(E.cases).filter(k => E.cases[k].t === 'route').
 function nouveau(sorte, v) {
   const R = routes(); if (!R.length) return null; const [i, j] = R[Math.floor(Math.random() * R.length)]; let o, mixer = null, actions = {};
   if (sorte === 'gens') { const G = GLB[GENS[v].glb]; o = SkeletonUtils.clone(G.scene); o.scale.setScalar(.17); mixer = new THREE.AnimationMixer(o); for (const c of G.animations) actions[c.name] = mixer.clipAction(c); actions.Walking_A?.play(); }
-  else { o = new THREE.Group(); const p = piece(['voiture_a', 'voiture_c', 'voiture_e', 'voiture_h', 'jeep'][Math.floor(Math.random() * 5)]); p.rotation.y = -Math.PI / 2; p.scale.multiplyScalar(.72); o.add(p); }
+  else { o = new THREE.Group(); const p = piece(['voiture_a', 'voiture_c', 'voiture_e', 'voiture_h', 'jeep'][Math.floor(Math.random() * 5)]); p.scale.multiplyScalar(.72); o.add(p); }
   o.traverse(m => { if (m.isMesh) { m.castShadow = true; m.frustumCulled = false; } });
   const m = { sorte, v, o, mixer, actions, de: [i, j], vers: [i, j], t: 1, vit: sorte === 'gens' ? .32 + Math.random() * .12 : 1 + Math.random() * .4, arret: false, dem: null };
   monde.add(o); mobiles.push(m); return m;
