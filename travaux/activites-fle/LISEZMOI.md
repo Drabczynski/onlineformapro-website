@@ -231,18 +231,23 @@ chaque scénario). Chaque scène a au moins un geste dans la vidéo :
 | La colocation de Kenji (`kenji/`) | le prototype d'origine, tel quel, avec un bouton de retour |
 | À l'épicerie | dans la vidéo : toucher ce que la cliente achète dans la boutique (ça part dans le sac en papier du comptoir) ; à côté : payer 5 € avec des pièces et des billets |
 | Chercher la pharmacie | à côté, sur un plan : guider le monsieur avec les flèches (tout droit, puis à droite au feu) ; cliquer sur le bâtiment en face de la boulangerie |
-| Chez le médecin | à côté : le calendrier (on est jeudi, « depuis deux jours » : mardi) ; le thermomètre, qu'on fait glisser jusqu'à « un peu » ; dans la vidéo : la fin repart et on touche l'image au moment où le médecin dit « médicament » |
+| Chez le médecin | à côté : le calendrier (on est jeudi, « depuis deux jours » : mardi) ; le thermomètre, qu'on fait glisser jusqu'à « un peu » ; dans la vidéo, un QTE : appuyer sur le bouton quand le médecin dit « médicament » (piège : la fièvre) |
 | Chez le fleuriste | à côté : pour qui est le bouquet (son père, sa sœur, sa mère, sa copine) ; dans la vidéo, sur une image du début (personne ne touche les fleurs) : les fleurs que sa mère adore (des roses), puis la couleur choisie (blanches) |
-| Café ou thé ? | dans la vidéo : toucher l'image à chaque question de la femme ; à côté : glisser le thé dans la tasse, puis ranger les sucres dans le sucrier et servir |
-| La glace | dans la vidéo : toucher les vrais cornets de la boutique ; à côté : glisser deux boules (vanille, chocolat) sur un cornet |
-| Le menu du jour | dans la vidéo : toucher la vraie ardoise ; à côté : entourer l'entrée à la craie sur l'ardoise, puis remplir l'assiette (poulet, riz) |
+| Café ou thé ? | dans la vidéo, un QTE : appuyer quand l'homme dit « thé » (pièges : « café », « non merci », « je préfère ») ; à côté : préparer sa boisson (un thé, sans sucre ni lait), puis servir |
+| La glace | dans la vidéo : dans la vitrine, toucher les bacs de ses deux parfums (vanille, chocolat) ; à côté : glisser ses deux boules dans le cornet ou dans le pot |
+| Le menu du jour | dans la vidéo, un QTE : appuyer quand le serveur dit « entrée » (pièges : « le menu du jour », « le plat principal ») ; à côté : entourer l'entrée à la craie sur l'ardoise, puis remplir l'assiette (poulet, riz) |
 | À la laverie | dans la vidéo : toucher le haut de la vraie machine (la lessive) ; à côté : glisser les pièces dans la fente d'une machine (4 €) et démarrer |
-| Aux objets trouvés | à côté : taper le numéro du bus (12) ; dans la vidéo : toucher le bon sac sur l'étagère (noir avec une petite fleur rouge, à côté d'un sac noir sans fleur) |
-| À la réception de l'hôtel | à côté : le nom sur la fiche (Martin, parmi Marin, Morin, Martel) et une lune par nuit ; dans la vidéo : toucher la clé (une carte) ; à côté : le bouton du 2e étage dans l'ascenseur |
-| À quelle heure ? | à côté : la ville sur une carte de France, puis faire tourner les aiguilles d'une horloge de gare (10 h) ; dans la vidéo : toucher l'image quand l'agent dit l'heure d'arrivée |
+| Aux objets trouvés | dans la vidéo : sur le plan large des objets trouvés, chercher un sac à main (pièges : le sac sur son épaule, les papiers…) ; à côté : taper le numéro du bus (12), puis choisir son sac parmi six (noir avec une petite fleur rouge) |
+| À la réception de l'hôtel | à côté : le nom sur la fiche (Martin, parmi Marin, Morin, Martel) et une lune par nuit ; dans la vidéo : glisser la vraie carte-clé jusqu'à la main du client (la vidéo avance sous le doigt) ; à côté : le bouton du 2e étage dans l'ascenseur |
+| À quelle heure ? | à côté : la ville sur une carte de France, puis faire tourner les aiguilles d'une horloge de gare (10 h) ; dans la vidéo, un QTE : appuyer quand l'agent dit « midi » (pièges : « dix heures », la question) |
 | L'ascenseur ne marche pas | dans la vidéo : toucher ce qui ne marche pas (l'ascenseur, parmi l'escalier, les boîtes aux lettres…) ; à côté : faire glisser le soleil jusqu'à l'après-midi |
 | L'addition (A2) | à côté : taper 28 sur un terminal de paiement, puis choisir la carte (billets, carte, téléphone) ; dans la vidéo : glisser la vraie carte jusqu'au terminal |
-| Un forfait de téléphone (A2) | dans la vidéo : toucher l'image quand le vendeur dit le prix (piège : les gigas) ; à côté : compléter l'affiche du forfait, puis cliquer sur la carte les zones où elle peut appeler |
+| Un forfait de téléphone (A2) | dans la vidéo, un QTE : appuyer quand le vendeur dit « dix euros » (piège : les gigas) ; à côté : compléter l'affiche du forfait, puis cliquer sur la carte les zones où elle peut appeler |
+
+Le QTE (comme dans les jeux) : pendant la consigne, le mot à attendre s'affiche en haut et un doigt montre le gros bouton
+en bas à droite ; après 3-2-1, la scène repart et on appuie (clic, Espace ou Entrée) au bon moment. Trop tôt sur un
+piège, le message dit ce qu'on vient d'entendre ; après deux essais, la scène repart et le doigt appuie au bon moment.
+Aucune consigne ne dit « Écoute… » ; une bonne réponse ne rejoue pas l'extrait.
 
 Les scènes reprennent les vidéos de `medias/video/` (sept d'entre elles viennent du dossier de tests partagé : glace, laverie,
 objets trouvés, hôtel, menu du jour, heure du train, ascenseur) et leurs transcriptions mot à mot (`interactives/stt/`).

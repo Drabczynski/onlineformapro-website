@@ -32,7 +32,7 @@ window.SCENARIO = (() => {
   const EFFACE = '<svg viewBox="0 0 28 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4h15a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H9l-7-8z"/><path d="m13 9 6 6M19 9l-6 6"/></svg>';
 
   /* 1 · ce qu'elle a perdu : les objets trouvés du plan large (image figée à 6,94 s), en %. Justes : tous les sacs à main
-     (le sien, à l'épaule, aussi : c'est un sac). Les sacs à dos ne sont pas cliquables (« un sac » aussi : ambigu). */
+     (pas celui qu'elle porte à l'épaule : un piège). Les sacs à dos ne sont pas cliquables (« un sac » aussi : ambigu). */
   const OBJETS = [
     { id: 'sac-coin', sac: true, label: 'Un sac', x: 0, y: 0, w: 6, h: 6.5 },
     { id: 'sac-noir', sac: true, label: 'Un sac', x: 0, y: 18, w: 9.8, h: 17.5 },
@@ -41,10 +41,10 @@ window.SCENARIO = (() => {
     { id: 'sac-marron', sac: true, label: 'Un sac', x: 61.5, y: 32.5, w: 7.3, h: 18 },
     { id: 'sac-fermoir', sac: true, label: 'Un sac', x: 58.8, y: 40, w: 7.4, h: 11 },
     { id: 'sac-bas', sac: true, label: 'Des sacs', x: 59.6, y: 54.5, w: 7.4, h: 10 },
-    { id: 'sac-epaule', sac: true, label: 'Un sac', x: 83.3, y: 63, w: 5, h: 33 },
+    { id: 'sac-epaule', label: 'Le sac sur son épaule', msg: "Non : ce sac-là, elle l'a sur l'épaule.", x: 83.3, y: 63, w: 5, h: 33 },
     { id: 'parapluies', label: 'Des parapluies', msg: 'Ce sont des parapluies.', x: 31.5, y: 14.5, w: 9, h: 44 },
     { id: 'echarpes', label: 'Des écharpes', msg: 'Ce sont des écharpes.', x: 40.2, y: 16.5, w: 11, h: 50 },
-    { id: 'bannettes', label: 'Des bannettes', msg: 'Ce sont des bannettes, pour le courrier.', x: 0, y: 51, w: 12.2, h: 26 },
+    { id: 'bannettes', label: 'Des papiers', msg: 'Ce sont des papiers.', x: 0, y: 51, w: 12.2, h: 26 },
     { id: 'calendrier', label: 'Un calendrier', msg: "C'est un calendrier.", x: 79.8, y: 17, w: 8, h: 27 },
     { id: 'telephone', label: 'Un téléphone', msg: "C'est un téléphone.", x: 59.6, y: 64.5, w: 5.6, h: 8 },
     { id: 'calculatrice', label: 'Une calculatrice', msg: "C'est une calculatrice.", x: 46.8, y: 69.5, w: 7.2, h: 6 },
