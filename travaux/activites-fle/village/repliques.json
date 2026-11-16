@@ -1,0 +1,16 @@
+{
+ "b-bonjour": ["boulangere", "Bonjour ! Qu'est-ce que je vous sers ?"],
+ "b-medicament": ["boulangere", "Ici, c'est une boulangerie ! Les médicaments, c'est à la pharmacie."],
+ "b-deja": ["boulangere", "Vous partez déjà ? Qu'est-ce que vous voulez ?"],
+ "b-voila": ["boulangere", "Voilà votre baguette. Et avec ceci ?"],
+ "b-prix-1": ["boulangere", "Alors, ça fait un euro vingt, s'il vous plaît."],
+ "b-prix-2": ["boulangere", "Alors, ça fait deux euros trente, s'il vous plaît."],
+ "b-merci": ["boulangere", "Merci ! Bonne journée !"],
+ "b-monnaie": ["boulangere", "Merci ! Voilà votre monnaie. Bonne journée !"],
+ "b-nuit": ["boulangere", "Bonne nuit ? Mais c'est le matin !"],
+ "b-revoir": ["boulangere", "Au revoir, à demain !"],
+ "p-bonjour": ["passant", "Bonjour ! Je peux vous aider ?"],
+ "p-chemin": ["passant", "La boulangerie ? C'est là, à côté de la pharmacie."],
+ "p-pain": ["passant", "Du pain ? Il faut aller à la boulangerie !"],
+ "p-revoir": ["passant", "Au revoir, bonne journée !"]
+}

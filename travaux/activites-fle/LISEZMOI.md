@@ -264,6 +264,24 @@ niveau sonore et vérifiées par une transcription ; chaque scène a son propre 
 - `scenarios/<scène>.js` (et `.css`) : les étapes et les gestes de chaque scène ;
 - `donnees/<scène>.js` : produit par `preparer.py`.
 
+## Le village (jeu, tranche jouable)
+
+`village/index.html` (+ `village/jeu.js`) : un village à colombages en 3D (Three.js), où l'on se déplace **au clic**,
+on **entre dans les maisons** et on **parle aux habitants** pour accomplir des missions. Aucune vidéo dans le jeu :
+seuls les dialogues (et parfois les questions) des scènes peuvent être repris.
+
+Ce qui marche aujourd'hui :
+
+- la place : la boulangerie, la pharmacie (fermée, « bientôt »), quatre maisons, un étang animé, des arbres, des herbes au vent ;
+- un passant qui fait le tour de la place : on lui demande où est la boulangerie (une flèche apparaît au-dessus de la porte) ;
+- la boulangerie (intérieur, mur de façade retiré) : la boulangère, les pains modelés (baguettes, pains ronds, croissants) ;
+- le dialogue « Acheter du pain » : choix de phrases (les mauvaises ont une réponse de l'habitante), un croissant en plus
+  possible, paiement avec les vraies pièces du porte-monnaie (5 €), monnaie rendue, mission tamponnée dans le carnet ;
+- les voix (boulangère : Femme 2 ; passant : Homme 1), bouton pour réécouter, plan rapproché pendant les dialogues.
+
+Les modèles sont des packs gratuits CC0 de Quaternius, assemblés dans Blender : `village/outils/LISEZMOI.md`.
+`village/apercu.html` : la planche de prévisualisation (styles, habitants, plan des quinze lieux).
+
 ## Les mots qui s'allument
 
 `generer_temps.py` fait retranscrire chaque son par la reconnaissance vocale d'ElevenLabs, qui donne le moment où
