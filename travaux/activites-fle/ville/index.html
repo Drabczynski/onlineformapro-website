@@ -265,6 +265,7 @@ function ouvrir(m) {
 function parler(id) { $('portrait').classList.add('parle'); dire(id, () => $('portrait').classList.remove('parle')); }
 function jouerTour() {
   const t = mission.tours[tour]; choisi = null; essais = 0;
+  if (!t) return finMission();
   $('dit').textContent = t.dit; parler(t.voix);
   const c = $('choix'); c.innerHTML = ''; $('valider').disabled = true; $('valider').hidden = false;
   if (t.pieces) {
