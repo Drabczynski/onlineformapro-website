@@ -316,7 +316,7 @@ const ATTENTE_LECON = 90, PHASE2_SEC = 200;
 /* ================================================================ LES HABITANTS (A0-A1, phrases très courtes) */
 const GENS = { f: { glb: 'boulangere' }, h1: { glb: 'joueur' }, h2: { glb: 'passant' } };
 /* de vraies photos d'habitants, variées : chaque demande garde toujours le même visage */
-const VISAGES = { f: ['femme1', 'femme2', 'femme3', 'femme4', 'femme5'], h1: ['homme1', 'homme4', 'homme5', 'homme2'], h2: ['homme2', 'homme3', 'homme5', 'homme1'] };
+const VISAGES = { f: ['femme6', 'femme1', 'femme7', 'femme2', 'femme8', 'femme4', 'femme3', 'femme5'], h1: ['homme6', 'homme1', 'homme8', 'homme4', 'homme5'], h2: ['homme7', 'homme2', 'homme3', 'homme8', 'homme1'] };
 const visage = (v, id) => { const L2 = VISAGES[v]; let h = 0; for (const ch of id) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return 'sprites/' + L2[h % L2.length] + '.webp'; };
 const REPONSES = {
   route: ['🛣️', 'Je construis une route.'], maison: ['🏠', 'Je construis des maisons.'], boulangerie: ['🥖', 'J’ouvre une boulangerie.'], eau: ['💧', 'Je construis un château d’eau.'],
