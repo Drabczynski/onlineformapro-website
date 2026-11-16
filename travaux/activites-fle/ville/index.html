@@ -93,7 +93,7 @@ body.parle .rond,body.parle .tourner,body.quiz .rond,body.quiz .tourner{opacity:
 .b.argent{background:radial-gradient(circle,#fff8d8,#fff)}
 .b.perso{width:66px;height:66px;margin:-80px 0 0 -33px;border-color:var(--bleu);padding:0}
 .b.perso::after{border-top-color:var(--bleu);bottom:-13px}
-.b.perso img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 18%;background:#dbe8fa;animation:none}
+.b.perso img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 30%;background:#dbe8fa;animation:none}
 .b.perso i{position:absolute;right:-9px;top:-9px;width:26px;height:26px;border-radius:50%;background:var(--rouge);color:#fff;font:900 17px/26px Figtree,sans-serif;text-align:center;font-style:normal;animation:pulse 1s infinite;border:2px solid #fff}
 .b.lecon{background:linear-gradient(180deg,#a98bff,#6a45ea);font-size:28px;width:60px;height:60px;margin:-72px 0 0 -30px}
 .b.lecon::after{border-top-color:#fff}
@@ -113,7 +113,7 @@ body.parle .rond,body.parle .tourner,body.quiz .rond,body.quiz .tourner{opacity:
 #dial.ouvert{transform:none}
 .feuille{max-width:640px;margin:0 auto;position:relative;padding-top:64px}
 .buste{position:absolute;left:4px;top:0;width:118px;height:118px;border-radius:50%;overflow:hidden;border:5px solid #fff;background:linear-gradient(180deg,#bfe0ff,#7fb7ef);box-shadow:0 6px 16px rgba(0,0,0,.3);z-index:2}
-.buste img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;display:block}
+.buste img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block}
 .buste.parle{animation:parle .5s ease-in-out infinite}
 @keyframes parle{50%{transform:scale(1.05) rotate(-2deg)}}
 .parole{background:#fff;border-radius:24px;padding:62px 16px 14px;display:grid;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
@@ -267,7 +267,6 @@ import * as SkeletonUtils from 'three/addons/utils/SkeletonUtils.js';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { GTAOPass } from 'three/addons/postprocessing/GTAOPass.js';
-import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
@@ -295,12 +294,17 @@ const BATIS = {
   police: { picto: '🚓', nom: 'Police', prix: 1100, cat: 'service', niv: 4, apres: 'q13' },
   banque: { picto: '🏦', nom: 'Banque', prix: 1400, cat: 'commerce', niv: 4, apres: 'q11', theme: 'banque' },
   stade: { picto: '🏟️', nom: 'Stade', prix: 3500, cat: 'loisir', niv: 5, apres: 'q12', max: 1 },
+  hotel: { picto: '🏨', nom: 'Grand hôtel', prix: 2500, cat: 'prestige', niv: 5, hab: 30 },
+  affaires: { picto: '🏢', nom: 'Centre d’affaires', prix: 4500, cat: 'prestige', niv: 6, hab: 60, max: 2 },
+  tour: { picto: '🏙️', nom: 'Tour de verre', prix: 9000, cat: 'prestige', niv: 7, hab: 150, max: 2 },
+  gratteciel: { picto: '🌆', nom: 'Gratte-ciel', prix: 16000, cat: 'prestige', niv: 8, hab: 300, max: 1 },
+  tourgeante: { picto: '🗼', nom: 'Tour géante', prix: 30000, cat: 'prestige', niv: 9, hab: 600, max: 1 },
   mairie: { picto: '🏛️', nom: 'Mairie', prix: 0, cat: 'aucune' }
 };
-const CATS = [['maison', '🏠', 'Maisons'], ['route', '🛣️', 'Routes'], ['commerce', '🛒', 'Magasins'], ['service', '🏥', 'Services'], ['loisir', '🌳', 'Loisirs']];
+const CATS = [['maison', '🏠', 'Maisons'], ['route', '🛣️', 'Routes'], ['commerce', '🛒', 'Magasins'], ['service', '🏥', 'Services'], ['loisir', '🌳', 'Loisirs'], ['prestige', '⭐', 'Prestige']];
 const MAISONS = [
-  { modeles: ['maison0a', 'maison0b', 'maison0c'], hab: 4, unite: 3 },
-  { modeles: ['maison1a', 'maison1b'], hab: 10, unite: 6, prix: 400, niv: 2 },
+  { modeles: ['maison0a', 'maison0b', 'maison0c', 'maison0d'], hab: 4, unite: 3 },
+  { modeles: ['maison1b', 'maison1c', 'maison1d', 'maison1a'], hab: 10, unite: 6, prix: 400, niv: 2 },
   { modeles: ['maison2a', 'maison2b', 'maison2c'], hab: 22, unite: 10, prix: 1000, niv: 3 },
   { modeles: ['maison3a', 'maison3b'], hab: 45, unite: 16, prix: 2400, niv: 5 }
 ];
@@ -310,7 +314,10 @@ const GAIN_MOT = 15, GAIN_SERIE = 180;          // le vocabulaire rapporte beauc
 const ATTENTE_LECON = 90, PHASE2_SEC = 200;
 
 /* ================================================================ LES HABITANTS (A0-A1, phrases très courtes) */
-const GENS = { f: { glb: 'boulangere', img: 'portrait-mairie' }, h1: { glb: 'joueur', img: 'portrait-gare' }, h2: { glb: 'passant', img: 'portrait-voisin' } };
+const GENS = { f: { glb: 'boulangere' }, h1: { glb: 'joueur' }, h2: { glb: 'passant' } };
+/* de vraies photos d'habitants, variées : chaque demande garde toujours le même visage */
+const VISAGES = { f: ['femme1', 'femme2', 'femme3', 'femme4', 'femme5'], h1: ['homme1', 'homme4', 'homme5', 'homme2'], h2: ['homme2', 'homme3', 'homme5', 'homme1'] };
+const visage = (v, id) => { const L2 = VISAGES[v]; let h = 0; for (const ch of id) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return 'sprites/' + L2[h % L2.length] + '.webp'; };
 const REPONSES = {
   route: ['🛣️', 'Je construis une route.'], maison: ['🏠', 'Je construis des maisons.'], boulangerie: ['🥖', 'J’ouvre une boulangerie.'], eau: ['💧', 'Je construis un château d’eau.'],
   epicerie: ['🍎', 'J’ouvre une épicerie.'], garage: ['🔧', 'Je construis un garage.'], ecole: ['🏫', 'Je construis une école.'], medecin: ['🩺', 'Je construis un cabinet médical.'],
@@ -396,7 +403,7 @@ const ij = k => k.split(',').map(Number);
 let S = null;
 function analyser() {
   const nb = {}; for (const t of Object.keys(BATIS)) nb[t] = 0; let hab = 0;
-  for (const c of Object.values(E.cases)) { nb[c.t]++; if (c.t === 'maison') hab += MAISONS[c.n || 0].hab; }
+  for (const c of Object.values(E.cases)) { nb[c.t]++; hab += c.t === 'maison' ? MAISONS[c.n || 0].hab : BATIS[c.t]?.hab || 0; }
   return S = { nb, hab, niv: niveau(), fait: E.fait };
 }
 const prix = k => { const b = BATIS[k]; return Math.round(b.prix * (1 + (b.hausse ?? .6) * (S?.nb[k] || 0)) / 5) * 5; };
@@ -426,7 +433,7 @@ const canvas = $('c');
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, powerPreference: 'high-performance' });
 renderer.setPixelRatio(Math.min(devicePixelRatio, TEL ? 1.5 : 2)); renderer.setSize(innerWidth, innerHeight);
 renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.02;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.12;
 const scene = new THREE.Scene();
 const pmrem = new THREE.PMREMGenerator(renderer); scene.environment = pmrem.fromScene(new RoomEnvironment(), .04).texture; scene.environmentIntensity = .4;
 const HORIZON = new THREE.Color(0xf6c596); scene.fog = new THREE.Fog(HORIZON, 95, 240);
@@ -440,8 +447,8 @@ const HORIZON = new THREE.Color(0xf6c596); scene.fog = new THREE.Fog(HORIZON, 95
     }` }));
   scene.add(ciel);
 }
-scene.add(new THREE.HemisphereLight(0xbcd4ff, 0x7a6a48, .55));
-const soleil = new THREE.DirectionalLight(0xffbd78, 4.2); soleil.position.set(-46, 24, 28); soleil.castShadow = true;
+scene.add(new THREE.HemisphereLight(0xd6e6ff, 0x8a7a58, .85));
+const soleil = new THREE.DirectionalLight(0xffe0bd, 3.6); soleil.position.set(-46, 24, 28); soleil.castShadow = true;
 soleil.shadow.mapSize.set(TEL ? 2048 : 4096, TEL ? 2048 : 4096); { const s = soleil.shadow.camera, e = N * T / 2 + 8; s.left = -e; s.right = e; s.top = e; s.bottom = -e; s.near = 1; s.far = 200; }
 soleil.shadow.bias = -.0003; soleil.shadow.normalBias = .025; soleil.shadow.radius = 4; scene.add(soleil);
 const contre = new THREE.DirectionalLight(0x9fc4ff, .55); contre.position.set(40, 20, -30); scene.add(contre);
@@ -459,7 +466,6 @@ function majCam(dt = 1) {
 const composer = new EffectComposer(renderer);
 composer.addPass(new RenderPass(scene, cam));
 const ao = new GTAOPass(scene, cam, innerWidth, innerHeight); ao.blendIntensity = .9; ao.updateGtaoMaterial({ radius: .6, distanceExponent: 1.6, thickness: 1.2, scale: 1.1 }); composer.addPass(ao);
-composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), .22, .6, .9));
 composer.addPass(new OutputPass());
 const miniature = new ShaderPass({
   uniforms: { tDiffuse: { value: null }, res: { value: new THREE.Vector2(innerWidth, innerHeight) }, force: { value: TEL ? 1.8 : 2.4 } },
@@ -467,7 +473,7 @@ const miniature = new ShaderPass({
   fragmentShader: `uniform sampler2D tDiffuse; uniform vec2 res; uniform float force; varying vec2 vUv;
     void main(){ float d = smoothstep(.16,.6,abs(vUv.y-.5)); vec2 px = force*d/res*1.7; vec4 c = vec4(0.); float w = 0.;
       for(int x=-2;x<=2;x++) for(int y=-2;y<=2;y++){ float k = 1. - length(vec2(float(x),float(y)))/3.3; vec4 e = texture2D(tDiffuse, vUv + vec2(float(x),float(y))*px); if (e.r == e.r && e.g == e.g && e.b == e.b) { c += e*k; w += k; } }
-      c /= max(w, 1e-3); vec2 q = vUv - .5; c.rgb *= 1. - dot(q,q)*.6; c.rgb *= vec3(1.035,1.,.95); c.rgb = (c.rgb-.5)*1.06+.5; gl_FragColor = vec4(c.rgb,1.); }`
+      c /= max(w, 1e-3); vec2 q = vUv - .5; c.rgb *= 1. - dot(q,q)*.6; float l = dot(c.rgb, vec3(.299,.587,.114)); c.rgb = mix(vec3(l), c.rgb, 1.18); c.rgb = (c.rgb-.5)*1.05+.5; gl_FragColor = vec4(c.rgb,1.); }`
 });
 composer.addPass(miniature);
 function redim() { renderer.setSize(innerWidth, innerHeight); composer.setSize(innerWidth, innerHeight); miniature.uniforms.res.value.set(innerWidth, innerHeight); cam.aspect = innerWidth / innerHeight; cam.updateProjectionMatrix(); }
@@ -515,7 +521,8 @@ function enseigne(picto, fond = '#fff') {
     const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; enseignes[cl] = new THREE.SpriteMaterial({ map: t }); }
   const s = new THREE.Sprite(enseignes[cl]); s.scale.set(.7, .7, 1); return s;
 }
-const TAILLE = { mairie: [2, 1], epicerie: [2, 1], garage: [2, 2], ecole: [2, 2], medecin: [2, 1], stade: [5, 3] };
+const TEINTES = [0xffffff, 0xffe4ec, 0xe2f0ff, 0xfff3c4, 0xe6ffe0, 0xf3e6ff, 0xffe9d6];
+const TAILLE = { mairie: [2, 1], epicerie: [2, 1], garage: [2, 2], ecole: [2, 2], medecin: [2, 1], stade: [5, 3], tour: [2, 2], gratteciel: [3, 2], tourgeante: [4, 2] };
 const taille = t => TAILLE[t] || [1, 1];
 const ENSEIGNE = { boulangerie: ['🥖'], epicerie: ['🍎'], garage: ['🔧'], chateau: ['💧', '#7fd0ff'], ecole: ['🏫'], medecin: ['🩺'], police: ['🚓', '#8fb3ff'], pompiers: ['🚒', '#ff8a7a'], poste: ['✉️'], banque: ['🏦'], mairie: ['🏛️', '#ffe9b0'] };
 let OCC = {};
@@ -542,8 +549,9 @@ function batiment(c, i, j) {
   for (const [d, rot] of [[2, 0], [1, 1], [0, 2], [3, 3]]) { if (w !== h && rot % 2) continue; if (bordRoute(i, j, c.t, d)) { r = rot; break; } }
   const corps = new THREE.Group(); g.add(corps); let nom = c.t;
   if (c.t === 'maison') { const M = MAISONS[c.n || 0]; nom = M.modeles[(c.v || 0) % M.modeles.length]; }
+  const couleur = c.t === 'maison' ? TEINTES[Math.floor((c.v || 0) / 4) % TEINTES.length] : null;
   if (c.t === 'parc') nom = (c.v || 0) % 2 ? 'parc2' : 'parc';
-  const modele = c.t === 'pompiers' ? teinte(piece('pompiers'), 0xffb4a6) : piece(nom);
+  const modele = c.t === 'pompiers' ? teinte(piece('pompiers'), 0xffb4a6) : couleur ? teinte(piece(nom), couleur) : piece(nom);
   // un socle relie chaque bâtiment à la route : trottoir, pelouse, allée jusqu'au trottoir de la rue
   const bb = new THREE.Box3().setFromObject(modele), W = w * T, H = h * T, pave = !['maison', 'parc', 'chateau'].includes(c.t);
   corps.add(dalle(W, H, .035, MAT_TROTTOIR));
@@ -588,8 +596,10 @@ const MAT_POUS = mat(0xf2eadc, 1, { transparent: true });
 const MAT_OR = mat(0xffc531, .25, { metalness: .9, emissive: 0xb37400, emissiveIntensity: .35 });
 const MAT_CONF = [0xff5d5d, 0xffc93c, 0x4fc3f7, 0x7ed957, 0xb388ff].map(c => mat(c, .6, { emissive: c, emissiveIntensity: .25 }));
 function poussiere(p, w = 1) { for (let k = 0; k < 14 * w; k++) particule(GEO_P, MAT_POUS.clone(), p.clone().add(new THREE.Vector3((Math.random() - .5) * 1.8 * w, .2, (Math.random() - .5) * 1.8 * w)), new THREE.Vector3((Math.random() - .5) * 2, 1 + Math.random(), (Math.random() - .5) * 2), .8); }
-function confettis(p, n = 26) { for (let k = 0; k < n; k++) { const m = particule(GEO_C, MAT_CONF[k % 5], p.clone(), new THREE.Vector3((Math.random() - .5) * 5, 4 + Math.random() * 4, (Math.random() - .5) * 5), 1.4, 9, 0); m.rotation.set(Math.random() * 3, Math.random() * 3, 0); } }
-function eclats(p) { for (let k = 0; k < 8; k++) particule(GEO_C, MAT_OR, p.clone().setY(.3), new THREE.Vector3(Math.cos(k * .8) * 2.5, 3, Math.sin(k * .8) * 2.5), .7, 6, 0); }
+function confettis() {}
+function confettisAncien(p, n = 26) { for (let k = 0; k < n; k++) { const m = particule(GEO_C, MAT_CONF[k % 5], p.clone(), new THREE.Vector3((Math.random() - .5) * 5, 4 + Math.random() * 4, (Math.random() - .5) * 5), 1.4, 9, 0); m.rotation.set(Math.random() * 3, Math.random() * 3, 0); } }
+function eclats() {}
+function eclatsAncien(p) { for (let k = 0; k < 8; k++) particule(GEO_C, MAT_OR, p.clone().setY(.3), new THREE.Vector3(Math.cos(k * .8) * 2.5, 3, Math.sin(k * .8) * 2.5), .7, 6, 0); }
 function majParts(dt) {
   for (const o of [...parts]) { const u = o.userData; u.vie -= dt; u.v.y -= u.grav * dt; o.position.addScaledVector(u.v, dt);
     if (u.grandir) o.scale.multiplyScalar(1 + dt * u.grandir); else { o.rotation.x += dt * 6; o.rotation.y += dt * 4; }
@@ -652,7 +662,8 @@ function montee(n) {
   const neufs = Object.values(BATIS).filter(b => b.niv === n).map(b => b.picto);
   $('bravoNeufs').innerHTML = neufs.map((p, k) => `<span style="animation-delay:${.3 + k * .12}s">${p}</span>`).join(''); $('bravo').hidden = false;
 }
-function pluieConfettis() {
+function pluieConfettis() {}
+function pluieConfettisAncien() {
   const C = ['#ff5d5d', '#ffc93c', '#4fc3f7', '#7ed957', '#b388ff'];
   for (let k = 0; k < 70; k++) { const e = document.createElement('i'); e.className = 'confetti'; e.style.left = Math.random() * 100 + 'vw'; e.style.background = C[k % 5];
     e.style.animationDuration = 1.6 + Math.random() * 1.6 + 's'; e.style.animationDelay = Math.random() * .6 + 's'; document.body.appendChild(e); setTimeout(() => e.remove(), 4000); }
@@ -674,7 +685,7 @@ function articlesDe(cat) {
 }
 function catalogue() {
   analyser();
-  const cats = CATS.filter(([k]) => articlesDe(k).some(x => x[2] === 'ok' || x[2] === 'max'));
+  const cats = CATS.filter(([k]) => articlesDe(k).some(x => x[2] === 'ok' || x[2] === 'max') || (k === 'prestige' && niveau() >= 4));
   if (!cats.some(([k]) => k === onglet)) onglet = cats[0][0];
   $('onglets').innerHTML = cats.map(([k, p, nom]) => `<button data-cat="${k}" class="${k === onglet ? 'actif' : ''}"><span>${p}</span>${nom}</button>`).join('');
   $('onglets').querySelectorAll('button').forEach(b => b.onclick = () => { onglet = b.dataset.cat; SON.clic(); catalogue(); });
@@ -705,7 +716,7 @@ function poser(i, j) {
   const p = prix(t); if (E.pieces < p) { pasAssez(); sortirMode(); return false; }
   E.pieces -= p; affiche.pieces -= p;
   const c = { t };
-  if (t === 'maison') { c.n = 0; c.v = Math.floor(Math.random() * 6); c.recolte = maintenant() - IMPOT_SEC * 2; }
+  if (t === 'maison') { c.n = 0; c.v = Math.floor(Math.random() * 28); c.recolte = maintenant() - (E.tuto.fini ? 0 : IMPOT_SEC * IMPOT_MAX); }
   if (t === 'parc') c.v = Math.floor(Math.random() * 2);
   E.cases[k] = c; majOcc(); nettoyerDecor(i, j, t);
   redessiner(i, j, t !== 'route'); if (t === 'route') autour(i, j);
@@ -807,7 +818,7 @@ function ecouter(m) {
   const bav = !m.dem, D = bav ? BAV[m.bav] : DEM[m.dem]; dialogue = { m, D, bav, choisi: null }; fermerTout(); if (!bav) E.vus[D.id] = (E.vus[D.id] || 0) + 1;
   cible.x = m.o.position.x; cible.z = m.o.position.z; cible.dist = Math.min(cible.dist, 36);
   m.actions.Waving?.stop(); m.actions.Idle_A?.play(); m.o.rotation.y = vue.az;
-  $('visage').src = 'sprites/' + GENS[D.v].img + '.webp'; $('dit').textContent = D.dit; parler(D.voix);
+  $('visage').src = visage(D.v, D.id); $('dit').textContent = D.dit; parler(D.voix);
   const autres = melange(Object.keys(REPONSES).filter(k => k !== D.rep)).slice(0, E.tuto.fini ? 2 : 1);
   const table = bav ? RB : REPONSES, pref = bav ? 'rb-' : 'a-';
   const c = $('choix'); c.innerHTML = '';
@@ -863,7 +874,7 @@ function remplirTaches() {
   const C = $('tachesContenu');
   if (!E.taches.length) { C.innerHTML = '<div style="text-align:center;font-size:40px;padding:16px">😊</div>'; return; }
   C.innerHTML = E.taches.map((t, k) => { const D = DEM[t.id], [a, b] = avance(t);
-    return `<div class="tache"><button class="buste" style="position:relative;left:0;top:0;width:60px;height:60px;border-width:3px" data-ecoute="${k}" aria-label="Réécouter"><img src="sprites/${GENS[t.v].img}.webp" alt=""></button>
+    return `<div class="tache"><button class="buste" style="position:relative;left:0;top:0;width:60px;height:60px;border-width:3px" data-ecoute="${k}" aria-label="Réécouter"><img src="${visage(t.v, t.id)}" alt=""></button>
       <div style="flex:1;display:flex;gap:8px"><span class="besoin ${a >= b ? 'ok' : ''}">${BATIS[D.t].picto}<span class="chiffre">${a}/${b}</span></span></div>
       <button class="gros" style="height:52px;padding:0 16px;font-size:18px" data-k="${k}" aria-label="Construire">🏗️</button></div>`; }).join('');
   C.querySelectorAll('[data-ecoute]').forEach(b => b.onclick = () => dire(DEM[E.taches[+b.dataset.ecoute].id].voix));
@@ -937,7 +948,7 @@ function exercice() {
   }
 }
 function finQuiz() {
-  const { theme, k, fautes } = Q; E.themesVus[theme] = true; E.lecons[theme] = maintenant() + ATTENTE_LECON;
+  const { theme, k, fautes } = Q; E.themesVus[theme] = true; E.derniereLecon = maintenant(); E.lecons[theme] = maintenant() + ATTENTE_LECON;
   const bonus = GAIN_SERIE + 30 * niveau() + (fautes === 0 ? 60 : 0), nbEt = fautes === 0 ? 3 : fautes <= 2 ? 2 : 1;
   $('qProg').style.width = '100%'; $('qImage').style.backgroundImage = 'none'; $('qImage').innerHTML = '<div style="font-size:110px">🎉</div>';
   $('qBas').innerHTML = `<div class="fin"><div class="etoiles3">${'⭐'.repeat(nbEt)}${'☆'.repeat(3 - nbEt)}</div><div class="gain chiffre">${PC}+${bonus}</div><button class="gros or" id="qFin">Super${NB}!</button></div>`;
@@ -951,17 +962,17 @@ function bulle(k, html, cls, p3, action) {
   let b = bulles[k]; if (!b) { b = document.createElement('button'); b.className = 'b ' + cls; b.innerHTML = html; b.onclick = e => { e.stopPropagation(); action(); }; b.action = action; b.dataset.cle = k; $('bulles').appendChild(b); bulles[k] = b; }
   const [x, y] = ecran(p3); b.style.transform = `translate(${x}px,${y}px)`; b.dataset.vu = 1; b.px = [x, y];
 }
+const besoinMots = () => E.phase2 && (E.pieces < 400 || maintenant() - (E.derniereLecon || 0) > 240);
 function majBulles() {
   for (const b of Object.values(bulles)) b.dataset.vu = 0;
   if (!mode && !dialogue && $('quiz').hidden) {
-    let voisin = false;
+    let voisin = false, nPieces = 0;
     for (const [k, c] of Object.entries(E.cases)) { if (c.t === 'route') continue; const [i, j] = ij(k), g = objets[k], haut = centre(i, j, c.t).setY((g?.userData.haut || 2) + .35);
       const th = BATIS[c.t].theme;
-      if (c.t === 'maison' && c.pret > 0) bulle('p' + k, PC, 'argent', haut, () => encaisser(k));
-      else if (E.phase2 && th && th !== 'maison' && leconDispo(th)) bulle('l' + k, '🎓', 'lecon', haut, () => ouvrirQuiz(th, k));
-      else if (E.phase2 && c.t === 'maison' && !voisin && leconDispo('maison')) { voisin = true; bulle('l' + k, '🎓', 'lecon', haut, () => ouvrirQuiz('maison', k)); }
+      if (c.t === 'maison' && c.pret >= IMPOT_MAX * MAISONS[c.n || 0].unite && nPieces < 4) { nPieces++; bulle('p' + k, PC, 'argent', haut, () => encaisser(k)); }
+      else if (besoinMots() && !voisin && th && leconDispo(th) && (th !== 'maison' || !Object.values(E.cases).some(x => BATIS[x.t].theme && x.t !== 'maison' && leconDispo(BATIS[x.t].theme)))) { voisin = true; bulle('l' + k, '🎓', 'lecon', haut, () => ouvrirQuiz(th, k)); }
     }
-    for (const m of mobiles) if (m.dem || m.bav) bulle('m' + (m.dem || m.bav), `<img src="sprites/${GENS[m.v].img}.webp" alt=""><i style="${m.bav ? 'background:#1fbf73;font-size:13px' : ''}">${m.bav ? '💬' : '!'}</i>`, 'perso', m.o.position.clone().setY(.7), () => ecouter(m));
+    for (const m of mobiles) if (m.dem || m.bav) bulle('m' + (m.dem || m.bav), `<img src="${visage(m.v, m.dem || m.bav)}" alt=""><i style="${m.bav ? 'background:#1fbf73;font-size:13px' : ''}">${m.bav ? '💬' : '!'}</i>`, 'perso', m.o.position.clone().setY(.7), () => ecouter(m));
   }
   for (const [k, b] of Object.entries(bulles)) if (b.dataset.vu === '0') { b.classList.add('part'); delete bulles[k]; setTimeout(() => b.remove(), 250); }
 }
@@ -1013,13 +1024,13 @@ const doigts = new Map(); let bouge = 0, pinceD = 0, pinceA = 0, trace = null, t
 function ecartAngle() { const [p, q] = [...doigts.values()]; return [Math.hypot(p.clientX - q.clientX, p.clientY - q.clientY) || 1, Math.atan2(q.clientY - p.clientY, q.clientX - p.clientX)]; }
 function ramasserSous(x, y) { for (const b of Object.values(bulles)) { if (!b.classList.contains('argent') || !b.px) continue; if (Math.abs(x - b.px[0]) < 34 && y > b.px[1] - 80 && y < b.px[1] + 10) b.action(); } }
 canvas.addEventListener('contextmenu', e => e.preventDefault());
-canvas.addEventListener('pointerdown', e => { canvas.setPointerCapture(e.pointerId); doigts.set(e.pointerId, e); bouge = 0; trace = null; tourne = e.button === 2 || e.shiftKey;
+canvas.addEventListener('pointerdown', e => { canvas.setPointerCapture(e.pointerId); doigts.set(e.pointerId, e); if (doigts.size === 1) bouge = 0; trace = null; tourne = e.button === 2 || e.shiftKey;
   if (doigts.size === 2) [pinceD, pinceA] = ecartAngle(); else if (mode && BATIS[mode].glisse) { const c = caseSous(e.clientX, e.clientY); if (c) { poser(...c); trace = cle(...c); } } });
 canvas.addEventListener('pointermove', e => {
   const c = caseSous(e.clientX, e.clientY);
   if (mode && c && dans(...c)) { fantome.visible = true; fantome.position.copy(mode === 'route' ? pos(...c) : centre(...c, mode)); }
   if (!doigts.has(e.pointerId)) return; const a = doigts.get(e.pointerId), dx = e.clientX - a.clientX, dy = e.clientY - a.clientY; doigts.set(e.pointerId, e);
-  if (doigts.size === 2) { const [d, ang] = ecartAngle(); cible.dist *= pinceD / d; cible.az -= (ang - pinceA); pinceD = d; pinceA = ang; bouge += 20; return; }
+  if (doigts.size === 2) { const [d, ang] = ecartAngle(); let da = ang - pinceA; da = Math.atan2(Math.sin(da), Math.cos(da)); cible.dist *= pinceD / d; cible.az -= da; pinceD = d; pinceA = ang; bouge += 20; return; }
   bouge += Math.abs(dx) + Math.abs(dy);
   if (tourne) { cible.az -= dx * .008; cible.el = THREE.MathUtils.clamp(cible.el + dy * .005, .45, 1.35); return; }
   if (mode && BATIS[mode].glisse) { if (c && cle(...c) !== trace) { poser(...c); trace = cle(...c); } return; }
@@ -1028,11 +1039,11 @@ canvas.addEventListener('pointermove', e => {
   if (!mode) ramasserSous(e.clientX, e.clientY);
 });
 canvas.addEventListener('pointerup', e => {
-  if (!doigts.has(e.pointerId)) return; const seulDoigt = doigts.size === 1; doigts.delete(e.pointerId); if (!seulDoigt || bouge > 10) return;
+  if (!doigts.has(e.pointerId)) return; const seulDoigt = doigts.size === 1; doigts.delete(e.pointerId); if (!seulDoigt) { bouge = 99; return; } if (bouge > 10) return;
   if (mode && !BATIS[mode].glisse) { const c = caseSous(e.clientX, e.clientY); if (c) poser(...c); return; }
   if (!mode) { const k = caseBatie(e.clientX, e.clientY); if (k) ouvrirFiche(k); else fermerTout(); }
 });
-canvas.addEventListener('pointercancel', e => doigts.delete(e.pointerId));
+canvas.addEventListener('pointercancel', e => { doigts.delete(e.pointerId); bouge = 99; });
 canvas.addEventListener('wheel', e => { e.preventDefault(); cible.dist *= e.deltaY > 0 ? 1.1 : .9; }, { passive: false });
 $('gauche').onclick = () => { cible.az += Math.PI / 4; SON.clic(); }; $('droite').onclick = () => { cible.az -= Math.PI / 4; SON.clic(); };
 
@@ -1040,6 +1051,7 @@ $('gauche').onclick = () => { cible.az += Math.PI / 4; SON.clic(); }; $('droite'
 $('jouer').onclick = () => { $('menu').hidden = true; voixEl.play().catch(() => {}); voixEl.pause(); attente = 1.2;
   if (E.debut) { E.debut = false; sauver(); setTimeout(() => dire('bienvenue'), 400); } };
 $('zero').onclick = () => { try { localStorage.removeItem(CLE); } catch (e) {} location.reload(); };
+const ballons = [];
 const horloge = new THREE.Clock(); let tSec = 0, fpsT = 0, fpsN = 0, leger = false, tMer = 0;
 function boucle() {
   const dt = Math.min(horloge.getDelta(), .05), t = performance.now();
@@ -1058,6 +1070,9 @@ function boucle() {
     tSec = 0; compter(); impots(); verifierTaches(); if ($('fiche').classList.contains('ouvert')) remplirFiche();
   }
   majBulles(); guide();
+  // au niveau 6, des montgolfières survolent la ville
+  if (niveau() >= 6 && !ballons.length) for (const [n, r, h] of [['ballon_a', 18, 9], ['ballon_b', 26, 11], ['ballon_a', 32, 13]]) { const b = piece(n); b.userData = { r, h, a: Math.random() * 6 }; scene.add(b); ballons.push(b); }
+  for (const b of ballons) { const u = b.userData; u.a += dt * .04; b.position.set(Math.cos(u.a) * u.r, u.h + Math.sin(u.a * 3) * .6, Math.sin(u.a) * u.r); b.rotation.y = -u.a; }
   fpsT += dt; fpsN++; if (fpsT > 3) { if (!leger && fpsN / fpsT < 24) { leger = true; ao.enabled = false; } fpsT = 0; fpsN = 0; }
   composer.render(dt); requestAnimationFrame(boucle);
 }

@@ -14,6 +14,9 @@ SEL = {
   'chateau': ('farmstractures_26', 1, 1, 2.2), 'ecole': ('school_a', 2, 2), 'medecin': ('hospital_a', 2, 1), 'police': ('policestation', 1, 1),
   'pompiers': ('antiques', 1, 1), 'poste': ('postoffice', 1, 1), 'banque': ('bank', 1, 1), 'parc': ('park_c', 1, 1), 'parc2': ('park_b', 1, 1),
   'stade': ('nationalstadium', 5, 3),
+  'maison0d': ('house_03', 1, 1), 'maison1c': ('house_01', 1, 1), 'maison1d': ('house_07', 1, 1),
+  'hotel': ('hotel_b', 1, 1), 'affaires': ('businesscenter', 1, 1), 'tour': ('skyscraper_b', 2, 2), 'gratteciel': ('skyscraper_c', 3, 2), 'tourgeante': ('skyscraper_a', 4, 2),
+  'ballon_a': ('airballoon_a', 0, 0, 1.0), 'ballon_b': ('airballoon_b', 0, 0, 1.0),
   'arbre': ('tree', 0, 0, 1.0), 'voiture_a': ('car_a', 0, 0, 1.0), 'voiture_c': ('car_c', 0, 0, 1.0), 'voiture_e': ('car_e', 0, 0, 1.0),
   'voiture_h': ('car_h', 0, 0, 1.0), 'jeep': ('jeep_b', 0, 0, 1.0),
   'route_droite': ('road_a_02', 1, 1, 'route'), 'route_06': ('road_a_06', 1, 1, 'route'), 'route_12': ('road_a_12', 1, 1, 'route'), 'route_13': ('road_a_13', 1, 1, 'route'),
@@ -52,7 +55,7 @@ for jeu, spec in SEL.items():
     bm = bmesh.new(); bm.from_mesh(me); bmesh.ops.remove_doubles(bm, verts=bm.verts, dist=.002); bm.to_mesh(me); bm.free()
     n = bpy.data.objects.new(jeu, me); n.matrix_world = T @ M2; col.objects.link(n)
     poly = len(me.polygons)
-    plafond = 600 if jeu.startswith(('voiture', 'jeep', 'camion')) else 1500 if jeu.startswith('parc') else 3500
+    plafond = 600 if jeu.startswith(('voiture', 'jeep', 'camion')) else 1500 if jeu.startswith('parc') else 9000 if jeu in ('tourgeante', 'affaires', 'stade') else 3500
     if poly > plafond:
         m = n.modifiers.new('dec', 'DECIMATE'); m.ratio = max(.2, plafond / poly)
     dg = bpy.context.evaluated_depsgraph_get(); print('OK', len(n.evaluated_get(dg).data.polygons), jeu, nom, 'rz', round(math.degrees(rz)), 'poly', poly, 'taille', [round(v, 2) for v in boite(n)[1] - boite(n)[0]])
