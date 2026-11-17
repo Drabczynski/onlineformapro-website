@@ -793,7 +793,7 @@ const routes = () => Object.keys(E.cases).filter(k => E.cases[k].t === 'route').
 function nouveau(sorte, v) {
   const R = routes(); if (!R.length) return null; const [i, j] = R[Math.floor(Math.random() * R.length)]; let o, mixer = null, actions = {};
   if (sorte === 'gens') { const G = GLB[GENS[v].glb]; o = SkeletonUtils.clone(G.scene); o.scale.setScalar(.17); mixer = new THREE.AnimationMixer(o); for (const c of G.animations) actions[c.name] = mixer.clipAction(c); actions.Walking_A?.play(); }
-  else { o = new THREE.Group(); const p = piece(['voiture_a', 'voiture_c', 'voiture_e', 'voiture_h', 'jeep'][Math.floor(Math.random() * 5)]); p.scale.multiplyScalar(.72); o.add(p); }
+  else { o = new THREE.Group(); const p = piece(['voiture_a', 'voiture_c', 'voiture_e', 'voiture_h', 'jeep'][Math.floor(Math.random() * 5)]); p.scale.multiplyScalar(.72); const pivot = new THREE.Group(); pivot.rotation.y = Math.PI / 2; pivot.add(p); o.add(pivot); }   // le modèle (avec sa propre rotation) est long sur X : un pivot l'aligne sur l'axe de marche (+Z)
   o.traverse(m => { if (m.isMesh) { m.castShadow = true; m.frustumCulled = false; } });
   const m = { sorte, v, o, mixer, actions, de: [i, j], vers: [i, j], t: 1, vit: sorte === 'gens' ? .32 + Math.random() * .12 : 1 + Math.random() * .4, arret: false, dem: null };
   monde.add(o); mobiles.push(m); return m;
@@ -1128,7 +1128,7 @@ function boucle() {
     for (const k of Object.keys(E.cases)) redessiner(...ij(k));
     { const mk = Object.keys(E.cases).find(k => E.cases[k].t === 'mairie'); if (mk) { const p = centre(...ij(mk), 'mairie'); vue.x = cible.x = p.x - 3; vue.z = cible.z = p.z + 3; } }
     semerDecor(); majCam(); compter(); impots(); boucle(); $('charge').remove();
-    window.__ville = { E, poser, entrerMode, sortirMode, ouvrirFiche, encaisser, vite: () => { attente = 0; }, mobiles, ecouter, ouvrirQuiz, analyser, verifierTaches, cible, vue, pluie, composer, prix, nuages, cam };
+    window.__ville = { E, poser, entrerMode, sortirMode, ouvrirFiche, encaisser, vite: () => { attente = 0; }, mobiles, ecouter, ouvrirQuiz, analyser, verifierTaches, cible, vue, pluie, composer, prix, nuages, cam, THREE };
   } catch (e) { console.error(e); $('charge').textContent = 'Le jeu n’a pas pu se charger.'; }
 })();
 </script>
