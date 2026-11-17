@@ -510,7 +510,7 @@ const THEMES = {
   parc: { titre: 'Le parc', mots: ['arbre', 'fleur', 'banc', 'ballon', 'oiseau', 'chien', 'toboggan', 'balancoire', 'herbe', 'canard'] }
 };
 // mots ajoutés dont la photo n'est pas encore prête : ils restent hors du jeu tant qu'ils sont dans cette liste
-const SANS_PHOTO = new Set(['enveloppe', 'cartepostale', 'guichet', 'balance', 'tampon', 'cheque', 'coffrefort', 'banquier', 'tirelire', 'calculatrice', 'chien', 'toboggan', 'balancoire', 'herbe', 'canard']);
+const SANS_PHOTO = new Set([]);
 const motsDe = theme => THEMES[theme].mots.filter(id => !SANS_PHOTO.has(id));
 const seul = id => MOTS[id].replace(/^(le |la |les |l’)/, '');
 const article = id => MOTS[id].slice(0, MOTS[id].length - seul(id).length);

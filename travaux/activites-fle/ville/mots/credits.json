@@ -298,5 +298,65 @@
   "lunettes": {
     "auteur": "Jake",
     "lien": "https://unsplash.com/photos/a-pair-of-glasses-sitting-on-top-of-a-table-2wBcRIWGVM8"
+  },
+  "enveloppe": {
+    "auteur": "Valeria Reverdo",
+    "lien": "https://unsplash.com/photos/a-white-envelope-on-a-black-background-Axli9F0n26A"
+  },
+  "cartepostale": {
+    "auteur": "ANNIE HATUANH",
+    "lien": "https://unsplash.com/photos/two-postcards-one-with-a-building-one-blank-p714DoFlrJA"
+  },
+  "guichet": {
+    "auteur": "Christiann Koepke",
+    "lien": "https://unsplash.com/photos/woman-paying-at-shop-counter-dQyS2pMYtok"
+  },
+  "balance": {
+    "auteur": "Katrin Hauf",
+    "lien": "https://unsplash.com/photos/white-and-brown-weighing-scale-at-0-XyGfxCVbjCA"
+  },
+  "tampon": {
+    "auteur": "Markus Spiske",
+    "lien": "https://unsplash.com/photos/rubber-stamp-on-legal-document-7PMGUqYQpYc"
+  },
+  "cheque": {
+    "auteur": "Money Knack",
+    "lien": "https://unsplash.com/photos/pen-poised-over-a-check-ready-to-write-E0sZxhBH8Ck"
+  },
+  "coffrefort": {
+    "auteur": "Nezih Kosak",
+    "lien": "https://unsplash.com/photos/a-black-and-white-photo-of-a-square-object-6aKDQB4Ss9M"
+  },
+  "banquier": {
+    "auteur": "Skytech Aviation",
+    "lien": "https://unsplash.com/photos/man-in-suit-sitting-at-desk-with-laptop-and-coffee-kgc1vAw1Tl8"
+  },
+  "tirelire": {
+    "auteur": "Braňo",
+    "lien": "https://unsplash.com/photos/piggy-bank-with-gold-coins-heYdDdq0cbE"
+  },
+  "calculatrice": {
+    "auteur": "Recha Oktaviani",
+    "lien": "https://unsplash.com/photos/black-and-silver-calculator-beside-black-pen-h2aDKwigQeA"
+  },
+  "chien": {
+    "auteur": "Victor G",
+    "lien": "https://unsplash.com/photos/golden-retriever-x5oPmHmY3kQ"
+  },
+  "toboggan": {
+    "auteur": "Se. Tsuchiya",
+    "lien": "https://unsplash.com/photos/a-red-slide-next-to-a-white-building-86FD8zsZFBA"
+  },
+  "balancoire": {
+    "auteur": "Markus Spiske",
+    "lien": "https://unsplash.com/photos/brown-wooden-swing-on-green-grass-field-fftCyfE7L_I"
+  },
+  "herbe": {
+    "auteur": "Ochir-Erdene Oyunmedeg",
+    "lien": "https://unsplash.com/photos/close-photo-of-green-grass-LmyPLbbUWhA"
+  },
+  "canard": {
+    "auteur": "Razvan Constantinescu",
+    "lien": "https://unsplash.com/photos/a-mallard-duck-walks-on-a-stone-path-D6nIjD_3TWk"
   }
 }
