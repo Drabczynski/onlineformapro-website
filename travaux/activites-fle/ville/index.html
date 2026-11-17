@@ -948,8 +948,9 @@ function repondre(b, k) {
   if (k !== (bav ? D.bon : D.rep)) { b.classList.remove('choisi'); b.classList.add('faux'); dialogue.choisi = null; SON.faux(); vibrer([20, 30, 20]); setTimeout(() => parler('non-' + D.v, () => parler(D.voix)), 200); return; }
   if (dialogue.fini) return; dialogue.fini = true;
   b.classList.add('juste'); SON.juste(); vibrer(15); $('choix').querySelectorAll('.rep:not(.juste)').forEach(x => x.style.opacity = .3);
-  parler((bav ? 'tb-' : 'ok-') + D.v, () => fermerDialogue(true));
-  setTimeout(() => dialogue && fermerDialogue(true), 3500);
+  // « Super ! D'accord, j'attends. » seulement une fois sur trois ; sinon on ferme juste après le « juste »
+  if (bav || Math.random() < 1 / 3) { parler((bav ? 'tb-' : 'ok-') + D.v, () => fermerDialogue(true)); setTimeout(() => dialogue && fermerDialogue(true), 3500); }
+  else setTimeout(() => dialogue && fermerDialogue(true), 700);
 }
 function fermerDialogue(accord) {
   if (!dialogue) return; const { m, D, bav } = dialogue; dialogue = null; $('dial').classList.remove('ouvert'); document.body.classList.remove('parle');
