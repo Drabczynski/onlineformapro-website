@@ -914,5 +914,185 @@
  "tb-h2": [
   "h2",
   "Très bien !"
+ ],
+ "w-canape": [
+  "maire",
+  "Le canapé."
+ ],
+ "w-lampe": [
+  "maire",
+  "La lampe."
+ ],
+ "w-armoire": [
+  "maire",
+  "L’armoire."
+ ],
+ "w-television": [
+  "maire",
+  "La télévision."
+ ],
+ "w-miroir": [
+  "maire",
+  "Le miroir."
+ ],
+ "w-tarte": [
+  "maire",
+  "La tarte."
+ ],
+ "w-brioche": [
+  "maire",
+  "La brioche."
+ ],
+ "w-beurre": [
+  "maire",
+  "Le beurre."
+ ],
+ "w-sucre": [
+  "maire",
+  "Le sucre."
+ ],
+ "w-sandwich": [
+  "maire",
+  "Le sandwich."
+ ],
+ "w-carotte": [
+  "maire",
+  "La carotte."
+ ],
+ "w-orange": [
+  "maire",
+  "L’orange."
+ ],
+ "w-oeuf": [
+  "maire",
+  "L’œuf."
+ ],
+ "w-eau": [
+  "maire",
+  "L’eau."
+ ],
+ "w-raisin": [
+  "maire",
+  "Le raisin."
+ ],
+ "w-moto": [
+  "maire",
+  "La moto."
+ ],
+ "w-velo": [
+  "maire",
+  "Le vélo."
+ ],
+ "w-camion": [
+  "maire",
+  "Le camion."
+ ],
+ "w-moteur": [
+  "maire",
+  "Le moteur."
+ ],
+ "w-casque": [
+  "maire",
+  "Le casque."
+ ],
+ "w-regle": [
+  "maire",
+  "La règle."
+ ],
+ "w-gomme": [
+  "maire",
+  "La gomme."
+ ],
+ "w-crayon": [
+  "maire",
+  "Le crayon."
+ ],
+ "w-trousse": [
+  "maire",
+  "La trousse."
+ ],
+ "w-ordinateur": [
+  "maire",
+  "L’ordinateur."
+ ],
+ "w-hopital": [
+  "maire",
+  "L’hôpital."
+ ],
+ "w-infirmiere": [
+  "maire",
+  "L’infirmière."
+ ],
+ "w-sirop": [
+  "maire",
+  "Le sirop."
+ ],
+ "w-masque": [
+  "maire",
+  "Le masque."
+ ],
+ "w-lunettes": [
+  "maire",
+  "Les lunettes."
+ ],
+ "w-enveloppe": [
+  "maire",
+  "L’enveloppe."
+ ],
+ "w-cartepostale": [
+  "maire",
+  "La carte postale."
+ ],
+ "w-guichet": [
+  "maire",
+  "Le guichet."
+ ],
+ "w-balance": [
+  "maire",
+  "La balance."
+ ],
+ "w-tampon": [
+  "maire",
+  "Le tampon."
+ ],
+ "w-cheque": [
+  "maire",
+  "Le chèque."
+ ],
+ "w-coffrefort": [
+  "maire",
+  "Le coffre-fort."
+ ],
+ "w-banquier": [
+  "maire",
+  "Le banquier."
+ ],
+ "w-tirelire": [
+  "maire",
+  "La tirelire."
+ ],
+ "w-calculatrice": [
+  "maire",
+  "La calculatrice."
+ ],
+ "w-chien": [
+  "maire",
+  "Le chien."
+ ],
+ "w-toboggan": [
+  "maire",
+  "Le toboggan."
+ ],
+ "w-balancoire": [
+  "maire",
+  "La balançoire."
+ ],
+ "w-herbe": [
+  "maire",
+  "L’herbe."
+ ],
+ "w-canard": [
+  "maire",
+  "Le canard."
  ]
 }

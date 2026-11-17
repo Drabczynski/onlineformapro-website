@@ -500,14 +500,18 @@ const MOTS = { lit: 'le lit', table: 'la table', chaise: 'la chaise', porte: 'la
   pomme: 'la pomme', banane: 'la banane', tomate: 'la tomate', lait: 'le lait', fromage: 'le fromage', voiture: 'la voiture', roue: 'la roue', volant: 'le volant', cle: 'la clé', essence: 'l’essence',
   livre: 'le livre', cahier: 'le cahier', stylo: 'le stylo', sac: 'le sac', tableau: 'le tableau', medecin: 'le médecin', medicament: 'le médicament', thermometre: 'le thermomètre', pansement: 'le pansement', ambulance: 'l’ambulance',
   lettre: 'la lettre', timbre: 'le timbre', colis: 'le colis', facteur: 'le facteur', boite: 'la boîte aux lettres', billet: 'le billet', piece: 'la pièce', carte: 'la carte bancaire', distributeur: 'le distributeur', portefeuille: 'le portefeuille',
-  arbre: 'l’arbre', fleur: 'la fleur', banc: 'le banc', ballon: 'le ballon', oiseau: 'l’oiseau' };
-const THEMES = {
-  maison: { titre: 'La maison', mots: ['lit', 'table', 'chaise', 'porte', 'fenetre'] }, boulangerie: { titre: 'La boulangerie', mots: ['pain', 'baguette', 'croissant', 'gateau', 'farine'] },
-  epicerie: { titre: 'L’épicerie', mots: ['pomme', 'banane', 'tomate', 'lait', 'fromage'] }, garage: { titre: 'Le garage', mots: ['voiture', 'roue', 'volant', 'cle', 'essence'] },
-  ecole: { titre: 'L’école', mots: ['livre', 'cahier', 'stylo', 'sac', 'tableau'] }, medecin: { titre: 'Chez le médecin', mots: ['medecin', 'medicament', 'thermometre', 'pansement', 'ambulance'] },
-  poste: { titre: 'La Poste', mots: ['lettre', 'timbre', 'colis', 'facteur', 'boite'] }, banque: { titre: 'La banque', mots: ['billet', 'piece', 'carte', 'distributeur', 'portefeuille'] },
-  parc: { titre: 'Le parc', mots: ['arbre', 'fleur', 'banc', 'ballon', 'oiseau'] }
+  arbre: 'l’arbre', fleur: 'la fleur', banc: 'le banc', ballon: 'le ballon', oiseau: 'l’oiseau', canape: 'le canapé', lampe: 'la lampe', armoire: 'l’armoire', television: 'la télévision', miroir: 'le miroir', tarte: 'la tarte', brioche: 'la brioche', beurre: 'le beurre', sucre: 'le sucre', sandwich: 'le sandwich', carotte: 'la carotte', orange: 'l’orange', oeuf: 'l’œuf', eau: 'l’eau', raisin: 'le raisin', moto: 'la moto', velo: 'le vélo', camion: 'le camion', moteur: 'le moteur', casque: 'le casque', regle: 'la règle', gomme: 'la gomme', crayon: 'le crayon', trousse: 'la trousse', ordinateur: 'l’ordinateur', hopital: 'l’hôpital', infirmiere: 'l’infirmière', sirop: 'le sirop', masque: 'le masque', lunettes: 'les lunettes', enveloppe: 'l’enveloppe', cartepostale: 'la carte postale', guichet: 'le guichet', balance: 'la balance', tampon: 'le tampon', cheque: 'le chèque', coffrefort: 'le coffre-fort', banquier: 'le banquier', tirelire: 'la tirelire', calculatrice: 'la calculatrice', chien: 'le chien', toboggan: 'le toboggan', balancoire: 'la balançoire', herbe: 'l’herbe', canard: 'le canard'
 };
+const THEMES = {
+  maison: { titre: 'La maison', mots: ['lit', 'table', 'chaise', 'porte', 'fenetre', 'canape', 'lampe', 'armoire', 'television', 'miroir'] }, boulangerie: { titre: 'La boulangerie', mots: ['pain', 'baguette', 'croissant', 'gateau', 'farine', 'tarte', 'brioche', 'beurre', 'sucre', 'sandwich'] },
+  epicerie: { titre: 'L’épicerie', mots: ['pomme', 'banane', 'tomate', 'lait', 'fromage', 'carotte', 'orange', 'oeuf', 'eau', 'raisin'] }, garage: { titre: 'Le garage', mots: ['voiture', 'roue', 'volant', 'cle', 'essence', 'moto', 'velo', 'camion', 'moteur', 'casque'] },
+  ecole: { titre: 'L’école', mots: ['livre', 'cahier', 'stylo', 'sac', 'tableau', 'regle', 'gomme', 'crayon', 'trousse', 'ordinateur'] }, medecin: { titre: 'Chez le médecin', mots: ['medecin', 'medicament', 'thermometre', 'pansement', 'ambulance', 'hopital', 'infirmiere', 'sirop', 'masque', 'lunettes'] },
+  poste: { titre: 'La Poste', mots: ['lettre', 'timbre', 'colis', 'facteur', 'boite', 'enveloppe', 'cartepostale', 'guichet', 'balance', 'tampon'] }, banque: { titre: 'La banque', mots: ['billet', 'piece', 'carte', 'distributeur', 'portefeuille', 'cheque', 'coffrefort', 'banquier', 'tirelire', 'calculatrice'] },
+  parc: { titre: 'Le parc', mots: ['arbre', 'fleur', 'banc', 'ballon', 'oiseau', 'chien', 'toboggan', 'balancoire', 'herbe', 'canard'] }
+};
+// mots ajoutés dont la photo n'est pas encore prête : ils restent hors du jeu tant qu'ils sont dans cette liste
+const SANS_PHOTO = new Set(['canape', 'lampe', 'armoire', 'television', 'miroir', 'tarte', 'brioche', 'beurre', 'sucre', 'sandwich', 'carotte', 'orange', 'oeuf', 'eau', 'raisin', 'moto', 'velo', 'camion', 'moteur', 'casque', 'regle', 'gomme', 'crayon', 'trousse', 'ordinateur', 'hopital', 'infirmiere', 'sirop', 'masque', 'lunettes', 'enveloppe', 'cartepostale', 'guichet', 'balance', 'tampon', 'cheque', 'coffrefort', 'banquier', 'tirelire', 'calculatrice', 'chien', 'toboggan', 'balancoire', 'herbe', 'canard']);
+const motsDe = theme => THEMES[theme].mots.filter(id => !SANS_PHOTO.has(id));
 const seul = id => MOTS[id].replace(/^(le |la |les |l’)/, '');
 const article = id => MOTS[id].slice(0, MOTS[id].length - seul(id).length);
 
@@ -523,6 +527,7 @@ function neuf() {
 let E; try { E = JSON.parse(localStorage.getItem(CLE) || 'null'); } catch (e) {}
 if (!E || !E.cases) E = neuf();
 for (const [k, v] of Object.entries({ vus: {}, fait: {}, lecons: {}, themesVus: {}, tuto: {}, bav: {} })) E[k] ||= v;
+if (!E.motsVus) { E.motsVus = {}; E.decouverts = {}; for (const th of Object.keys(E.themesVus)) for (const id of THEMES[th]?.mots.slice(0, 5) || []) { E.decouverts[id] = 1; E.motsVus[id] = 1; } }   // anciennes parties : les 5 premiers mots sont déjà connus
 const sauver = () => { try { localStorage.setItem(CLE, JSON.stringify(E)); } catch (e) {} };
 const niveau = () => { let n = 1; for (let k = 0; k < XP_NIV.length; k++) if (E.xp >= XP_NIV[k]) n = k + 1; return n; };
 const VOIS = [[0, -1], [1, 0], [0, 1], [-1, 0]];
@@ -764,7 +769,7 @@ function majParts(dt) {
 }
 
 /* ================================================================ INTERFACE : compteurs, pièces qui volent jusqu'à la cagnotte */
-const affiche = { pieces: E.pieces, attente: 0 };
+const affiche = { pieces: E.pieces, attente: 0, vu: 0 };
 function compter() {
   analyser();
   $('pop').textContent = S.hab.toLocaleString('fr-FR'); $('coeurs').textContent = E.coeurs;
@@ -772,6 +777,9 @@ function compter() {
   const nt = E.taches.length; $('nbTaches').textContent = nt; $('nbTaches').hidden = !nt;
 }
 function rouler(dt) {
+  // le compteur affiché ne dépasse jamais le vrai solde ; si des pièces en vol se perdent (appli en arrière-plan), il rattrape le solde
+  if (affiche.attente > 0 && performance.now() - affiche.vu > 4000) affiche.attente = 0;
+  affiche.attente = THREE.MathUtils.clamp(affiche.attente, 0, Math.max(0, E.pieces));
   const vise = E.pieces - affiche.attente, d = vise - affiche.pieces;
   if (Math.abs(d) < .5) affiche.pieces = vise; else affiche.pieces += d * Math.min(1, dt * 10);
   $('pieces').textContent = Math.round(affiche.pieces).toLocaleString('fr-FR');
@@ -793,20 +801,19 @@ function voler(html, de, vers, n = 1, chaque, fin, delai = 0) {
     })(performance.now());
   }
 }
-function arrivee(q) { affiche.attente -= q; SON.tinte(); eclat(centreDe('cagnotte', '.pc')); const c = $('cagnotte'); c.classList.remove('brille'); void c.offsetWidth; c.classList.add('brille'); }
+function arrivee(q) { affiche.attente = Math.max(0, affiche.attente - q); affiche.vu = performance.now(); SON.tinte(); eclat(centreDe('cagnotte', '.pc')); const c = $('cagnotte'); c.classList.remove('brille'); void c.offsetWidth; c.classList.add('brille'); }
 /* pluie de pièces depuis un bâtiment (3D) ou depuis un endroit de l'écran (DOM) ; la cagnotte compte à chaque pièce */
 function pluie(montant, p3, n) {
-  n = n || Math.min(14, 3 + Math.floor(montant / 12)); E.pieces += montant; affiche.attente += montant; const part = Math.floor(montant / n); let reste = montant;
+  n = n || Math.min(14, 3 + Math.floor(montant / 12)); E.pieces += montant; affiche.attente += montant; affiche.vu = performance.now(); const part = Math.floor(montant / n); let reste = montant;
   const vers = centreDe('cagnotte', '.pc');
   for (let k = 0; k < n; k++) {
     const a = Math.random() * Math.PI * 2, v = new THREE.Vector3(Math.cos(a) * 1.6, 5 + Math.random() * 2.5, Math.sin(a) * 1.6);
     const o = particule(GEO_PIECE, MAT_OR, p3.clone(), v, .38 + Math.random() * .12, 14, 0, o => voler(PC, ecran(o.position), vers, 1, () => { const q = k === n - 1 ? reste : part; reste -= q; arrivee(q); }));
     o.rotation.x = Math.PI / 2;
   }
-  setTimeout(() => { if (affiche.attente > 0 && document.hidden) affiche.attente = 0; }, 3000);
 }
 function pluieEcran(montant, xy, n) {
-  n = n || Math.min(16, 3 + Math.floor(montant / 15)); E.pieces += montant; affiche.attente += montant; const part = Math.floor(montant / n); let reste = montant;
+  n = n || Math.min(16, 3 + Math.floor(montant / 15)); E.pieces += montant; affiche.attente += montant; affiche.vu = performance.now(); const part = Math.floor(montant / n); let reste = montant;
   voler(PC, xy, centreDe('cagnotte', '.pc'), n, k => { const q = k === n - 1 ? reste : part; reste -= q; arrivee(q); });
 }
 function plus(html, xy) { const e = document.createElement('div'); e.className = 'plus'; e.innerHTML = html; e.style.left = xy[0] + 'px'; e.style.top = xy[1] + 'px'; document.body.appendChild(e); setTimeout(() => e.remove(), 1100); }
@@ -961,7 +968,7 @@ function remplirFiche() {
     const T2 = THEMES[th];
     h += leconDispo(th) ? `<button class="gros or" id="entrer">🎓 ${T2.titre} · 5 mots · ${PC}</button>`
       : `<button class="gros" id="entrer">🔁 Réviser · ${T2.titre}</button><div class="etat"><span>${PC} plein gain dans ${Math.ceil(((E.lecons[th] || 0) - maintenant()))} s</span></div>`;
-    if (E.themesVus[th]) h += `<button class="gros" id="revoir" style="background:#fff;color:var(--encre);box-shadow:0 4px 0 #c5d3e4">👀 Revoir les 5 mots</button>`;
+    if (E.themesVus[th]) h += `<button class="gros" id="revoir" style="background:#fff;color:var(--encre);box-shadow:0 4px 0 #c5d3e4">👀 Revoir des mots</button>`;
   } else if (c.t !== 'maison') h += '<div class="etat"><span>😊 ✓</span></div>';
   F.innerHTML = h;
   const bt = $('ameliorer'); if (bt) bt.onclick = ameliorer;
@@ -1105,17 +1112,20 @@ let Q = null;
 const img = id => `url(mots/${id}.webp)`;
 function ouvrirQuiz(theme, k, revoir = false) {
   const Th = THEMES[theme]; fermerTout(); sortirMode();
-  const decouverte = !E.themesVus[theme] || revoir;
-  Q = { theme, k, Th, decouverte, revision: !leconDispo(theme), i: 0, file: melange(Th.mots.slice()), faits: 0, fautes: 0, gagne: 0, etapes: (decouverte ? 5 : 0) + 5 };
+  // à chaque série, les 5 mots les moins vus du thème (les nouveaux d'abord) : on ne refait pas les mêmes
+  const dispo = motsDe(theme), choisis = melange(dispo.slice()).sort((a, b) => (E.motsVus[a] || 0) - (E.motsVus[b] || 0)).slice(0, 5);
+  choisis.forEach(id => E.motsVus[id] = (E.motsVus[id] || 0) + 1);
+  const liste = revoir ? choisis.slice() : choisis.filter(id => !E.decouverts[id]), decouverte = liste.length > 0;
+  Q = { theme, k, Th, dispo, decouverte, revision: !leconDispo(theme), i: 0, file: melange(choisis.slice()), faits: 0, fautes: 0, gagne: 0, etapes: liste.length + 5 };
   $('qTheme').textContent = BATIS[theme === 'maison' ? 'maison' : theme].picto + ' ' + Th.titre;
   $('quiz').hidden = false; document.body.classList.add('quiz'); E.tuto.lecon = true; SON.clic();
-  if (decouverte) { Q.liste = Th.mots.slice(); montrer(); } else exercice();
+  if (decouverte) { Q.liste = liste; montrer(); } else exercice();
 }
 $('qX').onclick = () => { fermerQuiz(); SON.clic(); };
 function fermerQuiz() { $('quiz').hidden = true; document.body.classList.remove('quiz'); voixEl.pause(); document.onkeydown = null; Q = null; }
 const progres = () => { $('qProg').style.width = Math.min(100, (Q.i / Q.etapes) * 100) + '%'; };
 function montrer() {   // découverte : la photo, le mot, la voix
-  progres(); const id = Q.liste.shift(); if (!id) return exercice();
+  progres(); const id = Q.liste.shift(); if (!id) return exercice(); E.decouverts[id] = 1;
   $('qImage').style.backgroundImage = img(id); $('qImage').innerHTML = '';
   $('qBas').innerHTML = `<div class="q">👀 Regarde et écoute</div><div class="qmot">${MOTS[id]}</div><div style="display:flex;gap:10px;justify-content:center"><button class="son" id="qRe" aria-label="Écouter">${SVG_SON}</button><button class="gros" id="qSuite" style="flex:1;max-width:260px">Suivant ▶</button></div>`;
   dire('w-' + id); $('qRe').onclick = () => dire('w-' + id); $('qSuite').onclick = () => { SON.clic(); Q.i++; montrer(); };
@@ -1123,7 +1133,7 @@ function montrer() {   // découverte : la photo, le mot, la voix
 function exercice() {
   progres(); const id = Q.file.shift();
   if (!id) return finQuiz();
-  const autres = melange(Object.keys(MOTS).filter(x => x !== id && Q.Th.mots.includes(x)));
+  const autres = melange(Q.dispo.filter(x => x !== id));
   const genre = Q.faits % 4 === 2 && seul(id).length <= 8 && !seul(id).includes(' ') ? 'ecrire' : Q.faits % 4 === 1 ? 'son' : 'image';
   $('qImage').innerHTML = ''; const B = $('qBas'); delete B.dataset.fini; const n0 = Q.n = (Q.n || 0) + 1; const apres = (f, ms) => { let fait = false; const go = () => { if (!fait && Q && Q.n === n0) { fait = true; f(); } }; setTimeout(go, ms); return go; };
   const juste = el => { Q.i++; Q.faits++; SON.juste(); vibrer(15); const xy = centreDe(el); const g = Q.revision ? 5 : GAIN_MOT; Q.gagne += g; plus(PC + '+' + g, xy); pluieEcran(g, xy, 4); const go = apres(exercice, 2600); dire('w-' + id, () => setTimeout(go, 350)); };
