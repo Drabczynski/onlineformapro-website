@@ -1041,29 +1041,48 @@ function caseBatie(x, y) {
   const c = caseSous(x, y), k = c && OCC[cle(...c)]; return k && E.cases[k].t !== 'route' ? k : null;
 }
 const doigts = new Map(); let bouge = 0, pinceD = 0, pinceA = 0, trace = null, tourne = false;
-function ecartAngle() { const [p, q] = [...doigts.values()]; return [Math.hypot(p.clientX - q.clientX, p.clientY - q.clientY) || 1, Math.atan2(q.clientY - p.clientY, q.clientX - p.clientX)]; }
+function ecartAngle() { const [p, q] = [...doigts.values()]; return [Math.hypot(p.clientX - q.clientX, p.clientY - q.clientY) || 1, Math.atan2(q.clientY - p.clientY, q.clientX - p.clientX), (p.clientX + q.clientX) / 2, (p.clientY + q.clientY) / 2]; }
+/* geste à deux doigts, comme sur une carte : tourner, zoomer et déplacer en même temps.
+   Les valeurs sont calculées depuis le début du geste (pas d'accumulation qui s'emballe) ;
+   la rotation ne démarre qu'après 10°, le zoom qu'après 6 %, pour ne pas tourner en voulant zoomer. */
+let g2 = null;
+const SEUIL_ROT = .17, SEUIL_ZOOM = .06, ISO = a => Math.round((a - Math.PI / 4) / (Math.PI / 2)) * (Math.PI / 2) + Math.PI / 4;
+function debutGeste() { const [d, a, mx, my] = ecartAngle(); g2 = { d0: d, dist0: cible.dist, az0: cible.az, der: a, acc: 0, rot: false, zoom: false, mx, my }; }
+function geste() {
+  const [d, a, mx, my] = ecartAngle();
+  let da = a - g2.der; da = Math.atan2(Math.sin(da), Math.cos(da)); g2.der = a; g2.acc += da;   // angle déroulé : on peut faire plusieurs tours sans saut
+  if (!g2.rot && Math.abs(g2.acc) > SEUIL_ROT) { g2.rot = true; g2.az0 = cible.az - Math.sign(g2.acc) * 0; g2.dec = Math.sign(g2.acc) * SEUIL_ROT; }
+  if (g2.rot) { cible.az = g2.az0 + (g2.acc - g2.dec); vue.az += (cible.az - vue.az) * .6; }
+  if (!g2.zoom && Math.abs(g2.d0 / d - 1) > SEUIL_ZOOM) { g2.zoom = true; g2.d0 = d; g2.dist0 = cible.dist; }
+  if (g2.zoom) cible.dist = THREE.MathUtils.clamp(g2.dist0 * g2.d0 / d, 14, 130);
+  deplacer(mx - g2.mx, my - g2.my); g2.mx = mx; g2.my = my;
+}
+function finGeste() { if (g2?.rot) { const iso = ISO(cible.az); if (Math.abs(cible.az - iso) < .22) cible.az = iso; } g2 = null; }   // se recale doucement sur la vue en biais si on en est proche
+function deplacer(dx, dy) {
+  const u = vue.dist * Math.tan(cam.fov * Math.PI / 360) * 2 / innerHeight, s = Math.sin(vue.az), co = Math.cos(vue.az), k = 1 / Math.sin(vue.el);
+  cible.x -= (dx * co + dy * s * k) * u; cible.z -= (-dx * s + dy * co * k) * u; vue.x = cible.x; vue.z = cible.z;
+}
 function ramasserSous(x, y) { for (const b of Object.values(bulles)) { if (!b.classList.contains('argent') || !b.px) continue; if (Math.abs(x - b.px[0]) < 34 && y > b.px[1] - 80 && y < b.px[1] + 10) b.action(); } }
 canvas.addEventListener('contextmenu', e => e.preventDefault());
-canvas.addEventListener('pointerdown', e => { canvas.setPointerCapture(e.pointerId); doigts.set(e.pointerId, e); if (doigts.size === 1) bouge = 0; trace = null; tourne = e.button === 2 || e.shiftKey;
-  if (doigts.size === 2) [pinceD, pinceA] = ecartAngle(); else if (mode && BATIS[mode].glisse) { const c = caseSous(e.clientX, e.clientY); if (c) { poser(...c); trace = cle(...c); } } });
+canvas.addEventListener('pointerdown', e => { try { canvas.setPointerCapture(e.pointerId); } catch (x) {} doigts.set(e.pointerId, e); if (doigts.size === 1) bouge = 0; trace = null; tourne = e.button === 2 || e.shiftKey;
+  if (doigts.size === 2) debutGeste(); else if (mode && BATIS[mode].glisse) { const c = caseSous(e.clientX, e.clientY); if (c) { poser(...c); trace = cle(...c); } } });
 canvas.addEventListener('pointermove', e => {
   const c = caseSous(e.clientX, e.clientY);
   if (mode && c && dans(...c)) { fantome.visible = true; fantome.position.copy(mode === 'route' ? pos(...c) : centre(...c, mode)); }
   if (!doigts.has(e.pointerId)) return; const a = doigts.get(e.pointerId), dx = e.clientX - a.clientX, dy = e.clientY - a.clientY; doigts.set(e.pointerId, e);
-  if (doigts.size === 2) { const [d] = ecartAngle(); cible.dist *= Math.min(1.15, Math.max(.87, pinceD / d)); pinceD = d; bouge += 20; return; }
+  if (doigts.size === 2) { if (!g2) debutGeste(); geste(); bouge += 20; return; }
   bouge += Math.abs(dx) + Math.abs(dy);
   if (tourne) { cible.az -= dx * .008; cible.el = THREE.MathUtils.clamp(cible.el + dy * .005, .45, 1.35); return; }
   if (mode && BATIS[mode].glisse) { if (c && cle(...c) !== trace) { poser(...c); trace = cle(...c); } return; }
-  const u = vue.dist * Math.tan(cam.fov * Math.PI / 360) * 2 / innerHeight, s = Math.sin(vue.az), co = Math.cos(vue.az), k = 1 / Math.sin(vue.el);
-  cible.x -= (dx * co + dy * s * k) * u; cible.z -= (-dx * s + dy * co * k) * u; vue.x = cible.x; vue.z = cible.z;
+  deplacer(dx, dy);
   if (!mode) ramasserSous(e.clientX, e.clientY);
 });
 canvas.addEventListener('pointerup', e => {
-  if (!doigts.has(e.pointerId)) return; const seulDoigt = doigts.size === 1; doigts.delete(e.pointerId); if (!seulDoigt) { bouge = 99; return; } if (bouge > 10) return;
+  if (!doigts.has(e.pointerId)) return; const seulDoigt = doigts.size === 1; doigts.delete(e.pointerId); if (!seulDoigt) { finGeste(); bouge = 99; return; } if (bouge > 10) return;
   if (mode && !BATIS[mode].glisse) { const c = caseSous(e.clientX, e.clientY); if (c) poser(...c); return; }
   if (!mode) { const k = caseBatie(e.clientX, e.clientY); if (k) ouvrirFiche(k); else fermerTout(); }
 });
-canvas.addEventListener('pointercancel', e => { doigts.delete(e.pointerId); bouge = 99; });
+canvas.addEventListener('pointercancel', e => { doigts.delete(e.pointerId); finGeste(); bouge = 99; });
 canvas.addEventListener('wheel', e => { e.preventDefault(); cible.dist *= e.deltaY > 0 ? 1.1 : .9; }, { passive: false });
 const quart = s => { cible.az = Math.round((cible.az - Math.PI / 4) / (Math.PI / 2)) * (Math.PI / 2) + Math.PI / 4 + s * Math.PI / 2; SON.clic(); vibrer(8); };
 $('gauche').onclick = () => quart(1); $('droite').onclick = () => quart(-1);
