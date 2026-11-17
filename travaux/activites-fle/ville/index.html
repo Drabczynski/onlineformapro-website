@@ -74,6 +74,7 @@ body.parle .rond,body.parle .tourner,body.quiz .rond,body.quiz .tourner{opacity:
 .onglets button span{font-size:20px}
 .onglets button.actif{background:var(--bleu);color:#fff;border-color:var(--bleu2)}
 .liste{display:flex;gap:10px;overflow-x:auto;padding:4px 6px 8px;touch-action:pan-x;scrollbar-width:none}
+@media (pointer:fine){.liste{scrollbar-width:thin;scrollbar-color:#b9c3d0 transparent;cursor:grab}.liste.tire{cursor:grabbing}.liste.tire *{pointer-events:none}}
 .article{flex:none;width:156px;border-radius:22px;background:linear-gradient(180deg,#6fb5ff,#3f8fe8);border:3px solid #2a6fc4;box-shadow:0 5px 0 #1f5aa3,0 8px 14px rgba(0,0,0,.18);padding:8px 8px 10px;display:grid;justify-items:center;gap:4px;position:relative;transition:transform .1s;color:#fff;overflow:hidden}
 .article.c-commerce{background:linear-gradient(180deg,#ffc98a,#ff9f45);border-color:#d97516;box-shadow:0 5px 0 #b35c0c,0 8px 14px rgba(0,0,0,.18)}
 .article.c-loisir{background:linear-gradient(180deg,#8fe08a,#4cbf55);border-color:#2f9a3c;box-shadow:0 5px 0 #237a2f,0 8px 14px rgba(0,0,0,.18)}
@@ -223,7 +224,54 @@ body.parle .rond,body.parle .tourner,body.quiz .rond,body.quiz .tourner{opacity:
 .etinc{position:absolute;width:14px;height:14px;pointer-events:none;background:#fff6c0;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);animation:etinc 1.6s ease-in-out infinite}
 @keyframes etinc{0%,100%{transform:scale(.2);opacity:0}50%{transform:scale(1);opacity:1}}
 
-/* ---------- coffre de fin de série ---------- */
+
+/* ---------- écran du coffre (fin de série) ---------- */
+#coffreEcran{position:fixed;inset:0;z-index:22;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;
+  background:radial-gradient(120% 70% at 50% 42%,#8a3fe6 0%,#5e1fb8 45%,#3a0f80 100%);color:#fff;touch-action:manipulation;cursor:pointer}
+#coffreEcran::before{content:"";position:absolute;inset:0;background:radial-gradient(circle,rgba(255,255,255,.07) 1.5px,transparent 2px) 0 0/26px 26px;pointer-events:none}
+.cbTitre{position:absolute;top:calc(28px + env(safe-area-inset-top,0px));left:0;right:0;text-align:center;font:800 34px/1 "Baloo 2",sans-serif;text-shadow:0 3px 0 #2a0a5e,0 0 18px rgba(0,0,0,.25)}
+.cbTitre small{display:block;margin-top:8px;font:800 20px/1 "Baloo 2",sans-serif;letter-spacing:.06em;color:#ffd84a}
+.cbScene{position:relative;width:300px;height:440px;margin-top:30px}
+.cbRayons{position:absolute;left:50%;top:62%;width:620px;height:620px;margin:-310px 0 0 -310px;border-radius:50%;opacity:0;transition:opacity .35s;pointer-events:none;
+  background:repeating-conic-gradient(from 0deg,rgba(255,236,150,.32) 0deg 9deg,rgba(255,236,150,0) 9deg 24deg);-webkit-mask:radial-gradient(circle,#000 18%,transparent 62%);mask:radial-gradient(circle,#000 18%,transparent 62%);animation:cbTourne 9s linear infinite}
+.cbOuvert .cbRayons{opacity:1}
+@keyframes cbTourne{to{transform:rotate(360deg)}}
+.cbCoffre{position:absolute;left:50%;bottom:30px;width:210px;height:180px;margin-left:-105px;animation:cbArrive .7s cubic-bezier(.3,1.5,.55,1) both}
+.cbCoffre.attend{animation:cbAttend 1.6s ease-in-out infinite}
+.cbCoffre.tasse{animation:cbTasse .26s ease-in both}
+.cbCoffre.saute{animation:cbSaute .45s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes cbArrive{0%{transform:translateY(-520px) scale(.8)}70%{transform:translateY(0) scale(1.08,.9)}100%{transform:none}}
+@keyframes cbAttend{0%,100%{transform:none}10%{transform:rotate(-4deg)}20%{transform:rotate(4deg)}30%{transform:rotate(-2deg)}40%{transform:none}70%{transform:scale(1.03)}}
+@keyframes cbTasse{to{transform:scale(1.14,.82) translateY(14px)}}
+@keyframes cbSaute{0%{transform:scale(1.14,.82) translateY(14px)}45%{transform:scale(.94,1.1) translateY(-16px)}100%{transform:none}}
+.cbCoffre svg{position:absolute;left:0;width:100%;overflow:visible}
+.cbBase{bottom:0;height:118px}
+.cbDedans{position:absolute;left:22px;right:22px;top:58px;height:34px;border-radius:50%;background:radial-gradient(ellipse at 50% 40%,#fffbe0 0%,#ffe066 35%,#ffb020 70%,#7a2fc0 100%);opacity:0;transition:opacity .2s;box-shadow:0 0 40px 18px rgba(255,214,90,.0)}
+.cbOuvert .cbDedans{opacity:1;box-shadow:0 -10px 70px 34px rgba(255,214,90,.75)}
+.cbCouv{top:0;height:96px;transform-origin:50% 92%;transition:transform .32s cubic-bezier(.3,1.7,.5,1)}
+.cbOuvert .cbCouv{transform:translateY(-44px) scaleY(.56)}
+.cbObjet{position:absolute;z-index:3;left:50%;top:-6px;width:150px;margin-left:-75px;display:grid;justify-items:center;gap:6px;pointer-events:none;opacity:0}
+.cbObjet.sort{animation:cbSort .62s cubic-bezier(.25,1.5,.5,1) both}
+.cbObjet.rentre{animation:cbRentre .28s ease-in both}
+@keyframes cbSort{0%{opacity:0;transform:translateY(190px) scale(.15)}60%{opacity:1}100%{opacity:1;transform:none}}
+@keyframes cbRentre{to{opacity:0;transform:translateY(-30px) scale(.7)}}
+.cbRarete{font:800 18px/1.05 "Baloo 2",sans-serif;text-align:center;text-shadow:0 2px 0 #2a0a5e}
+.cbRarete b{display:block;font-size:22px;color:#fff}
+.cbCarte{position:relative;width:108px;height:108px;border-radius:24px;display:grid;place-items:center;font-size:58px;border:4px solid #fff;box-shadow:0 6px 0 rgba(0,0,0,.25),0 0 0 4px rgba(255,255,255,.18)}
+.cbCarte em{position:absolute;right:-12px;bottom:-12px;min-width:44px;height:36px;padding:0 8px;border-radius:12px;background:#fff;color:#2a0a5e;font:800 22px/36px "Baloo 2",sans-serif;font-style:normal;box-shadow:0 3px 0 rgba(0,0,0,.25)}
+.cbCarte::after{content:"";position:absolute;inset:-60px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.95) 0%,rgba(255,240,170,.6) 25%,transparent 60%);animation:cbEclat .7s ease-out both;pointer-events:none}
+@keyframes cbEclat{0%{transform:scale(.2);opacity:1}100%{transform:scale(1.6);opacity:0}}
+.cbEtincelle{position:absolute;left:50%;top:50%;width:4px;height:34px;margin:-17px 0 0 -2px;border-radius:4px;background:linear-gradient(#fff,rgba(255,230,140,0));transform-origin:50% 100%;animation:cbEtin .6s ease-out forwards;pointer-events:none}
+@keyframes cbEtin{0%{opacity:1;transform:rotate(var(--a)) translateY(-20px) scaleY(.4)}100%{opacity:0;transform:rotate(var(--a)) translateY(-95px) scaleY(1)}}
+.r-or{background:linear-gradient(160deg,#ffe46b,#f2a50f)}.r-rose{background:linear-gradient(160deg,#ff8db3,#e8306b)}.r-bleu{background:linear-gradient(160deg,#7fd3ff,#2f7be0)}.r-vert{background:linear-gradient(160deg,#8ff0b0,#1fae5c)}
+.t-or{color:#ffd84a}.t-rose{color:#ff9ec0}.t-bleu{color:#8fd8ff}.t-vert{color:#9df5bd}
+.cbBas{position:absolute;left:0;right:0;bottom:calc(30px + env(safe-area-inset-bottom,0px));display:grid;justify-items:center;gap:14px}
+.cbAide{font-weight:800;font-size:17px;opacity:.85;animation:touche 1.2s infinite}
+.cbBilan{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;padding:0 16px}
+.cbBilan span{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:99px;background:rgba(255,255,255,.14);font:800 20px "Baloo 2",sans-serif;animation:cbPop .4s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes cbPop{from{transform:scale(0)}}
+#cbFin{min-width:200px}
+/* ---------- ancien coffre de fin de série ---------- */
 .coffreZone{display:grid;justify-items:center;gap:10px}
 .coffre{position:relative;width:150px;height:126px;cursor:pointer;margin-top:14px}
 .coffre.secoue{animation:secoue .5s}
@@ -300,6 +348,24 @@ body.quiz #bMusique{display:none}
   </div>
 </div></div>
 
+<div id="coffreEcran" hidden><div class="cbTitre" id="cbTitre">Bravo !<small id="cbSous"></small></div>
+<div class="cbScene" id="cbScene"><div class="cbRayons"></div><div class="cbObjet" id="cbObjet"></div>
+<div class="cbCoffre" id="cbCoffre"><div class="cbDedans"></div><svg class="cbBase" viewBox="0 0 210 118"><defs><linearGradient id="cbV" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b45cf5"/><stop offset="1" stop-color="#6a1fc0"/></linearGradient><linearGradient id="cbO" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe98a"/><stop offset=".55" stop-color="#ffc21f"/><stop offset="1" stop-color="#e08a00"/></linearGradient></defs>
+<ellipse cx="105" cy="112" rx="96" ry="9" fill="rgba(20,0,50,.35)"/>
+<path d="M14 18h182l-6 82a12 12 0 0 1-12 11H32a12 12 0 0 1-12-11z" fill="url(#cbV)" stroke="#3d0b7a" stroke-width="4" stroke-linejoin="round"/>
+<path d="M22 72h166" stroke="#4a0f92" stroke-width="5" opacity=".35"/>
+<path d="M14 18h182v14H14z" fill="url(#cbO)" stroke="#8a4b00" stroke-width="3"/>
+<path d="M30 32h20v76H34a6 6 0 0 1-4-6zM160 32h20v70a6 6 0 0 1-4 6h-16z" fill="url(#cbO)" stroke="#8a4b00" stroke-width="3"/>
+<path d="M90 32h30v32a15 15 0 0 1-30 0z" fill="url(#cbO)" stroke="#8a4b00" stroke-width="3"/><rect x="101" y="40" width="8" height="16" rx="4" fill="#4a0f92"/>
+<path d="M36 40v56M166 40v56" stroke="#fff6c2" stroke-width="3" stroke-linecap="round" opacity=".7"/></svg><svg class="cbCouv" viewBox="0 0 210 96">
+<path d="M10 90V52C10 22 40 6 105 6s95 16 95 46v38z" fill="url(#cbV)" stroke="#3d0b7a" stroke-width="4" stroke-linejoin="round"/>
+<path d="M28 90V48c0-20 18-32 26-34h18c-10 4-20 16-20 34v42zM182 90V48c0-20-18-32-26-34h-18c10 4 20 16 20 34v42z" fill="url(#cbO)" stroke="#8a4b00" stroke-width="3" stroke-linejoin="round"/>
+<path d="M6 78h198v16H6z" fill="url(#cbO)" stroke="#8a4b00" stroke-width="3" rx="4"/>
+<ellipse cx="105" cy="50" rx="34" ry="24" fill="url(#cbO)" stroke="#8a4b00" stroke-width="3"/>
+<ellipse cx="105" cy="50" rx="23" ry="15" fill="#7a2fd0" stroke="#4a0f92" stroke-width="3"/>
+<path d="M86 45h38M84 51h42M86 57h38" stroke="#c48cff" stroke-width="3" stroke-linecap="round"/>
+<path d="M40 26c14-10 34-14 50-14" stroke="#e7c4ff" stroke-width="5" stroke-linecap="round" fill="none" opacity=".55"/></svg></div></div>
+<div class="cbBas"><div class="cbBilan" id="cbBilan"></div><div class="cbAide" id="cbAide">Touche le coffre !</div><button class="gros or" id="cbFin" hidden>Super !</button></div></div>
 <div id="quiz" hidden><div class="qcarte" id="qCarte">
   <div class="qhaut"><div class="qbarre"><i id="qProg"></i></div><button id="qX" aria-label="Fermer">✕</button></div>
   <span id="qTheme"></span>
@@ -572,7 +638,7 @@ function majMer(t) {
 }
 const monde = new THREE.Group(); scene.add(monde);
 /* des nuages low-poly qui dérivent au-dessus de la ville, et dont l'ombre passe sur les toits */
-const nuages = new THREE.Group(); scene.add(nuages);
+const nuages = new THREE.Group(); scene.add(nuages); nuages.visible = false;   // retirés à la demande (gênants) : ni nuages ni leurs ombres
 {
   const MN = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 1, flatShading: true, transparent: true, opacity: .7, depthWrite: false, emissive: 0xfff3e6, emissiveIntensity: .25 });
   const G = new THREE.IcosahedronGeometry(1, 1);
@@ -817,6 +883,14 @@ function prochaineVignette() {
   }, 30);
 }
 function pasAssez() { SON.faux(); vibrer([20, 30, 20]); const c = $('cagnotte'); c.classList.add('vide'); setTimeout(() => c.classList.remove('vide'), 2500); toast(PC + '❌', 'Pas assez de pièces', '🎓 → ' + PC + PC + PC); E.phase2 = true; }
+/* Sur ordinateur : la molette fait défiler la liste à l'horizontale, et on peut la tirer à la souris */
+document.querySelectorAll('.liste, .onglets').forEach(el => {
+  el.addEventListener('wheel', e => { if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) { el.scrollLeft += e.deltaY; e.preventDefault(); } }, { passive: false });
+  let x0 = null, s0 = 0, tire = false;
+  el.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; x0 = e.clientX; s0 = el.scrollLeft; tire = false; });
+  addEventListener('pointermove', e => { if (x0 === null) return; const d = e.clientX - x0; if (!tire && Math.abs(d) > 6) { tire = true; el.classList.add('tire'); } if (tire) el.scrollLeft = s0 - d; });
+  addEventListener('pointerup', () => { if (x0 === null) return; x0 = null; if (tire) setTimeout(() => el.classList.remove('tire'), 0); });
+});
 $('bConstruire').onclick = () => { SON.clic(); fermerTout(); catalogue(); $('catalogue').classList.add('ouvert'); };
 function entrerMode(t) {
   mode = t; fermerTout(); grille.visible = true; $('bAnnuler').hidden = false; $('outils').hidden = !BATIS[t].glisse; choisirOutil('tracer'); traits.length = 0; majRetour(); $('bConstruire').hidden = true; fantome.clear();
@@ -1095,14 +1169,35 @@ function finQuiz() {
   const { theme, k, fautes, revision } = Q; E.themesVus[theme] = true; E.derniereLecon = maintenant(); if (!revision) E.lecons[theme] = maintenant() + ATTENTE_LECON;
   const plein = GAIN_SERIE + 30 * niveau() + (fautes === 0 ? 60 : 0), bonus = revision ? Math.round(plein / 4) : plein, nbEt = fautes === 0 ? 3 : fautes <= 2 ? 2 : 1;
   $('qProg').style.width = '100%'; $('qImage').style.backgroundImage = 'none'; $('qImage').innerHTML = '<div style="font-size:110px">🎉</div>';
-  $('qImage').innerHTML = `<div class="coffreZone"><div class="etoiles3">${'⭐'.repeat(nbEt)}${'☆'.repeat(3 - nbEt)}</div><div class="coffre" id="qCoffre" role="button" aria-label="Ouvrir le coffre"><div class="lueur"></div><div class="caisse"></div><div class="couv"></div><div class="serrure"></div></div></div>`;
-  $('qBas').innerHTML = `<div class="fin"><div class="coffreTxt" id="qCTxt">Touche le coffre${NB}!</div><div class="gain chiffre" id="qGain" style="visibility:hidden">${PC}+${bonus}</div><button class="gros or" id="qFin" style="visibility:hidden">Super${NB}!</button></div>`;
+  $('qImage').innerHTML = `<div class="coffreZone"><div class="etoiles3">${'⭐'.repeat(nbEt)}${'☆'.repeat(3 - nbEt)}</div></div>`; $('qBas').innerHTML = '';
   dire('s-bravo'); SON.niveau(); E.coeurs++;
-  const ouvrir = () => { const c = $('qCoffre'); if (c.dataset.f) return; c.dataset.f = 1; c.classList.add('secoue'); SON.clic(); vibrer(20);
-    setTimeout(() => { c.classList.remove('secoue'); c.classList.add('ouvert'); SON.fete(); vibrer([20, 30, 40]); const xy = centreDe(c);
-      pluieEcran(bonus, [xy[0], xy[1] - 20], 16); $('qCTxt').textContent = revision ? 'Révision' : 'Bravo' + NB + '!'; $('qGain').style.visibility = 'visible'; $('qGain').classList.add('pulse'); $('qFin').style.visibility = 'visible'; }, 520); };
-  $('qCoffre').onclick = ouvrir;
-  $('qFin').onclick = () => { const xy = centreDe('qFin'); fermerQuiz(); etoiles(15, xy); voler('❤️', xy, centreDe('coeurJ'), 2, () => bump('coeurJ')); sauver(); compter(); };
+  coffre({ titre: revision ? 'Révision' : 'Bravo' + NB + '!', sous: fautes === 0 ? 'SÉRIE PARFAITE' : 'SÉRIE TERMINÉE', objets: [
+    { ico: '⭐', n: nbEt, nom: nbEt === 3 ? 'Parfait' + NB + '!' : 'Étoiles', rar: nbEt === 3 ? 'Super' : 'Bien', c: 'bleu' },
+    { ico: PC, n: '+' + bonus, nom: 'Pièces', rar: revision ? 'Révision' : 'Gros gain', c: 'or' },
+    { ico: '❤️', n: '+1', nom: 'Un cœur', rar: 'Merci' + NB + '!', c: 'rose' } ] }, () => {
+    const xy = [innerWidth / 2, innerHeight / 2]; fermerQuiz(); pluieEcran(bonus, xy, 16); etoiles(15, xy); voler('❤️', xy, centreDe('coeurJ'), 2, () => bump('coeurJ')); sauver(); compter(); });
+}
+/* Coffre plein écran : il s'ouvre, une récompense jaillit, il se referme, la suivante… */
+function coffre({ titre, sous, objets }, fin) {
+  const ecr = $('coffreEcran'), sc = $('cbScene'), cf = $('cbCoffre'), ob = $('cbObjet'); let n = -1, occupe = true;
+  $('cbTitre').firstChild.textContent = titre; $('cbSous').textContent = sous; $('cbBilan').innerHTML = ''; $('cbAide').hidden = false; $('cbAide').textContent = 'Touche le coffre' + NB + '!'; $('cbFin').hidden = true;
+  sc.classList.remove('cbOuvert'); ob.className = 'cbObjet'; cf.className = 'cbCoffre'; void cf.offsetWidth; ecr.hidden = false;
+  setTimeout(() => { cf.className = 'cbCoffre attend'; occupe = false; }, 750);
+  const suivant = () => {
+    if (occupe) return; occupe = true; n++;
+    if (n >= objets.length) return terminer();
+    const ouvrir = () => { cf.className = 'cbCoffre tasse'; SON.clic(); vibrer(15);
+      setTimeout(() => { cf.className = 'cbCoffre saute'; sc.classList.add('cbOuvert'); SON.fete(); vibrer([20, 30, 40]); montrer(objets[n]); $('cbAide').textContent = n < objets.length - 1 ? 'Touche pour continuer' : 'Touche pour finir'; setTimeout(() => { occupe = false; }, 650); }, 260); };
+    if (sc.classList.contains('cbOuvert')) { ob.className = 'cbObjet rentre'; setTimeout(() => { sc.classList.remove('cbOuvert'); setTimeout(ouvrir, 260); }, 220); } else ouvrir();
+  };
+  const montrer = o => {
+    ob.innerHTML = `<div class="cbRarete t-${o.c}">${o.rar}<b>${o.nom}</b></div><div class="cbCarte r-${o.c}">${o.ico}<em>${o.n}</em>${Array.from({ length: 10 }, (_, k) => `<i class="cbEtincelle" style="--a:${k * 36}deg"></i>`).join('')}</div>`;
+    ob.className = 'cbObjet'; void ob.offsetWidth; ob.className = 'cbObjet sort';
+    const b = document.createElement('span'); b.innerHTML = `${o.ico} ${o.n}`; $('cbBilan').appendChild(b);
+  };
+  const terminer = () => { ob.className = 'cbObjet rentre'; $('cbAide').hidden = true; $('cbFin').hidden = false; SON.juste(); occupe = true; };
+  ecr.onclick = e => { if (e.target.id !== 'cbFin') suivant(); };
+  $('cbFin').onclick = e => { e.stopPropagation(); SON.clic(); ecr.hidden = true; fin && fin(); };
 }
 
 /* ================================================================ BULLES AU-DESSUS DE LA VILLE (placées par transform, sans retard) */
@@ -1263,7 +1358,7 @@ function boucle() {
     for (const k of Object.keys(E.cases)) redessiner(...ij(k));
     { const mk = Object.keys(E.cases).find(k => E.cases[k].t === 'mairie'); if (mk) { const p = centre(...ij(mk), 'mairie'); vue.x = cible.x = p.x - 3; vue.z = cible.z = p.z + 3; } }
     semerDecor(); majCam(); compter(); impots(); boucle(); $('charge').remove();
-    window.__ville = { E, poser, entrerMode, sortirMode, ouvrirFiche, encaisser, vite: () => { attente = 0; }, mobiles, ecouter, ouvrirQuiz, analyser, verifierTaches, cible, vue, pluie, composer, prix, nuages, cam, THREE, renderer, PACK: () => PACK };
+    window.__ville = { E, poser, entrerMode, sortirMode, ouvrirFiche, encaisser, vite: () => { attente = 0; }, mobiles, ecouter, ouvrirQuiz, analyser, verifierTaches, cible, vue, pluie, composer, prix, nuages, cam, THREE, renderer, coffre, finQuiz, PACK: () => PACK };
   } catch (e) { console.error(e); $('charge').textContent = 'Le jeu n’a pas pu se charger.'; }
 })();
 </script>
