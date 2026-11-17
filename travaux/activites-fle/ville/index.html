@@ -358,10 +358,10 @@ const BATIS = {
 };
 const CATS = [['maison', '🏠', 'Maisons'], ['route', '🛣️', 'Routes'], ['commerce', '🛒', 'Magasins'], ['service', '🏥', 'Services'], ['loisir', '🌳', 'Loisirs'], ['prestige', '⭐', 'Prestige']];
 const MAISONS = [
-  { modeles: ['maison0a', 'maison0b', 'maison0c', 'maison0d'], hab: 4, unite: 3 },
-  { modeles: ['maison1b', 'maison1c', 'maison1d', 'maison1a'], hab: 10, unite: 6, prix: 400, niv: 2 },
-  { modeles: ['maison2a', 'maison2b', 'maison2c'], hab: 22, unite: 10, prix: 1000, niv: 3 },
-  { modeles: ['maison3a', 'maison3b', 'immeuble_c', 'immeuble_d'], hab: 45, unite: 16, prix: 2400, niv: 5 }
+  { modeles: ['maison1b', 'maison2a', 'maison2b', 'maison2c', 'maison1d'], hab: 4, unite: 3 },          // maisons traditionnelles à toit pentu
+  { modeles: ['maison1c', 'maison0d', 'maison0a', 'maison0b'], hab: 10, unite: 6, prix: 400, niv: 2 },   // villas modernes
+  { modeles: ['immeuble_c', 'immeuble_d'], hab: 22, unite: 10, prix: 1000, niv: 3 },                     // petits immeubles
+  { modeles: ['maison3a', 'maison3b'], hab: 45, unite: 16, prix: 2400, niv: 5 }
 ];
 const XP_NIV = [0, 25, 60, 110, 180, 270, 390, 540, 720, 950];
 const IMPOT_SEC = 12, IMPOT_MAX = 4;          // une maison remplit sa tirelire lentement
@@ -498,7 +498,7 @@ const canvas = $('c');
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, powerPreference: 'high-performance' });
 renderer.setPixelRatio(Math.min(devicePixelRatio, TEL ? 1.5 : 2)); renderer.setSize(innerWidth, innerHeight);
 renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-renderer.toneMapping = THREE.NeutralToneMapping; renderer.toneMappingExposure = 1.0;
+renderer.toneMapping = THREE.NeutralToneMapping; renderer.toneMappingExposure = .95;
 const scene = new THREE.Scene();
 const pmrem = new THREE.PMREMGenerator(renderer); scene.environment = pmrem.fromScene(new RoomEnvironment(), .04).texture; scene.environmentIntensity = .4;
 const HORIZON = new THREE.Color(0xf6c596); scene.fog = new THREE.Fog(HORIZON, 95, 240);
@@ -540,7 +540,6 @@ const miniature = new ShaderPass({
       for(int x=-2;x<=2;x++) for(int y=-2;y<=2;y++){ float k = 1. - length(vec2(float(x),float(y)))/3.3; vec4 e = texture2D(tDiffuse, vUv + vec2(float(x),float(y))*px); if (e.r == e.r && e.g == e.g && e.b == e.b) { c += e*k; w += k; } }
       c /= max(w, 1e-3); vec2 q = vUv - .5; c.rgb *= 1. - dot(q,q)*.6; float l = dot(c.rgb, vec3(.299,.587,.114)); c.rgb = mix(vec3(l), c.rgb, 1.18); c.rgb = (c.rgb-.5)*1.05+.5; gl_FragColor = vec4(c.rgb,1.); }`
 });
-composer.addPass(miniature);
 function redim() { renderer.setSize(innerWidth, innerHeight); composer.setSize(innerWidth, innerHeight); miniature.uniforms.res.value.set(innerWidth, innerHeight); cam.aspect = innerWidth / innerHeight; cam.updateProjectionMatrix(); }
 addEventListener('resize', redim);
 
@@ -548,8 +547,8 @@ const L = N * T;
 let mer;
 {
   const cv = document.createElement('canvas'); cv.width = cv.height = 256; const g = cv.getContext('2d');
-  g.fillStyle = '#79b94a'; g.fillRect(0, 0, 256, 256);
-  for (let k = 0; k < 3600; k++) { g.fillStyle = ['#70b243', '#83c453', '#8ccb5a', '#6aa63e', '#96cf65', '#7fb84c'][k % 6]; g.fillRect(Math.random() * 256, Math.random() * 256, 2 + Math.random() * 3, 2 + Math.random() * 3); }
+  g.fillStyle = '#86ad62'; g.fillRect(0, 0, 256, 256);
+  for (let k = 0; k < 3600; k++) { g.fillStyle = ['#7fa65b', '#8db46a', '#93b971', '#78a055', '#9bbe78', '#88b064'][k % 6]; g.fillRect(Math.random() * 256, Math.random() * 256, 2 + Math.random() * 3, 2 + Math.random() * 3); }
   const tx = new THREE.CanvasTexture(cv); tx.wrapS = tx.wrapT = THREE.RepeatWrapping; tx.repeat.set(12, 12); tx.colorSpace = THREE.SRGBColorSpace;
   const herbe = new THREE.Mesh(new THREE.BoxGeometry(L + 8, 1, L + 8), new THREE.MeshStandardMaterial({ map: tx, roughness: 1 })); herbe.position.y = -.5; herbe.receiveShadow = true; scene.add(herbe);
   const sable = new THREE.Mesh(new THREE.CylinderGeometry(L * .86, L * 1.0, 1.4, 64), new THREE.MeshStandardMaterial({ color: 0xf0d79a, roughness: 1 })); sable.position.y = -.78; sable.receiveShadow = true; scene.add(sable);
@@ -627,9 +626,10 @@ function batiment(c, i, j) {
   for (const [d, rot] of [[2, 0], [1, 1], [0, 2], [3, 3]]) { if (w !== h && rot % 2) continue; if (bordRoute(i, j, c.t, d)) { r = rot; break; } }
   const corps = new THREE.Group(); g.add(corps); let nom = c.t;
   if (c.t === 'maison') { const M = MAISONS[c.n || 0]; nom = M.modeles[(c.v || 0) % M.modeles.length]; }
-  const couleur = c.t === 'maison' ? TEINTES[Math.floor((c.v || 0) / 4) % TEINTES.length] : null;
+  const couleur = null;
   if (c.t === 'parc') nom = (c.v || 0) % 2 ? 'parc2' : 'parc';
   if (c.t === 'immeuble') nom = ['immeuble_c', 'immeuble_d', 'maison3a', 'maison3b', 'hotel2'][(c.v || 0) % 5];
+  if (c.t === 'maison') nom = MAISONS[c.n || 0].modeles[(c.v || 0) % MAISONS[c.n || 0].modeles.length];
   const modele = c.t === 'pompiers' ? teinte(piece('pompiers'), 0xffb4a6) : couleur ? teinte(piece(nom), couleur) : piece(nom);
   // un socle relie chaque bâtiment à la route : trottoir, pelouse, allée jusqu'au trottoir de la rue
   // les bâtiments sont grandis (surtout en hauteur) pour avoir la bonne échelle face aux routes et aux voitures
@@ -796,7 +796,7 @@ function prochaineVignette() {
   const k = fileV.shift(); if (!k) { enV = false; return; } enV = true;
   setTimeout(() => {
     try {
-      if (!rv) { rv = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true }); rv.setSize(272, 224); rv.setPixelRatio(1); rv.toneMapping = THREE.NeutralToneMapping; rv.toneMappingExposure = 1.0; }
+      if (!rv) { rv = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true }); rv.setSize(272, 224); rv.setPixelRatio(1); rv.toneMapping = THREE.NeutralToneMapping; rv.toneMappingExposure = .95; }
       const sc = new THREE.Scene(); sc.add(new THREE.HemisphereLight(0xffffff, 0x8a7a58, 1.3)); const d = new THREE.DirectionalLight(0xfff2dd, 2.6); d.position.set(-4, 8, 6); sc.add(d);
       const o = k === 'route' ? piece('route_droite') : batiment({ t: k, n: 0, v: 1 }, -99, -99); sc.add(o);
       const bx = new THREE.Box3().setFromObject(o), c = bx.getCenter(new THREE.Vector3()), r = bx.getSize(new THREE.Vector3()).length() / 2;
@@ -1228,7 +1228,7 @@ function boucle() {
     for (const k of Object.keys(E.cases)) redessiner(...ij(k));
     { const mk = Object.keys(E.cases).find(k => E.cases[k].t === 'mairie'); if (mk) { const p = centre(...ij(mk), 'mairie'); vue.x = cible.x = p.x - 3; vue.z = cible.z = p.z + 3; } }
     semerDecor(); majCam(); compter(); impots(); boucle(); $('charge').remove();
-    window.__ville = { E, poser, entrerMode, sortirMode, ouvrirFiche, encaisser, vite: () => { attente = 0; }, mobiles, ecouter, ouvrirQuiz, analyser, verifierTaches, cible, vue, pluie, composer, prix, nuages, cam, THREE };
+    window.__ville = { E, poser, entrerMode, sortirMode, ouvrirFiche, encaisser, vite: () => { attente = 0; }, mobiles, ecouter, ouvrirQuiz, analyser, verifierTaches, cible, vue, pluie, composer, prix, nuages, cam, THREE, renderer, PACK: () => PACK };
   } catch (e) { console.error(e); $('charge').textContent = 'Le jeu n’a pas pu se charger.'; }
 })();
 </script>
