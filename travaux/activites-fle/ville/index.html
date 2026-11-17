@@ -297,6 +297,8 @@ const BATIS = {
   chateau: { picto: '💧', nom: 'Château d’eau', prix: 250, cat: 'service', niv: 1, apres: 'q04' },
   parc: { picto: '🌳', nom: 'Parc', prix: 150, hausse: .3, cat: 'loisir', niv: 1, apres: 'q09', theme: 'parc' },
   epicerie: { picto: '🍎', nom: 'Épicerie', prix: 500, cat: 'commerce', niv: 2, apres: 'q05', theme: 'epicerie' },
+  supermarche: { picto: '🛒', nom: 'Supermarché', prix: 1200, cat: 'commerce', niv: 3, theme: 'epicerie', max: 2 },
+  boutique: { picto: '👗', nom: 'Boutique', prix: 700, hausse: .4, cat: 'commerce', niv: 3 },
   garage: { picto: '🔧', nom: 'Garage', prix: 650, cat: 'commerce', niv: 2, apres: 'q06', theme: 'garage' },
   ecole: { picto: '🏫', nom: 'École', prix: 800, cat: 'service', niv: 2, apres: 'q07', theme: 'ecole' },
   medecin: { picto: '🩺', nom: 'Cabinet médical', prix: 900, cat: 'service', niv: 3, apres: 'q08', theme: 'medecin' },
@@ -306,6 +308,7 @@ const BATIS = {
   banque: { picto: '🏦', nom: 'Banque', prix: 1400, cat: 'commerce', niv: 4, apres: 'q11', theme: 'banque' },
   stade: { picto: '🏟️', nom: 'Stade', prix: 3500, cat: 'loisir', niv: 5, apres: 'q12', max: 1 },
   hotel: { picto: '🏨', nom: 'Grand hôtel', prix: 2500, cat: 'prestige', niv: 5, hab: 30 },
+  immeuble: { picto: '🏢', nom: 'Immeuble', prix: 1600, hausse: .35, cat: 'prestige', niv: 4, hab: 40 },
   affaires: { picto: '🏢', nom: 'Centre d’affaires', prix: 4500, cat: 'prestige', niv: 6, hab: 60, max: 2 },
   tour: { picto: '🏙️', nom: 'Tour de verre', prix: 9000, cat: 'prestige', niv: 7, hab: 150, max: 2 },
   gratteciel: { picto: '🌆', nom: 'Gratte-ciel', prix: 16000, cat: 'prestige', niv: 8, hab: 300, max: 1 },
@@ -317,7 +320,7 @@ const MAISONS = [
   { modeles: ['maison0a', 'maison0b', 'maison0c', 'maison0d'], hab: 4, unite: 3 },
   { modeles: ['maison1b', 'maison1c', 'maison1d', 'maison1a'], hab: 10, unite: 6, prix: 400, niv: 2 },
   { modeles: ['maison2a', 'maison2b', 'maison2c'], hab: 22, unite: 10, prix: 1000, niv: 3 },
-  { modeles: ['maison3a', 'maison3b'], hab: 45, unite: 16, prix: 2400, niv: 5 }
+  { modeles: ['maison3a', 'maison3b', 'immeuble_c', 'immeuble_d'], hab: 45, unite: 16, prix: 2400, niv: 5 }
 ];
 const XP_NIV = [0, 25, 60, 110, 180, 270, 390, 540, 720, 950];
 const IMPOT_SEC = 12, IMPOT_MAX = 4;          // une maison remplit sa tirelire lentement
@@ -553,9 +556,9 @@ function enseigne(picto, fond = '#fff') {
 }
 const ECHELLE_H = { parc: 1, stade: .9, tour: .85, gratteciel: .8, tourgeante: .8, hotel: .9, affaires: .9, chateau: .8, epicerie: 1, garage: .9, ecole: 1, medecin: 1, mairie: 1 };
 const TEINTES = [0xffffff, 0xffe4ec, 0xe2f0ff, 0xfff3c4, 0xe6ffe0, 0xf3e6ff, 0xffe9d6];
-const TAILLE = { mairie: [2, 1], epicerie: [2, 1], garage: [2, 2], ecole: [2, 2], medecin: [2, 1], stade: [5, 3], tour: [2, 2], gratteciel: [3, 2], tourgeante: [4, 2] };
+const TAILLE = { supermarche: [2, 1], mairie: [2, 1], epicerie: [2, 1], garage: [2, 2], ecole: [2, 2], medecin: [2, 1], stade: [5, 3], tour: [2, 2], gratteciel: [3, 2], tourgeante: [4, 2] };
 const taille = t => TAILLE[t] || [1, 1];
-const ENSEIGNE = { boulangerie: ['🥖'], epicerie: ['🍎'], garage: ['🔧'], chateau: ['💧', '#7fd0ff'], ecole: ['🏫'], medecin: ['🩺'], police: ['🚓', '#8fb3ff'], pompiers: ['🚒', '#ff8a7a'], poste: ['✉️'], banque: ['🏦'], mairie: ['🏛️', '#ffe9b0'] };
+const ENSEIGNE = { supermarche: ['🛒'], boutique: ['👗'], boulangerie: ['🥖'], epicerie: ['🍎'], garage: ['🔧'], chateau: ['💧', '#7fd0ff'], ecole: ['🏫'], medecin: ['🩺'], police: ['🚓', '#8fb3ff'], pompiers: ['🚒', '#ff8a7a'], poste: ['✉️'], banque: ['🏦'], mairie: ['🏛️', '#ffe9b0'] };
 let OCC = {};
 function majOcc() { OCC = {}; for (const [k, c] of Object.entries(E.cases)) { const [i, j] = ij(k), [w, h] = taille(c.t); for (let a = 0; a < w; a++) for (let b = 0; b < h; b++) OCC[cle(i + a, j + b)] = k; } }
 const cellules = (i, j, t) => { const [w, h] = taille(t), L2 = []; for (let a = 0; a < w; a++) for (let b = 0; b < h; b++) L2.push([i + a, j + b]); return L2; };
@@ -582,6 +585,7 @@ function batiment(c, i, j) {
   if (c.t === 'maison') { const M = MAISONS[c.n || 0]; nom = M.modeles[(c.v || 0) % M.modeles.length]; }
   const couleur = c.t === 'maison' ? TEINTES[Math.floor((c.v || 0) / 4) % TEINTES.length] : null;
   if (c.t === 'parc') nom = (c.v || 0) % 2 ? 'parc2' : 'parc';
+  if (c.t === 'immeuble') nom = ['immeuble_c', 'immeuble_d', 'maison3a', 'maison3b', 'hotel2'][(c.v || 0) % 5];
   const modele = c.t === 'pompiers' ? teinte(piece('pompiers'), 0xffb4a6) : couleur ? teinte(piece(nom), couleur) : piece(nom);
   // un socle relie chaque bâtiment à la route : trottoir, pelouse, allée jusqu'au trottoir de la rue
   // les bâtiments sont grandis (surtout en hauteur) pour avoir la bonne échelle face aux routes et aux voitures
@@ -751,7 +755,7 @@ function poser(i, j) {
   E.pieces -= p; affiche.pieces -= p;
   const c = { t };
   if (t === 'maison') { c.n = 0; c.v = Math.floor(Math.random() * 28); c.recolte = maintenant() - (E.tuto.fini ? 0 : IMPOT_SEC * IMPOT_MAX); }
-  if (t === 'parc') c.v = Math.floor(Math.random() * 2);
+  if (t === 'parc' || t === 'immeuble') c.v = Math.floor(Math.random() * 10);
   E.cases[k] = c; majOcc(); nettoyerDecor(i, j, t);
   redessiner(i, j, t !== 'route'); if (t === 'route') autour(i, j);
   if (t === 'route') SON.clic(); else { SON.pose(); vibrer(20); const e = ecran(centre(i, j, t).setY(1.5)); etoiles(4, e); plus('+4 ⭐', [e[0], e[1] - 30]); }
