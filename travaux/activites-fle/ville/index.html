@@ -49,6 +49,11 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;paddin
 #tournerTxt{position:fixed;z-index:5;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));font-size:12px;font-weight:900;color:#fff;background:var(--verre);padding:2px 10px;border-radius:99px}
 body.parle #tournerTxt,body.quiz #tournerTxt{display:none}
 #bAnnuler{position:fixed;z-index:6;left:50%;transform:translateX(-50%);bottom:calc(120px + env(safe-area-inset-bottom,0px));height:56px;padding:0 26px;border-radius:99px;background:linear-gradient(180deg,#4fd384,var(--vert));color:#fff;font-size:20px;font-weight:900;border:3px solid #fff;box-shadow:0 4px 0 var(--vert2)}
+#outils{position:fixed;z-index:6;left:50%;transform:translateX(-50%);bottom:calc(188px + env(safe-area-inset-bottom,0px));display:flex;gap:6px;padding:6px;border-radius:22px;background:var(--verre);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+#outils button{width:64px;height:58px;border-radius:16px;background:rgba(255,255,255,.12);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;font-size:22px;line-height:1}
+#outils button small{font-size:11px;font-weight:800;letter-spacing:.02em}
+#outils button.actif{background:#fff;color:var(--encre);box-shadow:0 3px 0 rgba(0,0,0,.25)}
+#outils button:disabled{opacity:.35}
 #aide{position:fixed;z-index:12;left:50%;transform:translateX(-50%);top:calc(84px + env(safe-area-inset-top,0px));background:#fff;color:var(--encre);border-radius:18px;padding:10px 16px;font-weight:900;font-size:18px;display:flex;gap:10px;align-items:center;max-width:calc(100% - 32px);box-shadow:0 6px 18px rgba(0,0,0,.25);border:3px solid var(--or);text-align:center}
 #aide span{font-size:26px}
 #doigt{position:fixed;z-index:21;left:0;top:0;pointer-events:none;font-size:52px;line-height:1;filter:drop-shadow(0 4px 4px rgba(0,0,0,.35));transition:transform .25s}
@@ -272,6 +277,7 @@ body.quiz #bMusique{display:none}
 <button class="tourner" id="gauche" aria-label="Tourner à gauche">↺</button>
 <button class="tourner" id="droite" aria-label="Tourner à droite">↻</button>
 <span id="tournerTxt">Tourner</span>
+<div id="outils" hidden><button data-o="tracer" class="actif"><span>✏️</span><small>Tracer</small></button><button data-o="main"><span>✋</span><small>Bouger</small></button><button data-o="gomme"><span>🧽</span><small>Effacer</small></button><button id="bRetour" disabled><span>↶</span><small>Annuler</small></button></div>
 <button id="bAnnuler" hidden>✓ Terminé</button>
 <div id="aide" hidden></div>
 <div id="doigt" hidden><i></i><b>👆</b></div>
@@ -813,12 +819,37 @@ function prochaineVignette() {
 function pasAssez() { SON.faux(); vibrer([20, 30, 20]); const c = $('cagnotte'); c.classList.add('vide'); setTimeout(() => c.classList.remove('vide'), 2500); toast(PC + '❌', 'Pas assez de pièces', '🎓 → ' + PC + PC + PC); E.phase2 = true; }
 $('bConstruire').onclick = () => { SON.clic(); fermerTout(); catalogue(); $('catalogue').classList.add('ouvert'); };
 function entrerMode(t) {
-  mode = t; fermerTout(); grille.visible = true; $('bAnnuler').hidden = false; $('bConstruire').hidden = true; fantome.clear();
+  mode = t; fermerTout(); grille.visible = true; $('bAnnuler').hidden = false; $('outils').hidden = !BATIS[t].glisse; choisirOutil('tracer'); traits.length = 0; majRetour(); $('bConstruire').hidden = true; fantome.clear();
   const g = t === 'route' ? piece('route_droite') : batiment({ t, n: 0, v: 0 }, -99, -99);
   g.traverse(m => { if (m.isMesh) { m.material = m.material.clone(); m.material.transparent = true; m.material.opacity = .55; m.castShadow = false; } }); fantome.add(g);
 }
-function sortirMode() { mode = null; grille.visible = false; fantome.visible = false; $('bAnnuler').hidden = true; $('bConstruire').hidden = false; }
+function sortirMode() { mode = null; grille.visible = false; fantome.visible = false; $('bAnnuler').hidden = true; $('outils').hidden = true; traitCourant = null; $('bConstruire').hidden = false; }
 $('bAnnuler').onclick = () => { SON.clic(); sortirMode(); };
+/* Outils du mode route : tracer, bouger la carte, effacer, annuler le dernier trait */
+let outil = 'tracer', traitCourant = null; const traits = [];
+function choisirOutil(o) { outil = o; document.querySelectorAll('#outils [data-o]').forEach(b => b.classList.toggle('actif', b.dataset.o === o)); fantome.visible = false; }
+document.querySelectorAll('#outils [data-o]').forEach(b => b.onclick = () => { SON.clic(); vibrer(8); choisirOutil(b.dataset.o); });
+const majRetour = () => { $('bRetour').disabled = !traits.length; };
+const dessine = () => mode && BATIS[mode].glisse && outil !== 'main';
+function effacerRoute(i, j) {
+  const k = cle(i, j); if (E.cases[k]?.t !== 'route') return false;
+  delete E.cases[k]; majOcc(); redessiner(i, j); autour(i, j); poussiere(pos(i, j), 1); SON.clic(); vibrer(6);
+  const p = prix('route'); E.pieces += p; affiche.pieces += p; return p;
+}
+function agir(c) {
+  if (!c || !traitCourant) return; const k = cle(...c);
+  if (traitCourant.vus.has(k)) return; traitCourant.vus.add(k);
+  if (outil === 'gomme') { const p = effacerRoute(...c); if (p) traitCourant.items.push({ c, p }); }
+  else { const avant = E.pieces; if (poser(...c)) traitCourant.items.push({ c, p: avant - E.pieces }); }
+}
+function debutTrait(c) { traitCourant = { type: outil === 'gomme' ? 'gomme' : 'pose', items: [], vus: new Set() }; agir(c); }
+function finTrait() { if (traitCourant?.items.length) { traits.push(traitCourant); if (traits.length > 30) traits.shift(); if (traitCourant.type === 'gomme') { analyser(); verifierTaches(); sauver(); compter(); } } traitCourant = null; majRetour(); }
+function defaire(tr) {
+  if (tr.type === 'pose') { for (const { c } of tr.items.slice().reverse()) effacerRoute(...c); }
+  else { const m = mode; mode = 'route'; for (const { c } of tr.items) poser(...c); mode = m; }
+  analyser(); verifierTaches(); sauver(); compter();
+}
+$('bRetour').onclick = () => { const tr = traits.pop(); if (!tr) return; SON.clic(); vibrer(10); defaire(tr); majRetour(); };
 function poser(i, j) {
   if (!dans(i, j) || !mode) return false; const k = cle(i, j), t = mode, b = BATIS[t];
   if (cellules(i, j, t).some(([a, b2]) => !dans(a, b2) || OCC[cle(a, b2)])) return false;
@@ -1138,7 +1169,7 @@ function caseBatie(x, y) {
   if (h) { let o = h.object; while (o.parent && o.parent !== monde) o = o.parent; const k = Object.keys(objets).find(k => objets[k] === o); if (k && E.cases[k].t !== 'route') return k; }
   const c = caseSous(x, y), k = c && OCC[cle(...c)]; return k && E.cases[k].t !== 'route' ? k : null;
 }
-const doigts = new Map(); let bouge = 0, pinceD = 0, pinceA = 0, trace = null, tourne = false;
+const doigts = new Map(); let bouge = 0, pinceD = 0, pinceA = 0, trace = null, tourne = false, apresGeste = false;
 function ecartAngle() { const [p, q] = [...doigts.values()]; return [Math.hypot(p.clientX - q.clientX, p.clientY - q.clientY) || 1, Math.atan2(q.clientY - p.clientY, q.clientX - p.clientX), (p.clientX + q.clientX) / 2, (p.clientY + q.clientY) / 2]; }
 /* geste à deux doigts, comme sur une carte : tourner, zoomer et déplacer en même temps.
    Les valeurs sont calculées depuis le début du geste (pas d'accumulation qui s'emballe) ;
@@ -1162,25 +1193,26 @@ function deplacer(dx, dy) {
 }
 function ramasserSous(x, y) { for (const b of Object.values(bulles)) { if (!b.classList.contains('argent') || !b.px) continue; if (Math.abs(x - b.px[0]) < 34 && y > b.px[1] - 80 && y < b.px[1] + 10) b.action(); } }
 canvas.addEventListener('contextmenu', e => e.preventDefault());
-canvas.addEventListener('pointerdown', e => { try { canvas.setPointerCapture(e.pointerId); } catch (x) {} doigts.set(e.pointerId, e); if (doigts.size === 1) bouge = 0; trace = null; tourne = e.button === 2 || e.shiftKey;
-  if (doigts.size === 2) debutGeste(); else if (mode && BATIS[mode].glisse) { const c = caseSous(e.clientX, e.clientY); if (c) { poser(...c); trace = cle(...c); } } });
+canvas.addEventListener('pointerdown', e => { try { canvas.setPointerCapture(e.pointerId); } catch (x) {} doigts.set(e.pointerId, e); if (doigts.size === 1) { bouge = 0; apresGeste = false; } trace = null; tourne = e.button === 2 || e.shiftKey;
+  if (doigts.size === 2) { apresGeste = true; if (traitCourant) { const tr = traitCourant; traitCourant = null; if (tr.items.length <= 2) defaire(tr); else { traits.push(tr); majRetour(); } } debutGeste(); }   // 2e doigt : on déplace la carte, la route posée par erreur s'en va
+  else if (dessine()) { const c = caseSous(e.clientX, e.clientY); if (c && dans(...c)) debutTrait(c); } });
 canvas.addEventListener('pointermove', e => {
   const c = caseSous(e.clientX, e.clientY);
-  if (mode && c && dans(...c)) { fantome.visible = true; fantome.position.copy(mode === 'route' ? pos(...c) : centre(...c, mode)); }
+  if (mode && c && dans(...c) && outil === 'tracer') { fantome.visible = true; fantome.position.copy(mode === 'route' ? pos(...c) : centre(...c, mode)); }
   if (!doigts.has(e.pointerId)) return; const a = doigts.get(e.pointerId), dx = e.clientX - a.clientX, dy = e.clientY - a.clientY; doigts.set(e.pointerId, e);
   if (doigts.size === 2) { if (!g2) debutGeste(); geste(); bouge += 20; return; }
   bouge += Math.abs(dx) + Math.abs(dy);
   if (tourne) { cible.az -= dx * .008; cible.el = THREE.MathUtils.clamp(cible.el + dy * .005, .45, 1.35); return; }
-  if (mode && BATIS[mode].glisse) { if (c && cle(...c) !== trace) { poser(...c); trace = cle(...c); } return; }
+  if (dessine()) { if (apresGeste) return; if (c && dans(...c)) { if (!traitCourant) debutTrait(c); else agir(c); } return; }
   deplacer(dx, dy);
   if (!mode) ramasserSous(e.clientX, e.clientY);
 });
 canvas.addEventListener('pointerup', e => {
-  if (!doigts.has(e.pointerId)) return; const seulDoigt = doigts.size === 1; doigts.delete(e.pointerId); if (!seulDoigt) { finGeste(); bouge = 99; return; } if (bouge > 10) return;
+  if (!doigts.has(e.pointerId)) return; const seulDoigt = doigts.size === 1; doigts.delete(e.pointerId); if (seulDoigt) finTrait(); if (!seulDoigt) { finGeste(); bouge = 99; return; } if (bouge > 10) return;
   if (mode && !BATIS[mode].glisse) { const c = caseSous(e.clientX, e.clientY); if (c) poser(...c); return; }
   if (!mode) { const k = caseBatie(e.clientX, e.clientY); if (k) ouvrirFiche(k); else fermerTout(); }
 });
-canvas.addEventListener('pointercancel', e => { doigts.delete(e.pointerId); finGeste(); bouge = 99; });
+canvas.addEventListener('pointercancel', e => { doigts.delete(e.pointerId); finTrait(); finGeste(); bouge = 99; });
 canvas.addEventListener('wheel', e => { e.preventDefault(); cible.dist *= e.deltaY > 0 ? 1.1 : .9; }, { passive: false });
 const quart = s => { cible.az = Math.round((cible.az - Math.PI / 4) / (Math.PI / 2)) * (Math.PI / 2) + Math.PI / 4 + s * Math.PI / 2; SON.clic(); vibrer(8); };
 $('gauche').onclick = () => quart(1); $('droite').onclick = () => quart(-1);
