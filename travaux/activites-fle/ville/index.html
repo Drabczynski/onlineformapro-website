@@ -534,8 +534,8 @@ function enseigne(picto, fond = '#fff') {
   if (!enseignes[cl]) { const cv = document.createElement('canvas'); cv.width = cv.height = 128; const x = cv.getContext('2d');
     x.fillStyle = 'rgba(0,0,0,.25)'; x.beginPath(); x.arc(64, 68, 58, 0, 7); x.fill(); x.fillStyle = fond; x.beginPath(); x.arc(64, 62, 56, 0, 7); x.fill();
     x.lineWidth = 6; x.strokeStyle = '#fff'; x.stroke(); x.font = '72px serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(picto, 64, 68);
-    const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; enseignes[cl] = new THREE.SpriteMaterial({ map: t }); }
-  const s = new THREE.Sprite(enseignes[cl]); s.scale.set(.7, .7, 1); return s;
+    const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; enseignes[cl] = new THREE.SpriteMaterial({ map: t, toneMapped: false, depthTest: false, depthWrite: false }); }
+  const s = new THREE.Sprite(enseignes[cl]); s.scale.set(.7, .7, 1); s.layers.set(1); return s;   // calque 1 : dessiné à part, au-dessus, hors de l'ombrage ambiant
 }
 const ECHELLE_H = { parc: 1, stade: .9, tour: .85, gratteciel: .8, tourgeante: .8, hotel: .9, affaires: .9, chateau: .8, epicerie: 1, garage: .9, ecole: 1, medecin: 1, mairie: 1 };
 const TEINTES = [0xffffff, 0xffe4ec, 0xe2f0ff, 0xfff3c4, 0xe6ffe0, 0xf3e6ff, 0xffe9d6];
@@ -1114,7 +1114,9 @@ function boucle() {
   if (niveau() >= 6 && !ballons.length) for (const [n, r, h] of [['ballon_a', 18, 9], ['ballon_b', 26, 11], ['ballon_a', 32, 13]]) { const b = piece(n); b.userData = { r, h, a: Math.random() * 6 }; scene.add(b); ballons.push(b); }
   for (const b of ballons) { const u = b.userData; u.a += dt * .04; b.position.set(Math.cos(u.a) * u.r, u.h + Math.sin(u.a * 3) * .6, Math.sin(u.a) * u.r); b.rotation.y = -u.a; }
   fpsT += dt; fpsN++; if (fpsT > 3) { if (!leger && fpsN / fpsT < 24) { leger = true; ao.enabled = false; } fpsT = 0; fpsN = 0; }
-  composer.render(dt); requestAnimationFrame(boucle);
+  composer.render(dt);
+  cam.layers.set(1); renderer.autoClear = false; renderer.render(scene, cam); renderer.autoClear = true; cam.layers.set(0);   // les enseignes par-dessus
+  requestAnimationFrame(boucle);
 }
 (async () => {
   try {
