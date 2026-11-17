@@ -421,6 +421,21 @@ const BATIS = {
   poste: { picto: '✉️', nom: 'La Poste', prix: 1000, cat: 'service', niv: 3, apres: 'q10', theme: 'poste' },
   police: { picto: '🚓', nom: 'Police', prix: 1100, cat: 'service', niv: 4, apres: 'q13' },
   banque: { picto: '🏦', nom: 'Banque', prix: 1400, cat: 'commerce', niv: 4, apres: 'q11', theme: 'banque' },
+  cafe: { picto: '☕', nom: 'Café', prix: 400, cat: 'commerce', niv: 2, theme: 'boulangerie' },
+  primeur: { picto: '🍓', nom: 'Primeur', prix: 450, cat: 'commerce', niv: 2, theme: 'epicerie' },
+  legumes: { picto: '🥕', nom: 'Marchand de légumes', prix: 450, cat: 'commerce', niv: 2, theme: 'epicerie' },
+  fleuriste: { picto: '💐', nom: 'Fleuriste', prix: 500, cat: 'commerce', niv: 2, theme: 'parc' },
+  fromagerie: { picto: '🧀', nom: 'Fromagerie', prix: 600, cat: 'commerce', niv: 3, theme: 'epicerie' },
+  cremerie: { picto: '🥛', nom: 'Crèmerie', prix: 600, cat: 'commerce', niv: 3, theme: 'epicerie' },
+  glacier: { picto: '🍦', nom: 'Glacier', prix: 650, cat: 'commerce', niv: 3 },
+  jardinerie: { picto: '🪴', nom: 'Jardinerie', prix: 750, cat: 'commerce', niv: 3, theme: 'parc' },
+  sport: { picto: '⚽', nom: 'Magasin de sport', prix: 900, cat: 'commerce', niv: 4 },
+  musique: { picto: '🎸', nom: 'Magasin de musique', prix: 950, cat: 'commerce', niv: 4 },
+  meubles: { picto: '🛋️', nom: 'Magasin de meubles', prix: 1000, cat: 'commerce', niv: 4, theme: 'maison' },
+  horloger: { picto: '⌚', nom: 'Horloger', prix: 1100, cat: 'commerce', niv: 4 },
+  ferme: { picto: '🚜', nom: 'Ferme', prix: 1500, cat: 'commerce', niv: 4, theme: 'epicerie', max: 3 },
+  voyages: { picto: '✈️', nom: 'Agence de voyages', prix: 1400, cat: 'commerce', niv: 5 },
+  usine: { picto: '🏭', nom: 'Usine', prix: 2400, cat: 'commerce', niv: 5, max: 3 },
   stade: { picto: '🏟️', nom: 'Stade', prix: 3500, cat: 'loisir', niv: 5, apres: 'q12', max: 1 },
   hotel: { picto: '🏨', nom: 'Grand hôtel', prix: 2500, cat: 'prestige', niv: 5, hab: 30 },
   immeuble: { picto: '🏢', nom: 'Immeuble', prix: 1600, hausse: .35, cat: 'prestige', niv: 4, hab: 40 },
@@ -611,6 +626,16 @@ const composer = new EffectComposer(renderer);
 composer.addPass(new RenderPass(scene, cam));
 const ao = new GTAOPass(scene, cam, innerWidth, innerHeight); ao.blendIntensity = .9; ao.updateGtaoMaterial({ radius: .6, distanceExponent: 1.6, thickness: 1.2, scale: 1.1 }); composer.addPass(ao);
 composer.addPass(new OutputPass());
+// flou de distance : le haut et le bas de l'image s'adoucissent, comme une maquette photographiée (aucune retouche des couleurs)
+const flou = new ShaderPass({
+  uniforms: { tDiffuse: { value: null }, res: { value: new THREE.Vector2(innerWidth, innerHeight) }, force: { value: TEL ? 1.6 : 2.2 } },
+  vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.); }',
+  fragmentShader: `uniform sampler2D tDiffuse; uniform vec2 res; uniform float force; varying vec2 vUv;
+    void main(){ float d = smoothstep(.2,.62,abs(vUv.y-.5)); vec2 px = force*d/res*1.7; vec4 c = vec4(0.); float w = 0.;
+      for(int x=-2;x<=2;x++) for(int y=-2;y<=2;y++){ float k = 1. - length(vec2(float(x),float(y)))/3.3; vec4 e = texture2D(tDiffuse, vUv + vec2(float(x),float(y))*px); if (e.r == e.r && e.g == e.g && e.b == e.b) { c += e*k; w += k; } }
+      gl_FragColor = vec4((c/max(w, 1e-3)).rgb, 1.); }`
+});
+composer.addPass(flou);
 const miniature = new ShaderPass({
   uniforms: { tDiffuse: { value: null }, res: { value: new THREE.Vector2(innerWidth, innerHeight) }, force: { value: TEL ? 1.8 : 2.4 } },
   vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.); }',
@@ -619,7 +644,7 @@ const miniature = new ShaderPass({
       for(int x=-2;x<=2;x++) for(int y=-2;y<=2;y++){ float k = 1. - length(vec2(float(x),float(y)))/3.3; vec4 e = texture2D(tDiffuse, vUv + vec2(float(x),float(y))*px); if (e.r == e.r && e.g == e.g && e.b == e.b) { c += e*k; w += k; } }
       c /= max(w, 1e-3); vec2 q = vUv - .5; c.rgb *= 1. - dot(q,q)*.6; float l = dot(c.rgb, vec3(.299,.587,.114)); c.rgb = mix(vec3(l), c.rgb, 1.18); c.rgb = (c.rgb-.5)*1.05+.5; gl_FragColor = vec4(c.rgb,1.); }`
 });
-function redim() { renderer.setSize(innerWidth, innerHeight); composer.setSize(innerWidth, innerHeight); miniature.uniforms.res.value.set(innerWidth, innerHeight); cam.aspect = innerWidth / innerHeight; cam.updateProjectionMatrix(); }
+function redim() { renderer.setSize(innerWidth, innerHeight); composer.setSize(innerWidth, innerHeight); miniature.uniforms.res.value.set(innerWidth, innerHeight); flou.uniforms.res.value.set(innerWidth, innerHeight); cam.aspect = innerWidth / innerHeight; cam.updateProjectionMatrix(); }
 addEventListener('resize', redim);
 
 const L = N * T;
@@ -678,7 +703,7 @@ function enseigne(picto, fond = '#fff') {
 }
 const ECHELLE_H = { parc: 1, stade: .9, tour: .85, gratteciel: .8, tourgeante: .8, hotel: .9, affaires: .9, chateau: .8, epicerie: 1, garage: .9, ecole: 1, medecin: 1, mairie: 1 };
 const TEINTES = [0xffffff, 0xffe4ec, 0xe2f0ff, 0xfff3c4, 0xe6ffe0, 0xf3e6ff, 0xffe9d6];
-const TAILLE = { supermarche: [2, 1], mairie: [2, 1], epicerie: [2, 1], garage: [2, 2], ecole: [2, 2], medecin: [2, 1], stade: [5, 3], tour: [2, 2], gratteciel: [3, 2], tourgeante: [4, 2] };
+const TAILLE = { usine: [2, 2], ferme: [2, 1], supermarche: [2, 1], mairie: [2, 1], epicerie: [2, 1], garage: [2, 2], ecole: [2, 2], medecin: [2, 1], stade: [5, 3], tour: [2, 2], gratteciel: [3, 2], tourgeante: [4, 2] };
 const taille = t => TAILLE[t] || [1, 1];
 const ENSEIGNE = { supermarche: ['🛒'], boutique: ['👗'], boulangerie: ['🥖'], epicerie: ['🍎'], garage: ['🔧'], chateau: ['💧', '#7fd0ff'], ecole: ['🏫'], medecin: ['🩺'], police: ['🚓', '#8fb3ff'], pompiers: ['🚒', '#ff8a7a'], poste: ['✉️'], banque: ['🏦'], mairie: ['🏛️', '#ffe9b0'] };
 let OCC = {};
@@ -858,7 +883,7 @@ function catalogue() {
   $('onglets').querySelectorAll('button').forEach(b => b.onclick = () => { onglet = b.dataset.cat; SON.clic(); catalogue(); });
   const voile = { niv: b => '🔒 Niveau ' + b.niv, dem: () => '💬 Bientôt', max: () => '✓' };
   $('articles').innerHTML = articlesDe(onglet).map(([k, b, e]) => { const p = prix(k);
-    const hab = k === 'maison' ? MAISONS[0].hab : b.hab || 0, stat = hab ? `👥 +${hab}` : b.theme ? '🎓 5 mots' : k === 'route' ? '🚗 🚶' : '😊 +';
+    const hab = k === 'maison' ? MAISONS[0].hab : b.hab || 0, rv = k !== 'maison' && k !== 'route' ? revenu({ t: k }) : null, stat = hab ? `👥 +${hab}` : rv ? `${PC} +${rv.u}` : b.theme ? '🎓 5 mots' : k === 'route' ? '🚗 🚶' : '😊 +';
     return `<button class="article c-${b.cat} ${e !== 'ok' ? 'verrou' : ''}" data-t="${k}" data-etat="${e}" data-voile="${e === 'ok' ? '' : voile[e](b)}"><b class="ct">${b.nom}</b><span class="cimg" data-v="${k}">${VIGN[k] ? `<img src="${VIGN[k]}" alt="">` : `<span class="picto">${b.picto}</span>`}</span><span class="cstat">${stat}</span><span class="prix chiffre ${E.pieces < p ? 'cher' : ''}">${PC}${p}</span></button>`; }).join('');
   vignettesManquantes();
   $('articles').querySelectorAll('.article').forEach(a => a.onclick = () => {
@@ -939,6 +964,7 @@ function poser(i, j) {
   const c = { t };
   if (t === 'maison') { c.n = 0; c.v = Math.floor(Math.random() * 28); c.recolte = maintenant() - (E.tuto.fini ? 0 : IMPOT_SEC * IMPOT_MAX); }
   if (t === 'parc' || t === 'immeuble') c.v = Math.floor(Math.random() * 10);
+  if (t !== 'maison' && t !== 'route') c.recolte = maintenant();
   E.cases[k] = c; majOcc(); nettoyerDecor(i, j, t);
   redessiner(i, j, t !== 'route'); if (t === 'route') autour(i, j);
   if (t === 'route') SON.clic(); else { SON.pose(); vibrer(20); const e = ecran(centre(i, j, t).setY(1.5)); etoiles(4, e); plus('+4 ⭐', [e[0], e[1] - 30]); }
@@ -953,7 +979,7 @@ const leconDispo = t => !!THEMES[t] && maintenant() >= (E.lecons[t] || 0);
 function ouvrirFiche(k) {
   const c = E.cases[k]; if (!c || c.t === 'route') return; ficheCase = k; SON.clic(); vibrer(8);
   const g = objets[k]; if (g) g.userData.tape = performance.now();
-  if (c.t === 'maison' && c.pret > 0) { encaisser(k); return; }
+  if (c.pret > 0) { encaisser(k); return; }
   const b = BATIS[c.t]; $('ficheIcone').textContent = b.picto; $('ficheTitre').textContent = c.t === 'maison' ? 'Maison · ' + '⭐'.repeat((c.n || 0) + 1) : b.nom;
   remplirFiche(); fermerTout(); $('fiche').classList.add('ouvert');
 }
@@ -969,7 +995,8 @@ function remplirFiche() {
     h += leconDispo(th) ? `<button class="gros or" id="entrer">🎓 ${T2.titre} · 5 mots · ${PC}</button>`
       : `<button class="gros" id="entrer">🔁 Réviser · ${T2.titre}</button><div class="etat"><span>${PC} plein gain dans ${Math.ceil(((E.lecons[th] || 0) - maintenant()))} s</span></div>`;
     if (E.themesVus[th]) h += `<button class="gros" id="revoir" style="background:#fff;color:var(--encre);box-shadow:0 4px 0 #c5d3e4">👀 Revoir des mots</button>`;
-  } else if (c.t !== 'maison') h += '<div class="etat"><span>😊 ✓</span></div>';
+  }
+  if (c.t !== 'maison') { const r = revenu(c); h += r ? `<div class="etat"><span>${PC} ${r.u} / ${IMPOT_SEC}s</span></div>` : '<div class="etat"><span>😊 ✓</span></div>'; }
   F.innerHTML = h;
   const bt = $('ameliorer'); if (bt) bt.onclick = ameliorer;
   const en = $('entrer'); if (en) en.onclick = () => ouvrirQuiz(th, ficheCase);
@@ -980,12 +1007,20 @@ function ameliorer() {
   E.pieces -= S2.prix; affiche.pieces -= S2.prix; c.n = (c.n || 0) + 1; const [i, j] = ij(ficheCase); redessiner(i, j, true); SON.fete(); vibrer(30); fermerTout(); sauver();
   const e = ecran(centre(i, j, 'maison').setY(3)); plus('👥 +' + (S2.hab - MAISONS[c.n - 1].hab), e); etoiles(10, e); compter();
 }
+/* revenus : chaque bâtiment remplit sa caisse toutes les 12 s ; les commerces et le prestige rapportent le plus,
+   et leur caisse se remplit plus longtemps (revenu passif) avant qu'il faille la vider */
+function revenu(c) {
+  if (c.t === 'maison') return { u: MAISONS[c.n || 0].unite, max: IMPOT_MAX };
+  const b = BATIS[c.t]; if (!b || !b.prix || c.t === 'route') return null;
+  const taux = b.cat === 'commerce' || b.cat === 'prestige' ? .008 : .004;
+  return { u: Math.max(2, Math.round(b.prix * taux)), max: 10 };
+}
 function impots() {
   const t = maintenant();
-  for (const c of Object.values(E.cases)) if (c.t === 'maison') { const M = MAISONS[c.n || 0]; c.pret = Math.min(IMPOT_MAX, Math.floor((t - (c.recolte || t)) / IMPOT_SEC)) * M.unite; }
+  for (const c of Object.values(E.cases)) { const r = revenu(c); if (!r) continue; if (!c.recolte) c.recolte = t; c.pret = Math.min(r.max, Math.floor((t - c.recolte) / IMPOT_SEC)) * r.u; }
 }
 function encaisser(k) {
-  const c = E.cases[k]; if (!c?.pret) return; const [i, j] = ij(k), p3 = centre(i, j, 'maison').setY(1.4 + (c.n || 0) * .5), v = c.pret;
+  const c = E.cases[k]; if (!c?.pret) return; const [i, j] = ij(k), p3 = centre(i, j, c.t).setY(c.t === 'maison' ? 1.4 + (c.n || 0) * .5 : (objets[k]?.userData.haut || 2) * .8), v = c.pret;
   c.pret = 0; c.recolte = maintenant(); enchainer(); vibrer(8); plus(PC + '+' + v, ecran(p3.clone().setY(p3.y + .6)));
   pluie(v, p3, Math.min(6, 2 + Math.floor(v / 6))); gagner(1); E.tuto.pieces = true; sauver();
   const g = objets[k]; if (g) g.userData.tape = performance.now();
@@ -1177,13 +1212,14 @@ function exercice() {
 }
 function finQuiz() {
   const { theme, k, fautes, revision } = Q; E.themesVus[theme] = true; E.derniereLecon = maintenant(); if (!revision) E.lecons[theme] = maintenant() + ATTENTE_LECON;
-  const plein = GAIN_SERIE + 30 * niveau() + (fautes === 0 ? 60 : 0), bonus = revision ? Math.round(plein / 4) : plein, nbEt = fautes === 0 ? 3 : fautes <= 2 ? 2 : 1;
+  const valeur = Object.values(E.cases).reduce((s, c) => s + (c.t === 'route' ? 0 : c.t === 'maison' ? [60, 400, 1000, 2400][c.n || 0] : BATIS[c.t]?.prix || 0), 0), primeVille = Math.round(valeur * .03 / 5) * 5;   // 3 % de la valeur de la ville
+  const plein = GAIN_SERIE + 30 * niveau() + (fautes === 0 ? 60 : 0) + primeVille, bonus = revision ? Math.round(plein / 4) : plein, nbEt = fautes === 0 ? 3 : fautes <= 2 ? 2 : 1;
   $('qProg').style.width = '100%'; $('qImage').style.backgroundImage = 'none'; $('qImage').innerHTML = '<div style="font-size:110px">🎉</div>';
   $('qImage').innerHTML = `<div class="coffreZone"><div class="etoiles3">${'⭐'.repeat(nbEt)}${'☆'.repeat(3 - nbEt)}</div></div>`; $('qBas').innerHTML = '';
   dire('s-bravo'); SON.niveau(); E.coeurs++;
   coffre({ titre: revision ? 'Révision' : 'Bravo' + NB + '!', sous: fautes === 0 ? 'SÉRIE PARFAITE' : 'SÉRIE TERMINÉE', objets: [
     { ico: '⭐', n: nbEt, nom: nbEt === 3 ? 'Parfait' + NB + '!' : 'Étoiles', rar: nbEt === 3 ? 'Super' : 'Bien', c: 'bleu' },
-    { ico: PC, n: '+' + bonus, nom: 'Pièces', rar: revision ? 'Révision' : 'Gros gain', c: 'or' },
+    { ico: PC, n: '+' + bonus, nom: 'Pièces', rar: revision ? 'Révision' : primeVille ? 'Bonus ville +' + (revision ? Math.round(primeVille / 4) : primeVille) : 'Gros gain', c: 'or' },
     { ico: '❤️', n: '+1', nom: 'Un cœur', rar: 'Merci' + NB + '!', c: 'rose' } ] }, () => {
     const xy = [innerWidth / 2, innerHeight / 2]; fermerQuiz(); pluieEcran(bonus, xy, 16); etoiles(15, xy); voler('❤️', xy, centreDe('coeurJ'), 2, () => bump('coeurJ')); sauver(); compter(); });
 }
@@ -1223,7 +1259,7 @@ function majBulles() {
     let voisin = false, nPieces = 0;
     for (const [k, c] of Object.entries(E.cases)) { if (c.t === 'route') continue; const [i, j] = ij(k), g = objets[k], haut = centre(i, j, c.t).setY((g?.userData.haut || 2) + .35);
       const th = BATIS[c.t].theme;
-      if (c.t === 'maison' && c.pret >= IMPOT_MAX * MAISONS[c.n || 0].unite && nPieces < 4) { nPieces++; bulle('p' + k, PC, 'argent', haut, () => encaisser(k)); }
+      if (c.pret && c.pret >= revenu(c).max * revenu(c).u * (c.t === 'maison' ? 1 : .5) && nPieces < 6) { nPieces++; bulle('p' + k, PC, 'argent', haut, () => encaisser(k)); }
       else if (besoinMots() && !voisin && th && leconDispo(th) && (th !== 'maison' || !Object.values(E.cases).some(x => BATIS[x.t].theme && x.t !== 'maison' && leconDispo(BATIS[x.t].theme)))) { voisin = true; bulle('l' + k, '🎓', 'lecon', haut, () => ouvrirQuiz(th, k)); }
     }
     for (const m of mobiles) if (m.dem || m.bav) bulle('m' + (m.dem || m.bav), `<img src="${visage(m.v, m.dem || m.bav)}" alt=""><i style="${m.bav ? 'background:#1fbf73;font-size:13px' : ''}">${m.bav ? '💬' : '!'}</i>`, 'perso', m.o.position.clone().setY(.7), () => ecouter(m));
