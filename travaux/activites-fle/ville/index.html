@@ -185,15 +185,26 @@ body.parle .rond,body.parle .tourner,body.quiz .rond,body.quiz .tourner{opacity:
 #toast b{font-size:20px;font-weight:900}
 #toast span{font-size:17px;color:var(--doux);font-weight:800;display:flex;gap:4px;align-items:center;justify-content:center}
 
-#bravo{position:fixed;inset:0;z-index:16;background:radial-gradient(circle,rgba(124,92,255,.5),rgba(19,35,58,.9));display:grid;place-items:center;color:#fff;text-align:center;padding:20px;overflow:hidden}
-#bravo .rayons{position:absolute;left:50%;top:40%;width:900px;height:900px;margin:-450px 0 0 -450px;background:repeating-conic-gradient(rgba(255,230,140,.22) 0 10deg,transparent 10deg 20deg);border-radius:50%;animation:tourne2 14s linear infinite;-webkit-mask:radial-gradient(circle,#000 20%,transparent 65%);mask:radial-gradient(circle,#000 20%,transparent 65%)}
-#bravo>div{position:relative}
-#bravo .etoileG{width:140px;height:140px;margin:0 auto;display:grid;place-items:center;font:800 64px "Baloo 2",sans-serif;background:linear-gradient(160deg,#ffe27a,#f2a90c);clip-path:polygon(50% 0,61% 13%,78% 7%,80% 25%,97% 30%,89% 46%,100% 60%,85% 70%,86% 88%,68% 86%,57% 100%,43% 90%,27% 99%,22% 82%,4% 78%,11% 61%,0 46%,14% 34%,12% 16%,30% 16%,39% 2%);color:#7a4300;animation:tourne 1s cubic-bezier(.2,1.4,.4,1)}
-@keyframes tourne{from{transform:scale(0) rotate(-180deg)}}
-#bravo h2{margin:10px 0 0;font:800 46px/1 "Baloo 2",sans-serif;text-shadow:0 4px 0 rgba(0,0,0,.25)}
-#bravo .neufs{display:flex;gap:12px;justify-content:center;margin:18px 0 22px;flex-wrap:wrap}
-#bravo .neufs span{width:78px;height:78px;border-radius:22px;background:#fff;display:grid;place-items:center;font-size:42px;animation:tourne .6s both;box-shadow:0 4px 0 #c5d3e4}
-#bravo button{height:62px;padding:0 40px;border-radius:99px;background:linear-gradient(180deg,#ffe27a,#f6a623);color:var(--nuit);font-size:24px;font-weight:900;border:3px solid #fff;box-shadow:0 5px 0 #b06f05}
+#bravo{position:fixed;inset:0;z-index:16;background:rgba(10,24,44,.62);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);display:grid;place-items:center;padding:20px}
+.panneau{width:min(100%,380px);background:#f4f7fb;border-radius:22px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.45);animation:entre .45s cubic-bezier(.2,1.2,.4,1)}
+@keyframes entre{from{transform:translateY(40px) scale(.94);opacity:0}}
+.panneau .tete{background:linear-gradient(180deg,#2f7be0,#1d5fc2);color:#fff;padding:18px 18px 16px;display:flex;align-items:center;gap:14px}
+.panneau .badge{width:64px;height:64px;border-radius:16px;background:#fff;color:#1d5fc2;display:grid;place-items:center;font:800 36px/1 "Baloo 2",sans-serif;box-shadow:inset 0 -4px 0 #d6e4f7;flex:none}
+.panneau .tete small{display:block;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+.panneau .tete b{display:block;font:800 26px/1.05 "Baloo 2",sans-serif}
+.panneau .corps{padding:16px 18px 18px;display:grid;gap:12px}
+.panneau .rubrique{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--doux)}
+.panneau .liste2{display:grid;gap:8px}
+.panneau .ligne2{display:flex;align-items:center;gap:12px;background:#fff;border-radius:14px;padding:8px 12px;border:1px solid #e3eaf3;animation:entre .4s both}
+.panneau .ligne2 .ic{width:42px;height:42px;border-radius:12px;background:#eef3f9;display:grid;place-items:center;font-size:24px;flex:none}
+.panneau .ligne2 b{font-size:16px;font-weight:800;flex:1}
+.panneau .ligne2 span{display:flex;align-items:center;gap:4px;font-weight:800;color:var(--doux);font-size:14px}
+.panneau .ligne2 .pc{font-size:16px}
+.panneau .prime{display:flex;align-items:center;justify-content:space-between;background:#fff6dc;border:1px solid #f3dd97;border-radius:14px;padding:10px 14px;font-weight:800}
+.panneau .prime span{display:flex;align-items:center;gap:6px;font:800 22px "Baloo 2",sans-serif}
+.panneau .prime .pc{font-size:24px}
+#bravoOk{height:54px;border-radius:14px;background:linear-gradient(180deg,#4fd384,var(--vert));color:#fff;font-size:19px;font-weight:900;box-shadow:0 4px 0 var(--vert2)}
+#bravoOk:active{transform:translateY(3px);box-shadow:0 1px 0 var(--vert2)}
 .confetti{position:fixed;z-index:24;top:-20px;width:10px;height:14px;pointer-events:none;animation:tombe linear forwards}
 @keyframes tombe{to{transform:translateY(110vh) rotate(720deg)}}
 
@@ -259,7 +270,7 @@ body.quiz #bMusique{display:none}
 </div></div>
 
 <div id="toast"><div class="picto"></div><b></b><span></span></div>
-<div id="bravo" hidden><div class="rayons"></div><div><div class="etoileG" id="bravoNiv">2</div><h2>Niveau supérieur !</h2><div class="neufs" id="bravoNeufs"></div><button id="bravoOk">Super !</button></div></div>
+<div id="bravo" hidden><div class="panneau" role="dialog" aria-labelledby="bravoTitre"><div class="tete"><div class="badge" id="bravoNiv">2</div><div><small>Ta ville grandit</small><b id="bravoTitre">Niveau 2</b></div></div><div class="corps" id="bravoCorps"></div></div></div>
 
 <div id="menu">
   <div class="affiche" role="img" aria-label="Vocacity Builder"></div>
@@ -696,9 +707,14 @@ function etoiles(xp, xy) { voler('⭐', xy, centreDe('niveau'), Math.min(5, 1 + 
 function gagner(xp) { const avant = niveau(); E.xp += xp; compter(); if (niveau() > avant) setTimeout(() => montee(niveau()), 900); }
 function montee(n) {
   if (dialogue || !$('quiz').hidden) { setTimeout(() => montee(n), 1500); return; }
-  SON.niveau(); vibrer([30, 40, 30, 40, 60]); pluieConfettis(); $('bravoNiv').textContent = n;
-  const neufs = Object.values(BATIS).filter(b => b.niv === n).map(b => b.picto);
-  $('bravoNeufs').innerHTML = neufs.map((p, k) => `<span style="animation-delay:${.3 + k * .12}s">${p}</span>`).join(''); $('bravo').hidden = false;
+  SON.niveau(); vibrer([30, 40, 30]); $('bravoNiv').textContent = n; $('bravoTitre').textContent = 'Niveau ' + n;
+  const neufs = Object.entries(BATIS).filter(([k, b]) => b.niv === n), maisonNv = MAISONS.find(M => M.niv === n);
+  let h = '';
+  if (neufs.length || maisonNv) h += `<div class="rubrique">Nouveau</div><div class="liste2">` + neufs.map(([k, b], q) => `<div class="ligne2" style="animation-delay:${.15 + q * .08}s"><span class="ic">${b.picto}</span><b>${b.nom}</b><span>${PC}${prix(k)}</span></div>`).join('')
+    + (maisonNv ? `<div class="ligne2" style="animation-delay:${.15 + neufs.length * .08}s"><span class="ic">⬆️</span><b>Maisons plus grandes</b><span>👥 ${maisonNv.hab}</span></div>` : '') + '</div>';
+  h += `<div class="prime">Prime du maire<span>${PC}+${40 * n}</span></div><button id="bravoOk">Continuer</button>`;
+  $('bravoCorps').innerHTML = h; $('bravo').hidden = false;
+  $('bravoOk').onclick = () => { const xy = centreDe('bravoOk'); $('bravo').hidden = true; SON.clic(); pluieEcran(40 * n, xy, 10); sauver(); };
 }
 function pluieConfettis() {}
 function pluieConfettisAncien() {
@@ -706,7 +722,6 @@ function pluieConfettisAncien() {
   for (let k = 0; k < 70; k++) { const e = document.createElement('i'); e.className = 'confetti'; e.style.left = Math.random() * 100 + 'vw'; e.style.background = C[k % 5];
     e.style.animationDuration = 1.6 + Math.random() * 1.6 + 's'; e.style.animationDelay = Math.random() * .6 + 's'; document.body.appendChild(e); setTimeout(() => e.remove(), 4000); }
 }
-$('bravoOk').onclick = () => { $('bravo').hidden = true; SON.clic(); pluieEcran(40 * niveau(), [innerWidth / 2, innerHeight / 2], 12); sauver(); };
 function toast(picto, titre, sous = '') { const t = $('toast'); t.children[0].innerHTML = picto; t.children[1].textContent = titre; t.children[2].innerHTML = sous; t.classList.add('vu'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('vu'), 2400); }
 const tiroirs = ['catalogue', 'fiche', 'taches'];
 function fermerTout() { tiroirs.forEach(t => $(t).classList.remove('ouvert')); }
@@ -783,11 +798,14 @@ function remplirFiche() {
   }
   if (th) {
     const T2 = THEMES[th];
-    h += leconDispo(th) ? `<button class="gros or" id="entrer">🎓 ${T2.titre} · 5 mots · ${PC}</button>` : `<div class="etat"><span>🎓 ⏱ ${Math.ceil(((E.lecons[th] || 0) - maintenant()))} s</span></div>`;
+    h += leconDispo(th) ? `<button class="gros or" id="entrer">🎓 ${T2.titre} · 5 mots · ${PC}</button>`
+      : `<button class="gros" id="entrer">🔁 Réviser · ${T2.titre}</button><div class="etat"><span>${PC} plein gain dans ${Math.ceil(((E.lecons[th] || 0) - maintenant()))} s</span></div>`;
+    if (E.themesVus[th]) h += `<button class="gros" id="revoir" style="background:#fff;color:var(--encre);box-shadow:0 4px 0 #c5d3e4">👀 Revoir les 5 mots</button>`;
   } else if (c.t !== 'maison') h += '<div class="etat"><span>😊 ✓</span></div>';
   F.innerHTML = h;
   const bt = $('ameliorer'); if (bt) bt.onclick = ameliorer;
   const en = $('entrer'); if (en) en.onclick = () => ouvrirQuiz(th, ficheCase);
+  const rv = $('revoir'); if (rv) rv.onclick = () => ouvrirQuiz(th, ficheCase, true);
 }
 function ameliorer() {
   const c = E.cases[ficheCase], S2 = MAISONS[(c.n || 0) + 1]; if (!S2) return; if (E.pieces < S2.prix) { pasAssez(); return; }
@@ -923,10 +941,10 @@ $('bTaches').onclick = () => { SON.clic(); fermerTout(); remplirTaches(); $('tac
 /* ================================================================ APPRENDRE LES MOTS : découverte, puis 5 exercices */
 let Q = null;
 const img = id => `url(mots/${id}.webp)`;
-function ouvrirQuiz(theme, k) {
+function ouvrirQuiz(theme, k, revoir = false) {
   const Th = THEMES[theme]; fermerTout(); sortirMode();
-  const decouverte = !E.themesVus[theme];
-  Q = { theme, k, Th, decouverte, i: 0, file: melange(Th.mots.slice()), faits: 0, fautes: 0, gagne: 0, etapes: (decouverte ? 5 : 0) + 5 };
+  const decouverte = !E.themesVus[theme] || revoir;
+  Q = { theme, k, Th, decouverte, revision: !leconDispo(theme), i: 0, file: melange(Th.mots.slice()), faits: 0, fautes: 0, gagne: 0, etapes: (decouverte ? 5 : 0) + 5 };
   $('qTheme').textContent = BATIS[theme === 'maison' ? 'maison' : theme].picto + ' ' + Th.titre;
   $('quiz').hidden = false; document.body.classList.add('quiz'); E.tuto.lecon = true; SON.clic();
   if (decouverte) { Q.liste = Th.mots.slice(); montrer(); } else exercice();
@@ -946,7 +964,7 @@ function exercice() {
   const autres = melange(Object.keys(MOTS).filter(x => x !== id && Q.Th.mots.includes(x)));
   const genre = Q.faits % 4 === 2 && seul(id).length <= 8 && !seul(id).includes(' ') ? 'ecrire' : Q.faits % 4 === 1 ? 'son' : 'image';
   $('qImage').innerHTML = ''; const B = $('qBas'); delete B.dataset.fini; const n0 = Q.n = (Q.n || 0) + 1; const apres = (f, ms) => { let fait = false; const go = () => { if (!fait && Q && Q.n === n0) { fait = true; f(); } }; setTimeout(go, ms); return go; };
-  const juste = el => { Q.i++; Q.faits++; SON.juste(); vibrer(15); const xy = centreDe(el); const g = GAIN_MOT; Q.gagne += g; plus(PC + '+' + g, xy); pluieEcran(g, xy, 4); const go = apres(exercice, 2600); dire('w-' + id, () => setTimeout(go, 350)); };
+  const juste = el => { Q.i++; Q.faits++; SON.juste(); vibrer(15); const xy = centreDe(el); const g = Q.revision ? 5 : GAIN_MOT; Q.gagne += g; plus(PC + '+' + g, xy); pluieEcran(g, xy, 4); const go = apres(exercice, 2600); dire('w-' + id, () => setTimeout(go, 350)); };
   const rate = (el, montrerJuste) => { Q.fautes++; SON.faux(); vibrer([20, 30, 20]); Q.file.push(id); montrerJuste(); const go = apres(exercice, 3200); dire('w-' + id, () => setTimeout(go, 900)); };
   if (genre === 'image') {
     $('qImage').style.backgroundImage = img(id);
@@ -986,8 +1004,8 @@ function exercice() {
   }
 }
 function finQuiz() {
-  const { theme, k, fautes } = Q; E.themesVus[theme] = true; E.derniereLecon = maintenant(); E.lecons[theme] = maintenant() + ATTENTE_LECON;
-  const bonus = GAIN_SERIE + 30 * niveau() + (fautes === 0 ? 60 : 0), nbEt = fautes === 0 ? 3 : fautes <= 2 ? 2 : 1;
+  const { theme, k, fautes, revision } = Q; E.themesVus[theme] = true; E.derniereLecon = maintenant(); if (!revision) E.lecons[theme] = maintenant() + ATTENTE_LECON;
+  const plein = GAIN_SERIE + 30 * niveau() + (fautes === 0 ? 60 : 0), bonus = revision ? Math.round(plein / 4) : plein, nbEt = fautes === 0 ? 3 : fautes <= 2 ? 2 : 1;
   $('qProg').style.width = '100%'; $('qImage').style.backgroundImage = 'none'; $('qImage').innerHTML = '<div style="font-size:110px">🎉</div>';
   $('qBas').innerHTML = `<div class="fin"><div class="etoiles3">${'⭐'.repeat(nbEt)}${'☆'.repeat(3 - nbEt)}</div><div class="gain chiffre">${PC}+${bonus}</div><button class="gros or" id="qFin">Super${NB}!</button></div>`;
   dire('s-bravo'); SON.niveau(); pluieConfettis(); E.coeurs++;
