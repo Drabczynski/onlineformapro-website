@@ -207,6 +207,8 @@ body.parle .rond,body.parle .tourner,body.quiz .rond,body.quiz .tourner{opacity:
 #jouer{height:76px;padding:0 38px 0 30px;border-radius:99px;background:linear-gradient(180deg,#ffe27a,#f6a623);color:var(--nuit);font-size:27px;font-weight:900;display:flex;gap:12px;align-items:center;border:4px solid #fff;box-shadow:0 6px 0 #b06f05}
 #jouer svg{width:28px;height:28px;fill:var(--nuit)}
 #zero{opacity:.85;text-shadow:0 1px 4px rgba(0,0,0,.6);font-size:14px;font-weight:700;text-decoration:underline}
+#bMusique{position:fixed;z-index:35;right:12px;top:calc(62px + env(safe-area-inset-top,0px));width:44px;height:44px;border-radius:50%;background:var(--verre);color:#fff;font-size:20px;display:grid;place-items:center;border:2px solid rgba(255,255,255,.45)}
+body.quiz #bMusique{display:none}
 #charge{position:fixed;inset:0;z-index:40;background:var(--nuit);display:grid;place-items:center;color:#fff;font-weight:700;text-align:center;padding:20px}
 #charge i{width:54px;height:54px;border-radius:50%;border:6px solid rgba(255,255,255,.2);border-top-color:var(--or);animation:tourne2 1s linear infinite}
 @keyframes tourne2{to{transform:rotate(360deg)}}
@@ -265,6 +267,7 @@ body.parle .rond,body.parle .tourner,body.quiz .rond,body.quiz .tourner{opacity:
   <button id="jouer"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg><span>Jouer</span></button>
   <button id="zero">↺ Nouvelle ville</button>
 </div>
+<button id="bMusique" aria-label="Couper la musique">🔊</button>
 <div id="charge"><i></i></div>
 
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
@@ -418,6 +421,13 @@ const prix = k => { const b = BATIS[k]; return Math.round(b.prix * (1 + (b.hauss
 
 /* ================================================================ SONS */
 const voixEl = new Audio(); let AC = null;
+/* musique d'ambiance, dès l'écran d'accueil ; elle baisse quand quelqu'un parle */
+const musique = new Audio('musique/theme.mp3'); musique.loop = true; musique.volume = .35;
+let muet = false; try { muet = localStorage.getItem('vocacity-muet') === '1'; } catch (e) {}
+const majMusique = () => { $('bMusique').textContent = muet ? '🔇' : '🔊'; $('bMusique').setAttribute('aria-label', muet ? 'Mettre la musique' : 'Couper la musique'); if (muet) musique.pause(); else if (musique.paused) musique.play().catch(() => {}); };
+addEventListener('pointerdown', () => { if (!muet && musique.paused) musique.play().catch(() => {}); }, { capture: true });
+addEventListener('keydown', () => { if (!muet && musique.paused) musique.play().catch(() => {}); }, { capture: true });
+voixEl.addEventListener('play', () => { musique.volume = .12; }); voixEl.addEventListener('pause', () => { musique.volume = .35; }); voixEl.addEventListener('ended', () => { musique.volume = .35; });
 function dire(id, fin) { voixEl.onended = fin || null; voixEl.src = 'voix/' + id + '.mp3'; voixEl.play().catch(() => fin && fin()); }
 function bip(notes, type = 'sine', vol = .1) {
   try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); let t = AC.currentTime;
@@ -1094,6 +1104,8 @@ $('gauche').onclick = () => quart(1); $('droite').onclick = () => quart(-1);
 /* ================================================================ BOUCLE */
 $('jouer').onclick = () => { $('menu').hidden = true; voixEl.play().catch(() => {}); voixEl.pause(); attente = 1.2;
   if (E.debut) { E.debut = false; sauver(); setTimeout(() => dire('bienvenue'), 400); } };
+$('bMusique').onclick = e => { e.stopPropagation(); muet = !muet; try { localStorage.setItem('vocacity-muet', muet ? '1' : '0'); } catch (x) {} majMusique(); };
+majMusique();
 $('zero').onclick = () => { try { localStorage.removeItem(CLE); } catch (e) {} location.reload(); };
 const ballons = [];
 const horloge = new THREE.Clock(); let tSec = 0, fpsT = 0, fpsN = 0, leger = false, tMer = 0;
