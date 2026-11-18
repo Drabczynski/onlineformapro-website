@@ -1,0 +1,60 @@
+/* ================= Quel quai ? : la valise jusqu'au bon quai, le tableau des départs ================= */
+/* l'entrée des quais, vue du hall : un panneau bleu « Quai n » au-dessus de chaque quai ; la valise en bas */
+.quai .hall { position: relative; display: flex; flex-direction: column; gap: 14px; }
+.quai .voies { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.quai .voie { position: relative; display: flex; flex-direction: column; align-items: stretch; gap: 8px; padding: 8px; border-radius: 20px; background: rgba(0,0,0,.22);
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.14); transition: box-shadow .25s, background .25s, transform .3s var(--spring); touch-action: manipulation; }
+.quai .voie.loin { margin-left: 10px; }
+.quai .voie.loin::before { content: "…"; position: absolute; left: -17px; top: 22px; font-weight: 800; font-size: 18px; color: var(--text2); }
+.quai .pancarte { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 64px; border-radius: 12px; background: #1F4E9C; color: #fff; line-height: 1; }
+.quai .pancarte small { font-size: 14px; font-weight: 700; letter-spacing: .02em; }
+.quai .pancarte b { font-size: 32px; font-weight: 800; letter-spacing: -.02em; }
+.quai .sol { display: block; height: 150px; border-radius: 10px; overflow: hidden; }
+.quai .sol svg { display: block; width: 100%; height: 100%; }
+@media (hover: hover) { .quai .voie:hover { background: rgba(255,255,255,.1); } }
+.quai .voie.chaud { background: rgba(255,255,255,.16); box-shadow: inset 0 0 0 3px #fff; }
+.quai .voie.juste { box-shadow: inset 0 0 0 4px var(--ok); }
+.quai .voie.juste .pancarte small::after { content: " ✓"; color: var(--ok); }
+.quai .train.juste .info::after { content: " ✓"; }
+.quai .voie.faux { box-shadow: inset 0 0 0 4px var(--try); }
+.quai .voie.indice { animation: quai-indice 1.1s var(--apple) infinite; }
+@keyframes quai-indice { 50% { box-shadow: inset 0 0 0 4px var(--ok); background: rgba(75,227,180,.18); } }
+body[data-turn="listen"] .quai .voie, body[data-turn="wait"] .quai .voie,
+body[data-turn="listen"] .quai .valise, body[data-turn="wait"] .quai .valise { pointer-events: none; }
+
+.quai .depart { display: flex; align-items: center; justify-content: center; gap: 12px; height: 104px; border-radius: 18px; background: rgba(255,255,255,.06); }
+.quai .valise { position: relative; z-index: 5; width: 68px; height: 96px; display: grid; place-items: center; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; }
+.quai .valise svg { width: 64px; height: 92px; pointer-events: none; }
+.quai .valise.tenue { cursor: grabbing; z-index: 30; }
+.quai .depart .legende { font-weight: 700; font-size: 14px; color: var(--text2); }
+
+/* le tableau des départs : lettres jaunes sur fond bleu nuit, une ligne par train (on clique sur la ligne) */
+.quai .tableau { display: flex; flex-direction: column; gap: 4px; padding: 10px; border-radius: 18px; background: #0B1B36; box-shadow: inset 0 0 0 2px #24406E; }
+.quai .entete, .quai .train { display: grid; grid-template-columns: 70px minmax(0, 1fr) 54px 136px; align-items: center; gap: 8px; padding: 0 10px; }
+.quai .entete { height: 28px; font-size: 12px; font-weight: 700; color: rgba(255,255,255,.72); letter-spacing: .02em; }
+.quai .train { min-height: 48px; border-radius: 10px; background: #12264A; color: #FFD23F; font-weight: 700; font-size: 18px; text-align: left; font-variant-numeric: tabular-nums;
+  transition: background .2s, box-shadow .2s; touch-action: manipulation; }
+.quai .train .q { text-align: center; font-size: 20px; font-weight: 800; }
+.quai .entete .q { text-align: center; }
+.quai .train .info { font-size: 15px; }
+@media (hover: hover) { .quai .train:hover { background: #1C3766; } }
+.quai .train:active { background: #22427A; }
+.quai .train.juste { box-shadow: inset 0 0 0 3px var(--ok); background: #13392F; }
+.quai .train.juste .info { color: var(--ok); }
+.quai .train.faux { box-shadow: inset 0 0 0 3px var(--try); }
+.quai .train.indice { animation: quai-indice-t 1.1s var(--apple) infinite; }
+@keyframes quai-indice-t { 50% { box-shadow: inset 0 0 0 3px var(--ok); background: #164036; } }
+body[data-turn="listen"] .quai .train, body[data-turn="wait"] .quai .train { pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) { .quai .voie.indice, .quai .train.indice { animation: none; box-shadow: inset 0 0 0 4px var(--ok); } }
+
+/* téléphone tenu droit, téléphone couché : plus petit */
+body.tall .quai .voies { gap: 8px; } body.tall .quai .sol { height: 96px; } body.tall .quai .pancarte { height: 52px; } body.tall .quai .pancarte b { font-size: 26px; }
+body.tall .quai .depart { height: 92px; }
+body.tall .quai .entete, body.tall .quai .train { grid-template-columns: 54px minmax(0, 1fr) 40px 104px; gap: 6px; padding: 0 8px; }
+body.tall .quai .train { font-size: 15px; min-height: 44px; } body.tall .quai .train .info { font-size: 13px; }
+body.compact .quai .sol { height: 78px; } body.compact .quai .depart { height: 84px; }
+body.short .quai .sol { height: 60px; } body.short .quai .pancarte { height: 44px; } body.short .quai .pancarte b { font-size: 22px; } body.short .quai .pancarte small { font-size: 11px; }
+body.short .quai .depart { height: 84px; } body.short .quai .valise { transform-origin: center; }
+body.short .quai .entete, body.short .quai .train { grid-template-columns: 48px minmax(0, 1fr) 34px 96px; gap: 4px; padding: 0 6px; }
+body.short .quai .train { font-size: 13px; min-height: 44px; } body.short .quai .train .info { font-size: 12px; } body.short .quai .entete { height: 22px; font-size: 11px; }

@@ -1,0 +1,34 @@
+/* ================= le petit déjeuner : le chevalet posé sur le comptoir, la tasse glisse le long de la matinée ================= */
+.pd-panel { gap: 14px; }
+.pd-chev { --p: 0%; display: flex; flex-direction: column; gap: 6px; padding: 18px 26px 16px; border-radius: 22px; background: #FBF8F1; color: var(--ink); }
+.pd-titre { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -.01em; }
+.pd-titre svg { width: 40px; height: 27px; }
+
+.pd-zone { position: relative; padding: 0 14px; }
+.pd-rail { position: relative; height: 76px; }
+.pd-rail::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 12px; margin-top: -6px; border-radius: 99px; background: rgba(11,13,22,.1); }
+.pd-ruban { position: absolute; left: 0; top: 50%; height: 12px; margin-top: -6px; width: var(--p); border-radius: 99px; background: #C98A4B; }
+.pd-cran { position: absolute; top: 50%; width: 3px; height: 26px; margin: -13px 0 0 -1.5px; border-radius: 2px; background: rgba(11,13,22,.28); }
+.pd-tasse { position: absolute; left: var(--p); top: 50%; width: 64px; height: 64px; margin: -36px 0 0 -32px; border-radius: 50%; display: grid; place-items: center;
+  background: #2B2F3D; touch-action: none; cursor: grab; z-index: 2; transition: transform .3s var(--spring), box-shadow .25s; }
+.pd-tasse svg { width: 42px; height: 42px; }
+.pd-tasse:hover { transform: scale(1.06); }
+.pd-tasse.tenu { cursor: grabbing; transform: scale(1.12); box-shadow: 0 0 0 4px #fff, 0 0 0 6px rgba(11,13,22,.35); }
+.pd-tasse:focus-visible { outline: 3px solid #2346C8; outline-offset: 3px; }
+.pd-chev.lisse .pd-tasse { transition: left .45s var(--spring), transform .3s var(--spring), box-shadow .25s; }
+.pd-chev.lisse .pd-ruban { transition: width .45s var(--spring); }
+
+.pd-heures { position: relative; height: 46px; }
+.pd-h { position: absolute; top: 0; min-width: 52px; height: 44px; padding: 0 6px; translate: -50% 0; border-radius: 14px; font-weight: 800; font-size: 17px; color: rgba(11,13,22,.62);
+  background: none; transition: background .25s, color .25s, box-shadow .25s; }
+.pd-h:hover { background: rgba(11,13,22,.06); }
+.pd-h.on { background: #fff; color: var(--ink); box-shadow: inset 0 0 0 2px rgba(11,13,22,.6); }
+.pd-fin { min-height: 26px; margin: 2px 0 0; text-align: center; font-size: 20px; font-weight: 800; color: #2346C8; }
+
+/* juste : le ruban et l'heure en vert (avec ✓) ; à revoir : en orange */
+.pd-chev.juste .pd-ruban { background: var(--ok); }
+.pd-chev.juste .pd-h.on { background: var(--ok); box-shadow: none; }
+.pd-chev.juste .pd-fin::after { content: " ✓"; color: #0E9E74; }
+.pd-chev.faux .pd-h.on { background: var(--try); box-shadow: none; }
+.pd-chev.faux .pd-tasse { box-shadow: 0 0 0 4px var(--try); }
+.pd-chev.juste .pd-tasse { box-shadow: 0 0 0 4px var(--ok); }

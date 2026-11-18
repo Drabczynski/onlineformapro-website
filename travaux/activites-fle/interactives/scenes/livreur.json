@@ -1,0 +1,24 @@
+{
+ "video": "livreur", "titre": "Le livreur", "niveau": "A1", "gel": 3.4,
+ "sousTitres": [
+  {"d": 0.08, "f": 2.64, "qui": "Le livreur", "texte": "Bonjour madame, j'ai un colis pour monsieur Bernard, votre voisin."},
+  {"d": 2.82, "f": 3.24, "qui": "La dame", "texte": "Il n'est pas là ?"},
+  {"d": 3.54, "f": 4.72, "qui": "Le livreur", "texte": "Non. Vous pouvez prendre le colis ?"},
+  {"d": 4.76, "f": 5.34, "qui": "La dame", "texte": "Oui, bien sûr."},
+  {"d": 5.68, "f": 7.16, "qui": "Le livreur", "texte": "Merci. Vous signez ici, s'il vous plaît."},
+  {"d": 7.42, "f": 7.72, "qui": "La dame", "texte": "Voilà."},
+  {"d": 7.96, "f": 8.74, "qui": "Le livreur", "texte": "Merci, bonne journée."},
+  {"d": 8.92, "f": 9.84, "qui": "La dame", "texte": "Merci, bonne journée."}
+ ],
+ "people": {
+  "livreur": {"name": "Le livreur", "qui": "Le livreur", "side": "g", "spot": [35, 55, 14, 62], "anchor": [34, 42], "crop": [31, 9.5, 15, 26.7]},
+  "dame": {"name": "La dame", "qui": "La dame", "side": "d", "spot": [68, 58, 13, 62], "anchor": [68, 52], "crop": [60.5, 17, 15, 26.7]}
+ },
+ "consignes": [
+  "Le colis est pour qui ? Clique sur son nom.",
+  "Où va le colis ? Clique sur la bonne porte.",
+  "Le livreur demande quoi ? Clique sur son téléphone.",
+  "Signe avec ton doigt, puis clique sur Valider.",
+  "Bravo ! Le colis de monsieur Bernard est chez sa voisine."
+ ]
+}

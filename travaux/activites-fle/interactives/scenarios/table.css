@@ -1,0 +1,34 @@
+/* ================= Une table pour deux : mettre les couverts ================= */
+/* la table vue de dessus, six chaises autour ; une place = un bouton posé sur le bord du plateau */
+.tbl .tbl-plateau { position: relative; width: 100%; max-width: 500px; margin: 0 auto; aspect-ratio: 400 / 260; border-radius: 22px; transition: box-shadow .3s; }
+.tbl .tbl-svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.tbl .tbl-place { position: absolute; width: 14%; aspect-ratio: 1; min-width: 48px; translate: -50% -50%; border-radius: 50%; display: grid; place-items: center;
+  background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 2px rgba(255,255,255,.55); transition: background .25s, box-shadow .25s, transform .3s var(--spring); touch-action: manipulation; }
+.tbl .tbl-place:hover { background: rgba(255,255,255,.22); }
+.tbl .tbl-place:active { transform: scale(.94); }
+.tbl .tbl-place:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.tbl .tbl-vide { font-size: 30px; font-weight: 700; line-height: 1; color: rgba(255,255,255,.9); transition: opacity .2s; }
+.tbl .tbl-couvert { position: absolute; inset: 4%; display: grid; place-items: center; opacity: 0; transform: scale(.6); transition: opacity .25s, transform .4s var(--spring); }
+.tbl .tbl-couvert svg { width: 100%; height: 100%; }
+/* le couvert tourné vers sa chaise */
+.tbl .tbl-place[data-c="haut"] .tbl-couvert svg { transform: rotate(180deg); }
+.tbl .tbl-place[data-c="gauche"] .tbl-couvert svg { transform: rotate(90deg); }
+.tbl .tbl-place[data-c="droite"] .tbl-couvert svg { transform: rotate(-90deg); }
+/* posé : le couvert, un cadre blanc (choisi) ; vert si c'est juste, orange s'il faut revoir — jamais de rouge */
+.tbl .tbl-place.mis { background: rgba(255,255,255,.2); box-shadow: inset 0 0 0 3px #fff; }
+.tbl .tbl-place.mis .tbl-vide { opacity: 0; }
+.tbl .tbl-place.mis .tbl-couvert { opacity: 1; transform: none; }
+.tbl .tbl-place.juste { box-shadow: inset 0 0 0 4px var(--ok), 0 0 0 3px var(--ok); }
+.tbl .tbl-place.faux { box-shadow: inset 0 0 0 4px var(--try), 0 0 0 3px var(--try); }
+.tbl .tbl-place[disabled] { cursor: default; }
+.tbl .tbl-place[disabled]:not(.mis) { opacity: .45; }
+body[data-turn="listen"] .tbl .tbl-place, body[data-turn="wait"] .tbl .tbl-place { pointer-events: none; }
+.tbl .tbl-plateau.shake { animation: shake .5s; }
+.tbl .tbl-compte { margin: 0; text-align: center; font-weight: 800; font-size: 20px; color: #fff; }
+.tbl .tbl-compte.juste { color: var(--ok); }
+.tbl .tbl-compte.juste::before { content: "✓ "; }
+
+/* téléphone en hauteur ou écran bas : un plateau plus petit */
+body.tall .tbl .tbl-place, body.short .tbl .tbl-place { min-width: 44px; }
+body.short .tbl .tbl-compte { font-size: 16px; }
+@media (prefers-reduced-motion: reduce) { .tbl .tbl-couvert { transition: opacity .2s; } }

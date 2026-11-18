@@ -1,0 +1,129 @@
+{
+ "video": "restaurant-table",
+ "titre": "Une table pour deux",
+ "niveau": "A1",
+ "gel": 7.7,
+ "sousTitres": [
+  {
+   "d": 1.64,
+   "f": 3.86,
+   "qui": "Le client",
+   "texte": "Bonjour, une table pour deux, s'il vous plaît."
+  },
+  {
+   "d": 4.18,
+   "f": 5.18,
+   "qui": "Le serveur",
+   "texte": "Bien sûr, par ici."
+  },
+  {
+   "d": 7.36,
+   "f": 8.06,
+   "qui": "Le serveur",
+   "texte": "Voici le menu."
+  },
+  {
+   "d": 8.62,
+   "f": 9.3,
+   "qui": "La cliente",
+   "texte": "Merci beaucoup."
+  }
+ ],
+ "people": {
+  "serveur": {
+   "name": "Le serveur",
+   "qui": "Le serveur",
+   "side": "g",
+   "spot": [
+    33,
+    50,
+    13,
+    60
+   ],
+   "anchor": [
+    35,
+    30
+   ],
+   "crop": [
+    32,
+    10,
+    9,
+    16
+   ],
+   "portrait": [
+    4.3,
+    [
+     21,
+     2,
+     28,
+     50
+    ]
+   ]
+  },
+  "client": {
+   "name": "Le client",
+   "qui": "Le client",
+   "side": "d",
+   "spot": [
+    61,
+    58,
+    9,
+    45
+   ],
+   "anchor": [
+    61,
+    50
+   ],
+   "crop": [
+    56,
+    35,
+    9,
+    16
+   ],
+   "portrait": [
+    2.6,
+    [
+     22,
+     4,
+     28,
+     50
+    ]
+   ]
+  },
+  "cliente": {
+   "name": "La cliente",
+   "qui": "La cliente",
+   "side": "d",
+   "spot": [
+    74,
+    62,
+    9,
+    45
+   ],
+   "anchor": [
+    74,
+    56
+   ],
+   "crop": [
+    68,
+    38,
+    9,
+    16
+   ],
+   "portrait": [
+    2.6,
+    [
+     56,
+     12,
+     28,
+     50
+    ]
+   ]
+  }
+ },
+ "consignes": [
+  "Une table pour combien ? Clique sur les places pour mettre les couverts, puis sur Valider.",
+  "Appuie sur le bouton quand le serveur dit par ici.",
+  "Bravo ! Ils ont leur table pour deux."
+ ]
+}

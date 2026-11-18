@@ -1,0 +1,67 @@
+/* ================= Le livreur : l'interphone de l'immeuble ; le téléphone du livreur (choisir, puis signer) ================= */
+/* l'interphone : une plaque de métal, le haut-parleur, six noms avec leur bouton */
+.lv-inter { border-radius: 22px; padding: 16px 16px 18px; background: linear-gradient(160deg, #D9DCE1, #A9AFB7); box-shadow: inset 0 1px 0 rgba(255,255,255,.7), inset 0 0 0 1px rgba(0,0,0,.18); display: flex; flex-direction: column; gap: 14px; }
+.lv-hp { height: 34px; margin: 0 auto; width: 120px; border-radius: 12px; background: radial-gradient(circle, #4A4F57 1.6px, transparent 2.2px) 0 0 / 10px 10px, #C3C7CD; box-shadow: inset 0 0 0 1px rgba(0,0,0,.2); }
+.lv-noms { display: flex; flex-direction: column; gap: 9px; }
+.lv-sonnette { display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 4px 6px 4px 4px; border-radius: 14px; background: rgba(0,0,0,.08); color: var(--ink); text-align: left; transition: transform .3s var(--spring), background .2s, box-shadow .2s; touch-action: manipulation; }
+.lv-etiq { flex: 1; display: flex; align-items: center; height: 42px; padding: 0 14px; border-radius: 9px; background: #FFFEF8; font-weight: 800; font-size: 18px; letter-spacing: .01em; box-shadow: inset 0 0 0 1px rgba(0,0,0,.14); transition: background .2s; }
+.lv-bouton { flex: none; width: 44px; height: 44px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #FBFBFC, #C9CDD3 70%); box-shadow: inset 0 0 0 2px #8D939B, inset 0 -3px 0 rgba(0,0,0,.12); transition: transform .15s, box-shadow .2s; }
+@media (hover: hover) { .lv-sonnette:hover { background: rgba(255,255,255,.35); } }
+.lv-sonnette:active .lv-bouton, .lv-sonnette.sonne .lv-bouton { transform: scale(.9); }
+.lv-sonnette.sonne .lv-bouton { box-shadow: inset 0 0 0 2px #fff, 0 0 0 4px rgba(255,255,255,.75); }
+.lv-sonnette.juste { box-shadow: 0 0 0 3px var(--ok); background: rgba(75,227,180,.25); }
+.lv-sonnette.juste .lv-etiq { background: var(--ok); }
+.lv-sonnette.juste .lv-bouton { box-shadow: inset 0 0 0 3px #1E9C77, 0 0 0 4px rgba(75,227,180,.6); }
+.lv-sonnette.faux { box-shadow: 0 0 0 3px var(--try); background: rgba(255,198,92,.3); }
+.lv-sonnette.faux .lv-etiq { background: #FFE7BF; }
+.lv-sonnette.indice { animation: lv-indice 1.1s var(--apple) infinite; }
+@keyframes lv-indice { 50% { box-shadow: 0 0 0 4px rgba(75,227,180,.85); background: rgba(75,227,180,.22); } }
+body[data-turn="listen"] .lv-sonnette, body[data-turn="wait"] .lv-sonnette { pointer-events: none; }
+
+/* le téléphone du livreur : l'appli de livraison */
+.lv-tel { margin: 0 auto; width: 300px; max-width: 100%; padding: 12px; border-radius: 38px; background: #1E2127; box-shadow: inset 0 0 0 2px #3A3F48; }
+.lv-ecran { border-radius: 28px; background: #F3F5F8; color: var(--ink); padding: 16px 14px 18px; min-height: 330px; display: flex; flex-direction: column; gap: 14px; }
+.lv-appli { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 16px; background: #2F5FD0; color: #fff; }
+.lv-appli svg { width: 28px; height: 28px; flex: none; }
+.lv-appli span { display: flex; flex-direction: column; line-height: 1.15; }
+.lv-appli b { font-size: 17px; font-weight: 800; }
+.lv-appli small { font-size: 14px; font-weight: 600; opacity: .9; }
+.lv-choix[hidden] { display: none; }
+.lv-choix { display: flex; flex-direction: column; gap: 10px; }
+.lv-action { display: flex; align-items: center; gap: 14px; min-height: 64px; padding: 0 16px; border-radius: 16px; background: #fff; color: var(--ink); font-weight: 800; font-size: 18px; text-align: left; box-shadow: inset 0 0 0 1.5px #D4D9E1; transition: transform .3s var(--spring), box-shadow .2s, background .2s; touch-action: manipulation; }
+.lv-action svg { width: 30px; height: 30px; flex: none; color: #2F5FD0; }
+@media (hover: hover) { .lv-action:hover { background: #EEF2FA; } }
+.lv-action:active { transform: scale(.96); }
+.lv-action.juste { box-shadow: inset 0 0 0 3px var(--ok); background: #E3FBF3; }
+.lv-action.faux { box-shadow: inset 0 0 0 3px var(--try); background: #FFF3DA; }
+.lv-action.indice { animation: lv-indiceA 1.1s var(--apple) infinite; }
+@keyframes lv-indiceA { 50% { box-shadow: inset 0 0 0 4px rgba(29,214,160,.9); background: #E3FBF3; } }
+body[data-turn="listen"] .lv-action, body[data-turn="wait"] .lv-action { pointer-events: none; }
+
+/* la signature : un cadre blanc, la ligne et la croix ; le doigt y dessine */
+.lv-pad { display: flex; flex-direction: column; gap: 10px; animation: pop .45s var(--spring) both; }
+.lv-pad[hidden] { display: none; }
+.lv-sig { margin: 0; font-weight: 800; font-size: 17px; text-align: center; }
+.lv-cadre { position: relative; height: 180px; border-radius: 16px; background: #fff; box-shadow: inset 0 0 0 2px #C3CAD5; transition: box-shadow .2s; }
+.lv-cadre::after { content: ''; position: absolute; left: 34px; right: 16px; bottom: 44px; border-bottom: 2px dashed #AEB6C2; pointer-events: none; }
+.lv-x { position: absolute; left: 14px; bottom: 40px; font-size: 22px; font-weight: 800; color: #8792A2; pointer-events: none; }
+.lv-cadre canvas { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 16px; touch-action: none; cursor: crosshair; z-index: 1; }
+.lv-cadre canvas.fini { cursor: default; }
+.lv-cadre.vide { box-shadow: inset 0 0 0 3px var(--try); }
+.lv-cadre.juste { box-shadow: inset 0 0 0 3px var(--ok); }
+.lv-effacer { align-self: center; min-height: 44px; padding: 0 20px; border-radius: 99px; background: #E3E7EE; color: var(--ink); font-weight: 700; font-size: 15px; }
+.lv-effacer[disabled] { opacity: .4; }
+body[data-turn="listen"] .lv-pad, body[data-turn="wait"] .lv-pad { pointer-events: none; }
+
+/* téléphone en hauteur, écran bas : plus serré */
+body.tall .lv-inter { padding: 10px 12px 12px; gap: 8px; } body.tall .lv-hp { display: none; }
+body.tall .lv-noms { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+body.tall .lv-etiq { font-size: 14px; padding: 0 7px; height: 38px; white-space: nowrap; } body.tall .lv-bouton { width: 30px; height: 30px; }
+body.tall .lv-sonnette { min-height: 46px; gap: 6px; }
+body.tall .lv-tel { width: 100%; padding: 8px; border-radius: 26px; } body.tall .lv-ecran { min-height: 0; padding: 10px; gap: 8px; border-radius: 20px; }
+body.tall .lv-action { min-height: 48px; font-size: 16px; } body.tall .lv-cadre { height: 130px; }
+body.short .lv-hp { display: none; } body.short .lv-inter { padding: 8px; gap: 6px; } body.short .lv-noms { gap: 4px; }
+body.short .lv-sonnette { min-height: 44px; } body.short .lv-etiq { font-size: 14px; height: 34px; padding: 0 8px; } body.short .lv-bouton { width: 32px; height: 32px; }
+body.short .lv-tel { padding: 6px; border-radius: 22px; } body.short .lv-ecran { min-height: 0; padding: 8px; gap: 6px; border-radius: 18px; }
+body.short .lv-appli { display: none; } body.short .lv-action { min-height: 44px; font-size: 14px; } body.short .lv-action svg { width: 22px; height: 22px; }
+body.short .lv-cadre { height: 110px; } body.short .lv-sig { display: none; }

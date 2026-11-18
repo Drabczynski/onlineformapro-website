@@ -1063,6 +1063,10 @@ body[data-vue="menu"] .fond { background: #fff; }
 .vi-fond img.on { opacity: 1; }
 .vi-fond::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 70% at 50% 40%, rgba(13,11,18,0) 0%, rgba(13,11,18,.6) 100%); }
 .vi-titre { margin: 0; font: 800 clamp(24px, 3vw, 32px)/1.1 "Figtree", system-ui, sans-serif; letter-spacing: -.02em; text-align: center; }
+/* les listes sont des grilles aux mêmes colonnes : les ajouts datés s'alignent sur les scènes du dessus */
+.vi-liste { display: grid !important; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 340px)); justify-content: center; }
+.vi-lot .vi-date { grid-column: 1 / -1; margin-bottom: -16px; }
+.vi-date { margin: 0; padding: 0 4px; font: 700 15px/1 "Figtree", system-ui, sans-serif; letter-spacing: .02em; color: rgba(255,255,255,.7); }
 .vi-liste { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px 26px; width: 100%; max-width: 1140px; }
 .vi-carte { flex: 0 1 340px; display: flex; flex-direction: column; gap: 12px; min-width: 0; color: #fff; text-decoration: none; -webkit-tap-highlight-color: transparent; }
 .vi-img { position: relative; display: block; aspect-ratio: 16 / 9; max-width: 100%; border-radius: 24px; overflow: hidden; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); transition: transform .5s cubic-bezier(.34,1.56,.64,1); }
@@ -1560,6 +1564,12 @@ const VIDEOS_INTERACTIVES = [
   { lien: "interactives/ascenseur.html", image: "medias/video/ascenseur.jpg", titre: "L'ascenseur ne marche pas", niveau: "A1" },
   { lien: "interactives/addition.html", image: "medias/video/restaurant-addition.jpg", titre: "L'addition", niveau: "A2" },
   { lien: "interactives/forfait.html", image: "medias/video/forfait-telephone.jpg", titre: "Un forfait de téléphone", niveau: "A2" },
+  // ajouts du 18 novembre 2026 (affichés à part, sous leur date)
+  { lien: "interactives/quai.html", image: "medias/video/gare-quai.jpg", titre: "Quel quai ?", niveau: "A1", date: "18 novembre 2026" },
+  { lien: "interactives/retard.html", image: "medias/video/gare-retard.jpg", titre: "Le train a du retard", niveau: "A1", date: "18 novembre 2026" },
+  { lien: "interactives/table.html", image: "medias/video/restaurant-table.jpg", titre: "Une table pour deux", niveau: "A1", date: "18 novembre 2026" },
+  { lien: "interactives/arrivee.html", image: "medias/video/hotel.jpg", titre: "Le petit déjeuner", niveau: "A1", date: "18 novembre 2026" },
+  { lien: "interactives/livreur.html", image: "medias/video/livreur.jpg", titre: "Le livreur", niveau: "A1", date: "18 novembre 2026" },
 ];
 function ouvrirVideos() {
   quitter(); etat.mode = null; majRevue(); majNiveau(null); document.body.dataset.vue = "menu"; delete document.body.dataset.type;
@@ -1567,7 +1577,10 @@ function ouvrirVideos() {
     <div class="vi-fond" aria-hidden="true"><img class="on" src="${VIDEOS_INTERACTIVES[0].image}" alt=""><img src="${VIDEOS_INTERACTIVES[0].image}" alt=""></div>
     <button class="vi-retour" type="button" id="vi-retour" aria-label="Retour au menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></button>
     <h1 class="vi-titre">Vidéos interactives</h1>
-    <div class="vi-liste">${VIDEOS_INTERACTIVES.map((v, k) => `<a class="vi-carte" href="${v.lien}" data-k="${k}"><span class="vi-img"><img src="${v.image}" alt="" loading="lazy"><i class="vi-lire">${I.video}</i><span class="vi-niv">${v.niveau}</span></span><span class="vi-nom">${echap(v.titre)}</span></a>`).join("")}</div>
+    ${(() => { const carte = (v) => { const k = VIDEOS_INTERACTIVES.indexOf(v); return `<a class="vi-carte" href="${v.lien}" data-k="${k}"><span class="vi-img"><img src="${v.image}" alt="" loading="lazy"><i class="vi-lire">${I.video}</i><span class="vi-niv">${v.niveau}</span></span><span class="vi-nom">${echap(v.titre)}</span></a>`; };
+      const dates = [...new Set(VIDEOS_INTERACTIVES.filter(v => v.date).map(v => v.date))];   // les ajouts, groupés par date, à la suite
+      return `<div class="vi-liste">${VIDEOS_INTERACTIVES.filter(v => !v.date).map(carte).join("")}</div>` +
+        dates.map(d => `<div class="vi-liste vi-lot"><p class="vi-date">${echap(d)}</p>${VIDEOS_INTERACTIVES.filter(v => v.date === d).map(carte).join("")}</div>`).join(""); })()}
   </section>`);
   /* le fond prend la vignette survolée, en fondu (deux images qui se relaient) */
   const fonds = $$(".vi-fond img"); let haut = 0, courant = 0;
