@@ -38,13 +38,21 @@ svg { display: block; }
   background: linear-gradient(140deg, rgba(255,255,255,.55), rgba(255,255,255,.08) 38%, rgba(255,255,255,.04) 62%, rgba(255,255,255,.25));
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
 
-.stage { position: fixed; inset: 0; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 28px; padding: 28px 28px 34px; }
-.pic { position: relative; flex: none; width: min(52vw, calc((100vh - 80px) * 3 / 4 * 1.05), 640px); aspect-ratio: 4 / 5; border-radius: 32px; overflow: hidden; background: #1b1e2b;
+.stage { position: fixed; inset: 0; z-index: 1; display: flex; align-items: center; justify-content: center; padding: 28px 28px 34px; }
+/* la photo prend la hauteur de la carte du texte */
+.row { display: flex; align-items: stretch; gap: 28px; max-height: 100%; }
+.pic { position: relative; flex: none; width: min(46vw, 560px); min-height: 420px; border-radius: 32px; overflow: hidden; background: #1b1e2b;
   box-shadow: 0 40px 90px -30px rgba(0,0,0,.75), 0 0 0 1px rgba(255,255,255,.14); isolation: isolate; }
 .pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 8s ease, filter .6s ease; }
 body.playing .pic img { transform: scale(1.06); }
 .pic::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,.55)); pointer-events: none; }
 .card { flex: none; width: 430px; max-height: calc(100vh - 62px); border-radius: 30px; padding: 16px 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+
+/* ---------- le spectre sonore, sur la photo, au-dessus du lecteur ---------- */
+.spectre { position: absolute; left: 14px; right: 14px; bottom: 86px; z-index: 3; height: 110px; width: calc(100% - 28px); pointer-events: none; opacity: 0; transition: opacity .5s ease; }
+body.playing .spectre { opacity: 1; }
+.pic::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 55%; z-index: 2; pointer-events: none; background: linear-gradient(180deg, rgba(8,10,20,0), rgba(8,10,20,.55)); opacity: 0; transition: opacity .5s ease; }
+body.playing .pic::before { opacity: 1; }
 
 /* ---------- le lecteur, posé en bas de la photo ---------- */
 .player { position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 4; display: flex; align-items: center; gap: 12px; padding: 8px 14px 8px 8px; border-radius: 26px;
@@ -147,8 +155,12 @@ body:not([data-turn="you"]) .peb { pointer-events: none; opacity: .55; }
   background: radial-gradient(circle, rgba(255,255,255,.95) 0 34%, rgba(255,255,255,.35) 36% 62%, rgba(255,255,255,0) 64%); box-shadow: 0 6px 18px rgba(0,0,0,.35); }
 
 @media (max-width: 860px) and (orientation: portrait) {
-  .stage { flex-direction: column; justify-content: flex-start; gap: 12px; padding: max(12px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom)); }
-  .pic { width: 100%; max-width: 560px; aspect-ratio: auto; height: 28vh; flex: none; border-radius: 26px; }
+  .stage { align-items: stretch; }
+  .row { flex-direction: column; gap: 12px; width: 100%; align-items: center; }
+  .stage { padding: max(12px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom)); }
+  .pic { width: 100%; max-width: 560px; min-height: 0; height: 28vh; flex: none; border-radius: 26px; }
+  .spectre { bottom: 70px; height: 60px; }
+  .pic img { object-position: 50% 30%; }
   .card { width: 100%; max-width: 560px; flex: 1; min-height: 0; max-height: none; border-radius: 26px; padding: 10px 10px 12px; gap: 8px; overflow: hidden; }
   .hd { padding: 4px; } .hd img { width: 34px; height: 34px; }
   .txt { flex: 1; min-height: 0; font-size: 16px; line-height: 1.42; }
@@ -165,9 +177,10 @@ body:not([data-turn="you"]) .peb { pointer-events: none; opacity: .55; }
 <body data-turn="boot">
 <div class="env" aria-hidden="true"></div>
 
-<main class="stage">
+<main class="stage"><div class="row">
   <div class="pic">
-    <img src="presentateur.jpg" alt="Un présentateur au micro, dans un studio de radio">
+    <img src="micro.jpg" alt="Un micro de studio">
+    <canvas class="spectre" id="spectre" aria-hidden="true"></canvas>
     <div class="say" id="say" aria-live="polite"><span class="orb" id="orb"></span><p id="sayText"></p></div>
     <button class="bigplay" id="bigplay" aria-label="Écouter le journal"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 0 0 1.5.87l12.5-7.5a1 1 0 0 0 0-1.74L8.5 3.63A1 1 0 0 0 7 4.5z"/></svg></button>
     <div class="player" id="player">
@@ -180,12 +193,12 @@ body:not([data-turn="you"]) .peb { pointer-events: none; opacity: .55; }
   </div>
 
   <section class="card glass" id="card" aria-label="Le texte à compléter">
-    <div class="hd"><img src="presentateur.jpg" alt="" style="object-position:60% 15%"><div><b>Le journal</b><span>Écoute et complète</span></div><div class="dots" id="dots"></div></div>
+    <div class="hd"><img src="micro.jpg" alt="" style="object-position:50% 30%"><div><b>Le journal</b><span>Écoute et complète</span></div><div class="dots" id="dots"></div></div>
     <div class="txt" id="txt"></div>
     <div class="tray" id="tray"></div>
     <canvas class="ink" id="ink"></canvas>
   </section>
-</main>
+</div></main>
 <div class="finger" id="finger" aria-hidden="true"></div>
 
 <script>
@@ -306,7 +319,34 @@ body:not([data-turn="you"]) .peb { pointer-events: none; opacity: .55; }
   const son = new Audio('journal.mp3'); son.preload = 'auto';
   const state = { slow: false, step: 0, tries: 0, turn: 'boot' };
   let media = 0, stopAt = Infinity, unlocked = false;
-  function unlock() { if (unlocked) return; unlocked = true; audioCtx(); }
+  function unlock() { if (unlocked) return; unlocked = true; audioCtx(); brancherSpectre(); }
+  // le spectre : un analyseur branché sur le même enregistrement (le son passe par lui, rien n'est ajouté)
+  let analyseur = null, freq = null;
+  function brancherSpectre() {
+    try { const c = audioCtx(); if (!c || analyseur) return; const src = c.createMediaElementSource(son); analyseur = c.createAnalyser(); analyseur.fftSize = 256; analyseur.smoothingTimeConstant = .78; src.connect(analyseur); analyseur.connect(c.destination); freq = new Uint8Array(analyseur.frequencyBinCount); } catch (e) { analyseur = null; }
+  }
+  const spc = $('#spectre'), sctx = spc.getContext('2d'), NB = 42, hauteurs = new Float32Array(NB);
+  (function dessiner(now) {
+    const dpr = Math.min(2, devicePixelRatio || 1), W = spc.clientWidth, H = spc.clientHeight;
+    if (spc.width !== Math.round(W * dpr) || spc.height !== Math.round(H * dpr)) { spc.width = Math.round(W * dpr); spc.height = Math.round(H * dpr); }
+    sctx.setTransform(dpr, 0, 0, dpr, 0, 0); sctx.clearRect(0, 0, W, H);
+    if (analyseur && !son.paused) analyseur.getByteFrequencyData(freq);
+    const pas = W / NB, larg = Math.max(2, pas * .5), t = (now || 0) / 1000;
+    for (let i = 0; i < NB; i++) {
+      // les voix sont surtout dans les basses et les médiums : on étale les 60 premières bandes sur les barres, en miroir depuis le centre
+      const k = Math.abs(i - (NB - 1) / 2) / ((NB - 1) / 2), bande = Math.floor(2 + k * 58);
+      let v = freq && !son.paused ? freq[bande] / 255 : 0;
+      if (!analyseur && !son.paused) v = .25 + .35 * Math.abs(Math.sin(t * 7 + i * .7)) * (1 - k * .6);   // sans analyseur : une onde douce
+      v = Math.pow(v, 1.4) * (1 - k * .35);
+      hauteurs[i] += (v - hauteurs[i]) * .35;
+      const h = Math.max(3, hauteurs[i] * H), x = i * pas + (pas - larg) / 2, y = (H - h) / 2;
+      sctx.globalAlpha = .55 + .45 * hauteurs[i];
+      sctx.fillStyle = '#fff'; sctx.shadowColor = 'rgba(120,200,255,.8)'; sctx.shadowBlur = 10 * hauteurs[i];
+      sctx.beginPath(); if (sctx.roundRect) sctx.roundRect(x, y, larg, h, larg / 2); else sctx.rect(x, y, larg, h); sctx.fill();
+    }
+    sctx.globalAlpha = 1; sctx.shadowBlur = 0;
+    requestAnimationFrame(dessiner);
+  })();
   function stopAll() { media++; son.pause(); stopAt = Infinity; karaokeOff(); }
   function seek(t) {
     return new Promise(res => {

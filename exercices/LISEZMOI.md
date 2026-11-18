@@ -23,4 +23,4 @@ Relancer `python3 exercices/construire.py` après un changement des questions, d
 invisible qui scintillent, mots à glisser ou à toucher). À gauche, la photo et un lecteur : lecture / pause, curseur
 avec un repère par phrase, lecture lente. Un seul enregistrement (`journal/journal.mp3`) pour tout : chaque phrase
 est rejouée en se plaçant dans ce fichier, aucune autre voix ne la coupe. Les repères (début de chaque mot) viennent
-de la transcription ElevenLabs du fichier. Photo : présentateur radio (Marc Bührer, Unsplash). Page : https://onlineformapro-website.vercel.app/exercices/journal/
+de la transcription ElevenLabs du fichier. Photo : micro de studio (Sindre Aalberg, Unsplash). Page : https://onlineformapro-website.vercel.app/exercices/journal/
