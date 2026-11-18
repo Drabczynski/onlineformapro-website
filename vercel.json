@@ -22,6 +22,26 @@
   ],
   "redirects": [
     {
+      "source": "/travaux/activites-fle/interactives/",
+      "destination": "/videos-interactives/",
+      "permanent": true
+    },
+    {
+      "source": "/travaux/activites-fle/ville/",
+      "destination": "/jeu/",
+      "permanent": true
+    },
+    {
+      "source": "/travaux/activites-fle/village/",
+      "destination": "/jeu/village/",
+      "permanent": true
+    },
+    {
+      "source": "/travaux/activites-fle/",
+      "destination": "/activites/",
+      "permanent": true
+    },
+    {
       "source": "/travaux/activites-fle/interactives",
       "destination": "/videos-interactives/",
       "permanent": true
