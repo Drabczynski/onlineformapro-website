@@ -56,12 +56,12 @@ tout intégré. Les évolutions (version bureau) se font ailleurs. Détails dans
 « L'horizon », « L'affiche », « Le hublot », « La scène », « Le plein cadre »), à comparer avant de choisir (https://onlineformapro-website.vercel.app/travaux/positionnement-fle-3/maquettes-bureau/).
 Sources dans `src/`, `fabriquer.py` assemble les pages autonomes et la galerie.
 
-## Activités FLE (prototype)
+## Activités FLE, vidéos interactives et jeu : rangés à la racine
 
-`activites-fle/` : des activités d'entraînement tirées de l'Excel des 200 questions (vidéos, lectures, grammaire,
-écriture, oral), en série de 8 tirée au hasard, corrigées tout de suite, avec un exemple de réponse pour les
-productions ; thème clair et coloré. Page web : https://onlineformapro-website.vercel.app/travaux/activites-fle/ .
-Les vidéos seront fournies (en attendant : photo et son). Détails dans `activites-fle/LISEZMOI.md`.
+Ces trois projets ont quitté `travaux/activites-fle/` (les anciennes adresses redirigent) :
+- `/activites/` : les activités d'entraînement FLE (https://onlineformapro-website.vercel.app/activites/), détails dans `activites/LISEZMOI.md` ;
+- `/videos-interactives/` : les vidéos interactives (une page par scène, guide dans `videos-interactives/GUIDE.md`) ;
+- `/jeu/` : Vocacity Builder, le jeu de la ville (https://onlineformapro-website.vercel.app/jeu/), et l'ancien prototype du village dans `jeu/village/`.
 
 ## Newsletter CiviCap
 

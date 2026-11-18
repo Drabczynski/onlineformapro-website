@@ -19,5 +19,27 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/travaux/activites-fle/interactives/:chemin*",
+      "destination": "/videos-interactives/:chemin*",
+      "permanent": true
+    },
+    {
+      "source": "/travaux/activites-fle/ville/:chemin*",
+      "destination": "/jeu/:chemin*",
+      "permanent": true
+    },
+    {
+      "source": "/travaux/activites-fle/village/:chemin*",
+      "destination": "/jeu/village/:chemin*",
+      "permanent": true
+    },
+    {
+      "source": "/travaux/activites-fle/:chemin*",
+      "destination": "/activites/:chemin*",
+      "permanent": true
+    }
   ]
 }
