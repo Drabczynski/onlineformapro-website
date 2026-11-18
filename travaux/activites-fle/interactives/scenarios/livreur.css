@@ -65,3 +65,26 @@ body.short .lv-sonnette { min-height: 44px; } body.short .lv-etiq { font-size: 1
 body.short .lv-tel { padding: 6px; border-radius: 22px; } body.short .lv-ecran { min-height: 0; padding: 8px; gap: 6px; border-radius: 18px; }
 body.short .lv-appli { display: none; } body.short .lv-action { min-height: 44px; font-size: 14px; } body.short .lv-action svg { width: 22px; height: 22px; }
 body.short .lv-cadre { height: 110px; } body.short .lv-sig { display: none; }
+
+/* l'avis de livraison : une feuille de papier, « Colis remis à : », quatre cases ; un clic coche la case au stylo */
+.lv-avis { border-radius: 14px; padding: 16px 18px 18px; background: #FFFDF6; color: var(--ink); rotate: -1deg; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); display: flex; flex-direction: column; gap: 8px; }
+.lv-avis-t { margin: 0 0 4px; display: flex; align-items: center; gap: 8px; padding-bottom: 8px; border-bottom: 2px solid #2F5FD0; color: #2F5FD0; font-size: 18px; }
+.lv-avis-t svg { width: 24px; height: 24px; flex: none; }
+.lv-avis-l { margin: 0; font-size: 17px; }
+.lv-avis-l span { color: #5B6472; font-weight: 600; }
+.lv-avis-l b { font-weight: 800; }
+.lv-cases { display: flex; flex-direction: column; gap: 8px; }
+.lv-case { display: flex; align-items: center; gap: 14px; min-height: 52px; padding: 4px 12px 4px 8px; border-radius: 12px; color: var(--ink); text-align: left; transition: background .2s, box-shadow .2s; touch-action: manipulation; }
+@media (hover: hover) { .lv-case:hover { background: rgba(47,95,208,.08); } }
+.lv-boite { flex: none; width: 38px; height: 38px; border-radius: 6px; background: #fff; box-shadow: inset 0 0 0 2.5px #4A5363; display: grid; place-items: center; }
+.lv-coche { width: 34px; height: 34px; overflow: visible; }
+.lv-coche path { fill: none; stroke: #1F3F8F; stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.lv-case.coche .lv-coche path { stroke-dashoffset: 0; transition: stroke-dashoffset .35s ease-out; }
+.lv-cnom { font-weight: 800; font-size: 18px; }
+.lv-case.juste { box-shadow: inset 0 0 0 3px var(--ok); background: #E3FBF3; }
+.lv-case.faux { box-shadow: inset 0 0 0 3px var(--try); background: #FFF3DA; }
+.lv-case.indice { animation: lv-indiceA 1.1s var(--apple) infinite; }
+body[data-turn="listen"] .lv-case, body[data-turn="wait"] .lv-case { pointer-events: none; }
+body.tall .lv-avis { padding: 10px 12px; gap: 4px; } body.tall .lv-case { min-height: 44px; } body.tall .lv-cnom { font-size: 16px; } body.tall .lv-avis-l { font-size: 15px; }
+body.short .lv-avis { padding: 8px 10px; gap: 2px; } body.short .lv-avis-t { display: none; } body.short .lv-case { min-height: 44px; padding: 2px 8px; } body.short .lv-cnom { font-size: 15px; } body.short .lv-boite { width: 30px; height: 30px; }
+@media (prefers-reduced-motion: reduce) { .lv-case.coche .lv-coche path { transition: none; } }

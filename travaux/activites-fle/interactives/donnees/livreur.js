@@ -307,18 +307,18 @@ window.DONNEES = {
     2.16
    ]
   },
-  "Où va le colis ? Clique sur la bonne porte.": {
-   "src": "medias/voix-0cc5b25972.mp3",
+  "Qui prend le colis ? Clique sur la bonne case.": {
+   "src": "medias/voix-2343398c22.mp3",
    "w": [
     0.0,
-    0.16,
-    0.32,
-    0.52,
-    1.28,
-    1.6,
-    1.72,
+    0.28,
+    0.44,
+    0.56,
+    1.36,
+    1.68,
     1.84,
-    2.08
+    2.0,
+    2.24
    ]
   },
   "Le livreur demande quoi ? Clique sur son téléphone.": {

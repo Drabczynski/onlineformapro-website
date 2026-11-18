@@ -3,12 +3,15 @@
    1 · le livreur redit pour qui est le colis (la vidéo resserrée sur lui) : à côté, l'interphone de l'immeuble, six noms
        (M. Bernard, Mme Bernard, M. Bertrand, M. Renard, M. Gérard, Mme Leroy : des noms qui se ressemblent à l'oreille) ;
        on sonne chez le bon ;
-   2 · dans la vidéo : ils redisent « Il n'est pas là ? — Non. Vous pouvez prendre le colis ? — Oui, bien sûr. » ; sur
-       l'image du couloir, on clique sur la porte où va le colis : chez la dame (pas la porte à côté, pas les autres portes
-       du palier) ;
+   2 · ils redisent le début (« … pour monsieur Bernard, votre voisin. — Il n'est pas là ? — Non. Vous pouvez prendre le
+       colis ? — Oui, bien sûr. ») : à côté, l'avis de livraison du livreur, « Colis remis à : » ; on coche à qui il donne le
+       colis : sa voisine (pas monsieur Bernard, absent ; pas madame Bernard, sa femme ; pas la gardienne). À l'image, on voit
+       une femme prendre le colis, mais seul le dialogue dit qui elle est (« votre voisin ») et que monsieur Bernard n'est pas là.
+       (Pas de geste dans la vidéo : aucun geste sur l'image n'avait d'intérêt ici ; l'ancienne question « Où va le colis ? »,
+       qui se devinait à l'image, a été retirée.)
    3 · le livreur redit « Vous signez ici » : sur son téléphone (dessiné à côté), on choisit ce qu'il demande (signer, pas
        taper un code, pas prendre une photo), puis on signe avec le doigt et on valide.
-   Images figées : 3,4 s (le livreur tient encore le colis, personne ne montre de porte ni de téléphone) ; la réécoute de
+   Images figées : 3,4 s (le livreur tient encore le colis, personne ne montre de téléphone) ; la réécoute de
    l'étape 3 s'arrête juste avant le gros plan sur le téléphone. La fin (elle rentre chez elle avec le colis) n'est jamais
    figée. */
 window.SCENARIO = (() => {
@@ -22,13 +25,14 @@ window.SCENARIO = (() => {
     { id: 'bernard', nom: 'M. Bernard', bon: true },
     { id: 'gerard', nom: 'M. Gérard', msg: 'Non, pas monsieur Gérard.' },
   ];
-  /* 2 · les portes du couloir, sur l'image à 3,4 s, en % ; « my » : où poser l'étiquette */
-  const PORTES = [
-    { id: 'gauche', label: 'La porte à gauche', x: 8, y: 8, w: 8, h: 84 },
-    { id: 'fond', label: 'La porte du fond', x: 41.5, y: 13, w: 9.5, h: 40 },
-    { id: 'cote', label: 'La porte à côté', x: 53, y: 10, w: 6.5, h: 82 },
-    { id: 'dame', label: 'Chez la dame', bon: true, x: 61, y: 2, w: 18, h: 96, my: 17 },
+  /* 2 · l'avis de livraison : « Colis remis à : » */
+  const REMIS = [
+    { id: 'bernard', nom: 'M. Bernard', msg: "Non, monsieur Bernard n'est pas là." },
+    { id: 'femme', nom: 'Mme Bernard, sa femme', msg: "Non, ce n'est pas sa femme." },
+    { id: 'voisine', nom: 'sa voisine', bon: true },
+    { id: 'gardienne', nom: 'la gardienne', msg: "Non, ce n'est pas la gardienne." },
   ];
+  const COCHE = '<svg class="lv-coche" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 21l8 9L33 8" pathLength="1"/></svg>';
   /* 3 · le téléphone du livreur : trois façons de valider une livraison */
   const IC = {
     signer: '<svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 5.5l6 6L12 26H6v-6z"/><path d="M17.5 8.5l6 6"/><path d="M4 30h24" stroke-width="2"/></svg>',
@@ -44,10 +48,10 @@ window.SCENARIO = (() => {
 
   return {
     plans: [{ de: 0, cx: { livreur: .36, dame: .68 } }, { de: 7.125, cx: { livreur: .25, dame: .72 } }, { de: 7.79, cx: { livreur: .42, dame: .7 } }],
-    ordre: ['nom', 'porte', 'signer'],
+    ordre: ['nom', 'remis', 'signer'],
     bravo: 'Bravo' + NB + '! Le colis de monsieur Bernard est chez sa voisine.',
     etapes: A => {
-      const { $, $$, state, alive, Q, yourTurn, setTurn, playSegment, ligne, side, idle, tapHere, at, sfx, faux, juste, suite, goBtn, wait, zones, cam, avant, cadreZone, marque, gel } = A;
+      const { $, $$, state, alive, Q, yourTurn, setTurn, playSegment, ligne, side, idle, tapHere, at, sfx, faux, juste, suite, goBtn, wait, avant, gel } = A;
       const tour = () => document.body.dataset.turn === 'you';
       const secouer = el => { if (!el) return; el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); };
       return {
@@ -69,7 +73,7 @@ window.SCENARIO = (() => {
             const n = NOMS.find(x => x.id === b.dataset.id);
             if (n.bon) {
               $$('.lv-sonnette', side).forEach(x => x.classList.remove('indice')); b.classList.add('juste');
-              if (!await juste(f, 'Oui' + NB + '! Pour monsieur Bernard, le voisin.')) return;
+              if (!await juste(f, 'Oui' + NB + '! Le colis est pour monsieur Bernard.')) return;
               suite();
             } else {
               b.classList.add('faux'); secouer(b);
@@ -82,27 +86,36 @@ window.SCENARIO = (() => {
           ask();
         },
 
-        /* 2 · dans la vidéo : monsieur Bernard n'est pas là, la dame prend le colis ; on clique sur sa porte */
-        async porte(f) {
-          const SEG = [ligne(1)[0], ligne(3)[1]];
-          const ask = () => { Q.show('you', state.ask); yourTurn(); cam.classList.add('asking'); idle.set(tapHere($('.hit[data-id="gauche"]', cam)), 5000); };
-          if (!await avant(f, { seg: SEG, consigne: 'Où va le colis' + NB + '? Clique sur la bonne porte.' })) return;
-          state.replay = async () => { setTurn('listen'); cam.classList.remove('asking'); idle.clear(); await playSegment(SEG[0], SEG[1], gel()); if (alive(f)) ask(); };
-          const ou = z => (z.my != null ? { ...z, y: z.my } : z);
-          zones(PORTES, async (id, ev, z) => {
-            setTurn('wait'); cam.classList.remove('asking'); sfx.tick();
-            if (z.bon) {
-              $$('.hit', cam).forEach(h => h.classList.remove('indice'));
-              cadreZone(z); marque(ou(z), 'Chez la dame', 'juste');
-              if (!await juste(f, 'Oui' + NB + '! La dame prend le colis de son voisin.')) return;
-              zones(null); suite();
+        /* 2 · à qui il donne le colis : sur l'avis de livraison, on coche la bonne case */
+        async remis(f) {
+          const SEG = [ligne(0)[0], ligne(3)[1]];
+          const ask = () => { Q.show('you', state.ask); yourTurn(); idle.set(tapHere($('.lv-case[data-id="gardienne"] .lv-boite', side)), 5000); };
+          if (!await avant(f, {
+            seg: SEG, sideW: 440, consigne: 'Qui prend le colis' + NB + '? Clique sur la bonne case.',
+            panneau: `<div class="panel glass lv"><p class="ptitre">L'avis de livraison</p>
+              <div class="lv-avis"><p class="lv-avis-t">${IC.colis}<b>Avis de livraison</b></p>
+                <p class="lv-avis-l"><span>Colis pour${NB}:</span> <b>M. Bernard</b></p>
+                <p class="lv-avis-l"><span>Colis remis à${NB}:</span></p>
+                <div class="lv-cases">${REMIS.map(r => `<button class="lv-case" data-id="${r.id}"><span class="lv-boite">${COCHE}</span><span class="lv-cnom">${r.nom}</span></button>`).join('')}</div></div></div>`,
+          })) return;
+          state.replay = async () => { setTurn('listen'); idle.clear(); await playSegment(SEG[0], SEG[1], gel()); if (alive(f)) ask(); };
+          $$('.lv-case', side).forEach(b => b.addEventListener('click', async () => {
+            if (!tour()) return;
+            A.unlock(); idle.clear(); setTurn('wait'); sfx.tick();
+            b.classList.add('coche');
+            const r = REMIS.find(x => x.id === b.dataset.id);
+            if (r.bon) {
+              $$('.lv-case', side).forEach(x => x.classList.remove('indice')); b.classList.add('juste');
+              if (!await juste(f, 'Oui' + NB + "! Monsieur Bernard n'est pas là" + NB + ': sa voisine prend le colis.')) return;
+              suite();
             } else {
-              cadreZone(z, 'faux'); marque(ou(z), z.label, 'faux');
-              const montrer = await faux(f, SEG, "Non. Monsieur Bernard n'est pas là."); if (montrer === null) return;
-              if (montrer) $('.hit[data-id="dame"]', cam).classList.add('indice');
+              b.classList.add('faux'); secouer(b);
+              const montrer = await faux(f, SEG, r.msg); if (montrer === null) return;
+              b.classList.remove('faux', 'coche');
+              if (montrer) $('.lv-case[data-id="voisine"]', side).classList.add('indice');
               ask();
             }
-          });
+          }));
           ask();
         },
 
