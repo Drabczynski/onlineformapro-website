@@ -16,16 +16,22 @@
 window.SCENARIO = (() => {
   const NB = ' ';
 
-  /* 1 · ce que le voyageur peut chercher dans une gare (pictogrammes au trait, viewBox 24 × 24) */
+  /* 1 · ce que le voyageur peut chercher dans une gare : de gros pictogrammes au trait épais, comme les cartes de Kenji
+         (viewBox 96 × 96, trait 5, un aplat léger de la même couleur), une couleur par carte */
+  const PICTO = corps => `<svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${corps}</svg>`;
   const LIEUX = [
-    { id: 'toilettes', nom: 'les toilettes', svg: '<rect x="3" y="5" width="18" height="14" rx="3"/><text x="12" y="15.6" text-anchor="middle" font-size="8.5" font-weight="800" fill="currentColor" stroke="none" font-family="system-ui, sans-serif">WC</text>' },
-    { id: 'guichet', nom: 'le guichet', bon: true, svg: '<path d="M3 20V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14"/><path d="M2 15h20"/><circle cx="12" cy="8.6" r="2"/><path d="M8.6 15a3.4 3.4 0 0 1 6.8 0"/><path d="M9 18.5h6"/>' },
-    { id: 'cafe', nom: 'le café', svg: '<path d="M4.5 9h11v4.5a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5z"/><path d="M15.5 10.5h1.5a2.5 2.5 0 0 1 0 5h-1.6"/><path d="M8 3.5c0 1.4 1.4 1.4 1.4 2.8M11.6 3.5c0 1.4 1.4 1.4 1.4 2.8"/><path d="M4 21h13"/>' },
-    { id: 'sortie', nom: 'la sortie', svg: '<path d="M13 4H6v16h7"/><path d="M10.5 12H21M17 8l4 4-4 4"/>' },
+    { id: 'toilettes', nom: 'les toilettes', coul: '#2F7BE5', svg: PICTO('<circle cx="29" cy="20" r="7"/><path d="M20 36h18v22h-4v20h-10V58h-4z" fill="currentColor" fill-opacity=".16"/><path d="M48 14v68"/><circle cx="67" cy="20" r="7"/><path d="M67 32l13 28h-7v18H61V60h-7z" fill="currentColor" fill-opacity=".16"/>') },
+    { id: 'guichet', nom: 'le guichet', bon: true, coul: '#E8590C', svg: PICTO('<rect x="14" y="12" width="68" height="52" rx="8" fill="currentColor" fill-opacity=".16"/><circle cx="48" cy="31" r="8"/><path d="M33 64a15 15 0 0 1 30 0"/><path d="M8 64h80v16H8z"/><path d="M38 72h20"/>') },
+    { id: 'cafe', nom: 'le café', coul: '#8A5A2B', svg: PICTO('<path d="M20 40h46v14a20 20 0 0 1-20 20h-6a20 20 0 0 1-20-20z" fill="currentColor" fill-opacity=".16"/><path d="M66 46h6a9 9 0 0 1 0 18h-7"/><path d="M34 14c0 6 6 6 6 12M50 14c0 6 6 6 6 12"/><path d="M14 84h62"/>') },
+    { id: 'sortie', nom: 'la sortie', coul: '#6D44E8', svg: PICTO('<path d="M52 14H20v68h32" fill="currentColor" fill-opacity=".16"/><path d="M40 48h44M70 34l14 14-14 14"/>') },
   ];
-  /* 2 · les heures proposées : 20 h, et des heures qui s'entendent ou se lisent pas loin */
+  /* 2 · les heures proposées : 20 h, et des heures qui s'entendent ou se lisent pas loin ; sur chaque carte, une horloge
+         de la couleur de la carte, les aiguilles à l'heure dite */
+  const HORLOGE = h => { const a = (h % 12) * 30 * Math.PI / 180, x = (48 + 20 * Math.sin(a)).toFixed(1), y = (48 - 20 * Math.cos(a)).toFixed(1);
+    return PICTO(`<circle cx="48" cy="48" r="36" fill="currentColor" fill-opacity=".16"/><path d="M48 18v6M48 72v6M18 48h6M72 48h6"/><path d="M48 48V24" stroke-width="4"/><path d="M48 48L${x} ${y}" stroke-width="7"/><circle cx="48" cy="48" r="3" fill="currentColor"/>`); };
   const HEURES = [
-    { h: 12, dit: 'douze heures' }, { h: 22, dit: 'vingt-deux heures' }, { h: 18, dit: 'dix-huit heures' }, { h: 20, dit: 'vingt heures', bon: true },
+    { h: 12, dit: 'douze heures', coul: '#2F7BE5' }, { h: 22, dit: 'vingt-deux heures', coul: '#1098AD' },
+    { h: 18, dit: 'dix-huit heures', coul: '#E8590C' }, { h: 20, dit: 'vingt heures', coul: '#6D44E8', bon: true },
   ];
   /* 3 · le plan du hall (viewBox 400 × 300), vu de dessus ; les endroits possibles en coordonnées du plan */
   const ENDROITS = [
@@ -60,13 +66,23 @@ window.SCENARIO = (() => {
        (seules les cartes reçoivent les clics) ;
      - data-cote="g" ou "d" : les cartes se rangent du côté opposé au visage de la personne à l'image ;
      - pendant une réécoute (bouton réécouter, erreur), le calque s'efface (classe « ecoute ») pour laisser voir la vidéo.
-     Les cartes elles-mêmes (.gu-carte) : verre sombre translucide, apparition l'une après l'autre (--i). */
+     Les cartes elles-mêmes reprennent les cartes de Kenji (classes .card .pic .word de moteur.css, + .gu-carte pour la
+     scène) : grandes cartes blanches, gros pictogramme coloré, mot en gras ; elles arrivent en ressort l'une après l'autre
+     (arrivee()), se secouent quand c'est à revoir (.shake) et reviennent en ressort à leur place. */
   function calque(A, cote, html) {
     const c = document.createElement('div');
     c.className = 'qte gu-calque'; c.dataset.cote = cote; c.innerHTML = html;
     A.win.append(c);
     return c;
   }
+  /* l'arrivée des cartes, comme chez Kenji : elles montent en tournant un peu, avec un ressort, l'une après l'autre */
+  function arrivee(A, cartes) {
+    if (A.reduced) return;
+    cartes.forEach((el, i) => el.animate([{ transform: 'translateY(30px) scale(.8) rotate(-6deg)', opacity: 0 }, { transform: 'none', opacity: 1 }],
+      { duration: 650, delay: 200 + i * 110, easing: 'cubic-bezier(.34,1.56,.64,1)', fill: 'backwards' }));
+  }
+  /* une carte façon Kenji : le pictogramme coloré au-dessus du mot */
+  const carteHTML = (cls, attrs, coul, svg, mot) => `<button class="card gu-carte ${cls}" ${attrs}><span class="pic" style="color:${coul}">${svg}</span><span class="word">${mot}</span></button>`;
   /* faux() du moteur, mais le calque s'efface pendant que la vidéo rejoue l'extrait (faux() attend 850 ms puis rejoue) */
   async function fauxSurVideo(A, f, c, seg, msg) {
     const t = setTimeout(() => c.classList.add('ecoute'), 800);
@@ -122,8 +138,9 @@ window.SCENARIO = (() => {
             qui: 'voyageur', seg: SEG, gel: 2.1,
             consigne: "Qu'est-ce que le voyageur cherche" + NB + '? Clique sur la bonne carte.',
             monte: () => {
-              c = calque(A, 'd', `<div class="gu-pile gu-lieux" role="group" aria-label="Ce que le voyageur cherche">${LIEUX.map((l, i) => `
-                <button class="gu-carte" data-id="${l.id}" aria-pressed="false" style="--i:${i}"><span class="gu-pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${l.svg}</svg></span><span class="gu-nom">${l.nom}</span></button>`).join('')}</div>`);
+              c = calque(A, 'd', `<div class="gu-pile gu-lieux" role="group" aria-label="Ce que le voyageur cherche">${LIEUX.map(l =>
+                carteHTML('', `data-id="${l.id}" aria-pressed="false" aria-label="${l.nom}"`, l.coul, l.svg, l.nom)).join('')}</div>`);
+              arrivee(A, $$('.gu-carte', c));
               $$('.gu-carte', c).forEach(b => b.addEventListener('click', () => choisir(b)));
             },
           })) return;
@@ -140,12 +157,14 @@ window.SCENARIO = (() => {
           /* l'heure va se poser dans la case (ou revient à sa place avec v = null) */
           function poser(b, dans = true) {
             if (!b) return;
-            b.style.transition = 'transform .5s cubic-bezier(.34,1.3,.64,1)';
+            const ressort = 'transform .55s var(--spring)';      // comme .card.spring chez Kenji
+            b.style.transition = ressort;
             if (!dans) { b.style.transform = ''; b.classList.remove('posee'); return; }
             const ici = b.style.transform; b.style.transition = 'none'; b.style.transform = '';
             const a = b.getBoundingClientRect(), z = casee().getBoundingClientRect();
-            b.style.transform = ici; void b.offsetWidth; b.style.transition = 'transform .5s cubic-bezier(.34,1.3,.64,1)';
-            b.style.transform = `translate(${(z.left + z.width / 2 - (a.left + a.width / 2)).toFixed(1)}px, ${(z.top + z.height / 2 - (a.top + a.height / 2)).toFixed(1)}px)`;
+            const k = Math.min(1, (z.width - 6) / a.width, (z.height - 6) / a.height);   // la carte se réduit à la taille de la case
+            b.style.transform = ici; void b.offsetWidth; b.style.transition = ressort;
+            b.style.transform = `translate(${(z.left + z.width / 2 - (a.left + a.width / 2)).toFixed(1)}px, ${(z.top + z.height / 2 - (a.top + a.height / 2)).toFixed(1)}px) scale(${k.toFixed(3)})`;
             b.classList.add('posee');
           }
           const ask = () => {
@@ -181,11 +200,12 @@ window.SCENARIO = (() => {
             qui: 'agente', seg: SEG, gel: 4.8,
             consigne: "Le guichet est ouvert jusqu'à quelle heure" + NB + '? Fais glisser la bonne heure dans la case.',
             monte: () => {
-              c = calque(A, 'g', `<div class="gu-pile gu-ouvert">
-                  <div class="gu-carte gu-phrase" style="--i:0"><span class="gu-pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14"/><path d="M2 15h20"/><circle cx="12" cy="8.6" r="2"/><path d="M8.6 15a3.4 3.4 0 0 1 6.8 0"/></svg></span>
-                    <span class="gu-txt">Le guichet est ouvert jusqu'à</span><span class="gu-case" aria-label="La case de l'heure">?</span></div>
-                  <div class="gu-heures" role="group" aria-label="Les heures">${HEURES.map((h, i) => `<button class="gu-carte gu-heure" data-h="${h.h}" style="--i:${i + 1}" aria-label="${h.dit}">${h.h}${NB}h</button>`).join('')}</div>
+              c = calque(A, 'g', `<div class="gu-ouvert">
+                  <div class="gu-phrase"><span class="gu-txt">Le guichet est ouvert jusqu'à</span><span class="gu-case" aria-label="La case de l'heure">?</span></div>
+                  <div class="gu-heures" role="group" aria-label="Les heures">${HEURES.map(h =>
+                    carteHTML('gu-heure', `data-h="${h.h}" aria-label="${h.dit}"`, h.coul, HORLOGE(h.h), h.h + NB + 'h')).join('')}</div>
                 </div>`);
+              arrivee(A, [$('.gu-phrase', c), ...$$('.gu-heure', c)]);
               $$('.gu-heure', c).forEach(b => {
                 let st = null;
                 b.addEventListener('pointerdown', e => {
@@ -200,7 +220,7 @@ window.SCENARIO = (() => {
                   if (!st || e.pointerId !== st.id) return;
                   const dx = e.clientX - st.x, dy = e.clientY - st.y;
                   if (!st.bouge && Math.hypot(dx, dy) > 6) { st.bouge = true; sfx.tick(); }
-                  if (st.bouge) { b.style.transform = `translate(${dx}px, ${dy}px) scale(1.06)`; casee().classList.toggle('chaud', dedans(casee(), e.clientX, e.clientY)); }
+                  if (st.bouge) { b.style.transform = `translate(${dx}px, ${dy}px) rotate(${(dx * .04).toFixed(1)}deg) scale(1.04)`; casee().classList.toggle('chaud', dedans(casee(), e.clientX, e.clientY)); }
                 });
                 const lacher = e => {
                   if (!st || e.pointerId !== st.id) return;

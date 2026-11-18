@@ -6,54 +6,38 @@
 .gu-calque { transition: opacity .35s var(--apple), translate .45s var(--apple); }
 .gu-calque.ecoute { opacity: 0; translate: 0 14px; }                 /* la vidéo rejoue : on la laisse voir */
 .gu-calque.ecoute * { pointer-events: none !important; }
-.gu-pile { position: absolute; top: 7%; display: flex; flex-direction: column; gap: 10px; width: clamp(200px, 25%, 270px); }
-.gu-calque[data-cote="d"] .gu-pile { right: 3.2%; }
-.gu-calque[data-cote="g"] .gu-pile { left: 3.2%; }
-.gu-ouvert { width: clamp(220px, 30%, 320px); }
 
-/* une carte : verre sombre translucide (lisible sur le hall très clair), texte blanc, petit pictogramme au trait */
-.gu-carte { pointer-events: auto; position: relative; display: flex; align-items: center; gap: 12px; min-height: 58px; padding: 8px 16px 8px 9px; border-radius: 20px; text-align: left;
-  color: #fff; background: rgba(14,16,26,.56); -webkit-backdrop-filter: blur(18px) saturate(1.6); backdrop-filter: blur(18px) saturate(1.6);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.22), inset 0 1px 0 rgba(255,255,255,.25);
-  touch-action: manipulation; user-select: none; -webkit-user-select: none;
-  transition: background .25s, color .25s, box-shadow .25s, transform .3s var(--spring);
-  /* l'apparition : les cartes montent l'une après l'autre, depuis un léger flou */
-  animation: gu-monte .6s var(--spring) backwards; animation-delay: calc(.25s + var(--i, 0) * .11s); }
-@keyframes gu-monte { from { opacity: 0; transform: translateY(26px) scale(.92); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
-.gu-carte .gu-pic { flex: none; width: 40px; height: 40px; border-radius: 13px; display: grid; place-items: center; background: rgba(255,255,255,.16); }
-.gu-carte .gu-pic svg { width: 26px; height: 26px; }
-.gu-carte .gu-nom { font-weight: 800; font-size: 19px; letter-spacing: -.01em; line-height: 1.1; }
-@media (hover: hover) { button.gu-carte:not([aria-pressed="true"]):not(.juste):not(.faux):not(.posee):hover { background: rgba(14,16,26,.7); transform: translateY(-2px); } }
-button.gu-carte:active { transform: scale(.96); }
-/* choisi : blanc ; juste : vert ; à revoir : orange (jamais rouge), avec un signe en plus de la couleur */
-.gu-carte[aria-pressed="true"] { background: #fff; color: var(--ink); }
-.gu-carte[aria-pressed="true"] .gu-pic { background: rgba(11,13,22,.08); }
-.gu-carte.juste { background: var(--ok); color: var(--ink); box-shadow: inset 0 0 0 2px rgba(255,255,255,.6); }
-.gu-carte.juste .gu-pic { background: rgba(11,13,22,.1); }
-.gu-carte.faux { background: var(--try); color: var(--ink); }
-.gu-carte.faux .gu-pic { background: rgba(11,13,22,.1); }
-.gu-lieux .gu-carte.juste .gu-nom::after { content: " ✓"; }
-.gu-lieux .gu-carte.faux .gu-nom::after { content: " ✗"; }
+/* ---------- les cartes : celles de Kenji (.card .pic .word, moteur.css), posées sur la vidéo ----------
+   grandes cartes blanches 132 × 146, coins 26 px, la grosse ombre portée de Kenji (voulue ici), gros pictogramme coloré,
+   mot en gras. Ordinateur : en rangée, centrées en bas de l'image (le visage est en haut). */
+.gu-lieux, .gu-heures { position: absolute; left: 50%; bottom: 17%; transform: translateX(-50%); display: flex; gap: 14px; }
+.gu-carte { pointer-events: auto; padding: 0 6px; font: inherit; cursor: pointer; touch-action: manipulation;
+  transition: transform .35s var(--spring), box-shadow .25s; }
+.gu-carte .pic { pointer-events: none; }
+.gu-carte .word { text-align: center; line-height: 1.08; }
+@media (hover: hover) { .gu-lieux .gu-carte:not([aria-pressed="true"]):not(.juste):hover { transform: translateY(-4px); } }
+.gu-carte:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+/* choisi : la carte se soulève, cerclée de blanc ; juste : cerclée de vert + ✓ ; à revoir : cerclée d'orange + ✗ (jamais rouge) */
+.gu-carte[aria-pressed="true"] { transform: translateY(-8px) scale(1.04); box-shadow: 0 0 0 4px #fff, 0 28px 54px -14px rgba(0,0,0,.7); }
+.gu-carte.juste { box-shadow: 0 0 0 5px var(--ok), 0 22px 50px -14px rgba(0,0,0,.65); }
+.gu-carte.faux { box-shadow: 0 0 0 5px var(--try), 0 22px 50px -14px rgba(0,0,0,.65); }
+.gu-carte.juste::after, .gu-carte.faux::after { position: absolute; top: -11px; right: -11px; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center;
+  font-size: 17px; font-weight: 800; color: var(--ink); box-shadow: 0 0 0 3px #fff; animation: pop .45s var(--spring) both; }
+.gu-carte.juste::after { content: "✓"; background: var(--ok); }
+.gu-carte.faux::after { content: "✗"; background: var(--try); }
 
-/* 2 · la phrase avec sa case, et les heures à faire glisser */
-.gu-phrase { flex-wrap: wrap; row-gap: 8px; padding: 10px 14px 10px 9px; }
-.gu-phrase .gu-txt { flex: 1 1 120px; font-weight: 700; font-size: 18px; line-height: 1.15; }
-.gu-case { display: grid; place-items: center; min-width: 96px; height: 50px; margin-left: 52px; border-radius: 14px; font-weight: 800; font-size: 22px; color: rgba(255,255,255,.7);
-  background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 2px rgba(255,255,255,.55); outline: 2px dashed rgba(255,255,255,.0); transition: background .25s, box-shadow .25s; }
-.gu-case.chaud { background: rgba(255,255,255,.26); box-shadow: inset 0 0 0 3px #fff; }
-.gu-case.juste { box-shadow: inset 0 0 0 3px var(--ok); }
-.gu-heures { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-.gu-heure { justify-content: center; min-height: 52px; padding: 6px 10px; font-weight: 800; font-size: 22px; letter-spacing: -.01em; font-variant-numeric: tabular-nums; cursor: grab; touch-action: none; }
-.gu-heure.tenu { cursor: grabbing; z-index: 20; background: #fff; color: var(--ink); transition: none; }
-.gu-heure.posee { z-index: 10; background: #fff; color: var(--ink); }
-.gu-heure.posee.juste { background: var(--ok); }
-.gu-heure.posee.faux { background: var(--try); }
-/* le signe juste / à revoir : une pastille au coin (ne fait pas passer « 22 h » sur deux lignes) */
-.gu-heure { white-space: nowrap; }
-.gu-heure.juste::after, .gu-heure.faux::after { position: absolute; top: -7px; right: -7px; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center;
-  background: #fff; color: var(--ink); font-size: 13px; font-weight: 800; box-shadow: 0 0 0 2px rgba(11,13,22,.15); }
-.gu-heure.juste::after { content: "✓"; }
-.gu-heure.faux::after { content: "✗"; }
+/* 2 · la carte-phrase, blanche comme les autres, avec sa case où l'on dépose la carte de l'heure */
+.gu-phrase { position: absolute; left: 3.2%; top: 7%; width: 290px; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 14px 16px 16px; border-radius: 26px;
+  background: rgba(255,255,255,.95); color: var(--ink); box-shadow: 0 22px 50px -14px rgba(0,0,0,.65); }
+.gu-phrase .gu-txt { font-weight: 800; font-size: 19px; letter-spacing: -.01em; line-height: 1.15; text-align: center; }
+.gu-case { display: grid; place-items: center; width: 104px; height: 116px; border-radius: 20px; border: 3px dashed #B4BAC8; font-weight: 800; font-size: 34px; color: #9AA1B0;
+  transition: background .25s, border-color .25s; }
+.gu-case.chaud { border-style: solid; border-color: var(--ink); background: #EEF0FF; }
+.gu-case.juste { border-style: solid; border-color: var(--ok); background: rgba(75,227,180,.16); }
+.gu-heure { cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; }
+.gu-heure .word { font-size: 22px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.gu-heure.tenu { cursor: grabbing; z-index: 30; box-shadow: 0 30px 60px -14px rgba(0,0,0,.7); }
+.gu-heure.posee { z-index: 20; }
 
 body[data-turn="listen"] .gu-carte, body[data-turn="wait"] .gu-carte { pointer-events: none; }
 
@@ -75,32 +59,35 @@ body[data-turn="listen"] .gu-carte, body[data-turn="wait"] .gu-carte { pointer-e
 .gu-plan.parti .gu-legende { opacity: 0; }
 body[data-turn="listen"] .gu-lieu, body[data-turn="wait"] .gu-lieu { pointer-events: none; }
 
-/* ---------- téléphone couché (petite hauteur) : des cartes plus basses ---------- */
-body.short .gu-pile { top: 5%; gap: 6px; width: clamp(170px, 26%, 220px); }
-body.short .gu-carte { min-height: 44px; padding: 4px 12px 4px 5px; gap: 8px; border-radius: 15px; }
-body.short .gu-carte .gu-pic { width: 34px; height: 34px; border-radius: 10px; }
-body.short .gu-carte .gu-pic svg { width: 22px; height: 22px; }
-body.short .gu-carte .gu-nom { font-size: 16px; }
-body.short .gu-phrase .gu-txt { font-size: 15px; } body.short .gu-case { height: 40px; min-width: 76px; margin-left: 42px; font-size: 18px; }
-body.short .gu-heure { min-height: 44px; font-size: 18px; }
 
-/* ---------- téléphone tenu droit : la vidéo est petite ; les cartes passent en grille 2 × 2, en haut, du côté libre ---------- */
-body.tall .gu-pile { top: 10px; width: 45%; gap: 6px; display: grid; grid-template-columns: repeat(2, 1fr); }
-body.tall .gu-calque[data-cote="d"] .gu-pile { right: 8px; }
-body.tall .gu-calque[data-cote="g"] .gu-pile { left: 8px; }
-body.tall .gu-carte { flex-direction: column; justify-content: center; gap: 3px; min-height: 64px; padding: 6px 4px; border-radius: 15px; text-align: center; }
-body.tall .gu-carte .gu-pic { width: 28px; height: 28px; border-radius: 9px; background: none; }
-body.tall .gu-carte .gu-pic svg { width: 24px; height: 24px; }
-body.tall .gu-carte .gu-nom { font-size: 14px; }
-/* 2 · sur téléphone, la phrase reste à gauche et les heures passent à droite du visage de l'agente */
-body.tall .gu-ouvert { display: block; position: static; width: auto; }
-body.tall .gu-phrase { position: absolute; top: 10px; left: 8px; width: 41%; flex-direction: column; align-items: stretch; gap: 6px; padding: 8px; }
-body.tall .gu-phrase .gu-pic { display: none; }
-body.tall .gu-phrase .gu-txt { flex: none; font-size: 14px; text-align: center; }
-body.tall .gu-case { margin: 0; min-width: 0; height: 44px; font-size: 18px; }
-body.tall .gu-heures { position: absolute; top: 10px; right: 6px; width: 34%; gap: 6px; }
-body.tall .gu-heure { min-height: 48px; font-size: 18px; flex-direction: row; }
+/* ---------- téléphone couché (petite hauteur) : les tailles « short » de Kenji ---------- */
+body.short .gu-lieux, body.short .gu-heures { bottom: 17%; gap: 10px; }
+body.short .gu-carte { width: 88px; height: 96px; border-radius: 20px; }
+body.short .gu-carte .pic { width: 46px; height: 46px; } body.short .gu-carte .pic svg { width: 40px; height: 40px; }
+body.short .gu-carte .word { font-size: 14px; } body.short .gu-heure .word { font-size: 17px; }
+body.short .gu-phrase { width: 210px; padding: 10px 12px 12px; gap: 6px; border-radius: 20px; }
+body.short .gu-phrase .gu-txt { font-size: 15px; }
+body.short .gu-case { width: 70px; height: 76px; font-size: 24px; border-radius: 16px; }
+
+/* ---------- téléphone tenu droit : la vidéo est petite ; cartes réduites, en grille 2 × 2, en haut, du côté libre ---------- */
+body.tall .gu-lieux, body.tall .gu-heures { left: auto; bottom: auto; top: 12px; transform: none; display: grid; grid-template-columns: repeat(2, auto); gap: 6px; }
+body.tall .gu-lieux { right: 12px; }
+body.tall .gu-carte { width: 76px; height: 86px; gap: 3px; padding: 0 3px; border-radius: 18px; box-shadow: 0 12px 26px -10px rgba(0,0,0,.6); }
+body.tall .gu-carte .pic { width: 38px; height: 38px; } body.tall .gu-carte .pic svg { width: 34px; height: 34px; }
+body.tall .gu-carte .word { font-size: 12.5px; }
+body.tall .gu-carte[aria-pressed="true"] { transform: translateY(-4px) scale(1.03); box-shadow: 0 0 0 3px #fff, 0 14px 28px -10px rgba(0,0,0,.65); }
+body.tall .gu-carte.juste { box-shadow: 0 0 0 3px var(--ok), 0 12px 26px -10px rgba(0,0,0,.6); }
+body.tall .gu-carte.faux { box-shadow: 0 0 0 3px var(--try), 0 12px 26px -10px rgba(0,0,0,.6); }
+body.tall .gu-carte.juste::after, body.tall .gu-carte.faux::after { top: -8px; right: -8px; width: 22px; height: 22px; font-size: 12px; box-shadow: 0 0 0 2px #fff; }
+/* 2 · la phrase à gauche, les heures à droite du visage de l'agente */
+body.tall .gu-heures { right: 10px; }
+body.tall .gu-heure { width: 58px; height: 64px; border-radius: 16px; }
+body.tall .gu-heure .pic { width: 30px; height: 30px; } body.tall .gu-heure .pic svg { width: 28px; height: 28px; }
+body.tall .gu-heure .word { font-size: 14px; }
+body.tall .gu-phrase { left: 8px; top: 8px; width: 44%; gap: 5px; padding: 8px 8px 10px; border-radius: 18px; box-shadow: 0 12px 26px -10px rgba(0,0,0,.6); }
+body.tall .gu-phrase .gu-txt { font-size: 13px; }
+body.tall .gu-case { width: 56px; height: 62px; font-size: 22px; border-radius: 14px; border-width: 2.5px; }
 
 @media (prefers-reduced-motion: reduce) {
-  .gu-carte { animation: none; }
+  .gu-carte.juste::after, .gu-carte.faux::after { animation: none; }
 }
