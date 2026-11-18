@@ -111,8 +111,8 @@ body[data-turn="boot"] .deck, body[data-turn="boot"] .nav, body[data-turn="boot"
 .gap { display: inline-block; position: relative; vertical-align: -0.22em; height: 1.36em; min-width: 5.2em; margin: 0 2px; border-radius: 10px; background: rgba(255,255,255,.08); transition: background .3s ease, min-width .45s var(--apple); }
 .ln.cur .gap { background: rgba(255,255,255,.14); }
 .gap .gw { position: absolute; inset: 0; display: grid; place-items: center; white-space: nowrap; opacity: 0; }
-.gap.filled { background: transparent; min-width: 0; padding: 0 2px; }
-.gap.filled .gw { position: static; display: inline; opacity: 1; font-weight: 800; color: #4BE3B4; animation: wordIn .7s var(--spring) both; }
+.gap.filled { display: inline; height: auto; min-width: 0; width: auto !important; vertical-align: baseline; background: transparent; margin: 0 .12em; padding: 0; }
+.gap.filled .gw { position: static; display: inline-block; opacity: 1; font-weight: 800; color: #4BE3B4; animation: wordIn .7s var(--spring) both; }
 @keyframes wordIn { from { filter: blur(6px); scale: .86; } to { filter: none; scale: 1; } }
 @keyframes lineIn { from { transform: scaleX(0); } to { transform: none; } }
 .gap.shake { animation: shake .5s ease; }
@@ -134,6 +134,40 @@ body[data-turn="boot"] .deck, body[data-turn="boot"] .nav, body[data-turn="boot"
   .ln { padding: 6px 10px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+
+/* ---------- le mode clair (l'icône en haut à droite bascule ; le choix est gardé) ---------- */
+.theme { position: fixed; z-index: 30; top: calc(8px + env(safe-area-inset-top, 0px)); right: 8px; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center;
+  background: rgba(255,255,255,.12); color: #fff; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: inset 0 1px 0 rgba(255,255,255,.2); transition: background .3s, color .3s, scale .3s var(--spring); }
+.theme:active { scale: .9; }
+.theme svg { width: 20px; height: 20px; }
+.theme .lune { display: none; }
+body.clair .theme .soleil { display: none; } body.clair .theme .lune { display: block; }
+body.clair { --text: #1b1d2a; --text2: rgba(27,29,42,.62); --glass: rgba(255,255,255,.62); background: #eef0f7; color: var(--text); color-scheme: light; }
+body.clair .theme { background: rgba(27,29,42,.07); color: #1b1d2a; box-shadow: none; }
+body.clair .env { background: radial-gradient(55% 50% at 30% 45%, rgba(138,92,255,.14), transparent 70%), radial-gradient(45% 45% at 80% 60%, rgba(29,214,160,.1), transparent 72%), #eef0f7; }
+body.clair .glass { box-shadow: inset 0 1px 0 #fff, 0 18px 40px -18px rgba(40,40,90,.28); }
+body.clair .glass::before { background: linear-gradient(140deg, #fff, rgba(255,255,255,.4) 40%, rgba(27,29,42,.06) 70%, rgba(255,255,255,.8)); }
+body.clair .hd { background: rgba(27,29,42,.05); }
+body.clair .ln.cur { background: rgba(27,29,42,.06); }
+body.clair .gap { background: rgba(27,29,42,.07); }
+body.clair .ln.cur .gap { background: rgba(27,29,42,.1); }
+body.clair .gap.open { background: rgba(27,29,42,.14); }
+body.clair .gap.filled, body.clair .ln.cur .gap.filled { background: transparent; }
+body.clair .player { color: #fff; } body.clair .player .time { color: rgba(255,255,255,.75); }
+body.clair .gap.filled .gw { color: #0b8f63; }
+body.clair .dots i { background: rgba(27,29,42,.15); }
+body.clair .dots i.ok { background: #12b981; }
+body.clair .card .ico, body.clair .nav .ico { background: rgba(27,29,42,.07); color: #1b1d2a; }
+body.clair .hd .ico.joue { background: #1b1d2a; color: #fff; }
+body.clair .peb { color: #1b1d2a; background: rgba(255,255,255,.8); box-shadow: inset 0 1px 0 #fff, 0 10px 24px -12px rgba(40,40,90,.35), 0 0 0 1px rgba(27,29,42,.08); }
+body.clair .peb.lift { background: #fff; }
+body.clair .peb.hint::after { border-color: rgba(27,29,42,.55); }
+body.clair .go { background: #1b1d2a; color: #fff; }
+body.clair .fond { opacity: .38; filter: blur(42px) saturate(1.2) brightness(1.25); }
+body.clair .fond::after { background: radial-gradient(60% 60% at 50% 50%, rgba(238,240,247,0), rgba(238,240,247,.85)); }
+body.clair .pile { background: radial-gradient(70% 55% at 50% 42%, rgba(138,92,255,.16), transparent 70%), linear-gradient(160deg, #ffffff, #e8eaf5); box-shadow: 0 30px 70px -36px rgba(40,40,90,.4), 0 0 0 1px rgba(27,29,42,.06); }
+body.clair .nav .compte, body.clair .aide { color: var(--text2); }
+body.clair .wc { box-shadow: 0 26px 44px -22px rgba(40,40,90,.45), 0 0 0 1px rgba(27,29,42,.06); }
 </style>
 </head>
 <body data-turn="boot">
@@ -225,7 +259,7 @@ body[data-turn="boot"] .deck, body[data-turn="boot"] .nav, body[data-turn="boot"
       const r = g.getBoundingClientRect(); if (!r.width) return;
       const x0 = r.left - cr.left + 3, y0 = r.top - cr.top + 3, w = r.width - 6, h = r.height - 6, P = partsFor(g, w, h);
       const k = g.closest('.ln').classList.contains('cur') ? 1 : .5;
-      ictx.fillStyle = '#fff';
+      ictx.fillStyle = document.body.classList.contains('clair') ? '#5b4bd6' : '#fff';
       for (const p of P) {
         p.x += p.vx * dt; p.y += p.vy * dt;
         if (p.x < 0 || p.x > 1) { p.vx *= -1; p.x = Math.max(0, Math.min(1, p.x)); }
@@ -378,6 +412,13 @@ body[data-turn="boot"] .deck, body[data-turn="boot"] .nav, body[data-turn="boot"
 
   buildText(); buildDeck(); setTurn('boot'); setLine(-1);
   window.__adj = { state, LINES, pile: () => pile.map(c => c.dataset.m) };
+})();
+</script>
+<button class="theme" id="theme" aria-label="Mode clair ou sombre"><svg class="soleil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"/></svg><svg class="lune" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1z"/></svg></button>
+<script>
+(() => { const b = document.body, k = 'exercices-theme';
+  try { if (localStorage.getItem(k) === 'clair') b.classList.add('clair'); } catch (e) {}
+  document.getElementById('theme').addEventListener('click', () => { b.classList.toggle('clair'); try { localStorage.setItem(k, b.classList.contains('clair') ? 'clair' : 'nuit'); } catch (e) {} });
 })();
 </script>
 </body>
