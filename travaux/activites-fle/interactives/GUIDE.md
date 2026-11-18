@@ -130,6 +130,13 @@ Classes de `moteur.css` réutilisables : `.panel.glass`, `.ptitre`, `.tuile` (+ 
 17. **La question doit dire exactement ce que le dialogue dit** : « elle veut une glace en cornet » n'est pas « elle choisit
     des cornets ». Pour des A1, une consigne simple, qui dit le but et le geste ; si on ne comprend pas tout de suite ce
     qu'il faut faire, c'est raté.
+18. **Plus de « appuie quand tu entends tel mot »** (le QTE `qte()` sur un mot entendu) dans les nouvelles scènes : le
+    client n'en veut plus (les scènes qui en ont déjà un les gardent). Le geste dans la vidéo doit porter sur ce qu'on voit
+    et ce qu'on a compris, pas sur le moment où un mot passe.
+19. **Chaque question doit avoir un vrai intérêt pédagogique** : elle vérifie qu'on a compris une information du dialogue
+    utile dans la vie (un nom, un nombre, une heure, un lieu, une demande…). Pas de question dont la réponse se devine en
+    regardant l'image (« Où va le colis ? → la porte où se tient la dame »), pas de piège de point de vue (« sa gauche à
+    lui, vu de face ») : refusé par le client.
 
 ## Vérifier
 
