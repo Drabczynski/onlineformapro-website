@@ -1,0 +1,25 @@
+{
+ "video": "musee",
+ "titre": "Au musée",
+ "niveau": "A1",
+ "gel": 9.6,
+ "sousTitres": [
+  {"d": 0.24, "f": 2.18, "qui": "La visiteuse", "texte": "Deux billets. Vous avez un tarif réduit ?"},
+  {"d": 2.46, "f": 4.38, "qui": "Le jeune homme", "texte": "Oui, pour les étudiants et les seniors."},
+  {"d": 5.16, "f": 7.12, "qui": "La visiteuse", "texte": "Super. Le musée ferme à quelle heure ?"},
+  {"d": 7.16, "f": 7.84, "qui": "Le jeune homme", "texte": "À 18 heures."},
+  {"d": 8.08, "f": 9.1, "qui": "Le jeune homme", "texte": "Les photos sont interdites."}
+ ],
+ "people": {
+  "employe": {"name": "Le jeune homme", "qui": "Le jeune homme", "side": "g", "spot": [21, 50, 15, 60], "anchor": [22, 34], "crop": [15, 4, 15, 27],
+              "portrait": [2.1, [27, 0, 36, 64]]},
+  "visiteuse": {"name": "La visiteuse", "qui": "La visiteuse", "side": "d", "spot": [74, 55, 15, 60], "anchor": [74, 40], "crop": [66, 12, 16, 28],
+                "portrait": [5.05, [33, 0, 46, 82]]}
+ },
+ "consignes": [
+  "Le tarif réduit, c'est pour qui ? Clique sur les deux bonnes personnes, puis sur Valider.",
+  "Le musée ferme à quelle heure ? Fais glisser le curseur sur la bonne heure, puis clique sur Valider.",
+  "Pour le jeune homme, qu'est-ce qui est interdit ? Fais glisser le panneau Interdit sur la bonne image.",
+  "Bravo ! La visiteuse a ses deux billets pour le musée."
+ ]
+}

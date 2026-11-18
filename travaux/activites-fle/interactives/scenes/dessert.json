@@ -1,0 +1,23 @@
+{
+ "video": "restaurant-dessert",
+ "titre": "Un dessert ?",
+ "niveau": "A1",
+ "gel": 9.7,
+ "sousTitres": [
+  {"d": 0.26, "f": 1.0, "qui": "Le serveur", "texte": "Vous voulez un dessert ?"},
+  {"d": 1.58, "f": 3.14, "qui": "Le client", "texte": "Oui. Il y a quoi comme dessert ?"},
+  {"d": 4.64, "f": 6.72, "qui": "Le serveur", "texte": "Une tarte aux pommes ou une mousse au chocolat."},
+  {"d": 7.64, "f": 8.9, "qui": "Le client", "texte": "Une tarte aux pommes, s'il vous plaît."}
+ ],
+ "people": {
+  "client": {"name": "Le client", "qui": "Le client", "side": "g", "spot": [18, 66, 16, 34], "anchor": [19, 40], "crop": [2, 18, 30, 54],
+             "portrait": [3.4, [22, 0, 40, 71]]},
+  "serveur": {"name": "Le serveur", "qui": "Le serveur", "side": "d", "spot": [63, 56, 17, 46], "anchor": [61, 22], "crop": [46, 2, 32, 57],
+              "portrait": [5.0, [47, 2, 32, 57]]}
+ },
+ "consignes": [
+  "Le serveur propose quels desserts ? Clique sur les deux desserts, puis sur Valider.",
+  "Qu'est-ce que le client prend ? Fais glisser son dessert sur le carnet du serveur.",
+  "Bravo ! Le serveur note une tarte aux pommes."
+ ]
+}

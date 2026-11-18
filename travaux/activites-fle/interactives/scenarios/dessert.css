@@ -1,0 +1,74 @@
+/* ================= Un dessert ? : le chariot des desserts, le carnet du serveur ================= */
+/* 1 · le chariot : deux étages en bois, trois desserts sur chaque étage, leur nom dessous */
+.dst .dst-chariot { display: flex; flex-direction: column; gap: 14px; padding: 12px 12px 16px; border-radius: 22px; background: #5A3A24;
+  box-shadow: inset 0 0 0 3px #472C1A, inset 0 0 0 5px rgba(255,255,255,.1); }
+.dst .dst-etage { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding-bottom: 10px; border-bottom: 8px solid #B98A57; border-radius: 0 0 4px 4px; }
+.dst .dst-dessert { position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px; min-height: 120px; padding: 8px 6px 8px;
+  border-radius: 16px; background: rgba(255,255,255,.94); color: var(--ink); transition: box-shadow .25s, transform .3s var(--spring); touch-action: manipulation; }
+.dst .dst-dessert svg { width: 100%; max-width: 128px; height: auto; display: block; }
+.dst .dst-dessert .nom { font-weight: 800; font-size: 15px; line-height: 1.15; text-align: center; }
+.dst .dst-dessert .etat { position: absolute; top: 6px; right: 8px; min-width: 24px; font-weight: 800; font-size: 14px; }
+@media (hover: hover) { .dst .dst-dessert:hover { transform: translateY(-2px); } }
+.dst .dst-dessert:active { transform: scale(.95); }
+/* choisi : soulevé et cerclé de blanc (pas de rouge) */
+.dst .dst-dessert.choisi { box-shadow: 0 0 0 3px #5A3A24, 0 0 0 7px #fff; transform: translateY(-4px); }
+.dst .dst-dessert.juste { box-shadow: 0 0 0 4px var(--ok); }
+.dst .dst-dessert.juste .etat { color: #12795A; }
+.dst .dst-dessert.faux { box-shadow: 0 0 0 4px var(--try); }
+.dst .dst-dessert.faux .etat { color: #A3541A; }
+.dst .dst-dessert.indice { animation: dst-indice 1.1s var(--apple) infinite; }
+@keyframes dst-indice { 50% { box-shadow: 0 0 0 4px var(--ok); } }
+body[data-turn="listen"] .dst .dst-chariot, body[data-turn="wait"] .dst .dst-chariot { pointer-events: none; }
+
+/* 2 · le carnet du serveur : une spirale en haut, des lignes ; le dessert s'écrit à la main */
+.dst .dst-carnet { position: relative; width: min(100%, 340px); margin: 6px auto 14px; padding: 26px 20px 12px; border-radius: 6px 6px 14px 14px; background: #FFFDF6;
+  color: #2B2620; box-shadow: inset 0 0 0 2px #E2DAC4; transition: box-shadow .25s, transform .25s; }
+.dst .dst-carnet .spirale { position: absolute; left: 16px; right: 16px; top: -8px; height: 16px;
+  background: radial-gradient(circle at 50% 50%, #8E939C 0 4px, transparent 4.5px) 0 0 / 22px 16px repeat-x; }
+.dst .dst-carnet .tete { display: flex; justify-content: space-between; align-items: baseline; margin: 0 0 6px; padding-bottom: 6px; border-bottom: 2px solid #E58C8C; }
+.dst .dst-carnet .tete b { font-size: 18px; font-weight: 800; }
+.dst .dst-carnet .tete span { font-size: 14px; font-weight: 700; color: #6B6255; text-transform: uppercase; letter-spacing: .05em; }
+.dst .dst-place { margin: 0; height: 46px; display: flex; align-items: flex-end; border-bottom: 1.5px solid #B9D3EA; }
+.dst .dst-ecrit { font-family: "Patrick Hand", "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive; font-size: 28px; line-height: 1.2; color: #2346A0; white-space: nowrap; }
+.dst .dst-ecrit.trace { animation: dst-ecrire .6s steps(18) both; overflow: hidden; display: inline-block; }
+@keyframes dst-ecrire { from { max-width: 0; } to { max-width: 100%; } }
+.dst .dst-ecrit.juste { color: #12795A; }
+.dst .dst-ecrit.juste::after { content: " ✓"; font-family: inherit; }
+.dst .dst-ecrit.faux { color: #A3541A; text-decoration: line-through; text-decoration-thickness: 2px; }
+.dst .dst-carnet.chaud { box-shadow: inset 0 0 0 2px #E2DAC4, 0 0 0 4px #fff; transform: scale(1.02); }
+.dst .dst-carnet.juste { box-shadow: inset 0 0 0 2px #E2DAC4, 0 0 0 4px var(--ok); }
+.dst .dst-carnet.faux { box-shadow: inset 0 0 0 2px #E2DAC4, 0 0 0 4px var(--try); }
+
+/* les étiquettes des six desserts, à faire glisser */
+.dst .dst-etiqs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.dst .dst-etiq { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 0; min-height: 76px; padding: 6px 4px 8px; border-radius: 14px;
+  background: rgba(255,255,255,.92); color: var(--ink); font-weight: 800; font-size: 14px; line-height: 1.15; text-align: center; cursor: grab; touch-action: none;
+  transition: box-shadow .25s, opacity .25s; user-select: none; -webkit-user-select: none; }
+.dst .dst-etiq svg { width: 78px; height: auto; display: block; pointer-events: none; }
+.dst .dst-etiq span { pointer-events: none; }
+.dst .dst-etiq.tenue { z-index: 5; cursor: grabbing; box-shadow: 0 0 0 3px #fff; }
+.dst .dst-etiq.posee { opacity: .35; }
+.dst .dst-etiq.indice { animation: dst-indice 1.1s var(--apple) infinite; }
+body[data-turn="listen"] .dst .dst-etiqs, body[data-turn="wait"] .dst .dst-etiqs { pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dst .dst-dessert.indice, .dst .dst-etiq.indice { animation: none; box-shadow: 0 0 0 4px var(--ok); }
+  .dst .dst-ecrit.trace { animation: none; }
+}
+
+/* petits écrans */
+body.tall .dst .dst-chariot { gap: 8px; padding: 8px 8px 10px; }
+body.tall .dst .dst-etage { gap: 6px; padding-bottom: 6px; border-bottom-width: 6px; }
+body.tall .dst .dst-dessert { min-height: 0; padding: 4px 4px 6px; }
+body.tall .dst .dst-dessert svg { max-width: 92px; }
+body.tall .dst .dst-dessert .nom { font-size: 13px; }
+body.tall .dst .dst-carnet { padding: 20px 16px 8px; margin-bottom: 10px; }
+body.tall .dst .dst-place { height: 38px; }
+body.tall .dst .dst-place.vide { display: none; }
+body.tall .dst .dst-ecrit { font-size: 24px; }
+body.tall .dst .dst-etiq { min-height: 0; font-size: 13px; }
+body.tall .dst .dst-etiq svg { width: 60px; }
+body.short .dst .dst-dessert svg { max-width: 70px; }
+body.short .dst .dst-place.vide { display: none; }
+body.compact .dst .dst-dessert svg { max-width: 64px; }
+body.compact .dst .dst-etiq svg { width: 38px; }

@@ -1,0 +1,25 @@
+{
+ "video": "hotel-depart",
+ "titre": "Le départ de l'hôtel",
+ "niveau": "A1",
+ "gel": 0.4,
+ "sousTitres": [
+  {"d": 0.62, "f": 1.32, "qui": "La réceptionniste", "texte": "Bonjour monsieur."},
+  {"d": 1.8, "f": 3.5, "qui": "Le client", "texte": "Bonjour, voici la clé de ma chambre."},
+  {"d": 4.24, "f": 5.44, "qui": "La réceptionniste", "texte": "Votre séjour s'est bien passé ?"},
+  {"d": 5.96, "f": 6.96, "qui": "Le client", "texte": "Oui, très bien, merci."},
+  {"d": 7.72, "f": 8.98, "qui": "La réceptionniste", "texte": "Au revoir et bon voyage."}
+ ],
+ "people": {
+  "receptionniste": {"name": "La réceptionniste", "qui": "La réceptionniste", "side": "g", "spot": [33, 55, 16, 58], "anchor": [33, 34], "crop": [22, 6, 22, 39],
+                     "portrait": [5.2, [24, 4, 28, 50]]},
+  "client": {"name": "Le client", "qui": "Le client", "side": "d", "spot": [82, 58, 18, 60], "anchor": [80, 40], "crop": [70, 0, 22, 39],
+             "portrait": [6.4, [39, 0, 42, 75]]}
+ },
+ "consignes": [
+  "Qu'est-ce que le client donne à la réceptionniste ? Clique sur le bon objet.",
+  "Son séjour s'est bien passé ? Clique sur la réponse du client.",
+  "Qu'est-ce que la réceptionniste dit au client ? Fais glisser le bon mot dans la phrase.",
+  "Bravo ! Le client quitte l'hôtel content. Bon voyage !"
+ ]
+}

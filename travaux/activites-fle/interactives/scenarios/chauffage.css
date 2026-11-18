@@ -1,0 +1,107 @@
+/* ================= Le chauffage ne marche pas : l'immeuble en coupe, l'agenda du gardien ================= */
+/* 1 · l'immeuble : un toit, cinq étages (porte à gauche, escalier, porte à droite), le rez-de-chaussée */
+.chauf .imm { position: relative; margin: 0 auto; width: 100%; max-width: 400px; border-radius: 6px 6px 14px 14px; background: #E7DCC8; padding: 0 10px 10px; color: #3A3127;
+  box-shadow: inset 0 0 0 3px #CDBD9F; transition: box-shadow .3s; }
+.chauf .imm-toit { height: 24px; margin: 0 -10px 4px; background: #8D5A43; clip-path: polygon(4% 100%, 14% 0, 86% 0, 96% 100%); border-radius: 4px 4px 0 0; }
+.chauf .imm-tete, .chauf .etage { display: grid; grid-template-columns: 44px minmax(0, 1fr) 64px minmax(0, 1fr); align-items: center; gap: 8px; }
+.chauf .imm-tete { padding: 2px 0 4px; font-size: 14px; font-weight: 800; text-align: center; color: #5A4C3C; }
+.chauf .imm-tete .esc-t { font-size: 12px; font-weight: 700; color: #7D6E5B; }
+.chauf .etages { display: flex; flex-direction: column; }
+.chauf .etage { height: 62px; border-bottom: 4px solid #B9A684; }
+.chauf .etage .num { font-size: 19px; font-weight: 800; text-align: center; color: #3A3127; }
+.chauf .etage .num sup { font-size: 11px; }
+.chauf .esc { align-self: stretch; margin: 0 4px; background:
+    repeating-linear-gradient(135deg, transparent 0 9px, #C9B795 9px 13px), #D9CAAE; border-left: 3px solid #A8946F; border-right: 3px solid #A8946F; }
+.chauf .porte { position: relative; justify-self: center; width: 100%; max-width: 96px; height: 58px; align-self: end; display: grid; place-items: end center; border-radius: 10px 10px 0 0;
+  background: transparent; transition: background .2s, box-shadow .2s, transform .3s var(--spring); touch-action: manipulation; }
+.chauf .porte svg { width: 38px; height: 56px; display: block; }
+.chauf .porte .cadre { fill: #F5EFE4; }
+.chauf .porte .bois { fill: #7B5236; }
+.chauf .porte .moulure { fill: none; stroke: #63412A; stroke-width: 1.6; }
+.chauf .porte .poignee { fill: #E2C36E; }
+.chauf .porte .judas { fill: #CBB98F; }
+@media (hover: hover) { .chauf .porte:hover { background: rgba(255,255,255,.55); } }
+.chauf .porte:active { transform: scale(.96); }
+.chauf .porte:focus-visible { outline: 3px solid #2346A0; outline-offset: -3px; }
+.chauf .porte.faux { box-shadow: inset 0 0 0 3px #C98A1A; background: rgba(255,198,92,.45); }
+.chauf .porte.juste { box-shadow: inset 0 0 0 3px #138A66; background: rgba(75,227,180,.4); }
+.chauf .porte.indice { animation: chauf-indice 1.1s var(--apple) infinite; }
+@keyframes chauf-indice { 50% { box-shadow: inset 0 0 0 3px #138A66; background: rgba(75,227,180,.4); } }
+.chauf .plaque { position: absolute; left: 50%; top: 4px; transform: translateX(-50%); white-space: nowrap; padding: 3px 9px; border-radius: 99px; font-size: 13px; font-weight: 800; color: var(--ink);
+  pointer-events: none; }
+.chauf .plaque:empty { display: none; }
+.chauf .plaque sup { font-size: 9px; }
+.chauf .plaque.faux { background: var(--try); animation: pop .4s var(--spring) both; }
+.chauf .plaque.juste { background: var(--ok); animation: pop .4s var(--spring) both; }
+.chauf .etage.rdc { height: 40px; border-bottom: 0; grid-template-columns: 44px minmax(0, 1fr); }
+.chauf .etage.rdc .num { font-size: 13px; }
+.chauf .etage.rdc .hall { height: 100%; display: grid; place-items: center; border-radius: 6px; background: #D2C2A5; font-size: 13px; font-weight: 700; color: #6A5B47; }
+body[data-turn="listen"] .chauf .etages, body[data-turn="wait"] .chauf .etages { pointer-events: none; }
+
+/* 2 · l'agenda du gardien : un carnet à spirale ; deux jours, trois moments ; la fiche en bas, qu'on fait glisser */
+.chauf .agenda { position: relative; border-radius: 16px; background: #FBFAF6; color: var(--ink); padding: 22px 12px 12px; display: flex; flex-direction: column; gap: 6px;
+  box-shadow: inset 0 0 0 2px #E4DFD4; transition: box-shadow .3s; }
+.chauf .ag-spirale { position: absolute; left: 18px; right: 18px; top: -8px; height: 18px; background: radial-gradient(circle at 50% 60%, #6B7280 0 4px, transparent 5px) 0 0 / 24px 18px repeat-x; }
+.chauf .ag-tete, .chauf .ag-ligne { display: grid; grid-template-columns: 96px 1fr 1fr; gap: 8px; align-items: stretch; }
+.chauf .ag-tete b { text-align: center; font-size: 17px; font-weight: 800; padding: 4px 0; border-radius: 8px; background: #EEF1F6; color: #2A3142; }
+.chauf .ag-m { display: flex; align-items: center; font-size: 16px; font-weight: 800; color: #4A5163; }
+.chauf .creneau { position: relative; min-height: 64px; border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 2px #E2DDD2; display: grid; place-items: center; padding: 4px;
+  transition: box-shadow .2s, background .2s; touch-action: manipulation; }
+.chauf .creneau::before { content: ""; position: absolute; left: 10px; right: 10px; top: 50%; border-top: 2px dotted #E2DDD2; }
+.chauf .creneau:not(:empty)::before { display: none; }
+@media (hover: hover) { .chauf .creneau:hover { background: #F4F2EC; } }
+.chauf .creneau.chaud { box-shadow: inset 0 0 0 3px #2A3142; background: #F4F2EC; }
+.chauf .creneau.faux { box-shadow: inset 0 0 0 3px #C98A1A; background: #FFF6E3; }
+.chauf .creneau.juste { box-shadow: inset 0 0 0 3px #138A66; background: #E3FAF2; }
+.chauf .creneau.juste::after { content: "✓"; position: absolute; right: 6px; top: 2px; font-size: 14px; font-weight: 800; color: #138A66; }
+.chauf .creneau.indice { animation: chauf-indice-cr 1.1s var(--apple) infinite; }
+@keyframes chauf-indice-cr { 50% { box-shadow: inset 0 0 0 3px #138A66; background: #E3FAF2; } }
+.chauf .agenda.juste { box-shadow: inset 0 0 0 2px #E4DFD4, 0 0 0 4px var(--ok); }
+/* la fiche (et sa copie posée dans une case) */
+.chauf .papier, .chauf .mini { display: flex; align-items: center; gap: 8px; border-radius: 10px; background: #FFF3B8; color: #3A3127; box-shadow: inset 0 0 0 2px #E8D57A; }
+.chauf .papier { position: relative; z-index: 5; padding: 8px 14px 8px 10px; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; min-height: 56px; }
+.chauf .papier.tenu { cursor: grabbing; z-index: 30; }
+.chauf .papier.pris { visibility: hidden; }
+.chauf .papier .ic svg { width: 40px; height: 34px; display: block; pointer-events: none; }
+.chauf .papier .txt, .chauf .mini .txt { display: flex; flex-direction: column; line-height: 1.1; pointer-events: none; }
+.chauf .papier .txt b { font-size: 17px; font-weight: 800; }
+.chauf .papier .txt small { font-size: 14px; font-weight: 700; color: #6A5B47; }
+.chauf .mini { max-width: 100%; padding: 4px 8px; gap: 4px; animation: pop .35s var(--spring) both; pointer-events: none; }
+.chauf .mini .ic { display: none; }
+.chauf .mini .txt b { font-size: 13px; font-weight: 800; }
+.chauf .mini .txt small { font-size: 11px; font-weight: 700; color: #6A5B47; }
+.chauf sup { line-height: 0; }
+.chauf .depart { display: flex; align-items: center; justify-content: center; gap: 12px; height: 88px; border-radius: 18px; background: rgba(255,255,255,.06); }
+.chauf .depart .legende { font-weight: 700; font-size: 15px; color: var(--text2); }
+body[data-turn="listen"] .chauf .creneau, body[data-turn="wait"] .chauf .creneau,
+body[data-turn="listen"] .chauf .papier, body[data-turn="wait"] .chauf .papier { pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .chauf .porte.indice, .chauf .creneau.indice { animation: none; box-shadow: inset 0 0 0 3px #138A66; background: rgba(75,227,180,.4); }
+}
+
+/* petits écrans */
+body.tall .chauf .imm { max-width: 340px; padding: 0 8px 8px; }
+body.tall .chauf .imm-toit { height: 16px; margin-bottom: 2px; }
+body.tall .chauf .etage { height: 50px; }
+body.tall .chauf .porte { height: 46px; }
+body.tall .chauf .porte svg { width: 30px; height: 43px; }
+body.tall .chauf .etage.rdc { height: 30px; }
+body.tall .chauf .imm-tete, body.tall .chauf .etage { grid-template-columns: 36px minmax(0, 1fr) 48px minmax(0, 1fr); gap: 6px; }
+body.tall .chauf .etage.rdc { grid-template-columns: 36px minmax(0, 1fr); }
+body.tall .chauf .ag-tete, body.tall .chauf .ag-ligne { grid-template-columns: 80px 1fr 1fr; gap: 6px; }
+body.tall .chauf .creneau { min-height: 52px; }
+body.tall .chauf .agenda { padding: 18px 8px 8px; }
+body.tall .chauf .depart { height: 72px; }
+body.tall .chauf .ag-m { font-size: 14px; }
+body.tall .chauf .ag-tete b { font-size: 15px; }
+body.compact .chauf .etage { height: 44px; } body.compact .chauf .porte { height: 42px; } body.compact .chauf .porte svg { width: 26px; height: 38px; }
+body.compact .chauf .etage.rdc { display: none; } body.compact .chauf .creneau { min-height: 46px; } body.compact .chauf .depart { height: 64px; }
+body.short .chauf .imm-toit, body.short .chauf .etage.rdc { display: none; }
+body.short .chauf .etage { height: 44px; } body.short .chauf .porte { height: 42px; } body.short .chauf .porte svg { width: 26px; height: 38px; }
+body.short .chauf .imm-tete, body.short .chauf .etage { grid-template-columns: 30px minmax(0, 1fr) 30px minmax(0, 1fr); gap: 4px; }
+body.short .chauf .imm-tete .esc-t { font-size: 0; }
+body.short .chauf .ag-tete, body.short .chauf .ag-ligne { grid-template-columns: 70px 1fr 1fr; gap: 4px; }
+body.short .chauf .creneau { min-height: 44px; } body.short .chauf .depart { height: 60px; } body.short .chauf .ag-spirale { display: none; } body.short .chauf .agenda { padding: 8px; }
+/* la plaque d'une porte de droite ne dépasse pas de l'immeuble */
+.chauf .porte[data-c="d"] .plaque { left: auto; right: 0; transform: none; }

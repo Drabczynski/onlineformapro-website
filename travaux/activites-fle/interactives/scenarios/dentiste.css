@@ -1,0 +1,65 @@
+/* ================= Chez le dentiste : ses dents dessinées, la fiche de soins et ses étiquettes ================= */
+/* 1 · les deux mâchoires sur fond clair ; on clique sur un quart (blanc au survol, vert si juste, orange si à revoir) */
+.dentiste .dt-bouche { position: relative; width: 100%; max-width: 440px; margin: 0 auto; aspect-ratio: 440 / 320; border-radius: 22px; background: #F3EEE8; overflow: hidden; }
+.dentiste .dt-bouche svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; overflow: visible; }
+.dentiste .axe { fill: none; stroke: #C9BFB3; stroke-width: 2; stroke-dasharray: 6 6; }
+.dentiste .gencive { fill: none; stroke: #EDB3AE; stroke-width: 40; stroke-linecap: round; stroke-linejoin: round; }
+.dentiste .mot { font-family: Figtree, system-ui, sans-serif; font-size: 19px; font-weight: 800; fill: #5A5048; text-anchor: middle; pointer-events: none; }
+.dentiste .mot.cote { font-size: 17px; }
+.dentiste .quart { cursor: pointer; outline: none; }
+.dentiste .quart .hitq { fill: rgba(255,255,255,0); stroke: none; transition: fill .2s; }
+.dentiste .quart .dent { fill: #FFFFFF; stroke: #B9AEA2; stroke-width: 2; transition: fill .2s, stroke .2s; }
+@media (hover: hover) { .dentiste .quart:hover .hitq { fill: rgba(255,255,255,.55); } .dentiste .quart:hover .dent { stroke: #5A5048; } }
+.dentiste .quart:focus-visible .hitq { fill: rgba(255,255,255,.55); }
+.dentiste .quart:focus-visible .dent { stroke: #5A5048; stroke-width: 3; }
+.dentiste .quart.faux .hitq { fill: rgba(255,198,92,.28); }
+.dentiste .quart.faux .dent { fill: #FFE2AD; stroke: #C98A1A; stroke-width: 3; }
+.dentiste .quart.juste .hitq { fill: rgba(75,227,180,.22); }
+.dentiste .quart.juste .dent { fill: #CFF7E8; stroke: #138A66; stroke-width: 3; }
+.dentiste .quart.indice .dent { animation: dt-indice 1.1s var(--apple) infinite; }
+@keyframes dt-indice { 50% { stroke: #138A66; stroke-width: 4; fill: #CFF7E8; } }
+.dentiste .dt-nom { position: absolute; z-index: 3; transform: translate(-50%, -50%); white-space: nowrap; padding: 5px 10px; border-radius: 99px; font-weight: 800; font-size: 14px;
+  color: var(--ink); pointer-events: none; animation: pop .45s var(--spring) both; }
+.dentiste .dt-nom.faux { background: var(--try); }
+.dentiste .dt-nom.juste { background: var(--ok); }
+.dentiste .dt-nom.juste::before { content: "✓ "; }
+body[data-turn="listen"] .dentiste .dt-bouche, body[data-turn="wait"] .dentiste .dt-bouche { pointer-events: none; }
+
+/* 2 · la fiche de soins (papier blanc, en-tête bleu clair) et les étiquettes à poser dans la case « Depuis » */
+.dentiste .dt-fiche { position: relative; width: 100%; max-width: 440px; margin: 0 auto; padding: 14px 18px 18px; border-radius: 16px; background: #FCFCFA; color: #2B2E35;
+  display: flex; flex-direction: column; gap: 12px; transition: box-shadow .3s; }
+.dentiste .dt-tete { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding-bottom: 8px; border-bottom: 2px solid #CFE0EE; }
+.dentiste .dt-tete b { font-size: 19px; font-weight: 800; color: #1F4E79; }
+.dentiste .dt-tete span { font-size: 13px; font-weight: 700; color: #6B7280; }
+.dentiste .dt-ligne { display: flex; align-items: center; gap: 10px; font-size: 16px; }
+.dentiste .dt-ligne > span { flex: none; width: 76px; font-weight: 800; color: #4B5160; }
+.dentiste .dt-ligne > b { font-weight: 700; }
+.dentiste .dt-case { flex: 1; height: 56px; border-radius: 12px; border: 2.5px dashed #9AA6B4; background: #F1F4F7; transition: border-color .2s, background .2s, box-shadow .2s; }
+.dentiste .dt-case.chaud { border-style: solid; border-color: #2B2E35; background: #fff; }
+.dentiste .dt-case.juste { border-style: solid; border-color: #138A66; background: rgba(75,227,180,.18); }
+.dentiste .dt-case.faux { border-style: solid; border-color: #C98A1A; background: rgba(255,198,92,.22); }
+.dentiste .dt-etiqs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.dentiste .dt-etiq { position: relative; z-index: 5; min-height: 52px; padding: 6px 10px; border-radius: 12px; background: #FFF6D8; color: #2B2E35; font-size: 19px; font-weight: 800;
+  box-shadow: inset 0 0 0 2px #E2CF8E; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; transition: box-shadow .2s; }
+.dentiste .dt-etiq.tenue { cursor: grabbing; z-index: 30; box-shadow: inset 0 0 0 3px #2B2E35; }
+.dentiste .dt-etiq.posee { z-index: 20; }
+.dentiste .dt-etiq.juste { box-shadow: inset 0 0 0 4px var(--ok); background: #DDF8EC; }
+.dentiste .dt-etiq.juste::after { content: " ✓"; color: #138A66; }
+.dentiste .dt-etiq.faux { box-shadow: inset 0 0 0 4px var(--try); }
+.dentiste .dt-etiq.indice { animation: dt-indice-e 1.1s var(--apple) infinite; }
+@keyframes dt-indice-e { 50% { box-shadow: inset 0 0 0 4px var(--ok); } }
+@media (hover: hover) { .dentiste .dt-etiq:hover { box-shadow: inset 0 0 0 3px #fff, inset 0 0 0 5px #E2CF8E; } }
+body[data-turn="listen"] .dentiste .dt-etiq, body[data-turn="wait"] .dentiste .dt-etiq { pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dentiste .quart.indice .dent { animation: none; stroke: #138A66; stroke-width: 4; }
+  .dentiste .dt-etiq.indice { animation: none; box-shadow: inset 0 0 0 4px var(--ok); }
+}
+
+/* petits écrans */
+body.tall .dentiste .dt-bouche { max-width: 340px; }
+body.short .dentiste .dt-bouche { max-width: 230px; }
+body.tall .dentiste .dt-fiche, body.short .dentiste .dt-fiche { padding: 10px 12px 12px; gap: 8px; }
+body.tall .dentiste .dt-case, body.short .dentiste .dt-case { height: 48px; }
+body.tall .dentiste .dt-etiq, body.short .dentiste .dt-etiq { min-height: 46px; font-size: 17px; }
+body.short .dentiste .dt-tete span, body.compact .dentiste .dt-tete span { display: none; }

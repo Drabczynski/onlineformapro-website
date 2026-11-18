@@ -1,0 +1,24 @@
+{
+ "video": "technicien-mobile",
+ "titre": "Chez le réparateur",
+ "niveau": "A1",
+ "gel": 9.5,
+ "sousTitres": [
+  {"d": 0.18, "f": 2.42, "qui": "La cliente", "texte": "Mon téléphone est tombé, euh, l'écran est cassé."},
+  {"d": 3.18, "f": 4.94, "qui": "Le technicien", "texte": "Je peux le réparer, ça coûte quatre-vingts euros."},
+  {"d": 5.26, "f": 6.04, "qui": "La cliente", "texte": "Ça prend combien de temps ?"},
+  {"d": 7.2, "f": 8.66, "qui": "Le technicien", "texte": "Une heure. Revenez à quinze heures."}
+ ],
+ "people": {
+  "technicien": {"name": "Le technicien", "qui": "Le technicien", "side": "g", "spot": [26, 55, 17, 58], "anchor": [28, 40], "crop": [20, 6, 15, 27],
+                 "portrait": [4.0, [28, 0, 42, 75]]},
+  "cliente": {"name": "La cliente", "qui": "La cliente", "side": "d", "spot": [70, 58, 15, 58], "anchor": [70, 44], "crop": [61, 12, 16, 29],
+              "portrait": [5.8, [37, 0, 42, 75]]}
+ },
+ "consignes": [
+  "Qu'est-ce qui est cassé ? Clique sur la bonne partie du téléphone.",
+  "La réparation coûte combien ? Fais glisser le bon prix sur la fiche de réparation.",
+  "Elle revient à quelle heure ? Fais tourner l'aiguille, puis clique sur Valider.",
+  "Bravo ! À quinze heures, son téléphone est réparé."
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "video": "meubles",
+ "titre": "Au magasin de meubles",
+ "niveau": "A1",
+ "gel": 9.6,
+ "sousTitres": [
+  {"d": 0.32, "f": 2.64, "qui": "Le client", "texte": "Ce canapé me plaît. Il existe en bleu, non ?"},
+  {"d": 3.24, "f": 4.78, "qui": "La vendeuse", "texte": "Oui, mais il faut attendre trois semaines."},
+  {"d": 5.76, "f": 6.66, "qui": "Le client", "texte": "Vous livrez à domicile ?"},
+  {"d": 7.24, "f": 8.9, "qui": "La vendeuse", "texte": "Oui, et la livraison est gratuite."}
+ ],
+ "people": {
+  "vendeuse": {"name": "La vendeuse", "qui": "La vendeuse", "side": "g", "spot": [29, 58, 12, 44], "anchor": [31, 42], "crop": [26, 10, 12, 22],
+               "portrait": [4.6, [19, 0, 50, 89]]},
+  "client": {"name": "Le client", "qui": "Le client", "side": "d", "spot": [66, 56, 14, 46], "anchor": [64, 38], "crop": [58, 6, 13, 24],
+             "portrait": [6.8, [38, 0, 50, 89]]}
+ },
+ "consignes": [
+  "Le client veut ce canapé en quelle couleur ? Clique sur le bon tissu.",
+  "Pour avoir le canapé bleu, il faut attendre combien de temps ? Fais glisser le curseur, puis clique sur Valider.",
+  "Le magasin livre à domicile ? Et la livraison coûte combien ? Coche les bonnes cases, puis clique sur Valider.",
+  "Super ! Dans trois semaines, le client a son canapé bleu chez lui."
+ ]
+}

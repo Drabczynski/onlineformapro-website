@@ -1,0 +1,101 @@
+/* ================= Au magasin de meubles : le canapé et le nuancier, la frise des semaines, le bon de commande ================= */
+/* le canapé dessiné : le tissu suit --tissu / --tissu2 */
+.meubles .mb-canape .t, .meubles .mb-mini .t { fill: var(--tissu, #E9E2D4); transition: fill .35s; }
+.meubles .mb-canape .t2, .meubles .mb-mini .t2 { fill: var(--tissu2, #D3CAB8); transition: fill .35s; }
+.meubles .mb-canape .pied, .meubles .mb-mini .pied { fill: #7A5A3A; }
+
+/* 1 · le canapé posé dans le magasin, et le nuancier en dessous */
+.meubles .mb-scene { display: grid; place-items: center; padding: 14px 18px 8px; border-radius: 22px; background: linear-gradient(#F3EFE8 0 74%, #D9CDB9 74%); }
+.meubles .mb-canape { width: 100%; max-width: 320px; }
+.meubles .mb-canape svg { display: block; width: 100%; height: auto; }
+.meubles .mb-nuancier { padding: 12px 10px 12px; border-radius: 22px; background: #4A3F36; box-shadow: inset 0 0 0 2px rgba(255,255,255,.1); }
+.meubles .mb-etiq { display: block; text-align: center; font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: rgba(255,255,255,.78); margin-bottom: 8px; }
+.meubles .mb-tissus { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.meubles .mb-tissu { display: flex; flex-direction: column; align-items: center; gap: 6px; min-height: 44px; padding: 8px 4px 6px; border-radius: 14px; background: #F6F1E8;
+  color: var(--ink); transition: box-shadow .25s, transform .3s var(--spring); touch-action: manipulation; }
+.meubles .mb-tissu .ech { display: block; width: 100%; max-width: 56px; aspect-ratio: 1; border-radius: 8px 8px 8px 20px; background: var(--c);
+  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.09) 0 2px, transparent 2px 5px), repeating-linear-gradient(-45deg, rgba(0,0,0,.08) 0 2px, transparent 2px 5px);
+  box-shadow: inset 0 -6px 0 var(--o); }
+.meubles .mb-tissu .nom { font-weight: 800; font-size: 14px; }
+@media (hover: hover) { .meubles .mb-tissu:hover { transform: translateY(-2px); box-shadow: 0 0 0 3px #fff; } }
+.meubles .mb-tissu:focus-visible { box-shadow: 0 0 0 3px #fff; }
+.meubles .mb-tissu:active { transform: scale(.94); }
+.meubles .mb-tissu.juste { box-shadow: 0 0 0 4px var(--ok); }
+.meubles .mb-tissu.juste .nom::after { content: " ✓"; color: #12795A; }
+.meubles .mb-tissu.faux { box-shadow: 0 0 0 4px var(--try); }
+.meubles .mb-tissu.faux .nom::after { content: " ?"; color: #A3541A; }
+.meubles .mb-tissu.indice { animation: mb-indice 1.1s var(--apple) infinite; }
+@keyframes mb-indice { 50% { box-shadow: 0 0 0 4px var(--ok); } }
+
+/* 2 · la frise des semaines et son curseur */
+.meubles .mb-calendrier { padding: 14px 14px 12px; border-radius: 22px; background: #F6F1E8; color: var(--ink); }
+.meubles .mb-lu { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0 0 12px; min-height: 48px; }
+.meubles .mb-lu b { font-size: 28px; font-weight: 800; letter-spacing: -.01em; }
+.meubles .mb-mini { display: inline-block; width: 54px; flex: none; --tissu: #3E6FC2; --tissu2: #2D559B; }
+.meubles .mb-mini svg { display: block; width: 100%; height: auto; }
+.meubles .mb-frise { position: relative; padding: 4px 0 2px; border-radius: 16px; transition: box-shadow .25s; }
+.meubles .mb-sems { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.meubles .mb-sem { min-height: 44px; border-radius: 10px; background: rgba(43,38,32,.07); color: #2B2620; font-weight: 800; font-size: 18px; font-variant-numeric: tabular-nums;
+  transition: background .2s; touch-action: manipulation; }
+.meubles .mb-sem[data-n="0"] { font-size: 13px; background: rgba(43,38,32,.14); }
+.meubles .mb-sem.pris { background: rgba(62,111,194,.22); color: #1E3F7A; }
+.meubles .mb-rail { position: relative; height: 56px; margin-top: 6px; touch-action: none; cursor: pointer; }
+.meubles .mb-rail::before { content: ""; position: absolute; left: calc(100% / 14); right: calc(100% / 14); top: 50%; height: 8px; margin-top: -4px; border-radius: 4px; background: #D8CDBB; }
+.meubles .mb-rempli { position: absolute; left: calc(100% / 14); top: 50%; height: 8px; margin-top: -4px; border-radius: 4px; background: #3E6FC2;
+  width: calc(100% / 7 * 6 * var(--v)); transition: width .18s; }
+.meubles .mb-curseur { position: absolute; top: 50%; left: calc(100% / 7 * (.5 + var(--v) * 6)); width: 50px; height: 50px; margin: -25px 0 0 -25px; border-radius: 50%;
+  display: grid; place-items: center; background: #fff; color: #2D559B; box-shadow: inset 0 0 0 3px #3E6FC2; cursor: grab; touch-action: none; transition: left .18s, transform .2s var(--spring); }
+.meubles .mb-curseur svg { width: 26px; height: 26px; pointer-events: none; }
+.meubles .mb-curseur.tenu { cursor: grabbing; transform: scale(1.1); transition: transform .2s var(--spring); }
+.meubles .mb-curseur:focus-visible { outline: 3px solid #2346A0; outline-offset: 3px; }
+.meubles .mb-unite { margin: 2px 0 0; text-align: center; font-size: 14px; font-weight: 700; color: #6B6255; }
+.meubles .mb-frise.juste { box-shadow: 0 0 0 4px var(--ok); }
+.meubles .mb-frise.juste .mb-curseur { box-shadow: inset 0 0 0 4px #138A66; color: #138A66; }
+.meubles .mb-frise.juste .mb-unite::after { content: " ✓"; color: #138A66; }
+.meubles .mb-frise.faux { box-shadow: 0 0 0 4px var(--try); }
+.meubles .mb-frise.faux .mb-curseur { box-shadow: inset 0 0 0 4px #C98A1A; }
+
+/* 3 · le bon de commande : on coche au stylo bleu */
+.meubles .mb-bon { display: flex; flex-direction: column; gap: 8px; padding: 16px 18px 18px; border-radius: 14px; background: #FFFDF6; color: #2B2620; transition: box-shadow .3s; }
+.meubles .mb-bon .tete { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #E2D9C5; padding-bottom: 6px; }
+.meubles .mb-bon .tete b { font-size: 18px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+.meubles .mb-bon .tete span { font-size: 14px; font-weight: 700; color: #6B6255; }
+.meubles .mb-bon .article { display: flex; align-items: center; gap: 10px; margin: 0; font-size: 15px; font-weight: 700; color: #4A4338; }
+.meubles .mb-bon .ligne-b { margin: 4px 0 0; font-size: 16px; font-weight: 800; color: #2B2620; }
+.meubles .mb-cases { display: grid; gap: 8px; }
+.meubles .mb-cases.deux { grid-template-columns: repeat(2, 1fr); }
+.meubles .mb-cases.trois { grid-template-columns: repeat(3, 1fr); }
+.meubles .mb-case { position: relative; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 8px; border-radius: 12px;
+  background: rgba(43,38,32,.06); color: #2B2620; font-weight: 700; font-size: 17px; transition: background .2s, box-shadow .2s; touch-action: manipulation; }
+@media (hover: hover) { .meubles .mb-case:hover { background: rgba(43,38,32,.12); } }
+.meubles .mb-case .boite { position: relative; flex: none; width: 24px; height: 24px; border-radius: 5px; background: #fff; box-shadow: inset 0 0 0 2px #8C8273; }
+/* coché : un trait de stylo bleu (pas de rouge) */
+.meubles .mb-case[aria-checked="true"] { background: rgba(35,70,160,.08); box-shadow: inset 0 0 0 2px #2346A0; }
+.meubles .mb-case[aria-checked="true"] .boite::after { content: ""; position: absolute; left: 4px; top: -4px; width: 10px; height: 20px; border: solid #2346A0; border-width: 0 4px 4px 0;
+  transform: rotate(40deg); border-radius: 1px; }
+.meubles .mb-case.juste { box-shadow: inset 0 0 0 3px #138A66; background: rgba(75,227,180,.28); }
+.meubles .mb-case.juste .boite::after { border-color: #138A66; }
+.meubles .mb-case.juste::before { content: "✓"; position: absolute; right: 6px; top: 2px; font-size: 13px; color: #138A66; font-weight: 800; }
+.meubles .mb-case.faux { box-shadow: inset 0 0 0 3px #C98A1A; background: rgba(255,198,92,.35); }
+.meubles .mb-case.faux .boite::after { border-color: #C98A1A; }
+.meubles .mb-bon.juste { box-shadow: 0 0 0 4px var(--ok); }
+
+body[data-turn="listen"] .meubles .mb-tissu, body[data-turn="wait"] .meubles .mb-tissu,
+body[data-turn="listen"] .meubles .mb-frise, body[data-turn="wait"] .meubles .mb-frise,
+body[data-turn="listen"] .meubles .mb-cases, body[data-turn="wait"] .meubles .mb-cases { pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .meubles .mb-tissu.indice { animation: none; box-shadow: 0 0 0 4px var(--ok); }
+  .meubles .mb-curseur, .meubles .mb-rempli { transition: none; }
+}
+
+/* téléphone tenu droit, téléphone couché : plus petit */
+body.tall .meubles .mb-canape { max-width: 240px; } body.tall .meubles .mb-scene { padding: 8px 12px 4px; }
+body.tall .meubles .mb-tissus { gap: 5px; } body.tall .meubles .mb-tissu { padding: 6px 2px 4px; } body.tall .meubles .mb-tissu .nom { font-size: 13px; }
+body.tall .meubles .mb-lu b { font-size: 24px; } body.tall .meubles .mb-sem { font-size: 16px; }
+body.tall .meubles .mb-bon { padding: 10px 12px 12px; gap: 5px; }
+body.compact .meubles .mb-canape { max-width: 180px; } body.compact .meubles .mb-bon .article { display: none; }
+body.short .meubles .mb-scene { display: none; } body.short .meubles .mb-tissu .ech { max-width: 36px; } body.short .meubles .mb-tissu .nom { font-size: 12px; }
+body.short .meubles .mb-lu { margin-bottom: 4px; min-height: 36px; } body.short .meubles .mb-lu b { font-size: 20px; } body.short .meubles .mb-mini { width: 40px; }
+body.short .meubles .mb-sem { font-size: 14px; } body.short .meubles .mb-sem[data-n="0"] { font-size: 11px; }
+body.short .meubles .mb-bon { padding: 8px 10px 10px; gap: 4px; } body.short .meubles .mb-bon .article { display: none; } body.short .meubles .mb-case { min-height: 44px; font-size: 15px; }

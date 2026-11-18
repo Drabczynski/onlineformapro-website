@@ -1,0 +1,23 @@
+{
+ "video": "dentiste",
+ "titre": "Chez le dentiste",
+ "niveau": "A1",
+ "gel": 9.5,
+ "sousTitres": [
+  {"d": 0.26, "f": 1.78, "qui": "La dentiste", "texte": "Bonjour, qu'est-ce qui ne va pas ?"},
+  {"d": 2.48, "f": 4.24, "qui": "Le patient", "texte": "J'ai mal à une dent en bas à gauche."},
+  {"d": 5.24, "f": 5.7, "qui": "La dentiste", "texte": "Depuis quand ?"},
+  {"d": 6.04, "f": 6.78, "qui": "Le patient", "texte": "Depuis trois jours."}
+ ],
+ "people": {
+  "dentiste": {"name": "La dentiste", "qui": "La dentiste", "side": "g", "spot": [26, 52, 13, 52], "anchor": [26, 24], "crop": [19, 10, 14, 25],
+               "portrait": [5.5, [15, 0, 40, 71]]},
+  "patient": {"name": "Le patient", "qui": "Le patient", "side": "d", "spot": [70, 55, 18, 50], "anchor": [72, 28], "crop": [64, 14, 16, 28],
+              "portrait": [3.0, [34, 0, 40, 71]]}
+ },
+ "consignes": [
+  "Où est la dent qui fait mal ? Clique au bon endroit sur le dessin.",
+  "Il a mal depuis quand ? Fais glisser la bonne étiquette sur la fiche.",
+  "Bravo ! La dentiste va soigner sa dent."
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "video": "medecin-fievre",
+ "titre": "J'ai mal à la gorge",
+ "niveau": "A1",
+ "gel": 9.6,
+ "sousTitres": [
+  {"d": 0.3, "f": 1.8, "qui": "La médecin", "texte": "Bonjour, qu'est-ce qui ne va pas ?"},
+  {"d": 2.68, "f": 4.52, "qui": "Le patient", "texte": "J'ai mal à la gorge et de la fièvre."},
+  {"d": 5.34, "f": 6.34, "qui": "La médecin", "texte": "Depuis combien de temps ?"},
+  {"d": 6.38, "f": 7.02, "qui": "Le patient", "texte": "Depuis samedi."},
+  {"d": 7.74, "f": 8.66, "qui": "Le patient", "texte": "Et je tousse la nuit."}
+ ],
+ "people": {
+  "medecin": {"name": "La médecin", "qui": "La médecin", "side": "g", "spot": [21, 52, 16, 58], "anchor": [20, 37], "crop": [13, 9, 15, 27],
+              "portrait": [5.02, [18, 0, 36, 64]]},
+  "patient": {"name": "Le patient", "qui": "Le patient", "side": "d", "spot": [78, 55, 16, 60], "anchor": [75, 37], "crop": [67, 10, 15, 27],
+              "portrait": [2.0, [35, 0, 37, 66]]}
+ },
+ "consignes": [
+  "Où est-ce que le patient a mal ? Clique au bon endroit dans l'image.",
+  "Il est malade depuis quel jour ? Fais glisser le bon jour sur la fiche du patient.",
+  "Quand est-ce qu'il tousse ? Fais tourner la roue, puis clique sur Valider.",
+  "Bravo ! Le patient va bientôt aller mieux."
+ ]
+}

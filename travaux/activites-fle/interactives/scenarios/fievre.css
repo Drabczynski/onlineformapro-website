@@ -1,0 +1,59 @@
+/* ================= J'ai mal à la gorge : la fiche du patient et les jours, la roue de la journée ================= */
+/* 2 · la fiche sur sa planchette ; la fente « Malade depuis : … » ; les sept étiquettes des jours */
+.fievre .fi-fiche { position: relative; margin-top: 8px; border-radius: 18px; background: #FBFAF6; color: var(--ink); padding: 26px 16px 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 0 0 2px #E4DFD4; }
+.fievre .fi-pince { position: absolute; left: 50%; top: -9px; width: 96px; height: 22px; margin-left: -48px; border-radius: 8px; background: #7D8796; box-shadow: inset 0 -4px 0 #5F6876; }
+.fievre .fi-tete { display: flex; flex-direction: column; align-items: center; gap: 2px; padding-bottom: 10px; border-bottom: 2px dashed #DDD6C8; }
+.fievre .fi-tete b { font-size: 19px; font-weight: 800; }
+.fievre .fi-tete span { font-size: 15px; font-weight: 600; color: #4A5163; }
+.fievre .fi-ligne { margin: 0; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; font-size: 19px; font-weight: 800; color: #2A3142; }
+.fievre .fi-fente { display: inline-grid; place-items: center; min-width: 150px; height: 52px; padding: 0 16px; border-radius: 14px; background: #fff; box-shadow: inset 0 0 0 2.5px #4A5163; transition: box-shadow .2s, background .2s; }
+.fievre .fi-fente b { font-size: 22px; font-weight: 800; color: var(--ink); }
+.fievre .fi-fente.vide { box-shadow: inset 0 0 0 2.5px #9AA0AC; background: #F2F0EA; }
+.fievre .fi-fente.vide b { color: #9AA0A8; }
+.fievre .fi-fente.chaud { box-shadow: inset 0 0 0 3px #2A3142; background: #fff; }
+.fievre .fi-fente.juste { box-shadow: inset 0 0 0 3px #1FA97E; background: #E3FAF2; }
+.fievre .fi-fente.juste b::after { content: " ✓"; color: #138A66; }
+.fievre .fi-fente.faux { box-shadow: inset 0 0 0 3px var(--try); background: #FFF6E3; }
+.fievre .fi-jours { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.fievre .fi-jour { position: relative; z-index: 4; min-width: 112px; height: 50px; padding: 0 14px; border-radius: 14px; background: rgba(255,255,255,.94); color: var(--ink);
+  font-size: 18px; font-weight: 800; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; transition: opacity .25s, box-shadow .25s; }
+.fievre .fi-jour.tenu { z-index: 30; cursor: grabbing; box-shadow: 0 0 0 3px #fff; }
+.fievre .fi-jour.pose { opacity: .3; }
+.fievre .fi-jour.juste { opacity: 1; box-shadow: inset 0 0 0 3px #1FA97E; background: #E3FAF2; }
+.fievre .fi-jour.indice { animation: fi-indice 1.1s var(--apple) infinite; }
+@keyframes fi-indice { 50% { box-shadow: inset 0 0 0 4px #1FA97E; background: #E3FAF2; } }
+.fi-vol { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 14px; background: #fff; color: #0B0D16; font: 800 18px Figtree, system-ui, sans-serif; }
+
+/* 3 · la roue de la journée, le repère en haut, une flèche de chaque côté */
+.fievre .fi-roue-zone { display: grid; grid-template-columns: 56px minmax(0, 1fr) 56px; align-items: center; gap: 10px; }
+.fievre .fi-fl { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.92); color: var(--ink); transition: transform .3s var(--spring); touch-action: manipulation; }
+.fievre .fi-fl svg { width: 26px; height: 26px; }
+.fievre .fi-fl:active { transform: scale(.9); }
+.fievre .fi-roue-cadre { position: relative; width: 100%; max-width: 280px; margin: 0 auto; padding-top: 18px; }
+.fievre .fi-repere { position: absolute; left: 50%; top: 0; width: 0; height: 0; margin-left: -14px; border: 14px solid transparent; border-top: 20px solid #fff; border-bottom: 0; z-index: 2; }
+.fievre .fi-roue { display: block; width: 100%; height: auto; border-radius: 50%; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; box-shadow: 0 0 0 4px rgba(255,255,255,.35); transition: box-shadow .25s; }
+.fievre .fi-roue:active { cursor: grabbing; }
+.fievre .fi-part { cursor: pointer; }
+.fievre .fi-phrase { margin: 0; text-align: center; font-size: 20px; font-weight: 700; color: #fff; }
+.fievre .fi-phrase b { display: inline-block; padding: 3px 12px; border-radius: 99px; background: #fff; color: var(--ink); font-weight: 800; }
+.fievre .fi-roue-zone.faux .fi-roue { box-shadow: 0 0 0 6px var(--try); }
+.fievre .fi-roue-zone.juste .fi-roue { box-shadow: 0 0 0 6px var(--ok); }
+.fievre .fi-roue-zone.faux ~ .fi-phrase b { background: var(--try); }
+.fievre .fi-roue-zone.juste ~ .fi-phrase b { background: var(--ok); }
+.fievre .fi-roue-zone.juste ~ .fi-phrase b::after { content: " ✓"; }
+
+body[data-turn="listen"] .fievre .fi-jour, body[data-turn="wait"] .fievre .fi-jour,
+body[data-turn="listen"] .fievre .fi-fl, body[data-turn="wait"] .fievre .fi-fl,
+body[data-turn="listen"] .fievre .fi-roue, body[data-turn="wait"] .fievre .fi-roue { pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) { .fievre .fi-jour.indice { animation: none; box-shadow: inset 0 0 0 4px #1FA97E; } }
+
+/* téléphone tenu droit, téléphone couché : plus petit */
+body.tall .fievre .fi-fiche { padding: 22px 12px 12px; gap: 8px; } body.tall .fievre .fi-jour { min-width: 92px; height: 46px; font-size: 16px; padding: 0 10px; }
+body.tall .fievre .fi-jours { gap: 8px; } body.tall .fievre .fi-fente { height: 46px; min-width: 120px; }
+body.tall .fievre .fi-roue-cadre { max-width: 220px; } body.tall .fievre .fi-roue-zone { grid-template-columns: 48px minmax(0, 1fr) 48px; } body.tall .fievre .fi-fl { width: 48px; height: 48px; }
+body.compact .fievre .fi-roue-cadre { max-width: 200px; }
+body.short .fievre .fi-fiche { padding: 18px 10px 10px; gap: 6px; } body.short .fievre .fi-tete { padding-bottom: 6px; } body.short .fievre .fi-tete b { font-size: 16px; }
+body.short .fievre .fi-jour { min-width: 84px; height: 44px; font-size: 15px; } body.short .fievre .fi-jours { gap: 6px; }
+body.short .fievre .fi-fente { height: 44px; } body.short .fievre .fi-ligne { font-size: 16px; }
+body.short .fievre .fi-roue-cadre { max-width: 170px; padding-top: 14px; } body.short .fievre .fi-phrase { font-size: 17px; }

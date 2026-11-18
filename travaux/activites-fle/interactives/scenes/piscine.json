@@ -1,0 +1,24 @@
+{
+ "video": "piscine",
+ "titre": "À la piscine",
+ "niveau": "A1",
+ "gel": 1.2,
+ "sousTitres": [
+  {"d": 0.16, "f": 1.64, "qui": "La cliente", "texte": "Une entrée adulte, s'il vous plaît."},
+  {"d": 2.72, "f": 4.02, "qui": "L'employé", "texte": "Quatre euros. Vous avez un bonnet ?"},
+  {"d": 4.62, "f": 6.56, "qui": "La cliente", "texte": "Non, j'ai oublié. Il est obligatoire ?"},
+  {"d": 7.0, "f": 8.66, "qui": "L'employé", "texte": "Oui, mais vous pouvez en acheter un ici."}
+ ],
+ "people": {
+  "employe": {"name": "L'employé", "qui": "L'employé", "side": "g", "spot": [20, 50, 12, 62], "anchor": [21, 36], "crop": [16, 8, 13, 23],
+              "portrait": [2.0, [20, 0, 44, 78]]},
+  "cliente": {"name": "La cliente", "qui": "La cliente", "side": "d", "spot": [69, 55, 12, 62], "anchor": [67, 38], "crop": [61, 13, 13, 23],
+              "portrait": [4.2, [38, 0, 44, 78]]}
+ },
+ "consignes": [
+  "Qu'est-ce qu'elle demande ? Sur la caisse, clique sur la bonne entrée, puis sur Valider.",
+  "L'entrée coûte combien ? Tape le prix sur le terminal, puis clique sur Valider.",
+  "Qu'est-ce qu'elle a oublié ? Elle peut l'acheter ici. Fais glisser le bon objet sur le comptoir.",
+  "Bravo ! Elle a son entrée, et elle peut acheter un bonnet à l'accueil."
+ ]
+}

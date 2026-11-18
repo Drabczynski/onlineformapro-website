@@ -1,0 +1,74 @@
+/* ================= À la piscine : la caisse, le terminal de carte, le présentoir ================= */
+/* l'écran de la caisse : des touches de tarif (blanc = choisi, vert = juste, orange = à revoir) */
+.pisc .pi-caisse { border-radius: 22px; padding: 12px; background: #1E2A3A; box-shadow: inset 0 0 0 3px #33445C; display: flex; flex-direction: column; gap: 10px; transition: box-shadow .3s; }
+.pisc .pi-caisse.juste { box-shadow: inset 0 0 0 4px var(--ok); }
+.pisc .pi-barre { display: flex; justify-content: space-between; align-items: baseline; color: #CFE6FF; padding: 0 4px; }
+.pisc .pi-barre b { font-size: 17px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.pisc .pi-barre span { font-size: 13px; font-weight: 700; opacity: .75; }
+.pisc .pi-tarifs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 8px; padding-top: 4px; }
+.pisc .pi-tarif { position: relative; min-height: 64px; border-radius: 14px; background: #2C7BC4; color: #fff; display: flex; align-items: center; gap: 8px; padding: 8px 10px; text-align: left;
+  font-weight: 800; font-size: 15px; line-height: 1.15; transition: background .2s, box-shadow .2s; touch-action: manipulation; }
+.pisc .pi-tarif:last-child { grid-column: 1 / -1; }
+.pisc .pi-tarif svg { flex: none; width: 38px; height: 38px; }
+@media (hover: hover) { .pisc .pi-tarif:hover { background: #3A8AD4; } }
+.pisc .pi-tarif[aria-pressed="true"] { box-shadow: inset 0 0 0 3px #fff, 0 0 0 2px #fff; background: #3A8AD4; }
+.pisc .pi-tarif.juste { box-shadow: inset 0 0 0 3px var(--ok), 0 0 0 2px var(--ok); }
+.pisc .pi-tarif.juste::after { content: "✓ juste"; position: absolute; right: 8px; top: -10px; padding: 1px 8px; border-radius: 99px; background: var(--ok); color: var(--ink); font-size: 12px; }
+.pisc .pi-tarif.faux { box-shadow: inset 0 0 0 3px var(--try), 0 0 0 2px var(--try); }
+.pisc .pi-tarif.faux::after { content: "à revoir"; position: absolute; right: 8px; top: -10px; padding: 1px 8px; border-radius: 99px; background: var(--try); color: var(--ink); font-size: 12px; }
+.pisc .pi-tarif.indice { animation: indice 1.1s var(--apple) infinite; }
+.pisc .pi-ticket { border-radius: 10px; background: #F7F4EC; color: #2B2620; padding: 8px 12px; display: flex; align-items: baseline; gap: 10px; font-size: 16px; min-height: 44px; }
+.pisc .pi-ticket small { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: #7A7266; }
+.pisc .pi-ticket i { color: #8E877C; }
+body[data-turn="listen"] .pisc .pi-tarifs, body[data-turn="wait"] .pisc .pi-tarifs { pointer-events: none; }
+
+/* le terminal de carte */
+.pisc .pi-tpe { margin: 0 auto; width: 100%; max-width: 300px; border-radius: 28px; padding: 16px 16px 18px; background: #2B2F36; box-shadow: inset 0 0 0 3px #3D434D; transition: box-shadow .3s; }
+.pisc .pi-tpe.juste { box-shadow: inset 0 0 0 4px var(--ok); }
+.pisc .pi-tpe.faux { box-shadow: inset 0 0 0 4px var(--try); }
+.pisc .pi-ecran { border-radius: 10px; background: #C9DCC2; color: #1F2A1C; padding: 8px 12px; margin-bottom: 14px; font-family: ui-monospace, Menlo, monospace; }
+.pisc .pi-ecran small { display: block; font-size: 12px; font-weight: 700; opacity: .75; }
+.pisc .pi-ecran div { text-align: right; font-size: 34px; font-weight: 800; line-height: 1.2; }
+.pisc .pi-ecran.vide b { opacity: .35; }
+.pisc .pi-tpe.juste .pi-ecran div::after { content: " ✓"; color: #138A66; }
+.pisc .pi-clavier { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.pisc .pi-touche { min-height: 48px; border-radius: 12px; background: #4A505B; color: #fff; font-size: 22px; font-weight: 800; display: grid; place-items: center; touch-action: manipulation; }
+.pisc .pi-touche:active { transform: scale(.94); }
+.pisc .pi-touche.corr { background: #E3B23C; color: #2B2F36; }
+.pisc .pi-touche.corr svg { width: 26px; height: 26px; }
+@media (hover: hover) { .pisc .pi-touche:hover { background: #5A616D; } .pisc .pi-touche.corr:hover { background: #EDC25A; } }
+body[data-turn="listen"] .pisc .pi-clavier, body[data-turn="wait"] .pisc .pi-clavier { pointer-events: none; }
+
+/* le présentoir et le comptoir de l'accueil */
+.pisc .pi-etiq { display: block; text-align: center; font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: rgba(255,255,255,.8); margin-bottom: 8px; }
+.pisc .pi-presentoir { position: relative; z-index: 2; border-radius: 22px; padding: 12px; background: #3C6E8F; box-shadow: inset 0 0 0 3px #2D5670; }
+.pisc .pi-objets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.pisc .pi-objet { position: relative; z-index: 1; aspect-ratio: 1; min-height: 64px; border-radius: 16px; background: rgba(255,255,255,.94); display: grid; place-items: center; touch-action: none; cursor: grab; }
+.pisc .pi-objet svg { width: 72%; height: 72%; pointer-events: none; }
+.pisc .pi-objet.tenu { z-index: 5; cursor: grabbing; box-shadow: 0 0 0 3px #fff; }
+.pisc .pi-objet.juste { z-index: 4; box-shadow: 0 0 0 4px var(--ok); }
+.pisc .pi-objet.faux { z-index: 4; box-shadow: 0 0 0 4px var(--try); }
+.pisc .pi-objet.indice { animation: indice 1.1s var(--apple) infinite; }
+.pisc .pi-comptoir { position: relative; z-index: 1; margin-top: 12px; min-height: 130px; border-radius: 18px; background: linear-gradient(#D9DEE3, #BCC4CC); box-shadow: inset 0 3px 0 rgba(255,255,255,.5);
+  display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 8px 10px 10px; transition: box-shadow .2s; }
+.pisc .pi-comptoir .pi-etiq { color: #4B5562; }
+.pisc .pi-comptoir.chaud { box-shadow: inset 0 0 0 3px #fff; }
+.pisc .pi-comptoir.juste { box-shadow: inset 0 0 0 4px var(--ok); }
+.pisc .pi-comptoir.faux { box-shadow: inset 0 0 0 4px var(--try); }
+.pisc .pi-nom { min-height: 26px; padding: 3px 12px; border-radius: 99px; font-weight: 800; font-size: 15px; color: var(--ink); }
+.pisc .pi-nom:empty { visibility: hidden; }
+.pisc .pi-comptoir.juste .pi-nom { background: var(--ok); }
+.pisc .pi-comptoir.faux .pi-nom { background: var(--try); }
+body[data-turn="listen"] .pisc .pi-objets, body[data-turn="wait"] .pisc .pi-objets { pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) { .pisc .pi-tarif.indice, .pisc .pi-objet.indice { animation: none; box-shadow: 0 0 0 4px var(--ok); } }
+
+/* petits écrans */
+body.tall .pisc .pi-tarif, body.short .pisc .pi-tarif { min-height: 50px; font-size: 14px; }
+body.tall .pisc .pi-tarif svg, body.short .pisc .pi-tarif svg { width: 30px; height: 30px; }
+body.tall .pisc .pi-objets, body.short .pisc .pi-objets { grid-template-columns: repeat(6, 1fr); gap: 6px; }
+body.tall .pisc .pi-objet, body.short .pisc .pi-objet { min-height: 48px; border-radius: 12px; }
+body.tall .pisc .pi-comptoir, body.short .pisc .pi-comptoir { min-height: 96px; }
+body.short .pisc .pi-touche, body.tall .pisc .pi-touche { min-height: 44px; font-size: 20px; }
+body.short .pisc .pi-ecran, body.tall .pisc .pi-ecran { margin-bottom: 8px; }
+body.short .pisc .pi-ecran div, body.tall .pisc .pi-ecran div { font-size: 26px; }

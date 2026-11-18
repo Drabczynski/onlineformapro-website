@@ -1,0 +1,26 @@
+{
+ "video": "inscription",
+ "titre": "L'inscription à l'école",
+ "niveau": "A1",
+ "gel": 9.5,
+ "sousTitres": [
+  {"d": 0.28, "f": 1.86, "qui": "Le père", "texte": "Je voudrais inscrire mon fils à l'école."},
+  {"d": 2.4, "f": 3.62, "qui": "L'employée", "texte": "Il a quel âge, votre fils ?"},
+  {"d": 4.2, "f": 4.54, "qui": "Le père", "texte": "Sept ans."},
+  {"d": 4.96, "f": 5.88, "qui": "Le père", "texte": "Il parle un peu français."},
+  {"d": 6.46, "f": 6.86, "qui": "L'employée", "texte": "Très bien."},
+  {"d": 7.2, "f": 8.46, "qui": "L'employée", "texte": "Il peut commencer lundi prochain."}
+ ],
+ "people": {
+  "employee": {"name": "L'employée", "qui": "L'employée", "side": "g", "spot": [20, 55, 14, 55], "anchor": [19, 26], "crop": [12, 11, 15, 27],
+               "portrait": [3.0, [22, 0, 32, 57]]},
+  "pere": {"name": "Le père", "qui": "Le père", "side": "d", "spot": [74, 58, 16, 55], "anchor": [72, 26], "crop": [65, 11, 15, 27],
+           "portrait": [4.05, [44, 0, 32, 57]]}
+ },
+ "consignes": [
+  "Son fils a quel âge ? Mets les bougies sur le gâteau, puis clique sur Valider.",
+  "Est-ce que son fils parle français ? Fais glisser le curseur, puis clique sur Valider.",
+  "Aujourd'hui, c'est mercredi. Son fils peut commencer l'école quand ? Clique sur le bon jour.",
+  "Bravo ! Son fils commence l'école lundi prochain."
+ ]
+}

@@ -1,0 +1,94 @@
+/* ================= Chez le réparateur : le téléphone, la fiche et ses étiquettes de prix, l'horloge « Revenez à » ================= */
+/* 1 · le téléphone dessiné, devant et derrière : on clique sur une partie (blanc au survol, vert si juste, orange si à revoir) */
+.mobile .mb-tel { position: relative; width: 100%; max-width: 420px; margin: 0 auto; aspect-ratio: 360 / 336; border-radius: 22px; background: #E4E8EE; }
+.mobile .mb-tel svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; display: block; }
+.mobile .mb-tel .corps { fill: #1C1F26; }
+.mobile .mb-tel .cadre { fill: none; stroke: #4A505C; stroke-width: 2; pointer-events: none; }
+.mobile .mb-tel .encoche { fill: #0B0D12; pointer-events: none; }
+.mobile .mb-tel .vue { font: 700 15px/1 Figtree, system-ui, sans-serif; fill: #4A505C; text-anchor: middle; letter-spacing: .04em; text-transform: uppercase; }
+.mobile .partie { cursor: pointer; outline: none; }
+.mobile .partie .hitp { fill: rgba(0,0,0,0); stroke: rgba(0,0,0,0); stroke-width: 18; stroke-linejoin: round; }
+.mobile .partie .forme { fill: #3A3F4A; stroke: transparent; stroke-width: 4; stroke-linejoin: round; transition: fill .2s, stroke .2s; }
+.mobile .partie .forme.ecran { fill: #2F4D73; }
+.mobile .partie .forme.dos { fill: #2E333D; }
+.mobile .partie .forme.camera { fill: #1A1D23; }
+.mobile .partie .lentille { fill: #0B0D12; stroke: #5B6270; stroke-width: 3; pointer-events: none; }
+.mobile .partie .flash { fill: #F3E7B6; pointer-events: none; }
+.mobile .partie .logo { fill: none; stroke: #4A505C; stroke-width: 3; pointer-events: none; }
+.mobile .partie .fissure { fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; opacity: 0; pointer-events: none; transition: opacity .4s; }
+.mobile .partie.casse .fissure { opacity: .95; }
+@media (hover: hover) { .mobile .partie:hover .forme { stroke: #fff; } }
+.mobile .partie:focus-visible .forme { stroke: #fff; }
+.mobile .partie.faux .forme { stroke: var(--try); stroke-width: 5; }
+.mobile .partie.juste .forme { stroke: var(--ok); stroke-width: 5; }
+.mobile .partie.indice .forme { animation: mb-indice 1.1s var(--apple) infinite; }
+@keyframes mb-indice { 50% { stroke: var(--ok); stroke-width: 6; } }
+.mobile .nompart { position: absolute; z-index: 3; translate: -50% -50%; white-space: nowrap; padding: 5px 10px; border-radius: 99px; font-weight: 800; font-size: 14px; color: var(--ink);
+  pointer-events: none; animation: pop .45s var(--spring) both; }
+.mobile .nompart.faux { background: var(--try); }
+.mobile .nompart.juste { background: var(--ok); }
+.mobile .nompart.juste::before { content: "✓ "; }
+body[data-turn="listen"] .mobile .mb-tel, body[data-turn="wait"] .mobile .mb-tel { pointer-events: none; }
+
+/* 2 · la fiche de réparation (papier) et les étiquettes de prix à faire glisser dans la case */
+.mobile .mb-fiche { margin: 2px auto 0; width: 100%; max-width: 420px; padding: 14px 18px 16px; border-radius: 14px; background: #FBFAF6; color: #23262D;
+  display: flex; flex-direction: column; gap: 8px; transition: box-shadow .3s; }
+.mobile .mb-fiche .tete { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #D9DDE4; padding-bottom: 6px; }
+.mobile .mb-fiche .tete b { font-size: 18px; font-weight: 800; letter-spacing: .03em; text-transform: uppercase; }
+.mobile .mb-fiche .tete span { font-size: 14px; font-weight: 700; color: #6A707C; }
+.mobile .mb-fiche .ligne-f { display: flex; align-items: center; gap: 10px; margin: 0; font-size: 16px; color: #4A505C; }
+.mobile .mb-fiche .ligne-f b { color: #23262D; }
+.mobile .mb-fiche .ligne-f.prix { font-weight: 800; font-size: 18px; color: #23262D; }
+.mobile .mb-case { display: grid; place-items: center; width: 132px; height: 64px; border-radius: 12px; border: 2.5px dashed #A3AAB6; background: #F1F3F6; transition: border-color .2s, background .2s; }
+.mobile .mb-case small { font-size: 22px; color: #A3AAB6; }
+.mobile .mb-case.chaud { border-color: #23262D; border-style: solid; background: #fff; }
+.mobile .mb-case.juste { border: 3px solid #138A66; background: rgba(75,227,180,.22); }
+.mobile .mb-case.faux { border: 3px solid #C98A1A; background: rgba(255,198,92,.3); }
+.mobile .mb-fiche.juste { box-shadow: 0 0 0 4px var(--ok); }
+.mobile .mb-etiqs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 16px; }
+.mobile .mb-etiq { position: relative; z-index: 5; height: 56px; padding-left: 14px; border-radius: 8px 22px 22px 8px; background: #FFE27A; color: #23262D;
+  font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; }
+.mobile .mb-etiq .trou { position: absolute; left: 8px; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; background: rgba(0,0,0,.35); }
+.mobile .mb-etiq.tenue { cursor: grabbing; z-index: 30; }
+.mobile .mb-etiq.posee { z-index: 20; }
+.mobile .mb-etiq.indice { animation: mb-indice-e 1.1s var(--apple) infinite; }
+@keyframes mb-indice-e { 50% { box-shadow: 0 0 0 4px var(--ok); } }
+body[data-turn="listen"] .mobile .mb-etiq, body[data-turn="wait"] .mobile .mb-etiq { pointer-events: none; }
+
+/* 3 · la pancarte « Revenez à » (carton accroché à une ficelle) et son horloge à une aiguille */
+.mobile .mb-pancarte { position: relative; margin: 18px auto 0; width: 100%; max-width: 330px; padding: 12px 16px 14px; border-radius: 18px; background: #F2E6CF; color: #2B2620;
+  display: flex; flex-direction: column; align-items: center; gap: 6px; transition: box-shadow .3s; }
+.mobile .mb-pancarte .ficelle { position: absolute; left: 50%; top: -18px; width: 60%; height: 22px; transform: translateX(-50%); border: 2px solid #B9A47A; border-bottom: 0; border-radius: 50% 50% 0 0 / 100% 100% 0 0; }
+.mobile .mb-pancarte .titre-p { margin: 0; font-size: 22px; font-weight: 800; letter-spacing: .02em; }
+.mobile .mb-horloge { width: 100%; max-width: 250px; aspect-ratio: 1; cursor: grab; touch-action: none; outline: none; border-radius: 50%; }
+.mobile .mb-horloge:focus-visible { box-shadow: 0 0 0 4px #fff, 0 0 0 7px #3AA8FF; }
+.mobile .mb-horloge.tire { cursor: grabbing; }
+.mobile .mb-horloge svg { width: 100%; height: 100%; display: block; }
+.mobile .mb-horloge .traits line { stroke: #0B0D16; stroke-width: 5; stroke-linecap: round; }
+.mobile .mb-horloge .chiffres text { font: 800 28px/1 Figtree, system-ui, sans-serif; fill: #0B0D16; text-anchor: middle; dominant-baseline: central; }
+.mobile .mb-horloge .chiffres24 text { font: 700 16px/1 Figtree, system-ui, sans-serif; fill: #7A808C; text-anchor: middle; dominant-baseline: central; }
+.mobile .mb-horloge .aig { transform-origin: 150px 150px; transform-box: view-box; }
+.mobile .mb-lu { margin: 0; }
+.mobile .mb-lu b { display: inline-block; min-width: 96px; padding: 4px 14px; border-radius: 12px; background: #fff; font-size: 28px; font-weight: 800; font-variant-numeric: tabular-nums; text-align: center; }
+.mobile .mb-pancarte.juste { box-shadow: 0 0 0 4px var(--ok); }
+.mobile .mb-pancarte.juste .mb-lu b { color: #12795A; }
+.mobile .mb-pancarte.juste .mb-lu b::after { content: " ✓"; }
+.mobile .mb-pancarte.faux { box-shadow: 0 0 0 4px var(--try); }
+body[data-turn="listen"] .mobile .mb-horloge, body[data-turn="wait"] .mobile .mb-horloge { pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile .partie.indice .forme { animation: none; stroke: var(--ok); stroke-width: 6; }
+  .mobile .mb-etiq.indice { animation: none; box-shadow: 0 0 0 4px var(--ok); }
+}
+
+/* petits écrans */
+body.tall .mobile .mb-tel { max-width: 330px; }
+body.short .mobile .mb-tel { max-width: 220px; }
+body.tall .mobile .mb-horloge { max-width: 200px; }
+body.short .mobile .mb-horloge, body.compact .mobile .mb-horloge { max-width: 150px; }
+body.tall .mobile .mb-fiche, body.short .mobile .mb-fiche { padding: 10px 12px 12px; gap: 5px; }
+body.short .mobile .mb-fiche .ligne-f:not(.prix), body.compact .mobile .mb-fiche .ligne-f:not(.prix) { display: none; }
+body.tall .mobile .mb-etiqs, body.short .mobile .mb-etiqs { gap: 6px; margin-top: 10px; }
+body.tall .mobile .mb-etiq, body.short .mobile .mb-etiq { height: 48px; font-size: 18px; }
+body.short .mobile .mb-pancarte .titre-p, body.compact .mobile .mb-pancarte .titre-p { font-size: 17px; }
+body.short .mobile .mb-lu b, body.compact .mobile .mb-lu b { font-size: 20px; }
