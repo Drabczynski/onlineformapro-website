@@ -30,6 +30,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 svg { display: block; }
 
+.fond { position: fixed; inset: -80px; z-index: 0; background: url(micro.jpg) 36% 50% / cover no-repeat; filter: blur(42px) saturate(1.25); opacity: .42; pointer-events: none; }
+.fond::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 60% at 50% 50%, rgba(8,10,20,0), rgba(8,10,20,.75)); }
 .env { position: fixed; inset: 0; z-index: 0; background: radial-gradient(55% 50% at 30% 45%, rgba(110,140,255,.18), transparent 70%), radial-gradient(45% 45% at 80% 60%, rgba(236,180,140,.12), transparent 72%), #0e1018; }
 
 .glass { position: relative; background: var(--glass); isolation: isolate; backdrop-filter: blur(30px) saturate(1.8); -webkit-backdrop-filter: blur(30px) saturate(1.8);
@@ -38,15 +40,14 @@ svg { display: block; }
   background: linear-gradient(140deg, rgba(255,255,255,.55), rgba(255,255,255,.08) 38%, rgba(255,255,255,.04) 62%, rgba(255,255,255,.25));
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
 
-.stage { position: fixed; inset: 0; z-index: 1; display: flex; align-items: center; justify-content: center; padding: 28px 28px 34px; }
+.stage { position: fixed; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; padding: 24px 28px 26px; }
 /* la photo prend la hauteur de la carte du texte */
-.row { display: flex; align-items: stretch; gap: 28px; max-height: 100%; }
-.pic { position: relative; flex: none; width: min(40vw, 520px); min-height: 420px; border-radius: 32px; overflow: hidden; background: #1b1e2b;
+.row { display: flex; align-items: stretch; gap: 28px; height: min(740px, calc(100vh - 150px)); }
+.pic { position: relative; flex: none; width: min(44vw, 640px); min-height: 420px; border-radius: 32px; overflow: hidden; background: #1b1e2b;
   box-shadow: 0 40px 90px -30px rgba(0,0,0,.75), 0 0 0 1px rgba(255,255,255,.14); isolation: isolate; }
-.pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 36% 50%; transition: transform 8s ease, filter .6s ease; }
-body.playing .pic img { transform: scale(1.06); }
+.pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 36% 50%; }
 .pic::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,.55)); pointer-events: none; }
-.card { flex: none; width: min(580px, 46vw); max-height: calc(100vh - 62px); border-radius: 30px; padding: 16px 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.card { flex: none; width: min(700px, 48vw); max-height: calc(100vh - 62px); border-radius: 30px; padding: 16px 14px 16px; display: flex; flex-direction: column; gap: 10px; }
 
 /* ---------- le spectre sonore, sur la photo, au-dessus du lecteur ---------- */
 .spectre { position: absolute; left: 14px; right: 14px; bottom: 86px; z-index: 3; height: 110px; width: calc(100% - 28px); pointer-events: none; opacity: 0; transition: opacity .5s ease; }
@@ -107,13 +108,13 @@ body[data-turn="boot"] .player { opacity: 0; translate: 0 12px; pointer-events: 
 .dots i.ok { background: #4BE3B4; scale: 1.15; }
 
 /* ---------- le texte ---------- */
-.txt { position: relative; z-index: 2; font-size: 18px; line-height: 1.5; font-weight: 600; letter-spacing: -.005em; overflow-y: auto; scrollbar-width: none; }
+.txt { position: relative; z-index: 2; flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; font-size: 21px; line-height: 1.5; font-weight: 600; letter-spacing: -.005em; overflow-y: auto; scrollbar-width: none; }
 .txt::-webkit-scrollbar { display: none; }
-.ln { margin: 0; padding: 3px 10px 3px 34px; border-radius: 14px; opacity: .36; transition: opacity .45s ease, background .45s ease; position: relative; }
+.ln { margin: 0; padding: 6px 12px 6px 36px; border-radius: 14px; opacity: .36; transition: opacity .45s ease, background .45s ease; position: relative; }
 .ln.done { opacity: .9; }
 .ln.cur { opacity: 1; background: rgba(255,255,255,.07); }
 .ln.speak { opacity: 1; }
-.ln .spk { position: absolute; left: 6px; top: 7px; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; opacity: 0; pointer-events: none; transition: opacity .3s; color: var(--text2); }
+.ln .spk { position: absolute; left: 8px; top: 11px; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; opacity: 0; pointer-events: none; transition: opacity .3s; color: var(--text2); }
 .ln .spk svg { width: 15px; height: 15px; }
 .ln.cur .spk, .ln.done .spk { opacity: 1; pointer-events: auto; }
 .ln.done:not(.cur) .spk { opacity: .45; }
@@ -126,8 +127,7 @@ body[data-turn="boot"] .player { opacity: 0; translate: 0 12px; pointer-events: 
 .gap.open { background: rgba(255,255,255,.2); }
 .gap.open .gw { opacity: .62; }
 .gap.filled { background: transparent; margin: 0; }
-.gap.filled .gw { opacity: 1; font-weight: 800; animation: wordIn .7s var(--spring) both; }
-.gap.filled::after { content: ""; position: absolute; left: 2px; right: 2px; bottom: 1px; height: 3px; border-radius: 3px; background: var(--g-ok); animation: lineIn .6s var(--apple) .15s both; transform-origin: left; }
+.gap.filled .gw { opacity: 1; font-weight: 800; color: #4BE3B4; animation: wordIn .7s var(--spring) both; }
 @keyframes wordIn { from { filter: blur(6px); scale: .86; } to { filter: none; scale: 1; } }
 @keyframes lineIn { from { transform: scaleX(0); } to { transform: none; } }
 .gap.shake { animation: shake .5s ease; }
@@ -135,8 +135,10 @@ body[data-turn="boot"] .player { opacity: 0; translate: 0 12px; pointer-events: 
 .ink { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none; }
 
 /* ---------- les mots à poser ---------- */
-.tray { position: relative; z-index: 4; min-height: 58px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; padding-top: 4px; }
-.peb { height: 46px; padding: 0 18px; border-radius: 23px; font-size: 17px; font-weight: 700; color: #fff; position: relative; touch-action: none; cursor: grab; white-space: nowrap;
+.tray { position: relative; z-index: 4; min-height: 58px; max-width: 100%; display: flex; flex-wrap: nowrap; align-items: center; justify-content: safe center; gap: 10px; padding: 4px 6px; overflow-x: auto; scrollbar-width: none; }
+.tray::-webkit-scrollbar { display: none; }
+.peb { flex: none; }
+.peb { height: 48px; padding: 0 17px; border-radius: 24px; font-size: 17px; font-weight: 700; color: #fff; position: relative; touch-action: none; cursor: grab; white-space: nowrap;
   background: rgba(255,255,255,.17); box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 10px 26px -12px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.16);
   backdrop-filter: blur(20px) saturate(1.6); -webkit-backdrop-filter: blur(20px) saturate(1.6);
   transition: transform .5s var(--spring), opacity .3s ease, box-shadow .3s ease, background .25s; will-change: transform; }
@@ -156,17 +158,19 @@ body:not([data-turn="you"]) .peb { pointer-events: none; opacity: .55; }
 
 @media (max-width: 860px) and (orientation: portrait) {
   .stage { align-items: stretch; }
-  .row { flex-direction: column; gap: 12px; width: 100%; align-items: center; }
+  .row { flex-direction: column; gap: 12px; width: 100%; height: auto; flex: 1; min-height: 0; align-items: center; }
   .stage { padding: max(12px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom)); }
   .pic { width: 100%; max-width: 560px; min-height: 0; height: 28vh; flex: none; border-radius: 26px; }
   .spectre { bottom: 70px; height: 60px; }
   .pic img { object-position: 36% 35%; }
   .card { width: 100%; max-width: 560px; flex: 1; min-height: 0; max-height: none; border-radius: 26px; padding: 10px 10px 12px; gap: 8px; overflow: hidden; }
   .hd { padding: 4px; } .hd img { width: 34px; height: 34px; }
-  .txt { flex: 1; min-height: 0; font-size: 16px; line-height: 1.42; }
+  .txt { flex: 1; min-height: 0; display: block; font-size: 16px; line-height: 1.42; }
+  .ln { padding: 2px 8px 2px 30px; } .ln .spk { top: 3px; left: 6px; }
   .ln { padding: 2px 8px 2px 30px; }
   .ln .spk { top: 3px; }
-  .tray { flex: none; gap: 6px; min-height: 0; }
+  .tray { flex: none; gap: 6px; min-height: 0; justify-content: flex-start; }
+  .stage { gap: 10px; justify-content: flex-start; }
   .peb { height: 38px; font-size: 15px; padding: 0 13px; }
   .say p { font-size: 15px; }
   .player { left: 10px; right: 10px; bottom: 10px; gap: 8px; }
@@ -176,6 +180,7 @@ body:not([data-turn="you"]) .peb { pointer-events: none; opacity: .55; }
 </head>
 <body data-turn="boot">
 <div class="env" aria-hidden="true"></div>
+<div class="fond" aria-hidden="true"></div>
 
 <main class="stage"><div class="row">
   <div class="pic">
@@ -195,10 +200,10 @@ body:not([data-turn="you"]) .peb { pointer-events: none; opacity: .55; }
   <section class="card glass" id="card" aria-label="Le texte à compléter">
     <div class="hd"><img src="micro.jpg" alt="" style="object-position:36% 40%"><div><b>Le journal</b><span>Écoute et complète</span></div><div class="dots" id="dots"></div></div>
     <div class="txt" id="txt"></div>
-    <div class="tray" id="tray"></div>
     <canvas class="ink" id="ink"></canvas>
   </section>
-</div></main>
+</div>
+<div class="tray" id="tray"></div></main>
 <div class="finger" id="finger" aria-hidden="true"></div>
 
 <script>

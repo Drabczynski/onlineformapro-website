@@ -24,3 +24,11 @@ invisible qui scintillent, mots à glisser ou à toucher). À gauche, la photo e
 avec un repère par phrase, lecture lente. Un seul enregistrement (`journal/journal.mp3`) pour tout : chaque phrase
 est rejouée en se plaçant dans ce fichier, aucune autre voix ne la coupe. Les repères (début de chaque mot) viennent
 de la transcription ElevenLabs du fichier. Photo : micro rétro (fournie). Page : https://onlineformapro-website.vercel.app/exercices/journal/
+
+## Les adjectifs, la pile de cartes
+
+`adjectifs/` : les quatre phrases (français / française, bon / bonne) dans la même interface. À gauche, une pile de
+cartes : on la fait défiler d'un glissement (ou avec les flèches) et on touche la bonne carte pour la phrase en cours ;
+la carte vole jusqu'au trou. Pas de son pour les phrases, seulement la consigne lue au départ (`adjectifs/consigne.mp3`,
+ElevenLabs, vérifiée par transcription), réécoutable par le haut-parleur de l'en-tête.
+Page : https://onlineformapro-website.vercel.app/exercices/adjectifs/
