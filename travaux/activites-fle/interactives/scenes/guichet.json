@@ -1,0 +1,24 @@
+{
+ "video": "gare-guichet",
+ "titre": "Le guichet",
+ "niveau": "A1",
+ "gel": 9.5,
+ "sousTitres": [
+  {"d": 0.38, "f": 2.08, "qui": "Le voyageur", "texte": "Excusez-moi, euh, le guichet est ouvert ?"},
+  {"d": 2.96, "f": 4.68, "qui": "L'agente", "texte": "Oui, il est ouvert jusqu'à vingt heures."},
+  {"d": 5.72, "f": 6.02, "qui": "Le voyageur", "texte": "Il est où ?"},
+  {"d": 7.06, "f": 8.12, "qui": "L'agente", "texte": "Juste là, à gauche."},
+  {"d": 9.02, "f": 9.34, "qui": "Le voyageur", "texte": "Merci."}
+ ],
+ "people": {
+  "voyageur": {"name": "Le voyageur", "qui": "Le voyageur", "side": "g", "spot": [42, 55, 15, 62], "anchor": [41, 46], "crop": [28.5, 6, 22, 39]},
+  "agente": {"name": "L'agente", "qui": "L'agente", "side": "d", "spot": [91, 55, 10, 62], "anchor": [90, 42], "crop": [86, 2, 13, 23],
+             "portrait": [4.8, [45, 7.5, 22.5, 40]]}
+ },
+ "consignes": [
+  "Qu'est-ce que le voyageur cherche ? Clique sur la bonne carte.",
+  "Le guichet est ouvert jusqu'à quelle heure ? Fais glisser la bonne heure dans la case.",
+  "Le guichet est où ? Sur le plan, clique au bon endroit.",
+  "Bravo ! Le voyageur a trouvé le guichet, juste là, à gauche."
+ ]
+}

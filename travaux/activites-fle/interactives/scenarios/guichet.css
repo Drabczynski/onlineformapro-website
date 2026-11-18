@@ -1,0 +1,106 @@
+/* ================= Le guichet : des cartes SUR la vidéo (overlay), puis le plan du hall dans le panneau ================= */
+
+/* ---------- le calque posé sur la fenêtre de la vidéo (voir calque() dans scenarios/guichet.js) ----------
+   .qte (moteur) : position absolute, inset 0, z-index 5, pointer-events none ; seules les cartes sont cliquables.
+   La bulle de la consigne (.talk, au-dessus de la fenêtre) occupe le bas de l'image : les cartes restent au-dessus d'elle. */
+.gu-calque { transition: opacity .35s var(--apple), translate .45s var(--apple); }
+.gu-calque.ecoute { opacity: 0; translate: 0 14px; }                 /* la vidéo rejoue : on la laisse voir */
+.gu-calque.ecoute * { pointer-events: none !important; }
+.gu-pile { position: absolute; top: 7%; display: flex; flex-direction: column; gap: 10px; width: clamp(200px, 25%, 270px); }
+.gu-calque[data-cote="d"] .gu-pile { right: 3.2%; }
+.gu-calque[data-cote="g"] .gu-pile { left: 3.2%; }
+.gu-ouvert { width: clamp(220px, 30%, 320px); }
+
+/* une carte : verre sombre translucide (lisible sur le hall très clair), texte blanc, petit pictogramme au trait */
+.gu-carte { pointer-events: auto; position: relative; display: flex; align-items: center; gap: 12px; min-height: 58px; padding: 8px 16px 8px 9px; border-radius: 20px; text-align: left;
+  color: #fff; background: rgba(14,16,26,.56); -webkit-backdrop-filter: blur(18px) saturate(1.6); backdrop-filter: blur(18px) saturate(1.6);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.22), inset 0 1px 0 rgba(255,255,255,.25);
+  touch-action: manipulation; user-select: none; -webkit-user-select: none;
+  transition: background .25s, color .25s, box-shadow .25s, transform .3s var(--spring);
+  /* l'apparition : les cartes montent l'une après l'autre, depuis un léger flou */
+  animation: gu-monte .6s var(--spring) backwards; animation-delay: calc(.25s + var(--i, 0) * .11s); }
+@keyframes gu-monte { from { opacity: 0; transform: translateY(26px) scale(.92); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+.gu-carte .gu-pic { flex: none; width: 40px; height: 40px; border-radius: 13px; display: grid; place-items: center; background: rgba(255,255,255,.16); }
+.gu-carte .gu-pic svg { width: 26px; height: 26px; }
+.gu-carte .gu-nom { font-weight: 800; font-size: 19px; letter-spacing: -.01em; line-height: 1.1; }
+@media (hover: hover) { button.gu-carte:not([aria-pressed="true"]):not(.juste):not(.faux):not(.posee):hover { background: rgba(14,16,26,.7); transform: translateY(-2px); } }
+button.gu-carte:active { transform: scale(.96); }
+/* choisi : blanc ; juste : vert ; à revoir : orange (jamais rouge), avec un signe en plus de la couleur */
+.gu-carte[aria-pressed="true"] { background: #fff; color: var(--ink); }
+.gu-carte[aria-pressed="true"] .gu-pic { background: rgba(11,13,22,.08); }
+.gu-carte.juste { background: var(--ok); color: var(--ink); box-shadow: inset 0 0 0 2px rgba(255,255,255,.6); }
+.gu-carte.juste .gu-pic { background: rgba(11,13,22,.1); }
+.gu-carte.faux { background: var(--try); color: var(--ink); }
+.gu-carte.faux .gu-pic { background: rgba(11,13,22,.1); }
+.gu-lieux .gu-carte.juste .gu-nom::after { content: " ✓"; }
+.gu-lieux .gu-carte.faux .gu-nom::after { content: " ✗"; }
+
+/* 2 · la phrase avec sa case, et les heures à faire glisser */
+.gu-phrase { flex-wrap: wrap; row-gap: 8px; padding: 10px 14px 10px 9px; }
+.gu-phrase .gu-txt { flex: 1 1 120px; font-weight: 700; font-size: 18px; line-height: 1.15; }
+.gu-case { display: grid; place-items: center; min-width: 96px; height: 50px; margin-left: 52px; border-radius: 14px; font-weight: 800; font-size: 22px; color: rgba(255,255,255,.7);
+  background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 2px rgba(255,255,255,.55); outline: 2px dashed rgba(255,255,255,.0); transition: background .25s, box-shadow .25s; }
+.gu-case.chaud { background: rgba(255,255,255,.26); box-shadow: inset 0 0 0 3px #fff; }
+.gu-case.juste { box-shadow: inset 0 0 0 3px var(--ok); }
+.gu-heures { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.gu-heure { justify-content: center; min-height: 52px; padding: 6px 10px; font-weight: 800; font-size: 22px; letter-spacing: -.01em; font-variant-numeric: tabular-nums; cursor: grab; touch-action: none; }
+.gu-heure.tenu { cursor: grabbing; z-index: 20; background: #fff; color: var(--ink); transition: none; }
+.gu-heure.posee { z-index: 10; background: #fff; color: var(--ink); }
+.gu-heure.posee.juste { background: var(--ok); }
+.gu-heure.posee.faux { background: var(--try); }
+/* le signe juste / à revoir : une pastille au coin (ne fait pas passer « 22 h » sur deux lignes) */
+.gu-heure { white-space: nowrap; }
+.gu-heure.juste::after, .gu-heure.faux::after { position: absolute; top: -7px; right: -7px; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center;
+  background: #fff; color: var(--ink); font-size: 13px; font-weight: 800; box-shadow: 0 0 0 2px rgba(11,13,22,.15); }
+.gu-heure.juste::after { content: "✓"; }
+.gu-heure.faux::after { content: "✗"; }
+
+body[data-turn="listen"] .gu-carte, body[data-turn="wait"] .gu-carte { pointer-events: none; }
+
+/* ---------- 3 · le plan du hall, dans le panneau ---------- */
+.gu-plan { position: relative; width: 100%; aspect-ratio: 4 / 3; }
+.gu-plan > svg { width: 100%; height: 100%; display: block; }
+.gu-lieu { position: absolute; display: grid; place-items: center; border-radius: 12px; min-width: 44px; min-height: 44px; color: #2B3A55; font-weight: 800; font-size: 22px;
+  transition: background .2s, box-shadow .2s; touch-action: manipulation; }
+@media (hover: hover) { .gu-lieu:hover { background: rgba(255,255,255,.45); } }
+.gu-lieu[aria-pressed="true"] { background: rgba(255,255,255,.75); box-shadow: inset 0 0 0 3px #fff; }
+.gu-lieu.juste { background: rgba(75,227,180,.75); box-shadow: inset 0 0 0 3px #138A66; }
+.gu-lieu.juste span { font-size: 0; }
+.gu-lieu.juste span::after { content: "Guichet ✓"; font-size: 14px; color: #0B3D2E; }
+.gu-lieu.faux { background: rgba(255,198,92,.85); box-shadow: inset 0 0 0 3px #C98A1A; }
+.gu-lieu.faux span::after { content: " ✗"; }
+.gu-pion { position: absolute; width: 13%; aspect-ratio: 1; translate: -50% -50%; pointer-events: none; transition: left .85s var(--apple), top .85s var(--apple), rotate .4s var(--apple); }
+.gu-pion svg { width: 100%; height: 100%; display: block; }
+.gu-legende { position: absolute; translate: 0 -50%; font-size: 14px; font-weight: 700; color: #5A5246; white-space: nowrap; pointer-events: none; transition: opacity .3s; }
+.gu-plan.parti .gu-legende { opacity: 0; }
+body[data-turn="listen"] .gu-lieu, body[data-turn="wait"] .gu-lieu { pointer-events: none; }
+
+/* ---------- téléphone couché (petite hauteur) : des cartes plus basses ---------- */
+body.short .gu-pile { top: 5%; gap: 6px; width: clamp(170px, 26%, 220px); }
+body.short .gu-carte { min-height: 44px; padding: 4px 12px 4px 5px; gap: 8px; border-radius: 15px; }
+body.short .gu-carte .gu-pic { width: 34px; height: 34px; border-radius: 10px; }
+body.short .gu-carte .gu-pic svg { width: 22px; height: 22px; }
+body.short .gu-carte .gu-nom { font-size: 16px; }
+body.short .gu-phrase .gu-txt { font-size: 15px; } body.short .gu-case { height: 40px; min-width: 76px; margin-left: 42px; font-size: 18px; }
+body.short .gu-heure { min-height: 44px; font-size: 18px; }
+
+/* ---------- téléphone tenu droit : la vidéo est petite ; les cartes passent en grille 2 × 2, en haut, du côté libre ---------- */
+body.tall .gu-pile { top: 10px; width: 45%; gap: 6px; display: grid; grid-template-columns: repeat(2, 1fr); }
+body.tall .gu-calque[data-cote="d"] .gu-pile { right: 8px; }
+body.tall .gu-calque[data-cote="g"] .gu-pile { left: 8px; }
+body.tall .gu-carte { flex-direction: column; justify-content: center; gap: 3px; min-height: 64px; padding: 6px 4px; border-radius: 15px; text-align: center; }
+body.tall .gu-carte .gu-pic { width: 28px; height: 28px; border-radius: 9px; background: none; }
+body.tall .gu-carte .gu-pic svg { width: 24px; height: 24px; }
+body.tall .gu-carte .gu-nom { font-size: 14px; }
+/* 2 · sur téléphone, la phrase reste à gauche et les heures passent à droite du visage de l'agente */
+body.tall .gu-ouvert { display: block; position: static; width: auto; }
+body.tall .gu-phrase { position: absolute; top: 10px; left: 8px; width: 41%; flex-direction: column; align-items: stretch; gap: 6px; padding: 8px; }
+body.tall .gu-phrase .gu-pic { display: none; }
+body.tall .gu-phrase .gu-txt { flex: none; font-size: 14px; text-align: center; }
+body.tall .gu-case { margin: 0; min-width: 0; height: 44px; font-size: 18px; }
+body.tall .gu-heures { position: absolute; top: 10px; right: 6px; width: 34%; gap: 6px; }
+body.tall .gu-heure { min-height: 48px; font-size: 18px; flex-direction: row; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gu-carte { animation: none; }
+}
