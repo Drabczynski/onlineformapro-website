@@ -1,0 +1,62 @@
+/* ================= La brocante : l'étiquette de la lampe et la règle des prix, l'argent sur la table ================= */
+/* 2 · la lampe, sa ficelle et son étiquette en carton (le prix s'y écrit) */
+.broc .br-objet { display: flex; align-items: center; justify-content: center; gap: 0; padding: 4px 0 2px; }
+.broc .br-lampe svg { width: 92px; height: auto; display: block; }
+.broc .br-ficelle { width: 46px; height: 2px; margin-left: -18px; background: #B79868; transform: rotate(8deg); transform-origin: left center; }
+.broc .br-etiq { position: relative; display: flex; align-items: baseline; justify-content: center; gap: 4px; min-width: 132px; padding: 12px 18px 12px 30px;
+  border-radius: 6px 14px 14px 6px; background: #E9D2A6; color: #3A2A16; transform: rotate(4deg); box-shadow: inset 0 0 0 2px #C9A974;
+  clip-path: polygon(14px 0, 100% 0, 100% 100%, 14px 100%, 0 50%); transition: box-shadow .25s, background .25s; }
+.broc .br-etiq .trou { position: absolute; left: 12px; top: 50%; width: 10px; height: 10px; margin-top: -5px; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 2px #B79868; }
+.broc .br-etiq b { font-family: "Patrick Hand", "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive; font-size: 52px; line-height: 1; font-weight: 700; color: #2346A0;
+  min-width: 1.4em; text-align: center; font-variant-numeric: tabular-nums; }
+.broc .br-etiq small { font-size: 26px; font-weight: 800; color: #3A2A16; }
+.broc .br-etiq.juste { background: #CFF3E4; box-shadow: inset 0 0 0 4px var(--ok); }
+.broc .br-etiq.juste b { color: #12795A; }
+.broc .br-etiq.faux { background: #FFE2BF; box-shadow: inset 0 0 0 4px var(--try); }
+.broc .br-etiq.faux b { color: #A3541A; }
+
+/* la règle des prix : un rail, un trait par euro, les nombres 1, 5, 10, 15, 20, un gros curseur rond */
+.broc .br-regle { --pc: 0%; position: relative; padding: 26px 26px 34px; border-radius: 20px; background: rgba(255,255,255,.9); color: var(--ink);
+  touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none; outline: none; }
+.broc .br-regle:focus-visible { box-shadow: 0 0 0 3px #2346A0; }
+.broc .br-regle.tire { cursor: grabbing; }
+.broc .br-rail { position: relative; height: 12px; border-radius: 99px; background: #DDE2E8; }
+.broc .br-rempli { position: absolute; left: 0; top: 0; bottom: 0; width: var(--pc); border-radius: 99px; background: #2346A0; }
+.broc .br-trait { position: absolute; top: 16px; width: 2px; height: 8px; margin-left: -1px; background: #9AA3AE; }
+.broc .br-trait.fort { height: 14px; background: #5D6672; }
+.broc .br-num { position: absolute; top: 32px; transform: translateX(-50%); font-weight: 800; font-size: 16px; color: var(--ink); }
+.broc .br-curseur { position: absolute; left: var(--pc); top: 50%; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%; background: #fff;
+  box-shadow: inset 0 0 0 4px #2346A0; transition: left .12s; }
+.broc .br-curseur::after { content: ""; position: absolute; inset: 15px; border-radius: 50%; background: #2346A0; }
+.broc .br-regle.tire .br-curseur { transition: none; transform: scale(1.08); }
+body[data-turn="listen"] .broc .br-regle, body[data-turn="wait"] .broc .br-regle { pointer-events: none; }
+
+/* 3 · l'argent : la table de la brocante (une nappe), le porte-monnaie */
+.broc .br-table { background: repeating-linear-gradient(90deg, rgba(255,255,255,.16) 0 18px, rgba(255,255,255,.04) 18px 36px), rgba(120,70,60,.35); transition: box-shadow .25s; }
+.broc .br-table.faux { box-shadow: inset 0 0 0 4px var(--try); }
+.broc .br-table.faux .somme { color: #FFC26B; }
+.broc .br-table.juste { box-shadow: inset 0 0 0 4px var(--ok); }
+.broc .argent.billet.vingt { background: linear-gradient(135deg, #7FA8E0, #3F6FB5); }
+.broc .br-bourse .argent { min-width: 44px; min-height: 44px; }
+
+@media (prefers-reduced-motion: reduce) { .broc .br-curseur { transition: none; } }
+
+/* petits écrans */
+body.tall .broc .br-lampe svg { width: 64px; }
+body.tall .broc .br-etiq b { font-size: 40px; }
+body.tall .broc .br-etiq { min-width: 110px; padding: 8px 14px 8px 28px; }
+body.tall .broc .br-regle { padding: 22px 24px 32px; }
+body.short .broc .br-lampe svg { width: 48px; }
+body.short .broc .br-etiq b { font-size: 32px; }
+body.short .broc .br-etiq { padding: 6px 12px 6px 26px; }
+body.short .broc .br-regle { padding: 20px 22px 30px; }
+body.compact .broc .br-lampe svg { width: 44px; }
+body.compact .broc .br-etiq b { font-size: 30px; }
+body.compact .broc .br-objet { padding: 0; }
+
+/* 1 · le stand en grand : la bulle de consigne quitte le bas de la vidéo (--br-bulle : posé par le scénario) */
+body.br-bulle .talk { bottom: auto !important; top: var(--br-bulle, 18px); }
+/* téléphone tenu droit : les cinq billets et pièces sur une seule ligne */
+body.tall .broc .br-bourse { gap: 8px; flex-wrap: nowrap; }
+body.tall .broc .br-bourse .argent.piece { width: 48px; height: 48px; font-size: 14px; }
+body.tall .broc .br-bourse .argent.billet { width: 64px; font-size: 16px; }

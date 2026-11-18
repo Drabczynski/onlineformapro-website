@@ -1,0 +1,24 @@
+{
+ "video": "brocante",
+ "titre": "La brocante",
+ "niveau": "A1",
+ "gel": 9.5,
+ "sousTitres": [
+  {"d": 0.16, "f": 2.06, "qui": "Le client", "texte": "Bonjour madame. Elle coûte combien, cette lampe ?"},
+  {"d": 2.56, "f": 3.98, "qui": "La vendeuse", "texte": "Quinze euros. Elle marche très bien."},
+  {"d": 4.66, "f": 6.52, "qui": "Le client", "texte": "C'est trop cher pour moi. Dix euros ?"},
+  {"d": 7.38, "f": 8.88, "qui": "La vendeuse", "texte": "Allez, douze euros et elle est à vous."}
+ ],
+ "people": {
+  "vendeuse": {"name": "La vendeuse", "qui": "La vendeuse", "side": "g", "spot": [24, 58, 12, 46], "anchor": [24, 40], "crop": [17, 18, 14, 24.9],
+               "portrait": [3.0, [23, 4, 38, 67.5]]},
+  "client": {"name": "Le client", "qui": "Le client", "side": "d", "spot": [71, 55, 13, 50], "anchor": [71, 38], "crop": [62, 12, 14, 24.9],
+             "portrait": [5.0, [44, 8, 38, 67.5]]}
+ },
+ "consignes": [
+  "Le monsieur demande le prix de quel objet ? Clique dessus dans l'image.",
+  "Au début, la lampe coûte combien ? Fais glisser le curseur, puis clique sur Valider.",
+  "À la fin, le monsieur paie combien ? Pose l'argent, puis clique sur Payer.",
+  "Bravo ! Le monsieur a sa lampe pour douze euros."
+ ]
+}

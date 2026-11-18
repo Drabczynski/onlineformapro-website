@@ -1,0 +1,26 @@
+{
+ "video": "centre-ville",
+ "titre": "Quel bus ?",
+ "niveau": "A1",
+ "gel": 8.2,
+ "sousTitres": [
+  {"d": 0.3, "f": 2.3, "qui": "Le jeune homme", "texte": "Excusez-moi madame, ce bus va au centre-ville ?"},
+  {"d": 2.72, "f": 4.92, "qui": "La dame", "texte": "Non, pour le centre-ville, il faut prendre le bus numéro cinq."},
+  {"d": 5.26, "f": 5.94, "qui": "Le jeune homme", "texte": "Il passe quand ?"},
+  {"d": 6.02, "f": 6.6, "qui": "La dame", "texte": "Dans dix minutes."},
+  {"d": 6.76, "f": 7.34, "qui": "Le jeune homme", "texte": "Merci madame."},
+  {"d": 7.62, "f": 7.92, "qui": "La dame", "texte": "De rien."}
+ ],
+ "people": {
+  "jeune": {"name": "Le jeune homme", "qui": "Le jeune homme", "side": "g", "spot": [34, 60, 12, 44], "anchor": [39, 26], "crop": [32, 16, 15, 26.7],
+            "portrait": [3.3, [27, 13, 15, 26.7]]},
+  "dame": {"name": "La dame", "qui": "La dame", "side": "d", "spot": [68, 60, 11, 44], "anchor": [69, 28], "crop": [60, 19, 15, 26.7],
+           "portrait": [3.3, [60, 19, 15, 26.7]]}
+ },
+ "consignes": [
+  "Où veut aller le jeune homme ? Clique sur l'endroit, sur le plan.",
+  "Pour le centre-ville, il faut prendre quel bus ? Fais monter le jeune homme dans le bon bus.",
+  "Le bus passe dans combien de minutes ? Clique sur la bonne réponse.",
+  "Bravo ! Dans dix minutes, le jeune homme prend le bus numéro cinq."
+ ]
+}
