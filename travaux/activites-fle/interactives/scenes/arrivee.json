@@ -17,7 +17,7 @@
   "client": {"name": "Le client", "qui": "Le client", "side": "d", "spot": [33, 55, 18, 62], "anchor": [33, 38], "crop": [23, 3, 22, 39]}
  },
  "consignes": [
-  "Où est la salle du petit déjeuner ? Clique dans le hall, derrière le monsieur.",
+  "Où est la salle du petit déjeuner ? Clique sur la bonne salle.",
   "Le petit déjeuner finit à quelle heure ? Fais glisser la tasse jusqu'à la bonne heure.",
   "Bravo ! Demain, le monsieur prend son petit déjeuner à gauche, avant onze heures."
  ]

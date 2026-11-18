@@ -1,21 +1,27 @@
 /* Le petit déjeuner : à la réception, le client demande où est la salle du petit déjeuner (« Au rez-de-chaussée, à
    gauche. ») et à quelle heure il finit (« Il termine à onze heures. »).
-   1 · dans la vidéo : elle redit où est la salle (la vidéo resserrée sur elle) ; puis, sur le plan où le monsieur est en
-       face de nous (1,7 s : il ne parle pas encore, personne ne montre rien), on clique dans le hall, derrière lui, du côté
-       où il doit aller : à SA gauche, donc à droite de l'image (le salon, les fenêtres, les fauteuils jaunes). Elle montre
-       la salle de sa main droite en gros plan (vers la gauche de l'image) : recopier le côté de l'écran ne suffit pas, il
-       faut avoir compris « à gauche » du monsieur. Pièges : le couloir et les portes vitrées, à sa droite.
+   1 · elle redit où est la salle (la vidéo resserrée sur elle) ; à côté, le plan de l'hôtel en coupe : trois niveaux
+       (2e étage, 1er étage, rez-de-chaussée), à chaque niveau une salle à gauche et une à droite (l'escalier au milieu,
+       l'accueil au milieu du rez-de-chaussée) ; on clique sur la bonne salle. La gauche du plan est la gauche de
+       l'apprenant (repères « gauche / droite » au-dessus). Son geste en gros plan montre le côté, pas l'étage : il faut
+       avoir compris « rez-de-chaussée ».
    2 · elle redit l'heure : sur le chevalet du petit déjeuner, posé sur le comptoir (dessiné à côté), on fait glisser la
-       tasse le long de la matinée jusqu'à l'heure où il finit (onze heures), puis on valide. */
+       tasse le long de la matinée jusqu'à l'heure où il finit (onze heures), puis on valide.
+   (Pas de geste sur l'image : tout ce qu'on y voit, son geste vers la salle compris, donnerait la réponse ou demanderait
+   de se mettre à la place de quelqu'un vu de face.) */
 window.SCENARIO = (() => {
-  const NB = ' ';
-  /* le hall derrière le monsieur, sur l'image à 1,7 s (en %) */
-  const GEL_HALL = 1.7;
-  const ZONES = [
-    { id: 'salon', label: 'Le salon, avec les fauteuils', bon: true, x: 52, y: 18, w: 17, h: 70 },
-    { id: 'couloir', label: 'Le couloir', x: 0, y: 28, w: 13, h: 54, msg: 'Non' + NB + ': le couloir est à droite du monsieur.' },
-    { id: 'portes', label: 'Les portes vitrées', x: 13, y: 24, w: 14, h: 22, msg: 'Non' + NB + ': les portes vitrées sont à droite du monsieur.' },
-  ];
+  const NB = '\u202f';
+  /* le plan de l'hôtel : les niveaux de haut en bas, une salle à gauche (g) et à droite (d) à chaque niveau */
+  const GEL_SALLE = .4;                                                // elle sourit, avant toute réponse (premier plan)
+  const NIVEAUX = [{ n: 2, nom: '2<sup>e</sup> étage', aria: 'Deuxième étage', dit: 'le deuxième étage' },
+    { n: 1, nom: '1<sup>er</sup> étage', aria: 'Premier étage', dit: 'le premier étage' },
+    { n: 0, nom: 'rez-de-chaussée', aria: 'Rez-de-chaussée', dit: 'le rez-de-chaussée' }];
+  const BON = { n: 0, c: 'g' };
+  const ESCALIER = '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 34h8v-7h7v-7h7v-7h8" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg>';
+  const ACCUEIL = '<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="11" r="5" fill="currentColor"/><path d="M11 24c0-5 4-8 9-8s9 3 9 8z" fill="currentColor"/><rect x="5" y="24" width="30" height="11" rx="2" fill="currentColor" opacity=".55"/></svg>';
+  const TABLE = '<svg viewBox="0 0 64 40" aria-hidden="true"><rect x="8" y="18" width="48" height="5" rx="2" fill="#8C5A33"/><path d="M14 23v14M50 23v14" stroke="#8C5A33" stroke-width="3" stroke-linecap="round"/>'
+    + '<path d="M18 9h12l-1.2 8h-9.6z" fill="#fff" stroke="#C9B080"/><path d="M30 11h2a2 2 0 0 1 0 4h-2" fill="none" stroke="#C9B080" stroke-width="1.6"/>'
+    + '<path d="M37 16c1-5 4-8 8-8s7 3 8 8c-2 1-3 1-4.5 .3-1 1.5-2.2 2-3.5 2s-2.5-.5-3.5-2c-1.5.7-2.5.7-4.5-.3z" fill="#E7A957"/></svg>';
 
   /* le chevalet : la matinée de 8 h à 12 h ; la tasse marque la fin du petit déjeuner */
   const GEL_HEURE = 9.2;                                               // elle a fini de répondre, elle sourit (gros plan, avant la coupe de 9,375 s)
@@ -35,37 +41,47 @@ window.SCENARIO = (() => {
     plans: [{ de: 0, cx: { receptionniste: .58, client: .3 } }, { de: 1.625, cx: { receptionniste: .62, client: .34 } },
       { de: 3.583, cx: { receptionniste: .6, client: .6 } }, { de: 5.417, cx: { receptionniste: .36, client: .36 } },
       { de: 7.792, cx: { receptionniste: .6, client: .6 } }, { de: 9.375, cx: { receptionniste: .38, client: .38 } }],
-    /* sur un téléphone (en hauteur), l'image entière est recadrée : on garde le couloir (à gauche) et le salon (à droite) */
-    crops: { fullTall: { a: 1.5, h: 1, cx: .45, cy: .5 } },
     ordre: ['salle', 'heure'],
     bravo: 'Bravo' + NB + '! Demain, le monsieur prend son petit déjeuner à gauche, avant onze heures.',
     etapes: A => {
-      const { $, $$, state, alive, Q, yourTurn, setTurn, playSegment, ligne, side, idle, tapHere, at, sfx, faux, juste, suite, goBtn, zones, cam, avant, cadreZone, marque, gel } = A;
+      const { $, $$, state, alive, Q, yourTurn, setTurn, playSegment, ligne, side, idle, tapHere, at, sfx, faux, juste, suite, goBtn, avant, gel } = A;
       const tour = () => document.body.dataset.turn === 'you';
       const secouer = el => { if (!el) return; el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); };
       /* les passages : sa réponse, jusqu'avant la coupe suivante */
       const OU = [ligne(2)[0], Math.min(ligne(2)[1], 5.38)], FIN = [ligne(4)[0], ligne(4)[1]];
       return {
-        /* 1 · dans la vidéo : la salle est à gauche du monsieur (il est en face de nous : à droite de l'image) */
+        /* 1 · le plan de l'hôtel en coupe : on clique sur la salle du petit déjeuner (rez-de-chaussée, à gauche) */
         async salle(f) {
-          let aide = '';                                                   // après deux essais : la consigne avec l'indice
-          const ask = () => { Q.show('you', aide || state.ask); yourTurn(); cam.classList.add('asking'); idle.set(tapHere($('.hit[data-id="portes"]', cam)), 5000); };
+          const salle = (n, c) => $(`.ph-salle[data-n="${n}"][data-c="${c}"]`, side);
+          const ask = () => { Q.show('you', state.ask); yourTurn(); idle.set(tapHere(salle(1, 'd')), 5000); };
+          const bouton = (v, c) => `<button class="ph-salle" data-n="${v.n}" data-c="${c}" aria-label="${v.aria}, salle de ${c === 'g' ? 'gauche' : 'droite'}"><span class="ph-dedans"></span></button>`;
+          const milieu = v => `<span class="ph-milieu">${v.n === 0 ? ACCUEIL + '<small>accueil</small>' : ESCALIER}</span>`;
           if (!await avant(f, {
-            qui: 'receptionniste', seg: OU, gel: GEL_HALL, consigne: 'Où est la salle du petit déjeuner' + NB + '? Clique dans le hall, derrière le monsieur.',
-            monte: () => zones(ZONES, choisir),
+            qui: 'receptionniste', seg: OU, gel: GEL_SALLE, sideW: 520, consigne: 'Où est la salle du petit déjeuner' + NB + '? Clique sur la bonne salle.',
+            panneau: `<div class="panel glass ph-panel"><p class="ptitre">Le plan de l'hôtel</p>
+              <div class="ph-hotel">
+                <div class="ph-cotes" aria-hidden="true"><span></span><span>← gauche</span><span></span><span>droite →</span></div>
+                ${NIVEAUX.map(v => `<div class="ph-niveau${v.n === 0 ? ' rdc' : ''}"><span class="ph-nom">${v.nom}</span>${bouton(v, 'g')}${milieu(v)}${bouton(v, 'd')}</div>`).join('')}
+              </div></div>`,
+            monte: p => $$('.ph-salle', p).forEach(b => b.addEventListener('click', () => choisir(b))),
           })) return;
-          state.replay = async () => { setTurn('listen'); cam.classList.remove('asking'); await playSegment(OU[0], OU[1], gel()); if (alive(f)) ask(); };
-          async function choisir(id, ev, z) {
-            setTurn('wait'); cam.classList.remove('asking'); sfx.tick();
-            if (z.bon) {
-              $$('.hit', cam).forEach(h => h.classList.remove('indice'));
-              cadreZone(z); marque(z, 'La salle du petit déjeuner', 'juste');
-              if (!await juste(f, 'Oui' + NB + '! Au rez-de-chaussée, à gauche du monsieur.')) return;
-              zones(null); suite();
+          state.replay = async () => { setTurn('listen'); idle.clear(); await playSegment(OU[0], OU[1], gel()); if (alive(f)) ask(); };
+          async function choisir(b) {
+            if (!tour()) return;
+            A.unlock(); idle.clear(); setTurn('wait'); sfx.tick();
+            const n = +b.dataset.n, c = b.dataset.c;
+            if (n === BON.n && c === BON.c) {
+              $$('.ph-salle', side).forEach(x => x.classList.remove('indice', 'faux'));
+              b.classList.add('juste'); $('.ph-dedans', b).innerHTML = TABLE + '<small>petit déjeuner</small>';
+              if (!await juste(f, 'Oui' + NB + '! Au rez-de-chaussée, à gauche.')) return;
+              suite();
             } else {
-              cadreZone(z, 'faux'); marque(z, z.label, 'faux');
-              const montrer = await faux(f, OU, z.msg); if (montrer === null) return;
-              if (montrer) { $('.hit[data-id="salon"]', cam).classList.add('indice'); aide = 'Il est en face de toi' + NB + ": sa gauche, c'est de ce côté. Clique sur la salle."; }
+              b.classList.add('faux'); secouer(b);
+              const niv = NIVEAUX.find(v => v.n === n);
+              const msg = n !== BON.n ? "Non, ça, c'est " + niv.dit + (c !== BON.c ? ', à droite.' : '.') : "Non, ça, c'est à droite.";
+              const montrer = await faux(f, OU, msg); if (montrer === null) return;
+              b.classList.remove('faux');
+              if (montrer) salle(BON.n, BON.c).classList.add('indice');
               ask();
             }
           }

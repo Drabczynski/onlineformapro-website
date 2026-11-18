@@ -239,23 +239,21 @@ window.DONNEES = {
   }
  },
  "clips": {
-  "Où est la salle du petit déjeuner ? Clique dans le hall, derrière le monsieur.": {
-   "src": "medias/voix-a0a677f371.mp3",
+  "Où est la salle du petit déjeuner ? Clique sur la bonne salle.": {
+   "src": "medias/voix-62107d6425.mp3",
    "w": [
     0.0,
     0.16,
-    0.28,
+    0.24,
     0.4,
     0.68,
     0.8,
     1.04,
     2.0,
-    2.28,
-    2.44,
+    2.32,
     2.56,
-    3.2,
-    3.56,
-    3.68
+    2.72,
+    2.96
    ]
   },
   "Le petit déjeuner finit à quelle heure ? Fais glisser la tasse jusqu'à la bonne heure.": {
