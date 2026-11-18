@@ -5,21 +5,40 @@ ICI = os.path.dirname(os.path.abspath(__file__))
 VOIX = {"h": "W01VS3mCiWjHO239CD72", "f": "87kc04olBn8nRQKuNmaf", "f1": "4NTBwCMIWDfx48seeuxZ"}   # Homme 1, Femme 2, Femme 1
 MODELE, NIVEAU = "eleven_v4", -20.0
 TEXTES = {
-    "journal": ("h", "Aujourd'hui, à Paris, les ambassadeurs français sont venus écouter Emmanuel Macron. "
-                     "François Bayrou, le nouveau Premier ministre de la France, est arrivé à l'hôtel Matignon. "
-                     "Mark Carney est devenu officiellement, aujourd'hui, le nouveau Premier ministre canadien. "
-                     "Olivier Grondeau a été libéré lundi, il est revenu en France. "
-                     "Le nouveau Premier ministre canadien Mark Carney est entré en fonction la semaine dernière. "
-                     "Les premiers avions sont arrivés en Ukraine. "
-                     "Des milliers de personnes sont descendues dans les rues."),
-    "football": ("f1", "Enfin, avant de retrouver Radio Foot Internationale, cette petite phrase : « C'est peut-être la bonne année pour gagner le Ballon d'Or. » "
-                       "Phrase du jour, signée Kylian Mbappé. La superstar française pense que c'est peut-être son année, car il a été le meilleur buteur du Mondial."),
+    # consignes
+    "c-ecoutez": ("f", "Écoutez et complétez."),
+    "c-completez": ("f", "Complétez la phrase."),
+    "c-vraifaux": ("f", "Vrai ou faux ?"),
+    "c-mot": ("f", "Quel mot entendez-vous ?"),
+    # 1. le journal
+    "j1": ("h", "Les ambassadeurs français sont venus écouter Emmanuel Macron."),
+    "j2": ("h", "François Bayrou est arrivé à l'hôtel Matignon."),
+    "j3": ("h", "Mark Carney est devenu Premier ministre du Canada."),
+    "j4": ("h", "Olivier Grondeau est revenu en France."),
+    "j5": ("h", "Mark Carney est entré en fonction la semaine dernière."),
+    "j6": ("h", "Les premiers avions sont arrivés en Ukraine."),
+    "j7": ("h", "Des milliers de personnes sont descendues dans les rues."),
+    # 2. le football
+    "f1": ("f1", "Avant de retrouver Radio Foot Internationale, cette petite phrase."),
+    "f2": ("f1", "C'est peut-être la bonne année pour gagner le Ballon d'Or."),
+    "f3": ("f1", "La superstar française pense que c'est son année."),
+    "f4": ("f1", "Il a été le meilleur buteur du Mondial."),
+    # 3. les adjectifs (la phrase juste, lue après la réponse)
+    "g1": ("f1", "Kylian Mbappé est un buteur français."),
+    "g2": ("f1", "Il joue pour l'équipe nationale française."),
+    "g3": ("f1", "C'est un très bon joueur de foot."),
+    "g4": ("f1", "C'est une bonne année pour lui."),
+    # 4. les transports
     "transport": ("f", "Le transport des voyageurs et des marchandises représente environ vingt-cinq pour cent des émissions mondiales de gaz à effet de serre. "
                        "Depuis le début du conflit en Ukraine, le prix de l'essence a beaucoup augmenté. "
                        "Alors, en Afrique, les deux-roues électriques se vendent de mieux en mieux. "
                        "Au Kenya, par exemple, plus de sept mille motos électriques ont été enregistrées depuis 2022."),
-    "mobilite": ("f", "Selon Stéphanie Schüler, les ventes de véhicules, de ces deux-roues qui ont comme énergie l'électricité, progressent fortement. "
-                      "En Afrique, le nombre de scooters, motos et tricycles électriques a pris son envol peu après l'invasion de l'Ukraine par la Russie."),
+    "t1": ("f", "Le transport, c'est vingt-cinq pour cent des gaz à effet de serre."),
+    "t2": ("f", "L'essence coûte plus cher depuis la guerre en Ukraine."),
+    "t3": ("f", "En Afrique, sept mille motos électriques en tout depuis 2022."),
+    # 5. la mobilité
+    "m1": ("f", "Les ventes de deux-roues électriques progressent fortement."),
+    "m2": ("f", "En Afrique, le nombre de scooters, motos et tricycles électriques a pris son envol."),
 }
 
 
