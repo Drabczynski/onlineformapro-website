@@ -1,0 +1,106 @@
+/* ================= Au pressing : la tringle et le ticket, le tampon dateur, la caisse ================= */
+/* 1 · la tringle : quatre vêtements sur leurs cintres ; le ticket (un carton numéroté) en bas */
+.pr .pr-tringle { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 14px 10px 10px; border-radius: 20px; background: rgba(0,0,0,.22); }
+.pr .pr-tringle::before { content: ""; position: absolute; left: 10px; right: 10px; top: 13px; height: 5px; border-radius: 3px; background: #B9C0CC; }
+.pr .pr-habit { position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 0 4px 8px; border-radius: 16px; color: #fff;
+  transition: background .2s, box-shadow .25s, transform .3s var(--spring); touch-action: manipulation; }
+.pr .pr-habit svg { display: block; width: 100%; max-width: 104px; height: auto; aspect-ratio: 100 / 130; }
+.pr .pr-accroche { position: absolute; left: 50%; top: 26%; width: 2px; height: 2px; }
+.pr .pr-nom { flex: 1; display: flex; align-items: flex-end; text-align: center; font-weight: 800; font-size: 15px; line-height: 1.15; }
+.pr .pr-tache { display: inline-flex; align-items: center; gap: 5px; font-weight: 700; font-size: 14px; white-space: nowrap; color: var(--text2); line-height: 1.15; text-align: center; }
+.pr .pr-tache i { flex: none; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: #fff; }
+.pr .pr-tache i svg { width: 16px; height: 16px; }
+@media (hover: hover) { .pr .pr-habit:hover { background: rgba(255,255,255,.1); } }
+.pr .pr-habit.chaud { background: rgba(255,255,255,.16); box-shadow: inset 0 0 0 3px #fff; }
+.pr .pr-habit.juste { box-shadow: inset 0 0 0 4px var(--ok); background: rgba(75,227,180,.14); }
+.pr .pr-habit.juste .pr-nom::after { content: " ✓"; color: var(--ok); }
+.pr .pr-habit.faux { box-shadow: inset 0 0 0 4px var(--try); background: rgba(255,198,92,.14); }
+.pr .pr-habit.indice { animation: pr-indice 1.1s var(--apple) infinite; }
+@keyframes pr-indice { 50% { box-shadow: inset 0 0 0 4px var(--ok); background: rgba(75,227,180,.18); } }
+
+.pr .pr-depart { display: flex; align-items: center; justify-content: center; gap: 12px; height: 92px; border-radius: 18px; background: rgba(255,255,255,.06); }
+.pr .pr-depart .legende { font-weight: 700; font-size: 14px; color: var(--text2); }
+.pr .pr-ticket { position: relative; z-index: 5; width: 74px; height: 64px; border-radius: 8px; background: #FFE58A; color: var(--ink); display: flex; flex-direction: column; align-items: center; justify-content: center;
+  line-height: 1.05; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; box-shadow: inset 0 -3px 0 rgba(0,0,0,.12); }
+.pr .pr-ticket small { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #5A4A10; margin-top: 8px; }
+.pr .pr-ticket b { font-size: 19px; font-weight: 800; }
+.pr .pr-trou { position: absolute; left: 50%; top: 6px; width: 9px; height: 9px; margin-left: -4.5px; border-radius: 50%; background: #3A3320; box-shadow: 0 0 0 2px #fff; }
+.pr .pr-ticket.tenu { cursor: grabbing; z-index: 30; }
+body[data-turn="listen"] .pr .pr-habit, body[data-turn="wait"] .pr .pr-habit,
+body[data-turn="listen"] .pr .pr-ticket, body[data-turn="wait"] .pr .pr-ticket { pointer-events: none; }
+
+/* 2 · le tampon dateur : la bande des jours dans la fenêtre du socle ; les flèches à côté ; le ticket de retrait dessous */
+.pr .pr-poste { display: flex; align-items: center; justify-content: center; gap: 16px; }
+.pr .pr-tampon { position: relative; z-index: 5; display: flex; flex-direction: column; align-items: center; width: 220px; outline: none; border-radius: 18px; }
+.pr .pr-tampon:focus-visible { box-shadow: 0 0 0 3px #fff; }
+.pr .pr-manche { width: 64px; height: 46px; border-radius: 30px 30px 10px 10px; background: linear-gradient(180deg, #3B4458, #232A3A); }
+.pr .pr-socle { display: block; width: 100%; padding: 8px; border-radius: 16px; background: linear-gradient(180deg, #6B7488, #4A5266); }
+.pr .pr-fenetre { position: relative; display: block; height: 132px; overflow: hidden; border-radius: 10px; background: #F3F1EC; touch-action: none; cursor: ns-resize; }
+.pr .pr-fenetre::before { content: ""; position: absolute; left: 6px; right: 6px; top: 44px; height: 44px; border-radius: 8px; background: #fff; box-shadow: inset 0 0 0 2px #2A3142; z-index: 0; }
+.pr .pr-fenetre::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(243,241,236,.9), rgba(243,241,236,0) 32%, rgba(243,241,236,0) 68%, rgba(243,241,236,.9)); pointer-events: none; z-index: 2; }
+.pr .pr-bande { position: absolute; left: 0; right: 0; top: 44px; display: block; z-index: 1; }
+.pr .pr-bande span { display: flex; align-items: center; justify-content: center; height: 44px; font-weight: 800; font-size: 20px; text-transform: uppercase; letter-spacing: .08em; color: #8A8F9C; }
+.pr .pr-bande span.vu { color: #2E3A8C; }
+.pr .pr-fls { display: flex; flex-direction: column; gap: 12px; }
+.pr .pr-fl { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: #fff; color: var(--ink); transition: transform .3s var(--spring), opacity .2s; touch-action: manipulation; }
+.pr .pr-fl svg { width: 28px; height: 28px; }
+.pr .pr-fl:active { transform: scale(.9); }
+.pr .pr-fl:disabled { opacity: .35; }
+
+.pr .pr-recu { border-radius: 14px; padding: 12px 16px; background: #FBFAF6; color: var(--ink); display: flex; flex-direction: column; gap: 8px; }
+.pr .pr-recu-tete { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 6px; border-bottom: 2px dashed #D4D0C4; }
+.pr .pr-recu-tete b { font-size: 18px; font-weight: 800; } .pr .pr-recu-tete span { font-size: 14px; font-weight: 700; color: #5B6070; }
+.pr .pr-recu-l { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 15px; font-weight: 600; color: #4A5163; }
+.pr .pr-recu-l b { color: var(--ink); font-weight: 800; }
+.pr .pr-case { position: relative; flex: none; width: 150px; height: 46px; border-radius: 8px; border: 2px dashed #B9B4A6; display: grid; place-items: center; transition: border-color .3s, background .3s; }
+.pr .pr-encre { font-weight: 800; font-size: 20px; letter-spacing: .1em; text-transform: uppercase; color: #2E3A8C; transform: rotate(-4deg); opacity: .9; animation: pr-encre .35s var(--apple); }
+@keyframes pr-encre { from { opacity: 0; transform: rotate(-4deg) scale(1.25); } }
+.pr .pr-case.juste { border: 3px solid var(--ok); background: rgba(75,227,180,.16); }
+.pr .pr-case.juste::after { content: "✓"; position: absolute; right: -30px; top: 50%; transform: translateY(-50%); width: 24px; height: 24px; border-radius: 50%; background: var(--ok); color: var(--ink); font-weight: 800; font-size: 14px; display: grid; place-items: center; }
+.pr .pr-case.faux { border: 3px solid var(--try); background: rgba(255,198,92,.18); }
+body[data-turn="listen"] .pr .pr-poste, body[data-turn="wait"] .pr .pr-poste { pointer-events: none; }
+
+/* 3 · la caisse du pressing : l'écran, le clavier, le tiroir qui s'ouvre quand le prix est juste */
+.pr .pr-caisse { width: 300px; max-width: 100%; margin: 0 auto; padding: 14px; border-radius: 24px; background: linear-gradient(180deg, #E9ECF1, #C6CCD5); display: flex; flex-direction: column; gap: 12px; color: var(--ink); }
+.pr .pr-ecran { height: 64px; border-radius: 12px; background: #13261E; color: #9BF5C9; display: flex; align-items: center; justify-content: flex-end; gap: 8px; padding: 0 16px;
+  font-variant-numeric: tabular-nums; box-shadow: inset 0 0 0 2px rgba(255,255,255,.08); transition: box-shadow .3s, color .3s; }
+.pr .pr-ecran small { margin-right: auto; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; opacity: .75; }
+.pr .pr-ecran b { font-size: 38px; font-weight: 800; line-height: 1; }
+.pr .pr-ecran span { font-size: 22px; font-weight: 700; }
+.pr .pr-ecran.juste { box-shadow: inset 0 0 0 3px var(--ok); color: var(--ok); }
+.pr .pr-ecran.faux { box-shadow: inset 0 0 0 3px var(--try); color: var(--try); }
+.pr .pr-touches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.pr .pr-touche { height: 52px; border-radius: 12px; background: #fff; color: var(--ink); font-weight: 800; font-size: 22px; box-shadow: inset 0 -3px 0 rgba(0,0,0,.14); transition: transform .2s var(--spring), background .2s; touch-action: manipulation; }
+.pr .pr-touche:active { transform: scale(.93); background: #E6E9EE; }
+.pr .pr-touche.efface { background: #5B6378; color: #fff; font-size: 20px; }
+.pr .pr-touche.ok { background: #2FC79A; color: var(--ink); font-size: 19px; }
+.pr .pr-touche.indice { animation: pr-indice-t 1.1s var(--apple) infinite; }
+@keyframes pr-indice-t { 50% { box-shadow: inset 0 0 0 3px #138A66; background: #C9F6E7; } }
+.pr .pr-tiroir { height: 14px; border-radius: 0 0 10px 10px; background: #8C95A6; margin: -4px 10px 0; transition: height .45s var(--spring), background .3s; display: flex; align-items: center; justify-content: center; }
+.pr .pr-tiroir span { width: 50px; height: 4px; border-radius: 2px; background: rgba(255,255,255,.6); }
+.pr .pr-caisse.ouverte .pr-tiroir { height: 30px; background: #6E7890; }
+body[data-turn="listen"] .pr .pr-touches, body[data-turn="wait"] .pr .pr-touches { pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) { .pr .pr-habit.indice, .pr .pr-touche.indice { animation: none; box-shadow: inset 0 0 0 4px var(--ok); } }
+
+/* téléphone tenu droit, téléphone couché : plus petit */
+body.tall .pr .pr-tringle { gap: 4px; padding: 12px 4px 6px; } body.tall .pr .pr-habit { padding: 0 2px 6px; }
+body.tall .pr .pr-habit svg { max-width: 72px; }
+body.tall .pr .pr-nom { font-size: 13px; } body.tall .pr .pr-tache { font-size: 12.5px; gap: 3px; } body.tall .pr .pr-tache i { width: 20px; height: 20px; }
+body.tall .pr .pr-depart { height: 78px; }
+body.tall .pr .pr-fenetre { height: 108px; } body.tall .pr .pr-fenetre::before { top: 32px; } body.tall .pr .pr-bande { top: 32px; }
+body.tall .pr .pr-manche { height: 30px; } body.tall .pr .pr-tampon { width: 200px; }
+body.tall .pr .pr-fl { width: 50px; height: 50px; }
+body.tall .pr .pr-recu { padding: 10px 12px; gap: 6px; } body.tall .pr .pr-case { width: 130px; height: 42px; }
+body.tall .pr .pr-caisse { padding: 10px; gap: 8px; } body.tall .pr .pr-ecran { height: 52px; } body.tall .pr .pr-ecran b { font-size: 30px; }
+body.tall .pr .pr-touche { height: 46px; font-size: 20px; }
+body.compact .pr .pr-habit svg { max-width: 58px; } body.compact .pr .pr-depart { height: 70px; }
+body.short .pr .pr-tringle { grid-template-columns: repeat(4, 1fr); gap: 2px; padding: 10px 2px 4px; } body.short .pr .pr-habit svg { max-width: 40px; }
+body.short .pr .pr-nom { font-size: 11px; } body.short .pr .pr-tache { font-size: 11px; } body.short .pr .pr-tache i { display: none; }
+body.short .pr .pr-depart { height: 70px; } body.short .pr .pr-ticket { transform-origin: center; }
+body.short .pr .pr-poste { gap: 8px; } body.short .pr .pr-tampon { width: 150px; } body.short .pr .pr-manche { display: none; }
+body.short .pr .pr-fenetre { height: 44px; } body.short .pr .pr-fenetre::before, body.short .pr .pr-bande { top: 0; } body.short .pr .pr-fenetre::after { display: none; }
+body.short .pr .pr-bande span { font-size: 16px; } body.short .pr .pr-fl { width: 44px; height: 44px; } body.short .pr .pr-fls { flex-direction: row; gap: 6px; }
+body.short .pr .pr-recu { padding: 6px 10px; gap: 4px; } body.short .pr .pr-recu-tete { padding-bottom: 3px; } body.short .pr .pr-case { width: 110px; height: 40px; }
+body.short .pr .pr-caisse { padding: 8px; gap: 6px; } body.short .pr .pr-ecran { height: 40px; } body.short .pr .pr-ecran b { font-size: 24px; }
+body.short .pr .pr-touches { gap: 4px; } body.short .pr .pr-touche { height: 44px; font-size: 17px; } body.short .pr .pr-tiroir { display: none; }

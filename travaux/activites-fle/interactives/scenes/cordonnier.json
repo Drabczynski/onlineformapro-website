@@ -1,0 +1,24 @@
+{
+ "video": "cordonnier",
+ "titre": "Chez le cordonnier",
+ "niveau": "A1",
+ "gel": 1.0,
+ "sousTitres": [
+  {"d": 0.32, "f": 2.38, "qui": "La cliente", "texte": "Bonjour, vous pouvez réparer le talon ?"},
+  {"d": 3.32, "f": 4.9, "qui": "Le cordonnier", "texte": "Oui, bien sûr, c'est quinze euros."},
+  {"d": 5.7, "f": 6.2, "qui": "La cliente", "texte": "C'est prêt quand ?"},
+  {"d": 7.34, "f": 8.68, "qui": "Le cordonnier", "texte": "Jeudi, après dix heures."}
+ ],
+ "people": {
+  "cordonnier": {"name": "Le cordonnier", "qui": "Le cordonnier", "side": "g", "spot": [27, 50, 16, 62], "anchor": [30, 40], "crop": [26, 12, 10, 18],
+                 "portrait": [7.6, [23, 6, 34, 60]]},
+  "cliente": {"name": "La cliente", "qui": "La cliente", "side": "d", "spot": [72, 55, 14, 62], "anchor": [70, 40], "crop": [64, 11, 10, 18],
+              "portrait": [5.6, [51, 8, 36, 64]]}
+ },
+ "consignes": [
+  "Qu'est-ce qu'elle veut faire réparer ? Clique sur la bonne partie de la botte.",
+  "La réparation coûte combien ? Pose l'argent sur le comptoir, puis clique sur Payer.",
+  "Sa botte est prête quand ? Sur le ticket, clique sur le jour et sur l'heure, puis sur Valider.",
+  "Bravo ! Elle revient jeudi, après dix heures."
+ ]
+}

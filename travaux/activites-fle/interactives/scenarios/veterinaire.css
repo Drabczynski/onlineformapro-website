@@ -1,0 +1,87 @@
+/* ================= Chez le vétérinaire : la fiche de consultation, le calendrier à feuilles, le chat à sa place ================= */
+/* 1 · la fiche, sur une planchette : quatre lignes avec une case à cocher (blanc = choisi, vert = juste, orange = à revoir) */
+.veto .fv { position: relative; margin-top: 8px; border-radius: 18px; background: #FBFAF6; color: var(--ink); padding: 26px 14px 14px; display: flex; flex-direction: column; gap: 8px; box-shadow: inset 0 0 0 2px #E4DFD4; }
+.veto .fv-pince { position: absolute; left: 50%; top: -9px; width: 96px; height: 22px; margin-left: -48px; border-radius: 8px; background: #7D8796; box-shadow: inset 0 -4px 0 #5F6876; }
+.veto .fv-tete { display: flex; flex-direction: column; align-items: center; gap: 2px; padding-bottom: 8px; border-bottom: 2px dashed #DDD6C8; }
+.veto .fv-tete b { font-size: 19px; font-weight: 800; }
+.veto .fv-tete span { font-size: 15px; font-weight: 600; color: #4A5163; }
+.veto .fv-q { margin: 2px 0 0; font-size: 15px; font-weight: 800; color: #4A5163; }
+.veto .fv-cases { display: flex; flex-direction: column; gap: 6px; }
+.veto .fv-case { display: grid; grid-template-columns: 30px 40px minmax(0, 1fr) auto; align-items: center; gap: 10px; min-height: 54px; padding: 4px 12px; border-radius: 14px;
+  background: #fff; color: var(--ink); text-align: left; box-shadow: inset 0 0 0 2px #E7E2D8; transition: box-shadow .2s, background .2s, transform .3s var(--spring); touch-action: manipulation; }
+.veto .fv-case .boite { position: relative; width: 28px; height: 28px; border-radius: 7px; box-shadow: inset 0 0 0 2.5px #4A5163; background: #fff; }
+.veto .fv-case.coche .boite::after { content: ""; position: absolute; left: 9px; top: 3px; width: 8px; height: 15px; border: solid #0B0D16; border-width: 0 4px 4px 0; transform: rotate(45deg); animation: pop .35s var(--spring) both; }
+.veto .fv-case .ic svg { width: 40px; height: 40px; display: block; }
+.veto .fv-case .txt { font-size: 19px; font-weight: 700; }
+.veto .fv-case .etat { font-size: 14px; font-weight: 800; border-radius: 99px; color: var(--ink); }
+.veto .fv-case .etat:not(:empty) { padding: 4px 10px; }
+@media (hover: hover) { .veto .fv-case:hover { background: #F2F0EA; } }
+.veto .fv-case:active { transform: scale(.98); }
+.veto .fv-case.faux { box-shadow: inset 0 0 0 3px var(--try); background: #FFF6E3; }
+.veto .fv-case.faux .etat { background: var(--try); }
+.veto .fv-case.juste { box-shadow: inset 0 0 0 3px #1FA97E; background: #E3FAF2; }
+.veto .fv-case.juste .boite { box-shadow: inset 0 0 0 2.5px #138A66; }
+.veto .fv-case.juste .etat { background: var(--ok); }
+.veto .fv-case.juste .etat::before { content: "✓ "; }
+.veto .fv-case.indice { animation: veto-indice 1.1s var(--apple) infinite; }
+@keyframes veto-indice { 50% { box-shadow: inset 0 0 0 3px #1FA97E; background: #E3FAF2; } }
+body[data-turn="listen"] .veto .fv-cases, body[data-turn="wait"] .veto .fv-cases { pointer-events: none; }
+
+/* 2 · le calendrier à feuilles (éphéméride) : une page par jour, des flèches de chaque côté, la page se tourne du doigt */
+.veto .cal-zone { display: grid; grid-template-columns: 56px minmax(0, 1fr) 56px; align-items: center; gap: 10px; }
+.veto .cal-fl { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.92); color: var(--ink); transition: transform .3s var(--spring), opacity .2s; touch-action: manipulation; }
+.veto .cal-fl svg { width: 26px; height: 26px; }
+.veto .cal-fl:active { transform: scale(.9); }
+.veto .cal-fl:disabled { opacity: .3; }
+.veto .cal { position: relative; border-radius: 18px; overflow: hidden; background: #fff; box-shadow: inset 0 0 0 3px rgba(255,255,255,.5); transition: box-shadow .25s; }
+.veto .cal-haut { position: relative; height: 48px; background: #2F6FB3; display: grid; place-items: center; color: #fff; font-size: 18px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+.veto .cal-haut i { position: absolute; top: 8px; width: 10px; height: 10px; border-radius: 50%; background: #1B4C82; }
+.veto .cal-haut i:first-child { left: 9%; } .veto .cal-haut i:nth-child(2) { right: 9%; }
+.veto .cal-page { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 12px 8px 16px; color: var(--ink); touch-action: pan-y; user-select: none; -webkit-user-select: none; cursor: grab; outline: none; }
+.veto .cal-page:focus-visible { box-shadow: inset 0 0 0 3px #2F6FB3; }
+.veto .cal-j { font-size: 22px; font-weight: 700; color: #4A5163; }
+.veto .cal-n { font-size: 84px; font-weight: 800; line-height: .95; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.veto .cal-l { margin-top: 6px; padding: 5px 14px; border-radius: 99px; background: #EEF1F6; font-size: 17px; font-weight: 800; color: #2A3142; }
+.veto .cal.auj .cal-l { background: #2A3142; color: #fff; }
+.veto .cal.faux { box-shadow: inset 0 0 0 5px var(--try); }
+.veto .cal.faux .cal-l { background: var(--try); color: var(--ink); }
+.veto .cal.juste { box-shadow: inset 0 0 0 5px var(--ok); }
+.veto .cal.juste .cal-l { background: var(--ok); color: var(--ink); }
+.veto .cal.juste .cal-l::after { content: " ✓"; }
+.veto .cal-aide { margin: 0; text-align: center; font-size: 15px; font-weight: 600; color: var(--text2); }
+body[data-turn="listen"] .veto .cal-zone, body[data-turn="wait"] .veto .cal-zone { pointer-events: none; }
+
+/* 3 · trois endroits ; le chat en bas, qu'on fait glisser */
+.veto .lieux { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.veto .lieu { display: flex; flex-direction: column; align-items: stretch; gap: 8px; padding: 8px; border-radius: 20px; background: rgba(0,0,0,.22);
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.14); transition: box-shadow .25s, background .25s, transform .3s var(--spring); touch-action: manipulation; }
+.veto .lieu .sol { display: block; height: 150px; border-radius: 12px; overflow: hidden; }
+.veto .lieu .sol svg { display: block; width: 100%; height: 100%; }
+.veto .lieu .nom { font-size: 18px; font-weight: 800; color: #fff; text-align: center; }
+@media (hover: hover) { .veto .lieu:hover { background: rgba(255,255,255,.1); } }
+.veto .lieu.chaud { background: rgba(255,255,255,.16); box-shadow: inset 0 0 0 3px #fff; }
+.veto .lieu.juste { box-shadow: inset 0 0 0 4px var(--ok); }
+.veto .lieu.juste .nom::after { content: " ✓"; color: var(--ok); }
+.veto .lieu.faux { box-shadow: inset 0 0 0 4px var(--try); }
+.veto .lieu.indice { animation: veto-indice-lieu 1.1s var(--apple) infinite; }
+@keyframes veto-indice-lieu { 50% { box-shadow: inset 0 0 0 4px var(--ok); background: rgba(75,227,180,.18); } }
+.veto .depart { display: flex; align-items: center; justify-content: center; gap: 12px; height: 96px; border-radius: 18px; background: rgba(255,255,255,.06); }
+.veto .chat { position: relative; z-index: 5; width: 72px; height: 80px; display: grid; place-items: center; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; }
+.veto .chat svg { width: 64px; height: 72px; pointer-events: none; }
+.veto .chat.tenu { cursor: grabbing; z-index: 30; }
+.veto .depart .legende { font-weight: 700; font-size: 15px; color: var(--text2); min-height: 0; }
+body[data-turn="listen"] .veto .lieu, body[data-turn="wait"] .veto .lieu,
+body[data-turn="listen"] .veto .chat, body[data-turn="wait"] .veto .chat { pointer-events: none; }
+
+/* petits écrans */
+body.tall .veto .fv { padding: 20px 10px 10px; gap: 6px; } body.tall .veto .fv-tete { padding-bottom: 4px; } body.tall .veto .fv-tete b { font-size: 16px; }
+body.tall .veto .fv-case { min-height: 46px; grid-template-columns: 26px 32px minmax(0, 1fr) auto; gap: 8px; } body.tall .veto .fv-case .ic svg { width: 32px; height: 32px; }
+body.tall .veto .fv-case .txt { font-size: 17px; } body.tall .veto .fv-case .boite { width: 24px; height: 24px; }
+body.tall .veto .fv-case.coche .boite::after { left: 7px; top: 2px; width: 7px; height: 13px; }
+body.tall .veto .cal-n { font-size: 60px; } body.tall .veto .cal-haut { height: 38px; font-size: 15px; letter-spacing: .02em; } body.tall .veto .cal-haut i { top: 6px; width: 8px; height: 8px; } body.tall .veto .cal-page { padding: 8px 6px 10px; } body.tall .veto .cal-j { font-size: 19px; }
+body.tall .veto .lieu .sol { height: 96px; } body.tall .veto .lieu { padding: 6px; gap: 6px; } body.tall .veto .lieu .nom { font-size: 14px; } body.tall .veto .depart { height: 84px; }
+body.compact .veto .fv-tete span { display: none; } body.compact .veto .cal-aide { display: none; }
+body.short .veto .fv { padding: 18px 8px 8px; gap: 4px; } body.short .veto .fv-tete { display: none; } body.short .veto .fv-case { min-height: 44px; } body.short .veto .fv-case .txt { font-size: 15px; }
+body.short .veto .fv-case { grid-template-columns: 24px 28px minmax(0, 1fr) auto; gap: 6px; padding: 2px 8px; } body.short .veto .fv-case .ic svg { width: 28px; height: 28px; }
+body.short .veto .cal-n { font-size: 48px; } body.short .veto .cal-haut { height: 32px; font-size: 14px; } body.short .veto .cal-aide { display: none; } body.short .veto .cal-zone { grid-template-columns: 44px minmax(0, 1fr) 44px; } body.short .veto .cal-fl { width: 44px; height: 44px; }
+body.short .veto .lieu .sol { height: 70px; } body.short .veto .lieu .nom { font-size: 13px; } body.short .veto .depart { height: 70px; }

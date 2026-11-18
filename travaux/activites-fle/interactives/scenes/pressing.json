@@ -1,0 +1,22 @@
+{
+ "video": "pressing",
+ "titre": "Au pressing",
+ "niveau": "A1",
+ "gel": 9.5,
+ "sousTitres": [
+  {"d": 0.32, "f": 2.9, "qui": "La cliente", "texte": "Bonjour, j'ai fait une tache de café sur ma chemise."},
+  {"d": 3.66, "f": 4.78, "qui": "L'employé", "texte": "Pas de problème, on va l'enlever."},
+  {"d": 5.48, "f": 6.46, "qui": "La cliente", "texte": "Je peux la récupérer quand ?"},
+  {"d": 7.18, "f": 8.98, "qui": "L'employé", "texte": "Jeudi. Ça fait huit euros, s'il vous plaît."}
+ ],
+ "people": {
+  "cliente": {"name": "La cliente", "qui": "La cliente", "side": "g", "spot": [27, 55, 12, 60], "anchor": [27, 40], "crop": [20, 5, 14, 25], "portrait": [5.2, [43, 6, 38, 67.5]]},
+  "employe": {"name": "L'employé", "qui": "L'employé", "side": "d", "spot": [69, 52, 12, 60], "anchor": [69, 42], "crop": [62, 8, 14, 25], "portrait": [3.3, [38, 3, 38, 67.5]]}
+ },
+ "consignes": [
+  "Quel vêtement apporte la cliente ? Fais glisser le ticket sur le bon vêtement.",
+  "Elle peut récupérer sa chemise quel jour ? Choisis le jour sur le tampon, puis clique sur tamponner.",
+  "Ça fait combien ? Tape le prix sur la caisse, puis clique sur OK.",
+  "Bravo ! Jeudi, sa chemise sera propre."
+ ]
+}

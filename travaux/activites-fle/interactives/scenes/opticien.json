@@ -1,0 +1,25 @@
+{
+ "video": "opticien",
+ "titre": "Chez l'opticien",
+ "niveau": "A1",
+ "gel": 9.5,
+ "sousTitres": [
+  {"d": 0.3, "f": 1.44, "qui": "Le client", "texte": "Elles me vont bien, ces lunettes ?"},
+  {"d": 2.3, "f": 4.34, "qui": "L'opticienne", "texte": "Oui, mais les noires sont plus élégantes."},
+  {"d": 5.16, "f": 5.74, "qui": "Le client", "texte": "Elles coûtent combien ?"},
+  {"d": 6.28, "f": 6.86, "qui": "L'opticienne", "texte": "Cent vingt euros."},
+  {"d": 7.52, "f": 8.22, "qui": "L'opticienne", "texte": "Je vous les mets de côté ?"}
+ ],
+ "people": {
+  "client": {"name": "Le client", "qui": "Le client", "side": "g", "spot": [27, 55, 22, 60], "anchor": [25, 40], "crop": [17, 8, 22, 40],
+             "portrait": [5.4, [16, 0, 48, 85]]},
+  "opticienne": {"name": "L'opticienne", "qui": "L'opticienne", "side": "d", "spot": [78, 55, 17, 60], "anchor": [75, 42], "crop": [66, 10, 20, 36],
+                 "portrait": [3.0, [43, 0, 42, 75]]}
+ },
+ "consignes": [
+  "Pour l'opticienne, quelles lunettes sont plus élégantes ? Clique sur les bonnes lunettes.",
+  "Les lunettes coûtent combien ? Tape le prix sur l'étiquette, puis clique sur Valider.",
+  "Qu'est-ce que l'opticienne propose ? Fais glisser les lunettes au bon endroit.",
+  "Bravo ! Le client va avoir des lunettes élégantes."
+ ]
+}

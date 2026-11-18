@@ -1,0 +1,74 @@
+/* ================= L'avis de passage : poser le bon papier sur le guichet ; le casier derrière le guichet ================= */
+/* 1 · quatre papiers (on lit le titre de chacun) ; le guichet en bas : la vitre, le comptoir où l'on pose le papier */
+.ap .ap-papiers { z-index: 6; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ap .ap-papier { position: relative; z-index: 3; display: flex; flex-direction: column; align-items: stretch; gap: 7px; min-height: 104px; padding: 10px 12px; border-radius: 6px;
+  background: #FFFFFF; color: #1C1F27; text-align: left; box-shadow: inset 0 0 0 1px rgba(0,0,0,.14); cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none;
+  transition: box-shadow .2s, background .2s; }
+.ap .ap-papier > * { pointer-events: none; }
+.ap .ap-papier.tenu { cursor: grabbing; z-index: 30; }
+.ap .ap-papier.pose { z-index: 20; }
+.ap .ap-titre { font-weight: 800; font-size: 17px; line-height: 1.15; letter-spacing: .01em; }
+.ap .ap-lignes { display: flex; flex-direction: column; gap: 6px; }
+.ap .ap-lignes i { display: block; height: 4px; border-radius: 2px; background: #D3D6DC; }
+.ap .ap-lignes i:nth-child(2) { width: 80%; } .ap .ap-lignes i:nth-child(3) { width: 60%; }
+.ap .ap-total { margin-top: auto; align-self: flex-end; font-weight: 700; font-size: 13px; color: #4A5163; }
+.ap .ap-dr { font-size: 13px; font-weight: 700; color: #4A5163; }
+/* l'avis de passage : une carte jaune, une case pour la date */
+.ap .ap-avis { background: #FFD84D; box-shadow: inset 0 0 0 1px rgba(0,0,0,.18); }
+.ap .ap-avis .ap-lignes i { background: rgba(0,0,0,.22); }
+.ap .ap-case { margin-top: auto; width: 56px; height: 18px; border-radius: 3px; background: #fff; box-shadow: inset 0 0 0 1.5px rgba(0,0,0,.35); }
+/* l'ordonnance : une bande bleue en haut */
+.ap .ap-ordonnance { box-shadow: inset 0 6px 0 #4A7BD0, inset 0 0 0 1px rgba(0,0,0,.14); padding-top: 14px; }
+/* le ticket de caisse : étroit, le bas en dents de scie */
+.ap .ap-ticket { width: 78%; justify-self: center; border-radius: 3px 3px 0 0; font-variant-numeric: tabular-nums;
+  -webkit-mask: linear-gradient(#000 0 0) top / 100% calc(100% - 8px) no-repeat, conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / 12px 8px repeat-x;
+  mask: linear-gradient(#000 0 0) top / 100% calc(100% - 8px) no-repeat, conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / 12px 8px repeat-x; }
+.ap .ap-ticket .ap-titre { font-size: 15px; text-align: center; }
+@media (hover: hover) { .ap .ap-papier:hover { box-shadow: inset 0 0 0 3px #fff, inset 0 0 0 4px rgba(0,0,0,.2); } }
+.ap .ap-papier:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.ap .ap-papier.juste { box-shadow: inset 0 0 0 4px var(--ok); }
+.ap .ap-papier.juste .ap-titre::after { content: " ✓"; color: #138A66; }
+.ap .ap-papier.faux { box-shadow: inset 0 0 0 4px var(--try); }
+.ap .ap-papier.indice { animation: ap-indice 1.1s var(--apple) infinite; }
+@keyframes ap-indice { 50% { box-shadow: inset 0 0 0 5px var(--ok); } }
+
+.ap .ap-guichet { position: relative; display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; transition: box-shadow .2s; }
+.ap .ap-vitre { height: 34px; background: linear-gradient(180deg, rgba(200,225,240,.28), rgba(200,225,240,.12)); box-shadow: inset 0 0 0 2px rgba(255,255,255,.28); border-radius: 16px 16px 0 0; }
+.ap .ap-comptoir { display: grid; place-items: center; height: 118px; background: linear-gradient(180deg, #EEF0F2, #D9DDE2); }
+.ap .ap-pose { display: grid; place-items: center; width: 62%; height: 84px; border-radius: 10px; border: 2.5px dashed #9AA1AD; color: #59606E; font-weight: 700; font-size: 15px; }
+.ap .ap-guichet.chaud { box-shadow: 0 0 0 4px #fff; }
+.ap .ap-guichet.juste { box-shadow: 0 0 0 4px var(--ok); }
+.ap .ap-guichet.faux { box-shadow: 0 0 0 4px var(--try); }
+body[data-turn="listen"] .ap .ap-papier, body[data-turn="wait"] .ap .ap-papier { pointer-events: none; }
+
+/* 2 · le casier : un meuble gris, quatre bacs ; on voit un peu ce qu'il y a dedans, la plaque dit ce que c'est */
+.ap .ap-meuble { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px; border-radius: 16px; background: #5C6572; box-shadow: inset 0 0 0 3px #48505B; }
+.ap .ap-casier { display: flex; flex-direction: column; align-items: stretch; gap: 8px; padding: 8px 8px 10px; border-radius: 10px; background: #3A414C; color: var(--ink);
+  box-shadow: inset 0 0 0 2px #2C323B; transition: transform .3s var(--spring), box-shadow .2s, background .2s; touch-action: manipulation; }
+.ap .ap-bac { display: block; height: 92px; border-radius: 6px; background: #2A3039; overflow: hidden; }
+.ap .ap-bac svg { display: block; width: 100%; height: 100%; }
+.ap .ap-plaque { display: grid; place-items: center; min-height: 44px; padding: 4px 8px; border-radius: 6px; background: #F7F5EE; color: #1C1F27; font-weight: 800; font-size: 16px; line-height: 1.15; text-align: center; }
+@media (hover: hover) { .ap .ap-casier:hover { background: #48505C; } }
+.ap .ap-casier:active { transform: scale(.97); }
+.ap .ap-casier.choisi { box-shadow: inset 0 0 0 3px #fff; transform: translateY(-4px); }
+.ap .ap-casier.juste { box-shadow: inset 0 0 0 4px var(--ok); transform: translateY(-4px); }
+.ap .ap-casier.juste .ap-plaque { background: var(--ok); }
+.ap .ap-casier.juste .ap-plaque::after { content: " ✓"; }
+.ap .ap-casier.faux { box-shadow: inset 0 0 0 4px var(--try); }
+.ap .ap-casier.faux .ap-plaque { background: #FFE7BF; }
+.ap .ap-casier.indice { animation: ap-indice-c 1.1s var(--apple) infinite; }
+@keyframes ap-indice-c { 50% { box-shadow: inset 0 0 0 4px var(--ok); background: #2F5A4D; } }
+body[data-turn="listen"] .ap .ap-casier, body[data-turn="wait"] .ap .ap-casier { pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) { .ap .ap-papier.indice, .ap .ap-casier.indice { animation: none; box-shadow: inset 0 0 0 5px var(--ok); } }
+
+/* petits écrans */
+body.tall .ap .ap-papiers { gap: 8px; } body.tall .ap .ap-papier { min-height: 84px; padding: 8px 10px; gap: 5px; } body.tall .ap .ap-titre { font-size: 15px; }
+body.tall .ap .ap-comptoir { height: 92px; } body.tall .ap .ap-pose { height: 66px; } body.tall .ap .ap-vitre { height: 22px; }
+body.tall .ap .ap-bac { height: 64px; } body.tall .ap .ap-plaque { font-size: 14px; } body.tall .ap .ap-meuble { padding: 8px; gap: 8px; }
+body.compact .ap .ap-papier { min-height: 72px; } body.compact .ap .ap-lignes i:nth-child(3) { display: none; } body.compact .ap .ap-comptoir { height: 80px; } body.compact .ap .ap-pose { height: 58px; }
+body.compact .ap .ap-bac { height: 52px; }
+body.short .ap .ap-papiers { gap: 6px; } body.short .ap .ap-papier { min-height: 60px; padding: 6px 8px; gap: 4px; } body.short .ap .ap-titre { font-size: 13px; }
+body.short .ap .ap-lignes { display: none; } body.short .ap .ap-total, body.short .ap .ap-dr, body.short .ap .ap-case { display: none; }
+body.short .ap .ap-vitre { height: 14px; } body.short .ap .ap-comptoir { height: 64px; } body.short .ap .ap-pose { height: 46px; font-size: 13px; }
+body.short .ap .ap-bac { height: 40px; } body.short .ap .ap-plaque { font-size: 12px; min-height: 44px; } body.short .ap .ap-meuble { padding: 6px; gap: 6px; }

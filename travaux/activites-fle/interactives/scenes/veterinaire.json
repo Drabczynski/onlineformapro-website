@@ -1,0 +1,24 @@
+{
+ "video": "veterinaire",
+ "titre": "Chez le vétérinaire",
+ "niveau": "A1",
+ "gel": 9.5,
+ "sousTitres": [
+  {"d": 0.5, "f": 1.76, "qui": "La vétérinaire", "texte": "Alors, qu'est-ce qu'il a, votre chat ?"},
+  {"d": 2.4, "f": 3.56, "qui": "Le jeune homme", "texte": "Il ne mange plus depuis hier."},
+  {"d": 4.68, "f": 5.92, "qui": "La vétérinaire", "texte": "Il est sorti dehors cette semaine ?"},
+  {"d": 6.24, "f": 8.46, "qui": "Le jeune homme", "texte": "Non, jamais. Il reste toujours à l'appartement."}
+ ],
+ "people": {
+  "veterinaire": {"name": "La vétérinaire", "qui": "La vétérinaire", "side": "g", "spot": [29, 55, 15, 55], "anchor": [31, 33], "crop": [22, 10, 17, 30],
+                  "portrait": [5.0, [26, 1, 32, 57]]},
+  "homme": {"name": "Le jeune homme", "qui": "Le jeune homme", "side": "d", "spot": [74, 55, 16, 60], "anchor": [71, 33], "crop": [63, 8, 17, 30],
+            "portrait": [2.5, [40, 0, 34, 60]]}
+ },
+ "consignes": [
+  "Quel est le problème du chat ? Clique sur la bonne case.",
+  "Il ne mange plus depuis quand ? Tourne les pages du calendrier, puis clique sur Valider.",
+  "Où reste le chat ? Fais glisser le chat au bon endroit.",
+  "Bravo ! Maintenant, la vétérinaire peut soigner le chat."
+ ]
+}

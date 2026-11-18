@@ -1,0 +1,78 @@
+/* ================= Chez l'opticien : le plateau de lunettes, l'étiquette et son clavier, les trois endroits ================= */
+/* 1 · le plateau : quatre paires posées sur un feutre gris, sans nom écrit */
+.opticien .op-plateau { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 12px; border-radius: 22px; background: #3B4250; box-shadow: inset 0 0 0 2px rgba(255,255,255,.12); }
+.opticien .op-paire { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-height: 120px; padding: 10px;
+  border-radius: 18px; background: rgba(255,255,255,.95); transition: box-shadow .25s, transform .3s var(--spring); touch-action: manipulation; }
+.opticien .op-paire svg { width: 100%; max-width: 160px; height: auto; }
+.opticien .op-paire .etat { min-height: 18px; font-weight: 800; font-size: 14px; color: var(--ink); }
+@media (hover: hover) { .opticien .op-paire:hover { transform: translateY(-2px); } }
+.opticien .op-paire:active { transform: scale(.95); }
+.opticien .op-paire.juste { box-shadow: 0 0 0 4px var(--ok); }
+.opticien .op-paire.juste .etat { color: #12795A; }
+.opticien .op-paire.faux { box-shadow: 0 0 0 4px var(--try); }
+.opticien .op-paire.faux .etat { color: #A3541A; }
+.opticien .op-paire.indice { animation: op-indice 1.1s var(--apple) infinite; }
+@keyframes op-indice { 50% { box-shadow: 0 0 0 4px var(--ok); } }
+
+/* 2 · l'étiquette (accrochée par un fil, comme sur les branches des lunettes) et le clavier */
+.opticien .op-prix { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.opticien .op-etiquette { position: relative; display: flex; align-items: center; justify-content: center; gap: 8px; width: min(100%, 300px); height: 92px; padding: 0 18px 0 46px;
+  border-radius: 12px 46px 46px 12px; background: #FFFDF4; color: var(--ink); box-shadow: inset 0 0 0 2px #D8CFAE; transition: box-shadow .25s; }
+.opticien .op-etiquette .trou { position: absolute; left: 16px; top: 50%; width: 14px; height: 14px; margin-top: -7px; border-radius: 50%; background: #3B4250; box-shadow: inset 0 0 0 2px #D8CFAE; }
+.opticien .op-etiquette .ficelle { position: absolute; left: -26px; top: 50%; width: 46px; height: 2px; background: #C9C2A8; }
+.opticien .op-etiquette .op-mini { position: absolute; left: 34px; bottom: 12px; width: 40px; opacity: .55; }
+.opticien .op-etiquette .op-mini svg { width: 40px; height: auto; display: block; }
+.opticien .op-etiquette b { font-size: 46px; font-weight: 800; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.opticien .op-etiquette.vide b { color: #9AA0A8; }
+.opticien .op-etiquette small { font-size: 26px; font-weight: 800; color: #555B64; }
+.opticien .op-etiquette.juste { box-shadow: inset 0 0 0 4px var(--ok); }
+.opticien .op-etiquette.juste b { color: #12795A; }
+.opticien .op-etiquette.faux { box-shadow: inset 0 0 0 4px var(--try); }
+.opticien .op-clavier { display: grid; grid-template-columns: repeat(3, 72px); gap: 10px; }
+.opticien .op-touche { height: 56px; border-radius: 16px; background: rgba(255,255,255,.92); color: var(--ink); font-size: 24px; font-weight: 800; font-variant-numeric: tabular-nums;
+  display: grid; place-items: center; transition: transform .2s var(--spring), background .2s; touch-action: manipulation; }
+.opticien .op-touche:active { transform: scale(.92); background: #fff; }
+.opticien .op-touche.efface { background: rgba(255,255,255,.2); color: #fff; }
+.opticien .op-touche.efface svg { width: 26px; height: 26px; }
+
+/* 3 · les trois endroits en haut, les lunettes à faire glisser en bas */
+.opticien .op-endroits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.opticien .op-endroit { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px 6px; border-radius: 20px; background: rgba(0,0,0,.22);
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.14); transition: box-shadow .25s, background .25s; touch-action: manipulation; }
+.opticien .op-endroit .dessin { display: block; width: 100%; max-width: 120px; aspect-ratio: 100 / 90; }
+.opticien .op-endroit .dessin svg { display: block; width: 100%; height: 100%; }
+.opticien .op-endroit .legende { font-weight: 700; font-size: 14px; line-height: 1.15; text-align: center; color: #fff; }
+@media (hover: hover) { .opticien .op-endroit:hover { background: rgba(255,255,255,.1); } }
+.opticien .op-endroit.chaud { background: rgba(255,255,255,.16); box-shadow: inset 0 0 0 3px #fff; }
+.opticien .op-endroit.juste { box-shadow: inset 0 0 0 4px var(--ok); }
+.opticien .op-endroit.juste .legende::after { content: " ✓"; color: var(--ok); }
+.opticien .op-endroit.faux { box-shadow: inset 0 0 0 4px var(--try); }
+.opticien .op-endroit.indice { animation: op-indice-e 1.1s var(--apple) infinite; }
+@keyframes op-indice-e { 50% { box-shadow: inset 0 0 0 4px var(--ok); background: rgba(75,227,180,.18); } }
+.opticien .op-depart { display: flex; align-items: center; justify-content: center; gap: 12px; height: 96px; border-radius: 18px; background: rgba(255,255,255,.06); }
+.opticien .op-glisse { position: relative; z-index: 5; width: 132px; height: 72px; display: grid; place-items: center; border-radius: 14px; background: rgba(255,255,255,.92);
+  cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; }
+.opticien .op-glisse svg { width: 112px; height: auto; pointer-events: none; }
+.opticien .op-glisse.tenue { cursor: grabbing; z-index: 30; }
+.opticien .op-depart .legende { font-weight: 700; font-size: 14px; color: var(--text2); }
+
+body[data-turn="listen"] .opticien .op-paire, body[data-turn="wait"] .opticien .op-paire,
+body[data-turn="listen"] .opticien .op-touche, body[data-turn="wait"] .opticien .op-touche,
+body[data-turn="listen"] .opticien .op-endroit, body[data-turn="wait"] .opticien .op-endroit,
+body[data-turn="listen"] .opticien .op-glisse, body[data-turn="wait"] .opticien .op-glisse { pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .opticien .op-paire.indice { animation: none; box-shadow: 0 0 0 4px var(--ok); }
+  .opticien .op-endroit.indice { animation: none; box-shadow: inset 0 0 0 4px var(--ok); }
+}
+
+/* téléphone tenu droit, téléphone couché : plus petit */
+body.tall .opticien .op-paire { min-height: 92px; padding: 8px; } body.tall .opticien .op-paire svg { max-width: 120px; }
+body.tall .opticien .op-etiquette { height: 72px; } body.tall .opticien .op-etiquette b { font-size: 36px; }
+body.tall .opticien .op-clavier { grid-template-columns: repeat(3, 64px); gap: 8px; } body.tall .opticien .op-touche { height: 48px; font-size: 21px; }
+body.tall .opticien .op-endroit .dessin { max-width: 84px; } body.tall .opticien .op-depart { height: 84px; }
+body.compact .opticien .op-paire { min-height: 80px; } body.compact .opticien .op-touche { height: 44px; }
+body.short .opticien .op-paire { min-height: 66px; padding: 6px; } body.short .opticien .op-paire .etat { min-height: 0; font-size: 12px; }
+body.short .opticien .op-etiquette { height: 60px; } body.short .opticien .op-etiquette b { font-size: 30px; }
+body.short .opticien .op-clavier { grid-template-columns: repeat(3, 58px); gap: 6px; } body.short .opticien .op-touche { height: 44px; font-size: 19px; }
+body.short .opticien .op-endroit .dessin { max-width: 64px; } body.short .opticien .op-depart { height: 80px; }

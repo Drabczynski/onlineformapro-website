@@ -1,0 +1,23 @@
+{
+ "video": "avis-passage",
+ "titre": "L'avis de passage",
+ "niveau": "A1",
+ "gel": 1.3,
+ "sousTitres": [
+  {"d": 0.3, "f": 1.98, "qui": "Le jeune homme", "texte": "Bonjour, j'ai reçu un avis de passage."},
+  {"d": 2.34, "f": 3.74, "qui": "L'employée", "texte": "C'est pour un colis ou une lettre ?"},
+  {"d": 4.26, "f": 5.62, "qui": "Le jeune homme", "texte": "Une lettre recommandée, je crois."},
+  {"d": 6.18, "f": 7.98, "qui": "L'employée", "texte": "D'accord, un instant, je vais la chercher."}
+ ],
+ "people": {
+  "employee": {"name": "L'employée", "qui": "L'employée", "side": "g", "spot": [19, 62, 13, 42], "anchor": [20, 46], "crop": [11, 22, 15, 26.7],
+               "portrait": [3.6, [16, 0, 48, 85.3]]},
+  "homme": {"name": "Le jeune homme", "qui": "Le jeune homme", "side": "d", "spot": [74, 55, 13, 50], "anchor": [72, 42], "crop": [63, 5, 15, 26.7],
+            "portrait": [5.6, [42, 0, 40, 71.1]]}
+ },
+ "consignes": [
+  "Qu'est-ce qu'il a reçu ? Fais glisser le bon papier sur le guichet.",
+  "Elle va chercher quoi ? Clique sur le bon casier.",
+  "Bravo ! L'employée va chercher sa lettre recommandée."
+ ]
+}
