@@ -55,7 +55,7 @@ svg { display: block; }
 /* la vague travaille sur une image des vues, qui doivent être opaques : à la fin, la carte prend un fond plein
    aux couleurs qu'elle a sur la photo floutée (relevées sur une capture) */
 .card.vague .vue { background: radial-gradient(70% 60% at 30% 55%, #8e4f25, rgba(142,79,37,0) 75%), linear-gradient(160deg, #50463a, #3b302e); }
-body.clair .card.vague .vue { background: radial-gradient(70% 60% at 30% 55%, #f3cfa9, rgba(243,207,169,0) 75%), linear-gradient(160deg, #f7ece0, #efe2d6); }
+body.clair .card.vague .vue { background: radial-gradient(70% 60% at 30% 55%, #efe3d8, rgba(239,227,216,0) 75%), linear-gradient(160deg, #f8f6f4, #f0eeec); }
 
 /* ---------- le spectre, le lecteur, ce que dit l'appli (comme le journal) ---------- */
 .spectre { position: absolute; left: 14px; right: 14px; bottom: 86px; z-index: 3; height: 110px; width: calc(100% - 28px); pointer-events: none; opacity: 0; transition: opacity .5s ease; }
@@ -311,12 +311,12 @@ body:not([data-turn="you"]) .it { pointer-events: none; }
 .theme svg { width: 20px; height: 20px; }
 .theme .lune { display: none; }
 body.clair .theme .soleil { display: none; } body.clair .theme .lune { display: block; }
-body.clair { --text: #24190f; --text2: rgba(36,25,15,.62); --text3: rgba(36,25,15,.42); --glass: rgba(255,252,248,.5); --on: #24190f; --off: rgba(36,25,15,.24);
-  --tile: rgba(255,255,255,.6); --tile2: rgba(255,255,255,.85); --edge: rgba(120,70,30,.1); --ok: #0b8a5f; --bad: #cf2f4f; background: #efe5da; color: var(--text); color-scheme: light; }
+body.clair { --text: #24190f; --text2: rgba(36,25,15,.62); --text3: rgba(36,25,15,.42); --glass: rgba(255,255,255,.62); --on: #24190f; --off: rgba(36,25,15,.24);
+  --tile: rgba(255,255,255,.6); --tile2: rgba(255,255,255,.85); --edge: rgba(120,70,30,.1); --ok: #0b8a5f; --bad: #cf2f4f; background: #f1efed; color: var(--text); color-scheme: light; }
 body.clair .theme { background: rgba(255,255,255,.55); color: #24190f; box-shadow: 0 4px 14px -6px rgba(90,50,20,.35); }
-body.clair .env { background: #efe5da; }
-body.clair .fond { opacity: .85; filter: blur(50px) saturate(1.45) brightness(1.18); }
-body.clair .fond::after { background: radial-gradient(70% 70% at 50% 50%, rgba(246,238,229,.25), rgba(246,238,229,.78)); }
+body.clair .env { background: #f1efed; }
+body.clair .fond { opacity: .5; filter: blur(56px) saturate(.85) brightness(1.15); }
+body.clair .fond::after { background: radial-gradient(70% 70% at 50% 50%, rgba(243,241,239,.45), rgba(243,241,239,.88)); }
 body.clair .glass { box-shadow: inset 0 1px 0 rgba(255,255,255,.95), 0 40px 80px -40px rgba(90,45,15,.45), 0 0 0 1px rgba(255,255,255,.35); }
 body.clair .glass::before { background: linear-gradient(140deg, #fff, rgba(255,255,255,.5) 40%, rgba(120,70,30,.08) 70%, rgba(255,255,255,.9)); }
 body.clair .pic { box-shadow: 0 40px 80px -36px rgba(90,45,15,.55), 0 0 0 1px rgba(255,255,255,.4); }
