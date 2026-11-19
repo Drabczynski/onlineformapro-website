@@ -22,6 +22,16 @@
   ],
   "redirects": [
     {
+      "source": "/exercices/boulangerie",
+      "destination": "/exercices/boulangerie/exercices-lies/boulangerie/",
+      "permanent": false
+    },
+    {
+      "source": "/exercices/boulangerie/",
+      "destination": "/exercices/boulangerie/exercices-lies/boulangerie/",
+      "permanent": false
+    },
+    {
       "source": "/travaux/activites-fle/interactives/",
       "destination": "/videos-interactives/",
       "permanent": true

@@ -1,32 +1,35 @@
 {
  "dialogue": {
-  "duree": 5.56,
+  "fichier": "../../Sons/A1/A1-s1.mp3",
+  "fiche": "fiches/dialogue/A1/1.pdf",
+  "methode": "alignement dynamique (MFCC) sur l'ancien dialogue.mp3 synthétisé, dont les repères venaient de la transcription ElevenLabs ; début et fin de phrase relevés sur l'énergie du signal",
+  "duree": 6.08,
   "lignes": [
    {
     "qui": "boulangere",
     "t": "Bonjour, madame !",
-    "s": 0.25,
-    "e": 1.22,
+    "s": 0.79,
+    "e": 1.65,
     "w": [
-     0.32,
-     0.78
+     0.84,
+     1.24
     ]
    },
    {
     "qui": "cliente",
     "t": "Bonjour. Une baguette et deux croissants, s'il vous plaît.",
-    "s": 1.92,
-    "e": 5.09,
+    "s": 2.07,
+    "e": 5.1,
     "w": [
-     1.98,
-     2.94,
-     3.1,
-     3.64,
-     3.84,
-     3.96,
-     4.4,
-     4.56,
-     4.7
+     2.13,
+     3.17,
+     3.33,
+     3.87,
+     4.08,
+     4.2,
+     4.64,
+     4.79,
+     4.94
     ]
    }
   ]

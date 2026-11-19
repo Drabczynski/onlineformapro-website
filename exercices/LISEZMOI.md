@@ -25,24 +25,12 @@ avec un repère par phrase, lecture lente. Un seul enregistrement (`journal/jour
 est rejouée en se plaçant dans ce fichier, aucune autre voix ne la coupe. Les repères (début de chaque mot) viennent
 de la transcription ElevenLabs du fichier. Photo : micro rétro (fournie). Page : https://onlineformapro-website.vercel.app/exercices/journal/
 
-## À la boulangerie, une situation en quatre exercices
+## À la boulangerie
 
-`boulangerie/` : la situation « Commerces · À la boulangerie · A1 · Acheter du pain et des viennoiseries », dans
-l'interface du journal. Quatre exercices sur la même scène : QCM, texte à trous (la manière du journal), vrai ou faux,
-association. En haut, une « île » noire : elle montre l'exercice en cours et les quatre points ; on la touche (ou on
-la survole à la souris), elle s'ouvre sur la liste des exercices pour y aller ; elle annonce aussi chaque réussite.
-Le vrai / faux défile comme des paroles de chanson : la phrase lue au centre, nette, qui se remplit mot à mot pendant
-qu'on l'entend ; les autres au-dessus et en dessous, pâles et floues. Une erreur se voit en rouge (réponse barrée,
-fil rouge), puis on réécoute.
-
-- Sons : `dialogue.mp3` (la boulangère, Femme 2 ; la cliente, Femme 1) et `enonces.mp3` (la question et les trois
-  phrases, Homme 1), voix ElevenLabs, -20 LUFS, vérifiées par transcription. `python3 exercices/boulangerie/voix.py`
-  les refait et écrit les repères des mots dans `reperes.json` (à recopier dans `index.html` si les textes changent).
-- Fin : quand les quatre exercices sont réussis, la vague « Distortion waves » de libraries.dev (paquet npm
-  `distortion-waves` 0.1.0, licence MIT) emporte le dernier exercice vers l'écran « Bravo », en anneau (type « center »)
-  depuis le rond vert, palette « colorful ». La page n'est pas en React : `distortion-waves.js` est le
-  `WaveController` de la librairie (son mode sans React), empaqueté tel quel avec esbuild. La vague travaille sur une
-  image des vues, qui doivent être opaques : à ce moment-là, la carte prend un fond plein aux couleurs du verre.
-- Sons de réponse (fournis, ElevenLabs) : `mauvaise.mp3` (erreur, -20 LUFS) et `bravo.mp3` (le « Bravo » final, son aigu et court, -24 LUFS) ; la bonne réponse garde le petit carillon synthétisé du début.
-- Photo : croissants sur une plaque (Unsplash, ePh7mI8y_bA).
-- Page : https://onlineformapro-website.vercel.app/exercices/boulangerie/
+`boulangerie/` : l'activité complète fournie (archive « boulangerie-activites », remplace la première version), avec sa
+structure d'origine, sans changement :
+- `exercices-lies/boulangerie/index.html` : les exercices liés à la scène ; `vocabulaire.html` : le jeu de cartes de vocabulaire.
+- `Sons/A1/A1-s1.mp3` : le dialogue ; `fiches/illustrations/A1/1.jpg` : l'illustration.
+- Voix : `voix.py` et `voix-cartes.js` (clé dans la variable d'environnement ELEVENLABS_API_KEY).
+- Pages : https://onlineformapro-website.vercel.app/exercices/boulangerie/exercices-lies/boulangerie/ (l'ancienne adresse
+  /exercices/boulangerie/ y renvoie) et …/exercices-lies/boulangerie/vocabulaire.html

@@ -9,7 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap">
 <style>
-/* « À la boulangerie » : une situation, quatre exercices (QCM, texte à trous, vrai / faux, association), dans l'interface
+/* « À la boulangerie » : une situation, cinq exercices (QCM, texte à trous, vrai / faux, association, et le jeu de cartes du
+   vocabulaire, vocabulaire.html, ouvert dans un cadre plein écran), dans l'interface
    du journal. En haut, une « île » pour passer d'un exercice à l'autre. Le vrai / faux défile comme des paroles de chanson :
    la phrase lue au centre, nette, qui se remplit mot à mot ; les autres au-dessus et en dessous, pâles et floues. */
 :root {
@@ -33,7 +34,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 svg { display: block; }
 
-.fond { position: fixed; inset: -80px; z-index: 0; background: url(boulangerie.jpg) 50% 50% / cover no-repeat; filter: blur(46px) saturate(1.3); opacity: .45; pointer-events: none; }
+.fond { position: fixed; inset: -80px; z-index: 0; background: url(../../fiches/illustrations/A1/1.jpg) 50% 50% / cover no-repeat; filter: blur(46px) saturate(1.3); opacity: .45; pointer-events: none; }
 .fond::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 60% at 50% 50%, rgba(8,10,20,0), rgba(8,10,20,.78)); }
 .env { position: fixed; inset: 0; z-index: 0; background: radial-gradient(55% 50% at 30% 45%, rgba(255,170,90,.16), transparent 70%), radial-gradient(45% 45% at 80% 60%, rgba(110,140,255,.12), transparent 72%), #0e1018; }
 
@@ -53,8 +54,8 @@ svg { display: block; }
 /* les deux vues de la carte, l'une sur l'autre : l'exercice, puis « Bravo » (la vague de distortion-waves passe de l'une à l'autre) */
 .vue { grid-area: 1 / 1; min-width: 0; min-height: 0; isolation: isolate; position: relative; display: flex; flex-direction: column; gap: 10px; padding: 16px 14px; }
 /* la vague travaille sur une image des vues, qui doivent être opaques : à la fin, la carte prend un fond plein
-   aux couleurs qu'elle a sur la photo floutée (relevées sur une capture) */
-.card.vague .vue { background: radial-gradient(70% 60% at 30% 55%, #8e4f25, rgba(142,79,37,0) 75%), linear-gradient(160deg, #50463a, #3b302e); }
+   aux couleurs qu'elle a sur la photo floutée (relevées sur une capture, avec l'illustration de la fiche A1 n° 1 ; en clair, l'image ne change presque rien) */
+.card.vague .vue { background: radial-gradient(70% 60% at 30% 55%, #73533e, rgba(115,83,62,0) 75%), linear-gradient(160deg, #554236, #4c4140); }
 body.clair .card.vague .vue { background: radial-gradient(70% 60% at 30% 55%, #efe3d8, rgba(239,227,216,0) 75%), linear-gradient(160deg, #f8f6f4, #f0eeec); }
 
 /* ---------- le spectre, le lecteur, ce que dit l'appli (comme le journal) ---------- */
@@ -102,11 +103,15 @@ body[data-turn="boot"] .player { opacity: 0; translate: 0 12px; pointer-events: 
 .say.non .orb { background: #ff4d6a; animation: none; } .say.non .orb::after { background: transparent; }
 @keyframes spin { to { --spin: 360deg; } }
 
-/* ---------- l'île : l'exercice en cours ; on la touche, elle s'ouvre sur les quatre ---------- */
+/* ---------- l'île : l'exercice en cours ; on la touche, elle s'ouvre sur les cinq ---------- */
 .island { position: fixed; z-index: 40; left: 50%; top: calc(12px + env(safe-area-inset-top, 0px)); translate: -50% 0; width: 248px; height: 42px; border-radius: 21px;
   background: #000; color: #fff; overflow: hidden; box-shadow: 0 14px 34px -12px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.07);
   transition: width .6s var(--spring), height .6s var(--spring), border-radius .6s var(--spring); }
-.island.open { width: min(384px, calc(100vw - 24px)); height: 318px; border-radius: 32px; }
+.island.open { width: min(384px, calc(100vw - 24px)); height: 380px; border-radius: 32px; }
+/* 5. le jeu de cartes du vocabulaire : un cadre sur tout l'écran ; l'île et le bouton clair / sombre restent au-dessus */
+.jeu-voc { position: fixed; inset: 0; z-index: 25; width: 100%; height: 100%; border: 0; background: #0e1018; opacity: 0; visibility: hidden; transition: opacity .5s ease, visibility 0s .5s; }
+.jeu-voc.on { opacity: 1; visibility: visible; transition: opacity .5s ease, visibility 0s; }
+body.clair .jeu-voc { background: #f1efed; }
 .island.msg { width: min(330px, calc(100vw - 24px)); height: 60px; border-radius: 30px; }
 .island > * { transition: opacity .22s ease, scale .4s var(--spring); }
 .is-pill { position: absolute; left: 0; top: 0; width: 100%; height: 42px; display: flex; align-items: center; gap: 9px; padding: 0 14px 0 8px; }
@@ -354,7 +359,7 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
 
 <main class="stage"><div class="row">
   <div class="pic">
-    <img src="boulangerie.jpg" alt="Des croissants dorés sur une plaque de boulanger">
+    <img src="../../fiches/illustrations/A1/1.jpg" alt="Au comptoir d'une boulangerie, une cliente sourit à la boulangère, qui lui tend une baguette">
     <span class="qui" id="qui"></span>
     <canvas class="spectre" id="spectre" aria-hidden="true"></canvas>
     <div class="say" id="say" aria-live="polite"><span class="orb" id="orb"></span><p id="sayText"></p></div>
@@ -363,7 +368,7 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
       <button class="ico play" id="pp" aria-label="Écouter la scène"></button>
       <span class="time" id="cur">0:00</span>
       <div class="track" id="track" role="slider" aria-label="Position dans la scène" tabindex="0"><div class="rail"><div class="fill" id="fill"></div></div><div class="knob" id="knob"></div></div>
-      <span class="time" id="dur">0:06</span>
+      <span class="time" id="dur">0:07</span>
       <button class="ico" id="slow" aria-pressed="false" aria-label="Plus lentement"></button>
     </div>
   </div>
@@ -381,6 +386,7 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
 <div class="finger" id="finger" aria-hidden="true"></div>
 
 <script src="distortion-waves.js"></script>
+<script src="spectre.js"></script>
 <script>
 (() => {
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -389,10 +395,13 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
   const NB = ' ';
 
   /* ===== la situation (Commerces · À la boulangerie · A1 · Acheter du pain et des viennoiseries) =====
-     s / e : la phrase dans le fichier ; w : début de chaque mot (transcription ElevenLabs, voir voix.py et reperes.json) */
+     Exercice lié à la fiche A1 n° 1 (fiches/dialogue/A1/1.pdf) : le son et l'illustration sont lus à leur place dans le dépôt,
+     Sons/A1/A1-s1.mp3 et fiches/illustrations/A1/1.jpg (aucune copie ici).
+     s / e : la phrase dans le son ; w : début de chaque mot. Valeurs reprises de reperes.json, qui dit comment elles ont été obtenues
+     (voix.py dialogue les recalcule par transcription du son de la fiche). */
   const DLG = [
-    { lab: 'La boulangère', t: `Bonjour, madame${NB}!`, s: .25, e: 1.22, w: [.32, .78] },
-    { lab: 'La cliente', t: "Bonjour. Une [baguette] et deux [croissants], s'il vous plaît.", s: 1.92, e: 5.09, w: [1.98, 2.94, 3.1, 3.64, 3.84, 3.96, 4.4, 4.56, 4.7] },
+    { lab: 'La boulangère', t: `Bonjour, madame${NB}!`, s: .79, e: 1.65, w: [.84, 1.24] },
+    { lab: 'La cliente', t: "Bonjour. Une [baguette] et deux [croissants], s'il vous plaît.", s: 2.07, e: 5.1, w: [2.13, 3.17, 3.33, 3.87, 4.08, 4.2, 4.64, 4.79, 4.94] },
   ];
   const ENC = {
     q: { t: `Que demande la cliente${NB}?`, s: .25, e: 1.34, w: [.26, .42, .76, .88] },
@@ -421,6 +430,7 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
     qcm: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><circle cx="5.5" cy="6" r="2"/><circle cx="5.5" cy="12" r="2" fill="#fff"/><circle cx="5.5" cy="18" r="2"/><path d="M10.5 6h9M10.5 12h9M10.5 18h9"/></svg>',
     trous: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M3 7h5M16 7h5M3 13h18M3 19h9"/><rect x="9.5" y="4.5" width="5" height="5" rx="1.5" stroke-dasharray="2 2"/></svg>',
     vf: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5l3 3 5.5-6.5"/><path d="M14.5 9l6 6M20.5 9l-6 6"/></svg>',
+    cartes: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="11" height="15" rx="2.5"/><path d="M9 21h8.5a2.5 2.5 0 0 0 2.5-2.5V7"/></svg>',
     asso: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><circle cx="5" cy="6" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="6" r="2.2"/><circle cx="19" cy="18" r="2.2"/><path d="M7.2 6.6c5 1.5 4.8 9.3 9.6 10.8M7.2 17.4c5-1.5 4.8-9.3 9.6-10.8"/></svg>',
   };
   const EX = [
@@ -428,24 +438,30 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
     { nom: 'Texte à trous', sous: 'Complète la phrase', consigne: 'Écoute et complète.', c: '#8A5CFF', ico: ICON.trous },
     { nom: 'Vrai ou faux', sous: 'Trois phrases', consigne: 'Écoute : vrai ou faux ?', c: '#FF8A3D', ico: ICON.vf },
     { nom: 'Association', sous: 'Le mot et sa définition', consigne: 'Relie le mot à sa définition.', c: '#1DD6A0', ico: ICON.asso },
+    { nom: 'Vocabulaire', sous: 'Le jeu de cartes', consigne: 'Associe chaque mot à son image.', c: '#FF4D8A', ico: ICON.cartes },
   ];
+  const NOMBRE = ['zéro', 'un', 'deux', 'trois', 'quatre', 'cinq', 'six'];
+  const VOC = 4;   // la place du jeu de cartes dans EX
   $('#pp').innerHTML = ICON.play; $('#slow').innerHTML = ICON.snail;
   $('#isMsg .is-ico').innerHTML = ICON.check;
 
   const body = $('#body'), tray = $('#tray'), card = $('#card');
-  const state = { ex: 0, slow: false, turn: 'boot', tries: 0, entendu: false, done: [false, false, false, false] };
+  const state = { ex: 0, slow: false, turn: 'boot', tries: 0, entendu: false, done: EX.map(() => false) };
   let flow = 0; const alive = f => f === flow;
   function setTurn(t) { state.turn = t; document.body.dataset.turn = t; if (t !== 'you') idle.stop(); }
 
   /* ===== le son : deux fichiers (la scène, les énoncés), une seule voix à la fois ===== */
-  const dlg = new Audio('dialogue.mp3'), enc = new Audio('enonces.mp3'); dlg.preload = enc.preload = 'auto';
-  const DUREE = el => el.duration || (el === dlg ? 5.56 : 9.2);
+  const dlg = new Audio('../../Sons/A1/A1-s1.mp3'), enc = new Audio('enonces.mp3'); dlg.preload = enc.preload = 'auto';
+  const DUREE = el => el.duration || (el === dlg ? 6.08 : 9.2);
   let media = 0, unlocked = false;
   let ctx = null;
   function audioCtx() { try { if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)(); if (ctx.state === 'suspended') ctx.resume(); } catch (e) {} return ctx; }
   let analyseur = null, freq = null;
   function unlock() {
     if (unlocked) return; unlocked = true;
+    // page ouverte directement depuis le disque (file://) : Chrome rend muet un son qui passe par Web Audio ;
+    // la voix joue alors en direct et le spectre prend son animation de secours
+    if (location.protocol === 'file:') { audioCtx(); return; }
     try { const c = audioCtx(); if (!c) return; analyseur = c.createAnalyser(); analyseur.fftSize = 256; analyseur.smoothingTimeConstant = .78; analyseur.connect(c.destination);
       [dlg, enc].forEach(el => c.createMediaElementSource(el).connect(analyseur)); freq = new Uint8Array(analyseur.frequencyBinCount); } catch (e) { analyseur = null; }
   }
@@ -549,16 +565,27 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
 
   /* ===== le spectre ===== */
   const spc = $('#spectre'), sctx = spc.getContext('2d'), NBAR = 38, hauteurs = new Float32Array(NBAR);
+  // sans analyse en direct (page ouverte depuis le disque), on relit le spectre calculé d'avance (spectre.js, voir calcul-spectre.js)
+  // au même instant du son ; un son ou une bande absents de spectre.js gardent l'animation de secours
+  const SP = window.SPECTRE, spSons = {};
+  if (SP) for (const nom in SP.sons) spSons[nom] = Uint8Array.from(atob(SP.sons[nom]), ch => ch.charCodeAt(0));
+  const spDe = el => spSons[decodeURIComponent(el.src.split('/').pop())];
   (function dessiner(now) {
     const dpr = Math.min(2, devicePixelRatio || 1), W = spc.clientWidth, H = spc.clientHeight, on = playing();
     if (spc.width !== Math.round(W * dpr) || spc.height !== Math.round(H * dpr)) { spc.width = Math.round(W * dpr); spc.height = Math.round(H * dpr); }
     sctx.setTransform(dpr, 0, 0, dpr, 0, 0); sctx.clearRect(0, 0, W, H);
     if (analyseur && on) analyseur.getByteFrequencyData(freq);
+    let rec = null, base = 0;
+    if (!analyseur && on && SP) {
+      const el = !dlg.paused ? dlg : enc; rec = spDe(el);
+      if (rec) base = Math.min(Math.round(el.currentTime * SP.fps), rec.length / SP.bandes.length - 1) * SP.bandes.length;
+    }
     const pas = W / NBAR, larg = Math.max(2, pas * .5), t = (now || 0) / 1000;
     for (let i = 0; i < NBAR; i++) {
-      const k = Math.abs(i - (NBAR - 1) / 2) / ((NBAR - 1) / 2), bande = Math.floor(2 + k * 58);
+      const k = Math.abs(i - (NBAR - 1) / 2) / ((NBAR - 1) / 2), bande = Math.floor(2 + k * 58), j = rec ? SP.bandes.indexOf(bande) : -1;
       let v = freq && on ? freq[bande] / 255 : 0;
-      if (!analyseur && on) v = .25 + .35 * Math.abs(Math.sin(t * 7 + i * .7)) * (1 - k * .6);
+      if (j >= 0) v = rec[base + j] / 255;
+      else if (!analyseur && on) v = .25 + .35 * Math.abs(Math.sin(t * 7 + i * .7)) * (1 - k * .6);
       v = Math.pow(v, 1.4) * (1 - k * .35);
       hauteurs[i] += (v - hauteurs[i]) * .35;
       const h = Math.max(3, hauteurs[i] * H), x = i * pas + (pas - larg) / 2, y = (H - h) / 2;
@@ -613,12 +640,15 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
     $$('.peb.vol').forEach(p => p.remove());
     if (vueB.innerHTML) { if (vague) vague.reset(); montrerFin(false); vueB.innerHTML = ''; card.classList.remove('vague'); }
     const x = EX[i];
-    $('#hdIco').style.setProperty('--c', x.c); $('#hdIco').innerHTML = x.ico; $('#hdT').textContent = x.nom; $('#hdS').textContent = x.consigne; $('#hdN').textContent = `${i + 1} / 4`;
+    $('#hdIco').style.setProperty('--c', x.c); $('#hdIco').innerHTML = x.ico; $('#hdT').textContent = x.nom; $('#hdS').textContent = x.consigne; $('#hdN').textContent = `${i + 1} / ${EX.length}`;
     body.className = 'body'; void body.offsetWidth; body.classList.add('in'); tray.innerHTML = ''; majIle();
-    cur = [exQcm, exTrous, exVf, exAsso][i](f) || {};
+    montrerVoc(i === VOC);
+    cur = [exQcm, exTrous, exVf, exAsso, exVoc][i](f) || {};
   }
+  // le prochain exercice pas encore réussi après i (en faisant le tour), ou undefined
+  const apres = i => EX.map((_, k) => (i + 1 + k) % EX.length).find(k => !state.done[k]);
   function suivant() {
-    const reste = [1, 2, 3, 4].map(k => (state.ex + k) % 4).find(k => !state.done[k]);
+    const reste = apres(state.ex);
     const b = document.createElement('button'); b.className = 'go';
     b.innerHTML = reste == null ? `<span>Terminer</span>${ICON.next}` : `<span>${EX[reste].nom}</span>${ICON.next}`;
     b.addEventListener('click', () => reste == null ? finale() : aller(reste)); tray.append(b);
@@ -626,11 +656,10 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
   async function reussi(i, f) {
     state.done[i] = true; majIle(); sfx.ok(); setTurn('end');
     const tous = state.done.every(Boolean);
-    ileMessage(tous ? 'Bravo ! Tout est réussi.' : `${EX[i].nom} : bravo !`, tous ? 'Les quatre exercices de la boulangerie' : `${state.done.filter(Boolean).length} exercice${state.done.filter(Boolean).length > 1 ? 's' : ''} sur 4`);
+    ileMessage(tous ? 'Bravo ! Tout est réussi.' : `${EX[i].nom} : bravo !`, tous ? `Les ${NOMBRE[EX.length]} exercices de la boulangerie` : `${state.done.filter(Boolean).length} exercice${state.done.filter(Boolean).length > 1 ? 's' : ''} sur ${EX.length}`);
     await wait(reduced ? 200 : 2000); if (!alive(f)) return;
     if (tous) return finale();
-    const reste = [1, 2, 3, 4].map(k => (i + k) % 4).find(k => !state.done[k]);
-    aller(reste);
+    aller(apres(i));
   }
   async function non(f, texte, rejouer) {
     sfx.try(); state.tries++; sayShow(texte, 'non');
@@ -931,6 +960,33 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
     return {};
   }
 
+  /* ===== 5. Vocabulaire : le jeu de cartes (vocabulaire.html) dans un cadre qui prend tout l'écran ; l'île reste au-dessus.
+     Le cadre est créé la première fois, puis gardé : on retrouve la partie là où on l'a laissée. Il nous dit la fin (« fini »)
+     et « Continuer » (« suivant ») ; on lui donne le thème clair / sombre et on lui demande le silence quand on le quitte. ===== */
+  let jeuVoc = null;
+  const versVoc = m => { try { if (jeuVoc && jeuVoc.contentWindow) jeuVoc.contentWindow.postMessage(Object.assign({ de: 'quiz' }, m), '*'); } catch (e) {} };
+  function montrerVoc(on) {
+    if (on && !jeuVoc) {
+      jeuVoc = document.createElement('iframe'); jeuVoc.className = 'jeu-voc'; jeuVoc.id = 'jeuVoc'; jeuVoc.title = 'Vocabulaire : le jeu de cartes';
+      jeuVoc.allow = 'autoplay'; jeuVoc.src = 'vocabulaire.html?integre=1';
+      jeuVoc.addEventListener('load', () => versVoc({ type: 'theme', clair: document.body.classList.contains('clair') }));
+      document.body.append(jeuVoc);
+    }
+    if (!jeuVoc) return;
+    if (on) { void jeuVoc.offsetWidth; jeuVoc.classList.add('on'); versVoc({ type: 'theme', clair: document.body.classList.contains('clair') }); }
+    else if (jeuVoc.classList.contains('on')) { jeuVoc.classList.remove('on'); versVoc({ type: 'pause' }); }
+  }
+  function exVoc() { body.innerHTML = ''; setTurn(state.done[VOC] ? 'end' : 'you'); return {}; }
+  addEventListener('message', e => {
+    if (!jeuVoc || e.source !== jeuVoc.contentWindow || !e.data || e.data.de !== 'vocabulaire') return;
+    if (e.data.type === 'fini') {
+      state.done[VOC] = true; majIle(); setTurn('end');
+      const tous = state.done.every(Boolean), n = state.done.filter(Boolean).length;
+      ileMessage(tous ? 'Bravo ! Tout est réussi.' : `${EX[VOC].nom} : bravo !`, tous ? `Les ${NOMBRE[EX.length]} exercices de la boulangerie` : `${n} exercice${n > 1 ? 's' : ''} sur ${EX.length}`, 2600);
+    } else if (e.data.type === 'suivant') { const reste = apres(VOC); reste == null ? finale() : aller(reste); }
+  });
+  window.__quizVoc = { versVoc, montrerVoc };
+
   /* ===== la fin : la vague de distortion-waves (type « center ») part du rond « Bravo » et emporte l'exercice ===== */
   const vueA = $('#vueA'), vueB = $('#vueB');
   let vague = null;
@@ -940,10 +996,10 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
     vueB.style.opacity = on ? '' : '0'; vueB.style.pointerEvents = on ? '' : 'none';
   };
   async function finale() {
-    const f = ++flow; stopAll(); sayHide(); idle.stop(); gaps = []; majIle(); setTurn('wait');
+    const f = ++flow; stopAll(); sayHide(); idle.stop(); gaps = []; majIle(); setTurn('wait'); montrerVoc(false);
     $$('.peb.vol').forEach(p => p.remove()); tray.innerHTML = '';
     vueB.innerHTML = `<div class="hd"><span class="is-ico" style="--c:#1DD6A0">${ICON.checkB.replace('currentColor', '#fff')}</span><div><b>À la boulangerie</b><span>Acheter du pain et des viennoiseries</span></div><span class="n">A1</span></div>`
-      + `<div class="body"><div class="fin"><div class="big" id="bigOk">${ICON.check}</div><h2>Bravo !</h2><p>Tu as réussi les quatre exercices.</p><div class="recap">${EX.map(x => `<div><span class="is-ico" style="--c:${x.c}">${x.ico}</span>${x.nom}</div>`).join('')}</div></div></div>`;
+      + `<div class="body"><div class="fin"><div class="big" id="bigOk">${ICON.check}</div><h2>Bravo !</h2><p>Tu as réussi les ${NOMBRE[EX.length]} exercices.</p><div class="recap">${EX.map(x => `<div><span class="is-ico" style="--c:${x.c}">${x.ico}</span>${x.nom}</div>`).join('')}</div></div></div>`;
     sfx.bravo(); card.classList.add('vague');
     if (vague) {
       vague.update({ type: 'center', palette: 'colorful', onFinish: r => { if (r && alive(f)) montrerFin(true); } });
@@ -957,7 +1013,7 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
   }
   function recommencer() {
     if (vague) vague.reset(); montrerFin(false); vueB.innerHTML = ''; card.classList.remove('vague');
-    state.done = [false, false, false, false]; majIle(); aller(0);
+    state.done = EX.map(() => false); if (jeuVoc) jeuVoc.src = 'vocabulaire.html?integre=1'; majIle(); aller(0);
   }
 
   /* ===== le début : on écoute la scène, puis le premier exercice ===== */
@@ -992,7 +1048,7 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
   // avant l'écoute : le premier exercice est déjà là, en attente
   (function avant() {
     const x = EX[0];
-    $('#hdIco').style.setProperty('--c', x.c); $('#hdIco').innerHTML = x.ico; $('#hdT').textContent = x.nom; $('#hdS').textContent = x.consigne; $('#hdN').textContent = '1 / 4';
+    $('#hdIco').style.setProperty('--c', x.c); $('#hdIco').innerHTML = x.ico; $('#hdT').textContent = x.nom; $('#hdS').textContent = x.consigne; $('#hdN').textContent = `1 / ${EX.length}`;
     body.innerHTML = `<p class="question">${ENC.q.t.split(' ').map(m => `<span class="kw">${m}</span>`).join(' ')}</p><div class="opts">${QCM.opts.map((o, k) => `<div class="opt" style="opacity:.6"><span class="lt">${'ABC'[k]}</span><span class="ot">${o}</span></div>`).join('')}</div>`;
     majIle(); setTurn('boot');
   })();
@@ -1003,7 +1059,10 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
 <script>
 (() => { const b = document.body, k = 'exercices-theme';
   try { if (localStorage.getItem(k) === 'clair') b.classList.add('clair'); } catch (e) {}
-  document.getElementById('theme').addEventListener('click', () => { b.classList.toggle('clair'); try { localStorage.setItem(k, b.classList.contains('clair') ? 'clair' : 'nuit'); } catch (e) {} });
+  document.getElementById('theme').addEventListener('click', () => {
+    b.classList.toggle('clair'); try { localStorage.setItem(k, b.classList.contains('clair') ? 'clair' : 'nuit'); } catch (e) {}
+    if (window.__quizVoc) window.__quizVoc.versVoc({ type: 'theme', clair: b.classList.contains('clair') });
+  });
 })();
 </script>
 </body>

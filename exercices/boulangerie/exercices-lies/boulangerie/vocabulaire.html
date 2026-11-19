@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Vocabulaire · À la boulangerie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap">
+<style>
+/* Essai : le vocabulaire en duel de cartes contre la boulangère. Chaque mot existe en deux cartes : l'image (découpée dans
+   l'illustration de la fiche A1 n° 1) et le mot écrit. On a une main de 5 cartes et une pioche ; la boulangère a les cartes
+   qui vont avec. Elle pose une carte : un mot (qu'elle dit), on pose l'image ; une image, on pose le mot. Juste : la paire
+   est gagnée et on repioche. Ordinateur seulement pour l'instant. */
+:root {
+  --text: #fff; --text2: rgba(255,255,255,.72); --ink: #0B0D16; --ok: #4BE3B4; --bad: #ff5c7a;
+  --g-ok: linear-gradient(135deg, #1DD6A0 0%, #2BC4F0 100%);
+  --font: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --apple: cubic-bezier(.32,.72,0,1); --spring: cubic-bezier(.34,1.4,.64,1);
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; overflow: hidden; background: #0e1018; color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; user-select: none; -webkit-user-select: none; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+svg { display: block; }
+
+.env { position: fixed; inset: 0; background: radial-gradient(55% 50% at 30% 45%, rgba(255,170,90,.16), transparent 70%), radial-gradient(45% 45% at 80% 60%, rgba(110,140,255,.12), transparent 72%), #0e1018; }
+.fond { position: fixed; inset: -80px; background: url(../../fiches/illustrations/A1/1.jpg) 50% 50% / cover no-repeat; filter: blur(46px) saturate(1.3); opacity: .42; }
+.fond::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 60% at 50% 45%, rgba(8,10,20,.1), rgba(8,10,20,.82)); }
+.table { position: fixed; left: 50%; width: 1000px; height: 560px; translate: -50% -50%; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(255,205,150,.15), rgba(255,205,150,.05) 60%, transparent); }
+
+.titre { position: fixed; left: 22px; top: 18px; z-index: 5; display: flex; align-items: center; gap: 11px; padding: 6px 16px 6px 6px; border-radius: 22px; background: rgba(255,255,255,.08);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: inset 0 1px 0 rgba(255,255,255,.18); }
+.titre .ico { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: #FF4D8A; }
+.titre .ico svg { width: 18px; height: 18px; }
+.titre b { display: block; font-size: 14px; } .titre span { font-size: 12.5px; color: var(--text2); font-weight: 600; font-variant-numeric: tabular-nums; }
+.theme { position: fixed; z-index: 5; top: 18px; right: 18px; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.1); backdrop-filter: blur(12px); }
+.theme svg { width: 20px; height: 20px; } .theme .lune { display: none; }
+
+/* la consigne, les deux places sur la table, la pioche et les paires gagnées */
+.consigne { position: fixed; left: 50%; top: 0; z-index: 3; translate: -50% -50%; display: flex; align-items: center; gap: 12px; padding: 7px 22px 7px 7px; border-radius: 30px; white-space: nowrap;
+  background: rgba(16,18,28,.55); backdrop-filter: blur(24px) saturate(1.6); -webkit-backdrop-filter: blur(24px) saturate(1.6); box-shadow: inset 0 1px 0 rgba(255,255,255,.25); }
+.consigne p { margin: 0; font-size: 19px; font-weight: 600; } .consigne p b { font-weight: 800; }
+.consigne.change { animation: change .45s var(--spring); } @keyframes change { from { opacity: .3; scale: .93; } }
+.hp { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; flex: none; background: #fff; color: var(--ink); transition: scale .3s var(--spring), background .25s, opacity .25s; }
+.hp:active { scale: .9; } .hp svg { width: 22px; height: 22px; } .hp:disabled { opacity: .45; cursor: default; }
+.hp.parle { animation: parle .9s ease-in-out infinite; } @keyframes parle { 50% { box-shadow: 0 0 0 8px rgba(255,255,255,.2); } }
+.consigne.ok .hp { background: var(--g-ok); opacity: 1; } .consigne.non .hp { background: #ff4d6a; color: #fff; opacity: 1; }
+.fente { position: fixed; left: 0; top: 0; z-index: 1; border-radius: 22px; border: 2px dashed rgba(255,255,255,.24); background: rgba(255,255,255,.035); display: grid; place-items: center; text-align: center;
+  color: rgba(255,255,255,.4); font-size: 14px; font-weight: 700; transition: border-color .25s, background .25s, box-shadow .25s, scale .35s var(--spring); }
+.fente.sienne { border-style: solid; border-color: rgba(255,255,255,.1); background: rgba(255,255,255,.02); }
+.fente.vise { border-style: solid; border-color: rgba(255,255,255,.85); background: rgba(255,255,255,.1); box-shadow: 0 0 0 8px rgba(255,255,255,.06), 0 0 60px rgba(255,220,170,.25); scale: 1.04; }
+.fente .cap { position: absolute; left: 50%; top: calc(100% + 10px); translate: -50% 0; white-space: nowrap; font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.45); }
+.go { display: flex; flex-direction: column; align-items: center; gap: 12px; color: #fff; font-size: 16px; font-weight: 800; }
+.go i { width: 80px; height: 80px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.14); box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 18px 40px -14px rgba(0,0,0,.6); position: relative; transition: scale .4s var(--spring); }
+.go:hover i { scale: 1.06; }
+.go i::after { content: ""; position: absolute; inset: -8px; border-radius: 50%; border: 2px solid rgba(255,255,255,.55); animation: anneau 2.2s ease-out infinite; }
+@keyframes anneau { from { opacity: .9; scale: .9; } to { opacity: 0; scale: 1.35; } }
+.go svg { width: 30px; height: 30px; } .go .play { margin-left: 4px; }
+.tas { position: fixed; left: 0; top: 0; z-index: 70; pointer-events: none; text-align: center; }
+.tas.plein .vide { opacity: 0; }
+.tas .n { position: absolute; right: -10px; top: -10px; z-index: 60; min-width: 30px; height: 30px; padding: 0 8px; border-radius: 15px; display: grid; place-items: center; font-size: 14px; font-weight: 800;
+  background: #fff; color: var(--ink); box-shadow: 0 6px 14px rgba(0,0,0,.45); font-variant-numeric: tabular-nums; }
+.tas .cap { position: absolute; left: 50%; top: calc(100% + 10px); translate: -50% 0; white-space: nowrap; font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.5); }
+.tas .vide { position: absolute; inset: 0; border-radius: 14px; border: 1.5px dashed rgba(255,255,255,.16); }
+
+/* les cartes : l'image ou le mot au recto, le dos de la boulangerie au verso */
+.carte { position: fixed; left: 0; top: 0; z-index: 10; width: var(--cw); height: var(--ch); cursor: grab; touch-action: none; will-change: transform; perspective: 1000px;
+  transition: transform .6s var(--spring); }
+.carte.tire { transition: none; cursor: grabbing; }
+.tourne { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .6s var(--apple); }
+.carte.cachee .tourne { transform: rotateY(180deg); }
+.face { position: absolute; inset: 0; border-radius: 20px; padding: 7px; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: linear-gradient(155deg, #fdf7ee, #eadcc6 55%, #d6c09e);
+  box-shadow: 0 2px 0 rgba(255,255,255,.7) inset, 0 -2px 0 rgba(120,80,30,.25) inset, 0 0 0 1px rgba(0,0,0,.25), 0 22px 44px -18px rgba(0,0,0,.8); transition: box-shadow .35s; }
+.verso { transform: rotateY(180deg); }
+.carte.haut .recto { box-shadow: 0 2px 0 rgba(255,255,255,.7) inset, 0 -2px 0 rgba(120,80,30,.25) inset, 0 0 0 1px rgba(0,0,0,.25), 0 40px 70px -22px rgba(0,0,0,.85); }
+.img, .papier, .dos { position: relative; width: 100%; height: 100%; border-radius: 14px; overflow: hidden; }
+/* l'image : la photo entière, l'objet net, le reste à peine flouté */
+.img { background: #1b1d27; }
+.img .bg, .img .obj { position: absolute; inset: 0; background-image: url(../../fiches/illustrations/A1/1.jpg); background-repeat: no-repeat; background-size: var(--bs); background-position: var(--bp); }
+.img .bg { filter: blur(1.6px) brightness(.9) saturate(.92); transform: scale(1.02); }
+.img .objw { position: absolute; inset: 0; filter: drop-shadow(0 3px 6px rgba(0,0,0,.28)); }
+.img .obj { clip-path: var(--clip, none); }
+.reflet { position: absolute; inset: 0; border-radius: 14px; pointer-events: none; mix-blend-mode: soft-light;
+  background: linear-gradient(115deg, transparent 32%, rgba(255,255,255,.55) 46%, transparent 60%) no-repeat; background-size: 260% 100%; background-position: 130% 0; transition: background-position .8s var(--apple); }
+.carte.haut .reflet, .carte.tire .reflet { background-position: -30% 0; }
+/* le mot écrit */
+.papier { display: grid; place-items: center; padding: 16px 12px; text-align: center; color: #2b1d10;
+  background: radial-gradient(120% 90% at 50% 0%, #fffdf8, #f4e9d6 70%, #ead9bd); box-shadow: inset 0 0 0 1.5px rgba(176,132,64,.45), inset 0 0 0 5px rgba(255,255,255,.5), inset 0 0 0 6.5px rgba(176,132,64,.25); }
+.papier b { display: block; font-size: calc(var(--ch) * .105); font-weight: 800; line-height: 1.08; letter-spacing: -.01em; text-wrap: balance; }
+.papier b .art { display: block; font-size: .62em; font-weight: 600; opacity: .55; margin-bottom: .2em; }
+.papier::before, .papier::after { content: ""; position: absolute; left: 50%; width: 34%; height: 2px; translate: -50% 0; border-radius: 2px; background: linear-gradient(90deg, transparent, rgba(176,132,64,.6), transparent); }
+.papier::before { top: 22%; } .papier::after { bottom: 22%; }
+/* le dos : le vert de la devanture, un filet doré */
+.dos { background: radial-gradient(circle at 50% 45%, #2f5c52, #163029 75%); box-shadow: inset 0 0 0 1.5px rgba(226,190,120,.55), inset 0 0 0 6px rgba(22,48,41,1), inset 0 0 0 7px rgba(226,190,120,.3); }
+.nom { position: absolute; left: 50%; bottom: 16px; translate: -50% 10px; padding: 7px 14px; border-radius: 15px; white-space: nowrap; font-size: 15px; font-weight: 800; color: #fff;
+  background: rgba(16,18,28,.82); box-shadow: 0 8px 20px -8px rgba(0,0,0,.6); opacity: 0; transition: opacity .3s, translate .45s var(--spring), background .25s; backface-visibility: hidden; }
+.nom .art { font-weight: 500; opacity: .7; }
+.carte.nommee .nom { opacity: 1; translate: -50% 0; }
+.carte.faux .nom { background: #e0466a; }
+.carte.bon .recto { box-shadow: 0 0 0 3px var(--ok), 0 0 50px rgba(75,227,180,.45), 0 30px 60px -20px rgba(0,0,0,.8); }
+.carte.faux .recto { box-shadow: 0 0 0 3px var(--bad), 0 0 40px rgba(255,92,122,.4), 0 30px 60px -20px rgba(0,0,0,.8); }
+.carte.secoue .tourne { animation: secoue .5s ease; }
+@keyframes secoue { 20% { translate: -9px 0; } 40% { translate: 7px 0; } 60% { translate: -4px 0; } 80% { translate: 2px 0; } }
+.carte.indice .recto { animation: indice 1.2s ease-in-out infinite; }
+.carte.montree .recto { box-shadow: 0 0 0 3px #fff, 0 0 46px rgba(255,255,255,.45), 0 30px 60px -20px rgba(0,0,0,.8); }
+@keyframes indice { 50% { box-shadow: 0 0 0 3px #fff, 0 0 46px rgba(255,255,255,.55), 0 30px 60px -20px rgba(0,0,0,.8); } }
+.carte.loin { cursor: default; }
+.carte.loin .face { box-shadow: 0 0 0 1px rgba(0,0,0,.3), 0 10px 20px -10px rgba(0,0,0,.7); }
+
+/* avant la partie : les paires sur la table, et « Jouer » (ou « Suivant ») en bas */
+.fente, .tas { transition: opacity .5s ease, border-color .25s, background .25s, box-shadow .25s, scale .35s var(--spring); }
+body.etude .fente, body.etude .tas { opacity: 0; pointer-events: none; }
+.jouer { position: fixed; left: 50%; bottom: calc(34px + env(safe-area-inset-bottom, 0px)); z-index: 95; translate: -50% 0; height: 56px; padding: 0 24px 0 28px; border-radius: 28px; display: inline-flex; align-items: center; gap: 10px; white-space: nowrap;
+  background: #fff; color: var(--ink); font-size: 17px; font-weight: 800; box-shadow: 0 14px 34px -12px rgba(0,0,0,.7); transition: opacity .35s ease, translate .5s var(--spring), scale .3s var(--spring); }
+.jouer svg { width: 18px; height: 18px; } .jouer:active { scale: .95; }
+.jouer .n { font-weight: 600; opacity: .55; font-variant-numeric: tabular-nums; }
+/* l'accueil : le paquet de cartes, à déchirer par le haut */
+.sachet { position: fixed; z-index: 30; perspective: 900px; cursor: grab; touch-action: none; outline: none; }
+.sachet:focus-visible .incl { outline: 2px solid #fff; outline-offset: 6px; border-radius: 6px; }
+.sachet .flotte { position: absolute; inset: 0; animation: flotte 3.4s ease-in-out infinite; }
+@keyframes flotte { 0%, 100% { transform: translateY(-5px) rotate(-1.2deg); } 50% { transform: translateY(6px) rotate(1.2deg); } }
+.sachet .incl { position: absolute; inset: 0; transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .35s ease-out; transform-style: preserve-3d; }
+.sachet .ombre { position: absolute; left: 14%; right: 14%; bottom: -36px; height: 22px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0,0,0,.5), transparent); animation: ombre 3.4s ease-in-out infinite; }
+@keyframes ombre { 0%, 100% { transform: scale(.92); opacity: .85; } 50% { transform: scale(1.05); opacity: .55; } }
+.s-haut, .s-corps { position: absolute; left: 0; right: 0; overflow: hidden;
+  background: radial-gradient(120% 80% at var(--mx, 30%) var(--my, 15%), rgba(255,255,255,.45), transparent 45%), linear-gradient(155deg, #ffc27a 0%, #ff8a2a 26%, #f2630f 52%, #ff8f33 78%, #ffbd6e 100%); }
+.s-haut { top: 0; height: 15%; clip-path: var(--zh); transform-origin: 100% 100%; transform: translateY(calc(var(--p, 0) * -8px)) rotate(calc(var(--p, 0) * -9deg)); transition: transform .15s ease-out; }
+.s-corps { top: 15%; bottom: 0; clip-path: var(--zb); box-shadow: inset 0 0 30px rgba(140,40,0,.35); }
+.s-haut::after, .s-corps::after { content: ""; position: absolute; left: 0; right: 0; background: repeating-linear-gradient(90deg, rgba(255,255,255,.22) 0 2px, rgba(120,40,0,.14) 2px 4px, transparent 4px 7px); }
+.s-haut::after { top: 0; height: 75%; } .s-corps::after { bottom: 0; height: 8%; }
+.reflet-s { position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.5) 44%, transparent 58%) no-repeat; background-size: 250% 100%; mix-blend-mode: soft-light; animation: balaie 4.2s ease-in-out infinite; }
+@keyframes balaie { 0%, 55% { background-position: 130% 0; } 100% { background-position: -40% 0; } }
+.s-titre { position: absolute; left: 0; right: 0; top: 7%; text-align: center; color: #fff; text-shadow: 0 2px 8px rgba(120,40,0,.45); }
+.s-titre b { display: block; font-size: calc(var(--sw) * .105); font-weight: 800; letter-spacing: -.01em; line-height: 1.1; }
+.s-titre span { font-size: calc(var(--sw) * .052); font-weight: 700; opacity: .92; letter-spacing: .08em; text-transform: uppercase; }
+.s-image { position: absolute; left: 50%; top: 52%; width: 54%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; background: url(../../fiches/illustrations/A1/1.jpg) no-repeat;
+  background-size: var(--ibs); background-position: var(--ibp); box-shadow: 0 0 0 4px rgba(255,255,255,.9), 0 12px 26px rgba(120,40,0,.45); }
+.s-pied { position: absolute; left: 0; right: 0; bottom: 12%; text-align: center; color: rgba(255,255,255,.95); font-size: calc(var(--sw) * .055); font-weight: 800; letter-spacing: .12em; text-transform: uppercase; text-shadow: 0 2px 6px rgba(120,40,0,.4); }
+.s-guide { position: absolute; left: 5%; right: 5%; top: 15%; border-top: 2px dashed rgba(255,255,255,.8); translate: 0 -1px; transition: opacity .3s; }
+.s-main { position: absolute; top: 15%; left: 8%; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 7px rgba(255,255,255,.3), 0 4px 10px rgba(0,0,0,.3);
+  animation: glisseMain 2.2s ease-in-out infinite; transition: opacity .3s; }
+@keyframes glisseMain { 0% { left: 8%; opacity: 0; } 15% { opacity: 1; } 75% { left: 88%; opacity: 1; } 100% { left: 92%; opacity: 0; } }
+.sachet.dechire .s-main, .sachet.dechire .s-guide { animation: none; opacity: 0; }
+.s-lueur { position: absolute; left: 0; top: 15%; height: 4px; width: calc(var(--p, 0) * 100%); translate: 0 -50%; border-radius: 2px; background: linear-gradient(90deg, #fff, #ffe2a8);
+  box-shadow: 0 0 14px 4px rgba(255,226,168,.9), 0 -6px 18px 6px rgba(255,240,200,.55); }
+.sachet.ouvert { pointer-events: none; }
+.sachet.ouvert .flotte, .sachet.ouvert .ombre { animation: none; }
+.sachet.ouvert .ombre { opacity: 0; transition: opacity .4s; }
+.sachet.ouvert .s-haut { transform: translate(70%, -260%) rotate(40deg); opacity: 0; transition: transform .8s cubic-bezier(.2,.7,.3,1), opacity .8s ease .1s; }
+.sachet.ouvert .s-corps, .sachet.ouvert .s-lueur { transform: translateY(160%) rotate(7deg); opacity: 0; transition: transform .75s cubic-bezier(.55,0,.8,.3) .12s, opacity .5s ease .4s; }
+.carte.dans-sachet { opacity: 0; }
+body.deballage .jouer { opacity: 0; translate: -50% 30px; pointer-events: none; }
+.confettis { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 70; pointer-events: none; }
+.consigne { transition: opacity .4s ease; }
+body:not(.etude) .jouer { opacity: 0; translate: -50% 30px; pointer-events: none; }
+.carte.etude { cursor: pointer; }
+.carte.eclaire .recto { box-shadow: 0 0 0 3px #fff, 0 0 46px rgba(255,255,255,.5), 0 30px 60px -20px rgba(0,0,0,.8); }
+body.clair .jouer { background: #24190f; color: #fff; }
+body[data-mode="portrait"] .jouer, body[data-mode="paysage"] .jouer { height: 52px; font-size: 16px; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); }
+
+/* une paire ouverte en grand (avant la partie) : le fond se floute derrière */
+.voile { position: fixed; inset: 0; z-index: 84; background: rgba(8,10,20,.45); backdrop-filter: blur(14px) saturate(1.2); -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  opacity: 0; pointer-events: none; transition: opacity .4s ease; cursor: zoom-out; }
+.voile.on { opacity: 1; pointer-events: auto; }
+body.clair .voile { background: rgba(243,241,239,.45); }
+.fleche { position: fixed; top: 50%; z-index: 95; width: 56px; height: 56px; margin-top: -18px; border-radius: 50%; display: grid; place-items: center; color: #fff;
+  background: rgba(255,255,255,.14); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 12px 28px -12px rgba(0,0,0,.6);
+  opacity: 0; scale: .8; pointer-events: none; transition: opacity .3s ease, scale .4s var(--spring), background .2s; }
+.fleche svg { width: 24px; height: 24px; }
+.fleche.g { left: calc(50% - var(--zx, 400px) - 56px); } .fleche.d { left: calc(50% + var(--zx, 400px)); }
+.fleche:hover { background: rgba(255,255,255,.24); } .fleche:active { scale: .92; }
+body.zoome .fleche { opacity: 1; scale: 1; pointer-events: auto; }
+body.clair .fleche { color: #24190f; background: rgba(255,255,255,.8); box-shadow: 0 12px 28px -14px rgba(90,45,15,.5); }
+
+/* le bilan : les dix paires */
+.bilan { position: fixed; left: 50%; top: 50%; z-index: 90; translate: -50% -46%; display: grid; grid-template-columns: repeat(5, auto); gap: 22px 26px; padding: 30px 34px 26px; border-radius: 30px;
+  background: rgba(16,18,28,.72); backdrop-filter: blur(30px) saturate(1.5); -webkit-backdrop-filter: blur(30px) saturate(1.5); box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 40px 90px -30px rgba(0,0,0,.8);
+  opacity: 0; scale: .94; pointer-events: none; transition: opacity .5s ease, scale .6s var(--spring), translate .6s var(--spring); }
+.bilan.on { opacity: 1; scale: 1; translate: -50% -50%; pointer-events: auto; }
+.bilan h2 { grid-column: 1 / -1; margin: 0 0 4px; text-align: center; font-size: 26px; letter-spacing: -.02em; }
+.bilan .paire { display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; }
+.bilan .mini { width: 96px; height: 134px; border-radius: 12px; padding: 4px; background: linear-gradient(155deg, #fdf7ee, #d6c09e); box-shadow: 0 10px 22px -10px rgba(0,0,0,.7); transition: scale .35s var(--spring); }
+.bilan .paire:hover .mini { scale: 1.06; }
+.bilan .mini div { width: 100%; height: 100%; border-radius: 9px; background-image: url(../../fiches/illustrations/A1/1.jpg); background-repeat: no-repeat; }
+.bilan .paire span { font-size: 13.5px; font-weight: 800; white-space: nowrap; } .bilan .paire span .art { font-weight: 500; opacity: .7; }
+.bilan .encore { grid-column: 1 / -1; justify-self: center; margin-top: 6px; height: 50px; padding: 0 24px; border-radius: 25px; display: inline-flex; align-items: center; gap: 9px; background: #fff; color: var(--ink); font-weight: 800; font-size: 16px; }
+.bilan .encore svg { width: 18px; height: 18px; }
+body.attente .carte.main { cursor: default; }
+
+/* le téléphone : rien ne défile, rien ne zoome ; les tailles des cartes viennent du script (mesurer) */
+html, body { overscroll-behavior: none; }
+body { touch-action: none; }
+.sonde { position: fixed; left: 0; top: 0; visibility: hidden; pointer-events: none; padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px); }
+body[data-mode="portrait"] .titre, body[data-mode="paysage"] .titre { display: none; }
+body[data-mode="portrait"] .theme, body[data-mode="paysage"] .theme { width: 34px; height: 34px; top: calc(10px + env(safe-area-inset-top, 0px)); right: 10px; z-index: 95; }
+body[data-mode="portrait"] .theme svg, body[data-mode="paysage"] .theme svg { width: 18px; height: 18px; }
+body[data-mode="portrait"] .consigne, body[data-mode="paysage"] .consigne { white-space: normal; width: max-content; max-width: calc(100vw - 24px); gap: 10px; padding: 5px 16px 5px 5px; border-radius: 26px; }
+body[data-mode="portrait"] .consigne p, body[data-mode="paysage"] .consigne p { font-size: 15px; line-height: 1.2; text-wrap: balance; }
+body[data-mode="portrait"] .hp, body[data-mode="paysage"] .hp { width: 38px; height: 38px; }
+body[data-mode="portrait"] .hp svg, body[data-mode="paysage"] .hp svg { width: 18px; height: 18px; }
+body[data-mode="portrait"] .fente, body[data-mode="paysage"] .fente { font-size: 12px; border-radius: 18px; }
+body[data-mode="portrait"] .fente .cap, body[data-mode="paysage"] .fente .cap { font-size: 10.5px; top: calc(100% + 7px); }
+body[data-mode="portrait"] .go, body[data-mode="paysage"] .go { font-size: 14px; gap: 8px; }
+body[data-mode="portrait"] .go i, body[data-mode="paysage"] .go i { width: 58px; height: 58px; }
+body[data-mode="portrait"] .go svg, body[data-mode="paysage"] .go svg { width: 24px; height: 24px; }
+body[data-mode="portrait"] .tas .cap { top: auto; bottom: calc(100% + 8px); font-size: 10.5px; }
+body[data-mode="portrait"] .tas .n, body[data-mode="paysage"] .tas .n { min-width: 24px; height: 24px; padding: 0 6px; font-size: 12px; right: -8px; top: -8px; }
+body[data-mode="paysage"] .tas .cap { font-size: 10.5px; top: calc(100% + 6px); }
+body[data-mode="portrait"] .face, body[data-mode="paysage"] .face { border-radius: 16px; padding: 5px; }
+body[data-mode="portrait"] .img, body[data-mode="portrait"] .papier, body[data-mode="portrait"] .dos,
+body[data-mode="paysage"] .img, body[data-mode="paysage"] .papier, body[data-mode="paysage"] .dos { border-radius: 12px; }
+body[data-mode="portrait"] .nom, body[data-mode="paysage"] .nom { font-size: 12.5px; padding: 5px 10px; bottom: 10px; }
+body[data-mode="portrait"] .bilan, body[data-mode="paysage"] .bilan { gap: 12px 14px; padding: 18px 16px 16px; border-radius: 24px; max-height: calc(100dvh - 32px); overflow-y: auto; touch-action: pan-y; }
+body[data-mode="portrait"] .bilan { grid-template-columns: repeat(3, auto); }
+body[data-mode="portrait"] .bilan h2, body[data-mode="paysage"] .bilan h2 { font-size: 19px; }
+body[data-mode="portrait"] .bilan .mini { width: 76px; height: 106px; }
+body[data-mode="paysage"] .bilan .mini { width: 56px; height: 78px; }
+body[data-mode="portrait"] .bilan .paire span, body[data-mode="paysage"] .bilan .paire span { font-size: 11.5px; white-space: normal; text-align: center; max-width: 92px; line-height: 1.15; }
+body[data-mode="portrait"] .bilan .encore, body[data-mode="paysage"] .bilan .encore { height: 44px; font-size: 15px; }
+
+/* dans le quiz (?integre=1) : le quiz a déjà le titre (son île) et le bouton clair / sombre */
+body.integre .titre, body.integre .theme { display: none; }
+.bilan .boutons { grid-column: 1 / -1; display: flex; justify-content: center; gap: 10px; }
+.bilan .encore.second { background: rgba(255,255,255,.14); color: #fff; }
+body.clair .bilan .encore.second { background: rgba(36,25,15,.08); color: #24190f; }
+
+/* le mode clair (même réglage que le quiz) */
+body.clair { --text: #24190f; --text2: rgba(36,25,15,.62); color-scheme: light; background: #f1efed; }
+body.clair .env { background: #f1efed; }
+body.clair .fond { opacity: .5; filter: blur(56px) saturate(.85) brightness(1.15); }
+body.clair .fond::after { background: radial-gradient(70% 70% at 50% 45%, rgba(243,241,239,.35), rgba(243,241,239,.9)); }
+body.clair .table { background: radial-gradient(closest-side, rgba(255,255,255,.55), rgba(255,255,255,.15) 60%, transparent); }
+body.clair .titre, body.clair .theme { background: rgba(255,255,255,.66); color: #24190f; box-shadow: 0 4px 14px -6px rgba(90,50,20,.3); }
+body.clair .theme .soleil { display: none; } body.clair .theme .lune { display: block; }
+body.clair .consigne, body.clair .bilan { background: rgba(255,255,255,.84); color: #24190f; box-shadow: inset 0 1px 0 #fff, 0 14px 30px -14px rgba(90,45,15,.45); }
+body.clair .consigne { box-shadow: none; }
+body.clair .hp { background: #24190f; color: #fff; } body.clair .consigne.ok .hp { background: var(--g-ok); color: var(--ink); } body.clair .consigne.non .hp { background: #e0496a; }
+body.clair .fente { border-color: rgba(36,25,15,.22); background: rgba(255,255,255,.35); color: rgba(36,25,15,.45); }
+body.clair .fente.sienne { border-color: rgba(36,25,15,.08); background: rgba(255,255,255,.2); }
+body.clair .fente.vise { border-color: rgba(36,25,15,.7); background: rgba(255,255,255,.7); }
+body.clair .fente .cap, body.clair .tas .cap { color: rgba(36,25,15,.5); }
+body.clair .go { color: #24190f; } body.clair .go i { background: rgba(255,255,255,.8); box-shadow: 0 18px 40px -16px rgba(90,45,15,.5); } body.clair .go i::after { border-color: rgba(36,25,15,.35); }
+body.clair .tas .n, body.clair .bilan .encore { background: #24190f; color: #fff; }
+body.clair .tas .vide { border-color: rgba(36,25,15,.18); }
+body.clair .face { box-shadow: 0 2px 0 rgba(255,255,255,.8) inset, 0 -2px 0 rgba(120,80,30,.2) inset, 0 0 0 1px rgba(120,80,30,.2), 0 22px 44px -20px rgba(90,45,15,.6); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+</style>
+</head>
+<body class="attente etude accueil">
+<div class="env" aria-hidden="true"></div>
+<div class="fond" aria-hidden="true"></div>
+<div class="table" id="table" aria-hidden="true"></div>
+
+<div class="titre"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="11" height="15" rx="2.5"/><path d="M9 21h8.5a2.5 2.5 0 0 0 2.5-2.5V7"/></svg></span><div><b>À la boulangerie · Vocabulaire</b><span id="compte">0 / 10 paires</span></div></div>
+<button class="theme" id="theme" aria-label="Mode clair ou sombre"><svg class="soleil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"/></svg><svg class="lune" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1z"/></svg></button>
+
+<div class="consigne" id="consigne" aria-live="polite"><button class="hp" id="hp" aria-label="Réécouter le mot"></button><p id="texte">Retiens ces mots.</p></div>
+<div class="fente sienne" id="fenteA"><span class="cap">Sa carte</span></div>
+<div class="fente" id="fenteB"><span>Pose ta carte ici</span><span class="cap">Ta carte</span></div>
+<div class="tas" id="pioche"><span class="vide"></span><span class="n" id="nPioche">10</span><span class="cap">Pioche</span></div>
+<div class="tas" id="plis"><span class="vide"></span><span class="n" id="nPlis">0</span><span class="cap">Paires</span></div>
+<div class="voile" id="voile" aria-hidden="true"></div>
+<button class="fleche g" id="prec" aria-label="Paire précédente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button><button class="fleche d" id="suiv" aria-label="Paire suivante"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+<div id="cartes"></div>
+<div class="sachet" id="sachet" role="button" tabindex="0" aria-label="Ouvrir le paquet de cartes">
+  <div class="ombre"></div>
+  <div class="flotte"><div class="incl">
+    <div class="s-corps"><div class="reflet-s"></div><div class="s-titre"><b>La boulangerie</b><span>10 cartes · A1</span></div><div class="s-image"></div><div class="s-pied">Vocabulaire</div></div>
+    <div class="s-haut"></div>
+    <div class="s-lueur"></div><div class="s-guide"></div><div class="s-main"></div>
+  </div></div>
+</div>
+<canvas class="confettis" id="confettis" aria-hidden="true"></canvas>
+<button class="jouer" id="go"><span id="goTxt">Jouer</span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.2v13.6a1 1 0 0 0 1.5.86l11-6.8a1 1 0 0 0 0-1.72l-11-6.8A1 1 0 0 0 8 5.2z"/></svg></button>
+<div class="bilan" id="bilan" aria-live="polite"></div>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s), wait = ms => new Promise(r => setTimeout(r, ms));
+  const reduit = matchMedia('(prefers-reduced-motion: reduce)').matches, T = ms => reduit ? Math.min(ms, 80) : ms;
+  /* les mots et leurs images, prises dans l'illustration de la fiche (1173 × 1341 px) :
+     cadre : centre x, centre y et largeur du morceau montré ; net : contour de l'objet (le reste est à peine flouté) */
+  const IW = 1173, IH = 1341;
+  const ell = (cx, cy, rx, ry, n = 28) => Array.from({ length: n }, (_, i) => [cx + rx * Math.cos(i / n * 2 * Math.PI), cy + ry * Math.sin(i / n * 2 * Math.PI)]).flat();
+  const MOTS = [
+    { t: 'la boulangerie', cadre: [395, 250, 400] },
+    { t: 'la boulangère', cadre: [905, 545, 370] },   // sans détourage : sa silhouette (coiffe, bras, baguette) se découpe mal
+    { t: 'la baguette', cadre: [1055, 400, 250], net: [962,335, 985,282, 1020,278, 1045,290, 1070,272, 1100,282, 1115,268, 1150,265, 1162,300, 1160,535, 962,525] },
+    { t: 'le pain de campagne', cadre: [633, 405, 250], net: ell(633, 405, 100, 56) },
+    { t: 'le croissant', cadre: [407, 641, 250], net: [302,672, 312,628, 348,598, 388,598, 420,614, 470,612, 505,640, 512,676, 430,684, 330,680] },
+    { t: 'le pain au chocolat', cadre: [638, 662, 250], net: [536,690, 545,642, 585,624, 640,628, 690,626, 730,640, 740,690, 680,700, 560,698] },
+    { t: 'la tarte', cadre: [409, 882, 290], net: ell(409, 882, 124, 55) },
+    { t: 'le gâteau', cadre: [670, 856, 280], net: [555,925, 558,820, 575,790, 620,775, 700,775, 760,785, 782,810, 786,925, 700,938, 600,935] },
+    { t: 'la monnaie', cadre: [765, 1082, 230], net: ell(765, 1082, 94, 44) },
+    { t: 'le sac en papier', cadre: [1010, 990, 280], net: [900,1125, 918,895, 962,890, 972,838, 1000,824, 1035,834, 1050,888, 1090,896, 1120,1128, 1060,1150, 958,1148] },
+  ];
+  const ICON = {
+    hp: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/></svg>',
+    ok: '<svg viewBox="0 0 24 24" fill="none" stroke="#0B0D16" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+    non: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M7 7l10 10M17 7 7 17"/></svg>',
+    encore: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.5-5.8"/><path d="M4 4v4.5h4.5"/></svg>',
+  };
+  const libelle = t => { const [a, ...r] = t.split(' '); return `<span class="art">${a}</span> ${r.join(' ')}`; };
+  const nomFichier = t => t.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/gi, '-').toLowerCase() + '.mp3';
+
+  /* le son : les mots enregistrés avec ElevenLabs (cartes/*.mp3, voir voix-cartes.js) ; s'il en manque, la voix du navigateur */
+  let ctx = null;
+  const audio = () => { try { if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)(); if (ctx.state === 'suspended') ctx.resume(); } catch (e) {} return ctx; };
+  function ton(f, t0, d, g, type = 'sine') { const c = audio(); if (!c) return; const o = c.createOscillator(), a = c.createGain(); o.type = type; o.frequency.value = f; a.gain.setValueAtTime(0, c.currentTime + t0); a.gain.linearRampToValueAtTime(g, c.currentTime + t0 + .01); a.gain.exponentialRampToValueAtTime(.0001, c.currentTime + t0 + d); o.connect(a).connect(c.destination); o.start(c.currentTime + t0); o.stop(c.currentTime + t0 + d + .02); }
+  const bravo = new Audio('bravo.mp3'), mauvais = new Audio('mauvaise.mp3');
+  const jouerSon = a => { try { a.currentTime = 0; const p = a.play(); if (p && p.catch) p.catch(() => {}); } catch (e) {} };
+  const sfx = { tic() { ton(2300, 0, .02, .02, 'triangle'); }, prise() { ton(520, 0, .07, .04, 'triangle'); }, pose() { ton(180, 0, .09, .07); }, tourne() { ton(900, 0, .05, .025, 'triangle'); }, ok() { ton(784, 0, .22, .06); ton(1175, .09, .38, .05); ton(1568, .18, .4, .03); }, non() { jouerSon(mauvais); }, bravo() { jouerSon(bravo); } };
+  const CONSIGNE = 'Associe chaque mot à son image.';   // dite dans cartes/consigne.mp3 (voix-cartes.js)
+  const RETIENS = 'Retiens ces mots.';   // cartes/retiens.mp3
+  const sons = MOTS.map(m => 'cartes/' + nomFichier(m.t)).concat('cartes/consigne.mp3', 'cartes/retiens.mp3').map(src => { const a = new Audio(src); a.preload = 'auto'; a.addEventListener('error', () => { a.manque = true; }); return a; });
+  const iConsigne = MOTS.length, iRetiens = MOTS.length + 1;
+  let voix = null;
+  function choisirVoix() { try { const rang = v => /google/i.test(v.name) ? 0 : /natural/i.test(v.name) ? 1 : /^fr-FR/i.test(v.lang) ? 2 : 3; voix = speechSynthesis.getVoices().filter(v => /^fr(-|_|$)/i.test(v.lang)).sort((a, b) => rang(a) - rang(b))[0] || null; } catch (e) { voix = null; } }
+  if (window.speechSynthesis) { choisirVoix(); speechSynthesis.addEventListener('voiceschanged', choisirVoix); }
+  let parleN = 0;
+  function taire() { sons.forEach(a => { try { a.pause(); } catch (e) {} }); try { speechSynthesis.cancel(); } catch (e) {} }
+  async function dire(k) {
+    const n = ++parleN, hp = $('#hp'); hp.classList.add('parle'); taire();
+    const a = sons[k];
+    const enregistre = !a.manque && await new Promise(res => {
+      try { a.currentTime = 0; } catch (e) {}
+      const fin = ok => { a.removeEventListener('ended', fini); a.removeEventListener('error', rate); res(ok); };
+      const fini = () => fin(true), rate = () => fin(false);
+      a.addEventListener('ended', fini); a.addEventListener('error', rate);
+      const p = a.play(); if (p && p.catch) p.catch(() => fin(false));
+      setTimeout(() => fin(true), 5000);
+    });
+    if (!enregistre && voix && n === parleN) {
+      await wait(70);
+      await new Promise(res => { const u = new SpeechSynthesisUtterance(k === iConsigne ? CONSIGNE : k === iRetiens ? RETIENS : MOTS[k].t); u.voice = voix; u.lang = voix.lang; u.rate = .85; u.onend = u.onerror = () => res(); speechSynthesis.speak(u); setTimeout(res, 3500); });
+    }
+    if (n === parleN) hp.classList.remove('parle');
+  }
+
+  /* les vingt cartes : pour chaque mot, l'image et le mot écrit ; l'un des deux est à nous, l'autre à la boulangère */
+  const couche = $('#cartes'), fenteA = $('#fenteA'), fenteB = $('#fenteB');
+  const melanger = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const cartes = [];
+  MOTS.forEach((m, k) => ['image', 'mot'].forEach(type => {
+    const el = document.createElement('button'); el.className = `carte ${type}`;
+    const recto = type === 'image' ? `<div class="img"><div class="bg"></div><div class="objw"><div class="obj"></div></div><div class="reflet"></div></div><div class="nom">${libelle(m.t)}</div>`
+      : `<div class="papier"><b>${libelle(m.t).replace('</span> ', '</span>')}</b><div class="reflet"></div></div>`;
+    el.innerHTML = `<div class="tourne"><div class="face recto">${recto}</div><div class="face verso"><div class="dos"></div></div></div>`;
+    couche.append(el);
+    cartes.push({ k, type, el, lieu: 'pioche', a: null, x: 0, y: 0, r: 0, s: 1 });
+  }));
+  // le partage : pour chaque mot, une carte à chacun (au hasard : l'image ou le mot)
+  const moi = [], elle = [];
+  MOTS.forEach((m, k) => { const [x, y] = melanger(cartes.filter(c => c.k === k)); moi.push(x); elle.push(y); });
+  melanger(moi); melanger(elle);
+  moi.forEach(c => { c.a = 'moi'; }); elle.forEach(c => { c.a = 'elle'; });
+  melanger([...cartes]).forEach((c, i) => { c.ordre = i; c.lieu = 'sachet'; c.el.classList.add('dans-sachet'); });
+  let vue = 0;   // au téléphone : la paire montrée
+  let zoom = -1; // à l'ordinateur : la paire ouverte en grand
+  const ordrePioche = [...moi];   // le dessus de la pioche est à la fin
+
+  // tailles et places, selon l'écran : ordinateur, téléphone en hauteur, téléphone en largeur (peu de hauteur)
+  let G = {};
+  // les marges de sécurité du téléphone (encoche, barre du bas), lues sur un élément témoin
+  const sonde = document.createElement('div'); sonde.className = 'sonde'; document.body.append(sonde);
+  const INTEGRE = new URLSearchParams(location.search).has('integre'), MARGE_ILE = INTEGRE ? 68 : 0;
+  if (INTEGRE) document.body.classList.add('integre');
+  const safe = () => { const s = getComputedStyle(sonde); return { haut: (parseFloat(s.paddingTop) || 0) + MARGE_ILE, bas: parseFloat(s.paddingBottom) || 0 }; };
+  function mesurer() {
+    const W = innerWidth, H = innerHeight, S = safe();
+    const mode = W < 700 && H >= W ? 'portrait' : H < 560 ? 'paysage' : 'bureau';
+    let ch, sm, sa, st, R, Rh;
+    if (mode === 'bureau') { ch = Math.round(Math.max(180, Math.min(244, H * .26))); sm = 1; sa = .58; st = .6; R = 1300; Rh = 1500; }
+    else if (mode === 'portrait') { const cw0 = Math.min(170, (W - 56) / 2, H * .27 * .714); ch = Math.round(cw0 / .714); sm = Math.min(1, (W - 20) / 3.7 / cw0); sa = W * .16 / cw0; st = .4; R = 760; Rh = 900; }
+    else { ch = Math.round(Math.max(120, Math.min(180, H * .4))); sm = .8; sa = .36; st = .4; R = 1000; Rh = 1200; }
+    const cw = Math.round(ch * .714), chM = ch * sm, cwM = cw * sm, cwA = cw * sa;
+    // l'éventail de notre main (écart entre deux cartes, largeur totale) et celui de la boulangère
+    const esp = mode === 'bureau' ? 140 : cwM * (mode === 'portrait' ? .66 : .8), larg = mode === 'bureau' ? 680 : mode === 'portrait' ? W - cwM - 16 : Math.min(680, W * .5);
+    const espH = mode === 'bureau' ? 89 : cwA * .62, largH = mode === 'bureau' ? 785 : mode === 'portrait' ? W - cwA - 100 : W * .42;
+    const yAdv = mode === 'bureau' ? 66 + S.haut : S.haut + ch * sa * (mode === 'portrait' ? .3 : .22);
+    const baseY = H - S.bas - chM / 2 + (mode === 'bureau' ? 10 : chM * .08), hautMoi = baseY - chM / 2;
+    let pioche, plis;
+    if (mode === 'portrait') { const y = hautMoi - ch * st / 2 - 34; pioche = [W - 16 - cw * st / 2, y]; plis = [16 + cw * st / 2, y]; }
+    else if (mode === 'paysage') { pioche = [W - 34 - cw * st / 2, H - S.bas - ch * st / 2 - 34]; plis = [34 + cw * st / 2, H - S.bas - ch * st / 2 - 34]; }
+    else { pioche = [W - 150, H - ch * .5 - 30]; plis = [150, H - ch * .5 - 30]; }
+    // la table (consigne, deux places, légendes) à égale distance du bas de son éventail et de ce qu'il y a en dessous
+    const basElle = yAdv - 6 + ch * sa / 2, limBas = mode === 'portrait' ? pioche[1] - ch * st / 2 - 6 : hautMoi;
+    const yFente = Math.round((basElle + limBas) / 2 + (mode === 'portrait' ? 18 : 24)), yCons = yFente - ch / 2 - (mode === 'bureau' ? 48 : 40), ecart = mode === 'portrait' ? 12 : 26;
+    G = { mode, W, H, cw, ch, sm, sa, st, R, Rh, esp, larg, espH, largH, yAdv, yCons, yFente, baseY, chM, cwM, zoneMain: hautMoi - chM * .08,
+      xA: W / 2 - cw / 2 - ecart, xB: W / 2 + cw / 2 + ecart, pioche, plis };
+    document.body.dataset.mode = mode;
+    const rs = document.documentElement.style; rs.setProperty('--cw', cw + 'px'); rs.setProperty('--ch', ch + 'px');
+    // avant la partie : la consigne en haut, les dix paires en grille (le nombre de colonnes qui donne les plus grandes cartes)
+    // au téléphone, la paire montrée est centrée dans la hauteur, la consigne juste au-dessus
+    const yFenteE = mode === 'bureau' ? yFente : Math.round((S.haut + H - S.bas - 80) / 2 + 20), yConsE = mode === 'bureau' ? 96 + S.haut : yFenteE - ch / 2 - 40, hautG = yConsE + 40, basG = H - S.bas - 116, Wa = W - 32, Ha = basG - hautG;
+    let grille = null;
+    for (let cols = 2; cols <= 5; cols++) { const rows = Math.ceil(MOTS.length / cols), sc = Math.min((Wa / cols - 18) / (1.92 * cw), (Ha / rows - 14) / (1.06 * ch)); if (!grille || sc > grille.s) grille = { cols, rows, s: sc }; }
+    grille.s = Math.min(.8, grille.s * .85);   // un peu plus petit que la place disponible : la table respire
+    G.yConsE = yConsE; G.yFenteE = yFenteE;
+    G.etude = MOTS.map((m, k) => {
+      const row = Math.floor(k / grille.cols), col = k % grille.cols, dans = row < grille.rows - 1 ? grille.cols : MOTS.length - grille.cols * (grille.rows - 1);
+      const px = W / 2 + (col - (dans - 1) / 2) * (Wa / grille.cols), py = hautG + (row + .5) * (Ha / grille.rows), sc = grille.s;
+      return { s: sc, image: [px - .46 * cw * sc, py - .02 * ch * sc, -2.5], mot: [px + .46 * cw * sc, py + .02 * ch * sc, 2.5] };
+    });
+    placerConsigne(); $('#table').style.top = yFente + 'px';
+    // le paquet : un peu plus grand qu'une carte, au milieu de la table
+    const sw = cw * 1.3, shh = ch * 1.3, sch = $('#sachet');
+    G.sachet = [W / 2, mode === 'bureau' ? H / 2 + 10 : yFenteE];
+    Object.assign(sch.style, { left: (G.sachet[0] - sw / 2) + 'px', top: (G.sachet[1] - shh / 2) + 'px', width: sw + 'px', height: shh + 'px' });
+    sch.style.setProperty('--sw', sw + 'px');
+    const dents = 22, zh = [], zb = [];
+    for (let i = 0; i <= dents; i++) zh.push(`${(i / dents * 100).toFixed(2)}% ${i % 2 ? 0 : 30}%`);
+    for (let i = dents; i >= 0; i--) zb.push(`${(i / dents * 100).toFixed(2)}% ${i % 2 ? 100 : 96.5}%`);
+    sch.style.setProperty('--zh', `polygon(0% 100%, ${zh.join(', ')}, 100% 100%)`);
+    sch.style.setProperty('--zb', `polygon(0% 0%, 100% 0%, ${zb.join(', ')})`);
+    const tm = sw * .54, [icx, icy, iw2] = [407, 641, 250], isc = tm / iw2;
+    sch.style.setProperty('--ibs', `${IW * isc}px ${IH * isc}px`); sch.style.setProperty('--ibp', `${-(icx - iw2 / 2) * isc}px ${-(icy - iw2 / 2) * isc}px`);
+    const cf = $('#confettis'), dp = Math.min(2, devicePixelRatio || 1); cf.width = W * dp; cf.height = H * dp;
+    [[fenteA, G.xA], [fenteB, G.xB]].forEach(([f, x]) => Object.assign(f.style, { left: (x - cw / 2 - 6) + 'px', top: (yFente - ch / 2 - 6) + 'px', width: (cw + 12) + 'px', height: (ch + 12) + 'px' }));
+    [['#pioche', G.pioche], ['#plis', G.plis]].forEach(([s, [x, y]]) => Object.assign($(s).style, { left: (x - cw * st / 2) + 'px', top: (y - ch * st / 2) + 'px', width: cw * st + 'px', height: ch * st + 'px' }));
+    // le mot écrit : sa taille suit la carte, et rétrécit si un mot long (« boulangerie ») dépasse
+    cartes.filter(c => c.type === 'mot').forEach(c => {
+      const b = c.el.querySelector('.papier b'), place = cw - 14 - 24 + .5;   /* la largeur du papier, sans ses marges */ let fs = ch * .105; b.style.fontSize = fs + 'px';
+      while (fs > 8 && b.offsetWidth > place) { fs -= .5; b.style.fontSize = fs + 'px'; }
+    });
+    cartes.forEach(c => {
+      if (c.type !== 'image') return;
+      const iw = cw - 14, ih = ch - 14, [cx, cy, w] = MOTS[c.k].cadre, h = w * ih / iw, sc = iw / w;
+      const x0 = Math.max(0, Math.min(IW - w, cx - w / 2)), y0 = Math.max(0, Math.min(IH - h, cy - h * .42));
+      c.el.style.setProperty('--bs', `${IW * sc}px ${IH * sc}px`); c.el.style.setProperty('--bp', `${-x0 * sc}px ${-y0 * sc}px`);
+      const q = MOTS[c.k].net;
+      if (q) {
+        let gx = 0, gy = 0; for (let i = 0; i < q.length; i += 2) { gx += q[i]; gy += q[i + 1]; } gx /= q.length / 2; gy /= q.length / 2;
+        const pts = []; for (let i = 0; i < q.length; i += 2) { const x = gx + (q[i] - gx) * 1.08, y = gy + (q[i + 1] - gy) * 1.08; pts.push(`${((x - x0) / w * 100).toFixed(2)}% ${((y - y0) / h * 100).toFixed(2)}%`); }
+        c.el.style.setProperty('--clip', `polygon(${pts.join(', ')})`);
+      }
+    });
+  }
+
+  const mobile = () => G.mode !== 'bureau';
+  function placerConsigne() { $('#consigne').style.top = (document.body.classList.contains('etude') ? G.yConsE : G.yCons) - 8 + 'px'; }
+
+  // où va chaque carte
+  let survol = -1, tire = null, indice = null;
+  function poser(c, x, y, r, s, z) { c.x = x; c.y = y; c.r = r; c.s = s; c.el.style.zIndex = z; if (tire && tire.c === c) return; c.el.style.transform = `translate(${x - G.cw / 2}px, ${y - G.ch / 2}px) rotate(${r}deg) scale(${s})`; }
+  const maMain = () => cartes.filter(c => c.lieu === 'main');
+  const ordreMain = []; // l'ordre des cartes dans la main (les nouvelles à droite)
+  // un éventail : des cartes posées sur un grand cercle (rayon R), écartées de esp au plus, sur larg au plus
+  const arc = (n, i, esp, larg, R) => (i - (n - 1) / 2) * (n > 1 ? Math.min(esp, larg / (n - 1)) : 0) / R;
+  function eventail() {
+    const main = ordreMain.filter(c => c.lieu === 'main'), n = main.length;
+    return main.map((c, i) => { const a = arc(n, i, G.esp, G.larg, G.R); return { c, i, a, x: G.W / 2 + G.R * Math.sin(a), y: G.baseY + G.R * (1 - Math.cos(a)) }; });
+  }
+  function disposer() {
+    const ev = eventail(), hi = ev.findIndex(e => e.c === survol);
+    ev.forEach(({ c, i, a, x, y }) => {
+      let r = a * 180 / Math.PI, s = G.sm, z = 20 + i;
+      if (hi >= 0 && c !== survol) x += (i < hi ? -1 : 1) * G.cwM * .16;
+      if (c === survol) { y -= G.chM * .3; r *= .25; s = G.sm * 1.07; z = 60; } else if (c === indice) y -= G.chM * .14;
+      c.el.classList.toggle('haut', c === survol); poser(c, x, y, r, s, z);
+    });
+    // sa main, en face : un éventail renversé, cartes de dos
+    const siennes = elle.filter(c => c.lieu === 'sa-main'), n = siennes.length;
+    siennes.forEach((c, i) => { const a = arc(n, i, G.espH, G.largH, G.Rh); poser(c, G.W / 2 + G.Rh * Math.sin(a), G.yAdv - 6 - G.Rh * (1 - Math.cos(a)), -a * 180 / Math.PI, G.sa, 20 + i); });
+    ordrePioche.filter(c => c.lieu === 'pioche').forEach((c, i) => poser(c, G.pioche[0] - i * .8, G.pioche[1] - i * 1.6, (i % 3 - 1) * 1.2, G.st, 30 + i));
+    cartes.filter(c => c.lieu === 'plis').forEach(c => poser(c, G.plis[0] + (c.type === 'mot' ? 10 : -4) * G.st / .6 + c.pli * .6, G.plis[1] - c.pli * 2.2 + (c.type === 'mot' ? 6 : 0), c.type === 'mot' ? 7 : -4, G.st, 30 + c.pli * 2 + (c.type === 'mot' ? 1 : 0)));
+    cartes.forEach(c => { if (c.lieu === 'table-a') poser(c, G.xA, G.yFente, 0, 1, 80); else if (c.lieu === 'table-b') poser(c, G.xB, G.yFente, 0, 1, 81); });
+    cartes.forEach(c => {
+      if (c.lieu !== 'etude') return;
+      if (!mobile() && c.k === zoom) {
+        const sc = Math.min(1.7, G.H * .6 / G.ch, G.W * .38 / G.cw), x = G.W / 2 + (c.type === 'image' ? -1 : 1) * G.cw * sc * .54;
+        document.documentElement.style.setProperty('--zx', (G.cw * sc * 1.04 + 36) + 'px');
+        return poser(c, x, G.H / 2 + 10, c.type === 'image' ? -2 : 2, sc, 90 + (c.type === 'mot' ? 1 : 0));
+      }
+      if (!mobile()) { const [x, y, r] = G.etude[c.k][c.type]; return poser(c, x, y, r, G.etude[c.k].s, 20 + c.k * 2 + (c.type === 'mot' ? 1 : 0)); }
+      // au téléphone : la paire montrée sur les deux places ; les déjà vues partent à gauche, les suivantes attendent à droite
+      const x = c.type === 'image' ? G.xA : G.xB, dx = c.k < vue ? -G.W : c.k > vue ? G.W : 0;
+      poser(c, x + dx, G.yFenteE, c.k === vue ? 0 : (c.k < vue ? -8 : 8), 1, c.k === vue ? 80 : 20);
+    });
+    // la donne : un seul paquet au milieu, puis deux moitiés côte à côte, puis le paquet de la boulangère en haut
+    const enTas = (lieu, liste, x, y, sc) => liste.filter(c => c.lieu === lieu).forEach((c, i) => poser(c, x - i * .7, y - i * 1.4, (i % 3 - 1) * 1.5, sc, 40 + i));
+    enTas('centre', [...cartes].sort((a, b) => a.ordre - b.ordre), G.W / 2, G.yFente, 1);
+    enTas('moitie-elle', elle, G.W / 2 - G.cw * .62, G.yFente, 1);
+    enTas('moitie-moi', moi, G.W / 2 + G.cw * .62, G.yFente, 1);
+    enTas('paquet-elle', elle, G.W / 2, G.yAdv - 6, G.sa);
+    cartes.forEach(c => { if (c.lieu === 'sachet') poser(c, G.sachet[0], G.sachet[1] - G.ch * .12, 0, .55, 5); else if (c.lieu === 'gerbe') poser(c, c.ex, c.ey, c.er, c.es, 60 + c.ordre); });
+    const nP = ordrePioche.filter(c => c.lieu === 'pioche').length, nG = cartes.filter(c => c.lieu === 'plis').length / 2;
+    $('#nPioche').textContent = nP; $('#pioche').classList.toggle('plein', nP > 0);
+    $('#nPlis').textContent = nG; $('#plis').classList.toggle('plein', nG > 0);
+    cartes.forEach(c => { c.el.classList.toggle('loin', c.lieu !== 'main' && c.lieu !== 'etude'); c.el.classList.toggle('etude', c.lieu === 'etude'); });
+  }
+  addEventListener('resize', () => { mesurer(); disposer(); });
+
+  // à la souris : la carte survolée se lève (celle de l'éventail la plus proche du pointeur, sans clignoter)
+  addEventListener('pointermove', e => {
+    if (tire || e.pointerType !== 'mouse') return;
+    let s = -1;
+    if (e.clientY > G.zoneMain) { let best = Infinity; eventail().forEach(({ c, x }) => { const d = Math.abs(e.clientX - x); if (d < best && d < G.cwM * .6) { best = d; s = c; } }); }
+    if (s !== survol) { survol = s; if (s !== -1) sfx.tic(); disposer(); }
+  });
+  // au doigt : toucher ailleurs repose la carte levée
+  document.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' && survol !== -1 && !e.target.closest('.carte')) { survol = -1; disposer(); } });
+
+  /* tirer une carte vers sa place sur la table ; à la souris, un clic la pose ; au doigt, toucher la lève, toucher encore la pose */
+  const surFente = (x, y) => { const r = fenteB.getBoundingClientRect(), m = G.mode === 'bureau' ? 50 : 26; return x > r.left - m && x < r.right + m && y > r.top - m && y < r.bottom + m; };
+  cartes.forEach(c => {
+    c.el.addEventListener('pointerdown', e => {
+      if (c.lieu === 'etude') { audio(); if (!mobile() && zoom !== c.k) ouvrir_(c.k); else ecouterPaire(c.k); return; }
+      if (c.lieu === 'plis' || c.lieu === 'table-a' || c.lieu === 'table-b') { if (!c.el.classList.contains('cachee')) { audio(); dire(c.k); } return; }
+      if (c.lieu !== 'main' || !jeu.ouvert) return;
+      e.preventDefault(); audio(); c.el.setPointerCapture(e.pointerId);
+      tire = { c, sx: e.clientX, sy: e.clientY, x: c.x, y: c.y, bouge: false, lx: e.clientX, tilt: 0, souris: e.pointerType === 'mouse' };
+    });
+    c.el.addEventListener('pointermove', e => {
+      if (!tire || tire.c !== c) return;
+      const dx = e.clientX - tire.sx, dy = e.clientY - tire.sy;
+      if (!tire.bouge && Math.hypot(dx, dy) > (tire.souris ? 6 : 10)) { tire.bouge = true; c.el.classList.add('tire'); survol = -1; disposer(); sfx.prise(); }
+      if (!tire.bouge) return;
+      tire.tilt = tire.tilt * .8 + Math.max(-16, Math.min(16, (e.clientX - tire.lx) * .9)) * .2; tire.lx = e.clientX;
+      const x = tire.x + dx, y = tire.y + dy; c.x = x; c.y = y;
+      c.el.style.transform = `translate(${x - G.cw / 2}px, ${y - G.ch / 2}px) rotate(${tire.tilt}deg) scale(${Math.max(G.sm * 1.1, .9)})`; c.el.style.zIndex = 100;
+      fenteB.classList.toggle('vise', surFente(e.clientX, e.clientY));
+    });
+    const lacher = e => {
+      if (!tire || tire.c !== c) return;
+      const t = tire; tire = null; c.el.classList.remove('tire'); fenteB.classList.remove('vise');
+      if (!t.bouge) {
+        if (t.souris || survol === c) return jouer(c);
+        survol = c; sfx.tic(); return disposer();
+      }
+      if (surFente(e.clientX, e.clientY) || e.clientY < G.zoneMain - 30) return jouer(c);
+      disposer();
+    };
+    c.el.addEventListener('pointerup', lacher); c.el.addEventListener('pointercancel', lacher);
+    c.el.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && c.lieu === 'main' && jeu.ouvert) { e.preventDefault(); jouer(c); } });
+  });
+
+  /* la partie */
+  const jeu = { ouvert: false, sienne: null, essais: 0, paires: 0 };
+  function consigne(html, mode = '', son = false) {
+    const el = $('#consigne'); el.classList.remove('ok', 'non', 'change'); if (mode) el.classList.add(mode);
+    const hp = $('#hp'); hp.innerHTML = mode === 'ok' ? ICON.ok : mode === 'non' ? ICON.non : ICON.hp; hp.disabled = !son && !mode;
+    $('#texte').innerHTML = html; void el.offsetWidth; el.classList.add('change');
+  }
+  const ouvrir = () => { jeu.ouvert = true; document.body.classList.remove('attente'); };
+  const fermer = () => { jeu.ouvert = false; document.body.classList.add('attente'); survol = -1; };
+  async function piocher() {
+    const c = ordrePioche.filter(c => c.lieu === 'pioche').pop(); if (!c) return;
+    c.lieu = 'main'; ordreMain.push(c); disposer(); await wait(T(220)); c.el.classList.remove('cachee'); sfx.tourne();
+  }
+  const demande = () => {
+    const s = jeu.sienne, aide = jeu.essais >= 2 ? ` (<b>${MOTS[s.k].t}</b>)` : '';
+    return s.type === 'mot' ? `Pose l'image qui va avec le mot${aide}.` : `Pose le mot qui va avec l'image${aide}.`;
+  };
+  async function tour() {
+    indice = null; cartes.forEach(c => c.el.classList.remove('indice'));
+    const main = maMain(); if (!main.length) return fin();
+    // elle joue une carte dont on a la paire en main
+    const possibles = elle.filter(c => c.lieu === 'sa-main' && main.some(m => m.k === c.k));
+    const s = possibles[Math.floor(Math.random() * possibles.length)];
+    jeu.sienne = s; jeu.essais = 0;
+    consigne('La boulangère joue…');
+    s.lieu = 'table-a'; disposer(); await wait(T(380)); s.el.classList.remove('cachee'); sfx.tourne(); await wait(T(420)); sfx.pose();
+    consigne(demande(), '', s.type === 'mot');
+    ouvrir();
+    if (s.type === 'mot') dire(s.k);
+  }
+  async function jouer(c) {
+    if (!jeu.ouvert) return;
+    fermer(); c.lieu = 'table-b'; disposer(); await wait(T(430)); sfx.pose();
+    const s = jeu.sienne;
+    if (c.k === s.k) {
+      c.el.classList.remove('indice'); [c, s].forEach(x => x.el.classList.add('bon')); sfx.ok();
+      consigne(`Oui ! C'est <b>${MOTS[c.k].t}</b>.`, 'ok');
+      return paireFaite(c, s);
+    }
+    // la mauvaise carte : une image dit son nom ; puis elle revient dans la main
+    jeu.essais++; c.el.classList.add('faux', 'secoue'); if (c.type === 'image') c.el.classList.add('nommee'); sfx.non();
+    consigne(c.type === 'image' ? `Non, ça, c'est <b>${MOTS[c.k].t}</b>.` : 'Non, ce n\'est pas ce mot-là.', 'non');
+    await wait(T(1600));
+    c.el.classList.remove('faux', 'secoue', 'nommee'); c.lieu = 'main'; disposer();
+    if (jeu.essais >= 2) {
+      // deuxième erreur : le jeu pose lui-même la bonne carte au centre
+      const bonne = maMain().find(m => m.k === s.k);
+      await wait(T(450)); bonne.lieu = 'table-b'; disposer(); await wait(T(500)); sfx.pose();
+      [bonne, s].forEach(x => x.el.classList.add('montree'));
+      consigne(`La bonne carte, c'était <b>${MOTS[s.k].t}</b>.`, '', true);
+      return paireFaite(bonne, s);
+    }
+    await wait(T(400));
+    consigne(demande(), '', s.type === 'mot'); ouvrir(); if (s.type === 'mot') dire(s.k);
+  }
+  // la paire est sur la table : on entend le mot, elle part dans les paires, on repioche, la boulangère rejoue
+  async function paireFaite(c, s) {
+    await Promise.all([dire(c.k), wait(T(1700))]);
+    [c, s].forEach(x => { x.el.classList.remove('bon', 'montree'); x.lieu = 'plis'; x.pli = jeu.paires; });
+    jeu.paires++; $('#compte').textContent = `${jeu.paires} / ${MOTS.length} paires`;
+    disposer(); await wait(T(500));
+    await piocher(); await wait(T(500));
+    return tour();
+  }
+  async function fin() {
+    fermer(); consigne(`Bravo ! Tu as gagné les ${MOTS.length} paires.`, 'ok'); sfx.bravo();
+    const b = $('#bilan');
+    b.innerHTML = `<h2>Les mots de la boulangerie</h2>` + MOTS.map((m, k) => {
+      const [cx, cy, w] = m.cadre, iw = 88, ih = 126, h = w * ih / iw, sc = iw / w, x0 = Math.max(0, Math.min(IW - w, cx - w / 2)), y0 = Math.max(0, Math.min(IH - h, cy - h * .42));
+      return `<button class="paire" data-k="${k}"><span class="mini"><div style="background-size:${IW * sc}px ${IH * sc}px;background-position:${-x0 * sc}px ${-y0 * sc}px"></div></span><span>${libelle(m.t)}</span></button>`;
+    }).join('') + `<div class="boutons"><button class="encore${INTEGRE ? ' second' : ''}" id="encore">${ICON.encore}Rejouer</button>${INTEGRE ? '<button class="encore" id="continuer">Continuer</button>' : ''}</div>`;
+    b.querySelectorAll('.paire').forEach(p => p.addEventListener('click', () => dire(+p.dataset.k)));
+    $('#encore').addEventListener('click', () => location.reload());
+    if (INTEGRE) { $('#continuer').addEventListener('click', () => auQuiz({ type: 'suivant' })); auQuiz({ type: 'fini' }); }
+    await wait(T(700)); b.classList.add('on');
+  }
+
+  // au début : les paires sur la table, « Retiens ces mots. » ; on touche une carte pour entendre le mot.
+  // au téléphone, une paire à la fois : « Suivant » jusqu'à la dernière, puis « Jouer ».
+  function ecouterPaire(k) {
+    dire(k);
+    cartes.filter(x => x.k === k).forEach(x => { x.el.classList.remove('eclaire'); void x.el.offsetWidth; x.el.classList.add('eclaire'); clearTimeout(x.tm); x.tm = setTimeout(() => x.el.classList.remove('eclaire'), 1300); });
+  }
+  // ouvrir une paire en grand (ordinateur) ; toucher le fond la referme
+  function ouvrir_(k) { zoom = k; $('#voile').classList.add('on'); document.body.classList.add('zoome'); disposer(); setTimeout(() => { if (zoom === k) ecouterPaire(k); }, T(250)); }
+  function fermerZoom() { if (zoom < 0) return; zoom = -1; $('#voile').classList.remove('on'); document.body.classList.remove('zoome'); disposer(); }
+  // gauche / droite : la paire d'avant ou d'après (on fait le tour), sans revenir à la table
+  const voisine = d => { if (zoom >= 0) { audio(); ouvrir_((zoom + d + MOTS.length) % MOTS.length); } };
+  $('#prec').addEventListener('click', () => voisine(-1)); $('#suiv').addEventListener('click', () => voisine(1));
+  $('#voile').addEventListener('click', fermerZoom);
+  addEventListener('keydown', e => { if (e.key === 'Escape') fermerZoom(); else if (e.key === 'ArrowLeft') voisine(-1); else if (e.key === 'ArrowRight') voisine(1); });
+  /* l'accueil : le paquet flotte ; on le déchire en glissant le long du haut (ou on le touche, ou « Ouvrir le paquet »).
+     La languette s'envole, le paquet tombe, les cartes jaillissent en gerbe avec des confettis, puis se posent en paires. */
+  const sachet = $('#sachet'); let dechire = 0, sachetOuvert = false, geste = null;
+  const poserDechirure = p => { dechire = Math.max(dechire, Math.min(1, p)); sachet.style.setProperty('--p', dechire.toFixed(3)); };
+  sachet.addEventListener('pointermove', e => {
+    if (sachetOuvert) return;
+    const r = sachet.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+    sachet.style.setProperty('--mx', (x * 100).toFixed(1) + '%'); sachet.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+    sachet.style.setProperty('--ry', ((x - .5) * 18).toFixed(1) + 'deg'); sachet.style.setProperty('--rx', ((.5 - y) * 12).toFixed(1) + 'deg');
+    if (!geste) return;
+    if (Math.abs(e.clientX - geste.x) > 6) geste.bouge = true;
+    if (geste.bouge) { sachet.classList.add('dechire'); poserDechirure(x); if (dechire >= .82) ouvrirSachet(); }
+  });
+  sachet.addEventListener('pointerleave', () => { if (!geste) { sachet.style.setProperty('--rx', '0deg'); sachet.style.setProperty('--ry', '0deg'); } });
+  sachet.addEventListener('pointerdown', e => { if (sachetOuvert) return; e.preventDefault(); audio(); try { sachet.setPointerCapture(e.pointerId); } catch (er) {} geste = { x: e.clientX, bouge: false }; });
+  const finGeste = () => { if (!geste) return; const g = geste; geste = null; if (!g.bouge && !sachetOuvert) dechirerAuto(); };
+  sachet.addEventListener('pointerup', finGeste); sachet.addEventListener('pointercancel', finGeste);
+  sachet.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); dechirerAuto(); } });
+  // déchirer tout seul (un toucher, le bouton) : la déchirure court de gauche à droite
+  function dechirerAuto() {
+    if (sachetOuvert) return; audio(); sachet.classList.add('dechire');
+    const t0 = performance.now(), p0 = dechire, d = T(560);
+    (function pas(now) { const k = Math.min(1, (now - t0) / d); poserDechirure(p0 + (1 - p0) * k * k * (3 - 2 * k)); if (k < 1) requestAnimationFrame(pas); else ouvrirSachet(); })(t0);
+  }
+  async function ouvrirSachet() {
+    if (sachetOuvert) return; sachetOuvert = true; jeu.etalage = true; geste = null;
+    sachet.classList.add('ouvert'); document.body.classList.add('deballage'); document.body.classList.remove('accueil'); majBouton();
+    const r = sachet.getBoundingClientRect(); if (!reduit) confettis(r.left + r.width / 2, r.top + r.height * .15);
+    // les cartes jaillissent du haut du paquet et s'éparpillent en gerbe, de travers
+    const sortie = melanger([...cartes]), large = Math.min(G.W * .42, G.cw * 2.8);
+    sortie.forEach((c, i) => {
+      const a = (i / (sortie.length - 1) - .5) * 2;
+      c.ex = Math.max(G.cw * .4, Math.min(G.W - G.cw * .4, G.sachet[0] + a * large * (.75 + Math.random() * .35)));
+      c.ey = Math.max(G.ch * .35, G.sachet[1] - G.ch * (.25 + Math.random() * .55) + Math.abs(a) * G.ch * .35);
+      c.er = a * 28 + (Math.random() - .5) * 24; c.es = mobile() ? .6 : .78; c.ordre = i;
+      setTimeout(() => { c.el.classList.remove('dans-sachet'); c.lieu = 'gerbe'; disposer(); }, T(140 + i * 26));
+    });
+    await wait(T(140 + sortie.length * 26 + 950));
+    // puis elles se posent en paires sur la table
+    const ordre = [...cartes].sort((a, b) => a.k - b.k || (a.type === 'image' ? -1 : 1));
+    ordre.forEach((c, i) => setTimeout(() => { c.lieu = 'etude'; disposer(); }, T(i * 45)));
+    await wait(T(ordre.length * 45 + 400));
+    sachet.style.display = 'none'; document.body.classList.remove('deballage'); consigne(RETIENS, '', true); jeu.etalage = false; dire(iRetiens);
+  }
+  // les confettis (sans arcs-en-ciel) : ils partent du haut du paquet, retombent et s'éteignent
+  const toile = $('#confettis'), cg = toile.getContext('2d'); let bouts = [];
+  function confettis(x, y) {
+    const coul = ['#ff8a2a', '#ffc46b', '#fdf7ee', '#2f5c52', '#4BE3B4', '#ff5c7a', '#e9c46a'], vide = !bouts.length;
+    for (let i = 0; i < 140; i++) {
+      const a = -Math.PI / 2 + (Math.random() - .5) * 2.4, v = 6 + Math.random() * 11;
+      bouts.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, r: Math.random() * 6.28, vr: (Math.random() - .5) * .3, w: 5 + Math.random() * 6, h: 3 + Math.random() * 4, c: coul[i % coul.length], vie: 1, rond: Math.random() < .3 });
+    }
+    if (vide) requestAnimationFrame(animer);
+  }
+  function animer() {
+    const dp = toile.width / G.W; cg.setTransform(dp, 0, 0, dp, 0, 0); cg.clearRect(0, 0, G.W, G.H);
+    bouts = bouts.filter(b => b.vie > 0 && b.y < G.H + 30);
+    bouts.forEach(b => {
+      b.vy += .3; b.vx *= .985; b.vy *= .985; b.x += b.vx; b.y += b.vy; b.r += b.vr; b.vie -= .0055;
+      cg.save(); cg.globalAlpha = Math.min(1, b.vie * 2); cg.translate(b.x, b.y); cg.rotate(b.r); cg.fillStyle = b.c;
+      if (b.rond) { cg.beginPath(); cg.arc(0, 0, b.h / 1.4, 0, 6.283); cg.fill(); } else cg.fillRect(-b.w / 2, -b.h / 2, b.w, b.h * Math.max(.2, Math.abs(Math.cos(b.r * 2))));
+      cg.restore();
+    });
+    if (bouts.length) requestAnimationFrame(animer); else cg.clearRect(0, 0, G.W, G.H);
+  }
+  function majBouton() {
+    if (document.body.classList.contains('accueil')) { $('#goTxt').textContent = 'Ouvrir le paquet'; return; }
+    const suivant = mobile() && vue < MOTS.length - 1;
+    $('#goTxt').innerHTML = suivant ? `Suivant <span class="n">${vue + 1} / ${MOTS.length}</span>` : 'Jouer';
+  }
+  mesurer(); disposer(); majBouton();
+  consigne('Ouvre le paquet de cartes.');
+  addEventListener('resize', majBouton);
+  $('#hp').addEventListener('click', () => { audio(); if (!jeu.lance) dire(mobile() && vue > 0 ? vue : iRetiens); else if (!jeu.sienne) dire(iConsigne); else if (jeu.sienne.type === 'mot') dire(jeu.sienne.k); });
+  $('#go').addEventListener('click', async () => {
+    if (jeu.lance || jeu.etalage) return; audio();
+    if (document.body.classList.contains('accueil')) { dechirerAuto(); return; }
+    if (mobile() && vue < MOTS.length - 1) { vue++; disposer(); majBouton(); setTimeout(() => ecouterPaire(vue), T(350)); return; }
+    fermerZoom(); jeu.lance = true; taire(); cartes.forEach(c => c.el.classList.remove('eclaire'));
+    if (mobile()) {
+      // au téléphone, pas de place pour la grande donne : les cartes se retournent et partent chez leur joueur
+      cartes.forEach(c => c.el.classList.add('cachee')); sfx.tourne(); await wait(T(450));
+      document.body.classList.remove('etude'); placerConsigne(); consigne(CONSIGNE, '', true);
+      elle.forEach(c => { c.lieu = 'sa-main'; }); moi.forEach(c => { c.lieu = 'pioche'; }); disposer();
+    } else {
+      // 1. on ramasse : toutes les cartes au milieu, en un paquet mélangé
+      melanger([...cartes]).forEach((c, i) => { c.ordre = i; c.lieu = 'centre'; });
+      sfx.prise(); disposer(); await wait(T(750));
+      // 2. le paquet se retourne, face contre la table
+      cartes.forEach((c, i) => setTimeout(() => c.el.classList.add('cachee'), reduit ? 0 : i * 18)); sfx.tourne(); await wait(T(800));
+      // 3. on le coupe en deux : à gauche les cartes de la boulangère, à droite les nôtres
+      document.body.classList.remove('etude'); placerConsigne(); consigne(CONSIGNE, '', true);
+      elle.forEach(c => { c.lieu = 'moitie-elle'; }); moi.forEach(c => { c.lieu = 'moitie-moi'; }); sfx.pose(); disposer(); await wait(T(750));
+      // 4. chaque moitié va à son joueur : la sienne en haut (elle ouvre son éventail), la nôtre devient la pioche
+      elle.forEach(c => { c.lieu = 'paquet-elle'; }); moi.forEach(c => { c.lieu = 'pioche'; }); disposer(); await wait(T(650));
+      elle.forEach(c => { c.lieu = 'sa-main'; }); disposer();
+    }
+    const parle = dire(iConsigne); await wait(T(600));
+    for (let i = 0; i < 5; i++) { await piocher(); await wait(T(170)); }
+    await parle; await wait(T(300)); tour();
+  });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { mesurer(); disposer(); });
+  const b = document.body, cle = 'exercices-theme';
+  try { if (localStorage.getItem(cle) === 'clair') b.classList.add('clair'); } catch (e) {}
+  $('#theme').addEventListener('click', () => { b.classList.toggle('clair'); try { localStorage.setItem(cle, b.classList.contains('clair') ? 'clair' : 'nuit'); } catch (e) {} });
+  // les échanges avec le quiz qui nous ouvre : il donne le thème et demande le silence quand on le quitte ; on lui dit la fin
+  function auQuiz(m) { try { if (window.parent !== window) window.parent.postMessage(Object.assign({ de: 'vocabulaire' }, m), '*'); } catch (e) {} }
+  addEventListener('message', e => {
+    if (e.source !== window.parent || !e.data || e.data.de !== 'quiz') return;
+    if (e.data.type === 'theme') b.classList.toggle('clair', !!e.data.clair);
+    else if (e.data.type === 'pause') taire();
+  });
+  window.__duel = { jeu, cartes, maMain, jouer: c => jouer(c) };
+})();
+</script>
+</body>
+</html>
