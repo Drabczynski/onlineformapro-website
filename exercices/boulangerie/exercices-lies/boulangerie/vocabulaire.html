@@ -593,6 +593,7 @@ body.clair .face { box-shadow: 0 2px 0 rgba(255,255,255,.8) inset, 0 -2px 0 rgba
     consigne(c.type === 'image' ? `Non, ça, c'est <b>${MOTS[c.k].t}</b>.` : 'Non, ce n\'est pas ce mot-là.', 'non');
     await wait(T(1600));
     c.el.classList.remove('faux', 'secoue', 'nommee'); c.lieu = 'main'; disposer();
+    if (jeu.essais === 1) await rendrePaire();
     if (jeu.essais >= 2) {
       // deuxième erreur : le jeu pose lui-même la bonne carte au centre
       const bonne = maMain().find(m => m.k === s.k);
@@ -603,6 +604,25 @@ body.clair .face { box-shadow: 0 2px 0 rgba(255,255,255,.8) inset, 0 -2px 0 rgba
     }
     await wait(T(400));
     consigne(demande(), '', s.type === 'mot'); ouvrir(); if (s.type === 'mot') dire(s.k);
+  }
+  // première erreur d'un tour : la dernière paire gagnée repart, face cachée, dans les deux paquets
+  // (sa carte à elle dans sa main, la nôtre sur le dessus de la pioche). Sans paire gagnée, rien ne bouge.
+  async function rendrePaire() {
+    const pris = cartes.filter(x => x.lieu === 'plis' && x.pli === jeu.paires - 1);
+    if (!pris.length) return;
+    consigne('Une paire repart dans les paquets.', 'non');
+    await wait(T(500));
+    pris.forEach(x => {
+      x.el.classList.add('cachee');
+      if (elle.includes(x)) x.lieu = 'sa-main';
+      else {
+        x.lieu = 'pioche';
+        const i = ordrePioche.indexOf(x); if (i >= 0) ordrePioche.splice(i, 1); ordrePioche.push(x);
+        const j = ordreMain.indexOf(x); if (j >= 0) ordreMain.splice(j, 1);
+      }
+    });
+    jeu.paires--; $('#compte').textContent = `${jeu.paires} / ${MOTS.length} paires`;
+    sfx.prise(); disposer(); await wait(T(1000));
   }
   // la paire est sur la table : on entend le mot, elle part dans les paires, on repioche, la boulangère rejoue
   async function paireFaite(c, s) {
