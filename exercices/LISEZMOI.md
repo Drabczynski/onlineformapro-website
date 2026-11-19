@@ -43,6 +43,6 @@ fil rouge), puis on réécoute.
   depuis le rond vert, palette « colorful ». La page n'est pas en React : `distortion-waves.js` est le
   `WaveController` de la librairie (son mode sans React), empaqueté tel quel avec esbuild. La vague travaille sur une
   image des vues, qui doivent être opaques : à ce moment-là, la carte prend un fond plein aux couleurs du verre.
-- Sons de réponse (fournis, ElevenLabs) : `bonne.mp3` et `mauvaise.mp3`, mis à -20 LUFS comme les voix.
+- Sons de réponse (fournis, ElevenLabs) : `bonne.mp3` (son aigu et court, plus discret : -24 LUFS) et `mauvaise.mp3` (-20 LUFS).
 - Photo : croissants sur une plaque (Unsplash, ePh7mI8y_bA).
 - Page : https://onlineformapro-website.vercel.app/exercices/boulangerie/
