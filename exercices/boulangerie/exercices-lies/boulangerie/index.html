@@ -82,6 +82,12 @@ body.playing .pic::before { opacity: 1; }
 .lp-txt { flex: none; text-wrap: balance; margin: 0; font-size: 23px; font-weight: 800; letter-spacing: -.015em; line-height: 1.15; opacity: 0; transition: opacity .3s ease; --on: #fff; --off: rgba(255,255,255,.3); }
 .pic.zoom .lp-hd, .pic.zoom .lp-txt { opacity: 1; transition-delay: .3s; }
 .lp-onde { flex: 1; min-height: 0; width: 100%; display: block; }
+/* pendant la loupe, tout le reste s'assombrit (on le voit encore) : on se concentre sur le passage */
+.card, .tray, .island, .theme, .fond { transition: filter .6s ease, opacity .6s ease; }
+body.loupe-on .card, body.loupe-on .tray, body.loupe-on .island, body.loupe-on .theme { filter: brightness(.35) saturate(.6) blur(1.5px); }
+body.loupe-on .fond { opacity: .15; }
+body.loupe-on .pic { box-shadow: 0 0 0 1px rgba(255,210,74,.35), 0 40px 120px -20px rgba(255,170,60,.35), 0 40px 90px -30px rgba(0,0,0,.8); }
+.pic { transition: box-shadow .6s ease; }
 .qui { position: absolute; left: 50%; bottom: 206px; z-index: 4; translate: -50% 6px; padding: 6px 14px; border-radius: 16px; font-size: 14px; font-weight: 800; letter-spacing: .02em;
   background: rgba(16,18,28,.5); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); opacity: 0; transition: opacity .3s, translate .4s var(--apple); pointer-events: none; white-space: nowrap; }
 .qui.on { opacity: 1; translate: -50% 0; }
@@ -888,7 +894,7 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
       p.addEventListener('click', () => { if (libre() && (i <= vi || state.done[2])) relire(i); });
       inner.append(p); return p;
     });
-    let vi = 0;
+    let vi = 0; const loupeVue = new Set();   // la loupe ne s'ouvre qu'une fois par phrase
     const centrer = i => { const p = lignes[i]; inner.style.transform = `translateY(${zone.clientHeight * .46 - (p.offsetTop + p.offsetHeight / 2)}px)`; };
     const montrer = i => { lignes.forEach((p, k) => { p.classList.toggle('cur', k === i); p.classList.toggle('done', k !== i && k < vi); }); centrer(i); };
     const verdict = (i, ok) => { const c = document.createElement('span'); c.className = 'chip' + (ok ? '' : ' non'); c.innerHTML = ok ? `${ICON.fin}${ENC.v[i].ok ? 'Vrai' : 'Faux'}` : `${ICON.nonfin}Non`; lignes[i].append(c); return c; };
@@ -913,7 +919,7 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
         await wait(reduced ? 80 : 900); if (!alive(f)) return; tour(); return;
       }
       setTurn('wait'); const c = verdict(i, false); lignes[i].classList.remove('secoue'); void lignes[i].offsetWidth; lignes[i].classList.add('secoue');
-      const ok = await non(f, 'Non. Écoute encore la scène.', async () => { c.remove(); await play(dlg, 0, Infinity, ENC.v[i].preuve ? loupe(ENC.v[i].preuve) : null); if (!alive(f)) return; await wait(300); if (!alive(f)) return; return lire(i); });
+      const ok = await non(f, 'Non. Écoute encore la scène.', async () => { c.remove(); const avecLoupe = ENC.v[i].preuve && !loupeVue.has(i); if (avecLoupe) loupeVue.add(i); await play(dlg, 0, Infinity, avecLoupe ? loupe(ENC.v[i].preuve) : null); if (!alive(f)) return; await wait(300); if (!alive(f)) return; return lire(i); });
       if (!ok) return;
       if (state.tries >= 2) boutons.forEach(b => b.classList.toggle('hint', b.classList.contains(ENC.v[i].ok ? 'v' : 'f')));
       setTurn('you'); sayShow('À toi : vrai ou faux ?');
@@ -926,39 +932,96 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
   const doux = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
   function loupe(P) {
     const ws = P.s - .55, we = P.e + .5, LENT = .6, base = () => state.slow ? .8 : 1;
-    let ouverte = false, finie = false, z = 0, tCur = 0, raf = 0, lent = false, kk = null;
+    let ouverte = false, finie = false, z = 0, tCur = 0, raf = 0, lent = false, kk = null, amp = 0, phase = 0, dernier = performance.now();
     const niveau = t => { if (!ONDE) return 0; const x = t / ONDE.pas, i = Math.floor(x), f = x - i, a = ONDE.v[i] || 0, b = ONDE.v[i + 1] || 0; return (a + (b - a) * f) / 99; };
-    function dessiner() {
-      z += ((ouverte ? 1 : 0) - z) * (reduced ? 1 : .07);
+    const lisse = (a, b, x) => { const t = Math.max(0, Math.min(1, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+    // les ondes : chacune sa couleur, sa fréquence, sa vitesse (à la manière des ondes de Siri)
+    const ONDES = [
+      { c: '255,210,74', f: 3.2, v: 1.0, a: 1.0, d: 0 }, { c: '255,128,64', f: 4.6, v: -1.3, a: .78, d: 1.7 },
+      { c: '255,77,138', f: 2.4, v: .8, a: .7, d: 3.1 }, { c: '96,176,255', f: 5.4, v: 1.6, a: .5, d: 4.4 }, { c: '255,240,200', f: 3.9, v: -.9, a: .55, d: 2.3 },
+    ];
+    const att = x => Math.pow(4 / (4 + Math.pow(x, 4)), 4);   // les ondes s'éteignent vers les bords
+    const grains = [];
+    function dessiner(now) {
+      const dt = Math.min(.05, (now - dernier) / 1000); dernier = now;
+      z += ((ouverte ? 1 : 0) - z) * (reduced ? 1 : .055);
       const dpr = Math.min(2, devicePixelRatio || 1), W = lpCv.clientWidth, H = lpCv.clientHeight;
       if (W && H) {
         if (lpCv.width !== Math.round(W * dpr) || lpCv.height !== Math.round(H * dpr)) { lpCv.width = Math.round(W * dpr); lpCv.height = Math.round(H * dpr); }
-        lpx.setTransform(dpr, 0, 0, dpr, 0, 0); lpx.clearRect(0, 0, W, H);
-        // la fenêtre de temps se resserre : de toute la scène jusqu'au passage
-        const D = DUREE(dlg), k = doux(Math.min(1, z)), a = ws * k, b = D + (we - D) * k;
-        const pas = 5, n = Math.floor(W / pas), mid = H / 2;
-        for (let i = 0; i < n; i++) {
-          const t0 = a + (b - a) * i / n, t1 = a + (b - a) * (i + 1) / n;
-          let v = 0; for (let t = t0; t <= t1; t += Math.max(.004, (t1 - t0) / 6)) v = Math.max(v, niveau(t));
-          const h = Math.max(2, Math.pow(v, .8) * (H - 6)), x = i * pas + 1, tc = (t0 + t1) / 2, dit = tc <= tCur, passage = tc >= P.s && tc <= P.e;
-          lpx.globalAlpha = dit ? 1 : passage ? .55 : .28;
-          lpx.fillStyle = passage ? '#FFD24A' : '#fff';
-          lpx.shadowColor = passage ? 'rgba(255,210,74,.9)' : 'rgba(255,255,255,.6)'; lpx.shadowBlur = dit ? 10 : 0;
-          lpx.beginPath(); if (lpx.roundRect) lpx.roundRect(x, mid - h / 2, pas - 2, h, 1.5); else lpx.rect(x, mid - h / 2, pas - 2, h); lpx.fill();
+        const c = lpx; c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, W, H);
+        const k = doux(Math.min(1, z)), D = DUREE(dlg), bas = 16, Hw = H - bas, mid = Hw / 2;
+        // 1. le zoom : la forme d'onde de toute la scène grossit autour de la tête de lecture jusqu'à se défaire
+        const fb = 1 - lisse(.3, .8, k);
+        if (fb > .01) {
+          const a0 = (tCur - .12) * k, b0 = D + (tCur + .12 - D) * k, n = Math.floor(W / 5);
+          c.globalAlpha = fb;
+          for (let i = 0; i < n; i++) {
+            const tc = a0 + (b0 - a0) * (i + .5) / n, v = niveau(tc), h = Math.max(2, Math.pow(v, .8) * (Hw - 8)), dit = tc <= tCur;
+            c.fillStyle = tc >= P.s && tc <= P.e ? '#FFD24A' : dit ? '#fff' : 'rgba(255,255,255,.35)';
+            c.fillRect(i * 5 + 1, mid - h / 2, 3, h);
+          }
         }
-        // la tête de lecture
-        if (tCur >= a && tCur <= b) { const x = (tCur - a) / (b - a) * W; lpx.globalAlpha = 1; lpx.shadowBlur = 12; lpx.shadowColor = '#fff'; lpx.fillStyle = '#fff'; lpx.fillRect(x - 1, 2, 2, H - 4); }
-        lpx.globalAlpha = 1; lpx.shadowBlur = 0;
+        // 2. au plus près : les ondes de la voix, qui suivent son intensité à cet instant
+        const fs = lisse(.45, 1, k);
+        const cible = (playing() ? niveau(tCur) : 0) * (lent ? 1.15 : 1);
+        amp += (Math.max(.06, cible) - amp) * Math.min(1, dt * 9);
+        phase += dt * (lent ? 2.2 : 5.5) * (dlg.playbackRate || 1);
+        if (fs > .01) {
+          // une lueur derrière
+          const g = c.createRadialGradient(W / 2, mid, 0, W / 2, mid, W * .45);
+          g.addColorStop(0, `rgba(255,190,90,${.22 * fs * (.4 + amp)})`); g.addColorStop(1, 'rgba(255,190,90,0)');
+          c.globalAlpha = 1; c.fillStyle = g; c.fillRect(0, 0, W, Hw);
+          c.globalCompositeOperation = 'lighter';
+          for (const o of ONDES) {
+            const A = Math.pow(amp, .55) * o.a * (Hw * .48) * fs;
+            const grad = c.createLinearGradient(0, 0, W, 0);
+            grad.addColorStop(0, `rgba(${o.c},0)`); grad.addColorStop(.5, `rgba(${o.c},.55)`); grad.addColorStop(1, `rgba(${o.c},0)`);
+            c.fillStyle = grad; c.beginPath(); c.moveTo(0, mid);
+            for (let px = 0; px <= W; px += 3) { const x = (px / W) * 4 - 2; c.lineTo(px, mid - A * att(x) * Math.sin(o.f * x - phase * o.v + o.d)); }
+            for (let px = W; px >= 0; px -= 3) { const x = (px / W) * 4 - 2; c.lineTo(px, mid + A * att(x) * Math.sin(o.f * x - phase * o.v + o.d) * .6); }
+            c.closePath(); c.fill();
+          }
+          // le fil blanc au centre
+          c.strokeStyle = `rgba(255,255,255,${.85 * fs})`; c.lineWidth = 1.5; c.shadowColor = 'rgba(255,255,255,.9)'; c.shadowBlur = 8; c.beginPath();
+          for (let px = 0; px <= W; px += 3) { const x = (px / W) * 4 - 2; const y = mid - Math.pow(amp, .55) * (Hw * .3) * fs * att(x) * Math.sin(3.6 * x - phase * 1.1); px ? c.lineTo(px, y) : c.moveTo(px, y); }
+          c.stroke(); c.shadowBlur = 0;
+          // les particules : elles naissent sur les crêtes et s'envolent (lentement au ralenti)
+          const ralenti = lent ? .35 : 1;
+          for (let e = 0; e < Math.round(amp * 6 * fs); e++) {
+            const x = (Math.random() * 1.6 - .8), px = (x + 2) / 4 * W, s = Math.sin(3.2 * x - phase + Math.random() * 2);
+            grains.push({ x: px, y: mid - amp * (Hw * .4) * att(x) * s, vx: (Math.random() - .5) * 40, vy: (Math.random() - .5) * 60 - 10, r: .6 + Math.random() * 1.8, vie: 1, c: Math.random() < .5 ? '255,214,120' : '255,255,255' });
+          }
+          for (let i = grains.length - 1; i >= 0; i--) {
+            const q = grains[i]; q.vie -= dt * .9 * ralenti; if (q.vie <= 0) { grains.splice(i, 1); continue; }
+            q.x += q.vx * dt * ralenti; q.y += q.vy * dt * ralenti;
+            c.fillStyle = `rgba(${q.c},${q.vie * fs})`; c.shadowColor = `rgba(${q.c},1)`; c.shadowBlur = 6;
+            c.beginPath(); c.arc(q.x, q.y, q.r, 0, 6.283); c.fill();
+          }
+          c.shadowBlur = 0; c.globalCompositeOperation = 'source-over';
+          // 3. en bas, la parcelle de scène observée, avec ses graduations et la tête de lecture
+          const n = Math.floor(W / 3), y0 = H - 9;
+          c.globalAlpha = fs;
+          for (let i = 0; i < n; i++) {
+            const tc = ws + (we - ws) * (i + .5) / n, v = niveau(tc), h = Math.max(1, v * 12);
+            c.fillStyle = tc >= P.s && tc <= P.e ? (tc <= tCur ? '#FFD24A' : 'rgba(255,210,74,.4)') : (tc <= tCur ? 'rgba(255,255,255,.8)' : 'rgba(255,255,255,.25)');
+            c.fillRect(i * 3, y0 - h / 2, 2, h);
+          }
+          c.fillStyle = 'rgba(255,255,255,.35)';
+          for (let t = Math.ceil(ws * 4) / 4; t <= we; t += .25) { const x = (t - ws) / (we - ws) * W; c.fillRect(x, H - 2, 1, 2); }
+          if (tCur >= ws && tCur <= we) { const x = (tCur - ws) / (we - ws) * W; c.fillStyle = '#fff'; c.shadowColor = '#fff'; c.shadowBlur = 8; c.fillRect(x - 1, y0 - 8, 2, 16); c.shadowBlur = 0; }
+        }
+        c.globalAlpha = 1;
       }
-      if (ouverte || z > .01) raf = requestAnimationFrame(dessiner); else raf = 0;
+      if (ouverte || z > .01) raf = requestAnimationFrame(dessiner); else { raf = 0; grains.length = 0; }
     }
     function ouvrir() {
-      ouverte = true; $('#lpQui').textContent = P.qui; const lt = $('#lpTxt'); lt.textContent = ''; const sp = document.createElement('span'); lt.append('« ', sp, ' »'); kk = kwKara(kwWords(sp, P.t), P.w, P.e);
-      pic.classList.add('zoom'); if (!raf) raf = requestAnimationFrame(dessiner);
+      ouverte = true; $('#lpQui').textContent = P.qui;
+      const lt = $('#lpTxt'); lt.textContent = ''; const sp = document.createElement('span'); lt.append('« ', sp, ' »'); kk = kwKara(kwWords(sp, P.t), P.w, P.e);
+      pic.classList.add('zoom'); document.body.classList.add('loupe-on'); dernier = performance.now(); if (!raf) raf = requestAnimationFrame(dessiner);
     }
     function fermer() {
       if (finie) return; finie = true; ouverte = false; lent = false; lp.classList.remove('lent');
-      dlg.playbackRate = base(); pic.classList.remove('zoom');
+      dlg.playbackRate = base(); pic.classList.remove('zoom'); document.body.classList.remove('loupe-on');
     }
     const k = t => {
       tCur = t;
