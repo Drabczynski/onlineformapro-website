@@ -456,10 +456,10 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
     g.gain.exponentialRampToValueAtTime(.0001, c.currentTime + t0 + dur);
     o.connect(g).connect(c.destination); o.start(c.currentTime + t0); o.stop(c.currentTime + t0 + dur + .02);
   }
-  // sons de réponse (fournis, ElevenLabs) : un élément à part, ils ne coupent jamais la voix
-  const sonBon = new Audio('bonne.mp3'), sonMauvais = new Audio('mauvaise.mp3'); sonBon.preload = sonMauvais.preload = 'auto';
+  // bonne réponse : le petit carillon d'origine ; erreur et « Bravo » final : les sons fournis (ElevenLabs) : un élément à part, ils ne coupent jamais la voix
+  const sonBravo = new Audio('bravo.mp3'), sonMauvais = new Audio('mauvaise.mp3'); sonBravo.preload = sonMauvais.preload = 'auto';
   const jouer = a => { try { a.currentTime = 0; const pr = a.play(); if (pr && pr.catch) pr.catch(() => {}); } catch (e) {} };
-  const sfx = { tick() { tone(2300, 0, .02, .02, 'triangle'); }, ok() { jouer(sonBon); }, try() { jouer(sonMauvais); } };
+  const sfx = { tick() { tone(2300, 0, .02, .02, 'triangle'); }, ok() { tone(784, 0, .22, .06); tone(1175, .09, .38, .05); tone(1568, .18, .4, .03); }, bravo() { jouer(sonBravo); }, try() { jouer(sonMauvais); } };
 
   const playing = () => !dlg.paused || !enc.paused;
   function stopAll() { media++; dlg.pause(); enc.pause(); }
@@ -944,7 +944,7 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
     $$('.peb.vol').forEach(p => p.remove()); tray.innerHTML = '';
     vueB.innerHTML = `<div class="hd"><span class="is-ico" style="--c:#1DD6A0">${ICON.checkB.replace('currentColor', '#fff')}</span><div><b>À la boulangerie</b><span>Acheter du pain et des viennoiseries</span></div><span class="n">A1</span></div>`
       + `<div class="body"><div class="fin"><div class="big" id="bigOk">${ICON.check}</div><h2>Bravo !</h2><p>Tu as réussi les quatre exercices.</p><div class="recap">${EX.map(x => `<div><span class="is-ico" style="--c:${x.c}">${x.ico}</span>${x.nom}</div>`).join('')}</div></div></div>`;
-    sfx.ok(); card.classList.add('vague');
+    sfx.bravo(); card.classList.add('vague');
     if (vague) {
       vague.update({ type: 'center', palette: 'colorful', onFinish: r => { if (r && alive(f)) montrerFin(true); } });
       try { await Promise.race([vague.prepare(), wait(1200)]); } catch (e) {}
