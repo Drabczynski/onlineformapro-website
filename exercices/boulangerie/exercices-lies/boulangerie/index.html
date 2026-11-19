@@ -1097,11 +1097,11 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
     if (on && !jeuVoc) {
       jeuVoc = document.createElement('iframe'); jeuVoc.className = 'jeu-voc'; jeuVoc.id = 'jeuVoc'; jeuVoc.title = 'Vocabulaire : le jeu de cartes';
       jeuVoc.allow = 'autoplay'; jeuVoc.src = 'vocabulaire.html?integre=1';
-      jeuVoc.addEventListener('load', () => versVoc({ type: 'theme', clair: document.body.classList.contains('clair') }));
+      jeuVoc.addEventListener('load', () => { versVoc({ type: 'theme', clair: document.body.classList.contains('clair') }); if (jeuVoc.classList.contains('on')) versVoc({ type: 'montre' }); });
       document.body.append(jeuVoc);
     }
     if (!jeuVoc) return;
-    if (on) { void jeuVoc.offsetWidth; jeuVoc.classList.add('on'); versVoc({ type: 'theme', clair: document.body.classList.contains('clair') }); }
+    if (on) { void jeuVoc.offsetWidth; jeuVoc.classList.add('on'); versVoc({ type: 'theme', clair: document.body.classList.contains('clair') }); versVoc({ type: 'montre' }); }
     else if (jeuVoc.classList.contains('on')) { jeuVoc.classList.remove('on'); versVoc({ type: 'pause' }); }
   }
   function exVoc() { body.innerHTML = ''; setTurn(state.done[VOC] ? 'end' : 'you'); return {}; }

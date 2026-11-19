@@ -16,7 +16,8 @@ const CONSIGNE = 'Associe chaque mot à son image.';   // la même phrase que da
 const nomFichier = t => t.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/gi, '-').toLowerCase() + '.mp3';
 const A_DIRE = [...MOTS.map(t => ({ fichier: nomFichier(t), texte: t.charAt(0).toUpperCase() + t.slice(1) + '.', voix: BOULANGERE })),
   { fichier: 'retiens.mp3', texte: 'Retiens ces mots.', voix: NARRATEUR },   // avant la partie, les paires sont sur la table
-  { fichier: 'consigne.mp3', texte: CONSIGNE, voix: NARRATEUR }];
+  { fichier: 'consigne.mp3', texte: CONSIGNE, voix: NARRATEUR },
+  { fichier: 'ouvre.mp3', texte: 'Ouvre le paquet de cartes.', voix: NARRATEUR }];   // quand le paquet apparaît
 
 (async () => {
   if (!CLE) { console.error('Il manque la clé : $env:ELEVENLABS_API_KEY = "<ta clé>" avant de lancer le script.'); process.exit(1); }

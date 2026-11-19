@@ -77,10 +77,12 @@ svg { display: block; }
 .face { position: absolute; inset: 0; border-radius: 20px; padding: 7px; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: linear-gradient(155deg, #fdf7ee, #eadcc6 55%, #d6c09e);
   box-shadow: 0 2px 0 rgba(255,255,255,.7) inset, 0 -2px 0 rgba(120,80,30,.25) inset, 0 0 0 1px rgba(0,0,0,.25), 0 22px 44px -18px rgba(0,0,0,.8); transition: box-shadow .35s; }
 .verso { transform: rotateY(180deg); }
-/* certains navigateurs montrent le recto à l'envers malgré backface-visibility : on bascule les faces au milieu du retournement (0,3 s sur 0,6 s) */
+/* certains navigateurs montrent le recto à l'envers malgré backface-visibility : on bascule les faces quand la carte est de profil.
+   Avec la courbe --apple, le retournement (0,6 s) passe le profil à 0,1 s : c'est là qu'on échange recto et dos */
 .recto { transform: rotateY(0deg) translateZ(.1px); visibility: visible; }
 .verso { visibility: hidden; }
-.face { transition: box-shadow .35s, visibility 0s linear .3s; }
+.face { transition: box-shadow .35s, visibility 0s linear .085s; }
+@media (prefers-reduced-motion: reduce) { .face { transition-delay: 0s !important; } }
 .carte.cachee .recto { visibility: hidden; }
 .carte.cachee .verso { visibility: visible; }
 .carte.haut .recto { box-shadow: 0 2px 0 rgba(255,255,255,.7) inset, 0 -2px 0 rgba(120,80,30,.25) inset, 0 0 0 1px rgba(0,0,0,.25), 0 40px 70px -22px rgba(0,0,0,.85); }
@@ -323,8 +325,9 @@ body.clair .face { box-shadow: 0 2px 0 rgba(255,255,255,.8) inset, 0 -2px 0 rgba
   const sfx = { tic() { ton(2300, 0, .02, .02, 'triangle'); }, prise() { ton(520, 0, .07, .04, 'triangle'); }, pose() { ton(180, 0, .09, .07); }, tourne() { ton(900, 0, .05, .025, 'triangle'); }, ok() { ton(784, 0, .22, .06); ton(1175, .09, .38, .05); ton(1568, .18, .4, .03); }, non() { jouerSon(mauvais); }, bravo() { jouerSon(bravo); } };
   const CONSIGNE = 'Associe chaque mot à son image.';   // dite dans cartes/consigne.mp3 (voix-cartes.js)
   const RETIENS = 'Retiens ces mots.';   // cartes/retiens.mp3
-  const sons = MOTS.map(m => 'cartes/' + nomFichier(m.t)).concat('cartes/consigne.mp3', 'cartes/retiens.mp3').map(src => { const a = new Audio(src); a.preload = 'auto'; a.addEventListener('error', () => { a.manque = true; }); return a; });
-  const iConsigne = MOTS.length, iRetiens = MOTS.length + 1;
+  const OUVRE = 'Ouvre le paquet de cartes.';   // cartes/ouvre.mp3, dite quand le paquet apparaît
+  const sons = MOTS.map(m => 'cartes/' + nomFichier(m.t)).concat('cartes/consigne.mp3', 'cartes/retiens.mp3', 'cartes/ouvre.mp3').map(src => { const a = new Audio(src); a.preload = 'auto'; a.addEventListener('error', () => { a.manque = true; }); return a; });
+  const iConsigne = MOTS.length, iRetiens = MOTS.length + 1, iOuvre = MOTS.length + 2;
   let voix = null;
   function choisirVoix() { try { const rang = v => /google/i.test(v.name) ? 0 : /natural/i.test(v.name) ? 1 : /^fr-FR/i.test(v.lang) ? 2 : 3; voix = speechSynthesis.getVoices().filter(v => /^fr(-|_|$)/i.test(v.lang)).sort((a, b) => rang(a) - rang(b))[0] || null; } catch (e) { voix = null; } }
   if (window.speechSynthesis) { choisirVoix(); speechSynthesis.addEventListener('voiceschanged', choisirVoix); }
@@ -343,7 +346,7 @@ body.clair .face { box-shadow: 0 2px 0 rgba(255,255,255,.8) inset, 0 -2px 0 rgba
     });
     if (!enregistre && voix && n === parleN) {
       await wait(70);
-      await new Promise(res => { const u = new SpeechSynthesisUtterance(k === iConsigne ? CONSIGNE : k === iRetiens ? RETIENS : MOTS[k].t); u.voice = voix; u.lang = voix.lang; u.rate = .85; u.onend = u.onerror = () => res(); speechSynthesis.speak(u); setTimeout(res, 3500); });
+      await new Promise(res => { const u = new SpeechSynthesisUtterance(k === iConsigne ? CONSIGNE : k === iRetiens ? RETIENS : k === iOuvre ? OUVRE : MOTS[k].t); u.voice = voix; u.lang = voix.lang; u.rate = .85; u.onend = u.onerror = () => res(); speechSynthesis.speak(u); setTimeout(res, 3500); });
     }
     if (n === parleN) hp.classList.remove('parle');
   }
@@ -708,9 +711,15 @@ body.clair .face { box-shadow: 0 2px 0 rgba(255,255,255,.8) inset, 0 -2px 0 rgba
     $('#goTxt').innerHTML = suivant ? `Suivant <span class="n">${vue + 1} / ${MOTS.length}</span>` : 'Jouer';
   }
   mesurer(); disposer(); majBouton();
-  consigne('Ouvre le paquet de cartes.');
+  consigne(OUVRE);
+  // le paquet apparaît : on le dit à l'oral. Seule, la page parle tout de suite (si le navigateur laisse jouer le son) ;
+  // dans le quiz, elle attend qu'il la montre (elle peut être chargée en coulisse)
+  const integre = /[?&]integre=1/.test(location.search);
+  let ouvreDit = false;
+  const direOuvre = () => { if (ouvreDit || !document.body.classList.contains('accueil')) return; ouvreDit = true; setTimeout(() => { if (document.body.classList.contains('accueil')) dire(iOuvre); }, T(600)); };
+  if (!integre) direOuvre();
   addEventListener('resize', majBouton);
-  $('#hp').addEventListener('click', () => { audio(); if (!jeu.lance) dire(mobile() && vue > 0 ? vue : iRetiens); else if (!jeu.sienne) dire(iConsigne); else if (jeu.sienne.type === 'mot') dire(jeu.sienne.k); });
+  $('#hp').addEventListener('click', () => { audio(); if (document.body.classList.contains('accueil')) dire(iOuvre); else if (!jeu.lance) dire(mobile() && vue > 0 ? vue : iRetiens); else if (!jeu.sienne) dire(iConsigne); else if (jeu.sienne.type === 'mot') dire(jeu.sienne.k); });
   $('#go').addEventListener('click', async () => {
     if (jeu.lance || jeu.etalage) return; audio();
     if (document.body.classList.contains('accueil')) { dechirerAuto(); return; }
@@ -748,6 +757,7 @@ body.clair .face { box-shadow: 0 2px 0 rgba(255,255,255,.8) inset, 0 -2px 0 rgba
     if (e.source !== window.parent || !e.data || e.data.de !== 'quiz') return;
     if (e.data.type === 'theme') b.classList.toggle('clair', !!e.data.clair);
     else if (e.data.type === 'pause') taire();
+    else if (e.data.type === 'montre') direOuvre();
   });
   window.__duel = { jeu, cartes, maMain, jouer: c => jouer(c) };
 })();
