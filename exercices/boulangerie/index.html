@@ -49,7 +49,14 @@ svg { display: block; }
   box-shadow: 0 40px 90px -30px rgba(0,0,0,.75), 0 0 0 1px rgba(255,255,255,.14); isolation: isolate; }
 .pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
 .pic::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,.55)); pointer-events: none; }
-.card { flex: none; width: min(720px, 50vw); border-radius: 30px; padding: 16px 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.card { flex: none; width: min(720px, 50vw); border-radius: 30px; overflow: hidden; display: grid; }
+/* les deux vues de la carte, l'une sur l'autre : l'exercice, puis « Bravo » (la vague de distortion-waves passe de l'une à l'autre) */
+.vue { grid-area: 1 / 1; min-width: 0; min-height: 0; isolation: isolate; position: relative; display: flex; flex-direction: column; gap: 10px; padding: 16px 14px; }
+#vueB { opacity: 0; pointer-events: none; }
+/* la vague travaille sur une image des vues, qui doivent être opaques : à la fin, la carte prend un fond plein
+   aux couleurs qu'elle a sur la photo floutée (relevées sur une capture) */
+.card.vague .vue { background: radial-gradient(70% 60% at 30% 55%, #8e4f25, rgba(142,79,37,0) 75%), linear-gradient(160deg, #50463a, #3b302e); }
+body.clair .card.vague .vue { background: radial-gradient(70% 60% at 30% 55%, #f5dcc6, rgba(245,220,198,0) 75%), linear-gradient(160deg, #f8f2ec, #eeeaf1); }
 
 /* ---------- le spectre, le lecteur, ce que dit l'appli (comme le journal) ---------- */
 .spectre { position: absolute; left: 14px; right: 14px; bottom: 86px; z-index: 3; height: 110px; width: calc(100% - 28px); pointer-events: none; opacity: 0; transition: opacity .5s ease; }
@@ -274,7 +281,8 @@ body:not([data-turn="you"]) .it { pointer-events: none; }
   .pic { width: 100%; max-width: 560px; min-height: 0; height: 24vh; flex: none; border-radius: 26px; }
   .spectre { bottom: 66px; height: 50px; }
   .qui { bottom: 122px; font-size: 12.5px; }
-  .card { width: 100%; max-width: 560px; flex: 1; min-height: 0; border-radius: 26px; padding: 10px 10px 12px; gap: 8px; overflow: hidden; }
+  .card { width: 100%; max-width: 560px; flex: 1; min-height: 0; border-radius: 26px; }
+  .vue { padding: 10px 10px 12px; gap: 8px; }
   .hd { padding: 4px 12px 4px 4px; } .hd .is-ico { width: 34px; height: 34px; }
   .body { padding: 6px 6px; }
   .question { font-size: 23px; margin-bottom: 16px; }
@@ -354,14 +362,18 @@ body.clair .fond::after { background: radial-gradient(60% 60% at 50% 50%, rgba(2
   </div>
 
   <section class="card glass" id="card" aria-live="polite">
-    <div class="hd"><span class="is-ico" id="hdIco"></span><div><b id="hdT"></b><span id="hdS"></span></div><span class="n" id="hdN"></span></div>
-    <div class="body" id="body"></div>
-    <canvas class="ink" id="ink"></canvas>
+    <div class="vue" id="vueA" data-dw-layer="content">
+      <div class="hd"><span class="is-ico" id="hdIco"></span><div><b id="hdT"></b><span id="hdS"></span></div><span class="n" id="hdN"></span></div>
+      <div class="body" id="body"></div>
+      <canvas class="ink" id="ink"></canvas>
+    </div>
+    <div class="vue" id="vueB" data-dw-layer="revealed"></div>
   </section>
 </div>
 <div class="tray" id="tray"></div></main>
 <div class="finger" id="finger" aria-hidden="true"></div>
 
+<script src="distortion-waves.js"></script>
 <script>
 (() => {
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -587,6 +599,7 @@ body.clair .fond::after { background: radial-gradient(60% 60% at 50% 50%, rgba(2
     if (!state.entendu) return start(i);
     const f = ++flow; stopAll(); sayHide(); idle.stop(); state.ex = i; state.tries = 0; gaps = [];
     $$('.peb.vol').forEach(p => p.remove());
+    if (vueB.innerHTML) { if (vague) vague.reset(); montrerFin(false); vueB.innerHTML = ''; card.classList.remove('vague'); }
     const x = EX[i];
     $('#hdIco').style.setProperty('--c', x.c); $('#hdIco').innerHTML = x.ico; $('#hdT').textContent = x.nom; $('#hdS').textContent = x.consigne; $('#hdN').textContent = `${i + 1} / 4`;
     body.className = 'body'; void body.offsetWidth; body.classList.add('in'); tray.innerHTML = ''; majIle();
@@ -906,15 +919,33 @@ body.clair .fond::after { background: radial-gradient(60% 60% at 50% 50%, rgba(2
     return {};
   }
 
-  /* ===== la fin ===== */
-  function finale() {
-    const f = ++flow; stopAll(); sayHide(); gaps = []; state.ex = 3; majIle();
-    $('#hdIco').style.setProperty('--c', '#1DD6A0'); $('#hdIco').innerHTML = ICON.checkB.replace('currentColor', '#fff'); $('#hdT').textContent = 'À la boulangerie'; $('#hdS').textContent = 'Acheter du pain et des viennoiseries'; $('#hdN').textContent = 'A1';
-    body.className = 'body'; void body.offsetWidth; body.classList.add('in');
-    body.innerHTML = `<div class="fin"><div class="big">${ICON.check}</div><h2>Bravo !</h2><p>Tu as réussi les quatre exercices.</p><div class="recap">${EX.map(x => `<div><span class="is-ico" style="--c:${x.c}">${x.ico}</span>${x.nom}</div>`).join('')}</div></div>`;
-    tray.innerHTML = ''; const b = document.createElement('button'); b.className = 'go'; b.innerHTML = `<span>Recommencer</span>${ICON.again}`;
-    b.addEventListener('click', () => { state.done = [false, false, false, false]; majIle(); aller(0); }); tray.append(b);
-    setTurn('end'); sfx.ok();
+  /* ===== la fin : la vague de distortion-waves (type « center ») part du rond « Bravo » et emporte l'exercice ===== */
+  const vueA = $('#vueA'), vueB = $('#vueB');
+  let vague = null;
+  try { vague = new DistortionWaves.WaveController(card, vueA, vueB); } catch (e) { vague = null; }
+  const montrerFin = on => {
+    vueA.style.opacity = on ? '0' : ''; vueA.style.pointerEvents = on ? 'none' : '';
+    vueB.style.opacity = on ? '1' : ''; vueB.style.pointerEvents = on ? 'auto' : '';
+  };
+  async function finale() {
+    const f = ++flow; stopAll(); sayHide(); idle.stop(); gaps = []; majIle(); setTurn('wait');
+    $$('.peb.vol').forEach(p => p.remove()); tray.innerHTML = '';
+    vueB.innerHTML = `<div class="hd"><span class="is-ico" style="--c:#1DD6A0">${ICON.checkB.replace('currentColor', '#fff')}</span><div><b>À la boulangerie</b><span>Acheter du pain et des viennoiseries</span></div><span class="n">A1</span></div>`
+      + `<div class="body"><div class="fin"><div class="big" id="bigOk">${ICON.check}</div><h2>Bravo !</h2><p>Tu as réussi les quatre exercices.</p><div class="recap">${EX.map(x => `<div><span class="is-ico" style="--c:${x.c}">${x.ico}</span>${x.nom}</div>`).join('')}</div></div></div>`;
+    sfx.ok(); card.classList.add('vague');
+    if (vague) {
+      vague.update({ type: 'center', palette: 'colorful', onFinish: r => { if (r && alive(f)) montrerFin(true); } });
+      try { await Promise.race([vague.prepare(), wait(1200)]); } catch (e) {}
+      if (!alive(f)) return;
+      vague.play({ source: $('#bigOk') });
+    } else montrerFin(true);
+    const b = document.createElement('button'); b.className = 'go'; b.innerHTML = `<span>Recommencer</span>${ICON.again}`;
+    b.addEventListener('click', recommencer); tray.append(b);
+    setTurn('end');
+  }
+  function recommencer() {
+    if (vague) vague.reset(); montrerFin(false); vueB.innerHTML = ''; card.classList.remove('vague');
+    state.done = [false, false, false, false]; majIle(); aller(0);
   }
 
   /* ===== le début : on écoute la scène, puis le premier exercice ===== */
@@ -953,7 +984,7 @@ body.clair .fond::after { background: radial-gradient(60% 60% at 50% 50%, rgba(2
     body.innerHTML = `<p class="question">${ENC.q.t.split(' ').map(m => `<span class="kw">${m}</span>`).join(' ')}</p><div class="opts">${QCM.opts.map((o, k) => `<div class="opt" style="opacity:.6"><span class="lt">${'ABC'[k]}</span><span class="ot">${o}</span></div>`).join('')}</div>`;
     majIle(); setTurn('boot');
   })();
-  window.__boul = { state, aller, dlg, enc, ENC, QCM, TROUS, ASSO };
+  window.__boul = { state, aller, vague: () => vague, dlg, enc, ENC, QCM, TROUS, ASSO };
 })();
 </script>
 <button class="theme" id="theme" aria-label="Mode clair ou sombre"><svg class="soleil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"/></svg><svg class="lune" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1z"/></svg></button>

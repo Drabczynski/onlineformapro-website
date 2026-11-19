@@ -38,5 +38,10 @@ fil rouge), puis on réécoute.
 - Sons : `dialogue.mp3` (la boulangère, Femme 2 ; la cliente, Femme 1) et `enonces.mp3` (la question et les trois
   phrases, Homme 1), voix ElevenLabs, -20 LUFS, vérifiées par transcription. `python3 exercices/boulangerie/voix.py`
   les refait et écrit les repères des mots dans `reperes.json` (à recopier dans `index.html` si les textes changent).
+- Fin : quand les quatre exercices sont réussis, la vague « Distortion waves » de libraries.dev (paquet npm
+  `distortion-waves` 0.1.0, licence MIT) emporte le dernier exercice vers l'écran « Bravo », en anneau (type « center »)
+  depuis le rond vert, palette « colorful ». La page n'est pas en React : `distortion-waves.js` est le
+  `WaveController` de la librairie (son mode sans React), empaqueté tel quel avec esbuild. La vague travaille sur une
+  image des vues, qui doivent être opaques : à ce moment-là, la carte prend un fond plein aux couleurs du verre.
 - Photo : croissants sur une plaque (Unsplash, ePh7mI8y_bA).
 - Page : https://onlineformapro-website.vercel.app/exercices/boulangerie/
