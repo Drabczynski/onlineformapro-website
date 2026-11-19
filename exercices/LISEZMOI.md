@@ -31,6 +31,9 @@ de la transcription ElevenLabs du fichier. Photo : micro rétro (fournie). Page 
 structure d'origine, sans changement :
 - `exercices-lies/boulangerie/index.html` : les exercices liés à la scène ; `vocabulaire.html` : le jeu de cartes de vocabulaire.
 - `Sons/A1/A1-s1.mp3` : le dialogue ; `fiches/illustrations/A1/1.jpg` : l'illustration.
+- Vrai / faux : sur une erreur, la scène rejoue ; au passage qui donne la réponse, le lecteur zoome sur l'onde de ce
+  passage (`onde.js`, refait par `calcul-onde.py`), seul ce passage passe au ralenti (x0,6), puis tout revient. Les passages
+  sont dans `ENC.v[...].preuve` (phrase 1 : « Bonjour, madame ! » ; phrase 3 : « Une baguette et deux croissants » ; phrase 2 : aucun).
 - Voix : `voix.py` et `voix-cartes.js` (clé dans la variable d'environnement ELEVENLABS_API_KEY).
 - Pages : https://onlineformapro-website.vercel.app/exercices/boulangerie/exercices-lies/boulangerie/ (l'ancienne adresse
   /exercices/boulangerie/ y renvoie) et …/exercices-lies/boulangerie/vocabulaire.html

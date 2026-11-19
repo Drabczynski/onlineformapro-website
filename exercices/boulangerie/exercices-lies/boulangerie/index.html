@@ -63,6 +63,25 @@ body.clair .card.vague .vue { background: radial-gradient(70% 60% at 30% 55%, #e
 body.playing .spectre { opacity: 1; }
 .pic::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 55%; z-index: 2; pointer-events: none; background: linear-gradient(180deg, rgba(8,10,20,0), rgba(8,10,20,.6)); opacity: 0; transition: opacity .5s ease; }
 body.playing .pic::before { opacity: 1; }
+/* la loupe : sur une erreur au vrai / faux, au passage qui donne la réponse, le lecteur s'ouvre sur l'onde de ce passage,
+   joué au ralenti, puis tout revient comme avant */
+.loupe { position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 5; height: 62px; border-radius: 26px; padding: 14px 18px 12px; display: flex; flex-direction: column; gap: 6px; overflow: hidden;
+  background: rgba(10,12,20,.6); backdrop-filter: blur(26px) saturate(1.6); -webkit-backdrop-filter: blur(26px) saturate(1.6); color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 30px 60px -20px rgba(0,0,0,.7); opacity: 0; pointer-events: none;
+  transition: height .75s var(--spring), opacity .35s ease, border-radius .6s var(--apple); }
+.pic.zoom .loupe { opacity: 1; height: min(250px, calc(100% - 28px)); border-radius: 30px; }
+.pic .player { transition: opacity .35s ease, translate .5s var(--apple); }
+.pic.zoom .player { opacity: 0; }
+.pic img { transition: transform 1.1s var(--apple), filter .8s ease; }
+.pic.zoom img { transform: scale(1.07); filter: blur(5px) brightness(.62); }
+.pic.zoom .spectre, .pic.zoom .qui, .pic.zoom .say { opacity: 0 !important; }
+.lp-hd { display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: rgba(255,255,255,.62); opacity: 0; transition: opacity .3s ease; }
+.lp-lent { display: inline-flex; align-items: center; gap: 6px; color: #FFD24A; opacity: 0; transition: opacity .3s ease; }
+.lp-lent svg { width: 16px; height: 16px; }
+.loupe.lent .lp-lent { opacity: 1; }
+.lp-txt { flex: none; text-wrap: balance; margin: 0; font-size: 23px; font-weight: 800; letter-spacing: -.015em; line-height: 1.15; opacity: 0; transition: opacity .3s ease; --on: #fff; --off: rgba(255,255,255,.3); }
+.pic.zoom .lp-hd, .pic.zoom .lp-txt { opacity: 1; transition-delay: .3s; }
+.lp-onde { flex: 1; min-height: 0; width: 100%; display: block; }
 .qui { position: absolute; left: 50%; bottom: 206px; z-index: 4; translate: -50% 6px; padding: 6px 14px; border-radius: 16px; font-size: 14px; font-weight: 800; letter-spacing: .02em;
   background: rgba(16,18,28,.5); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); opacity: 0; transition: opacity .3s, translate .4s var(--apple); pointer-events: none; white-space: nowrap; }
 .qui.on { opacity: 1; translate: -50% 0; }
@@ -286,6 +305,7 @@ body:not([data-turn="you"]) .it { pointer-events: none; }
   .row { flex-direction: column; gap: 12px; width: 100%; height: auto; flex: 1; min-height: 0; align-items: center; }
   .pic { width: 100%; max-width: 560px; min-height: 0; height: 24vh; flex: none; border-radius: 26px; }
   .spectre { bottom: 66px; height: 50px; }
+  .loupe { left: 10px; right: 10px; bottom: 10px; padding: 10px 14px 8px; gap: 4px; } .pic.zoom .loupe { height: calc(100% - 20px); } .lp-txt { font-size: 17px; } .lp-hd { font-size: 11px; }
   .qui { bottom: 122px; font-size: 12.5px; }
   .card { width: 100%; max-width: 560px; flex: 1; min-height: 0; border-radius: 26px; }
   .vue { padding: 10px 10px 12px; gap: 8px; }
@@ -371,6 +391,7 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
       <span class="time" id="dur">0:07</span>
       <button class="ico" id="slow" aria-pressed="false" aria-label="Plus lentement"></button>
     </div>
+    <div class="loupe" id="loupe" aria-hidden="true"><div class="lp-hd"><span id="lpQui"></span><span class="lp-lent" id="lpLent"></span></div><p class="lp-txt" id="lpTxt"></p><canvas class="lp-onde" id="lpOnde"></canvas></div>
   </div>
 
   <section class="card glass" id="card" aria-live="polite">
@@ -387,6 +408,7 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
 
 <script src="distortion-waves.js"></script>
 <script src="spectre.js"></script>
+<script src="onde.js"></script>
 <script>
 (() => {
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -406,9 +428,11 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
   const ENC = {
     q: { t: `Que demande la cliente${NB}?`, s: .25, e: 1.34, w: [.26, .42, .76, .88] },
     v: [
-      { t: 'La boulangère dit bonjour.', s: 2.04, e: 3.64, w: [2.12, 2.26, 3.0, 3.14], ok: true },
+      { t: 'La boulangère dit bonjour.', s: 2.04, e: 3.64, w: [2.12, 2.26, 3.0, 3.14], ok: true,
+        preuve: { qui: 'La boulangère', t: `Bonjour, madame${NB}!`, s: .84, e: 1.65, w: [.84, 1.24] } },
       { t: 'La scène se passe à la boulangerie.', s: 4.34, e: 6.21, w: [4.42, 4.58, 4.88, 5.06, 5.34, 5.4, 5.52], ok: true },
-      { t: 'La cliente achète un gâteau.', s: 6.91, e: 8.7, w: [6.98, 7.12, 7.74, 8.04, 8.16], ok: false },
+      { t: 'La cliente achète un gâteau.', s: 6.91, e: 8.7, w: [6.98, 7.12, 7.74, 8.04, 8.16], ok: false,
+        preuve: { qui: 'La cliente', t: 'Une baguette et deux croissants', s: 3.17, e: 4.62, w: [3.17, 3.33, 3.87, 4.08, 4.2] } },
     ],
   };
   const QCM = { opts: ['Une tarte et deux gâteaux', 'Deux baguettes et un croissant', 'Une baguette et deux croissants'], ans: 2 };
@@ -889,11 +913,65 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
         await wait(reduced ? 80 : 900); if (!alive(f)) return; tour(); return;
       }
       setTurn('wait'); const c = verdict(i, false); lignes[i].classList.remove('secoue'); void lignes[i].offsetWidth; lignes[i].classList.add('secoue');
-      const ok = await non(f, 'Non. Écoute encore la scène.', async () => { c.remove(); await play(dlg, 0, Infinity); if (!alive(f)) return; await wait(300); if (!alive(f)) return; return lire(i); });
+      const ok = await non(f, 'Non. Écoute encore la scène.', async () => { c.remove(); await play(dlg, 0, Infinity, ENC.v[i].preuve ? loupe(ENC.v[i].preuve) : null); if (!alive(f)) return; await wait(300); if (!alive(f)) return; return lire(i); });
       if (!ok) return;
       if (state.tries >= 2) boutons.forEach(b => b.classList.toggle('hint', b.classList.contains(ENC.v[i].ok ? 'v' : 'f')));
       setTurn('you'); sayShow('À toi : vrai ou faux ?');
     }
+  }
+
+  /* ===== la loupe : la scène rejoue ; au passage décisif, le lecteur zoome sur son onde, ce passage seul au ralenti ===== */
+  const ONDE = window.ONDE_DIALOGUE || null, pic = $('.pic'), lp = $('#loupe'), lpCv = $('#lpOnde'), lpx = lpCv.getContext('2d');
+  $('#lpLent').innerHTML = ICON.snail + 'Ralenti';
+  const doux = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+  function loupe(P) {
+    const ws = P.s - .55, we = P.e + .5, LENT = .6, base = () => state.slow ? .8 : 1;
+    let ouverte = false, finie = false, z = 0, tCur = 0, raf = 0, lent = false, kk = null;
+    const niveau = t => { if (!ONDE) return 0; const x = t / ONDE.pas, i = Math.floor(x), f = x - i, a = ONDE.v[i] || 0, b = ONDE.v[i + 1] || 0; return (a + (b - a) * f) / 99; };
+    function dessiner() {
+      z += ((ouverte ? 1 : 0) - z) * (reduced ? 1 : .07);
+      const dpr = Math.min(2, devicePixelRatio || 1), W = lpCv.clientWidth, H = lpCv.clientHeight;
+      if (W && H) {
+        if (lpCv.width !== Math.round(W * dpr) || lpCv.height !== Math.round(H * dpr)) { lpCv.width = Math.round(W * dpr); lpCv.height = Math.round(H * dpr); }
+        lpx.setTransform(dpr, 0, 0, dpr, 0, 0); lpx.clearRect(0, 0, W, H);
+        // la fenêtre de temps se resserre : de toute la scène jusqu'au passage
+        const D = DUREE(dlg), k = doux(Math.min(1, z)), a = ws * k, b = D + (we - D) * k;
+        const pas = 5, n = Math.floor(W / pas), mid = H / 2;
+        for (let i = 0; i < n; i++) {
+          const t0 = a + (b - a) * i / n, t1 = a + (b - a) * (i + 1) / n;
+          let v = 0; for (let t = t0; t <= t1; t += Math.max(.004, (t1 - t0) / 6)) v = Math.max(v, niveau(t));
+          const h = Math.max(2, Math.pow(v, .8) * (H - 6)), x = i * pas + 1, tc = (t0 + t1) / 2, dit = tc <= tCur, passage = tc >= P.s && tc <= P.e;
+          lpx.globalAlpha = dit ? 1 : passage ? .55 : .28;
+          lpx.fillStyle = passage ? '#FFD24A' : '#fff';
+          lpx.shadowColor = passage ? 'rgba(255,210,74,.9)' : 'rgba(255,255,255,.6)'; lpx.shadowBlur = dit ? 10 : 0;
+          lpx.beginPath(); if (lpx.roundRect) lpx.roundRect(x, mid - h / 2, pas - 2, h, 1.5); else lpx.rect(x, mid - h / 2, pas - 2, h); lpx.fill();
+        }
+        // la tête de lecture
+        if (tCur >= a && tCur <= b) { const x = (tCur - a) / (b - a) * W; lpx.globalAlpha = 1; lpx.shadowBlur = 12; lpx.shadowColor = '#fff'; lpx.fillStyle = '#fff'; lpx.fillRect(x - 1, 2, 2, H - 4); }
+        lpx.globalAlpha = 1; lpx.shadowBlur = 0;
+      }
+      if (ouverte || z > .01) raf = requestAnimationFrame(dessiner); else raf = 0;
+    }
+    function ouvrir() {
+      ouverte = true; $('#lpQui').textContent = P.qui; const lt = $('#lpTxt'); lt.textContent = ''; const sp = document.createElement('span'); lt.append('« ', sp, ' »'); kk = kwKara(kwWords(sp, P.t), P.w, P.e);
+      pic.classList.add('zoom'); if (!raf) raf = requestAnimationFrame(dessiner);
+    }
+    function fermer() {
+      if (finie) return; finie = true; ouverte = false; lent = false; lp.classList.remove('lent');
+      dlg.playbackRate = base(); pic.classList.remove('zoom');
+    }
+    const k = t => {
+      tCur = t;
+      if (!ouverte && !finie && t >= ws) ouvrir();
+      if (!ouverte) return;
+      // seul le passage décisif passe au ralenti
+      const doit = t >= P.s - .04 && t < P.e;
+      if (doit !== lent) { lent = doit; dlg.playbackRate = doit ? LENT : base(); lp.classList.toggle('lent', doit); }
+      if (kk) kk(t);
+      if (t > we) fermer();
+    };
+    k.off = fermer;
+    return k;
   }
 
   /* ===== 4. Association : on relie le mot à sa définition (toucher l'un puis l'autre, ou tirer un fil) ===== */
