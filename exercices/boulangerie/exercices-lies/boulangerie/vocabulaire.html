@@ -634,6 +634,7 @@ body.clair .face { box-shadow: 0 2px 0 rgba(255,255,255,.8) inset, 0 -2px 0 rgba
     return tour();
   }
   async function fin() {
+    if (INTEGRE) { fermer(); auQuiz({ type: 'fini' }); auQuiz({ type: 'suivant' }); return; }
     fermer(); consigne(`Bravo ! Tu as gagné les ${MOTS.length} paires.`, 'ok'); sfx.bravo();
     const b = $('#bilan');
     b.innerHTML = `<h2>Les mots de la boulangerie</h2>` + MOTS.map((m, k) => {
