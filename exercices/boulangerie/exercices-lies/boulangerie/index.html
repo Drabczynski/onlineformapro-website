@@ -483,11 +483,93 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
   function setTurn(t) { state.turn = t; document.body.dataset.turn = t; if (t !== 'you') idle.stop(); }
 
   /* ===== le son : deux fichiers (la scène, les énoncés), une seule voix à la fois ===== */
-  const dlg = new Audio('../../Sons/A1/A1-s1.mp3'), enc = new Audio('enonces.mp3'); dlg.preload = enc.preload = 'auto';
   const DUREE = el => el.duration || (el === dlg ? 6.08 : 9.2);
   let media = 0, unlocked = false;
   let ctx = null;
-  function audioCtx() { try { if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)(); if (ctx.state === 'suspended') ctx.resume(); } catch (e) {} return ctx; }
+  function audioCtx() { try { if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)(); if (ctx.state === 'suspended') { const r = ctx.resume(); if (r && r.catch) r.catch(() => {}); } } catch (e) {} return ctx; }
+  // iPhone : que la voix joue aussi quand le téléphone est en mode silencieux (Web Audio sinon se tait)
+  try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
+  /* Une « piste » : le son décodé et joué par Web Audio, au centième près, partout (sur iPhone, un élément <audio>
+     se place mal quand on saute dans le fichier, annonce une position approximative et s'arrête en retard).
+     Elle se manie comme un élément <audio> (currentTime, paused, playbackRate, play(), pause()) pour le reste de la page.
+     Le ralenti garde la hauteur de la voix : il joue une version étirée d'avance (lent/, ffmpeg atempo).
+     Page ouverte depuis le disque, ou décodage impossible : repli sur un élément <audio>, comme avant. */
+  class Piste extends EventTarget {
+    constructor(src, lents = {}) {
+      super(); this.src = new URL(src, location.href).href; this.lents = lents; this.bufs = {};
+      this.buf = null; this.el = null; this._pos = 0; this._rate = 1; this._k = 1; this._paused = true; this._ended = false; this.node = null; this.gain = null;
+      this.pret = this.charger();
+    }
+    async charger() {
+      try {
+        if (location.protocol === 'file:') throw 0;
+        const c = audioCtx(); if (!c) throw 0;
+        const dec = async u => { const r = await fetch(u); if (!r.ok) throw 0; const ab = await r.arrayBuffer(); return new Promise((ok, ko) => c.decodeAudioData(ab, ok, ko)); };
+        this.buf = await dec(this.src); this.dispatchEvent(new Event('loadedmetadata'));
+        for (const [r, u] of Object.entries(this.lents)) dec(new URL(u, location.href).href).then(b => { this.bufs[r] = b; }).catch(() => {});
+      } catch (e) { this.repli(); }
+    }
+    repli() {
+      if (this.el) return; const a = this.el = new Audio(this.src); a.preload = 'auto';
+      ['loadedmetadata', 'seeked'].forEach(t => a.addEventListener(t, () => this.dispatchEvent(new Event(t))));
+    }
+    get latence() { return ctx ? (ctx.outputLatency || ctx.baseLatency || 0) : 0; }
+    get duration() { return this.buf ? this.buf.duration : this.el ? this.el.duration : NaN; }
+    get paused() { return this.buf ? this._paused : this.el ? this.el.paused : true; }
+    get ended() { return this.buf ? this._ended : this.el ? this.el.ended : false; }
+    // la position jouée (sans la latence de sortie) et la position entendue (ce que suivent le texte et le lecteur)
+    _brute() { return this._paused ? this._pos : Math.min(this.buf.duration, this._pos + Math.max(0, ctx.currentTime - this._t0) * this._k); }
+    get currentTime() {
+      if (!this.buf) return this.el ? this.el.currentTime : this._pos;
+      if (this._paused) return this._pos;
+      return Math.min(this.buf.duration, this._pos + Math.max(0, ctx.currentTime - this._t0 - this.latence) * this._k);
+    }
+    set currentTime(t) {
+      if (!this.buf) { if (this.el) this.el.currentTime = t; else this._pos = t; return; }
+      const jouait = !this._paused; if (jouait) this._stop();
+      this._pos = Math.max(0, Math.min(t, this.buf.duration)); this._ended = false;
+      if (jouait) this._start();
+      queueMicrotask(() => this.dispatchEvent(new Event('seeked')));
+    }
+    get playbackRate() { return this.buf ? this._rate : this.el ? this.el.playbackRate : 1; }
+    set playbackRate(r) {
+      if (!this.buf) { if (this.el) this.el.playbackRate = r; return; }
+      if (r === this._rate) return;
+      if (this._paused) { this._rate = r; return; }
+      const t = this._brute(); this._stop(); this._rate = r; this._pos = t; this._start();
+    }
+    set preload(v) {}
+    _start() {
+      const c = ctx, r = this._rate, lent = r !== 1 ? this.bufs[r] : null, src = c.createBufferSource();
+      let off;
+      if (lent) { src.buffer = lent; this._k = this.buf.duration / lent.duration; off = this._pos / this._k; }
+      else { src.buffer = this.buf; src.playbackRate.value = r; this._k = r; off = this._pos; }
+      const g = c.createGain(), now = c.currentTime;
+      g.gain.setValueAtTime(0, now); g.gain.linearRampToValueAtTime(1, now + .01);
+      src.connect(g); g.connect(analyseur || c.destination);
+      src.start(now, Math.min(off, src.buffer.duration));
+      this._t0 = now; this.node = src; this.gain = g; this._paused = false; this._ended = false;
+      src.onended = () => { if (this.node !== src) return; this.node = null; this._pos = this.buf.duration; this._paused = true; this._ended = true; };
+    }
+    _stop() {
+      const n = this.node, g = this.gain; this.node = null; if (!n) return;
+      try { const t = ctx.currentTime; g.gain.cancelScheduledValues(t); g.gain.setValueAtTime(g.gain.value, t); g.gain.linearRampToValueAtTime(0, t + .012); n.stop(t + .015); } catch (e) {}
+    }
+    play() {
+      if (!this.buf) {
+        if (this.el) return this.el.play();
+        return this.pret.then(() => this.play());   // pas encore décodée : on attend, puis on joue
+      }
+      audioCtx(); if (!this._paused) return Promise.resolve();
+      if (this._pos >= this.buf.duration - .01) this._pos = 0;
+      this._start(); return Promise.resolve();
+    }
+    pause() {
+      if (!this.buf) { if (this.el) this.el.pause(); return; }
+      if (this._paused) return; this._pos = this._brute(); this._stop(); this._paused = true;
+    }
+  }
+  const dlg = new Piste('../../Sons/A1/A1-s1.mp3', { 0.6: 'lent/A1-s1-0.6.mp3', 0.8: 'lent/A1-s1-0.8.mp3' }), enc = new Piste('enonces.mp3', { 0.8: 'lent/enonces-0.8.mp3' });
   let analyseur = null, freq = null;
   function unlock() {
     if (unlocked) return; unlocked = true;
@@ -495,7 +577,7 @@ body.clair .fin .big { box-shadow: 0 20px 50px -16px rgba(25,168,116,.6); }
     // la voix joue alors en direct et le spectre prend son animation de secours
     if (location.protocol === 'file:') { audioCtx(); return; }
     try { const c = audioCtx(); if (!c) return; analyseur = c.createAnalyser(); analyseur.fftSize = 256; analyseur.smoothingTimeConstant = .78; analyseur.connect(c.destination);
-      [dlg, enc].forEach(el => c.createMediaElementSource(el).connect(analyseur)); freq = new Uint8Array(analyseur.frequencyBinCount); } catch (e) { analyseur = null; }
+      freq = new Uint8Array(analyseur.frequencyBinCount); } catch (e) { analyseur = null; }
   }
   function tone(f, t0, dur, gain, type = 'sine') {
     const c = audioCtx(); if (!c) return;

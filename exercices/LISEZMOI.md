@@ -34,6 +34,9 @@ structure d'origine, sans changement :
 - Vrai / faux : sur une erreur, la scène rejoue ; au passage qui donne la réponse, le lecteur zoome sur l'onde de ce
   passage (`onde.js`, refait par `calcul-onde.py`), seul ce passage passe au ralenti (x0,6), puis tout revient. Les passages
   sont dans `ENC.v[...].preuve` (phrase 1 : « Bonjour, madame ! » ; phrase 3 : « Une baguette et deux croissants » ; phrase 2 : aucun).
+- Lecture des voix (exercices liés) par Web Audio : chaque son est décodé puis joué au centième, sans chevauchement (Safari iOS
+  plaçait mal les phrases, les annonçait en avance et les arrêtait en retard). Le ralenti garde la hauteur de la voix grâce aux
+  versions étirées de `lent/` (ffmpeg atempo 0,6 et 0,8) : à refaire si le dialogue ou les énoncés changent.
 - Voix : `voix.py` et `voix-cartes.js` (clé dans la variable d'environnement ELEVENLABS_API_KEY).
 - Pages : https://onlineformapro-website.vercel.app/exercices/boulangerie/exercices-lies/boulangerie/ (l'ancienne adresse
   /exercices/boulangerie/ y renvoie) et …/exercices-lies/boulangerie/vocabulaire.html
