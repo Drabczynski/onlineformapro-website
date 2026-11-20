@@ -377,7 +377,7 @@ body.clair .face { box-shadow: 0 2px 0 rgba(255,255,255,.8) inset, 0 -2px 0 rgba
   let G = {};
   // les marges de sécurité du téléphone (encoche, barre du bas), lues sur un élément témoin
   const sonde = document.createElement('div'); sonde.className = 'sonde'; document.body.append(sonde);
-  const INTEGRE = new URLSearchParams(location.search).has('integre'), MARGE_ILE = INTEGRE ? 68 : 0;
+  const INTEGRE = new URLSearchParams(location.search).has('integre'), MARGE_ILE = 0;   // le quiz n'a plus d'île au-dessus du jeu
   if (INTEGRE) document.body.classList.add('integre');
   const safe = () => { const s = getComputedStyle(sonde); return { haut: (parseFloat(s.paddingTop) || 0) + MARGE_ILE, bas: parseFloat(s.paddingBottom) || 0 }; };
   function mesurer() {
